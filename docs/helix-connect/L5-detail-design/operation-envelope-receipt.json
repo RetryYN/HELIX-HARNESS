@@ -1,0 +1,1222 @@
+{
+  "parent": "HELIXCONNECT-L2-003",
+  "source_main": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+  "scope": {
+    "approval_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "historical_stage": "Stage 1",
+    "version_target": "1.0",
+    "requirements": [
+      "HELIXCONNECT-L3-003-F01",
+      "HELIXCONNECT-L3-003-B01"
+    ],
+    "oracles": [
+      "HELIXCONNECT-L10-003-F01",
+      "HELIXCONNECT-L10-003-B01"
+    ],
+    "statement": "envelope/両端receiptを同operationへ内容照合し、技術結果と業務意味を分離する。実通信/許可/承認を生成しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approval_basis": {
+    "decision": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_id": "HDEC-CONNECT-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "approved_whole_objects_source": "decision recordのexact reviewed bytes。現行表示やL4/L9要約から承認を推定しない。"
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    }
+  ],
+  "upstream_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        27,
+        32
+      ],
+      "quote": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "98542d7dc84d328984c1b8318bbbf87b12067f35e639e233b7c31322c77ab987",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        47,
+        57
+      ],
+      "quote": "| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "0da9dc830d9342630a3a9b55aa7965b69239abdb557b659949d9c02afcf0debd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    }
+  ],
+  "source_pin_limit": "pinはbytes同一性であり実source資格・実受領・実許可を成立させない。",
+  "pair_source_pins": [
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+      "document_id": "HELIXCONNECT-L4-003"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+      "sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+      "document_id": "HELIXCONNECT-L9-003"
+    }
+  ],
+  "status": "draft_detail_design_for_static_review",
+  "document_id": "HELIXCONNECT-L5-003",
+  "layer": "L5",
+  "layer_id": "HELIXCONNECT-L5-003",
+  "pair": "HELIXCONNECT-L8-003",
+  "pair_id": "HELIXCONNECT-L8-003",
+  "design_ref": "HELIXCONNECT-L4-003",
+  "logical_types": [
+    {
+      "name": "String",
+      "kind": "primitive_alias",
+      "definition": "JSON string; no qualification semantics."
+    },
+    {
+      "name": "Boolean",
+      "kind": "primitive_alias",
+      "definition": "JSON boolean."
+    },
+    {
+      "name": "Integer",
+      "kind": "primitive_alias",
+      "definition": "JSON integer."
+    },
+    {
+      "name": "List<T>",
+      "kind": "generic_alias",
+      "definition": "ordered JSON array of T; order is retained."
+    },
+    {
+      "name": "Map<K,V>",
+      "kind": "generic_alias",
+      "definition": "JSON object with K keys and V values; iteration never determines output order."
+    },
+    {
+      "name": "Null",
+      "kind": "primitive_alias",
+      "definition": "JSON null; differs from absent."
+    },
+    {
+      "name": "JsonScalar",
+      "kind": "union",
+      "members": [
+        "Null",
+        "Boolean",
+        "Number",
+        "String"
+      ]
+    },
+    {
+      "name": "JsonValue",
+      "kind": "recursive_union",
+      "members": [
+        "JsonScalar",
+        "JsonArray",
+        "JsonObject"
+      ]
+    },
+    {
+      "name": "JsonArray",
+      "kind": "list",
+      "item": "JsonValue"
+    },
+    {
+      "name": "JsonObject",
+      "kind": "map",
+      "key": "String",
+      "value": "JsonValue"
+    },
+    {
+      "name": "Presence<T>",
+      "kind": "generic_tagged_union",
+      "variants": {
+        "absent": {},
+        "null": {
+          "value": "Null"
+        },
+        "value": {
+          "value": "T"
+        }
+      }
+    },
+    {
+      "name": "ComparisonResult",
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "missing",
+        "unknown_original_information",
+        "known_in_fixture_only",
+        "unknown_operation",
+        "current_compatible_in_fixture_only",
+        "incompatible",
+        "unknown",
+        "stale",
+        "valid_in_fixture_only",
+        "expired",
+        "revoked",
+        "sent_in_fixture_only",
+        "received_in_fixture_only",
+        "rejected_in_fixture_only",
+        "contract_outside_field",
+        "not_evaluated_in_fixture"
+      ]
+    },
+    {
+      "name": "OperationContractView",
+      "kind": "record",
+      "fields": {
+        "header_fields": "List<String>",
+        "envelope_fields": "List<String>",
+        "send_fields": "List<String>",
+        "receive_fields": "List<String>",
+        "areas_in_order": "List<String>",
+        "security_fields": "List<String>",
+        "failure_routes": "Map<String,String>",
+        "check_order_rule": "String",
+        "header_comparison_order": "List<String>",
+        "envelope_comparison_order": "List<String>",
+        "output_literals_ref": "String",
+        "owner_values": "Map<String,String>",
+        "registration_fields": "List<String>",
+        "compatibility_fields": "List<String>",
+        "permission_fields": "List<String>",
+        "receipt_side_order": "List<String>",
+        "area_names": "Map<String,String>",
+        "outside_contract_field": "String",
+        "unknown_original_field": "String",
+        "check_fields": "Map<String,List<String>>"
+      }
+    },
+    {
+      "name": "BusinessContractView",
+      "kind": "record",
+      "fields": {
+        "technical_fields": "List<String>",
+        "business_fields": "List<String>",
+        "target_fields": "List<String>",
+        "areas_in_order": "List<String>",
+        "failure_route": "String",
+        "output_literals_ref": "String",
+        "owner_values": "Map<String,String>",
+        "area_names": "Map<String,String>",
+        "failure_fields": "Map<String,String>"
+      }
+    },
+    {
+      "name": "ComparisonCheck",
+      "kind": "record",
+      "fields": {
+        "area": "String",
+        "field": "String",
+        "result": "ComparisonResult",
+        "return_owner": "String"
+      }
+    },
+    {
+      "name": "FailureFinding",
+      "kind": "record",
+      "fields": {
+        "area": "String",
+        "field": "String",
+        "result": "ComparisonResult",
+        "return_owner": "String"
+      }
+    },
+    {
+      "name": "StringPresence",
+      "kind": "alias",
+      "target": "Presence<String>"
+    },
+    {
+      "name": "BoolPresence",
+      "kind": "alias",
+      "target": "Presence<Boolean>"
+    },
+    {
+      "name": "JsonPresence",
+      "kind": "alias",
+      "target": "Presence<JsonValue>"
+    },
+    {
+      "name": "ClaimResult",
+      "kind": "enum",
+      "values": [
+        "none",
+        "rejected",
+        "unknown_in_fixture"
+      ]
+    },
+    {
+      "name": "BusinessRecord",
+      "kind": "record",
+      "fields": {
+        "identity": "StringPresence",
+        "revision": "StringPresence",
+        "operation_identity": "StringPresence",
+        "scope": "StringPresence",
+        "owner": "StringPresence",
+        "state": "StringPresence",
+        "meaning": "StringPresence",
+        "unfinished": "JsonPresence"
+      }
+    },
+    {
+      "name": "OperationHeader",
+      "kind": "record",
+      "fields": {
+        "connection_identity": "StringPresence",
+        "operation_identity": "StringPresence",
+        "contract_revision": "StringPresence",
+        "registration_revision": "StringPresence",
+        "capability": "StringPresence",
+        "artifact_revision": "StringPresence",
+        "dependency_revision": "StringPresence",
+        "scope": "StringPresence",
+        "correlation": "StringPresence",
+        "expiry": "StringPresence",
+        "idempotency": "StringPresence",
+        "result_state": "StringPresence",
+        "permission_ref": "StringPresence",
+        "data_use_ref": "StringPresence"
+      }
+    },
+    {
+      "name": "Receipt",
+      "kind": "record",
+      "fields": {
+        "identity": "StringPresence",
+        "revision": "StringPresence",
+        "target_header": "Presence<OperationHeader>",
+        "envelope_digest": "StringPresence",
+        "observation_location": "StringPresence",
+        "owner": "StringPresence",
+        "state": "StringPresence"
+      }
+    },
+    {
+      "name": "ReceiptBundle",
+      "kind": "record",
+      "fields": {
+        "send": "Presence<Receipt>",
+        "receive": "Presence<Receipt>"
+      }
+    },
+    {
+      "name": "CompatibilityTarget",
+      "kind": "record",
+      "fields": {
+        "connection_identity": "StringPresence",
+        "contract_revision": "StringPresence",
+        "dependency_revision": "StringPresence",
+        "scope": "StringPresence"
+      }
+    },
+    {
+      "name": "PermissionTarget",
+      "kind": "record",
+      "fields": {
+        "connection_identity": "StringPresence",
+        "contract_revision": "StringPresence",
+        "data_use_ref": "StringPresence",
+        "expiry": "StringPresence",
+        "operation_identity": "StringPresence",
+        "permission_ref": "StringPresence",
+        "scope": "StringPresence"
+      }
+    },
+    {
+      "name": "StateBinding",
+      "kind": "record",
+      "fields": {
+        "state": "StringPresence",
+        "target": "JsonPresence"
+      }
+    },
+    {
+      "name": "RegistrationRecord",
+      "kind": "record",
+      "fields": {
+        "connection_identity": "StringPresence",
+        "contract_revision": "StringPresence",
+        "registration_revision": "StringPresence",
+        "scope": "StringPresence"
+      }
+    },
+    {
+      "name": "RecoveryRecord",
+      "kind": "record",
+      "fields": {
+        "handoff": "StringPresence",
+        "identity": "StringPresence",
+        "operation_identity": "StringPresence",
+        "owner": "StringPresence",
+        "revision": "StringPresence",
+        "scope": "StringPresence",
+        "state": "StringPresence"
+      }
+    },
+    {
+      "name": "OperationPacket",
+      "kind": "record",
+      "fields": {
+        "claims": "Map<String,BoolPresence>",
+        "original_allowed_envelope_fields": "List<String>",
+        "original_compatibility": "StateBinding",
+        "original_envelope": "JsonValue",
+        "original_expiry_state": "String",
+        "original_header": "OperationHeader",
+        "original_known_operations": "List<String>",
+        "original_permission": "StateBinding",
+        "original_receipts": "ReceiptBundle",
+        "original_recovery": "List<RecoveryRecord>",
+        "original_registration": "RegistrationRecord",
+        "submitted_envelope": "JsonValue",
+        "submitted_header": "OperationHeader",
+        "submitted_receipts": "ReceiptBundle",
+        "submitted_recovery": "List<RecoveryRecord>"
+      }
+    },
+    {
+      "name": "TechnicalReceipt",
+      "kind": "record",
+      "fields": {
+        "identity": "StringPresence",
+        "revision": "StringPresence",
+        "target_header": "Presence<OperationHeader>",
+        "envelope_digest": "StringPresence",
+        "observation_location": "StringPresence",
+        "owner": "StringPresence",
+        "state": "StringPresence"
+      }
+    },
+    {
+      "name": "BusinessPacket",
+      "kind": "record",
+      "fields": {
+        "claims": "Map<String,BoolPresence>",
+        "original_business_record": "BusinessRecord",
+        "original_envelope": "JsonValue",
+        "original_meaning_authority": "String",
+        "original_technical_receipt": "TechnicalReceipt",
+        "submitted_business_record": "BusinessRecord",
+        "submitted_meaning_authority": "String",
+        "submitted_technical_receipt": "TechnicalReceipt"
+      }
+    },
+    {
+      "name": "BusinessInput",
+      "kind": "record",
+      "fields": {
+        "raw_packet": "BusinessPacket",
+        "contract_view": "BusinessContractView",
+        "packet_sha256": "String",
+        "case_id": "String"
+      }
+    },
+    {
+      "name": "EffectFlags",
+      "kind": "record",
+      "fields": {
+        "actual_send": "Boolean",
+        "actual_receive": "Boolean",
+        "actual_permission": "Boolean",
+        "actual_business_approval": "Boolean",
+        "actual_meaning_update": "Boolean",
+        "actual_authority": "Boolean",
+        "actual_implementation_ready": "Boolean",
+        "actual_acceptance": "Boolean"
+      }
+    },
+    {
+      "name": "ClaimResults",
+      "kind": "map",
+      "key": "String",
+      "value": "ClaimResult"
+    },
+    {
+      "name": "BusinessAssessment",
+      "kind": "record",
+      "fields": {
+        "technical_content_results": "Map<String,ComparisonResult>",
+        "business_content_results": "Map<String,ComparisonResult>",
+        "business_target_results": "Map<String,ComparisonResult>",
+        "meaning_authority_result": "ComparisonResult",
+        "retained_technical_receipt": "TechnicalReceipt",
+        "retained_business_record": "BusinessRecord",
+        "submitted_business_record": "BusinessRecord",
+        "retained_meaning_authority": "String",
+        "retained_business_state": "String",
+        "retained_unfinished": "JsonValue",
+        "failure_reasons": "List<FailureFinding>",
+        "claim_results": "ClaimResults",
+        "business_completion": "BusinessCompletion",
+        "return_owner": "String",
+        "effects": "EffectFlags"
+      }
+    },
+    {
+      "name": "BusinessCompletion",
+      "kind": "enum",
+      "values": [
+        "not_generated_by_technical_receipt"
+      ]
+    },
+    {
+      "name": "Missing",
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unknown_original_information"
+      ]
+    },
+    {
+      "name": "OperationInput",
+      "kind": "record",
+      "fields": {
+        "raw_packet": "OperationPacket",
+        "contract_view": "OperationContractView",
+        "packet_sha256": "String",
+        "case_id": "String"
+      }
+    },
+    {
+      "name": "ReceiptPairAssessment",
+      "kind": "record",
+      "fields": {
+        "send": "ReceiptAssessment",
+        "receive": "ReceiptAssessment"
+      }
+    },
+    {
+      "name": "ReceiptAssessment",
+      "kind": "record",
+      "fields": {
+        "content_results": "Map<String,ComparisonResult>",
+        "target_header_results": "Map<String,ComparisonResult>",
+        "envelope_digest_result": "ComparisonResult",
+        "retained_receipt": "Presence<Receipt>",
+        "submitted_receipt": "Presence<Receipt>",
+        "observation_location": "String",
+        "retained_observation_state": "String"
+      }
+    },
+    {
+      "name": "OperationAssessment",
+      "kind": "record",
+      "fields": {
+        "header_results": "Map<String,ComparisonResult>",
+        "envelope_results": "Map<String,ComparisonResult>",
+        "checks": "List<ComparisonCheck>",
+        "failure_reasons": "List<FailureFinding>",
+        "failure_return_owners": "List<String>",
+        "receipt_results": "ReceiptPairAssessment",
+        "retained_recovery": "List<RecoveryRecord>",
+        "submitted_recovery": "List<RecoveryRecord>",
+        "recovery_result": "ComparisonResult",
+        "technical_receipt_candidate": "TechnicalReceiptCandidate",
+        "attempt_count": "Integer",
+        "claim_results": "ClaimResults",
+        "effects": "EffectFlags"
+      }
+    },
+    {
+      "name": "TechnicalReceiptCandidate",
+      "kind": "enum",
+      "values": [
+        "requires_actual_source_and_transport_qualification",
+        "held_or_rejected"
+      ]
+    }
+  ],
+  "contract_views": {
+    "operation": {
+      "header_fields": [
+        "connection_identity",
+        "operation_identity",
+        "contract_revision",
+        "registration_revision",
+        "capability",
+        "artifact_revision",
+        "dependency_revision",
+        "scope",
+        "correlation",
+        "expiry",
+        "idempotency",
+        "result_state",
+        "permission_ref",
+        "data_use_ref"
+      ],
+      "envelope_fields": [
+        "intent",
+        "template_identity"
+      ],
+      "send_fields": [
+        "identity",
+        "revision",
+        "target_header",
+        "envelope_digest",
+        "observation_location",
+        "owner",
+        "state"
+      ],
+      "receive_fields": [
+        "identity",
+        "revision",
+        "target_header",
+        "envelope_digest",
+        "observation_location",
+        "owner",
+        "state"
+      ],
+      "areas_in_order": [
+        "header_content",
+        "envelope_content",
+        "original_envelope_outside_contract",
+        "submitted_envelope_outside_contract",
+        "operation_identification",
+        "registration_binding",
+        "compatibility_binding",
+        "compatibility_state",
+        "permission_binding",
+        "permission_state",
+        "expiry_state",
+        "send_receipt_content",
+        "send_receipt_target_header",
+        "send_receipt_envelope",
+        "send_observation_state",
+        "receive_receipt_content",
+        "receive_receipt_target_header",
+        "receive_receipt_envelope",
+        "receive_observation_state",
+        "recovery_content"
+      ],
+      "security_fields": [
+        "scope",
+        "permission_ref",
+        "data_use_ref",
+        "expiry"
+      ],
+      "failure_routes": {
+        "scope": "HELIX-SECURITY",
+        "permission_ref": "HELIX-SECURITY",
+        "data_use_ref": "HELIX-SECURITY",
+        "expiry": "HELIX-SECURITY",
+        "default": "endpoint-contract-owner"
+      },
+      "check_order_rule": "checksはareas_in_order配列順、同一area内field名のUnicode code point昇順。check_fieldsは対象field集合を定め順序を与えない。header_results/envelope_results mapはheader_comparison_order/envelope_comparison_order順。failure_return_ownersは重複を除いて昇順。",
+      "header_comparison_order": [
+        "connection_identity",
+        "operation_identity",
+        "contract_revision",
+        "registration_revision",
+        "capability",
+        "artifact_revision",
+        "dependency_revision",
+        "scope",
+        "correlation",
+        "expiry",
+        "idempotency",
+        "result_state",
+        "permission_ref",
+        "data_use_ref"
+      ],
+      "envelope_comparison_order": [
+        "intent",
+        "template_identity"
+      ],
+      "output_literals_ref": "/output_literals",
+      "owner_values": {
+        "endpoint": "endpoint-contract-owner",
+        "security": "HELIX-SECURITY",
+        "send": "source-endpoint-owner",
+        "receive": "consumer-endpoint-owner",
+        "recovery_default": "endpoint-contract-owner"
+      },
+      "registration_fields": [
+        "connection_identity",
+        "contract_revision",
+        "registration_revision",
+        "scope"
+      ],
+      "compatibility_fields": [
+        "connection_identity",
+        "contract_revision",
+        "dependency_revision",
+        "scope"
+      ],
+      "permission_fields": [
+        "connection_identity",
+        "contract_revision",
+        "data_use_ref",
+        "expiry",
+        "operation_identity",
+        "permission_ref",
+        "scope"
+      ],
+      "receipt_side_order": [
+        "send",
+        "receive"
+      ],
+      "area_names": {
+        "header_content": "header_content",
+        "envelope_content": "envelope_content",
+        "operation_identification": "operation_identification",
+        "registration_binding": "registration_binding",
+        "compatibility_binding": "compatibility_binding",
+        "compatibility_state": "compatibility_state",
+        "permission_binding": "permission_binding",
+        "permission_state": "permission_state",
+        "expiry_state": "expiry_state",
+        "send_receipt_content": "send_receipt_content",
+        "send_receipt_target_header": "send_receipt_target_header",
+        "send_receipt_envelope": "send_receipt_envelope",
+        "send_observation_state": "send_observation_state",
+        "receive_receipt_content": "receive_receipt_content",
+        "receive_receipt_target_header": "receive_receipt_target_header",
+        "receive_receipt_envelope": "receive_receipt_envelope",
+        "receive_observation_state": "receive_observation_state",
+        "recovery_content": "recovery_content",
+        "original_envelope_outside_contract": "original_envelope_outside_contract",
+        "submitted_envelope_outside_contract": "submitted_envelope_outside_contract"
+      },
+      "outside_contract_field": "field",
+      "unknown_original_field": "contract_revision",
+      "check_fields": {
+        "header_content": [
+          "artifact_revision",
+          "capability",
+          "connection_identity",
+          "contract_revision",
+          "correlation",
+          "data_use_ref",
+          "dependency_revision",
+          "expiry",
+          "idempotency",
+          "operation_identity",
+          "permission_ref",
+          "registration_revision",
+          "result_state",
+          "scope"
+        ],
+        "envelope_content": [
+          "intent",
+          "template_identity"
+        ],
+        "operation_identification": [
+          "operation_identity"
+        ],
+        "registration_binding": [
+          "connection_identity",
+          "contract_revision",
+          "registration_revision",
+          "scope"
+        ],
+        "compatibility_binding": [
+          "connection_identity",
+          "contract_revision",
+          "dependency_revision",
+          "scope"
+        ],
+        "compatibility_state": [
+          "state"
+        ],
+        "permission_binding": [
+          "connection_identity",
+          "contract_revision",
+          "data_use_ref",
+          "expiry",
+          "operation_identity",
+          "permission_ref",
+          "scope"
+        ],
+        "permission_state": [
+          "state"
+        ],
+        "expiry_state": [
+          "state"
+        ],
+        "send_receipt_content": [
+          "identity",
+          "revision",
+          "target_header",
+          "envelope_digest",
+          "observation_location",
+          "owner",
+          "state"
+        ],
+        "send_receipt_target_header": [
+          "artifact_revision",
+          "capability",
+          "connection_identity",
+          "contract_revision",
+          "correlation",
+          "data_use_ref",
+          "dependency_revision",
+          "expiry",
+          "idempotency",
+          "operation_identity",
+          "permission_ref",
+          "registration_revision",
+          "result_state",
+          "scope"
+        ],
+        "send_receipt_envelope": [
+          "digest"
+        ],
+        "send_observation_state": [
+          "state"
+        ],
+        "receive_receipt_content": [
+          "identity",
+          "revision",
+          "target_header",
+          "envelope_digest",
+          "observation_location",
+          "owner",
+          "state"
+        ],
+        "receive_receipt_target_header": [
+          "artifact_revision",
+          "capability",
+          "connection_identity",
+          "contract_revision",
+          "correlation",
+          "data_use_ref",
+          "dependency_revision",
+          "expiry",
+          "idempotency",
+          "operation_identity",
+          "permission_ref",
+          "registration_revision",
+          "result_state",
+          "scope"
+        ],
+        "receive_receipt_envelope": [
+          "digest"
+        ],
+        "receive_observation_state": [
+          "state"
+        ],
+        "recovery_content": [
+          "unfinished"
+        ]
+      }
+    },
+    "business": {
+      "technical_fields": [
+        "identity",
+        "revision",
+        "target_header",
+        "envelope_digest",
+        "observation_location",
+        "owner",
+        "state"
+      ],
+      "business_fields": [
+        "identity",
+        "revision",
+        "operation_identity",
+        "scope",
+        "owner",
+        "state",
+        "meaning",
+        "unfinished"
+      ],
+      "target_fields": [
+        "operation_identity",
+        "scope"
+      ],
+      "areas_in_order": [
+        "technical_receipt",
+        "business_record",
+        "business_target",
+        "meaning_authority"
+      ],
+      "failure_route": "consumer-business-owner",
+      "output_literals_ref": "/output_literals",
+      "owner_values": {
+        "business_default": "consumer-business-owner"
+      },
+      "area_names": {
+        "technical_content": "technical_receipt",
+        "business_content": "business_content",
+        "business_target": "business_target",
+        "meaning_authority": "meaning_authority"
+      },
+      "failure_fields": {
+        "business_content": "business_fields",
+        "business_target": "target_fields",
+        "meaning_authority": "owner"
+      }
+    }
+  },
+  "pure_signatures": [
+    {
+      "id": "FN-C003-01",
+      "name": "compare_operation_material",
+      "inputs": [
+        {
+          "name": "input",
+          "type": "OperationInput"
+        }
+      ],
+      "return": "OperationAssessment",
+      "effects": "none",
+      "reads": "input.raw_packetをOperationPacketとしてPresence保持で全field読む。contract_viewの順序/routeを読む。case_id/packet_sha256は判定に使わない。"
+    },
+    {
+      "id": "FN-C003-02",
+      "name": "compare_technical_business_material",
+      "inputs": [
+        {
+          "name": "input",
+          "type": "BusinessInput"
+        }
+      ],
+      "return": "BusinessAssessment",
+      "effects": "none",
+      "reads": "input.raw_packetをBusinessPacketのPresence<T>として全field読む。contract_viewの配列順・failure_routeを読み、case_id/packet_sha256は判定に使用しない。"
+    }
+  ],
+  "algorithms": [
+    {
+      "function_ref": "FN-C003-01",
+      "steps": [
+        "OperationPacketを各Presence<T> memberについてAbsent/null/valueへ正規化し、入力の原文字列値は変更しない。",
+        "header_resultsはheader_comparison_order順に各fieldの原header/submitted headerを比較する。いずれかがAbsentならmissing、contract_revisionの片側がnullまたは値がunknown markerならunknown_original_information、同一のnull/valueならcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
+        "envelope_resultsはenvelope_comparison_order順に各fieldの原envelope/submitted envelopeを同じPresence比較で出力し、原envelopeにだけ存在する追加memberはkey昇順で後置する。",
+        "operation_identity判定はoriginal_header.operation_identityをoriginal_known_operationsの固定文字列列と照合する。値が列内にあればknown_in_fixture_only、Absent/null/列に無ければunknown_operation。これは実operation資格を意味しない。",
+        "registration_binding, compatibility_bindingはそれぞれ指定されたtarget field群を原登録/compatibility targetとoriginal_header間で比較する。",
+        "permission_bindingは指定field群を原permission targetとoriginal_header間で比較する。compatibility_state/permission_state/expiry_stateは原packetのPresenceを保持した観測checkとして加える。",
+        "send/receive順で各receiptの原memberと提出receipt memberをPresence比較する。いずれかAbsentならmissing。target_header_resultsは原receipt.target_headerをoriginal_headerと比較する。提出receipt/headerのtargetはこの照合の右辺に使わず、submitted_headerはheader_resultsで独立比較する。固定L9の48 rawでは両側の原receiptとtarget_headerは全て存在するため、そのAbsent枝はこのoracle集合では未検証。",
+        "send/receive envelope digest照合は元receipt.envelope_digestと、L5で定めたfixture-only canonical JSON SHA-256（UTF-8、ensure_ascii=false、key lexicographic、separators=comma/colon、no trailing LF）を比較する。このfixture規則は製品wire codec/hash資格ではない。",
+        "recovery_resultはoriginal_recoveryとsubmitted_recoveryをJSON値として順序込みで比較する。差があればrecovery_content/unfinishedをcheckへ追加する。",
+        "checksはareas_in_order順、各area内はfield名のUnicode code point昇順で連結する。check_fieldsは各areaの対象field集合を定める。header_results/envelope_results mapは各comparison_order配列順を保つ。security_fieldsはHELIX-SECURITY、receiptは原receipt.owner、recoveryは原unfinished owner、残りはowner_values.endpointを返却先にする。",
+        "submitted_envelopeとoriginal_envelopeのmemberをそれぞれoriginal_allowed_envelope_fieldsと比較する。列外memberはcontract_outside_fieldとして、original_envelope_outside_contract/submitted_envelope_outside_contract areaへfield名昇順で追加する。",
+        "failure_reasonsはchecks順のままnormal_check_results外のcheckを全て写し、failure_return_ownersはfailure順のownerを初出順に重複排除した後、辞書順に整列する。",
+        "claim_resultsはclaimsのbool true→rejected,false→none,Absent/null/非bool→unknown_in_fixture。technical_receipt_candidateはfailureが空ならrequires_actual_source_and_transport_qualification、そうでなければheld_or_rejected。attempt_countは原packetに試行arrayが無ければ0。effectsは全flag false。"
+      ],
+      "invariants": [
+        "case_id/hashは判定に使わない。",
+        "unknown/missing/conflictを許可へ変換しない。",
+        "fixture-only digest計算を製品codecへ昇格しない。",
+        "receipt/resultから実送受信・実許可・業務判断を生成しない。"
+      ],
+      "output_root": "OperationAssessment",
+      "output_literals_ref": "/output_literals",
+      "typed_input_root": "OperationInput",
+      "contract_view_root": "/contract_views/operation"
+    },
+    {
+      "function_ref": "FN-C003-02",
+      "steps": [
+        "original/submitted technical receipt、business record、meaning authorityを、Presence(absent|null|value)を保ったまま抽出する。",
+        "technical_content_resultsはcontract_view.technical_fields順にreceipt同名fieldをPresence比較する。",
+        "business_content_resultsはcontract_view.business_fields順にoriginal_business_recordとsubmitted_business_recordの同名fieldをPresence比較する。",
+        "business_target_resultsはcontract_view.target_fields順にoriginal_business_recordの値とoriginal_technical_receipt.target_headerの同名値をPresence比較する。",
+        "各比較は片側でもAbsentならmissing（両側Absentもmissing）。Present同士で原側stringがunknown markerならunknown_original_information、同じnull/valueならcontent_corresponding_in_fixture、異なるnull/valueならcontent_conflict。固定L9の14 rawではtechnical/business/targetの比較対象fieldは全て両側Presentであり、Absent枝は未検証。",
+        "failure_reasonsはbusiness_fields配列順のcontent_conflictを先に、target_fields配列順のcontent_conflictを次に、meaning_authority owner値のconflictを最後に追加する。business failureのreturn_ownerは原business owner、meaning_authority failureは原meaning-authority owner。missing/unknownは結果へ残し、それだけでfailureやsuccessへ昇格しない。",
+        "claim_resultsはclaimsの各bool valueからtrue→rejected、false→none、Absent/null/非bool→unknown_in_fixtureをfield順で返す。",
+        "retained_*はoriginal値を、submitted_business_recordはsubmitted値をそのまま保持。retained_business_state/unfinishedはoriginal business recordの対応memberのPresenceを保持する。",
+        "business_completionはnot_generated_by_technical_receipt、return_ownerはoriginal_business_record.owner、全effect flagはfalse。"
+      ],
+      "invariants": [
+        "case_idを使うexpected lookupをしない。",
+        "技術receiptを業務stateの入力源にしない。",
+        "owner/meaning/unfinishedの原値を技術成功で変更しない。"
+      ],
+      "output_root": "BusinessAssessment",
+      "output_literals_ref": "/output_literals",
+      "typed_input_root": "BusinessInput",
+      "contract_view_root": "/contract_views/business"
+    }
+  ],
+  "obligation_trace": [
+    {
+      "l3": "HELIXCONNECT-L3-003-F01",
+      "l4": "HELIXCONNECT-L4-003-F01",
+      "l9": "HELIXCONNECT-L9-003-F01",
+      "l10": "HELIXCONNECT-L10-003-F01",
+      "function": "FN-C003-01"
+    },
+    {
+      "l3": "HELIXCONNECT-L3-003-B01",
+      "l4": "HELIXCONNECT-L4-003-B01",
+      "l9": "HELIXCONNECT-L9-003-B01",
+      "l10": "HELIXCONNECT-L10-003-B01",
+      "function": "FN-C003-02"
+    }
+  ],
+  "responsibility_boundaries": [
+    "合成例は実資格/通信/受領/許可/業務承認を示さない。",
+    "正式schema/codec/transport/clock/authority resolverは未成立。"
+  ],
+  "unresolved": [
+    "正式wire schema/codec、実source/receipt producer資格、実送受信資格、実permission/業務authorityは未成立。",
+    "L11 Accepted、実行runtime、TDD/CIおよび全430対の下流設計閉包は未成立。"
+  ],
+  "approval_record_pin": {
+    "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+    "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+  },
+  "source_pair_pins": [
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+      "sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+      "document_id": "HELIXCONNECT-L4-003"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+      "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+      "sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+      "document_id": "HELIXCONNECT-L9-003"
+    }
+  ],
+  "output_literals": {
+    "comparison": {
+      "equal": "content_corresponding_in_fixture",
+      "different": "content_conflict",
+      "missing": "missing",
+      "unknown_original": "unknown_original_information",
+      "unknown_original_markers": [
+        "unknown",
+        "unknown_in_fixture",
+        "unknown_original_information"
+      ]
+    },
+    "operation_identification": {
+      "known": "known_in_fixture_only",
+      "unknown": "unknown_operation"
+    },
+    "contract_extra_field": "contract_outside_field",
+    "claim": {
+      "true": "rejected",
+      "false": "none",
+      "not_boolean": "unknown_in_fixture"
+    },
+    "technical_receipt_candidate": {
+      "no_observed_defect": "requires_actual_source_and_transport_qualification",
+      "observed_defect": "held_or_rejected"
+    },
+    "business_completion": "not_generated_by_technical_receipt",
+    "normal_check_results": [
+      "content_corresponding_in_fixture",
+      "known_in_fixture_only",
+      "current_compatible_in_fixture_only",
+      "valid_in_fixture_only",
+      "sent_in_fixture_only",
+      "received_in_fixture_only"
+    ],
+    "attempt_count_when_unprovided": 0,
+    "effect_default": false,
+    "effect_fields": [
+      "actual_send",
+      "actual_receive",
+      "actual_permission",
+      "actual_business_approval",
+      "actual_meaning_update",
+      "actual_authority",
+      "actual_implementation_ready",
+      "actual_acceptance"
+    ],
+    "fixture_digest": {
+      "algorithm": "SHA-256",
+      "input": "canonical JSON encoding of the original envelope object only, synthetic fixture comparisons only",
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "sort_keys": true,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "trailing_lf": false,
+      "formal_wire_codec": false
+    },
+    "failure_owner_order": "unique sorted lexicographically"
+  },
+  "result_domain_contract": {
+    "comparison": {
+      "equal": "content_corresponding_in_fixture",
+      "different": "content_conflict",
+      "missing": "missing",
+      "unknown_original": "unknown_original_information",
+      "unknown_original_markers": [
+        "unknown",
+        "unknown_in_fixture",
+        "unknown_original_information"
+      ]
+    },
+    "operation_identification": {
+      "known": "known_in_fixture_only",
+      "unknown": "unknown_operation"
+    },
+    "contract_extra_field": "contract_outside_field",
+    "claim": {
+      "true": "rejected",
+      "false": "none",
+      "not_boolean": "unknown_in_fixture"
+    },
+    "technical_receipt_candidate": {
+      "no_observed_defect": "requires_actual_source_and_transport_qualification",
+      "observed_defect": "held_or_rejected"
+    },
+    "business_completion": "not_generated_by_technical_receipt",
+    "normal_check_results": [
+      "content_corresponding_in_fixture",
+      "known_in_fixture_only",
+      "current_compatible_in_fixture_only",
+      "valid_in_fixture_only",
+      "sent_in_fixture_only",
+      "received_in_fixture_only"
+    ],
+    "attempt_count_when_unprovided": 0,
+    "effect_default": false,
+    "effect_fields": [
+      "actual_send",
+      "actual_receive",
+      "actual_permission",
+      "actual_business_approval",
+      "actual_meaning_update",
+      "actual_authority",
+      "actual_implementation_ready",
+      "actual_acceptance"
+    ],
+    "fixture_digest": {
+      "algorithm": "SHA-256",
+      "input": "canonical JSON encoding of the original envelope object only, synthetic fixture comparisons only",
+      "encoding": "UTF-8",
+      "ensure_ascii": false,
+      "sort_keys": true,
+      "separators": [
+        ",",
+        ":"
+      ],
+      "trailing_lf": false,
+      "formal_wire_codec": false
+    },
+    "failure_owner_order": "unique sorted lexicographically"
+  },
+  "return_root_trace": [
+    {
+      "function_ref": "FN-C003-01",
+      "root": "OperationAssessment",
+      "l9_expected_material": "/verification_obligations/0/concrete_cases/*/expected_material",
+      "array_order": "checks/failure arrays use the explicit contract ordering; maps use fixed field arrays"
+    },
+    {
+      "function_ref": "FN-C003-02",
+      "root": "BusinessAssessment",
+      "l9_expected_material": "/verification_obligations/1/concrete_cases/*/expected_material",
+      "array_order": "failure_reasons follow business_fields then target_fields then authority"
+    }
+  ],
+  "logical_type_boundary": {
+    "kind": "logical_json_carrier_only",
+    "statement": "Presence preserves missing/null/value. JsonValue preserves synthetic raw JSON kinds; enum labels are fixture observations, not authority states. No formal wire codec is implied."
+  },
+  "fixture_coverage_limits": [
+    "FN-C003-01: 固定48 rawではoriginal_receipts.send/receiveと各target_headerが存在。target_header_resultsのAbsent入力枝はこの集合から独立oracle検証されていない。",
+    "FN-C003-02: 固定14 rawではtechnical/business/target比較対象fieldが全て両側Present。Absent入力のmissing出力枝はこの集合から独立oracle検証されていない。"
+  ]
+}

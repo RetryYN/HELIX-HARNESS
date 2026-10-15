@@ -1,0 +1,2625 @@
+{
+  "parent": "HELIXCONNECT-L2-003",
+  "source_main": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+  "scope": {
+    "approval_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "historical_stage": "Stage 1",
+    "version_target": "1.0",
+    "requirements": [
+      "HELIXCONNECT-L3-003-F01",
+      "HELIXCONNECT-L3-003-B01"
+    ],
+    "oracles": [
+      "HELIXCONNECT-L10-003-F01",
+      "HELIXCONNECT-L10-003-B01"
+    ],
+    "statement": "envelope/両端receiptを同operationへ内容照合し、技術結果と業務意味を分離する。実通信/許可/承認を生成しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approval_basis": {
+    "decision": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_id": "HDEC-CONNECT-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "approved_whole_objects_source": "decision recordのexact reviewed bytes。現行表示やL4/L9要約から承認を推定しない。"
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    }
+  ],
+  "upstream_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        27,
+        32
+      ],
+      "quote": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "98542d7dc84d328984c1b8318bbbf87b12067f35e639e233b7c31322c77ab987",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        47,
+        57
+      ],
+      "quote": "| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "0da9dc830d9342630a3a9b55aa7965b69239abdb557b659949d9c02afcf0debd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "明示入力pure/adapter observationとproposal非commit、envelope/schema/provenance/fenceの再検証とunknown/partial result非昇格。",
+      "change": "旧Node/Python broker/DB/projectionを移植せず、CONNECT003の同operation送受信/契約外拒否/技術・業務責務分離へ再導出。",
+      "reason": "採択003と10/12承認が接続契約envelopeとendpoint業務owner保持を要求する。"
+    }
+  ],
+  "source_pin_limit": "pinはbytes同一性であり実source資格・実受領・実許可を成立させない。",
+  "pair_source_pins": [
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+      "document_id": "HELIXCONNECT-L4-003"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+      "sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+      "document_id": "HELIXCONNECT-L9-003"
+    }
+  ],
+  "status": "draft_static_oracle_plan",
+  "document_id": "HELIXCONNECT-L8-003",
+  "layer": "L8",
+  "layer_id": "HELIXCONNECT-L8-003",
+  "pair": "HELIXCONNECT-L5-003",
+  "pair_id": "HELIXCONNECT-L5-003",
+  "design_ref": "HELIXCONNECT-L5-003",
+  "integration_ref": "HELIXCONNECT-L9-003",
+  "method": {
+    "kind": "pure_source_to_oracle",
+    "rule": "L5関数をraw_utf8から独立実行し、L9 expected_materialと全field/array順を厳密比較する。expected値は関数出力を構築する入力にしない。",
+    "execution_state": "not_executed"
+  },
+  "cases": [
+    {
+      "id": "C003-F01-SAME-OPERATION-BOTH-ENDS-RECOVERY-PRESERVED",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d",
+          "case_id": "C003-F01-SAME-OPERATION-BOTH-ENDS-RECOVERY-PRESERVED"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CONNECTION_IDENTITY-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "9881e60af139553a448eefef195035c9522869582d52afc2f29c4b5b9af459d6"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/1/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "9881e60af139553a448eefef195035c9522869582d52afc2f29c4b5b9af459d6",
+          "case_id": "C003-F01-CONNECTION_IDENTITY-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-OPERATION_IDENTITY-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "147875595b18d1fae7dd87591648d7eed396a0300953e5bcd0464e5f8cafd404"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/2/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "147875595b18d1fae7dd87591648d7eed396a0300953e5bcd0464e5f8cafd404",
+          "case_id": "C003-F01-OPERATION_IDENTITY-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CONTRACT_REVISION-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "682fdb32f3bc26f62b95c467aa69138e6f726a6103e053f4351887213972a1bc"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/3/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "682fdb32f3bc26f62b95c467aa69138e6f726a6103e053f4351887213972a1bc",
+          "case_id": "C003-F01-CONTRACT_REVISION-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-REGISTRATION_REVISION-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "29a5cb31ffba161935907ef9742c50b547348eafe2c8376f848fb126d34c47ce"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/4/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "29a5cb31ffba161935907ef9742c50b547348eafe2c8376f848fb126d34c47ce",
+          "case_id": "C003-F01-REGISTRATION_REVISION-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CAPABILITY-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "040321eadf17733946edc1daa30c1e389250c6d2c244e8fb14e9259d3a484af1"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/5/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "040321eadf17733946edc1daa30c1e389250c6d2c244e8fb14e9259d3a484af1",
+          "case_id": "C003-F01-CAPABILITY-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-ARTIFACT_REVISION-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "534b696323ce91a0bb9c34a073c0b5281974f3b08708906308aaee8fa67e9637"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/6/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "534b696323ce91a0bb9c34a073c0b5281974f3b08708906308aaee8fa67e9637",
+          "case_id": "C003-F01-ARTIFACT_REVISION-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-DEPENDENCY_REVISION-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "a5ab9af952ce43aeb492c6987951854780f816b930b5e8c59765e8b86df2efe5"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/7/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "a5ab9af952ce43aeb492c6987951854780f816b930b5e8c59765e8b86df2efe5",
+          "case_id": "C003-F01-DEPENDENCY_REVISION-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SCOPE-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "a83a05b64186f630d6b5d5f576e086ddd8cc7a5f08f48d56c2cef6c7e538ccfd"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/8/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "a83a05b64186f630d6b5d5f576e086ddd8cc7a5f08f48d56c2cef6c7e538ccfd",
+          "case_id": "C003-F01-SCOPE-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CORRELATION-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "ede66b72313015c89f63f50bd9fa04758e3a27eb08d467ff54621cfbce5585ee"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/9/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "ede66b72313015c89f63f50bd9fa04758e3a27eb08d467ff54621cfbce5585ee",
+          "case_id": "C003-F01-CORRELATION-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-EXPIRY-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "475ee2245606697f8218544ae322a495849a6e8fe2f3e2d1bc3f5b6f16daabcc"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/10/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "475ee2245606697f8218544ae322a495849a6e8fe2f3e2d1bc3f5b6f16daabcc",
+          "case_id": "C003-F01-EXPIRY-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-IDEMPOTENCY-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "1f6507fd14dd961e851ca1f419867ea9b64e1d5ce9434420f992c366c94e95fb"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/11/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "1f6507fd14dd961e851ca1f419867ea9b64e1d5ce9434420f992c366c94e95fb",
+          "case_id": "C003-F01-IDEMPOTENCY-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RESULT_STATE-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "b631ee9f1ffa2973706745d6eb12eaa27e279be8dc9ec6dc0c519b62cd92ad1f"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/12/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "b631ee9f1ffa2973706745d6eb12eaa27e279be8dc9ec6dc0c519b62cd92ad1f",
+          "case_id": "C003-F01-RESULT_STATE-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION_REF-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "71556138198eb5c26a96b18f121c84367c845ce6fbe8f4e682570874602789b1"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/13/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "71556138198eb5c26a96b18f121c84367c845ce6fbe8f4e682570874602789b1",
+          "case_id": "C003-F01-PERMISSION_REF-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-DATA_USE_REF-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "0bcaf2e6a4b16c5df2c33e02718bac9d62f5e92522cc44021bc600a35794d8b9"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/14/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "0bcaf2e6a4b16c5df2c33e02718bac9d62f5e92522cc44021bc600a35794d8b9",
+          "case_id": "C003-F01-DATA_USE_REF-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CONNECTION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "07410da533185556bdf5a66abea63fcb95986ba5bf7df04ae12d54f0e8f4e4c0"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/15/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "07410da533185556bdf5a66abea63fcb95986ba5bf7df04ae12d54f0e8f4e4c0",
+          "case_id": "C003-F01-CONNECTION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-OPERATION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "7dbf0b25e47f2db088ba601c9a43eb990667f3b400886b23d5651e1c881f6980"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/16/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "7dbf0b25e47f2db088ba601c9a43eb990667f3b400886b23d5651e1c881f6980",
+          "case_id": "C003-F01-OPERATION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CONTRACT_REVISION-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "52aa8652231018eb56957839a36c06cd8182707079e1a4257a4b1f8f2c522418"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/17/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "52aa8652231018eb56957839a36c06cd8182707079e1a4257a4b1f8f2c522418",
+          "case_id": "C003-F01-CONTRACT_REVISION-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SCOPE-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "f2911e15695506cd27deaaadb720663253e945763a0b901769bd7095b5238d80"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/18/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "f2911e15695506cd27deaaadb720663253e945763a0b901769bd7095b5238d80",
+          "case_id": "C003-F01-SCOPE-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION_REF-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "d0b76b35fe58420bb8b892ebbcd848bf7da39e57ebd402385444561f1955c495"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/19/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "d0b76b35fe58420bb8b892ebbcd848bf7da39e57ebd402385444561f1955c495",
+          "case_id": "C003-F01-PERMISSION_REF-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SEND-RECEIPT-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "6891c3aafafa23c3e2122bf4175a01b064ea4673c08caf3c24fa79fcb2f46e18"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/20/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "6891c3aafafa23c3e2122bf4175a01b064ea4673c08caf3c24fa79fcb2f46e18",
+          "case_id": "C003-F01-SEND-RECEIPT-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SEND-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "77a6859373e09c1ecff0b8911e37d9023773b7183bd0e6dd21fe1dd8aad0e997"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/21/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "77a6859373e09c1ecff0b8911e37d9023773b7183bd0e6dd21fe1dd8aad0e997",
+          "case_id": "C003-F01-SEND-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SEND-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "bb84bf3f3d358e6e27ed76c8f3663b5d558b60727d86b786f0e345ded9026ee4"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/22/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "bb84bf3f3d358e6e27ed76c8f3663b5d558b60727d86b786f0e345ded9026ee4",
+          "case_id": "C003-F01-SEND-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SEND-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "86d7e65a0d7363898a9230dc63a8428697ce43dd2506a9bad2cb498dfc91a3fd"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/23/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "86d7e65a0d7363898a9230dc63a8428697ce43dd2506a9bad2cb498dfc91a3fd",
+          "case_id": "C003-F01-SEND-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-RECEIPT-MISSING",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "59d28d246fd0f208f154c81cb99d970cf2d13b083355b922978d548a7c9378b9"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/24/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "59d28d246fd0f208f154c81cb99d970cf2d13b083355b922978d548a7c9378b9",
+          "case_id": "C003-F01-RECEIVE-RECEIPT-MISSING"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "ec9ca0bf2655943310221e32befde928c1563d903d24daae91154c77f7794437"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/25/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "ec9ca0bf2655943310221e32befde928c1563d903d24daae91154c77f7794437",
+          "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "209cb62ab187a01ada18fadcbbb49ca6b3e76bde0cba8b50ab5cb80768c6c094"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/26/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "209cb62ab187a01ada18fadcbbb49ca6b3e76bde0cba8b50ab5cb80768c6c094",
+          "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "d328e168cb268ed9e9ccd4c3d81f097ca2f9c337fa49a67e1d0dfbb815deff03"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/27/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "d328e168cb268ed9e9ccd4c3d81f097ca2f9c337fa49a67e1d0dfbb815deff03",
+          "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-UNKNOWN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "376e3be0ea1cc44dd1631bb6e6f16acdb53b9e042d0815b4630f349bece268e8"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/28/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "376e3be0ea1cc44dd1631bb6e6f16acdb53b9e042d0815b4630f349bece268e8",
+          "case_id": "C003-F01-RECEIVE-UNKNOWN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECEIVE-REJECTED_IN_FIXTURE_ONLY",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "0d0bb0c00ea275e4619bda7eca21b2cd9c110a5ae6e803249c844b99916ad35d"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/29/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "0d0bb0c00ea275e4619bda7eca21b2cd9c110a5ae6e803249c844b99916ad35d",
+          "case_id": "C003-F01-RECEIVE-REJECTED_IN_FIXTURE_ONLY"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-COMPATIBILITY-INCOMPATIBLE",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "e9c62f704d14fe9302fe2985af7bd25c11814a5d1ad9f67188fceb4381605e14"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/30/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "e9c62f704d14fe9302fe2985af7bd25c11814a5d1ad9f67188fceb4381605e14",
+          "case_id": "C003-F01-COMPATIBILITY-INCOMPATIBLE"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-COMPATIBILITY-UNKNOWN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "56c4395ba60d25fa8f6f2319c99190f19c97377b20aecbed58897c7bb4074dc1"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/31/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "56c4395ba60d25fa8f6f2319c99190f19c97377b20aecbed58897c7bb4074dc1",
+          "case_id": "C003-F01-COMPATIBILITY-UNKNOWN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-COMPATIBILITY-STALE",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "c7298731767ad8636e3125df34449aeaec0065a87392e9379a4ae580d5db7c59"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/32/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "c7298731767ad8636e3125df34449aeaec0065a87392e9379a4ae580d5db7c59",
+          "case_id": "C003-F01-COMPATIBILITY-STALE"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION-EXPIRED",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/33/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "77773812b343e940d934959818cfa990933e27b88e4015d58146932bb67a2c04"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/33/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/33/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "77773812b343e940d934959818cfa990933e27b88e4015d58146932bb67a2c04",
+          "case_id": "C003-F01-PERMISSION-EXPIRED"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION-REVOKED",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/34/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "c554c08c0757e28533c115beddc547f19f83a9ef8f53a0e2be288424d0e53c3a"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/34/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/34/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "c554c08c0757e28533c115beddc547f19f83a9ef8f53a0e2be288424d0e53c3a",
+          "case_id": "C003-F01-PERMISSION-REVOKED"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION-UNKNOWN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/35/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "4d9e4135afbd84cf79105253d090f4d865ab7bcad91eb79919ce929eda7c4f94"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/35/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/35/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "4d9e4135afbd84cf79105253d090f4d865ab7bcad91eb79919ce929eda7c4f94",
+          "case_id": "C003-F01-PERMISSION-UNKNOWN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-EXPIRY-EXPIRED",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/36/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "fa8ed16ca54a4e4995f9af3066b174b2b220e07a051269458f961ecf3ff3e86b"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/36/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/36/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "fa8ed16ca54a4e4995f9af3066b174b2b220e07a051269458f961ecf3ff3e86b",
+          "case_id": "C003-F01-EXPIRY-EXPIRED"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-ORIGINAL-UNKNOWN-OPERATION",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/37/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "ea2da4186d9bb07417f416afad3d3c55d15001823bbbdc1d3ec8ba645fa2d071"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/37/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/37/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "ea2da4186d9bb07417f416afad3d3c55d15001823bbbdc1d3ec8ba645fa2d071",
+          "case_id": "C003-F01-ORIGINAL-UNKNOWN-OPERATION"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-ORIGINAL-CONTRACT-REVISION-UNKNOWN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/38/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "76c07f9a4692961c42e80e0b0508b1f144824ea5ce1d5449f18d351133371238"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/38/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/38/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "76c07f9a4692961c42e80e0b0508b1f144824ea5ce1d5449f18d351133371238",
+          "case_id": "C003-F01-ORIGINAL-CONTRACT-REVISION-UNKNOWN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-SUBMITTED-ENVELOPE-OUTSIDE-CONTRACT",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/39/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "2d38d70772e4237cf1e19e014e6194a1cf6a0dad53742f7adcedc4c1c78990e7"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/39/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/39/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "2d38d70772e4237cf1e19e014e6194a1cf6a0dad53742f7adcedc4c1c78990e7",
+          "case_id": "C003-F01-SUBMITTED-ENVELOPE-OUTSIDE-CONTRACT"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-ORIGINAL-ENVELOPE-OUTSIDE-CONTRACT",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/40/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "cf7f9d2ce9ba16ad974bc800a333f6be269031e403ef0d6ec467649eafdcad00"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/40/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/40/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "cf7f9d2ce9ba16ad974bc800a333f6be269031e403ef0d6ec467649eafdcad00",
+          "case_id": "C003-F01-ORIGINAL-ENVELOPE-OUTSIDE-CONTRACT"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-ENVELOPE-CONTENT-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/41/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "e4b0ba8e0df59ba6e696088094e1924247135550408619a9c552f1a06b3139a9"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/41/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/41/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "e4b0ba8e0df59ba6e696088094e1924247135550408619a9c552f1a06b3139a9",
+          "case_id": "C003-F01-ENVELOPE-CONTENT-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-RECOVERY-UNFINISHED-ERASED",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/42/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "e619507c6f90a538fb570195060e5ae7778362456ef4eddc1e9f0e2386493585"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/42/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/42/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "e619507c6f90a538fb570195060e5ae7778362456ef4eddc1e9f0e2386493585",
+          "case_id": "C003-F01-RECOVERY-UNFINISHED-ERASED"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-FOREIGN_RECEIPT_NORMAL",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/43/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "532de443d00bedb1a5ffd7ce76e433e9482969b1a652da0956a1d5ad32792f88"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/43/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/43/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "532de443d00bedb1a5ffd7ce76e433e9482969b1a652da0956a1d5ad32792f88",
+          "case_id": "C003-F01-FOREIGN_RECEIPT_NORMAL"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-UNKNOWN_OPERATION_NORMAL",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/44/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "d86dfc5ad3c94a3958ae71a23c70bdf87cfccc749c838dd150e57474cf14fad3"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/44/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/44/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "d86dfc5ad3c94a3958ae71a23c70bdf87cfccc749c838dd150e57474cf14fad3",
+          "case_id": "C003-F01-UNKNOWN_OPERATION_NORMAL"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-EXPIRED_INPUT_NORMAL",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/45/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "e51a6de993487b16ec324e3b1897d0ab66d7a6caef9e75ced704de6b0d6ee6c8"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/45/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/45/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "e51a6de993487b16ec324e3b1897d0ab66d7a6caef9e75ced704de6b0d6ee6c8",
+          "case_id": "C003-F01-EXPIRED_INPUT_NORMAL"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-PERMISSION_OUTSIDE_NORMAL",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/46/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "31a6edcb44d1b62af80b8f4ff2b4c360955fa815a8797b2cfaa4b275ef17795d"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/46/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/46/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "31a6edcb44d1b62af80b8f4ff2b4c360955fa815a8797b2cfaa4b275ef17795d",
+          "case_id": "C003-F01-PERMISSION_OUTSIDE_NORMAL"
+        }
+      }
+    },
+    {
+      "id": "C003-F01-CONTRACT_OUTSIDE_NORMAL",
+      "l3_ref": "HELIXCONNECT-L3-003-F01",
+      "l4_ref": "HELIXCONNECT-L4-003-F01",
+      "l9_ref": "HELIXCONNECT-L9-003-F01",
+      "l10_ref": "HELIXCONNECT-L10-003-F01",
+      "function_ref": "FN-C003-01",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/47/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "c69fa765e17ef1f347c514e9540e03679cb59fee26abf5f4195cdcdee6d108ad"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/0/concrete_cases/47/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/0/concrete_cases/47/independent_source_packet/raw_utf8",
+            "decode_as": "OperationPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/operation"
+          },
+          "packet_sha256": "c69fa765e17ef1f347c514e9540e03679cb59fee26abf5f4195cdcdee6d108ad",
+          "case_id": "C003-F01-CONTRACT_OUTSIDE_NORMAL"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-TECHNICAL-RECEIVE-BUSINESS-REJECTION-UNFINISHED",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "d5805da1aeed74ad61968426864408f27f3f53bea736f47791ada08818e61a8e"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "d5805da1aeed74ad61968426864408f27f3f53bea736f47791ada08818e61a8e",
+          "case_id": "C003-B01-TECHNICAL-RECEIVE-BUSINESS-REJECTION-UNFINISHED"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ORIGINAL-BUSINESS-UNFINISHED",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "f9705b902bb6f025ac14782e35d599941e8e5482521633b69ba11a6fa8519282"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "f9705b902bb6f025ac14782e35d599941e8e5482521633b69ba11a6fa8519282",
+          "case_id": "C003-B01-ORIGINAL-BUSINESS-UNFINISHED"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ORIGINAL-BUSINESS-UNKNOWN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "050a63f0e560a0e6c966644c74cf32c0a770a4d6cc4ac66f623dfa31c5dded81"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/2/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "050a63f0e560a0e6c966644c74cf32c0a770a4d6cc4ac66f623dfa31c5dded81",
+          "case_id": "C003-B01-ORIGINAL-BUSINESS-UNKNOWN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ORIGINAL-BUSINESS-ACCEPTED_IN_FIXTURE_RECORD",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "95964ca3ab2f7cca0b99d15b474280ccd67becb6b6ba7105b6ae4bee16883fa7"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/3/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "95964ca3ab2f7cca0b99d15b474280ccd67becb6b6ba7105b6ae4bee16883fa7",
+          "case_id": "C003-B01-ORIGINAL-BUSINESS-ACCEPTED_IN_FIXTURE_RECORD"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-BUSINESS-OWNER-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "d12a28cced27cf6d86144afab473afb2bb29e47d60bf9fbe162e20bb839f88eb"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/4/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "d12a28cced27cf6d86144afab473afb2bb29e47d60bf9fbe162e20bb839f88eb",
+          "case_id": "C003-B01-BUSINESS-OWNER-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-BUSINESS-OPERATION_IDENTITY-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "5348b0858fb77c1b96d28fdcfb7a74d60f688d6167f6de778209d9f7fcf8ba82"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/5/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "5348b0858fb77c1b96d28fdcfb7a74d60f688d6167f6de778209d9f7fcf8ba82",
+          "case_id": "C003-B01-BUSINESS-OPERATION_IDENTITY-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-BUSINESS-SCOPE-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "5e86910ed061173e32cfc41f1cb5ae57ec79b03b64bdd4af02ffaea89214b642"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/6/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "5e86910ed061173e32cfc41f1cb5ae57ec79b03b64bdd4af02ffaea89214b642",
+          "case_id": "C003-B01-BUSINESS-SCOPE-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-BUSINESS-MEANING-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "2565fe5cc59548b8cf181fd24e44474f712256e7b52ee63b19938a568d519146"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/7/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "2565fe5cc59548b8cf181fd24e44474f712256e7b52ee63b19938a568d519146",
+          "case_id": "C003-B01-BUSINESS-MEANING-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-BUSINESS-UNFINISHED-FOREIGN",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "87dba88d3018fadb9a5a990a8fb25ff525a6c4357747d0d1efec295f3e6fb76f"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/8/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "87dba88d3018fadb9a5a990a8fb25ff525a6c4357747d0d1efec295f3e6fb76f",
+          "case_id": "C003-B01-BUSINESS-UNFINISHED-FOREIGN"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ORIGINAL-BUSINESS-OTHER-OPERATION",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "b55a0d63ff3e61a0a52a80f85a9deeea7acea073a03ddf050f7ec3c91e32c9e8"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/9/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "b55a0d63ff3e61a0a52a80f85a9deeea7acea073a03ddf050f7ec3c91e32c9e8",
+          "case_id": "C003-B01-ORIGINAL-BUSINESS-OTHER-OPERATION"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ACK_BUSINESS_COMPLETE",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "973d65545cbf5167bd1d5ebb88b053c194eb0a8a1002748837b9802c16c3d58f"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/10/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "973d65545cbf5167bd1d5ebb88b053c194eb0a8a1002748837b9802c16c3d58f",
+          "case_id": "C003-B01-ACK_BUSINESS_COMPLETE"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-ENVELOPE_MEANING_AUTHORITY",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "cd71b2d47eb49e5fff30a463efd16ab8619742862711d7a6ba7c5860e5b8d2ac"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/11/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "cd71b2d47eb49e5fff30a463efd16ab8619742862711d7a6ba7c5860e5b8d2ac",
+          "case_id": "C003-B01-ENVELOPE_MEANING_AUTHORITY"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-CONNECT_ADOPTION_DECISION",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "72a6a3b3731fa574f88355700737cc17a1ebd3b07a57bdbf78abb8822ff6ea6a"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/12/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "72a6a3b3731fa574f88355700737cc17a1ebd3b07a57bdbf78abb8822ff6ea6a",
+          "case_id": "C003-B01-CONNECT_ADOPTION_DECISION"
+        }
+      }
+    },
+    {
+      "id": "C003-B01-TECHNICAL_SUCCESS_ERASES_UNFINISHED",
+      "l3_ref": "HELIXCONNECT-L3-003-B01",
+      "l4_ref": "HELIXCONNECT-L4-003-B01",
+      "l9_ref": "HELIXCONNECT-L9-003-B01",
+      "l10_ref": "HELIXCONNECT-L10-003-B01",
+      "function_ref": "FN-C003-02",
+      "source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet",
+        "raw_pointer_suffix": "/raw_utf8",
+        "sha256": "ac86253bcfdca455d6f3b6dddaaad1af865923b251c2edceb1f48ad553852d28"
+      },
+      "expected_oracle_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/13/expected_material"
+      },
+      "execution_state": "not_executed",
+      "qualification": "synthetic_fixture_only",
+      "typed_arguments": {
+        "input": {
+          "raw_packet": {
+            "document": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+            "pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
+            "decode_as": "BusinessPacket"
+          },
+          "contract_view": {
+            "document": "docs/helix-connect/L5-detail-design/operation-envelope-receipt.json",
+            "pointer": "/contract_views/business"
+          },
+          "packet_sha256": "ac86253bcfdca455d6f3b6dddaaad1af865923b251c2edceb1f48ad553852d28",
+          "case_id": "C003-B01-TECHNICAL_SUCCESS_ERASES_UNFINISHED"
+        }
+      }
+    }
+  ],
+  "source_packet_pins": [
+    {
+      "case_id": "C003-F01-SAME-OPERATION-BOTH-ENDS-RECOVERY-PRESERVED",
+      "sha256": "01b407ba67d88f1617525c87518e5dbfcffa44a20b7323725ba9eec9934de71d"
+    },
+    {
+      "case_id": "C003-F01-CONNECTION_IDENTITY-MISSING",
+      "sha256": "9881e60af139553a448eefef195035c9522869582d52afc2f29c4b5b9af459d6"
+    },
+    {
+      "case_id": "C003-F01-OPERATION_IDENTITY-MISSING",
+      "sha256": "147875595b18d1fae7dd87591648d7eed396a0300953e5bcd0464e5f8cafd404"
+    },
+    {
+      "case_id": "C003-F01-CONTRACT_REVISION-MISSING",
+      "sha256": "682fdb32f3bc26f62b95c467aa69138e6f726a6103e053f4351887213972a1bc"
+    },
+    {
+      "case_id": "C003-F01-REGISTRATION_REVISION-MISSING",
+      "sha256": "29a5cb31ffba161935907ef9742c50b547348eafe2c8376f848fb126d34c47ce"
+    },
+    {
+      "case_id": "C003-F01-CAPABILITY-MISSING",
+      "sha256": "040321eadf17733946edc1daa30c1e389250c6d2c244e8fb14e9259d3a484af1"
+    },
+    {
+      "case_id": "C003-F01-ARTIFACT_REVISION-MISSING",
+      "sha256": "534b696323ce91a0bb9c34a073c0b5281974f3b08708906308aaee8fa67e9637"
+    },
+    {
+      "case_id": "C003-F01-DEPENDENCY_REVISION-MISSING",
+      "sha256": "a5ab9af952ce43aeb492c6987951854780f816b930b5e8c59765e8b86df2efe5"
+    },
+    {
+      "case_id": "C003-F01-SCOPE-MISSING",
+      "sha256": "a83a05b64186f630d6b5d5f576e086ddd8cc7a5f08f48d56c2cef6c7e538ccfd"
+    },
+    {
+      "case_id": "C003-F01-CORRELATION-MISSING",
+      "sha256": "ede66b72313015c89f63f50bd9fa04758e3a27eb08d467ff54621cfbce5585ee"
+    },
+    {
+      "case_id": "C003-F01-EXPIRY-MISSING",
+      "sha256": "475ee2245606697f8218544ae322a495849a6e8fe2f3e2d1bc3f5b6f16daabcc"
+    },
+    {
+      "case_id": "C003-F01-IDEMPOTENCY-MISSING",
+      "sha256": "1f6507fd14dd961e851ca1f419867ea9b64e1d5ce9434420f992c366c94e95fb"
+    },
+    {
+      "case_id": "C003-F01-RESULT_STATE-MISSING",
+      "sha256": "b631ee9f1ffa2973706745d6eb12eaa27e279be8dc9ec6dc0c519b62cd92ad1f"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION_REF-MISSING",
+      "sha256": "71556138198eb5c26a96b18f121c84367c845ce6fbe8f4e682570874602789b1"
+    },
+    {
+      "case_id": "C003-F01-DATA_USE_REF-MISSING",
+      "sha256": "0bcaf2e6a4b16c5df2c33e02718bac9d62f5e92522cc44021bc600a35794d8b9"
+    },
+    {
+      "case_id": "C003-F01-CONNECTION_IDENTITY-FOREIGN",
+      "sha256": "07410da533185556bdf5a66abea63fcb95986ba5bf7df04ae12d54f0e8f4e4c0"
+    },
+    {
+      "case_id": "C003-F01-OPERATION_IDENTITY-FOREIGN",
+      "sha256": "7dbf0b25e47f2db088ba601c9a43eb990667f3b400886b23d5651e1c881f6980"
+    },
+    {
+      "case_id": "C003-F01-CONTRACT_REVISION-FOREIGN",
+      "sha256": "52aa8652231018eb56957839a36c06cd8182707079e1a4257a4b1f8f2c522418"
+    },
+    {
+      "case_id": "C003-F01-SCOPE-FOREIGN",
+      "sha256": "f2911e15695506cd27deaaadb720663253e945763a0b901769bd7095b5238d80"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION_REF-FOREIGN",
+      "sha256": "d0b76b35fe58420bb8b892ebbcd848bf7da39e57ebd402385444561f1955c495"
+    },
+    {
+      "case_id": "C003-F01-SEND-RECEIPT-MISSING",
+      "sha256": "6891c3aafafa23c3e2122bf4175a01b064ea4673c08caf3c24fa79fcb2f46e18"
+    },
+    {
+      "case_id": "C003-F01-SEND-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
+      "sha256": "77a6859373e09c1ecff0b8911e37d9023773b7183bd0e6dd21fe1dd8aad0e997"
+    },
+    {
+      "case_id": "C003-F01-SEND-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
+      "sha256": "bb84bf3f3d358e6e27ed76c8f3663b5d558b60727d86b786f0e345ded9026ee4"
+    },
+    {
+      "case_id": "C003-F01-SEND-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
+      "sha256": "86d7e65a0d7363898a9230dc63a8428697ce43dd2506a9bad2cb498dfc91a3fd"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-RECEIPT-MISSING",
+      "sha256": "59d28d246fd0f208f154c81cb99d970cf2d13b083355b922978d548a7c9378b9"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONNECTION_IDENTITY-FOREIGN",
+      "sha256": "ec9ca0bf2655943310221e32befde928c1563d903d24daae91154c77f7794437"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-OPERATION_IDENTITY-FOREIGN",
+      "sha256": "209cb62ab187a01ada18fadcbbb49ca6b3e76bde0cba8b50ab5cb80768c6c094"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-RECEIPT-TARGET-CONTRACT_REVISION-FOREIGN",
+      "sha256": "d328e168cb268ed9e9ccd4c3d81f097ca2f9c337fa49a67e1d0dfbb815deff03"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-UNKNOWN",
+      "sha256": "376e3be0ea1cc44dd1631bb6e6f16acdb53b9e042d0815b4630f349bece268e8"
+    },
+    {
+      "case_id": "C003-F01-RECEIVE-REJECTED_IN_FIXTURE_ONLY",
+      "sha256": "0d0bb0c00ea275e4619bda7eca21b2cd9c110a5ae6e803249c844b99916ad35d"
+    },
+    {
+      "case_id": "C003-F01-COMPATIBILITY-INCOMPATIBLE",
+      "sha256": "e9c62f704d14fe9302fe2985af7bd25c11814a5d1ad9f67188fceb4381605e14"
+    },
+    {
+      "case_id": "C003-F01-COMPATIBILITY-UNKNOWN",
+      "sha256": "56c4395ba60d25fa8f6f2319c99190f19c97377b20aecbed58897c7bb4074dc1"
+    },
+    {
+      "case_id": "C003-F01-COMPATIBILITY-STALE",
+      "sha256": "c7298731767ad8636e3125df34449aeaec0065a87392e9379a4ae580d5db7c59"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION-EXPIRED",
+      "sha256": "77773812b343e940d934959818cfa990933e27b88e4015d58146932bb67a2c04"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION-REVOKED",
+      "sha256": "c554c08c0757e28533c115beddc547f19f83a9ef8f53a0e2be288424d0e53c3a"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION-UNKNOWN",
+      "sha256": "4d9e4135afbd84cf79105253d090f4d865ab7bcad91eb79919ce929eda7c4f94"
+    },
+    {
+      "case_id": "C003-F01-EXPIRY-EXPIRED",
+      "sha256": "fa8ed16ca54a4e4995f9af3066b174b2b220e07a051269458f961ecf3ff3e86b"
+    },
+    {
+      "case_id": "C003-F01-ORIGINAL-UNKNOWN-OPERATION",
+      "sha256": "ea2da4186d9bb07417f416afad3d3c55d15001823bbbdc1d3ec8ba645fa2d071"
+    },
+    {
+      "case_id": "C003-F01-ORIGINAL-CONTRACT-REVISION-UNKNOWN",
+      "sha256": "76c07f9a4692961c42e80e0b0508b1f144824ea5ce1d5449f18d351133371238"
+    },
+    {
+      "case_id": "C003-F01-SUBMITTED-ENVELOPE-OUTSIDE-CONTRACT",
+      "sha256": "2d38d70772e4237cf1e19e014e6194a1cf6a0dad53742f7adcedc4c1c78990e7"
+    },
+    {
+      "case_id": "C003-F01-ORIGINAL-ENVELOPE-OUTSIDE-CONTRACT",
+      "sha256": "cf7f9d2ce9ba16ad974bc800a333f6be269031e403ef0d6ec467649eafdcad00"
+    },
+    {
+      "case_id": "C003-F01-ENVELOPE-CONTENT-FOREIGN",
+      "sha256": "e4b0ba8e0df59ba6e696088094e1924247135550408619a9c552f1a06b3139a9"
+    },
+    {
+      "case_id": "C003-F01-RECOVERY-UNFINISHED-ERASED",
+      "sha256": "e619507c6f90a538fb570195060e5ae7778362456ef4eddc1e9f0e2386493585"
+    },
+    {
+      "case_id": "C003-F01-FOREIGN_RECEIPT_NORMAL",
+      "sha256": "532de443d00bedb1a5ffd7ce76e433e9482969b1a652da0956a1d5ad32792f88"
+    },
+    {
+      "case_id": "C003-F01-UNKNOWN_OPERATION_NORMAL",
+      "sha256": "d86dfc5ad3c94a3958ae71a23c70bdf87cfccc749c838dd150e57474cf14fad3"
+    },
+    {
+      "case_id": "C003-F01-EXPIRED_INPUT_NORMAL",
+      "sha256": "e51a6de993487b16ec324e3b1897d0ab66d7a6caef9e75ced704de6b0d6ee6c8"
+    },
+    {
+      "case_id": "C003-F01-PERMISSION_OUTSIDE_NORMAL",
+      "sha256": "31a6edcb44d1b62af80b8f4ff2b4c360955fa815a8797b2cfaa4b275ef17795d"
+    },
+    {
+      "case_id": "C003-F01-CONTRACT_OUTSIDE_NORMAL",
+      "sha256": "c69fa765e17ef1f347c514e9540e03679cb59fee26abf5f4195cdcdee6d108ad"
+    },
+    {
+      "case_id": "C003-B01-TECHNICAL-RECEIVE-BUSINESS-REJECTION-UNFINISHED",
+      "sha256": "d5805da1aeed74ad61968426864408f27f3f53bea736f47791ada08818e61a8e"
+    },
+    {
+      "case_id": "C003-B01-ORIGINAL-BUSINESS-UNFINISHED",
+      "sha256": "f9705b902bb6f025ac14782e35d599941e8e5482521633b69ba11a6fa8519282"
+    },
+    {
+      "case_id": "C003-B01-ORIGINAL-BUSINESS-UNKNOWN",
+      "sha256": "050a63f0e560a0e6c966644c74cf32c0a770a4d6cc4ac66f623dfa31c5dded81"
+    },
+    {
+      "case_id": "C003-B01-ORIGINAL-BUSINESS-ACCEPTED_IN_FIXTURE_RECORD",
+      "sha256": "95964ca3ab2f7cca0b99d15b474280ccd67becb6b6ba7105b6ae4bee16883fa7"
+    },
+    {
+      "case_id": "C003-B01-BUSINESS-OWNER-FOREIGN",
+      "sha256": "d12a28cced27cf6d86144afab473afb2bb29e47d60bf9fbe162e20bb839f88eb"
+    },
+    {
+      "case_id": "C003-B01-BUSINESS-OPERATION_IDENTITY-FOREIGN",
+      "sha256": "5348b0858fb77c1b96d28fdcfb7a74d60f688d6167f6de778209d9f7fcf8ba82"
+    },
+    {
+      "case_id": "C003-B01-BUSINESS-SCOPE-FOREIGN",
+      "sha256": "5e86910ed061173e32cfc41f1cb5ae57ec79b03b64bdd4af02ffaea89214b642"
+    },
+    {
+      "case_id": "C003-B01-BUSINESS-MEANING-FOREIGN",
+      "sha256": "2565fe5cc59548b8cf181fd24e44474f712256e7b52ee63b19938a568d519146"
+    },
+    {
+      "case_id": "C003-B01-BUSINESS-UNFINISHED-FOREIGN",
+      "sha256": "87dba88d3018fadb9a5a990a8fb25ff525a6c4357747d0d1efec295f3e6fb76f"
+    },
+    {
+      "case_id": "C003-B01-ORIGINAL-BUSINESS-OTHER-OPERATION",
+      "sha256": "b55a0d63ff3e61a0a52a80f85a9deeea7acea073a03ddf050f7ec3c91e32c9e8"
+    },
+    {
+      "case_id": "C003-B01-ACK_BUSINESS_COMPLETE",
+      "sha256": "973d65545cbf5167bd1d5ebb88b053c194eb0a8a1002748837b9802c16c3d58f"
+    },
+    {
+      "case_id": "C003-B01-ENVELOPE_MEANING_AUTHORITY",
+      "sha256": "cd71b2d47eb49e5fff30a463efd16ab8619742862711d7a6ba7c5860e5b8d2ac"
+    },
+    {
+      "case_id": "C003-B01-CONNECT_ADOPTION_DECISION",
+      "sha256": "72a6a3b3731fa574f88355700737cc17a1ebd3b07a57bdbf78abb8822ff6ea6a"
+    },
+    {
+      "case_id": "C003-B01-TECHNICAL_SUCCESS_ERASES_UNFINISHED",
+      "sha256": "ac86253bcfdca455d6f3b6dddaaad1af865923b251c2edceb1f48ad553852d28"
+    }
+  ],
+  "preserved_l9_oracle": {
+    "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+    "sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+    "case_count": 62,
+    "statement": "全62原raw packet/全期待値をL9に保持しpointerで参照する。"
+  },
+  "unresolved": [
+    "正式codec、実source/receipt/transport資格、実行runtime、TDD/CI、L11受入および全430対の設計閉包は未成立。"
+  ],
+  "approval_record_pin": {
+    "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+    "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+  },
+  "source_pair_pins": [
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+      "sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+      "document_id": "HELIXCONNECT-L4-003"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/operation-envelope-receipt.json",
+      "revision": "1a3e8520a8050ebd127bb89ff5c3f0b5f308bbdb",
+      "sha256": "61469178361dccb64bc0b065c9806c262f7cef24ff3c626a0dd384d56e102a15",
+      "document_id": "HELIXCONNECT-L9-003"
+    }
+  ],
+  "fixture_coverage_limits": [
+    "FN-C003-01: 固定48 rawではoriginal_receipts.send/receiveと各target_headerが存在。target_header_resultsのAbsent入力枝はこの集合から独立oracle検証されていない。",
+    "FN-C003-02: 固定14 rawではtechnical/business/target比較対象fieldが全て両側Present。Absent入力のmissing出力枝はこの集合から独立oracle検証されていない。"
+  ]
+}
