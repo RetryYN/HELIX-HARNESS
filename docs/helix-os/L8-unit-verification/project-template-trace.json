@@ -103111,6 +103111,910 @@
               "expected_l5_wire_projection_sha256": "060b0c34703e84d9f307fd1a724e917326b53a77a3ea6f0bd884ee85b98ee004",
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "REQUEST_SCOPE_SHAPE_PRECEDES_OWNER_SHAPE",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": []
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                }
+              },
+              "expected_l4_association_result": {
+                "core_endpoint": {
+                  "state": "unresolved",
+                  "candidate_snapshots": [],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/scope"
+                  ]
+                },
+                "os_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "diagnostic_paths": []
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": []
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l4_association_result_sha256": "c0166dc2d5e3d073368391f95eb3dabac088a6b50f384eb2f14cdebb5cea49ac",
+              "expected_l5_wire_projection": {
+                "core_endpoint": {
+                  "state": "unresolved",
+                  "candidate_snapshots": [],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/scope"
+                  ]
+                },
+                "os_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": 1
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": []
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l5_wire_projection_sha256": "d2b7c9d06be813b76aae48330cf8646a09a207009e280d307e0fc187ecac9b92",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "CANDIDATE_SCOPE_SHAPE_PRECEDES_OWNER_SHAPE",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": false
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                }
+              },
+              "expected_l4_association_result": {
+                "core_endpoint": {
+                  "state": "unresolved",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": false
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "diagnostic_paths": [
+                    "/core_snapshots/0/ref/scope"
+                  ]
+                },
+                "os_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "diagnostic_paths": []
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": false
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l4_association_result_sha256": "3e76cc45699649949638f817c0ab8117f15767af70e674aa66b6b45bb03ee018",
+              "expected_l5_wire_projection": {
+                "core_endpoint": {
+                  "state": "unresolved",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": false
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/core_snapshots/0/ref/scope"
+                  ]
+                },
+                "os_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": 1
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": false
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l5_wire_projection_sha256": "6d158098d91ec1f25bed9510325237712b291b663c7768ee779cae2f779fa1ad",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "OS_INTERMEDIATE_OBJECT_KEY_IS_MISSING",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/nokey/x",
+                    "expected_value": {
+                      "presence": "absent"
+                    }
+                  }
+                }
+              },
+              "expected_l4_association_result": {
+                "core_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "diagnostic_paths": []
+                },
+                "os_endpoint": {
+                  "state": "missing",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/pointer"
+                  ]
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/nokey/x",
+                    "expected_value": {
+                      "presence": "absent"
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l4_association_result_sha256": "40306e54382b0d221e82ffb1c52a21c9091b4352b45a4af654a3076ea82fc6fa",
+              "expected_l5_wire_projection": {
+                "core_endpoint": {
+                  "state": "content_corresponding",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": 1
+                },
+                "os_endpoint": {
+                  "state": "missing",
+                  "candidate_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/pointer"
+                  ]
+                },
+                "association_input": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/nokey/x",
+                    "expected_value": {
+                      "presence": "absent"
+                    }
+                  }
+                },
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "meaning_comparison": "not_established",
+                "actual_source_qualification": "not_established",
+                "effects": "none"
+              },
+              "expected_l5_wire_projection_sha256": "b90bd614df3ecbafd7aaff78194b7bbcb2937c0e95a21eea6d6097154ede6a3d",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
             }
           ]
         }
