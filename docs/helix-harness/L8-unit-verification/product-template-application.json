@@ -133574,7 +133574,6 @@
         "status_ja": "合成の有限対照。source collection欠落が先行し、片側record shape規則は適用しない。実source/資格は成立しない。",
         "raw_input_sha256": "dcdf6785e2d01ec38559154b0a262119881f279eca6cbac5c21f7e42224cae84",
         "local_fixation_record": {
-          "path": "scaffold/review-handoff/local/core009-applicability-output-detail/r1-residual-6199740329/one-sided-collection-expectation-before-candidate.json",
           "sha256": "be46432c4adc3dc5e5790c2c7661a476e9592bdcd1810951591583a2d706cfbc",
           "meaning_ja": "候補修正前に独立期待を固定したローカル記録。Git追跡の正式根拠ではなく時系列の証明とは主張しない。L8にはrawとexpected全体を複製しており通常検証はこちらで再現できる。"
         }
