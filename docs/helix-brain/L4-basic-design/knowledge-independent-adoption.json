@@ -171,7 +171,8 @@
         "別revision検証や段階混同で採否成立にしない。未完receiptを消さない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F01"
     },
     {
       "id": "HELIXBRAIN-L4-025-F02",
@@ -200,7 +201,8 @@
         "shadow未実行を実施済みにせず、全ticket固定shadowgateを追加しない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F02"
     },
     {
       "id": "HELIXBRAIN-L4-025-F03",
@@ -229,7 +231,8 @@
         "hold/unknown/rejection/未分離や製品意味をacceptedへ変換しない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F03"
     },
     {
       "id": "HELIXBRAIN-L4-025-F04",
@@ -259,7 +262,8 @@
         "構成候補で必要となる009、Infrastructure maturityで必要となるINFRA017の欠落・原版unknown・別版を局所保留する。原版unknownはnull一致で閉じない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F04"
     },
     {
       "id": "HELIXBRAIN-L4-025-N01",
@@ -288,7 +292,8 @@
         "fixture成功を普遍性/全構成/全seed/PO Acceptedへ外挿しない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/N01"
     },
     {
       "id": "HELIXBRAIN-L4-025-B01",
@@ -317,7 +322,8 @@
         "知識採否から要求/設計/merge/releaseを直接変更しない。限定seed採用はruntime成熟ではない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/B01"
     }
   ],
   "fixture_progress": {
@@ -331,5 +337,1684 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "responsibility_and_failure_return_contract": {
+    "meaning": "return_ownersは段階/契約に関与する責務の表示一覧で、失敗有無から生成・消去しない。failure_owner_candidatesとfailure_owner_routesは当該所見の返却候補。実recipient/資格/配送は別である。",
+    "source_basis": [
+      "HELIXBRAIN-L3-025-F01",
+      "HELIXBRAIN-L3-025-F02",
+      "HELIXBRAIN-L3-025-F03",
+      "HELIXBRAIN-L3-025-F04",
+      "HELIXBRAIN-L3-025-N01",
+      "HELIXBRAIN-L3-025-B01",
+      "HELIXBRAIN-L10-025-F01",
+      "HELIXBRAIN-L10-025-F02",
+      "HELIXBRAIN-L10-025-F03",
+      "HELIXBRAIN-L10-025-F04",
+      "HELIXBRAIN-L10-025-N01",
+      "HELIXBRAIN-L10-025-B01",
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "lines": [
+          465,
+          472
+        ],
+        "meaning": "source/evaluation→LABO、登録/進行→OS、知識意味→該当L1、BRAIN変更検証→BRAIN change。"
+      },
+      {
+        "path": "docs/helix-brain/L1-planning/brain-intent.md",
+        "lines": [
+          44,
+          48
+        ],
+        "meaning": "LABO評価→OS登録/振分け→BRAIN独立検証/採否。製品固有意味の非汎用化。"
+      }
+    ],
+    "legacy_basis": "RCLS-BR-004/005/006は段階的検証、反例の保持、proposal/evidence提供と既存authority非変更を要求する。旧runtimeの配送や登録は採用しない。",
+    "role_inventory": {
+      "F01": {
+        "source_evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "knowledge_meaning": "BRAIN-meaning-owner",
+        "verification": "BRAIN-change"
+      },
+      "F03": [
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-meaning-owner",
+        "BRAIN-change"
+      ],
+      "N01": [
+        "PRODUCT-CORE-R",
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-change"
+      ],
+      "N01_label_limit": "PRODUCT-CORE-Rは合成製品Rの責務表示であり、実owner identityではない。知識意味の論理責務はknowledge-meaningへ結ぶが、具体製品recipientは元sourceで独立に結ぶ。",
+      "F02": {
+        "evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "independent_verification": "BRAIN-change",
+        "adoption": "BRAIN-change"
+      },
+      "F04": {
+        "007": "BRAIN-contract-owner",
+        "008": "BRAIN-contract-owner",
+        "009": "BRAIN-contract-owner",
+        "011": "BRAIN-contract-owner",
+        "012": "BRAIN-contract-owner",
+        "020": "BRAIN-contract-owner",
+        "LABO": "LABO",
+        "OS": "HELIX-OS",
+        "BRAIN-change": "BRAIN-change",
+        "INFRA017": "HELIX-INFRASTRUCTURE"
+      }
+    },
+    "F01": {
+      "input_sides": [
+        "original_target",
+        "original_stages",
+        "submitted_stages",
+        "original_unfinished_receipt",
+        "submitted_unfinished_receipt",
+        "claims"
+      ],
+      "role_check": "ROLE_LABELSの評価/登録/独立検証/採否について原側/提出側を個別に役割ラベルへ照合。OTHER-OWNER等の任意文字列は役割binding不明。異なる既知役割ラベルの場合だけcontent_conflict。proposalの製品owner名を固定enumにしない。",
+      "state_consistency_results": {
+        "adoption_without_independent_verification": "提出adoptionがPROMOTEDの場合だけ、独立検証の原/提出state・対象対応・producer側ownerと検証owner候補の分離を照合。not_executed/別対象/別内容はcontent_conflict、不足はunknown_in_fixture。未要求はnot_observed_in_fixture。実独立資格を生成しない。",
+        "role_owner_mismatch": "役割照合をcontent_conflict > missing > unknown_in_fixtureで集約。全て対応ならnot_observed_in_fixture。原/提出owner等値判定だけではない。",
+        "stage_key_identity_binding": "各段階keyで原identityと提出identityを比較し、両側の段階identity重複もcontent_conflict。identity接頭辞の文字列parseはしない。"
+      },
+      "failure_owner_candidates": "段階のJSON内容/target差は該当原段階owner候補へ。proposalを先、proposalに差がなければadoption。役割/identity/採用根拠不足はBRAIN-changeへ。未完receipt差は元owner候補を原配列順で重複除去。元ownerの資格を保証しない。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/F01",
+      "additional_reads": [
+        "original_stages",
+        "original_target",
+        "original_unfinished_receipt",
+        "submitted_stages",
+        "submitted_unfinished_receipt"
+      ]
+    },
+    "F03": {
+      "input_sides": [
+        "original_evidence_set",
+        "original_knowledge_state",
+        "submitted_knowledge_state",
+        "original_product_separation",
+        "original_findings",
+        "submitted_findings",
+        "claims"
+      ],
+      "finding_rule": "提出へJSON内容同値で保持されていない元findingごとにfinding_content routeを出す。原全値/ownerを保持。固定finding IDから意味を推測しない。",
+      "state_rule": "hold/unknown/rejected、Absent/null/宣言markerは原状態の不足または差戻しとして、元findingごとのowner routeと候補状態のBRAIN-change責務routeを返す。同値でもrouteを消さずaccepted/matureにしない。",
+      "single_evidence_roles": {
+        "AI_generated": "LABO",
+        "single_success": "LABO",
+        "LABO_result": "LABO",
+        "OS_ticket": "HELIX-OS",
+        "document_exists": "BRAIN-change"
+      },
+      "single_evidence_rule": "L3-F01で区別するproposal/evaluation/registration/independent_verification/adoptionの5段階receiptを固定集合とする。original_evidence_setがこの全段階を含まない場合、欠けた段階ごとにsource/evaluationはLABO、登録はHELIX-OS、独立検証/採否はBRAIN-changeの責務候補routeを出す。L10-F03のAI_generated/single_success/LABO_result/OS_ticket/document_existsは1件でも複数件でも単独証拠として別routeへ返し、5段階の不足を満たさない。候補/採用state、finding/反例の元値は保持し、実評価/登録/独立検証/採否資格を生成しない。",
+      "product_separation_result": "original_product_separationをseparated_candidateという分離候補表示へ照合。同値はcontent_corresponding_in_fixture、Absent/null/markerはunknown_in_fixture、その他非分離値はcontent_conflict。提出側に無いproduct_separationを暗黙入力にしない。",
+      "data_claim_rule": "知識state差またはdocument_adopted/hold_success=trueはBRAIN-change。未分離dataまたはproduct_meaning_generic=trueはknowledge-meaning。counterexample_erased=trueはknowledge-meaning。data所見とclaimのORを保持し、false claimでdata不正を抑止しない。",
+      "order": [
+        "finding_content",
+        "knowledge_hold",
+        "single_evidence",
+        "missing_required_basis",
+        "knowledge_state",
+        "product_separation",
+        "counterexample_claim"
+      ],
+      "projections": "failure_reasonsは各route.kind、failure_owner_candidatesはoriginal-finding-ownerならrecipient原値、それ以外は既知responsibility_roleを同順投影。null recipientを理由に機構帰属を消さない。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/F03",
+      "additional_reads": [
+        "claims",
+        "original_evidence_set",
+        "original_findings",
+        "original_knowledge_state",
+        "original_product_separation",
+        "submitted_findings",
+        "submitted_knowledge_state"
+      ]
+    },
+    "N01": {
+      "input_sides": [
+        "original_unseen_content",
+        "submitted_unseen_content",
+        "claims"
+      ],
+      "field_roles": {
+        "candidate_identity": [
+          "BRAIN-change"
+        ],
+        "candidate_revision": [
+          "BRAIN-change"
+        ],
+        "candidate_type": [
+          "BRAIN-change"
+        ],
+        "source": [
+          "LABO"
+        ],
+        "evaluation_target_revision": [
+          "LABO"
+        ],
+        "scope": [
+          "BRAIN-change"
+        ],
+        "product_context": [
+          "knowledge-meaning"
+        ],
+        "structure_meaning": [
+          "knowledge-meaning"
+        ],
+        "product_separation": [
+          "knowledge-meaning"
+        ],
+        "independent_verification": [
+          "BRAIN-change"
+        ],
+        "counterexample": [
+          "knowledge-meaning"
+        ],
+        "order": [
+          "LABO",
+          "HELIX-OS",
+          "BRAIN-change"
+        ]
+      },
+      "field_role_basis": {
+        "LABO": "sourceと評価target revisionはL2のsource/evaluation責務。",
+        "BRAIN-change": "候補identity/revision/type/scopeのBRAIN変更candidateへのbindingと独立検証はBRAIN変更手続きへ戻す。orderは評価/登録/検証/採否のchainなので各機構責務を段階順で保持。",
+        "knowledge-meaning": "product context/構造意味/製品分離/反例内容は該当L1の意味責務。L10のCORE候補を含むが実recipientは元製品sourceへ別binding。",
+        "evaluation_target_revision": "候補評価対象revisionの不一致/不足はL2-025のsource/evaluation責務とL3/L10-N01の評価target bindingに従いLABO候補へ返す。実source/recipient資格は別途未成立。"
+      },
+      "comparison_rule": "各fieldの原/提出JSON内容と、原fieldの情報不足を別判定する。marker/未実行が同値でも資格/評価成立としない。field差または情報不足ごとに表の既知機構責務へrouteを出し、claims=trueは別BRAIN-change routeを出す。",
+      "binding_rule": "originalとsubmittedの各側でcandidate_revisionとevaluation_target_revisionを直接比較し、対応/不一致/不足を保持する。いずれかの結果がcontent_corresponding_in_fixture以外なら、その側の両pathをtrigger_fieldsにしたevaluation_target_binding routeをLABOへ返す。同じ不一致が両側にあっても相互一致で抑止しない。generic field差routeは同じbinding failureと重複させず、別field差は保持する。",
+      "order": "field名Unicode順、同field内はfield_rolesの配列順、その後claims名Unicode順。",
+      "recipient_limit": "具体CORE/LABO/OS/BRAIN recipient/実資格は別sourceが必要。しかしL2/L10で確定した機構責務を未束縛へ後退させない。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/N01",
+      "claim_rule": "N01_CLAIMSの明示禁止claimだけを別BRAIN-change routeへ返す。",
+      "additional_reads": [
+        "claims",
+        "original_unseen_content",
+        "submitted_unseen_content"
+      ]
+    },
+    "F04": {
+      "input_sides": [
+        "original_base_needed",
+        "original_optional_needed_by_condition",
+        "original_selection",
+        "submitted_selection",
+        "original_contract_references",
+        "submitted_contract_references",
+        "claims"
+      ],
+      "selection": "missing/null/非booleanをfalseへ補完しない。原明示trueのoptionalだけを内容比較へ選ぶ。原情報不足/選択差はBRAIN-changeへ限定返却する。",
+      "required_reference": "必要集合は入力配列から生成せず、L3-F04/L2-025の固定base 007/008/012/LABO/OS/BRAIN-changeと、原selectionが厳密trueのとき固定対応composition_candidate→009、core_origin→011、evaluation_connection→020、infrastructure_maturity→INFRA017の和集合とする。original_base_neededが欠落/不一致でも固定集合の全参照を比較し、宣言不一致をBRAIN-change候補へ返す。選択trueのoptional map欠落/誤値でも固定参照を削らず、map不一致をBRAIN-changeへ返す。false/unknownのoptional pathは選択済みとして扱わず、unknown selectionはunknownと差戻し候補を保つ。",
+      "reference_roles": {
+        "007": "BRAIN-contract-owner",
+        "008": "BRAIN-contract-owner",
+        "009": "BRAIN-contract-owner",
+        "011": "BRAIN-contract-owner",
+        "012": "BRAIN-contract-owner",
+        "020": "BRAIN-contract-owner",
+        "LABO": "LABO",
+        "OS": "HELIX-OS",
+        "BRAIN-change": "BRAIN-change",
+        "INFRA017": "HELIX-INFRASTRUCTURE"
+      },
+      "reference_rule": "各必要slotは固定REFERENCE_ROLESで責務候補を選ぶ。参照identity/revision/scope不足はunknown_in_fixture、必要entry不在はmissing、slot identity不一致またはentry差はcontent_conflict、slotへ結ぶ同値のみcontent_corresponding_in_fixture。必要集合入力不備は別のrequired_reference_declaration routeとしてBRAIN-changeへ返し、個別不足の参照owner routeを抑止しない。",
+      "return_owners": "REFERENCE_ROLESの責務一覧を常時保持。failure_owner_candidates/routesは選択された不足だけ。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/F04",
+      "claim_rule": "F04_CLAIMSに列挙する明示禁止claimのtrueだけを別BRAIN-change routeへ返す。未宣言claimのtrueを新しい禁止条件へ一般化しない。",
+      "additional_reads": [
+        "claims",
+        "original_base_needed",
+        "original_contract_references",
+        "original_optional_needed_by_condition",
+        "original_selection",
+        "submitted_contract_references",
+        "submitted_selection"
+      ]
+    },
+    "consumer_binding": {
+      "role_inventory": "BRAIN変更検討receiptの責務説明として参照する。配送・登録・採否の証拠にしない。",
+      "failure_routes": "BRAIN変更検討は所見の元field/record・既知機構責務・recipient不足を区別して差戻し候補へ接続する。LABOは評価、OSは登録/振分け/進行、該当L1は知識意味、BRAIN changeは独立検証/採否を担う。実recipient/source資格が未解決でも機構帰属は維持し、実配送は行わない。",
+      "preserved_records": "retained_findings/retained_unfinished_receipt等の元state/owner/target/revisionを失敗有無にかかわらず保持。"
+    },
+    "qualification": "全て純粋な合成入力の比較/返却候補。実配送、資格、authority、採否、CI、実装Readyは生成しない。",
+    "field_semantics": {
+      "return_owners": "責務一覧。正常でも保持し、active返却配列へ置換しない。",
+      "failure_owner_candidates": "所見に結び付く機構/契約/原ownerの候補。noneは該当所見なし、unknown_in_fixture/nullは当該候補原値不足。",
+      "failure_owner_routes": "所見分類・原因field/claim・責務と元finding・recipient候補を別memberで保持。",
+      "recipient": "元finding.ownerの非marker stringだけを候補値として投影。他の機構責務には実recipient sourceがなくnull。nullでもresponsibility_roleの既知機構帰属は消さない。",
+      "knowledge-meaning": "該当L1/製品意味の責務候補。一般知識意味を製品COREへ一律配送する規則ではない。",
+      "BRAIN-contract-owner": "trigger fieldの参照identityで特定されるBRAIN契約の意味owner責務。実担当者identityではない。",
+      "contract-owner": "必要参照identityは既知機構表の外だが、sourceの契約責務へ確認を要する候補。実機構/recipientを捏造せず、trigger fieldに未知identityを保持する。"
+    },
+    "route_schema": {
+      "exact_fields": [
+        "kind",
+        "responsibility_role",
+        "trigger_fields",
+        "trigger_claims",
+        "recipient",
+        "resolution",
+        "original_finding"
+      ],
+      "kind_values": [
+        "finding_content",
+        "knowledge_hold",
+        "single_evidence",
+        "knowledge_state",
+        "product_separation",
+        "counterexample_claim",
+        "reference_content",
+        "selection_information",
+        "forbidden_claim",
+        "unseen_field",
+        "unseen_claim",
+        "missing_required_basis",
+        "required_reference_declaration",
+        "evaluation_target_binding"
+      ],
+      "responsibility_role_values": [
+        "original-finding-owner",
+        "LABO",
+        "HELIX-OS",
+        "knowledge-meaning",
+        "BRAIN-change",
+        "BRAIN-contract-owner",
+        "HELIX-INFRASTRUCTURE",
+        "contract-owner"
+      ],
+      "trigger_fields": "順序付きfield path文字列配列。各関数のinput rootからのmember path。",
+      "trigger_claims": "当該関数input.claimsのkey文字列配列。",
+      "recipient": "string|null。元値を資格化しない。",
+      "resolution_values": [
+        "raw_owner_candidate",
+        "mechanism_role_candidate"
+      ],
+      "original_finding": "JSONValue。元finding保持routeのみ元全値、その他null。",
+      "ordering": "各entryの有限導出記法で指定する順序。元findingの重複は別recordとして残し、機構の別責務所見へ無条件broadcastしない。"
+    },
+    "F02": {
+      "input_sides": [
+        "original_order",
+        "submitted_order",
+        "original_selected_scope_proofs",
+        "submitted_scope_proofs",
+        "claims"
+      ],
+      "fixed_order": [
+        "evaluation",
+        "registration",
+        "independent_verification",
+        "adoption"
+      ],
+      "position_owners": {
+        "evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "independent_verification": "BRAIN-change",
+        "adoption": "BRAIN-change"
+      },
+      "order_rule": "原/提出の各配列をevaluation→registration→independent_verification→adoptionの固定4要素へ別々に比較する。不一致/欠落位置の段階を該当roleへ返し、配列全体が固定4要素と異なる場合はfailure_owner_candidates.order=BRAIN-changeも返す。5要素目を正しい4位置へ黙って切り詰めない。",
+      "proof_rule": "必要proof keyはoriginal_selected_scope_proofsのkeyだけ。各原/提出proofの全内容、観測state、producer/checkerのnonmarker stringと非同値、evidence、targetのidentity/revision/source/scopeとproof.scope対応を照合し、不足/未実行/自己評価/差分はBRAIN-change候補。非選択shadowを一律要求しない。 選択proofに一つでも不足がある場合は、proof別候補に加えてfailure_owner_candidates.scope_proofs=BRAIN-changeを返す。",
+      "container_rule": "proof containerがobjectならcontent_corresponding_in_fixture、null/Absent/非objectはunknown_in_fixture。いずれかがobjectでない場合、必要proof keyを空集合とみなさずfailure_owner_candidates.scope_proofs=BRAIN-changeを返す。選択proof自体は原側に列挙されたものだけを比較し、未選択shadowは一律要求しない。",
+      "return_owners": "ORDER_ROLESの責務一覧を常時返す。active欠陥はfailure_owner_candidates/proof_owner_candidatesのみ。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/F02",
+      "claim_rule": "F02_CLAIMSのいずれかが厳密trueなら、順序/自己評価/未実行の偽完了/全ticket固定gateの所見をBRAIN変更手続きへ返すためfailure_owner_candidates.claims=BRAIN-changeを追加する。falseはdata不足を抑止しない。未宣言claimを新しい禁止条件として扱わない。",
+      "additional_reads": [
+        "claims",
+        "original_order",
+        "original_selected_scope_proofs",
+        "submitted_order",
+        "submitted_scope_proofs"
+      ]
+    },
+    "B01": {
+      "input_sides": [
+        "upstream_meaning_change_required",
+        "original_runtime_knowledge_state",
+        "claims"
+      ],
+      "flag_domain": [
+        "explicit_true",
+        "explicit_false",
+        "absent",
+        "explicit_null",
+        "unknown_kind"
+      ],
+      "runtime_promotion_consistency": "limited_seed_runtime_mature=trueはcontent_conflict。原runtimeがcandidate_not_promotedのときだけnot_observed_in_fixture。それ以外（Absent/null/marker/未定義値/実promotion状態）は独立運用根拠が本入力にないためunknown_in_fixture。原値は主契約に保持し、限定seed意味採用から運用資格を生成しない。",
+      "priority": "明示禁止claimのcontent_conflictを原値不足unknownより優先。upstream flagは厳密booleanだけを既存意味判断の条件にし、null等をfalseへ補完しない。",
+      "return_owner_meaning": "既存return_ownerは知識変更/上流意味判断の責務候補。実recipient/追加の人間承認を発行しない。",
+      "normative_derivation_ref": "/additional_material_derivation/entry_points/B01",
+      "additional_reads": [
+        "claims",
+        "original_runtime_knowledge_state",
+        "upstream_meaning_change_required"
+      ]
+    },
+    "literal_provenance": [
+      {
+        "values": [
+          "LABO",
+          "HELIX-OS",
+          "knowledge-meaning",
+          "BRAIN-change"
+        ],
+        "source": "L2-025:471、L3/L10-025-F01/F03/N01",
+        "meaning": "source/evaluation、登録進行、該当L1知識意味、独立検証/採否の論理責務表示。実owner IDではない。"
+      },
+      {
+        "values": [
+          "BRAIN-contract-owner",
+          "contract-owner",
+          "original-finding-owner",
+          "raw_owner_candidate",
+          "mechanism_role_candidate"
+        ],
+        "source": "L10-F03/F04元owner/各source契約ownerへの返却からの設計内表現。",
+        "meaning": "所見/責務と元owner候補/recipient不足を区別。新しい機構/資格を作らない。"
+      },
+      {
+        "values": [
+          "content_corresponding_in_fixture",
+          "content_conflict",
+          "unknown_in_fixture",
+          "missing"
+        ],
+        "source": "L9 verification_obligationsの内容比較member。",
+        "meaning": "内容比較表示。実資格/採用判定ではない。"
+      },
+      {
+        "values": [
+          "not_observed_in_fixture",
+          "explicit_true",
+          "explicit_false",
+          "absent",
+          "explicit_null",
+          "unknown_kind",
+          "candidates_present",
+          "none"
+        ],
+        "source": "L3/L10-F01/F02/B01/N01の非昇格/未観測/条件分離からの設計内表示。",
+        "meaning": "到達条件は有限定義へ明記。実採用/停止/配送状態ではない。"
+      },
+      {
+        "values": [
+          "",
+          "TBD",
+          "UNKNOWN",
+          "unknown",
+          "N/A",
+          "unresolved",
+          "pending"
+        ],
+        "source": "unknownはN01原値。TBD/N/A等は不足を比較するための有限素材表記として設計内に明示。",
+        "meaning": "原JSONを保持し、markerを製品識別子全域の禁止や資格取消へ一般化しない。"
+      },
+      {
+        "values": [
+          "observed_in_fixture",
+          "verified",
+          "adopted",
+          "accepted",
+          "mature",
+          "candidate_not_promoted"
+        ],
+        "source": "F02原state=observed_in_fixture、N01提出verified、F03提出adopted/accepted、L3-F03 accepted/mature、B01原candidate_not_promoted。",
+        "meaning": "文字列だけで実独立性や資格を生成しない。"
+      },
+      {
+        "values": [
+          "HELIX-INFRASTRUCTURE"
+        ],
+        "source": "L2-INFRA-017とL3/L10-025-F04。Infrastructure maturity選択時に限りINFRA017を追加し、責務はInfrastructureへ返す。",
+        "meaning": "INFRA017の機構責務候補。実owner資格を示さない。"
+      },
+      {
+        "values": [
+          "BRAIN-change-independent-review"
+        ],
+        "source": "L4 F01 ROLE_LABELS.independent_verificationとL3/L10-025-F01/F03の独立検証owner責務。",
+        "meaning": "独立検証のrole label。LABO評価との独立性や実review資格を証明しない。"
+      },
+      {
+        "values": [
+          "proposal",
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption_basis"
+        ],
+        "source": "L3-025-F01の区別されたstate/owner付きreceipt、L3/L10-025-F03の五種類単独証拠と候補/採用識別、L2-025:471の段階責務。",
+        "meaning": "同一candidate revisionへ束ねる必要根拠の有限field名。実receiptや実評価資格ではない。"
+      }
+    ]
+  },
+  "additional_material_derivation": {
+    "meaning": "基本契約の追加返却memberを一意にする有限論理記法。製品の関数設計/実装/実行方式や正式schemaではない。定義内のpath/分岐/順序/定数が意味正本で、外部helperに業務規則を置かない。",
+    "language": "pure_material_statement_notation",
+    "constants": {
+      "C": "content_corresponding_in_fixture",
+      "U": "unknown_in_fixture",
+      "X": "content_conflict",
+      "M": "missing",
+      "MARKERS": [
+        "",
+        "TBD",
+        "UNKNOWN",
+        "unknown",
+        "N/A",
+        "unresolved",
+        "pending"
+      ],
+      "STAGES": [
+        "proposal",
+        "evaluation",
+        "registration",
+        "independent_verification",
+        "adoption"
+      ],
+      "ROLE_LABELS": {
+        "evaluation": [
+          "LABO"
+        ],
+        "registration": [
+          "HELIX-OS"
+        ],
+        "independent_verification": [
+          "BRAIN-change",
+          "BRAIN-change-independent-review"
+        ],
+        "adoption": [
+          "BRAIN-change"
+        ]
+      },
+      "PROMOTED": [
+        "adopted",
+        "accepted",
+        "mature"
+      ],
+      "OBSERVED": [
+        "observed_in_fixture",
+        "verified"
+      ],
+      "F01_CANDIDATE_KEYS": [
+        "proposal_or_adoption",
+        "source_evaluation",
+        "registration",
+        "independent_verification",
+        "adoption_without_verification",
+        "owner_assignment",
+        "stage_key_identity_binding",
+        "unfinished_receipt"
+      ],
+      "ORDER": [
+        "evaluation",
+        "registration",
+        "independent_verification",
+        "adoption"
+      ],
+      "ORDER_ROLES": {
+        "evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "independent_verification": "BRAIN-change",
+        "adoption": "BRAIN-change"
+      },
+      "REFERENCE_ROLES": {
+        "007": "BRAIN-contract-owner",
+        "008": "BRAIN-contract-owner",
+        "009": "BRAIN-contract-owner",
+        "011": "BRAIN-contract-owner",
+        "012": "BRAIN-contract-owner",
+        "020": "BRAIN-contract-owner",
+        "LABO": "LABO",
+        "OS": "HELIX-OS",
+        "BRAIN-change": "BRAIN-change",
+        "INFRA017": "HELIX-INFRASTRUCTURE"
+      },
+      "SINGLE_EVIDENCE_ROLES": {
+        "AI_generated": "LABO",
+        "single_success": "LABO",
+        "LABO_result": "LABO",
+        "OS_ticket": "HELIX-OS",
+        "document_exists": "BRAIN-change"
+      },
+      "UNSEEN_FIELD_ROLES": {
+        "candidate_identity": [
+          "BRAIN-change"
+        ],
+        "candidate_revision": [
+          "BRAIN-change"
+        ],
+        "candidate_type": [
+          "BRAIN-change"
+        ],
+        "source": [
+          "LABO"
+        ],
+        "evaluation_target_revision": [
+          "LABO"
+        ],
+        "scope": [
+          "BRAIN-change"
+        ],
+        "product_context": [
+          "knowledge-meaning"
+        ],
+        "structure_meaning": [
+          "knowledge-meaning"
+        ],
+        "product_separation": [
+          "knowledge-meaning"
+        ],
+        "independent_verification": [
+          "BRAIN-change"
+        ],
+        "counterexample": [
+          "knowledge-meaning"
+        ],
+        "order": [
+          "LABO",
+          "HELIX-OS",
+          "BRAIN-change"
+        ]
+      },
+      "SELECTION_ORDER": [
+        "core_origin",
+        "composition_candidate",
+        "evaluation_connection",
+        "infrastructure_maturity"
+      ],
+      "F02_CLAIMS": [
+        "omit_order",
+        "self_evaluation_independent",
+        "shadow_unexecuted_done",
+        "all_ticket_fixed_shadow_gate"
+      ],
+      "F04_CLAIMS": [
+        "needed_as_reference_only",
+        "unknown_all_unneeded",
+        "unselected_experiment_completion_gate",
+        "unit_green_all_composition"
+      ],
+      "N01_CLAIMS": [
+        "fixture_universal",
+        "fields_only_pass",
+        "unknown_adopted",
+        "all_seed_accepted"
+      ],
+      "NONPROMOTED_RUNTIME": [
+        "candidate_not_promoted"
+      ],
+      "REQUIRED_EVIDENCE_BASIS": [
+        "proposal",
+        "evaluation",
+        "registration",
+        "independent_verification",
+        "adoption_basis"
+      ],
+      "REQUIRED_EVIDENCE_ROLES": {
+        "proposal": "LABO",
+        "evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "independent_verification": "BRAIN-change",
+        "adoption_basis": "BRAIN-change"
+      },
+      "FIXED_BASE_REFERENCES": [
+        "007",
+        "008",
+        "012",
+        "LABO",
+        "OS",
+        "BRAIN-change"
+      ],
+      "OPTIONAL_REFERENCE_BY_CONDITION": {
+        "composition_candidate": "009",
+        "core_origin": "011",
+        "evaluation_connection": "020",
+        "infrastructure_maturity": "INFRA017"
+      }
+    },
+    "definitions": {
+      "at": [
+        "def at(x, key):",
+        "    if not isinstance(x, dict):",
+        "        return MISSING",
+        "    return x.get(key, MISSING)"
+      ],
+      "usable": [
+        "def usable(x):",
+        "    return isinstance(x, str) and x not in MARKERS"
+      ],
+      "cmp": [
+        "def cmp(a, b):",
+        "    if is_missing(a) or is_missing(b):",
+        "        return M",
+        "    if a is None or b is None:",
+        "        return U",
+        "    return C if json_equal(a, b) else X"
+      ],
+      "merge_status": [
+        "def merge_status(values, default=C):",
+        "    for code in [X, M, U]:",
+        "        if code in values:",
+        "            return code",
+        "    return default"
+      ],
+      "rt": [
+        "def rt(kind, role, fields, claims, finding=None):",
+        "    owner = at(finding, 'owner')",
+        "    recipient = owner if usable(owner) else None",
+        "    return {'kind': kind, 'responsibility_role': role, 'trigger_fields': fields, 'trigger_claims': claims, 'recipient': recipient, 'resolution': 'raw_owner_candidate' if recipient is not None else 'mechanism_role_candidate', 'original_finding': json_copy(finding)}"
+      ],
+      "role_candidate": [
+        "def role_candidate(value):",
+        "    return value if usable(value) else U"
+      ],
+      "stage_result": [
+        "def stage_result(a, b, target):",
+        "    if is_missing(a) or is_missing(b):",
+        "        return M",
+        "    if not isinstance(a, dict) or not isinstance(b, dict):",
+        "        return U",
+        "    if not json_equal(a, b):",
+        "        return X",
+        "    return cmp(at(a, 'target'), target)"
+      ],
+      "f01": [
+        "def f01(x):",
+        "    a = at(x, 'original_stages')",
+        "    b = at(x, 'submitted_stages')",
+        "    target = at(x, 'original_target')",
+        "    stage_codes = {k: stage_result(at(a, k), at(b, k), target) for k in STAGES}",
+        "    identity_codes = []",
+        "    for key in STAGES:",
+        "        aa = at(at(a, key), 'identity')",
+        "        bb = at(at(b, key), 'identity')",
+        "        identity_codes.append(cmp(aa, bb) if usable(aa) and usable(bb) else M if is_missing(aa) or is_missing(bb) else U)",
+        "    for records in [a, b]:",
+        "        ids = [at(at(records, key), 'identity') for key in STAGES]",
+        "        if all(usable(v) for v in ids) and len(set(ids)) != len(ids):",
+        "            identity_codes.append(X)",
+        "    identity_result = merge_status(identity_codes)",
+        "    role_codes = []",
+        "    all_labels = [label for labels in ROLE_LABELS.values() for label in labels]",
+        "    for key in ROLE_LABELS:",
+        "        for records in [a, b]:",
+        "            owner = at(at(records, key), 'owner')",
+        "            if is_missing(owner):",
+        "                role_codes.append(M)",
+        "            elif not usable(owner):",
+        "                role_codes.append(U)",
+        "            elif owner in ROLE_LABELS[key]:",
+        "                role_codes.append(C)",
+        "            else:",
+        "                role_codes.append(X if owner in all_labels else U)",
+        "    role_result = merge_status(role_codes, 'not_observed_in_fixture')",
+        "    adoption = 'not_observed_in_fixture'",
+        "    if at(at(b, 'adoption'), 'state') in PROMOTED:",
+        "        va = at(a, 'independent_verification')",
+        "        vb = at(b, 'independent_verification')",
+        "        sa = at(va, 'state')",
+        "        sb = at(vb, 'state')",
+        "        if sa in ['not_executed', 'hold', 'rejected'] or stage_codes['independent_verification'] in [X, M]:",
+        "            adoption = X",
+        "        elif not usable(sa) or not usable(sb):",
+        "            adoption = U",
+        "        elif sa not in OBSERVED or sb not in OBSERVED:",
+        "            adoption = X",
+        "        elif any(usable(at(at(a, k), 'owner')) and json_equal(at(va, 'owner'), at(at(a, k), 'owner')) for k in ['proposal', 'evaluation']):",
+        "            adoption = X",
+        "        else:",
+        "            adoption = C",
+        "    owners = {key: 'none' for key in F01_CANDIDATE_KEYS}",
+        "    if stage_codes['proposal'] != C:",
+        "        owners['proposal_or_adoption'] = role_candidate(at(at(a, 'proposal'), 'owner'))",
+        "    elif stage_codes['adoption'] != C:",
+        "        owners['proposal_or_adoption'] = role_candidate(at(at(a, 'adoption'), 'owner'))",
+        "    for key, outkey in [('evaluation', 'source_evaluation'), ('registration', 'registration'), ('independent_verification', 'independent_verification')]:",
+        "        if stage_codes[key] != C:",
+        "            owners[outkey] = role_candidate(at(at(a, key), 'owner'))",
+        "    if adoption not in [C, 'not_observed_in_fixture']:",
+        "        owners['adoption_without_verification'] = 'BRAIN-change'",
+        "    if role_result != 'not_observed_in_fixture':",
+        "        owners['owner_assignment'] = 'BRAIN-change'",
+        "    if identity_result != C:",
+        "        owners['stage_key_identity_binding'] = 'BRAIN-change'",
+        "    before = at(x, 'original_unfinished_receipt')",
+        "    after = at(x, 'submitted_unfinished_receipt')",
+        "    if not json_equal(before, after):",
+        "        candidates = []",
+        "        if isinstance(before, list):",
+        "            for item in before:",
+        "                owner = role_candidate(at(item, 'owner'))",
+        "                if owner not in candidates:",
+        "                    candidates.append(owner)",
+        "        owners['unfinished_receipt'] = candidates if candidates else U",
+        "    return {'state_consistency_results': {'adoption_without_independent_verification': adoption, 'role_owner_mismatch': role_result, 'stage_key_identity_binding': identity_result}, 'failure_owner_candidates': owners}"
+      ],
+      "f02": [
+        "def f02(x):",
+        "    original = at(x, 'original_order')",
+        "    submitted = at(x, 'submitted_order')",
+        "    order_codes = {'original': cmp(original, ORDER), 'submitted': cmp(submitted, ORDER)}",
+        "    owners = {}",
+        "    for index, key in enumerate(ORDER):",
+        "        bad = any(not isinstance(v, list) or len(v) <= index or v[index] != key for v in [original, submitted])",
+        "        owners[key] = ORDER_ROLES[key] if bad else 'none'",
+        "    if any(value != C for value in order_codes.values()):",
+        "        owners['order'] = 'BRAIN-change'",
+        "    aa = at(x, 'original_selected_scope_proofs')",
+        "    bb = at(x, 'submitted_scope_proofs')",
+        "    container = {'original': C if isinstance(aa, dict) else U, 'submitted': C if isinstance(bb, dict) else U}",
+        "    proofs = {}",
+        "    if isinstance(aa, dict):",
+        "        for name in sorted(aa):",
+        "            a = aa[name]",
+        "            b = at(bb, name)",
+        "            valid = isinstance(a, dict) and isinstance(b, dict) and json_equal(a, b) and at(a, 'state') == 'observed_in_fixture' and usable(at(a, 'producer')) and usable(at(a, 'checker')) and not json_equal(at(a, 'producer'), at(a, 'checker'))",
+        "            valid = valid and isinstance(at(a, 'target'), dict) and all(usable(at(at(a, 'target'), field)) for field in ['identity', 'revision', 'source', 'scope']) and usable(at(a, 'scope')) and json_equal(at(a, 'scope'), at(at(a, 'target'), 'scope')) and usable(at(a, 'evidence'))",
+        "            proofs[name] = 'none' if valid else 'BRAIN-change'",
+        "    if any(value != 'none' for value in proofs.values()) or any(value != C for value in container.values()):",
+        "        owners['scope_proofs'] = 'BRAIN-change'",
+        "    claims = at(x, 'claims')",
+        "    if any(at(claims, key) is True for key in F02_CLAIMS):",
+        "        owners['claims'] = 'BRAIN-change'",
+        "    return {'required_order_result': order_codes, 'failure_owner_candidates': owners, 'proof_owner_candidates': proofs, 'scope_proof_container_result': container, 'return_owners': json_copy(ORDER_ROLES)}"
+      ],
+      "f03": [
+        "def f03(x):",
+        "    findings = at(x, 'original_findings')",
+        "    submitted = at(x, 'submitted_findings')",
+        "    state = at(x, 'original_knowledge_state')",
+        "    evidence = at(x, 'original_evidence_set')",
+        "    claims = at(x, 'claims')",
+        "    separation = at(x, 'original_product_separation')",
+        "    routes = []",
+        "    if isinstance(findings, list):",
+        "        for finding in findings:",
+        "            if not isinstance(submitted, list) or not any(json_equal(finding, z) for z in submitted):",
+        "                routes.append(rt('finding_content', 'original-finding-owner', ['submitted_findings'], [], finding))",
+        "    if is_missing(state) or state is None or state in ['hold', 'unknown', 'rejected'] or (isinstance(state, str) and state in MARKERS):",
+        "        if isinstance(findings, list):",
+        "            for finding in findings:",
+        "                routes.append(rt('knowledge_hold', 'original-finding-owner', ['original_knowledge_state'], [], finding))",
+        "        routes.append(rt('knowledge_hold', 'BRAIN-change', ['original_knowledge_state'], []))",
+        "    evidence_values = evidence if isinstance(evidence, list) else []",
+        "    basis_complete = all(stage in evidence_values for stage in REQUIRED_EVIDENCE_BASIS)",
+        "    if not basis_complete:",
+        "        seen_single_evidence = []",
+        "        for item in evidence_values:",
+        "            if isinstance(item, str) and item in SINGLE_EVIDENCE_ROLES and item not in seen_single_evidence:",
+        "                seen_single_evidence.append(item)",
+        "                routes.append(rt('single_evidence', SINGLE_EVIDENCE_ROLES[item], ['original_evidence_set'], []))",
+        "        for stage in REQUIRED_EVIDENCE_BASIS:",
+        "            if stage not in evidence_values:",
+        "                routes.append(rt('missing_required_basis', REQUIRED_EVIDENCE_ROLES[stage], ['original_evidence_set/' + stage], []))",
+        "    sc = [k for k in ['document_adopted', 'hold_success'] if at(claims, k) is True]",
+        "    sf = ['submitted_knowledge_state'] if not json_equal(state, at(x, 'submitted_knowledge_state')) else []",
+        "    if sc or sf:",
+        "        routes.append(rt('knowledge_state', 'BRAIN-change', sf, sc))",
+        "    sc = ['product_meaning_generic'] if at(claims, 'product_meaning_generic') is True else []",
+        "    sf = ['original_product_separation'] if separation != 'separated_candidate' else []",
+        "    if sc or sf:",
+        "        routes.append(rt('product_separation', 'knowledge-meaning', sf, sc))",
+        "    if at(claims, 'counterexample_erased') is True:",
+        "        routes.append(rt('counterexample_claim', 'knowledge-meaning', [], ['counterexample_erased']))",
+        "    separation_result = C if separation == 'separated_candidate' else U if is_missing(separation) or separation is None or (isinstance(separation, str) and separation in MARKERS) else X",
+        "    return {'product_separation_result': separation_result, 'failure_owner_candidates': [r['recipient'] if r['responsibility_role'] == 'original-finding-owner' else r['responsibility_role'] for r in routes], 'failure_reasons': [r['kind'] for r in routes], 'failure_owner_routes': routes}"
+      ],
+      "reference_cmp": [
+        "def reference_cmp(a, b, key):",
+        "    if is_missing(a) or is_missing(b):",
+        "        return M",
+        "    if not isinstance(a, dict) or not isinstance(b, dict):",
+        "        return U",
+        "    if any(not usable(at(v, f)) for v in [a, b] for f in ['identity', 'revision', 'scope']):",
+        "        return U",
+        "    if at(a, 'identity') != key or at(b, 'identity') != key:",
+        "        return X",
+        "    return cmp(a, b)"
+      ],
+      "f04": [
+        "def f04(x):",
+        "    original = at(x, 'original_selection')",
+        "    submitted = at(x, 'submitted_selection')",
+        "    base = at(x, 'original_base_needed')",
+        "    if is_missing(base):",
+        "        base_result = M",
+        "    elif base is None or not isinstance(base, list) or not all(isinstance(item, str) for item in base):",
+        "        base_result = U",
+        "    else:",
+        "        base_result = C if len(base) == len(FIXED_BASE_REFERENCES) and all(key in base for key in FIXED_BASE_REFERENCES) else X",
+        "    optional = at(x, 'original_optional_needed_by_condition')",
+        "    mapping_results = {}",
+        "    for condition in SELECTION_ORDER:",
+        "        if at(original, condition) is not True:",
+        "            mapping_results[condition] = C",
+        "        else:",
+        "            if is_missing(optional):",
+        "                mapping_results[condition] = M",
+        "            elif optional is None or not isinstance(optional, dict):",
+        "                mapping_results[condition] = U",
+        "            else:",
+        "                mapped = at(optional, condition)",
+        "                if is_missing(mapped):",
+        "                    mapping_results[condition] = M",
+        "                elif mapped is None or not isinstance(mapped, str) or mapped in MARKERS:",
+        "                    mapping_results[condition] = U",
+        "                else:",
+        "                    mapping_results[condition] = C if mapped == OPTIONAL_REFERENCE_BY_CONDITION[condition] else X",
+        "    keys = list(FIXED_BASE_REFERENCES)",
+        "    for condition in SELECTION_ORDER:",
+        "        if at(original, condition) is True:",
+        "            keys.append(OPTIONAL_REFERENCE_BY_CONDITION[condition])",
+        "    results = {key: reference_cmp(at(at(x, 'original_contract_references'), key), at(at(x, 'submitted_contract_references'), key), key) for key in sorted(keys)}",
+        "    info = {key: C if type(at(original, key)) is bool else U for key in SELECTION_ORDER}",
+        "    routes = []",
+        "    for key in sorted(results):",
+        "        if results[key] != C:",
+        "            routes.append(rt('reference_content', REFERENCE_ROLES.get(key, 'contract-owner'), ['submitted_contract_references/' + key], []))",
+        "    declaration_bad = base_result != C or any(value != C for value in mapping_results.values())",
+        "    if base_result != C:",
+        "        routes.append(rt('required_reference_declaration', 'BRAIN-change', ['original_base_needed'], []))",
+        "    for condition in SELECTION_ORDER:",
+        "        if mapping_results[condition] != C:",
+        "            routes.append(rt('required_reference_declaration', 'BRAIN-change', ['original_optional_needed_by_condition/' + condition], []))",
+        "    for key in SELECTION_ORDER:",
+        "        if info[key] != C or not json_equal(at(original, key), at(submitted, key)):",
+        "            routes.append(rt('selection_information', 'BRAIN-change', ['original_selection/' + key, 'submitted_selection/' + key], []))",
+        "    claims = at(x, 'claims')",
+        "    if isinstance(claims, dict):",
+        "        for key in sorted(F04_CLAIMS):",
+        "            if at(claims, key) is True:",
+        "                routes.append(rt('forbidden_claim', 'BRAIN-change', [], [key]))",
+        "    owners = {key: REFERENCE_ROLES.get(key, 'contract-owner') if results[key] != C else 'none' for key in sorted(results)}",
+        "    if declaration_bad:",
+        "        owners['required_reference_input'] = 'BRAIN-change'",
+        "    return {'reference_content_results': results, 'selection_information_results': info, 'failure_owner_candidates': owners, 'return_owners': json_copy(REFERENCE_ROLES), 'failure_owner_routes': routes}"
+      ],
+      "n01": [
+        "def n01(x):",
+        "    original = at(x, 'original_unseen_content')",
+        "    submitted = at(x, 'submitted_unseen_content')",
+        "    fields = sorted(UNSEEN_FIELD_ROLES)",
+        "    compared = {key: cmp(at(original, key), at(submitted, key)) for key in fields}",
+        "    binding = {'original': cmp(at(original, 'candidate_revision'), at(original, 'evaluation_target_revision')), 'submitted': cmp(at(submitted, 'candidate_revision'), at(submitted, 'evaluation_target_revision'))}",
+        "    info = {}",
+        "    routes = []",
+        "    for key in fields:",
+        "        value = at(original, key)",
+        "        unknown = is_missing(value) or value is None or (isinstance(value, str) and value in MARKERS) or (key == 'independent_verification' and value == 'not_executed')",
+        "        info[key] = U if unknown else C",
+        "        binding_unresolved = key == 'evaluation_target_revision' and any(value != C for value in binding.values())",
+        "        if not binding_unresolved and (compared[key] != C or info[key] != C):",
+        "            for role in UNSEEN_FIELD_ROLES[key]:",
+        "                routes.append(rt('unseen_field', role, [key], []))",
+        "    for side in ['original', 'submitted']:",
+        "        if binding[side] != C:",
+        "            routes.append(rt('evaluation_target_binding', 'LABO', [side + '_unseen_content/candidate_revision', side + '_unseen_content/evaluation_target_revision'], []))",
+        "    claims = at(x, 'claims')",
+        "    if isinstance(claims, dict):",
+        "        for key in sorted(N01_CLAIMS):",
+        "            if at(claims, key) is True:",
+        "                routes.append(rt('unseen_claim', 'BRAIN-change', [], [key]))",
+        "    return {'evaluation_target_binding_results': binding, 'product_meaning_owner_candidate': 'knowledge-meaning', 'compare_original_to_submitted_by_field': compared, 'preserve_original_unseen_content': json_copy(original), 'failure_owner_routes': routes, 'information_results': info, 'route_status': 'candidates_present' if routes else 'none'}"
+      ],
+      "b01": [
+        "def b01(x):",
+        "    flag = at(x, 'upstream_meaning_change_required')",
+        "    flag_kind = 'explicit_true' if flag is True else 'explicit_false' if flag is False else 'absent' if is_missing(flag) else 'explicit_null' if flag is None else 'unknown_kind'",
+        "    runtime = at(x, 'original_runtime_knowledge_state')",
+        "    promotion = X if at(at(x, 'claims'), 'limited_seed_runtime_mature') is True else 'not_observed_in_fixture' if runtime in NONPROMOTED_RUNTIME else U",
+        "    return {'runtime_promotion_consistency': promotion, 'upstream_flag_kind': flag_kind}"
+      ]
+    },
+    "entry_points": {
+      "F01": "f01",
+      "F02": "f02",
+      "F03": "f03",
+      "F04": "f04",
+      "N01": "n01",
+      "B01": "b01"
+    },
+    "generic_operators": {
+      "MISSING": "Absent sentinel。nullとは異なる。required root/memberは論理入力定義から読み、欠落を資格や成功へ補完しない。",
+      "is_missing": "sentinel同一性。",
+      "json_equal": "object key順を無視しarray順を保持。JSON number 1と1.0は等値、booleanはnumberと別。Absent/null/空containerを区別。",
+      "json_copy": "JSON全値の再帰copy。保持memberを変更しない。Absentの公開投影はnull。",
+      "notation": "if/for/return/local assign、dict/list内包、比較/boolean/数値演算、type/isinstance、len/set/sorted/enumerate/any/all、dict get/items/keys/values、local list append。短絡and/or。外部I/O/import/eval/属性探索は禁止。",
+      "marker_scope": "MARKERSはこの論理素材の未指定表記だけを分類する。元値は保持する。製品識別子全域の禁止語や資格取消規則ではない。",
+      "role_labels": "ROLE_LABELSは合成素材で対応を確認できる役割表示。任意actorの実資格/担当者対応を生成しない。"
+    },
+    "logical_input_domains": {
+      "F01": "original_targetはobject、original/submitted_stagesは段階key→record object。段階/各memberはAbsent/null/JSON値として不足を比較。unfinished_receiptはarray<JSONValue>。",
+      "F02": "orderはarray<string>、proof containerはobject<proof-name,record>。selected集合は原containerだけから読む。",
+      "F03": "evidence/findingsはarray<JSONValue>、knowledge/separationはstring|null、claimsはobject。",
+      "F04": "base_neededはarray<string>、optional条件→参照identityはobject<string,string>またはAbsent/null/non-object状態、selection/referenceはobjectまたはAbsent/null/非object状態。map自体と選択キーのAbsentをmissing、null/non-objectをunknownとして分け、選択flag/memberと参照entryのAbsent/null/JSON値を区別。",
+      "N01": "原/提出unseen contentは宣言fieldのobject。原field domainはstring、orderはarray<string>。不足/unknown/未実行を保持。",
+      "B01": "runtime/seed stateはstring|null、flag/claimはJSONValueでbooleanのkindを別判定。"
+    },
+    "input_boundary": "これらは独立素材を比較する論理domainであり、実wire codec/registry/qualificationではない。未宣言一般域は実行可否へ解釈しない。",
+    "additional_result_shapes": {
+      "F01": {
+        "kind": "record",
+        "fields": {
+          "state_consistency_results": {
+            "kind": "record",
+            "fields": {
+              "adoption_without_independent_verification": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "not_observed_in_fixture"
+                ]
+              },
+              "role_owner_mismatch": {
+                "kind": "enum",
+                "values": [
+                  "content_conflict",
+                  "missing",
+                  "unknown_in_fixture",
+                  "not_observed_in_fixture"
+                ]
+              },
+              "stage_key_identity_binding": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              }
+            },
+            "optional": [],
+            "closed": true
+          },
+          "failure_owner_candidates": {
+            "kind": "record",
+            "fields": {
+              "proposal_or_adoption": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "source_evaluation": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "registration": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "independent_verification": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "adoption_without_verification": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "owner_assignment": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "stage_key_identity_binding": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              },
+              "unfinished_receipt": {
+                "kind": "union",
+                "variants": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            "optional": [],
+            "closed": true
+          }
+        },
+        "optional": [],
+        "closed": true
+      },
+      "F02": {
+        "kind": "record",
+        "fields": {
+          "required_order_result": {
+            "kind": "record",
+            "fields": {
+              "original": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              },
+              "submitted": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              }
+            },
+            "optional": [],
+            "closed": true
+          },
+          "failure_owner_candidates": {
+            "kind": "record",
+            "fields": {
+              "evaluation": {
+                "kind": "string"
+              },
+              "registration": {
+                "kind": "string"
+              },
+              "independent_verification": {
+                "kind": "string"
+              },
+              "adoption": {
+                "kind": "string"
+              },
+              "scope_proofs": {
+                "kind": "string"
+              },
+              "claims": {
+                "kind": "string"
+              },
+              "order": {
+                "kind": "string"
+              }
+            },
+            "optional": [
+              "scope_proofs",
+              "claims",
+              "order"
+            ],
+            "closed": true
+          },
+          "proof_owner_candidates": {
+            "kind": "map",
+            "values": {
+              "kind": "string"
+            }
+          },
+          "scope_proof_container_result": {
+            "kind": "record",
+            "fields": {
+              "original": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              },
+              "submitted": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              }
+            },
+            "optional": [],
+            "closed": true
+          },
+          "return_owners": {
+            "kind": "record",
+            "fields": {
+              "evaluation": {
+                "kind": "string"
+              },
+              "registration": {
+                "kind": "string"
+              },
+              "independent_verification": {
+                "kind": "string"
+              },
+              "adoption": {
+                "kind": "string"
+              }
+            },
+            "optional": [],
+            "closed": true
+          }
+        },
+        "optional": [],
+        "closed": true
+      },
+      "F03": {
+        "kind": "record",
+        "fields": {
+          "product_separation_result": {
+            "kind": "enum",
+            "values": [
+              "content_corresponding_in_fixture",
+              "content_conflict",
+              "unknown_in_fixture",
+              "missing"
+            ]
+          },
+          "failure_owner_candidates": {
+            "kind": "array",
+            "items": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "string"
+                },
+                {
+                  "kind": "null"
+                }
+              ]
+            }
+          },
+          "failure_reasons": {
+            "kind": "array",
+            "items": {
+              "kind": "enum",
+              "values": [
+                "finding_content",
+                "knowledge_hold",
+                "single_evidence",
+                "knowledge_state",
+                "product_separation",
+                "counterexample_claim",
+                "reference_content",
+                "selection_information",
+                "forbidden_claim",
+                "unseen_field",
+                "unseen_claim",
+                "missing_required_basis"
+              ]
+            }
+          },
+          "failure_owner_routes": {
+            "kind": "array",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "kind": {
+                  "kind": "enum",
+                  "values": [
+                    "finding_content",
+                    "knowledge_hold",
+                    "single_evidence",
+                    "knowledge_state",
+                    "product_separation",
+                    "counterexample_claim",
+                    "reference_content",
+                    "selection_information",
+                    "forbidden_claim",
+                    "unseen_field",
+                    "unseen_claim",
+                    "missing_required_basis"
+                  ]
+                },
+                "responsibility_role": {
+                  "kind": "enum",
+                  "values": [
+                    "original-finding-owner",
+                    "LABO",
+                    "HELIX-OS",
+                    "knowledge-meaning",
+                    "BRAIN-change",
+                    "BRAIN-contract-owner",
+                    "HELIX-INFRASTRUCTURE",
+                    "contract-owner"
+                  ]
+                },
+                "trigger_fields": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "trigger_claims": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "recipient": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                },
+                "resolution": {
+                  "kind": "enum",
+                  "values": [
+                    "raw_owner_candidate",
+                    "mechanism_role_candidate"
+                  ]
+                },
+                "original_finding": {
+                  "kind": "json"
+                }
+              },
+              "optional": [],
+              "closed": true
+            }
+          }
+        },
+        "optional": [],
+        "closed": true
+      },
+      "F04": {
+        "kind": "record",
+        "fields": {
+          "reference_content_results": {
+            "kind": "map",
+            "values": {
+              "kind": "enum",
+              "values": [
+                "content_corresponding_in_fixture",
+                "content_conflict",
+                "unknown_in_fixture",
+                "missing"
+              ]
+            }
+          },
+          "selection_information_results": {
+            "kind": "map",
+            "values": {
+              "kind": "enum",
+              "values": [
+                "content_corresponding_in_fixture",
+                "content_conflict",
+                "unknown_in_fixture",
+                "missing"
+              ]
+            }
+          },
+          "failure_owner_candidates": {
+            "kind": "map",
+            "values": {
+              "kind": "string"
+            }
+          },
+          "return_owners": {
+            "kind": "record",
+            "fields": {
+              "007": {
+                "kind": "string"
+              },
+              "008": {
+                "kind": "string"
+              },
+              "009": {
+                "kind": "string"
+              },
+              "011": {
+                "kind": "string"
+              },
+              "012": {
+                "kind": "string"
+              },
+              "020": {
+                "kind": "string"
+              },
+              "LABO": {
+                "kind": "string"
+              },
+              "OS": {
+                "kind": "string"
+              },
+              "BRAIN-change": {
+                "kind": "string"
+              },
+              "INFRA017": {
+                "kind": "string"
+              }
+            },
+            "optional": [],
+            "closed": true
+          },
+          "failure_owner_routes": {
+            "kind": "array",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "kind": {
+                  "kind": "enum",
+                  "values": [
+                    "finding_content",
+                    "knowledge_hold",
+                    "single_evidence",
+                    "knowledge_state",
+                    "product_separation",
+                    "counterexample_claim",
+                    "reference_content",
+                    "selection_information",
+                    "forbidden_claim",
+                    "unseen_field",
+                    "unseen_claim",
+                    "required_reference_declaration"
+                  ]
+                },
+                "responsibility_role": {
+                  "kind": "enum",
+                  "values": [
+                    "original-finding-owner",
+                    "LABO",
+                    "HELIX-OS",
+                    "knowledge-meaning",
+                    "BRAIN-change",
+                    "BRAIN-contract-owner",
+                    "HELIX-INFRASTRUCTURE",
+                    "contract-owner"
+                  ]
+                },
+                "trigger_fields": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "trigger_claims": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "recipient": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                },
+                "resolution": {
+                  "kind": "enum",
+                  "values": [
+                    "raw_owner_candidate",
+                    "mechanism_role_candidate"
+                  ]
+                },
+                "original_finding": {
+                  "kind": "json"
+                }
+              },
+              "optional": [],
+              "closed": true
+            }
+          }
+        },
+        "optional": [],
+        "closed": true
+      },
+      "N01": {
+        "kind": "record",
+        "fields": {
+          "evaluation_target_binding_results": {
+            "kind": "record",
+            "fields": {
+              "original": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              },
+              "submitted": {
+                "kind": "enum",
+                "values": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "unknown_in_fixture",
+                  "missing"
+                ]
+              }
+            },
+            "optional": [],
+            "closed": true
+          },
+          "product_meaning_owner_candidate": {
+            "kind": "string"
+          },
+          "compare_original_to_submitted_by_field": {
+            "kind": "map",
+            "values": {
+              "kind": "enum",
+              "values": [
+                "content_corresponding_in_fixture",
+                "content_conflict",
+                "unknown_in_fixture",
+                "missing"
+              ]
+            }
+          },
+          "preserve_original_unseen_content": {
+            "kind": "json"
+          },
+          "failure_owner_routes": {
+            "kind": "array",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "kind": {
+                  "kind": "enum",
+                  "values": [
+                    "finding_content",
+                    "knowledge_hold",
+                    "single_evidence",
+                    "knowledge_state",
+                    "product_separation",
+                    "counterexample_claim",
+                    "reference_content",
+                    "selection_information",
+                    "forbidden_claim",
+                    "unseen_field",
+                    "unseen_claim",
+                    "evaluation_target_binding"
+                  ]
+                },
+                "responsibility_role": {
+                  "kind": "enum",
+                  "values": [
+                    "original-finding-owner",
+                    "LABO",
+                    "HELIX-OS",
+                    "knowledge-meaning",
+                    "BRAIN-change",
+                    "BRAIN-contract-owner",
+                    "HELIX-INFRASTRUCTURE",
+                    "contract-owner"
+                  ]
+                },
+                "trigger_fields": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "trigger_claims": {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                "recipient": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                },
+                "resolution": {
+                  "kind": "enum",
+                  "values": [
+                    "raw_owner_candidate",
+                    "mechanism_role_candidate"
+                  ]
+                },
+                "original_finding": {
+                  "kind": "json"
+                }
+              },
+              "optional": [],
+              "closed": true
+            }
+          },
+          "information_results": {
+            "kind": "map",
+            "values": {
+              "kind": "enum",
+              "values": [
+                "content_corresponding_in_fixture",
+                "content_conflict",
+                "unknown_in_fixture",
+                "missing"
+              ]
+            }
+          },
+          "route_status": {
+            "kind": "enum",
+            "values": [
+              "candidates_present",
+              "none"
+            ]
+          }
+        },
+        "optional": [],
+        "closed": true
+      },
+      "B01": {
+        "kind": "record",
+        "fields": {
+          "runtime_promotion_consistency": {
+            "kind": "enum",
+            "values": [
+              "content_conflict",
+              "unknown_in_fixture",
+              "not_observed_in_fixture"
+            ]
+          },
+          "upstream_flag_kind": {
+            "kind": "enum",
+            "values": [
+              "explicit_true",
+              "explicit_false",
+              "absent",
+              "explicit_null",
+              "unknown_kind"
+            ]
+          }
+        },
+        "optional": [],
+        "closed": true
+      }
+    },
+    "shape_boundary": "論理返却domainのみ。wire schema/codec/library採用やsource資格ではない。JSON copy返却を観測例のenumへ狭めない。"
   }
 }
