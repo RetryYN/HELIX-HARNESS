@@ -39,7 +39,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -171,6 +173,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-REQUIRES-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -180,7 +194,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -312,6 +328,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-DEPENDS_ON-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/1",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8",
+        "raw_sha256": "8dbfd449e1df8547a9c27f679694920e11fdc0ffcee4263419f327c392a4dc92",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/1/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -321,7 +349,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -453,6 +483,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-COMPATIBLE_WITH-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/2",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8",
+        "raw_sha256": "80277d5d5e25ff4330d2b8b3f25367566be35e40897e29e2944f887bc2422fd7",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/2/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -462,7 +504,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -594,6 +638,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-CONFLICTS_WITH-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/3",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8",
+        "raw_sha256": "9d81a4e8ab11c1f3dd85c93dec9098b76cf3dfaddfe4c5bbe45a51ab25cd535e",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -603,7 +659,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -735,6 +793,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-AFFECTS-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/4",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8",
+        "raw_sha256": "a1c1f9bd79a83594a8c7683360283143657468bd260ab987a76b49b5e3882707",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/4/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -744,7 +814,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -876,6 +948,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-ALTERNATIVE_TO-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/5",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8",
+        "raw_sha256": "aa91300dc44f07402cc6259bc3392096bdae48937717d6a2c5f83556c92083fc",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/5/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -885,7 +969,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1017,6 +1103,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-COMPOSED_OF-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/6",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+        "raw_sha256": "ac2305eb2fc11e8eca7146654ae88be4b974c6968a0333cceee39f873c3240fc",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/6/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
       }
     },
     {
@@ -1026,7 +1124,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1159,6 +1259,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "517b875970f512793858b57fb616329435cb0cc45dbd5bc996810ec68351962d"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TYPE-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/7",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8",
+        "raw_sha256": "f278708a668e8aeb6881240893b88e85659a54b24113963f232a978f39aaa391",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/7/expected_material",
+        "expected_whole_canonical_sha256": "517b875970f512793858b57fb616329435cb0cc45dbd5bc996810ec68351962d"
       }
     },
     {
@@ -1168,7 +1280,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1301,6 +1415,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "24a55edcbb188e43c441ecb502b6187b83ecedde678032f9d5a25d95f435d18a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-MEANING-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/8",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8",
+        "raw_sha256": "b300c2a4853d4e34b53359823003ab888cddb7124a606f4a13744607520685b9",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/8/expected_material",
+        "expected_whole_canonical_sha256": "24a55edcbb188e43c441ecb502b6187b83ecedde678032f9d5a25d95f435d18a"
       }
     },
     {
@@ -1310,7 +1436,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1443,6 +1571,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "a6950d5cf8c0a5fb5a3678bdb15fd11aeadc1c2d82f7735a290b31a04f56b10c"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-DIRECTION-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/9",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8",
+        "raw_sha256": "7464820d6877d7549348e5f40beeb4d19e817f01d07f70e4eebd31ae9c338aef",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/9/expected_material",
+        "expected_whole_canonical_sha256": "a6950d5cf8c0a5fb5a3678bdb15fd11aeadc1c2d82f7735a290b31a04f56b10c"
       }
     },
     {
@@ -1452,7 +1592,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1580,6 +1722,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "bca72dc95ecc846a64ac2599c68341bb80c937dd75b2d9b80302f66d2d1f8725"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-SOURCE-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/10",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8",
+        "raw_sha256": "4c3957556ec8592c2e880edd66b2fa1e7507a3b4dc14f38f6b5a530824fa83b8",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/10/expected_material",
+        "expected_whole_canonical_sha256": "bca72dc95ecc846a64ac2599c68341bb80c937dd75b2d9b80302f66d2d1f8725"
       }
     },
     {
@@ -1589,7 +1743,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1717,6 +1873,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "cf42b3acf2277888db782bb3f3511043fb12740909f02280ed390192e8dd0bce"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TARGET-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/11",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8",
+        "raw_sha256": "0d39274e831d46a56fb4c2e47b570543bc13f17f523593cb2e2b7232767496eb",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/11/expected_material",
+        "expected_whole_canonical_sha256": "cf42b3acf2277888db782bb3f3511043fb12740909f02280ed390192e8dd0bce"
       }
     },
     {
@@ -1726,7 +1894,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1859,6 +2029,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "2bf0d56e64a969c27a15d9922702cd60b232ec891cd26f8f0f478bdc3d8291b4"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-KNOWLEDGE_REVISION-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/12",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
+        "raw_sha256": "adbcb05d3b91e8fb8d3eeef0ad144132453b7c45c554752362fa14e8cc0ce491",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/12/expected_material",
+        "expected_whole_canonical_sha256": "2bf0d56e64a969c27a15d9922702cd60b232ec891cd26f8f0f478bdc3d8291b4"
       }
     },
     {
@@ -1868,7 +2050,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -1997,6 +2181,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "fae05de1712bdd4768479210102cae4dd257491912b990ba6b1b76df39415ff6"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-EVIDENCE-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/13",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8",
+        "raw_sha256": "157d3c47e949c80128eace50505d7fb402e4dd5c8cf5572f6810aa032de67e7c",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/13/expected_material",
+        "expected_whole_canonical_sha256": "fae05de1712bdd4768479210102cae4dd257491912b990ba6b1b76df39415ff6"
       }
     },
     {
@@ -2006,7 +2202,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2140,6 +2338,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "85ecb285cbb7c9ca082a638f0a3cc26ff2c89b10c13b58174f09511c089ab76a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TYPE-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/14",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
+        "raw_sha256": "502a2f5597d5c81ee55534ec8d4596a764c3424bc4700cd2c94a90d524a01a60",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/14/expected_material",
+        "expected_whole_canonical_sha256": "85ecb285cbb7c9ca082a638f0a3cc26ff2c89b10c13b58174f09511c089ab76a"
       }
     },
     {
@@ -2149,7 +2359,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2283,6 +2495,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "65131d2379ee0dbae0587d4d007588f2843b42402dc46ff1914caa8fff94d1a0"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-MEANING-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/15",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
+        "raw_sha256": "d66819ac49592d04a662f6dc61d159dc1894b73bf16c32e24de53eef1c62f977",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/15/expected_material",
+        "expected_whole_canonical_sha256": "65131d2379ee0dbae0587d4d007588f2843b42402dc46ff1914caa8fff94d1a0"
       }
     },
     {
@@ -2292,7 +2516,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2426,6 +2652,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "56449a1064a536fd18f5e2a5877457556a0a7e3691a5ccdd5971687cc2bff31b"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-DIRECTION-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/16",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8",
+        "raw_sha256": "f8747f1a99e39871773611c17a5382956369c1570840531381fa4110653df1e2",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/16/expected_material",
+        "expected_whole_canonical_sha256": "56449a1064a536fd18f5e2a5877457556a0a7e3691a5ccdd5971687cc2bff31b"
       }
     },
     {
@@ -2435,7 +2673,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2569,6 +2809,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "5cc0b1fe9109e19d33c18d7f72626bbeb7bf0f09a62f9bb9d67900b48b65ed6b"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-KNOWLEDGE_REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/17",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
+        "raw_sha256": "9e4ed350fd31c9c28aeb6e64ec48a85fc0bddf472bb6df4a5dfc260c62f67b7b",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/17/expected_material",
+        "expected_whole_canonical_sha256": "5cc0b1fe9109e19d33c18d7f72626bbeb7bf0f09a62f9bb9d67900b48b65ed6b"
       }
     },
     {
@@ -2578,7 +2830,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2712,6 +2966,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "b7eb0aff5004261999f49e377893f13a37eb88ede61d28787278daa7befff0bb"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-EVIDENCE-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/18",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
+        "raw_sha256": "7329976e4bf79f40bcbab52e8d09abe058bf6c974fded1f6a3c84a424ee0b7f1",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/18/expected_material",
+        "expected_whole_canonical_sha256": "b7eb0aff5004261999f49e377893f13a37eb88ede61d28787278daa7befff0bb"
       }
     },
     {
@@ -2721,7 +2987,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2855,6 +3123,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-SOURCE-IDENTITY-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/19",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8",
+        "raw_sha256": "293bf30ceb2bc130f9457be13e8facc85dc6873fc17886e57b6a9c8163d70035",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/19/expected_material",
+        "expected_whole_canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
       }
     },
     {
@@ -2864,7 +3144,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -2998,6 +3280,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-SOURCE-KNOWLEDGE_REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/20",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8",
+        "raw_sha256": "6511a6c06c3a752d89bd197b2042f02752cd055025bc8cdd511333e4083efd77",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/20/expected_material",
+        "expected_whole_canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
       }
     },
     {
@@ -3007,7 +3301,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3141,6 +3437,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-SOURCE-KIND-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/21",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
+        "raw_sha256": "693523be66c012c67632ccb1f62f3f3b229c9d619519a2e291b6c13d8af80a9b",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/21/expected_material",
+        "expected_whole_canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
       }
     },
     {
@@ -3150,7 +3458,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3284,6 +3594,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-SOURCE-DOMAIN-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/22",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
+        "raw_sha256": "43e549a648df789cf72c48a20da5cdf279f7127e37c111a98c1afc0d8f5cf9ff",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/22/expected_material",
+        "expected_whole_canonical_sha256": "3e952868516800a39c69e76fff91a5435740b4d978622de872ef6ea12e51b95a"
       }
     },
     {
@@ -3293,7 +3615,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3427,6 +3751,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TARGET-IDENTITY-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/23",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8",
+        "raw_sha256": "375d0e624ace09ff4ede193759a2adcf39e494f0ec5ad08631e4de400c7c56a8",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/23/expected_material",
+        "expected_whole_canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
       }
     },
     {
@@ -3436,7 +3772,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3570,6 +3908,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TARGET-KNOWLEDGE_REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/24",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
+        "raw_sha256": "db75a0e3e1d7d60306cbbb78bde7ead8fee4185e152622fc81344db3e2272794",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/24/expected_material",
+        "expected_whole_canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
       }
     },
     {
@@ -3579,7 +3929,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3713,6 +4065,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TARGET-KIND-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/25",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8",
+        "raw_sha256": "776a02bbf7c3dd40b8a6379ec327868a8a99f8121a3a675e809404b2988b674f",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/25/expected_material",
+        "expected_whole_canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
       }
     },
     {
@@ -3722,7 +4086,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3856,6 +4222,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-TARGET-DOMAIN-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/26",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet/raw_utf8",
+        "raw_sha256": "b1e8708c35a64e1b07418481a483d6c720f149a629afe6e06cb0182a034e4a8e",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/26/expected_material",
+        "expected_whole_canonical_sha256": "fc5c52c8a78400c94e02ba44bc601622be984984d82e47cf61a29f258ae6beef"
       }
     },
     {
@@ -3865,7 +4243,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -3978,6 +4358,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "395dc4ef61e953f8f7ad15b80c72adc1c5588c0931c46682523ec09d0850b7a9"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-RELATION-NAME-ONLY",
+        "case_pointer": "/verification_obligations/0/concrete_cases/27",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet/raw_utf8",
+        "raw_sha256": "b46c9f497406694d14e5d87b6a95641feb80dccedee4c5797559776953369e8a",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/27/expected_material",
+        "expected_whole_canonical_sha256": "395dc4ef61e953f8f7ad15b80c72adc1c5588c0931c46682523ec09d0850b7a9"
       }
     },
     {
@@ -3987,7 +4379,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -4121,6 +4515,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "10419317da42bdc82ee94a57142eb5a06c28b70eb794a6aeed5caaeb97ab6075"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-NAME-SIMILARITY-AS-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/28",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet/raw_utf8",
+        "raw_sha256": "f874a1625f6518e00ebf83dcfe1a2b83d4707e3e776ef5a830368c7660c17a17",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/28/expected_material",
+        "expected_whole_canonical_sha256": "10419317da42bdc82ee94a57142eb5a06c28b70eb794a6aeed5caaeb97ab6075"
       }
     },
     {
@@ -4130,7 +4536,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -4264,6 +4672,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "d6db884a5b2affce13b562cd941b44944735f7042851b602b01ee8c298ca3da5"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-CORRELATION-AS-CAUSALITY",
+        "case_pointer": "/verification_obligations/0/concrete_cases/29",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet/raw_utf8",
+        "raw_sha256": "aec068b1c4d31858e19e467acbbf52b00fafcc34ebbe60bbb3974cff5c2e42bd",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/29/expected_material",
+        "expected_whole_canonical_sha256": "d6db884a5b2affce13b562cd941b44944735f7042851b602b01ee8c298ca3da5"
       }
     },
     {
@@ -4273,7 +4693,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -4401,6 +4823,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "09b26824f60811bf1aa7016c04eddd18942030d4c2158f7b7bb4a1d284d08bd6"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-UNKNOWN-ENDPOINT-AS-SUCCESS",
+        "case_pointer": "/verification_obligations/0/concrete_cases/30",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet/raw_utf8",
+        "raw_sha256": "2c09785e3eb75de1aeb4df8609ce1635175da5e3011ca1acf17db0b2eaa516a5",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/30/expected_material",
+        "expected_whole_canonical_sha256": "09b26824f60811bf1aa7016c04eddd18942030d4c2158f7b7bb4a1d284d08bd6"
       }
     },
     {
@@ -4410,7 +4844,9 @@
         "l3": "HELIXBRAIN-L3-005-F01",
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
-        "l10": "HELIXBRAIN-L10-005-F01"
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "given": {
         "source_packet_ref": {
@@ -4544,6 +4980,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "8b23106aa53250ffaaa3dc421d026e3454cc5ff47f55192aaf9ae683622b4d70"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-REVERSE-AS-SAME-MEANING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/31",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8",
+        "raw_sha256": "1b57349449060b2471d6d175c3ca4ec8478734dc56fc5ae3e185a86654a7d875",
+        "expected_pointer": "/verification_obligations/0/concrete_cases/31/expected_material",
+        "expected_whole_canonical_sha256": "8b23106aa53250ffaaa3dc421d026e3454cc5ff47f55192aaf9ae683622b4d70"
       }
     },
     {
@@ -4553,7 +5001,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -5056,6 +5506,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "b7e0910be88184a4f3b4ff982762ce8d25bde1935974faf52814213263f30ae9"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-TWO-CROSS-DOMAIN-CHAINS",
+        "case_pointer": "/verification_obligations/1/concrete_cases/0",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "5021f3973a67655125316813337c59aa3e330f96deb524ca11f2b32e0a86fc88",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_whole_canonical_sha256": "b7e0910be88184a4f3b4ff982762ce8d25bde1935974faf52814213263f30ae9"
       }
     },
     {
@@ -5065,7 +5527,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -5564,6 +6028,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "8e308bda41bf5829042cf0dfc8e892999f9957e28432fa6c690764f499ec302a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-AUTHENTICATION-PATTERN-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/1",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8",
+        "raw_sha256": "3cf5757bd062c86f6a159c094a53a122bbf69e56472a5c927d8f0b90a5dc1d1e",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/1/expected_material",
+        "expected_whole_canonical_sha256": "8e308bda41bf5829042cf0dfc8e892999f9957e28432fa6c690764f499ec302a"
       }
     },
     {
@@ -5573,7 +6049,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -6072,6 +6550,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "4a57ec5ca890f4d7851a90a869efeee5c1785605606e70a97ea1944a0ad83035"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-SESSION-DESIGN-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/2",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8",
+        "raw_sha256": "fe2249c79bdb94473ed8d4aa55fb04ff2d70057737f69e5f9a9a0e89ab8b9ef5",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/2/expected_material",
+        "expected_whole_canonical_sha256": "4a57ec5ca890f4d7851a90a869efeee5c1785605606e70a97ea1944a0ad83035"
       }
     },
     {
@@ -6081,7 +6571,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -6580,6 +7072,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "c2856e32545ae0620b6839cf18f12aeeb1f601c475837e6ad74a695b762569c9"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-FRONTEND-STATE-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/3",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8",
+        "raw_sha256": "d78e6fd4a03d93f01dae6e9e83697643f16bab9d03cd1cf60670b7934f1167f3",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
+        "expected_whole_canonical_sha256": "c2856e32545ae0620b6839cf18f12aeeb1f601c475837e6ad74a695b762569c9"
       }
     },
     {
@@ -6589,7 +7093,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -7088,6 +7594,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "bc7892b353f0f341148c386fb0d216f26c521548267bb4d65d9c502a8509cdf3"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-UX-FLOW-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/4",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8",
+        "raw_sha256": "cc7a96fc0bee0b0722339485d52a548df46dda7a2f426f064ff8d2b09ed3ef7b",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "expected_whole_canonical_sha256": "bc7892b353f0f341148c386fb0d216f26c521548267bb4d65d9c502a8509cdf3"
       }
     },
     {
@@ -7097,7 +7615,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -7596,6 +8116,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "999a1939249ef1506031df69a0a7ff445ce22580b4574b17b41e3a7915e8e2b4"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-DATABASE-PATTERN-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/5",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8",
+        "raw_sha256": "946661173c71746f4e16c9989b0e4b6831dc1bfdcbfeaddfcd58ad0b3a627c34",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
+        "expected_whole_canonical_sha256": "999a1939249ef1506031df69a0a7ff445ce22580b4574b17b41e3a7915e8e2b4"
       }
     },
     {
@@ -7605,7 +8137,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -8104,6 +8638,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "bf285e62e0db4c9458f39b67eccf1988c5b95d3ceeab47662fa38e39754df11a"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-PERFORMANCE-PATTERN-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/6",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8",
+        "raw_sha256": "23fe0af13f44c905bec39c6dd472e03c17c780a6d39353e7e6fc4ccff4c61748",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/6/expected_material",
+        "expected_whole_canonical_sha256": "bf285e62e0db4c9458f39b67eccf1988c5b95d3ceeab47662fa38e39754df11a"
       }
     },
     {
@@ -8113,7 +8659,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -8612,6 +9160,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "2facddbebb9513b125fc338e041a32ae9d2f484c6cddb07f77a48a2154eea4a1"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-INFRASTRUCTURE-PATTERN-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/7",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
+        "raw_sha256": "503c16bdbfdc540fcee7f21d929530b713c378b2a527c61cbdd4ef0f0f1d5751",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/7/expected_material",
+        "expected_whole_canonical_sha256": "2facddbebb9513b125fc338e041a32ae9d2f484c6cddb07f77a48a2154eea4a1"
       }
     },
     {
@@ -8621,7 +9181,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -9102,6 +9664,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "a0b8c93e2be1c03fc996610a0edd1e743a9dc78f8fb00ec90175adf091fc9afe"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EDGE-AUTH-UX-0-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/8",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
+        "raw_sha256": "2af19780dbf7866ea8aaf03c2e1ba5c71b668e79f3e0bc16f438c30449189cc5",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/8/expected_material",
+        "expected_whole_canonical_sha256": "a0b8c93e2be1c03fc996610a0edd1e743a9dc78f8fb00ec90175adf091fc9afe"
       }
     },
     {
@@ -9111,7 +9685,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -9592,6 +10168,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "4f4fccf8d583a4c6846287f627259202fef886c2fa3cac6493336d76f995063c"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EDGE-AUTH-UX-1-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/9",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8",
+        "raw_sha256": "60269a1bb3e9cd14b1dd7449c4fc69b558d6c7368956879069ec532bcf260613",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/9/expected_material",
+        "expected_whole_canonical_sha256": "4f4fccf8d583a4c6846287f627259202fef886c2fa3cac6493336d76f995063c"
       }
     },
     {
@@ -9601,7 +10189,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -10082,6 +10672,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "b6b14c9425a185dbddaa99e48174ee4113c7b64e59fc2fce9179b9eac52ec70b"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EDGE-AUTH-UX-2-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/10",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8",
+        "raw_sha256": "494ab70a5d3b7338525e56441ef3bd06439b84e42588461a55917a4c97622e44",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/10/expected_material",
+        "expected_whole_canonical_sha256": "b6b14c9425a185dbddaa99e48174ee4113c7b64e59fc2fce9179b9eac52ec70b"
       }
     },
     {
@@ -10091,7 +10693,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -10572,6 +11176,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "a3bac852b767ad80548bc66a647cec517e4b09769e4edc960c08d16c6a9733d1"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EDGE-DATABASE-INFRA-0-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/11",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8",
+        "raw_sha256": "0d765f61caa26ba0f2248a23c8cfd784236b5314b275e152b3b5fd26f1ad7c19",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/11/expected_material",
+        "expected_whole_canonical_sha256": "a3bac852b767ad80548bc66a647cec517e4b09769e4edc960c08d16c6a9733d1"
       }
     },
     {
@@ -10581,7 +11197,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -11062,6 +11680,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "501b34fdcdbbecfcecbe96595fb08e4b09ab45d7b8467b15f8d5d5fd81ac511d"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EDGE-DATABASE-INFRA-1-MISSING",
+        "case_pointer": "/verification_obligations/1/concrete_cases/12",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8",
+        "raw_sha256": "20e5ca368d1b8454450d32f24d1d31b399fea2822c84930717b9d46c2427c411",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material",
+        "expected_whole_canonical_sha256": "501b34fdcdbbecfcecbe96595fb08e4b09ab45d7b8467b15f8d5d5fd81ac511d"
       }
     },
     {
@@ -11071,7 +11701,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -11455,6 +12087,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "7702b183bf7260193f54c9e6a8d524c18473f4e2a7244b13384c30f26d8da2f7"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-DOMAIN-ISOLATED-GRAPHS",
+        "case_pointer": "/verification_obligations/1/concrete_cases/13",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
+        "raw_sha256": "4ee75fe38af5eeceaa31e49dd86a68a565d4d9278c4f3587bc4459fae58d8ca3",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material",
+        "expected_whole_canonical_sha256": "7702b183bf7260193f54c9e6a8d524c18473f4e2a7244b13384c30f26d8da2f7"
       }
     },
     {
@@ -11464,7 +12108,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -11969,6 +12615,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "e4907d6d7c5a0d6259dc73c8249be40cc0034780b56bb44f1f292f08ae4ba55e"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-PROVIDED_KNOWLEDGE_REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/1/concrete_cases/14",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet/raw_utf8",
+        "raw_sha256": "7b2f292d211a508dd0898f044cfcae1dfe147aae11d74e53a4dfb46daced7280",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material",
+        "expected_whole_canonical_sha256": "e4907d6d7c5a0d6259dc73c8249be40cc0034780b56bb44f1f292f08ae4ba55e"
       }
     },
     {
@@ -11978,7 +12636,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -12483,6 +13143,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "1c04d75d362245370d137823539ad04078f0b9e26d8523b0f429f616749d3cc3"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-PROVIDED_SCOPE-FOREIGN",
+        "case_pointer": "/verification_obligations/1/concrete_cases/15",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8",
+        "raw_sha256": "f196bfb5e39d8bf8306778c0a2649c2fddbb2aaf9ba30e4590b2683f99165236",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/15/expected_material",
+        "expected_whole_canonical_sha256": "1c04d75d362245370d137823539ad04078f0b9e26d8523b0f429f616749d3cc3"
       }
     },
     {
@@ -12492,7 +13164,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -12997,6 +13671,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-RELATION-EVIDENCE-FOREIGN",
+        "case_pointer": "/verification_obligations/1/concrete_cases/16",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet/raw_utf8",
+        "raw_sha256": "9644d6d9d4adb31eefdfd65ca7a355f8a671df8f143d86f4fc8370661e7b6c64",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/16/expected_material",
+        "expected_whole_canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
       }
     },
     {
@@ -13006,7 +13692,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -13511,6 +14199,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-RELATION-TYPE-FOREIGN",
+        "case_pointer": "/verification_obligations/1/concrete_cases/17",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/17/independent_source_packet/raw_utf8",
+        "raw_sha256": "5c604243a2614a8a5bf7c82b66879fa9bd351c2117e581b7a8cacf2d0d1e74ce",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/17/expected_material",
+        "expected_whole_canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
       }
     },
     {
@@ -13520,7 +14220,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -14025,6 +14727,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-RELATION-REVERSED",
+        "case_pointer": "/verification_obligations/1/concrete_cases/18",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/18/independent_source_packet/raw_utf8",
+        "raw_sha256": "949a93cf485b0d40a2eb6bc0d081f7ca1466e627cd5472159695a837293e0011",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/18/expected_material",
+        "expected_whole_canonical_sha256": "3c77d18f39c49ea0f0e54a0b0cb25222b7748492fb66584920e518aaf5292325"
       }
     },
     {
@@ -14034,7 +14748,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -14539,6 +15255,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "e63448700e2540ec461b1afefc69ad5d8e66709a949f57495d34d3faa5e3ac7c"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-NODE-REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/1/concrete_cases/19",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/19/independent_source_packet/raw_utf8",
+        "raw_sha256": "7b739161fc0d640dbea52a57539e82fa4a3b32490433732f53211748d3411f74",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/19/expected_material",
+        "expected_whole_canonical_sha256": "e63448700e2540ec461b1afefc69ad5d8e66709a949f57495d34d3faa5e3ac7c"
       }
     },
     {
@@ -14548,7 +15276,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -15047,6 +15777,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "bba96f2cfee80b2c274742eafabf897765e9dfb7f9fffe48a8ead65279585512"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-UNKNOWN-ENDPOINT-AUTO-COMPLETE",
+        "case_pointer": "/verification_obligations/1/concrete_cases/20",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/20/independent_source_packet/raw_utf8",
+        "raw_sha256": "52bea5d4c26e9df3f7ac384276ccf8d669acb3823d06e7129364317c11d61c6f",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/20/expected_material",
+        "expected_whole_canonical_sha256": "bba96f2cfee80b2c274742eafabf897765e9dfb7f9fffe48a8ead65279585512"
       }
     },
     {
@@ -15056,7 +15798,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -15561,6 +16305,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "95b7d9232656cb7b7ef80422238f739ec65862918e6ad43fdce15c7ccf782f6d"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-EXAMPLE_PRODUCT_ARCHITECTURE",
+        "case_pointer": "/verification_obligations/1/concrete_cases/21",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/21/independent_source_packet/raw_utf8",
+        "raw_sha256": "837532e6470bbf5f79ba51d7b827dc473c94cc2c51963fea30cc5e14aedeff94",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/21/expected_material",
+        "expected_whole_canonical_sha256": "95b7d9232656cb7b7ef80422238f739ec65862918e6ad43fdce15c7ccf782f6d"
       }
     },
     {
@@ -15570,7 +16326,9 @@
         "l3": "HELIXBRAIN-L3-005-F02",
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
-        "l10": "HELIXBRAIN-L10-005-F02"
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "given": {
         "source_packet_ref": {
@@ -16075,6 +16833,18 @@
           "unaffected_Q": "original_Q"
         },
         "canonical_sha256": "625a01bfd1319544d729aa99e6fe3fa2fc3eb6811d4a26399ad53599e503e77b"
+      },
+      "l5_candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0",
+      "l9_source_case_ref": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-REACHED_ADOPTED",
+        "case_pointer": "/verification_obligations/1/concrete_cases/22",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/22/independent_source_packet/raw_utf8",
+        "raw_sha256": "f8a7c73a50be568afe3a31140fde49294f968d215c27be0888664979b6900b05",
+        "expected_pointer": "/verification_obligations/1/concrete_cases/22/expected_material",
+        "expected_whole_canonical_sha256": "625a01bfd1319544d729aa99e6fe3fa2fc3eb6811d4a26399ad53599e503e77b"
       }
     }
   ],
@@ -16099,7 +16869,7 @@
       "canonical_sha256": "16af1b47df5a0808640562d978a59d96e8b1d55a3f0be20acd66455853000735"
     },
     "source_l9_raw_and_expected_unchanged": true,
-    "count": 3
+    "count": 6
   },
   "local_probes": [
     {
@@ -16110,7 +16880,8 @@
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
         "l10": "HELIXBRAIN-L10-005-F02",
-        "l5": "HELIXBRAIN-L5-005-F02"
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "baseline": {
         "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
@@ -16515,71 +17286,15 @@
       "input_patch": [
         {
           "op": "replace",
-          "path": "/chain_requests",
-          "before": [
-            {
-              "edge_ids": [
-                "AUTH-UX-0",
-                "AUTH-UX-1",
-                "AUTH-UX-2"
-              ],
-              "identity": "AUTH-UX",
-              "knowledge_revision": "knowledge-r1",
-              "node_ids": [
-                "Authentication Pattern",
-                "Session Design",
-                "Frontend State",
-                "UX Flow"
-              ],
-              "scope": "KNOWLEDGE-SCOPE-R"
-            },
-            {
-              "edge_ids": [
-                "DATABASE-INFRA-0",
-                "DATABASE-INFRA-1"
-              ],
-              "identity": "DATABASE-INFRA",
-              "knowledge_revision": "knowledge-r1",
-              "node_ids": [
-                "Database Pattern",
-                "Performance Pattern",
-                "Infrastructure Pattern"
-              ],
-              "scope": "KNOWLEDGE-SCOPE-R"
-            }
-          ],
-          "after": [
-            {
-              "edge_ids": [
-                "AUTH-UX-1",
-                "AUTH-UX-0",
-                "AUTH-UX-2"
-              ],
-              "identity": "AUTH-UX",
-              "knowledge_revision": "knowledge-r1",
-              "node_ids": [
-                "Authentication Pattern",
-                "Session Design",
-                "Frontend State",
-                "UX Flow"
-              ],
-              "scope": "KNOWLEDGE-SCOPE-R"
-            },
-            {
-              "edge_ids": [
-                "DATABASE-INFRA-0",
-                "DATABASE-INFRA-1"
-              ],
-              "identity": "DATABASE-INFRA",
-              "knowledge_revision": "knowledge-r1",
-              "node_ids": [
-                "Database Pattern",
-                "Performance Pattern",
-                "Infrastructure Pattern"
-              ],
-              "scope": "KNOWLEDGE-SCOPE-R"
-            }
-          ]
+          "path": "/chain_requests/0/edge_ids/0",
+          "value": "AUTH-UX-1",
+          "expected_before": "AUTH-UX-0"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_requests/0/edge_ids/1",
+          "value": "AUTH-UX-0",
+          "expected_before": "AUTH-UX-1"
         }
       ],
       "expected": {
@@ -16707,209 +17422,55 @@
       "expected_patch_from_baseline": [
         {
           "op": "replace",
-          "path": "/chain_results",
-          "before": [
-            {
-              "identity": "AUTH-UX",
-              "node_results": [
-                {
-                  "identity": "Authentication Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Session Design",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Frontend State",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "UX Flow",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "AUTH-UX-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-0",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-1",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-2",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-2",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            },
-            {
-              "identity": "DATABASE-INFRA",
-              "node_results": [
-                {
-                  "identity": "Database Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Performance Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Infrastructure Pattern",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "DATABASE-INFRA-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-DATABASE-INFRA-0",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern"
-                  }
-                },
-                {
-                  "identity": "DATABASE-INFRA-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-DATABASE-INFRA-1",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            }
-          ],
-          "after": [
-            {
-              "identity": "AUTH-UX",
-              "node_results": [
-                {
-                  "identity": "Authentication Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Session Design",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Frontend State",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "UX Flow",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "AUTH-UX-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
-                    "identity": "EVIDENCE-AUTH-UX-1",
-                    "revision": "source-r1"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
-                    "identity": "EVIDENCE-AUTH-UX-0",
-                    "revision": "source-r1"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-2",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
-                    "identity": "EVIDENCE-AUTH-UX-2",
-                    "revision": "source-r1"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "held"
-            },
-            {
-              "identity": "DATABASE-INFRA",
-              "node_results": [
-                {
-                  "identity": "Database Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Performance Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Infrastructure Pattern",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "DATABASE-INFRA-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
-                    "identity": "EVIDENCE-DATABASE-INFRA-0",
-                    "revision": "source-r1"
-                  }
-                },
-                {
-                  "identity": "DATABASE-INFRA-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
-                    "identity": "EVIDENCE-DATABASE-INFRA-1",
-                    "revision": "source-r1"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            }
-          ]
+          "path": "/chain_results/0/edge_results/0/identity",
+          "value": "AUTH-UX-1",
+          "expected_before": "AUTH-UX-0"
         },
         {
           "op": "replace",
-          "path": "/owner_return_candidates",
-          "before": [],
-          "after": [
-            "BRAIN-relation-meaning-owner"
-          ]
+          "path": "/chain_results/0/edge_results/0/original_evidence/content",
+          "value": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
+          "expected_before": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/0/original_evidence/identity",
+          "value": "EVIDENCE-AUTH-UX-1",
+          "expected_before": "EVIDENCE-AUTH-UX-0"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/1/identity",
+          "value": "AUTH-UX-0",
+          "expected_before": "AUTH-UX-1"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/1/original_evidence/content",
+          "value": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
+          "expected_before": "合成の関係根拠: 合成横断relation Session Design → Frontend State"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/1/original_evidence/identity",
+          "value": "EVIDENCE-AUTH-UX-0",
+          "expected_before": "EVIDENCE-AUTH-UX-1"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/trace_state",
+          "value": "held",
+          "expected_before": "candidate_trace_in_fixture_only"
+        },
+        {
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
         }
       ],
       "independent_derivation": {
-        "basis": "L3/L4の義務とL5の機械可読な純粋計算規則から導出。L9 expectedはbaselineの完全な照合値としてのみ保持し、local expectedの計算には使わない。",
+        "basis": "L3/L5の比較意味から導出する。L4は責務境界と背景として照合し、連続性などL5で具体化した計算をL4の明文規則へ帰属させない。L9 expectedは元baseline全体の照合値としてのみ利用する。",
         "rule_family": "F02のchain continuity条件",
         "L3_ref": "HELIXBRAIN-L3-005-F02",
         "L4_ref": "HELIXBRAIN-L4-005-F02",
@@ -16932,7 +17493,8 @@
         "l4": "HELIXBRAIN-L4-005-F02",
         "l9": "HELIXBRAIN-L9-005-F02",
         "l10": "HELIXBRAIN-L10-005-F02",
-        "l5": "HELIXBRAIN-L5-005-F02"
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
       },
       "baseline": {
         "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
@@ -17333,247 +17895,13 @@
       "input_patch": [
         {
           "op": "replace",
-          "path": "/original_edges",
-          "before": [
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
-                "identity": "EVIDENCE-AUTH-UX-0",
-                "revision": "source-r1"
-              },
-              "identity": "AUTH-UX-0",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Authentication Pattern → Session Design",
-              "source": {
-                "domain": "Security",
-                "identity": "Authentication Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Backend",
-                "identity": "Session Design",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
-                "identity": "EVIDENCE-AUTH-UX-1",
-                "revision": "source-r1"
-              },
-              "identity": "AUTH-UX-1",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Session Design → Frontend State",
-              "source": {
-                "domain": "Backend",
-                "identity": "Session Design",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Frontend",
-                "identity": "Frontend State",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
-                "identity": "EVIDENCE-AUTH-UX-2",
-                "revision": "source-r1"
-              },
-              "identity": "AUTH-UX-2",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Frontend State → UX Flow",
-              "source": {
-                "domain": "Frontend",
-                "identity": "Frontend State",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "UX / Interaction",
-                "identity": "UX Flow",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
-                "identity": "EVIDENCE-DATABASE-INFRA-0",
-                "revision": "source-r1"
-              },
-              "identity": "DATABASE-INFRA-0",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Database Pattern → Performance Pattern",
-              "source": {
-                "domain": "Data / Database",
-                "identity": "Database Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Performance",
-                "identity": "Performance Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
-                "identity": "EVIDENCE-DATABASE-INFRA-1",
-                "revision": "source-r1"
-              },
-              "identity": "DATABASE-INFRA-1",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Performance Pattern → Infrastructure Pattern",
-              "source": {
-                "domain": "Performance",
-                "identity": "Performance Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Infrastructure",
-                "identity": "Infrastructure Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            }
-          ],
-          "after": [
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": null,
-              "identity": "AUTH-UX-0",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Authentication Pattern → Session Design",
-              "source": {
-                "domain": "Security",
-                "identity": "Authentication Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Backend",
-                "identity": "Session Design",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
-                "identity": "EVIDENCE-AUTH-UX-1",
-                "revision": "source-r1"
-              },
-              "identity": "AUTH-UX-1",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Session Design → Frontend State",
-              "source": {
-                "domain": "Backend",
-                "identity": "Session Design",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Frontend",
-                "identity": "Frontend State",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
-                "identity": "EVIDENCE-AUTH-UX-2",
-                "revision": "source-r1"
-              },
-              "identity": "AUTH-UX-2",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Frontend State → UX Flow",
-              "source": {
-                "domain": "Frontend",
-                "identity": "Frontend State",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "UX / Interaction",
-                "identity": "UX Flow",
-                "kind": "Unit",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
-                "identity": "EVIDENCE-DATABASE-INFRA-0",
-                "revision": "source-r1"
-              },
-              "identity": "DATABASE-INFRA-0",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Database Pattern → Performance Pattern",
-              "source": {
-                "domain": "Data / Database",
-                "identity": "Database Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Performance",
-                "identity": "Performance Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            },
-            {
-              "direction": "source_to_target_in_fixture",
-              "evidence": {
-                "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
-                "identity": "EVIDENCE-DATABASE-INFRA-1",
-                "revision": "source-r1"
-              },
-              "identity": "DATABASE-INFRA-1",
-              "knowledge_revision": "knowledge-r1",
-              "meaning": "合成横断relation Performance Pattern → Infrastructure Pattern",
-              "source": {
-                "domain": "Performance",
-                "identity": "Performance Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "target": {
-                "domain": "Infrastructure",
-                "identity": "Infrastructure Pattern",
-                "kind": "Pattern",
-                "knowledge_revision": "knowledge-r1"
-              },
-              "type": "affects"
-            }
-          ]
+          "path": "/original_edges/0/evidence",
+          "value": null,
+          "expected_before": {
+            "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
+            "identity": "EVIDENCE-AUTH-UX-0",
+            "revision": "source-r1"
+          }
         }
       ],
       "expected": {
@@ -17697,205 +18025,35 @@
       "expected_patch_from_baseline": [
         {
           "op": "replace",
-          "path": "/chain_results",
-          "before": [
-            {
-              "identity": "AUTH-UX",
-              "node_results": [
-                {
-                  "identity": "Authentication Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Session Design",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Frontend State",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "UX Flow",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "AUTH-UX-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-0",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-1",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-2",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-AUTH-UX-2",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            },
-            {
-              "identity": "DATABASE-INFRA",
-              "node_results": [
-                {
-                  "identity": "Database Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Performance Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Infrastructure Pattern",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "DATABASE-INFRA-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-DATABASE-INFRA-0",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern"
-                  }
-                },
-                {
-                  "identity": "DATABASE-INFRA-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "identity": "EVIDENCE-DATABASE-INFRA-1",
-                    "revision": "source-r1",
-                    "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            }
-          ],
-          "after": [
-            {
-              "identity": "AUTH-UX",
-              "node_results": [
-                {
-                  "identity": "Authentication Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Session Design",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Frontend State",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "UX Flow",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "AUTH-UX-0",
-                  "state": "missing",
-                  "original_evidence": null
-                },
-                {
-                  "identity": "AUTH-UX-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
-                    "identity": "EVIDENCE-AUTH-UX-1",
-                    "revision": "source-r1"
-                  }
-                },
-                {
-                  "identity": "AUTH-UX-2",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
-                    "identity": "EVIDENCE-AUTH-UX-2",
-                    "revision": "source-r1"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "held"
-            },
-            {
-              "identity": "DATABASE-INFRA",
-              "node_results": [
-                {
-                  "identity": "Database Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Performance Pattern",
-                  "state": "content_corresponding_in_fixture"
-                },
-                {
-                  "identity": "Infrastructure Pattern",
-                  "state": "content_corresponding_in_fixture"
-                }
-              ],
-              "edge_results": [
-                {
-                  "identity": "DATABASE-INFRA-0",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
-                    "identity": "EVIDENCE-DATABASE-INFRA-0",
-                    "revision": "source-r1"
-                  }
-                },
-                {
-                  "identity": "DATABASE-INFRA-1",
-                  "state": "content_corresponding_in_fixture",
-                  "original_evidence": {
-                    "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
-                    "identity": "EVIDENCE-DATABASE-INFRA-1",
-                    "revision": "source-r1"
-                  }
-                }
-              ],
-              "knowledge_result": "content_corresponding_in_fixture",
-              "scope_result": "content_corresponding_in_fixture",
-              "trace_state": "candidate_trace_in_fixture_only"
-            }
-          ]
+          "path": "/chain_results/0/edge_results/0/original_evidence",
+          "value": null,
+          "expected_before": {
+            "identity": "EVIDENCE-AUTH-UX-0",
+            "revision": "source-r1",
+            "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
+          }
         },
         {
           "op": "replace",
-          "path": "/owner_return_candidates",
-          "before": [],
-          "after": [
-            "BRAIN-relation-meaning-owner"
-          ]
+          "path": "/chain_results/0/edge_results/0/state",
+          "value": "missing",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/trace_state",
+          "value": "held",
+          "expected_before": "candidate_trace_in_fixture_only"
+        },
+        {
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
         }
       ],
       "independent_derivation": {
-        "basis": "L3/L4の義務とL5の機械可読な純粋計算規則から導出。L9 expectedはbaselineの完全な照合値としてのみ保持し、local expectedの計算には使わない。",
+        "basis": "L3/L5の比較意味から導出する。L4は責務境界と背景として照合し、連続性などL5で具体化した計算をL4の明文規則へ帰属させない。L9 expectedは元baseline全体の照合値としてのみ利用する。",
         "rule_family": "F02の原edge evidence presenceとnullable projection",
         "L3_ref": "HELIXBRAIN-L3-005-F02",
         "L4_ref": "HELIXBRAIN-L4-005-F02",
@@ -17918,7 +18076,8 @@
         "l4": "HELIXBRAIN-L4-005-F01",
         "l9": "HELIXBRAIN-L9-005-F01",
         "l10": "HELIXBRAIN-L10-005-F01",
-        "l5": "HELIXBRAIN-L5-005-F01"
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
       },
       "baseline": {
         "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
@@ -18028,30 +18187,14 @@
       },
       "input_patch": [
         {
-          "op": "replace",
-          "path": "/original_nodes",
-          "before": [
-            {
-              "domain": "Security",
-              "identity": "STRUCTURE-A",
-              "kind": "Pattern",
-              "knowledge_revision": "knowledge-r1"
-            },
-            {
-              "domain": "Frontend",
-              "identity": "STRUCTURE-B",
-              "kind": "Unit",
-              "knowledge_revision": "knowledge-r1"
-            }
-          ],
-          "after": [
-            {
-              "domain": "Frontend",
-              "identity": "STRUCTURE-B",
-              "kind": "Unit",
-              "knowledge_revision": "knowledge-r1"
-            }
-          ]
+          "op": "remove",
+          "path": "/original_nodes/0",
+          "expected_before": {
+            "domain": "Security",
+            "identity": "STRUCTURE-A",
+            "kind": "Pattern",
+            "knowledge_revision": "knowledge-r1"
+          }
         }
       ],
       "expected": {
@@ -18095,22 +18238,20 @@
       },
       "expected_patch_from_baseline": [
         {
-          "op": "replace",
-          "path": "/owner_return_candidates",
-          "before": [],
-          "after": [
-            "BRAIN-relation-meaning-owner"
-          ]
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
         },
         {
           "op": "replace",
           "path": "/relation_state",
-          "before": "candidate_relation_in_fixture_only",
-          "after": "held"
+          "value": "held",
+          "expected_before": "candidate_relation_in_fixture_only"
         }
       ],
       "independent_derivation": {
-        "basis": "L3/L4の義務とL5の機械可読な純粋計算規則から導出。L9 expectedはbaselineの完全な照合値としてのみ保持し、local expectedの計算には使わない。",
+        "basis": "L3/L5の比較意味から導出する。L4は責務境界と背景として照合し、連続性などL5で具体化した計算をL4の明文規則へ帰属させない。L9 expectedは元baseline全体の照合値としてのみ利用する。",
         "rule_family": "F01の原/提出endpoint解決と公開endpoint return binding",
         "L3_ref": "HELIXBRAIN-L3-005-F01",
         "L4_ref": "HELIXBRAIN-L4-005-F01",
@@ -18124,6 +18265,1357 @@
         "execution_state": "not_executed"
       },
       "purpose": "原側source endpointだけが未解決でも提出側source endpointの返却値はresolved、関係全体はheldとなる。"
+    },
+    {
+      "case_id": "LOCAL-B005-F01-BASIS-NAME-SIMILARITY-ONLY",
+      "function_id": "BRAIN005-F01",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-005-F01",
+        "l4": "HELIXBRAIN-L4-005-F01",
+        "l9": "HELIXBRAIN-L9-005-F01",
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
+      },
+      "baseline": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "l9_source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-REQUIRES-MEANING",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+        "source_packet_ref_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/ref",
+        "source_packet_ref": {
+          "identity": "SOURCE-B005-F01-REQUIRES-MEANING",
+          "revision": "fixture-content-3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "given": {
+        "source_packet_ref": {
+          "identity": "LOCAL-B005-F01-BASIS-NAME-SIMILARITY-ONLY",
+          "revision": "scratch-only-89112f343aad9ff31b84721dca09a5b7eb8ff884c5ad1d5264711b203b4b0efc",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"basis_state\":\"name_similarity_only\",\"claims_correlation_causal\":false,\"claims_name_similarity_relation\":false,\"claims_reverse_same_meaning\":false,\"claims_unknown_endpoint_success\":false,\"original_edge\":{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成 requires の独立原意味\",\"identity\":\"EVIDENCE-REL-requires\",\"revision\":\"source-r1\"},\"identity\":\"REL-requires\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成 requires の独立原意味\",\"source\":{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"requires\"},\"original_nodes\":[{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"}],\"provided_edge\":{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成 requires の独立原意味\",\"identity\":\"EVIDENCE-REL-requires\",\"revision\":\"source-r1\"},\"identity\":\"REL-requires\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成 requires の独立原意味\",\"source\":{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"requires\"},\"provided_nodes\":[{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"}]}",
+        "raw_sha256": "89112f343aad9ff31b84721dca09a5b7eb8ff884c5ad1d5264711b203b4b0efc",
+        "typed_value": {
+          "basis_state": "name_similarity_only",
+          "claims_correlation_causal": false,
+          "claims_name_similarity_relation": false,
+          "claims_reverse_same_meaning": false,
+          "claims_unknown_endpoint_success": false,
+          "original_edge": {
+            "direction": "source_to_target_in_fixture",
+            "evidence": {
+              "content": "合成の関係根拠: 合成 requires の独立原意味",
+              "identity": "EVIDENCE-REL-requires",
+              "revision": "source-r1"
+            },
+            "identity": "REL-requires",
+            "knowledge_revision": "knowledge-r1",
+            "meaning": "合成 requires の独立原意味",
+            "source": {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "target": {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "type": "requires"
+          },
+          "original_nodes": [
+            {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ],
+          "provided_edge": {
+            "direction": "source_to_target_in_fixture",
+            "evidence": {
+              "content": "合成の関係根拠: 合成 requires の独立原意味",
+              "identity": "EVIDENCE-REL-requires",
+              "revision": "source-r1"
+            },
+            "identity": "REL-requires",
+            "knowledge_revision": "knowledge-r1",
+            "meaning": "合成 requires の独立原意味",
+            "source": {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "target": {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "type": "requires"
+          },
+          "provided_nodes": [
+            {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ]
+        },
+        "qualification": "scratch_only_synthetic_mutation_not_actual_source_qualification"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/basis_state",
+          "value": "name_similarity_only",
+          "expected_before": "independent_meaning_in_fixture"
+        }
+      ],
+      "expected": {
+        "value": {
+          "field_results": {
+            "type": "content_corresponding_in_fixture",
+            "meaning": "content_corresponding_in_fixture",
+            "direction": "content_corresponding_in_fixture",
+            "source": "content_corresponding_in_fixture",
+            "target": "content_corresponding_in_fixture",
+            "knowledge_revision": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "source_endpoint": "resolved_in_fixture",
+          "target_endpoint": "resolved_in_fixture",
+          "relation_state": "held",
+          "claim_results": {
+            "name_similarity_relation": "none",
+            "correlation_causal": "none",
+            "unknown_endpoint_success": "none",
+            "reverse_same_meaning": "none"
+          },
+          "owner_return_candidates": [
+            "BRAIN-relation-meaning-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_knowledge_mature": false,
+            "actual_causality_verified": false,
+            "actual_product_selected": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "canonical_sha256": "dca8dca8fb1d1a2db61836228508aabd9110bb73822126a22d886133872bbfb2"
+      },
+      "expected_patch_from_baseline": [
+        {
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
+        },
+        {
+          "op": "replace",
+          "path": "/relation_state",
+          "value": "held",
+          "expected_before": "candidate_relation_in_fixture_only"
+        }
+      ],
+      "expected_whole_from_L3L4L5_rule": {
+        "field_results": {
+          "type": "content_corresponding_in_fixture",
+          "meaning": "content_corresponding_in_fixture",
+          "direction": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "target": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "evidence": "content_corresponding_in_fixture"
+        },
+        "source_endpoint": "resolved_in_fixture",
+        "target_endpoint": "resolved_in_fixture",
+        "relation_state": "held",
+        "claim_results": {
+          "name_similarity_relation": "none",
+          "correlation_causal": "none",
+          "unknown_endpoint_success": "none",
+          "reverse_same_meaning": "none"
+        },
+        "owner_return_candidates": [
+          "BRAIN-relation-meaning-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_knowledge_mature": false,
+          "actual_causality_verified": false,
+          "actual_product_selected": false,
+          "actual_CORE_applied": false,
+          "actual_obligation_completed": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_derivation": {
+        "basis": "固定baseline wholeはL9原wholeから保持し、入力mutationはgiven.rawのJSON patchで明示。期待全体は、L5の列挙規則をrawに適用して成分ごとに独立に手固定し、baselineとの差分patchはその全体を照合する表現。L9 baseline expectedは追加分岐の期待値として流用しない。",
+        "function_id": "BRAIN005-F01",
+        "input_type": "RelationInput",
+        "return_type": "RelationReturn"
+      },
+      "effects": {
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "execution_state": "not_executed"
+      },
+      "purpose": "basis_state=name_similarity_onlyを単独で与え、claim flagがfalseでもrelation_state=heldとBRAIN返却候補を保つ。"
+    },
+    {
+      "case_id": "LOCAL-B005-F01-BASIS-UNVERIFIED-CAUSALITY",
+      "function_id": "BRAIN005-F01",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-005-F01",
+        "l4": "HELIXBRAIN-L4-005-F01",
+        "l9": "HELIXBRAIN-L9-005-F01",
+        "l10": "HELIXBRAIN-L10-005-F01",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F01"
+      },
+      "baseline": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "l9_source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F01-REQUIRES-MEANING",
+        "raw_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+        "source_packet_ref_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/ref",
+        "source_packet_ref": {
+          "identity": "SOURCE-B005-F01-REQUIRES-MEANING",
+          "revision": "fixture-content-3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "expected_whole_canonical_sha256": "862bebe5a6a248ca1435223ad3af83773e1c31b7a06e38fd7e25468b887df0ed"
+      },
+      "given": {
+        "source_packet_ref": {
+          "identity": "LOCAL-B005-F01-BASIS-UNVERIFIED-CAUSALITY",
+          "revision": "scratch-only-0e72f93715156f47ad87e069ad2d39707bd042245995f4be3fe9d72f43010f9f",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"basis_state\":\"correlation_only_unverified_causality\",\"claims_correlation_causal\":false,\"claims_name_similarity_relation\":false,\"claims_reverse_same_meaning\":false,\"claims_unknown_endpoint_success\":false,\"original_edge\":{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成 requires の独立原意味\",\"identity\":\"EVIDENCE-REL-requires\",\"revision\":\"source-r1\"},\"identity\":\"REL-requires\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成 requires の独立原意味\",\"source\":{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"requires\"},\"original_nodes\":[{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"}],\"provided_edge\":{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成 requires の独立原意味\",\"identity\":\"EVIDENCE-REL-requires\",\"revision\":\"source-r1\"},\"identity\":\"REL-requires\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成 requires の独立原意味\",\"source\":{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"requires\"},\"provided_nodes\":[{\"domain\":\"Security\",\"identity\":\"STRUCTURE-A\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Frontend\",\"identity\":\"STRUCTURE-B\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r1\"}]}",
+        "raw_sha256": "0e72f93715156f47ad87e069ad2d39707bd042245995f4be3fe9d72f43010f9f",
+        "typed_value": {
+          "basis_state": "correlation_only_unverified_causality",
+          "claims_correlation_causal": false,
+          "claims_name_similarity_relation": false,
+          "claims_reverse_same_meaning": false,
+          "claims_unknown_endpoint_success": false,
+          "original_edge": {
+            "direction": "source_to_target_in_fixture",
+            "evidence": {
+              "content": "合成の関係根拠: 合成 requires の独立原意味",
+              "identity": "EVIDENCE-REL-requires",
+              "revision": "source-r1"
+            },
+            "identity": "REL-requires",
+            "knowledge_revision": "knowledge-r1",
+            "meaning": "合成 requires の独立原意味",
+            "source": {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "target": {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "type": "requires"
+          },
+          "original_nodes": [
+            {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ],
+          "provided_edge": {
+            "direction": "source_to_target_in_fixture",
+            "evidence": {
+              "content": "合成の関係根拠: 合成 requires の独立原意味",
+              "identity": "EVIDENCE-REL-requires",
+              "revision": "source-r1"
+            },
+            "identity": "REL-requires",
+            "knowledge_revision": "knowledge-r1",
+            "meaning": "合成 requires の独立原意味",
+            "source": {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "target": {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            },
+            "type": "requires"
+          },
+          "provided_nodes": [
+            {
+              "domain": "Security",
+              "identity": "STRUCTURE-A",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "STRUCTURE-B",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ]
+        },
+        "qualification": "scratch_only_synthetic_mutation_not_actual_source_qualification"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/basis_state",
+          "value": "correlation_only_unverified_causality",
+          "expected_before": "independent_meaning_in_fixture"
+        }
+      ],
+      "expected": {
+        "value": {
+          "field_results": {
+            "type": "content_corresponding_in_fixture",
+            "meaning": "content_corresponding_in_fixture",
+            "direction": "content_corresponding_in_fixture",
+            "source": "content_corresponding_in_fixture",
+            "target": "content_corresponding_in_fixture",
+            "knowledge_revision": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "source_endpoint": "resolved_in_fixture",
+          "target_endpoint": "resolved_in_fixture",
+          "relation_state": "held",
+          "claim_results": {
+            "name_similarity_relation": "none",
+            "correlation_causal": "none",
+            "unknown_endpoint_success": "none",
+            "reverse_same_meaning": "none"
+          },
+          "owner_return_candidates": [
+            "BRAIN-relation-meaning-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_knowledge_mature": false,
+            "actual_causality_verified": false,
+            "actual_product_selected": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "canonical_sha256": "dca8dca8fb1d1a2db61836228508aabd9110bb73822126a22d886133872bbfb2"
+      },
+      "expected_patch_from_baseline": [
+        {
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
+        },
+        {
+          "op": "replace",
+          "path": "/relation_state",
+          "value": "held",
+          "expected_before": "candidate_relation_in_fixture_only"
+        }
+      ],
+      "expected_whole_from_L3L4L5_rule": {
+        "field_results": {
+          "type": "content_corresponding_in_fixture",
+          "meaning": "content_corresponding_in_fixture",
+          "direction": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "target": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "evidence": "content_corresponding_in_fixture"
+        },
+        "source_endpoint": "resolved_in_fixture",
+        "target_endpoint": "resolved_in_fixture",
+        "relation_state": "held",
+        "claim_results": {
+          "name_similarity_relation": "none",
+          "correlation_causal": "none",
+          "unknown_endpoint_success": "none",
+          "reverse_same_meaning": "none"
+        },
+        "owner_return_candidates": [
+          "BRAIN-relation-meaning-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_knowledge_mature": false,
+          "actual_causality_verified": false,
+          "actual_product_selected": false,
+          "actual_CORE_applied": false,
+          "actual_obligation_completed": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_derivation": {
+        "basis": "固定baseline wholeはL9原wholeから保持し、入力mutationはgiven.rawのJSON patchで明示。期待全体は、L5の列挙規則をrawに適用して成分ごとに独立に手固定し、baselineとの差分patchはその全体を照合する表現。L9 baseline expectedは追加分岐の期待値として流用しない。",
+        "function_id": "BRAIN005-F01",
+        "input_type": "RelationInput",
+        "return_type": "RelationReturn"
+      },
+      "effects": {
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "execution_state": "not_executed"
+      },
+      "purpose": "basis_state=correlation_only_unverified_causalityを単独で与え、未検証因果を独立理由として保留する。"
+    },
+    {
+      "case_id": "LOCAL-B005-F02-REQUEST-REVISION-MISMATCH-ALL-MEMBERS",
+      "function_id": "BRAIN005-F02",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-005-F02",
+        "l4": "HELIXBRAIN-L4-005-F02",
+        "l9": "HELIXBRAIN-L9-005-F02",
+        "l10": "HELIXBRAIN-L10-005-F02",
+        "l5": "HELIXBRAIN-L5-005",
+        "l5_function": "BRAIN005-F02"
+      },
+      "baseline": {
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "l9_source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "source_path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+        "source_file_sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc",
+        "case_id": "B005-F02-TWO-CROSS-DOMAIN-CHAINS",
+        "raw_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "5021f3973a67655125316813337c59aa3e330f96deb524ca11f2b32e0a86fc88",
+        "source_packet_ref_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/ref",
+        "source_packet_ref": {
+          "identity": "SOURCE-B005-F02-TWO-CROSS-DOMAIN-CHAINS",
+          "revision": "fixture-content-5021f3973a67655125316813337c59aa3e330f96deb524ca11f2b32e0a86fc88",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_whole_canonical_sha256": "b7e0910be88184a4f3b4ff982762ce8d25bde1935974faf52814213263f30ae9"
+      },
+      "given": {
+        "source_packet_ref": {
+          "identity": "LOCAL-B005-F02-REQUEST-REVISION-MISMATCH-ALL-MEMBERS",
+          "revision": "scratch-only-1a508235ecde1f3c030020f2cfe6cc93b272d64d2cfa93d62debd7f42fddeb4b",
+          "scope": "KNOWLEDGE-SCOPE-R",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"chain_requests\":[{\"edge_ids\":[\"AUTH-UX-0\",\"AUTH-UX-1\",\"AUTH-UX-2\"],\"identity\":\"AUTH-UX\",\"knowledge_revision\":\"knowledge-r1\",\"node_ids\":[\"Authentication Pattern\",\"Session Design\",\"Frontend State\",\"UX Flow\"],\"scope\":\"KNOWLEDGE-SCOPE-R\"},{\"edge_ids\":[\"DATABASE-INFRA-0\",\"DATABASE-INFRA-1\"],\"identity\":\"DATABASE-INFRA\",\"knowledge_revision\":\"knowledge-r1\",\"node_ids\":[\"Database Pattern\",\"Performance Pattern\",\"Infrastructure Pattern\"],\"scope\":\"KNOWLEDGE-SCOPE-R\"}],\"claims_example_product_architecture\":false,\"claims_reached_adopted\":false,\"claims_unknown_endpoint_auto_complete\":false,\"original_edges\":[{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Authentication Pattern → Session Design\",\"identity\":\"EVIDENCE-AUTH-UX-0\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-0\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Authentication Pattern → Session Design\",\"source\":{\"domain\":\"Security\",\"identity\":\"Authentication Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Session Design → Frontend State\",\"identity\":\"EVIDENCE-AUTH-UX-1\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-1\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Session Design → Frontend State\",\"source\":{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Frontend State → UX Flow\",\"identity\":\"EVIDENCE-AUTH-UX-2\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-2\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Frontend State → UX Flow\",\"source\":{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"UX / Interaction\",\"identity\":\"UX Flow\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern\",\"identity\":\"EVIDENCE-DATABASE-INFRA-0\",\"revision\":\"source-r1\"},\"identity\":\"DATABASE-INFRA-0\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成横断relation Database Pattern → Performance Pattern\",\"source\":{\"domain\":\"Data / Database\",\"identity\":\"Database Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern\",\"identity\":\"EVIDENCE-DATABASE-INFRA-1\",\"revision\":\"source-r1\"},\"identity\":\"DATABASE-INFRA-1\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成横断relation Performance Pattern → Infrastructure Pattern\",\"source\":{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Infrastructure\",\"identity\":\"Infrastructure Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"affects\"}],\"original_nodes\":[{\"domain\":\"Security\",\"identity\":\"Authentication Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"UX / Interaction\",\"identity\":\"UX Flow\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Data / Database\",\"identity\":\"Database Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Infrastructure\",\"identity\":\"Infrastructure Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"}],\"provided_edges\":[{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Authentication Pattern → Session Design\",\"identity\":\"EVIDENCE-AUTH-UX-0\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-0\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Authentication Pattern → Session Design\",\"source\":{\"domain\":\"Security\",\"identity\":\"Authentication Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Session Design → Frontend State\",\"identity\":\"EVIDENCE-AUTH-UX-1\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-1\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Session Design → Frontend State\",\"source\":{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Frontend State → UX Flow\",\"identity\":\"EVIDENCE-AUTH-UX-2\",\"revision\":\"source-r1\"},\"identity\":\"AUTH-UX-2\",\"knowledge_revision\":\"knowledge-r9\",\"meaning\":\"合成横断relation Frontend State → UX Flow\",\"source\":{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"target\":{\"domain\":\"UX / Interaction\",\"identity\":\"UX Flow\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern\",\"identity\":\"EVIDENCE-DATABASE-INFRA-0\",\"revision\":\"source-r1\"},\"identity\":\"DATABASE-INFRA-0\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成横断relation Database Pattern → Performance Pattern\",\"source\":{\"domain\":\"Data / Database\",\"identity\":\"Database Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"affects\"},{\"direction\":\"source_to_target_in_fixture\",\"evidence\":{\"content\":\"合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern\",\"identity\":\"EVIDENCE-DATABASE-INFRA-1\",\"revision\":\"source-r1\"},\"identity\":\"DATABASE-INFRA-1\",\"knowledge_revision\":\"knowledge-r1\",\"meaning\":\"合成横断relation Performance Pattern → Infrastructure Pattern\",\"source\":{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"target\":{\"domain\":\"Infrastructure\",\"identity\":\"Infrastructure Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},\"type\":\"affects\"}],\"provided_knowledge_revision\":\"knowledge-r1\",\"provided_nodes\":[{\"domain\":\"Security\",\"identity\":\"Authentication Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Backend\",\"identity\":\"Session Design\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Frontend\",\"identity\":\"Frontend State\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"UX / Interaction\",\"identity\":\"UX Flow\",\"kind\":\"Unit\",\"knowledge_revision\":\"knowledge-r9\"},{\"domain\":\"Data / Database\",\"identity\":\"Database Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Performance\",\"identity\":\"Performance Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"},{\"domain\":\"Infrastructure\",\"identity\":\"Infrastructure Pattern\",\"kind\":\"Pattern\",\"knowledge_revision\":\"knowledge-r1\"}],\"provided_scope\":\"KNOWLEDGE-SCOPE-R\"}",
+        "raw_sha256": "1a508235ecde1f3c030020f2cfe6cc93b272d64d2cfa93d62debd7f42fddeb4b",
+        "typed_value": {
+          "chain_requests": [
+            {
+              "edge_ids": [
+                "AUTH-UX-0",
+                "AUTH-UX-1",
+                "AUTH-UX-2"
+              ],
+              "identity": "AUTH-UX",
+              "knowledge_revision": "knowledge-r1",
+              "node_ids": [
+                "Authentication Pattern",
+                "Session Design",
+                "Frontend State",
+                "UX Flow"
+              ],
+              "scope": "KNOWLEDGE-SCOPE-R"
+            },
+            {
+              "edge_ids": [
+                "DATABASE-INFRA-0",
+                "DATABASE-INFRA-1"
+              ],
+              "identity": "DATABASE-INFRA",
+              "knowledge_revision": "knowledge-r1",
+              "node_ids": [
+                "Database Pattern",
+                "Performance Pattern",
+                "Infrastructure Pattern"
+              ],
+              "scope": "KNOWLEDGE-SCOPE-R"
+            }
+          ],
+          "claims_example_product_architecture": false,
+          "claims_reached_adopted": false,
+          "claims_unknown_endpoint_auto_complete": false,
+          "original_edges": [
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
+                "identity": "EVIDENCE-AUTH-UX-0",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-0",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Authentication Pattern → Session Design",
+              "source": {
+                "domain": "Security",
+                "identity": "Authentication Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "Backend",
+                "identity": "Session Design",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
+                "identity": "EVIDENCE-AUTH-UX-1",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-1",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Session Design → Frontend State",
+              "source": {
+                "domain": "Backend",
+                "identity": "Session Design",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "Frontend",
+                "identity": "Frontend State",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
+                "identity": "EVIDENCE-AUTH-UX-2",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-2",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Frontend State → UX Flow",
+              "source": {
+                "domain": "Frontend",
+                "identity": "Frontend State",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "UX / Interaction",
+                "identity": "UX Flow",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
+                "identity": "EVIDENCE-DATABASE-INFRA-0",
+                "revision": "source-r1"
+              },
+              "identity": "DATABASE-INFRA-0",
+              "knowledge_revision": "knowledge-r1",
+              "meaning": "合成横断relation Database Pattern → Performance Pattern",
+              "source": {
+                "domain": "Data / Database",
+                "identity": "Database Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "target": {
+                "domain": "Performance",
+                "identity": "Performance Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
+                "identity": "EVIDENCE-DATABASE-INFRA-1",
+                "revision": "source-r1"
+              },
+              "identity": "DATABASE-INFRA-1",
+              "knowledge_revision": "knowledge-r1",
+              "meaning": "合成横断relation Performance Pattern → Infrastructure Pattern",
+              "source": {
+                "domain": "Performance",
+                "identity": "Performance Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "target": {
+                "domain": "Infrastructure",
+                "identity": "Infrastructure Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "type": "affects"
+            }
+          ],
+          "original_nodes": [
+            {
+              "domain": "Security",
+              "identity": "Authentication Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Backend",
+              "identity": "Session Design",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "Frontend State",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "UX / Interaction",
+              "identity": "UX Flow",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Data / Database",
+              "identity": "Database Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Performance",
+              "identity": "Performance Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Infrastructure",
+              "identity": "Infrastructure Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ],
+          "provided_edges": [
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design",
+                "identity": "EVIDENCE-AUTH-UX-0",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-0",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Authentication Pattern → Session Design",
+              "source": {
+                "domain": "Security",
+                "identity": "Authentication Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "Backend",
+                "identity": "Session Design",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State",
+                "identity": "EVIDENCE-AUTH-UX-1",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-1",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Session Design → Frontend State",
+              "source": {
+                "domain": "Backend",
+                "identity": "Session Design",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "Frontend",
+                "identity": "Frontend State",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow",
+                "identity": "EVIDENCE-AUTH-UX-2",
+                "revision": "source-r1"
+              },
+              "identity": "AUTH-UX-2",
+              "knowledge_revision": "knowledge-r9",
+              "meaning": "合成横断relation Frontend State → UX Flow",
+              "source": {
+                "domain": "Frontend",
+                "identity": "Frontend State",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "target": {
+                "domain": "UX / Interaction",
+                "identity": "UX Flow",
+                "kind": "Unit",
+                "knowledge_revision": "knowledge-r9"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern",
+                "identity": "EVIDENCE-DATABASE-INFRA-0",
+                "revision": "source-r1"
+              },
+              "identity": "DATABASE-INFRA-0",
+              "knowledge_revision": "knowledge-r1",
+              "meaning": "合成横断relation Database Pattern → Performance Pattern",
+              "source": {
+                "domain": "Data / Database",
+                "identity": "Database Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "target": {
+                "domain": "Performance",
+                "identity": "Performance Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "type": "affects"
+            },
+            {
+              "direction": "source_to_target_in_fixture",
+              "evidence": {
+                "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern",
+                "identity": "EVIDENCE-DATABASE-INFRA-1",
+                "revision": "source-r1"
+              },
+              "identity": "DATABASE-INFRA-1",
+              "knowledge_revision": "knowledge-r1",
+              "meaning": "合成横断relation Performance Pattern → Infrastructure Pattern",
+              "source": {
+                "domain": "Performance",
+                "identity": "Performance Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "target": {
+                "domain": "Infrastructure",
+                "identity": "Infrastructure Pattern",
+                "kind": "Pattern",
+                "knowledge_revision": "knowledge-r1"
+              },
+              "type": "affects"
+            }
+          ],
+          "provided_knowledge_revision": "knowledge-r1",
+          "provided_nodes": [
+            {
+              "domain": "Security",
+              "identity": "Authentication Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Backend",
+              "identity": "Session Design",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Frontend",
+              "identity": "Frontend State",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "UX / Interaction",
+              "identity": "UX Flow",
+              "kind": "Unit",
+              "knowledge_revision": "knowledge-r9"
+            },
+            {
+              "domain": "Data / Database",
+              "identity": "Database Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Performance",
+              "identity": "Performance Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            },
+            {
+              "domain": "Infrastructure",
+              "identity": "Infrastructure Pattern",
+              "kind": "Pattern",
+              "knowledge_revision": "knowledge-r1"
+            }
+          ],
+          "provided_scope": "KNOWLEDGE-SCOPE-R"
+        },
+        "qualification": "scratch_only_synthetic_mutation_not_actual_source_qualification"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_edges/0/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/0/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/0/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/1/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/1/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/1/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/2/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/2/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_edges/2/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_nodes/0/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_nodes/1/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_nodes/2/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_nodes/3/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/0/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/0/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/0/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/1/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/1/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/1/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/2/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/2/source/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_edges/2/target/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_nodes/0/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_nodes/1/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_nodes/2/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        },
+        {
+          "op": "replace",
+          "path": "/provided_nodes/3/knowledge_revision",
+          "value": "knowledge-r9",
+          "expected_before": "knowledge-r1"
+        }
+      ],
+      "expected": {
+        "value": {
+          "chain_results": [
+            {
+              "identity": "AUTH-UX",
+              "node_results": [
+                {
+                  "identity": "Authentication Pattern",
+                  "state": "content_conflict"
+                },
+                {
+                  "identity": "Session Design",
+                  "state": "content_conflict"
+                },
+                {
+                  "identity": "Frontend State",
+                  "state": "content_conflict"
+                },
+                {
+                  "identity": "UX Flow",
+                  "state": "content_conflict"
+                }
+              ],
+              "edge_results": [
+                {
+                  "identity": "AUTH-UX-0",
+                  "state": "content_conflict",
+                  "original_evidence": {
+                    "identity": "EVIDENCE-AUTH-UX-0",
+                    "revision": "source-r1",
+                    "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
+                  }
+                },
+                {
+                  "identity": "AUTH-UX-1",
+                  "state": "content_conflict",
+                  "original_evidence": {
+                    "identity": "EVIDENCE-AUTH-UX-1",
+                    "revision": "source-r1",
+                    "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State"
+                  }
+                },
+                {
+                  "identity": "AUTH-UX-2",
+                  "state": "content_conflict",
+                  "original_evidence": {
+                    "identity": "EVIDENCE-AUTH-UX-2",
+                    "revision": "source-r1",
+                    "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow"
+                  }
+                }
+              ],
+              "knowledge_result": "content_corresponding_in_fixture",
+              "scope_result": "content_corresponding_in_fixture",
+              "trace_state": "held"
+            },
+            {
+              "identity": "DATABASE-INFRA",
+              "node_results": [
+                {
+                  "identity": "Database Pattern",
+                  "state": "content_corresponding_in_fixture"
+                },
+                {
+                  "identity": "Performance Pattern",
+                  "state": "content_corresponding_in_fixture"
+                },
+                {
+                  "identity": "Infrastructure Pattern",
+                  "state": "content_corresponding_in_fixture"
+                }
+              ],
+              "edge_results": [
+                {
+                  "identity": "DATABASE-INFRA-0",
+                  "state": "content_corresponding_in_fixture",
+                  "original_evidence": {
+                    "identity": "EVIDENCE-DATABASE-INFRA-0",
+                    "revision": "source-r1",
+                    "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern"
+                  }
+                },
+                {
+                  "identity": "DATABASE-INFRA-1",
+                  "state": "content_corresponding_in_fixture",
+                  "original_evidence": {
+                    "identity": "EVIDENCE-DATABASE-INFRA-1",
+                    "revision": "source-r1",
+                    "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern"
+                  }
+                }
+              ],
+              "knowledge_result": "content_corresponding_in_fixture",
+              "scope_result": "content_corresponding_in_fixture",
+              "trace_state": "candidate_trace_in_fixture_only"
+            }
+          ],
+          "claim_results": {
+            "unknown_endpoint_auto_complete": "none",
+            "example_product_architecture": "none",
+            "reached_adopted": "none"
+          },
+          "owner_return_candidates": [
+            "BRAIN-relation-meaning-owner"
+          ],
+          "product_application_state": "not_selected",
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_knowledge_mature": false,
+            "actual_causality_verified": false,
+            "actual_product_selected": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "canonical_sha256": "741dedf0c8281123d7d6c3a55efb3af6c6c0f2648568b57e942880054e726203"
+      },
+      "expected_patch_from_baseline": [
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/0/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/1/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/edge_results/2/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/node_results/0/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/node_results/1/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/node_results/2/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/node_results/3/state",
+          "value": "content_conflict",
+          "expected_before": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "replace",
+          "path": "/chain_results/0/trace_state",
+          "value": "held",
+          "expected_before": "candidate_trace_in_fixture_only"
+        },
+        {
+          "op": "add",
+          "path": "/owner_return_candidates/0",
+          "value": "BRAIN-relation-meaning-owner",
+          "expected_before": "Absent"
+        }
+      ],
+      "expected_whole_from_L3L4L5_rule": {
+        "chain_results": [
+          {
+            "identity": "AUTH-UX",
+            "node_results": [
+              {
+                "identity": "Authentication Pattern",
+                "state": "content_conflict"
+              },
+              {
+                "identity": "Session Design",
+                "state": "content_conflict"
+              },
+              {
+                "identity": "Frontend State",
+                "state": "content_conflict"
+              },
+              {
+                "identity": "UX Flow",
+                "state": "content_conflict"
+              }
+            ],
+            "edge_results": [
+              {
+                "identity": "AUTH-UX-0",
+                "state": "content_conflict",
+                "original_evidence": {
+                  "identity": "EVIDENCE-AUTH-UX-0",
+                  "revision": "source-r1",
+                  "content": "合成の関係根拠: 合成横断relation Authentication Pattern → Session Design"
+                }
+              },
+              {
+                "identity": "AUTH-UX-1",
+                "state": "content_conflict",
+                "original_evidence": {
+                  "identity": "EVIDENCE-AUTH-UX-1",
+                  "revision": "source-r1",
+                  "content": "合成の関係根拠: 合成横断relation Session Design → Frontend State"
+                }
+              },
+              {
+                "identity": "AUTH-UX-2",
+                "state": "content_conflict",
+                "original_evidence": {
+                  "identity": "EVIDENCE-AUTH-UX-2",
+                  "revision": "source-r1",
+                  "content": "合成の関係根拠: 合成横断relation Frontend State → UX Flow"
+                }
+              }
+            ],
+            "knowledge_result": "content_corresponding_in_fixture",
+            "scope_result": "content_corresponding_in_fixture",
+            "trace_state": "held"
+          },
+          {
+            "identity": "DATABASE-INFRA",
+            "node_results": [
+              {
+                "identity": "Database Pattern",
+                "state": "content_corresponding_in_fixture"
+              },
+              {
+                "identity": "Performance Pattern",
+                "state": "content_corresponding_in_fixture"
+              },
+              {
+                "identity": "Infrastructure Pattern",
+                "state": "content_corresponding_in_fixture"
+              }
+            ],
+            "edge_results": [
+              {
+                "identity": "DATABASE-INFRA-0",
+                "state": "content_corresponding_in_fixture",
+                "original_evidence": {
+                  "identity": "EVIDENCE-DATABASE-INFRA-0",
+                  "revision": "source-r1",
+                  "content": "合成の関係根拠: 合成横断relation Database Pattern → Performance Pattern"
+                }
+              },
+              {
+                "identity": "DATABASE-INFRA-1",
+                "state": "content_corresponding_in_fixture",
+                "original_evidence": {
+                  "identity": "EVIDENCE-DATABASE-INFRA-1",
+                  "revision": "source-r1",
+                  "content": "合成の関係根拠: 合成横断relation Performance Pattern → Infrastructure Pattern"
+                }
+              }
+            ],
+            "knowledge_result": "content_corresponding_in_fixture",
+            "scope_result": "content_corresponding_in_fixture",
+            "trace_state": "candidate_trace_in_fixture_only"
+          }
+        ],
+        "claim_results": {
+          "unknown_endpoint_auto_complete": "none",
+          "example_product_architecture": "none",
+          "reached_adopted": "none"
+        },
+        "owner_return_candidates": [
+          "BRAIN-relation-meaning-owner"
+        ],
+        "product_application_state": "not_selected",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_knowledge_mature": false,
+          "actual_causality_verified": false,
+          "actual_product_selected": false,
+          "actual_CORE_applied": false,
+          "actual_obligation_completed": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_derivation": {
+        "basis": "固定baseline wholeはL9原wholeから保持し、入力mutationはgiven.rawのJSON patchで明示。期待全体は、L5の列挙規則をrawに適用して成分ごとに独立に手固定し、baselineとの差分patchはその全体を照合する表現。L9 baseline expectedは追加分岐の期待値として流用しない。",
+        "function_id": "BRAIN005-F02",
+        "input_type": "ChainInput",
+        "return_type": "ChainReturn"
+      },
+      "effects": {
+        "authority_effect": "none",
+        "operation_effect": "none",
+        "execution_state": "not_executed"
+      },
+      "purpose": "第一request内の各node/edge/両endpoint revisionをrequest revisionと不一致にし、各比較状態と連鎖保留を区別する。第二requestは比較維持の対照。"
     }
-  ]
+  ],
+  "candidate_l5_pin": {
+    "path": "docs/helix-brain/L5-detail-design/structure-relation-trace.json",
+    "document_id": "HELIXBRAIN-L5-005",
+    "source_main": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+    "candidate_file_sha256": "8ea8b593e7d6a1bfac3f260b3d8eda5c129ecefc22d2b85b085b1fb18f2b7ca0"
+  }
 }

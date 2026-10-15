@@ -1460,15 +1460,13 @@
                 "knowledge_result": {
                   "enum": [
                     "content_corresponding_in_fixture",
-                    "content_conflict",
-                    "missing"
+                    "content_conflict"
                   ]
                 },
                 "scope_result": {
                   "enum": [
                     "content_corresponding_in_fixture",
-                    "content_conflict",
-                    "missing"
+                    "content_conflict"
                   ]
                 },
                 "trace_state": {
@@ -1929,16 +1927,10 @@
           "/provided_edge/knowledge_revision",
           "/original_edge/evidence",
           "/provided_edge/evidence",
-          "/original_edge/source",
-          "/original_edge/target",
-          "/provided_edge/source",
-          "/provided_edge/target",
           "/claims_name_similarity_relation",
           "/claims_correlation_causal",
           "/claims_unknown_endpoint_success",
-          "/claims_reverse_same_meaning"
-        ],
-        "declared_but_unused_fields": [
+          "/claims_reverse_same_meaning",
           "/basis_state"
         ],
         "field_comparisons": [
@@ -1992,8 +1984,9 @@
             ],
             "resolution_rule": {
               "missing_precedence": "各側のedge endpoint memberがAbsentまたはnullならmissing。",
-              "resolved": "endpoint objectのidentityと完全一致するnodeが、同じ側のnode配列内にちょうど1件ある場合。",
-              "unresolved": "endpoint objectがnode配列の一意な完全一致nodeを持たない場合。"
+              "lookup": "同じ側のnode配列からendpoint.identityとidentityがJSON型区別で一致するnodeをすべて集める。",
+              "resolved": "identity一致nodeがちょうど1件あり、そのnode全recordがendpoint全recordとJSON型区別の再帰的完全一致をする場合だけresolved。",
+              "unresolved": "identity一致nodeが0件、2件以上、または唯一nodeのrecord全体がendpointと異なる場合。複数identity候補の中からrecord一致の先頭/唯一を選ばない。"
             },
             "per_endpoint_output": "endpoint_states/{side}/{endpoint}",
             "match_key": "identity",
@@ -2052,23 +2045,40 @@
           "held_if_any": [
             "field_result_not_equal_content_corresponding",
             "endpoint_state_not_resolved",
-            "claim_result_not_none"
+            "claim_result_not_none",
+            "basis_state_not_sufficient"
           ],
           "predicate_rules": {
             "field_result_not_equal_content_corresponding": {
-              "source": "field_results/*",
+              "source": "context/field_results/*",
               "operator": "any_value_not_equal",
               "value": "content_corresponding_in_fixture"
             },
             "endpoint_state_not_resolved": {
-              "source": "endpoint_states/*/*",
+              "source": "context/endpoint_states/*/*",
               "operator": "any_value_not_equal",
               "value": "resolved_in_fixture"
             },
             "claim_result_not_none": {
-              "source": "claims/*",
+              "source": "context/claims/*",
               "operator": "any_value_not_equal",
               "value": "none"
+            },
+            "basis_state_not_sufficient": {
+              "source": "context/basis_state",
+              "operator": "any",
+              "conditions": [
+                {
+                  "source": "context/basis_state",
+                  "operator": "equals",
+                  "value": "name_similarity_only"
+                },
+                {
+                  "source": "context/basis_state",
+                  "operator": "equals",
+                  "value": "correlation_only_unverified_causality"
+                }
+              ]
             }
           },
           "otherwise": "candidate_relation_in_fixture_only",
@@ -2125,6 +2135,15 @@
           "unaffected_Q": {
             "source": "fixed_return_projection/unaffected_Q"
           }
+        },
+        "basis_state_rule": {
+          "source": "/basis_state",
+          "insufficient_values": [
+            "name_similarity_only",
+            "correlation_only_unverified_causality"
+          ],
+          "effect": "当該値のいずれかならrelation_stateをheldにする。対応claim flagのtrue/falseとは独立に評価し、claimがfalseでも根拠状態の不足を保つ。",
+          "unknown_values_not_enumerated": "固定sourceには上記2値とindependent_meaning_in_fixtureのみが観測された。それ以外の文字列は新たな意味を割り当てず、一般域は未観測。"
         }
       },
       "BRAIN005-F02": {
@@ -2173,6 +2192,23 @@
             "missing",
             "content_conflict",
             "content_corresponding_in_fixture"
+          ],
+          "request_knowledge_revision_binding": {
+            "request_path": "/chain_requests/*/knowledge_revision",
+            "lookup_by": "request内のnode_idsまたはedge_idsからidentityで検索し、既存の一意性規則どおり各側1件だけを認める。",
+            "side_arrays": {
+              "original": "/original_nodes",
+              "provided": "/provided_nodes"
+            },
+            "member": "knowledge_revision",
+            "comparison": "exact_json_value_equality",
+            "mismatch": "そのsideのnode stateをcontent_conflictへする。両側nodeのknowledge_revisionがそれぞれrequest revisionと一致する必要がある。"
+          },
+          "comparison_steps": [
+            "requested identityごとにoriginal_nodes/provided_nodesからJSON型区別でidentity一致recordを収集する。",
+            "いずれかのsideで一致record数が1でなければ、そのnode stateはmissing。複数recordから先頭を選ばない。",
+            "両sideに一意recordがありwhole record JSON一致なら仮のsame候補、違えばcontent_conflict。",
+            "さらに両sideのknowledge_revisionを同request.knowledge_revisionと比較し、片側でも違えばcontent_conflictへする。"
           ]
         },
         "edge_comparison": {
@@ -2208,15 +2244,38 @@
             "missing",
             "content_conflict",
             "content_corresponding_in_fixture"
+          ],
+          "request_knowledge_revision_binding": {
+            "request_path": "/chain_requests/*/knowledge_revision",
+            "lookup_by": "request内のnode_idsまたはedge_idsからidentityで検索し、既存の一意性規則どおり各側1件だけを認める。",
+            "side_arrays": {
+              "original": "/original_edges",
+              "provided": "/provided_edges"
+            },
+            "members": [
+              "knowledge_revision",
+              "source.knowledge_revision",
+              "target.knowledge_revision"
+            ],
+            "comparison": "exact_json_value_equality",
+            "mismatch": "そのsideのedge stateをcontent_conflictへする。edge本体と両endpointのknowledge_revisionがそれぞれrequest revisionと一致する必要がある。"
+          },
+          "comparison_steps": [
+            "requested identityごとにoriginal_edges/provided_edgesからJSON型区別でidentity一致recordを収集する。",
+            "いずれかのsideで一致record数が1でなければstateはmissing。複数recordから先頭を選ばない。",
+            "両sideの一意recordについてidentity/type/meaning/direction/source/target/knowledge_revision/evidenceを順序どおりJSON型区別で比較する。Absentまたはnullが一欄でもあればmissingを優先し、そうでなければ不一致があればcontent_conflict、全欄一致ならcontent_corresponding_in_fixture。",
+            "さらに両sideのedge.knowledge_revisionとsource/target.knowledge_revisionを同request.knowledge_revisionへ個別比較し、片側でも不一致ならstateをcontent_conflictへする。欠落/nullを含むfield comparisonがある場合はmissingを優先する。"
           ]
         },
         "revision_comparison": {
-          "left": "/chain_request/knowledge_revision",
-          "right": "/provided_knowledge_revision"
+          "left": "/chain_requests/*/knowledge_revision",
+          "right": "/provided_knowledge_revision",
+          "meaning": "各requestのknowledge_revisionと提出側provided_knowledge_revisionを比較する。加えて、各要求node/edgeと両edge endpointのrevision bindingはnode_comparison/edge_comparisonの別規則で検査する。"
         },
         "scope_comparison": {
-          "left": "/chain_request/scope",
-          "right": "/provided_scope"
+          "left": "/chain_requests/*/scope",
+          "right": "/provided_scope",
+          "meaning": "各requestのscopeと提出側provided_scopeを比較する。固定sourceの文字列値だけを比較し、scope資格は認定しない。"
         },
         "chain_state_rule": {
           "held_if_any": [
@@ -2228,27 +2287,27 @@
           ],
           "predicate_rules": {
             "node_result_not_equal_content_corresponding": {
-              "source": "node_results/*/state",
+              "source": "context/node_results/*/state",
               "operator": "any_value_not_equal",
               "value": "content_corresponding_in_fixture"
             },
             "edge_result_not_equal_content_corresponding": {
-              "source": "edge_results/*/state",
+              "source": "context/edge_results/*/state",
               "operator": "any_value_not_equal",
               "value": "content_corresponding_in_fixture"
             },
             "knowledge_result_not_equal_content_corresponding": {
-              "source": "knowledge_result",
+              "source": "context/knowledge_result",
               "operator": "not_equal",
               "value": "content_corresponding_in_fixture"
             },
             "scope_result_not_equal_content_corresponding": {
-              "source": "scope_result",
+              "source": "context/scope_result",
               "operator": "not_equal",
               "value": "content_corresponding_in_fixture"
             },
             "chain_endpoint_discontinuity": {
-              "source": "topology_continuous",
+              "source": "context/topology_continuous",
               "operator": "equals",
               "value": false
             }
@@ -2257,13 +2316,13 @@
           "held": "held"
         },
         "chain_continuity": {
-          "purpose": "L4 F02のchainを入力順で辿り、隣接する端点の不連続をchain結果へ反映する。",
+          "purpose": "L5が採択L3-F02の領域横断chain例とL10/L9固定fixtureを比較するために導く入力順の連続性規則。L4-F02自体は入力順や連続性を規定していない。",
           "precondition": "各requestはnode_ids, edge_ids配列を持つ。要素数やidentityの重複はschemaでは禁止しない。",
           "algorithm": [
-            "requestごとに、node_idsの長さがedge_idsの長さ+1でなければtopology_continuous=false。",
-            "そうでなければ各index iについてedge_ids[i]のidentityに対応する原edgeと提出edgeをそれぞれ一意に探す。一意でなければfalse。",
-            "両edgeのdirectionがfixture markerと一致しない、source/targetがobjectでない、source.identity != node_ids[i]、またはtarget.identity != node_ids[i+1]のいずれかならfalse。",
-            "全indexが上記条件を満たした場合だけtrue。edge_idsが空でnode_idsが1件ならtrue。"
+            "requestごとにnode_ids長がedge_ids長+1でなければtopology_continuous=false。",
+            "そうでなければ各index iでedge_ids[i]に一致するoriginal/provided edge identityが各側ちょうど1件であることを確認する。",
+            "両edgeのdirectionがfixture markerと一致しない、source/targetがobjectでない、source.identity != node_ids[i]、target.identity != node_ids[i+1]、またはedge/endpoint knowledge_revisionがrequest.knowledge_revisionとJSON一致しない場合はfalse。",
+            "全indexが上記条件を満たす場合だけtrue。edge_idsが空でnode_idsが1件ならtrue。"
           ],
           "node_count_rule": {
             "operator": "left_length_equals_right_length_plus",
@@ -2287,7 +2346,22 @@
             "target": "target.identity"
           },
           "result": "全条件成立時のみtrue。chain_state_ruleはfalseをchain_endpoint_discontinuityとしてheldへ送る。",
-          "coverage": "原L9の55ケースには、他の欠落/不一致原因から独立した連続性だけの違反例がない。LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYは親点検用のscratch-only完全例。"
+          "coverage": "原L9の55ケースには連続性だけを違反させる例がない。正式L8の別枠LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYでrequest.edge_ids順だけを変え、原/提出両側の順序検査による保留を確認する。片側の連続性検査だけを省略する変異を独立に識別する例ではない。",
+          "derivation_boundary": "これはL5の局所的な有限fixture比較規則であり、L4由来の規範でも、全graphの一般規則でもない。",
+          "request_revision_source": "/chain_requests/*/knowledge_revision",
+          "request_revision_description": "各requestのknowledge_revisionを両側edge本体と両側endpointのknowledge_revisionへ結合する。",
+          "request_revision_binding": {
+            "members": [
+              "knowledge_revision",
+              "source.knowledge_revision",
+              "target.knowledge_revision"
+            ],
+            "applies_to": [
+              "original edge",
+              "provided edge"
+            ],
+            "comparison": "exact_json_value_equality"
+          }
         },
         "claim_projection": [
           {
@@ -2429,6 +2503,15 @@
           }
         }
       }
+    },
+    "operators": {
+      "any_value_not_equal": "配列・objectの各member値をJSON型を区別する完全値比較で指定literalと比較し、1つでも異なればtrue。空集合はfalse。",
+      "not_equal": "sourceが指す単一値をvalueとJSON型区別の完全値比較で比較し、異なればtrue。",
+      "equals": "sourceが指す単一値をvalueとJSON型区別の完全値比較で比較し、一致すればtrue。",
+      "any": "conditionsのboolean結果を論理和する。空conditionsはfalse。",
+      "any_item_equals": "source配列の要素のうちvalueとJSON型区別の完全値比較で一致するものが1つ以上ならtrue。空配列はfalse。",
+      "left_length_equals_right_length_plus": "leftとrightが配列であることを型で検証し、length(left)==length(right)+plusのときtrue。",
+      "exact_json_value_equality": "null、boolean、number、string、array、objectのJSON型を区別する。objectのmember順は無視し、array順序と長さを保持して再帰比較する。Absentは別状態であり、比較定義が明示する場合にだけmissingへ射影する。"
     }
   },
   "finite_fixture_literals": {
@@ -2497,9 +2580,10 @@
   "scope_limitations": [
     "正式graph schema/codec、resolver、実sourceとownerの資格、全relation種別とdomainの全域は未成立。",
     "合成fixtureの一致は知識採用、maturity、因果実証、製品選択、実接続、義務完了、権限、設計完了、受入の証拠ではない。",
-    "L9の55件には、連続性だけを違反させるcaseがない。LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYで原L9 baselineからedge_ids順のみ変更し、他fieldがcorrespondingのまま連続性分岐がtrace_stateをheldへ変える全返却をscratchに固定する。",
+    "L9の55件には、連続性だけを違反させるcaseがない。LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYで原L9 baselineからedge_ids順のみ変更し、他fieldがcorrespondingのまま連続性分岐がtrace_stateをheldへ変える全返却を正式L8の別枠local_probesに固定する。",
     "ChainInputのedge evidenceはAbsent/null/objectを許し、返却original_evidenceはnull/object。元edge不在またはevidence Absent/nullは返却null、objectは完全コピーし、edge stateと比較fieldで不足を示す。独立null probeはL8の別枠local_probesへ固定。",
-    "F01は原/提出両側のsource/target endpointを解決し、4状態すべてでrelation_stateを判定する。公開source_endpoint/target_endpointは提出側の状態に束縛し、原側だけが未解決のprobeでこの区別を示す。端点の実resolver/資格ではない。"
+    "F01は原/提出両側のsource/target endpointを解決し、4状態すべてでrelation_stateを判定する。公開source_endpoint/target_endpointは提出側の状態に束縛し、原側だけが未解決のprobeでこの区別を示す。端点の実resolver/資格ではない。",
+    "未観測の分岐と固定corpusでの観測範囲はunobserved_branch_matrixに列挙する。個別fieldの反例がないことを全域成立の根拠にしない。"
   ],
   "readiness": {
     "implementation": "not_ready",
@@ -2512,5 +2596,67 @@
   },
   "authority_effect": "none",
   "operation_effect": "none",
-  "execution_state": "not_executed"
+  "execution_state": "not_executed",
+  "unobserved_branch_matrix": [
+    {
+      "function": "BRAIN005-F02",
+      "branch": "provided_edge_continuity_only",
+      "status": "partially_observed",
+      "limit": "局所probeはnode/edge単体比較を保ちrequest.edge_idsの順を入れ替えて連続性による保留を確認する。ただし原/提出両側の連続性が同時に破れるため、提出側だけの検査欠落を独立には識別しない。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "direction_mismatch",
+      "status": "not_observed",
+      "limit": "全55 source caseは同じforward marker。方向規則の外れ値は一般域未検証。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "node_edge_count_mismatch",
+      "status": "not_observed",
+      "limit": "node_ids長とedge_ids長+1を独立に破るraw caseなし。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "single_source_or_target_endpoint_identity_mismatch",
+      "status": "not_observed",
+      "limit": "source/targetどちらか一方だけを外す独立raw caseなし。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "unknown_owner_route_without_other_failure",
+      "status": "not_observed",
+      "limit": "unknown_endpoint_auto_complete claim単独によるBRAIN routeは原wholeにあるが、chain unknownを単独にした入力枝は限定的。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "each_edge_comparison_field_omission_or_mismatch_isolation",
+      "status": "partially_observed",
+      "limit": "type/evidence/reversal等はあるが、各identity/meaning/direction/source/target/revision/evidence fieldを1つずつ単独変更した全組合せは固定corpusにない。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "duplicate_identity_and_whole_record_resolution_order",
+      "status": "not_observed",
+      "limit": "重複identityから先頭一致を選ぶ実装と一意全record一致を区別する原caseなし。規則はL5に明記、重複一般域は未検証。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "missing_precedence_over_conflict",
+      "status": "not_observed",
+      "limit": "同一比較対象で一欄null/Absentかつ別欄conflictの優先を分けるcorpusなし。定義した優先順位はL5規則であり全域検証済みではない。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "null_null_and_absent_null_value_matrix",
+      "status": "partially_observed",
+      "limit": "nullとAbsentの全組合せを独立に網羅しない。比較演算子の有限規則を定義し、入力shape外を資格化しない。"
+    },
+    {
+      "function": "BRAIN005-F01",
+      "branch": "original_endpoint_absent_while_provided_endpoint_resolves",
+      "status": "not_observed",
+      "limit": "局所probeは原node集合だけを欠落させたunresolvedを確認する。原edge endpoint memberのAbsentと提出側resolvedを組み合わせた単独例は未観測。"
+    }
+  ]
 }
