@@ -198,7 +198,8 @@
   "remaining": [
     "形式schema/codecおよび実source資格は未成立。",
     "この論理契約は合成packetの静的比較だけで、実接続・実receipts・実authorityを認定しない。",
-    "L11、正式実装・資格・実運用は未成立。"
+    "L11、正式実装・資格・実運用は未成立。",
+    "元42caseのMISSINGは明示nullであり、key absent/receipt object外/relations list外は原fixtureでは未検証。relation identity/revisionの非対称anchorは差分表示に限り、どちらが正しいsourceか・原因ownerかを認定しない。原fixture以外の正式anchorと診断の閉包は後続対設計の未完として保全する。"
   ],
   "document_id": "HELIXLABO-L5-011",
   "layer": "L5",
@@ -524,7 +525,7 @@
         ],
         "algorithm": [
           "入力connection/original_observation/received_observationは原raw object。member不存在はgetでnullとして比較するが、原objectを出力にも保持し欠落とnullの情報を消さない。",
-          "connectionのidentity,revision,from_endpoint,to_endpoint,connector_identity,connector_revision,contract_identity,contract_revision,scopeをこの順にConnectionFieldPresenceへ写す。scope直後にscope.requirement_revision,ticket,product,mechanismをこの順に追加する。key欠落はabsent/raw_value=null、明示nullはnull/raw_value=null、それ以外はvalue/原値。all_required_connection_values_presentは13個が全てvalueの時だけtrue。",
+          "connectionのidentity,revision,from_endpoint,to_endpoint,connector_identity,connector_revision,contract_identity,contract_revision,scopeをこの順にConnectionFieldPresenceへ写す。scope直後にscope.requirement_revision,ticket,product,mechanismをこの順に追加する。key欠落はabsent/raw_value=null、明示nullはnull/raw_value=null、それ以外はvalue/原値。all_required_connection_values_presentは13個が全てvalueの時だけtrue。 connection.scope自体がabsent/null/object外なら配下にkeyは存在しないため、scope配下4memberはabsent/raw_value=nullとする。親scope自身のnull状態は別のConnectionFieldPresenceと原rawへ保持する。",
           "観測比較順はidentity,revision,source,scope,fields。各get原値をleft/right_value、値nullならpresence=null、それ以外valueとして出力する。JSON deep-equalならequal、異なる場合left null→left_null、次にright null→right_null、それ以外different。これらの観測presenceはnull-coalescedであり元raw presence判定の代用にしない。",
           "元fieldsの各recordでstate=not_observedのmemberだけを元key/原値でmissing_fieldsへ保持する。field_transfer_stateは元観測と受信観測のdeep-equalならcorresponding_in_fixture_only、異なればreceived_content_conflict。original_observation_preservedは元値がobjectならtrue。preserved_original_observation/received_observation_valueは原値をそのまま返す。"
         ]
@@ -566,7 +567,8 @@
           "backlinksが空ならfield=observation_backlinks/result=missing/return_owner=LABO-correlation-ownerを1件、比較=[]/relation_state=unqualified/causal_state=not_established。",
           "それ以外は候補とbacklinkの先頭record（無ければ{}）を、identity,revision,episode_identity,episode_revision,observation_identity,observation_revision,source,scope,causal_stateの順に比較。episode identity/revisionはepisode候補、observation identity/revision/source/scopeは元観測、causal_stateはnot_establishedをanchorとする。identity anchorは候補identity、relation revision anchorはbacklink revision。",
           "各fieldにcandidate_value/backlink_value/anchor_valueと3比較boolean（candidate_matches_anchor/backlink_matches_anchor/pair_equal）を出す。episode/observation/source/scope/causal anchorが異なるときは、backlink相違ならobservation_backlinks.<field>、それ以外はepisode_candidate.relations.<field>。identity/revisionのpair相違はcandidateがanchorと異なればepisode_candidate.relations.<field>、それ以外はobservation_backlinks.<field>。各result=relation_mismatch/owner=LABO-correlation-ownerを順保持。",
-          "比較failureなし、両listが非空、claimsにcorrelation_is_causeなしの全条件ならrelation_state=corresponding_in_fixture_only、その他unqualified。causal_stateは常にnot_established。"
+          "比較failureなし、両listが非空、claimsにcorrelation_is_causeなしの全条件ならrelation_state=corresponding_in_fixture_only、その他unqualified。causal_stateは常にnot_established。",
+          "identity/revisionのanchorは固定fixture内のpair差を表示する比較基準で、実authorityや責任帰属を認定しない。identityはcandidate、revisionはbacklinkを基準とするため所見pathは非対称。反対側の変更を含む未観測組合せで原因ownerを特定できるとはせず、正式な独立anchor/source bindingは未閉包として残す。"
         ]
       },
       {
@@ -585,7 +587,7 @@
           "findings=[]。transfer.connection_field_presenceの先頭connection9memberだけを順走査しpresence!=valueをfield_path/missing/LABO-connection-ownerとして保持する。scope内4memberだけの欠落を同じ欠落所見へ重複昇格しない。",
           "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
           "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
-          "次に元/受信観測がobjectならidentity,revision,source,scope順で受信get値nullをmissing/LABO-Aggregate-ownerとして最初1件。sourceが両方objectでrevisionが異なればreceived_observation.source.revision/foreign_revision/LABO-Aggregate-ownerを最初1件。続いて受信fieldsを原順走査し、元not_observed→受信observed_in_fixture_onlyかつvalue非nullをreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerとして最初1件。先行の接続/receipt所見があってもこの観測比較は行う。",
+          "次に元/受信観測がobjectならidentity,revision,source,scope順で受信get値nullをmissing/LABO-Aggregate-ownerとして最初1件。sourceが両方objectでrevisionが異なればreceived_observation.source.revision/foreign_revision/LABO-Aggregate-ownerを最初1件。続いて受信fieldsを原順走査し、元not_observed→受信observed_in_fixture_onlyかつvalue非nullをreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerとして最初1件。先行の接続/receipt所見があってもこの観測比較は行う。 この観測段階は2つの独立走査で、identity/revision/source/scope比較内で最初の1件、fieldsの未観測昇格比較内で最初の1件を返す。両方に該当すれば最大2件を原順に保持する。",
           "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
           "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
         ]
