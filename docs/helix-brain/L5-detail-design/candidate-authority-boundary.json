@@ -102,30 +102,6 @@
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     {
-      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 48699,
-      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
-    },
-    {
-      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 28431,
-      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
-    },
-    {
-      "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 55987,
-      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
-    },
-    {
-      "path": "docs/helix-brain/L10-verification/business-verification.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 31508,
-      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
-    },
-    {
       "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
       "bytes": 1130244,
@@ -417,7 +393,7 @@
     {
       "source": "archive/legacy-generation-2026-09-14/root/src/design/design-template-authority.ts",
       "range": "1-280",
-      "finding": "旧consumer/runtimeの候補解決・registry処理をread-onlyで確認。旧layer/template authorityは今回のconsumer契約ではないため移植しない。",
+      "finding": "旧consumer/runtimeの候補解決・registry処理をread-onlyで確認。旧layer/template authorityは本pairのconsumer契約ではないため移植しない。",
       "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
       "source_bytes": 16095,
       "source_sha256": "3f7ce307e3335b82f61c4ab4d0e598f0113e51b43c003463d1c7b0ece8560ffb",
@@ -427,7 +403,7 @@
     {
       "source": "archive/legacy-generation-2026-09-14/root/tests/design-template-authority.test.ts",
       "range": "1-223",
-      "finding": "旧failure例のunknown/missing/duplicate/stale分類を確認。今回raw/L4に明記のないregistry拒否条件は追加しない。testは未実行。",
+      "finding": "旧failure例のunknown/missing/duplicate/stale分類を確認。本pairのraw/L4に明記のないregistry拒否条件は追加しない。testは未実行。",
       "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
       "source_bytes": 8140,
       "source_sha256": "0397d05a0cbf9501a33c6d93aebc9fb375695dae996365333c090da526f83073",
@@ -935,7 +911,7 @@
         "content_corresponding_in_fixture",
         "content_conflict"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
+      "meaning": "有限返却語彙。L5 /finite_rule_catalogが出所を指す。"
     },
     {
       "name": "KnowledgeStatus",
@@ -944,7 +920,7 @@
         "content_corresponding_in_fixture",
         "content_conflict"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
+      "meaning": "有限返却語彙。L5 /finite_rule_catalogが出所を指す。"
     },
     {
       "name": "ContractStatus",
@@ -958,7 +934,7 @@
         "contract_content_conflict_held",
         "content_corresponding_candidate_only"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
+      "meaning": "有限返却語彙。L5 /finite_rule_catalogが出所を指す。"
     },
     {
       "name": "RouteStatus",
@@ -968,7 +944,7 @@
         "selected_contract_missing_or_conflicting_held",
         "not_selected"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
+      "meaning": "有限返却語彙。L5 /finite_rule_catalogが出所を指す。"
     },
     {
       "name": "ClaimStatus",
@@ -977,7 +953,7 @@
         "rejected",
         "none"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
+      "meaning": "有限返却語彙。L5 /finite_rule_catalogが出所を指す。"
     },
     {
       "name": "F01Result",
@@ -1252,14 +1228,30 @@
         "rejected",
         "none",
         "CORE-product-decision-owner",
-        "BRAIN-knowledge-owner"
+        "BRAIN-knowledge-owner",
+        "undecidable",
+        "unknown"
       ],
       "basis": [
         "HELIXBRAIN-L3-012-F01",
         "HELIXBRAIN-L4-012-F01",
         "HELIXBRAIN-L9-012-F01"
       ],
-      "program_ref": "B012-PROGRAM-F01"
+      "program_ref": "B012-PROGRAM-F01",
+      "state_rule_source": {
+        "path": "docs/helix-brain/L4-basic-design/candidate-authority-boundary.json",
+        "json_pointer": "/contracts/0/content_comparison/1",
+        "scope": "判断不能/unknownの保持集合。文字列successを比較定数として使う旧2語組合せ規則は廃止。"
+      },
+      "input_value_examples": {
+        "path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "json_pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
+        "values": [
+          "undecidable",
+          "success"
+        ],
+        "scope": "旧2語判定の出所である原入力例。successは新式の決定定数ではなく任意stringの一つ。"
+      }
     },
     {
       "id": "B012-F02-CONTRACT",
@@ -1348,9 +1340,6 @@
         "missing",
         "held",
         "candidate_for_connected_owner_only",
-        "not_selected",
-        "undecided",
-        "original_authority_unchanged",
         "responsible-CORE-INT-or-human-decision-owner",
         "BRAIN-knowledge-owner",
         "rejected",
@@ -1363,7 +1352,12 @@
         "HELIXBRAIN-L4-012-B01",
         "HELIXBRAIN-L9-012-B01"
       ],
-      "program_ref": "B012-PROGRAM-B01"
+      "program_ref": "B012-PROGRAM-B01",
+      "copied_input_values": {
+        "B01Result.product_state": "input.original_product_stateをそのまま写す。not_selectedは原fixture入力例で出力定数ではない。",
+        "B01Result.runtime_state": "input.original_runtime_stateをそのまま写す。undecidedは原fixture入力例。",
+        "B01Result.authority_state": "input.existing_authorityをそのまま写す。original_authority_unchangedは原fixture入力例。"
+      }
     }
   ],
   "function_contracts": [
@@ -1639,7 +1633,7 @@
     {
       "id": "B012-U07",
       "source": "HELIXBRAIN-L4-012-F01/F02/B01.content_comparison",
-      "gap": "固定rawは有限state/usage語彙を示す。異なる任意文字列・未知enum、追加contract identity、重複route設定のdomainは母集団として未観測。formal expressionは明示された有限分岐を計算するが、fixture coverageを全域適合へ一般化しない。",
+      "gap": "固定rawは有限state/usage語彙を示す。異なる任意文字列・未知enum、追加contract identity、重複route設定のdomainは母集団として未観測。formal expressionは明示された有限分岐を計算するが、fixture coverageを全域適合へ一般化しない。 F01のjudgement_stateは自由string型だが、原値が判断不能であるとの意味同定はundecidable/unknownの2表示に明示限定。原値がそれ以外の語の場合の未決意味は推測せず未具体化。未決原値に対する提出側は任意stringを検査し、成功語リストへ限定しない。",
       "upstream_or_consumer": "各L3 obligationとL4 ownerによる必要domainの将来定義/検証",
       "state": "unobserved_domain_not_qualified"
     },
@@ -1655,6 +1649,12 @@
       "source": "L4 F01/B01 content_comparison",
       "gap": "F01の内容比較は等値だけであり、両側同じ空候補/TBD/空文字/unknown本文の内容不足は診断しない。B01のexisting_authority/original_product_stateの値も原値として複写し、BRAIN権限/採用という不適切な値かどうかを判定しない。原値保存を実権限/採用の成立としない。",
       "state": "supplied_value_semantic_validation_not_implemented"
+    },
+    {
+      "id": "B012-U10",
+      "source": "HELIXBRAIN-L4-012-F02 content_comparison; R2未選択route独立whole",
+      "gap": "全route非選択でconnection_success=trueの場合に、有限式のconnection_claimはnone。このclaimと無選択の整合/返却ownerは未具体化で、noneを接続成功の成立と読まない。",
+      "state": "selection_claim_semantic_validation_not_implemented"
     }
   ],
   "full_goal_scope_preserved": {
@@ -1952,25 +1952,60 @@
                               "op": "and",
                               "items": [
                                 {
-                                  "op": "json_equal",
-                                  "left": {
-                                    "op": "path",
-                                    "path": "input.original_judgement_state"
-                                  },
-                                  "right": {
-                                    "op": "const",
-                                    "value": "undecidable"
-                                  }
+                                  "op": "or",
+                                  "items": [
+                                    {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": "input.original_judgement_state"
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "undecidable"
+                                      }
+                                    },
+                                    {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": "input.original_judgement_state"
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "unknown"
+                                      }
+                                    }
+                                  ]
                                 },
                                 {
-                                  "op": "json_equal",
-                                  "left": {
-                                    "op": "path",
-                                    "path": "input.provided_judgement_state"
-                                  },
-                                  "right": {
-                                    "op": "const",
-                                    "value": "success"
+                                  "op": "not",
+                                  "value": {
+                                    "op": "or",
+                                    "items": [
+                                      {
+                                        "op": "json_equal",
+                                        "left": {
+                                          "op": "path",
+                                          "path": "input.provided_judgement_state"
+                                        },
+                                        "right": {
+                                          "op": "const",
+                                          "value": "undecidable"
+                                        }
+                                      },
+                                      {
+                                        "op": "json_equal",
+                                        "left": {
+                                          "op": "path",
+                                          "path": "input.provided_judgement_state"
+                                        },
+                                        "right": {
+                                          "op": "const",
+                                          "value": "unknown"
+                                        }
+                                      }
+                                    ]
                                   }
                                 }
                               ]
@@ -2438,6 +2473,7 @@
               "three_way": "required(expected)とprovided(actual)の各knowledge_ref.identity/revision/scopeを、target_knowledge_refの同じmemberへ比較する。両者が同じtargetに一致する場合だけ対応候補へ進める。",
               "priority": [
                 "required/actualのAbsent → missing_held",
+                "requiredまたはprovidedのidentityがcontract_keyと不一致 → contract_content_conflict_held（state unknownより先）",
                 "actual.state=unknown → unknown_held",
                 "actual.usage=reference_only → reference_only_held",
                 "requiredまたはactualのknowledge revisionとtarget不一致 → revision_foreign_held",
@@ -2869,6 +2905,50 @@
                                 "op": "const",
                                 "value": true
                               }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_runtime_decided"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_requirement_generated"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_authority_expanded"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.requires_new_human_approval_every_reply"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
                             }
                           ]
                         },
@@ -3112,7 +3192,12 @@
       "判断権限"
     ],
     "unclosed_ref": "B012-U06",
-    "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。"
+    "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。",
+    "label_correspondence": {
+      "F01 CORE-product-decision-owner": "返信を採用とするclaimの製品判断責務候補。",
+      "B01 responsible-CORE-INT-or-human-decision-owner": "要求意味/重み/製品/案件/許可/authority/新承認claimを当該責任ある判断先へ戻す広い候補。F01製品判断候補と責務が重なるが実actor同一性を証明しない。",
+      "actual_binding": "該当CORE/INT/人の実選定・authority・配送は供給されず未成立。"
+    }
   },
   "l4_obligation_trace": [
     {
@@ -3216,8 +3301,17 @@
     }
   ],
   "failure_owner_rules": {
-    "B01": "要求意味/判断重みの不足、またはproduct_decided/execution_permitted claimの棄却をresponsible-CORE-INT-or-human-decision-ownerへ結ぶ。知識不足のBRAIN候補と重複を除いて併記する。実owner資格は生成しない。",
-    "F01": "original_judgement_state=undecidableとprovided_judgement_state=successの組合せはclaim値に依存せずBRAIN-knowledge-ownerへ返す。原judgement_stateとflagのnone/rejected表示は保持する。"
+    "B01": "要求意味/判断重みの不足、またはproduct_decided/runtime_decided/requirement_generated/execution_permitted/authority_expanded/new_human_approval_every_replyの6claimのいずれかtrueをresponsible-CORE-INT-or-human-decision-owner候補へ結ぶ。知識不足はBRAIN候補へ別に返し、候補は初出順で重複除去する。原proposal/product/runtime/authorityは保持し、実owner選定/資格/新承認を作らない。",
+    "F01": "原original_judgement_stateがundecidableまたはunknownの場合、providedがこの未決表示保持集合の外の任意stringへ変わると、claim flagに依存せずBRAIN-knowledge-owner候補へ返す。提供語の意味を成功認定せず、原不足を消し込む根拠がない不整合として扱う。unknown_success_claimはflag専用でfalseならnone、データ不整合返却とは別軸。judgement_stateは原値を保持する。",
+    "F01_state_domain": {
+      "unresolved_preservation_values": [
+        "undecidable",
+        "unknown"
+      ],
+      "source": "HELIXBRAIN-L4-012-F01.content_comparisonの判断不能/unknownと原L9 F01 undecidable原値",
+      "provided_value_rule": "原状態が保持集合内なら、提出も同集合内である場合だけこの不足返却は追加しない。その他の任意string（大小文字/空/TBD/未見語も含む）は不足返却。提出語を成功/失敗へ推測分類しない。",
+      "unclosed": "元状態がこれら2表示以外の自由stringのとき、その語自体が判断不能かどうかの意味解釈は未具体化。原元状態の一般的な妥当性/成熟度/採用判定は行わない。"
+    }
   },
   "mutation_coverage_limit": [
     {
@@ -3231,6 +3325,14 @@
     {
       "scope": "F02 required/providedの非対称",
       "limit": "requiredだけunknownのとき、actual unknown専用分岐へ入らず後続の内容不一致へ分類する。必要側と提出側の一般unknown意味を対称としない。"
+    },
+    {
+      "scope": "未選択routeとconnection_success",
+      "limit": "全route未選択ではcontract_resultsは空、map_has_value_other_thanはfalse、connection_claimはnone。これは接続成功の観測/義務合格ではない。claimと選択なしの意味整合/対応ownerは未具体化で、別不足witnessを保存する。実connection effectは常にfalse。"
+    },
+    {
+      "scope": "B01個別claimとF01状態保存",
+      "limit": "全入力ありの6claim単独wholeと全6同時whole、F01未決保持集合内/外の個別wholeを追加する。これらで該当分岐の無条件化を識別できるが、全mutation/入力全直積を網羅したとしない。"
     }
   ]
 }

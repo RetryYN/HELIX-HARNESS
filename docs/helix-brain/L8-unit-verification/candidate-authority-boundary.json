@@ -102,30 +102,6 @@
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     {
-      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 48699,
-      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
-    },
-    {
-      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 28431,
-      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
-    },
-    {
-      "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 55987,
-      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
-    },
-    {
-      "path": "docs/helix-brain/L10-verification/business-verification.json",
-      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
-      "bytes": 31508,
-      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
-    },
-    {
       "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
       "bytes": 1130244,
@@ -634,8 +610,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "3e6c2509bd4646abe45055d13ee601f30e013d9f4f810171aac9c7c56906cf3f"
@@ -799,8 +775,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "5c95383b8a390f5c4592a5fb150ca57278e08ae37c5fc8c4f49bc5f83c63d5c2"
@@ -970,8 +946,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "faf500e54448d676a953decb60b71f700ba8ca7d61f21e82cef34ece7118fa33"
@@ -1137,8 +1113,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "80e897044cbef1e32877a91a4a8d938ccc671d3937616912e7e7df422a0ec60c"
@@ -1308,8 +1284,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "3590581a85298ff28fe14b6271ebf0e978416db563a1c886ad8696bc63585aba"
@@ -1479,8 +1455,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "8233b86034253dffe6e0255ec92d7e7f9f81849f83b2876734753d52cb68b8e9"
@@ -1647,8 +1623,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "1066ccb37e0a0d380d0d93d064f29e9dc39e91728df075709b17aed66565aa3d"
@@ -1821,8 +1797,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "a7e756f3f50164040ad9f24af8b219d19019caa4bc99f21d512659396679a027"
@@ -1989,8 +1965,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "9da98daf57543c6dcaf4c5cb331fcfc46f12290dad32a2e7afdfbaa6ef9c61d3"
@@ -2164,8 +2140,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "2feef29db8d432a79ade489f60e1a91038f1b0713651b0ad2e1155981618ba3f"
@@ -2339,8 +2315,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "8ff2cb387d429b0b93c2412f4420d8c15f39c02272b021705f7fcb3b2f40430e"
@@ -2514,8 +2490,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "49750723c0e85d078117ed156d4fe0c5781f68ab51e75c4fada9427f74d5a788"
@@ -2689,8 +2665,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "85f83dc2839bd3933e06b5ba1899a0cb25b67e2e8f3efddf4a24872268a545af"
@@ -2864,8 +2840,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "a0795955c3fe4ca0b59a47eb1f87f7db015470bd5abf63e5f7167cb27819c288"
@@ -3030,8 +3006,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "7c7d6be41db5f3adeb3077210a7ef6e0a054dff4e3a0f593413de059f999295e"
@@ -3187,8 +3163,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "cbcfcbcaeec4de0a8c14b296fba9ee33c1221089ff64d1763c05936ba196c498"
@@ -3355,8 +3331,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "02923e8ab0a7c4441e1bc47127a453a4c75e725a9366b80082bc03bcd05e01b3"
@@ -3523,8 +3499,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "248e82efe46bc92dab2f3f33f19870273ff221c2136a5d124c01ee0d54aed51d"
@@ -3691,8 +3667,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "84fdc7abf40d441dfea48291be871fe2e7e41d3d7a0cceefab2f29580b531ebb"
@@ -3859,8 +3835,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "71ad5c2f9423a57e50969e17b59f111148b454f770671f5e83e6a4e7cbcdefc3"
@@ -4016,8 +3992,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "ffd88e291fad34382c882febc73b9856e77642fe7e817145d2da70e62cbc5d9e"
@@ -4184,8 +4160,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "02e19746af298b7aa4546859d59aa42e94892d04775ec85fe161496999106c2e"
@@ -4352,8 +4328,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "8d793c9142efa6463f538488d2c499c0d97761fc0b97170604d227bdbd6f00cf"
@@ -4520,8 +4496,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "1de80bc13becf75cb2d36e25383426050c99ad5f36f3a1099201e5e036747827"
@@ -4688,8 +4664,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "af8a574b50ae3cdc64a037d2c451263c5086afcae88d6267a80b38ebd92b615c"
@@ -4845,8 +4821,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a63050a6f603393b580dbd8354fc6480dfc9628ef514fdba7eac9b70e3a9a120"
@@ -5013,8 +4989,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "c3d7840ae5b6c6169fa8ff93bb395b9b56550f7dd3c21a1f7edb73741cdb56cd"
@@ -5181,8 +5157,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "4a248cfe8b91c9c5a569211c4ff8aff21a30d27b8e08705bf3e6e5f2f89f01a0"
@@ -5349,8 +5325,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "f11d72c478aef7e0e3ead0586ecb0eddf872ba7b7709934c45d86a66e1539b11"
@@ -5517,8 +5493,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "7cda6e72b855c0e3e9ff059daa2fc52ce6a4101637b4306f4ed09b531cdf0ffa"
@@ -5674,8 +5650,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "c024ef422169cf2594dac5574401ee07626789d0f6e993769a0f805c15aa4c24"
@@ -5842,8 +5818,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "38d5e8b52b9809176175add62bef82b63f9237161ba75189bccaddd3fc83fdb3"
@@ -6000,8 +5976,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "9d6603c57b997d3efd5ff8029bd95a7fae3735a35c3650589962c1bc066b764c"
@@ -6167,8 +6143,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "9e38017865645ffb03e7b53b1eb6621b0a57fc7530611e25acbdd306003face6"
@@ -6249,8 +6225,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "a0a8023d0594c15ec9136ece11c6d1776c3a926aad1bc28995733a1f3be1bd32"
@@ -6331,8 +6307,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "6c822db314a33f3227654ef9565a308a0bd696588e5449cc19f7ef0cf260989c"
@@ -6413,8 +6389,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "ee19aec86c38da220b3b173fc176ecf24fc0249c84f9e02c3d34cc464b38bc5b"
@@ -6495,8 +6471,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "54ded359eed7c2b874fc0232841a203803c06dae0c9ba51ba3d8beb21caac65d"
@@ -6577,8 +6553,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "92c600391fe3ebb1dfbfdda3e2ea197c040c60cdbbcfc2d6a940d8ffdea1900d"
@@ -6659,8 +6635,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "6b8384d6843a5b6d2088ba39ff5bc23837b68b11d7980ef9483f279ac23df079"
@@ -6741,8 +6717,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "b4022b6cd45302a15d0b3ead4abd35b6d3c2f58102bfea27c6e636e8a14d28e5"
@@ -6816,8 +6792,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3"
@@ -6946,7 +6922,7 @@
     {
       "id": "B012-U07",
       "source": "HELIXBRAIN-L4-012-F01/F02/B01.content_comparison",
-      "gap": "固定rawは有限state/usage語彙を示す。異なる任意文字列・未知enum、追加contract identity、重複route設定のdomainは母集団として未観測。formal expressionは明示された有限分岐を計算するが、fixture coverageを全域適合へ一般化しない。",
+      "gap": "固定rawは有限state/usage語彙を示す。異なる任意文字列・未知enum、追加contract identity、重複route設定のdomainは母集団として未観測。formal expressionは明示された有限分岐を計算するが、fixture coverageを全域適合へ一般化しない。 F01のjudgement_stateは自由string型だが、原値が判断不能であるとの意味同定はundecidable/unknownの2表示に明示限定。原値がそれ以外の語の場合の未決意味は推測せず未具体化。未決原値に対する提出側は任意stringを検査し、成功語リストへ限定しない。",
       "upstream_or_consumer": "各L3 obligationとL4 ownerによる必要domainの将来定義/検証",
       "state": "unobserved_domain_not_qualified"
     },
@@ -6962,6 +6938,12 @@
       "source": "L4 F01/B01 content_comparison",
       "gap": "F01の内容比較は等値だけであり、両側同じ空候補/TBD/空文字/unknown本文の内容不足は診断しない。B01のexisting_authority/original_product_stateの値も原値として複写し、BRAIN権限/採用という不適切な値かどうかを判定しない。原値保存を実権限/採用の成立としない。",
       "state": "supplied_value_semantic_validation_not_implemented"
+    },
+    {
+      "id": "B012-U10",
+      "source": "HELIXBRAIN-L4-012-F02 content_comparison; R2未選択route独立whole",
+      "gap": "全route非選択でconnection_success=trueの場合に、有限式のconnection_claimはnone。このclaimと無選択の整合/返却ownerは未具体化で、noneを接続成功の成立と読まない。",
+      "state": "selection_claim_semantic_validation_not_implemented"
     }
   ],
   "full_goal_scope_preserved": {
@@ -7197,8 +7179,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "96b8dd8fb7057ca33ef0d04ed3ea148b52a1019dcb69626907e29221dc283adf"
@@ -7305,8 +7287,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a66ec16dbff6627d28e13d01366f2d9d76e39db40c3d19939418b764c6348b5e"
@@ -7419,8 +7401,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "32d519fa0c3461dcaf490f050c0da77690b2cec9f6bd08592859fd826b00a735"
@@ -7617,8 +7599,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       }
     }
@@ -7643,7 +7625,12 @@
       "判断権限"
     ],
     "unclosed_ref": "B012-U06",
-    "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。"
+    "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。",
+    "label_correspondence": {
+      "F01 CORE-product-decision-owner": "返信を採用とするclaimの製品判断責務候補。",
+      "B01 responsible-CORE-INT-or-human-decision-owner": "要求意味/重み/製品/案件/許可/authority/新承認claimを当該責任ある判断先へ戻す広い候補。F01製品判断候補と責務が重なるが実actor同一性を証明しない。",
+      "actual_binding": "該当CORE/INT/人の実選定・authority・配送は供給されず未成立。"
+    }
   },
   "l4_obligation_trace": [
     {
@@ -7977,8 +7964,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a707f53ccd51af4ec2dc4be3447f322e0129659f7460557d8d30646b3e8f5c8c",
@@ -8183,8 +8170,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "bebcf3ed7736b961adf7cd7244e3b93205d5c25ca9b235dc4009af367f236651",
@@ -8389,8 +8376,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "718d70ff4e16dc9870e64cce333839fac5271424351d285c0b8996fe50a1f558",
@@ -8512,8 +8499,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "33e8b38a4fbf0957e7cc68755e6195470bc29ff8c52fa76a32761bb62c34ea47",
@@ -8711,8 +8698,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74",
@@ -8920,8 +8907,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "73768d233704073f1a99fc016c74d57697cd6a855d0ab873be243707fa6737d8",
@@ -9037,8 +9024,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "53ff3c4f13e73b32da3f07b73ca866226950138be79f43f7603108d8c031ec8b",
@@ -9154,8 +9141,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
-        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+        "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "37699c30c2c706455af6e1fd2d1b8ac433e00762e2da05dead0651578aa6f7cc",
@@ -9177,6 +9164,3536 @@
     {
       "scope": "F02 required/providedの非対称",
       "limit": "requiredだけunknownのとき、actual unknown専用分岐へ入らず後続の内容不一致へ分類する。必要側と提出側の一般unknown意味を対称としない。"
+    },
+    {
+      "scope": "未選択routeとconnection_success",
+      "limit": "全route未選択ではcontract_resultsは空、map_has_value_other_thanはfalse、connection_claimはnone。これは接続成功の観測/義務合格ではない。claimと選択なしの意味整合/対応ownerは未具体化で、別不足witnessを保存する。実connection effectは常にfalse。"
+    },
+    {
+      "scope": "B01個別claimとF01状態保存",
+      "limit": "全入力ありの6claim単独wholeと全6同時whole、F01未決保持集合内/外の個別wholeを追加する。これらで該当分岐の無条件化を識別できるが、全mutation/入力全直積を網羅したとしない。"
     }
-  ]
+  ],
+  "independent_state_and_claim_probes": {
+    "method": "正式変更前に原L9とL3/L4の義務からinput/expected patch＋全値を独立固定。正式計算から期待を作らない。",
+    "probes": [
+      {
+        "id": "R2-B01-SINGLE-PRODUCT_DECIDED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_product_decided",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/product_decided",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": false,
+          "claims_execution_permitted": false,
+          "claims_product_decided": true,
+          "claims_requirement_generated": false,
+          "claims_runtime_decided": false,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": false
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "rejected",
+            "runtime_decided": "none",
+            "requirement_generated": "none",
+            "execution_permitted": "none",
+            "authority_expanded": "none",
+            "new_human_approval_every_reply": "none"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "a6873970a9da1e9d9d1b516940a4198db998a032a096e78cc87dd601a1a7b992",
+        "expected_canonical_sha256": "d2e92b637a82ede736892a3584e8b0ff70c3932c7df6eda802edf141d889e5e8",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-SINGLE-RUNTIME_DECIDED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_runtime_decided",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/runtime_decided",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": false,
+          "claims_execution_permitted": false,
+          "claims_product_decided": false,
+          "claims_requirement_generated": false,
+          "claims_runtime_decided": true,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": false
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "none",
+            "runtime_decided": "rejected",
+            "requirement_generated": "none",
+            "execution_permitted": "none",
+            "authority_expanded": "none",
+            "new_human_approval_every_reply": "none"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "4034a6c7bfd5973926f852f3878951a470cb7fe53089cd179c50d0973f822e96",
+        "expected_canonical_sha256": "7208b56af35199f8fcf42ffb601f485b0ecc8ba8f7d425a48d3ff6b2d07e4155",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-SINGLE-REQUIREMENT_GENERATED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_requirement_generated",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/requirement_generated",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": false,
+          "claims_execution_permitted": false,
+          "claims_product_decided": false,
+          "claims_requirement_generated": true,
+          "claims_runtime_decided": false,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": false
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "none",
+            "runtime_decided": "none",
+            "requirement_generated": "rejected",
+            "execution_permitted": "none",
+            "authority_expanded": "none",
+            "new_human_approval_every_reply": "none"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "4b56c5fe053f6fba1857dd7781e7c203d24a5030fa71f0e2078d91baf80f866f",
+        "expected_canonical_sha256": "20dc7b83fe3d7eb4d12f80d07e17e6639155414264827d9664700cdfbdca63bf",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-SINGLE-EXECUTION_PERMITTED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_execution_permitted",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/execution_permitted",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": false,
+          "claims_execution_permitted": true,
+          "claims_product_decided": false,
+          "claims_requirement_generated": false,
+          "claims_runtime_decided": false,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": false
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "none",
+            "runtime_decided": "none",
+            "requirement_generated": "none",
+            "execution_permitted": "rejected",
+            "authority_expanded": "none",
+            "new_human_approval_every_reply": "none"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "520a6ba524e8b017d9d9d896fcea0c706d6465ffbfcb6a48ec71d81017180921",
+        "expected_canonical_sha256": "926237d4e5aad58817e2fbe32f1a8cd0d77d9f18d5ed94639fdb76da13005c99",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-SINGLE-AUTHORITY_EXPANDED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_authority_expanded",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/authority_expanded",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": true,
+          "claims_execution_permitted": false,
+          "claims_product_decided": false,
+          "claims_requirement_generated": false,
+          "claims_runtime_decided": false,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": false
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "none",
+            "runtime_decided": "none",
+            "requirement_generated": "none",
+            "execution_permitted": "none",
+            "authority_expanded": "rejected",
+            "new_human_approval_every_reply": "none"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "060b973da210d680e90d3fa4602f69dd39f90f89f6eb7322fe186b62eaa886ce",
+        "expected_canonical_sha256": "adfb5b03d4cca7708ef95974494f79adae0136d5e6b024bd60d5de7a5ccbad63",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-SINGLE-NEW_HUMAN_APPROVAL_EVERY_REPLY",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/requires_new_human_approval_every_reply",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/new_human_approval_every_reply",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": false,
+          "claims_execution_permitted": false,
+          "claims_product_decided": false,
+          "claims_requirement_generated": false,
+          "claims_runtime_decided": false,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": true
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "none",
+            "runtime_decided": "none",
+            "requirement_generated": "none",
+            "execution_permitted": "none",
+            "authority_expanded": "none",
+            "new_human_approval_every_reply": "rejected"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "03d8cccdc5857d532c5cff77245a32cbf7fb41458884d324ac5b4155914bf244",
+        "expected_canonical_sha256": "b91dfc09d7cf272f6aabaf177a267b15c2ceec3da83b16e0bad39b7f58b5f672",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "L3/L4 B01の全禁止claimを個別棄却し責任ある要求意味/製品判断先候補へ。意味/重み/知識が揃っていても候補owner返却を落とさない。実許可/実選定/新承認なし。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-B01-ALL-CLAIMS-DEDUPLICATED",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+        "source_case_id": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+        "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/claims_product_decided",
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/claims_runtime_decided",
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/claims_requirement_generated",
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/claims_execution_permitted",
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/claims_authority_expanded",
+            "value": true
+          },
+          {
+            "op": "replace",
+            "path": "/requires_new_human_approval_every_reply",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/claim_results/product_decided",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/runtime_decided",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/requirement_generated",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/execution_permitted",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/authority_expanded",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/new_human_approval_every_reply",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "responsible-CORE-INT-or-human-decision-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_authority_expanded": true,
+          "claims_execution_permitted": true,
+          "claims_product_decided": true,
+          "claims_requirement_generated": true,
+          "claims_runtime_decided": true,
+          "decision_weight_state": "supplied_fixture_only",
+          "existing_authority": "original_authority_unchanged",
+          "knowledge_state": "identified_fixture_only",
+          "original_product_state": "not_selected",
+          "original_runtime_state": "undecided",
+          "requirement_meaning_state": "supplied_fixture_only",
+          "requires_new_human_approval_every_reply": true
+        },
+        "expected_result": {
+          "proposal_state": "candidate_for_connected_owner_only",
+          "product_state": "not_selected",
+          "runtime_state": "undecided",
+          "authority_state": "original_authority_unchanged",
+          "missing_inputs": [],
+          "claim_results": {
+            "product_decided": "rejected",
+            "runtime_decided": "rejected",
+            "requirement_generated": "rejected",
+            "execution_permitted": "rejected",
+            "authority_expanded": "rejected",
+            "new_human_approval_every_reply": "rejected"
+          },
+          "owner_return_candidates": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "9ae5de451ec0e8194d873d8d2912b6d0f0cfe023b9043213f1d3321187bd641b",
+        "expected_canonical_sha256": "782fe920ad5a1a9ca1f2e690e2eebf9a7efbccb09baac89c88f73bce9ff23572",
+        "function_ref": "HELIXBRAIN-L5-012-B01",
+        "program_ref": "B012-PROGRAM-B01",
+        "basis": "同責務候補ラベルの初出順一意化。全6claimでownerを増殖させず実authorityは不変。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-B01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "d09470d190256dd1bbc64a58ef991248e97a655b59485d8b85fc3167c0247a91"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-success",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "success"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "success",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-multiple_candidates",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "multiple_candidates"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "multiple_candidates",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "158a6dbe57d5e78f96a6ab13bbb882c1b5bfe487cdd9a109e45af4ccb49de86b",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-decided",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "decided"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "decided",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "6cfb2ba74b92eb9359bf7dd808d8b16e4693fd6b7676a118ef4984b3a49de717",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-single_candidate",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "single_candidate"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "single_candidate",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "037e857ff0b6a1b739fa4eb81e7b8d02ba66093f77ccf22743d9e43b30f2bf61",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-SUCCESS",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "SUCCESS"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "SUCCESS",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "df71e0d963ee4800f88131c2356092a174557bee6f5c5ca0387ddf5b8082f7e5",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNKNOWN-TO-success",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "success"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "success",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "7f261dbd96670818a595c2e3ee5814bbd73b95edf1370d3a686ed4bc0e3e92f4",
+        "expected_canonical_sha256": "888d78127cb248ab04c86c21ebe55e939b01181cb95617994fe4e2ec721e95fa",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNKNOWN-TO-single_candidate",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "single_candidate"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "single_candidate",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "24476849991debffd083fad17cc48a54fc735b91d1eb42d883c443f375d8f869",
+        "expected_canonical_sha256": "888d78127cb248ab04c86c21ebe55e939b01181cb95617994fe4e2ec721e95fa",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNKNOWN-TO-unseen-state",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "unseen-state"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "unseen-state",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "d41f7058ccccadfa45a5917690fa11152d976b9d6a6f51002546b20dd9d94f42",
+        "expected_canonical_sha256": "888d78127cb248ab04c86c21ebe55e939b01181cb95617994fe4e2ec721e95fa",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNDECIDABLE-TO-EMPTY",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": ""
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "d24961eb098628253633d153a0cf7bc38bb52447718fdaa7c979bb379477f2aa",
+        "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-UNKNOWN-TO-TBD",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "TBD"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "BRAIN-knowledge-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "TBD",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [
+            "BRAIN-knowledge-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "d3795ae0c9b733240d380e1d1a97e1211d5a6ed8aa7ea73e59aacff1bedd01b5",
+        "expected_canonical_sha256": "888d78127cb248ab04c86c21ebe55e939b01181cb95617994fe4e2ec721e95fa",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "L4 F01 unknownを成功補完しない。原状態が判断不能/unknownで、提出が両未決表示の保存集合外ならBRAIN候補へ。提出語の意味を成功と採用するのではなく、原不足を消し込めない不整合として返す。flag falseなのでunknown_success_claimはnoneを保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-PRESERVED-UNDECIDABLE-UNKNOWN",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "undecidable"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "unknown"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "undecidable"
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "undecidable",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "unknown",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "undecidable",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "b871fdcdc1f1260527fa351c37d8d05719fd355a66916d713dcf5561197aa11c",
+        "expected_canonical_sha256": "39f17558e7b27ddda127355735027eb7a576c9f0d658e78b060cd68ed4d9f681",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "両側ともL4の未決/unknownを保持する表示集合。原judgementを写し、知識の実完成や採用を作らない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-PRESERVED-UNKNOWN-UNDECIDABLE",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "undecidable"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "undecidable",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "6aaebed664d2e41f2bb907e91ccdd8250531cba7db1527dbc80a45eb92be12c9",
+        "expected_canonical_sha256": "6a0ca8fc357999d37fcefeab51e334f35b72194405c789a862735be94936b8a1",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "両側ともL4の未決/unknownを保持する表示集合。原judgementを写し、知識の実完成や採用を作らない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F01-PRESERVED-UNKNOWN-UNKNOWN",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "source_case_id": "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "source_case_canonical_sha256": "a52f449c4babe5279fd67192eef3132ff2728bbf65a4a7ac7e89dace04bf2dfe",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/original_judgement_state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_judgement_state",
+            "value": "unknown"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/judgement_state",
+            "value": "unknown"
+          }
+        ],
+        "typed_input": {
+          "claims_reply_adopted": false,
+          "claims_unknown_success": false,
+          "knowledge_maturity": "not_evaluated",
+          "knowledge_ref_original": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "knowledge_ref_provided": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          },
+          "original_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "original_judgement_state": "unknown",
+          "original_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          },
+          "provided_context": {
+            "identity": "CONTEXT-P",
+            "knowledge_domains": [
+              "Data / Database"
+            ],
+            "meaning": "合成の利用要求/design context",
+            "revision": "r1"
+          },
+          "provided_judgement_state": "unknown",
+          "provided_reply_content": {
+            "alternative": [
+              "PATTERN-A@r1",
+              "PATTERN-B@r2"
+            ],
+            "constraint": [
+              "合成制約A",
+              "合成制約B"
+            ],
+            "evidence": [
+              {
+                "identity": "EVIDENCE-A",
+                "limit": "synthetic_only",
+                "revision": "r1"
+              }
+            ],
+            "pattern_candidates": [
+              {
+                "identity": "PATTERN-A",
+                "revision": "r1"
+              },
+              {
+                "identity": "PATTERN-B",
+                "revision": "r2"
+              }
+            ],
+            "relation": [
+              {
+                "from": "PATTERN-A@r1",
+                "kind": "alternative_to",
+                "meaning": "合成の同問題代替候補",
+                "to": "PATTERN-B@r2"
+              }
+            ],
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ]
+          }
+        },
+        "expected_result": {
+          "context_result": "content_corresponding_in_fixture",
+          "reply_results": {
+            "pattern_candidates": "content_corresponding_in_fixture",
+            "required_input": "content_corresponding_in_fixture",
+            "relation": "content_corresponding_in_fixture",
+            "alternative": "content_corresponding_in_fixture",
+            "constraint": "content_corresponding_in_fixture",
+            "evidence": "content_corresponding_in_fixture"
+          },
+          "knowledge_ref_result": "content_corresponding_in_fixture",
+          "judgement_state": "unknown",
+          "candidate_state": "returned_candidates_only",
+          "reply_adoption_claim": "none",
+          "unknown_success_claim": "none",
+          "owner_return_candidates": [],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "bf6fe0830e4b8f57252a6487d017becc6da72d003d65170f64a52237de5ed2fc",
+        "expected_canonical_sha256": "6a0ca8fc357999d37fcefeab51e334f35b72194405c789a862735be94936b8a1",
+        "function_ref": "HELIXBRAIN-L5-012-F01",
+        "program_ref": "B012-PROGRAM-F01",
+        "basis": "両側ともL4の未決/unknownを保持する表示集合。原judgementを写し、知識の実完成や採用を作らない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F01",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "c8f46f2f0b4dc3d4727bac155a9c9f5e20a476bed96127ff7278bbc98cd24ee2"
+        }
+      },
+      {
+        "id": "R2-F02-KEY-IDENTITY-BEFORE-UNKNOWN",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/1/concrete_cases/0",
+        "source_case_id": "B012-F02-SELECTED-CORE-OBLIGATIONS-INT-NOT-SELECTED",
+        "source_case_canonical_sha256": "f23b05fc54b2baca0b1a41e550b2789310bff477af4d6074cd40528097e511bd",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/provided_contracts/HARNESS009/identity",
+            "value": "BRAIN022"
+          },
+          {
+            "op": "replace",
+            "path": "/provided_contracts/HARNESS009/state",
+            "value": "unknown"
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/contract_results/HARNESS009",
+            "value": "contract_content_conflict_held"
+          },
+          {
+            "op": "replace",
+            "path": "/route_results/HARNESS_obligations",
+            "value": "selected_contract_missing_or_conflicting_held"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "HARNESS009-connection-owner"
+            ]
+          }
+        ],
+        "typed_input": {
+          "claims_connection_success": false,
+          "provided_contracts": {
+            "BRAIN019": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN019",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN021": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN021",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN022": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN022",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "HARNESS009": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN022",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "unknown",
+              "usage": "normative_candidate_only"
+            }
+          },
+          "required_contracts": {
+            "BRAIN019": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN019",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN021": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN021",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN022": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN022",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "HARNESS009": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "HARNESS009",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            }
+          },
+          "requires_unselected_INT_completion": false,
+          "selected_routes": {
+            "CORE_reply": true,
+            "HARNESS_obligations": true,
+            "INT_query": false
+          },
+          "target_knowledge_ref": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "expected_result": {
+          "contract_results": {
+            "BRAIN019": "content_corresponding_candidate_only",
+            "BRAIN022": "content_corresponding_candidate_only",
+            "HARNESS009": "contract_content_conflict_held"
+          },
+          "route_results": {
+            "CORE_reply": "candidate_contracts_corresponding",
+            "HARNESS_obligations": "selected_contract_missing_or_conflicting_held",
+            "INT_query": "not_selected"
+          },
+          "connection_claim": "none",
+          "unselected_INT_gate_claim": "none",
+          "owner_return_candidates": [
+            "HARNESS009-connection-owner"
+          ],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "afc4f00e32886fe4e46f1c84eaa6e178413c5b6b0046ca0da062649e46691453",
+        "expected_canonical_sha256": "d2de58e86a41cc2b5ca80442924b22f8769ebdbed2e803d32372d5d01eff5229",
+        "function_ref": "HELIXBRAIN-L5-012-F02",
+        "program_ref": "B012-PROGRAM-F02",
+        "basis": "既存helper優先: absent後はmap keyと両identity照合、次にstate unknown。stateで誤identityを隠さない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F02",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165"
+        }
+      },
+      {
+        "id": "R2-F02-NO-SELECTED-ROUTE-CLAIM-SCOPE",
+        "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+        "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+        "source_case_pointer": "/verification_obligations/1/concrete_cases/0",
+        "source_case_id": "B012-F02-SELECTED-CORE-OBLIGATIONS-INT-NOT-SELECTED",
+        "source_case_canonical_sha256": "f23b05fc54b2baca0b1a41e550b2789310bff477af4d6074cd40528097e511bd",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/selected_routes",
+            "value": {
+              "CORE_reply": false,
+              "HARNESS_obligations": false,
+              "INT_query": false
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/claims_connection_success",
+            "value": true
+          }
+        ],
+        "expected_patch": [
+          {
+            "op": "replace",
+            "path": "/contract_results",
+            "value": {}
+          },
+          {
+            "op": "replace",
+            "path": "/route_results",
+            "value": {
+              "CORE_reply": "not_selected",
+              "HARNESS_obligations": "not_selected",
+              "INT_query": "not_selected"
+            }
+          }
+        ],
+        "typed_input": {
+          "claims_connection_success": true,
+          "provided_contracts": {
+            "BRAIN019": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN019",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN021": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN021",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN022": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN022",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "HARNESS009": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "HARNESS009",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            }
+          },
+          "required_contracts": {
+            "BRAIN019": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN019",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN021": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN021",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "BRAIN022": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "BRAIN022",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            },
+            "HARNESS009": {
+              "contract_revision": "fixture-contract-r1",
+              "identity": "HARNESS009",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-CANDIDATES",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "state": "qualified_fixture_only",
+              "usage": "normative_candidate_only"
+            }
+          },
+          "requires_unselected_INT_completion": false,
+          "selected_routes": {
+            "CORE_reply": false,
+            "HARNESS_obligations": false,
+            "INT_query": false
+          },
+          "target_knowledge_ref": {
+            "identity": "KNOWLEDGE-CANDIDATES",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "expected_result": {
+          "contract_results": {},
+          "route_results": {
+            "CORE_reply": "not_selected",
+            "HARNESS_obligations": "not_selected",
+            "INT_query": "not_selected"
+          },
+          "connection_claim": "none",
+          "unselected_INT_gate_claim": "none",
+          "owner_return_candidates": [],
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_runtime_decision": false,
+            "actual_requirement_value_generated": false,
+            "actual_connection": false,
+            "actual_execution_permitted": false,
+            "actual_authority_expanded": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "raw_canonical_sha256": "df41751080df20c6c9e5a98314c61964f9e97f9e3af0df6f3cdaa576e57eb857",
+        "expected_canonical_sha256": "68507705979130d633888536de185d418684c88bd50a230391b64d085d4e3b6e",
+        "function_ref": "HELIXBRAIN-L5-012-F02",
+        "program_ref": "B012-PROGRAM-F02",
+        "basis": "現有限式の非選択時診断はcontract_results空のためconnection_claim=none。これは接続成功の合格ではない。実connection effectはfalseで、claimとroute選択の意味整合は未実現として不足witness。",
+        "role": "unclosed_scope_witness_not_obligation_pass",
+        "execution_state": "not_executed",
+        "qualification": "synthetic_input_not_qualified",
+        "l5_candidate_binding": {
+          "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+          "document_id": "HELIXBRAIN-L5-012",
+          "program_ref": "B012-PROGRAM-F02",
+          "candidate_sha256": "defe90766075f16e04bb6cea1c31b7b09df9a1278f632effab286cfc48b1c13b",
+          "program_canonical_sha256": "32ad7f91abdac7f94c13fd342231f5d1a6a820490d42489347a660ed84431165"
+        }
+      }
+    ]
+  }
 }
