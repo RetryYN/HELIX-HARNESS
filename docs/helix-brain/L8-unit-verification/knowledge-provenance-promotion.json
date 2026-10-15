@@ -296,7 +296,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -587,7 +587,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -878,7 +878,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -1161,7 +1161,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -1444,7 +1444,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -1727,7 +1727,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -2010,7 +2010,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -2293,7 +2293,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -2576,7 +2576,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -2859,7 +2859,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -3152,7 +3152,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -3445,7 +3445,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -3738,7 +3738,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -4014,7 +4014,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -4307,7 +4307,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -4590,7 +4590,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -4873,7 +4873,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -5149,7 +5149,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -5442,7 +5442,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -5745,7 +5745,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -6033,7 +6033,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -6338,7 +6338,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -6643,7 +6643,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -6931,7 +6931,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -7236,7 +7236,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -7541,7 +7541,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -7829,7 +7829,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -8134,7 +8134,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -8439,7 +8439,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -8727,7 +8727,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -9032,7 +9032,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -9337,7 +9337,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -9625,7 +9625,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -9930,7 +9930,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -10235,7 +10235,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -10538,7 +10538,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -10778,7 +10778,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -11018,7 +11018,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -11321,7 +11321,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -11624,7 +11624,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -11927,7 +11927,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -12230,7 +12230,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -12533,7 +12533,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -12836,7 +12836,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13139,7 +13139,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13442,7 +13442,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13558,7 +13558,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13674,7 +13674,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13790,7 +13790,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -13906,7 +13906,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14022,7 +14022,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14138,7 +14138,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14253,7 +14253,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14369,7 +14369,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14484,7 +14484,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14600,7 +14600,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14715,7 +14715,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14831,7 +14831,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -14946,7 +14946,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15062,7 +15062,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15178,7 +15178,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15294,7 +15294,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15410,7 +15410,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15526,7 +15526,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "expectation_role": "独立期待は、原L9の期待wholeをそのまま保持する。L5規則との照合はraw入力から再計算し、L9期待値を計算入力には使わない。"
@@ -15812,7 +15812,7 @@
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
         "function_ref": "BRAIN007-F01",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6"
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9"
       },
       "trace_refs": {
         "l3": "HELIXBRAIN-L3-007-F01",
@@ -16022,7 +16022,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "given": {
@@ -16332,7 +16332,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F01"
       },
       "given": {
@@ -16659,7 +16659,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-F02"
       },
       "given": {
@@ -16987,7 +16987,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "given": {
@@ -17112,7 +17112,7 @@
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
         "document_id": "HELIXBRAIN-L5-007",
-        "candidate_content_sha256": "ee21297f34b0a71cdc99fdf7a18be78eb82177f213d1558d60f2b10e76478ba6",
+        "candidate_content_sha256": "58a57172cc08a10a3be3ed94abb232370b42de753a0327a0471feca8700858e9",
         "function_ref": "BRAIN007-B01"
       },
       "given": {
@@ -17215,6 +17215,35 @@
         }
       ],
       "baseline_expected_canonical_sha256": "98ed3662edd10729cd975406f0c9ea9a587799ca3804d15a79cb89b47cf2e748"
+    }
+  ],
+  "limitations": [
+    "資格、独立性の実証、正式schema/codec、owner-qualified binding、実採否、実promotionは未成立。",
+    "固定rawで表れない型不正、重複記録、複数異常同時発生、任意のAbsent/null組合せは未評価。",
+    "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。",
+    "F02はL10の「不足段階と対象revisionを保持し、既存の変更/検証経路へ返す」に対し、stage_resultsとupstream_routeで原値・不足・経路候補を返す。L3/L4のうち上流意味変更時に該当する上流ownerを特定する部分は入力・返却fieldがなく未具体化。一般的な経路表示をowner特定の代用にしない。",
+    "B01のL4/L10責務別返却候補は返却fieldがなく未具体化。owner_resultsの内容比較とproduct_content_resultの製品分離表示を、責務別返却候補の代用にしない。"
+  ],
+  "unclosed_owner_returns": [
+    {
+      "requirement_ref": "HELIXBRAIN-L3-007-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-007-F02",
+      "design_contract_ref": "HELIXBRAIN-L4-007-F02",
+      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/1/output_meanings/1",
+      "meaning": "上流意味変更時の該当上流ownerの特定",
+      "boundary": "L10 F02のfailure_observationは「不足段階と対象revisionを保持し、既存の変更/検証経路へ返す」。この既存経路への振分けはupstream_route_ruleが実現する。L3 obligationとL4 output_meanings/content_comparisonにある、上流意味変更時の該当上流ownerの特定は入力・返却fieldがなく未具体化。",
+      "status": "unclosed_in_this_L9_output_contract",
+      "not_claimed": "upstream_routeは既存経路の候補表示であり、該当する上流ownerのidentityや資格を特定したものではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-007-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-007-B01",
+      "design_contract_ref": "HELIXBRAIN-L4-007-B01",
+      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/2/output_meanings/1",
+      "meaning": "責務別不足とauthority返却候補",
+      "boundary": "原L9 B01 wholeには責務別authority返却候補fieldがない。product_content_resultは製品固有意味の切離しに限り、責務別候補やauthority変更を表さない。",
+      "status": "unclosed_in_this_L9_output_contract",
+      "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
     }
   ]
 }
