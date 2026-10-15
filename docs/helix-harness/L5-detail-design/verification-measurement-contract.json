@@ -954,6 +954,7 @@
               "fields": {
                 "baseline": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -967,6 +968,7 @@
                 },
                 "evidence_schema": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -980,6 +982,7 @@
                 },
                 "execution_layer": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -993,6 +996,7 @@
                 },
                 "measurement_target": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1006,6 +1010,7 @@
                 },
                 "metric_id": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1019,6 +1024,7 @@
                 },
                 "oracle": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1032,6 +1038,7 @@
                 },
                 "owner": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1045,6 +1052,7 @@
                 },
                 "remeasure_trigger": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1058,6 +1066,7 @@
                 },
                 "requirement_NFR": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1071,6 +1080,7 @@
                 },
                 "sampling_window": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1084,6 +1094,7 @@
                 },
                 "target_SLO": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1091,12 +1102,60 @@
                     "kind": "union",
                     "members": [
                       "null",
-                      "record"
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "max": {
+                            "presence_states": [
+                              "absent",
+                              "null",
+                              "provided"
+                            ],
+                            "value": {
+                              "kind": "union",
+                              "members": [
+                                "null",
+                                "integer"
+                              ]
+                            }
+                          },
+                          "source": {
+                            "presence_states": [
+                              "absent",
+                              "null",
+                              "provided"
+                            ],
+                            "value": {
+                              "kind": "union",
+                              "members": [
+                                "null",
+                                "string"
+                              ]
+                            }
+                          },
+                          "unit": {
+                            "presence_states": [
+                              "absent",
+                              "null",
+                              "provided"
+                            ],
+                            "value": {
+                              "kind": "union",
+                              "members": [
+                                "null",
+                                "string"
+                              ]
+                            }
+                          }
+                        },
+                        "additional_properties": "preserve_unknown_as_json_value"
+                      }
                     ]
                   }
                 },
                 "tolerance": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1110,6 +1169,7 @@
                 },
                 "tool_probe": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1123,6 +1183,7 @@
                 },
                 "workload_environment_data": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -1411,183 +1472,132 @@
         "kind": "record",
         "fields": {
           "field_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "baseline": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "evidence_schema": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "execution_layer": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "measurement_target": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "metric_id": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "oracle": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "owner": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "remeasure_trigger": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "requirement_NFR": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "sampling_window": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "target_SLO": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "tolerance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "tool_probe": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "workload_environment_data": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
+            "kind": "record",
+            "fields": {
+              "baseline": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
               },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
+              "evidence_schema": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "execution_layer": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "measurement_target": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "metric_id": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "oracle": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "owner": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "remeasure_trigger": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "requirement_NFR": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "sampling_window": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "target_SLO": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition",
+                  "unknown_source_rejected"
+                ]
+              },
+              "tolerance": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "tool_probe": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              },
+              "workload_environment_data": {
+                "kind": "enum",
+                "values": [
+                  "conflict",
+                  "missing",
+                  "supported_synthetic_condition"
+                ]
+              }
+            },
+            "additional_properties": "forbidden"
           },
           "metric_identity_collision": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "boolean"
-              ]
-            }
+            "kind": "union",
+            "members": [
+              "boolean"
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F02": {
         "kind": "record",
@@ -2341,10 +2351,10 @@
             "value_type": {
               "kind": "enum",
               "values": [
-                "required_in_fixture",
-                "unknown",
                 "missing_NA_reason",
-                "not_applicable_in_fixture"
+                "not_applicable_in_fixture",
+                "required_in_fixture",
+                "unknown"
               ]
             }
           },
@@ -2649,128 +2659,48 @@
         "kind": "record",
         "fields": {
           "metric_conditions": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
               "kind": "record",
               "fields": {
-                "METRIC-P": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "record",
-                    "fields": {
-                      "current": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "measured": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "representative": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "threshold": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      }
-                    },
-                    "additional_properties": "preserve_unknown_as_json_value"
-                  }
+                "current": {
+                  "kind": "enum",
+                  "values": [
+                    "stale",
+                    "supported_synthetic_condition",
+                    "unobserved"
+                  ]
                 },
-                "METRIC-R": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "record",
-                    "fields": {
-                      "current": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "measured": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "representative": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "threshold": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      }
-                    },
-                    "additional_properties": "preserve_unknown_as_json_value"
-                  }
+                "measured": {
+                  "kind": "enum",
+                  "values": [
+                    "supported_synthetic_condition",
+                    "unmeasured"
+                  ]
+                },
+                "representative": {
+                  "kind": "enum",
+                  "values": [
+                    "nonrepresentative",
+                    "supported_synthetic_condition",
+                    "unobserved"
+                  ]
+                },
+                "threshold": {
+                  "kind": "enum",
+                  "values": [
+                    "failed",
+                    "supported_synthetic_condition",
+                    "unobserved"
+                  ]
                 }
               },
-              "additional_properties": "preserve_unknown_as_json_value"
+              "additional_properties": "forbidden"
             }
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F04": {
         "kind": "record",
@@ -3024,183 +2954,107 @@
         "kind": "record",
         "fields": {
           "stage_meaning_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "local_verification": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "method_design": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "probe_implementation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "system_verification": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "time_series_evaluation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "usage_acceptance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
+            "kind": "record",
+            "fields": {
+              "local_verification": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture"
+                ]
               },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
+              "method_design": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture"
+                ]
+              },
+              "probe_implementation": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture",
+                  "meaning_conflict"
+                ]
+              },
+              "system_verification": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture"
+                ]
+              },
+              "time_series_evaluation": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture"
+                ]
+              },
+              "usage_acceptance": {
+                "kind": "enum",
+                "values": [
+                  "bound_in_fixture"
+                ]
+              }
+            },
+            "additional_properties": "forbidden"
           },
           "stage_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "local_verification": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "method_design": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "probe_implementation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "system_verification": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "time_series_evaluation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "usage_acceptance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
+            "kind": "record",
+            "fields": {
+              "local_verification": {
+                "kind": "enum",
+                "values": [
+                  "pass_in_fixture"
+                ]
               },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
+              "method_design": {
+                "kind": "enum",
+                "values": [
+                  "unobserved"
+                ]
+              },
+              "probe_implementation": {
+                "kind": "enum",
+                "values": [
+                  "unobserved"
+                ]
+              },
+              "system_verification": {
+                "kind": "enum",
+                "values": [
+                  "insufficient_stage_evidence",
+                  "unobserved"
+                ]
+              },
+              "time_series_evaluation": {
+                "kind": "enum",
+                "values": [
+                  "insufficient_stage_evidence",
+                  "unobserved"
+                ]
+              },
+              "usage_acceptance": {
+                "kind": "enum",
+                "values": [
+                  "insufficient_stage_evidence",
+                  "unobserved"
+                ]
+              }
+            },
+            "additional_properties": "forbidden"
           },
           "future_measurement_gate_claim": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "enum",
-              "values": [
-                "rejected_candidate_claim",
-                "not_proposed",
-                "unknown"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
           },
           "requires_future_measurement_to_author": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "scalar",
-              "type": "boolean"
-            }
+            "kind": "scalar",
+            "type": "boolean"
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F05": {
         "kind": "record",
@@ -3779,73 +3633,51 @@
         "kind": "record",
         "fields": {
           "baseline_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "specified_in_fixture",
+              "unknown"
+            ]
           },
           "classification_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "separate_meanings",
+              "technology_as_capability_rejected"
+            ]
           },
           "hard_limit_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "unknown",
+              "violated",
+              "within_limit_in_fixture"
+            ]
           },
           "identity_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "bound_in_fixture",
+              "conflict"
+            ]
           },
           "target_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "target_not_met",
+              "unknown",
+              "within_target_in_fixture"
+            ]
           },
           "threshold_binding": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "bound_in_fixture",
+              "conflict"
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F07": {
         "kind": "record",
@@ -3870,6 +3702,7 @@
               "fields": {
                 "cost": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3883,6 +3716,7 @@
                 },
                 "grounding": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3896,6 +3730,7 @@
                 },
                 "loop_termination": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3909,6 +3744,7 @@
                 },
                 "memory_contamination_resistance": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3922,6 +3758,7 @@
                 },
                 "provider_degradation": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3935,6 +3772,7 @@
                 },
                 "reproducibility": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3948,6 +3786,7 @@
                 },
                 "worker_verifier_independence": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -3987,6 +3826,7 @@
           },
           "non_AI_reason": {
             "presence_states": [
+              "absent",
               "null",
               "provided"
             ],
@@ -4005,95 +3845,77 @@
         "kind": "record",
         "fields": {
           "condition_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "cost": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "grounding": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "loop_termination": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "memory_contamination_resistance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "provider_degradation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "reproducibility": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "worker_verifier_independence": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
+            "kind": "record",
+            "fields": {
+              "cost": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
               },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
+              "grounding": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
+              },
+              "loop_termination": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
+              },
+              "memory_contamination_resistance": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
+              },
+              "provider_degradation": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
+              },
+              "reproducibility": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture",
+                  "unknown"
+                ]
+              },
+              "worker_verifier_independence": {
+                "kind": "enum",
+                "values": [
+                  "missing",
+                  "missing_non_AI_reason",
+                  "reasoned_not_applicable",
+                  "supported_in_fixture"
+                ]
+              }
+            },
+            "additional_properties": "forbidden"
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F08": {
         "kind": "record",
@@ -4332,17 +4154,17 @@
             "value_type": {
               "kind": "enum",
               "values": [
+                "missing",
                 "reasoned_not_applicable",
-                "specified_in_fixture",
-                "missing"
+                "specified_in_fixture"
               ]
             }
           },
           "cause_result": {
             "kind": "enum",
             "values": [
-              "unreproduced_cause_claim_rejected",
-              "unknown"
+              "unknown",
+              "unreproduced_cause_claim_rejected"
             ]
           },
           "legacy_DB_forced": {
@@ -4355,7 +4177,8 @@
               {
                 "kind": "enum",
                 "values": [
-                  "rejected"
+                  "rejected",
+                  "unknown"
                 ]
               }
             ]
@@ -4805,9 +4628,9 @@
             "value_type": {
               "kind": "enum",
               "values": [
-                "selected_with_reason",
                 "missing_selection_reason",
-                "not_selected"
+                "not_selected",
+                "selected_with_reason"
               ]
             }
           },
@@ -4816,16 +4639,16 @@
             "items": {
               "kind": "enum",
               "values": [
-                "fault_injection",
-                "race",
-                "soak",
                 "crash_recovery",
-                "property_based",
-                "model_based_state_machine",
                 "differential",
-                "mutation",
+                "fault_injection",
                 "fuzz",
-                "snapshot_compatibility"
+                "model_based_state_machine",
+                "mutation",
+                "property_based",
+                "race",
+                "snapshot_compatibility",
+                "soak"
               ]
             }
           },
@@ -4838,17 +4661,12 @@
             "type": "boolean"
           },
           "all_ticket_fixed_CI_claim": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "enum",
-              "values": [
-                "rejected_candidate_claim",
-                "not_proposed",
-                "unknown"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "not_proposed",
+              "rejected_candidate_claim",
+              "unknown"
+            ]
           }
         },
         "additional_properties": "forbidden"
@@ -4865,17 +4683,22 @@
               "fields": {
                 "episode": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "population": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
@@ -4890,17 +4713,21 @@
                 },
                 "regression": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "release": {
                   "presence_states": [
+                    "absent",
                     "null"
                   ],
                   "value": {
@@ -4912,34 +4739,43 @@
                 },
                 "requirement": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "revision": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "timepoint": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 }
@@ -4956,17 +4792,22 @@
               "fields": {
                 "episode": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "population": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
@@ -4981,17 +4822,21 @@
                 },
                 "regression": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "release": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -5005,6 +4850,7 @@
                 },
                 "requirement": {
                   "presence_states": [
+                    "absent",
                     "null",
                     "provided"
                   ],
@@ -5018,23 +4864,29 @@
                 },
                 "revision": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "timepoint": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 }
@@ -5073,17 +4925,22 @@
               "fields": {
                 "episode": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "population": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
@@ -5098,17 +4955,21 @@
                 },
                 "regression": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "release": {
                   "presence_states": [
+                    "absent",
                     "null"
                   ],
                   "value": {
@@ -5120,34 +4981,43 @@
                 },
                 "requirement": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "revision": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "timepoint": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 }
@@ -5167,9 +5037,9 @@
             "value_type": {
               "kind": "enum",
               "values": [
+                "conflict",
                 "missing",
-                "same_relation_in_fixture",
-                "conflict"
+                "same_relation_in_fixture"
               ]
             }
           },
@@ -5191,17 +5061,12 @@
             "type": "boolean"
           },
           "future_improvement_gate_claim": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "enum",
-              "values": [
-                "rejected_candidate_claim",
-                "not_proposed",
-                "unknown"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "not_proposed",
+              "rejected_candidate_claim",
+              "unknown"
+            ]
           }
         },
         "additional_properties": "forbidden"
@@ -5218,45 +5083,57 @@
               "fields": {
                 "contract": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "oracle": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "revision": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "scope": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 }
@@ -5266,6 +5143,7 @@
           },
           "overhead": {
             "presence_states": [
+              "absent",
               "null",
               "provided"
             ],
@@ -5312,6 +5190,7 @@
           },
           "remeasure_trigger": {
             "presence_states": [
+              "absent",
               "null",
               "provided"
             ],
@@ -5325,6 +5204,7 @@
           },
           "reproduce": {
             "presence_states": [
+              "absent",
               "null",
               "provided"
             ],
@@ -5345,45 +5225,57 @@
               "fields": {
                 "contract": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "oracle": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "revision": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 },
                 "scope": {
                   "presence_states": [
+                    "absent",
+                    "null",
                     "provided"
                   ],
                   "value": {
                     "kind": "union",
                     "members": [
-                      "string"
+                      "string",
+                      "null"
                     ]
                   }
                 }
@@ -5393,6 +5285,7 @@
           },
           "result_ref": {
             "presence_states": [
+              "absent",
               "null",
               "provided"
             ],
@@ -5411,73 +5304,49 @@
         "kind": "record",
         "fields": {
           "frame_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "bound_in_fixture",
+              "conflict"
+            ]
           },
           "overhead_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "missing",
+              "specified"
+            ]
           },
           "reproduction_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "missing",
+              "specified"
+            ]
           },
           "result_trace": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "missing",
+              "retained"
+            ]
           },
           "safety_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "allowed_fixture_class_only",
+              "rejected"
+            ]
           },
           "trigger_trace": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "missing",
+              "retained"
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_N02": {
         "kind": "record",
@@ -5692,17 +5561,12 @@
             "type": "boolean"
           },
           "all_ticket_fixed_CI_claim": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "enum",
-              "values": [
-                "rejected_candidate_claim",
-                "not_proposed",
-                "unknown"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
           }
         },
         "additional_properties": "forbidden"
@@ -5878,11 +5742,11 @@
             "value_type": {
               "kind": "enum",
               "values": [
+                "missing",
+                "not_required",
                 "not_required_for_this_authoring_operation",
                 "not_selected",
-                "not_required",
                 "reference_only",
-                "missing",
                 "supported_in_fixture"
               ]
             }
@@ -5890,15 +5754,15 @@
           "oracle_result": {
             "kind": "enum",
             "values": [
-              "held",
-              "conflict"
+              "conflict",
+              "held"
             ]
           },
           "comparison_authority": {
             "kind": "enum",
             "values": [
-              "rejected",
-              "none"
+              "none",
+              "rejected"
             ]
           },
           "internal_OS_forced": {
@@ -5911,7 +5775,8 @@
               {
                 "kind": "enum",
                 "values": [
-                  "rejected"
+                  "rejected",
+                  "unknown"
                 ]
               }
             ]
@@ -5919,6 +5784,11 @@
         },
         "additional_properties": "forbidden"
       }
+    },
+    "schema_conventions": {
+      "input_records": "Input_*はsource packetを損なわず扱うため、presence_statesでFieldValueのabsent/null/empty/providedを表し、additional_properties=preserve_unknown_as_json_valueで未宣言raw keyを保持する。",
+      "assessment_records": "Assessment_*は有限projectionの返却shapeであり、各fieldを直接のkind descriptorで表し、recordはadditional_properties=forbiddenとする。入力側のpresence wrapperを返却型へ流用しない。",
+      "map_and_enum": "sourceにある可変identityの集合はmap<string,T>、閉じたfixture出力literalはenumで表す。fixture由来のenumは製品全域の語彙・資格・採択を意味しない。"
     }
   },
   "pure_function_signatures": [
@@ -5958,7 +5828,7 @@
         "field_results",
         "metric_identity_collision"
       ],
-      "algorithm": "14項目を項目ごとにrequired/proposedのpresenceと値を比較し、同じmetric IDの意味衝突、無関係oracle、再現不能probe、出所のないtargetを相殺しない。 required_contractの14 fieldをkeyごとにproposed_contractと比較する。candidate absent/nullはmissing、完全一致はsupported_synthetic_condition、target_SLO.max=0かつsource absentはunknown_source_rejected、その他値差はconflict。同時にmetric_idがother_required_contractと一致しmeasurement_targetが違う場合だけidentity collision=true。",
+      "algorithm": "required/proposedの各field値とpresenceを比較する。値あり同士の完全一致はsupported_synthetic_condition、差はconflict、提案側null/absentはmissing。target_SLO.max=0かつsource=null/absentだけはunknown_source_rejected。metric_id同一かつmeasurement_target差の場合に限りmetric_identity_collision=true。",
       "semantic_rules": [
         {
           "id": "F01-SOURCE-COMPARISON",
@@ -5969,8 +5839,8 @@
             "input.proposed_contract",
             "input.required_contract"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "required_contractの14 fieldをkeyごとにproposed_contractと比較する。candidate absent/nullはmissing、完全一致はsupported_synthetic_condition、target_SLO.max=0かつsource absentはunknown_source_rejected、その他値差はconflict。同時にmetric_idがother_required_contractと一致しmeasurement_targetが違う場合だけidentity collision=true。",
+          "required_presence": "必須fieldのraw presenceはabsent/null/empty/providedを保持する。nullとabsentはsource未提示の分類で同じunknown/missing結果になり得るが、入力状態を同一視しない。",
+          "comparison": "required/proposedの各field値とpresenceを比較する。値あり同士の完全一致はsupported_synthetic_condition、差はconflict、提案側null/absentはmissing。target_SLO.max=0かつsource=null/absentだけはunknown_source_rejected。metric_id同一かつmeasurement_target差の場合に限りmetric_identity_collision=true。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "field_results",
@@ -5985,7 +5855,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "必須fieldのraw presenceはabsent/null/empty/providedを保持する。nullとabsentはsource未提示の分類で同じunknown/missing結果になり得るが、入力状態を同一視しない。"
     },
     {
       "id": "F-034-F02",
@@ -6022,7 +5893,7 @@
         "domain_results",
         "shared_threshold_imposed"
       ],
-      "algorithm": "domains各memberのapplicability/reason/target_sourceを値とpresenceで比較する。domains.performance.proposed_limitが文字列unboundedならperformance=unknown。target_sourceのabsentと明示nullは入力型で別状態として保持し、どちらもsource未提示としてunknownにする。impose_same_threshold=trueはrejected。other_productのscope/target/environmentをperformanceへ混ぜない。",
+      "algorithm": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknownまたはscope/source未確定はunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absentはmissing_NA_reason。performance.proposed_limit=unboundedまたはtarget_source=null/absentならperformanceだけunknown。impose_same_threshold=trueはrejected、falseはfalse。",
       "semantic_rules": [
         {
           "id": "F02-SOURCE-COMPARISON",
@@ -6033,7 +5904,7 @@
             "input.scope"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "domains各memberのapplicability/reason/target_sourceを値とpresenceで比較する。domains.performance.proposed_limitが文字列unboundedならperformance=unknown。target_sourceのabsentと明示nullは入力型で別状態として保持し、どちらもsource未提示としてunknownにする。impose_same_threshold=trueはrejected。other_productのscope/target/environmentをperformanceへ混ぜない。",
+          "comparison": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknownまたはscope/source未確定はunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absentはmissing_NA_reason。performance.proposed_limit=unboundedまたはtarget_source=null/absentならperformanceだけunknown。impose_same_threshold=trueはrejected、falseはfalse。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "domain_results",
@@ -6049,7 +5920,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "各domainのapplicability/reason/target_sourceのpresenceを保持する。正当なN/Aには当該domainの理由を要し、欠落/nullをN/A成立と扱わない。"
     },
     {
       "id": "F-034-F03",
@@ -6086,7 +5958,7 @@
       "returns": [
         "metric_conditions"
       ],
-      "algorithm": "各required metricとresultをmetric IDで結び、revision/environment、代表性、実測値、target条件を別軸で判定する。code/doc/test greenだけで測定義務や全体完了を立てない。 required_metricsの各metric IDをresultsの同IDへjoinし、value presence、revision、environment、representative、value<=maxを独立に判定する。no resultはunmeasured/unobserved、revision差はstale、代表性falseまたは環境差はnonrepresentative、target超過はfailed。",
+      "algorithm": "required_metricsをmapとして走査し、各metric IDごとにcurrent/measured/representative/thresholdを返す。result不在はcurrent/representative/threshold=unobserved、measured=unmeasured。結果存在時はrevision差=stale、representative=falseまたは環境差=nonrepresentative、値がtargetを超える=failed、観測値と条件が一致すればsupported_synthetic_condition。出力mapのkeyは入力metric IDを保持する。",
       "semantic_rules": [
         {
           "id": "F03-SOURCE-COMPARISON",
@@ -6098,7 +5970,7 @@
             "input.results"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "required_metricsの各metric IDをresultsの同IDへjoinし、value presence、revision、environment、representative、value<=maxを独立に判定する。no resultはunmeasured/unobserved、revision差はstale、代表性falseまたは環境差はnonrepresentative、target超過はfailed。",
+          "comparison": "required_metricsをmapとして走査し、各metric IDごとにcurrent/measured/representative/thresholdを返す。result不在はcurrent/representative/threshold=unobserved、measured=unmeasured。結果存在時はrevision差=stale、representative=falseまたは環境差=nonrepresentative、値がtargetを超える=failed、観測値と条件が一致すればsupported_synthetic_condition。出力mapのkeyは入力metric IDを保持する。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "metric_conditions"
@@ -6112,7 +5984,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "rawのrequired_metrics/resultsから各metric IDを直接結合する。fixtureでの測定所見を実測・代表性・採択済み閾値へ昇格しない。"
     },
     {
       "id": "F-034-F04",
@@ -6150,7 +6023,7 @@
         "stage_meaning_results",
         "stage_results"
       ],
-      "algorithm": "6段階の意味契約をrequired/providedで照合し、観測stageを別に保持する。短い時系列から長期評価/利用受入を作らない。 required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。 原rawのinput.requires_future_measurement_to_authorがtrueならfuture_measurement_gate_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。 原L9のrequires_future_measurement_to_authorは、契約起草に未来実測を要件化しない既決規則としてfalseを返す。入力でtrueを提案した事実は別supplemental returnの候補拒否診断に残す。",
+      "algorithm": "6つの意味stageを同名keyで照合する。provided meaningの一致はbound_in_fixture、legacy推論等意味衝突はmeaning_conflict。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidence、それ以外に観測がなければunobserved。future measurement claim=trueはsupplemental rejected_candidate_claim、falseはnot_proposed、null/absentはunknown。requires_future_measurement_to_authorの原期待値はfalse。",
       "semantic_rules": [
         {
           "id": "F04-SOURCE-COMPARISON",
@@ -6161,7 +6034,7 @@
             "input.stage_observations"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。 input.requires_future_measurement_to_authorがtrueの候補主張はfuture_measurement_gate_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F04.requires_future_measurement_to_authorの原期待に加えず、L4根拠の補足診断として別出力にする。 原L9 projectionのrequires_future_measurement_to_authorはfalseを返す。入力rawのtrue候補そのものは別supplemental findingで拒否し、原L9 expected_materialを変更しない。",
+          "comparison": "6つの意味stageを同名keyで照合する。provided meaningの一致はbound_in_fixture、legacy推論等意味衝突はmeaning_conflict。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidence、それ以外に観測がなければunobserved。future measurement claim=trueはsupplemental rejected_candidate_claim、falseはnot_proposed、null/absentはunknown。requires_future_measurement_to_authorの原期待値はfalse。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "future_measurement_gate_claim",
@@ -6197,7 +6070,8 @@
           }
         },
         "additional_properties": "forbidden"
-      }
+      },
+      "output_derivation_basis": "全stage keyは原meaning表との同名比較による。future measurement候補診断は補足returnであり、L9原期待へ混ぜない。"
     },
     {
       "id": "F-034-F05",
@@ -6314,7 +6188,7 @@
         "target_result",
         "threshold_binding"
       ],
-      "algorithm": "NFR identity/classificationとthreshold各fieldを分離して照合し、baseline unknownとtarget/hard limit判定を混同しない。 provided_identityとrequired_identityの全field、thresholdsとproposed_thresholdsの全fieldを個別比較。valueをtarget/hard_limitと照合し、baseline nullはunknownで保持。classifications.capabilityにlegacy_DB_product_nameが来たときtechnology_as_capability_rejected。",
+      "algorithm": "identity/thresholdの完全一致=bound_in_fixture、不一致=conflict。target/hard_limitとの値比較結果はwithin_target_in_fixture/within_limit_in_fixture/violated。baseline null/absent=unknown。能力分類と技術選択を分ける場合separate_meanings、技術を能力扱いする場合technology_as_capability_rejected。",
       "semantic_rules": [
         {
           "id": "F06-SOURCE-COMPARISON",
@@ -6327,7 +6201,7 @@
             "input.value"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "provided_identityとrequired_identityの全field、thresholdsとproposed_thresholdsの全fieldを個別比較。valueをtarget/hard_limitと照合し、baseline nullはunknownで保持。classifications.capabilityにlegacy_DB_product_nameが来たときtechnology_as_capability_rejected。",
+          "comparison": "identity/thresholdの完全一致=bound_in_fixture、不一致=conflict。target/hard_limitとの値比較結果はwithin_target_in_fixture/within_limit_in_fixture/violated。baseline null/absent=unknown。能力分類と技術選択を分ける場合separate_meanings、技術を能力扱いする場合technology_as_capability_rejected。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "baseline_result",
@@ -6346,7 +6220,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "数値比較は同一fixture内で入力されたtarget/hard_limitとの関係だけを返す。unknown baselineを0へ置換しない。"
     },
     {
       "id": "F-034-F07",
@@ -6383,7 +6258,7 @@
       "returns": [
         "condition_results"
       ],
-      "algorithm": "AI利用時の7条件をevidence status単位で確認する。AIでない理由も保持し、通常qualityの代替にしない。 AI条件7種のstatusを個別に保持する。is_AI=falseならnon_AI_reasonの有無により全条件をreasoned_not_applicableまたはmissing_non_AI_reasonとする。条件1つの欠落を他条件で相殺しない。",
+      "algorithm": "is_AI=trueでは7 conditionを別々に返し、条件null/absentはmissing、入力statusを保持する。is_AI=falseではnon_AI_reasonが値ありなら全条件reasoned_not_applicable、null/absentならmissing_non_AI_reason。",
       "semantic_rules": [
         {
           "id": "F07-SOURCE-COMPARISON",
@@ -6394,8 +6269,8 @@
             "input.method_exists",
             "input.non_AI_reason"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "AI条件7種のstatusを個別に保持する。is_AI=falseならnon_AI_reasonの有無により全条件をreasoned_not_applicableまたはmissing_non_AI_reasonとする。条件1つの欠落を他条件で相殺しない。",
+          "required_presence": "conditionとnon_AI_reasonのpresence差を入力に保全し、7条件を他の条件で相殺しない。",
+          "comparison": "is_AI=trueでは7 conditionを別々に返し、条件null/absentはmissing、入力statusを保持する。is_AI=falseではnon_AI_reasonが値ありなら全条件reasoned_not_applicable、null/absentならmissing_non_AI_reason。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "condition_results"
@@ -6409,7 +6284,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "conditionとnon_AI_reasonのpresence差を入力に保全し、7条件を他の条件で相殺しない。"
     },
     {
       "id": "F-034-F08",
@@ -6450,7 +6326,7 @@
         "condition_results",
         "legacy_DB_forced"
       ],
-      "algorithm": "原storage conditionごとにpersistent_selected=falseかつnonpersistent_reasonが非null/非emptyならreasoned_not_applicable、それ以外は値presenceからspecified_in_fixture/missingを返す。cause_claimがnull/unknownならunknown、主張ありかつcause_reproduced=falseならunreproduced_cause_claim_rejected。force_legacy_DB=trueならlegacy_DB_forced=rejected。",
+      "algorithm": "条件ごとに値あり=specified_in_fixture、理由付き非適用=reasoned_not_applicable、null/absent=missing。cause_claim=unknownまたは未供給ならunknown、cause_reproduced=falseの単一原因主張はunreproduced_cause_claim_rejected。force_legacy_DB=falseはfalse、trueはrejected、null/absentはunknown。",
       "semantic_rules": [
         {
           "id": "F08-SOURCE-COMPARISON",
@@ -6464,7 +6340,7 @@
             "input.selected_method"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "原storage conditionごとにpersistent_selected=falseかつnonpersistent_reasonが非null/非emptyならreasoned_not_applicable、それ以外は値presenceからspecified_in_fixture/missingを返す。cause_claimがnull/unknownならunknown、主張ありかつcause_reproduced=falseならunreproduced_cause_claim_rejected。force_legacy_DB=trueならlegacy_DB_forced=rejected。 cause_claim=unknownはcause_reproduced=falseでもunknownのまま保持し、未知を因果主張や失敗へ読み替えない。",
+          "comparison": "条件ごとに値あり=specified_in_fixture、理由付き非適用=reasoned_not_applicable、null/absent=missing。cause_claim=unknownまたは未供給ならunknown、cause_reproduced=falseの単一原因主張はunreproduced_cause_claim_rejected。force_legacy_DB=falseはfalse、trueはrejected、null/absentはunknown。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "cause_result",
@@ -6481,7 +6357,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "cause未知と未再現原因断定を分ける。falseは明示された非強制値に限り返し、欠落/nullはunknown。"
     },
     {
       "id": "F-034-F09",
@@ -6523,7 +6400,7 @@
         "method_results",
         "verification_complete"
       ],
-      "algorithm": "methods各keyでselected=trueかつreasonありをselected_with_reasonへ写す。全methodの選択・installation_onlyはverification完了を意味しない。全ticket固定CIは常にfalseとし、actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false、005の未完義務を原L4記載順で返す。 原rawのinput.all_ticket_fixed_CIがtrueならall_ticket_fixed_CI_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。",
+      "algorithm": "methodsの各keyでselected=trueかつreasonが空/null/absent以外ならselected_with_reason、selected=falseでreasonが空/null/absentならmissing_selection_reason、それ以外はnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
       "semantic_rules": [
         {
           "id": "F09-SOURCE-COMPARISON",
@@ -6537,7 +6414,7 @@
             "input.ticket"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "methods各keyでselected=trueかつreasonありをselected_with_reasonへ写す。全methodの選択・installation_onlyはverification完了を意味しない。全ticket固定CIは常にfalseとし、actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false、005の未完義務を原L4記載順で返す。 input.all_ticket_fixed_CIがtrueの候補主張はall_ticket_fixed_CI_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F09.all_ticket_fixed_CIの原期待に加えず、L4根拠の補足診断として別出力にする。",
+          "comparison": "methodsの各keyでselected=trueかつreasonが空/null/absent以外ならselected_with_reason、selected=falseでreasonが空/null/absentならmissing_selection_reason、それ以外はnot_selected。005_unfinished_obligationsは選択method数に関係なく[fault_injection,race,soak,crash_recovery,property_based,model_based_state_machine,differential,mutation,fuzz,snapshot_compatibility]をこの固定fixture順に返す。順序はHARNESS-L9-034-F09の既存期待に対する局所固定列で、L4-034本文がこの一覧を規範列挙するとは主張しない。actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false。all_ticket_fixed_CIはfalseを返す。raw claim true/false/null-or-absentは補足returnでrejected_candidate_claim/not_proposed/unknown。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "005_unfinished_obligations",
@@ -6575,7 +6452,8 @@
           }
         },
         "additional_properties": "forbidden"
-      }
+      },
+      "output_derivation_basis": "未完義務10件はsource fixture内の識別子と期待順を保全し、method選択や理由の有無で除かない。実検証完了・全ticket共通CIを意味しない。"
     },
     {
       "id": "F-034-F10",
@@ -6615,7 +6493,7 @@
         "relation_results",
         "release_state"
       ],
-      "algorithm": "OS_proposalとLABO_proposalのepisode/population/regression/requirement/revision/timepointをoriginal_relationの同一fieldと比較し、必要field欠落はmissing、全field一致はsame_relation_in_fixture、差はconflict。causal_basisがtime_only/time_proximity_onlyでなければ因果はsource_relation_only。release観測を作らず、future_improvement_required_to_authorは常にfalseへ是正する。 原rawのinput.future_improvement_required_to_authorがtrueならfuture_improvement_gate_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。",
+      "algorithm": "OS/LABOそれぞれのepisode/population/regression/requirement/revision/timepointをoriginal_relationと同名比較する。必須値null/absentはmissing、全一致はsame_relation_in_fixture、差はconflict。release_state=unobserved。causal_basis=time_only/time_proximity_onlyならcausal_inference_rejected、それ以外はsource_relation_only。future_improvement_required_to_authorはfalse。raw true/false/null-or-absent claimは補足returnでrejected_candidate_claim/not_proposed/unknown。",
       "semantic_rules": [
         {
           "id": "F10-SOURCE-COMPARISON",
@@ -6626,8 +6504,8 @@
             "input.future_improvement_required_to_author",
             "input.original_relation"
           ],
-          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "OS_proposalとLABO_proposalのepisode/population/regression/requirement/revision/timepointをoriginal_relationの同一fieldと比較し、必要field欠落はmissing、全field一致はsame_relation_in_fixture、差はconflict。causal_basisがtime_only/time_proximity_onlyでなければ因果はsource_relation_only。release観測を作らず、future_improvement_required_to_authorは常にfalseへ是正する。 input.future_improvement_required_to_authorがtrueの候補主張はfuture_improvement_gate_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F10.future_improvement_required_to_author=falseという既存期待に対する追加診断であり、原期待へ新fieldを加えず、L4根拠の補足診断として別出力にする。",
+          "required_presence": "timepointのみから因果やreleaseを導かない。null/absentの関係値はmissingと分類し、raw presenceは入力に保持する。",
+          "comparison": "OS/LABOそれぞれのepisode/population/regression/requirement/revision/timepointをoriginal_relationと同名比較する。必須値null/absentはmissing、全一致はsame_relation_in_fixture、差はconflict。release_state=unobserved。causal_basis=time_only/time_proximity_onlyならcausal_inference_rejected、それ以外はsource_relation_only。future_improvement_required_to_authorはfalse。raw true/false/null-or-absent claimは補足returnでrejected_candidate_claim/not_proposed/unknown。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "causality_claim",
@@ -6665,7 +6543,8 @@
           }
         },
         "additional_properties": "forbidden"
-      }
+      },
+      "output_derivation_basis": "timepointのみから因果やreleaseを導かない。null/absentの関係値はmissingと分類し、raw presenceは入力に保持する。"
     },
     {
       "id": "F-034-N01",
@@ -6711,7 +6590,7 @@
         "safety_result",
         "trigger_trace"
       ],
-      "algorithm": "payload class・frame・overhead・reproduction・result・triggerを独立に確認し、synthetic prohibited labelを含む負例を識別する。 evidence_frameをrequired_frame全fieldと照合し、payload_class、overhead、reproduce、result_ref、remeasure_triggerを独立判定。secret/PII禁止labelはfixture内でrejected。実secret/PIIが存在すると推論しない。",
+      "algorithm": "evidence_frameのcontract/oracle/revision/scopeをrequired_frameの同名値と比較し、一致=bound_in_fixture、不一致または欠落/null=conflict。禁止payload class labelはrejected、他の許可fixture labelはallowed_fixture_class_only。overhead/reproduce/result_ref/triggerは値ありならspecified/retained、null/absentならmissing。",
       "semantic_rules": [
         {
           "id": "N01-SOURCE-COMPARISON",
@@ -6726,8 +6605,8 @@
             "input.required_frame",
             "input.result_ref"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "evidence_frameをrequired_frame全fieldと照合し、payload_class、overhead、reproduce、result_ref、remeasure_triggerを独立判定。secret/PII禁止labelはfixture内でrejected。実secret/PIIが存在すると推論しない。",
+          "required_presence": "禁止語彙はsynthetic label限定であり、実secret/PII有無や実資格を推論しない。frameとその他要素のpresenceを保持する。",
+          "comparison": "evidence_frameのcontract/oracle/revision/scopeをrequired_frameの同名値と比較し、一致=bound_in_fixture、不一致または欠落/null=conflict。禁止payload class labelはrejected、他の許可fixture labelはallowed_fixture_class_only。overhead/reproduce/result_ref/triggerは値ありならspecified/retained、null/absentならmissing。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "frame_result",
@@ -6746,7 +6625,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "禁止語彙はsynthetic label限定であり、実secret/PII有無や実資格を推論しない。frameとその他要素のpresenceを保持する。"
     },
     {
       "id": "F-034-N02",
@@ -6890,7 +6770,7 @@
         "internal_OS_forced",
         "oracle_result"
       ],
-      "algorithm": "operation=author_contractではexternal user CIを選択し、依存をauthoring operation固有にnot_required/not_selected/reference_onlyとする。force_internal_OS=trueはinternal_OS_forced=rejected。operation=measure時はselected executor/依存を独立表示する。oracle差はconflict、comparison_claims_authority=trueはrejected。",
+      "algorithm": "author_contractではexternal_user_CI_selected。dependencies mapのinternal_OS explicit null/absent=not_required、future_INFRA=reference_only、CONNECT=not_selected。measureではexecutorを明示選択値から返し、依存条件を個別に保持する。force_internal_OS=falseはfalse、trueはrejected、null/absentはunknown。comparison_claims_authority=falseはnone、trueはrejected。",
       "semantic_rules": [
         {
           "id": "B01-SOURCE-COMPARISON",
@@ -6905,7 +6785,7 @@
             "input.selected_executor"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "operation=author_contractではexternal user CIを選択し、依存をauthoring operation固有にnot_required/not_selected/reference_onlyとする。force_internal_OS=trueはinternal_OS_forced=rejected。operation=measure時はselected executor/依存を独立表示する。oracle差はconflict、comparison_claims_authority=trueはrejected。 author_contractではdependencies.internal_OSがexplicit nullでもnot_required、future_INFRAはreference_only、CONNECTはこのauthoring operationではnot_selected。measureではcommunicate_between_mechanisms=trueの原raw時にCONNECT値を別評価し、nullならmissing。",
+          "comparison": "author_contractではexternal_user_CI_selected。dependencies mapのinternal_OS explicit null/absent=not_required、future_INFRA=reference_only、CONNECT=not_selected。measureではexecutorを明示選択値から返し、依存条件を個別に保持する。force_internal_OS=falseはfalse、trueはrejected、null/absentはunknown。comparison_claims_authority=falseはnone、trueはrejected。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "comparison_authority",
@@ -6924,7 +6804,8 @@
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
         "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+      ],
+      "output_derivation_basis": "operationに応じて依存を評価し、author_contractにmeasure専用依存を持ち込まない。非強制falseはrawに明示falseがある場合のみ返す。"
     }
   ],
   "contracts": [
