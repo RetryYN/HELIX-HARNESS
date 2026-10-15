@@ -32,7 +32,7 @@
       "decision_sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca",
       "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f"
     },
-    "approved_whole_objects_source": "6 exact L3/L10 objects from the record pinned whole-document hashes; decision admission PR2955 is admitted by audit merge commit fb3ed11..., later decision correction commit 7c2ef0... remains in base."
+    "approved_whole_objects_source": "decision recordに固定されたL3/L10のexact 6 objectを参照する。PR2955の実admissionはaudit recordとmerge commit fb3ed11de764556f00f3f923e2f97ec4467bb406で照合し、decision訂正commit 7c2ef0c722b63b0ea2c7882ab26472e87381d538は別revisionとして記録する。"
   },
   "approved_whole_objects": [
     {
@@ -223,11 +223,11 @@
   "document_id": "HELIXCONNECT-L8-005",
   "layer": "L8",
   "layer_id": "HELIXCONNECT-L8-005",
-  "pair": "HELIXCONNECT-L2-005",
-  "pair_id": "HELIXCONNECT-L2-005",
+  "pair": "HELIXCONNECT-L5-005",
+  "pair_id": "HELIXCONNECT-L5-005",
   "design_ref": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json",
   "integration_ref": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
-  "method": "各原90 rawは正式L5汎用ASTから再計算する。加えてL8.local_domain_probesに54件のpresent-but-nonconforming単一field摂動と7件のAbsent摂動を置く。各probeの入力JSON Patchはsource rawから検証し、expected wholeは固定L9 base wholeに独立に明示したL3/L4期待overlayを適用して解決する。AST出力から期待を生成しない。case IDで判定を分岐せず、全件not_executed。実source資格/通信/append/保存を示さない。",
+  "method": "L5の正式ASTを汎用演算子で評価し、L9の原90 wholeおよび独立したdomain/意味probeの期待wholeと照合する。元L9期待は変更しない。probe入力はsource packetと明示patch、期待は計算前にL3/L4の義務と独立rawから固定する。関数識別はrequirement_refで行い、case ID分岐や期待値lookupは行わない。",
   "cases": [
     {
       "id": "C005-F01-ORDERED-VALUE-FREE-TRACE",
@@ -45545,7 +45545,7 @@
       "decision_sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca",
       "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f"
     },
-    "approved_whole_objects_source": "6 exact L3/L10 objects from the record pinned whole-document hashes; decision admission PR2955 is admitted by audit merge commit fb3ed11..., later decision correction commit 7c2ef0... remains in base."
+    "approved_whole_objects_source": "decision recordが固定したL3/L10のexact 6 objectを対象にする。PR2955のadmissionは監査記録とmerge commit fb3ed11de764556f00f3f923e2f97ec4467bb406で照合する。訂正commit 7c2ef0c722b63b0ea2c7882ab26472e87381d538は別revisionとして記録する。"
   },
   "fixture_coverage_limits": [
     "90件は選択された合成例であり全operation/event/schemaを覆わない。",
@@ -45555,7 +45555,8 @@
   "unresolved": [
     "正式codec/transport/append-only store/actual event source不成立。",
     "実source/consumer/SEC data-use authority・owner-qualified bindingは未供給。",
-    "L9/L10実評価・TDD Red/Green/Refactor/CI/L11 Accepted/Ready/設計閉包は未成立。"
+    "L9/L10実評価・TDD Red/Green/Refactor/CI/L11 Accepted/Ready/設計閉包は未成立。",
+    "F02の技術確認先候補と元業務ownerの意味判断返却を区別する。原90wholeは現L9正本へ全一致させるが、業務意味判断所見の独立分類/責務binding/実recipient入力は不足し、L5 responsibility_boundaries.business_meaning_return_unclosedに具体記録する。停止技術矛盾の原oracleを意味判断として訂正しない。"
   ],
   "approved_document_pins": [
     {
@@ -45576,14 +45577,15 @@
     }
   ],
   "l5_candidate_bytes_pin": {
-    "path": "docs/helix-connect/L5-detail-design/technical-trace-handoff-custody.json",
-    "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-    "sha256": "466709fd585906b81eede525d31c4ec8e9d8373a3fb91475529f1d4ff17c1afc"
+    "base_revision": "0f20f0d6b9675d3e8aec87aabec57eaa97aaec03",
+    "base_bytes_sha256": "466709fd585906b81eede525d31c4ec8e9d8373a3fb91475529f1d4ff17c1afc",
+    "candidate_bytes_sha256": "04b633e6aa512366794dbe2c59a9d1d251c7b79a0483432584b38d1fe24171c8",
+    "meaning": "base_revisionは入力元を示す。candidate_bytes_sha256は編集後L5実bytesのcontent pinであり、base revisionに同一候補bytesが存在するとは主張しない。"
   },
-  "additional_probe_count": 0,
+  "additional_probe_count": 78,
   "local_domain_probes": {
     "kind": "independent_fixed_source_domain_probes",
-    "source": "scaffold/review-handoff/local/connect005-authoring/root-presence-domain-findings.json",
+    "source": "このignored local証拠を正式なsource pinとして参照しない。",
     "source_sha256": "3b2194b0bfb5380ef3d702b84ad040c6036f2eb0603e60099b90f0cf38c04c74",
     "count": 61,
     "present_nonconforming_count": 54,
@@ -45805,9 +45807,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-02",
@@ -46025,9 +46027,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-03",
@@ -46245,9 +46247,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-04",
@@ -46465,9 +46467,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-05",
@@ -46685,9 +46687,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-06",
@@ -46905,9 +46907,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-07",
@@ -47125,9 +47127,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-08",
@@ -47345,9 +47347,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-09",
@@ -47524,11 +47526,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": null
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -47555,6 +47552,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -47565,8 +47567,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": null
           },
           {
             "op": "replace",
@@ -47584,17 +47586,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "c1d74770fe7e3cb4a71eec312d77d7835204a3fefee1e48a49eec9f132123429",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-10",
@@ -47771,11 +47768,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": false
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -47802,6 +47794,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -47812,8 +47809,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": false
           },
           {
             "op": "replace",
@@ -47831,17 +47828,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "d9e6e5213ff60ea42aa7f3f446f7c76eefa7aff290ee40b6453a079e742efe75",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-11",
@@ -48018,11 +48010,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": true
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -48049,6 +48036,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -48059,8 +48051,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": true
           },
           {
             "op": "replace",
@@ -48078,17 +48070,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "3b680ee8a841c4b891c1e17db1d465918427f4698f57013a793e08209f4e17c5",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-12",
@@ -48265,11 +48252,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": 0
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -48296,6 +48278,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -48306,8 +48293,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": 0
           },
           {
             "op": "replace",
@@ -48325,17 +48312,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "3e294dfba1b5f1f87eedce29f363fe5d0bf2db4680a444e19a6bb5c025b171a8",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-13",
@@ -48512,11 +48494,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": 1
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -48543,6 +48520,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -48553,8 +48535,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": 1
           },
           {
             "op": "replace",
@@ -48572,17 +48554,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "d00bc89a7b73c310f4588646d57416590eb1df903021170938e02e77825783cc",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-14",
@@ -48759,11 +48736,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": ""
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -48790,6 +48762,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -48800,8 +48777,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": ""
           },
           {
             "op": "replace",
@@ -48819,17 +48796,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "7994b1159c8697cee6208d300f4e816d8ef533b3c773b15b5224cfb3c8b6fdb6",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-15",
@@ -49006,11 +48978,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": "TBD"
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -49037,6 +49004,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -49047,8 +49019,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": "TBD"
           },
           {
             "op": "replace",
@@ -49066,17 +49038,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "cee2af1150696df4590cef24b2b805eb9e54240914880196fd31799f5779b301",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-16",
@@ -49253,11 +49220,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -49284,6 +49246,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -49294,8 +49261,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": []
           },
           {
             "op": "replace",
@@ -49313,17 +49280,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "1328538db86b64194d1e574fc91ae21506e13c6062c7b628ad6aa678f49b4c13",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-17",
@@ -49500,11 +49462,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_handoff",
-            "value": {}
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -49531,6 +49488,11 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "unknown_original_information"
           },
@@ -49541,8 +49503,8 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "unknown_original_information"
+            "path": "/retained_handoff",
+            "value": {}
           },
           {
             "op": "replace",
@@ -49560,17 +49522,12 @@
                 "return_owner": null
               }
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
           }
         ],
         "expected_whole_canonical_sha256": "250bdc2d724664525d86c364815e58b11c97442ef41dc5e5dd089329c9a8ef3e",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-18",
@@ -49784,11 +49741,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_prior_successes",
-            "value": null
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -49803,6 +49755,11 @@
             "op": "replace",
             "path": "/stop_link_result",
             "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
+            "path": "/retained_prior_successes",
+            "value": null
           },
           {
             "op": "replace",
@@ -49830,9 +49787,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "d4f8e27bbb44ad2876e63a450ea40e1efa9dcbe165e2f5ec70e7dfcd86c858d1",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-19",
@@ -50046,11 +50003,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_prior_successes",
-            "value": false
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -50065,6 +50017,11 @@
             "op": "replace",
             "path": "/stop_link_result",
             "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
+            "path": "/retained_prior_successes",
+            "value": false
           },
           {
             "op": "replace",
@@ -50092,9 +50049,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "edd17a84f787c23cd9d2138112a6bb0c0d9fbbac96ee7574e850cd4897d6e0ba",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-20",
@@ -50308,11 +50265,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_prior_successes",
-            "value": true
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -50327,6 +50279,11 @@
             "op": "replace",
             "path": "/stop_link_result",
             "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
+            "path": "/retained_prior_successes",
+            "value": true
           },
           {
             "op": "replace",
@@ -50354,9 +50311,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c703943ba374a61658f994dc25320dc68c61a9bc9a86e1ebc171935360d8b823",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-21",
@@ -50570,11 +50527,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_prior_successes",
-            "value": 0
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -50589,6 +50541,11 @@
             "op": "replace",
             "path": "/stop_link_result",
             "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
+            "path": "/retained_prior_successes",
+            "value": 0
           },
           {
             "op": "replace",
@@ -50616,9 +50573,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "249f7b6b41ab9d242e531421e4c51439cfde7448f41ef04b2ed5c80cbf2e8e9b",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-22",
@@ -50832,11 +50789,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_prior_successes",
-            "value": 1
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -50851,6 +50803,11 @@
             "op": "replace",
             "path": "/stop_link_result",
             "value": "unknown_original_information"
+          },
+          {
+            "op": "replace",
+            "path": "/retained_prior_successes",
+            "value": 1
           },
           {
             "op": "replace",
@@ -50878,9 +50835,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c146e9ce6e46f749ddc79048e456123271b99b0d077fff4291a621a87440e2e1",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-23",
@@ -51080,11 +51037,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": null
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -51097,12 +51049,17 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
+            "path": "/retained_unfinished",
             "value": null
           },
           {
@@ -51118,20 +51075,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "226fb3c0e7b9fffd4c5b1ef5b8b067b643d0a89d1ea5ea6d5f318f302eb8f2f7",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "e1a35199317ebf5c110d64e64b6494f5d269d2a88ba0f569c53ffb1158d4abc7",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-24",
@@ -51331,11 +51290,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": false
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -51348,13 +51302,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": false
           },
           {
             "op": "replace",
@@ -51369,20 +51328,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "5ca7c72573d29f65d7d3e2400dedc6971e066e7c913ea6c91e5cbde16acb716f",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "ba0de0aaf587a8d579235d1731b2176fa0bb0a0037f31eb8099e92352f9a4b7d",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-25",
@@ -51582,11 +51543,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": true
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -51599,13 +51555,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": true
           },
           {
             "op": "replace",
@@ -51620,20 +51581,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "9e974c15727cf44e9ee1b9813113ad8cb7b5688729585078adf1908bbeb514c6",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "0bcfc2a09dd79e2d43cebf6b36d1efae5451d8dd659e2ec1ebd53c1d318f0af5",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-26",
@@ -51833,11 +51796,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": 0
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -51850,13 +51808,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": 0
           },
           {
             "op": "replace",
@@ -51871,20 +51834,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "72e42943f4764652b16340f6d8c576dc1d8c385b6ce4a098e7017c548ef2ef85",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "ea7bdad5262107009da8f4a796dd0d9f13a18125aa9e9863e186d3cb8ac08411",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-27",
@@ -52084,11 +52049,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": 1
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -52101,13 +52061,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": 1
           },
           {
             "op": "replace",
@@ -52122,20 +52087,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "ea8aa7bc02d9ff31a0a79f1db35c8f3c043214f306569e0a004b3f002e342a3a",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "1e1f71cd6e99066c419de7fe340c0b5e88c38d91f23262695b82324d525adf28",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-28",
@@ -52335,11 +52302,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": ""
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -52352,13 +52314,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": ""
           },
           {
             "op": "replace",
@@ -52373,20 +52340,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "ba3ebb61b0c72784def0ea021b495b8532f67ba033e357ff737fd291ebd230ec",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "3f72353a55a627a509fcdc30299675aef86497323ccda3d93172985f565f8114",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-29",
@@ -52586,11 +52555,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": "TBD"
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -52603,13 +52567,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": "TBD"
           },
           {
             "op": "replace",
@@ -52624,20 +52593,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "75c0fde605f6c51d52b6491ea831334a84fe3a62007be0a4b28a88f0986ac28a",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "20842b56704502fed13a23a5c905fb11ad7d964f0f2ac3021ceabc0362f8f2c4",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-30",
@@ -52837,11 +52808,6 @@
         "expected_whole_overlay": [
           {
             "op": "replace",
-            "path": "/retained_unfinished",
-            "value": {}
-          },
-          {
-            "op": "replace",
             "path": "/content_results",
             "value": {
               "stop": "content_corresponding_in_fixture",
@@ -52854,13 +52820,18 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_target_results",
+            "value": null
+          },
+          {
+            "op": "replace",
             "path": "/unfinished_link_result",
             "value": "unknown_original_information"
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/retained_unfinished",
+            "value": {}
           },
           {
             "op": "replace",
@@ -52875,20 +52846,22 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "unknown_original_information",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           }
         ],
-        "expected_whole_canonical_sha256": "e5501ca008e9edb01fbb1e085ec9a9a8ee7fc0a6136375d6594501601109218d",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expected_whole_canonical_sha256": "11af97f2ac2bc54f6ac7cabcb26ab56d9d551e0ecfa4111bd62b93209acc176c",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-31",
@@ -53008,9 +52981,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-32",
@@ -53130,9 +53103,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-33",
@@ -53252,9 +53225,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-34",
@@ -53374,9 +53347,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-35",
@@ -53496,9 +53469,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-36",
@@ -53618,9 +53591,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-37",
@@ -53740,9 +53713,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-38",
@@ -53862,9 +53835,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "claims is auxiliary fixture assertion metadata: nonobject is not interpreted as a set of claims; raw presence remains in the input packet.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-39",
@@ -53982,11 +53955,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54011,9 +53979,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-40",
@@ -54131,11 +54099,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54160,9 +54123,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-41",
@@ -54280,11 +54243,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54309,9 +54267,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-42",
@@ -54429,11 +54387,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54458,9 +54411,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-43",
@@ -54578,11 +54531,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54607,9 +54555,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-44",
@@ -54727,11 +54675,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54756,9 +54699,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-45",
@@ -54876,11 +54819,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -54905,9 +54843,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-46",
@@ -55025,11 +54963,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -55054,9 +54987,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "c5c831724e64143e8a19d80b481e6ae632ec720fafaa563d642ca48dfe3bcb01",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle. requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-47",
@@ -55203,9 +55136,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-48",
@@ -55352,9 +55285,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-49",
@@ -55501,9 +55434,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-50",
@@ -55650,9 +55583,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-51",
@@ -55799,9 +55732,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-52",
@@ -55948,9 +55881,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-53",
@@ -56097,9 +56030,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-DOMAIN-54",
@@ -56246,9 +56179,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "fdbfa1c90b7af836cbcf1a851afb7622e42f23010086413ddb17466771b1a117",
-        "expectation_basis": "base L9 whole is retained for unaffected fields; overlay values are independently fixed from the relevant L3/L4 unknown/retention/owner boundary before evaluating the L5 program. This probe does not modify the source L9 oracle.",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local domain probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-55",
@@ -56464,9 +56397,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "a468f801afa27b67948f0c7be4cf1e33f4056c2d2bf33e0a54b95771f816184c",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-56",
@@ -56667,17 +56600,17 @@
           },
           {
             "op": "replace",
+            "path": "/unfinished_link_result",
+            "value": "missing"
+          },
+          {
+            "op": "replace",
             "path": "/receipt_link_result",
             "value": "missing"
           },
           {
             "op": "replace",
             "path": "/resolution_link_result",
-            "value": "missing"
-          },
-          {
-            "op": "replace",
-            "path": "/unfinished_link_result",
             "value": "missing"
           },
           {
@@ -56698,19 +56631,14 @@
             ]
           },
           {
-            "op": "replace",
-            "path": "/failure_return_owners",
-            "value": []
-          },
-          {
             "op": "remove",
             "path": "/retained_handoff"
           }
         ],
         "expected_whole_canonical_sha256": "12e0ee791120eb09dfa0d2cd6509334cb792b45547229f5aeaf271d730abcae7",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-57",
@@ -56967,9 +56895,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "7bdae8ed9f8eeee30fe62be4b77b3cb6be0ddff197a8119043543a66c3e1cfd2",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-58",
@@ -57179,13 +57107,13 @@
           },
           {
             "op": "replace",
-            "path": "/unfinished_link_result",
-            "value": "missing"
+            "path": "/unfinished_target_results",
+            "value": null
           },
           {
             "op": "replace",
-            "path": "/unfinished_target_results",
-            "value": null
+            "path": "/unfinished_link_result",
+            "value": "missing"
           },
           {
             "op": "replace",
@@ -57200,24 +57128,26 @@
                 "area": "input_domain",
                 "field": "original_unfinished",
                 "result": "missing",
-                "return_owner": null
+                "return_owner": "connection-operation-owner"
               }
             ]
           },
           {
             "op": "replace",
             "path": "/failure_return_owners",
-            "value": []
+            "value": [
+              "connection-operation-owner"
+            ]
           },
           {
             "op": "remove",
             "path": "/retained_unfinished"
           }
         ],
-        "expected_whole_canonical_sha256": "1b86dc61fca7e682aee34995d592fc57b79ba7c3804015c949cce4557d521174",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expected_whole_canonical_sha256": "b0648c40d969d7f7e6de2e6c2c15d7ecd72ac7e655d3c30d003aae5784e87251",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-59",
@@ -57335,9 +57265,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "ae6031e3287f5ad3bae48b040e00664c912716b4d5174b8ca9b2c5fa5cf8168f",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-60",
@@ -57453,11 +57383,6 @@
           },
           {
             "op": "replace",
-            "path": "/forbidden_value_field_names",
-            "value": []
-          },
-          {
-            "op": "replace",
             "path": "/candidate_reference_state",
             "value": "held_return_to_original_owner_SEC"
           },
@@ -57482,9 +57407,9 @@
           }
         ],
         "expected_whole_canonical_sha256": "d2391078545609a8e2b6d6f24d66704a941dbb01af8745bff9e1b555af29ee05",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。 requested_trace_fieldsは基底packetの非禁止項目だけを保持するため、original_allowed_trace_fieldsの非配列状態でもforbidden集合は空配列。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       },
       {
         "probe_id": "CONNECT005-ABSENT-61",
@@ -57629,13 +57554,13 @@
           }
         ],
         "expected_whole_canonical_sha256": "976b8eae630a1a93c94f57b953d178df9bdf6d4ae2a58e772e31b7d181172461",
-        "expectation_basis": "入力member absentは明示nullと別に検査する。関係値はmissing、保持出力はmember不在のまま、責務ownerはraw供給がある場合のみ使う。claimsは補助assertion metadataで未解釈。",
+        "expectation_basis": "L3/L4のunknown・missing・保持・責務境界とsource raw値から、L5計算前に期待overlayを固定する。原L9 oracleは変更しない。",
         "execution_state": "not_executed",
-        "scope": "synthetic local Absent probe; no qualification, permission, or effect"
+        "scope": "合成domain probe。qualification、permission、外部effectを成立させない。"
       }
     ],
-    "resolution_rule": "Resolve source raw and expected base pointers at the pinned L9 revision. Apply the declared one-field input JSON Patch. Resolve expected whole by applying expected_whole_overlay to the source expected base. Never calculate expected overlays from the L5 evaluator.",
-    "expectation_rule": "claimsを除き、L3/L4が求めるunknown/missing/held status and preservation/owner boundary for invalid top-level shapes; each probe stores explicit overlay values before AST evaluation. The L9 base whole remains intact as the source oracle and is not rewritten."
+    "resolution_rule": "固定L9 revisionからrawとexpected baseをpointerで解決し、宣言patchだけをrawへ適用する。期待wholeはL9 expected baseへの独立に固定したoverlayで得る。L5計算結果を期待生成へ使わない。",
+    "expectation_rule": "overlayは影響を受けるfieldだけを置換し、変更しないsource expected fieldを保持する。"
   },
   "independent_semantic_probes": [
     {
@@ -63065,11 +62990,2427 @@
       "expected_whole_canonical_sha256": "d24b94b119403d45b37aa199e634a12424878de3192bc24c003da40b34b41441",
       "expectation_basis": "F01InputのclaimsはPresence<record<string,JsonValue>>。null/Absentは未解釈null、空objectは空のclaim結果とし、traceのデータ判定と実効果は変えない。原L9正常wholeの他fieldを保持する独立反例。",
       "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R1-F01-RESULT-STATE-UNKNOWN-TO-SUCCESS",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "2a68136f9e4be3a9a7491a236b12de6fa6b8e4c43b62c4dfacee5c2e2a587d8b",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/submitted_result_state",
+          "value": "success"
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "retry",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "unknown",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_result_state": "unknown",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "retry",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "unknown",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "528851bdd34515b6fcdd91fc95e30475bdaf3330ed9046fcbeac47f8c9ab31b9",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/25/expected_material"
+      },
+      "expected_base_canonical_sha256": "f642cc4f23bfe9c3139a6a21c7f4a9ee0cb3d2cf188dd0ae19574d608006df5a",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "unknown",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "retry",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "unknown",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "retry",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "unknown",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "unknown",
+        "result_content_result": "content_conflict",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "result_state",
+            "field": "result_state",
+            "result": "content_conflict",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "d33315514987f401fe55dff518bf601276760cab27388d720d6171861f810a23",
+      "expectation_basis": "L3/L4 F01はunknownとsuccessを同じ状態へ丸めず、submitted successは原unknownと相反する。failure rowを原結果fieldへ結び、trace候補をunknownへ保つ。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R1-F02-CANCEL-BEFORE-FIRST-SUCCESS",
+      "requirement_ref": "HELIXCONNECT-L3-005-F02",
+      "l4_ref": "HELIXCONNECT-L4-005-F02",
+      "l9_ref": "HELIXCONNECT-L9-005-F02",
+      "function_ref": "FN-CONNECT005-F02",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "d06dbce7473ff7bdfa5702a596c8e0b298018807b0f84e66b0212cbb1662f660",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_prior_successes",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_prior_successes",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/original_stop/stop_event_ref",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_stop/stop_event_ref",
+          "value": null
+        }
+      ],
+      "input": {
+        "claims": {
+          "ack_absent_pass": false,
+          "erase_unfinished": false,
+          "partial_end_to_end_success": false,
+          "receipt_is_resolution": false
+        },
+        "original_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "original_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_successes": [],
+        "original_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_stop": {
+          "ack_state": "not_observed",
+          "cause": "cancelled",
+          "current_state": "unfinished",
+          "result_state": "not_collected",
+          "stop_event_ref": null
+        },
+        "original_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "submitted_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_prior_successes": [],
+        "submitted_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_stop": {
+          "ack_state": "not_observed",
+          "cause": "cancelled",
+          "current_state": "unfinished",
+          "result_state": "not_collected",
+          "stop_event_ref": null
+        },
+        "submitted_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ]
+      },
+      "input_canonical_sha256": "59db84652e35ec8a950b3258eb7203cca6a5483d62ae689016e8725dc4758f06",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
+      },
+      "expected_base_canonical_sha256": "31c7d70334dece194a7f9d6829f54643b56302ac8b47549aee658ff99d4ce823",
+      "expected_whole": {
+        "content_results": {
+          "stop": "content_corresponding_in_fixture",
+          "prior_successes": "content_corresponding_in_fixture",
+          "unfinished": "content_corresponding_in_fixture",
+          "handoff": "content_corresponding_in_fixture",
+          "handoff_receipt": "content_corresponding_in_fixture",
+          "resolution": "content_corresponding_in_fixture"
+        },
+        "handoff_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "dependency_ref": "content_corresponding_in_fixture"
+        },
+        "unfinished_target_results": [
+          {
+            "connection_identity": "content_corresponding_in_fixture",
+            "operation_identity": "content_corresponding_in_fixture",
+            "contract_revision": "content_corresponding_in_fixture",
+            "correlation": "content_corresponding_in_fixture",
+            "scope": "content_corresponding_in_fixture",
+            "expiry": "content_corresponding_in_fixture",
+            "permission_ref": "content_corresponding_in_fixture",
+            "dependency_ref": "content_corresponding_in_fixture"
+          }
+        ],
+        "unfinished_link_result": "content_corresponding_in_fixture",
+        "stop_link_result": "unknown_original_information",
+        "receipt_link_result": "content_corresponding_in_fixture",
+        "resolution_link_result": "content_corresponding_in_fixture",
+        "retained_stop": {
+          "ack_state": "not_observed",
+          "cause": "cancelled",
+          "current_state": "unfinished",
+          "result_state": "not_collected",
+          "stop_event_ref": null
+        },
+        "retained_prior_successes": [],
+        "retained_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1"
+          }
+        ],
+        "retained_handoff": {
+          "identity": "HANDOFF-P",
+          "revision": "h-r1",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "OPERATION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "scope": "PRODUCT-P/query",
+            "expiry": "expiry-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "dependency_ref": "COMMON-PACK@r1"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "operation_identity": "OPERATION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "scope": "PRODUCT-P/query",
+                "expiry": "expiry-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "dependency_ref": "COMMON-PACK@r1"
+              },
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1"
+            }
+          ],
+          "stop": {
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "stop_event_ref": "EVENT-P-3",
+            "ack_state": "not_observed",
+            "result_state": "not_collected"
+          },
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1"
+        },
+        "retained_handoff_receipt": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "received_in_fixture_only",
+          "owner": "consumer-endpoint-owner"
+        },
+        "retained_resolution": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "not_resolved",
+          "owner": "consumer-endpoint-owner"
+        },
+        "handoff_receipt_generates_resolution": false,
+        "business_completion": "not_generated_by_trace_or_handoff",
+        "candidate_handoff_state": "content_corresponding_requires_actual_owner_qualification",
+        "failure_reasons": [],
+        "failure_return_owners": [],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "ack_absent_pass": "none",
+          "partial_end_to_end_success": "none",
+          "erase_unfinished": "none",
+          "receipt_is_resolution": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "3a71dbcc41ffa6d18822b7ab176f699ae24e00e8e22daff4462b4c5657646431",
+      "expectation_basis": "L3/L4 F02の取消/停止は先行成功を前提としない。空の成功集合では参照を未観測のまま保持し、failureを捏造しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R1-F02-NULL-STOP-PLACEHOLDERS",
+      "requirement_ref": "HELIXCONNECT-L3-005-F02",
+      "l4_ref": "HELIXCONNECT-L4-005-F02",
+      "l9_ref": "HELIXCONNECT-L9-005-F02",
+      "function_ref": "FN-CONNECT005-F02",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "d06dbce7473ff7bdfa5702a596c8e0b298018807b0f84e66b0212cbb1662f660",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_stop",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_stop",
+          "value": null
+        }
+      ],
+      "input": {
+        "claims": {
+          "ack_absent_pass": false,
+          "erase_unfinished": false,
+          "partial_end_to_end_success": false,
+          "receipt_is_resolution": false
+        },
+        "original_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "original_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "original_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_stop": null,
+        "original_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "submitted_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "submitted_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_stop": null,
+        "submitted_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ]
+      },
+      "input_canonical_sha256": "94fede07b7fbe9417ae985b7b3cf72a94ce64214ec27ec2abdf24916a200a047",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
+      },
+      "expected_base_canonical_sha256": "31c7d70334dece194a7f9d6829f54643b56302ac8b47549aee658ff99d4ce823",
+      "expected_whole": {
+        "content_results": {
+          "stop": "unknown_original_information",
+          "prior_successes": "content_corresponding_in_fixture",
+          "unfinished": "content_corresponding_in_fixture",
+          "handoff": "content_corresponding_in_fixture",
+          "handoff_receipt": "content_corresponding_in_fixture",
+          "resolution": "content_corresponding_in_fixture"
+        },
+        "handoff_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "dependency_ref": "content_corresponding_in_fixture"
+        },
+        "unfinished_target_results": [
+          {
+            "connection_identity": "content_corresponding_in_fixture",
+            "operation_identity": "content_corresponding_in_fixture",
+            "contract_revision": "content_corresponding_in_fixture",
+            "correlation": "content_corresponding_in_fixture",
+            "scope": "content_corresponding_in_fixture",
+            "expiry": "content_corresponding_in_fixture",
+            "permission_ref": "content_corresponding_in_fixture",
+            "dependency_ref": "content_corresponding_in_fixture"
+          }
+        ],
+        "unfinished_link_result": "content_corresponding_in_fixture",
+        "stop_link_result": "unknown_original_information",
+        "receipt_link_result": "content_corresponding_in_fixture",
+        "resolution_link_result": "content_corresponding_in_fixture",
+        "retained_stop": null,
+        "retained_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "retained_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1"
+          }
+        ],
+        "retained_handoff": {
+          "identity": "HANDOFF-P",
+          "revision": "h-r1",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "OPERATION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "scope": "PRODUCT-P/query",
+            "expiry": "expiry-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "dependency_ref": "COMMON-PACK@r1"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "operation_identity": "OPERATION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "scope": "PRODUCT-P/query",
+                "expiry": "expiry-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "dependency_ref": "COMMON-PACK@r1"
+              },
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1"
+            }
+          ],
+          "stop": {
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "stop_event_ref": "EVENT-P-3",
+            "ack_state": "not_observed",
+            "result_state": "not_collected"
+          },
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1"
+        },
+        "retained_handoff_receipt": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "received_in_fixture_only",
+          "owner": "consumer-endpoint-owner"
+        },
+        "retained_resolution": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "not_resolved",
+          "owner": "consumer-endpoint-owner"
+        },
+        "handoff_receipt_generates_resolution": false,
+        "business_completion": "not_generated_by_trace_or_handoff",
+        "candidate_handoff_state": "held_with_original_unfinished",
+        "failure_reasons": [
+          {
+            "area": "stop_content",
+            "field": "record",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "ack_absent_pass": "none",
+          "partial_end_to_end_success": "none",
+          "erase_unfinished": "none",
+          "receipt_is_resolution": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "c4b66ecfb8c7d7872fb8baf62984b113df864aab6eef942f1f9dd34f3b5a2250",
+      "expectation_basis": "L3/L4の停止位置と未完状態を両側nullで内容対応とせずunknownに保持し、技術候補をheldへ置く。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R1-F02-TBD-STOP-PLACEHOLDERS",
+      "requirement_ref": "HELIXCONNECT-L3-005-F02",
+      "l4_ref": "HELIXCONNECT-L4-005-F02",
+      "l9_ref": "HELIXCONNECT-L9-005-F02",
+      "function_ref": "FN-CONNECT005-F02",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "d06dbce7473ff7bdfa5702a596c8e0b298018807b0f84e66b0212cbb1662f660",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_stop",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_stop",
+          "value": "TBD"
+        }
+      ],
+      "input": {
+        "claims": {
+          "ack_absent_pass": false,
+          "erase_unfinished": false,
+          "partial_end_to_end_success": false,
+          "receipt_is_resolution": false
+        },
+        "original_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "original_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "original_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "original_stop": "TBD",
+        "original_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_handoff": {
+          "identity": "HANDOFF-P",
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1",
+          "revision": "h-r1",
+          "stop": {
+            "ack_state": "not_observed",
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "result_state": "not_collected",
+            "stop_event_ref": "EVENT-P-3"
+          },
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "dependency_ref": "COMMON-PACK@r1",
+            "expiry": "expiry-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        "submitted_handoff_receipt": {
+          "owner": "consumer-endpoint-owner",
+          "state": "received_in_fixture_only",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "submitted_resolution": {
+          "owner": "consumer-endpoint-owner",
+          "state": "not_resolved",
+          "target": "HANDOFF-P@h-r1"
+        },
+        "submitted_stop": "TBD",
+        "submitted_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ]
+      },
+      "input_canonical_sha256": "19cd8bf5ae38fe44596b6b0e466a4fdb4d278e3c50809c06ce53e2460357bc8f",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
+      },
+      "expected_base_canonical_sha256": "31c7d70334dece194a7f9d6829f54643b56302ac8b47549aee658ff99d4ce823",
+      "expected_whole": {
+        "content_results": {
+          "stop": "unknown_original_information",
+          "prior_successes": "content_corresponding_in_fixture",
+          "unfinished": "content_corresponding_in_fixture",
+          "handoff": "content_corresponding_in_fixture",
+          "handoff_receipt": "content_corresponding_in_fixture",
+          "resolution": "content_corresponding_in_fixture"
+        },
+        "handoff_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "dependency_ref": "content_corresponding_in_fixture"
+        },
+        "unfinished_target_results": [
+          {
+            "connection_identity": "content_corresponding_in_fixture",
+            "operation_identity": "content_corresponding_in_fixture",
+            "contract_revision": "content_corresponding_in_fixture",
+            "correlation": "content_corresponding_in_fixture",
+            "scope": "content_corresponding_in_fixture",
+            "expiry": "content_corresponding_in_fixture",
+            "permission_ref": "content_corresponding_in_fixture",
+            "dependency_ref": "content_corresponding_in_fixture"
+          }
+        ],
+        "unfinished_link_result": "content_corresponding_in_fixture",
+        "stop_link_result": "unknown_original_information",
+        "receipt_link_result": "content_corresponding_in_fixture",
+        "resolution_link_result": "content_corresponding_in_fixture",
+        "retained_stop": "TBD",
+        "retained_prior_successes": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3"
+        ],
+        "retained_unfinished": [
+          {
+            "identity": "UNFINISHED-P-1",
+            "revision": "u-r1",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "obligation_ref": "RECEIVE-OBSERVATION@r1",
+            "owner": "consumer-endpoint-owner",
+            "recovery_ref": "RECOVERY-P@r1"
+          }
+        ],
+        "retained_handoff": {
+          "identity": "HANDOFF-P",
+          "revision": "h-r1",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "OPERATION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "scope": "PRODUCT-P/query",
+            "expiry": "expiry-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "dependency_ref": "COMMON-PACK@r1"
+          },
+          "unfinished": [
+            {
+              "identity": "UNFINISHED-P-1",
+              "revision": "u-r1",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "operation_identity": "OPERATION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "scope": "PRODUCT-P/query",
+                "expiry": "expiry-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "dependency_ref": "COMMON-PACK@r1"
+              },
+              "obligation_ref": "RECEIVE-OBSERVATION@r1",
+              "owner": "consumer-endpoint-owner",
+              "recovery_ref": "RECOVERY-P@r1"
+            }
+          ],
+          "stop": {
+            "cause": "cancelled",
+            "current_state": "unfinished",
+            "stop_event_ref": "EVENT-P-3",
+            "ack_state": "not_observed",
+            "result_state": "not_collected"
+          },
+          "owner": "connection-operation-owner",
+          "recovery_ref": "COMMON-RECOVERY-P@r1"
+        },
+        "retained_handoff_receipt": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "received_in_fixture_only",
+          "owner": "consumer-endpoint-owner"
+        },
+        "retained_resolution": {
+          "target": "HANDOFF-P@h-r1",
+          "state": "not_resolved",
+          "owner": "consumer-endpoint-owner"
+        },
+        "handoff_receipt_generates_resolution": false,
+        "business_completion": "not_generated_by_trace_or_handoff",
+        "candidate_handoff_state": "held_with_original_unfinished",
+        "failure_reasons": [
+          {
+            "area": "stop_content",
+            "field": "record",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "ack_absent_pass": "none",
+          "partial_end_to_end_success": "none",
+          "erase_unfinished": "none",
+          "receipt_is_resolution": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "3d6079c1c765bf3e22cae5b7091ae94e16107d6fe3bdffbbe19792d9ca9dc00a",
+      "expectation_basis": "L3/L4 F02の同一placeholder文字列は停止位置/unfinishedの原情報ではなく、両側一致から対応済みを導かない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R1-F01-SELECTED-WINDOW-WITHOUT-FULL-PREFIX",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_events",
+          "value": [
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-3@r1",
+              "identity": "EVENT-P-3",
+              "kind": "sent",
+              "observed_endpoint": "source",
+              "ordinal": 3,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-2",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-4@r1",
+              "identity": "EVENT-P-4",
+              "kind": "received",
+              "observed_endpoint": "consumer",
+              "ordinal": 4,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-3",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-5@r1",
+              "identity": "EVENT-P-5",
+              "kind": "terminal",
+              "observed_endpoint": "consumer",
+              "ordinal": 5,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-4",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_events",
+          "value": [
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-3@r1",
+              "identity": "EVENT-P-3",
+              "kind": "sent",
+              "observed_endpoint": "source",
+              "ordinal": 3,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-2",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-4@r1",
+              "identity": "EVENT-P-4",
+              "kind": "received",
+              "observed_endpoint": "consumer",
+              "ordinal": 4,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-3",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            },
+            {
+              "attempt_identity": "ATTEMPT-P-1",
+              "evidence_ref": "EVIDENCE-P-5@r1",
+              "identity": "EVENT-P-5",
+              "kind": "terminal",
+              "observed_endpoint": "consumer",
+              "ordinal": 5,
+              "permission_result_ref": "SEC-RESULT-P@r1",
+              "previous_event_ref": "EVENT-P-4",
+              "result_state": "success",
+              "target": {
+                "connection_identity": "CONNECTION-P",
+                "contract_revision": "contract-r2",
+                "correlation": "CORRELATION-P",
+                "dependency_ref": "COMMON-PACK@r1",
+                "expiry": "expiry-P",
+                "operation_identity": "OPERATION-P",
+                "permission_ref": "PERMIT-P@permit-r1",
+                "scope": "PRODUCT-P/query"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/original_prior_events",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/original_needed_event_ids",
+          "value": [
+            "EVENT-P-3",
+            "EVENT-P-4",
+            "EVENT-P-5"
+          ]
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [],
+        "original_result_state": "success",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "0fbf757ffb7aaebecf62a5d7f3fdf2e5d88429e806ccdd0422de40a6cb91f4aa",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "retained_prior_events": [],
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "success",
+        "result_content_result": "content_corresponding_in_fixture",
+        "candidate_trace_state": "content_corresponding_requires_actual_trace_qualification",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [],
+        "failure_return_owners": [],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "23a4e670e93c03bbeddabdee24d6bf8a3c5b203167ccc339e9ffcf0e0713245a",
+      "expectation_basis": "L4 F01は未選択event全件の固定を要求しない。供給されたpriorが空のとき外部先頭edgeを未観測に置き、選択window内の3→4→5 predecessorと順序だけを照合する。",
+      "execution_state": "not_executed"
     }
   ],
   "source_revision_roles": {
     "candidate_input_snapshot": "977eb43dd597f0e483960221d2ee3d72d0c88619",
     "basic_pair_embedded_source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
     "meaning": "source_mainはこの詳細候補の入力file bytesを固定する実在snapshot。元L4/L9内のsource_mainは基本設計起草時の上流contextであり、L4/L9 file自体の所在revisionとして使わない。実file locatorはsource_pair_pinsのpath/revision/sha256へ結ぶ。"
-  }
+  },
+  "source_oracle_discrepancies": []
 }
