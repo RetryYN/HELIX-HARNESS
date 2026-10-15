@@ -992,52 +992,52 @@
     {
       "root_id": "HARNESS-L9-008-B01",
       "function_id": "F-008-B01",
-      "signature": "assess_b01(input: Input_B01, context: FixtureCaseContext) -> Assessment_B01"
+      "signature": "assess_b01(input: Input_B01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_B01"
     },
     {
       "root_id": "HARNESS-L9-008-B02",
       "function_id": "F-008-B02",
-      "signature": "assess_b02(input: Input_B02, context: FixtureCaseContext) -> Assessment_B02"
+      "signature": "assess_b02(input: Input_B02, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_B02"
     },
     {
       "root_id": "HARNESS-L9-008-F01",
       "function_id": "F-008-F01",
-      "signature": "assess_f01(input: Input_F01, context: FixtureCaseContext) -> Assessment_F01"
+      "signature": "assess_f01(input: Input_F01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F01"
     },
     {
       "root_id": "HARNESS-L9-008-F02",
       "function_id": "F-008-F02",
-      "signature": "assess_f02(input: Input_F02, context: FixtureCaseContext) -> Assessment_F02"
+      "signature": "assess_f02(input: Input_F02, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F02"
     },
     {
       "root_id": "HARNESS-L9-008-F03",
       "function_id": "F-008-F03",
-      "signature": "assess_f03(input: Input_F03, context: FixtureCaseContext) -> Assessment_F03"
+      "signature": "assess_f03(input: Input_F03, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F03"
     },
     {
       "root_id": "HARNESS-L9-008-F04",
       "function_id": "F-008-F04",
-      "signature": "assess_f04(input: Input_F04, context: FixtureCaseContext) -> Assessment_F04"
+      "signature": "assess_f04(input: Input_F04, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F04"
     },
     {
       "root_id": "HARNESS-L9-008-F05",
       "function_id": "F-008-F05",
-      "signature": "assess_f05(input: Input_F05, context: FixtureCaseContext) -> Assessment_F05"
+      "signature": "assess_f05(input: Input_F05, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F05"
     },
     {
       "root_id": "HARNESS-L9-008-F06",
       "function_id": "F-008-F06",
-      "signature": "assess_f06(input: Input_F06, context: FixtureCaseContext) -> Assessment_F06"
+      "signature": "assess_f06(input: Input_F06, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F06"
     },
     {
       "root_id": "HARNESS-L9-008-F07",
       "function_id": "F-008-F07",
-      "signature": "assess_f07(input: Input_F07, context: FixtureCaseContext) -> Assessment_F07"
+      "signature": "assess_f07(input: Input_F07, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F07"
     },
     {
       "root_id": "HARNESS-L9-008-N01",
       "function_id": "F-008-N01",
-      "signature": "assess_n01(input: Input_N01, context: FixtureCaseContext) -> Assessment_N01"
+      "signature": "assess_n01(input: Input_N01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_N01"
     }
   ],
   "case_scope": {
@@ -246863,5 +246863,19 @@
     "finding": "H08D-01 Major",
     "correction": "10関数に明示candidate入力と既存raw由来base/候補比較/最終返却の局所値接続を追加。401原raw/full期待不変。",
     "limits": "321原normal/originalの全raw→全出力の独立再計算はR1 unreviewedであり、今回のcandidate80path再計算と型/値接続検査で済んだと主張しない。実資格/codec/TDD/CI/L11/Ready未成立。"
+  },
+  "r2_review_correction": {
+    "official_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3136#issuecomment-6181012514",
+    "reviewed_head": "10535b9126a25d27001e58904b857d96d1307bd3",
+    "findings": [
+      "H08D-02",
+      "H08D-03",
+      "H08D-04",
+      "H08D-05",
+      "H08D-06"
+    ],
+    "correction": "status/pack格納先/duplicate literal、全出力語彙・書式・列順・比較元・優先・digestを有限参照記法へ具体化。candidate入力/全401期待/2005 joinsを保持。",
+    "history": "R1の321原normal/original全出力再計算unreviewedは当時の限界。R2公式で10関数/401出力の独立再計算実施済みと記録された。今回もscratchで全rawから別計算し、公式再reviewの代わりにしない。",
+    "limits": "実資格/正式codec/TDD/CI/L11/全92親430意味閉包/Ready未成立。"
   }
 }
