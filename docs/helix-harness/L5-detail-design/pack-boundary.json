@@ -82,7 +82,7 @@
         "basis_refs": "ReferenceSet",
         "validity": "valid | missing | unknown | conflict | stale",
         "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
-        "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis"
+        "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis | recovery_selection_basis"
       },
       "Context": {
         "subject_ref": "Reference",
@@ -174,6 +174,518 @@
         "before_maturity_ref": "Reference",
         "after_maturity_ref": "Reference",
         "content_check_refs": "ReferenceSet（同pack/対象scopeの成熟度before/afterを照合したcurrent根拠）"
+      },
+      "RecoverySelectionBasis": {
+        "old_pack_ref": "Reference",
+        "new_pack_ref": "Reference",
+        "recovery_pack_ref": "Reference",
+        "selection": "previous_qualified | explicit_replacement",
+        "content_check_refs": "ReferenceSet（原選択recordの対象/選択内容の独立照合根拠）"
+      },
+      "F04RecoveryResolution": {
+        "outcome": "Result.outcome",
+        "recovery_pack_ref": "Reference | null",
+        "findings": "Findingのtuple"
+      },
+      "F04PriorStageResult": {
+        "shape": {
+          "outcome": "Result.outcome",
+          "value": "{old_pack_ref:Reference,new_pack_ref:Reference,unchanged_refs:ReferenceSet,reproduction_evidence_refs:ReferenceSet}|null",
+          "findings": "Finding tuple"
+        },
+        "scope": "F04のsteps[0:3] producer出力をfinish consumerへ渡す内部型。公開input/contextには追加しない。",
+        "dependent_invariants": [
+          {
+            "id": "prior_satisfied_requires_nonnull_value",
+            "when": "outcome=satisfied",
+            "require": "value!=null and findings=[]",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                },
+                "right": {
+                  "literal": "satisfied"
+                }
+              },
+              "then": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/value"
+                      },
+                      "right": {
+                        "literal": null
+                      }
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/findings"
+                    },
+                    "right": {
+                      "literal": []
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          },
+          {
+            "id": "prior_invalid_requires_null_value",
+            "when": "outcome=invalid",
+            "require": "value=null and findings.length>=1",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                },
+                "right": {
+                  "literal": "invalid"
+                }
+              },
+              "then": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/value"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/findings"
+                      },
+                      "right": {
+                        "literal": []
+                      }
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          },
+          {
+            "id": "prior_non_satisfied_requires_findings",
+            "when": "outcome in {incomplete,unknown,conflict,stale}",
+            "require": "findings.length>=1",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "contains",
+                "items": {
+                  "literal": [
+                    "incomplete",
+                    "unknown",
+                    "conflict",
+                    "stale"
+                  ]
+                },
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                }
+              },
+              "then": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "get",
+                    "value": {
+                      "var": "stage"
+                    },
+                    "pointer": "/findings"
+                  },
+                  "right": {
+                    "literal": []
+                  }
+                }
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          },
+          {
+            "id": "prior_known_value_requires_input_mapping",
+            "when": "outcome!=invalid and value!=null",
+            "require": "old_pack_ref/new_pack_refは元inputとReference全field等値、unchanged_refsはunchanged_before.pack_refの集合、reproduction_evidence_refsはbasis_refsとcomparison_content_check_refsの集合和。配列順は意味にしない。",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/outcome"
+                      },
+                      "right": {
+                        "literal": "invalid"
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/value"
+                      },
+                      "right": {
+                        "literal": null
+                      }
+                    }
+                  }
+                ]
+              },
+              "then": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/value/old_pack_ref"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/old_pack_ref"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/value/new_pack_ref"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/new_pack_ref"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "get",
+                          "value": {
+                            "var": "stage"
+                          },
+                          "pointer": "/value/unchanged_refs"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "map",
+                          "items": {
+                            "op": "get",
+                            "value": {
+                              "var": "input"
+                            },
+                            "pointer": "/unchanged_before"
+                          },
+                          "name": "member",
+                          "expression": {
+                            "op": "get",
+                            "value": {
+                              "var": "member"
+                            },
+                            "pointer": "/pack_ref"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "get",
+                          "value": {
+                            "var": "stage"
+                          },
+                          "pointer": "/value/reproduction_evidence_refs"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "concat",
+                          "items": [
+                            {
+                              "op": "get",
+                              "value": {
+                                "var": "input"
+                              },
+                              "pointer": "/reproduction_comparison/basis_refs"
+                            },
+                            {
+                              "op": "get",
+                              "value": {
+                                "var": "input"
+                              },
+                              "pointer": "/reproduction_comparison/value/comparison_content_check_refs"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          }
+        ],
+        "predicate_language_ref": "#/f04_recovery_construction/expression_language",
+        "predicate_environment": {
+          "stage": "当該producerの内部結果値。公開inputとは別の値。",
+          "input": "当該F04呼出しの元input。prior producerのvalueへ差し替えない。"
+        },
+        "type_parameter": "input: functions[3].inputの元値。公開引数を追加しない。"
+      },
+      "F04QualificationStageResult": {
+        "shape": {
+          "outcome": "Result.outcome",
+          "state": "QualificationFact.state",
+          "pack_ref": "Reference",
+          "findings": "Finding tuple"
+        },
+        "type_parameter": "recovery_candidate_ref:Reference = input.recovery_fact.pack_ref",
+        "scope": "F04 step[3] qualification producer出力をfinish consumerへ渡す内部型。公開input/contextには追加しない。",
+        "dependent_invariants": [
+          {
+            "id": "qualification_satisfied_requires_qualified_state",
+            "when": "outcome=satisfied",
+            "require": "state=qualified and findings=[]",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                },
+                "right": {
+                  "literal": "satisfied"
+                }
+              },
+              "then": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/state"
+                    },
+                    "right": {
+                      "literal": "qualified"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/findings"
+                    },
+                    "right": {
+                      "literal": []
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          },
+          {
+            "id": "qualification_satisfied_requires_candidate_pack",
+            "when": "outcome=satisfied",
+            "require": "pack_ref=type_parameter.recovery_candidate_ref（Reference全fieldの値等値）",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                },
+                "right": {
+                  "literal": "satisfied"
+                }
+              },
+              "then": {
+                "op": "equal",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/pack_ref"
+                },
+                "right": {
+                  "var": "recovery_candidate_ref"
+                }
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          },
+          {
+            "id": "qualification_non_satisfied_requires_findings",
+            "when": "outcome in {incomplete,unknown,conflict,stale,invalid}",
+            "require": "findings.length>=1",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "contains",
+                "items": {
+                  "literal": [
+                    "incomplete",
+                    "unknown",
+                    "conflict",
+                    "stale",
+                    "invalid"
+                  ]
+                },
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "stage"
+                  },
+                  "pointer": "/outcome"
+                }
+              },
+              "then": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "get",
+                    "value": {
+                      "var": "stage"
+                    },
+                    "pointer": "/findings"
+                  },
+                  "right": {
+                    "literal": []
+                  }
+                }
+              },
+              "else": {
+                "literal": true
+              }
+            }
+          }
+        ],
+        "predicate_language_ref": "#/f04_recovery_construction/expression_language",
+        "predicate_environment": {
+          "stage": "当該producerの内部結果値。公開inputとは別の値。",
+          "recovery_candidate_ref": "input.recovery_fact.pack_refの元Reference。"
+        }
       }
     },
     "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
@@ -337,7 +849,16 @@
       "id": "HARNESS-L5-010-F04",
       "l4_ref": "HARNESS-L4-010-F04",
       "requirement_ref": "HARNESS-L3-010-F04",
-      "oracle_ref": "HARNESS-L8-010-F04"
+      "oracle_ref": "HARNESS-L8-010-F04",
+      "recovery_call_contract": {
+        "arguments": [
+          "input:既存8field record",
+          "context:既存Context（resolved_factsに回復選択kindを追加）"
+        ],
+        "internal_stages_ref": "#/f04_recovery_construction/internal_stages",
+        "return_constructor_ref": "#/f04_recovery_construction/expression_language/definitions/finish",
+        "scope": "既存steps0〜2と適格性比較の内部結果から、回復選択の役割を独立に照合し全Resultを構成する。新公開引数/symbolは作らない。"
+      }
     },
     {
       "symbol": "project_pack_qualification",
@@ -399,5 +920,2715 @@
     "qualification_basis_missing": "incomplete",
     "local_state_hidden": "incomplete",
     "unresolved_lost": "incomplete"
+  },
+  "f04_recovery_construction": {
+    "scope": "F04の回復役割source→typed Context→既存5field返却の限定具体化。旧7kind、input8field/output5field、他4関数と元L8の意味を保持する。",
+    "source_basis": [
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/3",
+        "file_bytes_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "object_canonical_sha256": "85472af22476936aa195d841a2a2017f90378111a06b19d47bd251dbb247ab9f",
+        "value": {
+          "id": "HARNESS-L3-010-F04",
+          "parent": "HARNESS-L2-010",
+          "title": "再現と局所置換",
+          "obligation": "同一入力と版から同じpack成果を再現できる条件を宣言する。交換/更新時に他packの版と証拠を保持し、失敗時は直前の適格版または明示置換へ戻せる。実切替の運転/許可を発行しない。",
+          "oracle_ref": "HARNESS-L10-010-F04"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/3",
+        "file_bytes_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "object_canonical_sha256": "2949f77d0a2620a4e89d60e6854b75a2f20e7fb99d9c287c65ed82e661b5eb26",
+        "value": {
+          "id": "HARNESS-L10-010-F04",
+          "parent": "HARNESS-L2-010",
+          "title": "再現と局所置換",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "positive_input": "固定入力/版の再生成と、Aのみ置換失敗してAの適格版へ戻す検証条件を準備する。",
+          "expected_observation": "意味/成果の再現根拠、旧/新/復旧先と非対象Bの版/証拠が同revision/scopeで照合可能。",
+          "negative_input": "latestへ暗黙更新、復旧先不明、非対象Bの証拠を失う。",
+          "failure_observation": "再現/復旧の不足を返し、更新/切替成功を主張しない。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+        "object_canonical_sha256": "384e4e76e2534693d80d282993cac119d7758734ed3d8c7eb8645d489098e07f",
+        "value": {
+          "id": "HARNESS-L4-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "system_oracle_ref": "HARNESS-L10-010-F04",
+          "oracle_ref": "HARNESS-L9-010-F04",
+          "boundary": "ReplacementCandidate",
+          "title": "固定入力からの再現と局所置換",
+          "required_input_meanings": [
+            "input_snapshot_refs",
+            "tool_environment_refs",
+            "old_pack_ref",
+            "new_pack_ref",
+            "unchanged_pack_evidence_refs",
+            "recovery_candidate_ref"
+          ],
+          "behavior": "入力bytes/revision、依存版、tool/環境条件と意味成果の比較条件を束縛する。置換提案は対象packだけを変更し非対象packの版と証拠を保持する。失敗時の直前適格版または明示置換先が不明なら不足を返す。切替・起動・rollbackの実操作は出力しない。",
+          "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+        "pointer": "/authority_boundary",
+        "file_bytes_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+        "object_canonical_sha256": "ce1a000aefad6c0a9721fecc650d1e8481ed878d406d7cbc9cb097faae3aa18c",
+        "value": {
+          "semantic_owner": "HELIX-HARNESS",
+          "product_application_owner": "HELIX-HARNESS-CORE",
+          "registration_execution_state_owner": "HELIX-OS",
+          "security_owner": "HELIX-SECURITY",
+          "runtime_resource_owner": "HELIX-INFRASTRUCTURE",
+          "knowledge_owner": "HELIX-BRAIN",
+          "effect": "immutable inputから候補/findingを返す。DB/Git/GitHub/file write、登録、実切替、権限発行を行わない。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/functions/3",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "aecb4d3873dc31c463e5315fa0310b209012a9fd4edea426ea2334d2ce2b6f2c",
+        "value": {
+          "symbol": "check_local_replacement",
+          "input": {
+            "old_pack_ref": "Reference",
+            "new_pack_ref": "Reference",
+            "input_snapshot_refs": "ReferenceSet（1以上）",
+            "environment_refs": "ReferenceSet（1以上）",
+            "reproduction_comparison": "BoundFact(kind=reproduction_basis、value=ReproductionBasis)",
+            "unchanged_before": "{pack_ref: Reference, proof_refs: ReferenceSet}のtuple",
+            "unchanged_after": "同じrecordのtuple",
+            "recovery_fact": "QualificationFact"
+          },
+          "output": {
+            "old_pack_ref": "Reference",
+            "new_pack_ref": "Reference",
+            "recovery_pack_ref": "Reference",
+            "unchanged_refs": "ReferenceSet",
+            "reproduction_evidence_refs": "ReferenceSet"
+          },
+          "steps": [
+            "固定入力/依存/環境のexact Refを照合。latestや未特定環境を拒否する。",
+            "再生成比較factの対象入力/意味成果/比較方法・結果をcontextへ照合。二つのhash一致だけを再現性の全証拠にしない。異成果/未観測は残す。",
+            "非対象集合を両方向に比較し、各pack Refとproof Ref集合がbefore/afterで完全一致することを確認。消失と追加/版変更を区別。",
+            "復旧候補は直前適格版または明示置換のowner根拠と全局所proofへ結ぶ。root/版/適格性不明はrecovery_unknown。",
+            "対象の旧/新/復旧候補と非対象保持の結果を返す。pointer変更/起動/rollback/write/FR53履歴変換を実行せず成功として返さない。"
+          ],
+          "codes": [
+            "reproduction_mismatch",
+            "unchanged_pack_changed",
+            "recovery_unknown"
+          ],
+          "id": "HARNESS-L5-010-F04",
+          "l4_ref": "HARNESS-L4-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "oracle_ref": "HARNESS-L8-010-F04"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/shared_pre_post",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "9c3bd991a7711b85a033f2698bdaf090f00fabe4f2cb9e1bae3be4e7a530bf31",
+        "value": {
+          "pre": "inputは未検査。contextは別引数のowner-qualified snapshotであり、inputの宣言/validity/qualifiedに合わせて書き換えない。各関数が実際に参照するbasis/factを同subject revision/scope/owner/current根拠と内容へ照合する。current root/owner不明は当該結果をunknownにする。declared unresolvedのCの局所stateは個別に保持し、無関係Aのcurrent根拠を不明へ落とさない。field存在/digest一致だけでfactの内容やauthorityを生成せずcontent_check_refs不足はfact_content_unproven。",
+          "post": "satisfiedは当該純粋契約の一致だけ。required field欠落/型/duplicateはinvalid。解決すべき参照missingはincomplete、unknownはunknown、異payload/owner矛盾はconflict、古い参照はstale。既に宣言した未完/未解決/上位未証明の集合を正しく投影する場合はincompleteとして残す。複数分類があればinvalid→conflict→stale→unknown→incompleteの順でoutcomeを一つ選び、全findingを残す。",
+          "partial_value": "invalidはvalue=null。他の非satisfiedでは、根拠を照合できた独立packと、finding/未完/不明を同scopeで保持する閉じたoutput recordだけを返してよい。必要fieldを解決できずoutput型を満たせない場合はnull。未成立packを収載候補/qualifiedにせず、別packの既存適格性も隠さない。",
+          "determinism": "同じ入力値と根拠bytes/版から同じ結果値/finding集合を返す。集合順序とclock/locale/host stateを意味へ混入させない。入力を変更しない。",
+          "effect": "Python意味コアの純粋domain関数。file/network/process/DB/Git/GitHub/台帳writer/実行器を呼ばない。",
+          "no_code_first": "既存JSON型/集合比較/immutable DTOを再利用する。旧TS runtime/parser/DBや巨大Engineを移植せず、既存toolが担えない010固有の内容差分だけ実装対象にする。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/type_contract",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "9da1e2baa170915a8a8d3073b4d723e6bdb5a760bc9e543513afd08001eafb47",
+        "value": {
+          "syntax": "recordは列挙fieldだけを許可し全field必須。tuple要素は全件検査し一つのunknown/不正をshort circuitで隠さない。型名参照は本type_modelと各input/output recordだけ。wire JSON Schemaの別正本をここへ複製しない。",
+          "type_model": {
+            "Text": "非空Unicode文字列。空白だけを非空としない。表記の自動正規化/意味identity判定を行わない。",
+            "Reference": {
+              "identity": "Text",
+              "revision": "Text（latest/wildcardは不可、完全一致の値）",
+              "owner": "Text",
+              "scope": "Text",
+              "content_sha256": "64桁lowercase hex（参照bytesの整合性のみ）"
+            },
+            "ReferenceSet": "Referenceのtuple。identity/revision/owner/scopeを集合keyとし、同key異digestと重複keyを拒否。配列の順番を意味にしない。",
+            "BoundFact": {
+              "subject_ref": "Reference",
+              "basis_refs": "ReferenceSet",
+              "validity": "valid | missing | unknown | conflict | stale",
+              "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
+              "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis"
+            },
+            "Context": {
+              "subject_ref": "Reference",
+              "current_basis_refs": "ReferenceSet（意味owner/authority/対象scopeが解決されたcurrent snapshot）",
+              "resolved_facts": "BoundFactのtuple。同じsubject/kind/対象revision/scopeの二重定義と同key異valueをreference_conflictにする。",
+              "expected_local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "fact_check_refs": "ReferenceSet（fact内容の独立照合根拠。field存在/hashだけで成立にしない）"
+            },
+            "Finding": {
+              "code": "本設計のclosed error_code",
+              "pointer": "input fieldへのJSON Pointer形式locator",
+              "subject_ref": "Reference",
+              "requirement_ref": "親010のatomic L3 ID",
+              "backflow_owner": "Text",
+              "evidence_refs": "ReferenceSet"
+            },
+            "Result": {
+              "outcome": "satisfied | incomplete | unknown | conflict | stale | invalid",
+              "value": "各関数のoutput record、またはnull",
+              "findings": "Findingのtuple。code/pointer/subject identity/revision順でUnicode code point sort"
+            },
+            "QualificationFact": {
+              "pack_ref": "Reference",
+              "state": "qualified | incomplete | unknown | conflict | stale",
+              "proof_refs": "ReferenceSet",
+              "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "basis_refs": "ReferenceSet"
+            },
+            "UpperState": {
+              "release_unit_revision": "Text",
+              "release_unit_state_ref": "Reference",
+              "product_revision": "Text",
+              "product_state_ref": "Reference"
+            },
+            "BoundaryBasis": {
+              "behavior_atom_refs": "ReferenceSet",
+              "owner_ref": "Reference",
+              "owner_kind": "service | component | core",
+              "sharing_class": "local | shared | unknown",
+              "inseparable_groups": "ReferenceSetのtuple"
+            },
+            "DeclarationBasis": {
+              "input_refs": "ReferenceSet",
+              "output_refs": "ReferenceSet",
+              "required_dependency_refs": "ReferenceSet",
+              "local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "contract_revision": "Text",
+              "dependency_absence_basis_refs": "ReferenceSet"
+            },
+            "DependencyObservation": {
+              "observed_refs": "ReferenceSet",
+              "observation_scope_ref": "Reference",
+              "complete_observation_basis_refs": "ReferenceSet"
+            },
+            "QualificationBasis": {
+              "pack_ref": "Reference",
+              "state": "qualified | incomplete | unknown | conflict | stale",
+              "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "proof_refs": "ReferenceSet",
+              "content_check_refs": "ReferenceSet（pair/proofの対象・期待内容・実内容を比較したcurrent根拠）"
+            },
+            "ReproductionBasis": {
+              "old_pack_ref": "Reference",
+              "new_pack_ref": "Reference",
+              "input_snapshot_refs": "ReferenceSet",
+              "environment_refs": "ReferenceSet",
+              "expected_semantic_result_ref": "Reference",
+              "observed_semantic_result_refs": "ReferenceSet",
+              "comparison_contract_ref": "Reference",
+              "comparison_outcome": "same | different | unknown",
+              "comparison_content_check_refs": "ReferenceSet",
+              "recovery_basis_refs": "ReferenceSet"
+            },
+            "CompositionBasis": {
+              "candidate_refs": "ReferenceSet",
+              "upper_state": "UpperState",
+              "upper_obligation_refs": "ReferenceSet",
+              "upper_proved_refs": "ReferenceSet",
+              "upper_unproved_refs": "ReferenceSet"
+            },
+            "PackMaturityChange": {
+              "pack_ref": "Reference",
+              "before_maturity_ref": "Reference（pack自身の成熟度、適格性state/製品stateとは別）",
+              "after_maturity_ref": "Reference",
+              "basis_refs": "ReferenceSet"
+            },
+            "MaturityBasis": {
+              "pack_ref": "Reference",
+              "before_maturity_ref": "Reference",
+              "after_maturity_ref": "Reference",
+              "content_check_refs": "ReferenceSet（同pack/対象scopeの成熟度before/afterを照合したcurrent根拠）"
+            }
+          },
+          "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/finding_classification",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "af07248c3baff51fca47286bdaee1bc9c1e5620f86e2078beaa674793f8f0be8",
+        "value": {
+          "input_invalid": "invalid",
+          "reference_missing": "incomplete",
+          "reference_unknown": "unknown",
+          "reference_conflict": "conflict",
+          "reference_stale": "stale",
+          "fact_content_unproven": "incomplete",
+          "owner_conflict": "conflict",
+          "boundary_mismatch": "incompleteなら根拠missing、conflictなら既決境界との矛盾",
+          "shared_owner_mismatch": "conflict",
+          "declaration_missing": "incomplete",
+          "dependency_undeclared": "incomplete",
+          "dependency_missing": "incomplete",
+          "local_pair_mismatch": "conflict",
+          "candidate_outside": "conflict",
+          "candidate_partition_mismatch": "incomplete",
+          "exclusion_basis_missing": "incomplete",
+          "pack_not_qualified": "incompleteなら未証明/未適格、unknownなら根拠unknown、conflict/staleなら当該事実の分類",
+          "upper_state_inferred": "conflict",
+          "reproduction_mismatch": "conflict",
+          "unchanged_pack_changed": "conflict",
+          "recovery_unknown": "unknownなら根拠unknown、incompleteなら不適格/根拠missing",
+          "qualification_basis_missing": "incomplete",
+          "local_state_hidden": "incomplete",
+          "unresolved_lost": "incomplete"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
+        "pointer": "/cases/3",
+        "file_bytes_sha256": "08cdf03f97de418b4107647d4c3c6d13dfddeb13b85f7bf91479bdc9bdc16946",
+        "object_canonical_sha256": "e03acd7199fb3d3b5a1856bfd24e2e8bb507e5ffcbe0a188f6fcd2004ebca171",
+        "value": {
+          "id": "HARNESS-L8-010-F04",
+          "design_ref": "HARNESS-L5-010-F04",
+          "symbol": "check_local_replacement",
+          "l9_ref": "HARNESS-L9-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "positive_input": "A@r1→A@r2、固定in-A/env1から意味same-xを二観測、復旧=A@r1 qualified。B@r1/proof-B-retainedはbefore/after同じ。",
+          "expected_observation": [
+            "outcome=satisfied",
+            "old=A@r1,new=A@r2,recovery=A@r1",
+            "unchanged_refs={B@r1}、proof集合=before/after同じ",
+            "切替/rollbackの実行指示はoutputに無い"
+          ],
+          "negative_mutations": [
+            {
+              "l9_mutation_index": 1,
+              "mutation": "latest暗黙参照",
+              "expected": {
+                "outcome": "invalid",
+                "finding_code": "input_invalid",
+                "finding_pointer": "/new_pack_ref/revision",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/new_pack_ref/revision",
+              "change": "set latest",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 2,
+              "mutation": "復旧先不明",
+              "expected": {
+                "outcome": "invalid",
+                "finding_code": "input_invalid",
+                "finding_pointer": "/recovery_fact",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/recovery_fact",
+              "change": "delete required field",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 3,
+              "mutation": "非対象版変更",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "unchanged_pack_changed",
+                "finding_pointer": "/unchanged_after/0/pack_ref/revision",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/unchanged_after/0/pack_ref/revision",
+              "change": "set r2 for B; before remains r1",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 4,
+              "mutation": "非対象証拠消失",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "unchanged_pack_changed",
+                "finding_pointer": "/unchanged_after/0/proof_refs",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/unchanged_after/0/proof_refs",
+              "change": "remove proof-B-retained",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 5,
+              "mutation": "同入力別成果",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "reproduction_mismatch",
+                "finding_pointer": "/reproduction_comparison/value/comparison_outcome",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/reproduction_comparison/value/comparison_outcome",
+              "change": "set different; observed semantic result becomes not-x",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 6,
+              "mutation": "比較環境不明",
+              "expected": {
+                "outcome": "incomplete",
+                "finding_code": "reference_missing",
+                "finding_pointer": "/environment_refs",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/environment_refs",
+              "change": "set {}; fixed env1 basis unchanged",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            }
+          ],
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
+        "pointer": "/extra_cases/3",
+        "file_bytes_sha256": "08cdf03f97de418b4107647d4c3c6d13dfddeb13b85f7bf91479bdc9bdc16946",
+        "object_canonical_sha256": "84aa26e2257c2bdb1eea61de134ca08f1c6ddf6cf3475c290dde36f0aa3fe42a",
+        "value": {
+          "id": "HARNESS-L8-010-X04",
+          "targets": "check_local_replacement",
+          "input": "型は正しいrecovery_factをunknown、不適格、別scopeへ一つずつ変更。reproduction factを同hashだがcomparison_content_check_refs空へ変更。",
+          "expected": "復旧根拠不明はrecovery_unknown/unknown、不適格はrecovery_unknown/incomplete、別scopeはreference_conflict/conflict。比較内容根拠無しはfact_content_unproven/incomplete。置換/復旧成功を返さない。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "legacy_basis": [
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_bytes_sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+        "start_line": 343,
+        "end_line": 353,
+        "quote_utf8": "### HARNESS-L2-010 パックの境界\n\n利用者は、HARNESSの能力を、入力・出力・必要な依存・検証範囲・版が明確で、交換・更新できる能力のまとまり（パック）として識別し、検証済みのパックを組み合わせてリリース単位を成立させられる。\n\n- パックは関数やフォルダの単位ではない。一つのbehavior contract、または分けると意味を失う密結合したcontractのまとまりとする。\n- 各パックは、入力の契約、出力の契約、必要な依存（他のパック、部品、コア、外部の実行接続）、検証範囲（単体として証明する義務とoracle）、版を宣言する。宣言のない依存を実行時に暗黙に使わない。\n- パックは所属するリリース単位（サービス①〜⑦）、部品、コアのいずれかに所有される。一つのパックを二つのリリース単位が所有しない。複数のリリース単位から使う能力は部品またはコアに置く（Conceptの「サービスを支えるもの」）。\n- リリース単位へ収めるパックと収めないパックを明示する。未検証・未適格のパックを暗黙に収めない。パックの版と成熟度、リリース単位の版、統合した製品の版を別に持ち、パックの昇格だけで上位を昇格させない。上位の未完の部分で、適格なパックを隠さない。\n- 同じ入力と版から同じパックの成果物を再現でき、失敗時は直前の適格な版または明示した置換えへ戻せる。\n- 全部を一つの巨大なパックへ戻さない。パックが大きくなり交換・更新できなくなったら、Design-refactorで分ける（HARNESS-L2-005の密結合の扱い）。\n- 束ねる既存の条件：「提供構成と再現性の条件」のFRS-BR-001／002／003／005／009、HARNESS-L2-008の単体・接続・構成体の区別。\n",
+        "quote_utf8_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4"
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+        "file_bytes_sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+        "start_line": 82,
+        "end_line": 93,
+        "quote_utf8": "### RLS-R-07 deterministic buildとrelease packet\n\n既存builderを拡張し、同一source／registry／profile入力から同一Module／Bundle artifactを生成する。release packetはsource full SHA、\ntree／module／bundle registry digest、artifact digest、checksums、SBOM、互換性、受入、独立review、rollback、\nrelease noteを束縛する。Module別・Lite専用の重複builderを作らない。\n\n### RLS-R-08 信頼実行前のstatic検証\n\n未信頼artifactはcode実行前にmanifest exact set、hash、schema、source lock、secret、unexpected executable、permission、Action SHA、\npath traversal、symlink／junction、duplicate／case collision、archive bombを検査する。static failureをtrusted executionのgreenで\n相殺しない。clean consumerはLinuxと同一artifactのWindowsでinstall、setup、status、DB rebuild、doctor、module／bundle\nacceptance、upgrade、uninstall／rollbackを行い、consumer所有bytesを保全する。\n",
+        "quote_utf8_sha256": "b853c3c6cb871365f5037cde5f1da63732da3b4218ff128887943745907ac72d"
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
+        "file_bytes_sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610",
+        "start_line": 20,
+        "end_line": 30,
+        "quote_utf8": "## 2. ownership\n\n| owner | 所有するもの | 禁止するもの |\n|---|---|---|\n| state-db | persistence、projection、adapter-neutralなview data | vscode/cli/doctorのpresentation import |\n| visualization-contract | 最小DTO、generic tree contract | I/O、command ID、extension API |\n| visualization-projector | DTO→generic treeのpure変換 | VS Code decoration、DB write |\n| vscode | generic tree→command/manifest decoration | state-db直接import、projection rebuild |\n| lint analyzer | immutable input→finding | write、child process、環境probe |\n| executor/materializer | typed intent→receipt | finding判定、silent retry |\n| composition root | owner間の配線とlifecycle | domain contractの再定義 |\n",
+        "quote_utf8_sha256": "21361a0cd9310ca3615f520816c1e3b6c40a67fbcc080ba7eeef7923536d6a30"
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+        "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+        "start_line": 16,
+        "end_line": 35,
+        "quote_utf8": "## §1 module境界\n\n実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、\nrepository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは\n既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。\n\n```ts\ntype Finding = {\n  code: DesignTemplateFindingCode;\n  pointer: string;\n  message: string;\n};\n\ntype ValidationResult<T> =\n  | { ok: true; value: T; findings: [] }\n  | { ok: false; findings: Finding[] };\n```\n\nfindingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。\n\n",
+        "quote_utf8_sha256": "4d6d6f440f535d06fd78618a537254171b656957531e62f94ff9f4cdc3f61f11"
+      }
+    ],
+    "reuse": {
+      "class": "semantic_rederivation",
+      "assets": [
+        "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+        "LEGACY-ASSET-809B35B3C91567A97AF5",
+        "LEGACY-ASSET-EF18357A994D043719D5"
+      ],
+      "keep": "独立した局所適格性と上位/運転、immutable analyzerとeffect、pure/typed resultを分離する。",
+      "change": "回復選択原recordの内容を既存Contextのfactとして渡す。旧runtime、版文字列推定や新registryを持ち込まない。",
+      "reason": "L3/L4/F04が既に要求する直前適格/明示置換の根拠を、型付き値として照合するため。"
+    },
+    "source_role": {
+      "QualificationBasis": "候補packの局所適格性、全pair/proofと内容根拠。回復先としての選択を表さない。",
+      "RecoverySelectionBasis": "独立sourceが明示したold/new/recovery/選択区分の内容。適格性state/実操作許可を生成しない。",
+      "ReproductionBasis.recovery_basis_refs": "原選択record等の根拠Ref。内容をhash/identity/pathから生成せず、選択fact.basis_refsとの完全Ref joinを確認する。",
+      "caller": "owner-qualifiedな不変Contextを供給する既存caller側の責務。実provider/issuer/body custodyは未成立。typed値の作成だけで実資格にしない。"
+    },
+    "binding_rules": [
+      "recovery選択factはkindと完全subject key（identity/owner/scope/revision）で同operationの候補を選ぶ。完全一致候補が一意なら採用し、別revision/別scope/別ownerの履歴を同key重複へ数えない。同key複数定義だけをreference_conflictにする。完全一致0件ではidentity/owner/scope一致候補だけをrevision fallbackへ使い、その版差をreference_staleへ返す。別scope/別ownerだけの履歴は現subjectのsourceを供給せずrecovery_unknown/incomplete。候補targetで先に絞らず、sourceが明示した別targetをmissingとして隠さない。",
+      "subject_refのcurrent対象とのrevision差はreference_stale。source recordのold/new/recovery targetとpublic candidateの差は選択/関係のreference_conflictであり、recovery targetの版文字列から前後や直前性を推定しない。同identity/owner/scopeでもtarget revisionが異なればconflict。異なるowner/scope等のRef相反もconflict。value.old/new/recoveryを各入力Refへ別々に照合し、独立差を全Findingに保持する。",
+      "previous_qualifiedとexplicit_replacementはいずれも原recordの明示内容を保持する。文字列の大小/版番号から直前を推定せず、recovery==oldや同identityを一律必須にしない。",
+      "source factのvalidity、source/bodyと独立current内容照合はshared_pre_postの前提に従う。basis/content_check_refs非空・集合所属は必要条件に過ぎず、field/hash/qualifiedの自己表示から役割/資格を認定しない。source未供給ならfactを捏造しない。",
+      "fact.basis_refsとreproduction_comparison.value.recovery_basis_refsを完全Refでjoinする。いずれかの側が空ならreference_missing/incomplete（source fact basis欠落によるfact_content_unproven等の独立Findingも保持）。両側が非空で共通Refが無い場合だけreference_conflict。追加根拠Refsは保持し、単純な配列順/一律全集合同一を要求しない。既存の全参照current/内容照合は省略しない。",
+      "役割未解決又は独立適格性未成立では必須recovery_pack_refを解決済み候補として返せないためvalue=null。input/contextは変更せず保持する。Finding.evidence_refsはFinding constructorに定めるrecovery候補Refとrecovery_basis_refsだけであり、B/proofをFindingの根拠へ含むとはしない。出力valueが構成できる場合のunchanged_refsはprior producerから受け取った非対象Refを保持する。"
+    ],
+    "internal_stages": {
+      "prior": {
+        "public_argument": false,
+        "producer": "functions[3].steps[0:3]。参照/再生成/非対象保持の既存比較結果。全一般域をこの追補の式へ移植したものではない。",
+        "type": "F04PriorStageResult<input>",
+        "known_value_mapping": {
+          "old_pack_ref": "input.old_pack_ref",
+          "new_pack_ref": "input.new_pack_ref",
+          "unchanged_refs": "照合済みunchanged_before.pack_refの集合",
+          "reproduction_evidence_refs": "照合済みreproduction_comparison.basis_refsとvalue.comparison_content_check_refsの集合和"
+        },
+        "consumer_parameter": "expression_language.definitions.finish.prior"
+      },
+      "qualification": {
+        "public_argument": false,
+        "producer": "functions[3].steps[3]の適格性部分。input.recovery_factを、同packの独立Context QualificationBasis/current根拠/expected_local_pairs/全proof内容へ照合する。state文字列やcount/hashだけではsatisfiedにしない。",
+        "type": "F04QualificationStageResult<input.recovery_fact.pack_ref>",
+        "read_bindings": {
+          "source_kind": "qualification_basis",
+          "source_subject_input_pointer": "/recovery_fact/pack_ref",
+          "comparisons": [
+            {
+              "input_pointer": "/recovery_fact/pack_ref",
+              "source_pointer": "/value/pack_ref",
+              "comparison": "Reference"
+            },
+            {
+              "input_pointer": "/recovery_fact/state",
+              "source_pointer": "/value/state",
+              "comparison": "JSON value"
+            },
+            {
+              "input_pointer": "/recovery_fact/proof_refs",
+              "source_pointer": "/value/proof_refs",
+              "comparison": "ReferenceSet"
+            },
+            {
+              "input_pointer": "/recovery_fact/proved_pairs",
+              "source_pointer": "/value/proved_pairs",
+              "comparison": "pair集合"
+            }
+          ],
+          "pairs": "source.value.proved_pairsをcontext.expected_local_pairsへ全内容で照合する。",
+          "basis": "source.basis_refsはcurrent_basis_refsへ、source.value.content_check_refsはfact_check_refsへ結ぶ。実内容照合済みsnapshotという既存前提を、単なる非空/所属へ縮約しない。"
+        },
+        "failure": "missing/unknown/conflict/stale/不適格は元stepsとshared_pre_postに従って全Findingと分類を保持。役割比較の成功で相殺しない。",
+        "consumer_parameter": "expression_language.definitions.finish.qualification"
+      }
+    },
+    "finding_constructor": {
+      "code": "既存common_error_codes/finding_classificationだけ。",
+      "pointer": "不足/役割targetは/recovery_fact/pack_ref、旧/新target差は/old_pack_ref又は/new_pack_ref、source Ref join差は/reproduction_comparison/value/recovery_basis_refs。Context内差を偽の/context pointerにしない。",
+      "subject_ref": "input.new_pack_ref（この局所置換比較の対象）。欠落Refは既存型検査の前段所見へ戻し架空Refを作らない。",
+      "requirement_ref": "HARNESS-L3-010-F04",
+      "backflow_owner": "source/観測不足はL4の論理OS/当該producer、意味/関係相反はL4 semantic_ownerのHELIX-HARNESS。実recipientは未解決のまま。",
+      "evidence_refs": "入力recovery候補Refと元recovery_basis_refsの集合。元値を保持しsource bodyを作らない。",
+      "order": "既存code/pointer/subject identity/revision順。tieは論理ownerとcanonical evidence。独立Findingを消さず、全分類をinvalid→conflict→stale→unknown→incompleteで合成する。"
+    },
+    "expression_language": {
+      "scope": "型検査済みinput/contextと明示した内部prior/qualificationから回復役割とResultを構成する唯一の値規範。この式だけで前段全F04一般域を実装済みとはしない。",
+      "operators": {
+        "literal": "JSON定数",
+        "var": "lexical環境の変数",
+        "get": "固定RFC6901 pointerで型付きrecordを参照。Absentは型外/前段検査で扱う。",
+        "call": "definitionsのlexical引数へ値を渡す内部呼出し。公開symbolを増やさない。",
+        "object": "列挙fieldの閉record",
+        "array": "順序付き配列",
+        "equal": "JSON型付き等値。boolとnumberを区別、number同士は数値等値、object key順は無視。",
+        "if": "Boolean条件の一枝だけ評価",
+        "and/or": "Booleanだけを左から短絡評価",
+        "not": "Boolean反転",
+        "let": "bindingを記載順に局所評価",
+        "map/filter": "全要素を独立に評価し配列へ投影/保持",
+        "concat": "配列を記載順に一段連結",
+        "length/first": "配列長/先頭。firstは一意候補又は非空優先集合だけに使う。",
+        "contains": "JSON型付き等値で配列membership",
+        "unique": "JSON完全同値の要素だけを重複除去",
+        "sort_canonical": "Unicode code pointのkey順を持つcanonical JSON文字列の昇順。集合表現の安定化であって意味を生成しない。",
+        "canonical_text": "sort_keys/ensure_ascii=false/空白無しJSONのUTF8表現に対応する文字列",
+        "sort_by": "明示keyの辞書式昇順、同keyはcanonical JSON文字列でtie break",
+        "lookup": "定義済み有限mapから型の閉enum keyを取得"
+      },
+      "definitions": {
+        "ref_code": {
+          "parameters": [
+            "expected",
+            "actual",
+            "revision_mismatch_code"
+          ],
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "expected"
+                      },
+                      "pointer": "/identity"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "actual"
+                      },
+                      "pointer": "/identity"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "expected"
+                      },
+                      "pointer": "/owner"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "actual"
+                      },
+                      "pointer": "/owner"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "expected"
+                      },
+                      "pointer": "/scope"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "actual"
+                      },
+                      "pointer": "/scope"
+                    }
+                  }
+                ]
+              }
+            },
+            "then": {
+              "literal": "reference_conflict"
+            },
+            "else": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "get",
+                    "value": {
+                      "var": "expected"
+                    },
+                    "pointer": "/revision"
+                  },
+                  "right": {
+                    "op": "get",
+                    "value": {
+                      "var": "actual"
+                    },
+                    "pointer": "/revision"
+                  }
+                }
+              },
+              "then": {
+                "var": "revision_mismatch_code"
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "expected"
+                      },
+                      "pointer": "/content_sha256"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "actual"
+                      },
+                      "pointer": "/content_sha256"
+                    }
+                  }
+                },
+                "then": {
+                  "literal": "reference_conflict"
+                },
+                "else": {
+                  "literal": null
+                }
+              }
+            }
+          }
+        },
+        "resolution_outcome": {
+          "parameters": [
+            "states"
+          ],
+          "body": {
+            "op": "first",
+            "value": {
+              "op": "filter",
+              "items": {
+                "literal": [
+                  "invalid",
+                  "conflict",
+                  "stale",
+                  "unknown",
+                  "incomplete",
+                  "satisfied"
+                ]
+              },
+              "name": "s",
+              "predicate": {
+                "op": "contains",
+                "items": {
+                  "var": "states"
+                },
+                "value": {
+                  "var": "s"
+                }
+              }
+            }
+          }
+        },
+        "evidence": {
+          "parameters": [
+            "input"
+          ],
+          "body": {
+            "op": "sort_canonical",
+            "value": {
+              "op": "unique",
+              "value": {
+                "op": "concat",
+                "items": [
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "get",
+                        "value": {
+                          "var": "input"
+                        },
+                        "pointer": "/recovery_fact/pack_ref"
+                      }
+                    ]
+                  },
+                  {
+                    "op": "get",
+                    "value": {
+                      "var": "input"
+                    },
+                    "pointer": "/reproduction_comparison/value/recovery_basis_refs"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "finding": {
+          "parameters": [
+            "input",
+            "code",
+            "pointer",
+            "owner"
+          ],
+          "body": {
+            "op": "object",
+            "fields": {
+              "code": {
+                "var": "code"
+              },
+              "pointer": {
+                "var": "pointer"
+              },
+              "subject_ref": {
+                "op": "get",
+                "value": {
+                  "var": "input"
+                },
+                "pointer": "/new_pack_ref"
+              },
+              "requirement_ref": {
+                "literal": "HARNESS-L3-010-F04"
+              },
+              "backflow_owner": {
+                "var": "owner"
+              },
+              "evidence_refs": {
+                "call": "evidence",
+                "args": [
+                  {
+                    "var": "input"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "failure": {
+          "parameters": [
+            "input",
+            "code",
+            "outcome",
+            "pointer",
+            "owner"
+          ],
+          "body": {
+            "op": "object",
+            "fields": {
+              "outcome": {
+                "var": "outcome"
+              },
+              "recovery_pack_ref": {
+                "literal": null
+              },
+              "findings": {
+                "op": "array",
+                "items": [
+                  {
+                    "call": "finding",
+                    "args": [
+                      {
+                        "var": "input"
+                      },
+                      {
+                        "var": "code"
+                      },
+                      {
+                        "var": "pointer"
+                      },
+                      {
+                        "var": "owner"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "order_findings": {
+          "parameters": [
+            "findings"
+          ],
+          "body": {
+            "op": "sort_by",
+            "value": {
+              "op": "map",
+              "items": {
+                "var": "findings"
+              },
+              "name": "f",
+              "expression": {
+                "op": "object",
+                "fields": {
+                  "code": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/code"
+                  },
+                  "pointer": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/pointer"
+                  },
+                  "subject_ref": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/subject_ref"
+                  },
+                  "requirement_ref": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/requirement_ref"
+                  },
+                  "backflow_owner": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/backflow_owner"
+                  },
+                  "evidence_refs": {
+                    "op": "sort_canonical",
+                    "value": {
+                      "op": "unique",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "var": "f"
+                        },
+                        "pointer": "/evidence_refs"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "name": "f",
+            "key": {
+              "op": "array",
+              "items": [
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/code"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/pointer"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/subject_ref/identity"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/subject_ref/revision"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/backflow_owner"
+                },
+                {
+                  "op": "canonical_text",
+                  "value": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/evidence_refs"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "relation_findings": {
+          "parameters": [
+            "input",
+            "fact"
+          ],
+          "body": {
+            "op": "concat",
+            "items": [
+              {
+                "op": "let",
+                "bindings": [
+                  {
+                    "name": "code",
+                    "value": {
+                      "call": "ref_code",
+                      "args": [
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/old_pack_ref"
+                        },
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "fact"
+                          },
+                          "pointer": "/value/old_pack_ref"
+                        },
+                        {
+                          "literal": "reference_conflict"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "body": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "var": "code"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "var": "code"
+                          },
+                          {
+                            "literal": "/old_pack_ref"
+                          },
+                          {
+                            "literal": "HELIX-HARNESS"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "op": "let",
+                "bindings": [
+                  {
+                    "name": "code",
+                    "value": {
+                      "call": "ref_code",
+                      "args": [
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref"
+                        },
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "fact"
+                          },
+                          "pointer": "/value/new_pack_ref"
+                        },
+                        {
+                          "literal": "reference_conflict"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "body": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "var": "code"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "var": "code"
+                          },
+                          {
+                            "literal": "/new_pack_ref"
+                          },
+                          {
+                            "literal": "HELIX-HARNESS"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "op": "let",
+                "bindings": [
+                  {
+                    "name": "code",
+                    "value": {
+                      "call": "ref_code",
+                      "args": [
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/recovery_fact/pack_ref"
+                        },
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "fact"
+                          },
+                          "pointer": "/value/recovery_pack_ref"
+                        },
+                        {
+                          "literal": "reference_conflict"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "body": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "var": "code"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "var": "code"
+                          },
+                          {
+                            "literal": "/recovery_fact/pack_ref"
+                          },
+                          {
+                            "literal": "HELIX-HARNESS"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "resolve_one": {
+          "parameters": [
+            "input",
+            "context",
+            "fact"
+          ],
+          "body": {
+            "op": "let",
+            "bindings": [
+              {
+                "name": "subject_code",
+                "value": {
+                  "call": "ref_code",
+                  "args": [
+                    {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/new_pack_ref"
+                    },
+                    {
+                      "op": "get",
+                      "value": {
+                        "var": "fact"
+                      },
+                      "pointer": "/subject_ref"
+                    },
+                    {
+                      "literal": "reference_stale"
+                    }
+                  ]
+                }
+              }
+            ],
+            "body": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "var": "subject_code"
+                  },
+                  "right": {
+                    "literal": null
+                  }
+                }
+              },
+              "then": {
+                "call": "failure",
+                "args": [
+                  {
+                    "var": "input"
+                  },
+                  {
+                    "var": "subject_code"
+                  },
+                  {
+                    "op": "lookup",
+                    "map": {
+                      "literal": {
+                        "reference_conflict": "conflict",
+                        "reference_stale": "stale"
+                      }
+                    },
+                    "key": {
+                      "var": "subject_code"
+                    }
+                  },
+                  {
+                    "literal": "/new_pack_ref"
+                  },
+                  {
+                    "literal": "HELIX-HARNESS"
+                  }
+                ]
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "fact"
+                      },
+                      "pointer": "/validity"
+                    },
+                    "right": {
+                      "literal": "valid"
+                    }
+                  }
+                },
+                "then": {
+                  "call": "failure",
+                  "args": [
+                    {
+                      "var": "input"
+                    },
+                    {
+                      "op": "lookup",
+                      "map": {
+                        "literal": {
+                          "missing": "recovery_unknown",
+                          "unknown": "recovery_unknown",
+                          "conflict": "reference_conflict",
+                          "stale": "reference_stale"
+                        }
+                      },
+                      "key": {
+                        "op": "get",
+                        "value": {
+                          "var": "fact"
+                        },
+                        "pointer": "/validity"
+                      }
+                    },
+                    {
+                      "op": "lookup",
+                      "map": {
+                        "literal": {
+                          "missing": "incomplete",
+                          "unknown": "unknown",
+                          "conflict": "conflict",
+                          "stale": "stale"
+                        }
+                      },
+                      "key": {
+                        "op": "get",
+                        "value": {
+                          "var": "fact"
+                        },
+                        "pointer": "/validity"
+                      }
+                    },
+                    {
+                      "literal": "/recovery_fact/pack_ref"
+                    },
+                    {
+                      "op": "if",
+                      "condition": {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "fact"
+                          },
+                          "pointer": "/validity"
+                        },
+                        "right": {
+                          "literal": "conflict"
+                        }
+                      },
+                      "then": {
+                        "literal": "HELIX-HARNESS"
+                      },
+                      "else": {
+                        "literal": "OS/当該producer"
+                      }
+                    }
+                  ]
+                },
+                "else": {
+                  "op": "let",
+                  "bindings": [
+                    {
+                      "name": "relation_findings",
+                      "value": {
+                        "call": "relation_findings",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "var": "fact"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "join_findings",
+                      "value": {
+                        "call": "join_findings",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "var": "fact"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "content_findings",
+                      "value": {
+                        "op": "if",
+                        "condition": {
+                          "op": "and",
+                          "items": [
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "equal",
+                                "left": {
+                                  "op": "length",
+                                  "value": {
+                                    "op": "get",
+                                    "value": {
+                                      "var": "fact"
+                                    },
+                                    "pointer": "/basis_refs"
+                                  }
+                                },
+                                "right": {
+                                  "literal": 0
+                                }
+                              }
+                            },
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "length",
+                                "value": {
+                                  "op": "filter",
+                                  "items": {
+                                    "op": "get",
+                                    "value": {
+                                      "var": "fact"
+                                    },
+                                    "pointer": "/basis_refs"
+                                  },
+                                  "name": "r",
+                                  "predicate": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "contains",
+                                      "items": {
+                                        "op": "get",
+                                        "value": {
+                                          "var": "context"
+                                        },
+                                        "pointer": "/current_basis_refs"
+                                      },
+                                      "value": {
+                                        "var": "r"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "right": {
+                                "literal": 0
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "equal",
+                                "left": {
+                                  "op": "length",
+                                  "value": {
+                                    "op": "get",
+                                    "value": {
+                                      "var": "fact"
+                                    },
+                                    "pointer": "/value/content_check_refs"
+                                  }
+                                },
+                                "right": {
+                                  "literal": 0
+                                }
+                              }
+                            },
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "length",
+                                "value": {
+                                  "op": "filter",
+                                  "items": {
+                                    "op": "get",
+                                    "value": {
+                                      "var": "fact"
+                                    },
+                                    "pointer": "/value/content_check_refs"
+                                  },
+                                  "name": "r",
+                                  "predicate": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "contains",
+                                      "items": {
+                                        "op": "get",
+                                        "value": {
+                                          "var": "context"
+                                        },
+                                        "pointer": "/fact_check_refs"
+                                      },
+                                      "value": {
+                                        "var": "r"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "right": {
+                                "literal": 0
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "op": "array",
+                          "items": []
+                        },
+                        "else": {
+                          "op": "array",
+                          "items": [
+                            {
+                              "call": "finding",
+                              "args": [
+                                {
+                                  "var": "input"
+                                },
+                                {
+                                  "literal": "fact_content_unproven"
+                                },
+                                {
+                                  "literal": "/recovery_fact/pack_ref"
+                                },
+                                {
+                                  "literal": "OS/当該producer"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "findings",
+                      "value": {
+                        "call": "order_findings",
+                        "args": [
+                          {
+                            "op": "concat",
+                            "items": [
+                              {
+                                "var": "relation_findings"
+                              },
+                              {
+                                "var": "join_findings"
+                              },
+                              {
+                                "var": "content_findings"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "states",
+                      "value": {
+                        "op": "map",
+                        "items": {
+                          "var": "findings"
+                        },
+                        "name": "f",
+                        "expression": {
+                          "op": "lookup",
+                          "map": {
+                            "literal": {
+                              "reference_conflict": "conflict",
+                              "reference_stale": "stale",
+                              "fact_content_unproven": "incomplete",
+                              "reference_missing": "incomplete"
+                            }
+                          },
+                          "key": {
+                            "op": "get",
+                            "value": {
+                              "var": "f"
+                            },
+                            "pointer": "/code"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "body": {
+                    "op": "if",
+                    "condition": {
+                      "op": "equal",
+                      "left": {
+                        "op": "length",
+                        "value": {
+                          "var": "findings"
+                        }
+                      },
+                      "right": {
+                        "literal": 0
+                      }
+                    },
+                    "then": {
+                      "op": "object",
+                      "fields": {
+                        "outcome": {
+                          "literal": "satisfied"
+                        },
+                        "recovery_pack_ref": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/recovery_fact/pack_ref"
+                        },
+                        "findings": {
+                          "op": "array",
+                          "items": []
+                        }
+                      }
+                    },
+                    "else": {
+                      "op": "object",
+                      "fields": {
+                        "outcome": {
+                          "call": "resolution_outcome",
+                          "args": [
+                            {
+                              "var": "states"
+                            }
+                          ]
+                        },
+                        "recovery_pack_ref": {
+                          "literal": null
+                        },
+                        "findings": {
+                          "var": "findings"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "resolve_role": {
+          "parameters": [
+            "input",
+            "context"
+          ],
+          "body": {
+            "op": "let",
+            "bindings": [
+              {
+                "name": "candidates",
+                "value": {
+                  "op": "filter",
+                  "items": {
+                    "op": "get",
+                    "value": {
+                      "var": "context"
+                    },
+                    "pointer": "/resolved_facts"
+                  },
+                  "name": "f",
+                  "predicate": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/kind"
+                        },
+                        "right": {
+                          "literal": "recovery_selection_basis"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/identity"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/identity"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/owner"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/owner"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/scope"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/scope"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/revision"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/revision"
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "name": "identity_candidates",
+                "value": {
+                  "op": "filter",
+                  "items": {
+                    "op": "get",
+                    "value": {
+                      "var": "context"
+                    },
+                    "pointer": "/resolved_facts"
+                  },
+                  "name": "f",
+                  "predicate": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/kind"
+                        },
+                        "right": {
+                          "literal": "recovery_selection_basis"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/identity"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/identity"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/owner"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/owner"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/scope"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/scope"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "body": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "length",
+                  "value": {
+                    "var": "candidates"
+                  }
+                },
+                "right": {
+                  "literal": 1
+                }
+              },
+              "then": {
+                "call": "resolve_one",
+                "args": [
+                  {
+                    "var": "input"
+                  },
+                  {
+                    "var": "context"
+                  },
+                  {
+                    "op": "first",
+                    "value": {
+                      "var": "candidates"
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "equal",
+                    "left": {
+                      "op": "length",
+                      "value": {
+                        "var": "candidates"
+                      }
+                    },
+                    "right": {
+                      "literal": 0
+                    }
+                  }
+                },
+                "then": {
+                  "call": "failure",
+                  "args": [
+                    {
+                      "var": "input"
+                    },
+                    {
+                      "literal": "reference_conflict"
+                    },
+                    {
+                      "literal": "conflict"
+                    },
+                    {
+                      "literal": "/new_pack_ref"
+                    },
+                    {
+                      "literal": "HELIX-HARNESS"
+                    }
+                  ]
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "op": "length",
+                      "value": {
+                        "var": "identity_candidates"
+                      }
+                    },
+                    "right": {
+                      "literal": 0
+                    }
+                  },
+                  "then": {
+                    "call": "failure",
+                    "args": [
+                      {
+                        "var": "input"
+                      },
+                      {
+                        "literal": "recovery_unknown"
+                      },
+                      {
+                        "literal": "incomplete"
+                      },
+                      {
+                        "literal": "/recovery_fact/pack_ref"
+                      },
+                      {
+                        "literal": "OS/当該producer"
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "let",
+                    "bindings": [
+                      {
+                        "name": "findings",
+                        "value": {
+                          "call": "order_findings",
+                          "args": [
+                            {
+                              "op": "map",
+                              "items": {
+                                "var": "identity_candidates"
+                              },
+                              "name": "f",
+                              "expression": {
+                                "call": "finding",
+                                "args": [
+                                  {
+                                    "var": "input"
+                                  },
+                                  {
+                                    "call": "identity_candidate_code",
+                                    "args": [
+                                      {
+                                        "var": "input"
+                                      },
+                                      {
+                                        "var": "f"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "literal": "/new_pack_ref"
+                                  },
+                                  {
+                                    "literal": "HELIX-HARNESS"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "body": {
+                      "op": "object",
+                      "fields": {
+                        "outcome": {
+                          "call": "resolution_outcome",
+                          "args": [
+                            {
+                              "op": "map",
+                              "items": {
+                                "var": "findings"
+                              },
+                              "name": "f",
+                              "expression": {
+                                "op": "lookup",
+                                "map": {
+                                  "literal": {
+                                    "reference_conflict": "conflict",
+                                    "reference_stale": "stale"
+                                  }
+                                },
+                                "key": {
+                                  "op": "get",
+                                  "value": {
+                                    "var": "f"
+                                  },
+                                  "pointer": "/code"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "recovery_pack_ref": {
+                          "literal": null
+                        },
+                        "findings": {
+                          "var": "findings"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "finish": {
+          "parameters": [
+            "input",
+            "context",
+            "prior",
+            "qualification"
+          ],
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "get",
+                "value": {
+                  "var": "prior"
+                },
+                "pointer": "/outcome"
+              },
+              "right": {
+                "literal": "invalid"
+              }
+            },
+            "then": {
+              "op": "object",
+              "fields": {
+                "outcome": {
+                  "op": "get",
+                  "value": {
+                    "var": "prior"
+                  },
+                  "pointer": "/outcome"
+                },
+                "value": {
+                  "literal": null
+                },
+                "findings": {
+                  "op": "get",
+                  "value": {
+                    "var": "prior"
+                  },
+                  "pointer": "/findings"
+                }
+              }
+            },
+            "else": {
+              "op": "let",
+              "bindings": [
+                {
+                  "name": "role",
+                  "value": {
+                    "call": "resolve_role",
+                    "args": [
+                      {
+                        "var": "input"
+                      },
+                      {
+                        "var": "context"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "findings",
+                  "value": {
+                    "call": "order_findings",
+                    "args": [
+                      {
+                        "op": "concat",
+                        "items": [
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "prior"
+                            },
+                            "pointer": "/findings"
+                          },
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "qualification"
+                            },
+                            "pointer": "/findings"
+                          },
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "role"
+                            },
+                            "pointer": "/findings"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "outcome",
+                  "value": {
+                    "call": "resolution_outcome",
+                    "args": [
+                      {
+                        "op": "array",
+                        "items": [
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "prior"
+                            },
+                            "pointer": "/outcome"
+                          },
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "qualification"
+                            },
+                            "pointer": "/outcome"
+                          },
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "role"
+                            },
+                            "pointer": "/outcome"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "body": {
+                "op": "object",
+                "fields": {
+                  "outcome": {
+                    "var": "outcome"
+                  },
+                  "value": {
+                    "op": "if",
+                    "condition": {
+                      "op": "and",
+                      "items": [
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "var": "prior"
+                              },
+                              "pointer": "/value"
+                            },
+                            "right": {
+                              "literal": null
+                            }
+                          }
+                        },
+                        {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "var": "qualification"
+                            },
+                            "pointer": "/outcome"
+                          },
+                          "right": {
+                            "literal": "satisfied"
+                          }
+                        },
+                        {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "var": "qualification"
+                            },
+                            "pointer": "/state"
+                          },
+                          "right": {
+                            "literal": "qualified"
+                          }
+                        },
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "var": "role"
+                              },
+                              "pointer": "/recovery_pack_ref"
+                            },
+                            "right": {
+                              "literal": null
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "object",
+                      "fields": {
+                        "old_pack_ref": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/old_pack_ref"
+                        },
+                        "new_pack_ref": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/new_pack_ref"
+                        },
+                        "recovery_pack_ref": {
+                          "op": "get",
+                          "value": {
+                            "var": "role"
+                          },
+                          "pointer": "/recovery_pack_ref"
+                        },
+                        "unchanged_refs": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/unchanged_refs"
+                        },
+                        "reproduction_evidence_refs": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/reproduction_evidence_refs"
+                        }
+                      }
+                    },
+                    "else": {
+                      "literal": null
+                    }
+                  },
+                  "findings": {
+                    "var": "findings"
+                  }
+                }
+              }
+            }
+          },
+          "parameter_types": {
+            "input": "existing F04 public input record",
+            "context": "existing Context",
+            "prior": "F04PriorStageResult<input>",
+            "qualification": "F04QualificationStageResult<input.recovery_fact.pack_ref>"
+          },
+          "contract": "受理済み内部stage型のみを消費する。stage契約違反はproducer→consumer境界で型域外となり、公開inputの適格性gateや架空のResultへ変換しない。"
+        },
+        "identity_candidate_code": {
+          "parameters": [
+            "input",
+            "fact"
+          ],
+          "body": {
+            "literal": "reference_stale"
+          }
+        },
+        "join_findings": {
+          "parameters": [
+            "input",
+            "fact"
+          ],
+          "body": {
+            "op": "let",
+            "bindings": [
+              {
+                "name": "fact_refs",
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "fact"
+                  },
+                  "pointer": "/basis_refs"
+                }
+              },
+              {
+                "name": "input_refs",
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "input"
+                  },
+                  "pointer": "/reproduction_comparison/value/recovery_basis_refs"
+                }
+              },
+              {
+                "name": "intersection",
+                "value": {
+                  "op": "filter",
+                  "items": {
+                    "var": "fact_refs"
+                  },
+                  "name": "r",
+                  "predicate": {
+                    "op": "contains",
+                    "items": {
+                      "var": "input_refs"
+                    },
+                    "value": {
+                      "var": "r"
+                    }
+                  }
+                }
+              }
+            ],
+            "body": {
+              "op": "concat",
+              "items": [
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "op": "length",
+                      "value": {
+                        "var": "fact_refs"
+                      }
+                    },
+                    "right": {
+                      "literal": 0
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "literal": "reference_missing"
+                          },
+                          {
+                            "literal": "/recovery_fact/pack_ref"
+                          },
+                          {
+                            "literal": "OS/当該producer"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "op": "length",
+                      "value": {
+                        "var": "input_refs"
+                      }
+                    },
+                    "right": {
+                      "literal": 0
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "literal": "reference_missing"
+                          },
+                          {
+                            "literal": "/reproduction_comparison/value/recovery_basis_refs"
+                          },
+                          {
+                            "literal": "OS/当該producer"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "not",
+                        "value": {
+                          "op": "equal",
+                          "left": {
+                            "op": "length",
+                            "value": {
+                              "var": "fact_refs"
+                            }
+                          },
+                          "right": {
+                            "literal": 0
+                          }
+                        }
+                      },
+                      {
+                        "op": "not",
+                        "value": {
+                          "op": "equal",
+                          "left": {
+                            "op": "length",
+                            "value": {
+                              "var": "input_refs"
+                            }
+                          },
+                          "right": {
+                            "literal": 0
+                          }
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "length",
+                          "value": {
+                            "var": "intersection"
+                          }
+                        },
+                        "right": {
+                          "literal": 0
+                        }
+                      }
+                    ]
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "call": "finding",
+                        "args": [
+                          {
+                            "var": "input"
+                          },
+                          {
+                            "literal": "reference_conflict"
+                          },
+                          {
+                            "literal": "/reproduction_comparison/value/recovery_basis_refs"
+                          },
+                          {
+                            "literal": "HELIX-HARNESS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "entry": {
+        "call": "finish",
+        "args": [
+          {
+            "var": "input"
+          },
+          {
+            "var": "context"
+          },
+          {
+            "var": "prior"
+          },
+          {
+            "var": "qualification"
+          }
+        ]
+      },
+      "node_syntax": {
+        "closed": true,
+        "discriminator": "literal/var/callは専用shorthand keyを1つ持つ。他nodeはopを持ち、opごとの下記keyだけを許可する。記載外keyや曖昧なnodeは不正。",
+        "forms": {
+          "literal": {
+            "keys": [
+              "literal"
+            ],
+            "value": "任意JSON値"
+          },
+          "var": {
+            "keys": [
+              "var"
+            ],
+            "value": "lexical変数名"
+          },
+          "call": {
+            "keys": [
+              "call",
+              "args"
+            ],
+            "value": "定義名と引数配列。引数数はparametersと一致"
+          },
+          "get": {
+            "keys": [
+              "op",
+              "value",
+              "pointer"
+            ]
+          },
+          "object": {
+            "keys": [
+              "op",
+              "fields"
+            ]
+          },
+          "array": {
+            "keys": [
+              "op",
+              "items"
+            ]
+          },
+          "equal": {
+            "keys": [
+              "op",
+              "left",
+              "right"
+            ]
+          },
+          "if": {
+            "keys": [
+              "op",
+              "condition",
+              "then",
+              "else"
+            ]
+          },
+          "and": {
+            "keys": [
+              "op",
+              "items"
+            ]
+          },
+          "or": {
+            "keys": [
+              "op",
+              "items"
+            ]
+          },
+          "not": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "let": {
+            "keys": [
+              "op",
+              "bindings",
+              "body"
+            ],
+            "binding_keys": [
+              "name",
+              "value"
+            ]
+          },
+          "map": {
+            "keys": [
+              "op",
+              "items",
+              "name",
+              "expression"
+            ]
+          },
+          "filter": {
+            "keys": [
+              "op",
+              "items",
+              "name",
+              "predicate"
+            ]
+          },
+          "concat": {
+            "keys": [
+              "op",
+              "items"
+            ]
+          },
+          "length": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "first": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "contains": {
+            "keys": [
+              "op",
+              "items",
+              "value"
+            ]
+          },
+          "unique": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "sort_canonical": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "canonical_text": {
+            "keys": [
+              "op",
+              "value"
+            ]
+          },
+          "sort_by": {
+            "keys": [
+              "op",
+              "value",
+              "name",
+              "key"
+            ]
+          },
+          "lookup": {
+            "keys": [
+              "op",
+              "map",
+              "key"
+            ]
+          }
+        }
+      }
+    },
+    "limits": [
+      "ここで具体化するのはF04の回復役割carrierと返却後段。既存前段/全5関数/全mutationの新たな完了gateにしない。",
+      "実source provider/issuer/意味資格/原body custody、OS登録/許可/rollback/起動の実体は定義しない。",
+      "constructorへ渡すprior/qualificationは独立に固定し、そのproducerの未供給をsatisfied/空Findingで補完してよいという意味ではない。"
+    ],
+    "kind_record_binding": {
+      "kind": "recovery_selection_basis",
+      "value_type": "#/type_contract/type_model/RecoverySelectionBasis",
+      "subject": "この局所置換のnew_pack_ref。回復candidate自身の資格subjectと混同しない。"
+    },
+    "internal_result_types": {
+      "bindings": {
+        "resolve_role": "F04RecoveryResolution",
+        "resolve_one": "F04RecoveryResolution",
+        "failure": "F04RecoveryResolution",
+        "finish": "Result（valueはfunctions[3].output又はnull）",
+        "ref_code": "null | reference_conflict | reference_stale"
+      },
+      "role_record_ref": "#/type_contract/type_model/F04RecoveryResolution"
+    },
+    "failure_basis": [
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "start_line": 80,
+        "end_line": 80,
+        "quote_utf8": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n",
+        "quote_utf8_sha256": "8e9999498ef1d120989b5ca95d61190f6f323a57e10b24c4aad77fb43475ed2f",
+        "relation": "回復source欠落を空の正常sourceへ補完しない。"
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "file_bytes_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "start_line": 87,
+        "end_line": 87,
+        "quote_utf8": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n",
+        "quote_utf8_sha256": "32a75c3109b0e0a60e502c7535465a5ffa702ebc3af7532f5893dc47fac02f6b",
+        "relation": "qualified/選択label/説明から実資格や完了を生成しない。"
+      }
+    ],
+    "stage_domain_binding": {
+      "producer_to_consumer": "functions[3].steps[0:3] -> internal_stages.prior -> expression_language.definitions.finish.prior; functions[3].steps[3] -> internal_stages.qualification -> expression_language.definitions.finish.qualification",
+      "parameter_types": {
+        "prior": "F04PriorStageResult<input>",
+        "qualification": "F04QualificationStageResult<input.recovery_fact.pack_ref>"
+      },
+      "validation": "producerの返却は、finishへ渡す前に当該内部型の全dependent_invariants.predicateを満たす。各predicateは既存expression_languageと型のpredicate_environmentから評価する。不整合な内部値は呼出しの有効域外であり、公開inputへの追加条件、値の修復、架空の公開Resultへの変換を行わない。",
+      "public_input_unchanged": true,
+      "new_public_gate": false
+    }
   }
 }
