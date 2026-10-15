@@ -862,7 +862,7 @@
     "rules": [
       {
         "id": "R01",
-        "rule": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project key identityとjoinの全path/domainはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
+        "rule": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project slotの選択とmember project_id値の比較・joinはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
       },
       {
         "id": "R02",
@@ -930,7 +930,7 @@
     {
       "rule_ref": "R01",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R01",
-      "text": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project key identityとjoinの全path/domainはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
+      "text": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project slotの選択とmember project_id値の比較・joinはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
     },
     {
       "rule_ref": "R02",
@@ -6711,6 +6711,47 @@
     ],
     "join_rules": [
       {
+        "id": "selected_project_b_project_id",
+        "rule_ref": "R01",
+        "activation": {
+          "path": [
+            "operation",
+            "binding",
+            "project_id"
+          ],
+          "eq": "project_b"
+        },
+        "actual_path": [
+          "operation",
+          "binding",
+          "project_id"
+        ],
+        "reference_path": [
+          "context",
+          "projects",
+          "project_b",
+          "project_id"
+        ],
+        "expected_pointer": "/context/projects/project_b/project_id",
+        "facet": "source",
+        "owner": "requirement-source-owner",
+        "value_kind": "nonempty_string",
+        "unknown_code": "field_unknown",
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
+      },
+      {
         "id": "selected_project_a_project_id",
         "rule_ref": "R01",
         "activation": {
@@ -6870,47 +6911,6 @@
             "context",
             "projects",
             "project_a"
-          ]
-        ],
-        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
-      },
-      {
-        "id": "selected_project_b_project_id",
-        "rule_ref": "R01",
-        "activation": {
-          "path": [
-            "operation",
-            "binding",
-            "project_id"
-          ],
-          "eq": "project_b"
-        },
-        "actual_path": [
-          "operation",
-          "binding",
-          "project_id"
-        ],
-        "reference_path": [
-          "context",
-          "projects",
-          "project_b",
-          "project_id"
-        ],
-        "expected_pointer": "/context/projects/project_b/project_id",
-        "facet": "source",
-        "owner": "requirement-source-owner",
-        "value_kind": "nonempty_string",
-        "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict",
-        "required_object_paths": [
-          [
-            "projects",
-            "project_b"
-          ],
-          [
-            "context",
-            "projects",
-            "project_b"
           ]
         ],
         "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
@@ -10018,7 +10018,7 @@
     "derived_rules": [
       {
         "id": "R08-core-valid",
-        "rule": "selected projectがknownで、そのsource group、operation binding/selected-project joins、identity uniquenessにfindingがなく、適用対象proposal/policyの全field groupとpolicy_directiveがcorrespondingの場合だけcore_valid。選択外projectの独立source findingはcore_validを妨げない。ただしproject identity collisionはidentity uniqueness failureとして全体source validityへ入る。"
+      "rule": "selected projectがknownで、そのslotのsource groupとoperation binding/selected-project joinsにfindingがなく、適用対象proposal/policyの全field groupとpolicy_directiveがcorrespondingの場合だけcore_valid。選択外projectの独立source findingはcore_validを妨げず、全体source facetには残す。slot間member project_idの重複だけを独立failureにしない。"
       },
       {
         "id": "R08-six-valid",
@@ -10288,6 +10288,11 @@
           [
             "operation",
             "observation"
+          ],
+          [
+            "context",
+            "operation",
+            "observation"
           ]
         ]
       },
@@ -10335,15 +10340,20 @@
           [
             "operation",
             "observation"
+          ],
+          [
+            "context",
+            "operation",
+            "observation"
           ]
         ],
-        "state_rule": "stateとrevision_coherenceがそれぞれclosed domain内の場合だけ評価する。",
+        "state_rule": "actual stateがcommittedかつcoherenceが既知のmixed_materialの場合だけmixed_current_forbiddenを返す。stateの未知・null・Absentを含むその他の場合も、coherenceがcoherent_material以外ならpublication_coherence_unprovenを返す。state domain判定はcommitted+mixed_material分岐にのみ適用する。",
         "coherence_partition": {
           "coherent_value": "coherent_material",
           "known_mixed_value": "mixed_material",
-          "noncoherent": "coherent_material以外のdomain値",
-          "committed_mixed_result": "mixed_current_forbiddenを1件返しpublication_coherence_unprovenを併記しない",
-          "all_other_noncoherent_result": "publication_coherence_unprovenを返す。したがって非committedかつknown mixedも未確認としてunknown。"
+          "noncoherent": "coherent_material以外のすべての値。Absent、明示null、closed domain外、unobservedを含む。",
+          "committed_mixed_result": "actual state=committedかつactual coherence=mixed_materialの場合はmixed_current_forbiddenを1件返しpublication_coherence_unprovenを併記しない。",
+          "all_other_noncoherent_result": "coherent_material以外はpublication_coherence_unprovenを返す。mixed_materialは前段条件を満たす場合だけ例外とする。"
         }
       },
       {
@@ -10392,33 +10402,14 @@
           "L11_accepted",
           "legacy_restore_requested"
         ],
-        "unknown_key_rule": "既知外keyもbooleanとして検査し、値trueならforbidden_boundary_claim、boolean以外ならboolean_unknown。key自体の未知を無視しない。",
+        "unknown_key_rule": "未知keyの存在だけでは所見を返さない。値がboolean trueならforbidden_boundary_claim、falseなら所見なし、非booleanならboolean_unknown。",
         "required_object_paths": [
           [
             "operation"
           ]
         ],
-        "key_set_rule": "known_claim_keysの全keyを必須とし、欠落keyは各 /operation/claims/{key} にboolean_unknown。未知keyも /operation/claims/{key} にboolean_unknown。各存在値はbooleanでなければboolean_unknown、trueならforbidden_boundary_claim。"
-      },
-      {
-        "id": "partial-current-claim",
-        "rule_ref": "R07",
-        "path": [
-          "operation",
-          "observation",
-          "partial_current_claim"
-        ],
-        "value_kind": "boolean",
-        "true_code": "partial_current_forbidden",
-        "invalid_code": "boolean_unknown",
-        "facet": "update_observation",
-        "owner": "OS053-store-owner",
-        "required_object_paths": [
-          [
-            "operation",
-            "observation"
-          ]
-        ]
+        "container_rule": "claimsがobjectでない（Absent/null/boolean/number/string/arrayを含む）場合、/operation/claimsにboolean_unknownを一件返す。内部keyを列挙した所見へ展開しない。",
+        "object_rule": "claimsがobjectなら既知key・未知keyとも存在値だけを読む。存在するboolean falseは主張なしで所見なし、trueはforbidden_boundary_claim、boolean以外は該当key pointerにboolean_unknown。欠落keyは主張なしで所見を出さない。未知keyも同じ値規則で扱う。"
       }
     ],
     "findings_rule": {
@@ -10443,7 +10434,7 @@
       "group_result": "有効な全member check、container、joinのうち最優先の結果を返す。適用外groupはnot_applicableとして保持し、空の適用対象groupはcorrespondingとする。",
       "overall": "七facetをすべて集約する。優先順はviolation > unknown > corresponding。",
       "source_facet": "二projectのsource group、project identity規則、selected project/operation binding/selected-project joins/selection resultを含む。",
-      "project_correspondence": "各projectのsource groupと、そのproject key/project_id一致結果を個別集約する。",
+      "project_correspondence": "各configured slotのactual/reference source groupを個別集約する。member project_idはslot内で相互比較し、slot keyとの一致は要求しない。選択slotのoperation binding joinは別途集約する。",
       "core_valid": "derived_rules.R08-core-validを唯一の定義とする。",
       "six_valid": "derived_rules.R08-six-validを唯一の定義とする。",
       "canonicalization_material_corresponding": "derived_rules.R10-canonicalization-materialを唯一の定義とする。",
@@ -10480,7 +10471,7 @@
     },
     "evaluation_order": [
       "入力templateを複製し、given replacementsを記載順に適用する。expected sourceは計算operandにしない。",
-      "R01で両project sourceとoperation bindingのfieldを比較し、project keyとproject_idの一致および二projectのidentity一意性を確認し、selected projectとsource joinを行う。",
+      "R01で両configured project slotのactual/reference source fieldとoperation bindingを比較する。binding.project_idがconfigured slot keyに一致する場合だけそのslotを選び、選択slotのsource fieldsをoperation bindingへjoinする。slot keyとmember project_idの一致、slot間一意性は要求しない。",
       "R02でkind/phaseをclosed domainで比較する。",
       "R03でview_change/meaning_change時だけproposal/policyのobject・field・join・directiveを評価する。",
       "R04でmeaning_change時だけ六条件のobject・state・field・witness・operation binding joinを評価し、条件ごとにstatusを集約する。",
@@ -10502,17 +10493,11 @@
         "context",
         "projects"
       ],
-      "require_member_object": true,
-      "require_project_id_equal_to_container_key": true,
-      "require_unique_project_id_across_configured_keys": true,
       "comparison_domain": "nonempty_string",
-      "failure_code": "field_conflict",
-      "facet": "source",
-      "owner": "requirement-source-owner",
-      "diagnostic_pointer": "/projects/{key}/project_id",
-      "effect": "同じ誤identityが両側に重複する場合だけ、別projectの根拠を区別できないためmaterial_successを妨げる。選択外projectの一側欠落/不一致はL4 B01に従い選択sourceを消さず、既存比較findingを個別保持する。これは合成identity比較であり実source資格を認定しない。",
-      "comparison": "各project keyについてactual/referenceのproject_idが同じ非空stringであり、両側の二projectで同一identityが重複する場合だけ、後順位projectへfield_conflictを一件返す。片側不一致/欠落/null/nonstringは既存field comparisonのviolation/unknownへ委ね、重複を二重診断しない。",
-      "duplicate_condition": "同じproject_idがactual/referenceのproject_aとproject_bの双方で一致し、かつproject_a/project_bのどちらかのkeyと違う。"
+      "comparison": "各configured slot keyごとにactual.projects[key].project_idとcontext.projects[key].project_idを通常のproject_fields比較で照合する。slot keyはsource recordの配置slotと選択名であり、member project_idは比較対象のsource値である。両者を等値必須条件にしない。",
+      "duplicate_semantics": "slot間の重複だけではfindingを返さず、後順位slotを誤りとしない。各slot内actual/reference member値はproject_fieldsで比較する。選択slotについてのみ、L4 R01のoperation binding joinを適用する。",
+      "material_limit": "この合成source比較は実project identityの資格・一意性・正本性を認定しない。",
+      "selected_project_join": "L4 R01により、selected_projectはactual operation.binding.project_idがconfigured project_idsのいずれかである場合にそのslot keyとして選ぶ。選択slotのcontext project_idはselected_project_project_id joinでoperation.binding.project_idと比較する。これは選択操作のsource bindingであり、全slotへproject_id==slot keyを要求する規則ではない。"
     },
     "json_comparison": {
       "object": "文字列key集合で比較しobject key順は無視する。",
@@ -10793,5 +10778,14 @@
       "closed_scope": "文書素材の対応を実canonicalization/採択/実装/test/L11受入から分離し、actual effectはfalse/noneで保持。"
     }
   ],
-  "qualification": "not_established"
+  "qualification": "not_established",
+  "design_verification": {
+    "pr_class": "design_verification",
+    "template_path": ".github/PULL_REQUEST_TEMPLATE.md",
+    "template_sha256": "0c9f42d1099d6d8d12979cbc86f21ce256b706f465d4e87ef71d591643fb8ab3",
+    "basis_path": "docs/governance/github-upstream-operating-model.md",
+    "basis_section": "PRの原子性・design_verification PR class",
+    "purpose": "対象pairのfreeze可能な設計・検証契約を記録する入力様式。template本文は上流意味・承認・Readyを生成しない。",
+    "design_method_template": "未採用。scaffold/verification-test-template-seed-20261001 はseed候補であり、OS001へ採用したtemplateとして扱わない。"
+  }
 }
