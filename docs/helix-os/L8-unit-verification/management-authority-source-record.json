@@ -114663,7 +114663,7 @@
   },
   "additional_probes": [
     {
-      "id": "OS015-R1-SCALAR-BOOL-NUMBER",
+      "id": "LOCAL-OS015-SCALAR-BOOL-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -115221,7 +115221,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-NESTED-BOOL-NUMBER",
+      "id": "LOCAL-OS015-NESTED-BOOL-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -115791,7 +115791,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-EVENT-BOOL-NUMBER",
+      "id": "LOCAL-OS015-EVENT-BOOL-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -116485,7 +116485,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-CORRECTION-RETENTION",
+      "id": "LOCAL-OS015-CORRECTION-RETENTION",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -117225,7 +117225,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-CORRECT-EMPTY-PRIOR",
+      "id": "LOCAL-OS015-CORRECT-EMPTY-PRIOR",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -118031,7 +118031,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-CORRECT-PARTIAL-PRIOR",
+      "id": "LOCAL-OS015-CORRECT-PARTIAL-PRIOR",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -118849,7 +118849,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-SOURCE-ID-EMPTY",
+      "id": "LOCAL-OS015-SOURCE-ID-EMPTY",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -119402,7 +119402,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-SOURCE-ID-NUMBER",
+      "id": "LOCAL-OS015-SOURCE-ID-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -119955,7 +119955,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-UNRESOLVED-HISTORY-EMPTY",
+      "id": "LOCAL-OS015-UNRESOLVED-HISTORY-EMPTY",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -120585,7 +120585,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-CURRENT-CLAIM-CLEAN",
+      "id": "LOCAL-OS015-CURRENT-CLAIM-CLEAN",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -121066,7 +121066,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-CURRENT-CLAIM-CLASSIFICATION-ONLY",
+      "id": "LOCAL-OS015-CURRENT-CLAIM-CLASSIFICATION-ONLY",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -121837,7 +121837,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-CLASSIFY-REF-ONLY",
+      "id": "LOCAL-OS015-CLASSIFY-REF-ONLY",
       "source_case_id": "HELIXOS-L9-015-C0002",
       "source_pointer": "/cases/1",
       "phase": "classify",
@@ -122610,7 +122610,7 @@
       "source_input_sha256": "5b3d7c02617c18b178919639ae1449af254c96fb8a70ac71a247012fd5af6561"
     },
     {
-      "id": "OS015-R1-CLASSIFY-REVISION-ONLY",
+      "id": "LOCAL-OS015-CLASSIFY-REVISION-ONLY",
       "source_case_id": "HELIXOS-L9-015-C0002",
       "source_pointer": "/cases/1",
       "phase": "classify",
@@ -123383,7 +123383,7 @@
       "source_input_sha256": "5b3d7c02617c18b178919639ae1449af254c96fb8a70ac71a247012fd5af6561"
     },
     {
-      "id": "OS015-R1-CORRECT-PRIOR-BINDING",
+      "id": "LOCAL-OS015-CORRECT-PRIOR-BINDING",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -124144,7 +124144,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-KIND-OLD_KIND",
+      "id": "LOCAL-OS015-KIND-OLD_KIND",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -124838,7 +124838,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-KIND-UNKNOWN_KIND",
+      "id": "LOCAL-OS015-KIND-UNKNOWN_KIND",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -125532,7 +125532,7 @@
       "source_input_sha256": "1070a1037d106fc7f27b612b79872232352f318836bd64296943e12293f276dc"
     },
     {
-      "id": "OS015-R1-ROUTE-ACTUAL-EMPTY",
+      "id": "LOCAL-OS015-ROUTE-ACTUAL-EMPTY",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -126085,7 +126085,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-ROUTE-CONTEXT-EMPTY",
+      "id": "LOCAL-OS015-ROUTE-CONTEXT-EMPTY",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -126638,7 +126638,7 @@
       "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     },
     {
-      "id": "OS015-R1-CORRECT-BOTH-PRIOR-REF",
+      "id": "LOCAL-OS015-CORRECT-BOTH-PRIOR-REF",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -127404,7 +127404,7 @@
       ]
     },
     {
-      "id": "OS015-R1-CORRECT-BOTH-PRIOR-REVISION",
+      "id": "LOCAL-OS015-CORRECT-BOTH-PRIOR-REVISION",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -128170,7 +128170,7 @@
       ]
     },
     {
-      "id": "OS015-R1-JSON-NUMBER-EQUIVALENCE",
+      "id": "LOCAL-OS015-JSON-NUMBER-EQUIVALENCE",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -128656,7 +128656,7 @@
       ]
     },
     {
-      "id": "OS015-R1-CORRECTION-REASON-NULL",
+      "id": "LOCAL-OS015-CORRECTION-REASON-NULL",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -129490,7 +129490,7 @@
       ]
     },
     {
-      "id": "OS015-R1-CORRECTION-NEW-NULL",
+      "id": "LOCAL-OS015-CORRECTION-NEW-NULL",
       "source_case_id": "HELIXOS-L9-015-C0003",
       "source_pointer": "/cases/2",
       "phase": "correct",
@@ -130192,7 +130192,7 @@
       ]
     },
     {
-      "id": "OS015-R1-ROUTE-ACTUAL-NUMBER",
+      "id": "LOCAL-OS015-ROUTE-ACTUAL-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -130745,7 +130745,7 @@
       ]
     },
     {
-      "id": "OS015-R1-ROUTE-CONTEXT-NUMBER",
+      "id": "LOCAL-OS015-ROUTE-CONTEXT-NUMBER",
       "source_case_id": "HELIXOS-L9-015-C0001",
       "source_pointer": "/cases/0",
       "phase": "inspect",
@@ -131296,13 +131296,1413 @@
         "HELIXOS-L10-015-F01",
         "HELIXOS-L4-015-F03"
       ]
+    },
+    {
+      "id": "LOCAL-OS015-CURRENT-CLAIM-AUTHORITY-STALE",
+      "source_case_id": "HELIXOS-L9-015-C0001",
+      "source_pointer": "/cases/0",
+      "phase": "inspect",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/records/target_a/current_material_claim",
+          "value": true
+        },
+        {
+          "op": "replace",
+          "path": "/records/target_a/authority_state",
+          "value": "stale_material"
+        },
+        {
+          "op": "replace",
+          "path": "/context/records/target_a/authority_state",
+          "value": "stale_material"
+        }
+      ],
+      "input": {
+        "phase": "inspect",
+        "records": {
+          "target_a": {
+            "source": {
+              "target_id": "SYNTHETIC-TARGET_ID-target_a",
+              "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+              "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+              "scope": "SYNTHETIC-SCOPE-target_a",
+              "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+              "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+              "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+              "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+              "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+              "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+              "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+              "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+              "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+              "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+              "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+            },
+            "original_event": {
+              "event_id": "SYNTHETIC-EVENT_ID-target_a",
+              "event_revision": "EVENT-r1",
+              "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+              "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+              "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+            },
+            "original_classification": null,
+            "new_classification": null,
+            "history": [],
+            "unresolved_history": [
+              "UNRESOLVED-target_a"
+            ],
+            "authority_origin": "canonical_source",
+            "authority_state": "stale_material",
+            "current_material_claim": true,
+            "generated_claims": {
+              "requirement_meaning": false,
+              "human_decision": false,
+              "implementation_permission": false
+            },
+            "projection": {
+              "issue_closed": false,
+              "pr_merged": false,
+              "ci_green": false,
+              "memory_summary": "DISPLAY-ONLY"
+            }
+          },
+          "target_b": {
+            "source": {
+              "target_id": "SYNTHETIC-TARGET_ID-target_b",
+              "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+              "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+              "scope": "SYNTHETIC-SCOPE-target_b",
+              "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+              "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+              "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+              "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+              "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+              "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+              "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+              "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+              "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+              "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+              "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+            },
+            "original_event": {
+              "event_id": "SYNTHETIC-EVENT_ID-target_b",
+              "event_revision": "EVENT-r1",
+              "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+              "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+              "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+            },
+            "original_classification": null,
+            "new_classification": null,
+            "history": [],
+            "unresolved_history": [
+              "UNRESOLVED-target_b"
+            ],
+            "authority_origin": "canonical_source",
+            "authority_state": "current_material",
+            "current_material_claim": false,
+            "generated_claims": {
+              "requirement_meaning": false,
+              "human_decision": false,
+              "implementation_permission": false
+            },
+            "projection": {
+              "issue_closed": false,
+              "pr_merged": false,
+              "ci_green": false,
+              "memory_summary": "DISPLAY-ONLY"
+            }
+          }
+        },
+        "whole_registry_claim": false,
+        "context": {
+          "records": {
+            "target_a": {
+              "source": {
+                "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                "scope": "SYNTHETIC-SCOPE-target_a",
+                "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+              },
+              "original_event": {
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+              },
+              "original_classification": null,
+              "new_classification": null,
+              "history": [],
+              "unresolved_history": [
+                "UNRESOLVED-target_a"
+              ],
+              "authority_origin": "canonical_source",
+              "authority_state": "stale_material",
+              "current_material_claim": false,
+              "generated_claims": {
+                "requirement_meaning": false,
+                "human_decision": false,
+                "implementation_permission": false
+              },
+              "projection": {
+                "issue_closed": false,
+                "pr_merged": false,
+                "ci_green": false,
+                "memory_summary": "DISPLAY-ONLY"
+              }
+            },
+            "target_b": {
+              "source": {
+                "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                "scope": "SYNTHETIC-SCOPE-target_b",
+                "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+              },
+              "original_event": {
+                "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                "event_revision": "EVENT-r1",
+                "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+              },
+              "original_classification": null,
+              "new_classification": null,
+              "history": [],
+              "unresolved_history": [
+                "UNRESOLVED-target_b"
+              ],
+              "authority_origin": "canonical_source",
+              "authority_state": "current_material",
+              "current_material_claim": false,
+              "generated_claims": {
+                "requirement_meaning": false,
+                "human_decision": false,
+                "implementation_permission": false
+              },
+              "projection": {
+                "issue_closed": false,
+                "pr_merged": false,
+                "ci_green": false,
+                "memory_summary": "DISPLAY-ONLY"
+              }
+            }
+          }
+        }
+      },
+      "input_canonical_sha256": "30ccd2b4e1dd0875f4c76e163c7703f2213ff7e8fe4a09335a7d1938c41c2d74",
+      "expected_material": {
+        "condition": "management_material_violation",
+        "selected_phase": "inspect",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "violation",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": false,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "stale_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": null,
+          "target_b": null
+        },
+        "findings": [
+          {
+            "code": "authority_stale",
+            "pointer": "/records/target_a/authority_state",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "expected_routes": [
+        {
+          "finding": {
+            "code": "authority_stale",
+            "pointer": "/records/target_a/authority_state",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        },
+        {
+          "finding": {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        }
+      ],
+      "expected_retention": {
+        "retained_new_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "classification_material_states": {
+          "target_a": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          },
+          "target_b": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          }
+        },
+        "retained_correction_references": {
+          "target_a": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          },
+          "target_b": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          }
+        }
+      },
+      "expected_public_whole": {
+        "condition": "management_material_violation",
+        "selected_phase": "inspect",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "violation",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": false,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "stale_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": null,
+          "target_b": null
+        },
+        "findings": [
+          {
+            "code": "authority_stale",
+            "pointer": "/records/target_a/authority_state",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none",
+        "failure_resolution_candidates": [
+          {
+            "finding": {
+              "code": "authority_stale",
+              "pointer": "/records/target_a/authority_state",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          {
+            "finding": {
+              "code": "unresolved_promoted_to_current",
+              "pointer": "/records/target_a/current_material_claim",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          }
+        ],
+        "retained_new_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "classification_material_states": {
+          "target_a": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          },
+          "target_b": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          }
+        },
+        "retained_correction_references": {
+          "target_a": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          },
+          "target_b": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          }
+        }
+      },
+      "expected_canonical_sha256": "ebfa291833b8a19befa409fdf6188ced61185ad277088a44311e1403e86f0e52",
+      "expected_public_whole_canonical_sha256": "1105a0e386da2c502ce6377071290a6b2af161d0b8cc76401ae258948f96ec59",
+      "independent_basis": "原L3/L4の未解決authority/原eventをcurrentへ昇格しない義務。原inspect wholeを基底に、該当facet、原値保持、source不足/改変/昇格所見と同target返却候補だけを手で導出。候補ASTの出力は使用しない。",
+      "source_basis": {
+        "L3": "HELIXOS-L3-015-F01",
+        "L4": "HELIXOS-L4-015-F01",
+        "L10": "HELIXOS-L10-015-F01",
+        "rule": "未解決のauthorityまたは原eventをcurrentへ昇格しない。原inspect sourceと保持全rootから導出。"
+      },
+      "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
+    },
+    {
+      "id": "LOCAL-OS015-CURRENT-CLAIM-EVENT-BOOL-NUMBER",
+      "source_case_id": "HELIXOS-L9-015-C0001",
+      "source_pointer": "/cases/0",
+      "phase": "inspect",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/records/target_a/current_material_claim",
+          "value": true
+        },
+        {
+          "op": "replace",
+          "path": "/records/target_a/original_event/payload_ref",
+          "value": true
+        },
+        {
+          "op": "replace",
+          "path": "/context/records/target_a/original_event/payload_ref",
+          "value": 1
+        }
+      ],
+      "input": {
+        "phase": "inspect",
+        "records": {
+          "target_a": {
+            "source": {
+              "target_id": "SYNTHETIC-TARGET_ID-target_a",
+              "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+              "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+              "scope": "SYNTHETIC-SCOPE-target_a",
+              "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+              "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+              "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+              "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+              "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+              "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+              "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+              "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+              "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+              "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+              "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+            },
+            "original_event": {
+              "event_id": "SYNTHETIC-EVENT_ID-target_a",
+              "event_revision": "EVENT-r1",
+              "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+              "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+              "payload_ref": true
+            },
+            "original_classification": null,
+            "new_classification": null,
+            "history": [],
+            "unresolved_history": [
+              "UNRESOLVED-target_a"
+            ],
+            "authority_origin": "canonical_source",
+            "authority_state": "current_material",
+            "current_material_claim": true,
+            "generated_claims": {
+              "requirement_meaning": false,
+              "human_decision": false,
+              "implementation_permission": false
+            },
+            "projection": {
+              "issue_closed": false,
+              "pr_merged": false,
+              "ci_green": false,
+              "memory_summary": "DISPLAY-ONLY"
+            }
+          },
+          "target_b": {
+            "source": {
+              "target_id": "SYNTHETIC-TARGET_ID-target_b",
+              "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+              "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+              "scope": "SYNTHETIC-SCOPE-target_b",
+              "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+              "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+              "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+              "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+              "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+              "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+              "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+              "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+              "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+              "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+              "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+            },
+            "original_event": {
+              "event_id": "SYNTHETIC-EVENT_ID-target_b",
+              "event_revision": "EVENT-r1",
+              "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+              "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+              "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+              "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+              "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+              "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+              "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+            },
+            "original_classification": null,
+            "new_classification": null,
+            "history": [],
+            "unresolved_history": [
+              "UNRESOLVED-target_b"
+            ],
+            "authority_origin": "canonical_source",
+            "authority_state": "current_material",
+            "current_material_claim": false,
+            "generated_claims": {
+              "requirement_meaning": false,
+              "human_decision": false,
+              "implementation_permission": false
+            },
+            "projection": {
+              "issue_closed": false,
+              "pr_merged": false,
+              "ci_green": false,
+              "memory_summary": "DISPLAY-ONLY"
+            }
+          }
+        },
+        "whole_registry_claim": false,
+        "context": {
+          "records": {
+            "target_a": {
+              "source": {
+                "target_id": "SYNTHETIC-TARGET_ID-target_a",
+                "target_revision": "SYNTHETIC-TARGET_REVISION-target_a",
+                "target_digest": "SYNTHETIC-TARGET_DIGEST-target_a",
+                "scope": "SYNTHETIC-SCOPE-target_a",
+                "source_id": "SYNTHETIC-SOURCE_ID-target_a",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_a",
+                "l1_revision": "SYNTHETIC-L1_REVISION-target_a",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_a",
+                "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_a",
+                "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_a",
+                "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_a",
+                "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_a",
+                "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_a",
+                "decision_ref": "SYNTHETIC-DECISION_REF-target_a",
+                "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_a",
+                "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_a"
+              },
+              "original_event": {
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+                "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+                "payload_ref": 1
+              },
+              "original_classification": null,
+              "new_classification": null,
+              "history": [],
+              "unresolved_history": [
+                "UNRESOLVED-target_a"
+              ],
+              "authority_origin": "canonical_source",
+              "authority_state": "current_material",
+              "current_material_claim": false,
+              "generated_claims": {
+                "requirement_meaning": false,
+                "human_decision": false,
+                "implementation_permission": false
+              },
+              "projection": {
+                "issue_closed": false,
+                "pr_merged": false,
+                "ci_green": false,
+                "memory_summary": "DISPLAY-ONLY"
+              }
+            },
+            "target_b": {
+              "source": {
+                "target_id": "SYNTHETIC-TARGET_ID-target_b",
+                "target_revision": "SYNTHETIC-TARGET_REVISION-target_b",
+                "target_digest": "SYNTHETIC-TARGET_DIGEST-target_b",
+                "scope": "SYNTHETIC-SCOPE-target_b",
+                "source_id": "SYNTHETIC-SOURCE_ID-target_b",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                "concept_revision": "SYNTHETIC-CONCEPT_REVISION-target_b",
+                "l1_revision": "SYNTHETIC-L1_REVISION-target_b",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION-target_b",
+                "disposition_ref": "SYNTHETIC-DISPOSITION_REF-target_b",
+                "disposition_revision": "SYNTHETIC-DISPOSITION_REVISION-target_b",
+                "agreement_ref": "SYNTHETIC-AGREEMENT_REF-target_b",
+                "agreement_revision": "SYNTHETIC-AGREEMENT_REVISION-target_b",
+                "canonical_ref": "SYNTHETIC-CANONICAL_REF-target_b",
+                "decision_ref": "SYNTHETIC-DECISION_REF-target_b",
+                "responsibility_ref": "SYNTHETIC-RESPONSIBILITY_REF-target_b",
+                "schema_revision": "SYNTHETIC-SCHEMA_REVISION-target_b"
+              },
+              "original_event": {
+                "event_id": "SYNTHETIC-EVENT_ID-target_b",
+                "event_revision": "EVENT-r1",
+                "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+                "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+                "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+                "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+                "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+                "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+                "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+              },
+              "original_classification": null,
+              "new_classification": null,
+              "history": [],
+              "unresolved_history": [
+                "UNRESOLVED-target_b"
+              ],
+              "authority_origin": "canonical_source",
+              "authority_state": "current_material",
+              "current_material_claim": false,
+              "generated_claims": {
+                "requirement_meaning": false,
+                "human_decision": false,
+                "implementation_permission": false
+              },
+              "projection": {
+                "issue_closed": false,
+                "pr_merged": false,
+                "ci_green": false,
+                "memory_summary": "DISPLAY-ONLY"
+              }
+            }
+          }
+        }
+      },
+      "input_canonical_sha256": "80478b9d4c1b35efd10a55f29888589fff9f99ca0619376548a28c266d6d5f8d",
+      "expected_material": {
+        "condition": "management_material_violation",
+        "selected_phase": "inspect",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "violation",
+            "authority": "violation",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": false,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": true
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": null,
+          "target_b": null
+        },
+        "findings": [
+          {
+            "code": "original_event_mutated",
+            "pointer": "/records/target_a/original_event",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "expected_routes": [
+        {
+          "finding": {
+            "code": "original_event_mutated",
+            "pointer": "/records/target_a/original_event",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        },
+        {
+          "finding": {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        },
+        {
+          "finding": {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        },
+        {
+          "finding": {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          },
+          "target_key": "target_a",
+          "source_reference_candidates": {
+            "canonical_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-CANONICAL_REF-target_a"
+            },
+            "responsibility_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+            },
+            "decision_ref": {
+              "presence": "value",
+              "value": "SYNTHETIC-DECISION_REF-target_a"
+            }
+          },
+          "reference_correspondence": {
+            "canonical_ref": "content_corresponding_in_fixture",
+            "responsibility_ref": "content_corresponding_in_fixture",
+            "decision_ref": "content_corresponding_in_fixture"
+          },
+          "recipient_qualification": "not_established",
+          "actual_delivery": false
+        }
+      ],
+      "expected_retention": {
+        "retained_new_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "classification_material_states": {
+          "target_a": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          },
+          "target_b": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          }
+        },
+        "retained_correction_references": {
+          "target_a": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          },
+          "target_b": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          }
+        }
+      },
+      "expected_public_whole": {
+        "condition": "management_material_violation",
+        "selected_phase": "inspect",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "violation",
+            "authority": "violation",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": false,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": true
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": null,
+          "target_b": null
+        },
+        "findings": [
+          {
+            "code": "original_event_mutated",
+            "pointer": "/records/target_a/original_event",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/original_event/payload_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "unresolved_promoted_to_current",
+            "pointer": "/records/target_a/current_material_claim",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none",
+        "failure_resolution_candidates": [
+          {
+            "finding": {
+              "code": "original_event_mutated",
+              "pointer": "/records/target_a/original_event",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          {
+            "finding": {
+              "code": "source_unresolved",
+              "pointer": "/context/records/target_a/original_event/payload_ref",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          {
+            "finding": {
+              "code": "source_unresolved",
+              "pointer": "/records/target_a/original_event/payload_ref",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          },
+          {
+            "finding": {
+              "code": "unresolved_promoted_to_current",
+              "pointer": "/records/target_a/current_material_claim",
+              "return_owner": "management-authority-owner"
+            },
+            "target_key": "target_a",
+            "source_reference_candidates": {
+              "canonical_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-CANONICAL_REF-target_a"
+              },
+              "responsibility_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-RESPONSIBILITY_REF-target_a"
+              },
+              "decision_ref": {
+                "presence": "value",
+                "value": "SYNTHETIC-DECISION_REF-target_a"
+              }
+            },
+            "reference_correspondence": {
+              "canonical_ref": "content_corresponding_in_fixture",
+              "responsibility_ref": "content_corresponding_in_fixture",
+              "decision_ref": "content_corresponding_in_fixture"
+            },
+            "recipient_qualification": "not_established",
+            "actual_delivery": false
+          }
+        ],
+        "retained_new_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "classification_material_states": {
+          "target_a": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          },
+          "target_b": {
+            "original": "not_evaluated",
+            "new": "not_evaluated"
+          }
+        },
+        "retained_correction_references": {
+          "target_a": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          },
+          "target_b": {
+            "reason_ref": {
+              "presence": "absent"
+            },
+            "authority_delta_ref": {
+              "presence": "absent"
+            }
+          }
+        }
+      },
+      "expected_canonical_sha256": "117118e03f457e00a6e36a434e0ea479d4ad7eaed9ca8e7acee5db18bfd470cb",
+      "expected_public_whole_canonical_sha256": "75b8b3eb9ceeb1762eeb6d8ea69d986938c774c579ad68d3a6e4bf190c4553da",
+      "independent_basis": "原L3/L4の未解決authority/原eventをcurrentへ昇格しない義務。原inspect wholeを基底に、該当facet、原値保持、source不足/改変/昇格所見と同target返却候補だけを手で導出。候補ASTの出力は使用しない。",
+      "source_basis": {
+        "L3": "HELIXOS-L3-015-F01",
+        "L4": "HELIXOS-L4-015-F01",
+        "L10": "HELIXOS-L10-015-F01",
+        "rule": "未解決のauthorityまたは原eventをcurrentへ昇格しない。原inspect sourceと保持全rootから導出。"
+      },
+      "source_input_sha256": "bd9ff7d34df78bfb4251a38febb31d8002b39d2c1ea6124a3008d316b95fa195"
     }
   ],
   "expectation_derivation": {
     "routes": "各原finding.pointerが/records/target_*または/context/records/target_*なら同一targetのactual source三参照原値へjoin。globalにはtargetを推定しない。null/非文字列/空値はunknown、known同値/異値は対応/不一致。実資格なし。",
     "retention": "新分類全raw原値・理由/差分Presence・原所見target_correspondence/selected_phaseを源泉として、classification_retention_contractの材料状態を独立固定。",
     "independence": "固定期待は正式AST/readerを評価せず原L9期待とinput、L3/L10/L4義務から構成。current計算出力を期待へ書き戻さない。",
-    "original_probes": "既存3probe（projection同時変更を含む）は保全。projection追加例は判定未読の非干渉例であり非等価変異検出を主張しない。",
+    "original_probes": "既存3probe（projection同時変更を含む）は保全。projection追加例は判定未読の非干渉例であり非等価変異検出を主張しない。 既存3probe内のexpected_public_wholeは17root時点の全値保全。現FN03の20root期待はexisting_probe_classification_expectationsのexact結線を用いる。",
     "mutation_limit": "既知のknown/strset/claim/classify/correct/kind/route不足へ局所例を追加するが全非等価変異識別の証明ではない。",
     "source_reuse": "追加先固定期待のうち原sourceと同一raw/全返却3行はsource_reuse_checksで原case/callsへ結線。旧独立全値/hashは保持し、新しいraw/変異coverageへ数えない。"
   },
@@ -131508,7 +132908,7 @@
       ],
       "expectation_basis": "L3-B01/L10-B01:projection表示を同時変更してもsource材料・判断・authority・実作用は不変。"
     },
-    "OS015-R1-SCALAR-BOOL-NUMBER": {
+    "LOCAL-OS015-SCALAR-BOOL-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131575,7 +132975,7 @@
       ],
       "expectation_basis": "L4原分類保全と型付きJSON whole等値。boolとnumberは別kind。"
     },
-    "OS015-R1-NESTED-BOOL-NUMBER": {
+    "LOCAL-OS015-NESTED-BOOL-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131642,7 +133042,7 @@
       ],
       "expectation_basis": "L4原分類保全と型付きJSON whole等値。boolとnumberは別kind。"
     },
-    "OS015-R1-EVENT-BOOL-NUMBER": {
+    "LOCAL-OS015-EVENT-BOOL-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131709,7 +133109,7 @@
       ],
       "expectation_basis": "L4 mutation_ruleによりwhole差violationとknown string不足unknownを併記。"
     },
-    "OS015-R1-CORRECTION-RETENTION": {
+    "LOCAL-OS015-CORRECTION-RETENTION": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131776,7 +133176,7 @@
       ],
       "expectation_basis": "L3/L10-F02およびL4-F02。新分類全原値・理由・差分・旧stale/newcurrentを材料として保持。実authority/保存は生成しない。"
     },
-    "OS015-R1-CORRECT-EMPTY-PRIOR": {
+    "LOCAL-OS015-CORRECT-EMPTY-PRIOR": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131843,7 +133243,7 @@
       ],
       "expectation_basis": "既宣言JsonValue原分類のmember不足は未観測。正本比較に必要なcontext旧ref/revisionを推測補完せずunknownを返す。"
     },
-    "OS015-R1-CORRECT-PARTIAL-PRIOR": {
+    "LOCAL-OS015-CORRECT-PARTIAL-PRIOR": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131910,7 +133310,7 @@
       ],
       "expectation_basis": "既宣言JsonValue原分類のmember不足は未観測。正本比較に必要なcontext旧ref/revisionを推測補完せずunknownを返す。"
     },
-    "OS015-R1-SOURCE-ID-EMPTY": {
+    "LOCAL-OS015-SOURCE-ID-EMPTY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -131977,7 +133377,7 @@
       ],
       "expectation_basis": "L4 known nonempty string不足。非文字列を不一致violationへ補完しない。"
     },
-    "OS015-R1-SOURCE-ID-NUMBER": {
+    "LOCAL-OS015-SOURCE-ID-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132044,7 +133444,7 @@
       ],
       "expectation_basis": "L4 known nonempty string不足。非文字列を不一致violationへ補完しない。"
     },
-    "OS015-R1-UNRESOLVED-HISTORY-EMPTY": {
+    "LOCAL-OS015-UNRESOLVED-HISTORY-EMPTY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132111,7 +133511,7 @@
       ],
       "expectation_basis": "L4未解決履歴を保持。空要素はknown string集合不足。"
     },
-    "OS015-R1-CURRENT-CLAIM-CLEAN": {
+    "LOCAL-OS015-CURRENT-CLAIM-CLEAN": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132178,7 +133578,7 @@
       ],
       "expectation_basis": "current材料claim true自体は違反でなくsource/event/authority不足との組合せだけが過剰昇格。"
     },
-    "OS015-R1-CURRENT-CLAIM-CLASSIFICATION-ONLY": {
+    "LOCAL-OS015-CURRENT-CLAIM-CLASSIFICATION-ONLY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132245,7 +133645,7 @@
       ],
       "expectation_basis": "L4 current_source_materialと分類評価は独立。分類不足だけでsource材料を失効しない。新分類材料は保留。"
     },
-    "OS015-R1-CLASSIFY-REF-ONLY": {
+    "LOCAL-OS015-CLASSIFY-REF-ONLY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132312,7 +133712,7 @@
       ],
       "expectation_basis": "L4 classifyは両側原分類nullが基準。片側だけ識別一部knownは既存分類成立と断定せずunknown。"
     },
-    "OS015-R1-CLASSIFY-REVISION-ONLY": {
+    "LOCAL-OS015-CLASSIFY-REVISION-ONLY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132379,7 +133779,7 @@
       ],
       "expectation_basis": "L4 classifyは両側原分類nullが基準。片側だけ識別一部knownは既存分類成立と断定せずunknown。"
     },
-    "OS015-R1-CORRECT-PRIOR-BINDING": {
+    "LOCAL-OS015-CORRECT-PRIOR-BINDING": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132446,7 +133846,7 @@
       ],
       "expectation_basis": "L4 correct新分類から原context旧分類refへ結線。重複比較の同一code/pointer/label所見は一意化。"
     },
-    "OS015-R1-KIND-OLD_KIND": {
+    "LOCAL-OS015-KIND-OLD_KIND": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132513,7 +133913,7 @@
       ],
       "expectation_basis": "L4が列挙する分類kindは材料語彙。unknown_kind文字列を未観測nullと混同しない。"
     },
-    "OS015-R1-KIND-UNKNOWN_KIND": {
+    "LOCAL-OS015-KIND-UNKNOWN_KIND": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132580,7 +133980,7 @@
       ],
       "expectation_basis": "L4が列挙する分類kindは材料語彙。unknown_kind文字列を未観測nullと混同しない。"
     },
-    "OS015-R1-ROUTE-ACTUAL-EMPTY": {
+    "LOCAL-OS015-ROUTE-ACTUAL-EMPTY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132647,7 +134047,7 @@
       ],
       "expectation_basis": "L10-F01の責務/判断source追跡。FN02は両側それぞれ非文字列/空値をunknownにし、実recipient資格を生成しない。"
     },
-    "OS015-R1-ROUTE-CONTEXT-EMPTY": {
+    "LOCAL-OS015-ROUTE-CONTEXT-EMPTY": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132714,7 +134114,7 @@
       ],
       "expectation_basis": "L10-F01の責務/判断source追跡。FN02は両側それぞれ非文字列/空値をunknownにし、実recipient資格を生成しない。"
     },
-    "OS015-R1-CORRECT-BOTH-PRIOR-REF": {
+    "LOCAL-OS015-CORRECT-BOTH-PRIOR-REF": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132781,7 +134181,7 @@
       ],
       "expectation_basis": "新分類の両側一致ではなく独立contextの旧分類ref/revisionへ結ぶL4 correct規則。"
     },
-    "OS015-R1-CORRECT-BOTH-PRIOR-REVISION": {
+    "LOCAL-OS015-CORRECT-BOTH-PRIOR-REVISION": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132848,7 +134248,7 @@
       ],
       "expectation_basis": "新分類の両側一致ではなく独立contextの旧分類ref/revisionへ結ぶL4 correct規則。"
     },
-    "OS015-R1-JSON-NUMBER-EQUIVALENCE": {
+    "LOCAL-OS015-JSON-NUMBER-EQUIVALENCE": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132915,7 +134315,7 @@
       ],
       "expectation_basis": "型付きJSON numberの1と1.0は同値。booleanとの差だけを改変として識別し、新しい数値表記差禁止を作らない。"
     },
-    "OS015-R1-CORRECTION-REASON-NULL": {
+    "LOCAL-OS015-CORRECTION-REASON-NULL": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -132982,7 +134382,7 @@
       ],
       "expectation_basis": "訂正理由の供給nullは両側一致でも未観測。原nullとPresence/nullを保持し新currentを生成しない。"
     },
-    "OS015-R1-CORRECTION-NEW-NULL": {
+    "LOCAL-OS015-CORRECTION-NEW-NULL": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -133049,7 +134449,7 @@
       ],
       "expectation_basis": "新分類未観測はraw nullと根拠参照Absentを区別して保持。既存if/elifの一つの所見を複製しない。"
     },
-    "OS015-R1-ROUTE-ACTUAL-NUMBER": {
+    "LOCAL-OS015-ROUTE-ACTUAL-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -133116,7 +134516,7 @@
       ],
       "expectation_basis": "L10-F01/F03のsource責務参照不足。truthy numberは空値ではないがstring型ではない。FN02の各側型検査を空文字検査と独立に識別する。"
     },
-    "OS015-R1-ROUTE-CONTEXT-NUMBER": {
+    "LOCAL-OS015-ROUTE-CONTEXT-NUMBER": {
       "calls": [
         {
           "function_ref": "FN-OS015-01",
@@ -133182,6 +134582,138 @@
         }
       ],
       "expectation_basis": "L10-F01/F03のsource責務参照不足。truthy numberは空値ではないがstring型ではない。FN02の各側型検査を空文字検査と独立に識別する。"
+    },
+    "LOCAL-OS015-CURRENT-CLAIM-AUTHORITY-STALE": {
+      "calls": [
+        {
+          "function_ref": "FN-OS015-01",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/25/input",
+              "canonical_sha256": "30ccd2b4e1dd0875f4c76e163c7703f2213ff7e8fe4a09335a7d1938c41c2d74"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/25/expected_material",
+            "canonical_sha256": "ebfa291833b8a19befa409fdf6188ced61185ad277088a44311e1403e86f0e52"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-02",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/25/input",
+              "canonical_sha256": "30ccd2b4e1dd0875f4c76e163c7703f2213ff7e8fe4a09335a7d1938c41c2d74"
+            },
+            "material": {
+              "producer_call_index": 0,
+              "pointer": "",
+              "canonical_sha256": "ebfa291833b8a19befa409fdf6188ced61185ad277088a44311e1403e86f0e52"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/25/expected_routes",
+            "canonical_sha256": "7049a84803e287dfa5ded6f720f12b34835a922b37a6e5286822a461ce21d3e0"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-03",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/25/input",
+              "canonical_sha256": "30ccd2b4e1dd0875f4c76e163c7703f2213ff7e8fe4a09335a7d1938c41c2d74"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/25/expected_public_whole",
+            "canonical_sha256": "1105a0e386da2c502ce6377071290a6b2af161d0b8cc76401ae258948f96ec59"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-04",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/25/input",
+              "canonical_sha256": "30ccd2b4e1dd0875f4c76e163c7703f2213ff7e8fe4a09335a7d1938c41c2d74"
+            },
+            "material": {
+              "producer_call_index": 0,
+              "pointer": "",
+              "canonical_sha256": "ebfa291833b8a19befa409fdf6188ced61185ad277088a44311e1403e86f0e52"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/25/expected_retention",
+            "canonical_sha256": "180df756ea56ff7d5f3bb4372ed48da0218376fb9482287c4a8c963546cada44"
+          }
+        }
+      ]
+    },
+    "LOCAL-OS015-CURRENT-CLAIM-EVENT-BOOL-NUMBER": {
+      "calls": [
+        {
+          "function_ref": "FN-OS015-01",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/26/input",
+              "canonical_sha256": "80478b9d4c1b35efd10a55f29888589fff9f99ca0619376548a28c266d6d5f8d"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/26/expected_material",
+            "canonical_sha256": "117118e03f457e00a6e36a434e0ea479d4ad7eaed9ca8e7acee5db18bfd470cb"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-02",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/26/input",
+              "canonical_sha256": "80478b9d4c1b35efd10a55f29888589fff9f99ca0619376548a28c266d6d5f8d"
+            },
+            "material": {
+              "producer_call_index": 0,
+              "pointer": "",
+              "canonical_sha256": "117118e03f457e00a6e36a434e0ea479d4ad7eaed9ca8e7acee5db18bfd470cb"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/26/expected_routes",
+            "canonical_sha256": "fb75941f89414f849e25a17b9664a0d0d5385f86cd43e0097c708c0e0e711b45"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-03",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/26/input",
+              "canonical_sha256": "80478b9d4c1b35efd10a55f29888589fff9f99ca0619376548a28c266d6d5f8d"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/26/expected_public_whole",
+            "canonical_sha256": "75b8b3eb9ceeb1762eeb6d8ea69d986938c774c579ad68d3a6e4bf190c4553da"
+          }
+        },
+        {
+          "function_ref": "FN-OS015-04",
+          "arguments": {
+            "input": {
+              "same_candidate_pointer": "/additional_probes/26/input",
+              "canonical_sha256": "80478b9d4c1b35efd10a55f29888589fff9f99ca0619376548a28c266d6d5f8d"
+            },
+            "material": {
+              "producer_call_index": 0,
+              "pointer": "",
+              "canonical_sha256": "117118e03f457e00a6e36a434e0ea479d4ad7eaed9ca8e7acee5db18bfd470cb"
+            }
+          },
+          "expected_return": {
+            "same_candidate_pointer": "/additional_probes/26/expected_retention",
+            "canonical_sha256": "180df756ea56ff7d5f3bb4372ed48da0218376fb9482287c4a8c963546cada44"
+          }
+        }
+      ]
     }
   },
   "finite_boundary_verification": {
@@ -133225,18 +134757,18 @@
     "whole_scope": {
       "source_materials": 583,
       "preserved_local_materials": 3,
-      "novel_additional_raws": 25,
+      "novel_additional_raws": 27,
       "source_reuse_checks": 3,
-      "verification_rows": 614,
-      "unique_canonical_raws": 611,
+      "verification_rows": 616,
+      "unique_canonical_raws": 613,
       "functions_per_row": 4,
-      "whole_calls": 2456
+      "whole_calls": 2464
     },
     "limit": "有限の型内代表値/単一node/内部member欠落の静的設計確認。全非等価変異・任意深さ全複合・実作用/資格・Readyは未成立。"
   },
   "source_reuse_checks": [
     {
-      "id": "OS015-R1-ROUTE-ACTUAL-NULL",
+      "id": "LOCAL-OS015-ROUTE-ACTUAL-NULL",
       "source_case_id": "HELIXOS-L9-015-C0040",
       "source_trace": {
         "requirement_ref": "HELIXOS-L3-015-F01",
@@ -133269,7 +134801,7 @@
       "reuse_scope": "原sourceとraw/全返却期待が同値であることを独立期待へ再照合するalias。新しいraw/変異識別件数には数えない。"
     },
     {
-      "id": "OS015-R1-ROUTE-CONTEXT-NULL",
+      "id": "LOCAL-OS015-ROUTE-CONTEXT-NULL",
       "source_case_id": "HELIXOS-L9-015-C0098",
       "source_trace": {
         "requirement_ref": "HELIXOS-L3-015-F01",
@@ -133302,7 +134834,7 @@
       "reuse_scope": "原sourceとraw/全返却期待が同値であることを独立期待へ再照合するalias。新しいraw/変異識別件数には数えない。"
     },
     {
-      "id": "OS015-R1-CORRECT-COLLAPSED-REVISION",
+      "id": "LOCAL-OS015-CORRECT-COLLAPSED-REVISION",
       "source_case_id": "HELIXOS-L9-015-C0561",
       "source_trace": {
         "requirement_ref": "HELIXOS-L3-015-F02",
