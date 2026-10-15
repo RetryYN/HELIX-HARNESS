@@ -498,7 +498,7 @@
           "utf8_sha256": "97000865eba0eb6f5b9578377b1620e65bcb76835375ba6441cf5bea0cdbe237"
         }
       ],
-      "reuse_class": "semantic_rederivation",
+      "reuse_class": "semantic_rederive",
       "preserve": "仕事意味とassignment/attemptの別identity、旧claim fencing、累積budget/期限/失敗/未完、実receiptとproposalの分離、未評価effort・model水準の非捏造、単発/単価/平均からの最適主張拒否。",
       "change": "旧runtime/schema/固定provider/slot/effort/FR63既定値は移植しない。OS/INT/LABO/HARNESS/SEC/既存policy ownerの採択責務へ再導出し、未知facetから全assignment停止の新gateを作らない。",
       "reason": "10/3 018-002と10/12限定承認の実逸脱/実品質順序/条件別consumer境界を保持。hash一致を実資格/許可/起動へ昇格しない。"
@@ -528,7 +528,7 @@
           "utf8_sha256": "7dc618aed6d60b5785fb52438000da5aea3210b73eaca17a9a53954d2d18ca62"
         }
       ],
-      "reuse_class": "semantic_rederivation",
+      "reuse_class": "semantic_rederive",
       "preserve": "仕事意味とassignment/attemptの別identity、旧claim fencing、累積budget/期限/失敗/未完、実receiptとproposalの分離、未評価effort・model水準の非捏造、単発/単価/平均からの最適主張拒否。",
       "change": "旧runtime/schema/固定provider/slot/effort/FR63既定値は移植しない。OS/INT/LABO/HARNESS/SEC/既存policy ownerの採択責務へ再導出し、未知facetから全assignment停止の新gateを作らない。",
       "reason": "10/3 018-002と10/12限定承認の実逸脱/実品質順序/条件別consumer境界を保持。hash一致を実資格/許可/起動へ昇格しない。"
@@ -543,7 +543,7 @@
           "utf8_sha256": "33c38a11d5a1734c4530e0f8c308f4b9b7e96509ffdd8d32dfdb92774e95af1c"
         }
       ],
-      "reuse_class": "semantic_rederivation",
+      "reuse_class": "semantic_rederive",
       "preserve": "仕事意味とassignment/attemptの別identity、旧claim fencing、累積budget/期限/失敗/未完、実receiptとproposalの分離、未評価effort・model水準の非捏造、単発/単価/平均からの最適主張拒否。",
       "change": "旧runtime/schema/固定provider/slot/effort/FR63既定値は移植しない。OS/INT/LABO/HARNESS/SEC/既存policy ownerの採択責務へ再導出し、未知facetから全assignment停止の新gateを作らない。",
       "reason": "10/3 018-002と10/12限定承認の実逸脱/実品質順序/条件別consumer境界を保持。hash一致を実資格/許可/起動へ昇格しない。"
@@ -829,7 +829,8 @@
         "revision": "JSONValue|null",
         "scope": "JSONValue|null"
       },
-      "exact_members_only": true
+      "exact_members_only": true,
+      "meaning_ja": "binding.requirement_revisionとbinding.scopeをkind維持で返す。Absentのみnullへ投影し、present nullはnullのまま。"
     },
     "JSONPointer": {
       "kind": "string",
@@ -1006,7 +1007,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/ticket_ref",
@@ -1022,7 +1025,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/ticket_revision",
@@ -1038,7 +1043,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/ticket_digest",
@@ -1054,7 +1061,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/requirement_revision",
@@ -1070,7 +1079,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/assignment",
@@ -1086,7 +1097,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/attempt",
@@ -1102,7 +1115,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/actor",
@@ -1118,7 +1133,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/worker",
@@ -1134,7 +1151,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/lane",
@@ -1150,7 +1169,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/scope",
@@ -1166,7 +1187,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/head",
@@ -1182,7 +1205,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/authority_ref",
@@ -1198,7 +1223,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/capability_ref",
@@ -1214,7 +1241,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/lease_ref",
@@ -1230,7 +1259,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/budget_ref",
@@ -1246,7 +1277,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/deadline_ref",
@@ -1262,7 +1295,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/continuity_ref",
@@ -1278,7 +1313,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/oracle_ref",
@@ -1294,7 +1331,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/artifact_ref",
@@ -1309,7 +1348,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/evidence_ref",
@@ -1324,7 +1365,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/binding/result_ref",
@@ -1339,7 +1382,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/logical_work",
@@ -1356,7 +1401,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/ticket_ref",
@@ -1373,7 +1420,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/ticket_ref"
+          "requires_known_path": "/binding/ticket_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/ticket_revision",
@@ -1390,7 +1439,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/ticket_revision"
+          "requires_known_path": "/binding/ticket_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/ticket_digest",
@@ -1407,7 +1458,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/ticket_digest"
+          "requires_known_path": "/binding/ticket_digest",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/requirement_revision",
@@ -1424,7 +1477,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/assignment",
@@ -1441,7 +1496,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/attempt",
@@ -1458,7 +1515,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/actor",
@@ -1475,7 +1534,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/actor"
+          "requires_known_path": "/binding/actor",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/worker",
@@ -1492,7 +1553,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/worker"
+          "requires_known_path": "/binding/worker",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/lane",
@@ -1509,7 +1572,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/lane"
+          "requires_known_path": "/binding/lane",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/scope",
@@ -1526,7 +1591,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/head",
@@ -1543,7 +1610,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/authority_ref",
@@ -1560,7 +1629,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/authority_ref"
+          "requires_known_path": "/binding/authority_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/capability_ref",
@@ -1577,7 +1648,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/capability_ref"
+          "requires_known_path": "/binding/capability_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/lease_ref",
@@ -1594,7 +1667,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/lease_ref"
+          "requires_known_path": "/binding/lease_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/budget_ref",
@@ -1611,7 +1686,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/budget_ref"
+          "requires_known_path": "/binding/budget_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/deadline_ref",
@@ -1628,7 +1705,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/deadline_ref"
+          "requires_known_path": "/binding/deadline_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/continuity_ref",
@@ -1645,7 +1724,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/oracle_ref",
@@ -1662,7 +1743,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/oracle_ref"
+          "requires_known_path": "/binding/oracle_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/artifact_ref",
@@ -1678,7 +1761,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/artifact_ref"
+          "requires_known_path": "/binding/artifact_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/evidence_ref",
@@ -1694,7 +1779,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/evidence_ref"
+          "requires_known_path": "/binding/evidence_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/binding/result_ref",
@@ -1710,7 +1797,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/result_ref"
+          "requires_known_path": "/binding/result_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/logical_work",
@@ -1726,7 +1815,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/requirement_revision",
@@ -1742,7 +1833,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/assignment",
@@ -1758,7 +1851,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/attempt",
@@ -1774,7 +1869,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/scope",
@@ -1790,7 +1887,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/head",
@@ -1806,7 +1905,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/binding/continuity_ref",
@@ -1822,7 +1923,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/logical_work",
@@ -1837,7 +1940,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/requirement_revision",
@@ -1852,7 +1957,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/assignment",
@@ -1867,7 +1974,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/attempt",
@@ -1882,7 +1991,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/scope",
@@ -1897,7 +2008,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/head",
@@ -1912,7 +2025,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/binding/continuity_ref",
@@ -1927,7 +2042,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/logical_work",
@@ -1943,7 +2060,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/requirement_revision",
@@ -1959,7 +2078,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/assignment",
@@ -1975,7 +2096,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/attempt",
@@ -1991,7 +2114,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/scope",
@@ -2007,7 +2132,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/head",
@@ -2023,7 +2150,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/binding/continuity_ref",
@@ -2039,7 +2168,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/logical_work",
@@ -2055,7 +2186,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/requirement_revision",
@@ -2071,7 +2204,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/assignment",
@@ -2087,7 +2222,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/attempt",
@@ -2103,7 +2240,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/scope",
@@ -2119,7 +2258,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/head",
@@ -2135,7 +2276,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/binding/continuity_ref",
@@ -2151,7 +2294,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/logical_work",
@@ -2441,7 +2586,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/requirement_revision",
@@ -2731,7 +2878,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/assignment",
@@ -3021,7 +3170,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/attempt",
@@ -3311,7 +3462,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/scope",
@@ -3601,7 +3754,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/head",
@@ -3891,7 +4046,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/deviation_reason/binding/continuity_ref",
@@ -4181,7 +4338,9 @@
                 ]
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/logical_work",
@@ -4197,7 +4356,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/requirement_revision",
@@ -4213,7 +4374,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/assignment",
@@ -4229,7 +4392,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/attempt",
@@ -4245,7 +4410,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/scope",
@@ -4261,7 +4428,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/head",
@@ -4277,7 +4446,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/binding/continuity_ref",
@@ -4293,7 +4464,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/logical_work",
@@ -4309,7 +4482,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/requirement_revision",
@@ -4325,7 +4500,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/requirement_revision"
+          "requires_known_path": "/binding/requirement_revision",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/assignment",
@@ -4341,7 +4518,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/assignment"
+          "requires_known_path": "/binding/assignment",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/attempt",
@@ -4357,7 +4536,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/attempt"
+          "requires_known_path": "/binding/attempt",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/scope",
@@ -4373,7 +4554,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/scope"
+          "requires_known_path": "/binding/scope",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/head",
@@ -4389,7 +4572,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/head"
+          "requires_known_path": "/binding/head",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/binding/continuity_ref",
@@ -4405,7 +4590,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/continuity_ref"
+          "requires_known_path": "/binding/continuity_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/roles/assignment",
@@ -4421,7 +4608,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/roles/proposal",
@@ -4437,7 +4626,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/roles/evaluation",
@@ -4453,7 +4644,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/roles/oracle",
@@ -4469,7 +4662,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/roles/authority",
@@ -4485,7 +4680,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/assignment/owner",
@@ -4501,7 +4698,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/task",
@@ -4516,7 +4715,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/risk",
@@ -4531,7 +4732,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/runtime",
@@ -4546,7 +4749,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/model",
@@ -4561,7 +4766,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/effort",
@@ -4576,7 +4783,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/retry",
@@ -4591,7 +4800,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/quality",
@@ -4606,7 +4817,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/run/config/cost",
@@ -4621,7 +4834,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/source_ref",
@@ -4636,7 +4851,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/owner_ref",
@@ -4651,7 +4868,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/source_revision",
@@ -4666,7 +4885,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/task",
@@ -4681,7 +4902,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/risk",
@@ -4696,7 +4919,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/runtime",
@@ -4711,7 +4936,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/model",
@@ -4726,7 +4953,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/effort",
@@ -4741,7 +4970,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/retry",
@@ -4756,7 +4987,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/quality",
@@ -4771,7 +5004,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/default/values/cost",
@@ -4786,7 +5021,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/state",
@@ -4801,7 +5038,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/declared_evaluated",
@@ -4862,7 +5101,9 @@
                 }
               }
             ]
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/source_revision",
@@ -4878,7 +5119,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/task",
@@ -4903,7 +5146,9 @@
                 "path": "/context/expected_model_level/task"
               }
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/scope",
@@ -4918,7 +5163,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/task",
@@ -4943,7 +5190,9 @@
                 "path": "/context/expected_config/task"
               }
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/risk",
@@ -4968,7 +5217,9 @@
                 "path": "/context/expected_config/risk"
               }
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/total_cost",
@@ -4983,7 +5234,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/event_selected",
@@ -4999,7 +5252,6 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "skip_comparison": "quality_event_rule_handles_actual_and_expected_presence",
           "applicability_when": {
             "op": "both_booleans",
             "left": {
@@ -5010,7 +5262,11 @@
               "op": "get",
               "path": "/context/expected_quality_event"
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "skip_reason_ja": "quality event規則が実値と期待値のpresenceを照合する。",
+          "skip_comparison": true,
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/order_source_ref",
@@ -5036,7 +5292,9 @@
               "op": "literal",
               "value": true
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/quality/order_source_revision",
@@ -5062,7 +5320,9 @@
               "op": "literal",
               "value": true
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/dependencies/normative_consumer/class",
@@ -5078,7 +5338,15 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "allowed_values": [
+            "always",
+            "operation",
+            "input",
+            "reference"
+          ]
         },
         {
           "actual_path": "/dependencies/normative_consumer/selected",
@@ -5094,7 +5362,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/dependencies/normative_consumer/source_ref",
@@ -5134,7 +5404,8 @@
               }
             ]
           },
-          "emit_both_unknown_pointers": true
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "all_invalid_operand_locations"
         },
         {
           "actual_path": "/dependencies/consult/class",
@@ -5150,7 +5421,15 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "allowed_values": [
+            "always",
+            "operation",
+            "input",
+            "reference"
+          ]
         },
         {
           "actual_path": "/dependencies/consult/selected",
@@ -5166,7 +5445,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/dependencies/consult/source_ref",
@@ -5206,7 +5487,8 @@
               }
             ]
           },
-          "emit_both_unknown_pointers": true
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "all_invalid_operand_locations"
         },
         {
           "actual_path": "/dependencies/selected_input/class",
@@ -5222,7 +5504,15 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "allowed_values": [
+            "always",
+            "operation",
+            "input",
+            "reference"
+          ]
         },
         {
           "actual_path": "/dependencies/selected_input/selected",
@@ -5238,7 +5528,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/dependencies/selected_input/source_ref",
@@ -5278,7 +5570,8 @@
               }
             ]
           },
-          "emit_both_unknown_pointers": true
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "all_invalid_operand_locations"
         },
         {
           "actual_path": "/dependencies/legacy_runtime/class",
@@ -5294,7 +5587,15 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "allowed_values": [
+            "always",
+            "operation",
+            "input",
+            "reference"
+          ]
         },
         {
           "actual_path": "/dependencies/legacy_runtime/selected",
@@ -5310,7 +5611,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/dependencies/legacy_runtime/source_ref",
@@ -5350,7 +5653,8 @@
               }
             ]
           },
-          "emit_both_unknown_pointers": true
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "all_invalid_operand_locations"
         },
         {
           "actual_path": "/prior/logical_work",
@@ -5374,7 +5678,9 @@
               "path": "/prior"
             }
           },
-          "requires_known_path": "/binding/logical_work"
+          "requires_known_path": "/binding/logical_work",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/task",
@@ -5399,7 +5705,9 @@
                 "path": "/context/expected_config/task"
               }
             }
-          }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/model_level/scope",
@@ -5414,23 +5722,9 @@
             "after_execution",
             "handoff"
           ],
-          "pointer": "actual_path"
-        },
-        {
-          "actual_path": "/model_level/source_revision",
-          "expected_path": "/context/expected_model_level/source_revision",
-          "domain": "known_nonempty_string",
-          "unknown_code": "source_unresolved",
-          "conflict_code": "source_conflict",
-          "facets": [
-            "evaluation"
-          ],
-          "applicable_phases": [
-            "before_execution",
-            "after_execution",
-            "handoff"
-          ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/artifact_ref",
@@ -5446,7 +5740,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/artifact_ref"
+          "requires_known_path": "/binding/artifact_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/evidence_ref",
@@ -5462,7 +5758,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/evidence_ref"
+          "requires_known_path": "/binding/evidence_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/collection/result_ref",
@@ -5478,7 +5776,9 @@
             "handoff"
           ],
           "pointer": "actual_path",
-          "requires_known_path": "/binding/result_ref"
+          "requires_known_path": "/binding/result_ref",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/actor",
@@ -5492,7 +5792,9 @@
           "applicable_phases": [
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/context",
@@ -5506,7 +5808,9 @@
           "applicable_phases": [
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/review/authority_ref",
@@ -5520,7 +5824,9 @@
           "applicable_phases": [
             "handoff"
           ],
-          "pointer": "actual_path"
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
         },
         {
           "actual_path": "/evaluation/risk",
@@ -5545,6 +5851,125 @@
                 "path": "/context/expected_config/risk"
               }
             }
+          },
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
+        },
+        {
+          "actual_path": "/collection/terminal_state",
+          "expected_path": "/context/expected_terminal_state",
+          "domain": "known_nonempty_string",
+          "unknown_code": "collection_unresolved",
+          "conflict_code": "collection_obligation_lost",
+          "facets": [
+            "collection"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
+        },
+        {
+          "actual_path": "/review/producer_context",
+          "expected_path": "/context/expected_producer_context",
+          "domain": "known_nonempty_string",
+          "unknown_code": "source_unresolved",
+          "conflict_code": "source_conflict",
+          "facets": [
+            "collection"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location"
+        },
+        {
+          "actual_path": "/quality/order",
+          "expected_path": "/context/expected_order",
+          "domain": "known_string_array",
+          "unknown_code": "quality_order_unresolved",
+          "conflict_code": "quality_order_conflict",
+          "facets": [
+            "quality"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "applicability_when": {
+            "op": "eq",
+            "left": {
+              "op": "get",
+              "path": "/quality/event_selected"
+            },
+            "right": {
+              "op": "literal",
+              "value": true
+            }
+          }
+        },
+        {
+          "actual_path": "/quality/actual_steps",
+          "expected_path": "/context/expected_steps",
+          "domain": "known_json_array",
+          "unknown_code": "quality_step_unresolved",
+          "conflict_code": "quality_actual_receipt_conflict",
+          "facets": [
+            "quality"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "pointer": "actual_path",
+          "return_owner": "worker-assignment-owner",
+          "unknown_pointer_policy": "each_invalid_operand_location",
+          "applicability_when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "get",
+                  "path": "/quality/event_selected"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": true
+                }
+              },
+              {
+                "op": "arrays_match_record_domain",
+                "left": {
+                  "op": "get",
+                  "path": "/quality/actual_steps"
+                },
+                "right": {
+                  "op": "get",
+                  "path": "/context/expected_steps"
+                },
+                "required_fields": {
+                  "step": "nonempty_string",
+                  "state": {
+                    "enum": [
+                      "executed",
+                      "failed",
+                      "stopped"
+                    ]
+                  },
+                  "result_ref": "nonempty_string"
+                }
+              }
+            ]
           }
         }
       ],
@@ -6820,27 +7245,6 @@
         },
         {
           "when": {
-            "op": "not_nonempty_string",
-            "value": {
-              "op": "get",
-              "path": "/default/values/model"
-            }
-          },
-          "finding": {
-            "code": "default_value_unresolved",
-            "pointer": "/default/values/model",
-            "return_owner": "worker-assignment-owner"
-          },
-          "facets": [
-            "default"
-          ],
-          "applicable_phases": [
-            "after_execution",
-            "handoff"
-          ]
-        },
-        {
-          "when": {
             "op": "not_boolean",
             "value": {
               "op": "get",
@@ -7132,7 +7536,6 @@
           },
           "finding": {
             "code": "quality_order_conflict",
-            "pointer": "/quality/actual_steps/0/step",
             "return_owner": "worker-assignment-owner",
             "pointer_template": "/quality/actual_steps/{index}/step"
           },
@@ -7144,10 +7547,12 @@
             "handoff"
           ],
           "pointer_rule": {
+            "operator": "first_index_where_order_violation",
             "array": "/quality/actual_steps",
             "order": "/quality/order",
-            "select_first_index_where": "step is absent from order OR (i>0 AND order_index(step[i]) <= order_index(step[i-1])",
-            "pointer_template": "/quality/actual_steps/{index}/step"
+            "field": "step",
+            "pointer_template": "/quality/actual_steps/{index}/step",
+            "selection": "原配列順で最初の不正値または順序index非増加位置を選ぶ。"
           }
         },
         {
@@ -8047,7 +8452,7 @@
             "after_execution",
             "handoff"
           ],
-          "purpose_ja": "先頭以外を含む全actual_stepsのstate/result_refを検査する。index0の個別findingとの重複は診断sort後に同一tupleを一つにする。"
+          "purpose_ja": "実step配列の全itemをrequired_fieldsで検査し、shape違反は配列rootへ返す。順序違反は別規則の動的pointerで元indexを保持する。"
         },
         {
           "when": {
@@ -8307,6 +8712,428 @@
           "facets": [
             "evaluation"
           ]
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/current_constraints/budget_limit"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/current_constraints/deadline"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/current_constraints/failures"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/failures",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/current_constraints/active_claim_count"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/active_claim_count",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/context/now"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/now",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/context/budget_limit"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "not_number",
+            "value": {
+              "op": "get",
+              "path": "/context/deadline"
+            }
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "原L9 fixture_contract.algorithmに従い累積数量の型を照合する。"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "is_not_null",
+                "value": {
+                  "op": "get",
+                  "path": "/prior"
+                }
+              },
+              {
+                "op": "not_number",
+                "value": {
+                  "op": "get",
+                  "path": "/prior/cost_spent"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/cost_spent",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "priorが存在する素材に限りL9 fixture_contract.algorithmの型照合を適用"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "is_not_null",
+                "value": {
+                  "op": "get",
+                  "path": "/prior"
+                }
+              },
+              {
+                "op": "not_number",
+                "value": {
+                  "op": "get",
+                  "path": "/prior/budget_limit"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "priorが存在する素材に限りL9 fixture_contract.algorithmの型照合を適用"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "is_not_null",
+                "value": {
+                  "op": "get",
+                  "path": "/prior"
+                }
+              },
+              {
+                "op": "not_number",
+                "value": {
+                  "op": "get",
+                  "path": "/prior/deadline"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "priorが存在する素材に限りL9 fixture_contract.algorithmの型照合を適用"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "is_not_null",
+                "value": {
+                  "op": "get",
+                  "path": "/prior"
+                }
+              },
+              {
+                "op": "not_number",
+                "value": {
+                  "op": "get",
+                  "path": "/prior/failures"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/failures",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "quantity_source": "priorが存在する素材に限りL9 fixture_contract.algorithmの型照合を適用"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/task"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/task",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/risk"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/risk",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/runtime"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/runtime",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/model"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/model",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/effort"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/effort",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/retry"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/retry",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/quality"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/quality",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "not_nonempty_string",
+            "value": {
+              "op": "get",
+              "path": "/default/values/cost"
+            }
+          },
+          "finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/cost",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "default"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
         }
       ],
       "code_classes": {
@@ -8360,92 +9187,6 @@
         "stop_reason_unresolved": "unknown",
         "unassessed_promoted_to_evaluated": "violation"
       },
-      "finding_facet_prefixes": [
-        {
-          "pointer_prefix": "/binding/",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/assignment/binding/",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/roles/",
-          "facet": "ownership"
-        },
-        {
-          "pointer_prefix": "/assignment/owner",
-          "facet": "ownership"
-        },
-        {
-          "pointer_prefix": "/prior/",
-          "facet": "cumulative"
-        },
-        {
-          "pointer_prefix": "/current_constraints/",
-          "facet": "cumulative"
-        },
-        {
-          "pointer_prefix": "/collection/",
-          "facet": "collection"
-        },
-        {
-          "pointer_prefix": "/review/",
-          "facet": "collection"
-        },
-        {
-          "pointer_prefix": "/run/",
-          "facet": "default"
-        },
-        {
-          "pointer_prefix": "/default/",
-          "facet": "default"
-        },
-        {
-          "pointer_prefix": "/deviation_reason/",
-          "facet": "default"
-        },
-        {
-          "pointer_prefix": "/quality/",
-          "facet": "quality"
-        },
-        {
-          "pointer_prefix": "/dependencies/",
-          "facet": "dependencies"
-        },
-        {
-          "pointer_prefix": "/evaluation/",
-          "facet": "evaluation"
-        },
-        {
-          "pointer_prefix": "/model_level/",
-          "facet": "evaluation"
-        },
-        {
-          "pointer_prefix": "/resource_state",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/authority_state",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/capability_state",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/lease_state",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/phase",
-          "facet": "binding"
-        },
-        {
-          "pointer_prefix": "/context/now",
-          "facet": "binding"
-        }
-      ],
       "phase_domain": [
         "before_execution",
         "after_execution",
@@ -8487,16 +9228,18 @@
         "continuity_ref"
       ],
       "comparison_priority": [
-        "actual/expectedいずれかがAbsent・null・wrong-kind・空なら、その原operand位置にunknownを返し、両operandが宣言domainに入るまで値を比較しない。",
-        "両known operandが異なる場合はactual pointerへconflict_codeを返し、severityはcode_classesから得る。"
+        "corresponding",
+        "unknown",
+        "violation"
       ],
       "facet_aggregation": {
         "source": "finding facet memberships from comparison row or longest matching finding_facet_prefixes",
         "priority": [
-          "violation",
+          "corresponding",
           "unknown",
-          "corresponding"
-        ]
+          "violation"
+        ],
+        "direction": "rightmost_highest"
       },
       "output_projection": {
         "condition": "max severity across all facet states: violation > unknown > corresponding",
@@ -8524,7 +9267,7 @@
           "rule": "before_executionはnot_evaluated。after/handoffでeventがfalseならnot_selected、event不明またはquality facet非correspondingならunknown。その他はactual_stepsのstep列とorderを比較し、空/不正はunknown、完全一致はcomplete、strict prefixはpartial、それ以外はunknown。"
         }
       },
-      "meaning_ja": "入力上の各facet素材をL3/L4が割り当てたowner境界の下で比較し、unknown/violationを保持して候補wholeを返す。実割当・実資格・実receiptは発行しない。 比較行と規則行には個別の適用phaseを持たせ、operation/inputの未選択依存のsource_refは比較しない。always依存のsource_refは未選択でも比較する。 self-reviewはreview.actor対binding.actor、review.context対review.producer_contextで判定する。priorが存在する場合はjoin_fieldsを現bindingへ照合する。従属bindingは参照先binding値がknownの場合に限り比較する。 invalid phaseではphase_unresolvedだけを返し、他のphase固有素材は評価しない。quality eventの両側はboolean確認後に比較し、未選択falseではorder/stepを要求しない。",
+      "meaning_ja": "入力上の各facet素材をL3/L4が割り当てたowner境界の下で比較し、unknown/violationを保持して候補wholeを返す。実割当・実資格・実receiptは発行しない。 比較行と規則行には個別の適用phaseを持たせ、operation/inputの未選択依存のsource_refは比較しない。always依存のsource_refは未選択でも比較する。 self-reviewはreview.actor対binding.actor、review.context対review.producer_contextで判定する。priorが存在する場合はjoin_fieldsを現bindingへ照合する。従属bindingは参照先binding値がknownの場合に限り比較する。 invalid phaseではphase_unresolvedだけを返し、他のphase固有素材は評価しない。quality eventの両側はboolean確認後に比較し、未選択falseではorder/stepを要求しない。 Facet所属は各comparison/rule rowのfacetsで決まり、path prefixから推測しない。",
       "unresolved_facet_propagation": {
         "source": "core binding field presence and domain",
         "phases": [
@@ -8532,21 +9275,6 @@
           "handoff"
         ],
         "rule": "binding_fieldsのうちfield_groupsで指定した参照元fieldがknown_nonempty_stringでない場合、対応facetをunknownにする。元の/binding/<field>にsource findingを一つだけ出し、未評価の従属レコードごとに重複findingを作らない。",
-        "dependent_facet_families": {
-          "/collection/binding/": "collection",
-          "/run/binding/": "default",
-          "/default/binding/": "default",
-          "/quality/binding/": "quality",
-          "/evaluation/binding/": "evaluation"
-        },
-        "also_mark": [
-          "binding",
-          "cumulative"
-        ],
-        "do_not_mark": [
-          "ownership",
-          "dependencies"
-        ],
         "field_groups": {
           "cumulative": [
             "logical_work"
@@ -8590,7 +9318,8 @@
             "head",
             "continuity_ref"
           ]
-        }
+        },
+        "semantics_ja": "派生materialへの参照元known不足は、field_groupsに列挙されたfacetをunknownにする。元binding fieldのcomparison findingは一つを保持し、従属recordごとに重複findingを作らない。binding join自身はjoin_fieldsの通常比較/ruleでunknownとなる。facet prefixや追加also_markは使わず、この明示field_groupsのみを伝播に用いる。"
       },
       "invalid_phase_policy": {
         "only_rule_code": "phase_unresolved",
@@ -8656,7 +9385,8 @@
                 "corresponding",
                 "unknown",
                 "violation"
-              ]
+              ],
+              "direction": "rightmost_highest"
             }
           ]
         },
@@ -8703,7 +9433,8 @@
             "corresponding",
             "unknown",
             "violation"
-          ]
+          ],
+          "direction": "rightmost_highest"
         },
         "facet_correspondence": {
           "op": "var",
@@ -9221,21 +9952,22 @@
             "/authority_state",
             "/capability_state",
             "/lease_state",
-            "/context/expected_authority",
-            "/context/expected_capability",
-            "/context/expected_lease",
             "/binding/authority_ref",
             "/binding/capability_ref",
             "/binding/lease_ref",
+            "/assignment/binding/authority_ref",
+            "/assignment/binding/capability_ref",
+            "/assignment/binding/lease_ref",
             "/context/expected_binding/authority_ref",
             "/context/expected_binding/capability_ref",
             "/context/expected_binding/lease_ref",
-            "/roles/authority"
+            "/roles/authority",
+            "/context/expected_roles/authority"
           ],
           "responsibility_role_candidate": "security_authority",
           "basis_contract_ids": [
-            "HELIXOS-L4-018-F01",
-            "HELIXOS-L4-018-F02"
+            "HELIXOS-L4-018-B01",
+            "HELIXOS-L4-018-F01"
           ]
         },
         {
@@ -9253,15 +9985,26 @@
             "/quality",
             "/context/expected_quality_event",
             "/context/expected_steps",
+            "/context/expected_order",
+            "/context/expected_order_source_ref",
+            "/context/expected_order_source_revision",
             "/binding/oracle_ref",
             "/binding/artifact_ref",
             "/binding/evidence_ref",
             "/binding/result_ref",
+            "/assignment/binding/oracle_ref",
+            "/assignment/binding/artifact_ref",
+            "/assignment/binding/evidence_ref",
+            "/assignment/binding/result_ref",
             "/context/expected_binding/oracle_ref",
             "/context/expected_binding/artifact_ref",
             "/context/expected_binding/evidence_ref",
             "/context/expected_binding/result_ref",
-            "/roles/oracle"
+            "/collection/artifact_ref",
+            "/collection/evidence_ref",
+            "/collection/result_ref",
+            "/roles/oracle",
+            "/context/expected_roles/oracle"
           ],
           "responsibility_role_candidate": "harness_oracle_and_quality",
           "basis_contract_ids": [
@@ -9277,7 +10020,8 @@
             "/context/expected_model_level",
             "/context/expected_config",
             "/context/expected_total_cost",
-            "/roles/evaluation"
+            "/roles/evaluation",
+            "/context/expected_roles/evaluation"
           ],
           "responsibility_role_candidate": "labo_evaluation",
           "basis_contract_ids": [
@@ -9305,8 +10049,11 @@
         {
           "pointer_prefixes": [
             "/dependencies",
-            "/context/expected_dependencies",
-            "/context/expected_dependency_refs"
+            "/context/expected_dependency_refs",
+            "/context/expected_dependency_classes",
+            "/context/expected_dependency_selection",
+            "/roles/dependencies",
+            "/context/expected_roles/dependencies"
           ],
           "responsibility_role_candidate": "harness_normative_dependency_consumer",
           "basis_contract_ids": [
@@ -9351,6 +10098,7 @@
             "/context/expected_binding/budget_ref",
             "/context/expected_binding/deadline_ref",
             "/context/expected_binding/continuity_ref",
+            "/context/expected_roles/assignment",
             "/phase"
           ],
           "responsibility_role_candidate": "assignment_management_and_collection_recovery",
@@ -9363,7 +10111,8 @@
         },
         {
           "pointer_prefixes": [
-            "/roles/proposal"
+            "/roles/proposal",
+            "/context/expected_roles/proposal"
           ],
           "responsibility_role_candidate": "intelligence_proposal",
           "basis_contract_ids": [
@@ -9374,7 +10123,9 @@
           "pointer_prefixes": [
             "/collection",
             "/review",
-            "/context/expected_review"
+            "/context/expected_review",
+            "/context/expected_terminal_state",
+            "/context/expected_producer_context"
           ],
           "responsibility_role_candidate": "independent_review_and_collection_recovery",
           "basis_contract_ids": [
@@ -9400,6 +10151,28 @@
         ],
         "generic_operator": "route_findings_by_pointer_prefix",
         "not_case_dependent": true
+      },
+      "independent_expected_bindings": {
+        "collection_terminal_state": {
+          "actual_path": "/collection/terminal_state",
+          "expected_path": "/context/expected_terminal_state",
+          "basis": "原L9 fixture_contract.algorithmに従い、terminal_stateを独立contextへ照合する。"
+        },
+        "producer_context": {
+          "actual_path": "/review/producer_context",
+          "expected_path": "/context/expected_producer_context",
+          "basis": "原L9 fixture_contract.algorithmに従い、producer_contextを独立contextへ照合する。"
+        },
+        "quality_order": {
+          "actual_path": "/quality/order",
+          "expected_path": "/context/expected_order",
+          "basis": "原L9 fixture_contract.algorithmに従い、order/source_refを独立contextへ照合する。"
+        },
+        "quality_steps": {
+          "actual_path": "/quality/actual_steps",
+          "expected_path": "/context/expected_steps",
+          "basis": "原L9 fixture_contract.algorithmに従い、step素材全体を照合する。"
+        }
       }
     }
   ],
@@ -9457,7 +10230,7 @@
     "generic_array_ops": {
       "array_unique_by": "valueがarrayで、全itemがobject、指定fieldがnonempty string、field値が重複しないときtrue。",
       "arrays_match_record_domain": "両辺がarrayで、各itemがobjectかつrequired_fieldsで指定したstring/enum domainを満たすときtrue。各arrayの全itemを検査する。",
-      "not_strictly_ordered_by": "valueの各itemの指定fieldがorder配列中に一度だけ現れ、そのindexが厳密増加しない場合true。配列/field不正はfalse。",
+      "not_strictly_ordered_by": "array値の各item.fieldがorderに1回だけあり、order上indexが厳密増加しない場合true。array/item/fieldの不正はfalse。",
       "strict_prefix_by": "valueのfield配列がorder配列の厳密prefixで、長さがorderより短いときtrue。"
     },
     "generic_output_ops": {
@@ -9467,9 +10240,40 @@
       "no_finding_pointer_prefix": "既存findingに指定pointer prefixが一つもない。",
       "map_field": "arrayのobjectから指定fieldを順序保持で射影。",
       "strict_prefix": "左arrayが右arrayのstrict prefix。",
-      "max_by_priority": "priorityで最も高い値を返す。",
+      "max_by_priority": "priority配列の右端を最高順位として選択する。",
       "get_or_null": "Absentをnull投影する。",
-      "route_findings_by_pointer_prefix": "finding配列各要素を保ち、pointerのsegment境界で一致するroute operandのうち最長prefixを選ぶ。最長一致ruleが1つなら論理role候補を付け、0件または最長同率複数はrole_candidate_unresolved。比較labelを別fieldで保持し、recipient_qualificationはnot_established。"
+      "route_findings_by_pointer_prefix": "Finding配列順を保持する。pointer segment境界で最長一致を選ぶ。同率/一致なしは未解決候補。",
+      "first_index_where_order_violation": "元配列で最初の不在stepまたはorder index非増加位置をJSON Pointer用indexとして返す。"
+    },
+    "operators": {
+      "json_equal": "JSON nullはnull同士のみ一致、Absentは一致しない。booleanとnumberは異種。JSON number同士は数値として比較し1と1.0は同値。object key順は無視し、array順は保持する。",
+      "max_by_priority": "priority配列の右端が最高順位。priorityにない値は入力型違反として受理しない。",
+      "comparison_row": "actual_path/expected_pathを個別に読み、両値がrow.domainを満たす場合だけ等値比較する。未知値のpointerはunknown_pointer_policyで決め、各invalid operandの原位置へFindingを返す。pointerはknown相反時の対象位置である。",
+      "applicability_when": "式がboolean trueのときだけ比較rowを評価する。falseなら当該rowは非適用。非booleanは比較不能で該当入力位置にunknownを返す。",
+      "skip_comparison": "互換字段は使用しない。省略は通常比較、falseは通常比較、trueは行を非適用。boolean以外はL5定義域外。",
+      "requires_known_path": "互換字段は使用しない。パス存在条件はapplicability_whenに明示する。",
+      "not_strictly_ordered_by": "array値の各item.fieldがorder array内に一度だけ現れ、indicesがstrictly increasingでない場合true。配列shape/member不正はfalse（別domain ruleがunknownを返す）。",
+      "first_index_where_order_violation": "元array index順に、fieldがorderに無い最初のitem、または直前のvalid itemよりorder indexが増加しない最初のitemを選ぶ。返却pointerはその元indexとfield。filter後の再indexは禁止。",
+      "known_closed_string": "JSON stringかつrow.allowed_valuesの有限集合に含まれる場合のみknown。OS018 dependency class集合はalways/operation/input/reference。",
+      "known_string_array": "arrayの全memberがstringの場合known。重複禁止は独立array_unique_by/一意性ruleで判定する。",
+      "known_json_array": "JSON arrayの場合known。全leaf shapeの検査はarrays_match_record_domainで全memberに適用する。",
+      "array_unique_by": "全itemがobject、指定fieldがnonempty stringで一意ならtrue。",
+      "phase_in": "phaseが宣言phase_domainの値に厳密一致する場合だけtrue。",
+      "route_findings_by_pointer_prefix": "FindingごとにJSON Pointer segment境界で一致するruleの最長prefixを選択。最大長同率複数または該当なしはunresolved。入力findingの順序を保持。"
+    },
+    "comparison_domains": {
+      "known_nonempty_string": "非空JSON string。null/Absent/空文字/非stringはunknown。",
+      "known_number": "JSON number（booleanを除く）。null/Absent/非numberはunknown。",
+      "known_boolean": "JSON booleanのみ。",
+      "known_closed_string": [
+        "always",
+        "operation",
+        "input",
+        "reference"
+      ],
+      "known_string_array": "arrayかつ全要素がJSON string。",
+      "known_json_array": "JSON array。",
+      "kind_strict_equality": "JSON kindを区別、JSON number同士は数値等値、object key順無視、array順保持。"
     }
   },
   "formal_pipeline": [
@@ -9493,18 +10297,18 @@
       "result": "facet states"
     },
     {
-      "step": "project_result",
-      "source": "formal_programs[OS018-ANALYZE-1].output_expressions",
-      "result": "ProposalResult"
-    },
-    {
       "step": "sort_deduplicate_findings",
       "keys": [
         "code",
         "pointer",
         "return_owner"
       ],
-      "result": "ProposalResult.findings"
+      "result": "順序が code/pointer/return_owner の昇順でtuple重複除去済みのFinding列"
+    },
+    {
+      "step": "project_result",
+      "source": "formal_programs[OS018-ANALYZE-1].output_expressions",
+      "result": "ProposalResult。responsibility_routesは直前の整列済Finding列から入力順保持で生成する。"
     }
   ],
   "diagnostic_code_dispositions": {
@@ -9558,94 +10362,8 @@
     "stop_reason_unresolved": "unknown",
     "unassessed_promoted_to_evaluated": "violation"
   },
-  "finding_facet_prefixes": [
-    {
-      "pointer_prefix": "/binding/",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/assignment/binding/",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/roles/",
-      "facet": "ownership"
-    },
-    {
-      "pointer_prefix": "/assignment/owner",
-      "facet": "ownership"
-    },
-    {
-      "pointer_prefix": "/prior/",
-      "facet": "cumulative"
-    },
-    {
-      "pointer_prefix": "/current_constraints/",
-      "facet": "cumulative"
-    },
-    {
-      "pointer_prefix": "/collection/",
-      "facet": "collection"
-    },
-    {
-      "pointer_prefix": "/review/",
-      "facet": "collection"
-    },
-    {
-      "pointer_prefix": "/run/",
-      "facet": "default"
-    },
-    {
-      "pointer_prefix": "/default/",
-      "facet": "default"
-    },
-    {
-      "pointer_prefix": "/deviation_reason/",
-      "facet": "default"
-    },
-    {
-      "pointer_prefix": "/quality/",
-      "facet": "quality"
-    },
-    {
-      "pointer_prefix": "/dependencies/",
-      "facet": "dependencies"
-    },
-    {
-      "pointer_prefix": "/evaluation/",
-      "facet": "evaluation"
-    },
-    {
-      "pointer_prefix": "/model_level/",
-      "facet": "evaluation"
-    },
-    {
-      "pointer_prefix": "/resource_state",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/authority_state",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/capability_state",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/lease_state",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/phase",
-      "facet": "binding"
-    },
-    {
-      "pointer_prefix": "/context/now",
-      "facet": "binding"
-    }
-  ],
   "limits": [
-    "This finite-material design does not produce actual authority, provider, resource, qualification, or operation evidence.",
+    "固定された254素材の有限比較である。実資格、実source所有、全consumerの完全被覆、正式schema/codec、実操作権限は成立を主張しない。",
     "全明示L3/L10義務を契約へ対応づけたが、全consumer/source資格、全履歴consumer、累積履歴/race、実停止/回収、実L11 Acceptedは未閉包。",
     "新しいdefault、固定order、数値threshold、性能grade、承認gateを加えない。",
     "旧sourceとの差分は意味の再導出として記録し、archive runtime/test/CIは実行しない。"
@@ -9708,15 +10426,15 @@
   "derived_pair_sources": [
     {
       "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
-      "source_revision": "1122b8b57ed241dcf2371f645e319ebac90cdc85",
+      "source_revision": "b0e784dc7891755de29bc901b82542105e726779",
       "file_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645",
-      "purpose": "8 contract definitions and L3/L10 links"
+      "purpose": "L4の8契約義務とL9の254固定raw入力・独立expected wholeを参照する。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/worker-assignment-attempt.json",
-      "source_revision": "1122b8b57ed241dcf2371f645e319ebac90cdc85",
+      "source_revision": "b0e784dc7891755de29bc901b82542105e726779",
       "file_sha256": "8fc5f618d41adc701a89d7466093774d2d44a27990051ff2392308cb20ba3a07",
-      "purpose": "254 not_executed raw/expected fixed inputs and independent whole comparison"
+      "purpose": "L4の8契約義務とL9の254固定raw入力・独立expected wholeを参照する。"
     }
   ],
   "diagnostic_responsibility_routing": {
@@ -9728,21 +10446,22 @@
           "/authority_state",
           "/capability_state",
           "/lease_state",
-          "/context/expected_authority",
-          "/context/expected_capability",
-          "/context/expected_lease",
           "/binding/authority_ref",
           "/binding/capability_ref",
           "/binding/lease_ref",
+          "/assignment/binding/authority_ref",
+          "/assignment/binding/capability_ref",
+          "/assignment/binding/lease_ref",
           "/context/expected_binding/authority_ref",
           "/context/expected_binding/capability_ref",
           "/context/expected_binding/lease_ref",
-          "/roles/authority"
+          "/roles/authority",
+          "/context/expected_roles/authority"
         ],
         "responsibility_role_candidate": "security_authority",
         "basis_contract_ids": [
-          "HELIXOS-L4-018-F01",
-          "HELIXOS-L4-018-F02"
+          "HELIXOS-L4-018-B01",
+          "HELIXOS-L4-018-F01"
         ]
       },
       {
@@ -9760,15 +10479,26 @@
           "/quality",
           "/context/expected_quality_event",
           "/context/expected_steps",
+          "/context/expected_order",
+          "/context/expected_order_source_ref",
+          "/context/expected_order_source_revision",
           "/binding/oracle_ref",
           "/binding/artifact_ref",
           "/binding/evidence_ref",
           "/binding/result_ref",
+          "/assignment/binding/oracle_ref",
+          "/assignment/binding/artifact_ref",
+          "/assignment/binding/evidence_ref",
+          "/assignment/binding/result_ref",
           "/context/expected_binding/oracle_ref",
           "/context/expected_binding/artifact_ref",
           "/context/expected_binding/evidence_ref",
           "/context/expected_binding/result_ref",
-          "/roles/oracle"
+          "/collection/artifact_ref",
+          "/collection/evidence_ref",
+          "/collection/result_ref",
+          "/roles/oracle",
+          "/context/expected_roles/oracle"
         ],
         "responsibility_role_candidate": "harness_oracle_and_quality",
         "basis_contract_ids": [
@@ -9784,7 +10514,8 @@
           "/context/expected_model_level",
           "/context/expected_config",
           "/context/expected_total_cost",
-          "/roles/evaluation"
+          "/roles/evaluation",
+          "/context/expected_roles/evaluation"
         ],
         "responsibility_role_candidate": "labo_evaluation",
         "basis_contract_ids": [
@@ -9812,8 +10543,11 @@
       {
         "pointer_prefixes": [
           "/dependencies",
-          "/context/expected_dependencies",
-          "/context/expected_dependency_refs"
+          "/context/expected_dependency_refs",
+          "/context/expected_dependency_classes",
+          "/context/expected_dependency_selection",
+          "/roles/dependencies",
+          "/context/expected_roles/dependencies"
         ],
         "responsibility_role_candidate": "harness_normative_dependency_consumer",
         "basis_contract_ids": [
@@ -9858,6 +10592,7 @@
           "/context/expected_binding/budget_ref",
           "/context/expected_binding/deadline_ref",
           "/context/expected_binding/continuity_ref",
+          "/context/expected_roles/assignment",
           "/phase"
         ],
         "responsibility_role_candidate": "assignment_management_and_collection_recovery",
@@ -9870,7 +10605,8 @@
       },
       {
         "pointer_prefixes": [
-          "/roles/proposal"
+          "/roles/proposal",
+          "/context/expected_roles/proposal"
         ],
         "responsibility_role_candidate": "intelligence_proposal",
         "basis_contract_ids": [
@@ -9881,7 +10617,9 @@
         "pointer_prefixes": [
           "/collection",
           "/review",
-          "/context/expected_review"
+          "/context/expected_review",
+          "/context/expected_terminal_state",
+          "/context/expected_producer_context"
         ],
         "responsibility_role_candidate": "independent_review_and_collection_recovery",
         "basis_contract_ids": [
@@ -9902,5 +10640,9 @@
     },
     "qualification_limit_ja": "このroutingは実owner ID、source資格、受領権限、ticket/assignment bindingを成立させない。正式なrecipient bindingが無いfieldではroute候補を確定した責務境界で止め、worker-assignment-owner labelを実ownerと扱わない。",
     "compatibility_boundary_ja": "L9の254 source oracleは従来のFinding.return_owner比較labelを含む既存17rootとして保持する。追加responsibility_routesは別のL5 output rootであり、L9期待を書き換えずL4 role_noteの責務候補を可視化する。"
+  },
+  "output_projection": {
+    "priority": "右端が最優先。violation > unknown > corresponding。各facetは対応row/ruleのfinding classesから集約する。",
+    "source": "正式計算はoutput_expressionsを使う。"
   }
 }
