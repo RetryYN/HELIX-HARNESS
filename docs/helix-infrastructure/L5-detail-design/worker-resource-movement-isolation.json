@@ -105,92 +105,110 @@
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "bytes": 6104
     },
     {
       "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1",
+      "bytes": 5160
     },
     {
       "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "bytes": 60825
     },
     {
       "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+      "bytes": 20531
     },
     {
       "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3",
+      "bytes": 10825
     },
     {
       "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+      "bytes": 24801
     },
     {
       "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1",
+      "bytes": 11473
     },
     {
       "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "bytes": 40777
     },
     {
       "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+      "bytes": 15753
     },
     {
       "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d"
+      "sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d",
+      "bytes": 490371
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "bytes": 457982
     },
     {
       "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "bytes": 17732
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
       "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "bytes": 13712
     },
     {
       "path": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
       "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
-      "sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1"
+      "sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1",
+      "bytes": 11065
     },
     {
       "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
       "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
-      "sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463"
+      "sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463",
+      "bytes": 411426
     }
   ],
   "unresolved_fixture_markers": {
+    "normalization": "文字列のmarker識別に限りstrip().lower()を適用する。raw値自体を書き換えない。",
     "string_values": [
       "",
-      "TBD",
+      "tbd",
       "unknown",
-      "UNKNOWN"
+      "n/a"
     ],
-    "meaning": "この詳細の固定合成probeで明示する未解決表示例。実sourceでこれらが正式wire sentinelであるとの主張ではない。空配列は一般に値として保持し、exact resources fieldでのみ空集合を未解決と扱う。"
+    "array_elements": "配列の文字列要素に同じ識別を再帰適用する。unfinished/resources要素の未確定は不足。空unfinishedは値、空resourcesはexact set不足。",
+    "scope": "全programが明示的に読む参照/identity/owner/容量/状態/環境/制約/観測のfieldに適用する。自由自然言語一般を解釈する規則ではない。"
   },
   "source_revision_note": "L4/L9の自己記載source_main d5afd6fは対象path導入前で不在。path初出commit 6e5b45bのファイルbytesと現baseのbytesを照合する。旧source pinのd5afdは承認内容HEADではない。L4/L9は変更しない。",
   "legacy_comparison": [
@@ -241,7 +259,11 @@
         287,
         295
       ],
-      "meaning": "Worker/resource identity、OS責務保持、INFRA実資源とSEC隔離、失敗返却の出所。"
+      "meaning": "Worker/resource identity、OS責務保持、INFRA実資源とSEC隔離、失敗返却の出所。",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "quote": "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：Worker identity、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/network、process/container等の実行環境、SECURITYの隔離条件。\n- **提供**：Workerと実際の実行資源・容量・状態の対応、および資源が変わった場合も作業の参照を失わない接続。\n- **保証**：Workerは計算機そのものではない。INFRASTRUCTUREは実資源と状態を所有し、その資源で利用できる方式で隔離条件を適用する。Workerが必要に応じ別資源へ移る場合もticket、要求、Workerの責務を保持し、それらの正本をINFRASTRUCTUREへ移さない。資源の同一性とWorkerの同一性を混同しない。\n- **依存・版**：L2-001/003、Worker実行契約、OSの作業参照、SECURITY隔離条件。`version_target: 1.0`。自動配置最適化や高度な自動増減を依存にしない。\n- **失敗時・未完義務**：資源不足・隔離不能・ticket対応不明なら接続成立とせず、資源ownerまたはOS/SECURITYへ戻す。未完作業と元資源・移動先の観測状態を保持する。\n- **束ねる条件**：最低項目7（Model/Worker Runtime）・16（Worker execution）のWorkerと資源の区別。2026-09-26 Worker判断をL1接続表に従って適用する。実操作の認可から実行までの構成体はL2-010と別に検証する。",
+      "selected_lines_sha256": "db3dca1d2dfc6cada3f7f33a98c2bda54d706595cd51a5f2f6b4e5f5e7e7964c"
     },
     {
       "source": "L2-010",
@@ -250,21 +272,37 @@
         126,
         135
       ],
-      "meaning": "実operationはSEC authority/Worker構成体を通り、L5/L8 fixtureから実認可・実作用を作らない。"
+      "meaning": "実operationはSEC authority/Worker構成体を通り、L5/L8 fixtureから実認可・実作用を作らない。",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "quote": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/scope/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、通常OS/Worker経路ではOS assignment/ticket、実行後のWorker結果receipt。結果receiptは開始前の入力ではなく後段で受け取る。更新・変更を適用するoperationに限り、該当target/revision/scopeのSECURITY update-admission状態を受ける。独立bootstrap/recovery operationではL2-006のresource/pathと別SECURITY authorityを入力にし、停止中OSのticketを開始条件にしない。\n- **提供**：SECURITYで認可された範囲だけをWorkerが実行し、操作対象、scope、before/after resource state、結果/evidenceへ接続する実操作経路。\n- **保証**：INFRASTRUCTUREがsecurity policyや自身のauthorityを作らず、credential valueをresource normal state、backup、snapshotへ無条件に保存しない。Workerは無制限Shell主体にならない。実操作はOS/SECURITY/Workerの役割を越えずに停止・回収できる。\n- **単独成立の依存・版**：全operationでL2-001の対象resource/actual stateと、対象・action・revision・scope・expiryに適用される有効なSECURITY authorityを照合する。全実操作はSECURITY制約下のWorker実行契約を通す。通常OS/Worker経路ではOS assignment/ticketとL2-009 Work/Change接続を用いる。更新・変更を適用する場合のみ、該当target/revision/scopeのSECURITY update admissionがacceptedであることを追加条件とする。state-changing operationでは、そのactionに適用されるL2-005のbefore/after、backup/restore/rollback/recovery義務を確認し、該当義務が不明または未充足なら変更を保留する。無関係な復旧義務を全操作へ一律要求しない。bootstrap/recovery operationもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityを開始条件とする。OS/通常Control Plane停止中にそのticketまたは通常L2-009応答を必須にせず、復旧後はoperation/resultをOSへ同期する。この限定は通常operation ticket/authorityの一般免除ではない。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：authority/credential scope/target/revision不一致なら実行前に拒否しSECURITY/OSへ返す。部分実行は成功にせず、実際の状態と未完操作、復旧/rollback obligationsを記録する。\n- **束ねる条件**：原文minimum item 14 (SECURITY connection)、16 (Worker execution)、HRI-L1-021/028/029/039。\n",
+      "selected_lines_sha256": "c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37"
     },
     {
       "source": "HELIXOS-L2-004/009/010",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "meaning": "OSの割当/作業主体・中断後未完義務・ticket owner境界。"
+      "meaning": "OSの割当/作業主体・中断後未完義務・ticket owner境界。",
+      "lines": [
+        56,
+        66
+      ],
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "quote": "| HELIXOS-L2-003 | 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる | PO指摘、HCV4-L2-001／004／006、HBR-P0 | あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない |\n| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は3つの機構と、作業の主体であるWorker（機構ではない）に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN。案の材料は、LABOがHELIX-Benchで出したモデルクラスの水準。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、検収がその変更に必要なCIを動的に合成し（CIの規則はHARNESS、組み立てと運転はOS）、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |\n| HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |\n| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる。1.0の組み立ては、HARNESSが定めた工程の部品を規則どおりに組み合わせ、途中結果で差し戻すことに限る。部品にない流れまでINTELLIGENCEの判断で組み立てて再計画するのは、Conceptの4.0である | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 管理はコアの接続状況（trace、依存、stale）を登録し、目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止・HARNESS版と接続状況を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。推進は、INTELLIGENCEの計画・配置の案を受け、承認済みの要求、HARNESSの工程契約、許可、予算、依存、LABOが出した水準に照らして適格性を確かめてから採り、案を無条件に実行しない。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |\n| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる。1.0の再計画は、HARNESSの工程の部品と検証義務の範囲での組み直しとする | HELIX-OS編成案 §1／4、2026-09-24 PO判断 | 本要求は計画を導く側であり、計画からCIを合成して実行する側はHELIXOS-L2-008とする。HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |\n| HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 要求整理前や設計途中の調査は工程内の調査（Research ticket）とする |\n| HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §5、2026-09-24 PO判断、2026-09-25 PO判断 | 同じ仕事への関連付けに使う原記録の保存はHELIXOS-L2-007に残す |",
+      "selected_lines_sha256": "2604d8b9cd02427fa4fa287a081c2889176de70c7f261db0104a8ad6ca3563a4"
     },
     {
       "source": "2026-09-26 Worker decision",
       "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
       "lines": [
-        59,
-        79
+        69,
+        92
       ],
-      "meaning": "Workerと資源/レーン/OS責務を混同しない境界。"
+      "meaning": "Worker/レーン定義とOS/SECURITY/Runtime Infrastructure責務の原文。",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "file_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+      "quote": "## レーンとWorkerの定義\n\n移行の作業の途中で、POは次のように説明した。\n\n> レーンをcodex、Claudeとした場合、codexに推進、Claudeにレビューを割り当てるみたいな概念。WorkerはGUIのレーン主が仮にオーパスだった場合、Workerはサブエージェントで呼び出したsonnetが該当する。チケットが指定するWorkerというのはラボがHELIX-Benchで集計したWorkerの作業履歴からどのモデルクラスなら対応可能なレベルかを導くってこと。\n\nAIの整理：\n- レーンは、推進やreview等の役割の割当て先である（例：Codexのレーンに推進、Claudeのレーンにreview）。レーンは残し、Workerとは別の概念とする。\n- Workerは、レーンの主がSubagentとして呼び出して作業させるモデルである（例：GUIのレーンの主がOpusなら、Subagentとして呼び出したSonnetがWorker）。原文の「HELIXサブエージェント」は、別の概念として置かず、Workerに当たる。\n- ticketが指定するWorkerは、LABOがHELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できる水準かを導いたものである。\n- 本書の上の整理のうち、次を本節の説明に合わせて改める。「エージェントレーンを独立した概念として廃止する」は、「レーンを役割の割当て先として残し、実行はWorkerが担う」とする。原文の「Worker内部のSubagent」（RETIRE-WORKER-001、002）は、「レーンの主が呼び出すSubagentがWorker」とする。Subagentの範囲を親以下にする条件（RETIRE-WORKER-003）は、Workerの範囲を呼び出したレーン以下にする条件として保つ。\n- Concept、製品責務境界、HELIXの構造仮説、HELIX-OSの要求案と受入案、新世代作業入口、対応表、被覆の区分名を、この定義に合わせる。\n\n## Workerの要求の置き場所\n\nAIが、Worker自体の要求（実行の状態、記録する項目、Subagentの観測、能力の明示等）をどの文書に置くかを聞いたところ、POは次のように答えた。\n\n> Workerは独立機構ではないため、Worker専用のCore/L1は作らない。\n> Workerの共通実行契約のownerはHELIX-OSとし、OS要求の中に「Workerへのassignment、実行状態、capability、結果・証拠、Subagent利用の観測、handover/retry/revokeとの接続」を置く。\n> ただし、Authority・権限制約・隔離条件はSECURITY、CPU/GPU/host等の実ResourceはRuntime Infrastructure、Worker配置案はINTELLIGENCEがownerであり、OSへ重複定義しない。\n\nAIの整理：\n- [HELIX-OSの要求案](../../helix-os/L2-requirements/governance-requirements.md)の「Worker・学習・ログ・CIの具体条件」に、HELIXOS-L2-004の配下としてWorkerの共通の実行契約を置き、対の[受入案](../../helix-os/L11-acceptance/governance-acceptance.md)のHELIXOS-L2-004に確かめる内容を加える。HELIX-OSの要求（L2）は2026-09-25の判断で仮決めであり、本件もその中に入る。\n- 原文のRETIRE-WORKER-006〜013の内容（記録する項目、Subagentの観測、capability、Workerとmodelの分離、実行の状態、失効での停止、終了時に状態を残さないこと）を、この契約に入れる。Workerと実行基盤の分離（RETIRE-WORKER-010）は、HELIX-INFRASTRUCTUREの案の側にも置く（PR #2148）。",
+      "selected_lines_sha256": "208c8f4fe14db0f38fd99c387aa3adfa4ab1e9206c3f44833ef4535b154f6fd8"
     },
     {
       "source": "L4/L9 L2-010 pair",
@@ -327,7 +365,8 @@
   "remaining": [
     "実資格、実資源変更、実隔離、実認可はいずれも未成立。",
     "有限fixtureがカバーしない任意scope・unknown token・複合failure優先は未閉包。",
-    "work ownerは論理役割OSとして照合するが実OS資格を証明しない。件数だけ完成の検出はcompletion_basis.synthetic_countという明示fixture fieldとclaimに限り、任意自然言語の完成主張の同定は未実現。"
+    "work ownerは論理役割OSとして照合するが実OS資格を証明しない。件数だけ完成の検出はcompletion_basis.synthetic_countという明示fixture fieldとclaimに限り、任意自然言語の完成主張の同定は未実現。",
+    "resource revisionは原値presenceを検査するが独立した対象revision map未供給。resource_revision_bindingsの不足は実資格不足と区別し、意味閉包として合格にしない。"
   ],
   "document_id": "HELIXINFRASTRUCTURE-L5-025",
   "layer": "L5",
@@ -1203,10 +1242,32 @@
                 "type": "string"
               },
               "result": {
-                "type": "string"
+                "type": "enum",
+                "values": [
+                  "missing",
+                  "wrong_identity_or_owner",
+                  "unobserved",
+                  "worker_resource_conflated",
+                  "lost_work_reference",
+                  "lost",
+                  "unobserved_original_work",
+                  "unobserved_work_reference",
+                  "not_enforced",
+                  "unavailable_on_target",
+                  "insufficient",
+                  "foreign_or_unseen",
+                  "unsupported_extrapolation",
+                  "unrecognized_claim"
+                ]
               },
               "return_owner": {
-                "type": "string"
+                "type": "enum",
+                "values": [
+                  "OS-work-owner",
+                  "INFRA-resource-source",
+                  "HELIX-SECURITY"
+                ],
+                "nullable": true
               }
             }
           }
@@ -1214,7 +1275,13 @@
         "return_owners": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "enum",
+            "values": [
+              "OS-work-owner",
+              "INFRA-resource-source",
+              "HELIX-SECURITY"
+            ],
+            "nullable": true
           }
         },
         "rejected_claims": {
@@ -1251,6 +1318,141 @@
               "type": "boolean"
             }
           }
+        },
+        "work_reference_assessment": {
+          "type": "record",
+          "fields": {
+            "mode": {
+              "type": "enum",
+              "values": [
+                "presence_and_content",
+                "not_assessed"
+              ]
+            },
+            "field_results": {
+              "type": "record",
+              "fields": {
+                "worker": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                },
+                "ticket_ref": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                },
+                "requirement_ref": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                },
+                "responsibility_ref": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                },
+                "work_owner": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                },
+                "unfinished": {
+                  "type": "enum",
+                  "values": [
+                    "unknown",
+                    "content_corresponding_in_fixture_only",
+                    "content_conflict"
+                  ],
+                  "optional": true
+                }
+              }
+            },
+            "information_state": {
+              "type": "enum",
+              "values": [
+                "unknown",
+                "content_corresponding_in_fixture_only",
+                "content_conflict",
+                "not_assessed"
+              ]
+            }
+          }
+        },
+        "resource_revision_bindings": {
+          "type": "record",
+          "fields": {
+            "source": {
+              "type": "record",
+              "fields": {
+                "identity": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "comparison": {
+                  "type": "enum",
+                  "values": [
+                    "unobserved",
+                    "independent_target_unprovided"
+                  ]
+                }
+              }
+            },
+            "destination": {
+              "type": "record",
+              "fields": {
+                "identity": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "comparison": {
+                  "type": "enum",
+                  "values": [
+                    "unobserved",
+                    "independent_target_unprovided"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "unrecognized_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
@@ -1286,18 +1488,45 @@
         "failure_reasons",
         "return_owners",
         "rejected_claims",
-        "actual_effects"
+        "actual_effects",
+        "work_reference_assessment",
+        "resource_revision_bindings",
+        "unrecognized_claims"
       ],
       "preconditions": [
         "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
-        "未見schema、実owner資格、実観測/実操作を推測しない。"
+        "未見schema、実owner資格、実観測/実操作を推測しない。",
+        "logical_typesの閉じたrecord/nullable/optional/list型を再帰検査し、型外は関数入口で拒否する。"
       ],
       "postconditions": [
         "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
         "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
       ],
-      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
-      "reference_program_ref": "INFRA025-F01"
+      "algorithm_role": "raw_comparison_reference/sourceと明示program operandから全返却を導く。",
+      "reference_program_ref": "/pure_reference_programs/0",
+      "return_presence": {
+        "required": [
+          "information_state",
+          "retained_original_scope",
+          "retained_work_before",
+          "retained_source_resource",
+          "retained_destination_resource",
+          "retained_isolation",
+          "retained_state_evidence",
+          "work_reference_preservation",
+          "failure_reasons",
+          "return_owners",
+          "rejected_claims",
+          "actual_effects",
+          "work_reference_assessment",
+          "resource_revision_bindings",
+          "unrecognized_claims"
+        ],
+        "optional": [
+          "retained_unfinished"
+        ],
+        "rule": "原member不在は投影rootも不在。nullと空配列を補わず、宣言型のoptionalを保つ。"
+      }
     },
     {
       "id": "INFRA025-F02",
@@ -1329,18 +1558,45 @@
         "failure_reasons",
         "return_owners",
         "rejected_claims",
-        "actual_effects"
+        "actual_effects",
+        "work_reference_assessment",
+        "resource_revision_bindings",
+        "unrecognized_claims"
       ],
       "preconditions": [
         "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
-        "未見schema、実owner資格、実観測/実操作を推測しない。"
+        "未見schema、実owner資格、実観測/実操作を推測しない。",
+        "logical_typesの閉じたrecord/nullable/optional/list型を再帰検査し、型外は関数入口で拒否する。"
       ],
       "postconditions": [
         "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
         "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
       ],
-      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
-      "reference_program_ref": "INFRA025-F02"
+      "algorithm_role": "raw_comparison_reference/sourceと明示program operandから全返却を導く。",
+      "reference_program_ref": "/pure_reference_programs/1",
+      "return_presence": {
+        "required": [
+          "information_state",
+          "retained_original_scope",
+          "retained_work_before",
+          "retained_source_resource",
+          "retained_destination_resource",
+          "retained_isolation",
+          "retained_state_evidence",
+          "work_reference_preservation",
+          "failure_reasons",
+          "return_owners",
+          "rejected_claims",
+          "actual_effects",
+          "work_reference_assessment",
+          "resource_revision_bindings",
+          "unrecognized_claims"
+        ],
+        "optional": [
+          "retained_unfinished"
+        ],
+        "rule": "原member不在は投影rootも不在。nullと空配列を補わず、宣言型のoptionalを保つ。"
+      }
     },
     {
       "id": "INFRA025-N01",
@@ -1372,18 +1628,45 @@
         "failure_reasons",
         "return_owners",
         "rejected_claims",
-        "actual_effects"
+        "actual_effects",
+        "work_reference_assessment",
+        "resource_revision_bindings",
+        "unrecognized_claims"
       ],
       "preconditions": [
         "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
-        "未見schema、実owner資格、実観測/実操作を推測しない。"
+        "未見schema、実owner資格、実観測/実操作を推測しない。",
+        "logical_typesの閉じたrecord/nullable/optional/list型を再帰検査し、型外は関数入口で拒否する。"
       ],
       "postconditions": [
         "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
         "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
       ],
-      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
-      "reference_program_ref": "INFRA025-N01"
+      "algorithm_role": "raw_comparison_reference/sourceと明示program operandから全返却を導く。",
+      "reference_program_ref": "/pure_reference_programs/2",
+      "return_presence": {
+        "required": [
+          "information_state",
+          "retained_original_scope",
+          "retained_work_before",
+          "retained_source_resource",
+          "retained_destination_resource",
+          "retained_isolation",
+          "retained_state_evidence",
+          "work_reference_preservation",
+          "failure_reasons",
+          "return_owners",
+          "rejected_claims",
+          "actual_effects",
+          "work_reference_assessment",
+          "resource_revision_bindings",
+          "unrecognized_claims"
+        ],
+        "optional": [
+          "retained_unfinished"
+        ],
+        "rule": "原member不在は投影rootも不在。nullと空配列を補わず、宣言型のoptionalを保つ。"
+      }
     }
   ],
   "contracts": [
@@ -1514,7 +1797,7 @@
               "right": "submitted_work_after.unfinished",
               "field": "work.unfinished",
               "missing": "missing",
-              "different": "wrong_identity_or_owner",
+              "different": "lost_work_reference",
               "owner": "OS-work-owner"
             }
           ]
@@ -1595,23 +1878,6 @@
           "owner": "INFRA-resource-source"
         },
         {
-          "op": "literal_group",
-          "members": [
-            {
-              "path": "original_source_resource.owner",
-              "literal": "INFRA"
-            },
-            {
-              "path": "original_destination_resource.owner",
-              "literal": "INFRA"
-            }
-          ],
-          "field": "resource.owner",
-          "missing": "unobserved",
-          "different": "wrong_identity_or_owner",
-          "owner": "INFRA-resource-source"
-        },
-        {
           "op": "require_both_members",
           "pairs": [
             {
@@ -1684,7 +1950,18 @@
         "deployment": false,
         "acceptance": false,
         "implementation_ready": false
-      }
+      },
+      "scope_required_fields": [
+        "worker",
+        "resources",
+        "environment"
+      ],
+      "assess_isolation": false,
+      "assess_isolation_status": false,
+      "isolation_status_checks": [],
+      "assess_observation": false,
+      "assess_observation_scope": false,
+      "observation_scope_check": null
     },
     {
       "id": "INFRA025-F02",
@@ -1713,7 +1990,8 @@
               "missing": "lost_work_reference",
               "different": "lost_work_reference",
               "claim_override": null,
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             },
             {
               "left": "original_work_before.ticket_ref",
@@ -1723,7 +2001,8 @@
               "missing": "lost_work_reference",
               "different": "lost_work_reference",
               "claim_override": null,
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             },
             {
               "left": "original_work_before.requirement_ref",
@@ -1733,7 +2012,8 @@
               "missing": "lost_work_reference",
               "different": "lost_work_reference",
               "claim_override": null,
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             },
             {
               "left": "original_work_before.responsibility_ref",
@@ -1747,7 +2027,8 @@
                 "field": "work.responsibility_ref",
                 "result": "lost"
               },
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             },
             {
               "left": "original_work_before.work_owner",
@@ -1757,7 +2038,8 @@
               "missing": "lost_work_reference",
               "different": "lost_work_reference",
               "claim_override": null,
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             },
             {
               "left": "original_work_before.unfinished",
@@ -1767,7 +2049,8 @@
               "missing": "lost_work_reference",
               "different": "lost_work_reference",
               "claim_override": null,
-              "owner": "OS-work-owner"
+              "owner": "OS-work-owner",
+              "attribute_original_missing": true
             }
           ]
         },
@@ -1786,7 +2069,8 @@
           "field": "work.work_owner",
           "missing": "lost_work_reference",
           "different": "wrong_identity_or_owner",
-          "owner": "OS-work-owner"
+          "owner": "OS-work-owner",
+          "skip_missing_members": true
         },
         {
           "op": "isolation_state",
@@ -1801,7 +2085,8 @@
           "missing": "missing",
           "unknown": "unobserved",
           "owner": "HELIX-SECURITY",
-          "not_enforced_input": "not_enforced"
+          "not_enforced_input": "not_enforced",
+          "requires_parent": "original_isolation"
         },
         {
           "op": "require_members",
@@ -1818,7 +2103,8 @@
               "missing": "missing",
               "owner": "HELIX-SECURITY"
             }
-          ]
+          ],
+          "requires_parent": "original_isolation"
         },
         {
           "op": "enum_member",
@@ -1864,6 +2150,18 @@
           "empty_parent_field": "original_isolation",
           "nonempty_fields": [
             "resources"
+          ],
+          "reference_owners": {
+            "worker": "OS-work-owner",
+            "requirement_revision": "OS-work-owner",
+            "operation_ref": "OS-work-owner",
+            "scope": "OS-work-owner",
+            "resources": "INFRA-resource-source",
+            "environment": "INFRA-resource-source",
+            "constraint_ref": "HELIX-SECURITY"
+          },
+          "set_fields": [
+            "resources"
           ]
         },
         {
@@ -1903,6 +2201,54 @@
         "deployment": false,
         "acceptance": false,
         "implementation_ready": false
+      },
+      "scope_required_fields": [
+        "worker",
+        "requirement_revision",
+        "resources",
+        "environment",
+        "operation_ref",
+        "scope",
+        "constraint_ref"
+      ],
+      "assess_isolation": true,
+      "assess_isolation_status": false,
+      "isolation_status_checks": [],
+      "assess_observation": true,
+      "assess_observation_scope": true,
+      "observation_scope_check": {
+        "op": "compare_scope",
+        "evidence_path": "original_state_evidence.scope",
+        "reference_path": "original_scope",
+        "fields": [
+          "requirement_revision",
+          "resources",
+          "environment",
+          "worker",
+          "operation_ref",
+          "scope",
+          "constraint_ref"
+        ],
+        "prefix": "state_evidence.scope.",
+        "missing": "unobserved",
+        "different": "foreign_or_unseen",
+        "owner": "INFRA-resource-source",
+        "empty_parent_field": "original_state_evidence",
+        "nonempty_fields": [
+          "resources"
+        ],
+        "set_fields": [
+          "resources"
+        ],
+        "reference_owners": {
+          "worker": "OS-work-owner",
+          "requirement_revision": "OS-work-owner",
+          "operation_ref": "OS-work-owner",
+          "scope": "OS-work-owner",
+          "resources": "INFRA-resource-source",
+          "environment": "INFRA-resource-source",
+          "constraint_ref": "HELIX-SECURITY"
+        }
       }
     },
     {
@@ -1949,6 +2295,18 @@
               "field": "environment",
               "result": "unsupported_extrapolation"
             }
+          ],
+          "reference_owners": {
+            "worker": "OS-work-owner",
+            "requirement_revision": "OS-work-owner",
+            "operation_ref": "OS-work-owner",
+            "scope": "OS-work-owner",
+            "resources": "INFRA-resource-source",
+            "environment": "INFRA-resource-source",
+            "constraint_ref": "HELIX-SECURITY"
+          },
+          "set_fields": [
+            "resources"
           ]
         },
         {
@@ -1970,6 +2328,18 @@
           "owner": "HELIX-SECURITY",
           "empty_parent_field": "original_isolation",
           "nonempty_fields": [
+            "resources"
+          ],
+          "reference_owners": {
+            "worker": "OS-work-owner",
+            "requirement_revision": "OS-work-owner",
+            "operation_ref": "OS-work-owner",
+            "scope": "OS-work-owner",
+            "resources": "INFRA-resource-source",
+            "environment": "INFRA-resource-source",
+            "constraint_ref": "HELIX-SECURITY"
+          },
+          "set_fields": [
             "resources"
           ]
         },
@@ -2002,31 +2372,126 @@
         "deployment": false,
         "acceptance": false,
         "implementation_ready": false
-      }
+      },
+      "scope_required_fields": [
+        "worker",
+        "requirement_revision",
+        "resources",
+        "environment",
+        "operation_ref",
+        "scope",
+        "constraint_ref"
+      ],
+      "assess_isolation": true,
+      "assess_isolation_status": true,
+      "isolation_status_checks": [
+        {
+          "op": "isolation_state",
+          "path": "original_isolation.state",
+          "method_path": "original_isolation.method_ref",
+          "enforced": "enforced_in_fixture_only",
+          "unavailable_marker": "UNAVAILABLE",
+          "field": "isolation.state",
+          "method_field": "isolation.method_ref",
+          "not_enforced": "not_enforced",
+          "unavailable": "unavailable_on_target",
+          "missing": "missing",
+          "unknown": "unobserved",
+          "owner": "HELIX-SECURITY",
+          "not_enforced_input": "not_enforced",
+          "requires_parent": "original_isolation"
+        },
+        {
+          "op": "require_members",
+          "members": [
+            {
+              "path": "original_isolation.method_ref",
+              "field": "isolation.method_ref",
+              "missing": "missing",
+              "owner": "HELIX-SECURITY"
+            },
+            {
+              "path": "original_isolation.evidence_ref",
+              "field": "isolation.evidence_ref",
+              "missing": "missing",
+              "owner": "HELIX-SECURITY"
+            }
+          ],
+          "requires_parent": "original_isolation"
+        }
+      ],
+      "assess_observation": true,
+      "assess_observation_scope": false,
+      "observation_scope_check": null
     }
   ],
   "pure_reference_semantics": {
-    "model": "pure_reference_programsのJSON規則を汎用演算子として実行する。case ID・期待whole・L9出力を計算へ入力しない。",
-    "presence": "型memberはoptional=trueで不在、nullable=trueでnull、通常値でvalueを表す。pathに不在/null/valueを区別し、nullと不在をmissingの扱いで統合するのは個別ruleに明記した時だけ。有限合成probeでは空文字/TBD/unknown/UNKNOWNを未解決表示例とし、同一marker同士の等値を実identity資格と扱わない。resources配列の空値はexact set不明として扱い、unfinished空配列等はそのまま値として保持する。",
+    "model": "raw_comparison_reference/sourceの全関数ASTとpure_reference_programsの明示operand/定数が唯一の判定規範。期待whole/case IDを読まない。",
+    "presence": "optional/nullableの型域を保持し、値不足の診断はnonvalueを使う。markerはstrip/lowerした有限集合と配列要素に適用する。空resourcesは不足、空unfinishedは値。raw投影は変換しない。",
     "comparison": "JSON種別を区別し、objectはkey/value再帰一致、arrayは長さ・順序・各値一致。booleanとnumberを同一視しない。",
     "operators": {
-      "compare_member_pairs": "指定順にleft/right pathを取得。不在またはnullならmissing結果、両方valueで異なる場合different結果を追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "compare_if_both": "両側がvalueの場合だけ比較し、異なる時にfindingを追加。不在/nullの診断は別のrequire_membersへ委ねる。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "compare_literal_members": "pathの不在/nullならmissing、値がliteralと異なればdifferentを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "literal_group": "members順に各pathとliteralを比較し、最初の不在/nullまたは異値で一件を追加する。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "identity_separation": "worker pathが不在/null/有限未解決markerならこの規則を実行しない（worker側の参照検査が返却を担う）。resources順に各identityの不在/nullはmissing、workerとの等値は指定result。",
-      "enum_member": "known_valuesのキーなら対応するfinding（nullはfindingなし）、未収載値はunknown結果、不在/nullはmissing結果。",
-      "require_both_members": "pairsのいずれかのpathが不在/nullなら指定missing findingを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "equal_path_finding": "左右両方valueかつJSON等値なら指定findingを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "isolation_state": "methodが有限未解決値ならfindingを追加せずrequire_membersが担う。method stringがunavailable_markerを含めばmethod_field/unavailable、methodが解決済みでstate未解決ならfield/missing、stateがenforcedならfindingなし、not_enforced_inputと等値ならfield/not_enforced、他のstateはfield/unknownを1件返す。ownerは明示operand。",
-      "require_members": "members順に不在/nullのmemberごとにfinding。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "literal_member": "path不在/nullはmissing、非literalはdifferent。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
-      "compare_scope": "evidence parentが不在/nullならparent fieldへunobserved。存在時は指定fields順にreferenceと比較し、不在/null/宣言nonempty_fields中の空配列/有限unresolved markerはmissing、異なればdifferentを追加。ただしconditional_resultのclaimがraw claimsにありfieldが一致する時はそのresultを使う。",
-      "claim_literal_finding": "claimsに指定claimがありcondition pathが存在すればfinding追加。",
-      "claim_scope_override": "claimsに指定claimがあればscope pathがreferenceと異なる場合finding追加。",
-      "claim_or_member_finding": "condition_pathの値が未解決でない場合に限り、claims_path arrayにclaimがある、またはcondition_pathのobjectにindependent_memberというkeyが存在する場合、field/result/ownerで1件返す。両条件が成立しても1件。keyの値・件数から完成を生成しない。"
+      "compare_member_pairs": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "compare_if_both": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "compare_literal_members": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "literal_group": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "identity_separation": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "enum_member": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "require_both_members": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "equal_path_finding": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "isolation_state": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "require_members": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "literal_member": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "compare_scope": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "claim_literal_finding": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "claim_scope_override": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      },
+      "claim_or_member_finding": {
+        "normative_ref": "/raw_comparison_reference/source",
+        "definition_function": "run_check"
+      }
     },
-    "output": "projectionしたraw値を保持し、failure_reasons順のownerを重複なく抽出。失敗があればstate_rule.when_failures、なければotherwise。work_reference_preservationはwork_before/afterの指定全fieldのJSON等値で決める。effect mapは定義されたfalse値で固定。"
+    "output": "projectionの原値を保存し、宣言順のchecks→供給済みcontext binding→未収載claimの順にfindingを作り、完全同一field/result/ownerを先頭優先で重複排除する。独立faultは保持する。failures非空なら主held、ownerはfinding順に重複排除。owner=nullは未解釈claimの戻し先未解決であり実ownerを作らない。"
   },
   "return_owner_mapping": {
     "OS-work-owner": {
@@ -2053,7 +2518,321 @@
       "held_movement_unqualified",
       "held_evidence_scope_unqualified"
     ],
-    "source_qualification": "すべてsynthetic fixture内の比較結果。実資格/実観測/実操作の成功domainではない。"
+    "source_qualification": "すべてsynthetic fixture内の比較結果。実資格/実観測/実操作の成功domainではない。",
+    "failure_result": [
+      "missing",
+      "wrong_identity_or_owner",
+      "unobserved",
+      "worker_resource_conflated",
+      "lost_work_reference",
+      "lost",
+      "unobserved_original_work",
+      "unobserved_work_reference",
+      "not_enforced",
+      "unavailable_on_target",
+      "insufficient",
+      "foreign_or_unseen",
+      "unsupported_extrapolation",
+      "unrecognized_claim"
+    ],
+    "return_owner": [
+      "OS-work-owner",
+      "INFRA-resource-source",
+      "HELIX-SECURITY",
+      null
+    ],
+    "work_reference_assessment": [
+      "unknown",
+      "content_corresponding_in_fixture_only",
+      "content_conflict",
+      "not_assessed"
+    ],
+    "revision_binding": [
+      "unobserved",
+      "independent_target_unprovided"
+    ],
+    "literal_basis": "原値はsource_pinsのL9 cases.expected_materialの表示とL3/L4/L10責務へ結ぶ。新値unobserved_original_work/unobserved_work_reference/unrecognized_claim/unknown/not_assessed/independent_target_unprovidedは不足の帰属・未比較・独立対象未供給を表す有限表示で、資格/新禁止policy/実状態ではない。"
   },
-  "coverage_limit": "51固定原caseの有限素材に対する論理比較。全source/authority/schema/資格・全一般域を閉じない。"
+  "coverage_limit": "原51と独立局所wholeに対する純粋有限比較。型内摂動も有限証拠であり全一般域/実資格/正式codec/TDD/CI/L11/Readyを閉じない。",
+  "raw_comparison_reference": {
+    "authority": "本sourceの有限Python AST、pure_reference_programsのoperand、constantsの組合せが唯一の全返却規範。補助は汎用構文評価だけ。",
+    "source": "def equal(a,b):\n if type(a) in (int,float) and type(b) in (int,float):return a==b\n if type(a) is not type(b): return False\n if isinstance(a,dict): return a.keys()==b.keys() and all(equal(a[k],b[k]) for k in a)\n if isinstance(a,list): return len(a)==len(b) and all(equal(x,y) for x,y in zip(a,b))\n return a==b\n\ndef get(root,path):\n v=root\n for k in path.split('.') if path else []:\n  if not isinstance(v,dict) or k not in v:return MISSING\n  v=v[k]\n return v\n\ndef nonvalue(v):\n if v is MISSING or v is None:return True\n if isinstance(v,str):return v.strip().lower() in UNRESOLVED\n if isinstance(v,list):return any(nonvalue(x) for x in v)\n return False\n\ndef nonvalue_field(v,field,check):return nonvalue(v) or (field in check.get('nonempty_fields',[]) and isinstance(v,list) and len(v)==0)\n\ndef failure(field,result,owner):return {'field':field,'result':result,'return_owner':owner}\n\ndef run_check(raw,check):\n op=check['op'];out=[]\n if 'requires_parent' in check and nonvalue(get(raw,check['requires_parent'])):return out\n if op=='compare_member_pairs':\n  for p in check['pairs']:\n   a,b=get(raw,p['left']),get(raw,p['right'])\n   if nonvalue(a) or nonvalue(b):\n    ov=p.get('claim_override');claims=get(raw,'claims')\n    if ov and ov['claim'] in claims and not nonvalue(a):out.append(failure(ov['field'],ov['result'],p['owner']))\n    else:\n     if p.get('attribute_original_missing') and nonvalue(a):out.append(failure('work.'+p['left'].split('.')[-1] if nonvalue(b) else p['left'],'unobserved_work_reference' if nonvalue(b) else 'unobserved_original_work',p['owner']))\n     else:out.append(failure(p.get('missing_field',p['field']),p['missing'],p['owner']))\n   elif not equal(a,b):out.append(failure(p['field'],p['different'],p['owner']))\n elif op=='compare_if_both':\n  for p in check['pairs']:\n   a,b=get(raw,p['left']),get(raw,p['right'])\n   if not nonvalue(a) and not nonvalue(b) and not equal(a,b):out.append(failure(p['field'],p['different'],p['owner']))\n elif op=='compare_literal_members':\n  for p in check['members']:\n   a=get(raw,p['path'])\n   if nonvalue(a):out.append(failure(p['field'],p['missing'],p['owner']))\n   elif not equal(a,p['literal']):out.append(failure(p['field'],p['different'],p['owner']))\n elif op=='require_both_members':\n  for p in check['pairs']:\n   if nonvalue(get(raw,p['left'])) or nonvalue(get(raw,p['right'])):out.append(failure(p['field'],p['missing'],p['owner']))\n elif op=='literal_group':\n  for m in check['members']:\n   v=get(raw,m['path'])\n   if nonvalue(v):\n    if check.get('skip_missing_members'):continue\n    out.append(failure(check['field'],check['missing'],check['owner']));break\n   if not equal(v,m['literal']):out.append(failure(check['field'],check['different'],check['owner']));break\n elif op=='identity_separation':\n  worker=get(raw,check['worker_path'])\n  if nonvalue(worker):return out\n  for m in check['resources']:\n   v=get(raw,m['path'])\n   if nonvalue(v):out.append(failure(m['field'],check['missing'],check['owner']));break\n   if equal(worker,v):out.append(failure(m['field'],check['result'],check['owner']));break\n elif op=='enum_member':\n  v=get(raw,check['path'])\n  if nonvalue(v):out.append(failure(check['field'],check['missing'],check['owner']))\n  elif v in check['known_values']:\n   result=check['known_values'][v]\n   if result is not None:out.append(failure(check['field'],result,check['owner']))\n  else:out.append(failure(check['field'],check['unknown'],check['owner']))\n elif op=='equal_path_finding':\n  a,b=get(raw,check['left']),get(raw,check['right'])\n  if not nonvalue(a) and not nonvalue(b) and equal(a,b):out.append(failure(check['field'],check['result'],check['owner']))\n elif op=='isolation_state':\n  method=get(raw,check['method_path']);state=get(raw,check['path'])\n  if not nonvalue(method) and isinstance(method,str) and check['unavailable_marker'].upper() in method.upper():out.append(failure(check['method_field'],check['unavailable'],check['owner']))\n  elif not nonvalue(method) and nonvalue(state):out.append(failure(check['field'],check['missing'],check['owner']))\n  elif not nonvalue(method) and not equal(state,check['enforced']):out.append(failure(check['field'],check['not_enforced'] if equal(state,check['not_enforced_input']) else check['unknown'],check['owner']))\n elif op=='require_members':\n  for m in check['members']:\n   if nonvalue(get(raw,m['path'])):out.append(failure(m['field'],m['missing'],m['owner']))\n elif op=='literal_member':\n  a=get(raw,check['path'])\n  if nonvalue(a):out.append(failure(check['field'],check['missing'],check['owner']))\n  elif not equal(a,check['literal']):out.append(failure(check['field'],check['different'],check['owner']))\n elif op=='compare_scope':\n  ev=get(raw,check['evidence_path'])\n  if nonvalue(ev):out.append(failure(check['empty_parent_field'] if nonvalue(get(raw,check['evidence_path'].split('.')[0])) else check['prefix'][:-1],check['missing'],check['owner']))\n  else:\n   ref=get(raw,check['reference_path'])\n   for f in check['fields']:\n    a=get(ev,f);b=get(ref,f)\n    if nonvalue_field(b,f,check):out.append(failure('scope.'+f,check['missing'],check['reference_owners'][f]))\n    elif nonvalue_field(a,f,check):out.append(failure(check['prefix']+f,check['missing'],check['owner']))\n    elif not (set(a)==set(b) if f in check.get('set_fields',[]) else equal(a,b)):\n     result=check['different']\n     for override in check.get('conditional_result',[]):\n      if override['field']==f and override['claim'] in get(raw,override['claims_path']):result=override['result']\n     out.append(failure(check['prefix']+f,result,check['owner']))\n elif op in ('claim_literal_finding','claim_or_member_finding'):\n  claims=get(raw,check['claims_path']); basis=get(raw,check['condition_path'])\n  if not nonvalue(basis) and (check['claim'] in claims or (op=='claim_or_member_finding' and isinstance(basis,dict) and check['independent_member'] in basis)):out.append(failure(check['field'],check['result'],check['owner']))\n elif op=='claim_scope_override':\n  claims=get(raw,check['claims_path']);a=get(raw,check['scope_path']);b=get(raw,check['reference_path'])\n  if check['claim'] in claims and not nonvalue(a) and not nonvalue(b) and not equal(a,b):out.append(failure(check['finding_field'],check['result'],check['owner']))\n else:raise AssertionError('unknown AST operator '+str(op))\n return out\n\ndef unique_findings(rows):\n out=[]\n for row in rows:\n  if not any(equal(row,old) for old in out):out.append(row)\n return out\n\ndef bind_supplied_context(program,raw):\n out=[]\n scope=get(raw,'original_scope')\n for field in program['scope_required_fields']:\n  value=get(scope,field)\n  if nonvalue(value) or (field=='resources' and value==[]):\n   if field=='worker' and program['work_relation'] and nonvalue(get(raw,'original_work_before.worker')):continue\n   out.append(failure('scope.'+field,'unobserved',REFERENCE_OWNERS[field]))\n worker=get(raw,'original_scope.worker');before=get(raw,'original_work_before.worker')\n if not nonvalue(worker) and not nonvalue(before) and not equal(worker,before):out.append(failure('work.worker','wrong_identity_or_owner','OS-work-owner'))\n if not program['work_relation'] and nonvalue(before):out.append(failure('work.worker','missing','OS-work-owner'))\n selected_worker=before if nonvalue(worker) else worker\n identities=[];valid_identities=True;conflated=False\n for side in ['source','destination']:\n  root='original_'+side+'_resource';record=get(raw,root)\n  for field in ['identity','revision','environment','source_ref','capacity_state']:\n   value=get(record,field)\n   if nonvalue(value):out.append(failure(side+'.'+field,'unobserved','INFRA-resource-source'))\n  owner=get(record,'owner')\n  if nonvalue(owner):out.append(failure(side+'.owner','unobserved','INFRA-resource-source'))\n  elif not equal(owner,'INFRA'):out.append(failure(side+'.owner','wrong_identity_or_owner','INFRA-resource-source'))\n  identity=get(record,'identity')\n  if nonvalue(identity):valid_identities=False\n  else:identities.append(identity)\n  if not nonvalue(selected_worker) and not nonvalue(identity) and equal(selected_worker,identity):\n   conflated=True;out.append(failure(side+'.identity','worker_resource_conflated','INFRA-resource-source'))\n  env=get(record,'environment');reference_env=get(scope,'environment')\n  if not nonvalue(env) and not nonvalue(reference_env) and not equal(env,reference_env):out.append(failure(side+'.environment','foreign_or_unseen','INFRA-resource-source'))\n resources=get(scope,'resources')\n if valid_identities and not conflated and not nonvalue(resources) and resources!=[] and set(resources)!=set(identities):out.append(failure('scope.resources','foreign_or_unseen','INFRA-resource-source'))\n if program['assess_isolation']:\n  isolation=get(raw,'original_isolation')\n  if nonvalue(isolation):out.append(failure('original_isolation','unobserved','HELIX-SECURITY'))\n  else:\n   owner=get(isolation,'owner')\n   if nonvalue(owner):out.append(failure('isolation.owner','unobserved','HELIX-SECURITY'))\n   elif not equal(owner,'HELIX-SECURITY'):out.append(failure('isolation.owner','wrong_identity_or_owner','HELIX-SECURITY'))\n   value=get(isolation,'constraint_ref');reference=get(scope,'constraint_ref')\n   if nonvalue(value):out.append(failure('isolation.constraint_ref','unobserved','HELIX-SECURITY'))\n   elif not nonvalue(reference) and not equal(value,reference):out.append(failure('isolation.constraint_ref','foreign_or_unseen','HELIX-SECURITY'))\n   if program['assess_isolation_status']:\n    for check in program['isolation_status_checks']:out.extend(run_check(raw,check))\n if program['assess_observation']:\n  evidence=get(raw,'original_state_evidence')\n  if nonvalue(evidence):out.append(failure('original_state_evidence','unobserved','INFRA-resource-source'))\n  else:\n   for field in ['ref','state','source_ref']:\n    value=get(evidence,field)\n    if nonvalue(value):out.append(failure('state_evidence.'+field,'unobserved','INFRA-resource-source'))\n    elif field=='state' and not equal(value,'observed_in_fixture_only'):out.append(failure('state_evidence.state','unobserved','INFRA-resource-source'))\n   value=get(evidence,'source_ref');reference=get(raw,'original_destination_resource.source_ref')\n   if not nonvalue(value) and not nonvalue(reference) and not equal(value,reference):out.append(failure('state_evidence.source_ref','foreign_or_unseen','INFRA-resource-source'))\n  if program['assess_observation_scope']:out.extend(run_check(raw,program['observation_scope_check']))\n return out\n\ndef work_presence(program,raw):\n if not program['work_relation']:return {'mode':'not_assessed','field_results':{},'information_state':'not_assessed'}\n results={}\n for field in WORK_FIELDS:\n  a=get(raw,'original_work_before.'+field);b=get(raw,'submitted_work_after.'+field)\n  results[field]='unknown' if nonvalue(a) or nonvalue(b) else 'content_corresponding_in_fixture_only' if equal(a,b) else 'content_conflict'\n state='unknown' if 'unknown' in results.values() else 'content_conflict' if 'content_conflict' in results.values() else 'content_corresponding_in_fixture_only'\n return {'mode':'presence_and_content','field_results':results,'information_state':state}\n\ndef revision_bindings(raw):\n out={}\n for side in ['source','destination']:\n  record=get(raw,'original_'+side+'_resource');row={}\n  for field in ['identity','revision']:\n   value=get(record,field)\n   if value is not MISSING:row[field]=value\n  row['comparison']='unobserved' if nonvalue(get(record,'identity')) or nonvalue(get(record,'revision')) else 'independent_target_unprovided'\n  out[side]=row\n return out\n\ndef interpret(program,raw):\n out={}\n for key,path in program['projection'].items():\n  v=get(raw,path)\n  if v is not MISSING:out[key]=v\n failures=[]\n for c in program['checks']:failures.extend(run_check(raw,c))\n failures.extend(bind_supplied_context(program,raw))\n # rejected claim order follows raw claim list; domain comes from the formal program\n claims=get(raw,'claims');rejected=[x for x in claims if x in program['claim_domain']];unrecognized=[x for x in claims if x not in program['claim_domain']]\n if unrecognized:failures.append(failure('claims','unrecognized_claim',None))\n failures=unique_findings(failures)\n owners=[]\n for f in failures:\n  if f['return_owner'] not in owners:owners.append(f['return_owner'])\n out['information_state']=program['state_rule']['when_failures'] if failures else program['state_rule']['otherwise']\n out['work_reference_preservation']='corresponding_in_fixture_only'\n if program['work_relation']:\n  before=get(raw,'original_work_before');after=get(raw,'submitted_work_after')\n  out['work_reference_preservation']='corresponding_in_fixture_only' if equal(before,after) else 'submitted_content_conflict'\n out['failure_reasons']=failures;out['return_owners']=owners;out['rejected_claims']=rejected;out['actual_effects']=program['effects']\n out['work_reference_assessment']=work_presence(program,raw);out['resource_revision_bindings']=revision_bindings(raw);out['unrecognized_claims']=unrecognized\n return out\n\ndef run_program(function_ref,raw):\n return interpret(PROGRAMS[function_ref],raw)\n",
+    "source_sha256": "3287f5bffa178caf5224d275ce35c72af7a388984774c534b004f01347694fef",
+    "entry": "run_program(function_ref,raw)",
+    "constants": {
+      "UNRESOLVED": [
+        "",
+        "tbd",
+        "unknown",
+        "n/a"
+      ],
+      "WORK_FIELDS": [
+        "worker",
+        "ticket_ref",
+        "requirement_ref",
+        "responsibility_ref",
+        "work_owner",
+        "unfinished"
+      ],
+      "REFERENCE_OWNERS": {
+        "worker": "OS-work-owner",
+        "requirement_revision": "OS-work-owner",
+        "operation_ref": "OS-work-owner",
+        "scope": "OS-work-owner",
+        "resources": "INFRA-resource-source",
+        "environment": "INFRA-resource-source",
+        "constraint_ref": "HELIX-SECURITY"
+      }
+    },
+    "program_binding": "PROGRAMSはpure_reference_programsをidで一意索引。関数選択IDでありcase/expectedを選ばない。",
+    "primitive_operators": {
+      "syntax": "FunctionDef/Return/Assign/For/If/Continue/Break/式。import/IO/外部作用なし。",
+      "values": "dict/list/tuple、get、items/keys/values、append/extend、key/添字参照、dict/list comprehensionとgenerator、宣言順のfor/zip、all/any。 添字の負整数は末尾からの位置（-1は末尾）を表す。",
+      "conditions": "is/is not、==/!=、in/not in、and/or短絡、not、if条件のPython truthiness。業務booleanは明示is True/False。未解決はnonvalueで明示判定。",
+      "strings": "dotted pathをsplitで辿る。marker表記だけstrip+lower、隔離不能表示だけupperでcase比較する。+は文字列連結。identifier/revision/opaque ref自体は正規化せず保存。",
+      "sets": "resourcesの比較だけset membership。順序・重複はraw投影から消さず、比較結果で同一集合と扱う。",
+      "equality": "equalはJSON kindを分離しnumber同士は数値等値、boolean/numberは別。object key集合/array順序は再帰一致。resourcesだけ明示set比較。",
+      "type_boundary": "入口はlogical_typesの再帰型を検査し型外は関数へ渡さず拒否。正式codecの採用/実装ではない。"
+    }
+  },
+  "program_operand_semantics": {
+    "missing_field": "compare_member_pairsの不足表示field。F02で元だけ不足ならleft path/unobserved_original_work、両側不足ならwork.<field>/unobserved_work_referenceを優先し、提出だけ不足ならmissing_fieldを使う。",
+    "claim_override": "元参照が既知で提出側だけ不足するとき、宣言claimがraw claimsにあればfield/resultを置き換える。元参照自体の不足帰属は先に保持し、未知の元責務を移動で失ったと推測しない。これは負例の診断表示だけで削除の正当化ではない。ownerはpairを保持。",
+    "claim_domain": "raw claimsの宣言集合との積集合をraw順・重複のままrejected_claimsへ返す。集合外はunrecognized_claimsに全値を保持し、主held/owner未解決nullへ接続する。未知claimの禁止意味/ownerは創作しない。",
+    "work_relation": "trueでは元/提出の閉じた6field record全体のJSON内容等値を旧work_reference_preservationへ保持。falseはN01で作業比較をしない元固定表示。同表示を実保持証明としない。presence-awareな評価は別work_reference_assessment。",
+    "work_fields": [
+      "worker",
+      "ticket_ref",
+      "requirement_ref",
+      "responsibility_ref",
+      "work_owner",
+      "unfinished"
+    ],
+    "cascade_priority": "root欠落ならそのrootの不足を優先し、依存child検査を抑制。identityがWorkerへ混同されている場合、そのidentityから派生するresources集合差分を重複生成しない。主heldと直接原因を保持。参照元source_refが不足の場合、既知evidence sourceとの二者不一致を捏造しない。 Workを比較する関数で元Workerとscope.workerが共に不足する場合、既存work.workerの不足を直接原因としてscope.worker重複診断を省く。scope.workerだけ不足で元Workerが供給されていれば独立に診断する。 compare_scopeは親record欠落とscope member欠落を区別し、後者はprefixのscope pathへ返す。F02 work_ownerの不足はpair側が帰属を保持し、literal_groupは不足memberを重複報告せず供給済みの誤roleだけを追加する。",
+    "finding_order": "checks配列順→scope必要field順→Worker/各resourceのsource,destination順→exact集合→SEC→観測→未知claim。完全同一findingのみ先頭を保持。",
+    "projection_boundary": "F01の隔離/観測bodyは保存投影で、SEC/観測状態の解釈はF02/N01が担う。F01だけの結果を接続全体の合格にしない。"
+  },
+  "work_reference_consumer_binding": {
+    "source_projection": "work_reference_preservationは原L9の内容等値保存表示。両側nullやN01未比較でも原labelを不変保持するが、意味上の参照保持を主張しない。",
+    "assessment": "work_reference_assessmentはpresence+各6fieldの内容対応だけを別rootで表示し、owner-role/実資格を別の主findingから免除しない。unknownは主checksの不足finding/heldと対応しOS-work-ownerへ返す。N01はnot_assessedを明示。",
+    "source_refs": [
+      "HELIXINFRASTRUCTURE-L3-025-F01",
+      "HELIXINFRASTRUCTURE-L3-025-F02"
+    ],
+    "consumer": "OSの作業参照/未完保持。二つのrootを同じ意味の相反判定にしない。"
+  },
+  "unclosed_binding_obligations": [
+    {
+      "dimension": "resource_revision_target",
+      "supplied_fields": [
+        "original_source_resource.identity",
+        "original_source_resource.revision",
+        "original_destination_resource.identity",
+        "original_destination_resource.revision"
+      ],
+      "missing_input": "identityをkeyとする独立した対象resource revision/environment/source_ref mapと供給者の実資格",
+      "supplier": "INFRA001/003のresource/state source。実provider未確定。",
+      "consumer": "F01/F02/N01の同対象版照合",
+      "current_result": "resource_revision_bindingsにindependent_target_unprovidedを返す。原recordのrevision命名からparseして合成しない。",
+      "witness_family": "I025-R1-*-DESTINATION-REVISION-UNBOUND",
+      "resupply_shape": {
+        "resource_identity": "opaque string",
+        "required_revision": "opaque string",
+        "environment": "opaque string",
+        "source_ref": "opaque reference",
+        "qualification": "別供給のowner-qualified根拠。shapeから生成しない。"
+      }
+    },
+    {
+      "dimension": "observation_ref_qualification",
+      "supplied_fields": [
+        "original_state_evidence.ref",
+        "original_state_evidence.source_ref",
+        "original_state_evidence.state"
+      ],
+      "missing_input": "refを実観測source bytesと対象revisionへ解決する独立resolver/owner資格",
+      "current_result": "供給済みstate/ref/source/scopeの論理比較だけ。refの不明はheld、任意非marker refの実資格は未成立。"
+    },
+    {
+      "dimension": "unrecognized_claim_owner",
+      "supplied_fields": [
+        "claims"
+      ],
+      "missing_input": "未知claimの意味と該当owner根拠",
+      "current_result": "原値をunrecognized_claimsへ保持、主heldとreturn_owner=null。新しい禁止/許可/ownerは推測しない。"
+    }
+  ],
+  "obligation_binding": [
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "semantic_fields": [
+        "original_scope.worker/resources/environment",
+        "original_work_before.<6fields>",
+        "submitted_work_after.<6fields>",
+        "original_source_resource.identity/owner/revision/environment/source_ref/capacity_state/fields",
+        "original_destination_resource.identity/owner/revision/environment/source_ref/capacity_state/fields"
+      ],
+      "projection_only": [
+        "original_isolation",
+        "original_state_evidence"
+      ],
+      "consumer": "OS-work-owner/INFRA-resource-source",
+      "limit": "SEC stateと観測根拠はF02/N01責務。F01単独を接続全体の成功へしない。"
+    },
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "semantic_fields": [
+        "work relationの6field",
+        "original_scopeの7field",
+        "元/先resource identity/owner/revision/environment/source_ref",
+        "destination.capacity_state",
+        "original_isolationのowner/constraint_ref/method_ref/state/evidence_ref/scope",
+        "original_state_evidenceのref/state/source_ref/scope"
+      ],
+      "consumer": "OS/INFRA/SECの該当owner候補",
+      "limit": "state/source等の論理label一致は実隔離/実観測/許可ではない。実方法と資格providerは未閉包。"
+    },
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "semantic_fields": [
+        "original_scopeの7field",
+        "元Worker identityと元/先resource identity/revision/environment/source_ref",
+        "SEC owner/constraint/method/state/evidence/scope",
+        "state evidence ref/state/source_ref/scope",
+        "proposed_completion_basis.synthetic_countとclaims"
+      ],
+      "consumer": "INFRA/SEC/OSの該当owner候補",
+      "limit": "work関係の内容比較はnot_assessed。必要独立resource revision targetと実証拠resolverは未供給。"
+    }
+  ],
+  "literal_source_bindings": [
+    {
+      "value": "missing",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/1/expected_material/failure_reasons/0/result",
+      "value_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917"
+    },
+    {
+      "value": "wrong_identity_or_owner",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/12/expected_material/failure_reasons/0/result",
+      "value_sha256": "9aaaa23a4b1f24a33f6cb18460fe36f654278ba7ac697dff72b0aad934c79439"
+    },
+    {
+      "value": "unobserved",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/5/expected_material/failure_reasons/0/result",
+      "value_sha256": "c21fa92a57e9e29cc8599c74cd1520430c36e963ce3a9b35a4206bfde2eda871"
+    },
+    {
+      "value": "worker_resource_conflated",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/14/expected_material/failure_reasons/0/result",
+      "value_sha256": "a16b0e2a99a59cc2e16b905ec54edec497e1843153460966b3df0ec0b5c353a0"
+    },
+    {
+      "value": "lost_work_reference",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/1/cases/1/expected_material/failure_reasons/0/result",
+      "value_sha256": "8156efcd41d2074aee8d5307ed1e082956bf468099eb0528af5baeab909bb82e"
+    },
+    {
+      "value": "lost",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/1/cases/11/expected_material/failure_reasons/0/result",
+      "value_sha256": "6f05504f2f99b70fca1854b82ac1e3d904653c88d1a75d47354353b8c6afe526"
+    },
+    {
+      "value": "unobserved_original_work",
+      "derivation": "L4の元参照未観測/未完保持と未知claimを黙って破棄しない不足表示。新有限表示であり原L9 literalと主張しない。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L3-025-F01",
+        "HELIXINFRASTRUCTURE-L3-025-F02",
+        "HELIXINFRASTRUCTURE-L3-025-N01"
+      ],
+      "qualification": "実状態/資格/新しい認可policyではない。"
+    },
+    {
+      "value": "unobserved_work_reference",
+      "derivation": "L4の元参照未観測/未完保持と未知claimを黙って破棄しない不足表示。新有限表示であり原L9 literalと主張しない。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L3-025-F01",
+        "HELIXINFRASTRUCTURE-L3-025-F02",
+        "HELIXINFRASTRUCTURE-L3-025-N01"
+      ],
+      "qualification": "実状態/資格/新しい認可policyではない。"
+    },
+    {
+      "value": "not_enforced",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/1/cases/6/expected_material/retained_isolation/state",
+      "value_sha256": "6d07b9db2c03ed4754f73c5f411715d73be20db006d88c537d62df3bf567da78"
+    },
+    {
+      "value": "unavailable_on_target",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/1/cases/15/expected_material/failure_reasons/0/result",
+      "value_sha256": "0cbc03d477270a4924bd26a198263ef4c0983e2fbf1cc99b48c2ef697796efd7"
+    },
+    {
+      "value": "insufficient",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/1/cases/9/expected_material/retained_destination_resource/capacity_state",
+      "value_sha256": "2f3e2fc13a0120eb0c6205060964562afc99976db585249b81e55082b1fe88ed"
+    },
+    {
+      "value": "foreign_or_unseen",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/2/cases/1/expected_material/failure_reasons/0/result",
+      "value_sha256": "823d6a3bc4603584d1f7d2224d0f54ab0838626ea064798edfeb5770b004a26f"
+    },
+    {
+      "value": "unsupported_extrapolation",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/2/cases/10/expected_material/failure_reasons/0/result",
+      "value_sha256": "bf2c191817046d7134d74e0d12cf692f65046df7b8a0836506ee2d060ca9ae5e"
+    },
+    {
+      "value": "unrecognized_claim",
+      "derivation": "L4の元参照未観測/未完保持と未知claimを黙って破棄しない不足表示。新有限表示であり原L9 literalと主張しない。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L3-025-F01",
+        "HELIXINFRASTRUCTURE-L3-025-F02",
+        "HELIXINFRASTRUCTURE-L3-025-N01"
+      ],
+      "qualification": "実状態/資格/新しい認可policyではない。"
+    },
+    {
+      "value": "OS-work-owner",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/1/expected_material/failure_reasons/0/return_owner",
+      "value_sha256": "0376675220dc8005d22ba0217d986630b80f20ed23a6ab5116a2006a935d71d7"
+    },
+    {
+      "value": "INFRA-resource-source",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/5/expected_material/failure_reasons/0/return_owner",
+      "value_sha256": "94950d301da04147f4584852c54c20cc7a81a6692b7a243901a8d825f781c663"
+    },
+    {
+      "value": "HELIX-SECURITY",
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "pointer": "/verification_obligations/0/cases/0/expected_material/retained_isolation/owner",
+      "value_sha256": "1a3b4fed1f83ba62fa3f7d1b159eec232c062c796eb82eacea862ad365f34540"
+    }
+  ]
 }
