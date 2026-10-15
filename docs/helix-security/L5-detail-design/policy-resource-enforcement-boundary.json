@@ -1,0 +1,867 @@
+{
+  "parent": "HELIXSECURITY-L2-024",
+  "source_main": "65e8e0180da7901b5c9e405382714a14d4d20002",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f",
+    "main_admission_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+    "record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+    "authority_effect": "このrecordのmain admissionにより対象L3/L10 exact revisionに有効。下流の実資格・実操作の承認ではない。"
+  },
+  "whole_object_authority_basis": {
+    "exact_l3_l10_whole_object_authority": {
+      "decision_record_id": "HDEC-SECURITY-PREREQUISITE-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "decision_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f",
+      "decision_status_as_recorded": "recorded_pending_final_review_and_main_admission",
+      "authority_effect_as_recorded": "effective_when_this_record_is_admitted_to_main",
+      "record_commit_is_ancestor_of_origin_main": true,
+      "reviewed_content_head_is_ancestor_of_record_commit": true,
+      "approved_scope": "SEC001〜008/015/016/024の35 L3/L10対、対象exact revisionに限定。記録はJSONを意味正本、MDを生成viewと定める。",
+      "source_files_at_reviewed_content_head": {
+        "docs/helix-security/L3-requirements/business-requirements.json": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+        "docs/helix-security/L3-requirements/functional-requirements.json": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+        "docs/helix-security/L10-verification/business-verification.json": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+        "docs/helix-security/L10-verification/functional-verification.json": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc"
+      },
+      "approved_whole_object_canonical_sha256": {
+        "HELIXSECURITY-L3-024-B01": "37ad06b10e51e2e809cf817161094402c9fdb269ed3a0cfb3410b8f884324649",
+        "HELIXSECURITY-L10-024-B01": "0d5bd67727ac95d6718ee26200d28bc0011e2b03ad1059b4a39a692de3746cf2",
+        "HELIXSECURITY-L3-024-F01": "2f178ac26ef7138315bb16765d8b881540677f9cde34ee333e26299a588fc42d",
+        "HELIXSECURITY-L10-024-F01": "87c6065a0304f31f8725b94a65716b9b598f000af9c10ad2f986e9eec3a9c0b8"
+      },
+      "interpretation": "この記録とrevisionが以下4 L3/L10 whole objectのexact source authorityである。10/06 Stage4記録は歴史的な親とStageの判断として保持するが、批准04578d4にはJSON pathが存在しないため、それ単独で現JSON whole objectのbyte単位の承認としない。"
+    },
+    "later_preservation_crosscheck": {
+      "decision_record_id": "HDEC-SECURITY-TOOL-PREREQUISITES-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b",
+      "decision_record_commit": "3fa2c3ee61b0ee6e47b78c536fa9703b5becb416",
+      "reviewed_content_head": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "record_commit_is_ancestor_of_origin_main": true,
+      "reviewed_content_head_is_ancestor_of_record_commit": true,
+      "decision_scope": "SECURITY010-013の20 Stage1対を承認し、それ以前の35対を同一項目内容で保持する。",
+      "source_files_at_reviewed_content_head": {
+        "docs/helix-security/L3-requirements/business-requirements.json": "3c9bbc84d9ad9e81d08fdd0320854fbe1c617eb5cc8ff6f7ee557f3708359b10",
+        "docs/helix-security/L3-requirements/functional-requirements.json": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+        "docs/helix-security/L10-verification/business-verification.json": "9f56e951bcc0e3510315362fb8501b9a7860981f2da090751e9fb33a1d160f7c",
+        "docs/helix-security/L10-verification/functional-verification.json": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1"
+      },
+      "role": "補助的な後続保存確認。024の新規authority sourceとしては数えず、0f9b exact whole-object approvalを差し替えない。"
+    },
+    "earlier_stage4_parent_decision": {
+      "path": "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md",
+      "decision_record_id": "HDEC-SECURITY-STAGE4-L3-L10-DELEGATED-2026-10-06",
+      "reviewed_content_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
+      "main_admission_commit": "776e6b7b533fa35b204746bae5319af4fdf49771",
+      "role": "024のStage4親scopeと意味の判断。04578にはJSON正本pathが存在せず、現4objectのexact承認は上記10/12記録へ結ぶ。"
+    },
+    "hash_is_not_authority_statement": "各whole object canonical SHAは内容同一性を確認する補助。authorityはdecision record、approved_content_head、decision recordのmain admission、approved JSON full-file SHAとwhole object exact equalityの連鎖で確定する。"
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-024-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-024-B01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "資源記録・backupのcredential境界",
+        "obligation": "INFRAの通常資源状態/backup/snapshotへcredential値を無条件保存せず、SECの既存005方針と安全な実資源境界を照合する。024の歴史Stage4を保持し、初回必要な安全接続規範だけ先行著述する。",
+        "oracle_ref": "HELIXSECURITY-L10-024-B01"
+      },
+      "object_canonical_sha256": "37ad06b10e51e2e809cf817161094402c9fdb269ed3a0cfb3410b8f884324649",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-024-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-024-B01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "資源記録・backupのcredential境界",
+        "requirement_ref": "HELIXSECURITY-L3-024-B01",
+        "positive_input": "通常資源record/backup/snapshotと値非露出の安全境界を合成参照で照合する。",
+        "expected_observation": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "negative_input": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "failure_observation": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "0d5bd67727ac95d6718ee26200d28bc0011e2b03ad1059b4a39a692de3746cf2",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-024-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-024-F01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "policyと実資源・強制の接続",
+        "obligation": "SECのnetwork/credential/environment/project-isolation/operation-authority/update/egress policyと、INFRAの実資源/環境/状態、Workerの実強制を同revision/scopeへ照合する。実施状態・観測・失敗/不明のreceiptをpolicyへ結ぶ。",
+        "oracle_ref": "HELIXSECURITY-L10-024-F01"
+      },
+      "object_canonical_sha256": "2f178ac26ef7138315bb16765d8b881540677f9cde34ee333e26299a588fc42d",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-024-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-024-F01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "policyと実資源・強制の接続",
+        "requirement_ref": "HELIXSECURITY-L3-024-F01",
+        "positive_input": "policy受渡しと実適用状態を照合し、一境界未適用/unknownを与える。",
+        "expected_observation": "宣言と実適用/未観測が別に辿れる。",
+        "negative_input": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "failure_observation": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "87c6065a0304f31f8725b94a65716b9b598f000af9c10ad2f986e9eec3a9c0b8",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    }
+  ],
+  "source_pins": {
+    "AGENTS.md": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+    "CLAUDE.md": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c",
+    "docs/governance/new-generation-start-here.md": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+    "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md": "8db27cd7bfd6d5e9bbf13e41caa02f966c722a21a5e2955803bbebe59717115e",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+    "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+    "docs/helix-security/L1-planning/security-intent.md": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+    "docs/helix-security/L2-requirements/security-requirements.md": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "docs/helix-security/L11-acceptance/security-acceptance.md": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+    "docs/helix-infrastructure/L1-planning/infrastructure-intent.md": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37",
+    "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+    "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+    "docs/helix-security/L3-requirements/business-requirements.md": "a1803d5a4a6ed9137ae8c73e2cb494f4d62c799ca4eeb3c3a4c87871ea68c7fa",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "46c90323df4311b550860f6d997330dbfe2a38b57ad318fd15f0430b498a60f2",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "35ef94bcab32f1fc14423647849ae119a6ef7b4951698abe54980b7b73a9ba84",
+    "docs/helix-security/L10-verification/business-verification.md": "f9705a3cea2513bb4ebca5bcf101d56517a0fcb4b29c818ac05a9676aa4b59fa",
+    "docs/helix-security/L10-verification/functional-verification.md": "ddeaea47ba1092530ac17091618fa5598eed5ab1914bba395ae8b403a7aef3ac",
+    "docs/helix-security/L10-verification/nfr-verification.md": "62c73c49654d04edffeb545f608fc5947f8632a3aa4e5aad4dfc0e54fc3d7a04",
+    "docs/helix-security/L3-requirements/business-requirements.json": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L3-requirements/nfr-grade.json": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+    "docs/helix-security/L10-verification/business-verification.json": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L10-verification/nfr-verification.json": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md": "aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec",
+    "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+    "docs/helix-security/L9-integration-verification/policy-resource-enforcement-boundary.json": "58aff23571a1d9ae01f55b29aee61e3b81090399a55d6fc451197d4b52006e6f",
+    "docs/helix-security/L4-basic-design/operation-authority-reuse.json": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
+    "docs/helix-security/L9-integration-verification/operation-authority-reuse.json": "c3b03d72ad675053a5dde271563c99f75e1a25106234941ea7ec00e84761b688",
+    "docs/helix-security/L4-basic-design/candidate-promotion-state-chain.json": "13a4ff644b10e6cf7f4eee791173a49eae5d98cdc170827ad6d5a50d2a1473c9",
+    "docs/helix-security/L9-integration-verification/candidate-promotion-state-chain.json": "ae249786c92b2a5e7091fc34c4af9aca7c8184ba423f014024e23295de6255c7",
+    "docs/helix-security/L5-detail-design/operation-authority-reuse.json": "3bd065154c15368a3c8661a5cff77ce105373f4afa8da75c7629b6ab3160ac5d",
+    "docs/helix-security/L8-unit-verification/operation-authority-reuse.json": "55b6916c6eca7fd309ea03e9f263c0f99f4015a9986e8028ea3457dd3ce7d547",
+    "docs/helix-security/L5-detail-design/candidate-promotion-state-chain.json": "93a8877e4d595d807cc4ef4ddc5a3e89a57fa79e082ab561c62cdd8aa1cb8658",
+    "docs/helix-security/L8-unit-verification/candidate-promotion-state-chain.json": "c784525941c1dd2b03357b4e64f07159d632e2cae210617f89eaa03d246655e9"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": true,
+  "implementation_readiness": "not_ready",
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "line_start": 104,
+      "line_end": 110,
+      "source_quote": "| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、",
+      "quote_sha256": "f3fd8d2905d0ff757a120fb5ce20f0a8765c81c8561ec96c16ea0b128fd6671f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8D9CC020932FDCDB7ACA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+      "source_sha256": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552",
+      "line_start": 21,
+      "line_end": 24,
+      "source_quote": "`WorkerIsolationPolicy`は、封印済みwrapper identityへtask sensitivity、write scope、egress policyを束縛する。\n`secret`／`unknown` task、実tokenを含むpayload、非empty egress allowlist、曖昧scopeはprocess起動前に拒否する。\n許可済みtaskもLinux network namespaceを必ず分離し、実行後はrepo外scratchのadd／modify／deleteだけを\nexact pathまたは境界付きdirectory prefixと照合する。違反時はstdoutや変更内容を返さず失敗する。",
+      "quote_sha256": "55900ee41b6a12f19def1bdcaf43e2d02e25492967b66ba9daf423e56500783f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8DA932B4A1012B9D8F00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md",
+      "source_sha256": "aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec",
+      "line_start": 39,
+      "line_end": 39,
+      "source_quote": "credential、GitHub token、HELIX DB／state pathはworker contextとして継承しない。",
+      "quote_sha256": "9ab84e890585a26823be43390b297b53ab92f81aa01617730b5e4ffd173dca48"
+    }
+  ],
+  "legacy_preserved": "credential値を通常のcontext/resource証跡へ出さないこと、policy/authorityの責務と実適用境界を区別すること、各execution surfaceの適用状態を確認すること。",
+  "legacy_changed": "旧typed enum、旧approval/runtime/sandboxの具体設定・実装、旧broker/receipt schemaは移植しない。現行SECURITY-024の承認L3/L10とINFRASTRUCTURE/Worker/OS/HARNESS consumer境界に沿い、固定synthetic値による静的traceへ再導出する。",
+  "legacy_reason": "旧機構specificな設定を現行の実資格・実policy・実enforcementと誤認せず、対象revisionで承認された意味と責務を保つため。",
+  "failure_basis": {
+    "audit_path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+    "audit_source_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+    "parent": "HELIXSECURITY-L2-024",
+    "case_rows": [
+      "B01",
+      "F01"
+    ],
+    "interpretation": "資源記録の値露出、責務逆転、未観測と不一致の混同を、固定raw差分として示す。本文から実許可や資源状態を変更しない。",
+    "failure_evidence": {
+      "id": "T38",
+      "pointer": "/failure_types/37",
+      "line_start": 3444,
+      "line_end": 3538,
+      "failure": "repository hookで覆えないhosted surfaceが手続き依存、guard適用有無が隠れる",
+      "assessment": "宣言security policyと対象実環境強制を結び、hookの有無だけで適用済みにしない。unsupportedなsurfaceは未適用として拒否する。",
+      "use_limit": "監査T38はSEC024-F01自身をcurrent_pair_evidenceに含むfailure evidenceとして位置づける。隣接pairのfailure evidenceとは扱わず、新しい拒否gateへ拡張しない。"
+    }
+  },
+  "consumer_basis": [
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "line": 48,
+      "quote": "SECURITYのpolicy/authorityとINFRASTRUCTUREの実資源/観測状態、Workerの物理強制がreceiptで対応する。INFRASTRUCTUREがpolicyを作る、credential値を通常資源状態やbackupへ保存する、またはSECURITYが資源配置を所有したら不合格。",
+      "role": "SECURITY側の不合格境界。policy/authorityとINFRA実資源・Worker receiptを対応付ける。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "line": 131,
+      "role": "INFRASTRUCTUREはpolicy/authorityを発行せず、credential値を通常資源状態・backup・snapshotへ無条件保存しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "role": "資源source/revisionと実状態はINFRASTRUCTURE観測の責務。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "sha256": "2174775ec98f96b4bb4d6bb0a3187311d8d98a45bebb48823577ef0a6e52d4b6",
+      "role": "SEC005のcredential値境界を参照。SEC024で再定義しない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
+      "role": "SEC008の操作authority所有を維持。SEC024はpermissionを発行しない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "role": "SEC007/Workerの適用境界を参照。SECURITYはenforcerにならない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/candidate-promotion-state-chain.json",
+      "sha256": "13a4ff644b10e6cf7f4eee791173a49eae5d98cdc170827ad6d5a50d2a1473c9",
+      "role": "SEC023のcandidate→SEC admission→Worker隔離run→HARNESS verification→OS promotionの段階chainを保持し、024は各段階を置換しない。"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/candidate-promotion-state-chain.json",
+      "sha256": "ae249786c92b2a5e7091fc34c4af9aca7c8184ba423f014024e23295de6255c7",
+      "role": "SEC023 source L9 sequence/receipt境界を照合し、024 synthetic receiptをpromotion proofにしない。"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+      "sha256": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+      "role": "SEC024 L4のsource boundary."
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/policy-resource-enforcement-boundary.json",
+      "sha256": "58aff23571a1d9ae01f55b29aee61e3b81090399a55d6fc451197d4b52006e6f",
+      "role": "SEC024 L9固定source fixtures/cases."
+    }
+  ],
+  "completion_limit": [
+    "論理比較契約であり正式schema/wire codecではない。",
+    "synthetic receiptは実enforcement資格・実観測・実認可を示さない。",
+    "正式owner source資格、credential provider、truststore、policy deployment、physical enforcementは未成立。",
+    "実装・CI/TDD・L11合格・全意味閉包は未成立。"
+  ],
+  "status": "draft_logical_comparison_contract_pending_independent_review",
+  "document_id": "HELIXSECURITY-L5-024-DETAIL-DESIGN",
+  "layer": "HELIXSECURITY-L5",
+  "pair": "HELIXSECURITY-L5L8-024-POLICY-RESOURCE-ENFORCEMENT",
+  "paired_document": "docs/helix-security/L8-unit-verification/policy-resource-enforcement-boundary.json",
+  "purpose": "SECURITY policy、INFRASTRUCTURE resource state、Worker enforcement/receiptを同じ明示revision・scope・environmentへ結び、credential値の非露出、owner境界、宣言と適用/観測の区別を純粋比較する。",
+  "source_pair": {
+    "L4": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+    "L9": "docs/helix-security/L9-integration-verification/policy-resource-enforcement-boundary.json"
+  },
+  "type_contract": {
+    "kind": "論理設計であり正式wire schemaではない",
+    "domains": {
+      "JsonValue": {
+        "kind": "JSON値",
+        "meaning": "原値を保持する。実credentialを含めず、sentinelも合成識別子に限る。"
+      },
+      "List<T>": {
+        "kind": "ordered list generic",
+        "meaning": "順序と全要素を保持する。"
+      },
+      "Text": {
+        "kind": "string",
+        "normalization": "完全一致で比較する。trim/casefold/path/URL変換をしない。"
+      },
+      "Bool": {
+        "kind": "boolean"
+      },
+      "PacketTag": {
+        "values": [
+          "absent",
+          "supplied"
+        ]
+      },
+      "FindingCode": {
+        "values": [
+          "credential_value_exposed",
+          "owner_boundary_mismatch",
+          "stage_scope_overclaim",
+          "policy_resource_binding_mismatch",
+          "enforcement_binding_mismatch",
+          "receipt_binding_mismatch",
+          "application_unobserved",
+          "policy_only_safety_claim"
+        ]
+      },
+      "ReturnOwner": {
+        "values": [
+          "SECURITY",
+          "INFRASTRUCTURE",
+          "Worker execution environment"
+        ]
+      },
+      "OwnerRole": {
+        "values": [
+          "policy",
+          "resource_state",
+          "resource_placement",
+          "physical_enforcement",
+          "evidence_custody"
+        ]
+      },
+      "BindingState": {
+        "values": [
+          "equal",
+          "mismatch",
+          "unknown"
+        ]
+      },
+      "ObservationKind": {
+        "values": [
+          "policy_declaration",
+          "resource_state",
+          "worker_enforcement_fixture",
+          "environment_b_declaration",
+          "environment_b_application",
+          "receipt",
+          "os_work_state",
+          "security_005_policy",
+          "resource_record",
+          "backup",
+          "snapshot",
+          "policy_binding_scope"
+        ]
+      },
+      "ObservationState": {
+        "values": [
+          "known",
+          "observed",
+          "synthetic_only",
+          "unknown"
+        ]
+      },
+      "ExecutionState": {
+        "values": [
+          "not_executed"
+        ]
+      },
+      "PresenceState": {
+        "values": [
+          "absent",
+          "null",
+          "value"
+        ]
+      }
+    },
+    "presence_rules": [
+      "source_refsに指定されていないpacketはcaseの入力選択外であり、slot=absentとして保持するが、そのpacketについてunknown observation/findingを作らない。",
+      "source_refsで選択されたpacket内のmember欠落はPresenceState=absent、明示nullはPresenceState=null、値はPresenceState=valueとし、値とsource pointerを保持する。欠落値だけをunknownとする。",
+      "invalid/unknown rawをText/Boolへcastしない。型としてJsonValueが許されるmemberは元のraw JSONを保つ。",
+      "未知/未観測はそのmemberに限り、別memberの既知値は保持する。"
+    ],
+    "logical_types": {
+      "PacketSlot": {
+        "fields": {
+          "tag": "PacketTag",
+          "value": "JsonValue|null"
+        }
+      },
+      "PacketMaterialization": {
+        "fields": {
+          "resource": "PacketSlot",
+          "policy": "PacketSlot",
+          "input_issues": "List<JsonValue>",
+          "source_refs": "List<Text>",
+          "source_case_id": "Text"
+        }
+      },
+      "BoundaryAssessment": {
+        "fields": {
+          "credential_exposure": "List<CredentialExposureRecord>",
+          "owner_separation": "List<OwnerAssignment>",
+          "binding_comparisons": "List<BindingComparison>",
+          "observation_states": "List<ObservationRecord>",
+          "findings": "List<FindingRecord>",
+          "return_targets": "List<ReturnTarget>",
+          "stage_scope": "StageScope",
+          "execution_state": "ExecutionState"
+        }
+      },
+      "OwnerAssignment": {
+        "fields": {
+          "role": "OwnerRole",
+          "value": "JsonValue"
+        }
+      },
+      "BindingComparison": {
+        "fields": {
+          "name": "Text",
+          "left": "JsonValue|null",
+          "left_presence": "PresenceState",
+          "left_source_pointer": "Text|null",
+          "right": "JsonValue|null",
+          "right_presence": "PresenceState",
+          "right_source_pointer": "Text|null",
+          "state": "BindingState"
+        }
+      },
+      "ObservationRecord": {
+        "fields": {
+          "kind": "ObservationKind",
+          "state": "ObservationState",
+          "source_pointer": "Text|null",
+          "value": "JsonValue"
+        }
+      },
+      "CredentialExposureRecord": {
+        "fields": {
+          "source": "Text",
+          "credential_reference": "JsonValue|null",
+          "value_present": "Bool|null",
+          "payload_marker": "JsonValue|null",
+          "payload_marker_presence": "PresenceState",
+          "exposed": "Bool"
+        }
+      },
+      "FindingRecord": {
+        "fields": {
+          "code": "FindingCode",
+          "source": "Text|null",
+          "field": "Text|null",
+          "environment": "JsonValue|null",
+          "revision": "JsonValue|null",
+          "scope": "JsonValue|null",
+          "source_pointer": "Text|null",
+          "observed_value": "JsonValue|null",
+          "left": "JsonValue|null",
+          "right": "JsonValue|null"
+        }
+      },
+      "ReturnTarget": {
+        "fields": {
+          "finding": "FindingCode",
+          "recipients": "List<ReturnOwner>"
+        }
+      },
+      "StageScope": {
+        "fields": {
+          "historical_stage": "Text",
+          "stage4_scope": "Presence<JsonValue>",
+          "scope": "Text",
+          "all_stage4_capabilities": "Presence<JsonValue>"
+        }
+      },
+      "Presence<JsonValue>": {
+        "fields": {
+          "state": "PresenceState",
+          "value": "JsonValue|null",
+          "source_pointer": "Text|null"
+        }
+      }
+    },
+    "result_domains": {
+      "AssessmentState": [
+        "consistent_synthetic",
+        "mismatch",
+        "unknown_or_unobserved"
+      ],
+      "FindingCode": [
+        "credential_value_exposed",
+        "owner_boundary_mismatch",
+        "stage_scope_overclaim",
+        "policy_resource_binding_mismatch",
+        "enforcement_binding_mismatch",
+        "receipt_binding_mismatch",
+        "application_unobserved",
+        "policy_only_safety_claim"
+      ]
+    },
+    "scope_note": "論理carrierと比較規則の定義に限る。正式schema/codec、owner資格、信頼性、実policy適用、resource/enforcement成立を定義しない。",
+    "observation_state_rules": [
+      "ObservationRecordは選択されたslot内の供給objectだけを作り、source_pointerはそのobjectのraw JSON Pointer。slotが未選択ならrecordを作らず、selected member欠落時はunknown/null pointerとして扱う。",
+      "resource.security_005 objectが供給されればknown（policy recordの合成入力として把握した状態）。resource_record/backup/snapshotは各raw objectのstate memberをdomain値として保持し、欠落・domain外はunknown。",
+      "policy_binding_scopeはroot revisionとscopeが両方供給される場合だけknown、片方欠落ならこのtuple observationのみunknown。policy_declarationはsecurity_policy objectの供給値としてknown。infra_resourceはraw stateを使い、worker_enforcement_fixtureはraw observation stateを使う。",
+      "environment_b declaration/applicationはそれぞれのraw stateをそのまま使い、欠落・domain外はunknown。receiptは明示stateがあればそれを保持し、state未記載でroot fixture_only=trueならsynthetic_only、他はunknown。os_work_stateは値が供給されればknown、欠落ならunknown。",
+      "knownは宣言や合成入力を既知として保持する意味に限り、実適用、実観測、owner資格、enforcement成功を証明しない。"
+    ],
+    "finding_return_routes": {
+      "credential_value_exposed": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "SECURITY"
+        ],
+        "basis": "L9 N01 failure_route.case_routeに基づく。snapshot保存境界はINFRASTRUCTURE、credential方針/許容record不足はSECURITYへ返す。"
+      },
+      "owner_boundary_mismatch": {
+        "by_role": {
+          "policy": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "resource_state": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "resource_placement": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "physical_enforcement": [
+            "SECURITY",
+            "INFRASTRUCTURE",
+            "Worker execution environment"
+          ]
+        },
+        "basis": "L4 B01/F01の責務境界とfailure route、L9 N02/N05/N06のcase_routeに基づく。"
+      },
+      "stage_scope_overclaim": {
+        "recipients": [
+          "SECURITY",
+          "INFRASTRUCTURE"
+        ],
+        "basis": "L4 B01 failure_routeに基づく。"
+      },
+      "policy_resource_binding_mismatch": {
+        "recipients": [
+          "SECURITY"
+        ],
+        "basis": "L4 F01のpolicy意味差のfailure routeに基づく。"
+      },
+      "enforcement_binding_mismatch": {
+        "recipients": [
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01の実適用/強制差のfailure routeに基づく。"
+      },
+      "policy_only_safety_claim": {
+        "recipients": [
+          "SECURITY"
+        ],
+        "basis": "L4 F01のpolicy意味とresource stateの責務分離に基づく。"
+      },
+      "application_unobserved": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01のresource状態/実適用差のfailure routeに基づく。"
+      },
+      "receipt_binding_mismatch": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01の資源/実適用差とL9 N07 case_routeに基づく。"
+      }
+    },
+    "owner_assignment_rules": [
+      "resource packetのownersはpolicy, resource_state, resource_placement, physical_enforcement, evidence_custodyの順に存在memberだけをOwnerAssignmentへ複写する。",
+      "policy packetはsecurity_policy.owner, infra_resource.owner, infra_resource.placement_owner, worker_enforcement.ownerを同じrole順で保持する。欠落memberをnullや期待ownerで補わない。",
+      "evidence_custodyは供給値を説明対象として保持する。L4 B01がcustodyをresource observation側へ結ぶ意味は維持するが、L4/L9の合成値を一般的な実資格や固定文字列へ昇格しない。"
+    ]
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-024-materialize_boundary_input",
+      "symbol": "materialize_boundary_input",
+      "parameters": [
+        {
+          "name": "raw_packets",
+          "type": "JsonValue"
+        },
+        {
+          "name": "source_case_id",
+          "type": "Text"
+        },
+        {
+          "name": "source_refs",
+          "type": "List<Text>"
+        }
+      ],
+      "signature": "materialize_boundary_input(raw_packets: JsonValue, source_case_id: Text, source_refs: List<Text>) -> PacketMaterialization",
+      "output_type": "PacketMaterialization",
+      "return_root_fields": {
+        "resource": "PacketSlot",
+        "policy": "PacketSlot",
+        "input_issues": "List<JsonValue>",
+        "source_refs": "List<Text>",
+        "source_case_id": "Text"
+      },
+      "read_fields": [
+        {
+          "parameter": "raw_packets",
+          "pointer": "/PKT-024-RESOURCE-BASE"
+        },
+        {
+          "parameter": "raw_packets",
+          "pointer": "/PKT-024-POLICY-BASE"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L3-024-F01"
+      ],
+      "pre": "source_refsはL9固定fixture packetの参照。raw_packetsは原patch適用後に解決されたwhole JSON値。未参照packetはabsentのままで既定値を作らない。",
+      "post": "source_refsに含まれるpacketだけをsuppliedにし、未選択slotはabsent/value=nullのまま保持する。source_case_idとsource_refsも返却rootへ原値で保持する。",
+      "pure_algorithm": [
+        "raw_packetsの各packetをsource_refsとの完全一致で選択する。選択されないslotはabsent/value=nullとする。",
+        "選択slotのJSON全体を変更せずvalueへ保持し、入力中の欠落memberは合成しない。",
+        "source_case_id、source_refs、input_issuesは原引数値から独立に返却する。資格・権限判断は行わない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-024-compare_resource_boundary",
+      "symbol": "compare_resource_boundary",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "PacketMaterialization"
+        }
+      ],
+      "signature": "compare_resource_boundary(input: PacketMaterialization) -> BoundaryAssessment",
+      "output_type": "BoundaryAssessment",
+      "return_root_fields": {
+        "credential_exposure": "List<CredentialExposureRecord>",
+        "owner_separation": "List<OwnerAssignment>",
+        "binding_comparisons": "List<BindingComparison>",
+        "observation_states": "List<ObservationRecord>",
+        "findings": "List<FindingRecord>",
+        "return_targets": "List<ReturnTarget>",
+        "stage_scope": "StageScope",
+        "execution_state": "ExecutionState"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/owners"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/security_005"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/resource_record"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/backup"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/snapshot"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/stage4_scope"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/resource/value/all_stage4_capabilities"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/revision"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/scope"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/security_policy"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/infra_resource"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/worker_enforcement"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/environment_b/declaration"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/environment_b/application_observation"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/receipt"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/os_work_state"
+        },
+        {
+          "parameter": "input",
+          "pointer": "/policy/value/execution_state"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L3-024-F01"
+      ],
+      "pre": "PacketMaterializationは固定source packetの純粋projection。原source値とpointerを保持する。比較規範のhistorical_stage/version_boundaryはfixed_source_readsのsource_main固定L4 bytesから読む。",
+      "post": "選択されたraw memberの比較値、presence、出所を返す。選択slotがabsentの対象はout-of-scopeとして空配列にし、unknown観測を追加しない。選択slot内の欠落はunknown/absentとして記録する。実資格・実作用は生成しない。",
+      "pure_algorithm": [
+        "resource slotが選択済みならresource_record→backup→snapshotの順にcredential_reference/value flag/payload_markerを読む。value flag=trueのみを合成fixture内のexposed=trueとし、marker文字列からflagの意味を上書きしない。markerのmissing/null/value presenceを分ける。resource slotが未選択ならこの観測群は空。",
+        "選択済みresourceではsecurity_005 policy、resource_record、backup、snapshotの各原オブジェクトをsource pointer付きObservationRecordへ保持する。fixture sourceの既知revision/state/referenceをunknownへ落とさない。",
+        "policy slotが選択済みならpolicy_binding_scopeを最初に置き、次にpolicy declaration、infra resource、worker fixture、environment B declaration/application、receiptの順に別々のObservationRecordとして返す。各recordは実raw pointerを付け、状態は入力値または本関数の明示規則だけから導出する。未選択policy slotはout-of-scopeとして空。",
+        "policy root revision/scopeもpolicy_binding_scope observationへ元の2値として保ち、policy declaration値と区別する。",
+        "os_work_stateが供給される場合は独立したos_work_state ObservationRecordとして原値を保持し、policy/resource authorityや実適用観測へ混ぜない。",
+        "owner_separationは供給されたowner memberをpolicy→resource_state→resource_placement→physical_enforcement→evidence_custodyの固定順で原値保持する。resource packetはowners objectの存在member、policy packetはsecurity_policy.owner、infra_resource.owner/placement_owner、worker_enforcement.ownerを読む。evidence_custodyはsource記載値を保持するが、L4に特定の固定custodian literalがないため正規化や追加比較をしない。比較は供給memberについてpolicy=SECURITY、resource_state/placement=INFRASTRUCTURE、physical_enforcement=Worker execution environmentを照合し、欠落を他roleで補わない。owner mismatch findingはroleごとに当該memberのJSON Pointerと{role,value,expected}を保持する。返却先はtype_contract.finding_return_routesに従う。",
+        "policy/resource binding比較はこの固定順: policy root revisionとinfra_resource.revision、security_policy.environmentとinfra_resource.environment、security_policy.environmentとworker.environment、policy root revisionとworker.revision、policy root scopeとworker.scope、security_policy.idとworker.policy_reference、続いてreceipt environment/revision/scope、receipt.policy_reference。resourceにはscopeが無いためresource scopeの比較行自体を作らない。receipt.policy_referenceの比較行は作り、右側はabsent/null,state=unknownとし値を補わない。全比較はleft/right presenceとJSON Pointerを出力する。",
+        "infra_resource.safety_claimがnot_claimed以外ならpolicy_only_safety_claimを作りSECURITYへ返す。これはpolicy意味の問題で、実資源適用の成功/失敗を含意しない。",
+        "environment_b.application_observation.state=unknownならapplication_unobservedを作る。finding.environmentはsecurity_policy.environmentのraw value、revision/scopeはそれぞれ宣言rootの同名raw value、source_pointerはapplication_observationを指す。revision/scopeを自由な文字列へ連結しない。返却先はL4 F01 failure_routeに従いINFRASTRUCTUREとWorker execution environment。",
+        "finding/return_targetsの順序は固定する。resource側はcredential exposureをresource_record→backup→snapshot順、owner mismatchをrole順、stage overclaimの順。policy側はpolicy/resource binding mismatch、owner mismatchをpolicy→resource_state→resource_placement→physical_enforcement順、policy_only_safety_claim、application_unobserved、receipt mismatchをenvironment→revision→scope→policy_referenceの順。return_targetsは各findingと同じ順で一対一対応させる。重複findingは統合せず各異なるsource fieldを保持する。",
+        "stage_scope.historical_stageは固定L4 /scope/historical_stage の値、scopeは固定L4 /scope/version_boundary の完全値を指す。stage4_scopeとall_stage4_capabilitiesは選択されたresource packetの各raw memberをPresence<JsonValue>で返す。packetが未選択ならabsentでありunknown findingを作らない。all_stage4_capabilitiesがnot_in_scope以外の実値ならstage_scope_overclaimを作りL4 B01 failure routeのSECURITY/INFRASTRUCTUREへ戻す。"
+      ],
+      "effect": "none",
+      "fixed_source_reads": [
+        {
+          "source_path": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+          "source_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+          "source_sha256": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+          "pointer": "/scope/historical_stage",
+          "return_pointer": "/stage_scope/historical_stage"
+        },
+        {
+          "source_path": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+          "source_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+          "source_sha256": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+          "pointer": "/scope/version_boundary",
+          "return_pointer": "/stage_scope/scope"
+        }
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-024-B01",
+      "requirement_ref": "HELIXSECURITY-L3-024-B01",
+      "oracle_ref": "HELIXSECURITY-L10-024-B01",
+      "source_obligation_value": "INFRAの通常資源状態/backup/snapshotへcredential値を無条件保存せず、SECの既存005方針と安全な実資源境界を照合する。024の歴史Stage4を保持し、初回必要な安全接続規範だけ先行著述する。",
+      "source_oracle_values": {
+        "positive_input": "通常資源record/backup/snapshotと値非露出の安全境界を合成参照で照合する。",
+        "expected_observation": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "negative_input": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "failure_observation": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。"
+      },
+      "obligation_breakdown": [
+        "通常の資源状態・backup・snapshotにraw credential値を無条件保存しない。",
+        "SECURITY-L2-005の既存credential方針とINFRASTRUCTUREの安全な実資源境界を照合する。",
+        "歴史Stage 4の範囲を保持し、初回に必要な安全接続規範だけを前に置く。"
+      ],
+      "rule": "SECURITYがcredential方針を所有し、INFRASTRUCTUREの通常資源record/backup/snapshotは値そのものではなく必要な資源参照・状態を保持する。Worker実行環境が適用境界を担い、通常証跡のcustodyは資源観測側へ結ぶ。初回著述の対象を安全接続の必要規範に限り、Stage4の全能力が成立したとは扱わない。",
+      "source_trace": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L10-024-B01"
+      ],
+      "failure_route": "当該保存または回収不足をSECURITY/INFRASTRUCTUREへ返す。文書から実許可設定を変更しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-024-F01",
+      "requirement_ref": "HELIXSECURITY-L3-024-F01",
+      "oracle_ref": "HELIXSECURITY-L10-024-F01",
+      "source_obligation_value": "SECのnetwork/credential/environment/project-isolation/operation-authority/update/egress policyと、INFRAの実資源/環境/状態、Workerの実強制を同revision/scopeへ照合する。実施状態・観測・失敗/不明のreceiptをpolicyへ結ぶ。",
+      "source_oracle_values": {
+        "positive_input": "policy受渡しと実適用状態を照合し、一境界未適用/unknownを与える。",
+        "expected_observation": "宣言と実適用/未観測が別に辿れる。",
+        "negative_input": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "failure_observation": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。"
+      },
+      "obligation_breakdown": [
+        "SECURITYのnetwork/credential/environment/project-isolation/operation-authority/update/egress policyを結ぶ。",
+        "INFRASTRUCTUREの実資源・環境・実際の状態を同revision/scopeで照合する。",
+        "Worker実行環境の物理強制と、実施状態・観測・失敗/不明receiptをpolicyへ結ぶ。"
+      ],
+      "rule": "合成照合でSECURITY宣言、INFRASTRUCTUREの資源・環境状態、Worker実行環境の強制を、対象revision/scope/environmentの明示値で結ぶ。宣言と実適用は別の事実として保持し、観測済みの値はknownのまま、未観測/失敗した境界だけを未成立として示す。INFRASTRUCTUREにpolicy発行やSECURITYに資源配置の権限を与えず、OS作業状態へ資源/authority truthを混ぜない。",
+      "source_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "failure_route": "policy意味差はSECURITYへ、資源状態/実適用差はINFRASTRUCTURE/実環境へ返す。OS作業状態へ混ぜない。"
+    }
+  ],
+  "source_separation": {
+    "policy": "SECURITY owns policy/authority meaning",
+    "resource": "INFRASTRUCTURE owns resource placement/state observation",
+    "enforcement": "Worker execution environment owns physical enforcement",
+    "operation": "実runtime operation/permissionを変えず、既存SEC008のauthority ownerを維持する。",
+    "dependency": "SEC005がcredential値方針を、SEC023が候補/審査/隔離run/検証/promotion段階chainを担う。SEC024は供給された値だけを比較し、synthetic receiptをpromotion proofへ昇格しない。"
+  },
+  "remaining": [
+    "正式wire/schema/codecの決定",
+    "issuer/owner qualificationと実enforcement receiptの資格",
+    "実source observation、実policy、実credential boundary検証",
+    "L11 acceptance、実装と全意味閉包"
+  ],
+  "source_pin_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+  "legacy_comparison_verification": "旧source_quoteをsource_main固定revisionの記載line_start..line_end実行とUTF-8完全一致で検査し、source_sha256はarchive全体bytes、quote_sha256は選択引用bytesと照合する。引用自身のhash一致だけでは原文一致としない。",
+  "candidate_pair_binding": {
+    "paired_document_id": "HELIXSECURITY-L8-024-UNIT-VERIFICATION",
+    "candidate_local": true,
+    "revision_claim": "same candidate pair; no synthetic Git revision"
+  }
+}
