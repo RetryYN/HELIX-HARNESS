@@ -330,8 +330,12 @@
     "OS/INFRA実source、owner資格、actual/runtime/recovery/rollback観測は未供給。fixture値を実資格にしない。",
     "並行更新/原子性、全状態組合せ、実stage OS014のsource bindingは未評価。",
     "L6関数設計/L7関数検証と製品実装は別。codec/TDD/CI/L11受入は未成立。",
-    "stop-resume両原値/選択stage target・stage_id・証拠target/refの論理比較をR1で具体化したが、実source custody/OS014 provider/同版証拠の資格・原子更新/実停止再開は未成立。",
-    "既知停止stateとrelation markerの不整合は局所保持。任意state markerの意味/全複合状態は未閉包。"
+    "stop-resume両原値/選択stage target・stage_id・証拠target/refの論理比較を局所比較として具体化したが、実source custody/OS014 provider/同版証拠の資格・原子更新/実停止再開は未成立。",
+    "既知停止stateとrelation markerの不整合は局所保持。任意state markerの意味/全複合状態は未閉包。",
+    "stage_idとruntime/pack/contract/artifact/dependency版のデータ上の流用検出は未実現。現programはidentity claim tokenとstage_id=原INFRA runtimeの組合せだけを所見にする。claimなしで各文字列が等しくても検出しない。原値は別memberへ保存するが、それだけで別identity義務を満たしたとはしない。",
+    "各refはPresence<string>の有限素材で、typed namespace/source-role、参照先identity、issuer/custody、別identity対応の証拠を供給する引数/consumer bindingは未定義。同じ文字列が同identityを意味するか未確定な一般域へ、文字列等値だけの禁止規則を作らない。L4 F02の別identity義務そのものは未閉包として残す。",
+    "stage.ownerはretained_stageへ保存するが比較には使わない。OS-stage-ownerというliteralから正式owner資格を生成せず、stage owner/provider/root bindingを検査する責務は未実現。",
+    "F02は既知4claimのみ拒否記録し、F01向け3claimや未見tokenはAssessmentのrejected_claimsへ転記しない。raw入力fixtureは保持するがF02診断/返却への接続は未実現。F01検査を実行済みとも当該claimが無害とも表示しない。"
   ],
   "remaining": [
     "実source・資格・authority・実評価・runtime変更・stage成立は未成立。",
@@ -350,7 +354,11 @@
         "value"
       ],
       "constructor": "raw_member_presence",
-      "type_parameter": "T"
+      "type_parameter": "T",
+      "observation_subclasses": {
+        "empty_array": "valueかつJSON空配列",
+        "empty_object": "valueかつJSON空object"
+      }
     },
     {
       "name": "list<T>",
@@ -575,14 +583,14 @@
       ],
       "algorithm": [
         "1. 原OS/INFRA/stage/unfinishedを同じpresence/値で保持し、7副作用をfalseで初期化する。",
-        "2. 原relationがpartial/stoppedならrelation_state所見を先に返し、rollback表示を保持する。",
+        "2. 原relationがpartial/stoppedならrelation_state所見を先に返す。rollback表示は最後のfinalize_f01優先規則でのみ選ぶ。中間状態を設定して後から上書きするstepは置かない。",
         "3. OSをticket/change/actor/evidence/stop_resume/operation→target→owner順、次にINFRAをtopology/actual/deployment/runtime/recovery/rollback→target→owner順に照合する。各参照は両側不足を1unknown、非null差を1submitted_conflictとする。既知partial/stoppedのstop_resumeと原relation markerが食い違っても停止状態を成功へ丸めない。targetはoriginal/submitted両側を独立original_target四fieldと比較する。",
         "4. 原claim入力順に3越境claimを拒否しfindingを追加する。所見field_prefix/両側不足の重複抑止はsemanticsに従う。",
         "5. claim所見→他所見→rollback→通常内容対応の優先で状態を返す。owner候補はfinding順の初出重複除去。stage_selectedはこの関数の判定に読まない。"
       ],
       "preconditions": [
         "有限fixture型の全required rootが存在する。各nullable/missing fieldはPresenceで区別し、L9 rawから勝手に埋めない。",
-        "原44＋既存2＋R1局所反例の有限比較と宣言型を対象にする。未見claim/stateの意味/実source資格/全多重状態は未閉包。"
+        "原44＋既存2＋独立局所反例の有限比較と宣言型を対象にする。未見claim/stateの意味/実source資格/全多重状態は未閉包。"
       ],
       "postconditions": [
         "全期待rootを返し、OS/INFRA所有記録とunfinishedを消去しない。",
@@ -629,14 +637,20 @@
       ],
       "preconditions": [
         "F02 finite packet rootはPresenceで欠落/null/値を保持。selection rawはboolean/null。",
-        "selectionはJSON booleanまたはPresenceのmissing/null。既知4claimは選択値に関わらず拒否記録し、原44＋R1局所反例で具体化する。未見tokenの意味/全一般域と実stage資格は未閉包。"
+        "selectionはJSON booleanまたはPresenceのmissing/null。既知4claimは選択値に関わらず拒否記録し、原44＋独立局所反例で具体化する。未見tokenの意味/全一般域と実stage資格は未閉包。"
       ],
       "postconditions": [
         "stage未選択ではstage evidence obligationを生じさせない。unknownを成功扱いしない。",
-        "stage_idとruntime_revisionを統合せず、実stage資格を出力しない。"
+        "stage_id/runtime/各版の原値を別memberに保持し、実stage資格を出力しない。claimなしデータ流用/owner/別関数claim検査はunclosed_source_supplyの明示未実現であり、統合検出済みという保証ではない。"
       ],
       "reference_program_ref": "INFRA009-F02",
-      "algorithm_role": "人向け要約。pure_reference_programs対応idとpure_reference_semantics.actionsが唯一の判定定義。pure_rule_catalogはそのpointer索引のみ。"
+      "algorithm_role": "人向け要約。pure_reference_programs対応idとpure_reference_semantics.actionsが唯一の判定定義。pure_rule_catalogはそのpointer索引のみ。",
+      "unclosed_obligations": [
+        "stage_idとruntime/pack/contract/artifact/dependency版のデータ上の流用検出は未実現。現programはidentity claim tokenとstage_id=原INFRA runtimeの組合せだけを所見にする。claimなしで各文字列が等しくても検出しない。原値は別memberへ保存するが、それだけで別identity義務を満たしたとはしない。",
+        "各refはPresence<string>の有限素材で、typed namespace/source-role、参照先identity、issuer/custody、別identity対応の証拠を供給する引数/consumer bindingは未定義。同じ文字列が同identityを意味するか未確定な一般域へ、文字列等値だけの禁止規則を作らない。L4 F02の別identity義務そのものは未閉包として残す。",
+        "stage.ownerはretained_stageへ保存するが比較には使わない。OS-stage-ownerというliteralから正式owner資格を生成せず、stage owner/provider/root bindingを検査する責務は未実現。",
+        "F02は既知4claimのみ拒否記録し、F01向け3claimや未見tokenはAssessmentのrejected_claimsへ転記しない。raw入力fixtureは保持するがF02診断/返却への接続は未実現。F01検査を実行済みとも当該claimが無害とも表示しない。"
+      ]
     }
   ],
   "contracts": [
@@ -774,7 +788,10 @@
         "R1-I009-SUBMITTED-INFRA-rollback_ref",
         "R1-I009-TARGET-ORIGINAL_OS",
         "R1-I009-TARGET-SUBMITTED_OS",
-        "R1-I009-STOPPED-WITH-COMPLETE-RELATION-MARKER"
+        "R1-I009-STOPPED-WITH-COMPLETE-RELATION-MARKER",
+        "LOCAL-I009-PARTIAL-WITH-COMPLETE-MARKER",
+        "LOCAL-I009-OS-TARGET-REVISION-ONLY",
+        "LOCAL-I009-ORDERED-MULTIPLE-FINDINGS"
       ]
     },
     {
@@ -834,7 +851,18 @@
         "R1-I009-UNSELECTED-IDENTITY-CLAIM",
         "R1-I009-GUARD-IDENTITY-BOTH-NULL",
         "R1-I009-GUARD-IDENTITY-BOTH-ABSENT",
-        "R1-I009-GUARD-RUNTIME-CONTROL-NULL"
+        "R1-I009-GUARD-RUNTIME-CONTROL-NULL",
+        "LOCAL-I009-DATA-IDENTITY-RUNTIME-NO-CLAIM",
+        "LOCAL-I009-DATA-IDENTITY-PACK_REF-NO-CLAIM",
+        "LOCAL-I009-DATA-IDENTITY-CONTRACT_REF-NO-CLAIM",
+        "LOCAL-I009-DATA-IDENTITY-ARTIFACT_REF-NO-CLAIM",
+        "LOCAL-I009-DATA-IDENTITY-DEPENDENCY_REF-NO-CLAIM",
+        "LOCAL-I009-STAGE-OWNER-UNCHECKED",
+        "LOCAL-I009-F01-CLAIM-IN-F02-UNCHECKED",
+        "LOCAL-I009-EVIDENCE-TARGET-REVISION-ONLY",
+        "LOCAL-I009-EVIDENCE-FIRST-AND-ROOT",
+        "LOCAL-I009-EVIDENCE-ID-BEFORE-TARGET",
+        "LOCAL-I009-EVIDENCE-REVISION-BEFORE-ID"
       ]
     }
   ],
@@ -889,12 +917,6 @@
           "field": "relation_state",
           "result_from_value": true,
           "return_owner": "OS/INFRA"
-        },
-        {
-          "op": "set_information_if_equal",
-          "path": "original_relation_state",
-          "value": "rollback",
-          "information_state": "rollback_relation_requires_actual_qualification"
         },
         {
           "op": "check_reference_group",
@@ -1104,7 +1126,6 @@
                   "steps": [
                     {
                       "op": "check_stage_evidence",
-                      "stage_path": "original_stage",
                       "evidence_path": "original_stage.evidence",
                       "fields": [
                         "composition",
@@ -1163,7 +1184,9 @@
                                 "result": "stage-runtime-foreign",
                                 "return_owner": "OS/INFRA"
                               },
-                              "missing_result": "missing"
+                              "missing_result": "missing",
+                              "stage_missing_field": "stage.runtime_revision",
+                              "runtime_missing_field": "infra.runtime_revision"
                             }
                           ]
                         }
@@ -1203,7 +1226,6 @@
     "ordered_steps": "initialでprojectionと定数rootを作り、ordered_stepsを配列順で実行。各actionはfailure_reasonsへ指定されたfield/result/return_ownerを追加し、return_ownersは初出順に重複除去。",
     "actions": {
       "relation_state_failure": "pathの値がstatesのいずれかと厳密一致すればfindingを追加し、result_from_value=trueなら一致した値をresultとして使う。",
-      "set_information_if_equal": "pathがvalueと厳密一致するとinformation_stateを指定値へ置換する。",
       "check_reference_group": "reference_fieldsを配列順に検査する。両側のどちらかがmissing/nullならfield_prefix+fieldへmissing_resultを1件だけ追加（両側不足でも1件）。両方非nullでJSON kind/値が異なれば同fieldへmismatch_resultを1件追加する。それ以外でfield=stop_state_fieldかつ原値がheld_statesにありknown_relation_pathがその原値でない場合、同field/原state/held_return_ownerを追加し既知停止/部分状態を成立へ丸めない。次にoriginal/submittedの両targetをtarget_pathの四fieldへ個別比較する。いずれかmissing/null/differentならfield_prefix+target_field/target_resultを合計1件追加する（各側/各fieldで増幅しない）。両ownerのいずれかがownerと異なる/不在ならfield_prefix+owner_field/owner_resultを合計1件追加する。finding返却ownerは原則label。原値を相手側から補完しない。",
       "reject_claims_f01": "claims_pathの配列を入力順に走査。claim_literalsに含まれる各出現tokenをrejected_claims末尾へ追加し、token/wrong_authority_or_unfinished/return_ownerのfindingをその場で追加。重複tokenも原入力出現回数を保つ。",
       "finalize_f01": "information_state_priorityを先頭から評価する。predicate.kind=finding_result_existsはfailure_reasonsにpredicate.resultがある場合、failure_nonemptyは配列が非空の場合、path_equalsはrawのpredicate.pathがpredicate.valueと厳密一致の場合、alwaysは常に成立。最初の成立rule.valueをinformation_stateへ設定する。",
@@ -1211,9 +1233,9 @@
       "if_stage_selected": "pathの値がJSON boolean trueの場合だけstepsを記載順に実行する。",
       "stage_record_missing": "path missing/nullなら指定findingを追加する。",
       "stage_identity_claim": "claims_pathにclaimがあり、stage_path.stage_id_fieldとruntime_pathが両方missing/nullでなく、JSON kind/値が等しいときだけ指定findingを追加する。両null/両missingはcoalescenceの証拠ではない。原claimの拒否記録は別のreject_claims_f02が保持する。",
-      "check_stage_evidence": "fieldsの順に証拠を検査し、最初の問題1件でactionを終了する（stop_on_first=true）。証拠member missing/nullはfield_prefix+field/missing_result。存在時は (1)evidence_revision_field不足ならfield_prefix+field+\".\"+evidence_revision_field/missing_member_result、非nullだがstage_revision_pathと異なれば原L9互換の親field_prefix+field/foreign_result、(2)evidence_stage_id_field不足は同suffixのfield/missing_member_result、異なるstage_id_pathなら同field/foreign_result、(3)証拠targetとtarget_pathのtarget_fields両側でいずれかmissing/nullなら親field+\".\"+evidence_target_field/missing_member_result、欠落なしの値差なら同field/foreign_result、(4)evidence_reference_field不足ならそのsuffix field/missing_member_result、とする。missingは相手側/別証拠から補完しない。既知対応なら次の証拠へ進む。ownerはreturn_owner。",
+      "check_stage_evidence": "fields順に最初の問題1件だけを返しactionを終了する。parent=field_prefix+field、suffix(x)=parent+\".\"+x。(1)証拠member missing/nullはparent/missing_result。(2)evidence_revision_field不足はsuffix(evidence_revision_field)/missing_member_result、非null差は原L9互換のparent/foreign_result。(3)evidence_stage_id_field不足はsuffix(evidence_stage_id_field)/missing_member_result、非null差もsuffix(evidence_stage_id_field)/foreign_result。(4)証拠targetとtarget_pathのtarget_fields両側のいずれかmissing/nullはsuffix(evidence_target_field)/missing_member_result、欠落なしの値差もsuffix(evidence_target_field)/foreign_result。(5)evidence_reference_field不足はsuffix(evidence_reference_field)/missing_member_result。全一致なら次の証拠へ進む。ownerはreturn_owner。相手側/別証拠から補完しない。stage_path引数は使わず、比較元は明示stage_revision_path/stage_id_path/target_pathのみ。",
       "check_stage_root_fields": "fieldsを順に検査し、missing/null最初のfieldへfield_prefix+field/missing_resultのfindingを追加する。stop_on_firstなら停止。",
-      "check_stage_runtime": "stage_path.stage_fieldまたはruntime_pathがmissing/nullなら指定failure.field/missing_result/return_ownerを1件追加する。両方非nullで異なる場合だけ指定failureを追加する。等値のraw内容は実runtime資格ではない。",
+      "check_stage_runtime": "stage_path.stage_fieldがmissing/nullならstage_missing_field/missing_result/return_ownerを1件追加する。それ以外でruntime_pathがmissing/nullならruntime_missing_field/missing_result/return_ownerを1件追加する。両側不足の優先はstage側1件（通常の呼出経路では先行root検査がstage不足を返す）。両方非nullで異なる場合だけ指定failureを追加する。等値のraw内容は実runtime資格ではない。",
       "reject_claims_f02": "claims_pathを入力順に走査し、claim_literalsにあるtokenをselection値に関わらずrejected_claimsへ初出順で保持し重複だけを除く。failureは追加しない。特にidentity claimの拒否記録と、selected=trueかつstage_id/runtime値同一というstage_identity_claim findingの条件を分離する。選択true/false/unknownのいずれでも全HELIX/全7製品/無関係episodeを新条件として採らない。",
       "finalize_f02": "selection_pathがapply_selection_valueと同一kind・値の場合だけ、failure_reasonsが空でなければfailure_information_state、空ならsuccess_information_stateを設定する。それ以外は現在のinformation_stateを保持する。",
       "if_stage_record_present": "pathがmissing/nullでない場合だけ内側stepsを配列順に実行する。stage_record_missing finding自体は前段で追加済み。",
@@ -1228,7 +1250,8 @@
       "projection_paths": "initial.projectionとsource/probeのJSON PointerはRFC6901。/で分割し~1→/、~0→~を復号し、配列は整数index。dotted pathに読み替えない。空pointerはroot。",
       "finding_fields": "field_prefix+fieldは表示用の診断path文字列。os./infra./stage.はrawのoriginal_*名とは別のfixture表示prefixであり、そのままraw resolverへ渡さない。",
       "field_concatenation": "field_prefixは末尾dotを含む。reference欠落/相反は両側まとめて一件、target/ownerも各group最大一件。F01は全fieldを保持、F02の各局所actionは最初の不備で停止。"
-    }
+    },
+    "presence_observation_subclasses": "presence_mapのempty_array/empty_objectはPresence<T>.valueの観測細分類であり新しいPresence stateではない。nullはnull、不存在memberはmapに現れない。list<T>の空値やopaque objectの空値を消さず保持する。型Tが空containerを許すかは別の再帰型照合で判定する。"
   },
   "comparison_constants": {
     "authority": "重複値を持たずprogram定数への同一candidate pointer索引。",
@@ -1622,29 +1645,26 @@
     "effects_pointer": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json#/verification_obligations/0/cases/0/expected_material/actual_effects",
     "effects_canonical_sha256": "cc3bae95b159e046ccf24e46e70851f24465bd6ce9183c37947e5afb639c452d",
     "projection": "原OS/INFRA/stage/unfinishedの値コピー。source値から資格を生成しない。",
-    "field_order": "元44所見順を保持する有限L5具体化。R1追加stop_resumeはevidence後operation前、stage本体対応は証拠前、証拠内部はrevision→ID→target→ref。新しい上流の必須順ではない。"
+    "field_order": "元44所見順を保持する有限L5具体化。局所追加stop_resumeはevidence後operation前、stage本体対応は証拠前、証拠内部はrevision→ID→target→ref。新しい上流の必須順ではない。"
   },
-  "r1_resolution": {
-    "review_comment": 6183108822,
-    "exact_review_head": "1d9d677f6b7a6420ada2fd3f886a09e98f030328",
-    "findings_addressed": [
-      "I009-R1-01",
-      "I009-R1-02",
-      "I009-R1-03",
-      "I009-R1-04",
-      "I009-R1-05",
-      "I009-R1-06",
-      "I009-R1-07",
-      "I009-R1-08",
-      "I009-R1-09",
-      "I009-R1-10"
-    ],
-    "status": "saved_pending_parent_and_independent_review",
-    "original_46_raw_and_wholes_preserved": true,
-    "new_independent_wholes_fixed_before_program_edit": 44,
-    "authority_effect": "none",
-    "operation_effect": "none",
-    "additional_null_guard_wholes": 3,
-    "review_body_sha256": "f72c9a7c87eb9b13d94fb051da87b89216162331344e6f5b0dc6c1497702218f"
+  "coverage_limit": {
+    "reviewer_mutation_observation": {
+      "comment": 6183492186,
+      "tested": 212,
+      "undetected": 27,
+      "scope": "reviewerの当該HEADでの観測。27変異の個別編集一覧/IDはコメントに無く、今回の局所probeで27件すべてを識別したと主張しない。新gate/閾値ではない。",
+      "source_head": "75a257e49e8f7a05afb4553b857c6d3ff25a3150"
+    },
+    "added_witnesses": "partial対complete、target_revision単独差、証拠revision/ID/target優先、証拠first failureとroot抑止、relation/OS/INFRA/claim所見順を独立wholeで観測。型域検査はmutation十分性の証明ではない。",
+    "unclosed": "未見state/claim、全多重順序/全mutation、データidentity/owner/他関数claimの未実現域は未閉包。",
+    "removed_dead_step": "set_information_if_equalはfinalize_f01が同じ最終状態を選び常に上書きするため削除。全既存wholeの意味は不変。"
+  },
+  "unclosed_obligation_basis": {
+    "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+    "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+    "json_pointer": "/contracts/1/content_rules/1",
+    "value": "stage pack収載時だけOS014の構成/更新/復旧/同版構成証拠を参照する。stage IDとINFRA pack/contract/artifact/dependency版/runtime revisionを別identityのまま対応させる。",
+    "value_canonical_sha256": "e684ab3b2fd4cd6dbc01022d9138e27233ddbbcef0e07f2661f45023f557a820",
+    "responsibility": "別identityの対応を検査する論理binding/provider/consumer責務を将来具体化。資格の有無だけの不足ではなく現L5の意味比較不足を含む。"
   }
 }
