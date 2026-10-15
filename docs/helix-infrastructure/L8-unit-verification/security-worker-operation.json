@@ -26328,7 +26328,7 @@
   ],
   "candidate_l5_binding": {
     "path": "docs/helix-infrastructure/L5-detail-design/security-worker-operation.json",
-    "sha256": "db774340c20e71b3c3f9687e7ce375e7df41a769b65941442985aaf88de2faef",
+    "sha256": "0ebca8ba1b0c55e228bbab525dea77ef54fe252aedd0f695afd0372244493330",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "このL8候補は同一candidateのL5ファイル実bytesを参照する。F01全操作のWorker条件、F02追加admission、F06独立recovery条件の規則源を固定するが、承認済みL5や外部資格を意味しない。"
   },
@@ -26339,39 +26339,7 @@
     "source_scope": "本方針は独立probeのsource/expected provenance記録だけを定め、L5計算入力を増やさない。"
   },
   "mutation_coverage_limit": {
-    "meaning": "独立reviewの元HEAD ee4cbcbc1e05ff12b1d9fbed0f3c62ee9e91620eで生き残った変異数。現在HEADで再測定した値ではなく、未識別familyの具体的内訳/期待が未供給のものも残る。個別source義務と反例へ結んでIssue3139で追跡する。全mutation識別を新たな合格gateにしない。",
-    "source_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3189#issuecomment-6192436544",
-    "followup_issue": "https://github.com/RetryYN/HELIX-HARNESS/issues/3139",
-    "observed_survivors": {
-      "F01": {
-        "surviving": 555,
-        "total": 992
-      },
-      "F04": {
-        "surviving": 238,
-        "total": 425
-      },
-      "F05": {
-        "surviving": 126,
-        "total": 237
-      },
-      "F03": {
-        "surviving": 93,
-        "total": 147
-      },
-      "F02": {
-        "surviving": 71,
-        "total": 230
-      },
-      "F06": {
-        "surviving": 49,
-        "total": 131
-      },
-      "N01": {
-        "surviving": 2,
-        "total": 54
-      }
-    },
-    "unestablished": "全規則識別/全action・未見複合・任意owner alias/実資格の意味閉包。"
+    "meaning": "全規則の変異識別は未成立。有限の原材料と反例の一致を全変異/全入力の意味閉包へ一般化しない。未識別familyはsource義務・consumer・具体反例との対応を保全して追跡する。全mutation識別を新しい一律gateにしない。",
+    "unestablished": "全規則識別、全action、未見の複合入力、任意ownerの同一性、実資格の意味閉包。"
   }
 }
