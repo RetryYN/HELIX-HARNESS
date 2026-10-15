@@ -6,7 +6,7 @@
   "status": "draft_source_coupled_static_verification_not_executed",
   "source_main": "99ba6b467ec2e949191f972c96714df91ba328e6",
   "l5_ref": "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
-  "l5_same_pair_bytes_sha256": "fcaa6d6040af5c604522d14bf54b5f8b03bf0e1c9550734b8e5dee2ab4f8c10b",
+  "l5_same_pair_bytes_sha256": "7697a0b7531a0b50134ecbdeef987ef7248279b085a49fd9fe3b2a466423f145",
   "approved_object_refs": [
     {
       "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
@@ -5796,9 +5796,10 @@
           "fields": [
             "original_proposal.scope.*",
             "submitted_proposal.scope.*",
-            "original_bench.scope.*"
+            "original_bench.scope.*",
+            "original_scope.*"
           ],
-          "unclosed": "original_proposal.scopeとsubmitted_proposal.scopeのticket以外の各軸で、missing/foreign条件を除く変更の識別性は未個別検証。"
+          "unclosed": "original_proposal.scopeとsubmitted_proposal.scope各軸のmissing/foreign、およびoriginal_scope各軸のmissingに対する各check除去の識別性は未個別検証。proposal.scope.ticketのmissingも含む。"
         },
         {
           "contract": "F03",
@@ -5819,10 +5820,10 @@
         {
           "contract": "B01",
           "fields": [
-            "handoff.assignment_owner",
-            "handoff.permission_owner"
+            "handoff.labo_level_owner",
+            "handoff.proposal_owner"
           ],
-          "unclosed": "handoff.assignment_ownerとhandoff.permission_ownerの照合条件を除く変更の識別性は未個別検証。実owner資格sourceも未供給。"
+          "unclosed": "labo_level_ownerとproposal_ownerを比較する各checkを除く変更は、固定probeから個別識別できるとは未証明。実owner資格sourceも未供給。"
         },
         {
           "contract": "N01",

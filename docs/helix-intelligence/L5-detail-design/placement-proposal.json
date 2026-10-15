@@ -8283,7 +8283,8 @@
     "実source資格/issuer/custody/実Bench/実decision/OS受領・割当/SEC許可は未成立。既存の正当なassignment/permissionを本比較から取消さず、actual_effectsは全false。 判断recordのowner文字列は入力原値として保持するが、issuer実資格とrecipient/custodyは未供給であり未成立。",
     "F01/F03/N01の同field data/claim診断選択は基本pair content_diagnostic_contract.remaining_claim_diagnostic_limitsの5例を保持。独立診断の全義務閉包ではなく、consumerへ返らない不足result/field/ownerは同sourceへ明示する。",
     "F02のtask根拠の独立locator、F03の各Workerへ独立したBench generation target、全source/owner資格は未供給。performance.ref/bench.refとworker/versionの供給済み原値だけを比較し、名前からparseして未供給refを創作しない。",
-    "全入力形/全組合せ/全mutationの意味閉包、正式wire/schema/codec、実装前Red→Green→Refactor/TDD/新CI/実L9L10/PO L11/全92親430対の設計閉包と実装Readyは未成立。L6は関数設計、L7は対関数検証、実装は層外。"
+    "全入力形/全組合せ/全mutationの意味閉包、正式wire/schema/codec、実装前Red→Green→Refactor/TDD/新CI/実L9L10/PO L11/全92親430対の設計閉包と実装Readyは未成立。L6は関数設計、L7は対関数検証、実装は層外。",
+    "両側同一の重複推薦配列は内容一致として保持するが、重複案の実有効性・Worker identityの実source資格は未成立。独立source/再評価入力をF02 unclosed_bindingsへ保持する。"
   ],
   "exclusive_rule_source": "generic_expression_vocabulary（汎用意味）、functions.checks/各式/return_expression（全業務path/literal/優先/出力）、type_contract（入出力domain）が唯一規範。proseとcompositionは参照説明。readerの暗黙業務分岐は規範ではない。",
   "upstream_whole_inventory": {
@@ -8666,6 +8667,27 @@
       "reevaluation_inputs": [
         "owner/issuer identityの独立source",
         "当該判断の委任・資格sourceと対象scope/revision"
+      ]
+    },
+    {
+      "function_ref": "INT010-F02",
+      "source_rule": {
+        "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
+        "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
+        "pointer": "/content_diagnostic_contract/ordering_and_multiplicity"
+      },
+      "available_inputs": [
+        "/original_proposal/recommended",
+        "/submitted_proposal/recommended",
+        "/original_workers"
+      ],
+      "missing_input_role": "重複推薦の実有効性を判断する独立source。両側同じ配列であることは内容一致だけを示し、Workerの実identity対応や同一推薦を重複させる意味の許容を定めない。",
+      "witness": "両側のrecommended=[WORKER-A,WORKER-A]は原順と重複を保持し内容差の所見を出さないが、実有効性は未成立。",
+      "logical_return_owner": "INTELLIGENCE-proposal-owner",
+      "consumer": "推薦の実有効性を既存の配置提案・Worker評価の責務で再照合する後続consumer。内容比較から採用/assignmentを生成しない。",
+      "reevaluation_inputs": [
+        "当該scope/revisionの原推薦と重複の意味を定めるsource",
+        "推薦対象Worker identity/versionの独立sourceと適用範囲"
       ]
     }
   ]
