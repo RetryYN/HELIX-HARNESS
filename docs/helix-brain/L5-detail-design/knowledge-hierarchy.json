@@ -10,7 +10,16 @@
     "historical_sequence_stage": "Stage 2b",
     "authoring_stage": "Stage 1",
     "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
-    "boundary": "BRAIN-002の構造・局所unknown・consumer境界を、固定synthetic source packetの有限比較へ下降する。全知識/全領域/実knowledge資格/COREまたはOS採用・実装成立は主張しない。"
+    "boundary": "BRAIN-002の構造・局所unknown・consumer境界を、固定synthetic source packetの有限比較へ下降する。全知識/全領域/実knowledge資格/COREまたはOS採用・実装成立は主張しない。",
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    }
   },
   "source_pins": [
     {
@@ -275,7 +284,7 @@
   "approval": {
     "decision_record": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
     "reviewed_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
-    "admitted_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+    "admitted_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
     "record_status": "recorded_pending_final_review_and_main_admission",
     "scope": "001/002/004/012/019/022から導出された追加23組のうち、BRAIN002のF01/F02/N01/B01に対応するL3/L10のexact whole 8件。通常L3再開や実物成立は含まない。",
     "exact_whole_count": 8,
@@ -283,7 +292,8 @@
     "decision_record_sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
     "decision_record_main_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
     "approved_whole_revision": "f16579bb15636398489804681c4f6c8de80625dd",
-    "approved_object_admission_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+    "approved_object_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "admission_explanation": "承認本文と判断記録がmainへ統合されたPR2961のmerge commitをadmissionとする。旧記載のd5afd6f3は後日のPR2992統合で、承認admissionではない。record_statusは不変の判断記録内metadataとして保持し、効力はadmissionから読む。"
   },
   "legacy_inventory": [
     {
@@ -315,7 +325,8 @@
       "change": "旧schema/algorithm/runtime/全artifact手続きは移さず、今回の構造責務・固定caseを現L3/L4/L9から再導出。",
       "reason": "現L1/L2および承認済BRAIN002が意味sourceであり、旧assetはauthorityでない。",
       "selected_lines_sha256": "21af57ab88e9b37a3a88b04d449c45b7cd5cea9b5c09d1781ce6255e2ce21996",
-      "exact_quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n"
+      "exact_quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n",
+      "reuse_class": "意味再導出・構造責務と生成view境界の参照"
     },
     {
       "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
@@ -330,7 +341,8 @@
       "change": "L2-002の形状比較へ学習/promotion工程を混ぜず、B01は汎用構造とCORE製品選択/OS案件記録を分離する。",
       "reason": "旧RCLSは歴史的candidateで、現L2-002のconsumer ownerはL1/L2/承認wholeが決める。",
       "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
-      "exact_quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。"
+      "exact_quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。",
+      "reuse_class": "意味再導出・旧candidateの権限非昇格境界の参照"
     }
   ],
   "failure_consumer_basis": [
@@ -796,7 +808,20 @@
         "relation_content_conflict",
         "content_corresponding_in_fixture"
       ],
-      "basis": "L3/L10-002-F01、L4-002-F01、およびL9 F01の原11 packet/expected value。"
+      "basis": "L3/L10-002-F01、L4-002-F01、およびL9 F01の原11 packet/expected value。",
+      "conflict_labels": {
+        "identity": "identity_content_conflict",
+        "kind": "kind_content_conflict",
+        "knowledge_revision": "knowledge_revision_conflict",
+        "parent": "parent_content_conflict",
+        "responsibility": "responsibility_content_conflict",
+        "meaning_relation": "relation_content_conflict"
+      },
+      "missing_labels": {
+        "parent": "missing_parent",
+        "responsibility": "missing_responsibility",
+        "meaning_relation": "missing_meaning_relation"
+      }
     },
     {
       "id": "B002-F01-DOMAIN-COMPARISON",
@@ -809,14 +834,18 @@
         "content_corresponding_in_fixture",
         "domain_content_conflict"
       ],
-      "basis": "L4-002-F01のDomain照合、L9 F01全raw/expected。有限caseのexact equality。"
+      "basis": "L4-002-F01のDomain照合、L9 F01全raw/expected。有限caseのexact equality。",
+      "literal_provenance": {
+        "domain_content_conflict": "L9の11例には出現しない。L4-002-F01のDomain原/提出内容の不一致を表すL5の明示的な設計語彙。L9で観測済みのliteralやrawから得た値とはしない。未見不一致枝の検証は未成立。",
+        "content_corresponding_in_fixture": "原L9 F01 expectedのdomain_result。"
+      }
     },
     {
       "id": "B002-F01-REPRESENTATION",
       "inputs": [
         "representation"
       ],
-      "comparison": "representationのexact literal meaning_structureならrepresentation_result=meaning_structure_in_fixture。exact literal file_paths_onlyならrepresentation_result=file_path_substitution_rejectedとし、required_structureの各keyへmeaning_structure_missingを返す。file pathを意味identityとみなさない。",
+      "comparison": "representationのexact literal meaning_structureならrepresentation_result=meaning_structure_in_fixture。exact literal file_paths_onlyならrepresentation_result=file_path_substitution_rejectedとし、required_structureの各keyへmeaning_structure_missingを返す。file pathを意味identityとみなさない。 meaning_structureではprovided値がPathOnlyNodeでもrecordとしてhelperを適用し、required側が非nullのmemberの欠落を同じ優先順で診断する。file_paths_onlyではhelperを実行せずrequired各keyをmeaning_structure_missingへ写す。どちらでもDomain完全比較は独立して行う。その他representationは本有限入力域外であり返却未定義。",
       "basis": "L2/L11-002およびL9 B002-F01-FILE-PATH-SUBSTITUTION case。",
       "finite_labels": [
         "meaning_structure_in_fixture",
@@ -873,7 +902,7 @@
         "claims_field_only_pass",
         "claims_unknown_success"
       ],
-      "comparison": "held_out_required_structureのkeyを辞書順で処理し、まずB002-COMPARE-NODE-CONTENTの完全なnode結果を作る。続いてheld_out_provided_structureのkeyを辞書順で走査する。actual.kindがexact literal Domain以外で、helper resultがmissing_responsibilityの場合はunknown_candidate_heldへ上書きする。また、helper resultがcontent_corresponding_in_fixtureなのにactual.responsibilityまたはactual.meaning_relationがnullの場合もunknown_candidate_heldへ上書きする。その他のhelper labelは保つ。expected/rawのparent/relationがnullのDomain rootにはそれらを要求しない。claim_resultsのall_knowledge_complete/field_only_pass/unknown_successはtrue→rejected、false→none。unfilled_domainsの各keyはunfilled_not_completeへ写す。coverage=this_fixture_only。",
+      "comparison": "held_out_required_structureのkeyをUnicode code point辞書順で処理し、まずB002-COMPARE-NODE-CONTENTの完全なnode結果を作る。続いてheld_out_provided_structureのkeyを同じ順で走査する。actual.kindがexact literal Domain以外の場合だけ、(1) helper result=missing_responsibility、または(2) helper result=content_corresponding_in_fixtureかつactual.responsibilityまたはactual.meaning_relationがnull、のいずれかでunknown_candidate_heldへ上書きする。Domainの場合は両条件を適用せずhelper結果を保持する。その他のhelper labelも保つ。claim_resultsのall_knowledge_complete/field_only_pass/unknown_successはtrue→rejected、false→none。unfilled_domainsの各keyはunfilled_not_completeへ写す。coverage=this_fixture_only。",
       "basis": "L3/L10-002-N01、L4-002-N01、L9 N01全9 raw/expected。有限caseにないDomainを証明しない。",
       "finite_literals": {
         "domain_kind_exempt_literal": "Domain",
@@ -889,7 +918,57 @@
         ],
         "unfilled_value": "unfilled_not_complete",
         "coverage": "this_fixture_only"
-      }
+      },
+      "unobserved_branch": "(2)は原9例では判定に効かない。必須責務/関係を持たない非Domainをunknownとして保持するL4-002-N01の境界を明示するが、この枝を原9例で検出したとはしない。",
+      "unknown_override_predicate": {
+        "all": [
+          {
+            "not": {
+              "eq": [
+                "actual.kind",
+                {
+                  "literal": "Domain"
+                }
+              ]
+            }
+          },
+          {
+            "any": [
+              {
+                "eq": [
+                  "helper_result",
+                  {
+                    "literal": "missing_responsibility"
+                  }
+                ]
+              },
+              {
+                "all": [
+                  {
+                    "eq": [
+                      "helper_result",
+                      {
+                        "literal": "content_corresponding_in_fixture"
+                      }
+                    ]
+                  },
+                  {
+                    "any": [
+                      {
+                        "is_null": "actual.responsibility"
+                      },
+                      {
+                        "is_null": "actual.meaning_relation"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "predicate_semantics": "unknown_override_predicateを上書き条件の厳密表現とする。all/any/notは真偽論理、eqはJSON型と値の完全一致、is_nullは明示null判定。文字列pathはこの反復のactual nodeと上書き前helper_result、literal objectは固定値。未定義pathを補完しない。Domain除外は両方の候補条件へ分配される。本文は同じ条件の説明である。"
     },
     {
       "id": "B002-B01-CONSUMER-AND-STATE",
@@ -1151,7 +1230,7 @@
         "B002-N01-HELD-OUT"
       ],
       "branches": [
-        "held-out required nodesへhelper比較を行い、その後provided key辞書順でactual.kind!=Domainかつhelper missing_responsibility、またはhelper対応済みかつresponsibility/relation nullの場合だけunknown_candidate_heldへ上書きする。claim trueはrejected、falseはnone。未充足keyはunfilled_not_complete、coverageはthis_fixture_only。"
+        "required nodesへhelper比較を行い、provided keyをUnicode code point辞書順で走査する。actual.kind!=Domainかつ(helper missing_responsibility、またはhelper対応済みかつresponsibility/relation null)の場合だけunknown_candidate_heldへ上書きする。Domainは必ずhelper結果を保持。claim trueはrejected、falseはnone。未充足keyはunfilled_not_complete、coverageはthis_fixture_only。"
       ],
       "return_to": "該当するBRAIN階層meaning owner。実Domain一般化は未評価。",
       "unused_input_fields": {},
@@ -1350,6 +1429,32 @@
       "oracle_id": "HELIXBRAIN-L10-002-B01",
       "l9_obligation_id": "HELIXBRAIN-L9-002-B01",
       "function_id": "HELIXBRAIN-L5-002-B01"
+    }
+  ],
+  "comparison_semantics": {
+    "object_keys": "JSON object/mapのkey挿入順を意味に含めず、key集合と各値を再帰的に比較する。返却objectの列挙順が期待と異なっても同値。",
+    "arrays": "配列は要素順とJSON型を保持して比較する。",
+    "sorting": "keyの辞書順はUnicode code pointの列の辞書順。locale変換・大小文字変換・正規化はしない。map走査順は診断/候補listの導出を決め、objectの挿入順自体は意味にしない。",
+    "node_labels": "B002-COMPARE-NODE-CONTENTのmissing_labels/conflict_labelsを使う。"
+  },
+  "audit_basis": [
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "use": "92親430対の固定時点のwhole requirement/oracle対応と未閉包を確認し、現在の設計完成宣言にはしない。"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+      "use": "92親430対の固定時点のwhole requirement/oracle対応と未閉包を確認し、現在の設計完成宣言にはしない。"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "use": "旧BRAIN/LABO/INTELLIGENCE sourceと現行consumer責務の被覆・保持差分を照合する。"
     }
   ]
 }

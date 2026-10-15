@@ -10,7 +10,16 @@
     "historical_sequence_stage": "Stage 2b",
     "authoring_stage": "Stage 1",
     "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
-    "boundary": "BRAIN-002の構造・局所unknown・consumer境界を、固定synthetic source packetの有限比較へ下降する。全知識/全領域/実knowledge資格/COREまたはOS採用・実装成立は主張しない。"
+    "boundary": "BRAIN-002の構造・局所unknown・consumer境界を、固定synthetic source packetの有限比較へ下降する。全知識/全領域/実knowledge資格/COREまたはOS採用・実装成立は主張しない。",
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    }
   },
   "source_pins": [
     {
@@ -275,10 +284,16 @@
   "approval": {
     "decision_record": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
     "reviewed_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
-    "admitted_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+    "admitted_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
     "record_status": "recorded_pending_final_review_and_main_admission",
-    "scope": "001/002/004/012/019/022の追加23組のうち、BRAIN002のF01/F02/N01/B01各L3/L10 exact whole。通常L3再開や実物成立を含まない。",
-    "exact_whole_count": 8
+    "scope": "001/002/004/012/019/022から導出された追加23組のうち、BRAIN002のF01/F02/N01/B01に対応するL3/L10のexact whole 8件。通常L3再開や実物成立は含まない。",
+    "exact_whole_count": 8,
+    "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+    "decision_record_sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+    "decision_record_main_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "approved_whole_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "approved_object_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "admission_explanation": "承認本文と判断記録がmainへ統合されたPR2961のmerge commitをadmissionとする。旧記載のd5afd6f3は後日のPR2992統合で、承認admissionではない。record_statusは不変の判断記録内metadataとして保持し、効力はadmissionから読む。"
   },
   "paired_document_ref": "HELIXBRAIN-L5-002",
   "paired_full_trace": [
@@ -289,7 +304,7 @@
       "l8": "HELIXBRAIN-L8-002-F01",
       "l9": "HELIXBRAIN-L9-002-F01",
       "l10": "HELIXBRAIN-L10-002-F01",
-      "direction": "L3→L4→L5→L8→L9→L10 and reverse by exact refs"
+      "direction": "L3→L4→L5→L8→L9→L10と、同じexact参照を使う逆方向"
     },
     {
       "l3": "HELIXBRAIN-L3-002-F02",
@@ -298,7 +313,7 @@
       "l8": "HELIXBRAIN-L8-002-F02",
       "l9": "HELIXBRAIN-L9-002-F02",
       "l10": "HELIXBRAIN-L10-002-F02",
-      "direction": "L3→L4→L5→L8→L9→L10 and reverse by exact refs"
+      "direction": "L3→L4→L5→L8→L9→L10と、同じexact参照を使う逆方向"
     },
     {
       "l3": "HELIXBRAIN-L3-002-N01",
@@ -307,7 +322,7 @@
       "l8": "HELIXBRAIN-L8-002-N01",
       "l9": "HELIXBRAIN-L9-002-N01",
       "l10": "HELIXBRAIN-L10-002-N01",
-      "direction": "L3→L4→L5→L8→L9→L10 and reverse by exact refs"
+      "direction": "L3→L4→L5→L8→L9→L10と、同じexact参照を使う逆方向"
     },
     {
       "l3": "HELIXBRAIN-L3-002-B01",
@@ -316,16 +331,16 @@
       "l8": "HELIXBRAIN-L8-002-B01",
       "l9": "HELIXBRAIN-L9-002-B01",
       "l10": "HELIXBRAIN-L10-002-B01",
-      "direction": "L3→L4→L5→L8→L9→L10 and reverse by exact refs"
+      "direction": "L3→L4→L5→L8→L9→L10と、同じexact参照を使う逆方向"
     }
   ],
   "case_contract": {
     "case_count": 41,
-    "raw_source": "L9 independent_source_packet.raw_utf8 UTF-8 bytes; SHA-256 is computed over exact bytes.",
-    "typed_arguments": "UTF-8 JSON decoding only into the declared tagged input record; no expected_material member is added to input.",
-    "expected_return": "independent expected_material copied byte/semantic-exactly from the unchanged L9 source; it is kept separate from input.",
+    "raw_source": "L9 independent_source_packet.raw_utf8のUTF-8原bytes。SHA-256はそのbytesから算出する。",
+    "typed_arguments": "UTF-8 JSONを宣言済みinput recordへdecodeするだけで、expected_materialを入力に追加しない。",
+    "expected_return": "不変のL9 expected_materialを保持し、raw入力と分離する。",
     "execution_state": "not_executed",
-    "qualification": "synthetic fixture only; no actual source qualification or resolver observation."
+    "qualification": "合成fixtureのみ。実source資格やresolverの観測を表さない。"
   },
   "cases": [
     {
@@ -8689,11 +8704,11 @@
     }
   ],
   "unclosed": [
-    "41 fixed cases are synthetic raw fixtures only; actual knowledge source identity/revision/meaning scope and qualification are not established.",
-    "all-domain, unseen-combination coverage and complete knowledge are unproved; no general universal hierarchy claim.",
-    "Formal schema/codec, real BRAIN/CORE/OS resolver and owner-qualified consumer bindings are absent.",
-    "L6 function design, L7 function verification, implementation, frozen test oracle, observed Red/Green/Refactor, CI, L11 execution, accepted authority, and full 92/430 design closure remain outside/not established.",
-    "L9 expected field unaffected_Q is not supplied as raw input, so its sentinel cannot be independently observed."
+    "41件の固定caseはsynthetic raw fixtureだけであり、実knowledge sourceのidentity/revision/meaning scope/qualificationは成立していない。",
+    "全Domain、未見の組合せ、全知識の網羅は証明されておらず、一般的な普遍階層claimを置かない。",
+    "正式schema/codec、実BRAIN/CORE/OS resolver、資格を持つconsumer bindingは未成立。",
+    "L6関数設計、L7関数検証、実装、oracle凍結、観測済みRed/Green/Refactor、CI、L11実行、Accepted authority、全92/430設計閉包は本範囲外または未成立。",
+    "L9 expectedのunaffected_Qはraw inputに含まれないため、sentinelの外部状態に対する独立観測はできない。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -8701,5 +8716,110 @@
   },
   "implementation_readiness": "not_ready",
   "authority_effect": "none",
-  "operation_effect": "none"
+  "operation_effect": "none",
+  "comparison_semantics": {
+    "object_keys": "JSON object/mapのkey挿入順を意味に含めず、key集合と各値を再帰的に比較する。返却objectの列挙順が期待と異なっても同値。",
+    "arrays": "配列は要素順とJSON型を保持して比較する。",
+    "sorting": "keyの辞書順はUnicode code pointの列の辞書順。locale変換・大小文字変換・正規化はしない。map走査順は診断/候補listの導出を決め、objectの挿入順自体は意味にしない。",
+    "node_labels": "B002-COMPARE-NODE-CONTENTのmissing_labels/conflict_labelsを使う。"
+  },
+  "audit_basis": [
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "use": "92親430対の固定時点のwhole requirement/oracle対応と未閉包を確認し、現在の設計完成宣言にはしない。"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+      "use": "92親430対の固定時点のwhole requirement/oracle対応と未閉包を確認し、現在の設計完成宣言にはしない。"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "use": "旧BRAIN/LABO/INTELLIGENCE sourceと現行consumer責務の被覆・保持差分を照合する。"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L8-002-F01",
+      "requirement_ref": "HELIXBRAIN-L3-002-F01",
+      "oracle_ref": "HELIXBRAIN-L9-002-F01",
+      "function_ref": "HELIXBRAIN-L5-002-F01",
+      "case_ids": [
+        "B002-F01-VISUAL-DASHBOARD-HIERARCHY",
+        "B002-F01-PARENT-MISSING",
+        "B002-F01-PARENT-FOREIGN",
+        "B002-F01-RESPONSIBILITY-MISSING",
+        "B002-F01-RESPONSIBILITY-FOREIGN",
+        "B002-F01-RELATION-MISSING",
+        "B002-F01-RELATION-FOREIGN",
+        "B002-F01-KIND-CONFUSED",
+        "B002-F01-IDENTITY-FOREIGN",
+        "B002-F01-REVISION-FOREIGN",
+        "B002-F01-FILE-PATH-SUBSTITUTION"
+      ],
+      "comparison_semantics_ref": "/comparison_semantics"
+    },
+    {
+      "id": "HELIXBRAIN-L8-002-F02",
+      "requirement_ref": "HELIXBRAIN-L3-002-F02",
+      "oracle_ref": "HELIXBRAIN-L9-002-F02",
+      "function_ref": "HELIXBRAIN-L5-002-F02",
+      "case_ids": [
+        "B002-F02-MEANING-STRUCTURE",
+        "B002-F02-ORPHAN-PART",
+        "B002-F02-UNIT-MISTYPED",
+        "B002-F02-HIERARCHY-MEANING-UNKNOWN",
+        "B002-F02-RELATION-MEANING-UNKNOWN",
+        "B002-F02-DOMAIN001-FOREIGN",
+        "B002-F02-DOMAIN001-UNKNOWN",
+        "B002-F02-FILE_COLLECTION",
+        "B002-F02-CODE_SNIPPET_COLLECTION",
+        "B002-F02-UI_COMPONENT_COLLECTION",
+        "B002-F02-ORPHAN-AS-VALID"
+      ],
+      "comparison_semantics_ref": "/comparison_semantics"
+    },
+    {
+      "id": "HELIXBRAIN-L8-002-N01",
+      "requirement_ref": "HELIXBRAIN-L3-002-N01",
+      "oracle_ref": "HELIXBRAIN-L9-002-N01",
+      "function_ref": "HELIXBRAIN-L5-002-N01",
+      "case_ids": [
+        "B002-N01-HELD-OUT-BACKEND",
+        "B002-N01-HELD-OUT-PARENT-FOREIGN",
+        "B002-N01-HELD-OUT-RELATION-MISSING",
+        "B002-N01-HELD-OUT-KIND-FOREIGN",
+        "B002-N01-HELD-OUT-MEANING-UNKNOWN",
+        "B002-N01-HELD-OUT-REVISION-FOREIGN",
+        "B002-N01-FIELDS-PRESENT-CONTENT-WRONG",
+        "B002-N01-ONE-EXAMPLE-AS-ALL-KNOWLEDGE",
+        "B002-N01-UNKNOWN-AS-SUCCESS"
+      ],
+      "comparison_semantics_ref": "/comparison_semantics"
+    },
+    {
+      "id": "HELIXBRAIN-L8-002-B01",
+      "requirement_ref": "HELIXBRAIN-L3-002-B01",
+      "oracle_ref": "HELIXBRAIN-L9-002-B01",
+      "function_ref": "HELIXBRAIN-L5-002-B01",
+      "case_ids": [
+        "B002-B01-STRUCTURE-NOT-ADOPTION",
+        "B002-B01-BRAIN003-FOREIGN-VERSION",
+        "B002-B01-BRAIN005-FOREIGN-VERSION",
+        "B002-B01-BRAIN019-FOREIGN-VERSION",
+        "B002-B01-BRAIN022-FOREIGN-VERSION",
+        "B002-B01-KNOWLEDGE_MATURITY-FROM-STRUCTURE",
+        "B002-B01-KNOWLEDGE_ADOPTION-FROM-STRUCTURE",
+        "B002-B01-CORE_PRODUCT_SELECTION-FROM-STRUCTURE",
+        "B002-B01-OS_PROJECT_RECORD-FROM-STRUCTURE",
+        "B002-B01-IMPLEMENTATION-FROM-STRUCTURE"
+      ],
+      "comparison_semantics_ref": "/comparison_semantics"
+    }
+  ]
 }
