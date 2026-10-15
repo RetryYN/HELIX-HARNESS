@@ -10,7 +10,7 @@
   "operation_effect": "none",
   "scope": {
     "version_target": "1.0",
-    "authoring_scope": "L4/L9の承認・固定済みLABO002 F01/F02だけを論理fixtureで照合する。",
+    "authoring_scope": "承認済みL3/L10 HELIXLABO-L2-002 F01/F02の意味から導出されたL4/L9原内容を、source pinで固定して論理fixtureで照合する。L4/L9自体の承認状態を主張しない。",
     "boundary": "全てsynthetic fixture。実source資格、runtime、実観測、write、formal codec、CI/TDD、L11受入を成立させない。"
   },
   "source_pins": [

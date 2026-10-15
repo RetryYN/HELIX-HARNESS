@@ -374,14 +374,14 @@
       "requirement_ref": "HELIXLABO-L3-002-F01",
       "basic_ref": "HELIXLABO-L4-002-F01",
       "oracle_ref": "HELIXLABO-L10-002-F01",
-      "rule": "入力episode.scopeと各original_eventsのstage event.scopeの同名項目を値比較する。eventが無い/未観測/未発生ならそのstageの不足と未完を返す。異なるscopeのoriginal eventはepisodeへ結ばず、元source ownerへ戻す。要求revisionからrecoveryまでの列挙を完了扱いにせず、実際に入力されたeventだけを保持する。"
+      "rule": "入力original_episode.scopeと各original_eventsのstage event.scopeの同名項目を値比較する。eventが無い/未観測/未発生ならそのstageの不足と未完を返す。異なるscopeのoriginal eventはepisodeへ結ばず、元source ownerへ戻す。要求revisionからrecoveryまでの列挙を完了扱いにせず、実際に入力されたeventだけを保持する。original_scopeは独立input値として保持する。有限caseではoriginal_scopeとoriginal_episode.scopeが一致する。"
     },
     {
       "id": "HELIXLABO-L5-002-F02",
       "requirement_ref": "HELIXLABO-L3-002-F02",
       "basic_ref": "HELIXLABO-L4-002-F02",
       "oracle_ref": "HELIXLABO-L10-002-F02",
-      "rule": "近い時刻/pathは因果の根拠にしない。因果stateは入力relationとclaimの原値を保存し、根拠が無い場合not_establishedを維持する。訂正はreason_ref/source_revision/scope/before_relation/after_relation/ownerの値を検査し、after対象eventが入力集合で見つからなければunknown_targetとしてsource/correlation ownerへ戻す。original_eventsは常に不変の比較元として保持する。"
+      "rule": "近い時刻/pathを因果根拠とせず、入力relation/claim原値を保持する。因果証拠型は供給されておらず出力causal_state=not_established。訂正のreason_ref/source_revision/scope/before_relation/after_relation/ownerは保存し、derivation_rules.correction_required_member_orderに列挙したmemberだけabsent/nullをmissingへ判定する。correction.owner値は保持専用で資格検査/返却先の選択をしない。after_relation.to_eventが原event identity集合に無ければunknown_targetをLABO-correlation-ownerへ返す。元eventは上書きしない。"
     }
   ],
   "logical_type_status": {
@@ -1132,8 +1132,8 @@
         "原sourceのowner/revision資格をこの関数から認定しない。"
       ],
       "postconditions": [
-        "stage不足/未発生はoriginal_eventsのstage member presence/null/state/occurrenceからstage_order順に導出し、unfinished.stateも規則どおり選ぶ。",
-        "scope不一致はoriginal_scopeとoriginal_events.<stage>.scopeの同名fieldだけをscope_field_order順に値比較する。submitted_eventsはscope判定に使わない。",
+        "stage不足/未発生はoriginal_eventsのstage member presence/null/state/occurrenceからstage_order順に導出し、unfinished.stateも規則どおり選ぶ。failure_reasons先頭phaseのstage locator/result/ownerもstage_failure_mappingから同時に導出する。",
+        "scope不一致はoriginal_episode.scopeとoriginal_events.<stage>.scopeの同名fieldだけをscope_field_order順に値比較する。submitted_eventsはscope判定に使わない。original_scopeは別入力値として保持し、有限source fixtureではoriginal_episode.scopeとの一致を検証する。",
         "claim拒否は各閉じたclaim literalのraw条件が入力で成立した場合だけ返す。unrelated_event_mixedによるticket差の抑止範囲は当該ticket差分だけ。",
         "correctionのnull required valuesは宣言順でmissingを返し、after targetはoriginal_eventsのidentity集合だけと比較する。",
         "failure_reasonsの生成順、information_stateの優先、return_ownersの重複除去順はderivation_rulesに従う。",
@@ -1153,21 +1153,25 @@
     {
       "step": "P02",
       "input_fields": [
-        "input.original_events"
+        "input.original_events",
+        "input.claims"
       ],
-      "operation": "固定stage順でstage key、state、occurrenceを読む。Absent/null/unobserved/not_occurredを不足/未完に分類する。",
+      "operation": "固定stage順でoriginal_eventsのstage key presence、null、state、occurrenceを読み、missing_or_not_occurred_stagesとunfinishedを導出する。同じstage走査でstage_failure_mappingを適用し、missing_stage_is_success claimが無いabsent/null/unobservedにはevents.<stage>/unobservedを、同claimがあるabsent/null/unobservedにはevents.<stage>/unsupported_join_or_completionを、occurrence=not_occurredにはevents.<stage>.occurrence/not_occurredを出力する。source_ownerは原event値から有限入力域規則で選ぶ。",
       "output_fields": [
         "missing_or_not_occurred_stages",
-        "unfinished"
+        "unfinished",
+        "stage_failure_reasons"
       ]
     },
     {
       "step": "P03",
       "input_fields": [
+        "input.original_episode",
         "input.original_scope",
-        "input.original_events"
+        "input.original_events",
+        "input.claims"
       ],
-      "operation": "original_eventsだけをsource側入力として走査し、各event.scopeの同名fieldをoriginal_scopeとscope_field_orderで比較する。submitted_eventsはこの判定に読まず、保存比較とcorrection_overwrites_event claimだけに使う。値が異なるfieldはforeign_scopeとしてevents.<stage>.scope.<field>へ記録し、そのoriginal eventのsource_ownerへ戻す。unrelated_event_mixed claimがticket差を表す場合は当該1差分の通常failureを抑止し、P04のcorrelation-owner failureに置き換える。",
+      "operation": "original_eventsだけをsource側入力として走査し、各event.scopeの同名fieldをoriginal_episode.scopeとscope_field_orderで比較する。submitted_eventsはこの判定に読まず、保存比較とcorrection_overwrites_event claimだけに使う。値が異なるfieldはforeign_scopeとしてevents.<stage>.scope.<field>へ記録し、そのoriginal eventのsource_ownerへ戻す。unrelated_event_mixed claimがticket差を表す場合は当該1差分の通常failureを抑止し、P04のcorrelation-owner failureに置き換える。original_scopeは入力/返却時に保持し、現行40caseではoriginal_episode.scopeの同値copyである。copy間不一致時の判定は未定義であり一般入力への挙動を主張しない。",
       "output_fields": [
         "failure_reasons"
       ]
@@ -1180,9 +1184,12 @@
         "input.submitted_events",
         "input.original_relations",
         "input.original_isolated_events",
-        "input.submitted_isolated_events"
+        "input.submitted_isolated_events",
+        "input.original_episode",
+        "input.original_scope",
+        "missing_or_not_occurred_stages"
       ],
-      "operation": "claimsを入力配列順に保持し、定義済みraw条件を満たす claim だけを拒否する。failureは定義済みfailure_append_orderに従い、case IDを読まない。unrelated_event_mixedは通常のticket scope不一致を抑止して相関ownerへ返し、近い時刻/pathを因果とする2 claimは単一failureへまとめる。",
+      "operation": "claimsを入力配列順に保持し、定義済みraw条件を満たす claim だけを拒否する。failureは定義済みfailure_append_orderに従い、case IDを読まない。unrelated_event_mixedは通常のticket scope不一致を抑止して相関ownerへ返し、近い時刻/pathを因果とする2 claimは単一failureへまとめる。 原scopeは保持し、unrelated eventのticket比較元はP03と同じoriginal_episode.scope。missing_stage_is_successはP02不足集合を根拠とし、そのfailureはP02からP06へ渡す。",
       "output_fields": [
         "rejected_claims",
         "failure_reasons"
@@ -1206,6 +1213,7 @@
         "retained_inputs",
         "missing_or_not_occurred_stages",
         "unfinished",
+        "stage_failure_reasons",
         "failure_reasons",
         "rejected_claims",
         "input.original_relations",
@@ -1214,7 +1222,7 @@
         "input.original_isolated_events",
         "input.submitted_isolated_events"
       ],
-      "operation": "計算済みfieldをEpisodeCorrelationOutput recordにまとめる。比較関数なのでevent_overwrite/relation_write/authority_change/episode_completion/acceptance/implementation_readyをすべてfalseで返す。中間結果は独立producer APIではなく関数内のfield計算である。L9 oracleは別にこの返値と照合する。",
+      "operation": "P02のstage_failure_reasonsをfailure_append_orderの先頭phaseへ置き、P03〜P05のfailureと順序連結してから計算済みfieldをEpisodeCorrelationOutput recordにまとめる。比較関数なのでevent_overwrite/relation_write/authority_change/episode_completion/acceptance/implementation_readyをすべてfalseで返す。中間結果は独立producer APIではなく関数内のfield計算である。L9 oracleは別にこの返値と照合する。 causal_state出力は資格済み因果証拠型が未供給という関数契約からnot_establishedを返し、input.original_relations内の主張文字列を資格証拠へ変換しない。",
       "output_fields": [
         "information_state",
         "retained_inputs",
@@ -1245,9 +1253,9 @@
     ],
     "independent_oracle": "L9 expected_materialは別sourceとして検証し、関数の分岐入力にしない。",
     "field_comparisons": [
-      "stage member presence/state/occurrence",
-      "10 scope fields by same-name values",
-      "claim token to factual raw mismatch",
+      "stage member presence/state/occurrenceから不足一覧、未完状態およびL5 stage_failure_mappingのfailure locator/resultを導出",
+      "event.scopeの10 fieldをoriginal_episode.scopeと同名比較する（original_scopeは保持のみ。有限40caseではepisode.scopeと一致し、copy不一致の一般挙動は未確認）",
+      "claim tokenを各claim_evidence_and_suppression.required_raw_factと照合し、原relation state文字列から因果資格を推定しない",
       "correction member presence/value",
       "after_relation.to_event against actual source event identities",
       "original vs submitted raw event values for preservation"
@@ -1258,10 +1266,10 @@
       "unfinished = 上記各stageとrawのstate/occurrence",
       "event_content_preservation = original_eventsとsubmitted_eventsのdeep equality結果",
       "isolated_preservation = original_isolated_eventsとsubmitted_isolated_eventsのdeep equality結果",
-      "failure_reasons = stage不在/未発生・同名scope不一致・claimの具体矛盾・correction欠落/未知targetのfield locatorとowner",
-      "rejected_claims = raw claimsのうち対応する値矛盾がrawで成立するもの",
+      "failure_reasons = P02 stage_failure_mapping・同名scope不一致・claimの具体矛盾・correction欠落/未知targetをfailure_append_order順に連結したfield locator/result/owner",
+      "rejected_claims = raw claims配列を保持し、定義済みraw条件を満たすもののみ拒否扱いする",
       "return_owners = failure_reasonsのownerを初出順で重複除去",
-      "information_state = unsupported/missing/foreign failureがあればheld_correlation_unqualified、そうでなくmissingありならpartial_episode_content_unfinished、その他はcorrelation_content_requires_actual_qualification",
+      "information_state = failure resultがunobserved/not_occurred以外のものを1件でも含めばheld_correlation_unqualified、そうでなくmissing_or_not_occurred_stages非空ならpartial_episode_content_unfinished、その他はcorrelation_content_requires_actual_qualification",
       "causal_state = actual causal proofは入力されていないためnot_established",
       "actual_effects = 全副作用項目false"
     ]
@@ -1327,7 +1335,8 @@
     "正式schema/codec/field normalizationとowner-qualified source issuerは未解決。",
     "001 observation identityと011 handoff bindingは別責務の依存であり、本pairはそれを代行しない。",
     "実episode相関、訂正の永続化/atomicity/concurrencyおよびproduction evidenceは未実装・未検証。",
-    "L7検証、L8からL9への統合確認、L11実受入、全92親/430対の設計閉包、実装準備は未完。"
+    "L7検証、L8からL9への統合確認、L11実受入、全92親/430対の設計閉包、実装準備は未完。",
+    "L9の40caseにstage key absent、state=unobserved、original_scopeとoriginal_episode.scopeの不一致caseはない。これらの一般分岐は規則化した範囲を越えて実fixtureで検証されていない。"
   ],
   "completion": {
     "implementation_readiness": "not_ready",
@@ -1372,7 +1381,7 @@
     ],
     "event_scope_basis": "original_events only; submitted_events is excluded from scope matching",
     "submitted_events_role": "保存内容のdeep-equal比較とcorrection_overwrites_eventの根拠だけに使う。scope判定へ混ぜない。",
-    "missing_and_unfinished": "stage_order順に原eventを読む。member absent/null、state=unobserved、occurrence=not_occurredをmissingに保持する。unfinished.stateは存在objectのoccurrence=not_occurredだけnot_occurred、その他はunobserved。",
+    "missing_and_unfinished": "stage_order順にoriginal_eventsのstage memberを読む。key absent/value null、object.state=unobserved、または（stateがunobservedではなく）occurrence=not_occurredをmissingへ保持する。unfinished.stateは存在objectでstate!=unobservedかつoccurrence=not_occurredのときだけnot_occurred、その他はunobserved。これとは別にstage_failure_mappingでfailure locator/resultを導出する。",
     "failure_append_order": [
       "stage status by stage_order",
       "original event scope mismatches by original_events member order then scope_field_order",
@@ -1390,7 +1399,7 @@
       "claim_or_correction_failure": "LABO-correlation-owner",
       "correction_owner_field": "correction.ownerは入力値として保持するだけで返却先を決めない。correction診断はLABO-correlation-ownerへ返す。"
     },
-    "scope_mismatch": "原eventのscope各fieldを同名のoriginal_scopeへ比較する。unrelated_event_mixedでは最初のticket相違だけ通常foreign_scope診断を抑止し、scope走査後に同event位置のunsupported_join_or_completionをLABO-correlation-ownerへ追加する。",
+    "scope_mismatch": "原eventのscope各fieldを同名のoriginal_episode.scopeへ比較する。original_scopeは別入力値としてretained_inputsへ保持する。有限40caseでは両scopeが一致し、copy不一致の一般挙動は未定義として残す。unrelated_event_mixedでは最初のticket相違だけ通常foreign_scope診断を抑止し、scope走査後に同event位置のunsupported_join_or_completionをLABO-correlation-ownerへ追加する。",
     "claim_evidence_and_suppression": [
       {
         "claim": "unrelated_event_mixed",
@@ -1404,13 +1413,13 @@
       },
       {
         "claim": "near_time_is_cause",
-        "required_raw_fact": "当該claimがあり、原relationにcausal_state=establishedが無い。",
-        "failure": "relations.causal_stateへunsupported_cause_or_source_lossをLABO-correlation-ownerへ1件返す。"
+        "required_raw_fact": "当該claim literalがraw claimsに含まれる。input schemaはcausal proof/evidence sourceを持たず、RelationRecord.causal_stateとbasis_refは保存対象の原主張/参照値であって資格済み因果証拠として検証されない。",
+        "failure": "因果証拠入力が無い有限契約なので、時刻/path近接を理由にした当該claimをunsupported_cause_or_source_lossとしてrelations.causal_state/LABO-correlation-ownerへ返す。near_time_is_causeとnear_path_is_causeは同一causal findingへ重複結合する。raw relationはretained_inputsにそのまま保持し、出力causal_stateはnot_established。"
       },
       {
         "claim": "near_path_is_cause",
-        "required_raw_fact": "当該claimがあり、原relationにcausal_state=establishedが無い。",
-        "failure": "near_time_is_causeと共通の因果所見を1件だけ返す。"
+        "required_raw_fact": "当該claim literalがraw claimsに含まれる。input schemaはcausal proof/evidence sourceを持たず、RelationRecord.causal_stateとbasis_refは保存対象の原主張/参照値であって資格済み因果証拠として検証されない。",
+        "failure": "因果証拠入力が無い有限契約なので、時刻/path近接を理由にした当該claimをunsupported_cause_or_source_lossとしてrelations.causal_state/LABO-correlation-ownerへ返す。near_time_is_causeとnear_path_is_causeは同一causal findingへ重複結合する。raw relationはretained_inputsにそのまま保持し、出力causal_stateはnot_established。"
       },
       {
         "claim": "correction_overwrites_event",
@@ -1423,7 +1432,7 @@
         "failure": "submitted_isolated_eventsへunsupported_cause_or_source_lossをLABO-correlation-ownerへ返す。"
       }
     ],
-    "claim_handling": "claims原配列をrejected_claimsへ保持する。カテゴリごとのfailure_append_orderで診断を生成し、claim配列順で診断を並べ替えない。各claimは原値によるrequired_raw_factを満たす必要がある。未知tokenまたは根拠なしclaimはこの有限入力域外で、許可や成功へ補完しない。",
+    "claim_handling": "claims原配列をrejected_claimsへ保持する。カテゴリごとのfailure_append_orderで診断を生成し、claim配列順で診断を並べ替えない。各claimは原値によるrequired_raw_factを満たす必要がある。近接因果claimの評価にRelationRecord.causal_state=\"established\"を根拠として認めない。入力schemaに因果証拠型がなく、同field値だけでは独立証拠を識別できないためである。未知tokenまたは根拠なしclaimはこの有限入力域外で、許可や成功へ補完しない。",
     "correction_required_member_order": [
       "reason_ref",
       "source_revision",
@@ -1468,6 +1477,33 @@
     },
     "return_owners": "failure_reasonsのreturn_ownerを出現順で一意化する。",
     "iteration_basis": "stageはstage_order、scope fieldsはscope_field_order、claimsは配列順、元eventの相互順はL9が固定したraw_utf8上のoriginal_events member順で処理する。この順序規則は有限fixture再計算のためであり、一般JSON objectの順序規範を追加しない。",
-    "phase_id_note": "failure_append_orderの文字列は検証用の固定phase識別子であり、その順に原条件を比較する。本文説明はpure_pipelineとcomparison_derivation_contractに保持する。"
+    "phase_id_note": "failure_append_orderの文字列は検証用の固定phase識別子であり、その順に原条件を比較する。本文説明はpure_pipelineとcomparison_derivation_contractに保持する。",
+    "stage_failure_mapping": {
+      "phase": "failure_append_orderのstage status by stage_order",
+      "source": "input.original_eventsのpresence/state/occurrenceとinput.claimsだけ。stage_orderに従う。",
+      "absent_null_unobserved": {
+        "when": "stage key absent、value null、またはobject.state=unobserved",
+        "claim_absent": {
+          "field": "events.<stage>",
+          "result": "unobserved",
+          "return_owner": "一意な原event source_owner"
+        },
+        "claim_present": {
+          "claim": "missing_stage_is_success",
+          "field": "events.<stage>",
+          "result": "unsupported_join_or_completion",
+          "return_owner": "LABO-correlation-owner"
+        }
+      },
+      "not_occurred": {
+        "when": "object.state!=unobservedかつobject.occurrence=not_occurred（state=unobservedを先に分類する）。",
+        "field": "events.<stage>.occurrence",
+        "result": "not_occurred",
+        "return_owner": "一意な原event source_owner",
+        "claim_effect": "missing_stage_is_success claimがあってもnot_occurredの記録を上書きしない。"
+      },
+      "owner_domain": "原event object群のsource_owner distinct値がちょうど1つである有限fixtureだけsource ownerを選べる。0/複数は未定義入力域でありownerを創作しない。",
+      "unobserved_and_absent_cases": "元L9 40caseにはstage key absentまたはstate=unobservedを独立に含むcaseがない。規則は形式上定義するが、そのbranchのraw/期待coverageは未確認。"
+    }
   }
 }
