@@ -431,7 +431,7 @@
     {
       "id": "B030-U09",
       "source": "L4 F04のdefinition carrier",
-      "gap": "F04のdefinitionsは原L9で意味文字列を持つopaque JSON map。本文等値/明示scalar markerの比較までで、任意JSON内部の意味抽出は未実現。F02のknowledge/meaning宣言record比較をF04へ無言共通化しない。"
+      "gap": "F04 definitionsは意味文字列等のopaque JSON map。本文等値とJSON値葉の有限marker照合までで、任意JSON内部の自然言語意味抽出は未実現。F02のknowledge/meaning宣言record比較をF04へ無言共通化しない。"
     },
     {
       "id": "B030-U10",
@@ -3615,7 +3615,8 @@
       "call": "宣言definitionに全parameterを束縛し型を検査。戻り全値も型検査。外部read/暗黙業務処理なし。",
       "concat": "items内のarray式を順に連結する。各operandはarray。業務語彙/優先規則を持たない。",
       "trim": "stringの両端にあるUnicode White_Spaceを除去する。string以外は型エラー。業務語彙を含まない。",
-      "lowercase": "Unicode標準lowercase変換。大文字小文字のみを変え、翻訳/同義語推論を行わない。"
+      "lowercase": "Unicode標準lowercase変換。大文字小文字のみを変え、翻訳/同義語推論を行わない。",
+      "json_leaves": "valueのJSON scalar葉を再帰的に返す。arrayは入力順、objectはUnicode codepoint key順で値だけを走査しkey自身は含めない。空containerとAbsentは空array、nullは[null]。marker/業務語彙/path/期待値を持たない。"
     },
     "definitions": {
       "compare": {
@@ -3818,63 +3819,40 @@
                   "source": {
                     "op": "if",
                     "condition": {
-                      "op": "and",
-                      "items": [
-                        {
-                          "op": "equal",
-                          "left": {
-                            "op": "get",
-                            "base": {
-                              "op": "var",
-                              "name": "input"
-                            },
-                            "key": {
-                              "op": "literal",
-                              "value": "knowledge_selected"
-                            }
+                      "op": "contains",
+                      "items": {
+                        "op": "get",
+                        "base": {
+                          "op": "var",
+                          "name": "input"
+                        },
+                        "key": {
+                          "op": "literal",
+                          "value": "unselected_sources"
+                        }
+                      },
+                      "value": {
+                        "op": "get",
+                        "base": {
+                          "op": "get",
+                          "base": {
+                            "op": "var",
+                            "name": "input"
                           },
-                          "right": {
+                          "key": {
                             "op": "literal",
-                            "value": true
+                            "value": "provided_selected"
                           }
                         },
-                        {
-                          "op": "contains",
-                          "items": {
-                            "op": "get",
-                            "base": {
-                              "op": "var",
-                              "name": "input"
-                            },
-                            "key": {
-                              "op": "literal",
-                              "value": "unselected_sources"
-                            }
-                          },
-                          "value": {
-                            "op": "get",
-                            "base": {
-                              "op": "get",
-                              "base": {
-                                "op": "var",
-                                "name": "input"
-                              },
-                              "key": {
-                                "op": "literal",
-                                "value": "provided_selected"
-                              }
-                            },
-                            "key": {
-                              "op": "literal",
-                              "value": "source"
-                            }
-                          }
+                        "key": {
+                          "op": "literal",
+                          "value": "source"
                         }
-                      ]
+                      }
                     },
                     "then": {
                       "op": "literal",
-                      "value": "unknown"
+                      "value": "content_conflict"
                     },
                     "else": {
                       "op": "get",
@@ -3995,59 +3973,36 @@
               "query_state": {
                 "op": "if",
                 "condition": {
-                  "op": "and",
-                  "items": [
-                    {
-                      "op": "equal",
-                      "left": {
-                        "op": "get",
-                        "base": {
-                          "op": "var",
-                          "name": "input"
-                        },
-                        "key": {
-                          "op": "literal",
-                          "value": "knowledge_selected"
-                        }
+                  "op": "contains",
+                  "items": {
+                    "op": "get",
+                    "base": {
+                      "op": "var",
+                      "name": "input"
+                    },
+                    "key": {
+                      "op": "literal",
+                      "value": "unselected_sources"
+                    }
+                  },
+                  "value": {
+                    "op": "get",
+                    "base": {
+                      "op": "get",
+                      "base": {
+                        "op": "var",
+                        "name": "input"
                       },
-                      "right": {
+                      "key": {
                         "op": "literal",
-                        "value": true
+                        "value": "provided_selected"
                       }
                     },
-                    {
-                      "op": "contains",
-                      "items": {
-                        "op": "get",
-                        "base": {
-                          "op": "var",
-                          "name": "input"
-                        },
-                        "key": {
-                          "op": "literal",
-                          "value": "unselected_sources"
-                        }
-                      },
-                      "value": {
-                        "op": "get",
-                        "base": {
-                          "op": "get",
-                          "base": {
-                            "op": "var",
-                            "name": "input"
-                          },
-                          "key": {
-                            "op": "literal",
-                            "value": "provided_selected"
-                          }
-                        },
-                        "key": {
-                          "op": "literal",
-                          "value": "source"
-                        }
-                      }
+                    "key": {
+                      "op": "literal",
+                      "value": "source"
                     }
-                  ]
+                  }
                 },
                 "then": {
                   "op": "literal",
@@ -4084,59 +4039,36 @@
                     {
                       "op": "if",
                       "condition": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "equal",
-                            "left": {
-                              "op": "get",
-                              "base": {
-                                "op": "var",
-                                "name": "input"
-                              },
-                              "key": {
-                                "op": "literal",
-                                "value": "knowledge_selected"
-                              }
+                        "op": "contains",
+                        "items": {
+                          "op": "get",
+                          "base": {
+                            "op": "var",
+                            "name": "input"
+                          },
+                          "key": {
+                            "op": "literal",
+                            "value": "unselected_sources"
+                          }
+                        },
+                        "value": {
+                          "op": "get",
+                          "base": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "input"
                             },
-                            "right": {
+                            "key": {
                               "op": "literal",
-                              "value": true
+                              "value": "provided_selected"
                             }
                           },
-                          {
-                            "op": "contains",
-                            "items": {
-                              "op": "get",
-                              "base": {
-                                "op": "var",
-                                "name": "input"
-                              },
-                              "key": {
-                                "op": "literal",
-                                "value": "unselected_sources"
-                              }
-                            },
-                            "value": {
-                              "op": "get",
-                              "base": {
-                                "op": "get",
-                                "base": {
-                                  "op": "var",
-                                  "name": "input"
-                                },
-                                "key": {
-                                  "op": "literal",
-                                  "value": "provided_selected"
-                                }
-                              },
-                              "key": {
-                                "op": "literal",
-                                "value": "source"
-                              }
-                            }
+                          "key": {
+                            "op": "literal",
+                            "value": "source"
                           }
-                        ]
+                        }
                       },
                       "then": {
                         "op": "array",
@@ -4359,7 +4291,7 @@
                 },
                 {
                   "op": "call",
-                  "definition": "marker_scalar",
+                  "definition": "marker_value",
                   "arguments": {
                     "value": {
                       "op": "get",
@@ -4447,7 +4379,7 @@
                   "op": "not",
                   "value": {
                     "op": "call",
-                    "definition": "marker_scalar",
+                    "definition": "marker_value",
                     "arguments": {
                       "value": {
                         "op": "get",
@@ -6460,7 +6392,7 @@
               },
               "value": {
                 "op": "call",
-                "definition": "compare",
+                "definition": "product_value_compare",
                 "arguments": {
                   "a": {
                     "op": "get",
@@ -9390,268 +9322,38 @@
                             "op": "concat",
                             "items": [
                               {
-                                "op": "concat",
-                                "items": [
-                                  {
-                                    "op": "if",
-                                    "condition": {
-                                      "op": "not",
-                                      "value": {
-                                        "op": "equal",
-                                        "left": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "version_result"
-                                          }
-                                        },
-                                        "right": {
-                                          "op": "literal",
-                                          "value": "compatible_in_fixture"
-                                        }
-                                      }
-                                    },
-                                    "then": {
-                                      "op": "literal",
-                                      "value": [
-                                        "connection-contract-owner"
-                                      ]
-                                    },
-                                    "else": {
-                                      "op": "literal",
-                                      "value": []
-                                    }
-                                  },
-                                  {
-                                    "op": "if",
-                                    "condition": {
-                                      "op": "not",
-                                      "value": {
-                                        "op": "equal",
-                                        "left": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "scope_result"
-                                          }
-                                        },
-                                        "right": {
-                                          "op": "literal",
-                                          "value": "corresponding_in_fixture"
-                                        }
-                                      }
-                                    },
-                                    "then": {
-                                      "op": "literal",
-                                      "value": [
-                                        "HARNESS-receiver-contract-owner"
-                                      ]
-                                    },
-                                    "else": {
-                                      "op": "literal",
-                                      "value": []
-                                    }
-                                  },
-                                  {
-                                    "op": "if",
-                                    "condition": {
-                                      "op": "equal",
-                                      "left": {
-                                        "op": "get",
-                                        "base": {
-                                          "op": "var",
-                                          "name": "primary"
-                                        },
-                                        "key": {
-                                          "op": "literal",
-                                          "value": "field_contract_checks"
-                                        }
+                                "op": "if",
+                                "condition": {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "equal",
+                                    "left": {
+                                      "op": "get",
+                                      "base": {
+                                        "op": "var",
+                                        "name": "primary"
                                       },
-                                      "right": {
+                                      "key": {
                                         "op": "literal",
-                                        "value": null
+                                        "value": "version_result"
                                       }
                                     },
-                                    "then": {
+                                    "right": {
                                       "op": "literal",
-                                      "value": []
-                                    },
-                                    "else": {
-                                      "op": "map",
-                                      "items": {
-                                        "op": "get",
-                                        "base": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "field_contract_checks"
-                                          }
-                                        },
-                                        "key": {
-                                          "op": "literal",
-                                          "value": "unfulfilled_obligations"
-                                        }
-                                      },
-                                      "binding": "u",
-                                      "index_binding": "index",
-                                      "body": {
-                                        "op": "get",
-                                        "base": {
-                                          "op": "var",
-                                          "name": "u"
-                                        },
-                                        "key": {
-                                          "op": "literal",
-                                          "value": "owner"
-                                        }
-                                      }
-                                    }
-                                  },
-                                  {
-                                    "op": "if",
-                                    "condition": {
-                                      "op": "any",
-                                      "items": {
-                                        "op": "map",
-                                        "items": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "bidirectional_trace_checks"
-                                          }
-                                        },
-                                        "binding": "r",
-                                        "index_binding": "index",
-                                        "body": {
-                                          "op": "not",
-                                          "value": {
-                                            "op": "equal",
-                                            "left": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "r"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "state"
-                                              }
-                                            },
-                                            "right": {
-                                              "op": "literal",
-                                              "value": "corresponding_in_fixture_only"
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "then": {
-                                      "op": "literal",
-                                      "value": [
-                                        "HARNESS-receiver-obligation-owner"
-                                      ]
-                                    },
-                                    "else": {
-                                      "op": "literal",
-                                      "value": []
-                                    }
-                                  },
-                                  {
-                                    "op": "if",
-                                    "condition": {
-                                      "op": "or",
-                                      "items": [
-                                        {
-                                          "op": "any",
-                                          "items": {
-                                            "op": "map",
-                                            "items": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "primary"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "relation_checks"
-                                              }
-                                            },
-                                            "binding": "r",
-                                            "index_binding": "index",
-                                            "body": {
-                                              "op": "not",
-                                              "value": {
-                                                "op": "equal",
-                                                "left": {
-                                                  "op": "get",
-                                                  "base": {
-                                                    "op": "var",
-                                                    "name": "r"
-                                                  },
-                                                  "key": {
-                                                    "op": "literal",
-                                                    "value": "state"
-                                                  }
-                                                },
-                                                "right": {
-                                                  "op": "literal",
-                                                  "value": "corresponding_in_fixture_only"
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "op": "not",
-                                          "value": {
-                                            "op": "equal",
-                                            "left": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "primary"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "pair_definition_state"
-                                              }
-                                            },
-                                            "right": {
-                                              "op": "literal",
-                                              "value": "defined_in_synthetic_fixture"
-                                            }
-                                          }
-                                        }
-                                      ]
-                                    },
-                                    "then": {
-                                      "op": "literal",
-                                      "value": [
-                                        "BRAIN-knowledge-meaning-owner"
-                                      ]
-                                    },
-                                    "else": {
-                                      "op": "literal",
-                                      "value": []
+                                      "value": "compatible_in_fixture"
                                     }
                                   }
-                                ]
+                                },
+                                "then": {
+                                  "op": "literal",
+                                  "value": [
+                                    "connection-contract-owner"
+                                  ]
+                                },
+                                "else": {
+                                  "op": "literal",
+                                  "value": []
+                                }
                               },
                               {
                                 "op": "if",
@@ -9677,17 +9379,97 @@
                                   }
                                 },
                                 "then": {
-                                  "op": "array",
-                                  "items": [
-                                    {
-                                      "op": "literal",
-                                      "value": "HARNESS-receiver-contract-owner"
-                                    }
+                                  "op": "literal",
+                                  "value": [
+                                    "HARNESS-receiver-contract-owner"
                                   ]
                                 },
                                 "else": {
-                                  "op": "array",
-                                  "items": []
+                                  "op": "literal",
+                                  "value": []
+                                }
+                              },
+                              {
+                                "op": "if",
+                                "condition": {
+                                  "op": "equal",
+                                  "left": {
+                                    "op": "get",
+                                    "base": {
+                                      "op": "var",
+                                      "name": "primary"
+                                    },
+                                    "key": {
+                                      "op": "literal",
+                                      "value": "field_contract_checks"
+                                    }
+                                  },
+                                  "right": {
+                                    "op": "literal",
+                                    "value": null
+                                  }
+                                },
+                                "then": {
+                                  "op": "literal",
+                                  "value": []
+                                },
+                                "else": {
+                                  "op": "map",
+                                  "items": {
+                                    "op": "get",
+                                    "base": {
+                                      "op": "get",
+                                      "base": {
+                                        "op": "var",
+                                        "name": "primary"
+                                      },
+                                      "key": {
+                                        "op": "literal",
+                                        "value": "field_contract_checks"
+                                      }
+                                    },
+                                    "key": {
+                                      "op": "literal",
+                                      "value": "unfulfilled_obligations"
+                                    }
+                                  },
+                                  "binding": "u",
+                                  "index_binding": "index",
+                                  "body": {
+                                    "op": "get",
+                                    "base": {
+                                      "op": "var",
+                                      "name": "u"
+                                    },
+                                    "key": {
+                                      "op": "literal",
+                                      "value": "owner"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "op": "get",
+                                "base": {
+                                  "op": "call",
+                                  "definition": "F03",
+                                  "arguments": {
+                                    "input": {
+                                      "op": "get",
+                                      "base": {
+                                        "op": "var",
+                                        "name": "input"
+                                      },
+                                      "key": {
+                                        "op": "literal",
+                                        "value": "trace_material"
+                                      }
+                                    }
+                                  }
+                                },
+                                "key": {
+                                  "op": "literal",
+                                  "value": "owner_return_candidates"
                                 }
                               },
                               {
@@ -9695,67 +9477,6 @@
                                 "condition": {
                                   "op": "or",
                                   "items": [
-                                    {
-                                      "op": "not",
-                                      "value": {
-                                        "op": "equal",
-                                        "left": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "pair_definition_state"
-                                          }
-                                        },
-                                        "right": {
-                                          "op": "literal",
-                                          "value": "defined_in_synthetic_fixture"
-                                        }
-                                      }
-                                    },
-                                    {
-                                      "op": "any",
-                                      "items": {
-                                        "op": "map",
-                                        "items": {
-                                          "op": "get",
-                                          "base": {
-                                            "op": "var",
-                                            "name": "primary"
-                                          },
-                                          "key": {
-                                            "op": "literal",
-                                            "value": "bidirectional_trace_checks"
-                                          }
-                                        },
-                                        "binding": "r",
-                                        "index_binding": "index",
-                                        "body": {
-                                          "op": "not",
-                                          "value": {
-                                            "op": "equal",
-                                            "left": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "r"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "state"
-                                              }
-                                            },
-                                            "right": {
-                                              "op": "literal",
-                                              "value": "corresponding_in_fixture_only"
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
                                     {
                                       "op": "any",
                                       "items": {
@@ -9795,21 +9516,367 @@
                                           }
                                         }
                                       }
+                                    },
+                                    {
+                                      "op": "not",
+                                      "value": {
+                                        "op": "equal",
+                                        "left": {
+                                          "op": "get",
+                                          "base": {
+                                            "op": "var",
+                                            "name": "primary"
+                                          },
+                                          "key": {
+                                            "op": "literal",
+                                            "value": "pair_definition_state"
+                                          }
+                                        },
+                                        "right": {
+                                          "op": "literal",
+                                          "value": "defined_in_synthetic_fixture"
+                                        }
+                                      }
                                     }
                                   ]
                                 },
                                 "then": {
-                                  "op": "array",
-                                  "items": [
-                                    {
-                                      "op": "literal",
-                                      "value": "BRAIN-knowledge-meaning-owner"
-                                    }
+                                  "op": "literal",
+                                  "value": [
+                                    "BRAIN-knowledge-meaning-owner"
                                   ]
                                 },
                                 "else": {
-                                  "op": "array",
-                                  "items": []
+                                  "op": "literal",
+                                  "value": []
+                                }
+                              },
+                              {
+                                "op": "if",
+                                "condition": {
+                                  "op": "any",
+                                  "items": {
+                                    "op": "map",
+                                    "items": {
+                                      "op": "filter",
+                                      "items": {
+                                        "op": "concat",
+                                        "items": [
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "original_correspondences"
+                                            }
+                                          },
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "provided_forward"
+                                            }
+                                          },
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "provided_reverse"
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "binding": "trace_row",
+                                      "index_binding": "index",
+                                      "predicate": {
+                                        "op": "kind_is",
+                                        "value": {
+                                          "op": "var",
+                                          "name": "trace_row"
+                                        },
+                                        "kind": "object"
+                                      }
+                                    },
+                                    "binding": "trace_row",
+                                    "index_binding": "index",
+                                    "body": {
+                                      "op": "and",
+                                      "items": [
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "is_absent",
+                                            "value": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "scope"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "equal",
+                                            "left": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "scope"
+                                              }
+                                            },
+                                            "right": {
+                                              "op": "literal",
+                                              "value": null
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "equal",
+                                            "left": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "scope"
+                                              }
+                                            },
+                                            "right": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "original_scope"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "then": {
+                                  "op": "literal",
+                                  "value": [
+                                    "HARNESS-receiver-contract-owner"
+                                  ]
+                                },
+                                "else": {
+                                  "op": "literal",
+                                  "value": []
+                                }
+                              },
+                              {
+                                "op": "if",
+                                "condition": {
+                                  "op": "any",
+                                  "items": {
+                                    "op": "map",
+                                    "items": {
+                                      "op": "filter",
+                                      "items": {
+                                        "op": "concat",
+                                        "items": [
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "original_correspondences"
+                                            }
+                                          },
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "provided_forward"
+                                            }
+                                          },
+                                          {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "trace_material"
+                                              }
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "provided_reverse"
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "binding": "trace_row",
+                                      "index_binding": "index",
+                                      "predicate": {
+                                        "op": "kind_is",
+                                        "value": {
+                                          "op": "var",
+                                          "name": "trace_row"
+                                        },
+                                        "kind": "object"
+                                      }
+                                    },
+                                    "binding": "trace_row",
+                                    "index_binding": "index",
+                                    "body": {
+                                      "op": "and",
+                                      "items": [
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "is_absent",
+                                            "value": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "pattern"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "equal",
+                                            "left": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "pattern"
+                                              }
+                                            },
+                                            "right": {
+                                              "op": "literal",
+                                              "value": null
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "op": "not",
+                                          "value": {
+                                            "op": "contains",
+                                            "items": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "input"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "declared_pair"
+                                              }
+                                            },
+                                            "value": {
+                                              "op": "get",
+                                              "base": {
+                                                "op": "var",
+                                                "name": "trace_row"
+                                              },
+                                              "key": {
+                                                "op": "literal",
+                                                "value": "pattern"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "then": {
+                                  "op": "literal",
+                                  "value": [
+                                    "BRAIN-knowledge-meaning-owner"
+                                  ]
+                                },
+                                "else": {
+                                  "op": "literal",
+                                  "value": []
                                 }
                               },
                               {
@@ -9818,140 +9885,88 @@
                                   "op": "or",
                                   "items": [
                                     {
-                                      "op": "or",
-                                      "items": [
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "original_correspondences"
-                                              }
+                                      "op": "equal",
+                                      "left": {
+                                        "op": "length",
+                                        "value": {
+                                          "op": "get",
+                                          "base": {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "var",
+                                              "name": "input"
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "trace_material"
                                             }
                                           },
-                                          "right": {
+                                          "key": {
                                             "op": "literal",
-                                            "value": 0
-                                          }
-                                        },
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "provided_forward"
-                                              }
-                                            }
-                                          },
-                                          "right": {
-                                            "op": "literal",
-                                            "value": 0
-                                          }
-                                        },
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "provided_reverse"
-                                              }
-                                            }
-                                          },
-                                          "right": {
-                                            "op": "literal",
-                                            "value": 0
+                                            "value": "original_correspondences"
                                           }
                                         }
-                                      ]
+                                      },
+                                      "right": {
+                                        "op": "literal",
+                                        "value": 0
+                                      }
                                     },
                                     {
-                                      "op": "or",
-                                      "items": [
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "input"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "original_relations"
-                                              }
+                                      "op": "equal",
+                                      "left": {
+                                        "op": "length",
+                                        "value": {
+                                          "op": "get",
+                                          "base": {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "var",
+                                              "name": "input"
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "trace_material"
                                             }
                                           },
-                                          "right": {
+                                          "key": {
                                             "op": "literal",
-                                            "value": 0
-                                          }
-                                        },
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "var",
-                                                "name": "input"
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "provided_relations"
-                                              }
-                                            }
-                                          },
-                                          "right": {
-                                            "op": "literal",
-                                            "value": 0
+                                            "value": "provided_forward"
                                           }
                                         }
-                                      ]
+                                      },
+                                      "right": {
+                                        "op": "literal",
+                                        "value": 0
+                                      }
+                                    },
+                                    {
+                                      "op": "equal",
+                                      "left": {
+                                        "op": "length",
+                                        "value": {
+                                          "op": "get",
+                                          "base": {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "var",
+                                              "name": "input"
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "trace_material"
+                                            }
+                                          },
+                                          "key": {
+                                            "op": "literal",
+                                            "value": "provided_reverse"
+                                          }
+                                        }
+                                      },
+                                      "right": {
+                                        "op": "literal",
+                                        "value": 0
+                                      }
                                     }
                                   ]
                                 },
@@ -9975,93 +9990,32 @@
                                   "op": "or",
                                   "items": [
                                     {
-                                      "op": "or",
-                                      "items": [
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "original_correspondences"
-                                              }
+                                      "op": "equal",
+                                      "left": {
+                                        "op": "length",
+                                        "value": {
+                                          "op": "get",
+                                          "base": {
+                                            "op": "get",
+                                            "base": {
+                                              "op": "var",
+                                              "name": "input"
+                                            },
+                                            "key": {
+                                              "op": "literal",
+                                              "value": "trace_material"
                                             }
                                           },
-                                          "right": {
+                                          "key": {
                                             "op": "literal",
-                                            "value": 0
-                                          }
-                                        },
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "provided_forward"
-                                              }
-                                            }
-                                          },
-                                          "right": {
-                                            "op": "literal",
-                                            "value": 0
-                                          }
-                                        },
-                                        {
-                                          "op": "equal",
-                                          "left": {
-                                            "op": "length",
-                                            "value": {
-                                              "op": "get",
-                                              "base": {
-                                                "op": "get",
-                                                "base": {
-                                                  "op": "var",
-                                                  "name": "input"
-                                                },
-                                                "key": {
-                                                  "op": "literal",
-                                                  "value": "trace_material"
-                                                }
-                                              },
-                                              "key": {
-                                                "op": "literal",
-                                                "value": "provided_reverse"
-                                              }
-                                            }
-                                          },
-                                          "right": {
-                                            "op": "literal",
-                                            "value": 0
+                                            "value": "original_correspondences"
                                           }
                                         }
-                                      ]
+                                      },
+                                      "right": {
+                                        "op": "literal",
+                                        "value": 0
+                                      }
                                     },
                                     {
                                       "op": "or",
@@ -10531,106 +10485,29 @@
           "type": "boolean"
         },
         "body": {
-          "op": "or",
-          "items": [
-            {
+          "op": "any",
+          "items": {
+            "op": "map",
+            "items": {
+              "op": "json_leaves",
+              "value": {
+                "op": "var",
+                "name": "value"
+              }
+            },
+            "binding": "leaf",
+            "index_binding": "index",
+            "body": {
               "op": "call",
               "definition": "marker_scalar",
               "arguments": {
                 "value": {
                   "op": "var",
-                  "name": "value"
-                }
-              }
-            },
-            {
-              "op": "if",
-              "condition": {
-                "op": "kind_is",
-                "value": {
-                  "op": "var",
-                  "name": "value"
-                },
-                "kind": "array"
-              },
-              "then": {
-                "op": "any",
-                "items": {
-                  "op": "map",
-                  "items": {
-                    "op": "var",
-                    "name": "value"
-                  },
-                  "binding": "item",
-                  "index_binding": "index",
-                  "body": {
-                    "op": "call",
-                    "definition": "marker_scalar",
-                    "arguments": {
-                      "value": {
-                        "op": "var",
-                        "name": "item"
-                      }
-                    }
-                  }
-                }
-              },
-              "else": {
-                "op": "if",
-                "condition": {
-                  "op": "kind_is",
-                  "value": {
-                    "op": "var",
-                    "name": "value"
-                  },
-                  "kind": "object"
-                },
-                "then": {
-                  "op": "or",
-                  "items": [
-                    {
-                      "op": "call",
-                      "definition": "marker_scalar",
-                      "arguments": {
-                        "value": {
-                          "op": "get",
-                          "base": {
-                            "op": "var",
-                            "name": "value"
-                          },
-                          "key": {
-                            "op": "literal",
-                            "value": "value"
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "op": "call",
-                      "definition": "marker_scalar",
-                      "arguments": {
-                        "value": {
-                          "op": "get",
-                          "base": {
-                            "op": "var",
-                            "name": "value"
-                          },
-                          "key": {
-                            "op": "literal",
-                            "value": "reason"
-                          }
-                        }
-                      }
-                    }
-                  ]
-                },
-                "else": {
-                  "op": "literal",
-                  "value": false
+                  "name": "leaf"
                 }
               }
             }
-          ]
+          }
         }
       },
       "F01_core": {
@@ -11708,6 +11585,331 @@
             }
           }
         }
+      },
+      "product_value_compare": {
+        "parameters": {
+          "a": {
+            "type": "json_or_absent"
+          },
+          "b": {
+            "type": "json_or_absent"
+          }
+        },
+        "returns": {
+          "type": "string",
+          "enum": [
+            "missing",
+            "content_corresponding_in_fixture",
+            "content_conflict",
+            "unknown"
+          ]
+        },
+        "body": {
+          "op": "if",
+          "condition": {
+            "op": "or",
+            "items": [
+              {
+                "op": "is_absent",
+                "value": {
+                  "op": "var",
+                  "name": "a"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "var",
+                  "name": "a"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": null
+                }
+              },
+              {
+                "op": "is_absent",
+                "value": {
+                  "op": "var",
+                  "name": "b"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "var",
+                  "name": "b"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": null
+                }
+              }
+            ]
+          },
+          "then": {
+            "op": "literal",
+            "value": "missing"
+          },
+          "else": {
+            "op": "if",
+            "condition": {
+              "op": "or",
+              "items": [
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "kind_is",
+                        "value": {
+                          "op": "var",
+                          "name": "a"
+                        },
+                        "kind": "object"
+                      },
+                      {
+                        "op": "contains",
+                        "items": {
+                          "op": "literal",
+                          "value": [
+                            "known",
+                            "unknown",
+                            "value_unset"
+                          ]
+                        },
+                        "value": {
+                          "op": "get",
+                          "base": {
+                            "op": "var",
+                            "name": "a"
+                          },
+                          "key": {
+                            "op": "literal",
+                            "value": "state"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "then": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "call",
+                        "definition": "marker_value",
+                        "arguments": {
+                          "value": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "a"
+                            },
+                            "key": {
+                              "op": "literal",
+                              "value": "value"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "a"
+                            },
+                            "key": {
+                              "op": "literal",
+                              "value": "state"
+                            }
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": "known"
+                          }
+                        },
+                        "then": {
+                          "op": "literal",
+                          "value": false
+                        },
+                        "else": {
+                          "op": "call",
+                          "definition": "marker_scalar",
+                          "arguments": {
+                            "value": {
+                              "op": "get",
+                              "base": {
+                                "op": "var",
+                                "name": "a"
+                              },
+                              "key": {
+                                "op": "literal",
+                                "value": "reason"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "call",
+                    "definition": "marker_value",
+                    "arguments": {
+                      "value": {
+                        "op": "var",
+                        "name": "a"
+                      }
+                    }
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "kind_is",
+                        "value": {
+                          "op": "var",
+                          "name": "b"
+                        },
+                        "kind": "object"
+                      },
+                      {
+                        "op": "contains",
+                        "items": {
+                          "op": "literal",
+                          "value": [
+                            "known",
+                            "unknown",
+                            "value_unset"
+                          ]
+                        },
+                        "value": {
+                          "op": "get",
+                          "base": {
+                            "op": "var",
+                            "name": "b"
+                          },
+                          "key": {
+                            "op": "literal",
+                            "value": "state"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "then": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "call",
+                        "definition": "marker_value",
+                        "arguments": {
+                          "value": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "b"
+                            },
+                            "key": {
+                              "op": "literal",
+                              "value": "value"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "b"
+                            },
+                            "key": {
+                              "op": "literal",
+                              "value": "state"
+                            }
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": "known"
+                          }
+                        },
+                        "then": {
+                          "op": "literal",
+                          "value": false
+                        },
+                        "else": {
+                          "op": "call",
+                          "definition": "marker_scalar",
+                          "arguments": {
+                            "value": {
+                              "op": "get",
+                              "base": {
+                                "op": "var",
+                                "name": "b"
+                              },
+                              "key": {
+                                "op": "literal",
+                                "value": "reason"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "call",
+                    "definition": "marker_value",
+                    "arguments": {
+                      "value": {
+                        "op": "var",
+                        "name": "b"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "then": {
+              "op": "literal",
+              "value": "unknown"
+            },
+            "else": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "var",
+                  "name": "a"
+                },
+                "right": {
+                  "op": "var",
+                  "name": "b"
+                }
+              },
+              "then": {
+                "op": "literal",
+                "value": "content_corresponding_in_fixture"
+              },
+              "else": {
+                "op": "literal",
+                "value": "content_conflict"
+              }
+            }
+          }
+        }
       }
     },
     "normative_authority": "definitionsとoperatorsが唯一の有限演算規範。helperには固有path/priority/literal/owner/expected lookupを隠さない。case IDを判定引数にしない。"
@@ -11715,11 +11917,11 @@
   "logical_boundary": {
     "object_domain": "宣言carrierはclosed。definitions/values/product_conclusions等の明示map keyはopaque ID、valueは宣言型/JsonValue。未知keyをkindと解釈しない。",
     "presence": "省略は内部Absent、明示nullはJSON null。default_absentだけがAbsentを既定値へ写す。元raw/presenceはL8に保持。",
-    "source_state": "compareはAbsent/null→missing、空文字/TBD/unknown→unknown、それ以外を再帰等値。複合objectの同値は内部自然言語の十分性を保証しない。",
+    "source_state": "compareはAbsent/nullをmissing、JSON値のscalar葉の有限markerをunknownへ保持し、それ以外を再帰JSON等値で比較する。ProductValue専用比較ではstateとpayloadを分け、knownのreason空文字を未知値へ混同しない。",
     "priority": "F01常時→選択→操作の全軸を独立保持。F02一覧/定義不足はBRAIN、値未決はCOREへ。F03全9軸の両方向、F04原候補順/定義key順、N01非選択を先にnot_observedとして保持。具体分岐/順はAST唯一。",
     "copy": "Field value/state/reason、Candidate identity/original values、pair_definition_state、candidate_composition_state/LABO状態を原型で投影。観測文字列でコピー返却を閉じない。",
     "finite_marker_and_owner_routing": {
-      "marker": "literal_basis.finite_marker_labelsに列挙した有限集合だけをtrim→Unicode lowercase完全一致でunknownとする。文意推定はしない。compatible_versions等のstring配列は各要素を調べ、一つでもmarkerならunknown。known stateでもmarker valueはunknown/held。",
+      "marker": "有限marker集合をtrim→Unicode lowercase完全一致で照合し、JSON値の全scalar葉へ適用する。object keyは値として判定しない。ProductValueのstateはcarrier状態でありpayload文字列と混同しない。knownではvalueだけをmarker判定しreasonを必須化しない。unknown/value_unsetの理由は別に保持/検証する。",
       "F03_owner_axes": {
         "BRAIN": [
           "knowledge_identity",
@@ -11735,7 +11937,7 @@
           "obligation"
         ]
       },
-      "N01": "scopeはmissing/unknown/conflictを分離し、traceまたはrelation例が空なら選択pairを成立させない。"
+      "N01": "N01のtrace返却はF03の同じ原因別規則を呼ぶ。query scopeから外れるtraceはHARNESS、宣言pair外patternはBRAIN。提供側trace空配列は受取trace不足だけを返し、独立原knowledge/関係不足を同時に確認した場合だけBRAINを合成する。relation不足だけから受取trace不足を生成しない。"
     },
     "claim_and_data": "claim欄は入力claimの主張への応答を表し、falseをデータ不整合によってrejectedへ変えない。データ由来の不足は比較・主保留・source観測欄へ独立保持する。拒否した義務充足claimは当該受取義務の責務へ返す。"
   },
@@ -11784,7 +11986,7 @@
         "未確定"
       ],
       "normalization": "前後Unicode空白をtrimし、Unicode lowercase後に完全一致する有限集合。自然言語の意味推定はしない。",
-      "basis": "R1 F03/F01/F02/F04/N01 marker finding; finite fixture comparison boundary"
+      "basis": "L3/L4の未確定/値未決/未知を成功補完しない義務の有限表示語彙。自然言語全体の判定ではない。"
     }
   },
   "type_language": {
@@ -11801,13 +12003,28 @@
     "independent_wholes": 33,
     "total_public_wholes": 132,
     "witnesses": 2,
-    "limit": "固定wholeと局所型域摂動の検査。任意JSON意味/未見一般域/実source資格/実consumerの全閉包ではない。"
+    "limit": "固定wholeと局所型域摂動の検査。任意JSON意味/未見一般域/実source資格/実consumerの全閉包ではない。",
+    "meaning": "各定義のASTと汎用operatorだけが返却を導出する。有限例の一致は未供給source/必要集合/recipient資格の閉包を証明しない。"
   },
   "domain_verification": {
     "current_L9_cases": 99,
-    "independent_probes": 33,
-    "current_full_materials": 132,
-    "meaning": "現在candidate L9の99件と独立局所33件を全値照合する。元raw99件は不変。旧L9七つのowner期待は批准L3/L10の責務内で同じL9正本を訂正し、旧revisionのbytesはsource_pinsで保持する。型域の既検収と本是正対象F03の再照合はignored検収記録に区別する。"
+    "independent_probes": 65,
+    "current_full_materials": 164,
+    "meaning": "L9の99件と局所65件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
+    "mutation_scope": {
+      "observed_rule_families": [
+        "有限marker12語の削除",
+        "N01のF03原因別返却呼出しの除去",
+        "提供側空traceと関係不足の一律帰属への退行",
+        "F03独立原knowledge不足条件の除去",
+        "B01の責務別候補返却3分岐",
+        "F04の意味/案件値候補返却2分岐",
+        "未宣言relation typeの受理",
+        "F01未選択source利用判定の選択flag依存化"
+      ],
+      "finite_mutations": 22,
+      "limit": "この有限変異は局所wholeで識別する。旧reviewで観測された2027件/生存254件全体を再実行・解消したという主張ではない。N01 fallbackのtrue側は局所wholeでは未観測で、全入力域の到達性も未証明。実source/qualification/未見複合の全閉包は保持課題。"
+    }
   },
   "candidate_design_bindings": [
     {
