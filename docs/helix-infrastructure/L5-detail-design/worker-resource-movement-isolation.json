@@ -2007,11 +2007,16 @@
         "environment"
       ],
       "assess_isolation": false,
-      "assess_isolation_status": false,
       "isolation_status_checks": [],
       "assess_observation": false,
-      "assess_observation_scope": false,
-      "observation_scope_check": null
+      "observation_scope_check": null,
+      "projection_only_members": {
+        "original_isolation": "F01ではassessment対象外。入力recordをretained_isolationとして保持するだけで、F02の隔離評価を主張しない。",
+        "original_state_evidence": "F01ではassessment対象外。入力recordをretained_state_evidenceとして保持するだけで、N01の証拠scope評価を主張しない。",
+        "child_switches": "子switchはfalseの宣言を保つが、親assessment switchがfalseの本programでは条件付き非適用であり、独立して評価されたとは主張しない。"
+      },
+      "assess_isolation_status": false,
+      "assess_observation_scope": false
     },
     {
       "id": "INFRA025-F02",
