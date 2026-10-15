@@ -551,16 +551,6 @@
           "line": 258,
           "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
           "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
-        },
-        {
-          "line": 298,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "line": 450,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -618,11 +608,6 @@
           "utf8_sha256": "4c3bb1e25b2b373a18e53b6ac3947beed1576787e67ad6fba7ec30c3aca32e22"
         },
         {
-          "line": 200,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
           "line": 201,
           "text": "いずれも pure function とし、DB write、network、ファイル I/O、時刻取得を持たない。判定に必要な",
           "utf8_sha256": "ebdb6f803d9698456c4738099c4cacf3708e1d90033781b7a4d08f26beadc354"
@@ -636,11 +621,6 @@
           "line": 242,
           "text": "「吸収」ではなく「拒否」であり、dedupe を暗黙上書きの隠れ蓑にしない。",
           "utf8_sha256": "f0f024006ba8af8d496fb21dfbb19a29ccf13a8f75179f7be5861f0f94aed469"
-        },
-        {
-          "line": 243,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "line": 244,
@@ -808,7 +788,8 @@
   "remaining": [
     "正式wire/schema/codec/parser/float/resource/encode/未知key方針・任意外側shape/全一般域は未成立。原323のlogical引数/全返却/中間値は具体化しcodec不足を理由に未materializeにしない。",
     "全source資格/custody/訂正lineage/全累積履歴/並行append/crash/replay/正式retention-time/実I/O・実TDD/CI/L11/全92親430意味閉包/実装Readyは未成立。",
-    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの前提素材であり本作業は実TDDではない。"
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの前提素材であり本作業は実TDDではない。",
+    "R1未見組合せ: expected id重複、stop reason相反、ID不明/重複eventの用途比較、sequence unknownを跨ぐ順序、閉集合外projected stateとrecord全体欠落。有限規則は明記したが当該新fixtureによる識別は未成立。"
   ],
   "id": "HELIXOS-L5-019",
   "pair": "HELIXOS-L8-019",
@@ -3486,7 +3467,8 @@
         "Fieldは元presenceへ解釈して比較する。unknownを空集合/0/既知状態/許可へ補完しない。未知外側shape/正式codec/全一般域は未閉包。"
       ],
       "algorithm": [
-        "固定shapeでinspect/replay/handoff/useを分ける。join5fieldをcontext expectedへknown非空文字列で比較し、片側unknownは原位置source_unresolved、両側known相反だけsource_conflict。canonical_sourceはoriginal_eventsのみ。このfixtureのprovider memory/summaryは正本にも成功根拠にも使わない。whole_scope_success_claim=trueはwhole_scope_claim_unproven、非booleanはunresolved。 canonical_source非空文字列でない場合はcanonical_source_unresolved、既知のoriginal_events以外だけcanonical_source_not_original。"
+        "固定shapeでinspect/replay/handoff/useを分ける。join5fieldをcontext expectedへknown非空文字列で比較し、片側unknownは原位置source_unresolved、両側known相反だけsource_conflict。canonical_sourceはoriginal_eventsのみ。このfixtureのprovider memory/summaryは正本にも成功根拠にも使わない。whole_scope_success_claim=trueはwhole_scope_claim_unproven、非booleanはunresolved。 canonical_source非空文字列でない場合はcanonical_source_unresolved、既知のoriginal_events以外だけcanonical_source_not_original。",
+        "phaseがinspect/replay/handoff/use以外、nullまたはabsentならselected_phase=nullとし、phase_unresolvedを/phase、episode facetへ出す。"
       ],
       "postconditions": [
         "入力不変、effect=none。素材状態から実event/保存/再生/公開/利用/完了/実資格を生成しない。"
@@ -3537,7 +3519,8 @@
       "algorithm": [
         "原eventsを順序どおり処理し、known event_idごとに最初のwhole objectを保持。same id再送はduplicateに分類し、whole objectが異なればduplicate_event_content_conflict。独立expected_eventsに一意にあるidだけを各11scalar fieldと非負integer sequenceへ照合する。missing/複数/余分source idはsource set不足/相反。episodeをrootへ別照合し、kind/statusは閉集合外をunknown。全statusを原値で数え、failed/refused/not_executed/unobserved/not_occurred/uncollected/staleをsucceededへ合算しない。sequenceは一意eventだけで厳密増加。 kind/statusの独立比較は各閉集合内の両側known時だけ相反、片側不明はsource_unresolved。expected idが不明なため一意sourceを特定できない場合、その原expected id位置のsource_unresolvedで保持し、既知余分eventとして相反にしない。 original_status_countsはknown IDの一意な提供eventから既知statusだけを数える。ID/状態unknown・未回収/原record欠落はfindingで別保持し、件数0を未観測の実績へ補完しない。 順序比較は直前known一意recordとの比較、checkpoint末尾は最後の一意原recordのsequenceで別保持する。末尾recordのid/sequenceが不明なら末尾unknown。同id重複は末尾を動かさず、直前knownを末尾へ補完しない。",
         "unique_indicesはknown IDの先頭原indexを出現順で保持。duplicate_event_idsは再送出現順に列挙し、raw wholeが異なる重複はeffects facetへ所見。最初のsource本文を上書きしない。",
-        "kind/statusはraw carrierと既知閉集合を分離。expected id不明がある時は原unknown位置を返し、対応不能なactualを余分sourceと推測しない。末尾と直前known sequenceは別変数で、ID不明末尾はtail=null、同ID再送はtailを動かさない。"
+        "kind/statusはraw carrierと既知閉集合を分離。expected id不明がある時は原unknown位置を返し、対応不能なactualを余分sourceと推測しない。末尾と直前known sequenceは別変数で、ID不明末尾はtail=null、同ID再送はtailを動かさない。",
+        "expected_events内で同じknown event_idが複数ならevent_source_set_conflictを/context/expected_events、episode facetへ出す。sequence不明の一意recordはprevious known sequenceを更新せず、後続known sequenceはその前のknown sequenceと比較する。tailは別であり末尾unknownを補完しない。これらの未見組合せは追加fixture未成立。"
       ],
       "postconditions": [
         "入力不変、effect=none。素材状態から実event/保存/再生/公開/利用/完了/実資格を生成しない。"
@@ -3583,7 +3566,7 @@
         "Fieldは元presenceへ解釈して比較する。unknownを空集合/0/既知状態/許可へ補完しない。未知外側shape/正式codec/全一般域は未閉包。"
       ],
       "algorithm": [
-        "replay/handoffだけ、events.retained_event_idsの順にeffect recordを探す。key不在は/effect_records、key存在nullは/effect_records/<id>、state!=recordedは当該stateにeffect_record_unresolved。",
+        "replay/handoffだけ、events.retained_event_idsの順にeffect recordを探す。key不在は/effect_records、key存在nullは/effect_records/<id>、state!=recordedは当該stateにeffect_record_unresolved。 keyが存在しない又はrecordがnull/非objectなら、そのidについてexpected refとexecution_countの比較を行わず次のidへ進む。原不足所見は消さない。",
         "expected ref key不在は/context/expected_effect_refsへeffect_source_unresolved。keyあり値不明は元fieldへsource_unresolved、双方known相反だけsource_conflict。",
         "execution_countはbool以外の非負integer。型不明はquantity_unresolved、>1はduplicate_side_effect_execution、0はeffect_execution_not_observed。countは実provider起動/成功ではない。"
       ],
@@ -3741,7 +3724,8 @@
         "Fieldは元presenceへ解釈して比較する。unknownを空集合/0/既知状態/許可へ補完しない。未知外側shape/正式codec/全一般域は未閉包。"
       ],
       "algorithm": [
-        "handoffだけprior/successorをroot episode/revision/scope/assignment/attemptへ結ぶ。synthetic budget/cost/deadline/failuresは非負integer、cost/failure非減少、budget/deadline同値、stop reason同値、未完list包含を比較。unknownを0/初回へ補完せず、未完解消proof・全累積履歴・許可された制約変更・別attempt再束縛の正式方式はL5へ。 このprior/successor bindingは元episode/assignment/attemptへのprovenance anchorであり、新attempt identityを同一に固定する要求ではない。実旧新fence/新actor/sourceは018と正式bindingへ結ぶ。"
+        "handoffだけprior/successorをroot episode/revision/scope/assignment/attemptへ結ぶ。synthetic budget/cost/deadline/failuresは非負integer、cost/failure非減少、budget/deadline同値、stop reason同値、未完list包含を比較。unknownを0/初回へ補完せず、未完解消proof・全累積履歴・許可された制約変更・別attempt再束縛の正式方式は本限定L5でも未閉包。 このprior/successor bindingは元episode/assignment/attemptへのprovenance anchorであり、新attempt identityを同一に固定する要求ではない。実旧新fence/新actor/sourceは018と正式bindingへ結ぶ。",
+        "stop_reason_refはsuccessorを比較左側、priorを右側とし、known相反のpointerは/successor/stop_reason_ref。不明はそれぞれ元側pointerのsource_unresolved。"
       ],
       "postconditions": [
         "入力不変、effect=none。素材状態から実event/保存/再生/公開/利用/完了/実資格を生成しない。"
@@ -3790,7 +3774,9 @@
       "algorithm": [
         "useだけ既存policy state=currentとrequest→policy→independent expectedのscope/purpose/data_use_class/authority_ref/retention_untilを比較する。retentionはsynthetic非負tickでowner now>=untilを拒否。要求scopeはepisode scope、要求data classは各原event分類へ別比較。公開classificationだけで利用を許可しない。historical_useのrefused/unobserved/not_executed/succeededは既知区分として同値保持し、後の許可でprojected_stateを成功へ書換えない。 asset_exposure_class（公開等）はこの利用許可の代理にしない補助metadata。data-use class/purpose/authority/retention/scopeは別。",
         "非retention4fieldはrequest→policy→独立expectedの通常source比較。retentionだけ数量型と両側known相反の専用code/pointerを使う。policy/request/expected不明を許可へ変えない。",
-        "context.nowはcaller supplied合成tick。now>=policy untilだけ期限超過。過去4区分の原値比較と後日許可を独立に扱い、asset_exposure_classは利用許可を代行しない。"
+        "context.nowはcaller supplied合成tick。now>=policy untilだけ期限超過。過去4区分の原値比較と後日許可を独立に扱い、asset_exposure_classは利用許可を代行しない。",
+        "固定素材のpolicy stateはcurrent/revoked/unknown。currentはstate所見なし、revokedはdata_use_permission_rejected、unknown/null/absentはdata_use_permission_unresolvedを/use_policy/state、data_use facetへ出す。その他のstate語彙・複合state条件の一般域は未検証として保持し、素材Greenから実許可を生成しない。",
+        "data_use_classはuse_requestとraw events全要素を原indexで比較し、同ID重複・ID不明要素も除外しない。historical_useのoriginal_state/projected_stateはrefused/unobserved/not_executed/succeededを別々に照合し、閉集合外/null/absentなら該当fieldにhistorical_use_unresolved、両known差だけprojected_stateにhistorical_use_rewritten。未見組合せは未検証。"
       ],
       "postconditions": [
         "入力不変、effect=none。素材状態から実event/保存/再生/公開/利用/完了/実資格を生成しない。"
@@ -4347,5 +4333,49 @@
     "rule": "F01902〜08のFacetFindingはfacet/code/pointer/return_ownerの4値同一だけを重複除去し、その4値のscalar順に整列する。異facetは同じfindingでも別要素として保持。dispositionは明示policy.code_classes[code]、return_ownerは明示policy.return_ownerを同値使用。F01909は全facet影響を集約後、finding三値だけをunique/sortする。",
     "limit": "原素材の比較ラベルは正式owner-qualified routing資格ではない。"
   },
-  "local_contrast_scope": "L8の4局所例は原323を変更せず、原判定条件に基づくmap key absent/値null、bool数量、同ID再送列の対照を固定する。完成期待のID lookupや新しい許可/ゲートを追加しない。"
+  "local_contrast_scope": "L8の4局所例は原323を変更せず、原判定条件に基づくmap key absent/値null、bool数量、同ID再送列の対照を固定する。完成期待のID lookupや新しい許可/ゲートを追加しない。",
+  "detailed_code_emission": {
+    "basis": "原L4/L9のdiagnostic_policy/source_fixture_contractは引用としてbytes由来値を保持し、有限L5の明確化はfunctionsと本sectionに置く。",
+    "quantity_unresolved": "effect_records/<id>/execution_countはeffects facet。event sequenceはepisode、checkpoint last_sequenceはcheckpoint、prior/successor累積値はcontinuity、retention_until/context.nowはdata_use。",
+    "outer_shapes": "effect_recordsの個別key欠落/record nullはF01904に明示。他のrecord全体null/欠落・list全体非list等は原323と局所4対照に無く、一般判定は未閉包。型carrierのPresence保持を成功値への補完としない。",
+    "role_boundary": "diagnostic_policy.role_noteのL5で正式振分けは原L4引用。本限定L5でも正式owner資格/振分けは未閉包で、原labelを実owner receiptとしない。"
+  },
+  "local_mutation_operations": {
+    "append_twice": {
+      "scope": "L8局所対照だけ。一般patch言語や正式schemaではない。",
+      "source_pointer": "/events/0",
+      "destination": "mutation.pointerが指す既存array",
+      "operation": "元rawの/events/0 whole objectを独立複写して2件、destination arrayの末尾へ原順で追加する。元要素は保持し、sourceは追加前rawから読む。"
+    }
+  },
+  "failure_basis": [
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "pointer": "/failure_types/22",
+      "whole_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+      "object_canonical_sha256": "ba5f5e4faa290458e818b898e83dcd7efccf645d995f486bcd382b934e1132fd",
+      "quoted_members": {
+        "id": "T23",
+        "failure": "tracked runtime stateが太く、source／evidence／generatedの境界が曖昧",
+        "historical_source": "前身弱点ledger UTW-012（audit L78；`.ut-tdd` tracked 207 files）",
+        "historical_limit": "正本とprojectionの分離は述べるが、追跡対象にする生成状態の範囲を直接制約する要求は見つからない。",
+        "assessment": "source/原event/生成viewを区別し、生成表示だけの更新で正本revisionを変更しない。runtime storageの具体配置はL4の既決論点へ戻す。",
+        "runtime_prevention": "not_proven"
+      },
+      "design_response": "original events/独立比較元を保持し、projection/checkpoint/summaryの値だけで正本revisionや成功を変えない。原eventとgeneratedの正式storage配置・実運転防止は未成立。"
+    }
+  ],
+  "consumer_connections": [
+    {
+      "consumer": "OS018",
+      "source_pin": {
+        "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+        "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+        "sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+      },
+      "logical_connection": "prior/successor binding、累積予算・停止理由・未完とassignment/attempt再束縛",
+      "exact_binding_state": "未成立。既存契約への意味対応だけで実consumer wire/source資格を成立させない。"
+    }
+  ]
 }

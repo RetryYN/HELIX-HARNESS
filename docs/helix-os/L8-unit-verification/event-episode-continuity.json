@@ -551,16 +551,6 @@
           "line": 258,
           "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
           "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
-        },
-        {
-          "line": 298,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "line": 450,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
       ],
       "reuse_class": "semantic_rederivation",
@@ -618,11 +608,6 @@
           "utf8_sha256": "4c3bb1e25b2b373a18e53b6ac3947beed1576787e67ad6fba7ec30c3aca32e22"
         },
         {
-          "line": 200,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
           "line": 201,
           "text": "いずれも pure function とし、DB write、network、ファイル I/O、時刻取得を持たない。判定に必要な",
           "utf8_sha256": "ebdb6f803d9698456c4738099c4cacf3708e1d90033781b7a4d08f26beadc354"
@@ -636,11 +621,6 @@
           "line": 242,
           "text": "「吸収」ではなく「拒否」であり、dedupe を暗黙上書きの隠れ蓑にしない。",
           "utf8_sha256": "f0f024006ba8af8d496fb21dfbb19a29ccf13a8f75179f7be5861f0f94aed469"
-        },
-        {
-          "line": 243,
-          "text": "",
-          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         },
         {
           "line": 244,
@@ -808,7 +788,8 @@
   "remaining": [
     "正式wire/schema/codec/parser/float/resource/encode/未知key方針・任意外側shape/全一般域は未成立。原323のlogical引数/全返却/中間値は具体化しcodec不足を理由に未materializeにしない。",
     "全source資格/custody/訂正lineage/全累積履歴/並行append/crash/replay/正式retention-time/実I/O・実TDD/CI/L11/全92親430意味閉包/実装Readyは未成立。",
-    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの前提素材であり本作業は実TDDではない。"
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの前提素材であり本作業は実TDDではない。",
+    "R1未見組合せ: expected id重複、stop reason相反、ID不明/重複eventの用途比較、sequence unknownを跨ぐ順序、閉集合外projected stateとrecord全体欠落。有限規則は明記したが当該新fixtureによる識別は未成立。"
   ],
   "id": "HELIXOS-L8-019",
   "pair": "HELIXOS-L5-019",
@@ -207024,5 +207005,13 @@
       "execution_state": "not_executed",
       "actual_event_written": false
     }
-  ]
+  ],
+  "local_mutation_operations": {
+    "append_twice": {
+      "scope": "L8局所対照だけ。一般patch言語や正式schemaではない。",
+      "source_pointer": "/events/0",
+      "destination": "mutation.pointerが指す既存array",
+      "operation": "元rawの/events/0 whole objectを独立複写して2件、destination arrayの末尾へ原順で追加する。元要素は保持し、sourceは追加前rawから読む。"
+    }
+  }
 }
