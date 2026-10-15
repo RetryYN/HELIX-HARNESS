@@ -1406,31 +1406,58 @@
             "optional_member_semantics": "member不在のAbsentと、memberが存在して値がnullであるPresent(null)は区別する。",
             "properties": {
               "actual_LABO_evaluation": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_OS_registration": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_acceptance": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_authority_changed": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_implementation_ready": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_accepted": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_mature": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_product_selected": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_promotion": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               }
             }
           },
@@ -1766,6 +1793,7 @@
               "kind": {
                 "type": "enum",
                 "values": [
+                  "content_conflict",
                   "content_corresponding_in_fixture"
                 ]
               },
@@ -2073,6 +2101,7 @@
                 "evaluation",
                 "evidence",
                 "identity",
+                "kind",
                 "limitation",
                 "provenance",
                 "revision",
@@ -3027,36 +3056,66 @@
             "optional_member_semantics": "member不在のAbsentと、memberが存在して値がnullであるPresent(null)は区別する。",
             "properties": {
               "actual_LABO_evaluation": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_OS_registration": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_acceptance": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_authority_changed": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_implementation_ready": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_accepted": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_mature": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_product_selected": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_promotion": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               }
             }
           },
           "human_gate_added": {
-            "type": "boolean"
+            "type": "enum",
+            "values": [
+              false
+            ]
           },
           "independence_result": {
             "type": "enum",
@@ -3556,31 +3615,58 @@
             "optional_member_semantics": "member不在のAbsentと、memberが存在して値がnullであるPresent(null)は区別する。",
             "properties": {
               "actual_LABO_evaluation": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_OS_registration": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_acceptance": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_authority_changed": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_implementation_ready": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_accepted": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_knowledge_mature": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_product_selected": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               },
               "actual_promotion": {
-                "type": "boolean"
+                "type": "enum",
+                "values": [
+                  false
+                ]
               }
             }
           },
@@ -3766,7 +3852,8 @@
           "/claims/accepted_without_source",
           "/claims/accepted_without_counterexample",
           "/claims/accepted_without_evaluation",
-          "/claims/unknown_as_empty"
+          "/claims/unknown_as_empty",
+          "/original_subject"
         ],
         "subject_comparisons": [
           {
@@ -3828,11 +3915,27 @@
           }
         ],
         "evaluation_comparison": {
-          "left": "/original_evaluation/subject",
-          "right": "/provided_evaluation/subject",
-          "mode": "whole_subject_recursive_json_equality",
-          "absent_or_null": "missing",
-          "separation": "original_evaluation_refは評価identity/revisionを別に保持する。この比較は、保持した評価対象と提出した評価対象の知識subject全体だけを照合する。"
+          "comparisons": [
+            {
+              "name": "evaluation_subjects",
+              "left": "/original_evaluation/subject",
+              "right": "/provided_evaluation/subject",
+              "mode": "whole_subject_recursive_json_equality"
+            },
+            {
+              "name": "retained_subject_to_candidate",
+              "left": "/original_evaluation/subject",
+              "right": "/original_subject",
+              "mode": "whole_subject_recursive_json_equality"
+            }
+          ],
+          "aggregate_order": [
+            "missing",
+            "content_conflict",
+            "content_corresponding_in_fixture"
+          ],
+          "aggregate_rule": "いずれかの比較がmissingならmissing。missingがなくcontent_conflictが一つ以上ならcontent_conflict。両比較がcontent_corresponding_in_fixtureの場合だけcontent_corresponding_in_fixture。",
+          "separation": "original_evaluation_refは評価自身のidentity/revisionを別に保持する。対象比較はsubject全体を使い、評価対象知識と原candidateの対応も確認する。"
         },
         "claim_projection": [
           {
@@ -3927,7 +4030,7 @@
             "revision": "/original_evaluation/revision"
           },
           "submitted_evaluated_knowledge_ref": "/provided_evaluation/subject",
-          "retained_evaluated_knowledge_ref": "/original_subject"
+          "retained_evaluated_knowledge_ref": "/original_evaluation/subject"
         },
         "fixed_values": {
           "effects": {
@@ -4406,6 +4509,58 @@
         "formal_path": "/product_content_rule/false",
         "case_id": "B007-B01-LIMITED-SEED-NOT-PROMOTED",
         "expected_path": "/product_content_result"
+      },
+      {
+        "function": "BRAIN007-F01",
+        "literal": "missing",
+        "formal_path": "/comparison/null_or_absent",
+        "case_id": "B007-F01-SOURCE-MISSING",
+        "expected_path": "/content_results/source",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-provenance-promotion.json",
+        "source_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
+        "source_file_sha256": "6c35b8a7bbaf4c3b07ed4e683934de6acaff76bc6c3b75b8465a456fb8debdb9",
+        "case_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
+        "expected_canonical_sha256": "2359d85659c4d323adbf570367becaf03d7df4c420698c66a1dab75622146c20",
+        "literal_value": "missing"
+      },
+      {
+        "function": "BRAIN007-F01",
+        "literal": "content_conflict",
+        "formal_path": "/comparison/different",
+        "case_id": "B007-F01-SUBJECT-IDENTITY-FOREIGN",
+        "expected_path": "/subject_results/identity",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-provenance-promotion.json",
+        "source_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
+        "source_file_sha256": "6c35b8a7bbaf4c3b07ed4e683934de6acaff76bc6c3b75b8465a456fb8debdb9",
+        "case_pointer": "/verification_obligations/0/concrete_cases/10/expected_material",
+        "expected_canonical_sha256": "c4f3df858f79c52918a8474bc2a5960a8c5230c382daeb2bd86b3b884b2d571b",
+        "literal_value": "content_conflict"
+      },
+      {
+        "function": "BRAIN007-B01",
+        "literal": "rejected",
+        "formal_path": "/functions/BRAIN007-B01/claim_projection/1/true",
+        "case_id": "B007-B01-PRODUCT_RULE_DIRECT_COPY",
+        "expected_path": "/claim_results/product_rule_direct_copy",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-provenance-promotion.json",
+        "source_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
+        "source_file_sha256": "6c35b8a7bbaf4c3b07ed4e683934de6acaff76bc6c3b75b8465a456fb8debdb9",
+        "case_pointer": "/verification_obligations/2/concrete_cases/15/expected_material",
+        "expected_canonical_sha256": "98ed3662edd10729cd975406f0c9ea9a587799ca3804d15a79cb89b47cf2e748",
+        "literal_value": "rejected"
+      },
+      {
+        "function": "BRAIN007-B01",
+        "literal": "none",
+        "formal_path": "/functions/BRAIN007-B01/claim_projection/1/false",
+        "case_id": "B007-B01-LIMITED-SEED-NOT-PROMOTED",
+        "expected_path": "/claim_results/product_rule_direct_copy",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-provenance-promotion.json",
+        "source_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
+        "source_file_sha256": "6c35b8a7bbaf4c3b07ed4e683934de6acaff76bc6c3b75b8465a456fb8debdb9",
+        "case_pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
+        "expected_canonical_sha256": "c07b98aef7edfc2ea7373ba1724abd098eb622b08de5d73fa3423d8a0a9cb4d2",
+        "literal_value": "none"
       }
     ]
   },
@@ -4418,7 +4573,8 @@
   "limitations": [
     "資格、独立性の実証、正式schema/codec、owner-qualified binding、実採否、実promotionは未成立。",
     "固定rawで表れない型不正、重複記録、複数異常同時発生、任意のAbsent/null組合せは未評価。",
-    "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。"
+    "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。",
+    "L4/L10のowner別返却候補は原L9 wholeの返却shapeに存在しないため未閉包。upstream_route/product_content_resultをその代用とせず、新しいwhole出力を追加しない。"
   ],
   "readiness": {
     "implementation": "not_ready",
@@ -4430,5 +4586,27 @@
   },
   "authority_effect": "none",
   "operation_effect": "none",
-  "execution_state": "not_executed"
+  "execution_state": "not_executed",
+  "unclosed_owner_returns": [
+    {
+      "requirement_ref": "HELIXBRAIN-L3-007-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-007-F02",
+      "design_contract_ref": "HELIXBRAIN-L4-007-F02",
+      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/1/output_meanings/1",
+      "meaning": "既存変更経路/上流意味ownerへの返却候補",
+      "boundary": "L4/L10はowner別の返却候補を要求するが、原L9 F02 wholeの出力fieldはupstream_route一つであり、owner別候補を表現しない。B01の製品分離結果はこのowner別返却を代替しない。",
+      "status": "unclosed_in_this_L9_output_contract",
+      "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-007-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-007-B01",
+      "design_contract_ref": "HELIXBRAIN-L4-007-B01",
+      "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/2/output_meanings/1",
+      "meaning": "責務別不足とauthority返却候補",
+      "boundary": "原L9 B01 wholeには責務別authority返却候補fieldがない。product_content_resultは製品固有意味の切離しに限り、責務別候補やauthority変更を表さない。",
+      "status": "unclosed_in_this_L9_output_contract",
+      "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
+    }
+  ]
 }
