@@ -14127,13 +14127,15 @@
           "pointer": "/cases/47/arguments/packet/original_template",
           "id": null,
           "raw_digest_observed": "30c45e2bad6d4211bb5868a19376b13f58aaf4ba1619403a00062d4438a92b4c",
-          "raw_digest_declared": "30c45e2bad6d4211bb5868a19376b13f58aaf4ba1619403a00062d4438a92b4c",
-          "raw_digest_matches": true,
+          "raw_digest_declared": "0000000000000000000000000000000000000000000000000000000000000000",
+          "raw_digest_matches": false,
           "digest_fields": {
             "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
           },
           "classification": "intentional_negative",
-          "basis": "F03-SOURCE-DIGEST fixture deliberately sets declared source digest to zero while raw bytes retain the nonzero digest; expected source_digest_conflict and incomplete content are part of the fixture."
+          "basis": "F03-SOURCE-DIGESTは宣言sha256をゼロへ変更する意図的負例。rawの原bytesは不変で、宣言値と観測hashは不一致。元source mutationとsource_digest_conflict/incomplete期待へ戻して照合する。",
+          "raw_digest_declared_field": "sha256",
+          "baseline_digest_before_mutation": "30c45e2bad6d4211bb5868a19376b13f58aaf4ba1619403a00062d4438a92b4c"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14160,7 +14162,8 @@
             "case_canonical_sha256_at_declared_revision": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14187,7 +14190,8 @@
             "case_canonical_sha256_at_declared_revision": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14214,7 +14218,8 @@
             "case_canonical_sha256_at_declared_revision": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14241,7 +14246,8 @@
             "case_canonical_sha256_at_declared_revision": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14268,7 +14274,8 @@
             "case_canonical_sha256_at_declared_revision": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14295,7 +14302,8 @@
             "case_canonical_sha256_at_declared_revision": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14322,7 +14330,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14349,7 +14358,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14376,7 +14386,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14403,7 +14414,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14430,7 +14442,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14457,7 +14470,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14484,7 +14498,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14511,7 +14526,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14538,7 +14554,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14565,7 +14582,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14592,7 +14610,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14619,7 +14638,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14646,7 +14666,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14673,7 +14694,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14700,7 +14722,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14727,7 +14750,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14754,7 +14778,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14781,7 +14806,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14808,7 +14834,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14835,7 +14862,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14862,7 +14890,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14889,7 +14918,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14916,7 +14946,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14943,7 +14974,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14970,7 +15002,8 @@
             "case_canonical_sha256_at_declared_revision": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -14997,7 +15030,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15024,7 +15058,8 @@
             "case_canonical_sha256_at_declared_revision": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15051,7 +15086,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15078,7 +15114,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15105,7 +15142,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15132,7 +15170,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15159,7 +15198,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15186,7 +15226,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15213,7 +15254,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15240,7 +15282,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15267,7 +15310,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15294,7 +15338,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15321,7 +15366,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15348,7 +15394,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15375,7 +15422,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15402,7 +15450,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15429,7 +15478,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15456,7 +15506,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15483,7 +15534,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15510,7 +15562,8 @@
             "case_canonical_sha256_at_declared_revision": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15537,7 +15590,8 @@
             "case_canonical_sha256_at_declared_revision": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15564,7 +15618,8 @@
             "case_canonical_sha256_at_declared_revision": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15591,7 +15646,8 @@
             "case_canonical_sha256_at_declared_revision": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15618,7 +15674,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15645,7 +15702,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15672,7 +15730,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15699,7 +15758,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15726,7 +15786,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-019",
@@ -15753,7 +15814,8 @@
             "case_canonical_sha256_at_declared_revision": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 is the digest of this raw field; source_sha256 is a different whole-L9-source digest. The L8 source pin equals that whole-file hash at source_main; the pointed source case hash is checked independently."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hashで一致する。source_sha256はsource_revisionにおける別のL9 whole-file hashであり、rawへ比較しない。source_case_pointerのcanonical hashも、その宣言revisionの原objectへ戻して別に照合する。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15780,7 +15842,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15807,7 +15870,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15834,7 +15898,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15861,7 +15926,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15888,7 +15954,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15915,7 +15982,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15942,7 +16010,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15969,7 +16038,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -15996,7 +16066,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16023,7 +16094,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16050,7 +16122,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16077,7 +16150,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16104,7 +16178,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16131,7 +16206,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16158,7 +16234,8 @@
             "case_canonical_sha256_at_declared_revision": "39deb67b4faf72216265236395c99a61f0bc79b5e9584fdc2f7c6caf73c6955b"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16185,7 +16262,8 @@
             "case_canonical_sha256_at_declared_revision": "39deb67b4faf72216265236395c99a61f0bc79b5e9584fdc2f7c6caf73c6955b"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16212,7 +16290,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16239,7 +16318,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16266,7 +16346,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16293,7 +16374,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16320,7 +16402,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16347,7 +16430,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16374,7 +16458,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16401,7 +16486,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16428,7 +16514,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16455,7 +16542,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16482,7 +16570,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16509,7 +16598,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16536,7 +16626,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16563,7 +16654,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16590,7 +16682,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16617,7 +16710,8 @@
             "case_canonical_sha256_at_declared_revision": "9200b4f33f2b775a5a3c45b72df7b818c94b5a8f21105f1c4596198717741abe"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16644,7 +16738,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16671,7 +16766,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16698,7 +16794,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16725,7 +16822,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16752,7 +16850,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16779,7 +16878,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16806,7 +16906,8 @@
             "case_canonical_sha256_at_declared_revision": "fdef938762537b1dce9ff7b7ae66f14bd10a9293553e24b7181a898a5a06d526"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16833,7 +16934,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16860,7 +16962,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16887,7 +16990,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16914,7 +17018,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16941,7 +17046,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16968,7 +17074,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -16995,7 +17102,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17022,7 +17130,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17049,7 +17158,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17076,7 +17186,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17103,7 +17214,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17130,7 +17242,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17157,7 +17270,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17184,7 +17298,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17211,7 +17326,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17238,7 +17354,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17265,7 +17382,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17292,7 +17410,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17319,7 +17438,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17346,7 +17466,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17373,7 +17494,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17400,7 +17522,8 @@
             "case_canonical_sha256_at_declared_revision": "39deb67b4faf72216265236395c99a61f0bc79b5e9584fdc2f7c6caf73c6955b"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17427,7 +17550,8 @@
             "case_canonical_sha256_at_declared_revision": "39deb67b4faf72216265236395c99a61f0bc79b5e9584fdc2f7c6caf73c6955b"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17454,7 +17578,8 @@
             "case_canonical_sha256_at_declared_revision": "39deb67b4faf72216265236395c99a61f0bc79b5e9584fdc2f7c6caf73c6955b"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17481,7 +17606,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17508,7 +17634,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17535,7 +17662,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17562,7 +17690,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17589,7 +17718,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17616,7 +17746,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17643,7 +17774,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17670,7 +17802,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17697,7 +17830,8 @@
             "case_canonical_sha256_at_declared_revision": "b9dc9fb44c68ce622127f2d40d2cedb2448ae3b7408be8a305b24eb9f7553bad"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17724,7 +17858,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17751,7 +17886,8 @@
             "case_canonical_sha256_at_declared_revision": "64daa98534adff34984cc4e7ba8f61d1f41395e2076f74762d241b7149117b6d"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17778,7 +17914,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17805,7 +17942,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17832,7 +17970,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17859,7 +17998,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17886,7 +18026,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17913,7 +18054,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17940,7 +18082,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17967,7 +18110,8 @@
             "case_canonical_sha256_at_declared_revision": "f49e17786d447ed0ebacce226c9fef9315cd94d6608cb65a580abf075529bc52"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -17994,7 +18138,8 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
         },
         {
           "parent": "HELIXBRAIN-L2-030",
@@ -18021,7 +18166,28 @@
             "case_canonical_sha256_at_declared_revision": "24ab07b5615de55da2e982d080c5f2b21dc087cb60cfc1bc0aa9fdc9900c63c0"
           },
           "classification": "scanner_semantic_misclassification",
-          "basis": "raw_sha256 describes the embedded raw field, while source_sha256 describes the same-candidate-design L9 whole file; these are distinct digest roles. L8 explicitly separates its historical source pin at a451a40 from the current candidate L9 binding. The source-case pointer hash is verified at source_main, and source_sha256 is verified against the candidate L9 whole bytes at BASE; the older source pin is not silently rewritten."
+          "basis": "raw_sha256はこのraw_utf8の原bytes hash。source_sha256は固定snapshot 204ae527d8334849c87fdcc90d55d1fec5a92cde の同candidate L9全体hashで、歴史pinとは別役割。source caseはsource_mainの原objectへ戻して照合し、古いpinを現在candidateへ読み替えない。",
+          "raw_digest_declared_field": "raw_sha256"
+        }
+      ],
+      "classification_correspondence": [
+        {
+          "records_classification": "source_file_digest_compared_to_different_raw_bytes",
+          "source_digest_details_classification": "scanner_semantic_misclassification",
+          "parent": "HELIXBRAIN-L2-019",
+          "count": 60
+        },
+        {
+          "records_classification": "same_snapshot_source_file_digest_compared_to_different_raw_bytes",
+          "source_digest_details_classification": "scanner_semantic_misclassification",
+          "parent": "HELIXBRAIN-L2-030",
+          "count": 84
+        },
+        {
+          "records_classification": "intentional_negative_digest_conflict",
+          "source_digest_details_classification": "intentional_negative",
+          "parent": "HARNESS-L2-041",
+          "count": 1
         }
       ]
     },
@@ -18057,7 +18223,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
@@ -18085,7 +18251,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
             "declared_hash": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
@@ -18113,7 +18279,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/design-input-obligation-trace.json",
@@ -18141,7 +18307,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/domain-identity-evolution.json",
@@ -18169,7 +18335,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
             "declared_hash": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/domain-identity-evolution.json",
@@ -18197,7 +18363,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
             "declared_hash": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/domain-identity-evolution.json",
@@ -18225,7 +18391,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/knowledge-hierarchy.json",
@@ -18361,7 +18527,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
             "declared_hash": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/labo-evaluation-candidate-receipt.json",
@@ -18389,7 +18555,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L5-detail-design/pattern-comparison.json",
@@ -18703,7 +18869,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
             "declared_hash": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
@@ -18751,7 +18917,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L8-unit-verification/candidate-authority-boundary.json",
@@ -18779,7 +18945,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
             "declared_hash": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L8-unit-verification/candidate-authority-boundary.json",
@@ -18807,7 +18973,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
             "declared_hash": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L8-unit-verification/knowledge-hierarchy.json",
@@ -18943,7 +19109,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
             "declared_hash": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-brain/L8-unit-verification/labo-evaluation-candidate-receipt.json",
@@ -25307,7 +25473,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "0ebca8ba1b0c55e228bbab525dea77ef54fe252aedd0f695afd0372244493330",
             "declared_hash": "0ebca8ba1b0c55e228bbab525dea77ef54fe252aedd0f695afd0372244493330",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-infrastructure/L8-unit-verification/security-worker-operation.json",
@@ -25369,7 +25535,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "3b385f3995f8c1710d24d5f0e369d1f1755b40e4adf069df9fc7dd25d0dd6b66",
             "declared_hash": "3b385f3995f8c1710d24d5f0e369d1f1755b40e4adf069df9fc7dd25d0dd6b66",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
@@ -25397,7 +25563,7 @@
             "path_exists_at_declared_revision": false,
             "hash_at_snapshot": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
             "declared_hash": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
-            "interpretation": "Current bytes may match a later source, but this does not prove the declared historical binding."
+            "interpretation": "一次走査が使ったrevisionは判断・監査対象のrevisionであり、当該fileの所在revisionを表すとは限らない。親訂正のfile_revisionと役割に戻して照合する。明示歴史revisionのない4件は固定204ae527d8334849c87fdcc90d55d1fec5a92cde内のbundle一致だけで、過去の由来は推定しない。"
           },
           "parent_revision_role_resolution": {
             "document": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
@@ -25474,7 +25640,27 @@
         "head": "f95ba248e5a9b04104f08801db6d434e2a82f47c",
         "merge": "4c79f1e6915b9647d957cd969f6b938f00e12b89"
       },
-      "limit": "204aeのscan件数を4c79の再走査件数として使わない。差分2文書は41元wholeと4局所probeの限定対照を含む独立reviewで別に確認した。"
+      "limit": "204aeのscan件数を4c79の再走査件数として使わない。差分2文書は41元wholeと4局所probeの限定対照を含む独立reviewで別に確認した。",
+      "parent": "HARNESS-L2-009"
+    },
+    "citation_extraction_contract": {
+      "source_main": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+      "documents": "固定204aeの全368 L4/L9/L5/L8 JSON。全nested dict/listを元順に走査し、ID参照scanのEXCLUDEを使わない。",
+      "reference_notation": "以下のPython3手順は監査の選別/観測記法であり製品runtime/意味正本/資格判定ではない。read(path,revision)は同repositoryのgit blob原bytes（revision省略時はsource_main）、shaはSHA-256 lowercase hex、json/reはPython標準library。任意codeを製品で実行する要求ではない。 BASEは上記source_mainの固定revisionに束縛する。",
+      "selection_and_observation_code": "def source_checks(docs):\n checks=[]\n for path,a in docs.items():\n  def rec(v,p='',ctxpath=None,ctxrev=None):\n   if isinstance(v,dict):\n    sp=v.get('path') or v.get('source_path') or ctxpath\n    rev=v.get('exact_record_commit') or v.get('source_revision') or v.get('observed_revision') or v.get('approved_content_revision') or v.get('revision') or ctxrev\n    if not isinstance(rev,str) or not re.fullmatch('[0-9a-f]{40}',rev):rev=ctxrev\n    # only explicit source path declarations, never digest fields with no source path\n    if isinstance(sp,str) and (sp.startswith('docs/') or sp.startswith('archive/') or sp.startswith('scaffold/')) and (any(k in v for k in ['start_line','end_line','line','read_lines','line_range','line_range_inclusive','end_line_exclusive','line_start','line_end','source_line','source_line_span','individual_lines','read_line_locators','lines']) or (('path'in v or 'source_path'in v) and any(k in v for k in ['whole_file_sha256','file_sha256','source_sha256','sha256']))):\n     source=None; error=None\n     declared_sp=sp\n     if v.get('asset_id') and sp.startswith('docs/'):\n      rows=[json.loads(x) for x in read('docs/governance/legacy-asset-disposition.jsonl').decode().splitlines()]\n      ar=next((x for x in rows if x.get('asset_id')==v['asset_id'] and x.get('source_path')==sp),None)\n      if ar:\n       try:read(sp,rev or BASE)\n       except subprocess.CalledProcessError:sp='archive/legacy-generation-2026-09-14/root/'+sp\n     try:source=read(sp,(rev if isinstance(rev,str) and re.fullmatch('[0-9a-f]{40}',rev) else BASE))\n     except subprocess.CalledProcessError:error='source_not_at_declared_revision'\n     for key in ['whole_file_sha256','file_sha256','source_sha256','sha256']:\n      if key in v and ('path'in v or 'source_path'in v) and isinstance(v[key],str) and re.fullmatch('[0-9a-f]{64}',v[key]) and not (key=='sha256' and ('raw_section_utf8'in v or 'exact_quote'in v or 'line_range'in v or 'line_range_inclusive'in v or 'end_line_exclusive'in v)):\n       checks.append({'document':path,'pointer':p+'/'+key,'source_path':sp,'source_revision':rev or BASE,'kind':'whole_file_hash','declared':v[key],'observed':sha(source) if source is not None else None,'state':'matched' if source is not None and sha(source)==v[key] else error or 'mismatch','revision_basis':'explicit' if rev else 'current_snapshot_no_explicit_revision'})\n     span=None;quote=None\n     if 'start_line'in v and 'end_line_exclusive'in v:span=[v['start_line'],v['end_line_exclusive']-1];quote=v.get('quote',v.get('exact_quote'))\n     elif 'start_line'in v and ('end_line'in v or 'end_line_inclusive'in v):span=[v['start_line'],v.get('end_line',v.get('end_line_inclusive'))];quote=v.get('raw_section_utf8',v.get('exact_quote',v.get('quote')))\n     elif 'line_start'in v and 'line_end'in v:span=[v['line_start'],v['line_end']];quote=v.get('source_quote')\n     elif isinstance(v.get('source_line_span'),list) and len(v['source_line_span'])==2:span=v['source_line_span'];quote=v.get('quote')\n     elif isinstance(v.get('line'),int):span=[v['line'],v['line']];quote=v.get('exact_line_quote',v.get('exact_line',v.get('text',v.get('quote'))))\n     elif isinstance(v.get('source_line'),int):span=[v['source_line'],v['source_line']];quote=v.get('source_line_text')\n     elif isinstance(v.get('read_lines'),list) and len(v['read_lines'])==2:span=v['read_lines'];quote=v.get('quote')\n     elif isinstance(v.get('line_range_inclusive'),str) and re.fullmatch(r'\\d+-\\d+',v['line_range_inclusive']):span=list(map(int,v['line_range_inclusive'].split('-')));quote=v.get('exact_quote')\n     elif isinstance(v.get('line_range'),str) and re.fullmatch(r'\\d+-\\d+',v['line_range']):span=list(map(int,v['line_range'].split('-')));quote=v.get('quote')\n     elif isinstance(v.get('lines'),list) and len(v['lines'])==2:span=v['lines'];quote=v.get('quote')\n     if span and all(isinstance(x,int) and not isinstance(x,bool) for x in span):\n      lines=source.decode().splitlines() if source is not None else [];lo,hi=span;valid=1<=lo<=hi<=len(lines)\n      selected='\\n'.join(lines[lo-1:hi]) if valid else None\n      qmatch=quote is None or selected==quote or (selected is not None and selected+'\\n'==quote)\n      checks.append({'document':path,'pointer':p,'source_path':sp,'source_revision':rev or BASE,'kind':'line_bounds_and_quote','start_line':lo,'end_line':hi,'source_line_count':len(lines),'declared_source_path':declared_sp,'quote_present':quote is not None,'quote_utf8_sha256':sha(quote.encode()) if isinstance(quote,str) else None,'state':('matched' if qmatch else 'quote_mismatch') if valid else error or 'out_of_bounds'})\n     for lk in ['individual_lines','read_line_locators']:\n      if source is not None and isinstance(v.get(lk),list) and all(isinstance(x,int) and not isinstance(x,bool) for x in v[lk]):\n       ns=v[lk];linecount=len(source.decode().splitlines());checks.append({'document':path,'pointer':p+'/'+lk,'source_path':sp,'source_revision':rev or BASE,'kind':'individual_line_bounds','line_numbers':ns,'source_line_count':linecount,'state':'matched' if all(1<=n<=linecount for n in ns) else 'out_of_bounds'})\n     if span and source is not None and valid:\n      actual_plain='\\n'.join(source.decode().splitlines()[lo-1:hi]).encode()\n      actual_with_lf=''.join(source.decode().splitlines(keepends=True)[lo-1:hi]).encode()\n      for hk in ['quote_sha256','line_sha256','selected_lines_sha256','source_line_sha256']:\n       if isinstance(v.get(hk),str):\n        expected_hash=v[hk].removeprefix('sha256:');variants={'source_selected_without_final_LF':sha(actual_plain),'source_selected_original_LF':sha(actual_with_lf)}\n        matches=[k for k,h in variants.items() if h==expected_hash]\n        checks.append({'document':path,'pointer':p+'/'+hk,'source_path':sp,'source_revision':rev or BASE,'kind':'selected_text_hash','declared':expected_hash,'observed_variants':variants,'matched_encoding':matches,'state':'matched' if matches else 'mismatch'})\n     if isinstance(quote,str) and span and source is not None and valid and isinstance(v.get('sha256'),str) and ('raw_section_utf8'in v or 'exact_quote'in v or 'line_range'in v or 'line_range_inclusive'in v or 'end_line_exclusive'in v):\n      qbytes=''.join(source.decode().splitlines(keepends=True)[lo-1:hi]).encode()\n      checks.append({'document':path,'pointer':p+'/sha256','source_path':sp,'source_revision':rev or BASE,'kind':'selected_lines_hash','declared':v['sha256'],'observed':sha(qbytes),'state':'matched' if sha(qbytes)==v['sha256'] else 'mismatch'})\n    for k,x in v.items():rec(x,p+'/'+esc(k),sp if isinstance(sp,str) else ctxpath,rev)\n   elif isinstance(v,list):\n    for i,x in enumerate(v):rec(x,p+'/'+str(i),ctxpath,ctxrev)\n  rec(a)\n return checks",
+      "code_utf8_sha256": "60bd4250a30cb90cc1d40fe97e795dec0b20b5a56a078308ab07ba862cbba355",
+      "denominator": 19022,
+      "matched": 18621,
+      "nominal_unmatched": 401,
+      "unmatched_selector": "出力recordのstate != matchedを選ぶ。source_checks出力のdocument/pointer/kindを一件のidentityとする。誤ったhash役割とrevision推測の観測結果も削除せず、その後に本記録のrole_evidence/parent_revision_role_resolutionで訂正する。",
+      "limit": "この手順が拾う明示path/hash/行形式に限る。全引用形式・全source・意味・承認/資格の網羅を主張しない。",
+      "helper_contract": {
+        "BASE": "source_mainの固定revision",
+        "read": "read(path, revision=BASE)はgit objectの元bytesを返す。存在しないpath/revisionではsubprocess.CalledProcessErrorを返す。",
+        "sha": "SHA-256 lowercase hex。",
+        "esc": "str(value).replace(\"~\", \"~0\").replace(\"/\", \"~1\") によるRFC6901 token escape。",
+        "modules": "json/re/subprocessはPython標準library。subprocessはgit-read失敗の例外型にのみ使用し、選別手順から任意commandを実行しない。"
+      }
     }
   },
   "legacy_correspondence": {
@@ -25513,9 +25699,16 @@
         "quote_utf8_sha256": "231c1a6d64b88d6d52af935a82f84a3545eb0a4236f86adaefb14a2f13bb9098"
       }
     ],
-    "preserve": "4成果物と意味正本/view/所在を分離し、source不足の空集合化、HEAD未束縛、自己申告の完了とstatusによる成立偽装を防ぐ。",
+    "preserve": "4成果物と意味正本/view/所在を分離する。UTW-005のHEAD未束縛、UTW-014のsource不足の空集合化、UTW-020の巨大集約による診断粗化、UTW-021の自己申告完了、UTW-023のstatusによる成立偽装を持ち込まない。",
     "change": "現V12のL4/L9・L5/L8へscope付き監査を再導出し、hash役割/file revisionの推測を一次recordへ戻す。旧registry/CLI/DB/一律full検査や新gateを移植しない。",
-    "reason": "全詳細配置後の二重確認と見落とし防止という依頼に従い、固定source・再照合範囲・未証明を再利用可能に保つ。"
+    "reason": "全詳細配置後の二重確認と見落とし防止という依頼に従い、固定source・再照合範囲・未証明を再利用可能に保つ。",
+    "failure_ids": [
+      "UTW-005",
+      "UTW-014",
+      "UTW-020",
+      "UTW-021",
+      "UTW-023"
+    ]
   },
   "consumer_boundary": "後続の意味owner/設計review/実装準備は対象revisionと影響先を本inventoryから辿れる。hash一致/文書配置/独立review数だけで設計意味・source資格・操作許可・CI・L11受入を生成しない。",
   "completion_evidence_boundary": {
@@ -25562,5 +25755,37 @@
     "既知の設計不足を既存要求と対oracleに沿って是正し、変更後HEADの独立reviewと影響先再照合を残す。上流意味の還流候補はPO指示どおり設計Refactor時にまとめる。",
     "実装準備は既存roadmap順5〜6の対象tool/版/設定/検査command、schema/codec/resolver、L6関数設計/L7対検証と凍結対象を選択scopeで具体化する。全Stage/全技術/全sourceの実稼働を一律開始gateにしない。"
   ],
-  "readiness": "not_established_by_this_source_audit"
+  "readiness": "not_established_by_this_source_audit",
+  "completion_evidence_source": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+    "revision": "4c79f1e6915b9647d957cd969f6b938f00e12b89",
+    "file_bytes_sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+    "bytes": 18373797,
+    "pointer": "/existing_completion_evidence_contract",
+    "object_canonical_sha256": "85502ab815cf2e8d647030ff18af8d1a9454ff8eeac6de4f4d63d715355b885b"
+  },
+  "remaining_work_sources": [
+    {
+      "path": "docs/governance/requirements-first-roadmap.md",
+      "revision": "4c79f1e6915b9647d957cd969f6b938f00e12b89",
+      "file_bytes_sha256": "1e82221b76f875fc2bea4addd3a2d6c5a820308de7de6ba081cebe1de9a6b1aa",
+      "bytes": 104025,
+      "start_line": 406,
+      "end_line": 416,
+      "quote": "\n| 順 | 作業・責務 | 入力と具体化する成果 | 確認内容と不成立時の戻し先 |\n|---:|---|---|---|\n| 1 | 限定要件の失敗被覆照合（各意味owner） | 62失敗型/37弱点、10/10原因6項目、採択親と現限定対（本監査時92親・430対、監査JSONの`denominators`参照）を照合。選択/非選択/部分/運用/仮設を全行処置する | 失敗→義務→具体負例→後続作業が辿れる。必要契約missing/unknownは完了にせず対象L3/L10へ追補。上流意味変更だけL2/POへ戻す |\n| 2 | HARNESSの工程・検査義務具体化 | 001/003/004/005/015/022/023/040/041/048/056と対oracle。identity/owner/domain/依存方向/六pair/影響/凍結/戻し先を対象へ適用する | 規則の文字列・件数でなく、義務を落とした負例を説明できる。既決scope内の不足はownerへ。全旧source移管を一律条件にしない |\n| 3 | BRAINの知識入力とCOREの適用 | 限定採用済み032/MSG/VT/SDOP/技法、知識版/出所/適用条件とquery/receipt。CORE009がexact set、kind固有義務、不足、N/A、Backflow入力を導く | 定義欠落と案件値未決を区別。必須field/分岐の脱落、古い知識、根拠無しN/Aを負例にする。汎用定義はBRAIN、製品値はCORE/要求形成へ |\n| 4 | L4/L9：正本・配置・更新境界 | 既決配置基本案とL4の4論点を再起草。JSON意味正本/宣言/台帳一意性、source/view/判断/証拠/runtime配置、ReleaseManifest/pointer/実起動/rollback区別、公開/配布区別、記録ID/path/権限/CASを設計する | カット済みL4を復元しない。path変更をidentity/意味/許可変更へ変換しない。未選択release/実renameを発行しない。unknownは配置/意味ownerへ |\n| 5 | L4/L9：最小開発環境と検査構成 | 対象OS/CPU/shell、Python意味コア、必要外部境界、runtime/tool対応版、依存manifest/lock、設定、setup/更新/復旧、検査の対象集合と省略回収を導く | インストール済み版/旧lockを採用根拠にしない。OSS一次資料から既存toolを比較し最小構成を選ぶ。local/CIで同じ契約/設定/対象集合を再現できる対oracleを持つ |\n| 6 | L5/L8・L6/L7：schema・検査・接続の対設計 | 正式JSON schema/semantic projection、双方向trace、query/receipt/operation/event版、同一input決定性、原子CAS、各検査commandと結果形式を具体化。実装前にtest/oracleと負例を定義・凍結する | formatter/lintは形式・言語規律、文書監査はID/参照/pair/authority/生成差分、behavior testは意味を判定。schema validやリンク存在だけで意味成立にしない。対設計不足は該当ownerへ |\n| 7 | クリーン環境で前提構成を再現（OS/INFRA/SEC） | 固定manifest/lock/tool版/設定と最小setup。実interpreter、入力revision、環境、実行集合、権限/隔離/資源を照合し現用host依存を除く | lock不一致/未対応版/必要checkなし/対象0/skip/隔離不能を成功にしない。setup失敗は環境/依存/資源へ。削除の安全や全platform対応を成功から外挿しない |\n| 8 | 原子実装と局所検証（Worker、OS検収） | 凍結oracleに対して実装前Red→最小本体実装→同oracle Green→局所Refactor。formatter/lint/型/文書監査/局所testを設計どおり実装する | 環境エラーを意図したRedにしない。検査を弱めてGreenにしない。実装後mutation等はriskと適用根拠を持つ別証拠。出力はProvisional |\n",
+      "quote_utf8_sha256": "226fb77e3f982ee3171cb88c3bfe0bc83b4e56c4c244d48b13e34f054678964c",
+      "purpose": "既存roadmap順5〜6のtool/設定/command・schema/接続と対設計の対象。後続実証との境界は同表後半へ戻る。"
+    },
+    {
+      "path": "docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md",
+      "revision": "4c79f1e6915b9647d957cd969f6b938f00e12b89",
+      "file_bytes_sha256": "35e7bd859d4d5986ca73d9f1b57d708b2b09ea80f55fbfc8ae7c69f32c9f2b21",
+      "bytes": 11464,
+      "start_line": 56,
+      "end_line": 56,
+      "quote": "還流候補ごとに、発見した設計revisionと箇所、元要求／要件／対oracle、反例、現状と提案の差、戻し先owner、影響先、処置・未完を記録する。追加のPO順序指示「還流はリファクタリング時でいい」に従い、上流還流の整理・起草・実施は設計リファクタリング時にまとめる。現在は発見箇所・根拠・戻し先候補を保存し、承認済み範囲で基本・詳細設計を進める。上流修正に依存する未成立部分は明示して保持し、還流前の設計からその部分の完了や実装Readyを生成しない。\n",
+      "quote_utf8_sha256": "2affbefd56223ca3426bb99218fc7e0389bdc6a7cbdbab4f7c46d60fbaa9bcda",
+      "purpose": "PO順序指示の現行ticketへの保存箇所。候補保全と設計継続、上流還流はRefactor時という作業順序。新しい採否を生成しない。"
+    }
+  ]
 }
