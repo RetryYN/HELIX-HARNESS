@@ -246894,7 +246894,7 @@
         "pointer": "/contracts/3/connection_detail/comparison_detail/origin"
       }
     ],
-    "reason_ja": "実験結果がobjectでも適用unknownを対応済みへ縮約しない。既存required正常と根拠付きN/Aを保持し、未知originの変更だけを候補から除く。",
+    "reason_ja": "実験結果がobjectでも適用unknownを対応済みへ縮約しない。既存required正常と根拠付きN/Aを保持し、適用stateが未確定なoriginの変更だけを候補から除く。",
     "old_rule_history": {
       "revision": "1581eee6e5cd94ab2c6dc9cf51dada7c470bfae1",
       "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
@@ -247646,10 +247646,166 @@
         },
         "expected_output_canonical_sha256": "e9300a8deab8ee2265f56482950364392018989e5a1c6d5f1b4677bb149cc19f",
         "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-UNKNOWN-APPLICABILITY-WITH-STALE-BINDING",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/experiments/poc/applicability/state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/experiments/poc/binding",
+            "value": "REQ@r0"
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r0",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "unknown",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "7e74a14dee0b27d2a3d8090284343cb75ae89ad2345fa915df3de6c70e17ca75",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "stale"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "d68e4c0600d66f7310a89c6808049a9e3f1f3c539bf0e46ede8e2029ca0e71d9",
+        "execution_state": "not_executed"
       }
     ],
     "existing_case_count": 401,
     "existing_f02_case_count": 27,
-    "scope_limit_ja": "全fixture/全意味閉包・source実資格・実関数/CI/TDDの証明ではない。新5対照は候補lane未選択のbase assessment全15field。原401caseとlocal_valuesは不変。"
+    "scope_limit_ja": "全fixture/全意味閉包・source実資格・実関数実行の証明ではない。新6対照は候補lane未選択のbase assessment全15field。原401caseとlocal_valuesは不変。",
+    "priority_control_ja": "binding stale、次scope conflict、次N/A、次非required state不足の順。新しいunknown state+古いbinding対照はpoc staleでこの優先を固定する。"
   }
 }
