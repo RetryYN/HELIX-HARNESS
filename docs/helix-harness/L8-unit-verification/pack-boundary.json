@@ -683,5 +683,3213 @@
     "各L5 symbol/契約→L8 case→L4/L9→L3/L10の双方向trace",
     "未実行/失敗/未知と戻し先。局所結果を実接続/実資源/利用者受入へ昇格しない。"
   ],
-  "completion": "内容oracleを先に固定し実物で正常/全変異/追加caseを照合する。設計review/型検査/hash/件数だけから実L8成功にしない。"
+  "completion": "内容oracleを先に固定し実物で正常/全変異/追加caseを照合する。設計review/型検査/hash/件数だけから実L8成功にしない。",
+  "f04_recovery_oracles": {
+    "function_ref": "HARNESS-L5-010-F04",
+    "symbol": "check_local_replacement",
+    "scope": "公開input/context全値と内部前段素材を保持し、回復役割selectorと全Result構成を検証。既存前段全一般域の独立実装/全5関数完了は証明しない。",
+    "original_positive_binding": {
+      "source_case_pointer": "/cases/3",
+      "complete_call_id": "H010-F04-ORIGINAL-PREVIOUS-QUALIFIED-CALL",
+      "preserve": "元positive_input/expected_observation/6負例は変更せず、その正常意味をprevious_qualified原recordと二観測へ展開する。"
+    },
+    "source_basis": [
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/3",
+        "file_bytes_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "object_canonical_sha256": "85472af22476936aa195d841a2a2017f90378111a06b19d47bd251dbb247ab9f",
+        "value": {
+          "id": "HARNESS-L3-010-F04",
+          "parent": "HARNESS-L2-010",
+          "title": "再現と局所置換",
+          "obligation": "同一入力と版から同じpack成果を再現できる条件を宣言する。交換/更新時に他packの版と証拠を保持し、失敗時は直前の適格版または明示置換へ戻せる。実切替の運転/許可を発行しない。",
+          "oracle_ref": "HARNESS-L10-010-F04"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/3",
+        "file_bytes_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "object_canonical_sha256": "2949f77d0a2620a4e89d60e6854b75a2f20e7fb99d9c287c65ed82e661b5eb26",
+        "value": {
+          "id": "HARNESS-L10-010-F04",
+          "parent": "HARNESS-L2-010",
+          "title": "再現と局所置換",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "positive_input": "固定入力/版の再生成と、Aのみ置換失敗してAの適格版へ戻す検証条件を準備する。",
+          "expected_observation": "意味/成果の再現根拠、旧/新/復旧先と非対象Bの版/証拠が同revision/scopeで照合可能。",
+          "negative_input": "latestへ暗黙更新、復旧先不明、非対象Bの証拠を失う。",
+          "failure_observation": "再現/復旧の不足を返し、更新/切替成功を主張しない。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+        "object_canonical_sha256": "384e4e76e2534693d80d282993cac119d7758734ed3d8c7eb8645d489098e07f",
+        "value": {
+          "id": "HARNESS-L4-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "system_oracle_ref": "HARNESS-L10-010-F04",
+          "oracle_ref": "HARNESS-L9-010-F04",
+          "boundary": "ReplacementCandidate",
+          "title": "固定入力からの再現と局所置換",
+          "required_input_meanings": [
+            "input_snapshot_refs",
+            "tool_environment_refs",
+            "old_pack_ref",
+            "new_pack_ref",
+            "unchanged_pack_evidence_refs",
+            "recovery_candidate_ref"
+          ],
+          "behavior": "入力bytes/revision、依存版、tool/環境条件と意味成果の比較条件を束縛する。置換提案は対象packだけを変更し非対象packの版と証拠を保持する。失敗時の直前適格版または明示置換先が不明なら不足を返す。切替・起動・rollbackの実操作は出力しない。",
+          "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+        "pointer": "/authority_boundary",
+        "file_bytes_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+        "object_canonical_sha256": "ce1a000aefad6c0a9721fecc650d1e8481ed878d406d7cbc9cb097faae3aa18c",
+        "value": {
+          "semantic_owner": "HELIX-HARNESS",
+          "product_application_owner": "HELIX-HARNESS-CORE",
+          "registration_execution_state_owner": "HELIX-OS",
+          "security_owner": "HELIX-SECURITY",
+          "runtime_resource_owner": "HELIX-INFRASTRUCTURE",
+          "knowledge_owner": "HELIX-BRAIN",
+          "effect": "immutable inputから候補/findingを返す。DB/Git/GitHub/file write、登録、実切替、権限発行を行わない。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/functions/3",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "aecb4d3873dc31c463e5315fa0310b209012a9fd4edea426ea2334d2ce2b6f2c",
+        "value": {
+          "symbol": "check_local_replacement",
+          "input": {
+            "old_pack_ref": "Reference",
+            "new_pack_ref": "Reference",
+            "input_snapshot_refs": "ReferenceSet（1以上）",
+            "environment_refs": "ReferenceSet（1以上）",
+            "reproduction_comparison": "BoundFact(kind=reproduction_basis、value=ReproductionBasis)",
+            "unchanged_before": "{pack_ref: Reference, proof_refs: ReferenceSet}のtuple",
+            "unchanged_after": "同じrecordのtuple",
+            "recovery_fact": "QualificationFact"
+          },
+          "output": {
+            "old_pack_ref": "Reference",
+            "new_pack_ref": "Reference",
+            "recovery_pack_ref": "Reference",
+            "unchanged_refs": "ReferenceSet",
+            "reproduction_evidence_refs": "ReferenceSet"
+          },
+          "steps": [
+            "固定入力/依存/環境のexact Refを照合。latestや未特定環境を拒否する。",
+            "再生成比較factの対象入力/意味成果/比較方法・結果をcontextへ照合。二つのhash一致だけを再現性の全証拠にしない。異成果/未観測は残す。",
+            "非対象集合を両方向に比較し、各pack Refとproof Ref集合がbefore/afterで完全一致することを確認。消失と追加/版変更を区別。",
+            "復旧候補は直前適格版または明示置換のowner根拠と全局所proofへ結ぶ。root/版/適格性不明はrecovery_unknown。",
+            "対象の旧/新/復旧候補と非対象保持の結果を返す。pointer変更/起動/rollback/write/FR53履歴変換を実行せず成功として返さない。"
+          ],
+          "codes": [
+            "reproduction_mismatch",
+            "unchanged_pack_changed",
+            "recovery_unknown"
+          ],
+          "id": "HARNESS-L5-010-F04",
+          "l4_ref": "HARNESS-L4-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "oracle_ref": "HARNESS-L8-010-F04"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/shared_pre_post",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "9c3bd991a7711b85a033f2698bdaf090f00fabe4f2cb9e1bae3be4e7a530bf31",
+        "value": {
+          "pre": "inputは未検査。contextは別引数のowner-qualified snapshotであり、inputの宣言/validity/qualifiedに合わせて書き換えない。各関数が実際に参照するbasis/factを同subject revision/scope/owner/current根拠と内容へ照合する。current root/owner不明は当該結果をunknownにする。declared unresolvedのCの局所stateは個別に保持し、無関係Aのcurrent根拠を不明へ落とさない。field存在/digest一致だけでfactの内容やauthorityを生成せずcontent_check_refs不足はfact_content_unproven。",
+          "post": "satisfiedは当該純粋契約の一致だけ。required field欠落/型/duplicateはinvalid。解決すべき参照missingはincomplete、unknownはunknown、異payload/owner矛盾はconflict、古い参照はstale。既に宣言した未完/未解決/上位未証明の集合を正しく投影する場合はincompleteとして残す。複数分類があればinvalid→conflict→stale→unknown→incompleteの順でoutcomeを一つ選び、全findingを残す。",
+          "partial_value": "invalidはvalue=null。他の非satisfiedでは、根拠を照合できた独立packと、finding/未完/不明を同scopeで保持する閉じたoutput recordだけを返してよい。必要fieldを解決できずoutput型を満たせない場合はnull。未成立packを収載候補/qualifiedにせず、別packの既存適格性も隠さない。",
+          "determinism": "同じ入力値と根拠bytes/版から同じ結果値/finding集合を返す。集合順序とclock/locale/host stateを意味へ混入させない。入力を変更しない。",
+          "effect": "Python意味コアの純粋domain関数。file/network/process/DB/Git/GitHub/台帳writer/実行器を呼ばない。",
+          "no_code_first": "既存JSON型/集合比較/immutable DTOを再利用する。旧TS runtime/parser/DBや巨大Engineを移植せず、既存toolが担えない010固有の内容差分だけ実装対象にする。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/type_contract",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "9da1e2baa170915a8a8d3073b4d723e6bdb5a760bc9e543513afd08001eafb47",
+        "value": {
+          "syntax": "recordは列挙fieldだけを許可し全field必須。tuple要素は全件検査し一つのunknown/不正をshort circuitで隠さない。型名参照は本type_modelと各input/output recordだけ。wire JSON Schemaの別正本をここへ複製しない。",
+          "type_model": {
+            "Text": "非空Unicode文字列。空白だけを非空としない。表記の自動正規化/意味identity判定を行わない。",
+            "Reference": {
+              "identity": "Text",
+              "revision": "Text（latest/wildcardは不可、完全一致の値）",
+              "owner": "Text",
+              "scope": "Text",
+              "content_sha256": "64桁lowercase hex（参照bytesの整合性のみ）"
+            },
+            "ReferenceSet": "Referenceのtuple。identity/revision/owner/scopeを集合keyとし、同key異digestと重複keyを拒否。配列の順番を意味にしない。",
+            "BoundFact": {
+              "subject_ref": "Reference",
+              "basis_refs": "ReferenceSet",
+              "validity": "valid | missing | unknown | conflict | stale",
+              "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
+              "kind": "boundary_basis | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis"
+            },
+            "Context": {
+              "subject_ref": "Reference",
+              "current_basis_refs": "ReferenceSet（意味owner/authority/対象scopeが解決されたcurrent snapshot）",
+              "resolved_facts": "BoundFactのtuple。同じsubject/kind/対象revision/scopeの二重定義と同key異valueをreference_conflictにする。",
+              "expected_local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "fact_check_refs": "ReferenceSet（fact内容の独立照合根拠。field存在/hashだけで成立にしない）"
+            },
+            "Finding": {
+              "code": "本設計のclosed error_code",
+              "pointer": "input fieldへのJSON Pointer形式locator",
+              "subject_ref": "Reference",
+              "requirement_ref": "親010のatomic L3 ID",
+              "backflow_owner": "Text",
+              "evidence_refs": "ReferenceSet"
+            },
+            "Result": {
+              "outcome": "satisfied | incomplete | unknown | conflict | stale | invalid",
+              "value": "各関数のoutput record、またはnull",
+              "findings": "Findingのtuple。code/pointer/subject identity/revision順でUnicode code point sort"
+            },
+            "QualificationFact": {
+              "pack_ref": "Reference",
+              "state": "qualified | incomplete | unknown | conflict | stale",
+              "proof_refs": "ReferenceSet",
+              "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "basis_refs": "ReferenceSet"
+            },
+            "UpperState": {
+              "release_unit_revision": "Text",
+              "release_unit_state_ref": "Reference",
+              "product_revision": "Text",
+              "product_state_ref": "Reference"
+            },
+            "BoundaryBasis": {
+              "behavior_atom_refs": "ReferenceSet",
+              "owner_ref": "Reference",
+              "owner_kind": "service | component | core",
+              "sharing_class": "local | shared | unknown",
+              "inseparable_groups": "ReferenceSetのtuple"
+            },
+            "DeclarationBasis": {
+              "input_refs": "ReferenceSet",
+              "output_refs": "ReferenceSet",
+              "required_dependency_refs": "ReferenceSet",
+              "local_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "contract_revision": "Text",
+              "dependency_absence_basis_refs": "ReferenceSet"
+            },
+            "DependencyObservation": {
+              "observed_refs": "ReferenceSet",
+              "observation_scope_ref": "Reference",
+              "complete_observation_basis_refs": "ReferenceSet"
+            },
+            "QualificationBasis": {
+              "pack_ref": "Reference",
+              "state": "qualified | incomplete | unknown | conflict | stale",
+              "proved_pairs": "{obligation_ref: Reference, oracle_ref: Reference}のtuple",
+              "proof_refs": "ReferenceSet",
+              "content_check_refs": "ReferenceSet（pair/proofの対象・期待内容・実内容を比較したcurrent根拠）"
+            },
+            "ReproductionBasis": {
+              "old_pack_ref": "Reference",
+              "new_pack_ref": "Reference",
+              "input_snapshot_refs": "ReferenceSet",
+              "environment_refs": "ReferenceSet",
+              "expected_semantic_result_ref": "Reference",
+              "observed_semantic_result_refs": "ReferenceSet",
+              "comparison_contract_ref": "Reference",
+              "comparison_outcome": "same | different | unknown",
+              "comparison_content_check_refs": "ReferenceSet",
+              "recovery_basis_refs": "ReferenceSet"
+            },
+            "CompositionBasis": {
+              "candidate_refs": "ReferenceSet",
+              "upper_state": "UpperState",
+              "upper_obligation_refs": "ReferenceSet",
+              "upper_proved_refs": "ReferenceSet",
+              "upper_unproved_refs": "ReferenceSet"
+            },
+            "PackMaturityChange": {
+              "pack_ref": "Reference",
+              "before_maturity_ref": "Reference（pack自身の成熟度、適格性state/製品stateとは別）",
+              "after_maturity_ref": "Reference",
+              "basis_refs": "ReferenceSet"
+            },
+            "MaturityBasis": {
+              "pack_ref": "Reference",
+              "before_maturity_ref": "Reference",
+              "after_maturity_ref": "Reference",
+              "content_check_refs": "ReferenceSet（同pack/対象scopeの成熟度before/afterを照合したcurrent根拠）"
+            }
+          },
+          "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+        "pointer": "/finding_classification",
+        "file_bytes_sha256": "4b7bd75aca10232c87f33c6a3a2d78699da5d32f78b23ba0d0be6e2fc1ce5062",
+        "object_canonical_sha256": "af07248c3baff51fca47286bdaee1bc9c1e5620f86e2078beaa674793f8f0be8",
+        "value": {
+          "input_invalid": "invalid",
+          "reference_missing": "incomplete",
+          "reference_unknown": "unknown",
+          "reference_conflict": "conflict",
+          "reference_stale": "stale",
+          "fact_content_unproven": "incomplete",
+          "owner_conflict": "conflict",
+          "boundary_mismatch": "incompleteなら根拠missing、conflictなら既決境界との矛盾",
+          "shared_owner_mismatch": "conflict",
+          "declaration_missing": "incomplete",
+          "dependency_undeclared": "incomplete",
+          "dependency_missing": "incomplete",
+          "local_pair_mismatch": "conflict",
+          "candidate_outside": "conflict",
+          "candidate_partition_mismatch": "incomplete",
+          "exclusion_basis_missing": "incomplete",
+          "pack_not_qualified": "incompleteなら未証明/未適格、unknownなら根拠unknown、conflict/staleなら当該事実の分類",
+          "upper_state_inferred": "conflict",
+          "reproduction_mismatch": "conflict",
+          "unchanged_pack_changed": "conflict",
+          "recovery_unknown": "unknownなら根拠unknown、incompleteなら不適格/根拠missing",
+          "qualification_basis_missing": "incomplete",
+          "local_state_hidden": "incomplete",
+          "unresolved_lost": "incomplete"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
+        "pointer": "/cases/3",
+        "file_bytes_sha256": "08cdf03f97de418b4107647d4c3c6d13dfddeb13b85f7bf91479bdc9bdc16946",
+        "object_canonical_sha256": "e03acd7199fb3d3b5a1856bfd24e2e8bb507e5ffcbe0a188f6fcd2004ebca171",
+        "value": {
+          "id": "HARNESS-L8-010-F04",
+          "design_ref": "HARNESS-L5-010-F04",
+          "symbol": "check_local_replacement",
+          "l9_ref": "HARNESS-L9-010-F04",
+          "requirement_ref": "HARNESS-L3-010-F04",
+          "positive_input": "A@r1→A@r2、固定in-A/env1から意味same-xを二観測、復旧=A@r1 qualified。B@r1/proof-B-retainedはbefore/after同じ。",
+          "expected_observation": [
+            "outcome=satisfied",
+            "old=A@r1,new=A@r2,recovery=A@r1",
+            "unchanged_refs={B@r1}、proof集合=before/after同じ",
+            "切替/rollbackの実行指示はoutputに無い"
+          ],
+          "negative_mutations": [
+            {
+              "l9_mutation_index": 1,
+              "mutation": "latest暗黙参照",
+              "expected": {
+                "outcome": "invalid",
+                "finding_code": "input_invalid",
+                "finding_pointer": "/new_pack_ref/revision",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/new_pack_ref/revision",
+              "change": "set latest",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 2,
+              "mutation": "復旧先不明",
+              "expected": {
+                "outcome": "invalid",
+                "finding_code": "input_invalid",
+                "finding_pointer": "/recovery_fact",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/recovery_fact",
+              "change": "delete required field",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 3,
+              "mutation": "非対象版変更",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "unchanged_pack_changed",
+                "finding_pointer": "/unchanged_after/0/pack_ref/revision",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/unchanged_after/0/pack_ref/revision",
+              "change": "set r2 for B; before remains r1",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 4,
+              "mutation": "非対象証拠消失",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "unchanged_pack_changed",
+                "finding_pointer": "/unchanged_after/0/proof_refs",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/unchanged_after/0/proof_refs",
+              "change": "remove proof-B-retained",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 5,
+              "mutation": "同入力別成果",
+              "expected": {
+                "outcome": "conflict",
+                "finding_code": "reproduction_mismatch",
+                "finding_pointer": "/reproduction_comparison/value/comparison_outcome",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/reproduction_comparison/value/comparison_outcome",
+              "change": "set different; observed semantic result becomes not-x",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            },
+            {
+              "l9_mutation_index": 6,
+              "mutation": "比較環境不明",
+              "expected": {
+                "outcome": "incomplete",
+                "finding_code": "reference_missing",
+                "finding_pointer": "/environment_refs",
+                "retained": "無関係packの照合済み局所stateと上位未完を保持。実行/Accepted/Releaseは無し。"
+              },
+              "input_pointer": "/environment_refs",
+              "change": "set {}; fixed env1 basis unchanged",
+              "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
+            }
+          ],
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "revision": "175e5528a9e5d166cc04c1df21b15c1b365f13ed",
+        "path": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
+        "pointer": "/extra_cases/3",
+        "file_bytes_sha256": "08cdf03f97de418b4107647d4c3c6d13dfddeb13b85f7bf91479bdc9bdc16946",
+        "object_canonical_sha256": "84aa26e2257c2bdb1eea61de134ca08f1c6ddf6cf3475c290dde36f0aa3fe42a",
+        "value": {
+          "id": "HARNESS-L8-010-X04",
+          "targets": "check_local_replacement",
+          "input": "型は正しいrecovery_factをunknown、不適格、別scopeへ一つずつ変更。reproduction factを同hashだがcomparison_content_check_refs空へ変更。",
+          "expected": "復旧根拠不明はrecovery_unknown/unknown、不適格はrecovery_unknown/incomplete、別scopeはreference_conflict/conflict。比較内容根拠無しはfact_content_unproven/incomplete。置換/復旧成功を返さない。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "source_materials": {
+      "A-r2": {
+        "ref": {
+          "identity": "FX-H010-A",
+          "revision": "r2",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+        },
+        "raw_utf8": "{\"fixture_id\":\"A\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r2\"}",
+        "raw_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+      },
+      "A-r1": {
+        "ref": {
+          "identity": "FX-H010-A",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+        },
+        "raw_utf8": "{\"fixture_id\":\"A\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+      },
+      "EXPLICIT-R": {
+        "ref": {
+          "identity": "FX-H010-EXPLICIT-R",
+          "revision": "r7",
+          "owner": "fixture-replacement-owner",
+          "scope": "fixture/010",
+          "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+        },
+        "raw_utf8": "{\"fixture_id\":\"EXPLICIT-R\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r7\"}",
+        "raw_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+      },
+      "B": {
+        "ref": {
+          "identity": "FX-H010-B",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+        },
+        "raw_utf8": "{\"fixture_id\":\"B\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+      },
+      "INPUT": {
+        "ref": {
+          "identity": "FX-H010-INPUT",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+        },
+        "raw_utf8": "{\"fixture_id\":\"INPUT\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+      },
+      "ENV": {
+        "ref": {
+          "identity": "FX-H010-ENV",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+        },
+        "raw_utf8": "{\"fixture_id\":\"ENV\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+      },
+      "SEMANTIC-RESULT": {
+        "ref": {
+          "identity": "FX-H010-SEMANTIC-RESULT",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+        },
+        "raw_utf8": "{\"fixture_id\":\"SEMANTIC-RESULT\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+      },
+      "COMPARISON-CONTRACT": {
+        "ref": {
+          "identity": "FX-H010-COMPARISON-CONTRACT",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+        },
+        "raw_utf8": "{\"fixture_id\":\"COMPARISON-CONTRACT\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+      },
+      "REPRODUCTION-CHECK": {
+        "ref": {
+          "identity": "FX-H010-REPRODUCTION-CHECK",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+        },
+        "raw_utf8": "{\"fixture_id\":\"REPRODUCTION-CHECK\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+      },
+      "RECOVERY-SELECTION": {
+        "ref": {
+          "identity": "FX-H010-RECOVERY-SELECTION",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+        },
+        "raw_utf8": "{\"new_pack_ref\":{\"content_sha256\":\"252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21\",\"identity\":\"FX-H010-A\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r2\",\"scope\":\"fixture/010\"},\"old_pack_ref\":{\"content_sha256\":\"17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c\",\"identity\":\"FX-H010-A\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"recovery_pack_ref\":{\"content_sha256\":\"9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed\",\"identity\":\"FX-H010-EXPLICIT-R\",\"owner\":\"fixture-replacement-owner\",\"revision\":\"r7\",\"scope\":\"fixture/010\"},\"selection\":\"explicit_replacement\"}",
+        "raw_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+      },
+      "RECOVERY-PROOF": {
+        "ref": {
+          "identity": "FX-H010-RECOVERY-PROOF",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+        },
+        "raw_utf8": "{\"fixture_id\":\"RECOVERY-PROOF\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+      },
+      "LOCAL-OBLIGATION": {
+        "ref": {
+          "identity": "FX-H010-LOCAL-OBLIGATION",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+        },
+        "raw_utf8": "{\"fixture_id\":\"LOCAL-OBLIGATION\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+      },
+      "LOCAL-ORACLE": {
+        "ref": {
+          "identity": "FX-H010-LOCAL-ORACLE",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+        },
+        "raw_utf8": "{\"fixture_id\":\"LOCAL-ORACLE\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+      },
+      "QUALIFICATION-CHECK": {
+        "ref": {
+          "identity": "FX-H010-QUALIFICATION-CHECK",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+        },
+        "raw_utf8": "{\"fixture_id\":\"QUALIFICATION-CHECK\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+      },
+      "B-PROOF": {
+        "ref": {
+          "identity": "FX-H010-B-PROOF",
+          "revision": "r1",
+          "owner": "fixture-pack-owner",
+          "scope": "fixture/010",
+          "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+        },
+        "raw_utf8": "{\"fixture_id\":\"B-PROOF\",\"note\":\"静的設計の合成参照。実登録/資格ではない。\",\"revision\":\"r1\"}",
+        "raw_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+      },
+      "RECOVERY-ROLE-CHECK": {
+        "ref": {
+          "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+          "revision": "r1",
+          "owner": "fixture-meaning-check-owner",
+          "scope": "fixture/010",
+          "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+        },
+        "raw_utf8": "{\"checked_content\":{\"new_pack_ref\":{\"content_sha256\":\"252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21\",\"identity\":\"FX-H010-A\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r2\",\"scope\":\"fixture/010\"},\"old_pack_ref\":{\"content_sha256\":\"17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c\",\"identity\":\"FX-H010-A\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"recovery_pack_ref\":{\"content_sha256\":\"9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed\",\"identity\":\"FX-H010-EXPLICIT-R\",\"owner\":\"fixture-replacement-owner\",\"revision\":\"r7\",\"scope\":\"fixture/010\"},\"selection\":\"explicit_replacement\"},\"fixture_id\":\"RECOVERY-ROLE-CHECK\",\"qualification\":\"合成の比較材料であり実資格を生成しない\",\"result\":\"same\",\"scope\":\"fixture/010\",\"source_ref\":{\"content_sha256\":\"d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c\",\"identity\":\"FX-H010-RECOVERY-SELECTION\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}",
+        "raw_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+      },
+      "A@r1": {
+        "ref": {
+          "identity": "FX-010-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+        },
+        "raw_utf8": "{\"behavior\":\"same-x\",\"fixture\":\"A\",\"revision\":\"r1\"}",
+        "raw_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+      },
+      "A@r2": {
+        "ref": {
+          "identity": "FX-010-A",
+          "revision": "r2",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+        },
+        "raw_utf8": "{\"behavior\":\"same-x\",\"fixture\":\"A\",\"revision\":\"r2\"}",
+        "raw_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+      },
+      "B@r1": {
+        "ref": {
+          "identity": "FX-010-B",
+          "revision": "r1",
+          "owner": "component-B",
+          "scope": "fixture/010",
+          "content_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+        },
+        "raw_utf8": "{\"fixture\":\"B\",\"revision\":\"r1\"}",
+        "raw_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+      },
+      "proof-B-retained@r1": {
+        "ref": {
+          "identity": "FX-010-proof-B-retained",
+          "revision": "r1",
+          "owner": "component-B",
+          "scope": "fixture/010",
+          "content_sha256": "0137094b72288d80e78dd126ec7119b8d4f1df8f88498d6ec8f368a393e796d9"
+        },
+        "raw_utf8": "{\"fixture\":\"B\",\"purpose\":\"非対象証拠の保持\",\"revision\":\"r1\"}",
+        "raw_sha256": "0137094b72288d80e78dd126ec7119b8d4f1df8f88498d6ec8f368a393e796d9"
+      },
+      "in-A@r1": {
+        "ref": {
+          "identity": "FX-010-in-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861"
+        },
+        "raw_utf8": "{\"input\":\"in-A\",\"revision\":\"r1\"}",
+        "raw_sha256": "d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861"
+      },
+      "env1@r1": {
+        "ref": {
+          "identity": "FX-010-env1",
+          "revision": "r1",
+          "owner": "fixture-environment-owner",
+          "scope": "fixture/010",
+          "content_sha256": "6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642"
+        },
+        "raw_utf8": "{\"environment\":\"env1\",\"revision\":\"r1\"}",
+        "raw_sha256": "6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642"
+      },
+      "expected-same-x@r1": {
+        "ref": {
+          "identity": "FX-010-expected-same-x",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "b97c3880eb91db7da08ccc676b4157a06498538d99000e164bfce104a26cde01"
+        },
+        "raw_utf8": "{\"meaning_result\":\"same-x\"}",
+        "raw_sha256": "b97c3880eb91db7da08ccc676b4157a06498538d99000e164bfce104a26cde01"
+      },
+      "observed-1-same-x@r1": {
+        "ref": {
+          "identity": "FX-010-observed-1-same-x",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "ec4acdfc43decd44ead26e9cb6268de78f4d8c28a185cd499dc0833b7eb11eb0"
+        },
+        "raw_utf8": "{\"meaning_result\":\"same-x\",\"observation\":\"one\"}",
+        "raw_sha256": "ec4acdfc43decd44ead26e9cb6268de78f4d8c28a185cd499dc0833b7eb11eb0"
+      },
+      "observed-2-same-x@r1": {
+        "ref": {
+          "identity": "FX-010-observed-2-same-x",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "460607667ebd80dab9fd206d91986c2fa56bfa582f8dcb3e2c21d0896e365d51"
+        },
+        "raw_utf8": "{\"meaning_result\":\"same-x\",\"observation\":\"two\"}",
+        "raw_sha256": "460607667ebd80dab9fd206d91986c2fa56bfa582f8dcb3e2c21d0896e365d51"
+      },
+      "comparison-A@r1": {
+        "ref": {
+          "identity": "FX-010-comparison-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "61e48d5dc463c90c56364511d985af9bd2a1d559e8530db7dc06066b940e9673"
+        },
+        "raw_utf8": "{\"expected\":\"same-x\",\"method\":\"比較契約の合成原本文\"}",
+        "raw_sha256": "61e48d5dc463c90c56364511d985af9bd2a1d559e8530db7dc06066b940e9673"
+      },
+      "ob-A@r1": {
+        "ref": {
+          "identity": "FX-010-ob-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe"
+        },
+        "raw_utf8": "{\"obligation\":\"ob-A\"}",
+        "raw_sha256": "fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe"
+      },
+      "or-A@r1": {
+        "ref": {
+          "identity": "FX-010-or-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c"
+        },
+        "raw_utf8": "{\"oracle\":\"or-A\"}",
+        "raw_sha256": "0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c"
+      },
+      "proof-A@r1": {
+        "ref": {
+          "identity": "FX-010-proof-A",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "07258bdabd2859ea841084eeffe5b09b979d5676750f3cf26a60f128aa05d58e"
+        },
+        "raw_utf8": "{\"fixture_state\":\"qualified\",\"note\":\"独立合成proof素材。実資格ではない。\",\"pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"proved_pairs\":[{\"obligation_ref\":{\"content_sha256\":\"fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe\",\"identity\":\"FX-010-ob-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"oracle_ref\":{\"content_sha256\":\"0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c\",\"identity\":\"FX-010-or-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}]}",
+        "raw_sha256": "07258bdabd2859ea841084eeffe5b09b979d5676750f3cf26a60f128aa05d58e"
+      },
+      "qualification-A-check@r1": {
+        "ref": {
+          "identity": "FX-010-qualification-A-check",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+        },
+        "raw_utf8": "{\"comparison\":\"current_content_corresponding\",\"pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"proof_refs\":[{\"content_sha256\":\"07258bdabd2859ea841084eeffe5b09b979d5676750f3cf26a60f128aa05d58e\",\"identity\":\"FX-010-proof-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}],\"proved_pairs\":[{\"obligation_ref\":{\"content_sha256\":\"fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe\",\"identity\":\"FX-010-ob-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"oracle_ref\":{\"content_sha256\":\"0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c\",\"identity\":\"FX-010-or-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}]}",
+        "raw_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+      },
+      "previous-qualified-A-selection@r1": {
+        "ref": {
+          "identity": "FX-010-previous-qualified-A-selection",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+        },
+        "raw_utf8": "{\"new_pack_ref\":{\"content_sha256\":\"0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010\"},\"old_pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"recovery_pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"selection\":\"previous_qualified\"}",
+        "raw_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+      },
+      "previous-qualified-A-check@r1": {
+        "ref": {
+          "identity": "FX-010-previous-qualified-A-check",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "07237d2a18e6ea68a90aed5d0cc1d4fec690acf87427334e229887f02e643034"
+        },
+        "raw_utf8": "{\"checked_content\":{\"new_pack_ref\":{\"content_sha256\":\"0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010\"},\"old_pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"recovery_pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"selection\":\"previous_qualified\"},\"comparison\":\"current_content_corresponding\",\"source_ref\":{\"content_sha256\":\"f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b\",\"identity\":\"FX-010-previous-qualified-A-selection\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}",
+        "raw_sha256": "07237d2a18e6ea68a90aed5d0cc1d4fec690acf87427334e229887f02e643034"
+      },
+      "reproduction-A-check@r1": {
+        "ref": {
+          "identity": "FX-010-reproduction-A-check",
+          "revision": "r1",
+          "owner": "CORE",
+          "scope": "fixture/010",
+          "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+        },
+        "raw_utf8": "{\"comparison_contract_ref\":{\"content_sha256\":\"61e48d5dc463c90c56364511d985af9bd2a1d559e8530db7dc06066b940e9673\",\"identity\":\"FX-010-comparison-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"comparison_outcome\":\"same\",\"environment_refs\":[{\"content_sha256\":\"6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642\",\"identity\":\"FX-010-env1\",\"owner\":\"fixture-environment-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}],\"expected_semantic_result_ref\":{\"content_sha256\":\"b97c3880eb91db7da08ccc676b4157a06498538d99000e164bfce104a26cde01\",\"identity\":\"FX-010-expected-same-x\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"input_snapshot_refs\":[{\"content_sha256\":\"d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861\",\"identity\":\"FX-010-in-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}],\"new_pack_ref\":{\"content_sha256\":\"0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010\"},\"observed_semantic_result_refs\":[{\"content_sha256\":\"ec4acdfc43decd44ead26e9cb6268de78f4d8c28a185cd499dc0833b7eb11eb0\",\"identity\":\"FX-010-observed-1-same-x\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},{\"content_sha256\":\"460607667ebd80dab9fd206d91986c2fa56bfa582f8dcb3e2c21d0896e365d51\",\"identity\":\"FX-010-observed-2-same-x\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}],\"old_pack_ref\":{\"content_sha256\":\"4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772\",\"identity\":\"FX-010-A\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}",
+        "raw_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+      },
+      "different-qualified-target@r1": {
+        "ref": {
+          "identity": "FX-010-different-qualified-target",
+          "revision": "r1",
+          "owner": "fixture-other-owner",
+          "scope": "fixture/010",
+          "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+        },
+        "raw_utf8": "{\"pack\":\"another-qualified-candidate\",\"revision\":\"r1\"}",
+        "raw_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+      },
+      "different-qualified-proof@r1": {
+        "ref": {
+          "identity": "FX-010-different-qualified-proof",
+          "revision": "r1",
+          "owner": "fixture-other-owner",
+          "scope": "fixture/010",
+          "content_sha256": "9979ca5d1cc5b9e9390fd3b70227581b0f10bb6970ff9d8516f95efa27a2f1ec"
+        },
+        "raw_utf8": "{\"fixture_state\":\"qualified\",\"pack_ref\":{\"content_sha256\":\"31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db\",\"identity\":\"FX-010-different-qualified-target\",\"owner\":\"fixture-other-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"proved_pairs\":[{\"obligation_ref\":{\"content_sha256\":\"763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6\",\"identity\":\"FX-H010-LOCAL-OBLIGATION\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"oracle_ref\":{\"content_sha256\":\"a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495\",\"identity\":\"FX-H010-LOCAL-ORACLE\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}]}",
+        "raw_sha256": "9979ca5d1cc5b9e9390fd3b70227581b0f10bb6970ff9d8516f95efa27a2f1ec"
+      },
+      "different-qualified-check@r1": {
+        "ref": {
+          "identity": "FX-010-different-qualified-check",
+          "revision": "r1",
+          "owner": "fixture-other-owner",
+          "scope": "fixture/010",
+          "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+        },
+        "raw_utf8": "{\"comparison\":\"current_content_corresponding\",\"pack_ref\":{\"content_sha256\":\"31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db\",\"identity\":\"FX-010-different-qualified-target\",\"owner\":\"fixture-other-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"proof_refs\":[{\"content_sha256\":\"9979ca5d1cc5b9e9390fd3b70227581b0f10bb6970ff9d8516f95efa27a2f1ec\",\"identity\":\"FX-010-different-qualified-proof\",\"owner\":\"fixture-other-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}],\"proved_pairs\":[{\"obligation_ref\":{\"content_sha256\":\"763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6\",\"identity\":\"FX-H010-LOCAL-OBLIGATION\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"},\"oracle_ref\":{\"content_sha256\":\"a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495\",\"identity\":\"FX-H010-LOCAL-ORACLE\",\"owner\":\"fixture-pack-owner\",\"revision\":\"r1\",\"scope\":\"fixture/010\"}}]}",
+        "raw_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+      }
+    },
+    "cases": [
+      {
+        "id": "H010-F04-ROLE-SOURCE-UNMATERIALIZED",
+        "arguments": {
+          "input": {
+            "old_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r1",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+            },
+            "new_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "input_snapshot_refs": [
+              {
+                "identity": "FX-H010-INPUT",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+              }
+            ],
+            "environment_refs": [
+              {
+                "identity": "FX-H010-ENV",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+              }
+            ],
+            "reproduction_comparison": {
+              "subject_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "basis_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ],
+              "validity": "valid",
+              "kind": "reproduction_basis",
+              "value": {
+                "old_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                },
+                "new_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "input_snapshot_refs": [
+                  {
+                    "identity": "FX-H010-INPUT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                  }
+                ],
+                "environment_refs": [
+                  {
+                    "identity": "FX-H010-ENV",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                  }
+                ],
+                "expected_semantic_result_ref": {
+                  "identity": "FX-H010-SEMANTIC-RESULT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                },
+                "observed_semantic_result_refs": [
+                  {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  }
+                ],
+                "comparison_contract_ref": {
+                  "identity": "FX-H010-COMPARISON-CONTRACT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                },
+                "comparison_outcome": "same",
+                "comparison_content_check_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "recovery_basis_refs": [
+                  {
+                    "identity": "FX-H010-RECOVERY-SELECTION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                  }
+                ]
+              }
+            },
+            "unchanged_before": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "unchanged_after": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "recovery_fact": {
+              "pack_ref": {
+                "identity": "FX-H010-EXPLICIT-R",
+                "revision": "r7",
+                "owner": "fixture-replacement-owner",
+                "scope": "fixture/010",
+                "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+              },
+              "state": "qualified",
+              "proof_refs": [
+                {
+                  "identity": "FX-H010-RECOVERY-PROOF",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+                }
+              ],
+              "proved_pairs": [
+                {
+                  "obligation_ref": {
+                    "identity": "FX-H010-LOCAL-OBLIGATION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                  },
+                  "oracle_ref": {
+                    "identity": "FX-H010-LOCAL-ORACLE",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                  }
+                }
+              ],
+              "basis_refs": [
+                {
+                  "identity": "FX-H010-QUALIFICATION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                }
+              ]
+            }
+          },
+          "context": {
+            "subject_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "current_basis_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-SELECTION",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+              },
+              {
+                "identity": "FX-H010-QUALIFICATION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+              }
+            ],
+            "resolved_facts": [
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "reproduction_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r2",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                  },
+                  "input_snapshot_refs": [
+                    {
+                      "identity": "FX-H010-INPUT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                    }
+                  ],
+                  "environment_refs": [
+                    {
+                      "identity": "FX-H010-ENV",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                    }
+                  ],
+                  "expected_semantic_result_ref": {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  },
+                  "observed_semantic_result_refs": [
+                    {
+                      "identity": "FX-H010-SEMANTIC-RESULT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                    }
+                  ],
+                  "comparison_contract_ref": {
+                    "identity": "FX-H010-COMPARISON-CONTRACT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                  },
+                  "comparison_outcome": "same",
+                  "comparison_content_check_refs": [
+                    {
+                      "identity": "FX-H010-REPRODUCTION-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                    }
+                  ],
+                  "recovery_basis_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-SELECTION",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-EXPLICIT-R",
+                  "revision": "r7",
+                  "owner": "fixture-replacement-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-QUALIFICATION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "qualification_basis",
+                "value": {
+                  "pack_ref": {
+                    "identity": "FX-H010-EXPLICIT-R",
+                    "revision": "r7",
+                    "owner": "fixture-replacement-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                  },
+                  "state": "qualified",
+                  "proved_pairs": [
+                    {
+                      "obligation_ref": {
+                        "identity": "FX-H010-LOCAL-OBLIGATION",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                      },
+                      "oracle_ref": {
+                        "identity": "FX-H010-LOCAL-ORACLE",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                      }
+                    }
+                  ],
+                  "proof_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-PROOF",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+                    }
+                  ],
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-H010-QUALIFICATION-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                    }
+                  ]
+                }
+              }
+            ],
+            "expected_local_pairs": [
+              {
+                "obligation_ref": {
+                  "identity": "FX-H010-LOCAL-OBLIGATION",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                },
+                "oracle_ref": {
+                  "identity": "FX-H010-LOCAL-ORACLE",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                }
+              }
+            ],
+            "fact_check_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-H010-QUALIFICATION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+                "revision": "r1",
+                "owner": "fixture-meaning-check-owner",
+                "scope": "fixture/010",
+                "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+              }
+            ]
+          }
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": null,
+          "findings": [
+            {
+              "code": "recovery_unknown",
+              "pointer": "/recovery_fact/pack_ref",
+              "subject_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "requirement_ref": "HARNESS-L3-010-F04",
+              "backflow_owner": "OS/当該producer",
+              "evidence_refs": [
+                {
+                  "identity": "FX-H010-RECOVERY-SELECTION",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                },
+                {
+                  "identity": "FX-H010-EXPLICIT-R",
+                  "revision": "r7",
+                  "owner": "fixture-replacement-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_basis": "L5 functions[3].steps[3]は適格性だけでなく直前適格/明示置換owner根拠を要求する。role recordのtyped値が未供給なのでmissing根拠のrecovery_unknown/incomplete、回復先必須Referenceを完成できずshared_pre_post.partial_valueによりvalue=null。入力/Context/Bのproofは不変で保持。",
+        "internal_stages": {
+          "prior": {
+            "outcome": "satisfied",
+            "value": {
+              "old_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+              },
+              "new_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "unchanged_refs": [
+                {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                }
+              ],
+              "reproduction_evidence_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "qualification": {
+            "outcome": "satisfied",
+            "pack_ref": {
+              "identity": "FX-H010-EXPLICIT-R",
+              "revision": "r7",
+              "owner": "fixture-replacement-owner",
+              "scope": "fixture/010",
+              "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+            },
+            "state": "qualified",
+            "findings": []
+          }
+        },
+        "arguments_canonical_sha256": "3de509e375ec352655a71ebf4f3899686574b85da24f426b56957d6abde6e56b",
+        "expected_canonical_sha256": "e6a299cce4549b779418ff9cd5529ca9359cec58333bc2ee5f20d71a97261fbd"
+      },
+      {
+        "id": "H010-F04-EXPLICIT-ROLE-SOURCE-SUPPLIED",
+        "arguments": {
+          "input": {
+            "old_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r1",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+            },
+            "new_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "input_snapshot_refs": [
+              {
+                "identity": "FX-H010-INPUT",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+              }
+            ],
+            "environment_refs": [
+              {
+                "identity": "FX-H010-ENV",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+              }
+            ],
+            "reproduction_comparison": {
+              "subject_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "basis_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ],
+              "validity": "valid",
+              "kind": "reproduction_basis",
+              "value": {
+                "old_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                },
+                "new_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "input_snapshot_refs": [
+                  {
+                    "identity": "FX-H010-INPUT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                  }
+                ],
+                "environment_refs": [
+                  {
+                    "identity": "FX-H010-ENV",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                  }
+                ],
+                "expected_semantic_result_ref": {
+                  "identity": "FX-H010-SEMANTIC-RESULT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                },
+                "observed_semantic_result_refs": [
+                  {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  }
+                ],
+                "comparison_contract_ref": {
+                  "identity": "FX-H010-COMPARISON-CONTRACT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                },
+                "comparison_outcome": "same",
+                "comparison_content_check_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "recovery_basis_refs": [
+                  {
+                    "identity": "FX-H010-RECOVERY-SELECTION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                  }
+                ]
+              }
+            },
+            "unchanged_before": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "unchanged_after": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "recovery_fact": {
+              "pack_ref": {
+                "identity": "FX-H010-EXPLICIT-R",
+                "revision": "r7",
+                "owner": "fixture-replacement-owner",
+                "scope": "fixture/010",
+                "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+              },
+              "state": "qualified",
+              "proof_refs": [
+                {
+                  "identity": "FX-H010-RECOVERY-PROOF",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+                }
+              ],
+              "proved_pairs": [
+                {
+                  "obligation_ref": {
+                    "identity": "FX-H010-LOCAL-OBLIGATION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                  },
+                  "oracle_ref": {
+                    "identity": "FX-H010-LOCAL-ORACLE",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                  }
+                }
+              ],
+              "basis_refs": [
+                {
+                  "identity": "FX-H010-QUALIFICATION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                }
+              ]
+            }
+          },
+          "context": {
+            "subject_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "current_basis_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-SELECTION",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+              },
+              {
+                "identity": "FX-H010-QUALIFICATION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+              }
+            ],
+            "resolved_facts": [
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "reproduction_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r2",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                  },
+                  "input_snapshot_refs": [
+                    {
+                      "identity": "FX-H010-INPUT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                    }
+                  ],
+                  "environment_refs": [
+                    {
+                      "identity": "FX-H010-ENV",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                    }
+                  ],
+                  "expected_semantic_result_ref": {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  },
+                  "observed_semantic_result_refs": [
+                    {
+                      "identity": "FX-H010-SEMANTIC-RESULT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                    }
+                  ],
+                  "comparison_contract_ref": {
+                    "identity": "FX-H010-COMPARISON-CONTRACT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                  },
+                  "comparison_outcome": "same",
+                  "comparison_content_check_refs": [
+                    {
+                      "identity": "FX-H010-REPRODUCTION-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                    }
+                  ],
+                  "recovery_basis_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-SELECTION",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-EXPLICIT-R",
+                  "revision": "r7",
+                  "owner": "fixture-replacement-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-QUALIFICATION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "qualification_basis",
+                "value": {
+                  "pack_ref": {
+                    "identity": "FX-H010-EXPLICIT-R",
+                    "revision": "r7",
+                    "owner": "fixture-replacement-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                  },
+                  "state": "qualified",
+                  "proved_pairs": [
+                    {
+                      "obligation_ref": {
+                        "identity": "FX-H010-LOCAL-OBLIGATION",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                      },
+                      "oracle_ref": {
+                        "identity": "FX-H010-LOCAL-ORACLE",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                      }
+                    }
+                  ],
+                  "proof_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-PROOF",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "7be9c09d20d3cbc2501d42ad70adb1659596aac0c0d0b7804fcb4a488ff86839"
+                    }
+                  ],
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-H010-QUALIFICATION-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-RECOVERY-SELECTION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "recovery_selection_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r2",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                  },
+                  "recovery_pack_ref": {
+                    "identity": "FX-H010-EXPLICIT-R",
+                    "revision": "r7",
+                    "owner": "fixture-replacement-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                  },
+                  "selection": "explicit_replacement",
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-meaning-check-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+                    }
+                  ]
+                }
+              }
+            ],
+            "expected_local_pairs": [
+              {
+                "obligation_ref": {
+                  "identity": "FX-H010-LOCAL-OBLIGATION",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                },
+                "oracle_ref": {
+                  "identity": "FX-H010-LOCAL-ORACLE",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                }
+              }
+            ],
+            "fact_check_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-H010-QUALIFICATION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "2a940a3411f5f1e524a3ce7843d98b14a0b0b96fc5093568876fc88779f04d75"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+                "revision": "r1",
+                "owner": "fixture-meaning-check-owner",
+                "scope": "fixture/010",
+                "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+              }
+            ]
+          }
+        },
+        "expected_result": {
+          "outcome": "satisfied",
+          "value": {
+            "old_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r1",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+            },
+            "new_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "recovery_pack_ref": {
+              "identity": "FX-H010-EXPLICIT-R",
+              "revision": "r7",
+              "owner": "fixture-replacement-owner",
+              "scope": "fixture/010",
+              "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+            },
+            "unchanged_refs": [
+              {
+                "identity": "FX-H010-B",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+              }
+            ],
+            "reproduction_evidence_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              }
+            ]
+          },
+          "findings": []
+        },
+        "expected_basis": "独立currentのqualification根拠と、同old/new/recoveryへ束縛したexplicit_replacement原recordの両方を供給。異identityという理由だけで明示置換を禁じず、L3/L4の選択肢を保持。副作用なし。",
+        "internal_stages": {
+          "prior": {
+            "outcome": "satisfied",
+            "value": {
+              "old_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+              },
+              "new_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "unchanged_refs": [
+                {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                }
+              ],
+              "reproduction_evidence_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "qualification": {
+            "outcome": "satisfied",
+            "pack_ref": {
+              "identity": "FX-H010-EXPLICIT-R",
+              "revision": "r7",
+              "owner": "fixture-replacement-owner",
+              "scope": "fixture/010",
+              "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+            },
+            "state": "qualified",
+            "findings": []
+          }
+        },
+        "arguments_canonical_sha256": "abad591514eda1af97898d55f36ddf9febb984ef320dee1332532c34396550f7",
+        "expected_canonical_sha256": "c2d271c591e22fac338de0dc7c82fa8db64b0852132b6317d28738d7712344cf"
+      },
+      {
+        "id": "H010-F04-ORIGINAL-PREVIOUS-QUALIFIED-CALL",
+        "arguments": {
+          "input": {
+            "old_pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r1",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+            },
+            "new_pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+            },
+            "input_snapshot_refs": [
+              {
+                "identity": "FX-010-in-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861"
+              }
+            ],
+            "environment_refs": [
+              {
+                "identity": "FX-010-env1",
+                "revision": "r1",
+                "owner": "fixture-environment-owner",
+                "scope": "fixture/010",
+                "content_sha256": "6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642"
+              }
+            ],
+            "reproduction_comparison": {
+              "subject_ref": {
+                "identity": "FX-010-A",
+                "revision": "r2",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+              },
+              "basis_refs": [
+                {
+                  "identity": "FX-010-reproduction-A-check",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+                }
+              ],
+              "validity": "valid",
+              "kind": "reproduction_basis",
+              "value": {
+                "old_pack_ref": {
+                  "identity": "FX-010-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                },
+                "new_pack_ref": {
+                  "identity": "FX-010-A",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+                },
+                "input_snapshot_refs": [
+                  {
+                    "identity": "FX-010-in-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861"
+                  }
+                ],
+                "environment_refs": [
+                  {
+                    "identity": "FX-010-env1",
+                    "revision": "r1",
+                    "owner": "fixture-environment-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642"
+                  }
+                ],
+                "expected_semantic_result_ref": {
+                  "identity": "FX-010-expected-same-x",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "b97c3880eb91db7da08ccc676b4157a06498538d99000e164bfce104a26cde01"
+                },
+                "observed_semantic_result_refs": [
+                  {
+                    "identity": "FX-010-observed-1-same-x",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "ec4acdfc43decd44ead26e9cb6268de78f4d8c28a185cd499dc0833b7eb11eb0"
+                  },
+                  {
+                    "identity": "FX-010-observed-2-same-x",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "460607667ebd80dab9fd206d91986c2fa56bfa582f8dcb3e2c21d0896e365d51"
+                  }
+                ],
+                "comparison_contract_ref": {
+                  "identity": "FX-010-comparison-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "61e48d5dc463c90c56364511d985af9bd2a1d559e8530db7dc06066b940e9673"
+                },
+                "comparison_outcome": "same",
+                "comparison_content_check_refs": [
+                  {
+                    "identity": "FX-010-reproduction-A-check",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+                  }
+                ],
+                "recovery_basis_refs": [
+                  {
+                    "identity": "FX-010-previous-qualified-A-selection",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+                  }
+                ]
+              }
+            },
+            "unchanged_before": [
+              {
+                "pack_ref": {
+                  "identity": "FX-010-B",
+                  "revision": "r1",
+                  "owner": "component-B",
+                  "scope": "fixture/010",
+                  "content_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-010-proof-B-retained",
+                    "revision": "r1",
+                    "owner": "component-B",
+                    "scope": "fixture/010",
+                    "content_sha256": "0137094b72288d80e78dd126ec7119b8d4f1df8f88498d6ec8f368a393e796d9"
+                  }
+                ]
+              }
+            ],
+            "unchanged_after": [
+              {
+                "pack_ref": {
+                  "identity": "FX-010-B",
+                  "revision": "r1",
+                  "owner": "component-B",
+                  "scope": "fixture/010",
+                  "content_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-010-proof-B-retained",
+                    "revision": "r1",
+                    "owner": "component-B",
+                    "scope": "fixture/010",
+                    "content_sha256": "0137094b72288d80e78dd126ec7119b8d4f1df8f88498d6ec8f368a393e796d9"
+                  }
+                ]
+              }
+            ],
+            "recovery_fact": {
+              "pack_ref": {
+                "identity": "FX-010-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+              },
+              "state": "qualified",
+              "proof_refs": [
+                {
+                  "identity": "FX-010-proof-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "07258bdabd2859ea841084eeffe5b09b979d5676750f3cf26a60f128aa05d58e"
+                }
+              ],
+              "proved_pairs": [
+                {
+                  "obligation_ref": {
+                    "identity": "FX-010-ob-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe"
+                  },
+                  "oracle_ref": {
+                    "identity": "FX-010-or-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c"
+                  }
+                }
+              ],
+              "basis_refs": [
+                {
+                  "identity": "FX-010-qualification-A-check",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+                }
+              ]
+            }
+          },
+          "context": {
+            "subject_ref": {
+              "identity": "FX-010-A",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+            },
+            "current_basis_refs": [
+              {
+                "identity": "FX-010-reproduction-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+              },
+              {
+                "identity": "FX-010-previous-qualified-A-selection",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+              },
+              {
+                "identity": "FX-010-qualification-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+              }
+            ],
+            "resolved_facts": [
+              {
+                "subject_ref": {
+                  "identity": "FX-010-A",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-010-reproduction-A-check",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "reproduction_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+                  },
+                  "input_snapshot_refs": [
+                    {
+                      "identity": "FX-010-in-A",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "d4426e41dd7abc5312ddf36382cbedb1b419932107e76c836d9ecc957cd2a861"
+                    }
+                  ],
+                  "environment_refs": [
+                    {
+                      "identity": "FX-010-env1",
+                      "revision": "r1",
+                      "owner": "fixture-environment-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "6f8bb61d0d64ebf97a3703cce59a6534fee7c6777535c2a931c8ccf6cf372642"
+                    }
+                  ],
+                  "expected_semantic_result_ref": {
+                    "identity": "FX-010-expected-same-x",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "b97c3880eb91db7da08ccc676b4157a06498538d99000e164bfce104a26cde01"
+                  },
+                  "observed_semantic_result_refs": [
+                    {
+                      "identity": "FX-010-observed-1-same-x",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "ec4acdfc43decd44ead26e9cb6268de78f4d8c28a185cd499dc0833b7eb11eb0"
+                    },
+                    {
+                      "identity": "FX-010-observed-2-same-x",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "460607667ebd80dab9fd206d91986c2fa56bfa582f8dcb3e2c21d0896e365d51"
+                    }
+                  ],
+                  "comparison_contract_ref": {
+                    "identity": "FX-010-comparison-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "61e48d5dc463c90c56364511d985af9bd2a1d559e8530db7dc06066b940e9673"
+                  },
+                  "comparison_outcome": "same",
+                  "comparison_content_check_refs": [
+                    {
+                      "identity": "FX-010-reproduction-A-check",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+                    }
+                  ],
+                  "recovery_basis_refs": [
+                    {
+                      "identity": "FX-010-previous-qualified-A-selection",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-010-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-010-qualification-A-check",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "qualification_basis",
+                "value": {
+                  "pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                  },
+                  "state": "qualified",
+                  "proved_pairs": [
+                    {
+                      "obligation_ref": {
+                        "identity": "FX-010-ob-A",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010",
+                        "content_sha256": "fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe"
+                      },
+                      "oracle_ref": {
+                        "identity": "FX-010-or-A",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010",
+                        "content_sha256": "0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c"
+                      }
+                    }
+                  ],
+                  "proof_refs": [
+                    {
+                      "identity": "FX-010-proof-A",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "07258bdabd2859ea841084eeffe5b09b979d5676750f3cf26a60f128aa05d58e"
+                    }
+                  ],
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-010-qualification-A-check",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-010-A",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-010-previous-qualified-A-selection",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "f2c1b43d5723cb71112871a6de40c2b66abaf758e07d26034197e55810418f1b"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "recovery_selection_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+                  },
+                  "recovery_pack_ref": {
+                    "identity": "FX-010-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010",
+                    "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+                  },
+                  "selection": "previous_qualified",
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-010-previous-qualified-A-check",
+                      "revision": "r1",
+                      "owner": "CORE",
+                      "scope": "fixture/010",
+                      "content_sha256": "07237d2a18e6ea68a90aed5d0cc1d4fec690acf87427334e229887f02e643034"
+                    }
+                  ]
+                }
+              }
+            ],
+            "expected_local_pairs": [
+              {
+                "obligation_ref": {
+                  "identity": "FX-010-ob-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "fad655c78897663ca954605efebfccfb9f9147bc7baa5365f01ee8df8bf5debe"
+                },
+                "oracle_ref": {
+                  "identity": "FX-010-or-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "0939dc27ba732343f357bd041872aa33c69e773a4be790eae5d51023fd59289c"
+                }
+              }
+            ],
+            "fact_check_refs": [
+              {
+                "identity": "FX-010-reproduction-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+              },
+              {
+                "identity": "FX-010-qualification-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "1d75c7dd108054a7728574859b1923adff80d3d4ac33a67454e8301056cccf79"
+              },
+              {
+                "identity": "FX-010-previous-qualified-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "07237d2a18e6ea68a90aed5d0cc1d4fec690acf87427334e229887f02e643034"
+              }
+            ]
+          }
+        },
+        "expected_result": {
+          "outcome": "satisfied",
+          "value": {
+            "old_pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r1",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+            },
+            "new_pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+            },
+            "recovery_pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r1",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+            },
+            "unchanged_refs": [
+              {
+                "identity": "FX-010-B",
+                "revision": "r1",
+                "owner": "component-B",
+                "scope": "fixture/010",
+                "content_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+              }
+            ],
+            "reproduction_evidence_refs": [
+              {
+                "identity": "FX-010-reproduction-A-check",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+              }
+            ]
+          },
+          "findings": []
+        },
+        "expected_basis": "元L8 /cases/3の正常A@r1→A@r2、in-A/env1/same-x二観測、復旧A@r1 qualified、B@r1/proof-B-retained保持を完全callへ展開。直前適格というsource recordを独立に供給し、版文字列から推定しない。",
+        "internal_stages": {
+          "prior": {
+            "outcome": "satisfied",
+            "value": {
+              "old_pack_ref": {
+                "identity": "FX-010-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+              },
+              "new_pack_ref": {
+                "identity": "FX-010-A",
+                "revision": "r2",
+                "owner": "CORE",
+                "scope": "fixture/010",
+                "content_sha256": "0e59ea95c7a7b0222b7a25bca8ac16a57c2f576ce1ac38a2ad04db819458cbfd"
+              },
+              "unchanged_refs": [
+                {
+                  "identity": "FX-010-B",
+                  "revision": "r1",
+                  "owner": "component-B",
+                  "scope": "fixture/010",
+                  "content_sha256": "ed122733736f01359da542f58d9e50b6ca271ba161bf287387b76558497a596a"
+                }
+              ],
+              "reproduction_evidence_refs": [
+                {
+                  "identity": "FX-010-reproduction-A-check",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010",
+                  "content_sha256": "e5dd530ebe6bc5adb571df14f5e3fec004e511ecfb6c5f8df6455f40e08ca22d"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "qualification": {
+            "outcome": "satisfied",
+            "pack_ref": {
+              "identity": "FX-010-A",
+              "revision": "r1",
+              "owner": "CORE",
+              "scope": "fixture/010",
+              "content_sha256": "4c4d875bd187405f71c8a1e4447d21333415c52ab3f1d36fded14f644db34772"
+            },
+            "state": "qualified",
+            "findings": []
+          }
+        },
+        "arguments_canonical_sha256": "334c0beec9c4d912c80144c1e21f46ed1be410e66b6fa80dfdd1c49daba3a2dd",
+        "expected_canonical_sha256": "2cb8964717e93055c9f446b2a41396fc5938cd4926503cd498cd3c2933cca9c1"
+      },
+      {
+        "id": "H010-F04-CANDIDATE-DIFFERS-FROM-SELECTION",
+        "arguments": {
+          "input": {
+            "old_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r1",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+            },
+            "new_pack_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "input_snapshot_refs": [
+              {
+                "identity": "FX-H010-INPUT",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+              }
+            ],
+            "environment_refs": [
+              {
+                "identity": "FX-H010-ENV",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+              }
+            ],
+            "reproduction_comparison": {
+              "subject_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "basis_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ],
+              "validity": "valid",
+              "kind": "reproduction_basis",
+              "value": {
+                "old_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                },
+                "new_pack_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "input_snapshot_refs": [
+                  {
+                    "identity": "FX-H010-INPUT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                  }
+                ],
+                "environment_refs": [
+                  {
+                    "identity": "FX-H010-ENV",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                  }
+                ],
+                "expected_semantic_result_ref": {
+                  "identity": "FX-H010-SEMANTIC-RESULT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                },
+                "observed_semantic_result_refs": [
+                  {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  }
+                ],
+                "comparison_contract_ref": {
+                  "identity": "FX-H010-COMPARISON-CONTRACT",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                },
+                "comparison_outcome": "same",
+                "comparison_content_check_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "recovery_basis_refs": [
+                  {
+                    "identity": "FX-H010-RECOVERY-SELECTION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                  }
+                ]
+              }
+            },
+            "unchanged_before": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "unchanged_after": [
+              {
+                "pack_ref": {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                },
+                "proof_refs": [
+                  {
+                    "identity": "FX-H010-B-PROOF",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "f1ab3ee261be318bac59bb3885bafda5b8128ffdd85896a13aeb0759b21b18bd"
+                  }
+                ]
+              }
+            ],
+            "recovery_fact": {
+              "pack_ref": {
+                "identity": "FX-010-different-qualified-target",
+                "revision": "r1",
+                "owner": "fixture-other-owner",
+                "scope": "fixture/010",
+                "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+              },
+              "state": "qualified",
+              "proof_refs": [
+                {
+                  "identity": "FX-010-different-qualified-proof",
+                  "revision": "r1",
+                  "owner": "fixture-other-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "9979ca5d1cc5b9e9390fd3b70227581b0f10bb6970ff9d8516f95efa27a2f1ec"
+                }
+              ],
+              "proved_pairs": [
+                {
+                  "obligation_ref": {
+                    "identity": "FX-H010-LOCAL-OBLIGATION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                  },
+                  "oracle_ref": {
+                    "identity": "FX-H010-LOCAL-ORACLE",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                  }
+                }
+              ],
+              "basis_refs": [
+                {
+                  "identity": "FX-010-different-qualified-check",
+                  "revision": "r1",
+                  "owner": "fixture-other-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+                }
+              ]
+            }
+          },
+          "context": {
+            "subject_ref": {
+              "identity": "FX-H010-A",
+              "revision": "r2",
+              "owner": "fixture-pack-owner",
+              "scope": "fixture/010",
+              "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+            },
+            "current_basis_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-SELECTION",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+              },
+              {
+                "identity": "FX-010-different-qualified-check",
+                "revision": "r1",
+                "owner": "fixture-other-owner",
+                "scope": "fixture/010",
+                "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+              }
+            ],
+            "resolved_facts": [
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-REPRODUCTION-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "reproduction_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r2",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                  },
+                  "input_snapshot_refs": [
+                    {
+                      "identity": "FX-H010-INPUT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "240bb26e7c47f9ecac804a2268d717d89323f1167859f5a15d052680eb937852"
+                    }
+                  ],
+                  "environment_refs": [
+                    {
+                      "identity": "FX-H010-ENV",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "ddefb981181ece17b01f42b213072e06cb0d3a0c398f5a9349c3d4024fb540f8"
+                    }
+                  ],
+                  "expected_semantic_result_ref": {
+                    "identity": "FX-H010-SEMANTIC-RESULT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                  },
+                  "observed_semantic_result_refs": [
+                    {
+                      "identity": "FX-H010-SEMANTIC-RESULT",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "c78e05cb08265b22ae6b5908f808de77a206037efccebd4e56c7b8953f6b3963"
+                    }
+                  ],
+                  "comparison_contract_ref": {
+                    "identity": "FX-H010-COMPARISON-CONTRACT",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "6f7c086488096c3200429936317f196aded6edb272d0bcfba3640a6e8e6075ac"
+                  },
+                  "comparison_outcome": "same",
+                  "comparison_content_check_refs": [
+                    {
+                      "identity": "FX-H010-REPRODUCTION-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                    }
+                  ],
+                  "recovery_basis_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-SELECTION",
+                      "revision": "r1",
+                      "owner": "fixture-pack-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-010-different-qualified-target",
+                  "revision": "r1",
+                  "owner": "fixture-other-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-010-different-qualified-check",
+                    "revision": "r1",
+                    "owner": "fixture-other-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "qualification_basis",
+                "value": {
+                  "pack_ref": {
+                    "identity": "FX-010-different-qualified-target",
+                    "revision": "r1",
+                    "owner": "fixture-other-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+                  },
+                  "state": "qualified",
+                  "proved_pairs": [
+                    {
+                      "obligation_ref": {
+                        "identity": "FX-H010-LOCAL-OBLIGATION",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                      },
+                      "oracle_ref": {
+                        "identity": "FX-H010-LOCAL-ORACLE",
+                        "revision": "r1",
+                        "owner": "fixture-pack-owner",
+                        "scope": "fixture/010",
+                        "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                      }
+                    }
+                  ],
+                  "proof_refs": [
+                    {
+                      "identity": "FX-010-different-qualified-proof",
+                      "revision": "r1",
+                      "owner": "fixture-other-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "9979ca5d1cc5b9e9390fd3b70227581b0f10bb6970ff9d8516f95efa27a2f1ec"
+                    }
+                  ],
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-010-different-qualified-check",
+                      "revision": "r1",
+                      "owner": "fixture-other-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+                    }
+                  ]
+                }
+              },
+              {
+                "subject_ref": {
+                  "identity": "FX-H010-A",
+                  "revision": "r2",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                },
+                "basis_refs": [
+                  {
+                    "identity": "FX-H010-RECOVERY-SELECTION",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                  }
+                ],
+                "validity": "valid",
+                "kind": "recovery_selection_basis",
+                "value": {
+                  "old_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r1",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+                  },
+                  "new_pack_ref": {
+                    "identity": "FX-H010-A",
+                    "revision": "r2",
+                    "owner": "fixture-pack-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+                  },
+                  "recovery_pack_ref": {
+                    "identity": "FX-H010-EXPLICIT-R",
+                    "revision": "r7",
+                    "owner": "fixture-replacement-owner",
+                    "scope": "fixture/010",
+                    "content_sha256": "9208852fcdcb185e7c523474905ee48eb65eb49343e992f5340472b03e57a0ed"
+                  },
+                  "selection": "explicit_replacement",
+                  "content_check_refs": [
+                    {
+                      "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+                      "revision": "r1",
+                      "owner": "fixture-meaning-check-owner",
+                      "scope": "fixture/010",
+                      "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+                    }
+                  ]
+                }
+              }
+            ],
+            "expected_local_pairs": [
+              {
+                "obligation_ref": {
+                  "identity": "FX-H010-LOCAL-OBLIGATION",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "763f3948cb47e066b1212519cf9190d34f7a84971778318638b858d5597da2f6"
+                },
+                "oracle_ref": {
+                  "identity": "FX-H010-LOCAL-ORACLE",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "a75d54218720768226eaa60c237e7eb58f85db5bdd48b9e5781b9175eab9b495"
+                }
+              }
+            ],
+            "fact_check_refs": [
+              {
+                "identity": "FX-H010-REPRODUCTION-CHECK",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+              },
+              {
+                "identity": "FX-010-different-qualified-check",
+                "revision": "r1",
+                "owner": "fixture-other-owner",
+                "scope": "fixture/010",
+                "content_sha256": "8bd5fcee46bf6790e2d90a9608064662f69ed3579cf471ef2f74db5dff84562b"
+              },
+              {
+                "identity": "FX-H010-RECOVERY-ROLE-CHECK",
+                "revision": "r1",
+                "owner": "fixture-meaning-check-owner",
+                "scope": "fixture/010",
+                "content_sha256": "c38795b697a33b1d5d4314c7127ab06ae38c035de5ec90c75e88281aa14d1246"
+              }
+            ]
+          }
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": null,
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "/recovery_fact/pack_ref",
+              "subject_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "requirement_ref": "HARNESS-L3-010-F04",
+              "backflow_owner": "HELIX-HARNESS",
+              "evidence_refs": [
+                {
+                  "identity": "FX-010-different-qualified-target",
+                  "revision": "r1",
+                  "owner": "fixture-other-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+                },
+                {
+                  "identity": "FX-H010-RECOVERY-SELECTION",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "d59ce583e113f1b00f15957503611967be3727f6c8bf21b31dedef47153e390c"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_basis": "L5 F04 steps[3]/shared_pre_postの同subject/版/scope/owner/current内容照合。役割sourceはRを明示し入力candidate Tは別sourceでqualifiedでも、R→Tを補完しない。両者の既知差をreference_conflictとし、選択sourceをTへ追随変更しない。",
+        "internal_stages": {
+          "prior": {
+            "outcome": "satisfied",
+            "value": {
+              "old_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r1",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "17f9e4a1d83b0dd7f17787a56a865a19d2122c54395bae1091000b28f55f9f0c"
+              },
+              "new_pack_ref": {
+                "identity": "FX-H010-A",
+                "revision": "r2",
+                "owner": "fixture-pack-owner",
+                "scope": "fixture/010",
+                "content_sha256": "252967861f0d6097802755bb1643dc413f39dd48738c900006db4ea3b9c6aa21"
+              },
+              "unchanged_refs": [
+                {
+                  "identity": "FX-H010-B",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "911e381564d3b797603949a88f32f1f413da47c99ba7c1d838ca84cc69bd6999"
+                }
+              ],
+              "reproduction_evidence_refs": [
+                {
+                  "identity": "FX-H010-REPRODUCTION-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-pack-owner",
+                  "scope": "fixture/010",
+                  "content_sha256": "4bbaf80635e2aacaa57df23331be250c45aa4f09094a780a9637c8964575cc5c"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "qualification": {
+            "outcome": "satisfied",
+            "pack_ref": {
+              "identity": "FX-010-different-qualified-target",
+              "revision": "r1",
+              "owner": "fixture-other-owner",
+              "scope": "fixture/010",
+              "content_sha256": "31b5aae6fb2a81f54e6ddde1d736ecd1b26d7ec0e9d58f4e05f767a82448e9db"
+            },
+            "state": "qualified",
+            "findings": []
+          }
+        },
+        "arguments_canonical_sha256": "85f38df688f2f61282f0324766bdd2137420b07ea042e4e6c5def8cd6b4d6e39",
+        "expected_canonical_sha256": "c36c62cc0eba98810fb85c06981666d1257bf669509d696853832d3d97a874fc"
+      }
+    ],
+    "candidate_L5_bytes_binding": {
+      "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+      "sha256": "e5b3789d3328de5ac193821f079e797c39f0809f05341ebda2cd5ddae5b9202b",
+      "scope": "同一candidate bytes。承認/source revisionではない。"
+    },
+    "comparison": "全Result/全Finding memberを比較し、ReferenceSetの順は意味にしない。input/context/source原値を変更しない。",
+    "limits": [
+      "ここで具体化するのはF04の回復役割carrierと返却後段。既存前段/全5関数/全mutationの新たな完了gateにしない。",
+      "実source provider/issuer/意味資格/原body custody、OS登録/許可/rollback/起動とcodec/L11/Readyは未成立。",
+      "constructorへ渡すprior/qualificationは独立に固定し、そのproducerの未供給をsatisfied/空Findingで補完してよいという意味ではない。"
+    ]
+  }
 }
