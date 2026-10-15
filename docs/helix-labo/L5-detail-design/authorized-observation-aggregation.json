@@ -1,0 +1,1413 @@
+{
+  "parent": "HELIXLABO-L2-001",
+  "pair": "HELIXLABO-L5/L8-001",
+  "source_main": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+  "document_ids": {
+    "L5": "HELIXLABO-L5-001",
+    "L8": "HELIXLABO-L8-001"
+  },
+  "source_basic_pair_revision": "31d08b741f5ae12e29e545f863bb67032d788fc0",
+  "source_revision_kind": "approved_L3_L10_plus_L4_L9_exact_source_pins",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "L5/L8 logical detail only",
+    "boundary": "選択された許可観測をLABO observationへ対応付け、source正本/state/authorityを保持する論理契約。source接続021..030は選択ごとの別閉包。Web/WEB-OSと全source完成は前提にせず、2.0外部取得も含めない。正式schema/codec・実source資格・実permission・実取込・実評価・実L11受入は未成立。"
+  },
+  "upstream_adoption": {
+    "approval_record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "approval_record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "approval_record_revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+    "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "decision_record_id": "HDEC-LABO-PREREQUISITE-L3L10-2026-10-12",
+    "scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+    "approved_objects": [
+      {
+        "id": "HELIXLABO-L3-001-B01",
+        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
+        "whole_file_bytes": 13197,
+        "canonical_object_sha256": "00ff8bdfd68f2d4e4bde67e1515ada9551bbd17e476966df4bd40c0ce7b68f36",
+        "value": {
+          "id": "HELIXLABO-L3-001-B01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "観測とsource authority",
+          "obligation": "LABOは許可観測を保持しsource正本/state/authorityを書き換えない。取込成功から評価、実行許可、全source能力完成を生成しない。",
+          "oracle_ref": "HELIXLABO-L10-001-B01"
+        }
+      },
+      {
+        "id": "HELIXLABO-L3-001-F01",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+        "whole_file_bytes": 20536,
+        "canonical_object_sha256": "8ceb493e47625f11c61cc66a31ba6746e0818c5cb281d054ec2231c51249f524",
+        "value": {
+          "id": "HELIXLABO-L3-001-F01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "許可観測とprovenance",
+          "obligation": "選択sourceから許可された情報だけを取り込みsource identity/revision/出典を保つ。episode_id/requirement_revision/ticket_id/responsibility_id/product/mechanism/worker/provider/model/configuration/artifact/CI-test/release/deployment/runtime/failure/rework/cost/time/resultを結べる。未発生と欠落を区別し値を推測しない。",
+          "oracle_ref": "HELIXLABO-L10-001-F01"
+        }
+      },
+      {
+        "id": "HELIXLABO-L3-001-F02",
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+        "whole_file_bytes": 20536,
+        "canonical_object_sha256": "2075fa51e7625740587031834b2fb89b13c6b37e440a3829cd772047a49092e8",
+        "value": {
+          "id": "HELIXLABO-L3-001-F02",
+          "parent": "HELIXLABO-L2-001",
+          "title": "成功以外の状態保全",
+          "obligation": "開発/Worker/AI判断/CI-test-review/backflow/recovery/incident/refactor/release/deployment/runtime/利用/再作業/費用/token-API/model-provider/correction/rollback/product結果をscope付きで扱い、success/failure/rejected/cancelled/blocked/unknown/not_observedを区別する。",
+          "oracle_ref": "HELIXLABO-L10-001-F02"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-001-B01",
+        "path": "docs/helix-labo/L10-verification/business-verification.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
+        "whole_file_bytes": 14455,
+        "canonical_object_sha256": "004668be283cc692283c8ddb1ee2cd9b356f963bb5c492b38228ea7d76210b0a",
+        "value": {
+          "id": "HELIXLABO-L10-001-B01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "観測とsource authority",
+          "requirement_ref": "HELIXLABO-L3-001-B01",
+          "positive_input": "source原記録とLABO observationを別identityで照合する。",
+          "expected_observation": "元記録と観測、各ownerのauthorityが分かれる。",
+          "negative_input": "LABOからsource書戻し、観測で割当許可。",
+          "failure_observation": "元source/SEC/OS ownerへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-001-F01",
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+        "whole_file_bytes": 23610,
+        "canonical_object_sha256": "37fc1624c22ef531d4230d253ae14b8ab79e21d37d3ead0d0ecbaef80823d72c",
+        "value": {
+          "id": "HELIXLABO-L10-001-F01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "許可観測とprovenance",
+          "requirement_ref": "HELIXLABO-L3-001-F01",
+          "positive_input": "異なるsource版/scopeの許可観測と必須source参照欠落を比較する。",
+          "expected_observation": "列挙fieldとsource receiptを辿れ、未発生/不明が明示される。",
+          "negative_input": "source revision不明をcurrent、権限外/secret取込、出所推測。",
+          "failure_observation": "source/SEC ownerへ返し該当観測を保留する。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-001-F02",
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+        "whole_file_bytes": 23610,
+        "canonical_object_sha256": "b47704b744cee43851ad378dfb4b6907ec4559700037fe315682a9360711b5e4",
+        "value": {
+          "id": "HELIXLABO-L10-001-F02",
+          "parent": "HELIXLABO-L2-001",
+          "title": "成功以外の状態保全",
+          "requirement_ref": "HELIXLABO-L3-001-F02",
+          "positive_input": "各状態と未発生sourceを別caseで集積する。",
+          "expected_observation": "全選択sourceの原状態と未観測が辿れる。",
+          "negative_input": "成功だけ選別、unknownを成功、not_observedを観測済み。",
+          "failure_observation": "該当sourceへ不足を返し失敗事実を失わない。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXLABO-L3-001-N01",
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
+        "whole_file_bytes": 11612,
+        "canonical_object_sha256": "5f987ed8d3152e4b882264d268c861a19c9fd71fee2973e55c4096f3e4bd1c63",
+        "value": {
+          "id": "HELIXLABO-L3-001-N01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "証拠の適用scope",
+          "obligation": "要求revision/選択source exact set/source-result-contract revision/操作/scope/状態と受領・評価証拠を結び、未見版/一境界欠落を検査する。field存在やfixture greenを全source/評価/別scopeへ外挿しない。",
+          "oracle_ref": "HELIXLABO-L10-001-N01"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-001-N01",
+        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+        "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "whole_file_sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
+        "whole_file_bytes": 12101,
+        "canonical_object_sha256": "1d6c52a546263c8d4bfbe84f28dece47564173deafcb58231d0b3dcac54aedf2",
+        "value": {
+          "id": "HELIXLABO-L10-001-N01",
+          "parent": "HELIXLABO-L2-001",
+          "title": "証拠の適用scope",
+          "requirement_ref": "HELIXLABO-L3-001-N01",
+          "positive_input": "既知正常と未見source版/別scope、許可またはreceipt一件欠落を比較する。",
+          "expected_observation": "未観測/未実行/評価不能と適用限界が保持される。",
+          "negative_input": "件数で全完成、異scope成功継承。",
+          "failure_observation": "該当ownerへ不足と未完を返す。",
+          "execution_state": "not_executed"
+        }
+      }
+    ]
+  },
+  "approval_whole_files": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "bytes": 14455,
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 12470,
+      "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "bytes": 23610,
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 20294,
+      "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "bytes": 12101,
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 10462,
+      "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "bytes": 13197,
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 11346,
+      "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "bytes": 20536,
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 17774,
+      "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "bytes": 11612,
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 9988,
+      "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+      "bytes": 5110
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "bytes": 6104
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "bytes": 14632
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "bytes": 123228
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "bytes": 73036
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
+      "revision": "31d08b741f5ae12e29e545f863bb67032d788fc0",
+      "sha256": "17bad6011755dccbc1ecf0882a0e2128369f0b9558914c01e8707a2680fdcc4c",
+      "bytes": 24489
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/authorized-observation-aggregation.json",
+      "revision": "31d08b741f5ae12e29e545f863bb67032d788fc0",
+      "sha256": "e415a7a14543ab4179992adb55afcf5281b4da4043bd60e29d353132d68cf365",
+      "bytes": 3673709
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+      "bytes": 104973
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "bytes": 7991
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "bytes": 56091
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "bytes": 64939
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "bytes": 6921
+    }
+  ],
+  "legacy_rederivation": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        113,
+        113
+      ],
+      "quote": "| **HIL-FR-23** | Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "read_lines": [
+        554,
+        586
+      ],
+      "quote": "connectorはproduct DBへ直接自由queryする機構ではない。登録時に次を固定する。\n\n- source identity、connector type/version、credential **reference**、data classificationの登録値\n- source schema/version、canonical mapping version、read-only/read-write policyの権限境界\n- snapshot/cursor/event identity、freshness SLA、retention/redactionの更新規則\n- lineage、schema drift policy、quarantine route、replay checkpointの復旧規則\n- detector/docgenへ渡せるfieldと禁止field\n\n既定はread-only snapshotであり、productへのwrite-backは別Issue、Reverse、security review、action-binding approvalを\n要求する。schema drift、credential不在、PII classification不明は取り込みを止め、古いprojectionをcurrentとして返さない。\n\n### §8.1 product-data実装schema\n\n| table | PK | 論理FK・一意制約 | 必須field | 許可status |\n|---|---|---|---|---|\n| `product_sources` | `product_source_id` | source kind＋external identity digestは一意 | owner、classification、read/write policy、freshness SLA、retention、created/updated | `registered`, `enabled`, `disabled`, `quarantined`, `retired` |\n| `product_connector_versions` | `product_connector_version_id` | source→`product_sources`、source＋connector versionは一意、activeはsourceごとに最大1件 | connector/schema/mapping version、credential reference、sync mode、config digest、effective_at | `draft`, `active`, `deprecated`, `revoked` |\n| `product_ingestion_runs` | `product_ingestion_run_id` | connector versionを参照、operation/idempotency keyは一意 | mode、intent digest、cursor start/end、fence token、failure、開始/終了 | `received`, `claimed`, `fetching`, `staged`, `validating`, `committing`, `completed`, `failed`, `quarantined`, `cancelled` |\n| `product_snapshots` | `product_snapshot_id` | source/runを参照、runは一意、source＋cursor＋schema/content digestは一意、supersedesは自己参照、sourceごとの`current`はpartial uniqueで最大1件 | classification、captured/fresh until、lineage/schema/content digest | `staged`, `current`, `stale`, `superseded`, `quarantined`, `purged` |\n| `product_entity_versions` | `product_entity_version_id` | snapshot→`product_snapshots`、snapshot＋canonical entity IDは一意 | entity type、source record key digest、schema version、redacted artifact path/payload digest、tombstone | `staged`, `current`, `superseded`, `tombstoned`, `quarantined` |\n| `product_mapping_edges` | `product_mapping_edge_id` | entity versionを参照、entity＋target kind/ID＋mapping versionは一意 | target kind、evidence digest、created_at | `active`, `stale`, `rejected` |\n| `product_watermarks` | `product_source_id` | source/snapshot/connector versionを参照 | cursor、fence token、updated_at | current projection |\n| `product_quarantine_items` | `product_quarantine_item_id` | source/run/snapshotを参照、source＋fingerprint＋scope digestは一意 | finding code、evidence digest、owner、expiry、release receipt | `open`, `released`, `expired`, `superseded` |\n| `product_ingestion_events` | `product_ingestion_event_id` | run→`product_ingestion_runs`、run＋event sequenceとoperation IDは一意 | from/to state、previous/event digest、failure、occurred_at | append-only |\n\ncredentialはreferenceだけを保存し、raw secret、未redact PII、自由形式raw payloadをprojectionへ保存しない。\nwatermarkはsourceごとの最後の`current` snapshotからcompare-and-swapし、逆行を`HIL_PRODUCT_WATERMARK_REGRESSION`、\nschema driftを`HIL_PRODUCT_SCHEMA_DRIFT`、freshness超過を`HIL_PRODUCT_SNAPSHOT_STALE`として旧entityをcurrentから外す。\n同一idempotency keyの再送は副作用0件とし、異なるdigestなら`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。\nentity/mapping insert、旧currentのsupersede、新snapshotのcurrent化、watermark CASは一transactionで行う。\ncrash時は`staged`を再検証し、watermarkだけを進めない。retention receiptなしのpurge、存在しないmapping target、\nclassification不明、未redact payloadをそれぞれfail-closeする。\nwrite-backは本schemaに含めず、別のaction-binding approval付き契約が作られるまでNode/Python双方から拒否する。",
+      "file_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "selected_lines_sha256": "2e6ac9c0ba4c61644155e66f04a719bc6d911b559ff4af10772b11eef3598457",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "disposition": "unresolved",
+        "source_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "read_lines": [
+        32,
+        32
+      ],
+      "quote": "      col(\"improvement_episode_id\"),",
+      "file_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "selected_lines_sha256": "615a0153e256f32b2cd2ef051b520e3959057fe2fcb87c649d88346d565c62b8",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-D60AE87D9DFA0740F4A8",
+        "disposition": "unresolved",
+        "source_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "audit": {
+    "parents": 92,
+    "l3_l10_pairs": 430,
+    "scope": "全scopeを保持し、001のdetailだけを導出。"
+  },
+  "implementation_readiness": "not_ready",
+  "qualification_boundary": {
+    "synthetic_packets": "全packetは固定合成例。fixture内の許可表示は実source資格や実permissionではない。",
+    "source_qualification": "owner/source/contractの正式資格は未成立。値の存在やowner文字列から資格を生成しない。",
+    "evaluation": "集積の成立から評価済みを生成しない。",
+    "authority": "source authority、assignment permission、SECURITY gateを新設・代行しない。"
+  },
+  "status": "draft_logical_detail_pending_independent_review",
+  "logical_type_status": "logical_carrier_only_not_formal_schema_or_codec",
+  "contracts": [
+    {
+      "id": "HELIXLABO-L5-001-F01",
+      "requirement_ref": "HELIXLABO-L3-001-F01",
+      "oracle_ref": "HELIXLABO-L10-001-F01",
+      "basic_contract_ref": "HELIXLABO-L4-001-F01",
+      "rules": [
+        "許可情報の限定はsource/SECURITY ownerが供給する資格入力に依存し、synthetic fixtureのallowed_in_fixture_onlyは実資格ではない。",
+        "identity/revision/provenanceと20 fieldのsource ref、未発生・欠落の区別をそのまま保持する。",
+        "未発生・not_observedとmissing/null/absentを分ける。欠けた値を補完しない。"
+      ],
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L5-001-F02",
+      "requirement_ref": "HELIXLABO-L3-001-F02",
+      "oracle_ref": "HELIXLABO-L10-001-F02",
+      "basic_contract_ref": "HELIXLABO-L4-001-F02",
+      "rules": [
+        "21 domain値と7状態値をscope付き原値で保持する。",
+        "success以外を選別/成功へ変換しない。source-not-occurredはrecord occurrenceの値とfield stateを別々に保つ。"
+      ],
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L5-001-N01",
+      "requirement_ref": "HELIXLABO-L3-001-N01",
+      "oracle_ref": "HELIXLABO-L10-001-N01",
+      "basic_contract_ref": "HELIXLABO-L4-001-N01",
+      "rules": [
+        "要求revision/source exact set/source-result/contract revision/operation/scope/stateをscope_keys全項目で比較する。",
+        "receipt/permission不足、未知revision、foreign scopeは成立へ補完せず該当ownerへ戻す。"
+      ],
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L5-001-B01",
+      "requirement_ref": "HELIXLABO-L3-001-B01",
+      "oracle_ref": "HELIXLABO-L10-001-B01",
+      "basic_contract_ref": "HELIXLABO-L4-001-B01",
+      "rules": [
+        "source recordとsubmitted observationは別identity/owner。source rawはread-only。",
+        "取込内容からevaluation、assignment、permission、全source capability completionを生成しない。"
+      ],
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    }
+  ],
+  "logical_type_definitions": [
+    {
+      "name": "JsonValue",
+      "kind": "closed JSON value union",
+      "members": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array<JsonValue>",
+        "object<string,JsonValue>"
+      ],
+      "use": "合成rawを無損失に運び、型外の原値を暗黙castしない。正式wire schemaではない。"
+    },
+    {
+      "name": "Presence<T>",
+      "kind": "raw record member presence",
+      "members": {
+        "absent": "field key absent",
+        "null": "key present with JSON null",
+        "value": "key present with T"
+      },
+      "use": "absent/null/valueを区別する。raw JSON保持であり新wire tagを採択しない。",
+      "representation": "親recordにkeyが無ければabsent、key値nullはnull、それ以外がT。tag wrapperをrawへ注入しない。absent/null/valueは観測上の区別を表す。"
+    },
+    {
+      "name": "ScopeTuple",
+      "kind": "record",
+      "fields": {
+        "requirement_revision": "string",
+        "sources": "list<string>",
+        "source_result_revision": "string",
+        "contract_revision": "string",
+        "operation": "string",
+        "scope": "string",
+        "state": "string"
+      },
+      "use": "要求・source集合・結果契約・操作・scope・状態の比較対象。",
+      "field_meanings_before_normalization": {
+        "requirement_revision": "string",
+        "sources": "list<string> exact set",
+        "source_result_revision": "string",
+        "contract_revision": "string",
+        "operation": "string",
+        "scope": "string",
+        "state": "ObservationState"
+      },
+      "state_source_note": "scope比較元は原N01-RECEIPT-state-FOREIGNのFOREIGN反例も保持するraw string。ObservationRecord.stateの7状態enumとは別carrier。未知scope値を正規状態へ変換しない。"
+    },
+    {
+      "name": "ObservationState",
+      "kind": "string enum from approved L3/L4/L9",
+      "values": [
+        "success",
+        "failure",
+        "rejected",
+        "cancelled",
+        "blocked",
+        "unknown",
+        "not_observed"
+      ]
+    },
+    {
+      "name": "ObservationDomain",
+      "kind": "string enum from L4-F02 domain mapping",
+      "values": [
+        "development",
+        "Worker",
+        "AI_judgment",
+        "CI",
+        "test",
+        "review",
+        "backflow",
+        "recovery",
+        "incident",
+        "refactor",
+        "release",
+        "deployment",
+        "runtime",
+        "usage",
+        "rework",
+        "cost",
+        "token_API",
+        "model_provider",
+        "correction",
+        "rollback",
+        "product_result"
+      ]
+    },
+    {
+      "name": "SourceField",
+      "kind": "record",
+      "fields": {
+        "state": "string",
+        "source_ref": "Presence<string>"
+      },
+      "field_meanings_before_normalization": {
+        "state": "string; raw value retained exactly",
+        "source_ref": "Presence<string>"
+      }
+    },
+    {
+      "name": "SourceRecord",
+      "kind": "record",
+      "fields": {
+        "identity": "Presence<string>",
+        "revision": "Presence<string>",
+        "owner": "string",
+        "provenance_ref": "Presence<string>",
+        "state": "ObservationState",
+        "occurrence": "Occurrence",
+        "domain": "ObservationDomain",
+        "fields": "map<RequiredObservationField,SourceField>",
+        "permission": "Presence<PermissionRecord>",
+        "receipt": "Presence<ReceiptRecord>",
+        "scope": "Presence<ScopeTuple>"
+      },
+      "field_meanings_before_normalization": {
+        "identity": "Presence<string>",
+        "revision": "Presence<string>",
+        "owner": "string",
+        "provenance_ref": "Presence<string>",
+        "state": "ObservationState",
+        "occurrence": "string enum occurred|not_occurred",
+        "domain": "ObservationDomain",
+        "fields": "map<RequiredObservationField,SourceField>",
+        "permission": "Presence<PermissionRecord>",
+        "receipt": "Presence<ReceiptRecord>",
+        "scope": "Presence<ScopeTuple>"
+      }
+    },
+    {
+      "name": "PermissionRecord",
+      "kind": "record",
+      "fields": {
+        "owner": "string",
+        "state": "string",
+        "classification": "Presence<string>",
+        "scope": "Presence<ScopeTuple>"
+      },
+      "field_meanings_before_normalization": {
+        "owner": "string",
+        "state": "string; fixture value preserved",
+        "classification": "Presence<string>",
+        "scope": "Presence<ScopeTuple>"
+      }
+    },
+    {
+      "name": "ReceiptRecord",
+      "kind": "record",
+      "fields": {
+        "owner": "string",
+        "ref": "Presence<string>",
+        "source_identity": "Presence<string>",
+        "source_revision": "Presence<string>",
+        "scope": "Presence<ScopeTuple>"
+      },
+      "field_meanings_before_normalization": {
+        "owner": "string",
+        "ref": "Presence<string>",
+        "source_identity": "Presence<string>",
+        "source_revision": "Presence<string>",
+        "scope": "Presence<ScopeTuple>"
+      }
+    },
+    {
+      "name": "ObservationRecord",
+      "kind": "record; original_observations and submitted_observations share this raw shape",
+      "fields": {
+        "identity": "Presence<string>",
+        "source_identity": "Presence<string>",
+        "source_revision": "Presence<string>",
+        "owner": "string",
+        "state": "ObservationState",
+        "occurrence": "Occurrence",
+        "fields": "map<RequiredObservationField,SourceField>"
+      },
+      "field_meanings_before_normalization": {
+        "identity": "Presence<string>",
+        "source_identity": "Presence<string>",
+        "source_revision": "Presence<string>",
+        "owner": "string",
+        "state": "ObservationState",
+        "occurrence": "string enum occurred|not_occurred",
+        "fields": "map<RequiredObservationField,SourceField>"
+      }
+    },
+    {
+      "name": "ClaimCode",
+      "kind": "string; raw claim input",
+      "values": [
+        "missing_revision_is_current",
+        "secret_ingestion_allowed",
+        "invent_provenance",
+        "success_only_filter",
+        "unknown_is_success",
+        "not_observed_is_observed",
+        "count_is_all_complete",
+        "foreign_scope_inherits_success",
+        "field_presence_is_evaluation",
+        "labo_source_writeback",
+        "observation_grants_assignment",
+        "ingestion_is_evaluation",
+        "all_source_capabilities_complete"
+      ],
+      "known_values_scope": "valuesは既存の既知claim規則keyの一覧。unknown stringも原値のまま保持するため閉じたenumへ変更しない。"
+    },
+    {
+      "name": "ObservationPacket",
+      "kind": "record; exact decoded raw_utf8 object",
+      "fields": {
+        "assignment": "OwnerState",
+        "claims": "list<ClaimCode>",
+        "evaluation": "OwnerState",
+        "original_observations": "list<ObservationRecord>",
+        "original_scope": "ScopeTuple",
+        "original_sources": "list<SourceRecord>",
+        "permission_effect": "OwnerState",
+        "submitted_observations": "list<ObservationRecord>"
+      },
+      "field_meanings_before_normalization": {
+        "assignment": "OwnerState",
+        "claims": "list<ClaimCode> (unknown strings remain JsonValue and produce no inferred meaning)",
+        "evaluation": "OwnerState",
+        "original_observations": "list<ObservationRecord>",
+        "original_scope": "ScopeTuple",
+        "original_sources": "list<SourceRecord>",
+        "permission_effect": "OwnerState",
+        "submitted_observations": "list<ObservationRecord>"
+      }
+    },
+    {
+      "name": "ObservationComparisonContract",
+      "kind": "record; values from approved L3/L4/L9 rules",
+      "fields": {
+        "scope_keys": "list<string>",
+        "required_fields": "list<RequiredObservationField>",
+        "required_states": "list<ObservationState>",
+        "required_domains": "list<ObservationDomain>",
+        "claim_findings": "map<ClaimCode,FindingRule>",
+        "permission_owner": "string",
+        "observation_owner": "string",
+        "receipt_owner": "string",
+        "diagnostic": "FiniteDiagnosticContract"
+      },
+      "field_meanings_before_normalization": {
+        "scope_keys": "list<string>",
+        "required_fields": "list<string>",
+        "required_states": "list<ObservationState>",
+        "required_domains": "list<ObservationDomain>",
+        "claim_findings": "map<ClaimCode,FindingRule>",
+        "permission_owner": "string HELIX-SECURITY",
+        "observation_owner": "string LABO",
+        "not_observed_owner": "source owner"
+      },
+      "normalization_reason": "元8memberを同値保持し、原L9有限素材の診断選択・定数をdiagnosticに明示。owner資格/許可の供給は含まない。observation_ownerは所見の戻し先、diagnostic.observation_record_ownerは観測record.ownerの比較literal。"
+    },
+    {
+      "name": "OwnerState",
+      "kind": "record",
+      "fields": {
+        "owner": "string",
+        "state": "string"
+      },
+      "field_meanings_before_normalization": {
+        "owner": "string",
+        "state": "string; exact raw value"
+      }
+    },
+    {
+      "name": "RetainedPacket",
+      "kind": "record",
+      "fields": {
+        "retained_inputs": "ObservationPacket",
+        "retained_original_states": "list<JsonValue>",
+        "retained_occurrences": "list<JsonValue>",
+        "evaluation_state": "JsonValue"
+      },
+      "field_meanings_before_normalization": {
+        "retained_inputs": "ObservationPacket exact deep value",
+        "retained_original_states": "list<JsonValue>",
+        "retained_occurrences": "list<JsonValue>",
+        "evaluation_state": "JsonValue"
+      }
+    },
+    {
+      "name": "Finding",
+      "kind": "record",
+      "fields": {
+        "field": "string",
+        "result": "FindingResult",
+        "return_owner": "string"
+      },
+      "field_meanings_before_normalization": {
+        "field": "string path from source rule",
+        "result": "原L9の具体result codeをFindingResultに列挙。case ID lookupで値を選ばない。",
+        "return_owner": "string owner label from source input/approved failure route"
+      }
+    },
+    {
+      "name": "FindingSet",
+      "kind": "record",
+      "fields": {
+        "failure_reasons": "list<Finding>",
+        "return_owners": "list<string>",
+        "rejected_claims": "list<ClaimCode>"
+      },
+      "field_meanings_before_normalization": {
+        "failure_reasons": "list<Finding>",
+        "return_owners": "distinct list<string> in first finding order",
+        "rejected_claims": "list<ClaimCode> exact input values"
+      }
+    },
+    {
+      "name": "ObservationAssessment",
+      "kind": "record",
+      "fields": {
+        "information_state": "InformationState",
+        "retained_inputs": "ObservationPacket",
+        "retained_original_states": "list<JsonValue>",
+        "retained_occurrences": "list<JsonValue>",
+        "evaluation_state": "JsonValue",
+        "failure_reasons": "list<Finding>",
+        "return_owners": "list<string>",
+        "rejected_claims": "list<ClaimCode>",
+        "actual_effects": "ActualEffects"
+      },
+      "field_meanings_before_normalization": {
+        "information_state": "string enum held_observation_unqualified|observation_content_requires_actual_qualification",
+        "retained_inputs": "ObservationPacket",
+        "retained_original_states": "list<JsonValue>",
+        "retained_occurrences": "list<JsonValue>",
+        "evaluation_state": "JsonValue",
+        "failure_reasons": "list<Finding>",
+        "return_owners": "list<string>",
+        "rejected_claims": "list<ClaimCode>",
+        "actual_effects": "record of false booleans from pure no-effect boundary"
+      }
+    },
+    {
+      "name": "FixedPacketRef",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "string",
+        "owner": "string",
+        "scope": "string"
+      },
+      "note": "L9独立_source_packet.ref。synthetic fixture referenceでありowner資格ではない。"
+    },
+    {
+      "name": "FixedSourcePacket",
+      "kind": "record",
+      "fields": {
+        "ref": "FixedPacketRef",
+        "raw_utf8": "string",
+        "sha256": "string"
+      },
+      "note": "L9 independent_source_packetそのもの。FN01のtyped argument root。 原wrapperのsha256も同値保持する（raw_utf8 bytesのfixture hashで、資格ではない）。",
+      "field_meanings_before_normalization": {
+        "ref": "FixedPacketRef",
+        "raw_utf8": "string; bytes parsed once by FN01"
+      }
+    },
+    {
+      "name": "RequiredObservationField",
+      "kind": "enum",
+      "values": [
+        "episode_id",
+        "requirement_revision",
+        "ticket_id",
+        "responsibility_id",
+        "product",
+        "mechanism",
+        "worker",
+        "provider",
+        "model",
+        "configuration",
+        "artifact",
+        "CI_test",
+        "release",
+        "deployment",
+        "runtime",
+        "failure",
+        "rework",
+        "cost",
+        "time",
+        "result"
+      ]
+    },
+    {
+      "name": "FindingRule",
+      "kind": "tuple",
+      "items": [
+        "string",
+        "FindingResult",
+        "string"
+      ],
+      "meaning": "既存claim_findingsの[field,result,return_owner]原3値。新規則は追加しない。"
+    },
+    {
+      "name": "Occurrence",
+      "kind": "enum",
+      "values": [
+        "occurred",
+        "not_occurred"
+      ]
+    },
+    {
+      "name": "InformationState",
+      "kind": "enum",
+      "values": [
+        "held_observation_unqualified",
+        "observation_content_requires_actual_qualification"
+      ]
+    },
+    {
+      "name": "FalseEffect",
+      "kind": "literal",
+      "value": false
+    },
+    {
+      "name": "ActualEffects",
+      "kind": "record",
+      "fields": {
+        "source_overwrite": "FalseEffect",
+        "state_change": "FalseEffect",
+        "authority_change": "FalseEffect",
+        "ingestion_write": "FalseEffect",
+        "evaluation": "FalseEffect",
+        "assignment": "FalseEffect",
+        "permission": "FalseEffect",
+        "acceptance": "FalseEffect",
+        "implementation_ready": "FalseEffect"
+      }
+    },
+    {
+      "name": "FixtureExecutionState",
+      "kind": "literal",
+      "value": "not_executed"
+    },
+    {
+      "name": "FindingResult",
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unobserved",
+        "not_observed",
+        "foreign",
+        "not_permitted",
+        "foreign_or_unseen",
+        "unseen_revision",
+        "source_state_loss_or_promotion",
+        "source_observation_conflated",
+        "wrong_owner",
+        "unsupported_imputation_or_permission",
+        "unsupported_extrapolation",
+        "unsupported_authority_or_state_promotion"
+      ],
+      "scope": "原L9有限比較と既存claim_findingsの診断code。新たな許可/実行結果ではない。"
+    },
+    {
+      "name": "FiniteDiagnosticContract",
+      "kind": "record",
+      "fields": {
+        "result_codes": "map<string,FindingResult>",
+        "source_owner_labels": "map<string,string>",
+        "allowed_classifications": "list<string>",
+        "observation_record_owner": "string",
+        "observation_loss_owner": "string",
+        "claim_suppression": "map<string,list<string>>"
+      },
+      "scope": "現在の83固定rawを比較する有限契約。各mapの必須key/役割はFN02 algorithmに固定。未見組合せへの一般policyを採用しない。"
+    }
+  ],
+  "function_signatures_and_decisions": [
+    {
+      "id": "LABO001-FN01",
+      "name": "retain_observation_packet",
+      "signature": {
+        "parameters": [
+          {
+            "name": "packet",
+            "type": "FixedSourcePacket"
+          }
+        ],
+        "returns": "RetainedPacket"
+      },
+      "reads": [
+        "packet.ref",
+        "packet.raw_utf8 (parse as JSON object; exact keys/values retained)",
+        "original_observations[*].state",
+        "original_observations[*].occurrence",
+        "evaluation.state"
+      ],
+      "preconditions": [
+        "raw_utf8がJSON objectとして読めること。既知でないmemberや型外値は削除/castしない。",
+        "identity/revision/source資格は検証済みと仮定しない。"
+      ],
+      "postconditions": [
+        "retained_inputsはdecode後のpacket.raw_utf8 objectとdeep-equal",
+        "状態/発生列はoriginal_observationsのsource順でraw値を保持",
+        "evaluation_stateはraw evaluation.stateの値。"
+      ],
+      "algorithm": [
+        "UTF-8 JSONを一回parseしobjectを保持する。",
+        "original_observationsを順に走査しstateとoccurrenceを取り出す。欠落はPresence.absentとして記録し、別状態へ置換しない。",
+        "evaluation.stateをコピーしRetainedPacketを返す。"
+      ],
+      "effects": "なし。source変更・取込・許可・評価・割当を行わない。"
+    },
+    {
+      "id": "LABO001-FN02",
+      "name": "compare_observation_contract",
+      "signature": {
+        "parameters": [
+          {
+            "name": "retained",
+            "type": "RetainedPacket"
+          },
+          {
+            "name": "contract",
+            "type": "ObservationComparisonContract"
+          }
+        ],
+        "returns": "FindingSet"
+      },
+      "reads": [
+        "retained.retained_inputs.claims",
+        "retained.retained_inputs.original_scope (contract.scope_keysで選択)",
+        "retained.retained_inputs.original_sources[*].identity/revision/owner/provenance_ref/fields[*].state/permission/receipt",
+        "retained.retained_inputs.original_observations[*].source_identity/state/occurrence",
+        "retained.retained_inputs.submitted_observations[*].source_identity/identity/owner/state/occurrence",
+        "contract.scope_keys",
+        "contract.required_fields",
+        "contract.claim_findings",
+        "contract.permission_owner",
+        "contract.observation_owner",
+        "contract.receipt_owner",
+        "contract.diagnostic.result_codes/source_owner_labels/allowed_classifications/observation_record_owner/observation_loss_owner/claim_suppression"
+      ],
+      "preconditions": [
+        "FN01のRetainedPacket。rawを補完・変更しない。contractは同一candidate L5 /contract_rulesから全member値を解決する。",
+        "contract.diagnosticのmap keyは下記algorithmで指定する既存keyを全て供給する。原L9の83固定素材の診断選択に限定し、unknown claimはそのまま保持して意味を推測しない。",
+        "Presenceはkey absence/null/valueを保持する。以下のgetはabsenceにnullを返す比較用観測で、入力値を書き換えない。空文字もidentity/revision/provenanceではmissing比較に含む。scope objectでない値や新しいowner/複合異常について全意味閉包を主張しない。",
+        "本有限診断のsource.ownerはD.source_owner_labelsに列挙されたOS/INFRAだけを受ける。未定義ownerの戻し先を合成しない。素材外sourceや許可値の追加には別の根拠と検証が必要。"
+      ],
+      "postconditions": [
+        "failure_reasonsは下記の発生順で保持し、重複除去/ソートしない。return_ownersだけfailure_reasonsのreturn_ownerを初出順で一意化する。rejected_claimsは既知/未知を含む入力claims全列と同値。",
+        "claim優先/抑止は原L9有限fixtureのdiagnostic選択で、異常のFindingを抑止することがある。一方、異常を含むraw原値はFN01/FN03のretained_inputsへ不変保持する。実permission/安全性/取込資格の免除・成立を意味しない。",
+        "原L4の全field/source_ref/receipt/source scope責務がこの有限比較だけで閉じたとはしない。field recordのsource_ref、receipt.source_identity、assignment/evaluation/permission_effect等は保持されるが新たな比較結果を推測して追加しない。",
+        "claim抑止表とOS固定observation_loss_ownerは原L9の83固定入力・期待へ対応させた局所診断規則で、L3/L4の一般的な抑止policyとして導出したものではない。source非限定のrevision抑止、receipt scope走査終了による後続keyの未診断、全observation slotに及ぶstate抑止を含む。別source/複数slot/多重異常では追加の異常Findingが落ち得るため一般化しない。元rawは保持し、該当素材外の全診断と正規owner routingは未閉包として後続の対設計へ残す。"
+      ],
+      "algorithm": [
+        "0. raw=retained.retained_inputs、D=contract.diagnostic、C=D.claim_suppression、R=D.result_codes。findings=[]、claimed_fields=空集合。case ID/packet ID/完成期待表は参照しない。getはmember欠落時null、比較はJSON値のdeep-equal（sources配列も原順）。原素材のsourcesは同じ順のexact setであり、順序だけを変えた集合の一般意味は未証明。",
+        "1. raw.claimsを原順走査し、contract.claim_findingsにkeyがあれば[field,result,return_owner]をそのまま1 Findingとしてappendしfieldをclaimed_fieldsへ追加する。未知claimは所見を推測しない。以下はこの先行診断に対する局所抑止でありraw改変/資格判定ではない。",
+        "2. raw.original_sourcesを原順走査する。s.ownerをD.source_owner_labelsで引きwhoとする。非列挙ownerは定義済み有限域外で、fallback ownerを生成しない。labelはs.identityがstringなら最初のハイフン前（OS-P→OS）。stringでなければs.owner、ownerも無ければsource。field prefixはsources.<label>。実owner認証ではなく固定素材の戻し先ラベルである。",
+        "3. identityがabsent/null/空文字かつsources.<label>.identityがclaimed_fieldsに無ければ同field/R.missing/whoをappend。revisionがabsent/null/空文字かつsources.<label>.revisionおよびC.revision_fieldsのどれもclaimed_fieldsに無ければsources.<label>.revision/R.missing/who。provenance_refも同様にexactfieldとC.provenance_fieldsで抑止しR.missing/who。",
+        "4. contract.required_fieldsの原順でs.fields[name]を観測。record absent/nullならsources.<label>.fields.<name>/R.missing/who。存在しstate=not_observedでexactfieldがclaimed_fieldsに無ければ同field/R.not_observed/who。未発生を0/成功へ補完せず、record内source_refは保持のみ（有限素材にない追加診断は作らない）。",
+        "5. s.permissionがabsent/nullならsources.<label>.permission/R.unobserved/contract.permission_owner。存在してpermission.scopeがobjectならcontract.scope_keysを順比較し、どれか1 keyがraw.original_scopeと不一致になった最初の時点でsources.<label>.permission.scope/R.permission_scope/contract.permission_ownerを1件だけappendしpermission scope走査を止める（全key不一致を要求しない）。classificationがD.allowed_classificationsに無くC.classification_fieldsがclaimed_fieldsに無ければsources.<label>.permission.classification/R.classification/contract.permission_owner。",
+        "6. s.receiptがabsent/nullならsources.<label>.receipt/R.unobserved/contract.receipt_owner。存在しreceipt.scopeがobjectならcontract.scope_keysを原順走査し、raw.original_scopeの同keyと不一致ごとにsources.<label>.receipt.scope.<key>/R.receipt_scope/whoをappend。ただし不一致keyがC.receipt_scope_keysに含まれraw.claimsにC.receipt_scope_claimsのいずれかがある場合は、そのkeyをappendせずreceipt scope key走査を終了する。先行する別key所見は保持する。この抑止はforeign scopeの許可ではない。",
+        "7. receipt存在時、s.revisionがabsent/null/空文字ならreceipt revisionとの相反診断を追加しない（step3のmissingを保持）。非空ならreceipt.source_revisionとs.revisionを比較し、不一致かつsources.<label>.revisionがclaimed_fieldsに無ければsources.<label>.revision/R.receipt_revision/who。sourceとreceiptが共に新しい同版ならこの相反は無い。UNSEENという文字列prefixや固定r2/r3を判定条件にしない。",
+        "8. submitted_observationsの件数がoriginal_observationsより少なく、raw.claimsにC.observation_count_claimsのいずれも無ければsubmitted_observations/R.observation_loss/D.observation_loss_ownerをappendする。",
+        "9. submitted_observationsをsource_identityでmap化する（同key複数は最後のrecord、固定素材は一意。多重keyの意味閉包は未成立）。original_observationsの原順で同source_identityのdstを探す。dst無しはこのslot以後を比較せず次slotへ進む。stateまたはoccurrenceが相違しraw.claimsにC.observation_state_claimsのいずれも無ければsubmitted_observations.state/R.observation_loss/D.observation_loss_ownerをappendし、observation走査全体を終了する。抑止時は後続identity/owner比較へ進む。",
+        "10. 同slotのoriginal sourceはs.identity == original_observation.source_identityで最初のrecordを探す。見つからなければsource identityをnullとして扱い、存在しないsource recordから他memberの比較をcascade生成しない。dst.identityがこのsource identityと同値ならsubmitted_observations.identity/R.observation_identity/contract.observation_owner。dst.ownerがD.observation_record_owner（原値LABO）と異なればsubmitted_observations.owner/R.observation_owner/contract.observation_owner。source identityがnullの原例では非nullのdst.identityと同値でなく追加所見にならない。identity/owner以外の未供給join診断は作らない。",
+        "11. findingsをそのままfailure_reasonsとし、return_ownersは初出順一意列、rejected_claimsはraw.claimsのdeep copyとして返す。rawの他memberを成功/資格に変換しない。"
+      ],
+      "effects": "なし。観測を採用/拒否する実処理・外部routingは行わない。"
+    },
+    {
+      "id": "LABO001-FN03",
+      "name": "compose_qualified_observation_result",
+      "signature": {
+        "parameters": [
+          {
+            "name": "retained",
+            "type": "RetainedPacket"
+          },
+          {
+            "name": "findings",
+            "type": "FindingSet"
+          },
+          {
+            "name": "fixture_execution_state",
+            "type": "FixtureExecutionState"
+          }
+        ],
+        "returns": "ObservationAssessment"
+      },
+      "reads": [
+        "retained all fields",
+        "findings all fields",
+        "fixture_execution_state"
+      ],
+      "preconditions": [
+        "FN01/FN02の同一source packet由来の中間値。"
+      ],
+      "postconditions": [
+        "failure_reasons/return_owners/rejected_claimsと入力中間値をそのまま保持。",
+        "findingが一件以上ならheld_observation_unqualified、ゼロならobservation_content_requires_actual_qualification。後者も合成fixture上の内容形で実資格を意味しない。",
+        "actual_effectsの全項目はfalse。L9のnot_executedを実行結果へ昇格しない。"
+      ],
+      "algorithm": [
+        "RetainedPacketとFindingSetを結合する。",
+        "finding件数だけから情報状態を選び、実資格を表す値は生成しない。",
+        "actual_effectsをsource/L4境界のno-effect false値で返す。"
+      ],
+      "effects": "なし。"
+    }
+  ],
+  "pure_pipeline": [
+    {
+      "step": 1,
+      "function_ref": "LABO001-FN01",
+      "input": "FixedSourcePacket（ref + raw_utf8）をFN01へ渡し、parse後のObservationPacketはFN01の局所中間値。外から暗黙供給しない。",
+      "output": "RetainedPacket",
+      "next": "FN02へraw retentionを渡す"
+    },
+    {
+      "step": 2,
+      "function_ref": "LABO001-FN02",
+      "input": "RetainedPacket + fixed scope keys + 20 required field names + raw claims",
+      "output": "FindingSet",
+      "next": "FN03へ全finding/owner/claimを渡す"
+    },
+    {
+      "step": 3,
+      "function_ref": "LABO001-FN03",
+      "input": "同一caseのRetainedPacket + FindingSet + not_executed",
+      "output": "ObservationAssessment",
+      "next": "L8 expected_material pointerと比較"
+    }
+  ],
+  "trace_matrix": [
+    {
+      "requirement_ref": "HELIXLABO-L3-001-F01",
+      "oracle_ref": "HELIXLABO-L10-001-F01",
+      "l4_contract_ref": "HELIXLABO-L4-001-F01",
+      "l5_contract_ref": "HELIXLABO-L5-001-F01",
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-001-F02",
+      "oracle_ref": "HELIXLABO-L10-001-F02",
+      "l4_contract_ref": "HELIXLABO-L4-001-F02",
+      "l5_contract_ref": "HELIXLABO-L5-001-F02",
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-001-N01",
+      "oracle_ref": "HELIXLABO-L10-001-N01",
+      "l4_contract_ref": "HELIXLABO-L4-001-N01",
+      "l5_contract_ref": "HELIXLABO-L5-001-N01",
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-001-B01",
+      "oracle_ref": "HELIXLABO-L10-001-B01",
+      "l4_contract_ref": "HELIXLABO-L4-001-B01",
+      "l5_contract_ref": "HELIXLABO-L5-001-B01",
+      "function_refs": [
+        "LABO001-FN01",
+        "LABO001-FN02",
+        "LABO001-FN03"
+      ]
+    }
+  ],
+  "consumer_rederivation": {
+    "current_consumers": [
+      {
+        "path": "docs/helix-labo/L1-planning/labo-intent.md",
+        "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+        "locator": "L1-001、機構の中心対象説明",
+        "preserve": "観測・評価・改善提案を扱う。source mechanismのraw state/authorityは所有しない。"
+      },
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "locator": "L2-001 lines 69-75",
+        "preserve": "許可観測をsource identity/revision/source citation付きでLABOへ写し、元正本/state/authorityを変更しない。欠落と未観測を成功にしない。"
+      },
+      {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "locator": "L2-001 acceptance row, exact source pair pin",
+        "preserve": "原source/stateとobservationを分け、許可観測から評価/実行許可/完成を生成しない。"
+      }
+    ],
+    "failure_crosswalk": {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+      "search": "全文内でHELIXLABO-L2-001の直接割当てなし。監査自身がLABOを見出し/key word照合のみと記載し、別failure資料の見落とし可能性を明示。これはfailure不存在の根拠にしない。旧HIL-BR-15/HIL-FR-23/L4 connector sourceを起点にする。"
+    }
+  },
+  "unclosed": [
+    "source owner資格・SECURITYの実data-use許可とconnector資格",
+    "正式schema/codec・raw input wire validation・L6/L7設計/検証",
+    "実receipt/実取込/実評価/実L11受入・全scope閉包",
+    "全92親/430 pairの設計closureと実装準備",
+    "claim優先診断は原L9の有限83素材の期待に対応する局所選択。未見claim＋多重raw欠陥、重複source slot、scope sources順序差、原素材外のPresence/shape/owner組合せの網羅的診断は未閉包。raw全保持と実owner資格/許可/安全性/取込作用は別責務。",
+    "claim抑止表とOS固定observation_loss_ownerは原L9の83固定入力・期待へ対応させた局所診断規則で、L3/L4の一般的な抑止policyとして導出したものではない。source非限定のrevision抑止、receipt scope走査終了による後続keyの未診断、全observation slotに及ぶstate抑止を含む。別source/複数slot/多重異常では追加の異常Findingが落ち得るため一般化しない。元rawは保持し、該当素材外の全診断と正規owner routingは未閉包として後続の対設計へ残す。"
+  ],
+  "approved_l3_l10_json_files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
+      "bytes": 13197
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+      "bytes": 20536
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
+      "bytes": 14455
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+      "bytes": 23610
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
+      "bytes": 11612
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
+      "bytes": 12101
+    }
+  ],
+  "contract_rules": {
+    "required_fields": [
+      "episode_id",
+      "requirement_revision",
+      "ticket_id",
+      "responsibility_id",
+      "product",
+      "mechanism",
+      "worker",
+      "provider",
+      "model",
+      "configuration",
+      "artifact",
+      "CI_test",
+      "release",
+      "deployment",
+      "runtime",
+      "failure",
+      "rework",
+      "cost",
+      "time",
+      "result"
+    ],
+    "required_domains": [
+      "development",
+      "Worker",
+      "AI_judgment",
+      "CI",
+      "test",
+      "review",
+      "backflow",
+      "recovery",
+      "incident",
+      "refactor",
+      "release",
+      "deployment",
+      "runtime",
+      "usage",
+      "rework",
+      "cost",
+      "token_API",
+      "model_provider",
+      "correction",
+      "rollback",
+      "product_result"
+    ],
+    "required_states": [
+      "success",
+      "failure",
+      "rejected",
+      "cancelled",
+      "blocked",
+      "unknown",
+      "not_observed"
+    ],
+    "scope_keys": [
+      "requirement_revision",
+      "sources",
+      "source_result_revision",
+      "contract_revision",
+      "operation",
+      "scope",
+      "state"
+    ],
+    "claim_findings": {
+      "missing_revision_is_current": [
+        "source.revision",
+        "unsupported_imputation_or_permission",
+        "OS-source-owner"
+      ],
+      "secret_ingestion_allowed": [
+        "source.classification",
+        "unsupported_imputation_or_permission",
+        "HELIX-SECURITY"
+      ],
+      "invent_provenance": [
+        "source.provenance_ref",
+        "unsupported_imputation_or_permission",
+        "OS-source-owner"
+      ],
+      "success_only_filter": [
+        "submitted_observations",
+        "source_state_loss_or_promotion",
+        "OS-source-owner"
+      ],
+      "unknown_is_success": [
+        "submitted_observations.state",
+        "source_state_loss_or_promotion",
+        "OS-source-owner"
+      ],
+      "not_observed_is_observed": [
+        "submitted_observations.state",
+        "source_state_loss_or_promotion",
+        "OS-source-owner"
+      ],
+      "count_is_all_complete": [
+        "qualification",
+        "unsupported_extrapolation",
+        "LABO-observation-owner"
+      ],
+      "foreign_scope_inherits_success": [
+        "scope",
+        "unsupported_extrapolation",
+        "LABO-observation-owner"
+      ],
+      "field_presence_is_evaluation": [
+        "qualification",
+        "unsupported_extrapolation",
+        "LABO-observation-owner"
+      ],
+      "labo_source_writeback": [
+        "source.authority",
+        "unsupported_authority_or_state_promotion",
+        "OS-source-owner"
+      ],
+      "observation_grants_assignment": [
+        "assignment",
+        "unsupported_authority_or_state_promotion",
+        "OS-assignment-owner"
+      ],
+      "ingestion_is_evaluation": [
+        "evaluation",
+        "unsupported_authority_or_state_promotion",
+        "LABO-evaluation-owner"
+      ],
+      "all_source_capabilities_complete": [
+        "coverage_scope",
+        "unsupported_authority_or_state_promotion",
+        "LABO-evaluation-owner"
+      ]
+    },
+    "permission_owner": "HELIX-SECURITY",
+    "observation_owner": "LABO-observation-owner",
+    "receipt_owner": "LABO-receipt-owner",
+    "diagnostic": {
+      "result_codes": {
+        "missing": "missing",
+        "unobserved": "unobserved",
+        "not_observed": "not_observed",
+        "permission_scope": "foreign",
+        "classification": "not_permitted",
+        "receipt_scope": "foreign_or_unseen",
+        "receipt_revision": "unseen_revision",
+        "observation_loss": "source_state_loss_or_promotion",
+        "observation_identity": "source_observation_conflated",
+        "observation_owner": "wrong_owner"
+      },
+      "source_owner_labels": {
+        "OS": "OS-source-owner",
+        "INFRA": "INFRA-source-owner"
+      },
+      "allowed_classifications": [
+        "permitted_synthetic_data"
+      ],
+      "observation_record_owner": "LABO",
+      "observation_loss_owner": "OS-source-owner",
+      "claim_suppression": {
+        "revision_fields": [
+          "source.revision"
+        ],
+        "provenance_fields": [
+          "source.provenance_ref"
+        ],
+        "classification_fields": [
+          "source.classification"
+        ],
+        "receipt_scope_claims": [
+          "foreign_scope_inherits_success"
+        ],
+        "receipt_scope_keys": [
+          "scope"
+        ],
+        "observation_count_claims": [
+          "success_only_filter"
+        ],
+        "observation_state_claims": [
+          "unknown_is_success",
+          "not_observed_is_observed"
+        ]
+      }
+    }
+  },
+  "logical_value_representation": "Presence<T>はraw memberの不在/null/値を区別する論理記法。retained_inputsは原decode値そのものを保持し、tag wrapperを注入しない。全型のfieldsは再帰検証可能な型名へ正規化し、以前の説明はfield_meanings_before_normalizationに履歴として残す。正式wire/schema/codecの採択ではない。",
+  "parent_io_fix_record": {
+    "basis": "親検収指摘。原期待の新設ではなく既存raw/oracleの値展開とcandidate参照/型表記の修正。",
+    "preserved": "原L4/L9・raw/whole oracle・rawderive_findings・契約規則値・430批准対は不変。",
+    "limits": "runtime/TDD/CI/L11/実資格/実装Ready未成立。"
+  },
+  "r1_diagnostic_fix_record": {
+    "official_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3137#issuecomment-6180805044",
+    "reviewed_head": "e9adf829679de4c22b17d0169bad7a5b00f0e9a8",
+    "findings": [
+      "LABO01D01",
+      "LABO01D02",
+      "LABO01D03"
+    ],
+    "preserved": "原83packet/raw/whole期待、元contract_rulesの8member、FN01/FN03、批准全430対を保持。",
+    "changed": "既存scratchのraw比較診断を有限scopeのFN02へ明示し、結果domain/戻し先/抑止定数をtyped contract追加memberへ移す。候補内contract refのhashだけを再結線。",
+    "reason": "独立reviewでL5の一般的記述から原oracleの診断選択と具体codeを再現できなかったため。旧sourceの許可/出所/authority境界は変更せず、claimによる実許可免除を新設しない。",
+    "limits": "実資格/codec/TDD/CI/L11/Ready未成立、未見のclaimと多重欠陥の組合せは未閉包。"
+  }
+}
