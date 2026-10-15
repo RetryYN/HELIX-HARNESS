@@ -1635,7 +1635,7 @@
     }
   ],
   "pipeline": [
-    "L8 source packet raw bytes → UTF-8 JSON parse with presence retention → typed packet projection → obligation-specific pure function → complete projection output → independent exact comparison against L9 expected_material."
+    "L8のsource packetのraw bytesを、欠落とnullを保持してUTF-8 JSONとして読み、型付きpacketへ投影する。義務に対応する純関数から全返却値を計算し、L9 expected_materialのJSON構造と値を独立に完全照合する。"
   ],
   "scope_limitations": [
     "実taxonomy/domain meanings、全領域充実、実参照利用者、実CORE/OS resolver、実資格、永続化、採否、実L10、POの実物L11は未成立。",

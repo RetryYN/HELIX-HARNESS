@@ -424,7 +424,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -798,7 +798,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/1/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -1172,7 +1172,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/2/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -1560,7 +1560,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -1948,7 +1948,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/4/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -2336,7 +2336,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/5/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -2718,7 +2718,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/6/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -3106,7 +3106,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/7/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -3494,7 +3494,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/8/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -3882,7 +3882,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/9/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4035,7 +4035,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4191,7 +4191,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/1/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4347,7 +4347,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/2/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4500,7 +4500,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4650,7 +4650,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4801,7 +4801,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -4954,7 +4954,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/6/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5107,7 +5107,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/7/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5263,7 +5263,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/8/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5419,7 +5419,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/9/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5575,7 +5575,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/10/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5731,7 +5731,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/11/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5818,7 +5818,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5907,7 +5907,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/1/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -5996,7 +5996,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/2/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     },
     {
@@ -6085,7 +6085,7 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/3/expected_material",
-        "comparison": "verifier recalculates from typed_call.argument_value.payload and compares exact JSON structure/value; never used as calculator"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
       }
     }
   ],
