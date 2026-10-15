@@ -1,0 +1,1806 @@
+{
+  "document_id": "HELIXBRAIN-L5-001",
+  "parent": "HELIXBRAIN-L2-001",
+  "layer": "L5",
+  "pair": "L8",
+  "status": "draft_limited_logical_functions_pending_independent_review",
+  "source_main": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+  "scope": {
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "historical_stage": "Stage 2b",
+    "version_target": "1.0",
+    "limit": "L3/L10の001三wholeとL4/L9有限fixtureだけを型付き純比較へ下ろす。実領域操作、全領域充実、採否、実資格、実装、実受入を主張しない。",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "approval_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approved_content_head_field": "reviewed_content_head",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision_is_file_admission_merge": "888c6208353929a65e51ba6407994e10b3b81f13"
+    }
+  },
+  "approved_wholes": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-001-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-001-F01",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "初期領域と候補の区別",
+        "obligation": "領域identity/意味/stateとPatternへの関係を識別し、Software Architecture/Application Architecture/Backend/Frontend/API / Integration/Data / Database/Infrastructure/Security/Visual Design/UX / Interactionの初期10領域を扱える定義を持つ。Reliability / Recovery/Performance/Observability/Testing / Quality/Operations / Maintenance/Accessibility等は追加候補として区別し、初版に全知識充実を要求しない。",
+        "oracle_ref": "HELIXBRAIN-L10-001-F01",
+        "failure_return": "領域意味の重複/不明はBRAIN L1-001へ返す。"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-001-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L3-001-F02",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "領域進化と参照保全",
+        "obligation": "領域一覧を固定enumにせず追加/分割/統合/退役の案を表せる。変更前の各relation/参照利用者と変更案の意味差を保ち、重複/不明はDomain候補のまま停止する。初回で未選択の分割/統合/退役実操作を実施済みにしない。",
+        "oracle_ref": "HELIXBRAIN-L10-001-F02",
+        "failure_return": "BRAIN L1-001へ分類意味差と参照未完を返す。"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "id": "HELIXBRAIN-L3-001-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-001-B01",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "領域と製品意味の境界",
+        "obligation": "BRAINの汎用領域分類を製品/project identityやCORE製品意味と分離する。Domain構造の識別能力と領域内の知識充実/採否を分け、分類変更から要求/設計/許可を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-001-B01",
+        "failure_return": "汎用領域はBRAIN、製品意味はCOREへ返す。"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-001-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-001-F01",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "初期領域と候補の区別",
+        "requirement_ref": "HELIXBRAIN-L3-001-F01",
+        "positive_input": "初期10領域と追加候補、製品/project名を比較する。",
+        "expected_observation": "各領域の意味/state/relationと初期/候補の区別が辿れる。",
+        "negative_input": "製品名をDomain、候補全内容を初版必須、Visual/UXを未対象化。",
+        "failure_observation": "領域意味の重複/不明はBRAIN L1-001へ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-001-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L10-001-F02",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "領域進化と参照保全",
+        "requirement_ref": "HELIXBRAIN-L3-001-F02",
+        "positive_input": "追加/分割/統合/退役案と既存relation利用者、意味不明を比較する。",
+        "expected_observation": "四種の案と元領域/参照利用者/未決意味が対応する。",
+        "negative_input": "固定enum化、参照利用者消去、不明を分類済み、未選択操作を実施済み。",
+        "failure_observation": "BRAIN L1-001へ分類意味差と参照未完を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "id": "HELIXBRAIN-L10-001-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-001-B01",
+        "parent": "HELIXBRAIN-L2-001",
+        "title": "領域と製品意味の境界",
+        "requirement_ref": "HELIXBRAIN-L3-001-B01",
+        "positive_input": "同じ汎用領域を使う複数製品と未充実領域を比較する。",
+        "expected_observation": "領域ownerと製品owner、定義/知識内容/採否stateが分かれる。",
+        "negative_input": "製品別Domain固定、分類だけで知識採用、Domain変更で製品意味更新。",
+        "failure_observation": "汎用領域はBRAIN、製品意味はCOREへ返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "approved_whole_hashes": [
+    {
+      "id": "HELIXBRAIN-L3-001-F01",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "1d6fdc9d1cfcbba96086f3d83443143d6095a83f73f4f17a7a80a9b77eab3f91"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-F02",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "a483f352d030b7b2ab22ecdf5aa7f4da0f29c72df5865e62a06a8241c5082701"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-B01",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "canonical_sha256": "a3212ba5ebd32db005714f91457bb35014929079b3127de4859bb90486ee3799"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F01",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "canonical_sha256": "3b59454653d0a742ee326d93c376061cefe34c3e819a81e6ce607150e1a0d6e9"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F02",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "canonical_sha256": "63adb46ffdbab97c2c767d03a6695a2bdf6b15eacee19ddc573ee1b1f19bc22d"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-B01",
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "canonical_sha256": "83b19365e7840bdc85f823e41faa9a87b6e122d52ebf3368f98403952c35fc88"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/domain-identity-evolution.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "f19de8399e1059acbd384432e26c3c2ff8e06edcc8d7a2cd28e2fefdfb8d449e"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "c4ec701abe1fef362e04e42a0a0844e1a420122afbf67c2bca1888eb19feaa89"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    }
+  ],
+  "legacy_and_consumer_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "lines": [
+        10,
+        52
+      ],
+      "file_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+      "selected_lines_sha256": "b1954dcf307723e2bf08b030dcc25fed251145710051ef811621ee34f2299333",
+      "handling": "文書分類の歴史的文脈を保持し、旧categoriesを現行Domain enumへ直写しない。9/26 L1原文・9/28採択の意味から再導出。asset disposition unresolvedを維持。",
+      "quote": "categories:\n  - id: plan\n    name: 企画・要求\n  - id: req\n    name: 要件定義\n  - id: basic\n    name: 基本設計\n  - id: detail\n    name: 詳細設計\n  - id: data\n    name: データ設計\n  - id: std\n    name: 標準・方式\n  - id: sec\n    name: セキュリティ\n  - id: ops\n    name: 運用・可観測性\n  - id: infra\n    name: インフラ・基盤\n  - id: saas\n    name: SaaS事業・課金\n  - id: web\n    name: Webクライアント\n  - id: mobile\n    name: モバイルアプリ\n  - id: desktop\n    name: デスクトップアプリ\n  - id: cli\n    name: CLI・管理ツール\n  - id: apisvc\n    name: API・ヘッドレスサービス\n  - id: domain\n    name: ドメイン(DDD)\n  - id: common\n    name: 共通・拡張・規約\n  - id: agent\n    name: AIエージェント\n  - id: test\n    name: テスト・検証\n  - id: mgmt\n    name: 管理\n  - id: sprint\n    name: スクラム運営(ハイブリッド層)"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "lines": [
+        37,
+        47
+      ],
+      "handling": "RCLS-BR-004/006の段階的独立検証と提案による既存authority非変更は、L2-001の分類/変更候補と採否・authority非生成の確認に限って保持。BRAIN独自の領域型や固定手順へ一般化しない。",
+      "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
+      "quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": [
+        16,
+        60
+      ],
+      "handling": "templateに適用条件/必須input/関係/未知を保持する歴史的consumer契約として参照。BRAIN Domain schemaには写さない。",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_lines_sha256": "21af57ab88e9b37a3a88b04d449c45b7cd5cea9b5c09d1781ce6255e2ce21996",
+      "quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": [
+        33,
+        108
+      ],
+      "handling": "identity/版/supersession/meaning-view separationの参考に限定し、旧TPL grammar/registry/lifecycle/runtimesは継承しない。",
+      "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "selected_lines_sha256": "683ac909bf7d8b2db0a6cb737ac703410f54b14e36fa8ead25b64569c3fdcddf",
+      "quote": "required:\n  - schema_version\n  - template_id\n  - template_version\n  - status\n  - title\n  - layer\n  - pair_layer\n  - artifact_kind\n  - responsibility_owner\n  - applicability\n  - required_inputs\n  - sections\n  - trace_contract\n  - verification\n  - measurement\n  - completion\n  - downstream_artifact_kinds\n  - semantic_digest\n```\n\n### identityとlifecycle\n\n- `template_id`: `TPL-`で始まるstable ID。pathやtitleをidentityにしない。\n- `template_version`: 1以上の整数。同じID/versionの重複を拒否する。\n- `status`: `candidate | verified | approved | canonical | deprecated`の閉じた集合。\n- `supersedes`: 同じtemplate classの既存ID/versionだけを参照できる。\n- `layer/pair_layer`: current L1–L12 pair exact setだけを許可する。\n\n`candidate -> verified -> approved -> canonical -> deprecated`の順だけを許可する。shadow compilerの\n出力は常にcandidateであり、parity greenだけでapproved/canonicalへ昇格しない。\n\n### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n\n## §3 applicability式\n\n式nodeは次のdiscriminated unionとする。\n\n```yaml\npredicate_node:\n  - all: PredicateNode[1..N]\n  - any: PredicateNode[1..N]\n  - not: PredicateNode\n  - comparison:\n      field: allowlisted_field_path\n      op: eq | neq | in | contains | exists | gt | gte | lt | lte\n      value: typed_scalar_or_array\n```\n\n一つのnodeに複数variantを置かない。空`all/any`、過剰depth、循環参照、unknown field/operator、\nfield型とvalue/operatorの不一致をschemaまたはsemantic validationで拒否する。\n\n評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを\n`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、\npredicate falseとは別に記録する。\n\n## §4 registryとexact set\n\nregistryは`registry_id`、`registry_version`、`schema_digest`、templateの`id/version/digest/status` exact set、\n生成時刻から独立したlogical digestを持つ。同じclass/layer/pair/applicability equivalence classに\ncanonical normative ownerを原則1件だけ許可する。\n\ntemplate IDの参照はregistry内のexact versionへ解決し、latest暗黙解決をしない。deprecated templateは\nreplacement、consumer exact set、retention、removal triggerが無ければ受理しない。"
+    },
+    {
+      "failure_basis": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json and delegated record HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "observed failure/consumer boundary": "分類名だけで意味を満たしたと扱う、候補領域の全内容を初版へ強制する、製品/project identityをDomainに固定する、領域変更で参照relation/consumerを落とす、候補/分類を採用・製品意思決定へ昇格する。ConsumerはBRAIN generic knowledge、各製品HARNESS-COREの製品意味、OSのproject利用状態。確定owner bindingや全旧consumer被覆は未成立。"
+    }
+  ],
+  "type_system": {
+    "presence": "JSON inputの各object propertyは欠落/明示null/値ありをparser境界で区別する。raw memberを正規化してnullや空へ補完しない。",
+    "types": [
+      {
+        "name": "Primitive",
+        "definition": "String, Boolean, map keyなどはsourceのJSON primitive型を保持。型変換しない。",
+        "shape": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "boolean"
+            },
+            {
+              "kind": "integer"
+            },
+            {
+              "kind": "number"
+            },
+            {
+              "kind": "null"
+            }
+          ]
+        }
+      },
+      {
+        "name": "SourceRef",
+        "definition": "{identity:string,revision:string,scope:string,owner:string};fixture由来の識別子で実資格/発行者を証明しない。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "identity": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "revision": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "scope": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "owner": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainDefinition",
+        "definition": "source shape {identity:string,kind:string,meaning:string|null,name:string,pattern_relations:list<PatternRelation>,state:string|null};required/provided双方。missing propertyは欠落のまま。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "identity": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "kind": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning": {
+              "type": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "null"
+                  }
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty",
+                "null",
+                "absent"
+              ]
+            },
+            "name": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "pattern_relations": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "ref",
+                  "name": "PatternRelation"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "state": {
+              "type": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "string"
+                  },
+                  {
+                    "kind": "null"
+                  }
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty",
+                "null",
+                "absent"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "PatternRelation",
+        "definition": "{id:string,meaning:string,pattern:string}。field単位の原値を保持。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "id": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "pattern": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainDefinitionPacket",
+        "definition": "{source_ref:SourceRef,payload:{additional_candidates:list<AdditionalCandidate>,provided_definitions:map<string,DomainDefinition>,require_all_candidate_content:boolean,required_definitions:map<string,DomainDefinition>,source_limit:string}}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "source_ref": {
+              "type": {
+                "kind": "ref",
+                "name": "SourceRef"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "payload": {
+              "type": {
+                "kind": "record",
+                "fields": {
+                  "additional_candidates": {
+                    "type": {
+                      "kind": "list",
+                      "items": {
+                        "kind": "ref",
+                        "name": "AdditionalCandidate"
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "provided_definitions": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "ref",
+                        "name": "DomainDefinition"
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "require_all_candidate_content": {
+                    "type": {
+                      "kind": "boolean"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "required_definitions": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "ref",
+                        "name": "DomainDefinition"
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "source_limit": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  }
+                },
+                "additional_properties": "reject"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "AdditionalCandidate",
+        "definition": "{knowledge_content:string,name:string,state:string}。このfixtureのstate= candidate_onlyを保持し一般enumとはしない。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "knowledge_content": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "name": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "state": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "ReferenceSnapshot",
+        "definition": "{consumers:list<ConsumerReference>,relations:list<PatternRelationReference>}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "consumers": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "ref",
+                  "name": "ConsumerReference"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "relations": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "ref",
+                  "name": "PatternRelationReference"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "ConsumerReference",
+        "definition": "{domain:string,id:string,relation:string}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "domain": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "id": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "relation": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "PatternRelationReference",
+        "definition": "{domain:string,id:string,meaning:string,pattern:string}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "domain": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "id": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "pattern": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainProposal",
+        "definition": "{consumer_mapping_candidates:map<string,list<string>>,meaning_assessment:string,meaning_delta:string,meaning_delta_detail:{after:string,before:string,reason:string},new_domain_candidates:list<string>,relation_mapping_candidates:map<string,list<string>>,source_domain_refs:list<string>}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "consumer_mapping_candidates": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "string"
+                  }
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning_assessment": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning_delta": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning_delta_detail": {
+              "type": {
+                "kind": "record",
+                "fields": {
+                  "after": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "before": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "reason": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  }
+                },
+                "additional_properties": "reject"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "new_domain_candidates": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "relation_mapping_candidates": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "string"
+                  }
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "source_domain_refs": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainEvolutionPacket",
+        "definition": "{source_ref:SourceRef,payload:{claims_operation_executed:boolean,fixed_enum:boolean,operation:add|split|merge|retire,original_domain:{identity:string,meaning:string,revision:string},original_references:ReferenceSnapshot,preserved_reference_snapshot:ReferenceSnapshot,proposal:DomainProposal}}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "source_ref": {
+              "type": {
+                "kind": "ref",
+                "name": "SourceRef"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "payload": {
+              "type": {
+                "kind": "record",
+                "fields": {
+                  "claims_operation_executed": {
+                    "type": {
+                      "kind": "boolean"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "fixed_enum": {
+                    "type": {
+                      "kind": "boolean"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "operation": {
+                    "type": {
+                      "kind": "string",
+                      "values": [
+                        "add",
+                        "split",
+                        "merge",
+                        "retire"
+                      ]
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "original_domain": {
+                    "type": {
+                      "kind": "record",
+                      "fields": {
+                        "identity": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        },
+                        "meaning": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        },
+                        "revision": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        }
+                      },
+                      "additional_properties": "reject"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "original_references": {
+                    "type": {
+                      "kind": "ref",
+                      "name": "ReferenceSnapshot"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "preserved_reference_snapshot": {
+                    "type": {
+                      "kind": "ref",
+                      "name": "ReferenceSnapshot"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "proposal": {
+                    "type": {
+                      "kind": "ref",
+                      "name": "DomainProposal"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  }
+                },
+                "additional_properties": "reject"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "ProductMeaning",
+        "definition": "{domain_ref:string,meaning:string}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "domain_ref": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainOwnerBoundaryPacket",
+        "definition": "{source_ref:SourceRef,payload:{classification_claims_knowledge_adopted:boolean,domain_per_product:boolean,generic_domain:{identity:string,kind:string,meaning:string},knowledge_adoption_state:string,knowledge_content_state:string,product_originals:map<string,ProductMeaning>,product_proposals:map<string,ProductMeaning>}}。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "source_ref": {
+              "type": {
+                "kind": "ref",
+                "name": "SourceRef"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "payload": {
+              "type": {
+                "kind": "record",
+                "fields": {
+                  "classification_claims_knowledge_adopted": {
+                    "type": {
+                      "kind": "boolean"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "domain_per_product": {
+                    "type": {
+                      "kind": "boolean"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "generic_domain": {
+                    "type": {
+                      "kind": "record",
+                      "fields": {
+                        "identity": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        },
+                        "kind": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        },
+                        "meaning": {
+                          "type": {
+                            "kind": "string"
+                          },
+                          "presence": [
+                            "provided",
+                            "empty"
+                          ]
+                        }
+                      },
+                      "additional_properties": "reject"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "knowledge_adoption_state": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "knowledge_content_state": {
+                    "type": {
+                      "kind": "string"
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "product_originals": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "ref",
+                        "name": "ProductMeaning"
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  },
+                  "product_proposals": {
+                    "type": {
+                      "kind": "map",
+                      "key": {
+                        "kind": "string"
+                      },
+                      "values": {
+                        "kind": "ref",
+                        "name": "ProductMeaning"
+                      }
+                    },
+                    "presence": [
+                      "provided",
+                      "empty"
+                    ]
+                  }
+                },
+                "additional_properties": "reject"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "DomainComparisonOutput",
+        "definition": "{domain_results:map<string,string>,additional_candidates:map<string,string>,effects:Effects,unaffected_Q:string}。 domain_resultsのこの有限fixture語彙: content_corresponding_in_fixture / missing / unknown / conflict / product_domain_rejected。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "domain_results": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "string",
+                  "values": [
+                    "content_corresponding_in_fixture",
+                    "missing",
+                    "unknown",
+                    "conflict",
+                    "product_domain_rejected"
+                  ]
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "additional_candidates": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "string",
+                  "values": [
+                    "full_content_obligation_rejected",
+                    "candidate_only_no_full_content_obligation"
+                  ]
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "effects": {
+              "type": {
+                "kind": "ref",
+                "name": "Effects"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "unaffected_Q": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "original_Q"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "EvolutionComparisonOutput",
+        "definition": "{proposal_result:string,meaning_result:string,reference_results:map<string,string>,fixed_enum:boolean|string,operation_claim:string,effects:Effects,unaffected_Q:string}。 reference_results語彙: preserved_and_mapped_candidate / missing_mapping / missing_original_reference。meaning_resultはknown_in_fixture_only / unknown / overlapping。proposal_resultは有限operation名に_candidate_onlyを付けるかheld_candidate。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "proposal_result": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "add_candidate_only",
+                  "split_candidate_only",
+                  "merge_candidate_only",
+                  "retire_candidate_only",
+                  "held_candidate"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "meaning_result": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "known_in_fixture_only",
+                  "unknown",
+                  "overlapping"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "reference_results": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "string",
+                  "values": [
+                    "preserved_and_mapped_candidate",
+                    "missing_mapping",
+                    "missing_original_reference"
+                  ]
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "fixed_enum": {
+              "type": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "boolean"
+                  },
+                  {
+                    "kind": "string",
+                    "values": [
+                      "rejected"
+                    ]
+                  }
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "operation_claim": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "rejected",
+                  "none"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "effects": {
+              "type": {
+                "kind": "ref",
+                "name": "Effects"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "unaffected_Q": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "original_Q"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "OwnerBoundaryOutput",
+        "definition": "{domain_definition_result:string,knowledge_content_state:string,knowledge_adoption_state:string,product_results:map<string,string>,owner_return_candidates:list<string>,effects:Effects,unaffected_Q:string}。 domain_definition_resultはgeneric_domain_identifiable_in_fixture / product_domain_rejected。product_resultsはmeaning_held / CORE_meaning_change_rejected。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "domain_definition_result": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "generic_domain_identifiable_in_fixture",
+                  "product_domain_rejected"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "knowledge_content_state": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "knowledge_adoption_state": {
+              "type": {
+                "kind": "string"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "product_results": {
+              "type": {
+                "kind": "map",
+                "key": {
+                  "kind": "string"
+                },
+                "values": {
+                  "kind": "string",
+                  "values": [
+                    "meaning_held",
+                    "CORE_meaning_change_rejected"
+                  ]
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "owner_return_candidates": {
+              "type": {
+                "kind": "list",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "effects": {
+              "type": {
+                "kind": "ref",
+                "name": "Effects"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "unaffected_Q": {
+              "type": {
+                "kind": "string",
+                "values": [
+                  "original_Q"
+                ]
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      },
+      {
+        "name": "Effects",
+        "definition": "有限試験では9結果fieldすべてfalse。理由はL4 operation_effect=noneとL3 scope。真値を生成する実操作を定義しない。",
+        "shape": {
+          "kind": "record",
+          "fields": {
+            "actual_domain_add": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_domain_split": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_domain_merge": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_domain_retire": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_knowledge_adopted": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_CORE_meaning_updated": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_authority": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_design_complete": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            },
+            "actual_acceptance": {
+              "type": {
+                "kind": "boolean"
+              },
+              "presence": [
+                "provided",
+                "empty"
+              ]
+            }
+          },
+          "additional_properties": "reject"
+        }
+      }
+    ],
+    "shape_language": {
+      "scope": "この文書で使う論理fixture型。wire schema、codec、保存形式、actual source qualificationを定義しない。",
+      "forms": "refはnameで宣言型へ参照。recordは宣言fieldだけを受け付け、各fieldのpresenceをprovided/empty/null/absentで別々に検査する。map/listは各要素を再帰検査し、unionは宣言memberだけを受ける。",
+      "presence": "emptyは空文字・空配列・空object。nullはJSON null。absentはkey不在。型validationはrawへ補完を加えない。"
+    }
+  },
+  "functions": [
+    {
+      "id": "compare_domain_definitions",
+      "signature": "compare_domain_definitions(packet: DomainDefinitionPacket) -> DomainComparisonOutput",
+      "reads": [
+        "packet.payload.required_definitions",
+        "packet.payload.provided_definitions",
+        "packet.payload.additional_candidates",
+        "packet.payload.require_all_candidate_content"
+      ],
+      "algorithm": [
+        "required_definitionsを各keyで反復する。provided_definitionsにkeyが無ければmissing。",
+        "provided.kindがproduct_identityまたはproject_identityならproduct_domain_rejected。",
+        "provided.meaningが欠落/nullならunknown。非nullでrequired.meaningと異なればconflict。",
+        "meaning一致後、stateかpattern_relationsがrequiredと一致しなければmissing。両方一致ならcontent_corresponding_in_fixture。",
+        "additional_candidates配列を原順で走査し、nameをmap keyとして、require_all_candidate_content=trueならfull_content_obligation_rejected、falseならcandidate_only_no_full_content_obligationを代入する。同名があれば後の代入が同じkeyを上書きする。各行に同じpacket-level booleanを使うため有限fixtureで値は同じだが、重複候補の個体識別・一意性は未評価。",
+        "全Effectsはfalse、unaffected_Qはoriginal_Q。これは合成fixture境界値で実操作結果を意味しない。"
+      ],
+      "priority": "各domainについて、key有無→provided.kindのproduct/project判定→meaningの欠落/null→meaningの不一致→state/pattern_relations不一致→対応の順。additional_candidatesは配列順のmap代入。L9の有限raw以外のtaxonomy/同一ID重複/未知shapeは未評価。",
+      "preconditions": [
+        "L9の三種raw packet shapeを保持し、未記載fieldを補完しない。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "この有限比較のadditional_candidatesはraw配列要素とrequire_all_candidate_contentだけを使う。重複nameを個別候補として保持する契約は含まない。"
+      ],
+      "postconditions": [
+        "有限raw case内の各required identityの結果map、candidate別結果、全9 Effects=false、unaffected_Q=original_Qを返す。",
+        "元L9の入力分類を実taxonomy/正式schemaへ昇格しない。"
+      ],
+      "input_type": "DomainDefinitionPacket",
+      "return_type": "DomainComparisonOutput"
+    },
+    {
+      "id": "compare_evolution_proposal",
+      "signature": "compare_evolution_proposal(packet: DomainEvolutionPacket) -> EvolutionComparisonOutput",
+      "reads": [
+        "packet.payload.operation/fixed_enum/claims_operation_executed",
+        "packet.payload.original_references",
+        "packet.payload.preserved_reference_snapshot",
+        "packet.payload.proposal.meaning_assessment",
+        "packet.payload.proposal.relation_mapping_candidates",
+        "packet.payload.proposal.consumer_mapping_candidates"
+      ],
+      "algorithm": [
+        "reference_resultsはrelation/consumerで共有する1つのmapとする。最初にsorted(original relation ID集合 ∪ relation_mapping_candidatesのkey集合)を昇順に処理し、次にsorted(original consumer ID集合 ∪ consumer_mapping_candidatesのkey集合)を昇順に処理する。各idについてpreserved_reference_snapshotの該当type側に同idがなければmissing_original_reference、snapshotに同idがありmapping keyが無いか空listならmissing_mapping、それ以外はpreserved_and_mapped_candidate。したがってraw fixtureの追加mapping keyもsnapshotに原idが無いものはmissing_original_referenceとなる。relation処理後にconsumer処理を同じmapへ代入するため、ID衝突があればconsumer結果が後勝ちになるが、このfixture群に衝突はなくその意味は未評価。original/snapshot間の内容差・同一id重複・追加mapping keyがsnapshot側だけにある場合の意味は未評価であり、候補保持を一般成功としない。",
+        "operationの対応範囲はrawに現れるadd/split/merge/retireの4 literal。意味評価はknown_in_fixture_only/unknown/overlappingの3 literalだけを保持し、それ以外・欠落/nullはunknown。unknown/overlappingはproposal_result=held_candidateへ留める。",
+        "fixed_enum=trueならfixed_enum=rejected、falseならfalseを保つ。proposal_resultの通常分岐にはこの値を次の優先規則で使う。",
+        "claims_operation_executed=trueなら他の意味/reference/fixed_enum分岐より無条件に先にoperation_claim=rejected、proposal_result={raw operation}_candidate_onlyを返す。claims_operation_executed=falseの場合のみ、meaning=known_in_fixture_onlyかつ全reference result=preserved_and_mapped_candidateかつfixed_enum=falseなら{raw operation}_candidate_only、それ以外はheld_candidate。candidate labelは有限fixtureの表示値であり実操作・権限・採用ではない。",
+        "全Effects false/unaffected_Q original_Q。実操作/永続化はない。"
+      ],
+      "priority": "最優先はclaims_operation_executed=trueであり、全ての有限fixtureでoperation_claim=rejectedとraw operation由来candidate labelを並行返却する。false時にだけ固定enum、meaning、reference結果の通常分岐を使い、いずれか不成立ならheld_candidate。4 literal以外のoperationは入力域外で未評価とし、任意文字列からcandidate labelを作る一般規則を定めない。",
+      "preconditions": [
+        "original_references/preserved_reference_snapshot/proposalは別recordのまま保持し、一方から他方を生成しない。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "operationは有限fixtureでadd/split/merge/retireのいずれかであること。これ以外のliteralの出力は未評価として定義せず、権限付与も行わない。"
+      ],
+      "postconditions": [
+        "原relation/consumerごとの結果map、proposal/meaning/fixed enum/operation claim、全9 Effects=false、unaffected_Qを返す。",
+        "候補結果は提案のfixture labelであり、領域変更操作・採否・受入は実施しない。"
+      ],
+      "input_type": "DomainEvolutionPacket",
+      "return_type": "EvolutionComparisonOutput"
+    },
+    {
+      "id": "separate_domain_and_product_owners",
+      "signature": "separate_domain_and_product_owners(packet: DomainOwnerBoundaryPacket) -> OwnerBoundaryOutput",
+      "reads": [
+        "packet.payload.generic_domain.kind",
+        "packet.payload.domain_per_product",
+        "packet.payload.classification_claims_knowledge_adopted",
+        "packet.payload.knowledge_content_state",
+        "packet.payload.knowledge_adoption_state",
+        "packet.payload.product_originals",
+        "packet.payload.product_proposals"
+      ],
+      "algorithm": [
+        "generic_domain.kindがgeneric_domainかつdomain_per_product=falseならgeneric_domain_identifiable_in_fixture。それ以外はproduct_domain_rejectedとBRAIN-domain-ownerを返す。",
+        "classification_claims_knowledge_adopted=trueなら実際の採用ではなく主張への差戻し先BRAIN-knowledge-adoption-ownerを追加。knowledge stateはraw値をそのまま保持。",
+        "product_originalsのmap挿入順で各keyを走査し、同じkeyのproduct_proposals値とJSON構造値を比較する。一致ならmeaning_held、不一致ならCORE_meaning_change_rejected。有限rawで確認した変更caseはPRODUCT-Pだけで、対応するreturn候補文字列はL9独立期待に現れるCORE-P-meaning-owner。この文字列はfixtureから導いた候補ラベルで実owner ID/資格ではない。PRODUCT-Rは全fixtureで変更なし。任意keyのCORE名を生成する一般規則は定めず、追加proposal keyの走査/意味も未評価。",
+        "Effects false/unaffected_Q original_Q。製品本文更新や知識採用を実施しない。"
+      ],
+      "priority": "generic_domain判定後にclassification_claims_knowledge_adoptedを確認し、その後product_originalsの挿入順で対応するproposalを比較する。B01の全4rawにはPRODUCT-PとPRODUCT-Rの両keyが存在し、PRODUCT-Pだけ変更するcaseはL9 expectedのCORE-P-meaning-ownerを返す。未変更keyはowner候補を追加しない。その他のkey/変更対応は有限根拠がなく未評価。",
+      "preconditions": [
+        "product_originalsとproduct_proposalsを独立した入力として保持する。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "B01の有限fixtureはproduct_originals/product_proposalsにPRODUCT-PとPRODUCT-Rを持つ。product_originalsと同じ2 key以外の追加key、およびPRODUCT-Rの変更時の候補ownerは未評価で、CORE文字列を一般生成しない。"
+      ],
+      "postconditions": [
+        "Domain分類/knowledge state/product別CORE意味差/owner return候補/全9 Effects=falseを返す。",
+        "CORE update、知識採用、Domain操作は実行しない。"
+      ],
+      "input_type": "DomainOwnerBoundaryPacket",
+      "return_type": "OwnerBoundaryOutput"
+    }
+  ],
+  "pipeline": [
+    "L8のsource packetのraw bytesを、欠落とnullを保持してUTF-8 JSONとして読み、型付きpacketへ投影する。義務に対応する純関数から全返却値を計算し、L9 expected_materialのJSON構造と値を独立に完全照合する。"
+  ],
+  "scope_limitations": [
+    "実taxonomy/domain meanings、全領域充実、実参照利用者、実CORE/OS resolver、実資格、永続化、採否、実L10、POの実物L11は未成立。",
+    "有限fixtureで未出現の同一ID重複、additional_candidatesの重複name、PRODUCT-P/PRODUCT-R以外の追加product keyと変更、未知のfield型など一般域は未評価。B01の4 fixtureではPRODUCT-PとPRODUCT-Rの2 keyを比較し、変更ありはPRODUCT-Pの1 caseだけ。",
+    "この型モデルは論理fixture契約でありformal JSON schema、codec、runtime/APIは定めない。"
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "execution_state": "not_executed",
+  "source_linkage_rule": {
+    "rule": "各L8入力のsource_ref.identity/revision/scope/ownerを元L9 case independent_source_packet.refとfield-by-field exact比較する。欠落・相違ならsource bindingは未解決としてcaseの意味結果をqualified扱いしない。値一致はfixture locator一致のみであり、source ownerの権限・原本真正性・実source資格を証明しない。",
+    "evidence": "L4 contracts[].qualification_rule、L9 concrete_cases[].independent_source_packet.ref、10/12委任記録のowner-qualified exact binding未成立の明記。"
+  },
+  "trace_contract": {
+    "requirement_to_system_oracle": "各L8 caseのrequirement_refとsystem_oracle_refをL9同一caseから読み、L3/L10 approved_wholesの同IDと照合する。",
+    "l4_to_l9": "l4_refはL9 concrete_case.l4_refとL4 contracts[].id/requirement_ref/system_oracle_ref/oracle_refを照合する。",
+    "return_to": "Domainの意味・初期scope・unknown/overlap・reference保持の不一致はBRAIN L1-001へ返す。product/projectの意味変更は該当するHELIX-HARNESS-CORE owner候補文字列（この有限fixtureではCORE-P-meaning-owner）を返す。製品の状態記録はOS責務。出力のowner文字列はfixture由来の差戻し候補であり、実owner IDの発行・資格確認・権限付与ではない。"
+  },
+  "scope_evidence": {
+    "kind": "audited_baseline_source_comparison",
+    "current_audit": {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "source_revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "parents": 92,
+      "l3_l10_pairs": 430
+    },
+    "prior_snapshot": {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+      "source_revision": "7c553c5c2a4f16e55bdf8e0851409afbd35d3870",
+      "parents": 92,
+      "l3_l10_pairs": 430
+    },
+    "assertion": "全92行/430組をID、source path/pointer、canonical object hash、L3-L10 requirement_ref joinで比較し、prior監査とのwhole object不変を確認する。marker単独では母集団保持の証拠としない。"
+  },
+  "failure_consumer_evidence": {
+    "legacy_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "source_record_canonical_sha256": {
+        "LEGACY-ASSET-EC07511FF3E241F15359": "f7cc20cb9f78a9c55ab350a93e8ba7e04451c62bd5f075e5c5948d2b3a766853",
+        "LEGACY-ASSET-F2C2755C8809C2C0DEAD": "cf9eba86acc8fac26af303ace32f419b699dcb770bfeab45052fd0456fc2bc75",
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D": "af08384475fb775ea65f4d3ceac6ec10f847759331a62a8b0f6c9d9fa42c29c1",
+        "LEGACY-ASSET-98372FEE8A3AC8F9C299": "55122ee9626c39672a2d76243cbe8577b4f544a5079b6ea1f83c88d5c7dfb61f"
+      },
+      "crosswalk_records": [
+        {
+          "legacy_source_pattern": "design-catalog.yaml",
+          "condition_summary": "分類と所在追跡",
+          "current_targets_and_acceptance": "HELIXBRAIN-L1-001; HELIXBRAIN-L2-001/002; HELIXBRAIN-L11-001/002",
+          "classification_and_limits": "意味再導出。文書分類を再利用知識のauthorityとはしない。"
+        },
+        {
+          "legacy_source_pattern": "L4-basic-design/design-template-json-authority.md",
+          "condition_summary": "versioned identity/applicability/required input/owner/trace/negative oracle",
+          "current_targets_and_acceptance": "HELIXBRAIN-L1-003/007/010; HELIXBRAIN-L2-003/007/008/022/030; paired L11 same IDs",
+          "classification_and_limits": "意味をPattern知識と接続受入へ再導出。旧schema・algorithm・runtimeは非移植。"
+        },
+        {
+          "legacy_source_pattern": "L5-detail/design-template-json-authority.md",
+          "condition_summary": "Template詳細設計関連",
+          "current_targets_and_acceptance": "HELIXBRAIN-L2-029/030 as supporting provenance only",
+          "classification_and_limits": "L1/L2に一対一の旧target行なし。参考sourceであり独立条件の完全被覆を主張しない。"
+        },
+        {
+          "legacy_source_pattern": "responsibility-centric-learning-requests.md",
+          "condition_summary": "RCLS-BR-004段階検証、BR-005失効、BR-006非authority",
+          "current_targets_and_acceptance": "HELIXBRAIN-L1-007/009; HELIXBRAIN-L2-007/020/025; paired L11 same IDs",
+          "classification_and_limits": "意味を再導出し、登録/評価/知識版をOS/LABO/BRAINへ分配。RCLS全体を採択しない。"
+        }
+      ],
+      "meaning": "旧sourceがどのL1/L2/L11 consumerへ接続され、どの限界を保持するかのsource-bound根拠。"
+    },
+    "delegated_decision": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "lines": [
+        45,
+        49
+      ],
+      "selected_lines_sha256": "9b103becf70adfb720d13114e9759a8c7289b7799fec349f74b89b529b9eb33f",
+      "quote": "初期10領域の識別能力と追加候補/全領域知識の充実を区別し、固定enumにしない。Domain→Pattern→Unit→Partの意味階層と孤立/誤種別のunknown保持、複数候補の比較内容と未決要求値/重み、候補返却と採用authorityの分離を保持する。queryと知識版/scope、返却全内容と反例/限界、required input/dependencyからHARNESS009（HARNESS-L2-009）義務への双方向traceを対応付ける。製品要求値・設計選択・工程表/遷移図/実装優先順位の導出はHARNESS-CORE/HARNESSが所有する。\n\n独立結論は追加23組（B6/F15/N2）、全70組の双方向参照、先行47組不変、21 source_pins、採択6親のL2節/L11行とroster、旧L4 template16..60/catalog10..52/RCLS45..47のidentityとlocator、生成viewを確認した。F1の途中範囲とlocator_kind混在は修正された最新revisionだけを根拠とする。旧sourceからの保持/変更/理由は本文に固定し、旧runtime/test/CIを実行・移植していない。\n\nINT query021は非選択の条件付き参照。CORE intake018/構成候補009/失敗知識010/Infrastructure maturity INFRA017等は選択入力/操作で追加閉包を照合する。全scope owner-qualified exact normative binding/完了監査、正式schema・対設計・oracle凍結・実装前Red/Green・実Python/返却/義務trace/登録/評価/promotion/CIは未成立。PO実物L11 Accepted、通常L3再開、release/tag/deploy/配布/Issue closeや全能力を本承認から生成しない。",
+      "meaning": "Domain階層、分類と採用authorityの分離、製品意味・設計選択のHARNESS-CORE責務境界を承認wholeに沿って保持する。"
+    },
+    "limit": "失敗/consumerの記述は元source/承認wholeへのtraceであり、実owner qualification、全consumer網羅、実failure観測を成立させない。"
+  },
+  "paired_document": "HELIXBRAIN-L8-001",
+  "approved_whole_bindings": [
+    {
+      "id": "HELIXBRAIN-L3-001-F01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/43",
+      "canonical_sha256": "1d6fdc9d1cfcbba96086f3d83443143d6095a83f73f4f17a7a80a9b77eab3f91"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-F02",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/44",
+      "canonical_sha256": "a483f352d030b7b2ab22ecdf5aa7f4da0f29c72df5865e62a06a8241c5082701"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-B01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/13",
+      "canonical_sha256": "a3212ba5ebd32db005714f91457bb35014929079b3127de4859bb90486ee3799"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/43",
+      "canonical_sha256": "3b59454653d0a742ee326d93c376061cefe34c3e819a81e6ce607150e1a0d6e9"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F02",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/44",
+      "canonical_sha256": "63adb46ffdbab97c2c767d03a6695a2bdf6b15eacee19ddc573ee1b1f19bc22d"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-B01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "pointer": "/cases/13",
+      "canonical_sha256": "83b19365e7840bdc85f823e41faa9a87b6e122d52ebf3368f98403952c35fc88"
+    }
+  ],
+  "l4_contract_bindings": [
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-F01",
+      "component": "domain_definition_reader",
+      "requirement_id": "HELIXBRAIN-L3-001-F01",
+      "oracle_id": "HELIXBRAIN-L10-001-F01",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-F01",
+      "function_id": "compare_domain_definitions"
+    },
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-F02",
+      "component": "domain_evolution_candidate_reader",
+      "requirement_id": "HELIXBRAIN-L3-001-F02",
+      "oracle_id": "HELIXBRAIN-L10-001-F02",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-F02",
+      "function_id": "compare_evolution_proposal"
+    },
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-B01",
+      "component": "domain_owner_router",
+      "requirement_id": "HELIXBRAIN-L3-001-B01",
+      "oracle_id": "HELIXBRAIN-L10-001-B01",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-B01",
+      "function_id": "separate_domain_and_product_owners"
+    }
+  ]
+}
