@@ -5812,7 +5812,8 @@
               "evaluation": "none",
               "registration": "HELIX-OS",
               "independent_verification": "BRAIN-change",
-              "adoption": "BRAIN-change"
+              "adoption": "BRAIN-change",
+              "order": "BRAIN-change"
             },
             "proof_owner_candidates": {
               "cross_project": "none",
@@ -5830,7 +5831,7 @@
               "adoption": "BRAIN-change"
             }
           },
-          "expected_public_whole_sha256": "d586da2f0349ae413907d6b37dccefb5b7bb96064fca60768af7a3dafea77b43",
+          "expected_public_whole_sha256": "08585ae0bd0754620f8c2ef6352746d73f14cae2ffda508f4dae98025e0cea8d",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F02",
@@ -5841,7 +5842,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F02",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
           }
         },
         {
@@ -6007,7 +6009,8 @@
               "evaluation": "LABO",
               "registration": "HELIX-OS",
               "independent_verification": "none",
-              "adoption": "none"
+              "adoption": "none",
+              "order": "BRAIN-change"
             },
             "proof_owner_candidates": {
               "cross_project": "none",
@@ -6025,7 +6028,7 @@
               "adoption": "BRAIN-change"
             }
           },
-          "expected_public_whole_sha256": "0af988c6f817c558c757d55ab4a970a4b0626ff98c426d61fc9801119b3c23d6",
+          "expected_public_whole_sha256": "ecc841652829757b10711425dca7b9aeccc5b133ab36db702060dbd40a5a237b",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F02",
@@ -6036,7 +6039,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F02",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
           }
         },
         {
@@ -6202,7 +6206,8 @@
               "evaluation": "none",
               "registration": "HELIX-OS",
               "independent_verification": "BRAIN-change",
-              "adoption": "none"
+              "adoption": "none",
+              "order": "BRAIN-change"
             },
             "proof_owner_candidates": {
               "cross_project": "none",
@@ -6220,7 +6225,7 @@
               "adoption": "BRAIN-change"
             }
           },
-          "expected_public_whole_sha256": "fed2d961534e2fb119631e59f55600928535b1b154f70c53e54fc92265ec4401",
+          "expected_public_whole_sha256": "2f1ef0759b66f4168120a8ed3b2acbccf93d58c5810030cc527c3bcc53272205",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F02",
@@ -6231,7 +6236,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F02",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
           }
         },
         {
@@ -6397,7 +6403,8 @@
               "evaluation": "none",
               "registration": "none",
               "independent_verification": "BRAIN-change",
-              "adoption": "BRAIN-change"
+              "adoption": "BRAIN-change",
+              "order": "BRAIN-change"
             },
             "proof_owner_candidates": {
               "cross_project": "none",
@@ -6415,7 +6422,7 @@
               "adoption": "BRAIN-change"
             }
           },
-          "expected_public_whole_sha256": "4c14d00629b1ee7317fb868909c1f95c2990c19c85cdf7f389ff13b56212b7c3",
+          "expected_public_whole_sha256": "4d39d3c3a8b1cbe5f6e69591d9208d7cfa69845f5d408d35c5bcd807683d8b83",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F02",
@@ -6426,7 +6433,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F02",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
           }
         },
         {
@@ -7730,7 +7738,8 @@
               "registration": "HELIX-OS",
               "independent_verification": "BRAIN-change",
               "adoption": "BRAIN-change",
-              "claims": "BRAIN-change"
+              "claims": "BRAIN-change",
+              "order": "BRAIN-change"
             },
             "proof_owner_candidates": {
               "cross_project": "none",
@@ -7748,7 +7757,7 @@
               "adoption": "BRAIN-change"
             }
           },
-          "expected_public_whole_sha256": "1775441ac50b661eac0a27f0ff0d86972a69b5047d890accceb67765c53d35b5",
+          "expected_public_whole_sha256": "50a13ae82c95315aea32800a6b30dbb06a941fb290c48080e3ff6438737f925a",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F02",
@@ -7759,7 +7768,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F02",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
           }
         },
         {
@@ -8758,10 +8768,20 @@
           "expected_additional_material": {
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
-              "LABO"
+              "LABO",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
+              "BRAIN-change"
             ],
             "failure_reasons": [
-              "single_evidence"
+              "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis"
             ],
             "failure_owner_routes": [
               {
@@ -8774,10 +8794,65 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ]
           },
-          "expected_public_whole_sha256": "1e0e6c4a7eb0e5dce9be47a605d1690b9543b36a95c7507e632d27a493a2d1aa",
+          "expected_public_whole_sha256": "f11a3183f52b05ddadd57439f790359d685ea0c18df991d715e1d71812910c46",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -8788,7 +8863,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -8905,10 +8981,20 @@
           "expected_additional_material": {
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
-              "LABO"
+              "LABO",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
+              "BRAIN-change"
             ],
             "failure_reasons": [
-              "single_evidence"
+              "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis"
             ],
             "failure_owner_routes": [
               {
@@ -8921,10 +9007,65 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ]
           },
-          "expected_public_whole_sha256": "3953ca150caf23870c80c7aefd011233090f2021b1312ed6ba781018e7912dfd",
+          "expected_public_whole_sha256": "a3fe6ded34d7850936dc8ae9e08449ba5c95dba0b00bdd454680f28e8e2e789d",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -8935,7 +9076,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -9052,10 +9194,20 @@
           "expected_additional_material": {
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
-              "LABO"
+              "LABO",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
+              "BRAIN-change"
             ],
             "failure_reasons": [
-              "single_evidence"
+              "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis"
             ],
             "failure_owner_routes": [
               {
@@ -9068,10 +9220,65 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ]
           },
-          "expected_public_whole_sha256": "121298e8841a4f7d5613be65ff94bd602f02db2d49d6df1f29bc736cd90e8eb4",
+          "expected_public_whole_sha256": "121ef45e465711d052fab3d04da15e36dcebaeb6725299ea9cbb77ebb31b1f4c",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -9082,7 +9289,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -9199,10 +9407,20 @@
           "expected_additional_material": {
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
-              "HELIX-OS"
+              "HELIX-OS",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
+              "BRAIN-change"
             ],
             "failure_reasons": [
-              "single_evidence"
+              "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis"
             ],
             "failure_owner_routes": [
               {
@@ -9215,10 +9433,65 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ]
           },
-          "expected_public_whole_sha256": "763cade61fc8eaf0ce237b60951b13d17ba1652ed1e0b8a9c90450614654c00a",
+          "expected_public_whole_sha256": "0c761c2e2a2672c582323a893caf3d11ec3108f359d0a99e1fc4dd57cf41195c",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -9229,7 +9502,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -9346,10 +9620,20 @@
           "expected_additional_material": {
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
+              "BRAIN-change",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
               "BRAIN-change"
             ],
             "failure_reasons": [
-              "single_evidence"
+              "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis"
             ],
             "failure_owner_routes": [
               {
@@ -9362,10 +9646,65 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ]
           },
-          "expected_public_whole_sha256": "fae0bc1d43e3ad370837e310735d1398743efd49f700cecff08faec162234ecb",
+          "expected_public_whole_sha256": "520392b531e4917b3291a40c656b687e7f4ec5a13241dbed404e9d924e145b6a",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -9376,7 +9715,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -10248,10 +10588,20 @@
             "product_separation_result": "content_corresponding_in_fixture",
             "failure_owner_candidates": [
               "BRAIN-change",
+              "LABO",
+              "LABO",
+              "HELIX-OS",
+              "BRAIN-change",
+              "BRAIN-change",
               "BRAIN-change"
             ],
             "failure_reasons": [
               "single_evidence",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
+              "missing_required_basis",
               "knowledge_state"
             ],
             "failure_owner_routes": [
@@ -10260,6 +10610,61 @@
                 "responsibility_role": "BRAIN-change",
                 "trigger_fields": [
                   "original_evidence_set"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/proposal"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "original_evidence_set/evaluation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "HELIX-OS",
+                "trigger_fields": [
+                  "original_evidence_set/registration"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/independent_verification"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "missing_required_basis",
+                "responsibility_role": "BRAIN-change",
+                "trigger_fields": [
+                  "original_evidence_set/adoption_basis"
                 ],
                 "trigger_claims": [],
                 "recipient": null,
@@ -10281,7 +10686,7 @@
               }
             ]
           },
-          "expected_public_whole_sha256": "eaeffbbd61826476ebcbd9387822f91e0796025e4f8eafa9032842cfc779881c",
+          "expected_public_whole_sha256": "5b19938ef23fcaf6331464b19464bb682702ebcb610a4c9bdbda58d9b0ec638b",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-F03",
@@ -10292,7 +10697,8 @@
               "pointer": "/responsibility_and_failure_return_contract/F03",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
           }
         },
         {
@@ -15410,6 +15816,18 @@
                 "recipient": null,
                 "resolution": "mechanism_role_candidate",
                 "original_finding": null
+              },
+              {
+                "kind": "evaluation_target_binding",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "submitted_unseen_content/candidate_revision",
+                  "submitted_unseen_content/evaluation_target_revision"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
               }
             ],
             "information_results": {
@@ -15428,7 +15846,7 @@
             },
             "route_status": "candidates_present"
           },
-          "expected_public_whole_sha256": "b0c74923cb71ec86ace7966d3550385b4d359a06836b6898262c556889b50ae9",
+          "expected_public_whole_sha256": "1e4f96ec50cd71d0d1e6a3ee1708435422f618c34c37065378e6e88e30e9b276",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-N01",
@@ -15439,7 +15857,8 @@
               "pointer": "/responsibility_and_failure_return_contract/N01",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L2-025 source/evaluation responsibility and L3/L10-N01 candidate↔evaluation target revision binding"
           }
         },
         {
@@ -15594,17 +16013,6 @@
               },
               {
                 "kind": "unseen_field",
-                "responsibility_role": "LABO",
-                "trigger_fields": [
-                  "evaluation_target_revision"
-                ],
-                "trigger_claims": [],
-                "recipient": null,
-                "resolution": "mechanism_role_candidate",
-                "original_finding": null
-              },
-              {
-                "kind": "unseen_field",
                 "responsibility_role": "BRAIN-change",
                 "trigger_fields": [
                   "independent_verification"
@@ -15619,6 +16027,18 @@
                 "responsibility_role": "knowledge-meaning",
                 "trigger_fields": [
                   "product_separation"
+                ],
+                "trigger_claims": [],
+                "recipient": null,
+                "resolution": "mechanism_role_candidate",
+                "original_finding": null
+              },
+              {
+                "kind": "evaluation_target_binding",
+                "responsibility_role": "LABO",
+                "trigger_fields": [
+                  "submitted_unseen_content/candidate_revision",
+                  "submitted_unseen_content/evaluation_target_revision"
                 ],
                 "trigger_claims": [],
                 "recipient": null,
@@ -15642,7 +16062,7 @@
             },
             "route_status": "candidates_present"
           },
-          "expected_public_whole_sha256": "c28bedf8e4f1f2d84e49c0a06341189313657bedf0ef16783fd775f505658dc9",
+          "expected_public_whole_sha256": "c576c344edeb784d155cb6bf0cff2a861641a7295b542528a87aeaef1646c659",
           "additional_expected_basis": {
             "source_requirements": [
               "HELIXBRAIN-L3-025-N01",
@@ -15653,7 +16073,8 @@
               "pointer": "/responsibility_and_failure_return_contract/N01",
               "binding": "same_candidate"
             },
-            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。"
+            "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
+            "r2": "R2独立導出: L2-025 source/evaluation responsibility and L3/L10-N01 candidate↔evaluation target revision binding"
           }
         },
         {
@@ -19859,16 +20280,1945 @@
       ],
       "binding": "same_candidate",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P12-F03-TWO-SINGLE-EVIDENCE",
+      "function": "F03",
+      "base_case_pointer": "/verification_obligations/2/concrete_cases/1",
+      "base_raw_sha256": "81753b53d87ae9ae3ee12745edf24945e88e13f4e6ccd0ff7b9f0c4e9aed9f0e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_evidence_set",
+          "value": [
+            "AI_generated",
+            "OS_ticket"
+          ]
+        }
+      ],
+      "input": {
+        "claims": {
+          "counterexample_erased": false,
+          "document_adopted": false,
+          "hold_success": false,
+          "product_meaning_generic": false
+        },
+        "original_evidence_set": [
+          "AI_generated",
+          "OS_ticket"
+        ],
+        "original_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "original_knowledge_state": "adopted_in_fixture_record",
+        "original_product_separation": "separated_candidate",
+        "submitted_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "submitted_knowledge_state": "adopted_in_fixture_record"
+      },
+      "input_canonical_sha256": "be63cc5d37741a8572d56a19e2683462daa0588a1e31ddf194a2829d3f74871c",
+      "expected_additional_material": {
+        "product_separation_result": "content_corresponding_in_fixture",
+        "failure_owner_candidates": [
+          "LABO",
+          "HELIX-OS",
+          "LABO",
+          "LABO",
+          "HELIX-OS",
+          "BRAIN-change",
+          "BRAIN-change"
+        ],
+        "failure_reasons": [
+          "single_evidence",
+          "single_evidence",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis"
+        ],
+        "failure_owner_routes": [
+          {
+            "kind": "single_evidence",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "single_evidence",
+            "responsibility_role": "HELIX-OS",
+            "trigger_fields": [
+              "original_evidence_set"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set/proposal"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set/evaluation"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "HELIX-OS",
+            "trigger_fields": [
+              "original_evidence_set/registration"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/adoption_basis"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "fa1294730df10567578a18a057dd8fdffaeec66c2f2a270f59db2000bb149ec4",
+      "source_basis": [
+        "L3-F01 stage receipts and same-candidate binding",
+        "L3/L10-F03 nonpromotion for each of five single-evidence forms; missing stages route by L2-025:471"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P13-F03-PROPOSAL-EVALUATION-ONLY",
+      "function": "F03",
+      "base_case_pointer": "/verification_obligations/2/concrete_cases/1",
+      "base_raw_sha256": "81753b53d87ae9ae3ee12745edf24945e88e13f4e6ccd0ff7b9f0c4e9aed9f0e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_evidence_set",
+          "value": [
+            "proposal",
+            "evaluation"
+          ]
+        }
+      ],
+      "input": {
+        "claims": {
+          "counterexample_erased": false,
+          "document_adopted": false,
+          "hold_success": false,
+          "product_meaning_generic": false
+        },
+        "original_evidence_set": [
+          "proposal",
+          "evaluation"
+        ],
+        "original_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "original_knowledge_state": "adopted_in_fixture_record",
+        "original_product_separation": "separated_candidate",
+        "submitted_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "submitted_knowledge_state": "adopted_in_fixture_record"
+      },
+      "input_canonical_sha256": "45ae9c765b1919c072b9bed5cd3ab8390d8f7fb265163eaec96698086fca8403",
+      "expected_additional_material": {
+        "product_separation_result": "content_corresponding_in_fixture",
+        "failure_owner_candidates": [
+          "HELIX-OS",
+          "BRAIN-change",
+          "BRAIN-change"
+        ],
+        "failure_reasons": [
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis"
+        ],
+        "failure_owner_routes": [
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "HELIX-OS",
+            "trigger_fields": [
+              "original_evidence_set/registration"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/adoption_basis"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "8ec6f1e799c40dfd16b1e9408b7cb5789fc401d1d76b1c99bdd89d574ed78cf3",
+      "source_basis": [
+        "L3-F01 stage receipts and same-candidate binding",
+        "L3/L10-F03 nonpromotion for each of five single-evidence forms; missing stages route by L2-025:471"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P14-F03-DOCUMENT-AND-PROPOSAL",
+      "function": "F03",
+      "base_case_pointer": "/verification_obligations/2/concrete_cases/1",
+      "base_raw_sha256": "81753b53d87ae9ae3ee12745edf24945e88e13f4e6ccd0ff7b9f0c4e9aed9f0e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_evidence_set",
+          "value": [
+            "document_exists",
+            "proposal"
+          ]
+        }
+      ],
+      "input": {
+        "claims": {
+          "counterexample_erased": false,
+          "document_adopted": false,
+          "hold_success": false,
+          "product_meaning_generic": false
+        },
+        "original_evidence_set": [
+          "document_exists",
+          "proposal"
+        ],
+        "original_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "original_knowledge_state": "adopted_in_fixture_record",
+        "original_product_separation": "separated_candidate",
+        "submitted_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "submitted_knowledge_state": "adopted_in_fixture_record"
+      },
+      "input_canonical_sha256": "7976e36fe2816dcecbf9f22a957dc38313796173b79d2a60101acfd96624f11c",
+      "expected_additional_material": {
+        "product_separation_result": "content_corresponding_in_fixture",
+        "failure_owner_candidates": [
+          "BRAIN-change",
+          "LABO",
+          "HELIX-OS",
+          "BRAIN-change",
+          "BRAIN-change"
+        ],
+        "failure_reasons": [
+          "single_evidence",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis"
+        ],
+        "failure_owner_routes": [
+          {
+            "kind": "single_evidence",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set/evaluation"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "HELIX-OS",
+            "trigger_fields": [
+              "original_evidence_set/registration"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/adoption_basis"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "471ff98be87785eb2b5000e220ef6c8fa0eac69b1a9e971606dcd664965c1ec7",
+      "source_basis": [
+        "L3-F01 stage receipts and same-candidate binding",
+        "L3/L10-F03 nonpromotion for each of five single-evidence forms; missing stages route by L2-025:471"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P15-F03-EMPTY-EVIDENCE",
+      "function": "F03",
+      "base_case_pointer": "/verification_obligations/2/concrete_cases/1",
+      "base_raw_sha256": "81753b53d87ae9ae3ee12745edf24945e88e13f4e6ccd0ff7b9f0c4e9aed9f0e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_evidence_set",
+          "value": []
+        }
+      ],
+      "input": {
+        "claims": {
+          "counterexample_erased": false,
+          "document_adopted": false,
+          "hold_success": false,
+          "product_meaning_generic": false
+        },
+        "original_evidence_set": [],
+        "original_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "original_knowledge_state": "adopted_in_fixture_record",
+        "original_product_separation": "separated_candidate",
+        "submitted_findings": [
+          {
+            "content": "未評価条件の追加評価",
+            "identity": "FINDING-P",
+            "owner": "LABO",
+            "revision": "finding-r1",
+            "state": "unfinished",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          {
+            "content": "compact contextの適用不能",
+            "identity": "COUNTEREXAMPLE-P",
+            "owner": "BRAIN-meaning-owner",
+            "revision": "counterexample-r1",
+            "state": "preserved",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        ],
+        "submitted_knowledge_state": "adopted_in_fixture_record"
+      },
+      "input_canonical_sha256": "36c69ca79cee3a30ff9ee305b3eeab57ea816b6883ddca77a7d59b0a289a36b4",
+      "expected_additional_material": {
+        "product_separation_result": "content_corresponding_in_fixture",
+        "failure_owner_candidates": [
+          "LABO",
+          "LABO",
+          "HELIX-OS",
+          "BRAIN-change",
+          "BRAIN-change"
+        ],
+        "failure_reasons": [
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis",
+          "missing_required_basis"
+        ],
+        "failure_owner_routes": [
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set/proposal"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_evidence_set/evaluation"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "HELIX-OS",
+            "trigger_fields": [
+              "original_evidence_set/registration"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "missing_required_basis",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_evidence_set/adoption_basis"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "028a2c529015d97e61db3ab555d15bc8443addfa79ecea3b03f79e174f2190b6",
+      "source_basis": [
+        "L3-F01 stage receipts and same-candidate binding",
+        "L3/L10-F03 nonpromotion for each of five single-evidence forms; missing stages route by L2-025:471"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P16-F02-FIVE-ORDER-MEMBERS",
+      "function": "F02",
+      "base_case_pointer": "/verification_obligations/1/concrete_cases/0",
+      "base_raw_sha256": "3401a30a158cb053988dd236ac8280244f42e1198ea79d74ff23265e0800b69c",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_order",
+          "value": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption",
+            "adoption"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_order",
+          "value": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption",
+            "adoption"
+          ]
+        }
+      ],
+      "input": {
+        "claims": {
+          "all_ticket_fixed_shadow_gate": false,
+          "omit_order": false,
+          "self_evaluation_independent": false,
+          "shadow_unexecuted_done": false
+        },
+        "original_order": [
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption",
+          "adoption"
+        ],
+        "original_selected_scope_proofs": {
+          "cross_project": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "cross_project-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "independent": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "independent-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "shadow": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "shadow-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        },
+        "submitted_order": [
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption",
+          "adoption"
+        ],
+        "submitted_scope_proofs": {
+          "cross_project": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "cross_project-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "independent": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "independent-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "shadow": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "shadow-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        }
+      },
+      "input_canonical_sha256": "f9a5f4b8f5ac39b4f319e6d517219834b00df659e5280287986b7b1b91254d83",
+      "expected_additional_material": {
+        "required_order_result": {
+          "original": "content_conflict",
+          "submitted": "content_conflict"
+        },
+        "failure_owner_candidates": {
+          "evaluation": "none",
+          "registration": "none",
+          "independent_verification": "none",
+          "adoption": "none",
+          "order": "BRAIN-change"
+        },
+        "proof_owner_candidates": {
+          "cross_project": "none",
+          "independent": "none",
+          "shadow": "none"
+        },
+        "scope_proof_container_result": {
+          "original": "content_corresponding_in_fixture",
+          "submitted": "content_corresponding_in_fixture"
+        },
+        "return_owners": {
+          "evaluation": "LABO",
+          "registration": "HELIX-OS",
+          "independent_verification": "BRAIN-change",
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_additional_canonical_sha256": "125e3b6fd31f1c48eb31ca2f2f561d0a95ea14cf94d9e5a5357669933eb7ce48",
+      "source_basis": [
+        "L3/L4 fixed order: evaluation→registration→independent verification→adoption; extra fifth member is a whole-order mismatch returned to BRAIN-change"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P17-F02-ORIGINAL-CONTAINER-NULL",
+      "function": "F02",
+      "base_case_pointer": "/verification_obligations/1/concrete_cases/0",
+      "base_raw_sha256": "3401a30a158cb053988dd236ac8280244f42e1198ea79d74ff23265e0800b69c",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_selected_scope_proofs",
+          "value": null
+        }
+      ],
+      "input": {
+        "claims": {
+          "all_ticket_fixed_shadow_gate": false,
+          "omit_order": false,
+          "self_evaluation_independent": false,
+          "shadow_unexecuted_done": false
+        },
+        "original_order": [
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption"
+        ],
+        "original_selected_scope_proofs": null,
+        "submitted_order": [
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption"
+        ],
+        "submitted_scope_proofs": {
+          "cross_project": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "cross_project-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "independent": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "independent-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          },
+          "shadow": {
+            "checker": "SYNTHETIC-INDEPENDENT-CHECKER",
+            "evidence": "shadow-evidence-r1",
+            "producer": "SYNTHETIC-PRODUCER",
+            "scope": "ADOPTION-SCOPE-P",
+            "state": "observed_in_fixture",
+            "target": {
+              "identity": "CANDIDATE-P",
+              "revision": "candidate-r2",
+              "scope": "ADOPTION-SCOPE-P",
+              "source": "SOURCE-P@source-r1"
+            }
+          }
+        }
+      },
+      "input_canonical_sha256": "eb055a2feb1836b61a3858b096608ea4b3256aeb2206714eac89792ab77b7b3e",
+      "expected_additional_material": {
+        "required_order_result": {
+          "original": "content_corresponding_in_fixture",
+          "submitted": "content_corresponding_in_fixture"
+        },
+        "failure_owner_candidates": {
+          "evaluation": "none",
+          "registration": "none",
+          "independent_verification": "none",
+          "adoption": "none",
+          "scope_proofs": "BRAIN-change"
+        },
+        "proof_owner_candidates": {},
+        "scope_proof_container_result": {
+          "original": "unknown_in_fixture",
+          "submitted": "content_corresponding_in_fixture"
+        },
+        "return_owners": {
+          "evaluation": "LABO",
+          "registration": "HELIX-OS",
+          "independent_verification": "BRAIN-change",
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_additional_canonical_sha256": "99d0e92f9f1f5af3af1186df5a7f003fa126e97779be908556c3812412b69e4a",
+      "source_basis": [
+        "L3/L10-F02 requires selected scope proof; null container remains unknown and returns BRAIN-change candidate, without inventing proof contents"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P18-N01-BOTH-EVALUATION-TARGET-FOREIGN",
+      "function": "N01",
+      "base_case_pointer": "/verification_obligations/4/concrete_cases/1",
+      "base_raw_sha256": "00c630078a4eeb36847b7a5c2886a764eecfd89ec12cb58ba27e92af011a7acb",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_unseen_content/evaluation_target_revision",
+          "value": "evaluation-target-foreign-r9"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_unseen_content/evaluation_target_revision",
+          "value": "evaluation-target-foreign-r9"
+        }
+      ],
+      "input": {
+        "claims": {
+          "all_seed_accepted": false,
+          "fields_only_pass": false,
+          "fixture_universal": false,
+          "unknown_adopted": false
+        },
+        "original_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "evaluation-target-foreign-r9",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "navigation到達保持だけの分離候補"
+        },
+        "submitted_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "evaluation-target-foreign-r9",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "伏せた製品Rの請求画面に左menuを固定する製品固有要求"
+        }
+      },
+      "input_canonical_sha256": "7c89b0ddc61b2f8c5d4fc7540d23712e1cdd10b3f6be2825f92523f7d83ad3f1",
+      "expected_additional_material": {
+        "evaluation_target_binding_results": {
+          "original": "content_conflict",
+          "submitted": "content_conflict"
+        },
+        "product_meaning_owner_candidate": "knowledge-meaning",
+        "compare_original_to_submitted_by_field": {
+          "candidate_identity": "content_corresponding_in_fixture",
+          "candidate_revision": "content_corresponding_in_fixture",
+          "candidate_type": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture",
+          "evaluation_target_revision": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "order": "content_corresponding_in_fixture",
+          "product_context": "content_corresponding_in_fixture",
+          "product_separation": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "structure_meaning": "content_conflict"
+        },
+        "preserve_original_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "evaluation-target-foreign-r9",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "navigation到達保持だけの分離候補"
+        },
+        "failure_owner_routes": [
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "candidate_type"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "knowledge-meaning",
+            "trigger_fields": [
+              "product_separation"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "knowledge-meaning",
+            "trigger_fields": [
+              "structure_meaning"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "evaluation_target_binding",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "original_unseen_content/candidate_revision",
+              "original_unseen_content/evaluation_target_revision"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "evaluation_target_binding",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "submitted_unseen_content/candidate_revision",
+              "submitted_unseen_content/evaluation_target_revision"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ],
+        "information_results": {
+          "candidate_identity": "content_corresponding_in_fixture",
+          "candidate_revision": "content_corresponding_in_fixture",
+          "candidate_type": "unknown_in_fixture",
+          "counterexample": "content_corresponding_in_fixture",
+          "evaluation_target_revision": "content_corresponding_in_fixture",
+          "independent_verification": "unknown_in_fixture",
+          "order": "content_corresponding_in_fixture",
+          "product_context": "content_corresponding_in_fixture",
+          "product_separation": "unknown_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "structure_meaning": "content_corresponding_in_fixture"
+        },
+        "route_status": "candidates_present"
+      },
+      "expected_additional_canonical_sha256": "4572445b9147db1dc8337bea769181f73aae9ba3f558098c56906f3ec6444c79",
+      "source_basis": [
+        "L3/L10-N01 and L2-025:471: evaluation target revision must bind to candidate revision; same-side equality does not erase a mismatch"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P19-N01-SUBMITTED-EVALUATION-TARGET-FOREIGN",
+      "function": "N01",
+      "base_case_pointer": "/verification_obligations/4/concrete_cases/1",
+      "base_raw_sha256": "00c630078a4eeb36847b7a5c2886a764eecfd89ec12cb58ba27e92af011a7acb",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/submitted_unseen_content/evaluation_target_revision",
+          "value": "evaluation-target-foreign-r9"
+        }
+      ],
+      "input": {
+        "claims": {
+          "all_seed_accepted": false,
+          "fields_only_pass": false,
+          "fixture_universal": false,
+          "unknown_adopted": false
+        },
+        "original_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "unseen-candidate-r5",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "navigation到達保持だけの分離候補"
+        },
+        "submitted_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "evaluation-target-foreign-r9",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "伏せた製品Rの請求画面に左menuを固定する製品固有要求"
+        }
+      },
+      "input_canonical_sha256": "910e85dd4366dc8aa0d4bd149c51a35e6ec6d22cae5eac8005bd4c5d33eada73",
+      "expected_additional_material": {
+        "evaluation_target_binding_results": {
+          "original": "content_corresponding_in_fixture",
+          "submitted": "content_conflict"
+        },
+        "product_meaning_owner_candidate": "knowledge-meaning",
+        "compare_original_to_submitted_by_field": {
+          "candidate_identity": "content_corresponding_in_fixture",
+          "candidate_revision": "content_corresponding_in_fixture",
+          "candidate_type": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture",
+          "evaluation_target_revision": "content_conflict",
+          "independent_verification": "content_corresponding_in_fixture",
+          "order": "content_corresponding_in_fixture",
+          "product_context": "content_corresponding_in_fixture",
+          "product_separation": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "structure_meaning": "content_conflict"
+        },
+        "preserve_original_unseen_content": {
+          "candidate_identity": "UNSEEN-CANDIDATE-R",
+          "candidate_revision": "unseen-candidate-r5",
+          "candidate_type": "unknown",
+          "counterexample": "compact contextでは未評価",
+          "evaluation_target_revision": "unseen-candidate-r5",
+          "independent_verification": "not_executed",
+          "order": [
+            "evaluation",
+            "registration",
+            "independent_verification",
+            "adoption"
+          ],
+          "product_context": "伏せた製品Rのcompact billing画面",
+          "product_separation": "unknown",
+          "scope": "UNSEEN-SCOPE-R",
+          "source": "SOURCE-R@source-r2",
+          "structure_meaning": "navigation到達保持だけの分離候補"
+        },
+        "failure_owner_routes": [
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "candidate_type"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "independent_verification"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "knowledge-meaning",
+            "trigger_fields": [
+              "product_separation"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "unseen_field",
+            "responsibility_role": "knowledge-meaning",
+            "trigger_fields": [
+              "structure_meaning"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "evaluation_target_binding",
+            "responsibility_role": "LABO",
+            "trigger_fields": [
+              "submitted_unseen_content/candidate_revision",
+              "submitted_unseen_content/evaluation_target_revision"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ],
+        "information_results": {
+          "candidate_identity": "content_corresponding_in_fixture",
+          "candidate_revision": "content_corresponding_in_fixture",
+          "candidate_type": "unknown_in_fixture",
+          "counterexample": "content_corresponding_in_fixture",
+          "evaluation_target_revision": "content_corresponding_in_fixture",
+          "independent_verification": "unknown_in_fixture",
+          "order": "content_corresponding_in_fixture",
+          "product_context": "content_corresponding_in_fixture",
+          "product_separation": "unknown_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "source": "content_corresponding_in_fixture",
+          "structure_meaning": "content_corresponding_in_fixture"
+        },
+        "route_status": "candidates_present"
+      },
+      "expected_additional_canonical_sha256": "93d2558c4db56c02a5ef520a36eceb66a1a614ac115107250d1b37505c81465a",
+      "source_basis": [
+        "L3/L10-N01 and L2-025:471: submitted evaluation mismatch is returned to LABO"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P20-F04-BASE-NEEDED-ABSENT",
+      "function": "F04",
+      "base_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "base_raw_sha256": "801e47d0b8d4f040b923ec370bb34fd3af0dff95db93f150c75062e1b5631433",
+      "input_patch": [
+        {
+          "op": "remove",
+          "path": "/original_base_needed"
+        }
+      ],
+      "input": {
+        "claims": {
+          "needed_as_reference_only": false,
+          "unit_green_all_composition": false,
+          "unknown_all_unneeded": false,
+          "unselected_experiment_completion_gate": false
+        },
+        "original_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "009": {
+            "identity": "009",
+            "revision": "contract-009-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "INFRA017": {
+            "identity": "INFRA017",
+            "revision": "contract-INFRA017-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "original_optional_needed_by_condition": {
+          "composition_candidate": "009",
+          "core_origin": "011",
+          "evaluation_connection": "020",
+          "infrastructure_maturity": "INFRA017"
+        },
+        "original_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": false
+        },
+        "submitted_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "submitted_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": false
+        }
+      },
+      "input_canonical_sha256": "bdf83bba38f3e77599b1369203120f022a892a46acf1e837a9a2d07375b2473a",
+      "expected_additional_material": {
+        "reference_content_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "011": "content_corresponding_in_fixture",
+          "012": "content_corresponding_in_fixture",
+          "020": "content_corresponding_in_fixture",
+          "BRAIN-change": "content_corresponding_in_fixture",
+          "LABO": "content_corresponding_in_fixture",
+          "OS": "content_corresponding_in_fixture"
+        },
+        "selection_information_results": {
+          "composition_candidate": "content_corresponding_in_fixture",
+          "core_origin": "content_corresponding_in_fixture",
+          "evaluation_connection": "content_corresponding_in_fixture",
+          "infrastructure_maturity": "content_corresponding_in_fixture"
+        },
+        "failure_owner_candidates": {
+          "007": "none",
+          "008": "none",
+          "011": "none",
+          "012": "none",
+          "020": "none",
+          "BRAIN-change": "none",
+          "LABO": "none",
+          "OS": "none",
+          "required_reference_input": "BRAIN-change"
+        },
+        "return_owners": {
+          "007": "BRAIN-contract-owner",
+          "008": "BRAIN-contract-owner",
+          "009": "BRAIN-contract-owner",
+          "011": "BRAIN-contract-owner",
+          "012": "BRAIN-contract-owner",
+          "020": "BRAIN-contract-owner",
+          "LABO": "LABO",
+          "OS": "HELIX-OS",
+          "BRAIN-change": "BRAIN-change",
+          "INFRA017": "HELIX-INFRASTRUCTURE"
+        },
+        "failure_owner_routes": [
+          {
+            "kind": "required_reference_declaration",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_base_needed"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "be8cf75407908db353405c0fd22afb5d1a3b21b13649445acbba8b89d168c80f",
+      "source_basis": [
+        "L3-F04 fixed dependencies 007/008/009/011/012/020, LABO/OS/BRAIN-change; L2-025:471 owner return; missing declaration cannot erase comparisons"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P21-F04-CORE-OPTIONAL-MAP-FOREIGN",
+      "function": "F04",
+      "base_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "base_raw_sha256": "801e47d0b8d4f040b923ec370bb34fd3af0dff95db93f150c75062e1b5631433",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_optional_needed_by_condition/core_origin",
+          "value": "007"
+        }
+      ],
+      "input": {
+        "claims": {
+          "needed_as_reference_only": false,
+          "unit_green_all_composition": false,
+          "unknown_all_unneeded": false,
+          "unselected_experiment_completion_gate": false
+        },
+        "original_base_needed": [
+          "007",
+          "008",
+          "012",
+          "LABO",
+          "OS",
+          "BRAIN-change"
+        ],
+        "original_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "009": {
+            "identity": "009",
+            "revision": "contract-009-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "INFRA017": {
+            "identity": "INFRA017",
+            "revision": "contract-INFRA017-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "original_optional_needed_by_condition": {
+          "composition_candidate": "009",
+          "core_origin": "007",
+          "evaluation_connection": "020",
+          "infrastructure_maturity": "INFRA017"
+        },
+        "original_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": false
+        },
+        "submitted_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "submitted_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": false
+        }
+      },
+      "input_canonical_sha256": "80b6041583f6b5b4a01e08aa71fb879ef48309117891408fb488b51b1fb50855",
+      "expected_additional_material": {
+        "reference_content_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "011": "content_corresponding_in_fixture",
+          "012": "content_corresponding_in_fixture",
+          "020": "content_corresponding_in_fixture",
+          "BRAIN-change": "content_corresponding_in_fixture",
+          "LABO": "content_corresponding_in_fixture",
+          "OS": "content_corresponding_in_fixture"
+        },
+        "selection_information_results": {
+          "composition_candidate": "content_corresponding_in_fixture",
+          "core_origin": "content_corresponding_in_fixture",
+          "evaluation_connection": "content_corresponding_in_fixture",
+          "infrastructure_maturity": "content_corresponding_in_fixture"
+        },
+        "failure_owner_candidates": {
+          "007": "none",
+          "008": "none",
+          "011": "none",
+          "012": "none",
+          "020": "none",
+          "BRAIN-change": "none",
+          "LABO": "none",
+          "OS": "none",
+          "required_reference_input": "BRAIN-change"
+        },
+        "return_owners": {
+          "007": "BRAIN-contract-owner",
+          "008": "BRAIN-contract-owner",
+          "009": "BRAIN-contract-owner",
+          "011": "BRAIN-contract-owner",
+          "012": "BRAIN-contract-owner",
+          "020": "BRAIN-contract-owner",
+          "LABO": "LABO",
+          "OS": "HELIX-OS",
+          "BRAIN-change": "BRAIN-change",
+          "INFRA017": "HELIX-INFRASTRUCTURE"
+        },
+        "failure_owner_routes": [
+          {
+            "kind": "required_reference_declaration",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_optional_needed_by_condition/core_origin"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "95a85dc6b735713bad3609d379d1169b9b6b9672a6fd22c8d98e2df2034d2a66",
+      "source_basis": [
+        "L3-F04 fixed dependency set and L2-025:471; core_origin true maps to 011, not a supplied alias value"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B025B-R2-P22-F04-INFRA-OPTIONAL-MAP-ABSENT",
+      "function": "F04",
+      "base_case_pointer": "/verification_obligations/3/concrete_cases/26",
+      "base_raw_sha256": "3c440b208293b8f21b6b72541744b5dabdd313d8f0440306e89e883ed5daf0fe",
+      "input_patch": [
+        {
+          "op": "remove",
+          "path": "/original_optional_needed_by_condition/infrastructure_maturity"
+        }
+      ],
+      "input": {
+        "claims": {
+          "needed_as_reference_only": false,
+          "unit_green_all_composition": false,
+          "unknown_all_unneeded": false,
+          "unselected_experiment_completion_gate": false
+        },
+        "original_base_needed": [
+          "007",
+          "008",
+          "012",
+          "LABO",
+          "OS",
+          "BRAIN-change"
+        ],
+        "original_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "009": {
+            "identity": "009",
+            "revision": "contract-009-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "INFRA017": {
+            "identity": "INFRA017",
+            "revision": "contract-INFRA017-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "original_optional_needed_by_condition": {
+          "composition_candidate": "009",
+          "core_origin": "011",
+          "evaluation_connection": "020"
+        },
+        "original_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": true
+        },
+        "submitted_contract_references": {
+          "007": {
+            "identity": "007",
+            "revision": "contract-007-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "008": {
+            "identity": "008",
+            "revision": "contract-008-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "011": {
+            "identity": "011",
+            "revision": "contract-011-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "012": {
+            "identity": "012",
+            "revision": "contract-012-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "020": {
+            "identity": "020",
+            "revision": "contract-020-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "BRAIN-change": {
+            "identity": "BRAIN-change",
+            "revision": "contract-BRAIN-change-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "LABO": {
+            "identity": "LABO",
+            "revision": "contract-LABO-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          },
+          "OS": {
+            "identity": "OS",
+            "revision": "contract-OS-r1",
+            "scope": "ADOPTION-SCOPE-P"
+          }
+        },
+        "submitted_selection": {
+          "composition_candidate": false,
+          "core_origin": true,
+          "evaluation_connection": true,
+          "infrastructure_maturity": true
+        }
+      },
+      "input_canonical_sha256": "200ee5b7919cb1eab57773a3c607585811345d8b210bb700272a17784914cfed",
+      "expected_additional_material": {
+        "reference_content_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "011": "content_corresponding_in_fixture",
+          "012": "content_corresponding_in_fixture",
+          "020": "content_corresponding_in_fixture",
+          "BRAIN-change": "content_corresponding_in_fixture",
+          "INFRA017": "missing",
+          "LABO": "content_corresponding_in_fixture",
+          "OS": "content_corresponding_in_fixture"
+        },
+        "selection_information_results": {
+          "composition_candidate": "content_corresponding_in_fixture",
+          "core_origin": "content_corresponding_in_fixture",
+          "evaluation_connection": "content_corresponding_in_fixture",
+          "infrastructure_maturity": "content_corresponding_in_fixture"
+        },
+        "failure_owner_candidates": {
+          "007": "none",
+          "008": "none",
+          "011": "none",
+          "012": "none",
+          "020": "none",
+          "BRAIN-change": "none",
+          "INFRA017": "HELIX-INFRASTRUCTURE",
+          "LABO": "none",
+          "OS": "none",
+          "required_reference_input": "BRAIN-change"
+        },
+        "return_owners": {
+          "007": "BRAIN-contract-owner",
+          "008": "BRAIN-contract-owner",
+          "009": "BRAIN-contract-owner",
+          "011": "BRAIN-contract-owner",
+          "012": "BRAIN-contract-owner",
+          "020": "BRAIN-contract-owner",
+          "LABO": "LABO",
+          "OS": "HELIX-OS",
+          "BRAIN-change": "BRAIN-change",
+          "INFRA017": "HELIX-INFRASTRUCTURE"
+        },
+        "failure_owner_routes": [
+          {
+            "kind": "reference_content",
+            "responsibility_role": "HELIX-INFRASTRUCTURE",
+            "trigger_fields": [
+              "submitted_contract_references/INFRA017"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          },
+          {
+            "kind": "required_reference_declaration",
+            "responsibility_role": "BRAIN-change",
+            "trigger_fields": [
+              "original_optional_needed_by_condition/infrastructure_maturity"
+            ],
+            "trigger_claims": [],
+            "recipient": null,
+            "resolution": "mechanism_role_candidate",
+            "original_finding": null
+          }
+        ]
+      },
+      "expected_additional_canonical_sha256": "5a19d12bcfe1e7105a39bf13055cf530ee8896e23b15fb6f02bff0f1fd958e98",
+      "source_basis": [
+        "L3-F04: add INFRA017 only when infrastructure maturity is selected; L2-INFRA-017 owner remains HELIX-INFRASTRUCTURE"
+      ],
+      "binding": "same_candidate",
+      "execution_state": "not_executed"
     }
   ],
   "paired_l4_candidate_bytes": {
     "document": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json",
-    "sha256": "9d6da88e701552261defb5e3b210552372da7cbd0af3568c5dceb28513add62c",
+    "sha256": "6cc327f6c1c2aa3c4dce6f4a856f2ca7ab692dcd9387d9735d62b390f3fa75a0",
     "binding": "same_candidate",
-    "meaning": "このL4実bytesへ結ぶ。固定旧revisionのsource_pinsとは分離し、承認/実資格を生成しない。"
+    "meaning": "このL4候補のexact bytesとの同一性を示す。source_pinsは参照元bytesを識別する。承認/実資格を生成しない。",
+    "bytes": 89759
   },
   "additional_fixture_progress": {
-    "case_count": 11,
+    "case_count": 22,
     "expected_scope": "additional_return_values_only",
     "synthetic_only": true,
     "execution_state": "not_executed"

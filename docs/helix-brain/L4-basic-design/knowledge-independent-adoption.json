@@ -454,7 +454,7 @@
         "OS_ticket": "HELIX-OS",
         "document_exists": "BRAIN-change"
       },
-      "single_evidence_rule": "五種類の単独証拠だけの候補は表の元source/評価/登録/検証責務へ返す。これらからadoptionを生成しない。",
+      "single_evidence_rule": "L3-F01で区別するproposal/evaluation/registration/independent_verification/adoptionの5段階receiptを固定集合とする。original_evidence_setがこの全段階を含まない場合、欠けた段階ごとにsource/evaluationはLABO、登録はHELIX-OS、独立検証/採否はBRAIN-changeの責務候補routeを出す。L10-F03のAI_generated/single_success/LABO_result/OS_ticket/document_existsは1件でも複数件でも単独証拠として別routeへ返し、5段階の不足を満たさない。候補/採用state、finding/反例の元値は保持し、実評価/登録/独立検証/採否資格を生成しない。",
       "product_separation_result": "original_product_separationをseparated_candidateという分離候補表示へ照合。同値はcontent_corresponding_in_fixture、Absent/null/markerはunknown_in_fixture、その他非分離値はcontent_conflict。提出側に無いproduct_separationを暗黙入力にしない。",
       "data_claim_rule": "知識state差またはdocument_adopted/hold_success=trueはBRAIN-change。未分離dataまたはproduct_meaning_generic=trueはknowledge-meaning。counterexample_erased=trueはknowledge-meaning。data所見とclaimのORを保持し、false claimでdata不正を抑止しない。",
       "order": [
@@ -526,10 +526,11 @@
       "field_role_basis": {
         "LABO": "sourceと評価target revisionはL2のsource/evaluation責務。",
         "BRAIN-change": "候補identity/revision/type/scopeのBRAIN変更candidateへのbindingと独立検証はBRAIN変更手続きへ戻す。orderは評価/登録/検証/採否のchainなので各機構責務を段階順で保持。",
-        "knowledge-meaning": "product context/構造意味/製品分離/反例内容は該当L1の意味責務。L10のCORE候補を含むが実recipientは元製品sourceへ別binding。"
+        "knowledge-meaning": "product context/構造意味/製品分離/反例内容は該当L1の意味責務。L10のCORE候補を含むが実recipientは元製品sourceへ別binding。",
+        "evaluation_target_revision": "候補評価対象revisionの不一致/不足はL2-025のsource/evaluation責務とL3/L10-N01の評価target bindingに従いLABO候補へ返す。実source/recipient資格は別途未成立。"
       },
       "comparison_rule": "各fieldの原/提出JSON内容と、原fieldの情報不足を別判定する。marker/未実行が同値でも資格/評価成立としない。field差または情報不足ごとに表の既知機構責務へrouteを出し、claims=trueは別BRAIN-change routeを出す。",
-      "binding_rule": "original/submittedのcandidate_revisionとevaluation_target_revisionを各側で比較し、対応/不一致/不足を保持。",
+      "binding_rule": "originalとsubmittedの各側でcandidate_revisionとevaluation_target_revisionを直接比較し、対応/不一致/不足を保持する。いずれかの結果がcontent_corresponding_in_fixture以外なら、その側の両pathをtrigger_fieldsにしたevaluation_target_binding routeをLABOへ返す。同じ不一致が両側にあっても相互一致で抑止しない。generic field差routeは同じbinding failureと重複させず、別field差は保持する。",
       "order": "field名Unicode順、同field内はfield_rolesの配列順、その後claims名Unicode順。",
       "recipient_limit": "具体CORE/LABO/OS/BRAIN recipient/実資格は別sourceが必要。しかしL2/L10で確定した機構責務を未束縛へ後退させない。",
       "normative_derivation_ref": "/additional_material_derivation/entry_points/N01",
@@ -551,7 +552,7 @@
         "claims"
       ],
       "selection": "missing/null/非booleanをfalseへ補完しない。原明示trueのoptionalだけを内容比較へ選ぶ。原情報不足/選択差はBRAIN-changeへ限定返却する。",
-      "required_reference": "original_base_neededと原明示trueのoptional参照unionだけを比較する。entry欠落はmissing、identity/revision/scope不足はunknown_in_fixture、各entry.identityと独立必要slot keyの不一致又は両entry内容差はcontent_conflict、同値でslotへ結ぶときcontent_corresponding_in_fixture。原/提出が同じ別identityでも必要slotの成立を生成しない。",
+      "required_reference": "必要集合は入力配列から生成せず、L3-F04/L2-025の固定base 007/008/012/LABO/OS/BRAIN-changeと、原selectionが厳密trueのとき固定対応composition_candidate→009、core_origin→011、evaluation_connection→020、infrastructure_maturity→INFRA017の和集合とする。original_base_neededが欠落/不一致でも固定集合の全参照を比較し、宣言不一致をBRAIN-change候補へ返す。選択trueのoptional map欠落/誤値でも固定参照を削らず、map不一致をBRAIN-changeへ返す。false/unknownのoptional pathは選択済みとして扱わず、unknown selectionはunknownと差戻し候補を保つ。",
       "reference_roles": {
         "007": "BRAIN-contract-owner",
         "008": "BRAIN-contract-owner",
@@ -564,7 +565,7 @@
         "BRAIN-change": "BRAIN-change",
         "INFRA017": "HELIX-INFRASTRUCTURE"
       },
-      "reference_rule": "所見ごとに参照identityとその契約/source機構の表を使って返す。未選択参照へ横展開しない。未知参照identityはtrigger fieldを残してcontract-owner責務へ戻し、実担当者を捏造しない。",
+      "reference_rule": "各必要slotは固定REFERENCE_ROLESで責務候補を選ぶ。参照identity/revision/scope不足はunknown_in_fixture、必要entry不在はmissing、slot identity不一致またはentry差はcontent_conflict、slotへ結ぶ同値のみcontent_corresponding_in_fixture。必要集合入力不備は別のrequired_reference_declaration routeとしてBRAIN-changeへ返し、個別不足の参照owner routeを抑止しない。",
       "return_owners": "REFERENCE_ROLESの責務一覧を常時保持。failure_owner_candidates/routesは選択された不足だけ。",
       "normative_derivation_ref": "/additional_material_derivation/entry_points/F04",
       "claim_rule": "F04_CLAIMSに列挙する明示禁止claimのtrueだけを別BRAIN-change routeへ返す。未宣言claimのtrueを新しい禁止条件へ一般化しない。",
@@ -614,7 +615,10 @@
         "selection_information",
         "forbidden_claim",
         "unseen_field",
-        "unseen_claim"
+        "unseen_claim",
+        "missing_required_basis",
+        "required_reference_declaration",
+        "evaluation_target_binding"
       ],
       "responsibility_role_values": [
         "original-finding-owner",
@@ -656,9 +660,9 @@
         "independent_verification": "BRAIN-change",
         "adoption": "BRAIN-change"
       },
-      "order_rule": "原/提出の各位置を固定順序へ別々に照合。不一致/欠落位置の段階だけを該当owner候補へ返す。順序配列全体の比較結果も別に返す。",
+      "order_rule": "原/提出の各配列をevaluation→registration→independent_verification→adoptionの固定4要素へ別々に比較する。不一致/欠落位置の段階を該当roleへ返し、配列全体が固定4要素と異なる場合はfailure_owner_candidates.order=BRAIN-changeも返す。5要素目を正しい4位置へ黙って切り詰めない。",
       "proof_rule": "必要proof keyはoriginal_selected_scope_proofsのkeyだけ。各原/提出proofの全内容、観測state、producer/checkerのnonmarker stringと非同値、evidence、targetのidentity/revision/source/scopeとproof.scope対応を照合し、不足/未実行/自己評価/差分はBRAIN-change候補。非選択shadowを一律要求しない。 選択proofに一つでも不足がある場合は、proof別候補に加えてfailure_owner_candidates.scope_proofs=BRAIN-changeを返す。",
-      "container_rule": "各proof containerがobjectならcontent_corresponding_in_fixture、そうでなければunknown_in_fixture。未知containerから必要proof集合を捏造しない。",
+      "container_rule": "proof containerがobjectならcontent_corresponding_in_fixture、null/Absent/非objectはunknown_in_fixture。いずれかがobjectでない場合、必要proof keyを空集合とみなさずfailure_owner_candidates.scope_proofs=BRAIN-changeを返す。選択proof自体は原側に列挙されたものだけを比較し、未選択shadowは一律要求しない。",
       "return_owners": "ORDER_ROLESの責務一覧を常時返す。active欠陥はfailure_owner_candidates/proof_owner_candidatesのみ。",
       "normative_derivation_ref": "/additional_material_derivation/entry_points/F02",
       "claim_rule": "F02_CLAIMSのいずれかが厳密trueなら、順序/自己評価/未実行の偽完了/全ticket固定gateの所見をBRAIN変更手続きへ返すためfailure_owner_candidates.claims=BRAIN-changeを追加する。falseはdata不足を抑止しない。未宣言claimを新しい禁止条件として扱わない。",
@@ -674,7 +678,6 @@
       "input_sides": [
         "upstream_meaning_change_required",
         "original_runtime_knowledge_state",
-        "original_seed_meaning_state",
         "claims"
       ],
       "flag_domain": [
@@ -764,6 +767,31 @@
         ],
         "source": "F02原state=observed_in_fixture、N01提出verified、F03提出adopted/accepted、L3-F03 accepted/mature、B01原candidate_not_promoted。",
         "meaning": "文字列だけで実独立性や資格を生成しない。"
+      },
+      {
+        "values": [
+          "HELIX-INFRASTRUCTURE"
+        ],
+        "source": "L2-INFRA-017とL3/L10-025-F04。Infrastructure maturity選択時に限りINFRA017を追加し、責務はInfrastructureへ返す。",
+        "meaning": "INFRA017の機構責務候補。実owner資格を示さない。"
+      },
+      {
+        "values": [
+          "BRAIN-change-independent-review"
+        ],
+        "source": "L4 F01 ROLE_LABELS.independent_verificationとL3/L10-025-F01/F03の独立検証owner責務。",
+        "meaning": "独立検証のrole label。LABO評価との独立性や実review資格を証明しない。"
+      },
+      {
+        "values": [
+          "proposal",
+          "evaluation",
+          "registration",
+          "independent_verification",
+          "adoption_basis"
+        ],
+        "source": "L3-025-F01の区別されたstate/owner付きreceipt、L3/L10-025-F03の五種類単独証拠と候補/採用識別、L2-025:471の段階責務。",
+        "meaning": "同一candidate revisionへ束ねる必要根拠の有限field名。実receiptや実評価資格ではない。"
       }
     ]
   },
@@ -922,7 +950,35 @@
       ],
       "NONPROMOTED_RUNTIME": [
         "candidate_not_promoted"
-      ]
+      ],
+      "REQUIRED_EVIDENCE_BASIS": [
+        "proposal",
+        "evaluation",
+        "registration",
+        "independent_verification",
+        "adoption_basis"
+      ],
+      "REQUIRED_EVIDENCE_ROLES": {
+        "proposal": "LABO",
+        "evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "independent_verification": "BRAIN-change",
+        "adoption_basis": "BRAIN-change"
+      },
+      "FIXED_BASE_REFERENCES": [
+        "007",
+        "008",
+        "012",
+        "LABO",
+        "OS",
+        "BRAIN-change"
+      ],
+      "OPTIONAL_REFERENCE_BY_CONDITION": {
+        "composition_candidate": "009",
+        "core_origin": "011",
+        "evaluation_connection": "020",
+        "infrastructure_maturity": "INFRA017"
+      }
     },
     "definitions": {
       "at": [
@@ -1051,6 +1107,8 @@
         "    for index, key in enumerate(ORDER):",
         "        bad = any(not isinstance(v, list) or len(v) <= index or v[index] != key for v in [original, submitted])",
         "        owners[key] = ORDER_ROLES[key] if bad else 'none'",
+        "    if any(value != C for value in order_codes.values()):",
+        "        owners['order'] = 'BRAIN-change'",
         "    aa = at(x, 'original_selected_scope_proofs')",
         "    bb = at(x, 'submitted_scope_proofs')",
         "    container = {'original': C if isinstance(aa, dict) else U, 'submitted': C if isinstance(bb, dict) else U}",
@@ -1062,7 +1120,7 @@
         "            valid = isinstance(a, dict) and isinstance(b, dict) and json_equal(a, b) and at(a, 'state') == 'observed_in_fixture' and usable(at(a, 'producer')) and usable(at(a, 'checker')) and not json_equal(at(a, 'producer'), at(a, 'checker'))",
         "            valid = valid and isinstance(at(a, 'target'), dict) and all(usable(at(at(a, 'target'), field)) for field in ['identity', 'revision', 'source', 'scope']) and usable(at(a, 'scope')) and json_equal(at(a, 'scope'), at(at(a, 'target'), 'scope')) and usable(at(a, 'evidence'))",
         "            proofs[name] = 'none' if valid else 'BRAIN-change'",
-        "    if any(value != 'none' for value in proofs.values()):",
+        "    if any(value != 'none' for value in proofs.values()) or any(value != C for value in container.values()):",
         "        owners['scope_proofs'] = 'BRAIN-change'",
         "    claims = at(x, 'claims')",
         "    if any(at(claims, key) is True for key in F02_CLAIMS):",
@@ -1087,8 +1145,17 @@
         "            for finding in findings:",
         "                routes.append(rt('knowledge_hold', 'original-finding-owner', ['original_knowledge_state'], [], finding))",
         "        routes.append(rt('knowledge_hold', 'BRAIN-change', ['original_knowledge_state'], []))",
-        "    if isinstance(evidence, list) and len(evidence) == 1 and isinstance(evidence[0], str) and evidence[0] in SINGLE_EVIDENCE_ROLES:",
-        "        routes.append(rt('single_evidence', SINGLE_EVIDENCE_ROLES[evidence[0]], ['original_evidence_set'], []))",
+        "    evidence_values = evidence if isinstance(evidence, list) else []",
+        "    basis_complete = all(stage in evidence_values for stage in REQUIRED_EVIDENCE_BASIS)",
+        "    if not basis_complete:",
+        "        seen_single_evidence = []",
+        "        for item in evidence_values:",
+        "            if isinstance(item, str) and item in SINGLE_EVIDENCE_ROLES and item not in seen_single_evidence:",
+        "                seen_single_evidence.append(item)",
+        "                routes.append(rt('single_evidence', SINGLE_EVIDENCE_ROLES[item], ['original_evidence_set'], []))",
+        "        for stage in REQUIRED_EVIDENCE_BASIS:",
+        "            if stage not in evidence_values:",
+        "                routes.append(rt('missing_required_basis', REQUIRED_EVIDENCE_ROLES[stage], ['original_evidence_set/' + stage], []))",
         "    sc = [k for k in ['document_adopted', 'hold_success'] if at(claims, k) is True]",
         "    sf = ['submitted_knowledge_state'] if not json_equal(state, at(x, 'submitted_knowledge_state')) else []",
         "    if sc or sf:",
@@ -1118,19 +1185,47 @@
         "def f04(x):",
         "    original = at(x, 'original_selection')",
         "    submitted = at(x, 'submitted_selection')",
-        "    needed = at(x, 'original_base_needed')",
-        "    keys = list(needed) if isinstance(needed, list) else []",
+        "    base = at(x, 'original_base_needed')",
+        "    if is_missing(base):",
+        "        base_result = M",
+        "    elif base is None or not isinstance(base, list) or not all(isinstance(item, str) for item in base):",
+        "        base_result = U",
+        "    else:",
+        "        base_result = C if len(base) == len(FIXED_BASE_REFERENCES) and all(key in base for key in FIXED_BASE_REFERENCES) else X",
         "    optional = at(x, 'original_optional_needed_by_condition')",
+        "    mapping_results = {}",
         "    for condition in SELECTION_ORDER:",
-        "        key = at(optional, condition)",
-        "        if at(original, condition) is True and isinstance(key, str) and key not in keys:",
-        "            keys.append(key)",
-        "    results = {key: reference_cmp(at(at(x, 'original_contract_references'), key), at(at(x, 'submitted_contract_references'), key), key) for key in sorted(keys) if isinstance(key, str)}",
+        "        if at(original, condition) is not True:",
+        "            mapping_results[condition] = C",
+        "        else:",
+        "            if is_missing(optional):",
+        "                mapping_results[condition] = M",
+        "            elif optional is None or not isinstance(optional, dict):",
+        "                mapping_results[condition] = U",
+        "            else:",
+        "                mapped = at(optional, condition)",
+        "                if is_missing(mapped):",
+        "                    mapping_results[condition] = M",
+        "                elif mapped is None or not isinstance(mapped, str) or mapped in MARKERS:",
+        "                    mapping_results[condition] = U",
+        "                else:",
+        "                    mapping_results[condition] = C if mapped == OPTIONAL_REFERENCE_BY_CONDITION[condition] else X",
+        "    keys = list(FIXED_BASE_REFERENCES)",
+        "    for condition in SELECTION_ORDER:",
+        "        if at(original, condition) is True:",
+        "            keys.append(OPTIONAL_REFERENCE_BY_CONDITION[condition])",
+        "    results = {key: reference_cmp(at(at(x, 'original_contract_references'), key), at(at(x, 'submitted_contract_references'), key), key) for key in sorted(keys)}",
         "    info = {key: C if type(at(original, key)) is bool else U for key in SELECTION_ORDER}",
         "    routes = []",
         "    for key in sorted(results):",
         "        if results[key] != C:",
         "            routes.append(rt('reference_content', REFERENCE_ROLES.get(key, 'contract-owner'), ['submitted_contract_references/' + key], []))",
+        "    declaration_bad = base_result != C or any(value != C for value in mapping_results.values())",
+        "    if base_result != C:",
+        "        routes.append(rt('required_reference_declaration', 'BRAIN-change', ['original_base_needed'], []))",
+        "    for condition in SELECTION_ORDER:",
+        "        if mapping_results[condition] != C:",
+        "            routes.append(rt('required_reference_declaration', 'BRAIN-change', ['original_optional_needed_by_condition/' + condition], []))",
         "    for key in SELECTION_ORDER:",
         "        if info[key] != C or not json_equal(at(original, key), at(submitted, key)):",
         "            routes.append(rt('selection_information', 'BRAIN-change', ['original_selection/' + key, 'submitted_selection/' + key], []))",
@@ -1139,7 +1234,10 @@
         "        for key in sorted(F04_CLAIMS):",
         "            if at(claims, key) is True:",
         "                routes.append(rt('forbidden_claim', 'BRAIN-change', [], [key]))",
-        "    return {'reference_content_results': results, 'selection_information_results': info, 'failure_owner_candidates': {key: REFERENCE_ROLES.get(key, 'contract-owner') if results[key] != C else 'none' for key in sorted(results)}, 'return_owners': json_copy(REFERENCE_ROLES), 'failure_owner_routes': routes}"
+        "    owners = {key: REFERENCE_ROLES.get(key, 'contract-owner') if results[key] != C else 'none' for key in sorted(results)}",
+        "    if declaration_bad:",
+        "        owners['required_reference_input'] = 'BRAIN-change'",
+        "    return {'reference_content_results': results, 'selection_information_results': info, 'failure_owner_candidates': owners, 'return_owners': json_copy(REFERENCE_ROLES), 'failure_owner_routes': routes}"
       ],
       "n01": [
         "def n01(x):",
@@ -1147,21 +1245,26 @@
         "    submitted = at(x, 'submitted_unseen_content')",
         "    fields = sorted(UNSEEN_FIELD_ROLES)",
         "    compared = {key: cmp(at(original, key), at(submitted, key)) for key in fields}",
+        "    binding = {'original': cmp(at(original, 'candidate_revision'), at(original, 'evaluation_target_revision')), 'submitted': cmp(at(submitted, 'candidate_revision'), at(submitted, 'evaluation_target_revision'))}",
         "    info = {}",
         "    routes = []",
         "    for key in fields:",
         "        value = at(original, key)",
         "        unknown = is_missing(value) or value is None or (isinstance(value, str) and value in MARKERS) or (key == 'independent_verification' and value == 'not_executed')",
         "        info[key] = U if unknown else C",
-        "        if compared[key] != C or info[key] != C:",
+        "        binding_unresolved = key == 'evaluation_target_revision' and any(value != C for value in binding.values())",
+        "        if not binding_unresolved and (compared[key] != C or info[key] != C):",
         "            for role in UNSEEN_FIELD_ROLES[key]:",
         "                routes.append(rt('unseen_field', role, [key], []))",
+        "    for side in ['original', 'submitted']:",
+        "        if binding[side] != C:",
+        "            routes.append(rt('evaluation_target_binding', 'LABO', [side + '_unseen_content/candidate_revision', side + '_unseen_content/evaluation_target_revision'], []))",
         "    claims = at(x, 'claims')",
         "    if isinstance(claims, dict):",
         "        for key in sorted(N01_CLAIMS):",
         "            if at(claims, key) is True:",
         "                routes.append(rt('unseen_claim', 'BRAIN-change', [], [key]))",
-        "    return {'evaluation_target_binding_results': {'original': cmp(at(original, 'candidate_revision'), at(original, 'evaluation_target_revision')), 'submitted': cmp(at(submitted, 'candidate_revision'), at(submitted, 'evaluation_target_revision'))}, 'product_meaning_owner_candidate': 'knowledge-meaning', 'compare_original_to_submitted_by_field': compared, 'preserve_original_unseen_content': json_copy(original), 'failure_owner_routes': routes, 'information_results': info, 'route_status': 'candidates_present' if routes else 'none'}"
+        "    return {'evaluation_target_binding_results': binding, 'product_meaning_owner_candidate': 'knowledge-meaning', 'compare_original_to_submitted_by_field': compared, 'preserve_original_unseen_content': json_copy(original), 'failure_owner_routes': routes, 'information_results': info, 'route_status': 'candidates_present' if routes else 'none'}"
       ],
       "b01": [
         "def b01(x):",
@@ -1193,7 +1296,7 @@
       "F01": "original_targetはobject、original/submitted_stagesは段階key→record object。段階/各memberはAbsent/null/JSON値として不足を比較。unfinished_receiptはarray<JSONValue>。",
       "F02": "orderはarray<string>、proof containerはobject<proof-name,record>。selected集合は原containerだけから読む。",
       "F03": "evidence/findingsはarray<JSONValue>、knowledge/separationはstring|null、claimsはobject。",
-      "F04": "base_neededはarray<string>、optional条件→参照identityはobject<string,string>、selection/referenceはobject。選択flag/memberと参照entryのAbsent/null/JSON値を区別。",
+      "F04": "base_neededはarray<string>、optional条件→参照identityはobject<string,string>またはAbsent/null/non-object状態、selection/referenceはobjectまたはAbsent/null/非object状態。map自体と選択キーのAbsentをmissing、null/non-objectをunknownとして分け、選択flag/memberと参照entryのAbsent/null/JSON値を区別。",
       "N01": "原/提出unseen contentは宣言fieldのobject。原field domainはstring、orderはarray<string>。不足/unknown/未実行を保持。",
       "B01": "runtime/seed stateはstring|null、flag/claimはJSONValueでbooleanのkindを別判定。"
     },
@@ -1407,11 +1510,15 @@
               },
               "claims": {
                 "kind": "string"
+              },
+              "order": {
+                "kind": "string"
               }
             },
             "optional": [
               "scope_proofs",
-              "claims"
+              "claims",
+              "order"
             ],
             "closed": true
           },
@@ -1510,7 +1617,8 @@
                 "selection_information",
                 "forbidden_claim",
                 "unseen_field",
-                "unseen_claim"
+                "unseen_claim",
+                "missing_required_basis"
               ]
             }
           },
@@ -1532,7 +1640,8 @@
                     "selection_information",
                     "forbidden_claim",
                     "unseen_field",
-                    "unseen_claim"
+                    "unseen_claim",
+                    "missing_required_basis"
                   ]
                 },
                 "responsibility_role": {
@@ -1678,7 +1787,8 @@
                     "selection_information",
                     "forbidden_claim",
                     "unseen_field",
-                    "unseen_claim"
+                    "unseen_claim",
+                    "required_reference_declaration"
                   ]
                 },
                 "responsibility_role": {
@@ -1800,7 +1910,8 @@
                     "selection_information",
                     "forbidden_claim",
                     "unseen_field",
-                    "unseen_claim"
+                    "unseen_claim",
+                    "evaluation_target_binding"
                   ]
                 },
                 "responsibility_role": {
