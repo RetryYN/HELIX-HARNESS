@@ -23108,7 +23108,7 @@
   "qualification_boundary": "全packetはsynthetic_fixture_only_no_actual_source_qualification。内容一致を実評価・実受領・登録・採否・成熟と表現しない。",
   "candidate_l5_bytes_pin": {
     "path": "docs/helix-brain/L5-detail-design/labo-evaluation-candidate-receipt.json",
-    "sha256": "23d0d50d1db5f20dcf248334c329ac89dc6c69d4bf76fc3d5f515c90d1ffb449",
+    "sha256": "55d2b5aba748738cc76b156bac95d23bb6b15ea85f47375d74fc9db0658ced3f",
     "meaning": "保存されたL5文書byte全体のSHA-256。Git revisionや承認対象の根拠を偽装しない。",
     "bytes": 344982
   },
@@ -58417,7 +58417,7 @@
       "raw_packet_sha256": "7a7fb8cfeb1103e4373f63608bf2e32eaeaffbcedbcb0ab35196ad9c90ba6fee",
       "expected_full_whole": {
         "selection": true,
-        "maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_conflict",
         "retained_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -58445,7 +58445,7 @@
           "limitation": "単一条件の観測例。universalではない"
         },
         "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "original_state_in_fixture_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
         "accepted_or_mature_established": false,
         "return_owners": [
           "BRAIN-INFRA017",
@@ -58466,10 +58466,12 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_corresponding_in_fixture",
-        "review_diagnostics": {}
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
       },
-      "expected_full_whole_canonical_sha256": "87d0b20c411da500f739464e01af1e881e51a91417c236d47236b3b182918699",
+      "expected_full_whole_canonical_sha256": "daa4e5b541d7ba8dab47df441dd00d6a538d8d2111e6fa4eb8bbe4e0ca02453e",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F03",
         "l4": "HELIXBRAIN-L4-020-F03",
@@ -58486,21 +58488,6 @@
         "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
       },
       "expected_whole": {
-        "selection": true,
-        "maturity_result": "content_corresponding_in_fixture",
-        "retained_maturity": {
-          "identity": "MATURITY-P",
-          "revision": "maturity-r3",
-          "owner": "BRAIN-INFRA017",
-          "candidate_identity": "CANDIDATE-P",
-          "candidate_revision": "candidate-r2",
-          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
-          "state": "mature",
-          "evidence": [
-            "EVALUATION-P@evaluation-r7"
-          ],
-          "limitation": "単一条件の観測例。universalではない"
-        },
         "submitted_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -58514,18 +58501,6 @@
           ],
           "limitation": "単一条件の観測例。universalではない"
         },
-        "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "original_state_in_fixture_only",
-        "accepted_or_mature_established": false,
-        "return_owners": [
-          "BRAIN-INFRA017",
-          "LABO"
-        ],
-        "claim_results": {
-          "one_success_universal": "none",
-          "maturity_missing_filled": "none",
-          "non_selected_requires_all_INFRA": "none"
-        },
         "effects": {
           "actual_LABO_evaluation": false,
           "actual_OS_registration": false,
@@ -58536,12 +58511,51 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_corresponding_in_fixture"
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
       },
       "expected_auxiliary": {
-        "review_diagnostics": {}
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
       },
       "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
         {
           "op": "replace",
           "path": "/retained_maturity/state",
@@ -58551,10 +58565,15 @@
           "op": "replace",
           "path": "/submitted_maturity/state",
           "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "1e1583fdbf45642ee2182859ae9bce9abadb545d15bff863b0ec3b3eef90a2e2"
+      "expected_whole_canonical_sha256": "d518c8a56a26073b2ba4f8a9da97327ae767b5541e3c2544108d65aff670db4e"
     },
     {
       "id": "B020-R4-F03-SCOPE-BINDING",
@@ -60132,7 +60151,7 @@
       "raw_packet_sha256": "1c7617d5ef9bf82d682ee9ff92763e129bc1ac84ee1dd148ea939d75787265b2",
       "expected_full_whole": {
         "selection": true,
-        "maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_conflict",
         "retained_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -60160,7 +60179,7 @@
           "limitation": "単一条件の観測例。universalではない"
         },
         "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "original_state_in_fixture_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
         "accepted_or_mature_established": false,
         "return_owners": [
           "BRAIN-INFRA017",
@@ -60181,10 +60200,12 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_corresponding_in_fixture",
-        "review_diagnostics": {}
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
       },
-      "expected_full_whole_canonical_sha256": "daa543ba25d1c84531a330f82938adf978702dd68660cfc51d52b0df99291859",
+      "expected_full_whole_canonical_sha256": "fc056e9be00d0f29715fea29ea00412691458ce47d56d468d6dbbe12a19b62d8",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F03",
         "l4": "HELIXBRAIN-L4-020-F03",
@@ -60201,21 +60222,6 @@
         "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
       },
       "expected_whole": {
-        "selection": true,
-        "maturity_result": "content_corresponding_in_fixture",
-        "retained_maturity": {
-          "identity": "MATURITY-P",
-          "revision": "maturity-r3",
-          "owner": "BRAIN-INFRA017",
-          "candidate_identity": "CANDIDATE-P",
-          "candidate_revision": "candidate-r2",
-          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
-          "state": "accepted",
-          "evidence": [
-            "EVALUATION-P@evaluation-r7"
-          ],
-          "limitation": "単一条件の観測例。universalではない"
-        },
         "submitted_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -60229,18 +60235,6 @@
           ],
           "limitation": "単一条件の観測例。universalではない"
         },
-        "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "original_state_in_fixture_only",
-        "accepted_or_mature_established": false,
-        "return_owners": [
-          "BRAIN-INFRA017",
-          "LABO"
-        ],
-        "claim_results": {
-          "one_success_universal": "none",
-          "maturity_missing_filled": "none",
-          "non_selected_requires_all_INFRA": "none"
-        },
         "effects": {
           "actual_LABO_evaluation": false,
           "actual_OS_registration": false,
@@ -60251,12 +60245,51 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_corresponding_in_fixture"
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
       },
       "expected_auxiliary": {
-        "review_diagnostics": {}
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
       },
       "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
         {
           "op": "replace",
           "path": "/retained_maturity/state",
@@ -60266,10 +60299,15 @@
           "op": "replace",
           "path": "/submitted_maturity/state",
           "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "ba667ffbabb00a6c0bc9c8655c11d7551fd7bfde7df1dfb9b2aeb2fefd4c2b5a"
+      "expected_whole_canonical_sha256": "724ff75024eee2460d01ad3c5dbb153087337f2ac7dffe65377d56519b4dec31"
     },
     {
       "id": "B020-R5-F03-MULTI-UNIVERSAL",
@@ -62935,9 +62973,3159 @@
         "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
       },
       "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "7363e8e97b1c3239fa1839991fa514852245911f7690c32c904efb718d4260b6",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "42b5ddff5fde81e88777b7bdb1160c6ed7b9fb180592aa6886715a64acebc3b4",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "fa3a4c2c0620623129df17f9c5bcadd2aa4c6137450a18d24b8e3830bfe15656",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-TWO",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "dfac8ade731332218ce5e014bc8ed4a711ac7c9401c8392c6a5374aab8511cb7",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_whole_canonical_sha256": "cc3380515a0df7f410ba578f09f7158fa08b200308f622941b487b887b672f5c",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "a6bc1af82e48a87fff23ab1b4786ea7a1a1f4a3dafe1aa2dd648ef4a0051dd84",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL_MATURE-ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal_mature"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        }
+      },
+      "raw_packet_sha256": "bee367f3504b826e9345848c1a28d44f5802128c478ec879acdabe7e1df59c88",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "fb4ce9062fb9d33707a9913c8b4e7f95741541bd257c86ad87db4a90768f2bf3",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "de6827b01cb51cb8b72b6f2ee881216e768f9f18c86071275d3b898e9a35c1a6",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL_MATURE-TWO",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal_mature"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        }
+      },
+      "raw_packet_sha256": "436c912df4f3e00b9318b26462bf427ed367bd9e4e843e17c6d60cd2ab5863cc",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_whole_canonical_sha256": "019de86f250b582287e9589806578ea082e8d8ead9807ae563d294bd84e5bf2e",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal_mature"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "6a8c7b3a83efaa19865cdb9bfe66c1bb4726c080cd5405da21d12e7e2290f09e",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal_mature"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-ACCEPTED-ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        }
+      },
+      "raw_packet_sha256": "1c2b3fcbdcc958603a3fbcb053e93bc2e56afcf958b71437ea02a8939aa0e3e5",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "4763fe647ebe156f5967c7492d5ab5eecd31843303977a01ea26607afd02f69c",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "27795c284eedda036b4d9bda57938fd5f87f9f6ccc837b74e8fe15419f17ae47",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-ACCEPTED-TWO",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        }
+      },
+      "raw_packet_sha256": "067bc813b13c83b84739f2f0d56ec0be0b74e0ccb0a2681d3e7b954f33c5e834",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_whole_canonical_sha256": "fd87bfea17c44b36162cecdd6211407aebd7a6ac6835703d3f57ca91d0eb269b",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "e1ad6bfaa74e6b67bbd9af0409dfcd684871ef74bd72af6290c65d01a37d49d7",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-MATURE-ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        }
+      },
+      "raw_packet_sha256": "8dcf243dab3e9cba61821961f39553fac80fef01e747629ee988b32993b03e3c",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "51ee7ab3bd1ff45bb179cbfe5df0b4950b75db923f94a8ece1628fa1a38abd13",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "47ab0f64a108742ca5ac2dcc48d67e1cff80595a71a1a5417b4a006e386501ce",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-MATURE-TWO",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        }
+      },
+      "raw_packet_sha256": "b41ecdfaac79a174ab9c40201239ab3008ca7cee9334752609d48ffe58750715",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_whole_canonical_sha256": "85995f9d00f08c816798c30a73cd7bf51abd4ae531850b6f0a449ab22e7ef7fc",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "9b3d312790b73b82290c9a1855ba74f7ea27cd0fd50a4517c995b6e85445d45b",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-DUPLICATE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "359bf65fed86fc5fe9d0b8034d7a534e34ee7bf6b29fd9cdf2ca2b94f40801da",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "64ae1b9ba4ba1e744d2d450544a3badcdeb92562e93381e76263876b0c6f232e",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "2a9c8e750cc9161c6f6b0fc0a629477014b09889a33434d3e8ff8d164f695768",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-SUBMITTED_ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "009630d5d80aef64357df9e8c052d8e8fcde6fec0b4fd919afe40b0670d69a16",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "f505471c24aed4ee18be80e842846738ba4e755d02958b6ed772fb47342ab3e2",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "d315f831f249e89f68b1368db65c83f5b3c49e4034545fc24177449651c838af",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-ORIGINAL_ONE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "6f24a58a9e61c2c720a816de9aed96bbf473a3cc31b8d028295410fe19322ab5",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "f010fdeb04d0cae7d4b44494af565708aee2a51c3bc7cb78fc277fc920cfdd44",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {
+          "universal_maturity_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "d7defb92fa306ad5d479621a15ee588a89182d340ac95d67a653eee5bcfb739b",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-R6-F03-UNIVERSAL-DIFFERENT_STATE",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/original_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        }
+      },
+      "raw_packet_sha256": "d8121e4f43611461251f7ac12b1958e5430ad97580ca9e3049525c729838ff4a",
+      "expected_whole": {
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "accepted_or_mature_established": false,
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "selection": true,
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "submitted_maturity_result": "content_conflict",
+        "maturity_result": "content_conflict"
+      },
+      "expected_whole_canonical_sha256": "15ef2de9eb8053e3a8dfd3c58b30e163a348361a1630e5febb75d1866c368ee6",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_conflict",
+        "retained_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVIDENCE-1@r1",
+            "EVIDENCE-2@r1"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "mature"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_conflict",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "766cb4ea0934a5df1cc6838fd9b6c9f43e4ffe24dc04249eed663c3eafe408ec",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/retained_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/evidence/0",
+          "value": "EVIDENCE-1@r1"
+        },
+        {
+          "op": "add",
+          "path": "/submitted_maturity/evidence/1",
+          "value": "EVIDENCE-2@r1"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/limitation",
+          "value": "複数条件の合成根拠。実汎用性/実資格は未成立"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "mature"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity_result",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "L4 F03は一成功/欠落補完でuniversal/accepted/matureへ昇格しない。異なるJSON根拠値が二つあっても内容保持だけを観測し実独立性・採否を成立させない。同一値重複は一つとし、片側不足も保留へ返す。異なるstateは内容conflictであり同state昇格の診断を偽造しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
     }
   ],
-  "independent_probe_count": 123,
+  "independent_probe_count": 135,
   "review_diagnostic_expectations": [
     {
       "case_id": "B020-F02-RECEIPT_ADOPTED",
@@ -62953,5 +66141,53 @@
       "basis": "登録state unknownは原値を保存して不足と評価し、未登録/未独立検証のadopted先取りと別にOS登録責務へ返す。元L9 expected_materialは変更しない。"
     }
   ],
-  "expected_full_whole_contract": "原70 expected_materialの既存rootは現在返却と全値一致し、独立probeはexpected_wholeとexpected_auxiliaryを同名rootの重複なしに合成する。現在の全返却はexpected_full_wholeで照合する。追加診断で原primary rootを上書きせず、内容対応から実資格・採否を生成しない。"
+  "expected_full_whole_contract": "原70 expected_materialの既存rootは現在返却と全値一致し、独立probeはexpected_wholeとexpected_auxiliaryを同名rootの重複なしに合成する。現在の全返却はexpected_full_wholeで照合する。追加診断で原primary rootを上書きせず、内容対応から実資格・採否を生成しない。",
+  "outside_declared_signature_witnesses": [
+    {
+      "id": "B020-R6-F03-UNIVERSAL-NON_ARRAY",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": "EVIDENCE-1@r1",
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": "EVIDENCE-1@r1",
+          "identity": "MATURITY-P",
+          "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "universal"
+        }
+      },
+      "raw_packet_sha256": "66d74df378e7ae9cc64456da700b36ccb9a1f61fd0092daadb58a198823fd103",
+      "classification": "outside_declared_F03_signature",
+      "function_invocation": "not_invoked",
+      "reason": "evidenceの非array文字列は宣言されたF03入力型の外。pure operatorの条件確認とtyped F03全返却検証を混同しない。"
+    }
+  ]
 }
