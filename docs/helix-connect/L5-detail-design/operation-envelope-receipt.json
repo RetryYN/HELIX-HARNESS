@@ -275,7 +275,6 @@
         "owner_values": "Map<String,String>",
         "receipt_side_order": "List<String>",
         "area_names": "Map<String,String>",
-        "unknown_original_field": "String",
         "check_fields": "Map<String,List<String>>",
         "return_owner_rules": "List<ReturnOwnerRule>",
         "check_order": "CheckOrderRule",
@@ -808,7 +807,6 @@
         "original_envelope_outside_contract": "original_envelope_outside_contract",
         "submitted_envelope_outside_contract": "submitted_envelope_outside_contract"
       },
-      "unknown_original_field": "contract_revision",
       "check_fields": {
         "header_content": [
           "artifact_revision",
@@ -1129,7 +1127,7 @@
       "function_ref": "FN-C003-01",
       "steps": [
         "OperationPacketのobject memberは不在ならAbsent、明示nullならNull、その他はValueとして扱い、元JSONを変更しない。",
-        "header_resultsはheader_comparison_order順、各fieldでPresence比較する。comparison_policy.precedenceに従い、Absent片側以上ならmissing、unknown_original_fieldの片側がnullならunknown_original_information、JSON値同値ならcontent_corresponding_in_fixture、原側がunknown markerならunknown_original_information、それ以外はcontent_conflict。object key順は比較せずarray順は保持する。同じ\"unknown\" marker同士は同値が優先される。",
+        "header_resultsはheader_comparison_order順、各fieldでPresence比較する。comparison_policy.precedenceに従い、Absent片側以上ならmissing、comparison_policy.unknown_field_refで指定するfieldの片側がnullならunknown_original_information、JSON値同値ならcontent_corresponding_in_fixture、原側がunknown markerならunknown_original_information、それ以外はcontent_conflict。object key順は比較せずarray順は保持する。同じ\"unknown\" marker同士は同値が優先される。",
         "envelope_resultsはenvelope_member_policy.core_order_refにあるcore fieldをその配列順に比較し、その後original_envelopeに存在するcore field外memberをfield Unicode code point昇順で比較する。各比較はsubmitted_envelope側の有無も使い、Absent片側はmissingとしてmapへ残す。submitted側だけにある追加memberはenvelope_resultsへ足さず、submitted_envelope_outside_contract checkで報告する。",
         "operation_identityはoriginal_header.operation_identityをoriginal_known_operationsとJSON文字列同値で照合し、列にあればknown_in_fixture_only、Absent/null/列外ならunknown_operationを出す。実operation資格を示さない。",
         "registration_binding、compatibility_binding、permission_bindingの各fieldはcheck_fieldsに列挙されたfield集合を両targetとoriginal_headerの間で前述の比較関数により比較する。state checkは原stateがPresentなら文字列をそのまま返し、Absentなら比較missing、nullならunknown_original_informationを返す。enum外文字列も原値を返すが資格を付与しない。",
@@ -1230,7 +1228,9 @@
         "unknown",
         "unknown_in_fixture",
         "unknown_original_information"
-      ]
+      ],
+      "object_and_array_equality": "JSON object member order is ignored; JSON array order is preserved.",
+      "unknown_precedence": "missing > unknown-field-null > equal-value > unknown-original-marker > different; equal unknown marker values remain content_corresponding_in_fixture."
     },
     "operation_identification": {
       "known": "known_in_fixture_only",
