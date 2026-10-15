@@ -14,7 +14,7 @@
       "HELIXOS-L10-016-F02",
       "HELIXOS-L10-016-F03"
     ],
-    "operation": "二project/三kind/七状態の文書契約・対検証。実状態更新はしない。"
+    "operation": "既存356 baseline fixtureを値不変で保全し、caller-selected domainではdistinctな既知project identity、有限なlocator/identity binding、partial/empty/invalid入力のunknown境界（L9補足29例）、三kind・七状態の素材照合を文書化する。実状態更新はしない。"
   },
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -576,12 +576,12 @@
   "legacy_comparison": {
     "reuse_class": "semantic_rederivation",
     "preserve": "Portfolio多軸projection、Release owner別責務、ticket close/scoreだけでqualifiedにしない、原ticket意味を上書きしない。",
-    "change": "採択済OS016の複数project・七状態・三kind・独立受入・局所stale/unknown・release kanbanを基本設計へ再導出。旧READY語彙を七状態へ黙って同一視しない。",
-    "reason": "限定承認の対象scope内でtraceを具体化。実release許可・実行能力・全共有consumerを自動採用しない。",
+    "change": "既存356の固定locator/kind fixtureは互換資料として保持し、caller-selected domainは独立targets引数のlocator・project_id/requirement/scope/revision・node identity/kindを分離して照合する。L3 F01の複数project保証はdistinct known project_idで確認し、不足または未解決は成功やconflictへ捏造せずunknownにする。既存の七状態・独立受入・局所unknown/stale・Release責務境界を保ち、旧READY語彙や旧ExecutionTicketを現行authorityとして移植しない。",
+    "reason": "旧assetはhistorical/unresolvedであり完全一致再利用や新authorityの根拠にはしない。現L3/L10の意味をlocator数・固定fixture数・source資格へ誤拡張せず、限定された要求意味を機械的に照合できる有限契約へ具体化する。実資格や全project網羅は合成しない。",
     "shared_consumer_boundary": "六条件による意味更新/atomic Canonical化はOS001/053などへ残す。OS016はsource/状態/局所staleをtraceし、単独でCanonical化しない。HR19/HAC/HATのshared全意味は無損失に別consumerへ保持。HATはdesigned_not_implementedのまま。"
   },
   "remaining": [
-    "正式trace/graph/schema/codec・任意node集合/typed relation/missing node/graph cycle・source custody/資格をL5/L8で閉じる。",
+    "正式trace/graph/schema/codec・typed relation/cycle・source custody/資格・全consumer bindingをL5/L8で閉じる。R12–R17はcaller-selected locatorのknown/unknown/invalid/empty/partial意味を限定して具体化したが、任意graph closureと実source資格は未成立。",
     "OS015原記録・OS019episode・OS002案件trace・HARNESS001/056結果意味・release ownerへexact bindingを定義する。共通recordの全consumer閉包は未証明。",
     "実writer・実state再評価/消込・提供receipt・実受入は未成立。old DB/runtime/state語彙を移植しない。",
     "独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10・PO実物L11/実装Readyは未成立。全92親430対の設計完遂を継続する。"
@@ -610,17 +610,7 @@
     }
   ],
   "diagnostic_contract": {
-    "input_domain": "合成fixtureの固定2project×4node形のみ。対象集合欠落/任意JSONvalidationは未設計。contextは独立原sourceの文書代理で、実source資格証明ではない。",
-    "projects": [
-      "project_a",
-      "project_b"
-    ],
-    "node_kinds": {
-      "unit_a": "unit",
-      "unit_b": "unit",
-      "connection_ab": "connection",
-      "composite_all": "composite"
-    },
+    "input_domain": "既存356 baseline fixtureの固定locator/kind宣言はbaseline_fixture_compatibilityだけで使い、caller-selected domainの既定値やfallbackにしない。caller-selectedはevaluate_portfolioの独立targets引数で選択する。",
     "source_fields": [
       "project_id",
       "requirement_id",
@@ -756,7 +746,8 @@
       {
         "code": "result_unknown",
         "facet": "comparison",
-        "disposition": "unknown"
+        "disposition": "unknown",
+        "scope_note": "R06では結果facetの未知を示す。R10/R17のlocator合併が空の場合は比較対象の結果を一件も観測できないため、同じcomparison facetのunknown理由として各既知空nodes mapへ用いる。結果state、field欠落、coverage成功を捏造しない。"
       },
       {
         "code": "result_conflict",
@@ -826,7 +817,7 @@
       },
       {
         "id": "R02",
-        "rule": "kindはunit/connection/composite closed。未知はkind_unknown、fixture nodeの宣言kindに既知不一致はkind_conflict。同一target_idを別nodeに使えば両nodeにidentity_aliased。"
+        "rule": "kindはunit/connection/composite closed。caller-selected domainではtargets node宣言kind、元356 baseline caseではbaseline_fixture_compatibility.node_kindsの宣言kindを使う。未知はkind_unknown、宣言kindとknown actual/context source.kindの不一致はkind_conflict。同一sideのobserved portfolio全体でtarget_idが重複すれば両nodeにidentity_aliasedを出す（selection範囲のkind/identity比較とは別）。actual/context間の同identityは正常な照合でありaliasにしない。locator keyからkind/identityを推定しない。"
       },
       {
         "id": "R03",
@@ -854,11 +845,11 @@
       },
       {
         "id": "R09",
-        "rule": "claims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。"
+        "rule": "actual sideの全observed nodeについてclaims 3種はtrueならinferred_completion_forbidden、false以外の不明ならclaim_unknown。whole_completion_claimはtrueならwhole_completion_forbidden、不明ならwhole_claim_unknown。projection表示値は判定に使わない。素材が対応しても正式完了を作らない。selection binding比較は選択locatorに限るが、observed actual claim検査は選択有無で除外しない。"
       },
       {
         "id": "R10",
-        "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。"
+        "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。 選択domainに評価nodeが一件もなくnodes mapが既知空の場合、各空の/targets/projects/{project_key}/nodesへ既存result_unknownを返し、全体unknownの理由を示す。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。"
       },
       {
         "id": "R11",
@@ -900,6 +891,160 @@
       "kanban_ref",
       "record_ref"
     ],
-    "identity_alias_scope": "actual/context各sideでportfolio全体のnodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。"
+    "identity_alias_scope": "actual/context各sideでportfolio全体のobserved nodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。このportfolio-wide診断はR01–R08のselected-locator比較範囲と独立する。",
+    "selected_target_contract": {
+      "caller_signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+      "targets_shape": {
+        "selection_source_ref": "非空string: callerが選択に用いた宣言sourceの参照。",
+        "selection_source_revision": "非空string: 同sourceのrevision。",
+        "selection_source_digest": "非空stringのcaller-supplied opaque digest claim。外部source bodyはこの契約入力に含まれず、ref/revision/digestをtargets値から検証・資格認定しない。L9のtargets_canonical_sha256は合成fixtureの全input.targets引数を測る別の再現性hashであり、claimの検証ではない。",
+        "projects": "project locator keyからProjectTargetへ写すobject。locator key数はproject identity数とみなさず、distinct known project_idの最低数確認はR17に従う。未解決IDや不足数を局所target処理の拒否・成功へ変換しない。",
+        "ProjectTarget": {
+          "project_id": "非空string",
+          "requirement_id": "非空string",
+          "requirement_revision": "非空string",
+          "scope": "非空string",
+          "harness_contract_revision": "非空string",
+          "nodes": "node locator keyからNodeTargetへ写すobject。"
+        },
+        "NodeTarget": {
+          "target_id": "非空string",
+          "target_revision": "非空string",
+          "target_digest": "非空string",
+          "kind": "unit|connection|composite",
+          "source_ref": "非空string",
+          "source_revision": "非空string"
+        }
+      },
+      "identity_and_binding": {
+        "project_axes": [
+          "project_id",
+          "requirement_id",
+          "requirement_revision",
+          "scope",
+          "harness_contract_revision"
+        ],
+        "node_axes": [
+          "target_id",
+          "target_revision",
+          "target_digest",
+          "kind",
+          "source_ref",
+          "source_revision"
+        ],
+        "comparison": "選択ProjectTargetのproject_axesを、該当locatorの各actual.source/context.sourceの同名fieldと個別比較する。各nodeのproject_idも当該project locatorのProjectTarget.project_idと照合し、locator keyからproject_idを推定しない。NodeTargetのnode_axesも同様に比較する。project/node map keyからsource identityやkindを補完しない。source、scope、revision、identity、kindは別軸で保持し、同じ軸へ畳まない。",
+        "selector_source_limit": "selection_source_ref/revision/digestと各target fieldは呼出元が渡す合成可能な入力値である。digestはopaque claimで、source bodyの同一性、custody、発行者・owner資格、acceptance、release、実際のoperationを証明しない。L9 fixtureの全targets引数canonical hashは測定値でありsource資格証明ではない。"
+      },
+      "pointer_basis": {
+        "PortfolioInput": "第一引数PortfolioInputをrootとする。actualは/projects/{project_locator}/{node_locator}、contextは/context/projects/{project_locator}/{node_locator}。Absent keyはその実shapeを辿った最初の欠落ancestor keyをpointer leafとして指し、present null/誤型は既存値の位置を指す。containerからnodeまで各段階を区別し、invalid/missing nodeを通常NodeRecordへ変換しない。context/projects欠落は/context/projects、context欠落は/context、actual projects欠落は/projectsを指す。",
+        "PortfolioTargets": "evaluate_portfolio(input, diagnostic_contract, targets)の第三引数PortfolioTargetsに正規化root /targets を付けてpointer化する。",
+        "selection_binding": "選択側の欠落bindingは/targets/projects/{RFC6901-escaped-project_key}/nodes/{RFC6901-escaped-node_key}を指す。project_key/node_keyは各targets mapの実locator object key。",
+        "escaping": "全tokenにRFC 6901 escape（~→~0、/→~1）を適用する。ancestorは第三引数の実shapeに存在し、欠落対象leafだけが不在であることを検証する。",
+        "missing_ancestor_selection": "Absent keyは実targets引数shapeをroot /targetsから辿り、最初に存在しないancestor key自体をpointer leafとして指す。targets引数欠落は/targets、projects member欠落は/targets/projects、project entry欠落は/targets/projects/{escaped project_key}、nodes member欠落は/targets/projects/{escaped project_key}/nodes、個別node binding欠落は/targets/projects/{escaped project_key}/nodes/{escaped node_key}。",
+        "present_invalid_selection": "nullまたはshape/type不正の値は欠落ancestorとして扱わず、その値が実targets引数shape内に存在する位置をpointerにする。例: targets:nullは/targets、projects:nullやprojects誤型は/targets/projects、project entry null/誤型は/targets/projects/{escaped project_key}、project_id null/空/誤型は/targets/projects/{escaped project_key}/project_id、nodes:null/誤型は/targets/projects/{escaped project_key}/nodes。"
+      }
+    },
+    "baseline_fixture_compatibility": {
+      "projects": [
+        "project_a",
+        "project_b"
+      ],
+      "node_kinds": {
+        "unit_a": "unit",
+        "unit_b": "unit",
+        "connection_ab": "connection",
+        "composite_all": "composite"
+      },
+      "meaning": "既存L9 356 caseの原入力/原期待を再解釈せず保持するための固定fixture locator。caller-selected domainの既定値やfallbackではない。 旧呼出元がprojects/node_kindsを読む場合は356 baseline互換profileに限る。caller-selected domainではそれらをDiagnosticContractから取り出してtarget代替にせず、第三引数PortfolioTargetsを渡す。"
+    },
+    "project_keys": "callerのtargets.projects objectのkey集合。keyはlocatorでありproject_idと別の値。JSON Pointerでは各keyをRFC 6901に従い~→~0、/→~1へescapeする。",
+    "node_keys": "各targets.projects[project_key].nodes objectのkey集合。keyはlocatorでありtarget_idと別の値。JSON PointerではRFC 6901 escapeを行う。",
+    "node_kind_values": [
+      "unit",
+      "connection",
+      "composite"
+    ],
+    "selected_target_rules": [
+      {
+        "id": "R12",
+        "rule": "targetsが渡された選択domainでは、選択project/node mapの各keyと、project_id/requirement_id/requirement_revision/scope/harness_contract_revisionおよびtarget_id/target_revision/target_digest/kind/source_ref/source_revisionを別々に読む。既知値をactual/context sourceと比較する。既知の不一致はkind以外では既存field_conflict、kindでは専用のkind_conflictだけを相違したactual/context source fieldのpointerへ返し、同じkind不一致についてgeneric field_conflictを重ねず、affected nodeのsource facetをviolationにする。選択fieldがAbsent/null/空/型外なら、kindはR02のkind_unknown、kind以外のidentity/source fieldはfield_unknownを選択field pointerへ返し、affected source facetだけをunknownにし、空値やlocator keyで埋めない。project_id field自体の不正はR12のsource facet unknownであり、project entry/nodes/node bindingの構造欠損扱いにしない。selection_source_ref/revision/digestがAbsent/invalidなら既存入力契約に応じfield_unknownを該当pointerへ返し、全selected node source facetをunknownにする。digestはopaque claimであり、projects bodyから自己検証しない。R01–R08の比較は選択locatorに限り、既存facet ordering/重複排除を保つ。Absentのselector pointerはpointer_basis.missing_ancestor_selectionの最初の不在ancestor、present invalidはpointer_basis.present_invalid_selectionの既存値位置を指す。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L3-016-F02",
+          "HELIXOS-L10-016-F01",
+          "HELIXOS-L10-016-F02",
+          "R01",
+          "R02",
+          "R06",
+          "R10"
+        ]
+      },
+      {
+        "id": "R13",
+        "rule": "selected locatorがactualまたはcontextの一方に無いとき、そのlocatorの全facetをunknownにする。field_unknownのpointerはpointer_basis.PortfolioInputに従い、Absentなら実shape上の最初のmissing ancestor、present null/誤型なら実在するinvalid値の位置を指す。存在側のNodeRecordはselection bindingと既知軸を比較し、保持対象であるactual側recordは原値のまま返す。両側に無い選択locatorはactualとcontext双方のpointerをunknownとして示す。invalid/absent recordを通常NodeRecordや空recordとして作らない。 actual/context memberがpresent nullまたは型外なら、その実引数位置をunknown pointerにする。未選択actual locatorでもraw node値がnull/型外ならactual側input pointerを別途示し、NodeRecordへ変換せずretained source/stateを生成しない。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L10-016-F01",
+          "R01",
+          "R10",
+          "R11"
+        ]
+      },
+      {
+        "id": "R14",
+        "rule": "actual/contextのlocator unionにあり、targetsにproject/node binding構造が無いlocatorは、selection側binding不足をfield_unknownで返し、該当node facetsをunknownとする。Absent keyはpointer_basis.missing_ancestor_selectionの最初の不在ancestor keyを指し、present null/誤型はpointer_basis.present_invalid_selectionの既存値位置を指す。project_idなど個別identity fieldのAbsent/null/空/型外はR12のsource facetだけに適用し、この構造欠損規則へ広げない。kind/identityはinput map keyから推定しない。未選択actual nodeのsource/state/receipt/owner/relation/historyはretained_source_records/retained_state_traceへactual原値として保持し、選択外であることを理由に削除しない。 actual/context unionにある未選択actual nodeがpresent null/誤型なら、targets binding欠落pointerに加えてactual実引数の当該member pointerをfield_unknownで示す。invalid raw memberはretained_source_records/retained_state_traceにNodeRecordとして作らない。 未選択nodeの原因位置について、actualのpresent null/誤型は原記録を保持できない実入力側の原因としてactual pointerも返す。context側だけの未選択null/誤型は選択比較の根拠として用いないため、従来のtargets側binding不足pointerだけを返す。元context値は呼出しの原引数に残し、未知を成功や実記録へ補完しない。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L10-016-F01",
+          "R01",
+          "R02",
+          "R08",
+          "R11"
+        ]
+      },
+      {
+        "id": "R15",
+        "rule": "node_correspondenceはtargets、actual、contextのlocator unionをproject/node keyごとに持つ。retained_source_recordsとretained_state_traceは既存R11どおりactual側に実在する値だけを既存root shapeへ原値を写す。context-only record/stateをactualへ転記せず、実在しないactual nodeやstateを空recordとして生成しない。observed_gap_axesもactual側に実在するstateだけを既存R11で投影し、actualに無いlocatorの通常空gap entryを作らない。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L3-016-F02",
+          "HELIXOS-L10-016-F01",
+          "R11"
+        ]
+      },
+      {
+        "id": "R16",
+        "rule": "project/node map keyはlocatorのまま保持し、project/node keyの走査順はRFC 6901 escape前のUnicode codepoint辞書順とする。これは評価/finding生成の決定性のためで、JSON objectのmember表示順は意味契約に含めず、mapはkey/valueで比較する。全output pointerはRFC 6901でescapeし、finding最終順はR10のcode/pointer/return_owner辞書順による。重複identityの先行/後続locatorという順序依存findingを作らない。selection provenance不足はfield_unknownで該当targets fieldへ示すが、選択値を資格済みsourceや実ownerへ昇格させない。各node/facetは既存R10のviolation > unknown > correspondingで集約し、全体も既存R10を適用する。実state更新/受入/提供/authorizationは常に生成しない。全pointerはpointer_basisに従い実引数shapeへ結ぶ。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L3-016-F03",
+          "R10",
+          "R11"
+        ]
+      },
+      {
+        "id": "R17",
+        "rule": "選択projectの複数project保証はL3 F01の「二つ以上」に従うが、locator key件数をproject identity件数として数えない。ProjectTarget.project_idが既知の値はdistinct identity数だけ数え、同じknown project_idを持つ複数locatorはdistinct数へ重複算入しない。distinct known identityが二つ未満なら、選択domain全体の複数project保証をfield_unknownとしてaggregate pointer /targets/projectsへ示し、局所の既知record/state照合は保持する。project_idが一つでもAbsent/null/空/型外ならR12のfield_unknownを維持し、未解決identityを既知の別projectとも同一projectとも断定しない。重複locatorの一つを“後続”として特定するfindingは作らず、各locatorとnodeの原記録は個別に保持する。distinct known identityが二つ以上でも、それだけで成功/coverage/accepted/completionを示さない。targets/projectsのAbsent/null/誤型はpointer_basisに従うfield_unknownとし、空へ変換しない。明示projects:{}も二project保証の根拠にならずfield_unknown /targets/projectsとする。project targetまたはnodes memberがAbsentなら最初の不在ancestor、present null/誤型ならその既存値位置をfield_unknownで示す。一方nodes:{}は既知の空node mapであり、そのproject selection pointerにfield_unknownを出さず、coverage/Accepted/corresponding/completionへ昇格しない。全selected node mapが既知空で評価nodeが0件なら、R10に従い各empty nodes mapへのresult_unknownでaggregate unknown理由を示す。actual/contextに存在する未選択nodeはR14で処理する。 ここで「評価nodeが一件もない」とは、R14で構成するnode_correspondenceのactual/context/selected locator合併にnode locatorが一件も無いことをいう。選択nodesだけが空でも未選択の観測locatorがあれば、この空domain理由は追加しない。",
+        "source_basis": [
+          "HELIXOS-L3-016-F01",
+          "HELIXOS-L10-016-F01",
+          "R10",
+          "R11"
+        ]
+      }
+    ],
+    "selected_target_domain_limit": "呼出元の選択値は比較scopeを示すが、全projectの網羅や発行者資格を証明しない。任意graph閉包/cycle、実selector provider、実source custody/資格、実consumerは未成立。",
+    "call_profiles": {
+      "baseline_fixture_compatibility": {
+        "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract) -> TraceResult",
+        "scope": "元L9 cases配列の356基準caseだけ。固定locatorの宣言値はbaseline_fixture_compatibilityに格納し、caller-selected domainの既定値には使わない。",
+        "raw_and_expected": "既存L9 356caseのraw/expected whole値をそのまま維持する。"
+      },
+      "caller_selected_domain": {
+        "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
+        "scope": "L9 domain_extension_casesの明示targets入力を持つ選択domain。targetsのAbsent/nullはbaseline fixtureへfallbackしない。",
+        "caller_binding_effect": "旧diagnostic_contract.projects/node_kindsをselected-domain入力に使う呼出元はPortfolioTargetsを構築して第三引数へ渡す。baseline_fixture_compatibilityから自動補完/fallbackしない。"
+      }
+    }
   }
 }
