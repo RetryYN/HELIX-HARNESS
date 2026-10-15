@@ -491,6 +491,30 @@
       "section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
       "section_bytes": 923,
       "role": "現行L11 acceptance source"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
     }
   ],
   "parent_basic_source_pins": [
@@ -719,7 +743,8 @@
     "正式trace/graph/schema/codec・任意node集合/typed relation/missing node/graph cycle・source custody/資格をL5/L8で閉じる。",
     "OS015原記録・OS019episode・OS002案件trace・HARNESS001/056結果意味・release ownerへexact bindingを定義する。共通recordの全consumer閉包は未証明。",
     "実writer・実state再評価/消込・提供receipt・実受入は未成立。old DB/runtime/state語彙を移植しない。",
-    "独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10・PO実物L11/実装Readyは未成立。全92親430対の設計完遂を継続する。"
+    "独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10・PO実物L11/実装Readyは未成立。全92親430対の設計完遂を継続する。",
+    "R04のcontext target_id/revisionが同時に未知となる実caseはL9にない。有限規則では、照合可能なcontext候補が無ければ既知endpointをrelation_endpoint_conflictとして返し、@を含むtarget componentはendpoint文字列から一意に分離できないためrelation_unknownとする。一般のsource解決・escape grammar・任意graph上での分類は未閉包であり、このfixture外へ外挿しない。"
   ],
   "id": "HELIXOS-L8-016-PORTFOLIO-STATE-TRACE",
   "pair": "HELIXOS-L5-016-PORTFOLIO-STATE-TRACE",
@@ -1046,11 +1071,11 @@
   },
   "shared_values_contract": {
     "input_base_ref": "L9 fixture_inputs.portfolio",
-    "case_input": "L9 cases[*].given.input; apply replacements in stored order",
-    "actual_projection": "expanded PortfolioInput.projects",
-    "context_projection": "expanded PortfolioInput.context.projects",
+    "case_input": "L9 cases[*].given.inputのreplacementsを保存順に適用する。",
+    "actual_projection": "展開済みPortfolioInput.projectsをactual側として読む。",
+    "context_projection": "展開済みPortfolioInput.context.projectsをcontext側として読む。",
     "expected_oracle": "L9 cases[*].expected_proposal",
-    "expectation_status": "preserved upstream expected whole; no execution claim"
+    "expectation_status": "上流のexpected wholeを原値保持し、実行成立は主張しない。"
   },
   "objects": [
     {
@@ -14316,15 +14341,15 @@
   "execution_state": "not_executed",
   "actual_portfolio_state_updated": false,
   "evidence_contract": {
-    "oracle_bytes": "L9 source pin; all 356 expected_proposal objects remain unchanged",
-    "input_bytes": "L9 source case input specification plus pinned fixture_inputs; raw expanded hash must equal given input hash",
+    "oracle_bytes": "source pinで固定したL9の356 expected_proposal wholeは不変。",
+    "input_bytes": "L9各caseの入力指定と固定fixture_inputsから展開し、raw hashを入力hashへ照合する。",
     "case_count": 356,
     "conditions": {
       "trace_material_corresponding": 12,
       "trace_material_unknown": 185,
       "trace_material_violation": 159
     },
-    "scope_note": "Synthetic document proxies only. No actual state, acceptance, release authorization, qualification, or full graph closure is established.",
+    "scope_note": "合成文書素材だけを扱う。実state、受入、release許可、資格、任意graphの閉包を成立させない。",
     "source_case_distribution": {
       "trace_material_corresponding": 12,
       "trace_material_unknown": 185,
@@ -14337,7 +14362,7 @@
       "actual": "PortfolioInput.projects",
       "context": "PortfolioInput.context.projects"
     },
-    "expected": "L9.cases[*].expected_proposal; source whole is not calculation input",
+    "expected": "L9.cases[*].expected_proposal。原wholeは計算の入力にしない。",
     "expand_case": {
       "fixture_inputs": "L9.fixture_inputs",
       "case_input": "L9.cases[*].given.input"
@@ -14346,7 +14371,7 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "8a2c328e9ce4c09c534cefa3d7c0e618e4dd7de3e12594d325e90472f169eb45",
+    "L5_sha256": "a9cb34125532165bd8cb5e9d1f64d40212d190779141cbfb3d18156f303df176",
     "program_sha256": "8ddeaf088ffbecd210656df5fd8f63e9e1f4e127ad693b22f9b7b20e0df32cc1",
     "entrypoints": [
       "expand_case",
@@ -14354,7 +14379,7 @@
       "route_failure"
     ],
     "case_count": 356,
-    "expected_source": "L9 expected_proposal via per-case RFC6901 pointer; expected is read only after calculation",
+    "expected_source": "各caseのRFC6901 pointerでL9 expected_proposalを参照し、計算後にだけ比較する。",
     "execution_state": "not_executed",
     "meaning": "設計上の純関数を静的照合器が実行して原wholeを比較する。実source資格/実処理は成立しない。"
   },
@@ -17233,7 +17258,7 @@
         "execution_state": "not_executed"
       },
       {
-        "id": "OS016-R1-STATE-ACTUAL-ABSENT",
+        "id": "LOCAL-OS016-STATE-ACTUAL-ABSENT",
         "basis": "L4 R05: absent stateはunknown、L4 R11:入力state保持、gapはactualの未closed axis。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -18186,7 +18211,7 @@
         "expected_full_whole_sha256": "7960e44fc452b4d2aa2788a6ebc67f6af9763bfea53e681b68f3d92b88b2b4e1"
       },
       {
-        "id": "OS016-R1-STATE-CONTEXT-ABSENT",
+        "id": "LOCAL-OS016-STATE-CONTEXT-ABSENT",
         "basis": "L4 R05: context側のabsent stateも未知所見として当該pointerへ出す。R11の保持はactual記録に限定。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -19138,7 +19163,7 @@
         "expected_full_whole_sha256": "d8d4fd93573cf6e65238d2802bd01b4e258df44f242af4cf227a2f557afdb14f"
       },
       {
-        "id": "OS016-R1-BOTH-SCOPE-NULL",
+        "id": "LOCAL-OS016-BOTH-SCOPE-NULL",
         "basis": "L4 R01: 両側scopeがnullならactual/context各JSON Pointerへfield_unknown。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -20101,7 +20126,7 @@
         "expected_full_whole_sha256": "02f50b1ae1f8e72011167eea2705cb9c901101e2a9c0d201644773ad519de25d"
       },
       {
-        "id": "OS016-R1-OWNER-MULTISET-DIFF",
+        "id": "LOCAL-OS016-OWNER-MULTISET-DIFF",
         "basis": "L4 R03: 2件以上の有効集合はowner_ambiguous、既知actual/context集合差もowner_conflict。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -20114,16 +20139,9 @@
               "X",
               "Y"
             ]
-          },
-          {
-            "op": "replace",
-            "path": "/context/projects/project_a/unit_a/owners",
-            "value": [
-              "orig"
-            ]
           }
         ],
-        "raw_sha256": "9823265d0eef7e5742706a53f55be9b3effd822a4b9af6606d92d57c87ceba2d",
+        "raw_sha256": "069e8545741a8d2e1dc9ef244b236f174086dcfa5bc15feae07da1c64c52e534",
         "expected_full_whole": {
           "condition": "trace_material_violation",
           "node_correspondence": {
@@ -21070,8 +21088,8 @@
         "expected_full_whole_sha256": "3d31429fa5543ba7744e480ceb2a4f201702df58f4e59664bc48ad12c2202082"
       },
       {
-        "id": "OS016-R1-ALIAS-CROSS-PROJECT",
-        "basis": "L4 R02 + identity_alias_scope: side-wide portfolio ID collision includes nodes from distinct projects.",
+        "id": "LOCAL-OS016-ALIAS-CROSS-PROJECT",
+        "basis": "L4 R02とidentity_alias_scope。side全体のportfolio ID衝突には別projectのnodeも含む。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
         "source_case_id": "HELIXOS-L9-016-C0001",
@@ -22033,7 +22051,7 @@
         "expected_full_whole_sha256": "772e034e5423a47a699aa6535b76dc45a568833398572d88b069764ed0895a9c"
       },
       {
-        "id": "OS016-R1-CONTEXT-ENDPOINT-UNKNOWN",
+        "id": "LOCAL-OS016-CONTEXT-ENDPOINT-UNKNOWN",
         "basis": "L4 R01/R04: 欠落target identityをsource unknownとして保持し、既知relation endpointの未解決をrelation findingへ残す。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -23005,7 +23023,7 @@
         "expected_full_whole_sha256": "3192d7769bb61f261d42e3bbfbfc73cf39874a13effb3839d5c47aeeb14c20ba"
       },
       {
-        "id": "OS016-R1-KIND-BOTH-UNKNOWN",
+        "id": "LOCAL-OS016-KIND-BOTH-UNKNOWN",
         "basis": "L4 R02: actual/context双方の同じ未知kindも各pointerにkind_unknown。receiptのkindも同じ原値へ合わせ、kind domainのunknownを単独で観測。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -23998,8 +24016,8 @@
         "expected_full_whole_sha256": "3df78da6eaf3967507b0f6ee7f54cc7a0d8398becc1ae47eb2322aa0c792badc"
       },
       {
-        "id": "OS016-R1-NULL-IDS-NO-ALIAS",
-        "basis": "L4 R01/R02: null target identity is unknown and does not create a duplicate-identity finding.",
+        "id": "LOCAL-OS016-NULL-IDS-NO-ALIAS",
+        "basis": "L4 R01/R02。nullの対象identityはunknownであり、identity重複の所見を作らない。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
         "source_case_id": "HELIXOS-L9-016-C0001",
@@ -24961,7 +24979,7 @@
         "expected_full_whole_sha256": "b91f9d14c83b865f5de440a9b4122f79865489b6c06eaef3d33aeca78cb552c6"
       },
       {
-        "id": "OS016-R1-AT-SIGN-AMBIGUOUS-ENDPOINT",
+        "id": "LOCAL-OS016-AT-SIGN-AMBIGUOUS-ENDPOINT",
         "basis": "L4 R04のtarget_id@target_revisionに一意なescapeが無いため、@を含むtarget componentはendpoint対応済みにせずrelation_unknownとして残す。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -26038,7 +26056,7 @@
         "expected_full_whole_sha256": "d95008cfc67e14a07ab5c7f425cb1bd92cfa431952e92305317d6bd1a4a01276"
       },
       {
-        "id": "OS016-R1-EMPTY-SCOPE-UNKNOWN",
+        "id": "LOCAL-OS016-EMPTY-SCOPE-UNKNOWN",
         "basis": "L4 R01: empty stringは既知値でない。actual/context各pointerへfield_unknownを返し、原empty値を返却source/receiptへ保つ。",
         "source_raw_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/fixture_inputs/portfolio",
         "source_expected_ref": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json#/cases/0/expected_proposal",
@@ -27074,21 +27092,21 @@
   "reproducible_scope_counts": {
     "l3_l10_json_files": {
       "count": 48,
-      "definition": "source-checkpoint verifierがfixed baseとcurrent worktreeでJSON全体bytesを比較したL3/L10 filesの数。"
+      "definition": "固定監査のsource_pinsの一意path数。48本文不変は各pinの全bytesを個別照合する。"
     },
     "l3_requirement_ids": {
       "count": 430,
-      "definition": "current baselineのL3 JSONから一意に計数したrequirement IDs。設計完了を意味しない。"
+      "definition": "固定監査rows[*].requirements[*].idの一意件数。430は設計完了を意味しない。"
     },
     "independent_boundary_projections": {
       "count": 6,
-      "definition": "independent-boundary-expectations.jsonの手固定全体期待6件。domain_probesは別集合で、現時点の総数を含めない。"
+      "definition": "L8 /independent_boundary_projections/casesの6部分期待。全whole6件という意味ではない。"
     }
   },
-  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8型検査で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
+  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8 /input_type_validationの再帰規則で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
   "expansion_guard_probes": [
     {
-      "id": "OS016-R1-EXPAND-INVALID-BASE",
+      "id": "LOCAL-OS016-EXPAND-INVALID-BASE",
       "input": {
         "base_ref": "unknown-base",
         "replacements": []
@@ -27138,5 +27156,276 @@
       "expected_same_identity": false,
       "expected_original_unchanged_after_return_mutation": true
     }
-  ]
+  ],
+  "independent_boundary_projections": {
+    "basis": {
+      "derived_from": [
+        "docs/helix-os/L4-basic-design/portfolio-state-trace.json#/diagnostic_contract/rules/R01",
+        "docs/helix-os/L4-basic-design/portfolio-state-trace.json#/diagnostic_contract/rules/R04",
+        "docs/helix-os/L4-basic-design/portfolio-state-trace.json#/diagnostic_contract/rules/R09",
+        "docs/helix-os/L4-basic-design/portfolio-state-trace.json#/diagnostic_contract/rules/R10",
+        "docs/helix-os/L4-basic-design/portfolio-state-trace.json#/diagnostic_contract/rules/R11"
+      ],
+      "method": "原L4規則から期待所見を先に固定。L9 expected_proposalおよびL5 normative_programの評価値はこのファイルの生成根拠にしない。rawとexpectedの元資料は不変。"
+    },
+    "cases": [
+      {
+        "case_id": "HELIXOS-L9-016-C0001",
+        "input_replacements": [],
+        "expect": {
+          "condition": "trace_material_corresponding",
+          "findings": [],
+          "all_node_facets": "corresponding",
+          "all_effect_flags": false,
+          "operation_effect": "none"
+        },
+        "basis": "R01-R10の全9facetが合致し、R11の全効果フラグはfalse。"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-C0003",
+        "input_replacements": [
+          {
+            "path": [
+              "projects",
+              "project_a",
+              "connection_ab",
+              "source",
+              "project_id"
+            ],
+            "value": "FOREIGN-project_id"
+          }
+        ],
+        "expect": {
+          "condition": "trace_material_violation",
+          "findings": [
+            {
+              "code": "field_conflict",
+              "pointer": "/projects/project_a/connection_ab/source/project_id",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project": "project_a",
+            "node": "connection_ab",
+            "facet": "source",
+            "value": "violation"
+          },
+          "unrelated_node": {
+            "project": "project_b",
+            "node": "composite_all",
+            "all_facets": "corresponding"
+          }
+        },
+        "basis": "R01は既知の相異をactual pointerのfield_conflictとし、R11は無関係nodeを保持する。"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-C0095",
+        "input_replacements": [
+          {
+            "path": [
+              "projects",
+              "project_a",
+              "connection_ab",
+              "acceptance",
+              "project_id"
+            ],
+            "value": null
+          }
+        ],
+        "expect": {
+          "condition": "trace_material_unknown",
+          "findings": [
+            {
+              "code": "field_unknown",
+              "pointer": "/projects/project_a/connection_ab/acceptance/project_id",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project": "project_a",
+            "node": "connection_ab",
+            "facet": "acceptance",
+            "value": "unknown"
+          },
+          "other_result_facets": {
+            "verification": "corresponding",
+            "provision": "corresponding"
+          }
+        },
+        "basis": "R06 receipt-field presence不足は当該項目・receipt facetだけをunknownへし、独立したverification/provisionを変えない。"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-C0161",
+        "input_replacements": [
+          {
+            "path": [
+              "context",
+              "projects",
+              "project_a",
+              "connection_ab",
+              "source",
+              "target_id"
+            ],
+            "value": null
+          }
+        ],
+        "expect": {
+          "condition": "trace_material_violation",
+          "findings": [
+            {
+              "code": "field_unknown",
+              "pointer": "/context/projects/project_a/connection_ab/source/target_id",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "relation_endpoint_conflict",
+              "pointer": "/context/projects/project_a/composite_all/relations",
+              "return_owner": "portfolio-trace-owner"
+            },
+            {
+              "code": "relation_endpoint_conflict",
+              "pointer": "/projects/project_a/composite_all/relations",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project": "project_a",
+            "node": "composite_all",
+            "facet": "relation",
+            "value": "violation"
+          }
+        },
+        "basis": "R04のcontext-side endpoint target欠落でknown edgeの照合先が無く、両sideのcomposite relationへendpoint conflict。既知違反はR10優先でunknownを上回る。"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-C0323",
+        "input_replacements": [
+          {
+            "path": [
+              "projects",
+              "project_a",
+              "unit_a",
+              "claims",
+              "from_unit_success"
+            ],
+            "value": true
+          }
+        ],
+        "expect": {
+          "condition": "trace_material_violation",
+          "findings": [
+            {
+              "code": "inferred_completion_forbidden",
+              "pointer": "/projects/project_a/unit_a/claims/from_unit_success",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "node_facet": {
+            "project": "project_a",
+            "node": "unit_a",
+            "facet": "boundary",
+            "value": "violation"
+          }
+        },
+        "basis": "R09 true claimは完了推論を禁止し、R10でviolationへ集約する。"
+      },
+      {
+        "case_id": "HELIXOS-L9-016-C0347",
+        "input_replacements": [
+          {
+            "path": [
+              "whole_completion_claim"
+            ],
+            "value": true
+          }
+        ],
+        "expect": {
+          "condition": "trace_material_violation",
+          "findings": [
+            {
+              "code": "whole_completion_forbidden",
+              "pointer": "/whole_completion_claim",
+              "return_owner": "portfolio-trace-owner"
+            }
+          ],
+          "whole_portfolio_complete": false,
+          "actual_release_authorized": false
+        },
+        "basis": "R09 whole claim自体を拒否し、R11の完了・権限出力をfalseのまま保持する。"
+      }
+    ]
+  },
+  "scope_count_basis": {
+    "audit_pin": {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "file_count_pointer": "/source_pins",
+    "requirement_ids_pointer": "/rows/*/requirements/*/id",
+    "boundary_pointer": "L8#/independent_boundary_projections/cases",
+    "boundary_canonical_sha256": "cae06f87945f35a3feac0ceb99b7509faaaf7751cc182c833dc556be8838aa84"
+  },
+  "template_application": {
+    "template_identity": "DT-MSG-004",
+    "source_candidate_version": "0.1.0-seed-candidate",
+    "meaning_source": {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。",
+      "json_pointer": "/templates/1/semantic_descriptors"
+    },
+    "decision_source": {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "source_text": {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "application": "required",
+    "reason": "局所関数の振る舞い・入出力・失敗と不変条件を具体化するため。",
+    "judge": "設計作成担当",
+    "target_revision": "このL5/L8 pairのexact bytes。gitとL8のL5 pinで特定する。",
+    "reevaluation": "関数契約・親要求・対oracle・適用条件の意味変更時。",
+    "mapping": {
+      "対象と要求": "/functionsと/trace",
+      "入出力・事前/事後・不変": "/logical_typesと/typed_function_contractと/normative_program",
+      "副作用": "N/A。純粋計算で外部状態を書き換えない。",
+      "失敗分類": "型外はL8入力型検査、拡張base不正はValueError、型内素材不足はunknown/violation所見と原値保持。",
+      "途中副作用の回復": "N/A。外部副作用と持続途中状態を持たない。",
+      "対oracle": "L8の356元whole、独立境界部分期待、domain wholeと型外/guard/保持独立性probeへ結ぶ。"
+    },
+    "limit": "限定採用済み意味内容のみ参照。運用knowledge昇格、正式schema、全template採用、設計正しさを生成しない。"
+  },
+  "input_type_validation": {
+    "type_source": "L5#/logical_types",
+    "input_type": "PortfolioInput",
+    "order": "関数の計算前に型を検査する。型外の値をTraceResultへ変換しない。",
+    "recursive_rules": [
+      "recordはobjectでrequired memberを全て持ち、宣言fields以外のmemberを拒否する。optional memberは欠落を許し存在時は型検査する。",
+      "Presence<T>は欠落とnullを保持し、存在する非null値をTで検査する。",
+      "array/mapは各要素を再帰検査し、固定ProjectId/NodeId mapのkey集合は宣言enumと一致させる。",
+      "JSONValueはnull/bool/任意精度int/有限float/string/再帰list/文字列keyの再帰objectだけを受け入れる。",
+      "literal/enumはJSON kindを区別し、宣言値に一致することを検査する。"
+    ],
+    "probes": [
+      {
+        "id": "LOCAL-OS016-UNDECLARED-ROOT-MEMBER",
+        "base_ref": "portfolio",
+        "extra_root_members": {
+          "undeclared": true
+        },
+        "expected": "type_rejected",
+        "expected_diagnostic": "unknown record members",
+        "expected_calculation_invoked": false
+      }
+    ]
+  }
 }

@@ -491,6 +491,30 @@
       "section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
       "section_bytes": 923,
       "role": "現行L11 acceptance source"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
     }
   ],
   "parent_basic_source_pins": [
@@ -1592,7 +1616,7 @@
         "context.source.*",
         "actual/context.owners",
         "actual/context.relations",
-        "same-project context target_id@target_revision",
+        "同じprojectのcontext target_id@target_revision",
         "actual/context.states[*]",
         "actual/context.verification",
         "actual/context.acceptance",
@@ -1619,7 +1643,7 @@
           "facet": "owner",
           "source_basis": [
             "L4 diagnostic_contract R03: ownerは重複なし集合",
-            "L9 HELIXOS-L9-016-C0137/C0286: duplicate owners expected owner_unknown"
+            "L9 HELIXOS-L9-016-C0137/C0286はowner重複をowner_unknownとする。"
           ]
         },
         {
@@ -1638,7 +1662,7 @@
           "facet": "relation",
           "source_basis": [
             "L4 diagnostic_contract R04: relationは重複なし集合",
-            "L9 HELIXOS-L9-016-C0141/C0290: duplicate relations expected relation_unknown"
+            "L9 HELIXOS-L9-016-C0141/C0290はrelation重複をrelation_unknownとする。"
           ]
         },
         {
@@ -1683,7 +1707,7 @@
           "result": "source comparison unknown; alias findingは作らない",
           "facet": "source",
           "source_basis": [
-            "L4 diagnostic_contract R01/R02 unknown rule"
+            "L4 diagnostic_contract R01/R02のunknown規則"
           ]
         },
         {
@@ -1696,7 +1720,7 @@
           ]
         }
       ],
-      "formal_entrypoint": "evaluate_portfolio.compare_node (local pure closure)"
+      "formal_entrypoint": "evaluate_portfolio.compare_node（局所純粋closure）"
     },
     {
       "id": "evaluate_portfolio",
@@ -2011,14 +2035,14 @@
       "meaning": "provided state referenceのみ記録し、release permit/actual actionを生成しない。"
     }
   ],
-  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8型検査で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
+  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8 /input_type_validationの再帰規則で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
   "typed_function_contract": {
     "compare_node": {
-      "input": "project_id:ProjectId + node_id:NodeId + actual:NodeRecord + context:NodeRecord; evaluate_portfolio scope provides DiagnosticContract and local findings accumulator",
+      "input": "project_id:ProjectId、node_id:NodeId、actual:NodeRecord、context:NodeRecord。evaluate_portfolioがDiagnosticContractと局所findings蓄積を供給する。",
       "output": "NodeComparison{facet_results:NodeDisposition, findings:array<Finding>}"
     },
     "evaluate_portfolio": {
-      "input": "PortfolioInput + diagnostic_contract:JSONValue (the exact L4 diagnostic_contract object)",
+      "input": "PortfolioInputとdiagnostic_contract:JSONValue（固定したL4 diagnostic_contractの原object）。",
       "output": "TraceResult"
     },
     "route_failure": {
@@ -2090,15 +2114,64 @@
   "reproducible_scope_counts": {
     "l3_l10_json_files": {
       "count": 48,
-      "definition": "source-checkpoint verifierがfixed baseとcurrent worktreeでJSON全体bytesを比較したL3/L10 filesの数。"
+      "definition": "固定監査のsource_pinsの一意path数。48本文不変は各pinの全bytesを個別照合する。"
     },
     "l3_requirement_ids": {
       "count": 430,
-      "definition": "current baselineのL3 JSONから一意に計数したrequirement IDs。設計完了を意味しない。"
+      "definition": "固定監査rows[*].requirements[*].idの一意件数。430は設計完了を意味しない。"
     },
     "independent_boundary_projections": {
       "count": 6,
-      "definition": "independent-boundary-expectations.jsonの手固定全体期待6件。domain_probesは別集合で、現時点の総数を含めない。"
+      "definition": "L8 /independent_boundary_projections/casesの6部分期待。全whole6件という意味ではない。"
     }
+  },
+  "scope_count_basis": {
+    "audit_pin": {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "file_count_pointer": "/source_pins",
+    "requirement_ids_pointer": "/rows/*/requirements/*/id",
+    "boundary_pointer": "L8#/independent_boundary_projections/cases",
+    "boundary_canonical_sha256": "cae06f87945f35a3feac0ceb99b7509faaaf7751cc182c833dc556be8838aa84"
+  },
+  "template_application": {
+    "template_identity": "DT-MSG-004",
+    "source_candidate_version": "0.1.0-seed-candidate",
+    "meaning_source": {
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。",
+      "json_pointer": "/templates/1/semantic_descriptors"
+    },
+    "decision_source": {
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "source_text": {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "role": "設計対象・限定MSG004意味内容の再現参照。新たな採否や完了を生成しない。"
+    },
+    "application": "required",
+    "reason": "局所関数の振る舞い・入出力・失敗と不変条件を具体化するため。",
+    "judge": "設計作成担当",
+    "target_revision": "このL5/L8 pairのexact bytes。gitとL8のL5 pinで特定する。",
+    "reevaluation": "関数契約・親要求・対oracle・適用条件の意味変更時。",
+    "mapping": {
+      "対象と要求": "/functionsと/trace",
+      "入出力・事前/事後・不変": "/logical_typesと/typed_function_contractと/normative_program",
+      "副作用": "N/A。純粋計算で外部状態を書き換えない。",
+      "失敗分類": "型外はL8入力型検査、拡張base不正はValueError、型内素材不足はunknown/violation所見と原値保持。",
+      "途中副作用の回復": "N/A。外部副作用と持続途中状態を持たない。",
+      "対oracle": "L8の356元whole、独立境界部分期待、domain wholeと型外/guard/保持独立性probeへ結ぶ。"
+    },
+    "limit": "限定採用済み意味内容のみ参照。運用knowledge昇格、正式schema、全template採用、設計正しさを生成しない。"
   }
 }
