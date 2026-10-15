@@ -423,7 +423,7 @@
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "revision_note": "caller-selected target契約に対応するL4 file bytes。対象source revisionの承認を示さない。",
       "binding_kind": "candidate_file_bytes",
-      "file_sha256": "3c4e1675829356792679938cd9e21f24e0be4a3a3b6a940067075373fd908366",
+      "file_sha256": "980bccba92ea23b4bf1423e6e7eaf014ee6191788cf15e39e39e0dbd2dd39422",
       "role": "domain_extension_casesを解釈するためのcaller-selected target契約。候補のfile bytes pinであり、承認・資格を意味しない。",
       "base_source_main": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63"
     }
@@ -589,7 +589,7 @@
     "shared_consumer_boundary": "六条件による意味更新/atomic Canonical化はOS001/053などへ残す。OS016はsource/状態/局所staleをtraceし、単独でCanonical化しない。HR19/HAC/HATのshared全意味は無損失に別consumerへ保持。HATはdesigned_not_implementedのまま。"
   },
   "remaining": [
-    "L5/L8の関数signature・caller結線・全return再導出、正式schema/codec、任意graph cycle/typed relation、source custody/資格は未完。有限なlocator/identity/missing/extra/partial/invalid/empty returnの意味と26補足期待をこのL4/L9で記録した。",
+    "L5/L8の関数signature・caller結線・全return再導出、正式schema/codec、任意graph cycle/typed relation、source custody/資格は未完。有限なlocator/identity/missing/extra/partial/invalid/empty returnの意味と29補足期待をこのL4/L9で記録した。",
     "OS015原記録・OS019episode・OS002案件trace・HARNESS001/056結果意味・release ownerへexact bindingを定義する。共通recordの全consumer閉包は未証明。",
     "実writer・実state再評価/消込・提供receipt・実受入は未成立。old DB/runtime/state語彙を移植しない。",
     "既存356 baseline caseのraw/expectedは値不変。追加29 caller-selected domain caseは候補期待であり、独立review・L5/L8計算・実装前Red/Green/Refactor・CI/L10/L11・実装Readyの証拠ではない。"
@@ -663,7 +663,8 @@
         "selection_argument": "/targets/projects/{RFC6901-escaped-project-locator}/nodes/{RFC6901-escaped-node-locator} は第三引数PortfolioTargetsの正規化pointer namespace。",
         "escaping": "RFC 6901 token escaping。Absentは実引数shape上の最初のmissing ancestor、present invalidは実在するinvalid値の位置を示す。"
       },
-      "empty_nodes": "nodes:{}は既知空選択。空だけからfinding/corresponding/coverage/acceptance/completionを生成しない。actual/context locator unionの未選択memberはR14でunknown。評価nodeなしはunknownで成功しない。"
+      "empty_nodes": "nodes:{}は既知空選択。空だけからfinding/corresponding/coverage/acceptance/completionを生成しない。actual/context locator unionの未選択memberはR14でunknown。評価nodeなしはunknownで成功しない。",
+      "case_identity_policy": "D0026はD0016と入力・全期待が同値の重複だったため除外し、既存IDを再採番しない。欠番は削除漏れではなく履歴上の識別子を保つためのもの。"
     }
   },
   "fixture_inputs": {
@@ -348569,7 +348570,8 @@
         "expected_origin": "candidate前に固定された合成入力とL3/L10/L4意味から作った期待。candidate関数・旧generator/runtimeから生成していない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0002",
@@ -350697,7 +350699,8 @@
         "expected_origin": "candidate前に固定された合成入力とL3/L10/L4意味から作った期待。candidate関数・旧generator/runtimeから生成していない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "dc4d33d1d8c5f857995974bb9916c68b0c76fd5d2660279a326690ddaa69abd7"
+      "portfolio_input_canonical_sha256": "dc4d33d1d8c5f857995974bb9916c68b0c76fd5d2660279a326690ddaa69abd7",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0003",
@@ -352816,7 +352819,8 @@
         "expected_origin": "candidate前に固定された合成入力とL3/L10/L4意味から作った期待。candidate関数・旧generator/runtimeから生成していない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "bdfeb9351ce8557094f0de88e1259c6b65f1b426968fbd6ad7009be8478348d3"
+      "portfolio_input_canonical_sha256": "bdfeb9351ce8557094f0de88e1259c6b65f1b426968fbd6ad7009be8478348d3",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0004",
@@ -354824,7 +354828,8 @@
         "independent_basis": "L3/L10 F01と既存R13/R10/R11。選択locatorがcontext側に無ければcontext locator pointerと全facetをunknownにし、存在するactual source/stateは原値で保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc"
+      "portfolio_input_canonical_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0005",
@@ -356728,7 +356733,8 @@
         "independent_basis": "L3/L10 F01と既存R13/R10/R11。選択locatorがactual側に無ければactual locator pointerと全facetをunknownにする。context-only値はactual retention rootsへ転記せず、他actual値を保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "098be7e86ffa7e0d32bd5ab868da1078e3fd7b0dea7c2ea1266b409dbaa8a1b4"
+      "portfolio_input_canonical_sha256": "098be7e86ffa7e0d32bd5ab868da1078e3fd7b0dea7c2ea1266b409dbaa8a1b4",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0006",
@@ -358833,7 +358839,8 @@
         "independent_basis": "L3/L10 F01と既存R14/R10/R11。観測locatorにtargets bindingがなければ、selection側の最初のmissing ancestorを指して該当facetをunknownにし、実在actual source/stateと他locatorを保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892"
+      "portfolio_input_canonical_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0007",
@@ -360929,7 +360936,8 @@
         "derivation": "L4 R12/R15/R16ではlocator map keyとproject_id/target_idを別fieldとして扱い、relation endpointはsource target_id@revisionを使う。raw actual/context/selector mapを同じlocatorへrekeyしたため各比較は変わらず、全出力mapだけ同locatorへ投影する。source identity、source revision、kind、relation endpoint値は変更しない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "3c3c8774233640d2f82a76b92185b956823507e1737f2bf6a7c23a0703cab93a"
+      "portfolio_input_canonical_sha256": "3c3c8774233640d2f82a76b92185b956823507e1737f2bf6a7c23a0703cab93a",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0008",
@@ -363094,7 +363102,8 @@
         "derivation": "原positive packetのactual/contextは該当軸が一致し、L4 R01–R11から追加findingは出ない。R12はProjectTargetのrequirement_revision/scopeとNodeTargetのtarget_id/target_revision/target_digest/source_ref/source_revisionを独立比較する。各既知値がactual/contextの値と違うため、各側source field pointerにfield_conflictを返す。残るfacet、actual保持roots、gap、false effectsは元positive全値を保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0009",
@@ -365163,7 +365172,8 @@
         "execution_state": "not_executed",
         "independent_basis": "L3/L10 F01とL4 R10/R11/R14/R17。nodes:{}は既知空selectionであり、それ自体のunknown findingは出さない。観測actual/contextに残る未選択locatorはR14 unknownとし、empty selectionをcoverage/Acceptedへ昇格しない。"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0010",
@@ -365278,7 +365288,8 @@
         ],
         "independent_basis": "nodes:{}は既知空でselection field_unknownではないが、評価結果が存在せずaggregateはunknown。既存result_unknownを各空nodes selection pointerへ結ぶ。"
       },
-      "portfolio_input_canonical_sha256": "d7c7700137a6bf5f45c8409f7a44dcd9634c8078ff34545f5453e107410922c4"
+      "portfolio_input_canonical_sha256": "d7c7700137a6bf5f45c8409f7a44dcd9634c8078ff34545f5453e107410922c4",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0011",
@@ -367348,7 +367359,8 @@
         "independent_basis": "actual/contextにはlab nodeがあるがselector project entryはAbsent。R14により最初の欠落ancestor /targets/projects/labを指し、lab nodeだけunknownにする。別projectと実在actual retentionを保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892"
+      "portfolio_input_canonical_sha256": "7b7b0b23dc1b24cabc03429a01cbbb9ec377d717c2cc03bbbe915ce51f269892",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0012",
@@ -368772,7 +368784,8 @@
       },
       "targets_canonical_sha256": "a610860a74a165203066ac0a60db4e0e59300e2ed78744eaf6d3a727fe163915",
       "expected_whole_canonical_sha256": "b2514b374b336830e645330f1f54c90256fdb0f86620b3b359a611886c725c74",
-      "portfolio_input_canonical_sha256": "8fb442ae2d146654443c2619f6f53dbf59a002aa20494e11ce8700f3da671e3a"
+      "portfolio_input_canonical_sha256": "8fb442ae2d146654443c2619f6f53dbf59a002aa20494e11ce8700f3da671e3a",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0013",
@@ -370872,7 +370885,8 @@
         "independent_basis": "選択project locatorとnodesは既知だがproject_idだけがinvalid。R12のunknownは影響するsource facetに限り、R14の構造欠落扱いへ広げない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0014",
@@ -372765,7 +372779,8 @@
         "independent_basis": "invalid nodeは実在するnull位置へfield_unknownを返す。通常NodeRecordとして走査・保持せず、context側nodeをactual記録へ複製しない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "7054aceefccef11a48de04e0a125202f7bc4485d20c21c45971e33f3cad77b29"
+      "portfolio_input_canonical_sha256": "7054aceefccef11a48de04e0a125202f7bc4485d20c21c45971e33f3cad77b29",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0015",
@@ -374449,7 +374464,8 @@
         "independent_basis": "selector/contextのlocatorを残してactual project全体のAbsentを区別する。actual側の原recordがないためretention entryを生成しない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "9a1e5af6b91d29688da2139276f8b0468e17a3a78407aaa6d701a86629fbaf6e"
+      "portfolio_input_canonical_sha256": "9a1e5af6b91d29688da2139276f8b0468e17a3a78407aaa6d701a86629fbaf6e",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0016",
@@ -376240,7 +376256,8 @@
         "independent_basis": "targetsからlocatorは既知なのでnode correspondenceを維持し、actual/context双方の最初の欠落node leafを別々に指す。actual値が無いためretentionを生成しない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "5f5a0686d009e986f4c68bac9a4051deb26acda92266f0475a0c60b5181308c2"
+      "portfolio_input_canonical_sha256": "5f5a0686d009e986f4c68bac9a4051deb26acda92266f0475a0c60b5181308c2",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0017",
@@ -378358,7 +378375,8 @@
         ],
         "independent_basis": "同一nodeのsource project軸にactual/context双方の既知不一致findingがあるためsource facetはviolation。前例D0008もsource facet violation。"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0018",
@@ -380458,7 +380476,8 @@
         "independent_basis": "unit/connection/composite以外のselector kindは既知kindとして扱わず、当該nodeのsource facetだけunknownにする。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0019",
@@ -382556,7 +382575,8 @@
         "independent_basis": "選択宣言sourceの参照が未供給なのでsource provenance全体がunknown。選択済み各nodeの他facetとactual rawは独立して保持する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0020",
@@ -382617,7 +382637,8 @@
         "independent_basis": "project selectionが空でもknown conflict/成功にはせず、複数project保証の未観測をaggregate field_unknownとして示す。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "0c74866cbf06d286ed5d70cfabf5d14e2cf42e98616acebd5e4b3ac5f057dd83"
+      "portfolio_input_canonical_sha256": "0c74866cbf06d286ed5d70cfabf5d14e2cf42e98616acebd5e4b3ac5f057dd83",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0021",
@@ -384715,7 +384736,8 @@
         ],
         "independent_basis": "選択ProjectTarget.scopeだけをactual/context双方のsource.scopeと不一致にする。R12の既知不一致→source facet violationをproject軸だけで識別し、node-axis mismatchの影響を混ぜない。"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0022",
@@ -387156,7 +387178,8 @@
         "independent_basis": "R01–R08のselection comparisonは選択locatorに限る。一方identity_alias_scopeは各sideのobserved node全体、R09はactual側observed claimsを対象とする。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "032fde7f66f4a08d55b6685fa6715d056049e292bbb9d693ed0dc12b383e12e3"
+      "portfolio_input_canonical_sha256": "032fde7f66f4a08d55b6685fa6715d056049e292bbb9d693ed0dc12b383e12e3",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0023",
@@ -389249,7 +389272,8 @@
         "independent_basis": "L4はcaller供給digest claimとsynthetic fixture上のprojects hash measurementを区別する。外部body/custody/issuerが無いので、文字列を自己検証・資格判定へ昇格させない。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0024",
@@ -391249,7 +391273,8 @@
         "independent_basis": "欠落sideはunknown pointerで示す。存在actual nodeの既知kind mismatchはsource facet violationとして保持し、他facetは欠落によりunknownとする。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc"
+      "portfolio_input_canonical_sha256": "bb44e3aad74beb22233b9b1d87d55a9ecb69093fd3053c6ac8e533f2728bc8dc",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0025",
@@ -393332,7 +393357,8 @@
         "independent_basis": "null nodesはAbsent locatorではなく存在するinvalid member。actual/context nodesはR14で未選択unknownとなり、actual rawは保存する。",
         "execution_state": "not_executed"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0027",
@@ -395423,9 +395449,10 @@
           "R10",
           "R12"
         ],
-        "independent_basis": "selection NodeTarget.source_ref is present null: R12 says identity/source non-kind invalid is field_unknown at the field pointer and only source facet unknown."
+        "independent_basis": "選択NodeTarget.source_refはpresent nullである。R12に従いkind以外の識別/source属性の不正は当該field pointerのfield_unknownとし、source facetだけをunknownにする。"
       },
-      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143"
+      "portfolio_input_canonical_sha256": "4b8e31f54afae0b6e81c3621c1f252b6f4225f7168a3c2686483793639659143",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0028",
@@ -397310,7 +397337,8 @@
         ],
         "independent_basis": "context.projects.labは存在しnull。pointerはそのinvalid値位置。該当selected nodesの全facetは両側比較不能でunknown、actual原値は維持。"
       },
-      "portfolio_input_canonical_sha256": "679d03ec4cf2a0534292fe1ad1ce4f8b4b9625255e1be349b26b44f3d43358f2"
+      "portfolio_input_canonical_sha256": "679d03ec4cf2a0534292fe1ad1ce4f8b4b9625255e1be349b26b44f3d43358f2",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0029",
@@ -398768,9 +398796,10 @@
           "R11",
           "R13"
         ],
-        "independent_basis": "context member exists but projects container is absent. The first absent ancestor pointer differs from D0028 present-null /context/projects/lab; all selected context comparisons are unknown."
+        "independent_basis": "context memberは存在するがprojects容器は欠落している。最初の欠落祖先/context/projectsは、D0028のpresent null位置/context/projects/labと異なる。選択されたcontext比較をunknownに保つ。"
       },
-      "portfolio_input_canonical_sha256": "4f08b617a8fc6249dc68746b7848aa8d76b50f972e9e48160f7896abd4677f75"
+      "portfolio_input_canonical_sha256": "4f08b617a8fc6249dc68746b7848aa8d76b50f972e9e48160f7896abd4677f75",
+      "execution_state": "synthetic_document_comparison_only"
     },
     {
       "id": "HELIXOS-L9-016-D0030",
@@ -400879,9 +400908,10 @@
           "R11",
           "R14"
         ],
-        "independent_basis": "actual locator exists but its node value is null and no targets binding exists. Report both the actual invalid-value pointer and absent selection binding. Do not create retained source/state record for the invalid value."
+        "independent_basis": "actual locatorは存在するがnode値はnullであり、targets bindingもない。actual不正値位置と選択binding不足の両pointerを返し、不正値からretained source/state recordを作らない。"
       },
-      "portfolio_input_canonical_sha256": "9be2f6b07c8d01a799eb8002baaee9316e6e296a358e025fb0b335fe969e7f47"
+      "portfolio_input_canonical_sha256": "9be2f6b07c8d01a799eb8002baaee9316e6e296a358e025fb0b335fe969e7f47",
+      "execution_state": "synthetic_document_comparison_only"
     }
   ]
 }
