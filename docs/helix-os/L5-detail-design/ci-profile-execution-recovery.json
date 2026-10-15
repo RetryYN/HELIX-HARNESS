@@ -1,6 +1,6 @@
 {
   "parent": "HELIXOS-L2-020",
-  "source_main": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+  "source_main": "e5f1a385b3c5094daa9dd20bf1b95a65d73e1193",
   "approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
   "approval_record": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
   "approved_whole_objects": [
@@ -200,8 +200,8 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
-      "whole_sha256": "1a7814e6016c464777a394ee41587aa4903de12887b77d8dc684ac5495499a8d"
+      "revision": "e5f1a385b3c5094daa9dd20bf1b95a65d73e1193",
+      "whole_sha256": "a08e1d0c8e82f5381765563182f96176580041a2e701d0b03c6c4878325eb13b"
     },
     {
       "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
@@ -215,8 +215,8 @@
     },
     {
       "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
-      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
-      "whole_sha256": "51bfe8577898ff0c867b85dbf809f21cb3b430038b71dc6a88e236506373a403"
+      "revision": "e5f1a385b3c5094daa9dd20bf1b95a65d73e1193",
+      "whole_sha256": "f3a724140d5e010940e7e6c52c4e0736f7bc20759aff6fbbe77b2f7acd1b068c"
     },
     {
       "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
@@ -232,6 +232,11 @@
       "path": "scaffold/verification-test-template-seed-20261001/README.md",
       "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
       "whole_sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+      "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+      "whole_sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
     }
   ],
   "parent_basic_source_pins": [
@@ -775,7 +780,17 @@
         "OS020-L8-ASSEMBLE-ENVIRONMENT-CONFLICT",
         "OS020-L8-ASSEMBLE-ORACLE-UNKNOWN",
         "OS020-L8-ASSEMBLE-MISSING-CHECK",
-        "OS020-L8-PREPARE-RUNNER-UNKNOWN"
+        "OS020-L8-PREPARE-RUNNER-UNKNOWN",
+        "OS020-SOURCE-BOUND-VALID-SELECTED-EXTRA",
+        "OS020-SOURCE-BOUND-HARNESS-NOT-SUPPLIED",
+        "OS020-SOURCE-BOUND-INVENTORY-NULL",
+        "OS020-SOURCE-BOUND-SELECTED-OUTSIDE-INVENTORY"
+      ],
+      "functions": [
+        "F02001",
+        "F02009",
+        "F02002",
+        "F02008"
       ]
     },
     {
@@ -1079,7 +1094,8 @@
         "source_ref": "Field<string>",
         "changed_targets": "Field<list<string>>",
         "obligations": "Field<list<string>>",
-        "items": "Field<list<CheckItem>>"
+        "items": "Field<list<CheckItem>>",
+        "source_bound": "Field<SourceBoundProfile>"
       }
     },
     {
@@ -1178,9 +1194,17 @@
         "operation_sources": "Field<OperationSources>",
         "result": "Field<ResultRecord>",
         "prior": "Field<PriorRecord>",
-        "revalidation_source_ref": "Field<string>"
+        "revalidation_source_ref": "Field<string>",
+        "plan_selection_source": "Field<PlanSelectionSource>",
+        "harness_selection_source": "Field<HarnessSelectionSource>",
+        "source_bound_selection": "Field<SourceBoundProfile>"
       },
-      "meaning": "HARNESS/OS/SEC/INFRAから供給される独立比較素材。actual値から欠落expectedを補完しない。fixture owner labelは実資格ではない。"
+      "meaning": "HARNESS/OS/SEC/INFRAから供給される独立比較素材。actual値から欠落expectedを補完しない。fixture owner labelは実資格ではない。",
+      "optional_fields": [
+        "plan_selection_source",
+        "harness_selection_source",
+        "source_bound_selection"
+      ]
     },
     {
       "name": "CIInput",
@@ -1301,6 +1325,8 @@
         "source_conflict",
         "phase_unresolved",
         "profile_items_unresolved",
+        "profile_required_obligation_missing",
+        "profile_obligation_inventory_conflict",
         "profile_item_set_conflict",
         "profile_obligation_set_conflict",
         "operation_condition_rejected",
@@ -1350,8 +1376,12 @@
       "kind": "record",
       "fields": {
         "selected_phase": "MaybePhase",
-        "findings": "list<FacetFinding>"
-      }
+        "findings": "list<FacetFinding>",
+        "source_selection_statuses": "Field<SelectionSourceStatuses>"
+      },
+      "optional_fields": [
+        "source_selection_statuses"
+      ]
     },
     {
       "name": "FacetAssessment",
@@ -1456,8 +1486,12 @@
         "actual_result_collected": "boolean",
         "actual_resume_executed": "boolean",
         "whole_ci_verified": "boolean",
-        "operation_effect": "string"
-      }
+        "operation_effect": "string",
+        "source_selection_statuses": "Field<SelectionSourceStatuses>"
+      },
+      "optional_fields": [
+        "source_selection_statuses"
+      ]
     },
     {
       "name": "SourceSupplyGap",
@@ -1470,6 +1504,201 @@
         "remaining": "string"
       },
       "meaning": "正式供給物の型付き不足。素材比較をunknown一色へ書換えるgateではなく、実資格未成立の独立軸。"
+    },
+    {
+      "name": "HarnessScope",
+      "kind": "record",
+      "fields": {
+        "project": "string",
+        "tenant": "string",
+        "environment": "string"
+      },
+      "meaning": "HARNESS source recordのscopeを3member全て保持する。OSのopaque scope tokenへ暗黙変換しない。"
+    },
+    {
+      "name": "HarnessSourceRef",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "string",
+        "scope": "HarnessScope",
+        "owner": "string"
+      },
+      "meaning": "HARNESS/OSの元Ref全memberを保持する論理値。owner文字列は実資格を示さない。"
+    },
+    {
+      "name": "HarnessDutySource",
+      "kind": "record",
+      "fields": {
+        "ref": "HarnessSourceRef",
+        "requirement_ref": "HarnessSourceRef",
+        "artifact_ref": "HarnessSourceRef",
+        "kind": "string",
+        "input_ref": "HarnessSourceRef",
+        "oracle_ref": "HarnessSourceRef",
+        "disposition": "string",
+        "condition": "RawValue",
+        "backflow_owner": "string",
+        "source_body": "RawValue"
+      },
+      "meaning": "検証義務の元record。IDだけでなくsource/revision/scope/ownerを保持する。"
+    },
+    {
+      "name": "ScopeBindingWitness",
+      "kind": "record",
+      "fields": {
+        "os_requirement_revision": "string",
+        "os_scope_token": "string",
+        "harness_scope": "HarnessScope",
+        "plan_ref": "string",
+        "os_ticket_graph_ref": "string",
+        "harness_subject_binding": "HarnessSourceRef",
+        "harness_ticket_ref": "HarnessSourceRef",
+        "os_phase": "string",
+        "harness_phase": "string",
+        "mapping_owner": "string",
+        "mapping_statement": "string"
+      },
+      "meaning": "OS側のproject/requirement revision/scope token/phase/plan Refと、HARNESS側のsubject/ticket Ref/phaseを、各々の出所・完全値を保った限定fixtureの明示対応として保持する。OS revision値とHARNESS revision値を同一文字列へ正規化しない。"
+    },
+    {
+      "name": "HarnessProfileSource",
+      "kind": "record",
+      "fields": {
+        "subject_binding": "HarnessSourceRef",
+        "f01_required_refs": "list<string>",
+        "f01_conditional_refs": "list<string>",
+        "f01_unfulfilled_conditional_refs": "list<string>",
+        "f03_pre_pr_required_refs": "list<string>",
+        "f03_selected_refs": "list<string>",
+        "f03_omitted_refs": "list<string>",
+        "f03_unrecovered_refs": "list<string>",
+        "f03_recovered_refs": "list<string>",
+        "f01_ticket_ref": "HarnessSourceRef",
+        "f01_contract_ref": "HarnessSourceRef",
+        "f03_ticket_ref": "HarnessSourceRef",
+        "f01_duties": "list<HarnessDutySource>",
+        "f03_inventory": "list<HarnessDutySource>",
+        "source_case_pointers": "list<string>",
+        "source_case_ids": "list<string>",
+        "source_case_canonical_sha256": "list<string>",
+        "f03_phase": "string",
+        "f01_informational_refs": "list<string>",
+        "f01_na_refs": "list<string>",
+        "f01_unknown_refs": "list<string>",
+        "f01_unexecuted_required_refs": "list<string>",
+        "f01_completion": "string",
+        "f03_scope_outside_refs": "list<string>",
+        "f03_missing_selected_refs": "list<string>",
+        "f03_merge_material": "string",
+        "f03_release_port_material": "string",
+        "f03_postmerge_full_default": "boolean",
+        "f03_nightly_default": "boolean"
+      },
+      "meaning": "HARNESS F01全義務とF03 pre-PR必須/選択/省略/未回収を別々に保持する。selectedをF01全義務へ置換しない。"
+    },
+    {
+      "name": "SourceBoundProfile",
+      "kind": "record",
+      "fields": {
+        "status": "SourceBindingStatus",
+        "os_binding": "Binding",
+        "plan_ref": "Field<string>",
+        "harness_source_snapshot": "Field<HarnessSelectionSource>",
+        "profile_obligations": "Field<list<string>>",
+        "profile_items": "Field<list<CheckItem>>",
+        "selection_sources": "SelectionSourceStatuses",
+        "source_refs": "list<string>",
+        "unresolved_pointers": "list<string>",
+        "conflict_pointers": "list<string>",
+        "missing_minimum_refs": "list<string>",
+        "selected_outside_inventory_refs": "list<string>",
+        "qualification_state": "string",
+        "execution_state": "string"
+      },
+      "meaning": "F02009のsource比較結果とprojection material。OS plan/HARNESS原値、5軸status、未解決/相反pointerを保持し、実資格/実executionは成立させない。"
+    },
+    {
+      "name": "SourceBindingStatus",
+      "kind": "enum",
+      "values": [
+        "corresponding",
+        "source_unresolved",
+        "source_conflict"
+      ],
+      "meaning": "限定fixture比較の結果。correspondingは入力scope内容の一致だけで資格を意味しない。"
+    },
+    {
+      "name": "SelectionComparisonStatus",
+      "kind": "enum",
+      "values": [
+        "not_supplied",
+        "unknown",
+        "corresponding",
+        "conflict"
+      ],
+      "meaning": "選択/必要最小/Inventory比較の値域。not_suppliedとunknownは不一致なしや対応成功を意味しない。"
+    },
+    {
+      "name": "PlanSelectionBinding",
+      "kind": "record",
+      "fields": {
+        "project": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "ticket_graph_ref": "Field<string>"
+      },
+      "meaning": "OS内planの同一版/scope/ticket graph軸。HARNESS Ref軸との文字列同一性は要求しない。"
+    },
+    {
+      "name": "PlanSelectionSource",
+      "kind": "record",
+      "fields": {
+        "plan_ref": "Field<string>",
+        "binding": "Field<PlanSelectionBinding>",
+        "selected_obligation_refs": "Field<list<string>>",
+        "items": "Field<list<CheckItem>>"
+      },
+      "meaning": "OS計画の選択値をprofile/contextの値とは別sourceとして保持する。selected refsとitem recordを各々原値で持つ。"
+    },
+    {
+      "name": "HarnessF03SelectionSource",
+      "kind": "record",
+      "fields": {
+        "inventory_refs": "Field<list<string>>",
+        "pre_pr_required_refs": "Field<list<string>>",
+        "selected_refs": "Field<list<string>>",
+        "omitted_refs": "Field<list<string>>",
+        "recovered_refs": "Field<list<string>>",
+        "unrecovered_refs": "Field<list<string>>",
+        "omission_records": "Field<RawValue>"
+      },
+      "meaning": "L4に定めるcontext.harness_selection_source.f03のrecord。各memberのAbsent/null/empty/suppliedと原値を保ち、projectionから再生成しない。",
+      "optional_fields": [
+        "omission_records"
+      ]
+    },
+    {
+      "name": "HarnessSelectionSource",
+      "kind": "record",
+      "fields": {
+        "source_bundle": "Field<RawValue>",
+        "f01_full_required_refs": "Field<list<string>>",
+        "f03": "Field<HarnessF03SelectionSource>"
+      },
+      "meaning": "HARNESS F01全義務とF03の各原sourceをL4のnested形のまま保持する。F03 inventory/minimum/selected/omitted/recoveryを混同せず、source_bundleは資格化せず原packetを保持する。"
+    },
+    {
+      "name": "SelectionSourceStatuses",
+      "kind": "record",
+      "fields": {
+        "plan_selection_status": "SelectionComparisonStatus",
+        "profile_selection_status": "SelectionComparisonStatus",
+        "items_selection_status": "SelectionComparisonStatus",
+        "minimum_selection_status": "SelectionComparisonStatus",
+        "inventory_comparison_status": "SelectionComparisonStatus"
+      },
+      "meaning": "OS plan/profile/items、HARNESS minimum/inventoryの各関係を独立に返す。not_supplied/unknown/conflictをcorrespondingへ畳まない。"
     }
   ],
   "functions": [
@@ -1527,31 +1756,389 @@
           "context.inputs",
           "context.roles",
           "context.profile",
-          "context.required_obligations"
+          "context.required_obligations",
+          "profile.source_bound",
+          "context.profile.source_bound",
+          "context.source_bound_selection",
+          "context.source_bound_selection.selection_sources",
+          "context.source_bound_selection.unresolved_pointers",
+          "context.source_bound_selection.conflict_pointers"
         ]
       },
       "returns": [
         "selected_phase",
-        "findings"
+        "findings",
+        "source_selection_statuses"
       ],
       "return_derivation": {
         "selected_phase": "input.phaseがPhase閉集合に含まれればその値、他はnullとphase_unresolved。",
-        "findings": "ownership/profileの各比較からFacetFinding。code/facet/disposition/pointer/ownerをdiagnostic policyで保持。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
+        "findings": "source-boundがAbsentの歴史入力でも、actual/context profile.obligationsの相反、item不一致、L4で定義されたcontext.required_obligations不足を個別findingへ写す。source-boundがsuppliedならL4規則に対応するplan/profile/minimum/inventoryのstatusと原因pointerを診断表へ写し、L4にない比較はsource_selection_statuses内の状態だけに留めfindingを加えない。必要minimumが既知でactual選択に無いときはprofile_required_obligation_missingを/profile/obligationsへ返す。完全tupleを重複排除後、code→pointer→return_ownerの昇順に並べる。資格やexecution outcomeは返さない。共通13軸binding比較programとprofile-selection stageのfindingを同じMetadataAssessmentへ合成し、code/pointer/return_ownerで重複排除・昇順化した後、diagnostic_code_dispositionsに従ってfacet dispositionを付ける。",
+        "source_selection_statuses": "context.source_bound_selectionがsuppliedならF02009の5軸statusを値そのまま伝播。Absentならこの追加fieldをAbsentのまま保ち、歴史270素材の返却shapeを変えない。not_suppliedをcorrespondingへ変換しない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
-        "各input.contextは独立供給された原比較値。実qualification/選択tool/CI/runtime/全外側不正shapeの判定は供給されていない。"
+        "各input.contextは独立供給された原比較値。実qualification/選択tool/CI/runtime/全外側不正shapeの判定は供給されていない。",
+        "source-bound branchではF02009の全返却とcaller inputを同じsnapshotから供給する。F02009結果はprofile/context双方に同一値として明示接続し、片側のみ入力を成立扱いしない。"
       ],
       "algorithm": [
         "固定shapeのmetadata入力。phaseはassemble/prepare/collect/resumeのみ。不明phaseはphase_unresolvedを/phase→profile、selected_phase=null。binding13field/inputs6fieldをcontext同fieldへstring比較し、roles5fieldはactual→context、context→固定ownerの2比較をownershipへ行う。計画と運転は同OSの別責務で、意味review/受入/merge/Releaseとは別。",
         "string knownは非空文字列、set knownは重複なし非空文字列list（集合自体は空を許す）。比較の両側不明は原両pointer source_unresolved、片側不明は原pointerのみ、known両側相反はactual pointer source_conflict。setはsort比較。binding比較は13fieldをcontext.bindingに比較し、特記したpriorだけcontext.prior.bindingへ比較する。generic codeのfacetはその比較先で、fixed codeはdiagnostic_code_facets表を正にする。",
-        "全phaseでprofile.bindingをcontext.bindingへ、source_refをcontext.profile.source_refとcontext.inputs.plan_refの両方へ比較。changed_targets/obligationsはcontext.profile同fieldへset比較し、obligationsはcontext.required_obligationsへもset比較する。context.required_obligationsはHARNESS義務の独立素材で、OS運転が書き換えない。",
-        "profile.itemsとcontext.profile.itemsのid listが空/unknown/重複なら各原items root→profile_items_unresolved。両非空known一意id集合相反はactual items root→profile_item_set_conflict。各actual itemのknown idに同id expectedが一意なときだけid/obligation_ref/oracle_ref/environment_refをそのexpected recordとstring比較。oracle_ref/environment_refはcontext.binding同fieldへも比較。actual itemsのobligation_ref集合とactual profile.obligationsが両knownで差がある場合profile_obligation_set_conflictをactual items rootへ。全型/graph/owner-qualified selectorはL5/L8に残る。"
+        "全phaseでprofile.bindingをcontext.bindingへ、source_refをcontext.profile.source_refとcontext.inputs.plan_refの両方へ比較し、changed_targetsをcontext.profile同fieldへset比較する。actual profile.obligationsとcontext.profile.obligationsは常に完全集合比較する。さらにcontext.required_obligationsは必要最小集合としてactual profile.obligationsに包含されることを確認する。必要operandがAbsent/null/invalidならその原pointerをsource_unresolvedとして返し、context.required_obligations⊆actual profile.obligationsが既知で成立しない場合だけ不足findingを出す。既知の相反はそれぞれL4の具体findingへ写し、欠落したminimumはprofile_required_obligation_missingを/profile/obligationsへ返す。context.source_bound_selectionのAbsent/suppliedにかかわらず、actual/context profile比較とcontext.required_obligations⊆actual profile.obligationsのL4通常比較を毎回行う。HARNESS F03 minimum/inventoryとの比較は、L4 operandsに対応するstatusとして別に保持し、L4にない比較はfindingへ写さず、通常比較を置換しない。",
+        "actual profile.items と context.profile.items を id で対応づけ、各actual itemの id / obligation_ref / oracle_ref / environment_ref を同id expected itemと非空string比較する。 oracle_ref と environment_ref は context.binding の同名fieldとも比較する。known相反は各actual itemの /profile/items/{i}/{field} に source_conflict、比較operandのAbsent/null/不正shapeは各original pointerに source_unresolved を返す。 item id集合の相反と各item fieldの相反を同じdiagnosticへ潰さない。各obligation_refがknownなら重複を除いた集合をactual profile.obligationsと比較し、globalでitem obligation_refがunknownならそのitem pointerだけを返し義務集合比較を省略する。",
+        "source-bound selectionがsuppliedでも、L4の通常profile/item比較は同じ入力から評価する。F02009由来のL4対応statusは独立portの結果としてsource_selection_statusesへ渡し、通常comparisonのfindingを置換しない。context.required_obligationsは必要最小集合でありactual profile.obligationsへの包含を検査する。",
+        "source-bound branchではplan sourceとcontext.profileの宣言済みbinding/plan_ref/selected集合を比較し、通常profile/item比較は前項のL4規則で実行する。F02009はHARNESS F03 minimum/inventoryをL4 operandsと照合する。context.required_obligationsはactual profile.obligationsの部分集合、actual profile.obligationsはHARNESS F03 inventory_refsの部分集合として独立statusを保持する。HARNESS F03 minimumとactual selectedの包含状態はminimum_selection_statusだけへ反映し、L4 findingを追加しない。",
+        "HARNESS F01全required、F03 minimum/selected/omitted/recovered/unrecoveredは異なるsource軸として原値保持し、相互生成・置換しない。F03 selected/omittedの値だけからOS選択を補完しない。",
+        "F02009の比較statusとpointerを追加source軸としてMetadataAssessmentへ伝える。HARNESS source port全体がAbsentならF03の追加比較findingを加えず、source_selection_statusesでnot_suppliedを返す。source recordの明示null/不正memberはunknownで保持する。L4で区別された診断codeをsource_conflictへ一括置換しない。"
       ],
       "postconditions": [
-        "実作用はnone。素材対応と実CI/結果回収/再開/上流判断を区別する。"
+        "実作用はnone。素材対応と実CI/結果回収/再開/上流判断を区別する。",
+        "L4の選択/最低集合/Inventory statusを各々保持する。HARNESS F03 selected/omittedはOS plan selectedやprofile.obligationsへ置き換えない。"
       ],
-      "effects": "none"
+      "effects": "none",
+      "profile_selection_stage_program": {
+        "id": "F02002-PROFILE-SELECTION-STAGE-1",
+        "kind": "declarative_profile_comparison_program",
+        "input_mapping": {
+          "actual_profile": "/profile",
+          "context": "/context",
+          "context_profile": "/context/profile",
+          "plan_source": "/context/plan_selection_source",
+          "harness_source": "/harness_f03",
+          "required_obligations": "/context/required_obligations",
+          "f01_full_required_refs": "/harness_f01_full_required_refs",
+          "harness_source_presence": "/context/harness_selection_source"
+        },
+        "domains": {
+          "known_reference": "空でないJSON文字列",
+          "known_set": "重複のない文字列配列。空配列は既知の空集合として扱う。",
+          "known_item": "id、obligation_ref、oracle_ref、environment_refがそれぞれ空でない文字列であり、idが一意なrecord"
+        },
+        "comparison_rules": [
+          {
+            "id": "plan_ref",
+            "operator": "string_equal",
+            "left": "/context/plan_selection_source/plan_ref",
+            "right": "/context/profile/source_ref",
+            "status": "plan_selection_state",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "conflict_pointer": "/context/profile/source_ref"
+          },
+          {
+            "id": "plan_binding",
+            "operator": "string_equal_each",
+            "left_prefix": "/context/plan_selection_source/binding",
+            "right_prefix": "/context/profile/binding",
+            "fields": [
+              "project",
+              "requirement_revision",
+              "scope",
+              "ticket_graph_ref"
+            ],
+            "status": "plan_selection_state",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "conflict_pointer_prefix": "/context/profile/binding"
+          },
+          {
+            "id": "plan_selected_vs_profile",
+            "operator": "set_equal",
+            "left": "/context/plan_selection_source/selected_obligation_refs",
+            "right": "/context/profile/obligations",
+            "status": "profile_selection_state",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "conflict_pointer": "/context/profile/obligations"
+          },
+          {
+            "id": "actual_vs_context_obligations",
+            "operator": "set_equal",
+            "left": "/profile/obligations",
+            "right": "/context/profile/obligations",
+            "status": "profile_selection_state",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "conflict_pointer": "/profile/obligations"
+          },
+          {
+            "id": "plan_items_vs_context_items",
+            "operator": "items_by_unique_id_equal",
+            "left": "/context/plan_selection_source/items",
+            "right": "/context/profile/items",
+            "fields": [
+              "id",
+              "obligation_ref",
+              "oracle_ref",
+              "environment_ref"
+            ],
+            "status": "items_selection_state",
+            "unknown_code": "profile_items_unresolved",
+            "outcome": "status_only",
+            "meaning_ja": "L4にない計画itemsとの関係はitems_selection_statusに限り保持し、F02002 findingを追加しない。"
+          },
+          {
+            "id": "actual_items_vs_context_items",
+            "operator": "items_by_unique_id_equal",
+            "left": "/profile/items",
+            "right": "/context/profile/items",
+            "fields": [
+              "id",
+              "obligation_ref",
+              "oracle_ref",
+              "environment_ref"
+            ],
+            "status": "items_selection_state",
+            "unknown_code": "profile_items_unresolved",
+            "conflict_code": "profile_item_set_conflict",
+            "conflict_pointer": "/profile/items",
+            "key_field": "id",
+            "member_field_comparison": {
+              "operator": "nonempty_string_equal_each",
+              "fields": [
+                "obligation_ref",
+                "oracle_ref",
+                "environment_ref"
+              ],
+              "left_pointer_template": "/profile/items/{left_index}/{field}",
+              "right_pointer_template": "/context/profile/items/{right_index}/{field}",
+              "unknown_code": "source_unresolved",
+              "conflict_code": "source_conflict",
+              "conflict_pointer_side": "left",
+              "unknown_pointer_sides": [
+                "left",
+                "right"
+              ]
+            },
+            "unknown_pointer_sides": [
+              "left",
+              "right"
+            ],
+            "member_matching": "一意な非空idによる対応付け。id集合相反は既存conflict_codeへ返すが、idが両側にある行は集合相反があっても個別fieldを比較する。"
+          },
+          {
+            "id": "item_binding_axes",
+            "operator": "item_field_equals_binding",
+            "items": "/profile/items",
+            "binding": "/context/binding",
+            "fields": [
+              "oracle_ref",
+              "environment_ref"
+            ],
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "pointer_template": "/profile/items/{index}/{field}",
+            "status": "items_selection_state",
+            "binding_pointer_template": "/context/binding/{field}",
+            "conflict_pointer_side": "item",
+            "unknown_pointer_sides": [
+              "item",
+              "binding"
+            ]
+          },
+          {
+            "id": "item_obligations_vs_profile",
+            "operator": "unique_projected_set_equal",
+            "items": "/profile/items",
+            "item_field": "obligation_ref",
+            "right": "/profile/obligations",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "profile_obligation_set_conflict",
+            "conflict_pointer": "/profile/items",
+            "status": "items_selection_state",
+            "unknown_pointer_template": "/profile/items/{index}/{item_field}",
+            "partial_unknown_pointer": "/profile/items"
+          },
+          {
+            "id": "required_minimum_vs_actual",
+            "operator": "set_subset",
+            "left": "/context/required_obligations",
+            "right": "/profile/obligations",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "profile_required_obligation_missing",
+            "conflict_pointer": "/profile/obligations",
+            "status": "profile_selection_state"
+          },
+          {
+            "id": "harness_minimum_vs_context_minimum",
+            "operator": "set_equal",
+            "left": "/context/harness_selection_source/f03/pre_pr_required_refs",
+            "right": "/context/required_obligations",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "source_conflict",
+            "conflict_pointer": "/context/required_obligations",
+            "status": "minimum_selection_status"
+          },
+          {
+            "id": "harness_minimum_vs_os_selected",
+            "operator": "set_subset",
+            "left": "/context/harness_selection_source/f03/pre_pr_required_refs",
+            "right": "/profile/obligations",
+            "status": "minimum_selection_status",
+            "outcome": "status_only",
+            "meaning_ja": "HARNESS F03 minimumとOS selectedの包含関係はminimum_selection_statusへだけ反映し、L4のcontext.required_obligations対actual profile.obligations不足findingを重複生成しない。"
+          },
+          {
+            "id": "os_selected_vs_harness_inventory",
+            "operator": "set_subset",
+            "left": "/profile/obligations",
+            "right": "/context/harness_selection_source/f03/inventory_refs",
+            "unknown_code": "source_unresolved",
+            "conflict_code": "profile_obligation_inventory_conflict",
+            "conflict_pointer": "/profile/obligations",
+            "status": "inventory_comparison_status"
+          }
+        ],
+        "status_precedence": [
+          "conflict",
+          "unknown",
+          "not_supplied",
+          "corresponding"
+        ],
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_owner": "ci-operation-owner",
+        "return_projection": {
+          "function_return_type": "MetadataAssessment",
+          "selected_phase": "/phase",
+          "findings": "facet集約後、finding_identityの組を重複排除し、finding_orderで整列する。",
+          "source_selection_statuses": "source-bound selectionが供給される場合はその値を保持し、それ以外はField Absentを返す。",
+          "profile_result": "unresolved_finding_codes以外のprofile findingがあればviolation、findingが残り全て未解決codeならunknown、findingが無ければcorresponding。",
+          "unresolved_finding_codes": [
+            "source_unresolved",
+            "profile_items_unresolved"
+          ]
+        },
+        "consumer_projection": {
+          "function": "F02008",
+          "argument": "metadata",
+          "reads": [
+            "selected_phase",
+            "findings",
+            "source_selection_statuses"
+          ],
+          "profile_facet": "findings on facet=profile: violation > unknown > corresponding",
+          "condition_when_other_facets_corresponding": "profile violation→ci_material_violation; profile unknown→ci_material_unknown; profile corresponding→ci_material_corresponding"
+        },
+        "limit_ja": "このstageは選択/義務/profile素材の比較だけを定義する。F02008の他facetは別の関数返却から受け取り、ここでは再計算しない。L9独立期待は照合にのみ使う。",
+        "global_input_adapter": {
+          "actual_profile": "/profile",
+          "context": "/context",
+          "harness_f03": "/context/harness_selection_source/f03",
+          "harness_f01_full_required_refs": "/context/harness_selection_source/f01_full_required_refs",
+          "phase": "/phase",
+          "note_ja": "L9 global fixtureからF02002内部stageへ同一raw memberを射影し、source absence/nullは元形で保持する。",
+          "item_member_field_comparison": "enabled"
+        },
+        "partial_probe_adapter": {
+          "actual_profile": "/profile",
+          "context": "/context",
+          "harness_f03": "/harness_f03",
+          "harness_f01_full_required_refs": "/harness_f01_full_required_refs",
+          "note_ja": "L9 profile probeが供給する部分recordをそのままstage inputへ射影する。存在しないmemberは追加しない。",
+          "item_member_field_comparison": "omitted_as_defined_by_L4_local_projection",
+          "item_unknown_pointer": "items_root"
+        },
+        "finding_code_semantics": {
+          "source_unresolved": "比較operandが未供給/null/型外であることをその原pointerに返す。",
+          "source_conflict": "既知のsource値が相反したことを比較先のL4 pointerに返す。",
+          "profile_items_unresolved": "item集合/識別が比較できないことを元items pointerに返す。",
+          "profile_item_set_conflict": "actual/context item id集合の相反。",
+          "profile_obligation_set_conflict": "item obligation projectionとprofile obligationsの相反。",
+          "profile_required_obligation_missing": "必要minimumが既知でactual選択に含まれない。",
+          "profile_obligation_inventory_conflict": "既知OS選択にHARNESS inventory外の義務がある。"
+        },
+        "finding_identity": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "item_comparison_evaluation_order": [
+          "全体F02002: actual_items_vs_context_itemsのid形状・一意性、id集合、共通idごとのmember_field_comparison、item_binding_axes、item_obligations_vs_profileの順に評価する。",
+          "L4局所profile-selection projection: item ID集合とobligation集合だけを評価し、member_field_comparison/item_binding_axesを適用しない。"
+        ],
+        "finding_projection": {
+          "rule": "L4でfinding code/pointerが定義された比較だけをfindingへ写す。status_only比較はfindingsへ写さない。"
+        },
+        "source_presence_rule": {
+          "source_field": "/context/harness_selection_source",
+          "absent": "F03の追加比較はnot_supplied statusに保ちfindingを作らない。必須性を歴史入力へ遡及しない。",
+          "supplied_or_null": "F03各operandのAbsent/null/invalidはL4どおり原operand pointerへsource_unresolvedを返す。",
+          "basis_pointer": "/diagnostic_contract/profile_selection_contract/findings/source_unresolved"
+        }
+      },
+      "common_binding_comparison_program": {
+        "id": "F02002-COMMON-BINDING-13-AXES-1",
+        "kind": "declared_pairwise_metadata_comparison",
+        "input_mapping": {
+          "actual_binding": "/binding",
+          "context_binding": "/context/binding",
+          "phase": "/phase"
+        },
+        "applicable_phases": [
+          "assemble",
+          "prepare",
+          "collect",
+          "resume"
+        ],
+        "fields": [
+          "project",
+          "requirement_revision",
+          "scope",
+          "ticket_graph_ref",
+          "head",
+          "base",
+          "pair_ref",
+          "oracle_ref",
+          "harness_version",
+          "environment_ref",
+          "runner_ref",
+          "run_ref",
+          "authority_ref"
+        ],
+        "value_domain": "非空JSON文字列を既知値とする。Absent/null/空文字列/非文字列は不明値として原operand位置を保持する。",
+        "equal_rule": "両側が既知でJSON文字列値が一致するときはfindingを追加しない。",
+        "unknown_rule": {
+          "when": "いずれかの側が既知値でない",
+          "code": "source_unresolved",
+          "pointer_each_unknown_operand": true
+        },
+        "conflict_rule": {
+          "when": "両側が既知で値が異なる",
+          "code": "source_conflict",
+          "pointer": "actual_binding_field"
+        },
+        "finding_projection": {
+          "facet": "profile",
+          "return_owner": "ci-operation-owner",
+          "order": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate_by": [
+            "code",
+            "pointer",
+            "return_owner"
+          ]
+        },
+        "source_basis": [
+          {
+            "document_id": "HELIXOS-L4-020-F01",
+            "pointer": "/diagnostic_contract/comparison_table/binding/fields"
+          },
+          {
+            "document_id": "HELIXOS-L4-020-F01",
+            "pointer": "/diagnostic_contract/algorithm/0"
+          },
+          {
+            "document_id": "HELIXOS-L4-020-F01",
+            "pointer": "/diagnostic_contract/algorithm/1"
+          }
+        ]
+      }
     },
     {
       "id": "F02003",
@@ -1754,7 +2341,8 @@
         ],
         "metadata": [
           "selected_phase",
-          "findings"
+          "findings",
+          "source_selection_statuses"
         ],
         "operation": [
           "findings"
@@ -1788,7 +2376,8 @@
         "actual_result_collected",
         "actual_resume_executed",
         "whole_ci_verified",
-        "operation_effect"
+        "operation_effect",
+        "source_selection_statuses"
       ],
       "return_derivation": {
         "condition": "全facetのviolation優先、次unknown、他対応。元3閉集合。",
@@ -1804,7 +2393,8 @@
         "actual_result_collected": "false",
         "actual_resume_executed": "false",
         "whole_ci_verified": "false",
-        "operation_effect": "none"
+        "operation_effect": "none",
+        "source_selection_statuses": "metadata.source_selection_statusesのField状態をそのままCIProposalへ伝播。AbsentはAbsent。not_suppliedをcorrespondingへ昇格しない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1812,10 +2402,117 @@
       ],
       "algorithm": [
         "facetはviolation優先、次unknown、それ以外corresponding。conditionは同じ優先でci_material_violation/ci_material_unknown/ci_material_correspondingの3値。findingはcode/pointer/return_ownerで一意化して同順序でsort、ownerはci-operation-owner。profile_materialはownership/profile全対応時だけ原profile、digestはfixture JSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseのSHA-256（正式codecでない）。collection_material_correspondingはcollect/resumeでownership/profile/operation/collection全対応、resume_material_correspondingはresumeでdecision_boundary以外全対応。その他はfalse。すべてactual flags=false、whole_ci_verified=false、operation_effect=none。assemble/prepareではoriginal_result_outcome=null。素材aggregate対応を実CI合格・実受入・実装Readyへしない。",
-        "facet状態は全中間FacetFindingから集約する。先に最終findingキーだけで重複排除すると複数facetへの不足伝播を落とすため、facet集約完了後にcode/pointer/ownerの一意化/sortを行う。"
+        "facet状態は全中間FacetFindingから集約する。先に最終findingキーだけで重複排除すると複数facetへの不足伝播を落とすため、facet集約完了後にcode/pointer/ownerの一意化/sortを行う。",
+        "source_selection_statusesはMetadataAssessmentからFieldごと同値でcopyする。未供給のFieldを空集合/対応へ置換しない。"
       ],
       "postconditions": [
-        "実作用はnone。素材対応と実CI/結果回収/再開/上流判断を区別する。"
+        "実作用はnone。素材対応と実CI/結果回収/再開/上流判断を区別する。",
+        "inventory comparison statusと他4軸statusはF02002からF02008へ元の区分で到達する。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F02009",
+      "name": "bind_harness_profile_to_os_plan",
+      "arguments": {
+        "caller": "CIInput"
+      },
+      "signature": "bind_harness_profile_to_os_plan(caller: CIInput) -> SourceBoundProfile",
+      "return_type": "SourceBoundProfile",
+      "reads": {
+        "caller": [
+          "phase",
+          "roles.plan",
+          "context.required_obligations",
+          "context.profile.obligations",
+          "context.profile.items",
+          "context.plan_selection_source",
+          "context.plan_selection_source.plan_ref",
+          "context.plan_selection_source.binding.project",
+          "context.plan_selection_source.binding.requirement_revision",
+          "context.plan_selection_source.binding.scope",
+          "context.plan_selection_source.binding.ticket_graph_ref",
+          "context.plan_selection_source.selected_obligation_refs",
+          "context.plan_selection_source.items",
+          "context.harness_selection_source",
+          "context.harness_selection_source.source_bundle",
+          "context.harness_selection_source.f01_full_required_refs",
+          "context.harness_selection_source.f03.inventory_refs",
+          "context.harness_selection_source.f03.pre_pr_required_refs",
+          "context.harness_selection_source.f03.selected_refs",
+          "context.harness_selection_source.f03.omitted_refs",
+          "context.harness_selection_source.f03.recovered_refs",
+          "context.harness_selection_source.f03.unrecovered_refs",
+          "context.profile.source_ref",
+          "context.profile.binding.project",
+          "context.profile.binding.requirement_revision",
+          "context.profile.binding.scope",
+          "context.profile.binding.ticket_graph_ref",
+          "binding.project",
+          "binding.requirement_revision",
+          "binding.scope",
+          "binding.ticket_graph_ref",
+          "binding.head",
+          "binding.base",
+          "binding.pair_ref",
+          "binding.oracle_ref",
+          "binding.harness_version",
+          "binding.environment_ref",
+          "binding.runner_ref",
+          "binding.run_ref",
+          "binding.authority_ref"
+        ]
+      },
+      "returns": [
+        "status",
+        "os_binding",
+        "plan_ref",
+        "harness_source_snapshot",
+        "profile_obligations",
+        "profile_items",
+        "selection_sources",
+        "source_refs",
+        "unresolved_pointers",
+        "conflict_pointers",
+        "missing_minimum_refs",
+        "selected_outside_inventory_refs",
+        "qualification_state",
+        "execution_state"
+      ],
+      "return_derivation": {
+        "plan_ref": "context.plan_selection_source.plan_refのFieldをraw presence/値のまま返す。Absent/null/不正値をprofileから補わない。",
+        "harness_source_snapshot": "context.harness_selection_source全体を原nested形のまま保持する。f01_full_required_refsとf03のinventory/minimum/selected/omitted/recovered/unrecovered/omission_recordsは別memberとして値とField状態を保つ。",
+        "profile_obligations": "OS計画sourceのselected_obligation_refs Fieldを原presence/値/順序で返す。最低集合やactual profile.obligationsから補完しない。",
+        "profile_items": "OS計画sourceのitems Fieldを原presence/値/順序で返す。actual/context profile itemsやHARNESS inventoryから生成しない。",
+        "selection_sources": "5つの関係を別々に計算する。plan statusはplan sourceとcontext.profileのplan_ref/binding軸、profile statusはplan選択集合とcontext.profile.obligations、items statusはplan itemsとcontext.profile.items（このrelationはstatus-only）、minimumはHARNESS F03 minimumとcontext.required_obligationsおよびL4のminimum⊆actual profile.obligations、inventoryはactual profile.obligations⊆HARNESS inventory。actual対contextの通常profile/item比較はF02002がL4どおり行い、このstatusで置き換えない。",
+        "source_refs": "nested context.harness_selection_source.f03.inventory_refsがsupplied listの場合に限り、文字列IDを配列順で返す。Duty recordへの変換やrecord memberの合成は行わない。",
+        "unresolved_pointers": "供給済みsourceのunknown member原因pointerだけを比較順・Field宣言順で返す。source port全体がAbsentならnot_supplied statusで示し、unknown pointerを追加しない。明示null/不正memberはunknownで原pointerを保持する。",
+        "conflict_pointers": "既知相反の入力側pointerを該当比較規則が指定する順で保持する。",
+        "missing_minimum_refs": "HARNESS minimumとactual input profile.obligationsがknownなら、minimumからprofile.obligationsを差し引きUnicode codepoint昇順listを返す。不明なら空listでなくstatus/unresolved pointerに不明を保持し、差分は生成しない。",
+        "selected_outside_inventory_refs": "actual profile.obligationsとHARNESS F03 inventory_refsが比較可能な場合、actual profile.obligationsからinventoryを差し引いたUnicode codepoint昇順listを返す。不明なら空listを返しstatusとunresolved_pointersで不明を保持する。",
+        "qualification_state": "not_established固定。",
+        "execution_state": "not_executed固定。",
+        "status": "5 status軸にconflictがあればsource_conflict、conflictがなくunknown/not_suppliedがあればsource_unresolved、全軸correspondingの場合だけcorresponding。これは比較要約であり資格ではない。",
+        "os_binding": "caller.bindingの13memberを原値のまま返す。plan sourceとの比較に使用するbindingとは独立の転送値である。"
+      },
+      "preconditions": [
+        "callerはF02001が原rawから投影した同じsnapshotのCIInput。context内のOS plan source/HARNESS selection sourceは独立portであり、actual profile/context profileや相互から生成しない。",
+        "OS plan sourceが供給される場合、plan_ref/binding/selected refs/itemsのpresenceとordered raw valuesを個別に保持する。Harness sourceが供給される場合、F01 full requiredとF03 inventory/minimum/selected/omitted/recoveryを別rootで保持する。",
+        "OS/HARNESSの元Ref・版・scope値は別版空間として保持。fixture ownerラベルは実資格ではない。実resolver/実CI/実認可は未成立。"
+      ],
+      "algorithm": [
+        "F02001.fieldsを同一snapshotのcallerとして受ける。plan_selection_sourceとharness_selection_sourceはcontextの独立portから読む。HARNESS sourceは {f01_full_required_refs, f03:{inventory_refs, pre_pr_required_refs, selected_refs, omitted_refs, recovered_refs, unrecovered_refs, omission_records}} の原nested shapeを保持する。source_bundleには元packetをRawValueで保持し、F03 inventory_refsはL4どおりstring ID集合として分離する。",
+        "source record全体がField tag=absentの場合だけnot_suppliedとする。recordが明示nullならsourceは供給済みだが内容unknown。各memberのAbsent/null/不正shapeは当該比較だけunknownとして原pointerを保存し、他のsourceやactual profileから補完しない。source port全体がAbsentなら各軸をnot_suppliedとし、unresolved_pointersへsource rootを追加しない。",
+        "OS plan sourceがsuppliedなら、plan_ref/bindingの4軸/selected refsをcontext.profileの対応sourceへ比較する。known mismatchはsource_conflict、必要operandのAbsent/null/不正shapeは原pointer source_unresolved。actual profile対context.profileの通常比較はF02002のL4規則が担い、F02009はその比較を置換しない。",
+        "HARNESS F03 pre_pr_required_refsをcontext.required_obligationsへ集合比較し、minimum⊆actual profile.obligationsを検査する。knownな不一致はminimum status conflict、minimumに不足があればmissing_minimum_refsへUnicode codepoint昇順で返す。unknown operand時はunknownとし差分値を作らない。",
+        "actual profile.obligations⊆HARNESS F03 inventory_refsを比較する。known範囲外はinventory_comparison_status=conflictとしselected_outside_inventory_refsへactual profile.obligationsの差分を保持する。minimum比較の右operandもactual profile.obligationsとし、inventoryとは別比較である。",
+        "F03 inventory_refsが供給された場合、文字列IDを元の配列順のままsource_refsへ写す。重複除去や資格の推定をしない。",
+        "返却harness_source_snapshotはHARNESS sourceのnested record全体をField境界ごと無加工copyする。source_refs/unresolved_pointers/conflict_pointers/delta/statusを独立に作り、source未供給を空集合や対応成功へ置換しない。qualification_state=not_established、execution_state=not_executed。"
+      ],
+      "postconditions": [
+        "返却はsource-bound profile proposalと5軸status。原HARNESS F01/F03とOS plan source値を別々に保持し、selected extras/minimum/omittedを相互置換しない。",
+        "inventory status not_supplied/unknown/corresponding/conflictはconsumerまでField/valueで伝播し、未供給を照合成功にしない。",
+        "qualification_state=not_established、execution_state=not_executed、effects=none。"
       ],
       "effects": "none"
     }
@@ -1861,8 +2558,8 @@
     "algorithm": [
       "固定shapeのmetadata入力。phaseはassemble/prepare/collect/resumeのみ。不明phaseはphase_unresolvedを/phase→profile、selected_phase=null。binding13field/inputs6fieldをcontext同fieldへstring比較し、roles5fieldはactual→context、context→固定ownerの2比較をownershipへ行う。計画と運転は同OSの別責務で、意味review/受入/merge/Releaseとは別。",
       "string knownは非空文字列、set knownは重複なし非空文字列list（集合自体は空を許す）。比較の両側不明は原両pointer source_unresolved、片側不明は原pointerのみ、known両側相反はactual pointer source_conflict。setはsort比較。binding比較は13fieldをcontext.bindingに比較し、特記したpriorだけcontext.prior.bindingへ比較する。generic codeのfacetはその比較先で、fixed codeはdiagnostic_code_facets表を正にする。",
-      "全phaseでprofile.bindingをcontext.bindingへ、source_refをcontext.profile.source_refとcontext.inputs.plan_refの両方へ比較。changed_targets/obligationsはcontext.profile同fieldへset比較し、obligationsはcontext.required_obligationsへもset比較する。context.required_obligationsはHARNESS義務の独立素材で、OS運転が書き換えない。",
-      "profile.itemsとcontext.profile.itemsのid listが空/unknown/重複なら各原items root→profile_items_unresolved。両非空known一意id集合相反はactual items root→profile_item_set_conflict。各actual itemのknown idに同id expectedが一意なときだけid/obligation_ref/oracle_ref/environment_refをそのexpected recordとstring比較。oracle_ref/environment_refはcontext.binding同fieldへも比較。actual itemsのobligation_ref集合とactual profile.obligationsが両knownで差がある場合profile_obligation_set_conflictをactual items rootへ。全型/graph/owner-qualified selectorはL5/L8に残る。",
+      "全phaseでprofile.bindingをcontext.bindingへ、source_refをcontext.profile.source_refとcontext.inputs.plan_refの両方へ比較。changed_targetsはcontext.profile同fieldへset比較。profile.obligationsはOS計画が選択した現在phaseの実行集合であり、context.profile.obligations（独立なOS計画投影）へset完全一致比較する。context.required_obligationsはHARNESS sourceから独立に導いた当該phase/riskの必要最小集合で、profile.obligationsとの完全一致は要求せず、必要最小集合⊆選択集合だけを検査する。F01全required義務とF03 selected/omitted/recovered/unrecovered集合は元sourceの別軸として保持し、F01全義務を現在profile最小集合へ上書きしない。",
+      "profile.itemsとcontext.profile.itemsのid listが空/unknown/重複なら各原items root→profile_items_unresolved。両非空known一意id集合相反はactual items root→profile_item_set_conflict。各actual itemのknown idに同id expectedが一意なときだけid/obligation_ref/oracle_ref/environment_refをそのexpected recordとstring比較。oracle_ref/environment_refはcontext.binding同fieldへも比較。actual itemsのobligation_ref集合とactual profile.obligationsが両knownで差がある場合profile_obligation_set_conflictをactual items rootへ。profile.obligationsとcontext.required_obligationsが両knownで、最小集合に含まれるIDが選択集合にないときprofile_required_obligation_missingを/profile/obligationsへ記録し、phaseのprofileを未完にする。選択集合はcontext.profileの独立計画投影と完全一致するため、必要集合より広い選択を保持できる。context.plan_selection_sourceが供給されるprofile-selection source-bound素材では、OS plan_ref/ticket_graph_ref/project/requirement_revision/scopeから計画投影を独立に照合し、profileとcontext.profileの両方を同一に改変してもplan sourceとの既知相反をsource_conflict、不明operandはその原pointerのsource_unresolvedとして保持する。F01全required、F03 phase minimum、selected、omitted、recovered/unrecoveredの各原sourceは別の値として保持し、相互に生成/置換しない。全型/graph/owner-qualified selectorはL5/L8に残る。 context.harness_selection_sourceが供給された場合は、F03 minimumをcontext.required_obligationsへset比較し、profile.obligations⊆そのF03 inventoryを照合する。既知の範囲外義務は/profile/obligationsのprofile_obligation_inventory_conflict。不明operandはその原pointerのsource_unresolved。追加sourceが無い歴史素材から、そのsource-qualified成立は主張しない。 actual/expected itemのid一意性とobligation_refの集合を区別する。各obligation_refがknown非空文字列なら、同じ義務への複数check参照は重複を除いた集合へ射影してprofile.obligationsと比較する。参照重複自体をunknownやid重複へ縮約しない。globalでは各itemの参照がnull/不明なら、上記itemごとの比較が原pointer /profile/items/{i}/obligation_refへsource_unresolvedを返し、義務参照集合の比較は行わない。この場合に原items rootへのsource_unresolvedは追加しない。局所profile-selection投影は個別item比較を含まないため、その投影に限って原items rootへsource_unresolvedを返す。globalと局所は不明状態とcodeを共用するが、診断pointerは各評価単位の原operandに対応させる。",
       "prepare/collect/resumeだけsecurity/resource/isolationのsource_refをcontext.operation_sources同keyと、securityはcontext.binding.authority_ref、resource/isolationはcontext.inputsのresource_ref/isolation_refへ比較。state=revoked/denied/stale/failed/hostは原state operation_condition_rejected、current（security）/observed_material（resource）/isolated_material（isolation）以外はoperation_condition_unresolved。host_fallback=trueはhost_fallback_forbidden、false以外はhost_fallback_unresolved。素材対応から実権限・実資源・CI起動を生成しない。",
       "collect/resumeだけresult.bindingをcontext.bindingへ、source_refをcontext.result.source_refへ比較。outcomeは8閉集合。actual/expected閉集合外は原outcome位置result_outcome_unresolved、両known相反はactual outcome source_conflict。original_result_outcomeはactual閉集合値またはnull。actual not_executed/unobservedは原outcome result_unobservedでunknown保持。started/collectedの両側非booleanは原位置result_start_unresolved/result_collection_unresolved、両boolean相反だけactual field source_conflict。started=falseでsuccess/fail/interrupted、started=trueでdenied/skipped/not_executedはactual started result_start_conflict。六終端状態でcollected=falseはresult_uncollected、未実行/未観測をその条件で終端回収義務へ捏造しない。success_claim=trueでsuccessかつstarted=trueかつcollected=trueが満たされない場合false_success_claim、型非booleanはsuccess_claim_unresolved。結果区分は原値で、成功だけで元失敗を相殺しない。",
       "resumeだけprior.bindingをcontext.prior.binding、resume.bindingをcontext.bindingへ比較。priorとresumeのstop_reason_ref/return_ref/resume_condition_ref/failure_refはcontext.prior同fieldへ比較。prior/expected outcomeが閉集合外は原pointer prior_outcome_unresolved、known相反はactual prior/outcome prior_failure_rewritten。prior.outstandingはcontext.prior同fieldへset比較、resume.outstandingがset型不明はoutstanding_unresolved、known旧集合がknownresume集合に包含されない場合outstanding_obligation_lost。義務の実解消receiptや全履歴は未成立。",
@@ -1999,7 +2696,9 @@
       "revalidation_missing": "revalidation",
       "revalidation_unresolved": "revalidation",
       "decision_promotion_forbidden": "decision_boundary",
-      "decision_promotion_unresolved": "decision_boundary"
+      "decision_promotion_unresolved": "decision_boundary",
+      "profile_required_obligation_missing": "profile",
+      "profile_obligation_inventory_conflict": "profile"
     },
     "result_fields": [
       "condition",
@@ -2024,7 +2723,7 @@
     ],
     "return_owner": "ci-operation-owner",
     "fixed_shape_limit": "外側record/list shapeとknown key集合の固定fixture。正式全type/unknown outer record/key、実run custody、全check/依存graph/cycle/qualificationはL5/L8に残す。",
-    "case_input_integrity": "入力はcaseごとに独立copy。同じcanonical given groupの全expected_proposalを比較。作者整合は独立oracle/正式TDDの証拠でない。",
+    "case_input_integrity": "270歴史素材と追加global素材、局所probe全件でraw/reference+patchを照合。同一canonical givenの期待は同値、case IDや期待を演算入力にしない。著述時系列や実TDDの独立性証明ではない。",
     "primary_requirement_ref_semantics": "不成立facetからownership/decision_boundary:B01、profile:F01、operation/collection:F02、continuity/revalidation:F03へ直接concernを示す。positiveは選択phaseの主題。親全4要求traceと完了は別。",
     "diagnostic_code_dispositions": {
       "source_unresolved": "unknown",
@@ -2053,12 +2752,342 @@
       "revalidation_missing": "unknown",
       "revalidation_unresolved": "unknown",
       "decision_promotion_forbidden": "violation",
-      "decision_promotion_unresolved": "unknown"
+      "decision_promotion_unresolved": "unknown",
+      "profile_required_obligation_missing": "violation",
+      "profile_obligation_inventory_conflict": "violation"
     },
-    "diagnostic_disposition_semantics": "各codeはdiagnostic_code_dispositionsの固定区分を当該facetへ加える。code名や他caseのaggregateから区分を推測しない。source_conflictはknown両側の相反だけviolation、source_unresolvedは不足のunknown。result_uncollected単独はcollection unknownで実検収/成功を成立させず、result_start_conflictは起動事実と原結果のknown矛盾としてcollection violation。再照合不足はunknown、完了や他owner判定の誤生成はviolation。"
+    "diagnostic_disposition_semantics": "各codeはdiagnostic_code_dispositionsの固定区分を当該facetへ加える。code名や他caseのaggregateから区分を推測しない。source_conflictはknown両側の相反だけviolation、source_unresolvedは不足のunknown。result_uncollected単独はcollection unknownで実検収/成功を成立させず、result_start_conflictは起動事実と原結果のknown矛盾としてcollection violation。再照合不足はunknown、完了や他owner判定の誤生成はviolation。 profile_required_obligation_missing/profile_obligation_inventory_conflictはknownな最小義務欠落またはHARNESS inventory範囲外をprofile violationとして扱い、独立OS plan選択とのknown相反は共通source_conflictとして扱い、必要集合と選択集合を同一値に書換えない。source_unresolvedは既存入力で必要な選択/最小source、または供給されたsource-bound plan-selection recordの必須member不足をunknownとして保持する。optional record自体の不在を既存profile/context比較へ一律要求しない。",
+    "profile_selection_contract": {
+      "scope": "HELIXOS-L3-020-F01 と HELIXOS-L10-020-F01 の必要義務と選択profileの照合。実行・資格判定は含まない。",
+      "sets": {
+        "harness_f01_full_required": "HARNESS F01から供給される全必須義務集合。phase別profileへ縮約せず、元source参照と一緒に保全する。",
+        "harness_f03_minimum": "HARNESS F03のticket/risk/phase条件から独立に導く、現在profileで実行必須となる最小集合。現L4入力context.required_obligationsに対応する。",
+        "harness_f03_selected": "HARNESS F03 ticket計画sourceが選択した集合。selected/omittedはinventoryを重複なく分割する。",
+        "harness_f03_omitted": "現在profileで選択しないF03 inventory集合。未回収の値・理由・合流先を元sourceの値で保持する。",
+        "os_profile_selected": "OSが組み立てるprofile.obligationsとprofile.itemsのobligation_ref集合。OS計画による選択そのものを表す。"
+      },
+      "relations": [
+        "context.profile.obligations は、別途供給されたOS計画のselected obligationsと一致する。",
+        "profile.obligations = context.profile.obligations (集合の完全一致)",
+        "set(profile.items.obligation_ref) = profile.obligations (集合の完全一致)",
+        "harness_f03_minimum ⊆ profile.obligations",
+        "harness_f01_full_required はF03 omitted/recovery sourceとともに独立して保持し、現在のminimumまたはselectionへ書き換えない。",
+        "source-bound plan_selection_sourceを比較する局所projectionでは、recordが供給されrequired binding/selected refsがknownの場合に限りOS planとprofile投影を照合する。record自体を持たない既存L4素材へ、このsourceの必須性を遡及しない。",
+        "profile.obligations ⊆ harness_f03.inventory_refs (sourceが供給された比較)",
+        "context.required_obligations = harness_f03.pre_pr_required_refs (集合の完全一致)"
+      ],
+      "findings": {
+        "profile_required_obligation_missing": {
+          "condition": "minimumとselectedがともに既知で、minimumがselectedの部分集合でない。",
+          "facet": "profile",
+          "disposition": "violation",
+          "return_owner": "ci-operation-owner",
+          "meaning": "既知の必要最小義務を選択実行集合から落とした。選択集合を不足義務に合わせて縮めず、該当phase profileを未完として保持する。"
+        },
+        "source_unresolved": {
+          "condition": "全比較の片側/両側にAbsent/null/invalidがあれば、それぞれの原operand pointerへ返す。追加source record自体の不在から歴史素材へ必須性を遡及しない。",
+          "facet": "profile",
+          "disposition": "unknown",
+          "return_owner": "ci-operation-owner",
+          "meaning": "source-bound素材のrecordがあるが必要値が不足する場合、その原pathをunknownとして保持し、空集合/成功へ補完しない。追加sourceを供給しない既存context.profile比較は従来どおり評価し、このsource-bound比較を成立したとは扱わない。"
+        },
+        "source_conflict": {
+          "condition": "known両側のplan/profile/minimum source相反",
+          "facet": "profile",
+          "disposition": "violation",
+          "return_owner": "ci-operation-owner"
+        },
+        "profile_obligation_inventory_conflict": {
+          "condition": "known selectedがHARNESS F03 inventoryの部分集合でない",
+          "facet": "profile",
+          "disposition": "violation",
+          "return_owner": "ci-operation-owner"
+        }
+      },
+      "revision_scope_boundary": "OS requirement revision/project/scopeはOS plan/profile内の同一軸で比較する。HARNESS source revision/scopeはHARNESS側Ref同士の関係に保持し、異なる版体系の文字列同値を求めない。",
+      "input_fields": [
+        "HARNESS F01 full required source refs",
+        "HARNESS F03 inventory refs",
+        "HARNESS F03 phase/risk minimum refs",
+        "HARNESS F03 selected refs",
+        "HARNESS F03 omitted refs",
+        "OS plan selection source (plan_ref/project/requirement_revision/scope/ticket_graph_ref/selected item refs)",
+        "actual profile obligations/items",
+        "independently supplied context.profile obligations/items",
+        "context.required_obligations",
+        "source-bound projectionに限る optional context.plan_selection_source record。record内のrequired binding/selected refsのpresenceを保持する。",
+        "globalで明示供給する任意context.harness_selection_source: {f01_full_required_refs: 原集合, f03: inventory/pre_pr_required/selected/omitted/recovered/unrecovered/omission_records等の原record}。present null/invalidを不明として保持し、原270素材へ値を生成しない。"
+      ],
+      "intermediate_result_fields": [
+        "f01_full_required_refs (原集合を保持)",
+        "f03_minimum_refs (原集合を保持)",
+        "f03_selected_refs (原集合を保持)",
+        "f03_omitted_refs (原集合を保持)",
+        "profile_selected_refs",
+        "profile_item_obligation_refs",
+        "minimum_missing_refs",
+        "plan_selection_state: corresponding|unknown|conflict",
+        "profile_selection_state: corresponding|unknown|conflict",
+        "items_selection_state: corresponding|unknown|conflict",
+        "classification: corresponding|unknown|violation (source-bound局所profile facet)",
+        "profile_items_self_consistent: true|false|null (actual/expected item idとactual obligation集合の整合)",
+        "findings",
+        "harness_source_snapshot (harness_f03原recordの全member、回収/未回収・省略理由/合流先を無加工保持)"
+      ],
+      "projection_boundary": "局所profile-selection投影はprofile facetの有限比較を表し、実CI/資格ではない。局所26対照とglobal278素材（原270の全facet再計算ではない）を区別し、追加sourceのない原270素材へsourceを捏造しない。global_applicationが追加record供給時の比較と原pointerを定める。全型/codec/owner資格は詳細側の義務を保持。",
+      "selection_axis_relationship": {
+        "harness_f03_selected_and_omitted": "HARNESS ticket-planning sourceのselected/omittedは原値のまま保持する。sourceのticket/risk/phase/scopeとOS profile execution planの間にこの局所projectionで明示された同一source bindingはないため、HARNESS selectedとOS選択集合を同値と仮定しない。",
+        "harness_f03_minimum": "context.required_obligationsへ投影されたHARNESSのphase/risk minimumだけをOS選択集合への包含条件として使う。selected/omitted/recovered/unrecoveredをminimumへ置換しない。",
+        "os_plan_selection": "context.plan_selection_sourceはOS内の計画選択record。source-bound局所projectionで同recordが供給された場合、context.profileとactual profileへのbinding/selected集合を照合する。HARNESS source revision/scopeとOS revision/scopeの文字列同一性を要求しない。",
+        "scope_limit": "この関係は明示source値がある局所比較であり、実ticket/plan identityやphase/scope間の資格を生成しない。"
+      },
+      "source_bound_projection_result": {
+        "applies_when": "局所profile-selection projectionにcontext.plan_selection_source recordが明示して供給された場合に適用する。recordがabsentの歴史的L4入力では既存context.profile比較だけを評価し、このprojectionをsource-qualifiedとは扱わない。",
+        "outputs": {
+          "classification": "corresponding|unknown|violation。finding dispositionsから算出する。violationが1件以上ならviolation、そうでなくunknownが1件以上ならunknown、それ以外はcorresponding。profile-selection局所facetだけを表す。",
+          "f01_full_required_refs": "HARNESS F01入力listの原順と値をそのまま保持する。",
+          "f03_minimum_refs": "HARNESS F03 pre_pr_required_refsの原順と値を保持する。",
+          "f03_selected_refs": "HARNESS F03 selected_refsの原順と値を保持する。",
+          "f03_omitted_refs": "HARNESS F03 omitted_refsの原順と値を保持する。",
+          "profile_selected_refs": "actual profile.obligationsの原順と値を保持する。",
+          "profile_item_obligation_refs": "actual profile.items[*].obligation_refの原順と値を保持する。",
+          "minimum_missing_refs": "minimumとactual selectedがともにknownなら、minimumからactual selectedを差し引き、Unicode codepoint昇順のlistを返す。いずれかのoperandがunknownならnullを返す。",
+          "plan_selection_state": "source recordとcontext.profile投影の計画軸を比較する。必要値がすべてknownで一致すればcorresponding、knownな相反が1つ以上あればconflict、相反がなく必要値が不足すればunknown。",
+          "profile_selection_state": "plan_selection_stateとactual対context.profileのselected集合比較を合成する。conflictを優先し、次にunknown、どちらもなければcorrespondingを返す。",
+          "items_selection_state": "actual/expected item id listの比較と、actual item義務集合対profile.obligationsの比較をconflict→unknown→correspondingの順で合成する。",
+          "profile_items_self_consistent": "items_selection_stateがcorrespondingならtrue、conflictならfalse、unknownならnull。",
+          "findings": "code/pointer/return_ownerの完全同値tupleだけ除重複し、そのtupleのUnicode codepoint昇順で返す。",
+          "harness_source_snapshot": "harness_f03原record全体の無加工copy。recovered/unrecoveredとomission理由/合流先、追加memberも保持し、投影から再生成しない。"
+        },
+        "required_source_members": [
+          "context.plan_selection_source.binding.project",
+          "context.plan_selection_source.binding.requirement_revision",
+          "context.plan_selection_source.binding.scope",
+          "context.plan_selection_source.binding.ticket_graph_ref",
+          "context.plan_selection_source.plan_ref",
+          "context.plan_selection_source.selected_obligation_refs"
+        ],
+        "comparisons_in_order": [
+          {
+            "left": "/context/plan_selection_source/binding/project",
+            "right": "/context/profile/binding/project",
+            "mode": "nonempty_string_equal"
+          },
+          {
+            "left": "/context/plan_selection_source/binding/requirement_revision",
+            "right": "/context/profile/binding/requirement_revision",
+            "mode": "nonempty_string_equal"
+          },
+          {
+            "left": "/context/plan_selection_source/binding/scope",
+            "right": "/context/profile/binding/scope",
+            "mode": "nonempty_string_equal"
+          },
+          {
+            "left": "/context/plan_selection_source/binding/ticket_graph_ref",
+            "right": "/context/profile/binding/ticket_graph_ref",
+            "mode": "nonempty_string_equal"
+          },
+          {
+            "left": "/context/plan_selection_source/plan_ref",
+            "right": "/context/profile/source_ref",
+            "mode": "nonempty_string_equal"
+          },
+          {
+            "left": "/context/plan_selection_source/selected_obligation_refs",
+            "right": "/context/profile/obligations",
+            "mode": "unique_string_set_equal"
+          },
+          {
+            "left": "/profile/obligations",
+            "right": "/context/profile/obligations",
+            "mode": "unique_string_set_equal"
+          },
+          {
+            "left": "/profile/items/*/id",
+            "right": "/context/profile/items/*/id",
+            "mode": "unique_string_set_equal",
+            "unknown_path": "/profile/items",
+            "conflict_path": "/profile/items",
+            "finding_code": "profile_item_set_conflict"
+          },
+          {
+            "left": "/profile/items/*/obligation_ref",
+            "right": "/profile/obligations",
+            "mode": "unique_string_set_equal",
+            "unknown_path": "/profile/items",
+            "conflict_path": "/profile/items",
+            "finding_code": "profile_obligation_set_conflict"
+          },
+          {
+            "left": "/context/required_obligations",
+            "right": "/profile/obligations",
+            "mode": "unique_string_set_subset",
+            "missing_path": "/profile/obligations",
+            "finding_code": "profile_required_obligation_missing",
+            "return_owner": "ci-operation-owner"
+          },
+          {
+            "left": "/context/required_obligations",
+            "right": "/harness_f03/pre_pr_required_refs",
+            "mode": "unique_string_set_equal",
+            "finding_code": "source_conflict",
+            "conflict_path": "/context/required_obligations"
+          },
+          {
+            "left": "/profile/obligations",
+            "right": "/harness_f03/inventory_refs",
+            "mode": "unique_string_set_subset",
+            "finding_code": "profile_obligation_inventory_conflict",
+            "conflict_path": "/profile/obligations"
+          }
+        ],
+        "missing_semantics": "全比較の各operandにknown predicateを適用。不明operandごとにその原pointerへsource_unresolved。item id配列の空/null/異型/重複は原items rootへprofile_items_unresolved。相反が別にある場合もunknown所見を失わず、classificationはviolation優先、次unknown。",
+        "finding_order": [
+          "全比較を評価後、code/pointer/return_ownerで完全重複を除き同tuple昇順。"
+        ],
+        "owner_literal": "このprojection内の全findingのreturn_ownerはci-operation-owner。既存OS plan/operationの責務候補を指し、実owner資格を証明しない。",
+        "expected_status": "L9は規範と別に記録した有限期待。期待値/case IDを分岐に使わない。",
+        "finite_projection_rules": {
+          "required_source_pointers": [
+            "/context/plan_selection_source/binding/project",
+            "/context/plan_selection_source/binding/requirement_revision",
+            "/context/plan_selection_source/binding/scope",
+            "/context/plan_selection_source/binding/ticket_graph_ref",
+            "/context/plan_selection_source/plan_ref",
+            "/context/plan_selection_source/selected_obligation_refs"
+          ],
+          "plan_comparisons": [
+            {
+              "left": "/context/plan_selection_source/binding/project",
+              "right": "/context/profile/binding/project",
+              "mode": "nonempty_string_equal"
+            },
+            {
+              "left": "/context/plan_selection_source/binding/requirement_revision",
+              "right": "/context/profile/binding/requirement_revision",
+              "mode": "nonempty_string_equal"
+            },
+            {
+              "left": "/context/plan_selection_source/binding/scope",
+              "right": "/context/profile/binding/scope",
+              "mode": "nonempty_string_equal"
+            },
+            {
+              "left": "/context/plan_selection_source/binding/ticket_graph_ref",
+              "right": "/context/profile/binding/ticket_graph_ref",
+              "mode": "nonempty_string_equal"
+            },
+            {
+              "left": "/context/plan_selection_source/plan_ref",
+              "right": "/context/profile/source_ref",
+              "mode": "nonempty_string_equal"
+            },
+            {
+              "left": "/context/plan_selection_source/selected_obligation_refs",
+              "right": "/context/profile/obligations",
+              "mode": "unique_string_set_equal"
+            }
+          ],
+          "actual_profile_comparison": {
+            "left": "/profile/obligations",
+            "right": "/context/profile/obligations",
+            "mode": "unique_string_set_equal"
+          },
+          "actual_item_id_comparison": {
+            "left": "/profile/items/*/id",
+            "right": "/context/profile/items/*/id",
+            "mode": "unique_string_set_equal",
+            "unknown_path": "/profile/items",
+            "conflict_path": "/profile/items",
+            "finding_code": "profile_item_set_conflict"
+          },
+          "actual_item_obligation_comparison": {
+            "left": "/profile/items/*/obligation_ref",
+            "right": "/profile/obligations",
+            "mode": "unique_string_set_equal",
+            "unknown_path": "/profile/items",
+            "conflict_path": "/profile/items",
+            "finding_code": "profile_obligation_set_conflict"
+          },
+          "minimum_subset_comparison": {
+            "left": "/context/required_obligations",
+            "right": "/profile/obligations",
+            "mode": "unique_string_set_subset",
+            "missing_path": "/profile/obligations",
+            "finding_code": "profile_required_obligation_missing",
+            "return_owner": "ci-operation-owner"
+          },
+          "diagnostic_order": [
+            "plan_comparisons",
+            "actual_profile_comparison",
+            "actual_item_id_comparison",
+            "actual_item_obligation_comparison",
+            "minimum_subset_comparison",
+            "minimum_source_comparison",
+            "inventory_subset_comparison"
+          ],
+          "state_combination_priority": [
+            "conflict",
+            "unknown",
+            "corresponding"
+          ],
+          "classification_priority": [
+            "violation",
+            "unknown",
+            "corresponding"
+          ],
+          "return_owner": "ci-operation-owner",
+          "minimum_source_comparison": {
+            "left": "/context/required_obligations",
+            "right": "/harness_f03/pre_pr_required_refs",
+            "mode": "unique_string_set_equal",
+            "finding_code": "source_conflict",
+            "conflict_path": "/context/required_obligations"
+          },
+          "inventory_subset_comparison": {
+            "left": "/profile/obligations",
+            "right": "/harness_f03/inventory_refs",
+            "mode": "unique_string_set_subset",
+            "finding_code": "profile_obligation_inventory_conflict",
+            "conflict_path": "/profile/obligations"
+          },
+          "operand_rules": {
+            "nonempty_string_equal": "各operandが非空stringならknown。不明operandごとに原pointer source_unresolved。known相反はright pointer source_conflict。",
+            "unique_string_set_equal": "配列の全要素が非空stringかつ重複なしならknown（集合自体は空可）。不明operandごとに原pointer source_unresolved。actual/profile比較の相反pointerはleft、plan比較の相反はright。",
+            "items": "itemsは非空record配列で各idが非空stringかつ一意のときだけknown。未知側ごとにそのitems rootへprofile_items_unresolved。known id相反はactual items rootへprofile_item_set_conflict。",
+            "item_obligations": "item shapeがknownなら各obligation_ref非空stringの集合を比較する。参照自体の重複はsetへ射影するがid重複はunknown。item側不明は原items root、selected側不明は原selected path。相反はprofile_obligation_set_conflict。",
+            "subset": "両knownで不足要素があれば宣言code/pathへ。未知operandごとに原pointer source_unresolved。不足listはknown時だけsorted difference、他はnull。"
+          },
+          "finding_sort": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "diagnostic_order_meaning": "演算を適用する評価順であり、findingsの出力順ではない。出力はfinding_sortのtuple昇順。"
+        },
+        "diagnostic_code_scope": {
+          "shared_codes": "global/局所はsource_conflict/source_unresolved、item id相反はprofile_item_set_conflict、item義務対profile相反はprofile_obligation_set_conflictを共用する。",
+          "minimum": "不足はprofile_required_obligation_missing /profile/obligations。",
+          "inventory": "範囲外はprofile_obligation_inventory_conflict /profile/obligations。"
+        },
+        "global_application": {
+          "legacy_domain": "既存270metadata素材は追加recordがない場合、既存profile/contextとminimum包含を評価。追加HARNESS/計画source資格はこの素材から認定しない。",
+          "plan_record": "context.plan_selection_source memberが供給された場合、finite_projection_rules.plan_comparisonsを適用。source member不明はそのglobal原path source_unresolved、known相反は比較先原path source_conflict。recordがnull/異型なら/context/plan_selection_source source_unresolved。",
+          "harness_record": "context.harness_selection_source memberが供給された場合、f03.pre_pr_required_refsとcontext.required_obligationsのknown set完全一致、およびprofile.obligations⊆f03.inventory_refsを独立照合。相反は/context/required_obligations source_conflict、範囲外は/profile/obligations profile_obligation_inventory_conflict。不明operandは各global原pointer source_unresolved。record null/異型はその原root path。",
+          "raw_retention": "f01_full_required_refsとf03全recordは原sourceとして保持しselected/minimumへ縮約しない。HARNESS partition/recoveryの再判定は行わずqualificationも生成しない。",
+          "shared_diagnostics": "他のfacetへ所見を混ぜずprofile facetへ合成し、既定の違反優先/unknown次位、tuple昇順、owner ci-operation-ownerを使う。"
+        }
+      },
+      "normative_precedence": "同一candidateのdiagnostic_contractが規範。global/局所ともknown/unknown、finding語彙、owner literal、tuple昇順を共用し、finite_projection_rulesは局所profile-selection比較の適用表である。保持するだけのHARNESS原不変条件を、この局所評価器の成立判定に混ぜない。L9 fixture_contractは同値snapshotで、expected値に規範優先権はない。",
+      "upstream_invariants_preserved_only": [
+        "minimum⊆HARNESS selected、selected∩omitted=空、selected∪omitted=inventoryはHARNESS producerの原規則としてsource snapshotに保持する。OS局所projectionがこれらを再判定したとはしない。違反素材を対応済みHARNESS sourceと昇格させない。",
+        "recovered/unrecovered、omission_recordsの理由と合流先をharness_source_snapshotへ無加工保持。値を選択集合から逆算しない。"
+      ]
+    }
   },
   "representation": "同一OS020 logical field shapeはactual/expected carrierで明示共有する。raw bytes/body/digestとowner资格は別。Field情報を残し、comparisonでnull/absentをunknownへ分類しても原値へ戻れる。",
-  "design_limits": "typed素材と同facetの比較は具体化したが、unclosed_source_supplyのowner-qualified選択/実sourceの不足は解消していない。新gate/固定3段/性能閾値/実CI/scanner/署名/truststore/権限方式を足さない。",
+  "design_limits": "typed素材と同facetの比較は具体化したが、unclosed_source_supplyのowner-qualified選択/実sourceの不足は解消していない。新gate/固定3段/性能閾値/実CI/scanner/署名/truststore/権限方式を足さない。 既存F01/B01/F03責務のsourceに束縛した呼出し側投影を有限素材で具体化する。OS scope tokenの対応はcaller plan recordに明示された本文だけを比較し、実qualification/authority/operationを生成しない。",
   "failure_basis": [
     {
       "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
@@ -2102,5 +3131,77 @@
       },
       "limit": "原監査を照合材料として保持。実再発防止/全失敗閉包/新規operation gateを生成しない。"
     }
-  ]
+  ],
+  "source_bound_selection_rederivation": {
+    "admitted_l4_pointer": "/diagnostic_contract/profile_selection_contract",
+    "admitted_l9_pointer": "/profile_selection_probes",
+    "source_main": "e5f1a385b3c5094daa9dd20bf1b95a65d73e1193",
+    "relations_ref": [
+      "context.required_obligations ⊆ profile.obligations（minimum_subset_comparison）",
+      "context.required_obligations = HARNESS F03 pre_pr_required_refs（minimum_source_comparison）",
+      "profile.obligations ⊆ HARNESS F03 inventory_refs（inventory_subset_comparison）",
+      "OS plan selected_obligation_refs = context.profile.obligations（plan projection）",
+      "OS plan itemsとcontext.profile.itemsの照合はstatus-only。L4所見を追加しない。",
+      "profile.items obligation_ref集合 = profile.obligations"
+    ],
+    "not_equated": [
+      "harness_f01_full_required",
+      "harness_f03_minimum",
+      "harness_f03_selected",
+      "harness_f03_omitted/recovered/unrecovered",
+      "os_plan_selected"
+    ],
+    "status_domain": [
+      "not_supplied",
+      "unknown",
+      "corresponding",
+      "conflict"
+    ],
+    "consumer_chain": "F02001.fields→F02009(caller)→SourceBoundProfile→F02002 inputのprofile.source_bound/context.profile.source_bound/context.source_bound_selection→MetadataAssessment.source_selection_statuses→F02008.metadata→CIProposal.source_selection_statuses。minimumはcontext.required_obligations/ハーネスF03事前必須、selectedはOS plan/profile項目、inventory/omitted/recoveryはHARNESS F03であり、同一集合へ正規化しない。",
+    "qualification_boundary": "sourceの所属・値の比較から、実source資格、owner資格、CIの操作権限や実行成立を生成しない。",
+    "typed_call_binding": {
+      "f02001_to_f02009": {
+        "producer_return": "InputProjection.fields",
+        "consumer_argument": "F02009.caller",
+        "type": "CIInput",
+        "same_snapshot": "F02001戻りroot.fieldsとF02009.callerは同じCIInput値。plan/HARNESS独立source portsはそのcontext内から独立に渡す。"
+      },
+      "f02009_to_f02002": {
+        "producer_return": "SourceBoundProfile",
+        "copy_to": [
+          "CIInput.profile.source_bound",
+          "CIInput.context.profile.source_bound",
+          "CIInput.context.source_bound_selection"
+        ],
+        "presence": "各Fieldへ同一snapshotの同一返却値をsuppliedで接続する。F02002は3memberを読み、欠け/相反する接続を対応成功としない。",
+        "consumer_argument": "F02002.input"
+      },
+      "f02002_to_f02008": {
+        "producer_return": "MetadataAssessment",
+        "consumer_argument": "F02008.metadata",
+        "type": "MetadataAssessment"
+      },
+      "selection_status_to_proposal": {
+        "producer_return": "MetadataAssessment.source_selection_statuses",
+        "consumer_return": "CIProposal.source_selection_statuses",
+        "presence_and_values": "同値。Absentをnot_suppliedやcorrespondingへ置換しない。"
+      }
+    },
+    "source_status_domains": {
+      "comparison_axis": "SelectionComparisonStatus",
+      "values": [
+        "not_supplied",
+        "unknown",
+        "corresponding",
+        "conflict"
+      ],
+      "overall": "SourceBindingStatus",
+      "values_overall": [
+        "corresponding",
+        "source_unresolved",
+        "source_conflict"
+      ]
+    },
+    "operand_and_output_note_ja": "HARNESS F03 inventory_refsはL4のunique string set。F02009とF02002はL4のprofile.obligationsをinventory/minimumとの比較左辺に使う。plan selectedはcontext.profileとの計画projectionで別statusとして保持する。"
+  }
 }
