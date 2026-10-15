@@ -27807,7 +27807,7 @@
           }
         }
       },
-      "independent_expected_material": {
+      "baseline_expected_material": {
         "atom_results": [
           {
             "atom_id": "ATOM-P-1",
@@ -28358,7 +28358,7 @@
           }
         }
       },
-      "independent_expected_material": {
+      "baseline_expected_material": {
         "atom_results": [
           {
             "atom_id": "ATOM-P-1",
@@ -29100,7 +29100,7 @@
           }
         }
       },
-      "independent_expected_material": {
+      "baseline_expected_material": {
         "atom_results": [
           {
             "atom_id": "ATOM-P-1",
@@ -29852,7 +29852,7 @@
           }
         }
       },
-      "independent_expected_material": {
+      "baseline_expected_material": {
         "atom_results": [
           {
             "atom_id": "ATOM-P-1",
@@ -30508,15 +30508,3747 @@
     }
   ],
   "local_probe_count": 4,
-  "total_static_materials": 65,
+  "total_static_materials": 76,
   "completeness_probes": {
     "purpose": "L4の候補trace/元source欠落義務に対する局所反例。原L9 61 raw/wholeは変更せず、local_probesはpositive wholeから固定したJSON Patchと独立expectedで別管理する。",
     "count": 4,
     "dimensions": [
-      "empty source atom set",
-      "both-sided dangling atom reference",
-      "both-sided foreign source revision",
-      "duplicate submitted atom id"
+      "空のsource atom参照集合",
+      "両側のdangling atom参照",
+      "両側の外部source revision",
+      "重複した提出atom id"
     ]
-  }
+  },
+  "unobserved_branch_matrix": [
+    {
+      "branch": "content_conflictとmissingの集約優先",
+      "state": "candidate_source_bindingで両状態が併存する型内rawの独立wholeは未固定。F01構造候補の全7fieldとB01のnamed参照の各3fieldは両側record内でrequiredなので、その同一record比較にmissingとconflictが混在する型内入力はない。",
+      "scope": "型外へ型を広げた場合や複合bindingの優先変更を原61/既存4で全検出したとは主張しない。"
+    },
+    {
+      "branch": "candidate binding missingとunknown_unseparatedの同時発生",
+      "state": "単独状態のwholeは存在するが、同時優先順の独立wholeは未固定。"
+    },
+    {
+      "branch": "F02 separation_result条件項",
+      "state": "局所whole F02-SUBMITTED-SEPARATION-UNKNOWNで識別する。"
+    },
+    {
+      "branch": "B01 claimによるproduct_source_result上書き",
+      "state": "局所whole B01-CLAIM-ONLY-PRODUCT-MEANING-CHANGEで識別する。"
+    },
+    {
+      "branch": "F02の各条件の比較はfieldwiseであり結果全体の優先集約は行わない",
+      "state": "content_conflict/missingの優先入替というmutationはF02候補判定の全field対応条件を変えない。各結果fieldをwholeで検証する。"
+    }
+  ],
+  "additional_finite_probes": [
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_reuse_conditions/required_context",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_reuse_conditions/required_context",
+          "value": []
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "7377a0f6a878cd9081fc2797eb61cb32003c610148d16e736c8c8292cd0dfb9a",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "L4 /contracts/1/content_comparison/1の条件欠落。空集合は独立再利用条件の内容を供給しない。",
+      "case_id": "F02-BOTH-EMPTY-REQUIRED_CONTEXT",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": "compact single-task screenでは原条件未成立",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "6e10f472e1dc964d43cde1339142b2c4926009327a1f8837c284257ad7e683a5",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_conditions/required_context",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_conditions/required_context",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_reuse_conditions/counterexample",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_reuse_conditions/counterexample",
+          "value": ""
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "cc3b8f9d1ebdf34620a50089d0152369b599d87a7f50216ddc970acac809ee27",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "同規則の反例未観測。空文字は反例内容を供給しない。",
+      "case_id": "F02-BOTH-EMPTY-COUNTEREXAMPLE",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": "",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": "",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": "",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "c76406e93eee36ebc68b8631f90274b00f4b945bdcd4d2dcb331cfe7096212ed",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_conditions/counterexample",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_conditions/counterexample",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_reuse_conditions/limit",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_reuse_conditions/limit",
+          "value": ""
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "24792cf2bcbea6204dd0968c44506b8d6b264008226a8b743cd532673c46d084",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "L4 /contracts/1/output_meanings/0の限界を空文字が供給しない。",
+      "case_id": "F02-BOTH-EMPTY-LIMIT",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": "compact single-task screenでは原条件未成立",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "34664193642c28d10a0f51bb1d11e66dd0a44bbd762f3273474fa41f2b2b6f09",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_conditions/limit",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_conditions/limit",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_observations",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_observations",
+          "value": []
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[],\"original_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[],\"submitted_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "6d4593f1c9c981a2c59ff59fe8f120f29c12ed919d99806741050b701ca168eb",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "L4独立な再利用条件と原観測/反例を比較する義務。両観測配列が空であることの等値から、根拠観測を補完しない。",
+      "case_id": "F02-BOTH-EMPTY-OBSERVATIONS",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [],
+          "original_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [],
+          "submitted_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": "compact single-task screenでは原条件未成立",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [],
+        "submitted_observations": [],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "b80289b7d5257c59c085a31685657ff4cf4174e2d486c1375da42e2d8eacd965",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_observations",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_observations",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_observations",
+        "/submitted_observations",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_reuse_conditions/counterexample",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_reuse_conditions/counterexample",
+          "value": null
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":null,\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":null,\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "27ffe0069a684d802ef67f4cd2e3073604705b6572f450c68d7f685b69c16bfa",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "現F02 not_null guardでheldになるcontrol。nullは比較では同値でも候補保留。",
+      "case_id": "F02-BOTH-NULL-COUNTEREXAMPLE-CONTROL",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": null,
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": null,
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": null,
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "4a564ea78a5eb91222ff5fdafafe21d08e4d13779ae0bd54a2bd2aef04a70f0d",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_conditions/counterexample",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_conditions/counterexample",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_reuse_conditions/counterexample",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_reuse_conditions/counterexample",
+          "value": "TBD"
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"TBD\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"TBD\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "3013db90f2a6d8fde57e6c856e223fd72e6e342411172cd0a26b9368e41d9bae",
+      "expectation_status": "空反例/反例未観測の原義務に対応する有限不足表示TBDの独立whole。任意文字列全般へ一般化しない。",
+      "basis": "TBDのunknown marker意味はこの型で未宣言。既存L4反例未観測との接続が必要だが、自由文字列すべてへの拒否policyは本監査から追加しない。",
+      "case_id": "F02-BOTH-TBD-COUNTEREXAMPLE",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": "TBD",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": "TBD",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "separated_candidate_in_fixture",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_corresponding_in_fixture",
+        "retained_conditions": {
+          "counterexample": "TBD",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "9b616d0b93509a49179866d2ae7f1ce45ac327531bc30c7a6d38e29a5de7fe56",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/retained_conditions/counterexample",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/retained_conditions/counterexample",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_structure_candidate/meaning",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_structure_candidate/meaning",
+          "value": ""
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"candidate_means_adopted\":false,\"name_removed_means_separated\":false,\"product_requirement_as_pattern\":false,\"source_erased_means_generic\":false},\"original_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"original_separation_meanings\":{\"ATOM-P-1\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"特定製品の要求/画面/業務/判断は原意味ownerに保持\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-2\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"特定製品の要求/画面/業務/判断は原意味ownerに保持\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-3\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"特定製品の要求/画面/業務/判断は原意味ownerに保持\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-4\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"特定製品の要求/画面/業務/判断は原意味ownerに保持\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-5\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"特定製品の要求/画面/業務/判断は原意味ownerに保持\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-6\":{\"disposition\":\"reusable_structure_candidate\",\"independent_reason\":\"navigation到達保持という構造だけを候補化\",\"source_revision\":\"source-p-r1\"}},\"original_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"},\"submitted_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"submitted_partition\":{\"ATOM-P-1\":\"product_specific_CORE_only\",\"ATOM-P-2\":\"product_specific_CORE_only\",\"ATOM-P-3\":\"product_specific_CORE_only\",\"ATOM-P-4\":\"product_specific_CORE_only\",\"ATOM-P-5\":\"product_specific_CORE_only\",\"ATOM-P-6\":\"reusable_structure_candidate\"},\"submitted_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"}}",
+      "raw_sha256": "679d659b0b3c8030d020e5ea58b083dc989a9e4c02d907847157157e58702f4d",
+      "expectation_status": "L4候補の各意味と元source/独立再利用条件のtrace義務からの独立whole",
+      "basis": "/contracts/0/content_comparison/1。両側の候補meaningが空でも相違はないが、空の意味本文から分離済み候補の意味を生成しない。実source資格は新設しない。",
+      "case_id": "F01-BOTH-EMPTY-CANDIDATE-MEANING",
+      "function_ref": "HELIXBRAIN-L5-011-F01",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "candidate_means_adopted": false,
+            "name_removed_means_separated": false,
+            "product_requirement_as_pattern": false,
+            "source_erased_means_generic": false
+          },
+          "original_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "original_separation_meanings": {
+            "ATOM-P-1": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-2": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-3": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-4": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-5": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-6": {
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": "navigation到達保持という構造だけを候補化",
+              "source_revision": "source-p-r1"
+            }
+          },
+          "original_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          },
+          "submitted_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "submitted_partition": {
+            "ATOM-P-1": "product_specific_CORE_only",
+            "ATOM-P-2": "product_specific_CORE_only",
+            "ATOM-P-3": "product_specific_CORE_only",
+            "ATOM-P-4": "product_specific_CORE_only",
+            "ATOM-P-5": "product_specific_CORE_only",
+            "ATOM-P-6": "reusable_structure_candidate"
+          },
+          "submitted_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          }
+        }
+      },
+      "expected_whole": {
+        "atom_results": [
+          {
+            "atom_id": "ATOM-P-1",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-2",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-3",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-4",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-5",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "特定製品の要求/画面/業務/判断は原意味ownerに保持"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": "navigation到達保持という構造だけを候補化"
+            },
+            "submitted_disposition": "reusable_structure_candidate",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "reusable_structure_candidate"
+          }
+        ],
+        "retained_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "submitted_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "structure_result": "content_corresponding_in_fixture",
+        "candidate_state": "held_unseparated_or_conflicting",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "claim_results": {
+          "name_removed_means_separated": "none",
+          "product_requirement_as_pattern": "none",
+          "source_erased_means_generic": "none",
+          "candidate_means_adopted": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "candidate_source_binding_result": "content_corresponding_in_fixture",
+        "candidate_source_binding_results": [
+          {
+            "source_atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "revision_result": "content_corresponding_in_fixture",
+            "meaning_result": "content_corresponding_in_fixture",
+            "binding_result": "content_corresponding_in_fixture"
+          }
+        ]
+      },
+      "expected_whole_sha256": "8ee4ac71794f93fe4361f103008faac4ed722151df8d1094cb146d0dca5fd536",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "1a40dacbaa5267d43dbede91c98d0df343c97aa42065caedcdc929a5963c1cf9"
+      },
+      "expected_patch_from_original_L9": [
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_result",
+          "value": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_results",
+          "value": [
+            {
+              "source_atom_id": "ATOM-P-6",
+              "source_result": "content_corresponding_in_fixture",
+              "revision_result": "content_corresponding_in_fixture",
+              "meaning_result": "content_corresponding_in_fixture",
+              "binding_result": "content_corresponding_in_fixture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/retained_structure_candidate/meaning",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_structure_candidate/meaning",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held_unseparated_or_conflicting"
+        }
+      ],
+      "expected_changed_paths": [
+        "/candidate_source_binding_result",
+        "/candidate_source_binding_results",
+        "/retained_structure_candidate/meaning",
+        "/submitted_structure_candidate/meaning",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F01",
+      "l4_ref": "HELIXBRAIN-L4-011-F01",
+      "l9_ref": "HELIXBRAIN-L9-011-F01"
+    },
+    {
+      "base_case": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-1/independent_reason",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-2/independent_reason",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-3/independent_reason",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-4/independent_reason",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-5/independent_reason",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-6/independent_reason",
+          "value": "TBD"
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"candidate_means_adopted\":false,\"name_removed_means_separated\":false,\"product_requirement_as_pattern\":false,\"source_erased_means_generic\":false},\"original_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"original_separation_meanings\":{\"ATOM-P-1\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-2\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-3\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-4\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-5\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-6\":{\"disposition\":\"reusable_structure_candidate\",\"independent_reason\":\"TBD\",\"source_revision\":\"source-p-r1\"}},\"original_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"},\"submitted_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"submitted_partition\":{\"ATOM-P-1\":\"product_specific_CORE_only\",\"ATOM-P-2\":\"product_specific_CORE_only\",\"ATOM-P-3\":\"product_specific_CORE_only\",\"ATOM-P-4\":\"product_specific_CORE_only\",\"ATOM-P-5\":\"product_specific_CORE_only\",\"ATOM-P-6\":\"reusable_structure_candidate\"},\"submitted_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"}}",
+      "raw_sha256": "d41a8c649feed7f9f9ad6a5873a6a7e342f7af52ec5151d0aff89214af9c1984",
+      "expectation_status": "原L2根拠があれば一般化候補/L4独立分離意味の根拠不足保持からの独立whole",
+      "basis": "原L4 /contracts/0/input_meanings/1およびcontent_comparison/1,2。空/TBDの有限表示は分離根拠の内容を供給しない。真実性/資格を生成しない。",
+      "case_id": "F01-REASON-TBD",
+      "function_ref": "HELIXBRAIN-L5-011-F01",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "candidate_means_adopted": false,
+            "name_removed_means_separated": false,
+            "product_requirement_as_pattern": false,
+            "source_erased_means_generic": false
+          },
+          "original_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "original_separation_meanings": {
+            "ATOM-P-1": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-2": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-3": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-4": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-5": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-6": {
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": "TBD",
+              "source_revision": "source-p-r1"
+            }
+          },
+          "original_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          },
+          "submitted_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "submitted_partition": {
+            "ATOM-P-1": "product_specific_CORE_only",
+            "ATOM-P-2": "product_specific_CORE_only",
+            "ATOM-P-3": "product_specific_CORE_only",
+            "ATOM-P-4": "product_specific_CORE_only",
+            "ATOM-P-5": "product_specific_CORE_only",
+            "ATOM-P-6": "reusable_structure_candidate"
+          },
+          "submitted_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          }
+        }
+      },
+      "expected_whole": {
+        "atom_results": [
+          {
+            "atom_id": "ATOM-P-1",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-2",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-3",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-4",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-5",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": "TBD"
+            },
+            "submitted_disposition": "reusable_structure_candidate",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "reusable_structure_candidate"
+          }
+        ],
+        "retained_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "submitted_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "structure_result": "content_corresponding_in_fixture",
+        "candidate_state": "held_unseparated_or_conflicting",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "claim_results": {
+          "name_removed_means_separated": "none",
+          "product_requirement_as_pattern": "none",
+          "source_erased_means_generic": "none",
+          "candidate_means_adopted": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "candidate_source_binding_result": "content_corresponding_in_fixture",
+        "candidate_source_binding_results": [
+          {
+            "source_atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "revision_result": "content_corresponding_in_fixture",
+            "meaning_result": "content_corresponding_in_fixture",
+            "binding_result": "content_corresponding_in_fixture"
+          }
+        ]
+      },
+      "expected_whole_sha256": "8a9d66051e73efb7c70afac1d1f159b86e986bd2c02bb78cca0f05a1dd7c5641",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "1a40dacbaa5267d43dbede91c98d0df343c97aa42065caedcdc929a5963c1cf9"
+      },
+      "expected_patch_from_original_L9": [
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_result",
+          "value": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_results",
+          "value": [
+            {
+              "source_atom_id": "ATOM-P-6",
+              "source_result": "content_corresponding_in_fixture",
+              "revision_result": "content_corresponding_in_fixture",
+              "meaning_result": "content_corresponding_in_fixture",
+              "binding_result": "content_corresponding_in_fixture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/atom_results",
+          "value": [
+            {
+              "atom_id": "ATOM-P-1",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-1",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "product_name",
+                "content": "Product-P管理画面"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-1",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "product_name",
+                "content": "Product-P管理画面"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-2",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-2",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "requirement",
+                "content": "請求menuを左側に固定する製品要求"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-2",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "requirement",
+                "content": "請求menuを左側に固定する製品要求"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-3",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-3",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "screen",
+                "content": "請求管理のdesktop画面"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-3",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "screen",
+                "content": "請求管理のdesktop画面"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-4",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-4",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "business_rule",
+                "content": "請求担当roleだけに請求menuを表示する"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-4",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "business_rule",
+                "content": "請求担当roleだけに請求menuを表示する"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-5",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-5",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "user_decision",
+                "content": "利用者がこの製品では左側固定を選択"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-5",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "user_decision",
+                "content": "利用者がこの製品では左側固定を選択"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-6",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-6",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "structural_observation",
+                "content": "primary sections間の移動中もnavigationへの到達を保持する"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-6",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "structural_observation",
+                "content": "primary sections間の移動中もnavigationへの到達を保持する"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "reusable_structure_candidate",
+                "independent_reason": "TBD"
+              },
+              "submitted_disposition": "reusable_structure_candidate",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "reusable_structure_candidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held_unseparated_or_conflicting"
+        }
+      ],
+      "expected_changed_paths": [
+        "/candidate_source_binding_result",
+        "/candidate_source_binding_results",
+        "/atom_results",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F01",
+      "l4_ref": "HELIXBRAIN-L4-011-F01",
+      "l9_ref": "HELIXBRAIN-L9-011-F01"
+    },
+    {
+      "base_case": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-1/independent_reason",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-2/independent_reason",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-3/independent_reason",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-4/independent_reason",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-5/independent_reason",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/original_separation_meanings/ATOM-P-6/independent_reason",
+          "value": ""
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"candidate_means_adopted\":false,\"name_removed_means_separated\":false,\"product_requirement_as_pattern\":false,\"source_erased_means_generic\":false},\"original_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"original_separation_meanings\":{\"ATOM-P-1\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-2\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-3\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-4\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-5\":{\"disposition\":\"product_specific_CORE_only\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"},\"ATOM-P-6\":{\"disposition\":\"reusable_structure_candidate\",\"independent_reason\":\"\",\"source_revision\":\"source-p-r1\"}},\"original_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"},\"submitted_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"submitted_partition\":{\"ATOM-P-1\":\"product_specific_CORE_only\",\"ATOM-P-2\":\"product_specific_CORE_only\",\"ATOM-P-3\":\"product_specific_CORE_only\",\"ATOM-P-4\":\"product_specific_CORE_only\",\"ATOM-P-5\":\"product_specific_CORE_only\",\"ATOM-P-6\":\"reusable_structure_candidate\"},\"submitted_structure_candidate\":{\"identity\":\"STRUCTURE-CANDIDATE-P\",\"meaning\":\"高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補\",\"reuse_condition_ref\":\"REUSE-CONDITION-P@condition-r1\",\"revision\":\"candidate-r1\",\"source_atom_ids\":[\"ATOM-P-6\"],\"source_revision\":\"source-p-r1\",\"state\":\"candidate_only\"}}",
+      "raw_sha256": "40822b278ac3f1f68a0f1f1e82bd72ccb77ec95411798c1cba757c0750647869",
+      "expectation_status": "原L2根拠があれば一般化候補/L4独立分離意味の根拠不足保持からの独立whole",
+      "basis": "原L4 /contracts/0/input_meanings/1およびcontent_comparison/1,2。空/TBDの有限表示は分離根拠の内容を供給しない。真実性/資格を生成しない。",
+      "case_id": "F01-REASON-EMPTY",
+      "function_ref": "HELIXBRAIN-L5-011-F01",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "candidate_means_adopted": false,
+            "name_removed_means_separated": false,
+            "product_requirement_as_pattern": false,
+            "source_erased_means_generic": false
+          },
+          "original_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "original_separation_meanings": {
+            "ATOM-P-1": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-2": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-3": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-4": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-5": {
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            },
+            "ATOM-P-6": {
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": "",
+              "source_revision": "source-p-r1"
+            }
+          },
+          "original_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          },
+          "submitted_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "submitted_partition": {
+            "ATOM-P-1": "product_specific_CORE_only",
+            "ATOM-P-2": "product_specific_CORE_only",
+            "ATOM-P-3": "product_specific_CORE_only",
+            "ATOM-P-4": "product_specific_CORE_only",
+            "ATOM-P-5": "product_specific_CORE_only",
+            "ATOM-P-6": "reusable_structure_candidate"
+          },
+          "submitted_structure_candidate": {
+            "identity": "STRUCTURE-CANDIDATE-P",
+            "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+            "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+            "revision": "candidate-r1",
+            "source_atom_ids": [
+              "ATOM-P-6"
+            ],
+            "source_revision": "source-p-r1",
+            "state": "candidate_only"
+          }
+        }
+      },
+      "expected_whole": {
+        "atom_results": [
+          {
+            "atom_id": "ATOM-P-1",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-1",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "product_name",
+              "content": "Product-P管理画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-2",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-2",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "requirement",
+              "content": "請求menuを左側に固定する製品要求"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-3",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-3",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "screen",
+              "content": "請求管理のdesktop画面"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-4",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-4",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "business_rule",
+              "content": "請求担当roleだけに請求menuを表示する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-5",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-5",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "user_decision",
+              "content": "利用者がこの製品では左側固定を選択"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "product_specific_CORE_only",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "product_specific_CORE_only",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "product_specific_CORE_only"
+          },
+          {
+            "atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "retained_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "submitted_source_atom": {
+              "id": "ATOM-P-6",
+              "revision": "source-p-r1",
+              "owner": "PRODUCT-CORE-P",
+              "scope": "PRODUCT-SCOPE-P",
+              "kind": "structural_observation",
+              "content": "primary sections間の移動中もnavigationへの到達を保持する"
+            },
+            "original_separation_meaning": {
+              "source_revision": "source-p-r1",
+              "disposition": "reusable_structure_candidate",
+              "independent_reason": ""
+            },
+            "submitted_disposition": "reusable_structure_candidate",
+            "disposition_result": "content_corresponding_in_fixture",
+            "retained_disposition": "reusable_structure_candidate"
+          }
+        ],
+        "retained_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "submitted_structure_candidate": {
+          "identity": "STRUCTURE-CANDIDATE-P",
+          "revision": "candidate-r1",
+          "meaning": "高密度管理画面でprimary sections間の移動中もnavigation到達を保持するpersistent navigation構造候補",
+          "source_atom_ids": [
+            "ATOM-P-6"
+          ],
+          "source_revision": "source-p-r1",
+          "reuse_condition_ref": "REUSE-CONDITION-P@condition-r1",
+          "state": "candidate_only"
+        },
+        "structure_result": "content_corresponding_in_fixture",
+        "candidate_state": "held_unseparated_or_conflicting",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "claim_results": {
+          "name_removed_means_separated": "none",
+          "product_requirement_as_pattern": "none",
+          "source_erased_means_generic": "none",
+          "candidate_means_adopted": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "candidate_source_binding_result": "content_corresponding_in_fixture",
+        "candidate_source_binding_results": [
+          {
+            "source_atom_id": "ATOM-P-6",
+            "source_result": "content_corresponding_in_fixture",
+            "revision_result": "content_corresponding_in_fixture",
+            "meaning_result": "content_corresponding_in_fixture",
+            "binding_result": "content_corresponding_in_fixture"
+          }
+        ]
+      },
+      "expected_whole_sha256": "9f1bec81580274a9447a2981718d152b65f1e4ca319748a67ab05348b521ca19",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "case_id": "B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+        "case_sha256": "bed90a7d01e81cb3069df8134393460143ba4cfa0eeea3c307b60057ee245811",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F01-MENU-AND-PERSISTENT-NAVIGATION-CANDIDATE",
+          "revision": "fixture-content-bac8e72fed8cc35836ab6f9cf5ae36bf3f829e299ba1efefe7babcbd839073cd",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "1a40dacbaa5267d43dbede91c98d0df343c97aa42065caedcdc929a5963c1cf9"
+      },
+      "expected_patch_from_original_L9": [
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_result",
+          "value": "content_corresponding_in_fixture"
+        },
+        {
+          "op": "add",
+          "path": "/candidate_source_binding_results",
+          "value": [
+            {
+              "source_atom_id": "ATOM-P-6",
+              "source_result": "content_corresponding_in_fixture",
+              "revision_result": "content_corresponding_in_fixture",
+              "meaning_result": "content_corresponding_in_fixture",
+              "binding_result": "content_corresponding_in_fixture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/atom_results",
+          "value": [
+            {
+              "atom_id": "ATOM-P-1",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-1",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "product_name",
+                "content": "Product-P管理画面"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-1",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "product_name",
+                "content": "Product-P管理画面"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-2",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-2",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "requirement",
+                "content": "請求menuを左側に固定する製品要求"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-2",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "requirement",
+                "content": "請求menuを左側に固定する製品要求"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-3",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-3",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "screen",
+                "content": "請求管理のdesktop画面"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-3",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "screen",
+                "content": "請求管理のdesktop画面"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-4",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-4",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "business_rule",
+                "content": "請求担当roleだけに請求menuを表示する"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-4",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "business_rule",
+                "content": "請求担当roleだけに請求menuを表示する"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-5",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-5",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "user_decision",
+                "content": "利用者がこの製品では左側固定を選択"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-5",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "user_decision",
+                "content": "利用者がこの製品では左側固定を選択"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "product_specific_CORE_only",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "product_specific_CORE_only",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "product_specific_CORE_only"
+            },
+            {
+              "atom_id": "ATOM-P-6",
+              "source_result": "content_corresponding_in_fixture",
+              "retained_source_atom": {
+                "id": "ATOM-P-6",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "structural_observation",
+                "content": "primary sections間の移動中もnavigationへの到達を保持する"
+              },
+              "submitted_source_atom": {
+                "id": "ATOM-P-6",
+                "revision": "source-p-r1",
+                "owner": "PRODUCT-CORE-P",
+                "scope": "PRODUCT-SCOPE-P",
+                "kind": "structural_observation",
+                "content": "primary sections間の移動中もnavigationへの到達を保持する"
+              },
+              "original_separation_meaning": {
+                "source_revision": "source-p-r1",
+                "disposition": "reusable_structure_candidate",
+                "independent_reason": ""
+              },
+              "submitted_disposition": "reusable_structure_candidate",
+              "disposition_result": "content_corresponding_in_fixture",
+              "retained_disposition": "reusable_structure_candidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held_unseparated_or_conflicting"
+        }
+      ],
+      "expected_changed_paths": [
+        "/candidate_source_binding_result",
+        "/candidate_source_binding_results",
+        "/atom_results",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F01",
+      "l4_ref": "HELIXBRAIN-L4-011-F01",
+      "l9_ref": "HELIXBRAIN-L9-011-F01"
+    },
+    {
+      "base_case": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02"
+      },
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "case_id": "B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+        "case_sha256": "43e3ba2a1710d92c8165bc0ad55474131d07bc28ea551f8ff4233b8a941395d0",
+        "packet_ref": {
+          "identity": "SOURCE-B011-F02-ONE-SUCCESS-COUNTEREXAMPLE-SCOPED",
+          "revision": "fixture-content-1fc8dd74424f4b3168dbaea2be0099773cbd9837f317b33dddb619a6de352d02",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "c822b4a0e669e50fc01903ddbc2d8be656c36f7a9607e1448a9f9c7df462437a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/submitted_separation_state",
+          "value": "unknown"
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"compact single-task screenでは原条件未成立\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"unknown\",\"upstream_shared_meaning_change_required\":false}",
+      "raw_sha256": "1fdfc25ea949ba206529842614aba7eb8cb3ae5199d0b0fe9b1ee242fec42782",
+      "expectation_status": "L4欠落・未観測保持からの独立whole",
+      "basis": "L4未分離保持。原は分離候補でも提出unknownとの不一致を候補成功へ補完しない。",
+      "case_id": "F02-SUBMITTED-SEPARATION-UNKNOWN",
+      "function_ref": "HELIXBRAIN-L5-011-F02",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "generalization_as_observed_fact": false,
+            "new_every_time_human_approval": false,
+            "one_success_universal": false,
+            "unseparated_adoptable": false
+          },
+          "original_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "original_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "original_separation_state": "separated_candidate_in_fixture",
+          "submitted_observations": [
+            {
+              "product": "PRODUCT-P",
+              "result": "success_in_fixture_only",
+              "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+              "source": "SOURCE-P@source-p-r1"
+            },
+            {
+              "product": "PRODUCT-R",
+              "result": "original_conditions_not_met_in_fixture",
+              "scope": "COMPACT-SINGLE-TASK",
+              "source": "SOURCE-R@source-r-r1"
+            }
+          ],
+          "submitted_reuse_conditions": {
+            "counterexample": "compact single-task screenでは原条件未成立",
+            "identity": "REUSE-CONDITION-P",
+            "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+            "required_context": [
+              "dense administrative navigation",
+              "stable primary sections"
+            ],
+            "revision": "condition-r1",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+          },
+          "submitted_separation_state": "unknown",
+          "upstream_shared_meaning_change_required": false
+        }
+      },
+      "expected_whole": {
+        "reuse_condition_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "required_context": "content_corresponding_in_fixture",
+          "limit": "content_corresponding_in_fixture",
+          "counterexample": "content_corresponding_in_fixture"
+        },
+        "observation_result": "content_corresponding_in_fixture",
+        "separation_result": "content_conflict",
+        "retained_conditions": {
+          "counterexample": "compact single-task screenでは原条件未成立",
+          "identity": "REUSE-CONDITION-P",
+          "limit": "構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない",
+          "required_context": [
+            "dense administrative navigation",
+            "stable primary sections"
+          ],
+          "revision": "condition-r1",
+          "scope": "DENSE-ADMIN-PRIMARY-SECTIONS"
+        },
+        "retained_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "submitted_observations": [
+          {
+            "product": "PRODUCT-P",
+            "result": "success_in_fixture_only",
+            "scope": "DENSE-ADMIN-PRIMARY-SECTIONS",
+            "source": "SOURCE-P@source-p-r1"
+          },
+          {
+            "product": "PRODUCT-R",
+            "result": "original_conditions_not_met_in_fixture",
+            "scope": "COMPACT-SINGLE-TASK",
+            "source": "SOURCE-R@source-r-r1"
+          }
+        ],
+        "retained_separation_state": "separated_candidate_in_fixture",
+        "candidate_state": "held",
+        "adoption_state": "not_adopted",
+        "return_owners": [
+          "PRODUCT-CORE-P",
+          "LABO"
+        ],
+        "existing_human_meaning_decision_required": false,
+        "claim_results": {
+          "one_success_universal": "none",
+          "unseparated_adoptable": "none",
+          "generalization_as_observed_fact": "none",
+          "new_every_time_human_approval": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "561207fd42b3a6496132c0af9c76e06294c6e9f6f7d3a4da25441309b1d9c755",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/separation_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_state",
+          "value": "held"
+        }
+      ],
+      "expected_changed_paths": [
+        "/separation_result",
+        "/candidate_state"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "l4_ref": "HELIXBRAIN-L4-011-F02",
+      "l9_ref": "HELIXBRAIN-L9-011-F02"
+    },
+    {
+      "base_case": "B011-B01-SEPARATED-CANDIDATE-UNDECIDED-OWNERS",
+      "base_raw_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "case_id": "B011-B01-SEPARATED-CANDIDATE-UNDECIDED-OWNERS",
+        "case_sha256": "8384fd3aa5db0558b447233d8b1505ec61f91e42c2735d8e7b2246d1c462e482",
+        "packet_ref": {
+          "identity": "SOURCE-B011-B01-SEPARATED-CANDIDATE-UNDECIDED-OWNERS",
+          "revision": "fixture-content-242b00b5e354d65baa52abca2ac705bd43a1c83fad2356db5b31807892857b2d",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_sha256": "242b00b5e354d65baa52abca2ac705bd43a1c83fad2356db5b31807892857b2d"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/claims/BRAIN_product_meaning_change",
+          "value": true
+        }
+      ],
+      "raw_utf8": "{\"claims\":{\"BRAIN_product_meaning_change\":true,\"candidate_received_adopted\":false,\"separated_means_evaluated\":false,\"separated_means_operation_permission\":false,\"separated_means_registered\":false},\"original_contract_references\":{\"007\":{\"identity\":\"HELIXBRAIN-L2-007\",\"revision\":\"meaning-007-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"},\"020\":{\"identity\":\"HELIXBRAIN-L2-020\",\"revision\":\"meaning-020-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"},\"025\":{\"identity\":\"HELIXBRAIN-L2-025\",\"revision\":\"meaning-025-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"}},\"original_owners\":{\"adoption\":\"BRAIN-change-adoption\",\"change_independent_verification\":\"BRAIN-change-independent-review\",\"evaluation_record\":\"LABO\",\"product_meaning\":\"PRODUCT-CORE-P\",\"registration_record\":\"HELIX-OS\",\"structural_candidate\":\"BRAIN\"},\"original_product_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"original_states\":{\"adoption\":\"not_adopted\",\"candidate\":\"separated_candidate_only\",\"evaluation\":\"not_evaluated\",\"independent_verification\":\"not_verified\",\"registration\":\"not_registered\"},\"submitted_contract_references\":{\"007\":{\"identity\":\"HELIXBRAIN-L2-007\",\"revision\":\"meaning-007-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"},\"020\":{\"identity\":\"HELIXBRAIN-L2-020\",\"revision\":\"meaning-020-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"},\"025\":{\"identity\":\"HELIXBRAIN-L2-025\",\"revision\":\"meaning-025-r1\",\"scope\":\"PRODUCT-SEPARATION-SCOPE-P\"}},\"submitted_owners\":{\"adoption\":\"BRAIN-change-adoption\",\"change_independent_verification\":\"BRAIN-change-independent-review\",\"evaluation_record\":\"LABO\",\"product_meaning\":\"PRODUCT-CORE-P\",\"registration_record\":\"HELIX-OS\",\"structural_candidate\":\"BRAIN\"},\"submitted_product_atoms\":[{\"content\":\"Product-P管理画面\",\"id\":\"ATOM-P-1\",\"kind\":\"product_name\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求menuを左側に固定する製品要求\",\"id\":\"ATOM-P-2\",\"kind\":\"requirement\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求管理のdesktop画面\",\"id\":\"ATOM-P-3\",\"kind\":\"screen\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"請求担当roleだけに請求menuを表示する\",\"id\":\"ATOM-P-4\",\"kind\":\"business_rule\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"利用者がこの製品では左側固定を選択\",\"id\":\"ATOM-P-5\",\"kind\":\"user_decision\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"},{\"content\":\"primary sections間の移動中もnavigationへの到達を保持する\",\"id\":\"ATOM-P-6\",\"kind\":\"structural_observation\",\"owner\":\"PRODUCT-CORE-P\",\"revision\":\"source-p-r1\",\"scope\":\"PRODUCT-SCOPE-P\"}],\"submitted_states\":{\"adoption\":\"not_adopted\",\"candidate\":\"separated_candidate_only\",\"evaluation\":\"not_evaluated\",\"independent_verification\":\"not_verified\",\"registration\":\"not_registered\"}}",
+      "raw_sha256": "013f61087c31ca5a09ff5568a186336397aa79f3a00e4f5b7e977dc6049282f3",
+      "expectation_status": "原L9比較とclaim上書きの独立whole",
+      "basis": "L4 B01のBRAINが製品意味を直接変えない義務。内容が同値でも禁止claimだけの差でproduct_source_resultはcontent_conflict。実変更は起こさない。",
+      "case_id": "B01-CLAIM-ONLY-PRODUCT-MEANING-CHANGE",
+      "function_ref": "HELIXBRAIN-L5-011-B01",
+      "typed_arguments": {
+        "input": {
+          "claims": {
+            "BRAIN_product_meaning_change": true,
+            "candidate_received_adopted": false,
+            "separated_means_evaluated": false,
+            "separated_means_operation_permission": false,
+            "separated_means_registered": false
+          },
+          "original_contract_references": {
+            "007": {
+              "identity": "HELIXBRAIN-L2-007",
+              "revision": "meaning-007-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            },
+            "020": {
+              "identity": "HELIXBRAIN-L2-020",
+              "revision": "meaning-020-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            },
+            "025": {
+              "identity": "HELIXBRAIN-L2-025",
+              "revision": "meaning-025-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            }
+          },
+          "original_owners": {
+            "adoption": "BRAIN-change-adoption",
+            "change_independent_verification": "BRAIN-change-independent-review",
+            "evaluation_record": "LABO",
+            "product_meaning": "PRODUCT-CORE-P",
+            "registration_record": "HELIX-OS",
+            "structural_candidate": "BRAIN"
+          },
+          "original_product_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "original_states": {
+            "adoption": "not_adopted",
+            "candidate": "separated_candidate_only",
+            "evaluation": "not_evaluated",
+            "independent_verification": "not_verified",
+            "registration": "not_registered"
+          },
+          "submitted_contract_references": {
+            "007": {
+              "identity": "HELIXBRAIN-L2-007",
+              "revision": "meaning-007-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            },
+            "020": {
+              "identity": "HELIXBRAIN-L2-020",
+              "revision": "meaning-020-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            },
+            "025": {
+              "identity": "HELIXBRAIN-L2-025",
+              "revision": "meaning-025-r1",
+              "scope": "PRODUCT-SEPARATION-SCOPE-P"
+            }
+          },
+          "submitted_owners": {
+            "adoption": "BRAIN-change-adoption",
+            "change_independent_verification": "BRAIN-change-independent-review",
+            "evaluation_record": "LABO",
+            "product_meaning": "PRODUCT-CORE-P",
+            "registration_record": "HELIX-OS",
+            "structural_candidate": "BRAIN"
+          },
+          "submitted_product_atoms": [
+            {
+              "content": "Product-P管理画面",
+              "id": "ATOM-P-1",
+              "kind": "product_name",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求menuを左側に固定する製品要求",
+              "id": "ATOM-P-2",
+              "kind": "requirement",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求管理のdesktop画面",
+              "id": "ATOM-P-3",
+              "kind": "screen",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "請求担当roleだけに請求menuを表示する",
+              "id": "ATOM-P-4",
+              "kind": "business_rule",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "利用者がこの製品では左側固定を選択",
+              "id": "ATOM-P-5",
+              "kind": "user_decision",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            },
+            {
+              "content": "primary sections間の移動中もnavigationへの到達を保持する",
+              "id": "ATOM-P-6",
+              "kind": "structural_observation",
+              "owner": "PRODUCT-CORE-P",
+              "revision": "source-p-r1",
+              "scope": "PRODUCT-SCOPE-P"
+            }
+          ],
+          "submitted_states": {
+            "adoption": "not_adopted",
+            "candidate": "separated_candidate_only",
+            "evaluation": "not_evaluated",
+            "independent_verification": "not_verified",
+            "registration": "not_registered"
+          }
+        }
+      },
+      "expected_whole": {
+        "owner_results": {
+          "product_meaning": "content_corresponding_in_fixture",
+          "structural_candidate": "content_corresponding_in_fixture",
+          "evaluation_record": "content_corresponding_in_fixture",
+          "registration_record": "content_corresponding_in_fixture",
+          "change_independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "contract_reference_results": {
+          "007": "content_corresponding_in_fixture",
+          "020": "content_corresponding_in_fixture",
+          "025": "content_corresponding_in_fixture"
+        },
+        "state_results": {
+          "candidate": "content_corresponding_in_fixture",
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "product_source_result": "content_conflict",
+        "retained_product_atoms": [
+          {
+            "id": "ATOM-P-1",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "product_name",
+            "content": "Product-P管理画面"
+          },
+          {
+            "id": "ATOM-P-2",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "requirement",
+            "content": "請求menuを左側に固定する製品要求"
+          },
+          {
+            "id": "ATOM-P-3",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "screen",
+            "content": "請求管理のdesktop画面"
+          },
+          {
+            "id": "ATOM-P-4",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "business_rule",
+            "content": "請求担当roleだけに請求menuを表示する"
+          },
+          {
+            "id": "ATOM-P-5",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "user_decision",
+            "content": "利用者がこの製品では左側固定を選択"
+          },
+          {
+            "id": "ATOM-P-6",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "structural_observation",
+            "content": "primary sections間の移動中もnavigationへの到達を保持する"
+          }
+        ],
+        "submitted_product_atoms": [
+          {
+            "id": "ATOM-P-1",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "product_name",
+            "content": "Product-P管理画面"
+          },
+          {
+            "id": "ATOM-P-2",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "requirement",
+            "content": "請求menuを左側に固定する製品要求"
+          },
+          {
+            "id": "ATOM-P-3",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "screen",
+            "content": "請求管理のdesktop画面"
+          },
+          {
+            "id": "ATOM-P-4",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "business_rule",
+            "content": "請求担当roleだけに請求menuを表示する"
+          },
+          {
+            "id": "ATOM-P-5",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "user_decision",
+            "content": "利用者がこの製品では左側固定を選択"
+          },
+          {
+            "id": "ATOM-P-6",
+            "revision": "source-p-r1",
+            "owner": "PRODUCT-CORE-P",
+            "scope": "PRODUCT-SCOPE-P",
+            "kind": "structural_observation",
+            "content": "primary sections間の移動中もnavigationへの到達を保持する"
+          }
+        ],
+        "retained_owners": {
+          "product_meaning": "PRODUCT-CORE-P",
+          "structural_candidate": "BRAIN",
+          "evaluation_record": "LABO",
+          "registration_record": "HELIX-OS",
+          "change_independent_verification": "BRAIN-change-independent-review",
+          "adoption": "BRAIN-change-adoption"
+        },
+        "retained_states": {
+          "candidate": "separated_candidate_only",
+          "evaluation": "not_evaluated",
+          "registration": "not_registered",
+          "independent_verification": "not_verified",
+          "adoption": "not_adopted"
+        },
+        "submitted_states": {
+          "candidate": "separated_candidate_only",
+          "evaluation": "not_evaluated",
+          "registration": "not_registered",
+          "independent_verification": "not_verified",
+          "adoption": "not_adopted"
+        },
+        "return_owners": {
+          "product_meaning": "PRODUCT-CORE-P",
+          "evaluation": "LABO",
+          "registration": "HELIX-OS",
+          "change_adoption": "BRAIN-change-owner"
+        },
+        "claim_results": {
+          "BRAIN_product_meaning_change": "rejected",
+          "candidate_received_adopted": "none",
+          "separated_means_evaluated": "none",
+          "separated_means_registered": "none",
+          "separated_means_operation_permission": "none"
+        },
+        "effects": {
+          "actual_CORE_meaning_changed": false,
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_sha256": "e7e1215b1928a4ac5a003caced04b449264b8ca6e652f181bc9ea5a89f26527c",
+      "execution_state": "静的素材のみ。実関数/TDD/CIは未実行。",
+      "source_qualification": "合成局所反例。実source資格/観測/作用を作らない。",
+      "base_expected_source": {
+        "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+        "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+        "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29",
+        "pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
+        "case_id": "B011-B01-SEPARATED-CANDIDATE-UNDECIDED-OWNERS",
+        "case_sha256": "8384fd3aa5db0558b447233d8b1505ec61f91e42c2735d8e7b2246d1c462e482",
+        "packet_ref": {
+          "identity": "SOURCE-B011-B01-SEPARATED-CANDIDATE-UNDECIDED-OWNERS",
+          "revision": "fixture-content-242b00b5e354d65baa52abca2ac705bd43a1c83fad2356db5b31807892857b2d",
+          "scope": "PRODUCT-SEPARATION-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "expected_sha256": "e5be38eb28ada88fbcbdc2c330590b002effcc02fcaedfba7abc0d9814adf5cd"
+      },
+      "expected_patch_from_original_L9": [
+        {
+          "op": "replace",
+          "path": "/product_source_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/BRAIN_product_meaning_change",
+          "value": "rejected"
+        }
+      ],
+      "expected_changed_paths": [
+        "/product_source_result",
+        "/claim_results/BRAIN_product_meaning_change"
+      ],
+      "requirement_ref": "HELIXBRAIN-L3-011-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-B01",
+      "l4_ref": "HELIXBRAIN-L4-011-B01",
+      "l9_ref": "HELIXBRAIN-L9-011-B01"
+    }
+  ],
+  "additional_finite_probe_count": 11,
+  "candidate_l5_pin": {
+    "binding": "same_candidate_document_bytes",
+    "path": "docs/helix-brain/L5-detail-design/product-meaning-structural-separation.json",
+    "sha256": "69a23189370e66ae5df0c95c60bb37d727dbd08d4726f7ce056d068d0cfd22d6",
+    "revision_note": "同一候補文書のbytes。存在しないbase revisionや上流source revisionを指定しない。"
+  },
+  "readiness_note": "全意味閉包/正式codec/実資格/実装/TDD/CI/L11/実装Readyをこの静的素材から生成しない。"
 }

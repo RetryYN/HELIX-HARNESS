@@ -172,7 +172,7 @@
     "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
     "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
     "quote_exact": true,
-    "reuse": "reference_only; adopted BRAIN011 product-meaning separation rederived",
+    "reuse": "reference_only。BRAIN011の製品意味分離は既承認sourceから意味を再導出。",
     "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
     "change": "旧runtimeや全ticket一律gateを移植せず、製品CORE原意味とBRAIN汎用構造候補を分け、LABO/OS/BRAIN採否の各責務へ対応する。",
     "reason": "9/26PO原文L1-011、採択011と10/12委任承認が製品意味混入/過度一般化/未分離/実採用の誤昇格を拒否する。",
@@ -1096,8 +1096,7 @@
                 "values": [
                   "content_corresponding_in_fixture",
                   "content_conflict",
-                  "missing",
-                  "unknown_unseparated"
+                  "missing"
                 ]
               },
               "revision_result": {
@@ -1105,8 +1104,7 @@
                 "values": [
                   "content_corresponding_in_fixture",
                   "content_conflict",
-                  "missing",
-                  "unknown_unseparated"
+                  "missing"
                 ]
               },
               "meaning_result": {
@@ -1564,7 +1562,8 @@
               "kind": "enum",
               "values": [
                 "content_corresponding_in_fixture",
-                "missing"
+                "missing",
+                "content_conflict"
               ]
             },
             "identity": {
@@ -1578,14 +1577,16 @@
               "kind": "enum",
               "values": [
                 "content_corresponding_in_fixture",
-                "missing"
+                "missing",
+                "content_conflict"
               ]
             },
             "required_context": {
               "kind": "enum",
               "values": [
                 "content_corresponding_in_fixture",
-                "missing"
+                "missing",
+                "content_conflict"
               ]
             },
             "revision": {
@@ -3571,8 +3572,7 @@
                   "values": [
                     "content_corresponding_in_fixture",
                     "content_conflict",
-                    "missing",
-                    "unknown_unseparated"
+                    "missing"
                   ]
                 },
                 "revision_result": {
@@ -3580,8 +3580,7 @@
                   "values": [
                     "content_corresponding_in_fixture",
                     "content_conflict",
-                    "missing",
-                    "unknown_unseparated"
+                    "missing"
                   ]
                 },
                 "meaning_result": {
@@ -3626,7 +3625,7 @@
         {
           "step": 2,
           "op": "F01-DISPOSITION",
-          "description": "original meaningが明示nullならdisposition_result=unknown_unseparated。objectならdispositionとsubmitted partition値を比較し、片方Absentならmissing、両方存在し型・値が厳密一致ならcontent_corresponding_in_fixture、それ以外はcontent_conflict。submitted_dispositionの返却projectionだけはAbsentをnullで表し、比較状態はmissingのまま保つ。retained_dispositionはsource_resultとdisposition_resultがともにcontent_corresponding_in_fixtureの場合のみ提出値、それ以外unseparated。"
+          "description": "original meaningが明示nullならdisposition_result=unknown_unseparated。objectならdispositionとsubmitted partition値を比較し、片方Absentならmissing、両方存在し型・値が厳密一致ならcontent_corresponding_in_fixture、それ以外はcontent_conflict。submitted_dispositionの返却projectionだけはAbsentをnullで表し、比較状態はmissingのまま保つ。retained_dispositionはsource_resultとdisposition_resultがともにcontent_corresponding_in_fixtureの場合のみ提出値、それ以外unseparated。 meaningがAbsentならdispositionを読めずmissingとなる。meaningの返却projectionのみnullにする。"
         },
         {
           "step": 3,
@@ -3636,12 +3635,12 @@
         {
           "step": 4,
           "op": "F01-SOURCE-BINDING",
-          "description": "候補source_atom_idsが空なら行なしで全体missingとする。非空なら各IDにつき原配列順の行を返し、original_atomsに一致IDが0件なら行missing、複数なら行conflict（選択しない）、1件なら候補source_revisionとatom.revisionを比較する。original_separation_meanings[id]のAbsent/null/objectをmissing/unknown_unseparated/disposition比較として区別し、reusable_structure_candidateとの厳密一致だけを対応とする。集約はcontent_conflict > missing > unknown_unseparated > content_corresponding_in_fixture。"
+          "description": "候補source_atom_idsが空なら行なしで全体missingとする。非空なら各IDにつき原配列順の行を返し、original_atomsに一致IDが0件なら行missing、複数なら行conflict（選択しない）、1件なら候補source_revisionとatom.revisionを比較する。original_separation_meanings[id]のAbsent/null/objectをmissing/unknown_unseparated/disposition比較として区別し、reusable_structure_candidateとの厳密一致だけを対応とする。集約はcontent_conflict > missing > unknown_unseparated > content_corresponding_in_fixture。 original atomが同一IDで複数ならsource_result/revision_result/meaning_result/binding_resultの全てをcontent_conflictとし、先頭を選ばない。meaning objectのsource_revisionもatom.revisionへ比較し、disposition比較と同じ優先でmeaning_resultへ集約する。"
         },
         {
           "step": 5,
           "op": "F01-CANDIDATE",
-          "description": "全atomのsource_resultとdisposition_result、structure_result、candidate_source_binding_resultがcontent_corresponding_in_fixtureで、original stateがcandidate_onlyのときのみseparation_content_corresponding_candidate_only。それ以外はheld_unseparated_or_conflicting。claimの有無でこの状態を上書きしない。"
+          "description": "全atomのsource_resultとdisposition_result、structure_result、candidate_source_binding_resultがcontent_corresponding_in_fixtureで、original stateがcandidate_onlyのときのみseparation_content_corresponding_candidate_only。それ以外はheld_unseparated_or_conflicting。claimの有無でこの状態を上書きしない。 さらに候補meaningと各original atomに対応するindependent_reasonが有限内容不足表示でなく、original_atomsが非空であることを必要とする。内容不足表示はAbsent/null/空文字/TBD、および空listであり、本文の真実性や資格は示さない。"
         },
         {
           "step": 6,
@@ -3652,14 +3651,16 @@
       "literal_provenance": {
         "result_states": "L9 expected_material内のresult status列挙値",
         "claim_results": "L9 expected_material.claim_resultsとL10のnegative_input/expected_observation",
-        "owner_routes": "L4 contract failure_observation/output_meaningsおよびL10 failure_observation",
+        "owner_routes": "L4 contract.output_meaningsおよびL10 failure_observation、L9 expected_material.return_owners。L4にはfailure_observation fieldはない。",
         "effect_flags": "L4 contract operation_effect、L9 expected_material.effects"
       },
       "boundary": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
       "l9_connection_scope": "CORE原意味/sourceと独立分離/再利用条件→pure比較→構造候補/未分離/元原本保全/責務別未完返却。正式resolver未binding。",
       "unclosed": [
-        "この有限fixture外のsource resolver、owner/scope qualification、重複identityの一般処理は未確定。",
-        "CORE原meaningの変更、実source qualification、実LABO評価、HELIX-OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceはこの計算で成立しない。"
+        "宣言型外の一般source resolver、owner/scope qualification、正式な必要集合/外部参照の解決は未確定。",
+        "非空/TBD以外の本文から意味充足・真実性を判定しない。合成の対応や候補状態を実source資格、CORE原meaning変更、LABO評価、OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceへ昇格しない。",
+        "原atomの必要母集合を独立authorityから供給する引数はない。原/提出atomを両側同時に削除した場合、供給された残余atomだけで対応となり得る。原baselineの六atomを一般に必須と推測せず、必要集合との照合は未実現。",
+        "meaning.source_revisionは宣言型ではsource-p-r1に限定される。規則はatom.revisionと比較するが、型外の別revisionをこの有限検証で受理したとは主張しない。reuse_condition_refの外部内容/資格は未解決。"
       ],
       "signature": {
         "arguments": [
@@ -3686,7 +3687,7 @@
         },
         {
           "path": "input.original_separation_meanings",
-          "reason": "L9原rawの計算入力"
+          "reason": "L3/L4で明示される原source atomから候補へのtrace結合"
         },
         {
           "path": "input.original_structure_candidate",
@@ -3721,8 +3722,16 @@
           "reason": "L3/L4で明示される原source atomから候補へのtrace結合"
         },
         {
-          "path": "input.original_separation_meanings",
-          "reason": "L3/L4で明示される原source atomから候補へのtrace結合"
+          "path": "input.original_structure_candidate.meaning",
+          "reason": "空/TBDの有限内容不足を候補保留へ結ぶ。"
+        },
+        {
+          "path": "input.original_separation_meanings[original_atoms[].id].independent_reason",
+          "reason": "各供給atomの独立分離根拠の有限内容不足を比較する。"
+        },
+        {
+          "path": "input.original_separation_meanings[original_structure_candidate.source_atom_ids[]].source_revision",
+          "reason": "候補trace先meaningと元atomのrevision対応を比較する。"
         }
       ],
       "finite_rules": [
@@ -3737,7 +3746,7 @@
           "rule_id": "F01-DISPOSITION",
           "順序": 2,
           "入力": "input.original_separation_meanings[atom.id]、input.submitted_partition[atom.id]",
-          "計算": "original meaningが明示nullならdisposition_result=unknown_unseparated。objectならdispositionとsubmitted partition値を比較し、片方Absentならmissing、両方存在し型・値が厳密一致ならcontent_corresponding_in_fixture、それ以外はcontent_conflict。submitted_dispositionの返却projectionだけはAbsentをnullで表し、比較状態はmissingのまま保つ。retained_dispositionはsource_resultとdisposition_resultがともにcontent_corresponding_in_fixtureの場合のみ提出値、それ以外unseparated。",
+          "計算": "original meaningが明示nullならdisposition_result=unknown_unseparated。objectならdispositionとsubmitted partition値を比較し、片方Absentならmissing、両方存在し型・値が厳密一致ならcontent_corresponding_in_fixture、それ以外はcontent_conflict。submitted_dispositionの返却projectionだけはAbsentをnullで表し、比較状態はmissingのまま保つ。retained_dispositionはsource_resultとdisposition_resultがともにcontent_corresponding_in_fixtureの場合のみ提出値、それ以外unseparated。 meaningがAbsentならdispositionを読めずmissingとなる。meaningの返却projectionのみnullにする。",
           "根拠": "L4 F01の未分離保持、L9 F01のmissing/unknown例とexpected_material.atom_results。"
         },
         {
@@ -3751,14 +3760,14 @@
           "rule_id": "F01-SOURCE-BINDING",
           "順序": 4,
           "入力": "input.original_structure_candidate.source_atom_ids/source_revision、input.original_atoms[].id/revision、input.original_separation_meanings",
-          "計算": "候補source_atom_idsが空なら行なしで全体missingとする。非空なら各IDにつき必ず原配列順の結果行を返し、original_atomsに一致IDが0件なら当該行missing、複数ならconflict（どれも選択しない）、1件なら候補source_revisionとatom.revisionを比較する。さらにoriginal_separation_meanings[id]がAbsentならmissing、明示nullならunknown_unseparated、objectならdispositionがreusable_structure_candidateと厳密一致する場合だけ対応、それ以外conflictとする。全体はconflict > missing > unknown_unseparated > content_corresponding_in_fixtureで集約する。source IDの一致はこの有限fixture内の結合だけを示し、実source解決・資格を示さない。",
+          "計算": "候補source_atom_idsが空なら行なしで全体missingとする。非空なら各IDにつき原配列順の行を返し、original_atomsに一致IDが0件なら行missing、複数なら行conflict（選択しない）、1件なら候補source_revisionとatom.revisionを比較する。original_separation_meanings[id]のAbsent/null/objectをmissing/unknown_unseparated/disposition比較として区別し、reusable_structure_candidateとの厳密一致だけを対応とする。集約はcontent_conflict > missing > unknown_unseparated > content_corresponding_in_fixture。 original atomが同一IDで複数ならsource_result/revision_result/meaning_result/binding_resultの全てをcontent_conflictとし、先頭を選ばない。meaning objectのsource_revisionもatom.revisionへ比較し、disposition比較と同じ優先でmeaning_resultへ集約する。",
           "根拠": "L3/L4 F01の元source・各atomの分離意味・候補trace義務。実source資格/正式resolverは含まない。"
         },
         {
           "rule_id": "F01-CANDIDATE",
           "順序": 5,
           "入力": "F01-JOIN/DISPOSITION/STRUCTURE/SOURCE-BINDINGの出力とoriginal_structure_candidate.state",
-          "計算": "全atomのsource_resultとdisposition_result、structure_result、candidate_source_binding_resultがcontent_corresponding_in_fixtureで、original stateがcandidate_onlyのときのみseparation_content_corresponding_candidate_only。それ以外はheld_unseparated_or_conflicting。claimの有無でこの状態を上書きしない。",
+          "計算": "全atomのsource_resultとdisposition_result、structure_result、candidate_source_binding_resultがcontent_corresponding_in_fixtureで、original stateがcandidate_onlyのときのみseparation_content_corresponding_candidate_only。それ以外はheld_unseparated_or_conflicting。claimの有無でこの状態を上書きしない。 さらに候補meaningと各original atomに対応するindependent_reasonが有限内容不足表示でなく、original_atomsが非空であることを必要とする。内容不足表示はAbsent/null/空文字/TBD、および空listであり、本文の真実性や資格は示さない。",
           "根拠": "L3/L4 F01の候補/未分離/trace区別、L9 F01 expected whole。"
         },
         {
@@ -4494,6 +4503,31 @@
                     "op": "literal",
                     "value": "content_corresponding_in_fixture"
                   }
+                },
+                {
+                  "op": "finite_content_present",
+                  "value": {
+                    "op": "input",
+                    "path": [
+                      "original_structure_candidate",
+                      "meaning"
+                    ]
+                  }
+                },
+                {
+                  "op": "all_atom_reasons_present",
+                  "source_atoms": {
+                    "op": "input",
+                    "path": [
+                      "original_atoms"
+                    ]
+                  },
+                  "meanings": {
+                    "op": "input",
+                    "path": [
+                      "original_separation_meanings"
+                    ]
+                  }
                 }
               ]
             },
@@ -5046,7 +5080,8 @@
                 "kind": "enum",
                 "values": [
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "content_conflict"
                 ]
               },
               "identity": {
@@ -5060,14 +5095,16 @@
                 "kind": "enum",
                 "values": [
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "content_conflict"
                 ]
               },
               "required_context": {
                 "kind": "enum",
                 "values": [
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "content_conflict"
                 ]
               },
               "revision": {
@@ -5169,7 +5206,7 @@
         {
           "step": 4,
           "op": "F02-CANDIDATE",
-          "description": "6条件すべてとobservation_result/separation_resultがcontent_corresponding_in_fixture、original separation stateがseparated_candidate_in_fixture、counterexampleが明示nullではないときだけscoped_generalization_candidate_only。その他はheld。成功観測だけで全体へ一般化しない。"
+          "description": "6条件すべてとobservation_result/separation_resultがcontent_corresponding_in_fixture、original separation stateがseparated_candidate_in_fixture、counterexampleが明示nullではないときだけscoped_generalization_candidate_only。その他はheld。成功観測だけで全体へ一般化しない。 これに加えrequired_context/limit/counterexampleと原観測配列がfinite_content_presentである場合に限る。Absent/null/空文字/TBD/空listは内容不足として候補をheldに保つ。required_contextの各文字列も同じ内容不足表示を認めない。等値は供給済み内容の対応だけを示し、観測の存在や資格を補完しない。"
         },
         {
           "step": 5,
@@ -5180,14 +5217,17 @@
       "literal_provenance": {
         "result_states": "L9 expected_material内のresult status列挙値",
         "claim_results": "L9 expected_material.claim_resultsとL10のnegative_input/expected_observation",
-        "owner_routes": "L4 contract failure_observation/output_meaningsおよびL10 failure_observation",
+        "owner_routes": "L4 contract.output_meaningsおよびL10 failure_observation、L9 expected_material.return_owners。L4にはfailure_observation fieldはない。",
         "effect_flags": "L4 contract operation_effect、L9 expected_material.effects"
       },
       "boundary": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
       "l9_connection_scope": "CORE原意味/sourceと独立分離/再利用条件→pure比較→構造候補/未分離/元原本保全/責務別未完返却。正式resolver未binding。",
       "unclosed": [
-        "この有限fixture外のsource resolver、owner/scope qualification、重複identityの一般処理は未確定。",
-        "CORE原meaningの変更、実source qualification、実LABO評価、HELIX-OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceはこの計算で成立しない。"
+        "宣言型外の一般source resolver、owner/scope qualification、正式な必要集合/外部参照の解決は未確定。",
+        "非空/TBD以外の本文から意味充足・真実性を判定しない。合成の対応や候補状態を実source資格、CORE原meaning変更、LABO評価、OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceへ昇格しない。",
+        "空/TBD/明示null/空listの有限不足表示は候補保留へ結ぶが、任意の自由文字列が真に観測された反例/条件であるかを解決する供給源・タグ・資格は未閉包。",
+        "upstream=trueの返却listは既存上流meaning判断への有限route表示で、局所失敗を同時に分類してCORE/LABOへ個別配達する出力ではない。複合失敗ごとの戻し先計算は未実現。",
+        "非空の観測recordと反例本文の内容上の結合/事実性は解決しない。両側同値は供給値対応のみで、独立な実観測を生成しない。"
       ],
       "signature": {
         "arguments": [
@@ -5260,7 +5300,7 @@
           "rule_id": "F02-CANDIDATE",
           "順序": 4,
           "入力": "上記比較結果、input.original_separation_state、input.original_reuse_conditions.counterexample",
-          "計算": "6条件すべてとobservation_result/separation_resultがcontent_corresponding_in_fixture、original separation stateがseparated_candidate_in_fixture、counterexampleが明示nullではないときだけscoped_generalization_candidate_only。その他はheld。成功観測だけで全体へ一般化しない。"
+          "計算": "6条件すべてとobservation_result/separation_resultがcontent_corresponding_in_fixture、original separation stateがseparated_candidate_in_fixture、counterexampleが明示nullではないときだけscoped_generalization_candidate_only。その他はheld。成功観測だけで全体へ一般化しない。 これに加えrequired_context/limit/counterexampleと原観測配列がfinite_content_presentである場合に限る。Absent/null/空文字/TBD/空listは内容不足として候補をheldに保つ。required_contextの各文字列も同じ内容不足表示を認めない。等値は供給済み内容の対応だけを示し、観測の存在や資格を補完しない。"
         },
         {
           "rule_id": "F02-OWNER-CLAIM",
@@ -5451,6 +5491,45 @@
                       "counterexample"
                     ]
                   }
+                },
+                {
+                  "op": "finite_content_present",
+                  "value": {
+                    "op": "input",
+                    "path": [
+                      "original_reuse_conditions",
+                      "required_context"
+                    ]
+                  }
+                },
+                {
+                  "op": "finite_content_present",
+                  "value": {
+                    "op": "input",
+                    "path": [
+                      "original_reuse_conditions",
+                      "limit"
+                    ]
+                  }
+                },
+                {
+                  "op": "finite_content_present",
+                  "value": {
+                    "op": "input",
+                    "path": [
+                      "original_reuse_conditions",
+                      "counterexample"
+                    ]
+                  }
+                },
+                {
+                  "op": "finite_content_present",
+                  "value": {
+                    "op": "input",
+                    "path": [
+                      "original_observations"
+                    ]
+                  }
                 }
               ]
             },
@@ -5546,7 +5625,13 @@
         "F02-CANDIDATE",
         "F02-OWNER-CLAIM"
       ],
-      "program_authority": "reference_programを有限rawから評価する。finite_rules/algorithmは同一rule sequenceの日本語要約であり、別の計算規則ではない。"
+      "program_authority": "reference_programを有限rawから評価する。finite_rules/algorithmは同一rule sequenceの日本語要約であり、別の計算規則ではない。",
+      "route_priority_basis": {
+        "source_pointer": "/verification_obligations/1/concrete_cases/12/expected_material/return_owners",
+        "source_case": "B011-F02-UPSTREAM-SHARED-MEANING-CHANGE",
+        "meaning": "原L9の固定返却はexisting_upstream_meaning_ownerだけ。共有範囲の上流意味変更判断routeを表示する。この優先表示はCORE/LABOの局所責務を消さず、同時失敗ごとの返却owner算出を実現したとも主張しない。",
+        "unimplemented": "上流意味判断が必要な状態と局所分離不足が併存する場合の複数owner別返却。原L9 wholeは変更しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L5-011-B01",
@@ -6638,14 +6723,15 @@
       "literal_provenance": {
         "result_states": "L9 expected_material内のresult status列挙値",
         "claim_results": "L9 expected_material.claim_resultsとL10のnegative_input/expected_observation",
-        "owner_routes": "L4 contract failure_observation/output_meaningsおよびL10 failure_observation",
+        "owner_routes": "L4 contract.output_meaningsおよびL10 failure_observation、L9 expected_material.return_owners。L4にはfailure_observation fieldはない。",
         "effect_flags": "L4 contract operation_effect、L9 expected_material.effects"
       },
       "boundary": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
       "l9_connection_scope": "CORE原意味/sourceと独立分離/再利用条件→pure比較→構造候補/未分離/元原本保全/責務別未完返却。正式resolver未binding。",
       "unclosed": [
-        "この有限fixture外のsource resolver、owner/scope qualification、重複identityの一般処理は未確定。",
-        "CORE原meaningの変更、実source qualification、実LABO評価、HELIX-OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceはこの計算で成立しない。"
+        "宣言型外の一般source resolver、owner/scope qualification、正式な必要集合/外部参照の解決は未確定。",
+        "非空/TBD以外の本文から意味充足・真実性を判定しない。合成の対応や候補状態を実source資格、CORE原meaning変更、LABO評価、OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceへ昇格しない。",
+        "失敗fieldから該当ownerを選ぶ返却は未実現。return_ownersの固定mapをその実現や配達完了と扱わない。詳細はunclosed_owner_returns。"
       ],
       "signature": {
         "arguments": [
@@ -6918,7 +7004,47 @@
         "B01-PRODUCT-SOURCE",
         "B01-RETAIN-ROUTE"
       ],
-      "program_authority": "reference_programを有限rawから評価する。finite_rules/algorithmは同一rule sequenceの日本語要約であり、別の計算規則ではない。"
+      "program_authority": "reference_programを有限rawから評価する。finite_rules/algorithmは同一rule sequenceの日本語要約であり、別の計算規則ではない。",
+      "unclosed_owner_returns": {
+        "obligation": "L10-011-B01 failure_observation: CORE/評価/OS/BRAIN changeの該当ownerへ返す。",
+        "implemented": "return_ownersは責務の固定map。失敗有無にかかわらず同じ値を保持する。",
+        "not_implemented": [
+          {
+            "failure_axes": [
+              "owner_results.product_meaning",
+              "product_source_result"
+            ],
+            "responsibility": "PRODUCT-CORE-P"
+          },
+          {
+            "failure_axes": [
+              "owner_results.evaluation_record",
+              "state_results.evaluation"
+            ],
+            "responsibility": "LABO"
+          },
+          {
+            "failure_axes": [
+              "owner_results.registration_record",
+              "state_results.registration"
+            ],
+            "responsibility": "HELIX-OS"
+          },
+          {
+            "failure_axes": [
+              "owner_results.structural_candidate",
+              "owner_results.change_independent_verification",
+              "owner_results.adoption",
+              "state_results.candidate",
+              "state_results.independent_verification",
+              "state_results.adoption",
+              "contract_reference_results"
+            ],
+            "responsibility": "BRAIN-change-owner（固定mapの表示）"
+          }
+        ],
+        "limit": "この対応は未実現責務の所在を記録するだけで、関数出力に失敗ごとのowner選択や配送を追加しない。operation_permission claimの実権限ownerはこの入力から解決しない。"
+      }
     }
   ],
   "finite_semantics": {
@@ -6931,12 +7057,40 @@
     "comparison_priority": [
       "content_conflict",
       "missing",
+      "unknown_unseparated",
       "content_corresponding_in_fixture"
     ],
     "json_equality": "JSON型を区別し、scalar値、objectのkey集合と再帰値、arrayの長さと順序を比較する。booleanとnumberを同一視しない。",
-    "claim_rule": "各contractに列挙したboolean claimだけを読む。trueはrejected、falseはnone。claimから権限・実行・採用を作らない。",
+    "claim_rule": "各contractに列挙したboolean claimだけを読む。trueはrejected、falseはnone。claimから権限・実行・採用を作らない。 B01のBRAIN_product_meaning_change=trueだけは、製品原意味変更禁止に対応してproduct_source_resultをcontent_conflictへ上書きする。これは比較診断の例外であり、実変更を起こさない。他のclaimは比較結果や候補状態を上書きしない。",
     "owner_and_effects": "返却owner候補は原L4/L10の責務境界とL9有限期待に対応する文字列であり、実owner資格を発行しない。全effectsはこのfixture出力上false。",
-    "finite_domain": "全規則はL9の61raw例に対する有限投影。enum集合は観測literalの型検査に限り、製品一般domainを閉じない。未知の本番shape、resolver、source資格、実評価・登録・採否は未成立。"
+    "finite_domain": "原L9 61rawと独立局所反例に結び付く有限規則。enumは観測値だけでなく規則から到達する値を含み、一部共通比較型はfieldごとの到達値の上位集合である。製品一般domain、未知の本文の意味、source resolver/資格、実評価・登録・採否は未成立。",
+    "priority_scope": "candidate_source_bindingは上記4状態。通常aggregate_values/fieldwise_compareはunknown_unseparatedを生成せず、content_conflict>missing>content_corresponding_in_fixtureを用いる。個別fieldの比較は集約されずそのまま返す。",
+    "finite_insufficiency": {
+      "markers": [
+        "",
+        "TBD"
+      ],
+      "basis": [
+        {
+          "layer": "L4",
+          "pointer": "/contracts/1/content_comparison/1",
+          "quote": "分離不能/条件欠落/反例未観測を採用可能へ補完しない。",
+          "path": "docs/helix-brain/L4-basic-design/product-meaning-structural-separation.json",
+          "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+          "file_sha256": "bf53f24e2cd6fb8bd98f6fe75f1e7867117ccd133c09683b8255181c680d8a1a"
+        },
+        {
+          "layer": "L9",
+          "pointer": "/verification_obligations/1/concrete_cases/9/basis",
+          "quote": "元反例未観測を空反例や安全な普遍知識へ補完しない。",
+          "path": "docs/helix-brain/L9-integration-verification/product-meaning-structural-separation.json",
+          "revision": "0d7036f986514454480d7f4b85007b810b6d489a",
+          "file_sha256": "99bf54e57108a6c791d3abc1ca6cb193a69098e601a44d00bf3df525d3092a29"
+        }
+      ],
+      "new_literal_note": "TBDは原61rawの観測literalとは主張しない。内容未供給の局所反例として追加した有限表示であり、上流義務に沿い候補保留へ結ぶ。新しい語彙全般の拒否規則/認可gateではない。",
+      "remaining": "unknown等の任意stringが本文か不足表示かを判定する正式タグ/供給資格は未定義。非空非TBD本文の意味充足や真実性も未証明。"
+    }
   },
   "readiness_boundary": {
     "codec": "not_established",
@@ -6954,10 +7108,14 @@
     "implementation_ready": "not_established"
   },
   "logical_type_domain": {
-    "meaning": "logical_typesは今回のL9有限fixture（61入力とL9が定める61個のexpected_material）の再帰shapeを検査する。enum.valuesはこのfixtureで実際に観測したliteralの集合であり製品共通enumやwire schemaではない。",
-    "absent": "record.requiredに無いfieldはfixture projectionで不在を許す。実関数が読むfieldは該当function.required_readsに記録し、有限入力では必須である。明示nullはnull memberと照合し、Absentをnullへ変換しない。",
+    "meaning": "logical_typesは原L9の61入力/wholeと独立局所反例の再帰shape、および宣言型から規則で到達する返却を検査する。enum.valuesには未観測だが到達可能な分岐値と共通比較型の上位集合を含む。製品共通enum/wire schema/観測済みliteralだけの列挙ではない。",
+    "absent": "record.requiredに無いfieldは不在を許し、比較でAbsentをmissingとして保持する。required_readsは読む可能性があるpathであり、その全fieldが全入力で存在することを要求するものではない。明示nullとAbsentを区別し、返却projectionだけでmissing_to_nullを用いる。",
     "additional_members": "各recordはこの有限投影に限り宣言済field以外を許さない。製品一般形、未知owner/sourceの資格はこの型から導かない。",
-    "arrays": "配列は順序と長さを保持する。fixture計算は原配列順に行い、並べ替えや重複除去をしない。"
+    "arrays": "配列は順序と長さを保持する。fixture計算は原配列順に行い、並べ替えや重複除去をしない。",
+    "return_reachability": {
+      "F02_identity_revision": "原/提出のidentityとrevisionは同じ単一enum。提出field不在時missing、存在時content_corresponding_in_fixture。宣言型内ではcontent_conflictへ到達しない。自由string/listのrequired_context/limit/counterexampleとscopeは不一致によりcontent_conflictへ到達する。",
+      "F01_binding_rows": "source_result/revision_resultはcorresponding/conflict/missingの3値。meaning_result/binding_resultはこれにunknown_unseparatedを含む。未観測と到達不能を区別し、source/revision型から到達不能unknownを除く。"
+    }
   },
   "source_derivation_revision": {
     "l3_l10": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
@@ -6989,9 +7147,11 @@
       "false_fields": "names全てをboolean falseとするrecordを返す。",
       "missing_to_null": "値がAbsent sentinelならnull、そうでなければ値を返す。比較状態や原rawを変換しない。",
       "not_null": "値がAbsent sentinelでもexplicit nullでもない場合true。",
-      "candidate_source_binding": "candidate.source_atom_idsを原順に走査しoriginal atomsへid結合。各rowはsource atom一意性、candidate.source_revision↔atom.revision、対応original meaning.disposition↔reusable_structure_candidateを個別比較する。意味Absent/nullはそれぞれmissing/unknown_unseparated。空source idsは全体missing。集約優先はcontent_conflict>missing>unknown_unseparated>content_corresponding_in_fixture。実resolver/資格は作らない。"
+      "candidate_source_binding": "candidate.source_atom_idsを原順に走査しoriginal atomsへid結合。各rowはsource atom一意性、candidate.source_revision↔atom.revision、対応original meaning.disposition↔reusable_structure_candidateを個別比較する。意味Absent/nullはそれぞれmissing/unknown_unseparated。空source idsは全体missing。集約優先はcontent_conflict>missing>unknown_unseparated>content_corresponding_in_fixture。実resolver/資格は作らない。 meaning objectのsource_revisionをatom.revisionへ個別compareし、disposition比較とcontent_conflict>missing>correspondingで集約してmeaning_resultへ返す。original ID複数時はsource/revision/meaning/bindingの全結果をcontent_conflictとする。",
+      "finite_content_present": "valueがAbsent/nullならfalse。stringなら空文字またはTBDと厳密一致するとfalse、その他true。listなら非空で、要素がstringの場合は各要素も同じ空文字/TBDでないときtrue（record要素は内容の真偽を判定しない）。その他型はfalse。空白除去、大小文字正規化、任意本文のunknown推定は行わない。この有限表示による不足判定は実観測/資格/十分性の保証ではない。",
+      "all_atom_reasons_present": "source_atomsが非空listであり、原配列順の各atom.idに対応するmeanings[id]がobjectで、そのindependent_reasonがfinite_content_present=trueの場合だけtrue。meaningのAbsent/nullはfalse。必要atom母集合を外部から解決せず、供給されたatomだけを対象にする。"
     },
-    "domain_note": "このreference programはL5記載の有限fixture規則。有限型外の入力は検証エラー/未評価であり、製品一般動作とは主張しない。 source-to-candidate binding compares only supplied fixture atom IDs, revision strings and separation meanings; reuse_condition_refの外部targetと実source資格は未閉包。"
+    "domain_note": "reference_programは宣言した有限論理型に対する比較規則であり、製品一般動作とは主張しない。型外は検証エラー/未評価。供給atom ID、revision、分離意味の結合だけを比較し、reuse_condition_refの外部対象、正式な必要atom母集合、実source資格は未閉包。"
   },
   "trace": {
     "L2": "HELIXBRAIN-L2-011",
@@ -7030,9 +7190,9 @@
     }
   },
   "completeness_and_unclosed": {
-    "source_atom_coverage": "candidate_source_binding_result is missing for empty source_atom_ids or no corresponding original atom; duplicated original atom ids are conflict. Candidate state cannot become separated when this result is not corresponding.",
-    "submitted_atom_ambiguity": "submitted_atoms duplicate id yields conflict and submitted_source_atom=null; the implementation never selects an arbitrary duplicate. This branch is a local finite probe, not a general source contract.",
-    "candidate_trace": "source_atom_ids and source_revision are bound to original_atoms and original_separation_meanings. A free-standing reuse_condition_ref target is absent from F01 raw, so its external target resolution remains unclosed and does not count as qualified.",
-    "not_closed": "The L4 scope/owner and independent reuse-condition resolver is not represented by the F01 raw packet. Do not infer source qualification, actual separation, LABO evaluation, OS registration, BRAIN verification/adoption or operation permission."
+    "source_atom_coverage": "候補source_atom_ids空/結合0件はmissing、結合複数は全row状態conflict。供給原atom全体の必要母集合は別途未供給。",
+    "submitted_atom_ambiguity": "submitted_atomsの同一ID複数はconflict/selected=null。先頭を選ばない。",
+    "candidate_trace": "候補source_revision↔atom.revision、meaning.source_revision↔atom.revision、meaning.dispositionを照合する。independent_reasonの空/TBDは候補保留。外部reuse_condition_ref内容は未解決。",
+    "not_closed": "実source資格、独立必要集合、自由本文の意味充足、失敗ごとowner返却、実分離/評価/登録/採否/許可は未成立。候補状態/全effects=falseからそれらの完了を生成しない。"
   }
 }
