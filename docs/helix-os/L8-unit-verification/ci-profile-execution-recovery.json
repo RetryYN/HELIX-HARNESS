@@ -170680,25 +170680,45 @@
     }
   },
   "hash_serialization_note_ja": "sha256 field名は対象と直列化を区別する。candidate_l5_profile_stage_evaluations.hash_method_jaに明記されたordered_json_sha256、sorted-key canonical、source whole-file digestを相互に読み替えない。旧fixture historyの再現不能digestと保持値の新digestは各history noteに記録する。",
-  "r2_repair_record": {
+  "selection_source_correction_record": {
     "source_revision": "e5f1a385b3c5094daa9dd20bf1b95a65d73e1193",
-    "review_ref": "GOV-OS020-SOURCE-BOUND-DETAIL-20261016-03 / O020D-R2-01..04",
     "before_sha256": {
       "L5": "ec1fb6b898a850e688075afd40a0daee384465efc9316b748e82f835c7c820dc",
       "L8": "5935d99d3c8fb9ff8efc87f3d0d85f82fbe3bbee379040085072a4198f2ce316"
     },
-    "preserved_r1_history": {
-      "source": "/cases and /function_calls, directly compared with the e5 source L8 blob after the explicit legacy-reference normalization already recorded in legacy_expectation_corrections",
+    "verification_scope_ja": "read-only検証器はF02002 candidate L5 stageをL9 8+26 projectionと4実pipelineの両方に適用する。4pipelineのF02008も14 rootを比較する。source qualification、実CI、任意入力域、旧runtime/test/CIは実行・主張しない。",
+    "minimum_status_only_correction": {
+      "l4_basis": "/diagnostic_contract/profile_selection_contract/source_bound_projection_result/finite_projection_rules/minimum_subset_comparison はcontext.required_obligations→profile.obligationsにfindingを対応づけ、minimum_source_comparisonはcontext.required_obligations→harness_f03.pre_pr_required_refsにsource_conflictを対応づける。HARNESS minimum→OS selectedの追加findingはない。",
+      "candidate_change": "harness_minimum_vs_os_selectedをoutcome=status_onlyとしfinding code/pointerを除去。status計算は維持。readerはL4 minimum findingとHARNESS minimum/statusを別評価する。",
+      "independent_counterexample_pointer": "/candidate_l5_profile_stage_evaluations/minimum_status_only_counterexample",
+      "source_contract_refs": [
+        {
+          "document": "L4",
+          "pointer": "/diagnostic_contract/profile_selection_contract/source_bound_projection_result/finite_projection_rules/minimum_subset_comparison"
+        },
+        {
+          "document": "L4",
+          "pointer": "/diagnostic_contract/profile_selection_contract/source_bound_projection_result/finite_projection_rules/minimum_source_comparison"
+        },
+        {
+          "document": "L5",
+          "pointer": "/functions/1/profile_selection_stage_program"
+        }
+      ]
+    },
+    "previous_candidate_revision": "ddb743fec8cec07ac5a3bc37987dfd0acd40b397",
+    "preserved_original_history": {
+      "source": "対象は/casesと/function_calls。legacy_expectation_correctionsに保存した明示的な旧参照へ正規化し、e5基点のGit L8本文へ直接照合する。旧candidateからの全値保存と、基点sourceへの正規化照合を区別する。",
       "cases_count": 270,
-      "cases_equal_r2_preimage": true,
+      "cases_equal_previous_candidate": true,
       "cases_sorted_key_sha256": "6fd44ee5b8a7decd2ac84372ab89f72f8940c7468bef36e5c2c044741b53fddd",
       "function_calls_count": 2158,
-      "function_calls_equal_r2_preimage": true,
+      "function_calls_equal_previous_candidate": true,
       "function_calls_sorted_key_sha256": "1111d4d648ef7344bdcc23b1a1ebdd267bc5cfc7480385db8de6a4aba3703018",
-      "legacy_expectation_corrections_equal_r2_preimage": true,
+      "legacy_expectation_corrections_equal_previous_candidate": true,
       "legacy_expectation_corrections_count": 1
     },
-    "r2_corrections": [
+    "selection_contract_corrections": [
       {
         "pointer": "/logical_types/HarnessF03SelectionSource/fields/inventory_refs",
         "change": "Field<list<string>>に一致。元packet内の豊富なraw sourceはsource_bundle:RawValueとharness_source_snapshotで保持。"
@@ -170724,13 +170744,19 @@
         "change": "現L5の同じprofile stageとcommon binding比較からF02002全返却とF02008全14rootを再計算し、inventory外はprofile_obligation_inventory_conflictを/profile/obligationsへ返す。"
       }
     ],
-    "verification_scope_ja": "read-only検証器はF02002 candidate L5 stageをL9 8+26 projectionと4実pipelineの両方に適用する。4pipelineのF02008も14 rootを比較する。source qualification、実CI、任意入力域、旧runtime/test/CIは実行・主張しない。",
-    "minimum_status_only_correction": {
-      "review_ref": "GOV-OS020-SOURCE-BOUND-DETAIL-20261016-03 / O020D-R2-03",
-      "l4_basis": "/diagnostic_contract/profile_selection_contract/source_bound_projection_result/finite_projection_rules/minimum_subset_comparison はcontext.required_obligations→profile.obligationsにfindingを対応づけ、minimum_source_comparisonはcontext.required_obligations→harness_f03.pre_pr_required_refsにsource_conflictを対応づける。HARNESS minimum→OS selectedの追加findingはない。",
-      "candidate_change": "harness_minimum_vs_os_selectedをoutcome=status_onlyとしfinding code/pointerを除去。status計算は維持。readerはL4 minimum findingとHARNESS minimum/statusを別評価する。",
-      "independent_counterexample_pointer": "/candidate_l5_profile_stage_evaluations/minimum_status_only_counterexample",
-      "independent_preformal_sha256": "189f8e129de79a5b81ac65d0ed1eddbe389adbcc6148f3bbda6461db9fe8d71c"
-    }
+    "source_contract_refs": [
+      {
+        "document": "L4",
+        "pointer": "/diagnostic_contract/profile_selection_contract/source_bound_projection_result/finite_projection_rules"
+      },
+      {
+        "document": "L5",
+        "pointer": "/functions/1/profile_selection_stage_program"
+      },
+      {
+        "document": "L9",
+        "pointer": "/profile_selection_probes"
+      }
+    ]
   }
 }
