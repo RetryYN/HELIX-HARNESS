@@ -4,12 +4,16 @@
   "paired_document": "docs/helix-harness/L5-detail-design/pack-boundary.json",
   "parent": "HARNESS-L2-010",
   "status": "candidate_pending_independent_review",
-  "source_main": "a52f8a25948f490479ff9a4aed821a527e7e190c",
-  "parent_pair_revision": "b06f9cd6b6e4ecd12a57df54368092c0fa8088df",
+  "source_main": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+  "parent_pair_revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
   "source_pins": [
     {
       "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
       "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+      "sha256": "eeec7d7ca2108b6c530b73c5ae504ed5c58c2366ac1b965687ec96e3806e24d4"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
@@ -174,7 +178,2771 @@
           "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
         }
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "source_revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+      "oracle_contract": {
+        "input_context": "同一の完全なtyped input/contextをcheck_pack_boundaryへ供給する。fixture_recordsは対応するcanonical source body、digest、check recordを含む。Reference joinsは全5 fields一致。",
+        "finding_pointer": "Finding.pointerはL5の契約に従い、常にinput内のJSON Pointer。Context上の実原因はexpected_result.evidence_refsとbasis sourceを通じて追跡する。",
+        "pointer_correction": {
+          "case_id": "F01-INDEPENDENT-GROUP-UNION-NOT-WHOLE",
+          "source_revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+          "source_path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+          "source_pointer": "/type_contract/type_model/Finding/pointer",
+          "source_value": "input fieldへのJSON Pointer形式locator",
+          "source_file_sha256": "7b3fbcd694d5d5a8047ca18e0d165696e5c40de9036de8c2cf292e2d3e0f571d",
+          "source_value_canonical_sha256": "dd9857e93f975fe021420605c3be0f9a28561c15ed490851efdd74468565a62d",
+          "old_expected_pointer": "/behavior_unit/behavior_atom_refs",
+          "corrected_expected_pointer": "/inseparable_group_refs",
+          "reason": "L5はFinding.pointerをinput fieldへのJSON Pointer locatorと定義する。anti-unionの入力変異はinseparable_group_refsなのでpointerをそこへ置く。Context上の原因の根拠と他の期待Result値は保持する。"
+        },
+        "finite_limit": "この9件は選択した有限oracle例であり、任意入力の閉包や実装Readyを主張しない。元のpositive_input/expected_observation/negative_mutationsは別個に維持し、この9例がそれらを置換・網羅したとは扱わない。"
+      },
+      "complete_calls_and_results": [
+        {
+          "id": "F01-NORMAL-ONE-ATOM",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-4bc99510c147",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "satisfied",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-74ed4b7633be",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-4bc99510c147",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "L8既決正常。Contextの一behavior contract sourceがatom xを束ねる。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-KIND-REFERENCE-CHANGED-ONLY",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-SERVICE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "e58c0cddbc3e4f9d6dbd5abb5012ea6add07fae2f7e9b020ae49cef507990a8e"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-4bc99510c147",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "conflict",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "shared_owner_mismatch",
+                "pointer": "/kind_ref",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-BASIS-74ed4b7633be",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                  },
+                  {
+                    "identity": "F01-CHECK-4bc99510c147",
+                    "revision": "r2",
+                    "owner": "fixture-independent-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                  },
+                  {
+                    "identity": "F01-KIND-CORE",
+                    "revision": "r1",
+                    "owner": "fixture-kind-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                  },
+                  {
+                    "identity": "F01-KIND-SERVICE",
+                    "revision": "r1",
+                    "owner": "fixture-kind-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "e58c0cddbc3e4f9d6dbd5abb5012ea6add07fae2f7e9b020ae49cef507990a8e"
+                  }
+                ]
+              }
+            ]
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-74ed4b7633be",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-4bc99510c147",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "L8既決kind単独差分。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-GROUP-SINGLETON-EXPLICIT",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": [
+                {
+                  "identity": "F01-GROUP-X",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                }
+              ]
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-c8ac0eb67883",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-c8ac0eb67883",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-X",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-X",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                          }
+                        ]
+                      }
+                    ],
+                    "behavior_unit": {
+                      "kind": "inseparable_group",
+                      "ref": {
+                        "identity": "F01-GROUP-X",
+                        "revision": "r1",
+                        "owner": "fixture-group-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-8d53ed032164",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "8d53ed03216477d1de83049f027de4c1d7076f8b6bf95128725547037c9b1a90"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "satisfied",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-c8ac0eb67883",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-c8ac0eb67883",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"inseparable_group\",\"ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-8d53ed032164",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "8d53ed03216477d1de83049f027de4c1d7076f8b6bf95128725547037c9b1a90"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"c8ac0eb67883c7984b77e3a27a02c62bb1707ede731808c0e263e75ebd993b5e\",\"identity\":\"F01-BASIS-c8ac0eb67883\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"inseparable_group\",\"ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "8d53ed03216477d1de83049f027de4c1d7076f8b6bf95128725547037c9b1a90",
+            "behavior_unit": {
+              "kind": "inseparable_group",
+              "ref": {
+                "identity": "F01-GROUP-X",
+                "revision": "r1",
+                "owner": "fixture-group-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            }
+          },
+          "rationale": "単一atom groupを意味境界としてsourceが明示する場合を受理。最小cardinality gateを加えない。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-GROUP-OVERLAP-EXPLICIT",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": [
+                {
+                  "identity": "F01-GROUP-X",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                },
+                {
+                  "identity": "F01-GROUP-XY",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "8314aa7e64f15840cf8ab62c96db18ee2a7310b0168d79ec6e03bd66a2c51ca7"
+                }
+              ]
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-5e86e8bafe5d",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-5e86e8bafe5d",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      },
+                      {
+                        "identity": "F01-ATOM-Y",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-X",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-X",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                          }
+                        ]
+                      },
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-XY",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "8314aa7e64f15840cf8ab62c96db18ee2a7310b0168d79ec6e03bd66a2c51ca7"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-X",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                          },
+                          {
+                            "identity": "F01-ATOM-Y",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                          }
+                        ]
+                      }
+                    ],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-XY",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        },
+                        {
+                          "identity": "F01-ATOM-Y",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-f1769b823227",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "f1769b82322704bcb854506b8217d8d7d41dd4159e91824dfb633b504d0b4c06"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "satisfied",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-5e86e8bafe5d",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-5e86e8bafe5d",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17\",\"identity\":\"F01-CONTRACT-XY\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"8314aa7e64f15840cf8ab62c96db18ee2a7310b0168d79ec6e03bd66a2c51ca7\",\"identity\":\"F01-GROUP-XY\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-f1769b823227",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "f1769b82322704bcb854506b8217d8d7d41dd4159e91824dfb633b504d0b4c06"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"5e86e8bafe5d0321c3383679102addee5b5ef924d4290446a65191c5036a2d50\",\"identity\":\"F01-BASIS-5e86e8bafe5d\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17\",\"identity\":\"F01-CONTRACT-XY\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"8314aa7e64f15840cf8ab62c96db18ee2a7310b0168d79ec6e03bd66a2c51ca7\",\"identity\":\"F01-GROUP-XY\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "f1769b82322704bcb854506b8217d8d7d41dd4159e91824dfb633b504d0b4c06",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-XY",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-XY",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "一つのcontract refが全atom{x,y}を束ねる。二つのgroup atomsetは重なるが、重なり自体を拒否せず、全体性はgroup unionでなくbehavior_contract_refのcurrent content checkで根拠づける。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-SINGLE-CONTRACT-MULTIATOM",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-e68e74244f99",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-e68e74244f99",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      },
+                      {
+                        "identity": "F01-ATOM-Y",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-XY",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        },
+                        {
+                          "identity": "F01-ATOM-Y",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-f1eabc8285e0",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "f1eabc8285e079aea9ce9fcc51cd876a79e36e41d71d7c09e44e2441bcead0be"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "satisfied",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-e68e74244f99",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-e68e74244f99",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17\",\"identity\":\"F01-CONTRACT-XY\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-f1eabc8285e0",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "f1eabc8285e079aea9ce9fcc51cd876a79e36e41d71d7c09e44e2441bcead0be"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"e68e74244f99e200544a658808036f32f92cdc3667e793a1f2d6d8365d4abe29\",\"identity\":\"F01-BASIS-e68e74244f99\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17\",\"identity\":\"F01-CONTRACT-XY\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "f1eabc8285e079aea9ce9fcc51cd876a79e36e41d71d7c09e44e2441bcead0be",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-XY",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-XY",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "bb6fabc1e2ce3f3b03b3b8af45ff2e65d1ce581952ff3d4474d5c5aa9a5ecb17"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "一つのbehavior contract sourceが複数atomを明示的にまとめる正常形。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-GROUP-ASSOCIATION-MISSING",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": [
+                {
+                  "identity": "F01-GROUP-Y",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7"
+                }
+              ]
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-51725c3866f0",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-51725c3866f0",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-X",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-X",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                          }
+                        ]
+                      }
+                    ],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-17d222945f54",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "17d222945f544651aae960c716b6484881b03c2a2922f7434911c778252b257b"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "incomplete",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-51725c3866f0",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f"
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "reference_missing",
+                "pointer": "/inseparable_group_refs",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-BASIS-51725c3866f0",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f"
+                  },
+                  {
+                    "identity": "F01-CHECK-17d222945f54",
+                    "revision": "r2",
+                    "owner": "fixture-independent-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "17d222945f544651aae960c716b6484881b03c2a2922f7434911c778252b257b"
+                  },
+                  {
+                    "identity": "F01-GROUP-Y",
+                    "revision": "r1",
+                    "owner": "fixture-group-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7"
+                  }
+                ]
+              }
+            ]
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-51725c3866f0",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-17d222945f54",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "17d222945f544651aae960c716b6484881b03c2a2922f7434911c778252b257b"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"51725c3866f0b66edeacd77dbab28fe2c0924e4cd0253a2e024d4dc69ef2bb0f\",\"identity\":\"F01-BASIS-51725c3866f0\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "17d222945f544651aae960c716b6484881b03c2a2922f7434911c778252b257b",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "input group Refはcurrent BoundaryBasisに結び付かないためreference_missing/incomplete。unrelated context factsとは別。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-L8-FIXED-INPUT-ONLY-MIX",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-4bc99510c147",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "conflict",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ]
+            },
+            "findings": [
+              {
+                "code": "boundary_mismatch",
+                "pointer": "/behavior_atom_refs",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-ATOM-Y",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                  },
+                  {
+                    "identity": "F01-BASIS-74ed4b7633be",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                  },
+                  {
+                    "identity": "F01-CHECK-4bc99510c147",
+                    "revision": "r2",
+                    "owner": "fixture-independent-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                  }
+                ]
+              }
+            ]
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-74ed4b7633be",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-4bc99510c147",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "L8 negative mutation 4を正確に固定: Contextのowner-confirmed basis/unitはx、inputだけx→{x,y}へ変異。expected conflict/boundary_mismatch,/behavior_atom_refs。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-INDEPENDENT-GROUP-UNION-NOT-WHOLE",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                },
+                {
+                  "identity": "F01-ATOM-Y",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": [
+                {
+                  "identity": "F01-GROUP-X",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                },
+                {
+                  "identity": "F01-GROUP-Y",
+                  "revision": "r1",
+                  "owner": "fixture-group-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7"
+                }
+              ]
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-d3336c568748",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-d3336c568748",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      },
+                      {
+                        "identity": "F01-ATOM-Y",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-X",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-X",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                          }
+                        ]
+                      },
+                      {
+                        "group_ref": {
+                          "identity": "F01-GROUP-Y",
+                          "revision": "r1",
+                          "owner": "fixture-group-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7"
+                        },
+                        "behavior_atom_refs": [
+                          {
+                            "identity": "F01-ATOM-Y",
+                            "revision": "r1",
+                            "owner": "CORE",
+                            "scope": "fixture/010/f01",
+                            "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                          }
+                        ]
+                      }
+                    ],
+                    "behavior_unit": {
+                      "kind": "inseparable_group",
+                      "ref": {
+                        "identity": "F01-GROUP-X",
+                        "revision": "r1",
+                        "owner": "fixture-group-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-67078afa4a34",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "67078afa4a3416b2e48e4203c83f8b4bd16b10e828120c69467920184cfd2139"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "conflict",
+            "value": null,
+            "findings": [
+              {
+                "code": "boundary_mismatch",
+                "pointer": "/inseparable_group_refs",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-BASIS-d3336c568748",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a"
+                  },
+                  {
+                    "identity": "F01-CHECK-67078afa4a34",
+                    "revision": "r2",
+                    "owner": "fixture-independent-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "67078afa4a3416b2e48e4203c83f8b4bd16b10e828120c69467920184cfd2139"
+                  },
+                  {
+                    "identity": "F01-GROUP-X",
+                    "revision": "r1",
+                    "owner": "fixture-group-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+                  },
+                  {
+                    "identity": "F01-GROUP-Y",
+                    "revision": "r1",
+                    "owner": "fixture-group-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7"
+                  }
+                ]
+              }
+            ]
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-d3336c568748",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"inseparable_group\",\"ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7\",\"identity\":\"F01-GROUP-Y\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-67078afa4a34",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "67078afa4a3416b2e48e4203c83f8b4bd16b10e828120c69467920184cfd2139"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"d3336c568748376d4252f5a2f64c876b80b65907748a3b12c18b76782b7b484a\",\"identity\":\"F01-BASIS-d3336c568748\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"inseparable_group\",\"ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2\",\"identity\":\"F01-GROUP-X\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"group_ref\":{\"content_sha256\":\"3075833ff429549f446727153dc6eb4a48d929056d81023f45b4edfc785e39f7\",\"identity\":\"F01-GROUP-Y\",\"owner\":\"fixture-group-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "67078afa4a3416b2e48e4203c83f8b4bd16b10e828120c69467920184cfd2139",
+            "behavior_unit": {
+              "kind": "inseparable_group",
+              "ref": {
+                "identity": "F01-GROUP-X",
+                "revision": "r1",
+                "owner": "fixture-group-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "718d9d20f4bd973f545f87a61f013278177bcdf9e015c1b021116b27a51ec6a2"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            }
+          },
+          "rationale": "union{x}+{y}={x,y}でも全体不可分を推論しない。typed behavior_unit はGX→{x}だけを指し、全体 basis {x,y}を被覆しない。全体を結ぶ一契約/groupの明示根拠がなくknown conflict。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        },
+        {
+          "id": "F01-UNRELATED-CURRENT-CONTEXT-PRESERVED",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                },
+                {
+                  "identity": "F01-UNRELATED-BASIS-B",
+                  "revision": "r2",
+                  "owner": "SERVICE-S1",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "632d787caaaaef41e365f1163dde14f93f3d48ea9a24792b17565b773597d49c"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-X",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-CORE",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-CORE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "sharing_class": "shared",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-X",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-B",
+                    "revision": "r1",
+                    "owner": "SERVICE-S1",
+                    "scope": "fixture/010/f01/B",
+                    "content_sha256": "4b40cf506b868e453d6839d22e6652143884f8e22f5f3b332b5c4b4d20c7da0a"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-UNRELATED-BASIS-B",
+                      "revision": "r2",
+                      "owner": "SERVICE-S1",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "632d787caaaaef41e365f1163dde14f93f3d48ea9a24792b17565b773597d49c"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "identity": "F01-ATOM-Y",
+                        "revision": "r1",
+                        "owner": "CORE",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                      }
+                    ],
+                    "owner_ref": {
+                      "identity": "F01-OWNER-S1",
+                      "revision": "r1",
+                      "owner": "fixture-owner-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "174f10770cf3c834b1af3b9ff30ed54e0d005d4506e215d446fe161d7b33cc51"
+                    },
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "identity": "F01-KIND-SERVICE",
+                        "revision": "r1",
+                        "owner": "fixture-kind-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "e58c0cddbc3e4f9d6dbd5abb5012ea6add07fae2f7e9b020ae49cef507990a8e"
+                      },
+                      "owner_kind": "service"
+                    },
+                    "sharing_class": "local",
+                    "inseparable_groups": [],
+                    "behavior_unit": {
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-Y",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "a3c7a048e68f5bcb341fc8295bb6696f810008b3c68814be35967370f3c7c719"
+                      },
+                      "behavior_atom_refs": [
+                        {
+                          "identity": "F01-ATOM-Y",
+                          "revision": "r1",
+                          "owner": "CORE",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": [
+                {
+                  "identity": "F01-CHECK-4bc99510c147",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+                },
+                {
+                  "identity": "F01-UNRELATED-CHECK-B",
+                  "revision": "r2",
+                  "owner": "fixture-independent-check-B",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "c408a6521a076f3abe85471a884102a4cf2b7baff8bed12503f992dc1b44f50d"
+                }
+              ]
+            }
+          },
+          "expected_result": {
+            "outcome": "satisfied",
+            "value": {
+              "owner_ref": {
+                "identity": "F01-OWNER-CORE",
+                "revision": "r1",
+                "owner": "fixture-owner-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+              },
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "boundary_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+                }
+              ]
+            },
+            "findings": []
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-74ed4b7633be",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-4bc99510c147",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"74ed4b7633be093b84229c8cfee4a4421e419f1915e6125e65c0a030506adb2d\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "4bc99510c147912e116619eb796a29f560bc87fef282e3236c371e4448c8208b",
+            "behavior_unit": {
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ]
+            },
+            "unrelated_pack_ref": {
+              "identity": "F01-PACK-B",
+              "revision": "r1",
+              "owner": "SERVICE-S1",
+              "scope": "fixture/010/f01/B",
+              "content_sha256": "4b40cf506b868e453d6839d22e6652143884f8e22f5f3b332b5c4b4d20c7da0a"
+            },
+            "unrelated_pack_body_canonical_utf8": "{\"fixture_subject\":\"unrelated pack B\"}",
+            "unrelated_owner_ref": {
+              "identity": "F01-OWNER-S1",
+              "revision": "r1",
+              "owner": "fixture-owner-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "174f10770cf3c834b1af3b9ff30ed54e0d005d4506e215d446fe161d7b33cc51"
+            },
+            "unrelated_owner_body_canonical_utf8": "{\"fixture_owner\":\"S1\"}",
+            "unrelated_contract_ref": {
+              "identity": "F01-CONTRACT-Y",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "a3c7a048e68f5bcb341fc8295bb6696f810008b3c68814be35967370f3c7c719"
+            },
+            "unrelated_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}",
+            "unrelated_basis_ref": {
+              "identity": "F01-UNRELATED-BASIS-B",
+              "revision": "r2",
+              "owner": "SERVICE-S1",
+              "scope": "fixture/010/f01",
+              "content_sha256": "632d787caaaaef41e365f1163dde14f93f3d48ea9a24792b17565b773597d49c"
+            },
+            "unrelated_basis_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"a3c7a048e68f5bcb341fc8295bb6696f810008b3c68814be35967370f3c7c719\",\"identity\":\"F01-CONTRACT-Y\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"e58c0cddbc3e4f9d6dbd5abb5012ea6add07fae2f7e9b020ae49cef507990a8e\",\"identity\":\"F01-KIND-SERVICE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"service\"},\"owner_ref\":{\"content_sha256\":\"174f10770cf3c834b1af3b9ff30ed54e0d005d4506e215d446fe161d7b33cc51\",\"identity\":\"F01-OWNER-S1\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}",
+            "unrelated_basis_body_sha256": "632d787caaaaef41e365f1163dde14f93f3d48ea9a24792b17565b773597d49c",
+            "unrelated_check_ref": {
+              "identity": "F01-UNRELATED-CHECK-B",
+              "revision": "r2",
+              "owner": "fixture-independent-check-B",
+              "scope": "fixture/010/f01",
+              "content_sha256": "c408a6521a076f3abe85471a884102a4cf2b7baff8bed12503f992dc1b44f50d"
+            },
+            "unrelated_check_body_canonical_utf8": "{\"basis_ref\":{\"content_sha256\":\"632d787caaaaef41e365f1163dde14f93f3d48ea9a24792b17565b773597d49c\",\"identity\":\"F01-UNRELATED-BASIS-B\",\"owner\":\"SERVICE-S1\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752\",\"identity\":\"F01-ATOM-Y\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"a3c7a048e68f5bcb341fc8295bb6696f810008b3c68814be35967370f3c7c719\",\"identity\":\"F01-CONTRACT-Y\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"e58c0cddbc3e4f9d6dbd5abb5012ea6add07fae2f7e9b020ae49cef507990a8e\",\"identity\":\"F01-KIND-SERVICE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"service\"},\"owner_ref\":{\"content_sha256\":\"174f10770cf3c834b1af3b9ff30ed54e0d005d4506e215d446fe161d7b33cc51\",\"identity\":\"F01-OWNER-S1\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
+            "unrelated_check_body_sha256": "c408a6521a076f3abe85471a884102a4cf2b7baff8bed12503f992dc1b44f50d",
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "293ecd2d0f3f8e3e1e982f440828a4f01c2aed92919a1033f85bff8b2a61a7da"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"fixture_role\":\"explicit single behavior contract\"}"
+          },
+          "rationale": "正常な別pack Bを同じContextに保持。A/Bは独立のbasis/check identityを使い、Aの結果はnormalと同一。 Joinはfull Reference（identity/revision/owner/scope/content_sha256）で照合し、identity-only matchは解決とみなさない。"
+        }
+      ]
     },
     {
       "id": "HARNESS-L8-010-F02",
@@ -3882,7 +6650,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "7b3fbcd694d5d5a8047ca18e0d165696e5c40de9036de8c2cf292e2d3e0f571d",
+      "sha256": "eeec7d7ca2108b6c530b73c5ae504ed5c58c2366ac1b965687ec96e3806e24d4",
       "scope": "同一candidate bytes。承認/source revisionではない。"
     },
     "comparison": "全Result/全Finding memberを比較し、ReferenceSetの順は意味にしない。input/context/source原値を変更しない。",

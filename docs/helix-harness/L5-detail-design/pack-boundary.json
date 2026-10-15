@@ -4,38 +4,10 @@
   "paired_document": "docs/helix-harness/L8-unit-verification/pack-boundary.json",
   "parent": "HARNESS-L2-010",
   "status": "candidate_pending_independent_review",
-  "source_main": "a52f8a25948f490479ff9a4aed821a527e7e190c",
-  "parent_pair_revision": "b06f9cd6b6e4ecd12a57df54368092c0fa8088df",
+  "source_main": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
+  "parent_pair_revision": "77a206a1ecbb387bb5c315bfab2ce14a225fb6a8",
   "scope": "010の純粋な意味照合5関数のdomain型/algorithm/errorと対L8。JSON意味正本。通信/保存wire schema、snapshot生成/認可、実登録/切替は各ownerの設計で具体化。",
   "source_pins": [
-    {
-      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
-      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
-    },
-    {
-      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
-      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
-    },
-    {
-      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
-      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
-    },
-    {
-      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
-      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
-    },
-    {
-      "path": "docs/helix-harness/L10-verification/functional-verification.json",
-      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
-    },
-    {
-      "path": "docs/helix-harness/L10-verification/business-verification.json",
-      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
-    },
-    {
-      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
-    },
     {
       "path": "docs/concept/helix-concept.md",
       "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
@@ -43,6 +15,38 @@
     {
       "path": "docs/concept/helix-principles.md",
       "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
     }
   ],
   "legacy_comparison": [
@@ -53,7 +57,20 @@
       "keep": "pure function、typed result/finding、strict入力、不明保持、exact集合の双方向比較、結果のstable順。",
       "change": "旧TS module/関数名/旧schema/固定depth,node制限を移さず、010の局所判定をPython意味コアのdomain契約へ対応する。",
       "reason": "010 L4のsnapshot→純粋判定→候補と現行責務分離。",
-      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9"
+      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "f01_application": {
+        "source_asset": "LEGACY-ASSET-EF18357A994D043719D5",
+        "keep": "純粋domain function、閉じたtyped input/result/finding、sourceを厳密参照すること。",
+        "change": "旧TS validatorや旧schema形は移さず、現行Reference/Context/BoundFactのowner-qualified契約を使う。BoundaryBasisへkind/whole-behavior/groupの明示associationをtypedに置く。",
+        "reason": "旧資産は純粋判定と型付き結果の境界根拠として意味再導出する。現行L3/L4とsource/model照合で確認したtype association欠落を、現行のF01 domain型内で閉じるため。",
+        "source_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "source_asset_correction_history": {
+          "previous_candidate_asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "correction": "旧IDのasset行は異なるsource_path/source_sha256を指していたため、このsource pathとbytes hashに一致するledger asset IDへ訂正した。",
+          "verified_asset_id": "LEGACY-ASSET-EF18357A994D043719D5"
+        }
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
@@ -62,7 +79,20 @@
       "keep": "immutable analyzerとeffect実行、default denyの未指定依存拒否。",
       "change": "旧parser/loader/DB/CLI配置を復元しない。観測と保存を注入する外側のconsumerは別owner。",
       "reason": "010 F02の宣言外依存拒否とL4の副作用禁止。",
-      "sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610"
+      "sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610",
+      "f01_application": {
+        "source_asset": "LEGACY-ASSET-809B35B3C91567A97AF5",
+        "keep": "immutable analyzerと外部effectの分離。",
+        "change": "旧loader/parser/DB/CLI配置を復元せず、BoundaryBasis sourceを純粋なinput Contextとして受け取る。新しいbody-fetchやwrite/effectを作らない。",
+        "reason": "現行L4 authority boundaryと010 F01はsnapshotから候補/findingだけを返す。追加接続を持たず既存owner境界を維持する。",
+        "source_sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "source_asset_correction_history": {
+          "previous_candidate_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "correction": "旧IDのasset行は異なるsource_path/source_sha256を指していたため、このsource pathとbytes hashに一致するledger asset IDへ訂正した。",
+          "verified_asset_id": "LEGACY-ASSET-809B35B3C91567A97AF5"
+        }
+      }
     }
   ],
   "type_contract": {
@@ -118,11 +148,12 @@
         "product_state_ref": "Reference"
       },
       "BoundaryBasis": {
-        "behavior_atom_refs": "ReferenceSet",
+        "behavior_atom_refs": "ReferenceSet（1以上。完全なbehavior単位の原子集合）",
         "owner_ref": "Reference",
-        "owner_kind": "service | component | core",
+        "kind_owner_binding": "KindOwnerBinding",
         "sharing_class": "local | shared | unknown",
-        "inseparable_groups": "ReferenceSetのtuple"
+        "inseparable_groups": "InseparableGroupBindingのtuple（空可。各groupと原子集合の対応を明示）",
+        "behavior_unit": "BehaviorUnitBinding（このBoundaryBasis全体を説明する単一behavior contractまたは単一inseparable group）"
       },
       "DeclarationBasis": {
         "input_refs": "ReferenceSet",
@@ -686,6 +717,19 @@
           "stage": "当該producerの内部結果値。公開inputとは別の値。",
           "recovery_candidate_ref": "input.recovery_fact.pack_refの元Reference。"
         }
+      },
+      "KindOwnerBinding": {
+        "kind_ref": "Reference",
+        "owner_kind": "service | component | core"
+      },
+      "InseparableGroupBinding": {
+        "group_ref": "Reference",
+        "behavior_atom_refs": "ReferenceSet"
+      },
+      "BehaviorUnitBinding": {
+        "kind": "behavior_contract | inseparable_group",
+        "ref": "Reference",
+        "behavior_atom_refs": "ReferenceSet"
       }
     },
     "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
@@ -725,11 +769,16 @@
         "boundary_basis_refs": "ReferenceSet"
       },
       "steps": [
-        "共通のreference/context照合を行う。field型/重複が不正ならinvalid、不足と不明は当該範囲へ返す。",
-        "宣言atom集合をcontextのowner確定behavior集合と双方向比較する。関数/path名からatomを作らない。",
-        "owner_refsの一意性とcontextのownerを照合する。consumerをownerに数えない。sharedの場合、部品/CORE所属のkind根拠が必要。",
-        "複数contractをまとめる場合、contextの分割で失う不変条件とinseparable groupへ全atomを結ぶ。独立atomの混載はboundary_mismatch。説明文字列の存在だけで密結合を認めない。",
-        "正常では一owner、consumer集合、atom集合とその根拠を返す。登録/適格性/上位成立は返さない。"
+        "共通の厳密record/Reference/Context検査を行う。必須field欠落・field型・ReferenceSetの重複key等はinput_invalid、outcome=invalid、value=nullとし、独立に識別できる全findingを返す。ReferenceSetは(identity, revision, owner, scope)をkeyとし、同key異digestと重複keyを拒否する。",
+        "pack_refと完全一致するsubjectのboundary_basis fact、current_basis_refs、およびfact_check_refsを解決する。Contextのsubject/revision/scope/owner/current状態を入力宣言から書き換えない。無関係なresolved_facts/current refs/check refsを保持し、F01が使わない根拠をこの関数のfailureへ昇格しない。",
+        "対象BoundaryBasisをowner-qualified current sourceとして内容照合する。digestの一致やfield存在だけでは意味・authorityを生成しない。必要なcontent check欠落はfact_content_unproven/incomplete、current source missingはreference_missing/incomplete、unknownはreference_unknown/unknown、既知矛盾はreference_conflict/conflict、旧revisionはreference_stale/staleとする。",
+        "input.kind_refをBoundaryBasis.kind_owner_binding.kind_refへ全Reference値（identity, revision, owner, scope, content_sha256）でjoinする。owner_kindは同じowner-qualified bindingから読む。sharedならそのbindingが示すcomponent/core所属を確かめる。identity文字列・kind名・owner名から相互対応を推測しない。Contextのsubject/current-basis/fact-check source自体の不正・stale・missing・unknownは共通分類で扱う。一方、両kind候補がそれぞれ正当なexact Referenceとしてsourceに示され、Contextが健全なままinput.kind_refとcurrent bindingが別の既知kindを示す場合は、そのF01意味不一致をshared_owner_mismatch/conflictとして/kind_refに一件記録し、同じkind差をgeneric reference_conflictとして重複記録しない。",
+        "input.owner_refsをowner_refへ、sharing_classはcurrent basisへ照合する。ownerは一件だけで、consumerをownerとして数えない。owner不一致・二重ownerはowner_conflict/conflict。consumer_refsはL4がownerと別に要求するinput宣言であり、BoundaryBasisにはconsumer_refs source fieldが定義されていないため、既存ReferenceSet型の妥当性を検査した上でoutputへ同値を保持する。consumer membershipのauthority/qualified/current性をこの関数が新たに証明しない。",
+        "各input.inseparable_group_refをBoundaryBasis.inseparable_groupsのgroup_refへ全Reference値で個別joinする。各対応record自身にbehavior_atom_refsがある。未解決groupはreference_missing/incomplete、unknown/stale/conflictは共通分類のまま残し、ID一致だけでatom集合を補完しない。group同士の重複・overlap・singletonは、それ自体を拒否条件にしない。",
+        "BoundaryBasis.behavior_unitを全体の意味sourceとして確かめる。kind=behavior_contractならrefは一つの契約を指し、その明示atom集合がBoundaryBasis.behavior_atom_refs全体と完全一致する。kind=inseparable_groupならrefが全Reference一致でちょうど一つのgroup bindingへ結び、そのgroup atom集合がbehavior_unitとBoundaryBasis全体の集合へ完全一致する。契約数とatom数を同一視しない。独立groupを合併しただけでは単一behaviorまたは不可分全体の根拠にならない。",
+        "input.behavior_atom_refsとowner-confirmed BoundaryBasis.behavior_atom_refsを全Reference集合で双方向比較する。missing/unknown/stale/矛盾は共通分類とfindingを保持する。既知の入力集合差やunit atom集合と全体basisの矛盾はboundary_mismatch/conflictとし、説明文・フォルダ・関数名・fixture ID・配列順・atom/groupの個数から契約や不可分性を推論しない。",
+        "全findingをcode, pointer, subject identity, revisionのUnicode code-point順に整列して保持する。outcomeは共通優先順invalid → conflict → stale → unknown → incomplete → satisfiedで一つ決め、findingを短絡で落とさない。",
+        "valueは既存の4-field outputだけを返す。owner_ref/behavior_atom_refs/boundary_basis_refsは一つのcurrent owner-qualified BoundaryBasisから投影し、consumer_refsは型検査済みのinput宣言値を同値保持する。consumer_refsをBoundaryBasisから読むことも、別sourceや資格gateで意味authorityを補うこともしない。invalidはnull。他の非satisfiedでも4 fieldすべてをそれぞれ上記の既存source/投影規則で独立に確定できる時だけ閉じた部分valueを返す。1 fieldでも解決不能/矛盾で型を満たせない場合はnull。部分valueはsatisfied/qualified/登録・適格性を意味しない。"
       ],
       "codes": [
         "owner_conflict",
@@ -739,7 +788,21 @@
       "id": "HARNESS-L5-010-F01",
       "l4_ref": "HARNESS-L4-010-F01",
       "requirement_ref": "HARNESS-L3-010-F01",
-      "oracle_ref": "HARNESS-L8-010-F01"
+      "oracle_ref": "HARNESS-L8-010-F01",
+      "source_to_result_contract": {
+        "source": [
+          "input.pack_ref, kind_ref, behavior_atom_refs, owner_refs, consumer_refs, sharing_class, inseparable_group_refs（既存signatureのまま）",
+          "Context.current_basis_refs/resolved_facts/fact_check_refsから、pack_refに結ぶowner-qualified current BoundaryBasisとその独立内容照合根拠",
+          "BoundaryBasis.behavior_atom_refs, owner_ref, kind_owner_binding, sharing_class, inseparable_groups, behavior_unit（consumer_refsは含まれない）"
+        ],
+        "joins": {
+          "reference_equality": "source identity/currentness/integrityと各joinはReferenceの5 field全体で検査する。keyのみ一致しdigest不一致ならreference_conflict、同じ対象の旧revisionはreference_stale、source/evidence参照のowner/scope/identity矛盾も共通分類にする。候補が見つからないmissing/unknownはその状態を保ち、別revision・別scopeをlatest扱いしない。F01 kind associationでは、健全なsource上でinput.kind_refとbasis.kind_owner_binding.kind_refがそれぞれ既知の別kindとして確認された意味差はshared_owner_mismatch一件にし、generic reference_conflictを重ねない。",
+          "kind": "input.kind_ref = BoundaryBasis.kind_owner_binding.kind_ref（全field）。owner_kindは同bindingの値。",
+          "groups": "入力group refごとに1件のgroup bindingへ完全一致し、そのrecordに明示atomsetがある。",
+          "whole_unit": "単一BehaviorUnitBindingがBoundaryBasis全atomsetを明示する。group kindでは同一full Reference groupが全atomsetを持つ。複数group unionだけで全体性を作らない。"
+        },
+        "result": "owner_ref/behavior_atom_refs/boundary_basis_refsは一致した一つのcurrent basisから投影し、consumer_refsは型検査済みinput.consumer_refsをそのまま保持する（current basisにconsumer_refs memberはない）。outcome precedenceとall-findings保持はshared_pre_postに従う。全output fieldがそれぞれの明示sourceで解決した非satisfiedだけ部分value可。必要fieldが一つでも解決しない場合はnull。結果は候補の意味照合のみで登録/適格性/実行を宣言しない。"
+      }
     },
     {
       "symbol": "check_pack_declaration",
@@ -3630,5 +3693,45 @@
       "public_input_unchanged": true,
       "new_public_gate": false
     }
+  },
+  "boundary_basis_type_impact": {
+    "current_definition": "/type_contract/type_model/BoundaryBasisと追加record型が唯一の現行closed BoundaryBasis shape。",
+    "producer_boundary": "本設計内に実producer実装/codec/登録器は定義されない。F01のContext.resolved_factsへowner-qualified current sourceとして渡される型のみ。provider未実装を欠陥とは数えない。",
+    "consumer_inventory": [
+      {
+        "path": "/functions/0",
+        "id": "HARNESS-L5-010-F01",
+        "change": "新しいKindOwnerBinding/InseparableGroupBinding/BehaviorUnitBindingを読み、公開input/outputとBoundFact kindは維持。"
+      },
+      {
+        "path": "/cases/0",
+        "id": "HARNESS-L8-010-F01",
+        "change": "完全なinput/context/resultを持つ9例へfixtureを具体化。"
+      },
+      {
+        "path": "/extra_cases/7",
+        "id": "HARNESS-L8-010-X08",
+        "change": "関数/path名からbehavior atomを推測しない負例。新型でも意味は不変。"
+      },
+      {
+        "path": "/f04_recovery_construction/source_basis/6",
+        "change": "現行consumerではなく175e5528のL5 /type_contractを指す歴史snapshot。値・hashを変更しない。"
+      },
+      {
+        "path": "/f04_recovery_oracles/source_basis/6 (in L8)",
+        "change": "現行consumerではなく同じ175e5528 L5 /type_contractを指す歴史snapshot。値・hashを変更しない。"
+      },
+      {
+        "path": "/f04_recovery_construction/kind_record_binding, internal_stages, expression_language, RecoverySelectionBasis",
+        "change": "F04現在のconstructorはrecovery_selection_basisを読む。BoundaryBasis consumerではないため変更しない。"
+      }
+    ],
+    "owner_kind_migration": "現行BoundaryBasis型のowner_kindをKindOwnerBinding内へ移し、F01のみをconsumerとして同時に追従。検索対象の現行詳細pairに他のtyped BoundaryBasis producer/consumerは見つからない。L5/L8 F04引用はimmutable歴史bytesとして保存。",
+    "not_in_scope": [
+      "新BoundFact kind",
+      "公開function signature/output変更",
+      "wire JSON Schema、codec、provider、body-fetch port",
+      "実装・runtime・qualification/authority gate"
+    ]
   }
 }
