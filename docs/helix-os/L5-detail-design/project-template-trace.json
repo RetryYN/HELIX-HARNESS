@@ -105,13 +105,13 @@
     },
     {
       "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
-      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
-      "sha256": "ffb07668c14daba5d20154bbf395b1e41b81bbb8430200c74298ffcc23d75742"
+      "revision": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63",
+      "sha256": "4c881803a25b9c90b3fa046e887ed9e6760970b6c0d888d042f87ce77771c26c"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-      "revision": "6e064ff5b29c25f86edd331f035f9467df3937c6",
-      "sha256": "30be7c06aa9e116bf2c88a4c3a927e0dbabcada20c8960c7aa6d762967857468"
+      "revision": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63",
+      "sha256": "a55888e969c0f731c3f86fdf6287f7d0bf0c39e66336bde609ce625195f16ab0"
     },
     {
       "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
@@ -604,7 +604,7 @@
           "obligation_original_states": "Field<(F04RecordInputobligationoriginalstatesItem)[]>",
           "source_output_association": "Field<JsonValue>"
         },
-        "meaning": "RecordTraceInput.candidateのJSON objectをcontext.selected_sectionsのF04型として解釈した値。source_output_associationは候補内の関係claim packetを原JSON値のまま保持し、source資格やowner資格を表さない。欠落/null/その他JSON値を別に保持する。"
+        "meaning": "内容は対応関数と原要求に従い比較する。RecordTraceInput.candidateのJSON objectをcontext.selected_sectionsのF04型として解釈した値。source_output_associationは候補内の関係claim packetを原JSON値のまま保持し、source資格やowner資格を表さない。欠落/null/その他JSON値を別に保持する。"
       },
       "F05RecordInputoriginalreturneventreturntarget": {
         "fields": {
@@ -921,7 +921,7 @@
           "unfinished_obligation_records": "Field<(F04RecordInputobligationoriginalstatesItem)[]>",
           "source_output_association": "Field<SourceOutputAssociationResult>"
         },
-        "meaning": "F04の既存CORE判定・義務観測とsource-output endpoint比較を同じsectionに保持する。associationの内容対応はCORE/OSの意味一致、source資格、実接続を成立させない。"
+        "meaning": "内容は対応関数と原要求に従い比較する。F04の既存CORE判定・義務観測とsource-output endpoint比較を同じsectionに保持する。associationの内容対応はCORE/OSの意味一致、source資格、実接続を成立させない。"
       },
       "F05RecordObservationreturnsourcebinding": {
         "fields": {
@@ -1198,19 +1198,26 @@
           "resolved_value": "Field<JsonValue>",
           "diagnostic_paths": "string[]"
         },
-        "meaning": "候補snapshotは既知一致identity occurrenceのみを原順・重複保持する。resolved_valueは終端pointer値のPresence。"
+        "meaning": "候補snapshotは既知一致identity occurrenceのみを原順・重複保持する。resolved_valueはL4 PresenceをField<JsonValue>へlosslessに対応づける。wireではAbsentをmember省略、Present(x)を原xとして表す。"
       },
       "SourceOutputAssociationResult": {
         "fields": {
           "core_endpoint": "AssociationEndpointResult",
           "os_endpoint": "AssociationEndpointResult",
           "association_input": "JsonValue",
-          "original_snapshots": "object<string,JsonValue>",
+          "original_snapshots": "OriginalAssociationSnapshots",
           "meaning_comparison": "'not_established'",
           "actual_source_qualification": "'not_established'",
           "effects": "'none'"
         },
         "meaning": "endpoint内容照合の返却。意味関係・資格・効果を成立させない。associationが欠落した場合はnull表示とendpoint root unresolvedで欠落を保持する。"
+      },
+      "OriginalAssociationSnapshots": {
+        "fields": {
+          "core_snapshots": "Field<JsonValue>",
+          "os_snapshots": "Field<JsonValue>"
+        },
+        "meaning": "原packetにある側のmemberだけを保持する閉record。各member内のJsonValueは不透明な原値。"
       }
     },
     "input_types_by_contract": {
@@ -1298,13 +1305,14 @@
         "HELIXOS-L8-002-ADD-08",
         "HELIXOS-L8-002-ADD-09",
         "HELIXOS-L8-002-ADD-10",
-        "HELIXOS-L8-002-ADD-11"
+        "HELIXOS-L8-002-ADD-11",
+        "HELIXOS-L8-002-F04"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-validate_record_trace_input",
       "f04_candidate_decode_binding": {
         "activation": "context.selected_sectionsがF04を含む場合だけF04RecordInput variantとして解釈する。未選択sectionのfieldを新規必須化しない。",
         "wire_candidate_pointer": "/candidate/source_output_association",
-        "logical_variant": "RecordTraceInput.candidate as CaseInput.variant=F04RecordInput",
+        "logical_variant": "RecordTraceInput.candidateを、選択sectionに従うCaseInputのF04RecordInput型として解釈する。wire wrapperは追加しない。",
         "member_projection": "F04RecordInput.source_output_association",
         "field_mapping": {
           "wire_key_absent": "Field.missing",
@@ -1423,10 +1431,10 @@
       "algorithm": [
         "CORE output_refごとにdisposition/reason/decider/target_revision/reentry/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性を個別に失敗させる。",
         "conditional false/unknownとNAを分け、obligation_original_statesは各義務refのnot_started/failed/not_evaluatedを保持。OS新裁定と他義務の代償消込を認めない。",
-        "F04選択時だけValidatedRecordTrace.inputのcandidate.variant.source_output_associationを読む。Fieldがmissingなら観測へField.absentを返し、他sectionやsource未供給に新しい必須条件を課さない。present(null)をmissingへ畳まずraw JsonValueとして評価する。",
+        "F04選択時だけValidatedRecordTrace.inputのcandidate.variant.source_output_associationを読む。Fieldがmissingなら観測へField.missingを返し、他sectionやsource未供給に新しい必須条件を課さない。present(null)をmissingへ畳まずraw JsonValueとして評価する。",
         "presentの値はL4 F04 source_output_association.input_rolesのcore_snapshots/os_snapshots/associationとして扱う。各値のAbsent/null/wrong-kindを修正・castせず保持し、L4 endpoint_orderを左右独立に適用してAssociationEndpointResultを作る。snapshot RefはL4の4軸のみで比較し、CORE内部RefをOS Refへcastしない。",
         "各endpointはL4 endpoint_orderの先行終了順、RFC6901 pointer解決、Presence比較、JSON型付き等値（object key順無視、array順序/重複保持）を適用する。候補・診断path・終端resolved_valueはL4 diagnostic_path_rulesだけで組み立てる。",
-        "返したSourceOutputAssociationResultをF04RecordObservation.source_output_association=Field.present(result)へ加える。core_disposition_recordsとunfinished_obligation_recordsの既存比較は同じ呼出しで維持し、association結果で置換・省略しない。"
+        "返したSourceOutputAssociationResultをF04RecordObservation.source_output_association=Field.supplied(result)へ加える。core_disposition_recordsとunfinished_obligation_recordsの既存比較は同じ呼出しで維持し、association結果で置換・省略しない。"
       ],
       "unit_case_refs": [
         "HELIXOS-L8-002-F04"
@@ -1434,10 +1442,15 @@
       "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_core_dispositions",
       "source_output_association_rule": {
         "source_contract_ref": "HELIXOS-L5-002-F04",
-        "basic_design_ref": "HELIXOS-L4-002-F04/source_output_association",
+        "basic_design_ref": {
+          "revision": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63",
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "pointer": "/contracts/5/source_output_association",
+          "file_sha256": "4c881803a25b9c90b3fa046e887ed9e6760970b6c0d888d042f87ce77771c26c"
+        },
         "input_path": "ValidatedRecordTrace.input.candidate.variant.source_output_association",
-        "activation": "F04がcontext.selected_sectionsにある呼出しだけ。Field missingはF04RecordObservation.source_output_association=Field.absent。presentは値kindにかかわらずraw JsonValueを評価する。",
-        "algorithm_source": "L4 endpoint_orderの1～7とdiagnostic_path_rulesが状態優先・path・比較を一意に定める。この関数内で別の優先規則を加えない。",
+        "activation": "F04がcontext.selected_sectionsにある呼出しだけ。Field missingはF04RecordObservation.source_output_association=Field.missing。presentは値kindにかかわらずraw JsonValueを評価する。",
+        "algorithm_source": "上記basic_design_refのendpoint_order全6段とdiagnostic_path_rulesへ従う。pointerのkey欠落は第1段、key供給済みの非stringを含むRFC6901構文不正は第5段のunresolved、pathは/association/{side}_endpoint/pointer。候補選択・owner/scope/revision照合の先行終了を維持し、非stringだけを第1段へ前倒ししない。",
         "result_path": "TraceSectionResult.observation.variant.F04RecordObservation.source_output_association",
         "non_effect": "meaning_comparison=not_established, actual_source_qualification=not_established, effects=none。endpoint content_correspondingは既存F04の判定/義務比較を省略せず、実資格を作らない。",
         "raw_wire_input_path": "RecordTraceInput.candidate.source_output_association",
@@ -1445,7 +1458,14 @@
         "wire_to_logical_binding_ref": "functions[0].f04_candidate_decode_binding",
         "outer_field_semantics": "wire key absentならField.missingを維持し、F04RecordObservationにもmissingを返す。wire key present nullならField.supplied(null)としてL4 endpoint規則へ渡し、presentなSourceOutputAssociationResultを返す。wire key present JSON値なら全値をL4のassociation packetとして渡す。",
         "packet_inner_presence": "outer fieldがpresentのときだけpacket内部をL4規則へ渡す。packetのassociation member欠落はouter Field.missingではない。両endpointのunresolved、原packetのsnapshot配列、association_inputのL4表示を保ったpresent resultを返す。",
-        "logical_return_field": "F04RecordObservation.source_output_associationはField<SourceOutputAssociationResult>。L8はField tagを含むlogical値で比較し、wire schemaは既存field encodingでmissing/null/valueへ投影する。"
+        "logical_return_field": "内部F04RecordObservation.source_output_associationはField<SourceOutputAssociationResult>。L8期待値はwire projectionで照合し、missingはmember省略、supplied(result)は結果本体、supplied(null)はnullを記録する。",
+        "presence_projection": {
+          "outer_missing": "Field.missingはwire観測member省略。",
+          "outer_supplied": "Field.supplied(result)はwire観測memberへresult本体を置く。wrapperを加えない。",
+          "endpoint_resolved_absent": "L4 Presence.absentをL5 resolved_valueのField.missingへ写し、wire memberを省略する。",
+          "endpoint_resolved_present": "L4 Presence.present(x)をField.supplied(x)へ写し、wireへ元xを置く。present(null)はsupplied(null)のmember:nullであり、member欠落と区別する。",
+          "raw_packet": "入力packetのexpected_valueはL4のPresence原値として保持し、出力Fieldのwire表現と混同しない。"
+        }
       }
     },
     {
@@ -1586,7 +1606,9 @@
         "原観測と全局所findingを保持し、effect_requests=[]/effects=[]、authority_generated=false。候補collection成功から実保存や実接続を生成しない。",
         "context.selected_sectionsの順に既存section関数を呼ぶ。F04が選択されている場合は同じValidatedRecordTraceをcompare_core_dispositionsへ一度渡し、返された全TraceSectionResultを省略/再構成せずRecordTraceAnalysis.sectionsのF04位置へ追加する。F04以外の既存dispatchは変えない。"
       ],
-      "unit_case_refs": [],
+      "unit_case_refs": [
+        "HELIXOS-L8-002-F04"
+      ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-build_record_trace_analysis",
       "f04_dispatch_binding": {
         "when": "ValidatedRecordTrace.input.context.selected_sectionsにF04が含まれる。",
@@ -1775,11 +1797,17 @@
           }
         ],
         "field_distinctions": [
-          "RecordTraceInput candidate outer key absent",
-          "outer key present with null",
-          "outer key present with packet whose association member is absent"
+          "candidateの外側key欠落",
+          "外側keyの明示null",
+          "外側keyは供給済みでpacket内association memberが欠落"
         ],
-        "qualification_limit": "outer claim/payloadの形式・endpoint content correspondenceは、別source資格・CORE/OS意味一致・実recipient資格・effectを成立させない。"
+        "qualification_limit": "outer claim/payloadの形式・endpoint content correspondenceは、別source資格・CORE/OS意味一致・実recipient資格・effectを成立させない。",
+        "existing_meaning_change_record": {
+          "source_revision": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63",
+          "preserve": "既存の「内容は対応関数と原要求に従い比較する」を保持し、各元CORE出力と義務原stateを既存関数で比較する。",
+          "change": "同じF04入力/観測へ追加association memberを接続し、Field wire境界を明示する。",
+          "reason": "既決L4の原source両端解決を既存F04呼出しへ運ぶ。上流意味や既存4観測を置換しない。"
+        }
       }
     },
     {
@@ -8023,10 +8051,7 @@
               "$ref": "#/$defs/JsonValue"
             },
             "original_snapshots": {
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/$defs/JsonValue"
-              }
+              "$ref": "#/$defs/OriginalAssociationSnapshots"
             },
             "meaning_comparison": {
               "const": "not_established"
@@ -8047,6 +8072,18 @@
             "actual_source_qualification",
             "effects"
           ],
+          "additionalProperties": false
+        },
+        "OriginalAssociationSnapshots": {
+          "type": "object",
+          "properties": {
+            "core_snapshots": {
+              "$ref": "#/$defs/JsonValue"
+            },
+            "os_snapshots": {
+              "$ref": "#/$defs/JsonValue"
+            }
+          },
           "additionalProperties": false
         }
       }
@@ -8245,7 +8282,7 @@
         "SourceOutputAssociationResult"
       ],
       "declared_field_pointer_root": "/type_contract/types",
-      "required_rule": "原Field<T>は省略/supplied(null)/原供給値を保持。入力plain member欠落も既存意味不足へ渡し、全requiredを新設しない。既存生成結果4型のplain requiredを保持。 新しいF04生成結果AssociationEndpointResult/SourceOutputAssociationResultもplain memberは宣言どおりrequired、Field<JsonValue> resolved_valueは省略/null/原値を保存する。",
+      "required_rule": "原Field<T>は省略/supplied(null)/原供給値を保持。入力plain member欠落も既存意味不足へ渡し、全requiredを新設しない。既存生成結果4型のplain requiredを保持。新しいF04生成結果AssociationEndpointResult/SourceOutputAssociationResultもplain memberは宣言どおりrequired、Field<JsonValue> resolved_valueは省略/null/原値を保存する。",
       "opaque_paths": [
         {
           "path": "RawValue",
