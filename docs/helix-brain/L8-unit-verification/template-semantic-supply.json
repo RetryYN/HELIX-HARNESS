@@ -52272,6 +52272,1138 @@
         "basis": "左右非対称な過剰digest要求をしない。同subject joinだけで実資格を作らない。",
         "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
         "observation_scope": "同constructor内部の参照join演算の有限分岐。source資格/公開関数の成立ではない。"
+      },
+      {
+        "id": "R3-REF-COLLECTION-LEFT-TO-RIGHT-MISMATCH",
+        "symbol": "ref_collections_same",
+        "arguments": [
+          [
+            {
+              "identity": "ref-A",
+              "revision": "rev-synthetic-1",
+              "scope": {
+                "project": "project-synthetic",
+                "layer": "BRAIN032"
+              },
+              "owner": "owner-synthetic",
+              "source_locator": null
+            }
+          ],
+          [
+            {
+              "identity": "ref-B",
+              "revision": "rev-synthetic-1",
+              "scope": {
+                "project": "project-synthetic",
+                "layer": "BRAIN032"
+              },
+              "owner": "owner-synthetic",
+              "source_locator": null
+            }
+          ]
+        ],
+        "expected": false,
+        "basis": "L5の双方向集合対応は左→右と右→左をともに要求する。片方向だけを確認する実装は左の余剰memberを見逃す。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-REF-MEMBER-NULLS",
+        "symbol": "ref_same",
+        "arguments": [
+          {
+            "identity": null,
+            "revision": null,
+            "scope": null,
+            "owner": null,
+            "source_locator": null
+          },
+          {
+            "identity": null,
+            "revision": null,
+            "scope": null,
+            "owner": null,
+            "source_locator": null
+          }
+        ],
+        "expected": false,
+        "basis": "Ref container自体がobjectでも、identity/revision/scope/ownerの必須各memberがnullなら同一Refとしてjoinしない。これはRef全体nullと別の入力形である。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-SHA256-ABSENT-LEFT",
+        "symbol": "ref_same",
+        "arguments": [
+          {
+            "identity": "digest-absent",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null
+          },
+          {
+            "identity": "digest-absent",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null,
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ],
+        "expected": true,
+        "basis": "双方のidentity/revision/scope/ownerが同値で左にsha256 keyが無い場合、sha256を比較条件へ加えない。Ref identityの一致はdigest証拠やsource資格を意味しない。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-SHA256-ABSENT-BOTH",
+        "symbol": "ref_same",
+        "arguments": [
+          {
+            "identity": "digest-absent-both",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null
+          },
+          {
+            "identity": "digest-absent-both",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null
+          }
+        ],
+        "expected": true,
+        "basis": "双方でsha256 keyがAbsentでも、4つの必須identity memberが同値ならRef identity joinはtrue。digest一致や資格の主張ではない。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-SHA256-ABSENT-RIGHT",
+        "symbol": "ref_same",
+        "arguments": [
+          {
+            "identity": "digest-absent-right",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null,
+            "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          {
+            "identity": "digest-absent-right",
+            "revision": "rev-synthetic-1",
+            "scope": {
+              "project": "project-synthetic",
+              "layer": "BRAIN032"
+            },
+            "owner": "owner-synthetic",
+            "source_locator": null
+          }
+        ],
+        "expected": true,
+        "basis": "右側sha256 keyだけがAbsentでも、4つの必須identity memberが同値ならRef identity joinはtrue。digest一致や資格の主張ではない。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-FACT-BINDING-ONE-SIDE-DIFFERS",
+        "symbol": "fact_usable",
+        "arguments": [
+          {
+            "input": {
+              "sources": [
+                {
+                  "ref": {
+                    "identity": "source-1",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "role": "semantic_json",
+                  "content": {
+                    "descriptor_facts": [
+                      {
+                        "facts": [
+                          {
+                            "source_ref": {
+                              "identity": "source-1",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            },
+                            "owner": "fact-owner",
+                            "binding": {
+                              "template_ref": {
+                                "identity": "template-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "knowledge_ref": {
+                                "identity": "knowledge-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "requirement_ref": {
+                                "identity": "requirement-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "oracle_ref": {
+                                "identity": "oracle-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_ref": {
+                                "identity": "pack-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_contract_version": "contract-1",
+                              "pack_artifact_version": "artifact-1",
+                              "pack_dependency_versions": [],
+                              "version_target": null
+                            },
+                            "meaning": "same-meaning",
+                            "condition": null,
+                            "reason": null,
+                            "oracle_ref": null,
+                            "ref": {
+                              "identity": "fact-1",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "unusable_source_refs": []
+          },
+          {
+            "source_ref": {
+              "identity": "source-1",
+              "revision": "rev-synthetic-1",
+              "scope": {
+                "project": "project-synthetic",
+                "layer": "BRAIN032"
+              },
+              "owner": "owner-synthetic",
+              "source_locator": null
+            },
+            "owner": "fact-owner",
+            "binding": {
+              "template_ref": {
+                "identity": "template-Y",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "knowledge_ref": {
+                "identity": "knowledge-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "requirement_ref": {
+                "identity": "requirement-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "oracle_ref": {
+                "identity": "oracle-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_ref": {
+                "identity": "pack-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_contract_version": "contract-1",
+              "pack_artifact_version": "artifact-1",
+              "pack_dependency_versions": [],
+              "version_target": null
+            },
+            "meaning": "same-meaning",
+            "condition": null,
+            "reason": null,
+            "oracle_ref": null,
+            "ref": {
+              "identity": "fact-1",
+              "revision": "rev-synthetic-1",
+              "scope": {
+                "project": "project-synthetic",
+                "layer": "BRAIN032"
+              },
+              "owner": "owner-synthetic",
+              "source_locator": null
+            }
+          }
+        ],
+        "expected": false,
+        "basis": "同じfact Refを持つsource原factと提出factのbindingが一方だけ異なるため、source_refを除いた本文一致条件を満たさない。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-MEANING-ONE-SIDE-BINDING-DIFFERS",
+        "symbol": "meaning_pair_axes",
+        "arguments": [
+          {
+            "input": {
+              "sources": [
+                {
+                  "ref": {
+                    "identity": "pair-source-A",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "role": "semantic_json",
+                  "content": {
+                    "descriptor_facts": [
+                      {
+                        "facts": [
+                          {
+                            "source_ref": {
+                              "identity": "pair-source-A",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            },
+                            "owner": "fact-owner",
+                            "binding": {
+                              "template_ref": {
+                                "identity": "template-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "knowledge_ref": {
+                                "identity": "knowledge-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "requirement_ref": {
+                                "identity": "requirement-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "oracle_ref": {
+                                "identity": "oracle-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_ref": {
+                                "identity": "pack-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_contract_version": "contract-1",
+                              "pack_artifact_version": "artifact-1",
+                              "pack_dependency_versions": [],
+                              "version_target": null
+                            },
+                            "meaning": "meaning-A",
+                            "condition": null,
+                            "reason": null,
+                            "oracle_ref": null,
+                            "ref": {
+                              "identity": "pair-fact-A",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "ref": {
+                    "identity": "pair-source-B",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "role": "semantic_json",
+                  "content": {
+                    "descriptor_facts": [
+                      {
+                        "facts": [
+                          {
+                            "source_ref": {
+                              "identity": "pair-source-B",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            },
+                            "owner": "fact-owner",
+                            "binding": {
+                              "template_ref": {
+                                "identity": "template-Y",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "knowledge_ref": {
+                                "identity": "knowledge-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "requirement_ref": {
+                                "identity": "requirement-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "oracle_ref": {
+                                "identity": "oracle-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_ref": {
+                                "identity": "pack-X",
+                                "revision": "rev-synthetic-1",
+                                "scope": {
+                                  "project": "project-synthetic",
+                                  "layer": "BRAIN032"
+                                },
+                                "owner": "owner-synthetic",
+                                "source_locator": null
+                              },
+                              "pack_contract_version": "contract-1",
+                              "pack_artifact_version": "artifact-1",
+                              "pack_dependency_versions": [],
+                              "version_target": null
+                            },
+                            "meaning": "meaning-B",
+                            "condition": null,
+                            "reason": null,
+                            "oracle_ref": null,
+                            "ref": {
+                              "identity": "pair-fact-B",
+                              "revision": "rev-synthetic-1",
+                              "scope": {
+                                "project": "project-synthetic",
+                                "layer": "BRAIN032"
+                              },
+                              "owner": "owner-synthetic",
+                              "source_locator": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "ref": {
+                    "identity": "comparison-source",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "role": "semantic_json",
+                  "content": {
+                    "meaning_comparisons": [
+                      {
+                        "left_fact_ref": {
+                          "identity": "pair-fact-A",
+                          "revision": "rev-synthetic-1",
+                          "scope": {
+                            "project": "project-synthetic",
+                            "layer": "BRAIN032"
+                          },
+                          "owner": "owner-synthetic",
+                          "source_locator": null
+                        },
+                        "right_fact_ref": {
+                          "identity": "pair-fact-B",
+                          "revision": "rev-synthetic-1",
+                          "scope": {
+                            "project": "project-synthetic",
+                            "layer": "BRAIN032"
+                          },
+                          "owner": "owner-synthetic",
+                          "source_locator": null
+                        },
+                        "equivalent": true,
+                        "reason": "独立合成比較"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "meaning_comparisons": [
+                {
+                  "left_fact_ref": {
+                    "identity": "pair-fact-A",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "right_fact_ref": {
+                    "identity": "pair-fact-B",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "comparison_source_ref": {
+                    "identity": "comparison-source",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "equivalent": true,
+                  "reason": "独立合成比較"
+                }
+              ]
+            },
+            "unusable_source_refs": []
+          },
+          {
+            "slot_identity": "slot-required-input",
+            "descriptor_kind": "required input",
+            "binding": {
+              "template_ref": {
+                "identity": "template-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "knowledge_ref": {
+                "identity": "knowledge-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "requirement_ref": {
+                "identity": "requirement-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "oracle_ref": {
+                "identity": "oracle-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_ref": {
+                "identity": "pack-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_contract_version": "contract-1",
+              "pack_artifact_version": "artifact-1",
+              "pack_dependency_versions": [],
+              "version_target": null
+            },
+            "facts": [
+              {
+                "source_ref": {
+                  "identity": "pair-source-A",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "owner": "fact-owner",
+                "binding": {
+                  "template_ref": {
+                    "identity": "template-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "knowledge-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "requirement_ref": {
+                    "identity": "requirement-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "oracle_ref": {
+                    "identity": "oracle-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "pack_ref": {
+                    "identity": "pack-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "pack_contract_version": "contract-1",
+                  "pack_artifact_version": "artifact-1",
+                  "pack_dependency_versions": [],
+                  "version_target": null
+                },
+                "meaning": "meaning-A",
+                "condition": null,
+                "reason": null,
+                "oracle_ref": null,
+                "ref": {
+                  "identity": "pair-fact-A",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                }
+              },
+              {
+                "source_ref": {
+                  "identity": "pair-source-B",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "owner": "fact-owner",
+                "binding": {
+                  "template_ref": {
+                    "identity": "template-Y",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "knowledge-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "requirement_ref": {
+                    "identity": "requirement-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "oracle_ref": {
+                    "identity": "oracle-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "pack_ref": {
+                    "identity": "pack-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "pack_contract_version": "contract-1",
+                  "pack_artifact_version": "artifact-1",
+                  "pack_dependency_versions": [],
+                  "version_target": null
+                },
+                "meaning": "meaning-B",
+                "condition": null,
+                "reason": null,
+                "oracle_ref": null,
+                "ref": {
+                  "identity": "pair-fact-B",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                }
+              }
+            ],
+            "comparison_refs": [],
+            "definition_applicability_ref": null
+          }
+        ],
+        "expected": [
+          {
+            "subject_ref": {
+              "identity": "pair-fact-A",
+              "revision": "rev-synthetic-1",
+              "scope": {
+                "project": "project-synthetic",
+                "layer": "BRAIN032"
+              },
+              "owner": "owner-synthetic",
+              "source_locator": null
+            },
+            "binding": {
+              "template_ref": {
+                "identity": "template-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "knowledge_ref": {
+                "identity": "knowledge-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "requirement_ref": {
+                "identity": "requirement-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "oracle_ref": {
+                "identity": "oracle-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_ref": {
+                "identity": "pack-X",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              "pack_contract_version": "contract-1",
+              "pack_artifact_version": "artifact-1",
+              "pack_dependency_versions": [],
+              "version_target": null
+            },
+            "axis": "required input",
+            "state": "unknown",
+            "original_refs": [
+              {
+                "identity": "pair-fact-A",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              },
+              {
+                "identity": "pair-fact-B",
+                "revision": "rev-synthetic-1",
+                "scope": {
+                  "project": "project-synthetic",
+                  "layer": "BRAIN032"
+                },
+                "owner": "owner-synthetic",
+                "source_locator": null
+              }
+            ],
+            "reason": "同bindingのqualifiedな独立意味比較が未供給または未確定。",
+            "backflow_owner": "owner-synthetic"
+          }
+        ],
+        "basis": "L5はslot bindingと両fact bindingの一致を比較可能条件とする。片側のtemplate_ref不一致だけで、未確定な意味pairをknown/conflictへ寄せずunknownにする。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
+      },
+      {
+        "id": "R3-IDENTICAL-KNOWLEDGE-RECORD-DUPLICATE",
+        "symbol": "construction_issues",
+        "arguments": [
+          {
+            "input": {
+              "binding": {
+                "template_ref": {
+                  "identity": "template-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "knowledge_ref": {
+                  "identity": "knowledge-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "requirement_ref": {
+                  "identity": "requirement-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "oracle_ref": {
+                  "identity": "oracle-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "pack_ref": {
+                  "identity": "pack-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                },
+                "pack_contract_version": "contract-1",
+                "pack_artifact_version": "artifact-1",
+                "pack_dependency_versions": [],
+                "version_target": null
+              },
+              "candidates": [
+                {
+                  "identity": "template-X",
+                  "revision": "rev-synthetic-1",
+                  "scope": {
+                    "project": "project-synthetic",
+                    "layer": "BRAIN032"
+                  },
+                  "owner": "owner-synthetic",
+                  "source_locator": null
+                }
+              ],
+              "required_descriptor_kinds": [
+                "required input"
+              ],
+              "sources": [],
+              "qualification_roots": [],
+              "qualifications": [],
+              "descriptors": [],
+              "meaning_comparisons": [],
+              "section_fields": [],
+              "values": [],
+              "applicability_records": [],
+              "relations": [],
+              "oracle_bindings": [],
+              "compatibility_records": [],
+              "knowledge_records": [
+                {
+                  "ref": {
+                    "identity": "knowledge-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "operational_state": {
+                    "state": "candidate"
+                  },
+                  "provenance_refs": [],
+                  "limited_adoption_ref": null,
+                  "evaluation_scope": null,
+                  "evaluation_ref": null,
+                  "os_registration_ref": null,
+                  "independent_verification_ref": null,
+                  "adoption_ref": null,
+                  "limits": [],
+                  "counterexamples": []
+                },
+                {
+                  "ref": {
+                    "identity": "knowledge-X",
+                    "revision": "rev-synthetic-1",
+                    "scope": {
+                      "project": "project-synthetic",
+                      "layer": "BRAIN032"
+                    },
+                    "owner": "owner-synthetic",
+                    "source_locator": null
+                  },
+                  "operational_state": {
+                    "state": "candidate"
+                  },
+                  "provenance_refs": [],
+                  "limited_adoption_ref": null,
+                  "evaluation_scope": null,
+                  "evaluation_ref": null,
+                  "os_registration_ref": null,
+                  "independent_verification_ref": null,
+                  "adoption_ref": null,
+                  "limits": [],
+                  "counterexamples": []
+                }
+              ],
+              "dependencies": {},
+              "handoff_records": [],
+              "claims": []
+            },
+            "input_issues": [],
+            "unusable_source_refs": []
+          }
+        ],
+        "expected": [],
+        "basis": "同一knowledge Ref・完全同一本文の重複出現はdistinct recordを増やさず、相反record診断を作らない。原入力の二出現自体は維持される。",
+        "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
+        "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       }
     ]
   }
