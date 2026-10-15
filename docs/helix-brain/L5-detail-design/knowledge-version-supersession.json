@@ -1,0 +1,2156 @@
+{
+  "parent": "HELIXBRAIN-L2-008",
+  "document_id": "HELIXBRAIN-L5-008",
+  "layer": "L5",
+  "pair": "L8",
+  "status": "draft_detail_contracts_not_ready",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "boundary": "知識identity/exact版/state/旧参照とOS案件利用の局所照合。候補受領を実使用/移行/義務充足にしない。"
+  },
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/knowledge-version-supersession.json",
+      "revision": "d161af2056917ffff3b33555238e06cd807eb764",
+      "sha256": "cc99aa25f2daf6d72b20cff6a210469d2fb1456043dd3a28efeae8d6c4ea46ea"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+      "revision": "d161af2056917ffff3b33555238e06cd807eb764",
+      "sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "approval_binding": {
+    "record_path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_id": "HDEC-BRAIN-PROVENANCE-VERSION-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "approved_content_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "admitted_current_parent": "967bc8f9adc44e40757c0d25238366a87157be89",
+    "approved_pair_refs": [
+      "HELIXBRAIN-L3-008-F01↔HELIXBRAIN-L10-008-F01",
+      "HELIXBRAIN-L3-008-F02↔HELIXBRAIN-L10-008-F02",
+      "HELIXBRAIN-L3-008-B01↔HELIXBRAIN-L10-008-B01"
+    ],
+    "authority": "対象exact本文の限定承認。通常L3再開、schema/実資格/実使用/実移行は含まない。",
+    "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+    "six_object_chain": {
+      "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+      "admitted_revision": "967bc8f9adc44e40757c0d25238366a87157be89",
+      "current_source_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "objects": [
+        "HELIXBRAIN-L3-008-F01",
+        "HELIXBRAIN-L3-008-F02",
+        "HELIXBRAIN-L3-008-B01",
+        "HELIXBRAIN-L10-008-F01",
+        "HELIXBRAIN-L10-008-F02",
+        "HELIXBRAIN-L10-008-B01"
+      ],
+      "comparison": "承認revision→admitted revision→source_main→現在worktreeの各対象wholeをcanonical JSON全値比較する。"
+    }
+  },
+  "legacy_source_basis": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "read_lines": [
+        19,
+        46
+      ],
+      "quote": "集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_lines_sha256": "b2e77f8a4f6e583e4a2c3399aff8241496fca8282f14250aaa079a4d03c54a19",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "disposition": "unresolved",
+        "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      "reuse": "参照のみ。採択BRAIN008に従いidentity/version/supersessionの意味を再導出する。",
+      "preserve": "ID/version/supersessionとschema束縛、duplicate/unknown version/digest driftの区別、inventoryやfilenameの非意味主キー。",
+      "change": "旧registryとtemplate/instance/runtimeを移植せず、BRAIN知識identity/版/stateとCORE参照/OS案件利用記録の別ownerへ対応する。",
+      "reason": "9/26 PO原文L1-008/採択008/10/12委任承認が旧参照保全と知識/案件状態の分離を要求する。"
+    }
+  ],
+  "failure_consumer_basis": {
+    "source": "旧template JSON authorityの固定引用と、legacy_related_evidenceに示す旧generator lifecycle/受入設計の範囲を参照する。旧実行経路やVDH consumerを008へ採用せず、BRAIN/CORE/OSの失敗・consumer境界は採択L2/L11と批准L3/L10、原L4/L9へ再導出する。"
+  },
+  "logical_types": {
+    "JsonScalar": {
+      "kind": "union",
+      "members": [
+        "string",
+        "boolean",
+        "number",
+        "null"
+      ]
+    },
+    "KnowledgeRecord": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonScalar",
+        "revision": "JsonScalar",
+        "version": "JsonScalar",
+        "state": "JsonScalar",
+        "source": "JsonScalar",
+        "scope": "JsonScalar"
+      },
+      "required": [],
+      "presence": "各declared memberは任意。AbsentとPresent(null)は別値として保持し、比較時にAbsentをmissing、nullを値として比較する。"
+    },
+    "CoreReference": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonScalar",
+        "core": "JsonScalar",
+        "knowledge_identity": "JsonScalar",
+        "knowledge_revision": "JsonScalar",
+        "knowledge_version": "JsonScalar",
+        "scope": "JsonScalar"
+      },
+      "required": [],
+      "presence": "各declared memberは任意。AbsentとPresent(null)を区別する。"
+    },
+    "FieldComparison": {
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "missing"
+      ]
+    },
+    "ClaimResult": {
+      "kind": "enum",
+      "values": [
+        "none",
+        "rejected"
+      ]
+    },
+    "EffectFlags": {
+      "kind": "record",
+      "fields": {
+        "actual_knowledge_adopted": {
+          "literal": false
+        },
+        "actual_old_reference_replaced": {
+          "literal": false
+        },
+        "actual_project_migrated": {
+          "literal": false
+        },
+        "actual_project_used": {
+          "literal": false
+        },
+        "actual_OS_registration": {
+          "literal": false
+        },
+        "actual_CORE_applied": {
+          "literal": false
+        },
+        "actual_obligation_completed": {
+          "literal": false
+        },
+        "actual_authority": {
+          "literal": false
+        },
+        "actual_implementation_ready": {
+          "literal": false
+        },
+        "actual_acceptance": {
+          "literal": false
+        }
+      },
+      "required": [
+        "actual_knowledge_adopted",
+        "actual_old_reference_replaced",
+        "actual_project_migrated",
+        "actual_project_used",
+        "actual_OS_registration",
+        "actual_CORE_applied",
+        "actual_obligation_completed",
+        "actual_authority",
+        "actual_implementation_ready",
+        "actual_acceptance"
+      ]
+    },
+    "SupersessionRecord": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonScalar",
+        "old": "KnowledgeVersionRef",
+        "new": "KnowledgeVersionRef",
+        "scope": "JsonScalar"
+      },
+      "required": [],
+      "presence": "provided_supersessionのtop-level explicit nullは許容型。比較全体をmissingとする。record内のAbsent nested/memberはmissing、record/memberに存在するnullは値として比較。",
+      "nullable_input_ref": "F02Input.provided_supersession"
+    },
+    "KnowledgeVersionRef": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonScalar",
+        "revision": "JsonScalar",
+        "version": "JsonScalar"
+      },
+      "required": [],
+      "presence": "各declared memberは任意。AbsentとPresent(null)を区別する。"
+    },
+    "MeaningContracts": {
+      "kind": "record",
+      "fields": {
+        "old_meaning": "MeaningRecord",
+        "new_applicability": "MeaningRecord"
+      },
+      "required": [],
+      "presence": "old_meaning/new_applicabilityは個別にAbsentであり得る。"
+    },
+    "MeaningRecord": {
+      "kind": "record",
+      "fields": {
+        "revision": "JsonScalar",
+        "content": "JsonScalar"
+      },
+      "required": [],
+      "presence": "revision/contentは個別にAbsentであり得る。"
+    },
+    "OwnerMap": {
+      "kind": "record",
+      "fields": {
+        "knowledge_state": "JsonScalar",
+        "product_application": "JsonScalar",
+        "project_usage_record": "JsonScalar"
+      },
+      "required": [],
+      "presence": "owner slotは個別にAbsentであり得る。"
+    },
+    "ProjectRecord": {
+      "kind": "record",
+      "fields": {
+        "project": "ProjectIdentity",
+        "owner": "JsonScalar",
+        "record_revision": "JsonScalar",
+        "knowledge_identity": "JsonScalar",
+        "used_revision": "JsonScalar",
+        "state": "JsonScalar",
+        "scope": "JsonScalar"
+      },
+      "required": [
+        "project"
+      ],
+      "presence": "各行はproject identity必須。他の宣言memberはAbsentを許す。join一意時も7memberのどちらかがAbsentならmissing、全存在時にJSON型/値を比較する。explicit nullは値。余分なmemberは閉じた論理型の外で、比較statusを付けない。"
+    },
+    "ProjectResult": {
+      "kind": "record",
+      "fields": {
+        "project": "ProjectIdentity",
+        "content_result": "FieldComparison",
+        "retained_source_record": "ProjectRecord",
+        "submitted_record": "ProjectRecord|null",
+        "project_observation_state": {
+          "enum": [
+            "source_record_in_fixture_only",
+            "unknown_record_missing",
+            "conflict"
+          ]
+        }
+      },
+      "required": [
+        "project",
+        "content_result",
+        "retained_source_record",
+        "submitted_record",
+        "project_observation_state"
+      ]
+    },
+    "ProjectIdentity": {
+      "kind": "union",
+      "members": [
+        "string",
+        "boolean",
+        "number"
+      ]
+    },
+    "ClaimResultsF01": {
+      "kind": "record",
+      "fields": {
+        "filename_identity": "ClaimResult",
+        "version_target_actual": "ClaimResult",
+        "retired_as_current": "ClaimResult",
+        "unknown_as_current": "ClaimResult",
+        "old_new_state_same": "ClaimResult"
+      },
+      "required": [
+        "filename_identity",
+        "version_target_actual",
+        "retired_as_current",
+        "unknown_as_current",
+        "old_new_state_same"
+      ]
+    },
+    "ClaimResultsF02": {
+      "kind": "record",
+      "fields": {
+        "silent_latest": "ClaimResult",
+        "old_reference_deleted": "ClaimResult",
+        "edge_means_migration_complete": "ClaimResult"
+      },
+      "required": [
+        "silent_latest",
+        "old_reference_deleted",
+        "edge_means_migration_complete"
+      ]
+    },
+    "ClaimResultsB01": {
+      "kind": "record",
+      "fields": {
+        "BRAIN_project_state_authority": "ClaimResult",
+        "current_all_projects_migrated": "ClaimResult",
+        "received_means_used": "ClaimResult",
+        "received_means_obligation_complete": "ClaimResult"
+      },
+      "required": [
+        "BRAIN_project_state_authority",
+        "current_all_projects_migrated",
+        "received_means_used",
+        "received_means_obligation_complete"
+      ]
+    },
+    "KnowledgeFieldResults": {
+      "kind": "record",
+      "fields": {
+        "identity": "FieldComparison",
+        "revision": "FieldComparison",
+        "version": "FieldComparison",
+        "state": "FieldComparison",
+        "source": "FieldComparison",
+        "scope": "FieldComparison"
+      },
+      "required": [
+        "identity",
+        "revision",
+        "version",
+        "state",
+        "source",
+        "scope"
+      ]
+    },
+    "CoreFieldResults": {
+      "kind": "record",
+      "fields": {
+        "identity": "FieldComparison",
+        "core": "FieldComparison",
+        "knowledge_identity": "FieldComparison",
+        "knowledge_revision": "FieldComparison",
+        "knowledge_version": "FieldComparison",
+        "scope": "FieldComparison"
+      },
+      "required": [
+        "identity",
+        "core",
+        "knowledge_identity",
+        "knowledge_revision",
+        "knowledge_version",
+        "scope"
+      ]
+    },
+    "MeaningResults": {
+      "kind": "record",
+      "fields": {
+        "old_meaning": "FieldComparison",
+        "new_applicability": "FieldComparison"
+      },
+      "required": [
+        "old_meaning",
+        "new_applicability"
+      ]
+    },
+    "OwnerResults": {
+      "kind": "record",
+      "fields": {
+        "knowledge_state": "FieldComparison",
+        "product_application": "FieldComparison",
+        "project_usage_record": "FieldComparison"
+      },
+      "required": [
+        "knowledge_state",
+        "product_application",
+        "project_usage_record"
+      ]
+    },
+    "F01Input": {
+      "kind": "record",
+      "fields": {
+        "original_knowledge": "KnowledgeRecord",
+        "provided_knowledge": "KnowledgeRecord",
+        "original_CORE_reference": "CoreReference",
+        "provided_CORE_reference": "CoreReference",
+        "claims": "map<string,boolean>",
+        "version_target": "string"
+      },
+      "required": [
+        "original_knowledge",
+        "provided_knowledge",
+        "original_CORE_reference",
+        "provided_CORE_reference",
+        "claims",
+        "version_target"
+      ]
+    },
+    "F01Output": {
+      "kind": "record",
+      "fields": {
+        "knowledge_results": "KnowledgeFieldResults",
+        "CORE_reference_results": "CoreFieldResults",
+        "retained_knowledge": "KnowledgeRecord",
+        "submitted_knowledge": "KnowledgeRecord",
+        "retained_CORE_reference": "CoreReference",
+        "submitted_CORE_reference": "CoreReference",
+        "candidate_use_state": {
+          "enum": [
+            "held",
+            "requires_CORE_application_recheck"
+          ]
+        },
+        "claim_results": "ClaimResultsF01",
+        "effects": "EffectFlags",
+        "unaffected_Q": {
+          "literal": "original_Q"
+        },
+        "exact_reference_binding_results": {
+          "kind": "record",
+          "required": [
+            "original",
+            "provided"
+          ],
+          "fields": {
+            "original": "ReferenceBindingComparison",
+            "provided": "ReferenceBindingComparison"
+          }
+        }
+      },
+      "required": [
+        "knowledge_results",
+        "CORE_reference_results",
+        "retained_knowledge",
+        "submitted_knowledge",
+        "retained_CORE_reference",
+        "submitted_CORE_reference",
+        "candidate_use_state",
+        "claim_results",
+        "effects",
+        "unaffected_Q",
+        "exact_reference_binding_results"
+      ]
+    },
+    "F02Input": {
+      "kind": "record",
+      "fields": {
+        "old_knowledge": "KnowledgeRecord",
+        "new_knowledge": "KnowledgeRecord",
+        "original_supersession": "SupersessionRecord",
+        "provided_supersession": "SupersessionRecord|null",
+        "original_old_CORE_reference": "CoreReference",
+        "provided_old_CORE_reference": "CoreReference|null",
+        "original_meaning_contracts": "MeaningContracts",
+        "provided_meaning_contracts": "MeaningContracts",
+        "claims": "map<string,boolean>"
+      },
+      "required": [
+        "old_knowledge",
+        "new_knowledge",
+        "original_supersession",
+        "provided_supersession",
+        "original_old_CORE_reference",
+        "provided_old_CORE_reference",
+        "original_meaning_contracts",
+        "provided_meaning_contracts",
+        "claims"
+      ]
+    },
+    "F02Output": {
+      "kind": "record",
+      "fields": {
+        "supersession_result": "FieldComparison",
+        "old_CORE_reference_result": "FieldComparison",
+        "meaning_results": "MeaningResults",
+        "retained_old_CORE_reference": "CoreReference",
+        "submitted_old_CORE_reference": "CoreReference|null",
+        "old_knowledge_ref": "KnowledgeVersionRef",
+        "new_knowledge_ref": "KnowledgeVersionRef",
+        "retained_meaning_contracts": "MeaningContracts",
+        "CORE_application_state": {
+          "literal": "new_conditions_require_recheck"
+        },
+        "OS_migration_state": {
+          "literal": "not_established"
+        },
+        "claim_results": "ClaimResultsF02",
+        "effects": "EffectFlags",
+        "unaffected_Q": {
+          "literal": "original_Q"
+        },
+        "revision_binding_results": {
+          "kind": "record",
+          "required": [
+            "old_supersession",
+            "new_supersession",
+            "old_CORE_reference",
+            "old_meaning",
+            "new_meaning"
+          ],
+          "fields": {
+            "old_supersession": "ComparisonStatus",
+            "new_supersession": "ComparisonStatus",
+            "old_CORE_reference": "ComparisonStatus",
+            "old_meaning": "ComparisonStatus",
+            "new_meaning": "ComparisonStatus"
+          }
+        }
+      },
+      "required": [
+        "supersession_result",
+        "old_CORE_reference_result",
+        "meaning_results",
+        "retained_old_CORE_reference",
+        "submitted_old_CORE_reference",
+        "old_knowledge_ref",
+        "new_knowledge_ref",
+        "retained_meaning_contracts",
+        "CORE_application_state",
+        "OS_migration_state",
+        "claim_results",
+        "effects",
+        "unaffected_Q",
+        "revision_binding_results"
+      ]
+    },
+    "B01Input": {
+      "kind": "record",
+      "fields": {
+        "CORE_references": "list<CoreReference>",
+        "knowledge_revision": "string",
+        "knowledge_state": "string",
+        "original_owners": "OwnerMap",
+        "provided_owners": "OwnerMap",
+        "original_project_records": "list<ProjectRecord>",
+        "provided_project_records": "list<ProjectRecord>",
+        "receipt_state": "string",
+        "claims": "map<string,boolean>"
+      },
+      "required": [
+        "CORE_references",
+        "knowledge_revision",
+        "knowledge_state",
+        "original_owners",
+        "provided_owners",
+        "original_project_records",
+        "provided_project_records",
+        "receipt_state",
+        "claims"
+      ]
+    },
+    "B01Output": {
+      "kind": "record",
+      "fields": {
+        "owner_results": "OwnerResults",
+        "knowledge_state": "string",
+        "knowledge_revision": "string",
+        "retained_CORE_references": "list<CoreReference>",
+        "project_results": "list<ProjectResult>",
+        "receipt_state": "string",
+        "obligation_state": {
+          "literal": "not_discharged"
+        },
+        "claim_results": "ClaimResultsB01",
+        "effects": "EffectFlags",
+        "unaffected_Q": {
+          "literal": "original_Q"
+        }
+      },
+      "required": [
+        "owner_results",
+        "knowledge_state",
+        "knowledge_revision",
+        "retained_CORE_references",
+        "project_results",
+        "receipt_state",
+        "obligation_state",
+        "claim_results",
+        "effects",
+        "unaffected_Q"
+      ]
+    },
+    "ReferenceBindingComparison": {
+      "kind": "record",
+      "required": [
+        "identity",
+        "revision",
+        "version"
+      ],
+      "fields": {
+        "identity": "FieldComparison",
+        "revision": "FieldComparison",
+        "version": "FieldComparison"
+      }
+    },
+    "ComparisonStatus": {
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "missing"
+      ]
+    }
+  },
+  "functions": [
+    {
+      "id": "HELIXBRAIN-L5-008-F01",
+      "requirement_ref": "HELIXBRAIN-L3-008-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-008-F01",
+      "l4_ref": "HELIXBRAIN-L4-008-F01",
+      "l9_ref": "HELIXBRAIN-L9-008-F01",
+      "input_type": {
+        "kind": "record",
+        "fields": {
+          "original_knowledge": "KnowledgeRecord",
+          "provided_knowledge": "KnowledgeRecord",
+          "original_CORE_reference": "CoreReference",
+          "provided_CORE_reference": "CoreReference",
+          "claims": "map<string,boolean>",
+          "version_target": "string"
+        },
+        "required": [
+          "original_knowledge",
+          "provided_knowledge",
+          "original_CORE_reference",
+          "provided_CORE_reference",
+          "claims",
+          "version_target"
+        ]
+      },
+      "output_type": {
+        "kind": "record",
+        "fields": {
+          "knowledge_results": "KnowledgeFieldResults",
+          "CORE_reference_results": "CoreFieldResults",
+          "retained_knowledge": "KnowledgeRecord",
+          "submitted_knowledge": "KnowledgeRecord",
+          "retained_CORE_reference": "CoreReference",
+          "submitted_CORE_reference": "CoreReference",
+          "candidate_use_state": {
+            "enum": [
+              "held",
+              "requires_CORE_application_recheck"
+            ]
+          },
+          "claim_results": "ClaimResultsF01",
+          "effects": "EffectFlags",
+          "unaffected_Q": {
+            "literal": "original_Q"
+          },
+          "exact_reference_binding_results": {
+            "kind": "record",
+            "required": [
+              "original",
+              "provided"
+            ],
+            "fields": {
+              "original": "ReferenceBindingComparison",
+              "provided": "ReferenceBindingComparison"
+            }
+          }
+        },
+        "required": [
+          "knowledge_results",
+          "CORE_reference_results",
+          "retained_knowledge",
+          "submitted_knowledge",
+          "retained_CORE_reference",
+          "submitted_CORE_reference",
+          "candidate_use_state",
+          "claim_results",
+          "effects",
+          "unaffected_Q",
+          "exact_reference_binding_results"
+        ]
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_record_fields",
+          "left": "input.original_knowledge",
+          "right": "input.provided_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state",
+            "source",
+            "scope"
+          ],
+          "missing_rule": "左右いずれかでmemberがAbsentならmissing。両側にあればnullを含むJSON値を型込みで厳密比較し、一致はcontent_corresponding_in_fixture、不一致はcontent_conflictとする。",
+          "to": "knowledge_results"
+        },
+        {
+          "step": 2,
+          "op": "compare_record_fields",
+          "left": "input.original_CORE_reference",
+          "right": "input.provided_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "missing_rule": "左右いずれかでmemberがAbsentならmissing。両側にあればnullを含むJSON値を型込みで厳密比較し、一致はcontent_corresponding_in_fixture、不一致はcontent_conflictとする。",
+          "to": "CORE_reference_results"
+        },
+        {
+          "step": 2.5,
+          "op": "bind_knowledge_reference_pairs",
+          "pairs": [
+            {
+              "name": "original",
+              "knowledge": "input.original_knowledge",
+              "reference": "input.original_CORE_reference"
+            },
+            {
+              "name": "provided",
+              "knowledge": "input.provided_knowledge",
+              "reference": "input.provided_CORE_reference"
+            }
+          ],
+          "fields": [
+            {
+              "knowledge": "identity",
+              "reference": "knowledge_identity"
+            },
+            {
+              "knowledge": "revision",
+              "reference": "knowledge_revision"
+            },
+            {
+              "knowledge": "version",
+              "reference": "knowledge_version"
+            }
+          ],
+          "missing_rule": "いずれかmemberがAbsentならmissing、両方が存在すればJSON型を含む厳密等値で一致/不一致を返す。nullは存在する値として比較する。",
+          "to": "exact_reference_binding_results"
+        },
+        {
+          "step": 3,
+          "op": "copy_record_projection",
+          "from": "input.original_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state",
+            "source",
+            "scope"
+          ],
+          "to": "retained_knowledge"
+        },
+        {
+          "step": 4,
+          "op": "copy_record_projection",
+          "from": "input.provided_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state",
+            "source",
+            "scope"
+          ],
+          "to": "submitted_knowledge"
+        },
+        {
+          "step": 5,
+          "op": "copy_record_projection",
+          "from": "input.original_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "to": "retained_CORE_reference"
+        },
+        {
+          "step": 6,
+          "op": "copy_record_projection",
+          "from": "input.provided_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "to": "submitted_CORE_reference"
+        },
+        {
+          "step": 7,
+          "op": "candidate_state",
+          "requires_present_nonnull": [
+            "provided_knowledge.identity",
+            "provided_knowledge.revision",
+            "provided_knowledge.version",
+            "provided_knowledge.state",
+            "provided_knowledge.source",
+            "provided_knowledge.scope",
+            "provided_CORE_reference.identity",
+            "provided_CORE_reference.knowledge_revision",
+            "provided_CORE_reference.knowledge_version",
+            "provided_CORE_reference.core"
+          ],
+          "held_states": [
+            "retired",
+            "unknown"
+          ],
+          "else": "requires_CORE_application_recheck",
+          "held": "held",
+          "also_held_when": "knowledge_results、CORE_reference_results、exact_reference_binding_resultsのいずれかにcontent_conflictまたはmissingがある場合。",
+          "held_states_note": "知識stateがretiredまたはunknown、知識/CORE参照/知識参照結合のいずれかにmissing/conflict、または候補の必須識別値がAbsent/nullならheld。",
+          "to": "candidate_use_state",
+          "hold_when_comparison_outputs_not_equal": [
+            "knowledge_results",
+            "CORE_reference_results",
+            "exact_reference_binding_results"
+          ]
+        },
+        {
+          "step": 8,
+          "op": "claims",
+          "each_input_boolean_true": "rejected",
+          "false": "none",
+          "claim_names": [
+            "filename_identity",
+            "version_target_actual",
+            "retired_as_current",
+            "unknown_as_current",
+            "old_new_state_same"
+          ],
+          "to": "claim_results",
+          "missing_entry": "当該keyがAbsentならclaimなしとして、その返却keyをnoneにする。",
+          "extra_entry": "宣言されたclaim_names以外のmap entryは出力に含めない。"
+        },
+        {
+          "step": 9,
+          "op": "literal_output",
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_old_reference_replaced": false,
+            "actual_project_migrated": false,
+            "actual_project_used": false,
+            "actual_OS_registration": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        }
+      ],
+      "boundary": "有限比較の合成fixtureのみ。source ref解決、filename由来identityの判定、version_targetとactual source versionの役割bind、責務別返却は未実現。claimsのrejectedは入力claimの診断だけ。",
+      "input_type_name": "F01Input",
+      "output_type_name": "F01Output",
+      "reads": [
+        "input.original_knowledge.{identity,revision,version,state,source,scope}",
+        "input.provided_knowledge.{identity,revision,version,state,source,scope}",
+        "input.original_CORE_reference.{identity,core,knowledge_identity,knowledge_revision,knowledge_version,scope}",
+        "input.provided_CORE_reference.{identity,core,knowledge_identity,knowledge_revision,knowledge_version,scope}",
+        "input.claims.{filename_identity,version_target_actual,retired_as_current,unknown_as_current,old_new_state_same}"
+      ],
+      "literal_sources": {
+        "comparison_states": "L9 expected_material内のcomparison結果literal。",
+        "claim_results": "L9 expected_material.claim_resultsの有限fixture語彙。",
+        "effect_flags": "L4 contracts[*].operation_effectおよびL9 expected_material.effects。",
+        "owner_and_state_labels": "L4 contracts[*].component/qualification_ruleとL9 expected_materialの固定fixture値。"
+      },
+      "unused_input_fields": {
+        "input.version_target": "必須typed inputとして保持するが現algorithmは未読。L4/L10のdata-level版役割照合は未実現として開示。"
+      },
+      "unclosed_inputs": [
+        "version_targetはtyped input必須だがalgorithmは読まない。data-level version-target/source bindingはB008-U-DATA-VERSION-TARGETに記録。",
+        "filename由来identityはfilename field未供給のため判定しない。"
+      ]
+    },
+    {
+      "id": "HELIXBRAIN-L5-008-F02",
+      "requirement_ref": "HELIXBRAIN-L3-008-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-008-F02",
+      "l4_ref": "HELIXBRAIN-L4-008-F02",
+      "l9_ref": "HELIXBRAIN-L9-008-F02",
+      "input_type": {
+        "kind": "record",
+        "fields": {
+          "old_knowledge": "KnowledgeRecord",
+          "new_knowledge": "KnowledgeRecord",
+          "original_supersession": "SupersessionRecord",
+          "provided_supersession": "SupersessionRecord|null",
+          "original_old_CORE_reference": "CoreReference",
+          "provided_old_CORE_reference": "CoreReference|null",
+          "original_meaning_contracts": "MeaningContracts",
+          "provided_meaning_contracts": "MeaningContracts",
+          "claims": "map<string,boolean>"
+        },
+        "required": [
+          "old_knowledge",
+          "new_knowledge",
+          "original_supersession",
+          "provided_supersession",
+          "original_old_CORE_reference",
+          "provided_old_CORE_reference",
+          "original_meaning_contracts",
+          "provided_meaning_contracts",
+          "claims"
+        ]
+      },
+      "output_type": {
+        "kind": "record",
+        "fields": {
+          "supersession_result": "FieldComparison",
+          "old_CORE_reference_result": "FieldComparison",
+          "meaning_results": "MeaningResults",
+          "retained_old_CORE_reference": "CoreReference",
+          "submitted_old_CORE_reference": "CoreReference|null",
+          "old_knowledge_ref": "KnowledgeVersionRef",
+          "new_knowledge_ref": "KnowledgeVersionRef",
+          "retained_meaning_contracts": "MeaningContracts",
+          "CORE_application_state": {
+            "literal": "new_conditions_require_recheck"
+          },
+          "OS_migration_state": {
+            "literal": "not_established"
+          },
+          "claim_results": "ClaimResultsF02",
+          "effects": "EffectFlags",
+          "unaffected_Q": {
+            "literal": "original_Q"
+          },
+          "revision_binding_results": {
+            "kind": "record",
+            "required": [
+              "old_supersession",
+              "new_supersession",
+              "old_CORE_reference",
+              "old_meaning",
+              "new_meaning"
+            ],
+            "fields": {
+              "old_supersession": "ComparisonStatus",
+              "new_supersession": "ComparisonStatus",
+              "old_CORE_reference": "ComparisonStatus",
+              "old_meaning": "ComparisonStatus",
+              "new_meaning": "ComparisonStatus"
+            }
+          }
+        },
+        "required": [
+          "supersession_result",
+          "old_CORE_reference_result",
+          "meaning_results",
+          "retained_old_CORE_reference",
+          "submitted_old_CORE_reference",
+          "old_knowledge_ref",
+          "new_knowledge_ref",
+          "retained_meaning_contracts",
+          "CORE_application_state",
+          "OS_migration_state",
+          "claim_results",
+          "effects",
+          "unaffected_Q",
+          "revision_binding_results"
+        ]
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_supersession",
+          "left": "input.original_supersession",
+          "right": "input.provided_supersession",
+          "fields": [
+            "identity",
+            "old.identity",
+            "old.revision",
+            "old.version",
+            "new.identity",
+            "new.revision",
+            "new.version",
+            "scope"
+          ],
+          "missing_rule": "memberがAbsentならmissing。両側にあればJSON型込みで厳密比較する。不一致はcontent_conflict、一致はcontent_corresponding_in_fixture。集約順はcontent_conflict、missing、content_corresponding_in_fixture。",
+          "to": "supersession_result",
+          "whole_record_rule": "provided_supersessionがJSON nullなら、8比較field全体の集約結果はmissing。Absent nested path/memberもmissing。null recordをmemberごとのnull値として読むことはしない。"
+        },
+        {
+          "step": 2,
+          "op": "compare_record_fields",
+          "left": "input.original_old_CORE_reference",
+          "right": "input.provided_old_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "missing_rule": "memberがAbsentならmissing。それ以外はF01と同じ厳密比較を行う。",
+          "to": "old_CORE_reference_result",
+          "aggregate": "field_results_by_conflict_then_missing",
+          "whole_record_rule": "provided_old_CORE_referenceがJSON nullなら、6比較field全体の集約結果はmissing。Absent memberもmissing。retained originalは別途projectionで保持。"
+        },
+        {
+          "step": 3,
+          "op": "compare_meaning_records",
+          "left": "input.original_meaning_contracts",
+          "right": "input.provided_meaning_contracts",
+          "fields_by_key": {
+            "old_meaning": [
+              "revision",
+              "content"
+            ],
+            "new_applicability": [
+              "revision",
+              "content"
+            ]
+          },
+          "missing_rule": "名前付きrecordまたは比較memberがAbsentならmissing。それ以外は各memberをJSON型込みで厳密比較し、全一致はcontent_corresponding_in_fixture、差はcontent_conflict。",
+          "to": "meaning_results"
+        },
+        {
+          "step": 3.5,
+          "op": "bind_supersession_knowledge_meanings",
+          "checks": [
+            {
+              "name": "old_supersession",
+              "left": "input.original_supersession.old",
+              "right": "input.old_knowledge",
+              "fields": [
+                {
+                  "left": "identity",
+                  "right": "identity"
+                },
+                {
+                  "left": "revision",
+                  "right": "revision"
+                },
+                {
+                  "left": "version",
+                  "right": "version"
+                }
+              ]
+            },
+            {
+              "name": "new_supersession",
+              "left": "input.original_supersession.new",
+              "right": "input.new_knowledge",
+              "fields": [
+                {
+                  "left": "identity",
+                  "right": "identity"
+                },
+                {
+                  "left": "revision",
+                  "right": "revision"
+                },
+                {
+                  "left": "version",
+                  "right": "version"
+                }
+              ]
+            },
+            {
+              "name": "old_CORE_reference",
+              "left": "input.original_old_CORE_reference",
+              "right": "input.old_knowledge",
+              "fields": [
+                {
+                  "left": "knowledge_identity",
+                  "right": "identity"
+                },
+                {
+                  "left": "knowledge_revision",
+                  "right": "revision"
+                },
+                {
+                  "left": "knowledge_version",
+                  "right": "version"
+                }
+              ]
+            },
+            {
+              "name": "old_meaning",
+              "left": "input.original_meaning_contracts.old_meaning",
+              "right": "input.old_knowledge",
+              "fields": [
+                {
+                  "left": "revision",
+                  "right": "revision"
+                }
+              ]
+            },
+            {
+              "name": "new_meaning",
+              "left": "input.original_meaning_contracts.new_applicability",
+              "right": "input.new_knowledge",
+              "fields": [
+                {
+                  "left": "revision",
+                  "right": "revision"
+                }
+              ]
+            }
+          ],
+          "missing_rule": "いずれかの参照memberがAbsentならmissing。nullを含む存在値はJSON型込みで比較し、一致/不一致を返す。これは固定fixture内の結合確認で、source資格・移行・採用を成立させない。",
+          "to": "revision_binding_results"
+        },
+        {
+          "step": 4,
+          "op": "copy_record_projection",
+          "from": "input.original_old_CORE_reference",
+          "to": "retained_old_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "on_null": "入力recordが明示nullならnullを保持。Absentならmemberを作らない。recordなら宣言6fieldの存在値だけをcopyし、未知memberを捏造しない。"
+        },
+        {
+          "step": 5,
+          "op": "copy_record_projection",
+          "from": "input.provided_old_CORE_reference",
+          "to": "submitted_old_CORE_reference",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "on_null": "入力recordが明示nullならnullを保持。Absentならmemberを作らない。recordなら宣言6fieldの存在値だけをcopyし、未知memberを捏造しない。"
+        },
+        {
+          "step": 6,
+          "op": "project",
+          "from": "input.old_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version"
+          ],
+          "to": "old_knowledge_ref"
+        },
+        {
+          "step": 7,
+          "op": "project",
+          "from": "input.new_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version"
+          ],
+          "to": "new_knowledge_ref"
+        },
+        {
+          "step": 8,
+          "op": "project_meaning_contracts",
+          "from": "input.original_meaning_contracts",
+          "to": "retained_meaning_contracts",
+          "fields": {
+            "old_meaning": [
+              "revision",
+              "content"
+            ],
+            "new_applicability": [
+              "revision",
+              "content"
+            ]
+          },
+          "on_absent": "各Absent memberをそのままAbsentで保持し、nullへ補完しない。未知memberは閉じたlogical type外。"
+        },
+        {
+          "step": 9,
+          "op": "literal_output",
+          "CORE_application_state": "new_conditions_require_recheck",
+          "OS_migration_state": "not_established"
+        },
+        {
+          "step": 10,
+          "op": "claims",
+          "each_input_boolean_true": "rejected",
+          "false": "none",
+          "claim_names": [
+            "silent_latest",
+            "old_reference_deleted",
+            "edge_means_migration_complete"
+          ],
+          "to": "claim_results",
+          "missing_entry": "当該keyがAbsentならclaimなしとして、その返却keyをnoneにする。",
+          "extra_entry": "宣言されたclaim_names以外のmap entryは出力に含めない。"
+        },
+        {
+          "step": 11,
+          "op": "literal_output",
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_old_reference_replaced": false,
+            "actual_project_migrated": false,
+            "actual_project_used": false,
+            "actual_OS_registration": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        }
+      ],
+      "boundary": "旧参照と新条件の内容差を別々に示す。辺があることから移行/実使用を推論しない。明示的な不在/nullを補完しない。",
+      "input_type_name": "F02Input",
+      "output_type_name": "F02Output",
+      "reads": [
+        "input.original_supersession.{identity,old.{identity,revision,version},new.{identity,revision,version},scope}",
+        "input.provided_supersession.{identity,old.{identity,revision,version},new.{identity,revision,version},scope}",
+        "input.original_old_CORE_reference.{identity,core,knowledge_identity,knowledge_revision,knowledge_version,scope}",
+        "input.provided_old_CORE_reference.{identity,core,knowledge_identity,knowledge_revision,knowledge_version,scope}",
+        "input.original_meaning_contracts.{old_meaning.{revision,content},new_applicability.{revision,content}}",
+        "input.provided_meaning_contracts.{old_meaning.{revision,content},new_applicability.{revision,content}}",
+        "input.old_knowledge.{identity,revision,version}",
+        "input.new_knowledge.{identity,revision,version}",
+        "input.claims.{silent_latest,old_reference_deleted,edge_means_migration_complete}"
+      ],
+      "literal_sources": {
+        "comparison_states": "L9 expected_material内のcomparison結果literal。",
+        "claim_results": "L9 expected_material.claim_resultsの有限fixture語彙。",
+        "effect_flags": "L4 contracts[*].operation_effectおよびL9 expected_material.effects。",
+        "owner_and_state_labels": "L4 contracts[*].component/qualification_ruleとL9 expected_materialの固定fixture値。"
+      },
+      "algorithm_notes": "compare_supersession/compare_record_fieldsはwhole-record nullをmissingへ集約する。MeaningContractsは非nullable型。返却copyは宣言fieldの有限projectionで、未宣言memberの透過copyではない。",
+      "null_record_semantics": "provided_supersession=null→supersession_result=missing。provided_old_CORE_reference=null→old_CORE_reference_result=missing。独立したraw field projectionはnullのまま保持。MeaningContracts/MeaningRecordはnon-nullable型のためnull whole recordは入力domain外。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-008-B01",
+      "requirement_ref": "HELIXBRAIN-L3-008-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+      "l4_ref": "HELIXBRAIN-L4-008-B01",
+      "l9_ref": "HELIXBRAIN-L9-008-B01",
+      "input_type": {
+        "kind": "record",
+        "fields": {
+          "CORE_references": "list<CoreReference>",
+          "knowledge_revision": "string",
+          "knowledge_state": "string",
+          "original_owners": "OwnerMap",
+          "provided_owners": "OwnerMap",
+          "original_project_records": "list<ProjectRecord>",
+          "provided_project_records": "list<ProjectRecord>",
+          "receipt_state": "string",
+          "claims": "map<string,boolean>"
+        },
+        "required": [
+          "CORE_references",
+          "knowledge_revision",
+          "knowledge_state",
+          "original_owners",
+          "provided_owners",
+          "original_project_records",
+          "provided_project_records",
+          "receipt_state",
+          "claims"
+        ]
+      },
+      "output_type": {
+        "kind": "record",
+        "fields": {
+          "owner_results": "OwnerResults",
+          "knowledge_state": "string",
+          "knowledge_revision": "string",
+          "retained_CORE_references": "list<CoreReference>",
+          "project_results": "list<ProjectResult>",
+          "receipt_state": "string",
+          "obligation_state": {
+            "literal": "not_discharged"
+          },
+          "claim_results": "ClaimResultsB01",
+          "effects": "EffectFlags",
+          "unaffected_Q": {
+            "literal": "original_Q"
+          }
+        },
+        "required": [
+          "owner_results",
+          "knowledge_state",
+          "knowledge_revision",
+          "retained_CORE_references",
+          "project_results",
+          "receipt_state",
+          "obligation_state",
+          "claim_results",
+          "effects",
+          "unaffected_Q"
+        ]
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_owner_slots",
+          "left": "input.original_owners",
+          "right": "input.provided_owners",
+          "fields": [
+            "knowledge_state",
+            "product_application",
+            "project_usage_record"
+          ],
+          "missing_rule": "左右いずれかのAbsentはmissing。nullを含む値の厳密一致はcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
+          "to": "owner_results"
+        },
+        {
+          "step": 2,
+          "op": "copy",
+          "from": "input.knowledge_state",
+          "to": "knowledge_state"
+        },
+        {
+          "step": 3,
+          "op": "copy",
+          "from": "input.knowledge_revision",
+          "to": "knowledge_revision"
+        },
+        {
+          "step": 4,
+          "op": "project_list_records",
+          "from": "input.CORE_references",
+          "to": "retained_CORE_references",
+          "fields": [
+            "identity",
+            "core",
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "scope"
+          ],
+          "order": "原配列順を保持",
+          "presence": "各recordでAbsent memberを作らず、explicit nullを値として保持。未知memberはlogical type外。"
+        },
+        {
+          "step": 5,
+          "op": "join_project_records",
+          "source": "input.original_project_records",
+          "submitted": "input.provided_project_records",
+          "join_key": "project",
+          "order": "original_project_recordsの配列順を保つ。",
+          "missing": "同じprojectの提出行がなければmissingとし、submitted_record=null、project_observation_state=unknown_record_missingを返す。",
+          "matched": "一意join後、7項目のいずれかが片側Absentならmissing/unknown_record_missing。全項目が存在するときだけJSON型込み同値を比較し、一致はcontent_corresponding_in_fixture/source_record_in_fixture_only、不一致はcontent_conflict/conflict。",
+          "extra_submitted": "対応付けられない提出行は出力せず、全対象の充足証拠にも使わない。",
+          "to": "project_results",
+          "project_key_presence": "ProjectRecord.projectは必須で、null以外のstring/boolean/number JSON scalarとする。",
+          "project_key_equality": "JSON型とscalar値が両方一致する場合のみ同一keyとする。boolean trueはnumber 1と一致しない。 JSON numberは単一domainで数値として比較し、1と1.0は同値。booleanはnumberと別型でtrueと1は異なる。原値の数値表現はprojectionで保持し、比較のために書き換えない。",
+          "match_cardinality": {
+            "zero": {
+              "result": "missing",
+              "submitted_record": null,
+              "project_observation_state": "unknown_record_missing"
+            },
+            "one": {
+              "required_observation_fields": [
+                "project",
+                "owner",
+                "record_revision",
+                "knowledge_identity",
+                "used_revision",
+                "state",
+                "scope"
+              ],
+              "if_any_member_absent_on_either_row": {
+                "result": "missing",
+                "submitted_record": "memberのAbsent状態を保った一意候補projectionを返す。",
+                "project_observation_state": "unknown_record_missing"
+              },
+              "otherwise": "ProjectRecordの全7項目を型込み再帰JSON比較する。一致はcontent_corresponding_in_fixture/source_record_in_fixture_only、不一致はcontent_conflict/conflict。"
+            },
+            "more_than_one": {
+              "result": "content_conflict",
+              "submitted_record": null,
+              "project_observation_state": "conflict"
+            }
+          },
+          "original_duplicates": "original配列順に各行の結果を返し、同じidentityを持つ原source行も統合しない。",
+          "project_key_operator": "strict_json_scalar_equal",
+          "retained_source_record_projection": "ProjectRecordの宣言7fieldだけを原値/Absent状態でprojectionする。unknown keyはlogical type外でoutputへcopyしない。"
+        },
+        {
+          "step": 6,
+          "op": "copy",
+          "from": "input.receipt_state",
+          "to": "receipt_state"
+        },
+        {
+          "step": 7,
+          "op": "literal_output",
+          "obligation_state": "not_discharged"
+        },
+        {
+          "step": 8,
+          "op": "claims",
+          "each_input_boolean_true": "rejected",
+          "false": "none",
+          "claim_names": [
+            "BRAIN_project_state_authority",
+            "current_all_projects_migrated",
+            "received_means_used",
+            "received_means_obligation_complete"
+          ],
+          "to": "claim_results",
+          "missing_entry": "当該keyがAbsentならclaimなしとして、その返却keyをnoneにする。",
+          "extra_entry": "宣言されたclaim_names以外のmap entryは出力に含めない。"
+        },
+        {
+          "step": 9,
+          "op": "literal_output",
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_old_reference_replaced": false,
+            "actual_project_migrated": false,
+            "actual_project_used": false,
+            "actual_OS_registration": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        }
+      ],
+      "boundary": "合成project recordに現れたprojectだけの対応。未提示recordから未使用を推論せず、列挙完全性、実OS登録/実使用、実CORE適用を判定しない。",
+      "input_type_name": "B01Input",
+      "output_type_name": "B01Output",
+      "reads": [
+        "input.original_owners.{knowledge_state,product_application,project_usage_record}",
+        "input.provided_owners.{knowledge_state,product_application,project_usage_record}",
+        "input.knowledge_state",
+        "input.knowledge_revision",
+        "input.CORE_references[*].{identity,core,knowledge_identity,knowledge_revision,knowledge_version,scope}",
+        "input.original_project_records[*].{project,owner,record_revision,knowledge_identity,used_revision,state,scope}",
+        "input.provided_project_records[*].{project,owner,record_revision,knowledge_identity,used_revision,state,scope}",
+        "input.receipt_state",
+        "input.claims.{BRAIN_project_state_authority,current_all_projects_migrated,received_means_used,received_means_obligation_complete}"
+      ],
+      "literal_sources": {
+        "comparison_states": "L9 expected_material内のcomparison結果literal。",
+        "claim_results": "L9 expected_material.claim_resultsの有限fixture語彙。",
+        "effect_flags": "L4 contracts[*].operation_effectおよびL9 expected_material.effects。",
+        "owner_and_state_labels": "L4 contracts[*].component/qualification_ruleとL9 expected_materialの固定fixture値。"
+      },
+      "unclosed_inputs": [
+        "左右 owner/project が一致しても、project ownerが実使用記録責務に一致するかはL5が判定しない。B008-U-DATA-OWNER。"
+      ]
+    }
+  ],
+  "global_semantics": {
+    "json_equal": "JSON型の一致を要求しscalarを厳密比較する。nullは値として比較し、memberのAbsentはAbsent sentinelでありnullとは異なる。objectはkey集合と値を再帰比較し、arrayは順序と長さを保持する。 JSON numberは単一domainで数値として比較し、1と1.0は同値。booleanはnumberと別型でtrueと1は異なる。原値の数値表現はprojectionで保持し、比較のために書き換えない。",
+    "claim_semantics": "入力claimsの既知各keyでtrueはrejected、falseはnone。これは候補claimのfixture表示だけであり権限/状態変更ではない。",
+    "owner_boundary": [
+      "上流の責務境界（要求）：BRAINは知識identity/revision/version/state、COREは製品適用、HELIX-OSは実project使用/登録stateを持つ。",
+      "現L5 algorithmはこの責務分割をowner別返却やproject owner許容値として実装していない。上記は未実現義務の記録であり、出力判定ではない。詳細はunclosed_owner_returns / unclosed_data_constraints。"
+    ],
+    "unknown_limit": "source ref解決、正式な知識state列挙、実source資格、実CORE適用、実OS記録/移行、owner別返却、filename/version_targetのdata-level bindingは未成立。"
+  },
+  "not_established": [
+    "正式wire schema/codec（本書の論理型とは別）",
+    "実source qualification",
+    "実知識採否",
+    "実CORE適用",
+    "実OS登録/使用/移行",
+    "実authority/受入",
+    "L6関数設計/L7関数対検証",
+    "TDD/CI",
+    "全設計閉包"
+  ],
+  "legacy_related_evidence": [
+    {
+      "asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "source_sha256": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "lines": [
+        59,
+        69
+      ],
+      "selected_lines_sha256": "61eac8a54e2668374760141c8e4aa038a049f96f82a95d6803f125cf3cb5303d",
+      "preserve": "生成候補をverified/approved/canonical/deprecatedと混同しない状態区別、およびdeprecated項目にconsumer/replacement/retentionを残す旧failure/consumerの観点。",
+      "change": "旧lifecycle enumをBRAIN知識stateへ転写しない。L2-008が採択するcurrent/superseded/deprecated/experimental/retiredとBRAIN/CORE/OSの責務境界に沿って意味を再導出する。",
+      "reason": "旧文書はDesign HARNESS authorityのgenerator lifecycleを扱い、対象identityやOS project使用を定義しない。採択L3/L10の対象範囲に限定する。",
+      "asset_ledger_disposition": "未解決。consumer_refsは空で、読取専用の根拠に限る。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7F09A40DDA5C1F26A28C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/multimodal-design-harness-authority-acceptance.md",
+      "source_sha256": "d83e8ce533f456a2f58d07164ec5d5ec540791277bd9209d2fa79987a1163951",
+      "lines": [
+        19,
+        41
+      ],
+      "selected_lines_sha256": "c392cff49dfbd788652ff0ad52de0fba366d34e7ed410f7cd7d212ac08bba3f9",
+      "preserve": "AC-003はverifiedとapprovedの分離を検査し、AC-013は#192と既存VDH 19要件をconsumerとして接続する。",
+      "change": "本L5の失敗観測はL10-008のBRAIN/CORE/OS各owner境界に限定し、旧VDH consumerを008対象へ含めない。",
+      "reason": "隣接する旧testはVDH能力全般の受入設計で、BRAIN008のL3/L10 exact pair sourceではない。旧test/runtimeを実行しない。",
+      "asset_ledger_disposition": "未解決。consumer_refsは空で、読取専用の根拠に限る。"
+    }
+  ],
+  "reference_semantics": {
+    "field_absence": "Absent sentinelはJSON nullとは異なる。",
+    "strict_json_equality": "JSON型を要求し、scalarは厳密比較する。objectはkey集合と値を再帰比較し、listは順序と長さを保持する。boolean trueとnumber 1は等しくない。 JSON numberは単一domainで数値として比較し、1と1.0は同値。booleanはnumberと別型でtrueと1は異なる。原値の数値表現はprojectionで保持し、比較のために書き換えない。",
+    "comparison_literals": {
+      "equal": "content_corresponding_in_fixture",
+      "different": "content_conflict",
+      "missing": "missing"
+    },
+    "aggregate_priority": [
+      "content_conflict",
+      "missing",
+      "content_corresponding_in_fixture"
+    ],
+    "claim_literals": {
+      "true": "rejected",
+      "false": "none"
+    },
+    "project_literals": {
+      "equal": "source_record_in_fixture_only",
+      "absent": "unknown_record_missing",
+      "different": "conflict",
+      "duplicate": "conflict"
+    },
+    "claim_effect": "候補表示だけ。状態/owner/採用/移行/実使用の更新や許可にはならない。",
+    "operation_contracts": {
+      "compare_record_fields": {
+        "input_order": "algorithm.fieldsの記載順",
+        "lookup": "left/rightで指定したinput rootの各dot pathから同名fieldを読む。",
+        "field_result": "どちらかのmemberがAbsentならmissing。両方あれば厳密JSON等値ならcontent_corresponding_in_fixture、違えばcontent_conflict。",
+        "return": "aggregateなしならfield名→stateの閉record。aggregate指定ならaggregate_priorityで1 state。",
+        "whole_record_rule": "指定したright record全体がnullなら、field走査前に対象全fieldをmissingとして集約し、null値fieldとの比較はしない。record自体またはmember pathがAbsentでも同じくmissing。値としてのexplicit nullは、recordが存在しそのmemberがnullの場合にだけfield valueとして比較する。"
+      },
+      "bind_knowledge_reference_pairs": {
+        "input_order": "pairs配列順、各pairのfields配列順",
+        "lookup": "knowledgeとreferenceのdot pathを解決し、field mappingで指定した両memberを比較する。",
+        "return": "pair.nameごとにknowledge field名からcomparison stateへの閉recordを返す。"
+      },
+      "bind_supersession_knowledge_meanings": {
+        "input_order": "checks配列順、各check.fields順",
+        "lookup": "check.left/rightのdot pathからfield mappingで指定されたmemberを比較する。",
+        "return": "check.nameごとにaggregate_priorityを適用した1 state。"
+      },
+      "compare_supersession": {
+        "input_order": "fields配列順",
+        "lookup": "left/right recordからfieldsのdot pathを解決する。",
+        "return": "memberごとのstateをaggregate_priorityに従い集約。",
+        "whole_record_rule": "provided_supersession全体がnullならmissing。非null recordでfieldsを列挙順に比較し、member/path Absentはmissing、member explicit nullは値比較。aggregate_priority適用。"
+      },
+      "compare_meaning_records": {
+        "input_order": "fields_by_key objectのJSON挿入順と、各memberの列挙順",
+        "lookup": "F02InputのMeaningContracts/MeaningRecordはnullableでない。指定した名前付きrecordがAbsentならmissing。宣言logical type外のnull/non-objectを処理する分岐を定義しない。存在するrecord内のmember Absentはmissing、explicit nullはJSON値として比較し集約。",
+        "return": "名前付きrecordごとにfield stateをaggregate_priorityの順で集約する。"
+      },
+      "copy_record_projection": {
+        "input_order": "fields配列順",
+        "lookup": "fromで指定するrecordを読み、宣言されたfieldsだけ参照する。",
+        "return": "入力全体nullならon_nullが定義された場合のみnullを返す。recordなら列挙fieldのPresent値だけを投影して返し、Absent memberは省略。未宣言/unknown memberを複写しない。"
+      },
+      "project": {
+        "input_order": "fields配列順",
+        "lookup": "fromで指定するinput recordを読む。",
+        "return": "列挙fieldのうち存在するものを同じ値で出力。"
+      },
+      "copy": {
+        "lookup": "fromで指定するinput pathを読む。",
+        "return": "値が存在すれば同一JSON値を出力し、Absentなら出力memberを作らない。"
+      },
+      "candidate_state": {
+        "order": [
+          "requires_present_nonnullの全path検査",
+          "hold_when_comparison_outputs_not_equalの全state検査",
+          "provided_knowledge.stateのheld_states検査",
+          "else値"
+        ],
+        "result": "必須pathの欠落/null、指定された比較結果の集約がcontent_corresponding_in_fixture以外、または知識stateがheld_states内ならheldを返す。それ以外はelse値を返す。",
+        "core_identity_requirement": "provided_CORE_reference.coreは候補の必須利用identity。Absent/nullは左右比較の同値だけで補わずheld。実CORE資格を生成しない。"
+      },
+      "claims": {
+        "input": "必須claims objectからclaim_namesに列挙されたkeyだけを記載順に読む。",
+        "return": "key欠落はnone、trueはrejected、falseはnone。claimsに余分なkeyがあっても返却しない。"
+      },
+      "literal_output": {
+        "return": "instruction内のstep/op/toを除く全memberを指定JSON値のまま返す。"
+      },
+      "join_project_records": {
+        "input_order": "original arrayの順序。各原行に対しsubmitted array全体からstrict JSON equalityでproject keyを走査。",
+        "cardinality": "候補0件はmissing/null/unknown_record_missing。候補1件で7 memberのいずれかがAbsentならmissing/null以外で補わず候補recordを保持する。全memberが存在すれば7 field全体を厳密な再帰JSON比較する。候補複数件はcontent_conflict/null/conflictとし候補を選ばない。",
+        "extra": "原行に結び付かない提出行は出力しない。原行重複は統合せず各行分返す。"
+      },
+      "compare_owner_slots": {
+        "input_order": "fields配列順",
+        "lookup": "left/rightのowner recordからfieldsの各memberを読む。",
+        "field_result": "いずれかAbsentならmissing。両方に存在する値をJSON型込みで比較し、一致はcontent_corresponding_in_fixture、不一致はcontent_conflict。",
+        "return": "field名→stateの閉record。"
+      },
+      "project_meaning_contracts": {
+        "input_order": "old_meaning, new_applicabilityの順。各record内revision,content。",
+        "lookup": "MeaningContractsの宣言2 memberと各MeaningRecordの宣言2 memberだけを読む。",
+        "return": "宣言範囲のPresent memberを保持し、Absentを省略、nullはnullのまま保持。additional memberは論理型外。"
+      },
+      "project_list_records": {
+        "input_order": "元配列順、各record内fields宣言順。",
+        "lookup": "各CoreReferenceの宣言6 field。",
+        "return": "各recordの存在fieldだけをprojectionしAbsentを省略、nullを保持。additional memberは論理型外。"
+      }
+    },
+    "literal_provenance": {
+      "comparison_states": "対象L9各case expected_material内のknowledge_results/CORE_reference_results/supersession_result/old_CORE_reference_result/meaning_results/owner_results/project_results.content_resultから採録。",
+      "claim_states": "対象L9各case expected_material.claim_resultsから採録。",
+      "project_observation_states": "対象L9 expected_material.project_results[*].project_observation_stateから採録。",
+      "state_literals": "L4 contracts[*].comparison/output_meaningsと対象L9 expected_materialから採録。",
+      "effect_false": "L4 contracts[*].operation_effectと対象L9 expected_material.effectsから採録。",
+      "binding_states": "L3 requirement obligationsとL4 contracts[*].input_meanings/content_comparisonを有限fixtureで照合した派生結果。実source資格ではない。",
+      "candidate_use_state": "L9 F01 expected_material.candidate_use_state。現行出力domainのheld/requires_CORE_application_recheckのみ。"
+    },
+    "literal_sources": [
+      {
+        "value": "content_corresponding_in_fixture",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-CURRENT-DISTINCT",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "case_canonical_sha256": "f42c23be8f695662c2b8f53f0d17b51d7b5be4a9495ea6100962964710a269d3",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/knowledge_results/identity",
+        "value_canonical_sha256": "a1405eb4ddfa6ec2c92906f6e6744f9888d7db87b70ad540a3b41c5019dccf28",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "content_conflict",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-IDENTITY-FOREIGN",
+        "case_pointer": "/verification_obligations/0/concrete_cases/12",
+        "case_canonical_sha256": "9c14844a75eef3e139655bb61d3e9b6bfe2f3b6003cfd3aac510a49dbd91f2de",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/12/expected_material/knowledge_results/identity",
+        "value_canonical_sha256": "310cd90d2557ae6afdeecc837a15a74e95188ea6ec94f2352cd7b89e117c2348",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "missing",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-IDENTITY-MISSING",
+        "case_pointer": "/verification_obligations/0/concrete_cases/6",
+        "case_canonical_sha256": "9f8716988c6e8ecb9e726a04ce6cd6f6e284b71879c4e45335dc410fcbfca452",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/6/expected_material/knowledge_results/identity",
+        "value_canonical_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "rejected",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-FILENAME_IDENTITY",
+        "case_pointer": "/verification_obligations/0/concrete_cases/21",
+        "case_canonical_sha256": "aa31a1d8f35573370765b3b1009c2904a182788ccea0b8b03b128f502d6446b6",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/21/expected_material/claim_results/filename_identity",
+        "value_canonical_sha256": "d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "none",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-CURRENT-DISTINCT",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "case_canonical_sha256": "f42c23be8f695662c2b8f53f0d17b51d7b5be4a9495ea6100962964710a269d3",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/claim_results/filename_identity",
+        "value_canonical_sha256": "30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "source_record_in_fixture_only",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-B01-UNUSED-AND-USED-PROJECTS",
+        "case_pointer": "/verification_obligations/2/concrete_cases/0",
+        "case_canonical_sha256": "9a820bb80e3d97bc052a03d2cf3f85af39d3c998bd01ad255f49c4a87c3cc3b1",
+        "expected_value_pointer": "/verification_obligations/2/concrete_cases/0/expected_material/project_results/0/project_observation_state",
+        "value_canonical_sha256": "2153a09b6e2fe12380ce37f0363bedeb3396982b15e3bdda74fffe1ecbae7fa4",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "unknown_record_missing",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-B01-PROJECT-0-RECORD-MISSING",
+        "case_pointer": "/verification_obligations/2/concrete_cases/1",
+        "case_canonical_sha256": "e8f37ed0e2b6ecc5a4160cd24d5a3566bba4dc2e72f25acd6ce60a32f18d8912",
+        "expected_value_pointer": "/verification_obligations/2/concrete_cases/1/expected_material/project_results/0/project_observation_state",
+        "value_canonical_sha256": "ed43026ccdc41fe93d8c12eb06130342cb2ce3a5db9c53fd5919f8c2f942b930",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "conflict",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-B01-USAGE-USED_REVISION-FOREIGN",
+        "case_pointer": "/verification_obligations/2/concrete_cases/3",
+        "case_canonical_sha256": "81408c5367eba310a2c1064be81a12d0dd42438e24151b97fb4db75211a0865e",
+        "expected_value_pointer": "/verification_obligations/2/concrete_cases/3/expected_material/project_results/1/project_observation_state",
+        "value_canonical_sha256": "64c81eb52bff30757e0b40bde27c76dd11818d9ba07a0afa1b2c52f99ffc29f0",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": {
+          "actual_knowledge_adopted": false,
+          "actual_old_reference_replaced": false,
+          "actual_project_migrated": false,
+          "actual_project_used": false,
+          "actual_OS_registration": false,
+          "actual_CORE_applied": false,
+          "actual_obligation_completed": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-CURRENT-DISTINCT",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "case_canonical_sha256": "f42c23be8f695662c2b8f53f0d17b51d7b5be4a9495ea6100962964710a269d3",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/effects",
+        "value_canonical_sha256": "b0e7c8e273364faabdce76ecdf6208d15271f086950106adbb4c98834efbbe97",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "original_Q",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-CURRENT-DISTINCT",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "case_canonical_sha256": "f42c23be8f695662c2b8f53f0d17b51d7b5be4a9495ea6100962964710a269d3",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/unaffected_Q",
+        "value_canonical_sha256": "329f9d0760ca0125bc78ff1bb2dad6fe506e9367e92280f77d939a7f0cda0a4c",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "new_conditions_require_recheck",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F02-OLD-REFERENCE-NEW-CANDIDATE",
+        "case_pointer": "/verification_obligations/1/concrete_cases/0",
+        "case_canonical_sha256": "ce97b6feeb6521eda42feb1e27f7285e953e0d4b7d9f638790206275270c5428",
+        "expected_value_pointer": "/verification_obligations/1/concrete_cases/0/expected_material/CORE_application_state",
+        "value_canonical_sha256": "e3136401aa877e9ba1766def78a1303271c19c7430303cdb2462abcb2da19f6e",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "not_established",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F02-OLD-REFERENCE-NEW-CANDIDATE",
+        "case_pointer": "/verification_obligations/1/concrete_cases/0",
+        "case_canonical_sha256": "ce97b6feeb6521eda42feb1e27f7285e953e0d4b7d9f638790206275270c5428",
+        "expected_value_pointer": "/verification_obligations/1/concrete_cases/0/expected_material/OS_migration_state",
+        "value_canonical_sha256": "434e0a30986d284f55880579dfb506626caa5f8b11991300db324a0cc0e4838d",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "not_discharged",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-B01-UNUSED-AND-USED-PROJECTS",
+        "case_pointer": "/verification_obligations/2/concrete_cases/0",
+        "case_canonical_sha256": "9a820bb80e3d97bc052a03d2cf3f85af39d3c998bd01ad255f49c4a87c3cc3b1",
+        "expected_value_pointer": "/verification_obligations/2/concrete_cases/0/expected_material/obligation_state",
+        "value_canonical_sha256": "fd9015a09bbec621f4c7d9070befb6580b464bd12e8ac56eb434e0bd519950ce",
+        "meaning": "原L9の合成返却値。値の一致から実qualification/authority/使用/移行を生成しない。"
+      },
+      {
+        "value": "missing",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-IDENTITY-MISSING",
+        "pointer": "/verification_obligations/0/concrete_cases/6/expected_material/knowledge_results/identity",
+        "case_raw_sha256": "b9829c6abfe119bdb45e135dd689408e78f8b1956dbc8e87e40f812e8a8149fe",
+        "case_pointer": "/verification_obligations/0/concrete_cases/6",
+        "case_canonical_sha256": "9f8716988c6e8ecb9e726a04ce6cd6f6e284b71879c4e45335dc410fcbfca452",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/6/expected_material/knowledge_results/identity",
+        "value_canonical_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917",
+        "meaning": "原L9 expected wholeの有限fixture literal。実資格/採用/authorityを生成しない。"
+      },
+      {
+        "value": "content_conflict",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-IDENTITY-FOREIGN",
+        "pointer": "/verification_obligations/0/concrete_cases/12/expected_material/knowledge_results/identity",
+        "case_raw_sha256": "9fc04789c6c09729fefe402e2b0c8192133d5035d60ac5477de69a43c481760f",
+        "case_pointer": "/verification_obligations/0/concrete_cases/12",
+        "case_canonical_sha256": "9c14844a75eef3e139655bb61d3e9b6bfe2f3b6003cfd3aac510a49dbd91f2de",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/12/expected_material/knowledge_results/identity",
+        "value_canonical_sha256": "310cd90d2557ae6afdeecc837a15a74e95188ea6ec94f2352cd7b89e117c2348",
+        "meaning": "原L9 expected wholeの有限fixture literal。実資格/採用/authorityを生成しない。"
+      },
+      {
+        "value": "held",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-RETIRED-DISTINCT",
+        "pointer": "/verification_obligations/0/concrete_cases/4/expected_material/candidate_use_state",
+        "case_raw_sha256": "96808cde7ab17ba212e32372008ebb9a1e79e40a43022fcdf10894223411e093",
+        "case_pointer": "/verification_obligations/0/concrete_cases/4",
+        "case_canonical_sha256": "083aa5dbdc0e49dc4a13a4560bbdc108612a02bec1b9df52d67568499c9e7ec4",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/4/expected_material/candidate_use_state",
+        "value_canonical_sha256": "fcd86ac6b458c22662f923d21c3e8ae570dee43713fdaedc2a1e3ba47f95992b",
+        "meaning": "原L9 expected wholeの有限fixture literal。実資格/採用/authorityを生成しない。"
+      },
+      {
+        "value": "requires_CORE_application_recheck",
+        "source_path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
+        "source_revision": "d161af2056917ffff3b33555238e06cd807eb764",
+        "source_file_sha256": "faf3f2714d441c61e79ad7a4ef90d2a96e30710a95ada5d4f19039c68ced1e2c",
+        "case_id": "B008-F01-CURRENT-DISTINCT",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/candidate_use_state",
+        "case_raw_sha256": "79e150675cb62c3fabdc4d3e6c60f4f74d15f5fa45824bd60ddc29eb84dfa20c",
+        "case_pointer": "/verification_obligations/0/concrete_cases/0",
+        "case_canonical_sha256": "f42c23be8f695662c2b8f53f0d17b51d7b5be4a9495ea6100962964710a269d3",
+        "expected_value_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/candidate_use_state",
+        "value_canonical_sha256": "a40e5f646bfc9b1cf83317fc93c97beb391059fe70620a688e02d1ab12074ed1",
+        "meaning": "原L9 expected wholeの有限fixture literal。実資格/採用/authorityを生成しない。"
+      }
+    ]
+  },
+  "presence_domain": {
+    "required_top_level": "各関数の引数rootは閉じたrecordであり、required配列にある全fieldを含む。必須fieldの欠落は有限入力domain外として扱い、null、空object、空listで補わない。",
+    "nested_absence": "各recordのrequired field宣言に従う。Optional memberのAbsentはJSON nullと区別し、comparisonではAbsentはmissing。top-level nullable recordが明示nullなら、そのrecordを比較する操作はwhole-record null ruleに従いmissingを返す。null memberはrecordが存在する場合だけ値として扱う。",
+    "project_record": "ProjectRecord.projectは必須でnull以外。その他6fieldは個別にAbsentを許し、明示nullと区別する。唯一一致の比較候補でいずれかの7比較fieldがAbsentならmissing/null以外の値へ補完せず、candidate projectionを保持しunknown_record_missingとする。",
+    "return_records": "各返却rootは全required memberを持つ。copy_record_projectionは宣言fieldだけを出力し、unknown memberを透過しない。EffectFlagsは宣言keyだけを含み全false。",
+    "finite_domain": "これらの再帰論理型は静的fixture domainを定める。wire codec、runtime schema、source資格、authority契約を定めるものではない。",
+    "claims": "top-level claims mapは必須である。列挙keyが存在すれば値はbooleanでなければならない。既知keyの省略はclaim主張なしを意味し、noneを返す。raw値をfalseへ変換しない。"
+  },
+  "domain_verification": {
+    "claims": "入力claimsは必須map<string,boolean>。出力claim_resultsは宣言済みkeyをすべて必須とする閉record。入力keyのAbsentはclaimなしとしてnoneを返す。",
+    "comparison_records": "knowledge_results、CORE_reference_results、meaning_results、owner_resultsは全result keyが必須の閉record。空mapは有効な全返却ではない。",
+    "project_identity_join": "project keyはJSON型と値の厳密比較。提出側同一keyが複数なら候補を選ばずcontent_conflict/null/conflictを返す。"
+  },
+  "return_domain": {
+    "claim_maps": "出力claim_resultsは既知result keyを全て必須とする閉recordである。入力claimsは必須のmap<string,boolean>で、名前付きkeyのAbsentは主張なしとしてnoneを返す。",
+    "comparison_records": "Knowledge/CORE/supersession/meaning/owner resultは全required result fieldを返す。nullable whole recordはwhole_record_ruleでmissingへ集約。",
+    "project_identity_join": "各原project rowに対しstrict JSON型・値一致で提出候補を選ぶ。0件はmissing/null/unknown_record_missing、1件は7fieldいずれかAbsentならmissing＋候補projection保持、全field存在時は厳密全record比較、複数件はcontent_conflict/null/conflictで選択しない。",
+    "closed_copy": "record copyは型定義に列挙したmemberだけのprojection。L5 input type外のextra memberは関数domain外であり保持保証をしない。"
+  },
+  "source_revision_roles": {
+    "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d は批准済みL3/L10等の上流snapshot。L4/L9初出revisionではない。",
+    "parent_pair_source": "d161af2056917ffff3b33555238e06cd807eb764 は親L4/L9の固定参照。各source pinのrevision/bytesを正とする。",
+    "authoring_base": "ddcb2b2d9fcbdf243b55f51215cdbcc510b9441d は本作業treeの分岐base。承認対象revisionと混同しない。"
+  },
+  "unclosed_owner_returns": [
+    {
+      "id": "B008-U-OWNER-F01",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-F01.output_meanings",
+        "HELIXBRAIN-L10-008-F01.failure_observation"
+      ],
+      "required_meaning": "知識revision/stateはBRAINへ返し、案件利用状態の不足はOSへ返す。",
+      "current_state": "L5 F01は比較statusだけを返す。返却先・不足ownerのfield、algorithm、L9 expected rootはない。claim mapのrejectedを返却routingと読み替えない。",
+      "producer_consumer_gap": "BRAIN知識sourceの戻し情報とOS案件利用不足の責務別receipt/返却先を束ねるproducer/consumer contractが未供給。",
+      "scope": "未実現。既存L9 wholeを変更せず、owner資格・受領を推定しない。"
+    },
+    {
+      "id": "B008-U-OWNER-F02",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-F02.output_meanings",
+        "HELIXBRAIN-L10-008-F02.failure_observation"
+      ],
+      "required_meaning": "知識差はBRAIN、製品適用はCORE、実案件使用記録はOSへ返す。",
+      "current_state": "L5 F02は比較statusと再照合候補だけを返す。三者別返却候補は出力field/algorithm/L9 expectedにない。",
+      "producer_consumer_gap": "BRAIN→CORE/OSの意味差・製品適用・実使用記録のowner別routing/receipt bindingが未供給。",
+      "scope": "未実現。candidate stateをowner返却完了や実使用へ読み替えない。"
+    },
+    {
+      "id": "B008-U-OWNER-B01",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-B01.output_meanings",
+        "HELIXBRAIN-L10-008-B01.failure_observation"
+      ],
+      "required_meaning": "知識/適用/案件使用の責務別不足をBRAIN/CORE/OSへ返す。",
+      "current_state": "L5 B01はowner slot/project比較statusのみ。責務別返却候補は出力field/algorithm/L9 expectedにない。",
+      "producer_consumer_gap": "差分ごとの知識owner・適用owner・OS実使用記録ownerへの不足分類と受領応答を作るconsumer契約が未供給。",
+      "scope": "未実現。合成owner文字列やclaim結果を実owner/返却先資格にしない。"
+    }
+  ],
+  "unclosed_data_constraints": [
+    {
+      "id": "B008-U-DATA-OWNER",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-B01.content_comparison",
+        "HELIXBRAIN-L10-008-B01.negative_input"
+      ],
+      "gap": "owner slot/project rowの左右一致だけでは、左右がともにBRAINを実project-state ownerとする入力を検出しない。L4は実使用記録をOS責務と定めるが、現L5はその値域・比較先を持たない。",
+      "current_behavior": "owner_results/project_resultsで左右の合致を返す場合がある。claim flag falseなら誤責務を診断しない。",
+      "closure": "未実現として開示。原L9値と返却は不変。OS owner enumや新gateを推測で追加しない。"
+    },
+    {
+      "id": "B008-U-DATA-VERSION-TARGET",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-F01.content_comparison",
+        "HELIXBRAIN-L10-008-F01.negative_input"
+      ],
+      "gap": "F01のversion_targetは入力必須だがalgorithmで使わない。実知識版と目標版のsource-role区別や比較producerがない。等値だけで誤りと決める規則も原L4にはない。",
+      "current_behavior": "version_target_actual claim=trueのみrejected。claim=falseで左右のversionがversion_targetと同じでもcandidate stateを変えない。",
+      "closure": "data-level enforcementは未実現。boundaryに実装済みの制約と読める記載をしない。source role/contextが未供給であり、推測比較は追加しない。"
+    },
+    {
+      "id": "B008-U-DATA-FILENAME",
+      "source_refs": [
+        "HELIXBRAIN-L4-008-F01.content_comparison",
+        "HELIXBRAIN-L10-008-F01.negative_input"
+      ],
+      "gap": "rawにfilenameの独立fieldがないため、knowledge identityがfilename由来かを判定する入力関係がない。",
+      "current_behavior": "filename_identity claim=trueのみrejected。左右identityがfilename風文字列でもclaim=falseなら検出しない。",
+      "closure": "data-level enforcementは未実現。filename source provenanceを創作しない。"
+    }
+  ],
+  "unobserved_branches": [
+    {
+      "id": "B008-UO-01",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "provided_knowledge.identity/revision/version/state/source/scope各memberを個別Absentまたはnullにする。",
+      "status": "6 memberの個別Absentは元MISSINGケースで観測済み。両側nullの扱いを変える変異は固定wholeで識別していない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-02",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "provided_CORE_reference.identity/core/knowledge_identity/knowledge_revision/knowledge_version/scope各memberを個別Absentまたはnullにする。",
+      "status": "原26 wholeはCORE各member両側nullの差を識別しない。別枠B008-F01-CORE-IDENTITY-BOTH-NULLでcore両側nullの保留を観測済み。他memberの同null/比較省略の独立識別は未観測。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-03",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "CORE_reference_resultsをcandidate_stateの判定から除去する変異。",
+      "status": "原26 wholeで全比較結果に対する変異感度を個別に固定していない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-04",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "held判定にprovided stateでなくoriginal stateを使う変異。",
+      "status": "RETIRED_AS_CURRENT/UNKNOWN_AS_CURRENT/OLD_NEW_STATE_SAMEは原/提出state不一致を含む。ただし比較conflict経由で既にheldとなるため、held_statesの判定側だけを替える変異を識別しない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-05",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "aggregate_priority順を入れ替える変異。",
+      "status": "複数の違反status同時発生ケースなし。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-06",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "claimsの既知keyをAbsent/非booleanにし、extra keyも追加する。",
+      "status": "既知keyのAbsent・非boolean rawは未観測。declared map type外を許容しない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-07",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "meaning_contractsのcontent比較を省く変異。",
+      "status": "revisionだけの変更はNEW-CONDITION-OLD-REVISIONで観測済み。content比較省略を識別する独立wholeはない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-08",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "supersession identityまたはscopeだけを変える。",
+      "status": "L9 15 caseではsupersessionのidentity/scope単独変異が未観測。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-09",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "old_CORE_reference.coreまたはscopeだけを変える。",
+      "status": "L9 15 caseでは旧CORE参照各field単独変異が未観測。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-10",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "revision_bindingでversionだけを無視する変異。",
+      "status": "L9 15 caseではversion binding fieldの独立省略を識別するwholeなし。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-11",
+      "function_ref": "HELIXBRAIN-L5-008-B01",
+      "witness_or_mutation": "original_project_recordsで同じproject identityを重複させる。",
+      "status": "原14 wholeにoriginal duplicate join keyなし。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-12",
+      "function_ref": "HELIXBRAIN-L5-008-B01",
+      "witness_or_mutation": "project record_revisionまたはknowledge_identityだけを変える。",
+      "status": "L9 14 caseでは各record field単独変異を網羅しない。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-13",
+      "function_ref": "HELIXBRAIN-L5-008-B01",
+      "witness_or_mutation": "claimsの既知key欠落/nonboolean、または実使用record ownerを左右同じBRAINにする。",
+      "status": "前半は未観測。後半はL4禁止意味とのデータ比較が未実装で、unclosed_data_constraintsを参照。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-14",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "version_targetをactual revision/versionと同値にして claim=false、またはidentityをfilename由来文字列にして claim=false。",
+      "status": "data-level filename/version-target bindingはL5出力とrawに存在せず、unclosed_data_constraintsへ記録。",
+      "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-15",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "既知claim keyのAbsentやfalse以外の扱いを変える変異。",
+      "status": "F02 claimの当該分岐を個別固定wholeで識別していない。nonbooleanは宣言型外。",
+      "disposition": "全claim域の意味検証済みとしない。"
+    },
+    {
+      "id": "B008-UO-16",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "knowledge.sourceの値比較を省く変異。",
+      "status": "source値だけを違えた独立wholeはなく、比較省略を固定corpusで識別していない。",
+      "disposition": "実source資格を含め完了へ昇格しない。"
+    }
+  ],
+  "unclosed_unknown_and_transition": [
+    {
+      "id": "B008-U-UNKNOWN-LEXEME",
+      "source_refs": [
+        "HELIXBRAIN-L3-008-F01.obligation",
+        "HELIXBRAIN-L4-008-F01.content_comparison"
+      ],
+      "gap": "state=unknownはL9で試すが、revision/version/identity等の文字列値\"unknown\"を一般的unknownとして判定するrule/probeはない。両側同値なら現在の比較は対応済みとなり得る。",
+      "state": "未評価。state enumの全域や新しいliteral policyは追加しない。"
+    },
+    {
+      "id": "B008-U-OLD-NEW-IDENTICAL",
+      "source_refs": [
+        "HELIXBRAIN-L3-008-F02.obligation",
+        "HELIXBRAIN-L4-008-F02.content_comparison"
+      ],
+      "gap": "old/new knowledge tupleとsupersession.old/new tupleが同一の場合、無効な/循環したsupersessionを検出する独立判定とfixtureがない。",
+      "state": "未評価。原L9期待は不変であり、一般的なsupersession有効性規則は導出しない。"
+    }
+  ],
+  "owner_output_boundary": {
+    "implemented_owner_return_roots": [],
+    "source_obligations": [
+      "HELIXBRAIN-L4-008-F01.output_meanings",
+      "HELIXBRAIN-L4-008-F02.output_meanings",
+      "HELIXBRAIN-L4-008-B01.output_meanings",
+      "HELIXBRAIN-L10-008-F01.failure_observation",
+      "HELIXBRAIN-L10-008-F02.failure_observation",
+      "HELIXBRAIN-L10-008-B01.failure_observation"
+    ],
+    "status": "not_implemented_and_not_present_in_original_L9_wholes",
+    "handling": "unclosed_owner_returnsに未実現義務と不足producer/consumerを記録する。既存出力rootをowner returnと見なさない。"
+  }
+}
