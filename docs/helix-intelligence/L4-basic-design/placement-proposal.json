@@ -235,7 +235,8 @@
         "task条件と候補Worker capability、同task-class/model-classの観測実績/Bench scopeを根拠に適合と除外を説明する。",
         "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。",
         "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。",
-        "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。"
+        "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
+        "原/提出の推薦内容も除外内容と独立に照合し、元根拠と違う推薦・推薦の消去/異型/重複を案ownerへ返す。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -398,7 +399,7 @@
           "return_owner": "OS-task-fit-owner"
         }
       ],
-      "ordering": "提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出除外内容→推薦/除外対応→claim宣言順。",
+      "ordering": "提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。",
       "bench_class": {
         "left": "/original_bench/task_class",
         "right": "/original_scope/task_class",
@@ -419,7 +420,7 @@
         "excluded": "/submitted_proposal/excluded",
         "excluded_identity_member": "worker",
         "comparison": "推薦集合にある同じWorker identityを除外recordが指すなら、推薦/除外の意味が矛盾。JSON意味等値で照合し、範囲外Worker全員の新たな分類を要求する規則ではない。",
-        "field": "proposal.excluded",
+        "field": "proposal.recommendation_exclusion",
         "result": "source_content_conflict",
         "return_owner": "INTELLIGENCE-proposal-owner"
       },
@@ -448,11 +449,20 @@
       "exclusion_content": {
         "source": "/original_proposal/excluded",
         "submitted": "/submitted_proposal/excluded",
-        "comparison": "原/提出の除外arrayをJSON意味等値で比較する。array順とrecord内容を保持し、不一致なら1件の内容所見を返す。推薦/除外の同一identity矛盾とは条件を別に評価し、field/result/owner全一致の場合だけ既存一意化に従う。",
+        "comparison": "原/提出の除外arrayをJSON意味等値で比較する。array順とrecord内容を保持し、不一致なら1件の内容所見を返す。推薦/除外の同一identity矛盾とは別のfieldで保持し、一つの所見へ併合しない。",
         "field": "proposal.excluded",
         "result": "source_content_conflict",
         "return_owner": "INTELLIGENCE-proposal-owner",
         "basis": "L10-F02の適合候補と除外/根拠が事前の適合条件へ一致する義務。明示された原除外を無所見で消去/改変しない。"
+      },
+      "recommendation_content": {
+        "source": "/original_proposal/recommended",
+        "submitted": "/submitted_proposal/recommended",
+        "comparison": "原/提出の推薦内容をJSON意味等値で比較する。配列順・重複・null・異型・Absentをそのまま区別し、不一致なら1件の内容所見を返す。提出identityが存在することだけで原実績の推薦根拠を代用しない。内容一致だけで実適合/実資格を生成しない。",
+        "field": "proposal.recommended",
+        "result": "source_content_conflict",
+        "return_owner": "INTELLIGENCE-proposal-owner",
+        "basis": "批准L3-F02とL10-F02の同scope根拠・候補適合/事前適合条件との一致。既存案の推薦差替え・消去・異型を根拠に対応した候補へ補完しない。"
       }
     },
     "F04": {
@@ -750,7 +760,7 @@
           "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
         }
       ],
-      "consumer_limit": "原caseのconsumerはfailure_reasonsとreturn_ownersを受け取るため、下記data resultを独立所見としては受け取れない。failure表示とrawの保持だけで独立診断義務が完了したとはしない。"
+      "consumer_limit": "原caseのconsumerはfailure_reasonsとreturn_ownersを受け取るため、上記data resultを独立所見としては受け取れない。failure表示とrawの保持だけで独立診断義務が完了したとはしない。"
     }
   },
   "source_revision_role": {
