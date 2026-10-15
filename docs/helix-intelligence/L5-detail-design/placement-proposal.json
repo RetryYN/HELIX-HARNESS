@@ -1,0 +1,4093 @@
+{
+  "document_id": "HELIXINTELLIGENCE-L5-010",
+  "parent": "HELIXINTELLIGENCE-L2-010",
+  "layer": "L5",
+  "pair": "L8",
+  "status": "draft_finite_logical_contract_not_implementation_ready",
+  "source_main": "8f36ee7f68111eb1adb7e7b7bce761045b1dee93",
+  "authority": {
+    "decision_path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_record_id": "HDEC-INTELLIGENCE-PLACEMENT-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+    "decision_record_commit": "937b5bcaf51e006463c55e8b42c62b63bb862937",
+    "actual_admission_merge": "d2f3f2cfe7d17382e5794316eda7f877afaffb5c",
+    "decision_record_sha256": "9d46472148d437c25b84c08a10cf53aae17817f233222bbcf2a69c4de0f16a9f",
+    "approved_objects": [
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-F01",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "8a6b5e8d69fe4f3d6524d795a0371b5998cbeea34658c7bd0091aff7d6391c55",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-F01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "taskと実績の入力一致",
+          "obligation": "ticket/task identity・revision/scopeとtask type/domain/complexity/context/tool requirement、Worker capability/version、success/failure/rework/latency/cost/reliabilityの実績または不足を同対象へ照合する。ない値を推測しない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-F01"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-F02",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "d14b3358bec036ddf4f200be5efd56a63ad62760db1af930d27999169454f2e9",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-F02",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "条件適合と配置案の根拠",
+          "obligation": "task×Worker capability×observed performanceとLABOの作業種別/model class水準・根拠の適用範囲からticket別proposalを作る。理由と候補適合が同scopeの実績/水準に合うことを照合し、価格/model名/benchmark単独で決めない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-F02"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-F03",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "4637cbd3541115ecc770905fa58dbbdbe8e80e2dbfc44ae26b94ee7b046d5d68",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-F03",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "未評価と未見scope",
+          "obligation": "Bench水準/Worker-modelが未評価なら候補も未評価を保つ。未公開task/profile組合せでも適用scope内の材料だけを使い、範囲外/新契約版/互換不明/証拠不足をqualifiedへ補完しない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-F03"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-F04",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "cb42a290f674805d998a92218b4b201e84d5e644a78d3614c7c22b29d2e30eb1",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-F04",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "品質・優先判断と比較材料",
+          "obligation": "配置に適用するscope/revision有効なquality gate・priority/toleranceを既決なら再利用し、理由/除外/不確実性/未評価へ結ぶ。比較材料を選択したときは067入力契約と034/LABO送受領の必要閉包を別に照合する。必要品質未達やunknownを隠さず、総費用を主張するときはhuman interventionの欠測/負担を除外しない。値や順位式を新設しない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-F04"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-B01",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "760c5572e7f38707b743d9c4d2e8468c1c8aa80b7a8b9935cd3e56b41c2d1b99",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-B01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "配置候補と実割当の分離",
+          "obligation": "INTELLIGENCEはproposalを出し実割当/進行/実行許可はOS/SECに保持する。Bench評価はLABO、Workerは許可実行主体とし、案やscoreからscope/branch/merge authorityを変更しない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-B01"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-010-N01",
+        "layer": "L3",
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "71decfbd99b13625e6d74dc0a0f3d4dc6a34838088fbeb0263adec8d4eae38c8",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L3-010-N01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "内容oracleと適用限界",
+          "obligation": "正常/誤り/未公開task-profile組合せに対し、適合条件・実績/Bench適用範囲・理由・除外・未評価を内容oracleへ照合する。fixture green/field一覧から実環境一般の適格性、最適な唯一順位、全INT能力/PO Acceptedを生成しない。",
+          "oracle_ref": "HELIXINTELLIGENCE-L10-010-N01"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-F01",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "87338bb6dd3acc7a8e6b679c9b43a1b8e1c3e8894cafdea5672d6451ef069ba6",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-F01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "taskと実績の入力一致",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F01",
+          "positive_input": "同taskの必要属性/実績と別ticket・属性欠落を比較する。",
+          "expected_observation": "sourceと入力各値/欠測の対応が一致する。",
+          "negative_input": "別ticket実績混載、欠測を0、属性推測。",
+          "failure_observation": "task不足はOS、実績不足はLABOへ返し案を未確定にする。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-F02",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "d6d53faa9d942b55182bf6864b41d6bce73bdb5212ebdcd49db1e5c250ad939e",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-F02",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "条件適合と配置案の根拠",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+          "positive_input": "同taskの適合候補、安価だがtool/domain不適合候補、別class Benchを比較する。",
+          "expected_observation": "適合候補と除外/根拠が事前の適合条件に一致する。",
+          "negative_input": "price/nameだけ順位、Bench class不一致を無視、field存在だけ合格。",
+          "failure_observation": "適合条件/task不足はOS、Bench/evidence scope不足はLABOへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-F03",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "ef3311257ad836b6029e02b83efc743700ac43c540770a11f1450247a55ecf1f",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-F03",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "未評価と未見scope",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F03",
+          "positive_input": "既評価同scopeと未評価/範囲外/未見profileを比較する。",
+          "expected_observation": "案の状態と適用限界/不足理由が根拠に一致する。",
+          "negative_input": "未評価をqualified、新版へ自動継承、未知task成功保証。",
+          "failure_observation": "LABO/evidence/contract ownerへ不足を返し未確定を保持する。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-F04",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "84d5655a4d269ccaaa8daf6361b4543463ff30fcf46d61eca277a0ff3e684bf5",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-F04",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "品質・優先判断と比較材料",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-F04",
+          "positive_input": "有効な既決判断と範囲外/失効判断、必要品質不適合、介入費用欠測を比較する。",
+          "expected_observation": "適用判断と案/除外の対応、未決scopeと費用限界が辿れる。",
+          "negative_input": "既決なのに毎run人確認、品質不足隠蔽、介入抜き総費用、優先未決で順位確定。",
+          "failure_observation": "判断ownerまたはLABO/入力契約ownerへ必要な不足だけ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-B01",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "1f37af64c94142749e55d3ef7e9f34decc65ea7d683a290b161630b508359e94",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-B01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "配置候補と実割当の分離",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-B01",
+          "positive_input": "根拠付きproposalと未決OS assignment/permissionを別記録で照合する。",
+          "expected_observation": "水準/案/受領/指定/実行許可が別状態・ownerで辿れる。",
+          "negative_input": "proposalを割当成功、Benchで権限拡大、INT自己dispatch。",
+          "failure_observation": "OS/SECと該当ownerへ戻す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-010-N01",
+        "layer": "L10",
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+        "approved_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "b8805a25e663d853725c285e355d78bbf661fcceeeca3f2b2d4272b12d39ccab",
+        "whole": {
+          "id": "HELIXINTELLIGENCE-L10-010-N01",
+          "parent": "HELIXINTELLIGENCE-L2-010",
+          "title": "内容oracleと適用限界",
+          "requirement_ref": "HELIXINTELLIGENCE-L3-010-N01",
+          "positive_input": "同scope適合と範囲外/Bench不足/価格だけの候補を伏せたcaseでも比較する。",
+          "expected_observation": "具体適合と根拠の一致、未知・未評価・未実行が保持される。",
+          "negative_input": "体裁で合格、全能力へ外挿、oracle不在で最適判定。",
+          "failure_observation": "適合oracle/task/Bench ownerへ不足を返す。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "approved_object_count": 12,
+    "po_scope_exception_record": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+    "scope_exception": "INT010の既存L3/L10委任承認がある範囲だけの対設計。対象外・通常L3・実配置/実資格を含まない。"
+  },
+  "scope": {
+    "approved_requirement_parent": "HELIXINTELLIGENCE-L2-010",
+    "l4_document": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
+    "l4_sha256": "8bd2cb5d560bce9809a9284cc829098ef395d5382f58ffecd185c4d9680a4557",
+    "l9_document": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+    "l9_sha256": "7c99df39ca8a108c5d387e300078f2f81d7b820154b19f1cf92421340a2348ad",
+    "source_main_metadata_note": "L4/L9のsource_main=d5afdはmetadataであり、現在のpair bytesの作成revisionと同一視しない。current mainの実bytesはsource pinで別途固定する。",
+    "original_case_count": 70,
+    "full_goal_scope_preserved": {
+      "parents": 92,
+      "pairs": 430
+    }
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 18989,
+      "sha256": "8bd2cb5d560bce9809a9284cc829098ef395d5382f58ffecd185c4d9680a4557"
+    },
+    {
+      "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 886449,
+      "sha256": "7c99df39ca8a108c5d387e300078f2f81d7b820154b19f1cf92421340a2348ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 5166,
+      "sha256": "9d46472148d437c25b84c08a10cf53aae17817f233222bbcf2a69c4de0f16a9f"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 13446,
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "path": "docs/governance/decisions/helix-intelligence-stage3-l3-l10-po-decision-2026-10-06.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 4580,
+      "sha256": "6d88abff1fee9759128759efe44664ad12197ade34db69bb384d1cee54edbf9e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 11831,
+      "sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 8619,
+      "sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 8179,
+      "sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 13322,
+      "sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 9249,
+      "sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 8644,
+      "sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 151600,
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 123549,
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "42ae038c6c35a211f9588b4a8ba17e41ccb5ada1",
+      "bytes": 7991,
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "read_lines": [
+        15,
+        21
+      ],
+      "quote": "## 3L-BR-010 作成・検収・統合能力を別々に拡張する\n\nCodex worker、Cursor worker、Claude reviewer、CI、Merge Trainを別々のcapacityとして管理し、下流の実処理能力に応じて安全に並列度を拡張する。登録可能なpool上限を常時active WIPと解釈せず、速さを未検収PR数ではなくaccepted throughputとtime-to-acceptedで評価する。\n\n初期運用ではCursorを1件から開始して2件、3件へ段階拡張する。成立後の定常目標はCodex worker 3件、Cursor worker 3件、Claude reviewer 2件とする。Codex／Cursorは実測capacity admission成立時だけ最大5件までburstでき、Claude reviewerの追加burstは独立review待ちが実ボトルネックである場合だけ認める。\n\n詳細要件と受入条件は同一candidate familyへ束縛する。本候補単独で現行WIP、8-slot能力上限、provider課金、runtime dispatch権限を変更しない。",
+      "file_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "selected_lines_sha256": "5bf82315cae97653c34aec62cd177f8ff64127e78514b8a616b3a0ae69232b6e",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+        "disposition": "unresolved",
+        "source_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。",
+      "parent_requirement": "HELIXINTELLIGENCE-L2-010",
+      "pair": "L5/L8",
+      "replacement": {
+        "paths": [
+          "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
+          "docs/helix-intelligence/L8-unit-verification/placement-proposal.json"
+        ],
+        "meaning": "承認済みL3/L10の配置提案責務へ意味再導出。旧runtime/固定provider表/dispatch authorityを移植しない。"
+      },
+      "consumer_transition": "旧router/runtime consumerは隔離のまま。新設計の提案入力→INT論理候補→OS指定の境界だけを具体化し、実consumer/資格は未成立。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        615,
+        616
+      ],
+      "quote": "**RLO-FR-031**\nAI routerは候補提案のみとし、control planeのdispatch authorityを直接持ってはならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "c5b6772738eed1b61f46a7037e0f2f53a40b8ab410ad4fd2ad0ecfde487c159b",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。",
+      "parent_requirement": "HELIXINTELLIGENCE-L2-010",
+      "pair": "L5/L8",
+      "replacement": {
+        "paths": [
+          "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
+          "docs/helix-intelligence/L8-unit-verification/placement-proposal.json"
+        ],
+        "meaning": "承認済みL3/L10の配置提案責務へ意味再導出。旧runtime/固定provider表/dispatch authorityを移植しない。"
+      },
+      "consumer_transition": "旧router/runtime consumerは隔離のまま。新設計の提案入力→INT論理候補→OS指定の境界だけを具体化し、実consumer/資格は未成立。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        627,
+        630
+      ],
+      "quote": "**RLO-FR-034**\nbench適性はFE実装／BE実装／設計の軸で分離して記録し、片方の適性を他方へ\n流用してはならない。適性記録はprovider名ではなくモデル世代単位で保持し、\nモデル変更検知時は再benchまで旧適性を新モデルへ引き継いではならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "6f281fdf93e8a097c8dbf0f014e266136bd3a3302d0aae8f924c832ff4f3f0ac",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。",
+      "parent_requirement": "HELIXINTELLIGENCE-L2-010",
+      "pair": "L5/L8",
+      "replacement": {
+        "paths": [
+          "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
+          "docs/helix-intelligence/L8-unit-verification/placement-proposal.json"
+        ],
+        "meaning": "承認済みL3/L10の配置提案責務へ意味再導出。旧runtime/固定provider表/dispatch authorityを移植しない。"
+      },
+      "consumer_transition": "旧router/runtime consumerは隔離のまま。新設計の提案入力→INT論理候補→OS指定の境界だけを具体化し、実consumer/資格は未成立。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。",
+      "parent_requirement": "HELIXINTELLIGENCE-L2-010",
+      "pair": "L5/L8",
+      "replacement": {
+        "paths": [
+          "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
+          "docs/helix-intelligence/L8-unit-verification/placement-proposal.json"
+        ],
+        "meaning": "承認済みL3/L10の配置提案責務へ意味再導出。旧runtime/固定provider表/dispatch authorityを移植しない。"
+      },
+      "consumer_transition": "旧router/runtime consumerは隔離のまま。新設計の提案入力→INT論理候補→OS指定の境界だけを具体化し、実consumer/資格は未成立。"
+    }
+  ],
+  "type_contract": {
+    "input": "PlacementPacket",
+    "output": "PlacementAssessment",
+    "presence_semantics": "JSON object memberのAbsentと明示nullは別状態。nullはnullとして保持し、missingへ置換しない。任意領域はJSONValueとして保持。",
+    "types": {
+      "JsonValue": {
+        "kind": "union",
+        "variants": [
+          "null",
+          "boolean",
+          "number",
+          "string",
+          "array<JsonValue>",
+          "object<string,JsonValue>"
+        ]
+      },
+      "PlacementPacket": {
+        "kind": "object carrier",
+        "definition": "L8が固定するL9 raw JSON object。値を推測/補完せずJSON valueとして読む。正式wire schemaではない。"
+      },
+      "Finding": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "result": {
+            "kind": "enum",
+            "values": [
+              "expired_or_missing",
+              "foreign",
+              "foreign_revision",
+              "incompatible",
+              "missing",
+              "out_of_scope",
+              "quality_not_satisfied",
+              "source_content_conflict",
+              "unauthorized_state_promotion",
+              "unknown_selection",
+              "unobserved",
+              "unobserved_or_outside_scope",
+              "unseen_revision",
+              "unsupported_cost_or_decision_claim",
+              "unsupported_extrapolation",
+              "unsupported_fit_basis",
+              "unsupported_imputation",
+              "unsupported_qualification",
+              "wrong_owner"
+            ]
+          },
+          "return_owner": "string"
+        }
+      },
+      "RetainedInputs": {
+        "kind": "record",
+        "fields": {
+          "original_scope": "JsonValue",
+          "original_task": "JsonValue",
+          "original_workers": "JsonValue",
+          "original_performance": "JsonValue",
+          "original_bench": "JsonValue",
+          "original_decision": "JsonValue",
+          "original_proposal": "JsonValue",
+          "original_comparison": "JsonValue"
+        },
+        "presence": "各source memberがAbsentならそのkeyを省略。明示nullならnullを保持。"
+      },
+      "RetainedHandoff": {
+        "kind": "record",
+        "fields": {
+          "labo_level_owner": "JsonValue",
+          "proposal_owner": "JsonValue",
+          "receipt_owner": "JsonValue",
+          "receipt_state": "JsonValue",
+          "assignment_owner": "JsonValue",
+          "assignment_state": "JsonValue",
+          "permission_owner": "JsonValue",
+          "permission_state": "JsonValue"
+        },
+        "presence": "source absentは省略、null保持。"
+      },
+      "ActualEffects": {
+        "kind": "record",
+        "fields": {
+          "assignment": "boolean=false",
+          "dispatch": "boolean=false",
+          "permission": "boolean=false",
+          "scope_change": "boolean=false",
+          "branch_change": "boolean=false",
+          "merge_authority_change": "boolean=false",
+          "acceptance": "boolean=false",
+          "implementation_ready": "boolean=false"
+        }
+      },
+      "PlacementAssessment": {
+        "kind": "record",
+        "fields": {
+          "information_state": {
+            "kind": "enum",
+            "values": [
+              "held_input_unqualified",
+              "candidate_requires_actual_qualification",
+              "held_candidate_unevaluated"
+            ]
+          },
+          "retained_inputs": "RetainedInputs",
+          "candidate_fit": {
+            "kind": "enum",
+            "values": [
+              "not_evaluated",
+              "source_condition_candidate",
+              "excluded_by_condition",
+              "excluded_by_quality"
+            ]
+          },
+          "retained_submitted_proposal": "JsonValueまたはAbsentなら省略",
+          "retained_handoff": "RetainedHandoff",
+          "comparison_obligation": {
+            "kind": "enum",
+            "values": [
+              "not_applicable",
+              "unknown_selection",
+              "selected_requires_separate_closure"
+            ]
+          },
+          "rejected_claims": "array<string>",
+          "failure_reasons": "array<Finding>",
+          "return_owners": "array<string>",
+          "actual_effects": "ActualEffects",
+          "retained_auxiliary_inputs": "record。comparison_selected/content_oracle_ref/human_interventionのsource projection。Absent memberは省略しnullを保持。"
+        }
+      }
+    },
+    "output_roots": [
+      "information_state",
+      "retained_inputs",
+      "candidate_fit",
+      "retained_submitted_proposal",
+      "retained_handoff",
+      "comparison_obligation",
+      "rejected_claims",
+      "failure_reasons",
+      "return_owners",
+      "actual_effects",
+      "retained_auxiliary_inputs"
+    ],
+    "finite_domains": {
+      "information_state": [
+        "held_input_unqualified",
+        "candidate_requires_actual_qualification",
+        "held_candidate_unevaluated"
+      ],
+      "candidate_fit": [
+        "not_evaluated",
+        "source_condition_candidate",
+        "excluded_by_condition",
+        "excluded_by_quality"
+      ],
+      "comparison_obligation": [
+        "not_applicable",
+        "unknown_selection",
+        "selected_requires_separate_closure"
+      ],
+      "failure.result": [
+        "expired_or_missing",
+        "foreign",
+        "foreign_revision",
+        "incompatible",
+        "missing",
+        "out_of_scope",
+        "quality_not_satisfied",
+        "source_content_conflict",
+        "unauthorized_state_promotion",
+        "unknown_selection",
+        "unobserved",
+        "unobserved_or_outside_scope",
+        "unseen_revision",
+        "unsupported_cost_or_decision_claim",
+        "unsupported_extrapolation",
+        "unsupported_fit_basis",
+        "unsupported_imputation",
+        "unsupported_qualification",
+        "wrong_owner"
+      ],
+      "effects": "すべてfalse"
+    }
+  },
+  "generic_expression_vocabulary": {
+    "operator_definitions": [
+      {
+        "name": "path",
+        "meaning": "packet rootから`.`区切りmember pathを読む。欠落はAbsent sentinel。"
+      },
+      {
+        "name": "literal",
+        "meaning": "ASTに書かれたJSON値。"
+      },
+      {
+        "name": "is_absent",
+        "meaning": "Absentだけtrue。nullとは異なる。"
+      },
+      {
+        "name": "is_null",
+        "meaning": "明示JSON nullだけtrue。Absentとは異なる。"
+      },
+      {
+        "name": "json_equal",
+        "meaning": "JSON値のkindと値を比較する。object key順は無視しarray順は保持する。numberはJSON number同士を数値比較し、1と1.0は等しい。booleanはnumberと異なるkind。"
+      },
+      {
+        "name": "array_contains",
+        "meaning": "配列に完全JSON等値memberがあるか。"
+      },
+      {
+        "name": "array_contains_any",
+        "meaning": "配列がAST valuesのいずれかを含むか。"
+      },
+      {
+        "name": "not_boolean",
+        "meaning": "Absent/nullを含みJSON kindがbooleanでなければtrue。"
+      },
+      {
+        "name": "some",
+        "meaning": "arrayの各要素を指定名でbindしwhere式を評価、1件以上trueならtrue。"
+      },
+      {
+        "name": "bound_path",
+        "meaning": "someのbinder要素から相対member pathを読む。"
+      },
+      {
+        "name": "record_project",
+        "meaning": "fieldsの順で値を評価しAbsentだけ省略、nullは保持。"
+      },
+      {
+        "name": "ordered_findings_from_checks",
+        "meaning": "checksを配列順に評価し、whenがtrueのfindingをそのまま返す。"
+      },
+      {
+        "name": "map_field",
+        "meaning": "record arrayの各要素からfieldを順序保持で取り出す。"
+      },
+      {
+        "name": "unique_first",
+        "meaning": "JSON値完全一致で重複を落とし、初出順を保つ。"
+      },
+      {
+        "name": "any_finding",
+        "meaning": "checks評価結果にfindingが1件以上存在するか。"
+      },
+      {
+        "name": "not_all_values_contained",
+        "meaning": "required配列の全要素がavailable配列にJSON完全一致で含まれる、がfalseならtrue。"
+      },
+      {
+        "name": "any_member_absent_or_null",
+        "meaning": "record上の指定memberのいずれかがAbsentまたは明示nullならtrue。record自体がAbsent/nullならtrue。"
+      },
+      {
+        "name": "ordered_rejected_claims_from_checks",
+        "meaning": "checks順にtrueとなったcheckのrejected_claimをclaims入力順で返し、同じJSON値の重複は初出だけ保持する。"
+      },
+      {
+        "name": "not_absent_or_null",
+        "meaning": "引数がAbsentでもnullでもないときtrue。"
+      },
+      {
+        "name": "is_object",
+        "meaning": "JSON object kindのときtrue。"
+      },
+      {
+        "name": "all_members_present_nonnull",
+        "meaning": "recordがobjectであり、指定memberすべてが存在しnull以外ならtrue。"
+      },
+      {
+        "name": "and",
+        "meaning": "boolean operandを左から短絡評価し、全てtrueならtrue。"
+      },
+      {
+        "name": "or",
+        "meaning": "boolean operandを左から短絡評価し、少なくとも一つtrueならtrue。"
+      },
+      {
+        "name": "not",
+        "meaning": "boolean operandの否定。"
+      },
+      {
+        "name": "if-expression",
+        "meaning": "if式がboolean trueならthen式、falseならelse式を評価する。Absent/null/他kindはpredicate内でboolean化せず、型不適合として扱う。"
+      }
+    ],
+    "short_circuit_and_presence": "and/orは左から短絡。Absentとnullの評価を値へcastしない。"
+  },
+  "functions": [
+    {
+      "function_id": "INT010-F01",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F01",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F01",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F01",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "original_scope",
+        "original_task",
+        "original_workers",
+        "original_performance",
+        "original_bench",
+        "original_proposal",
+        "submitted_proposal",
+        "claims"
+      ],
+      "algorithm_ja": "同一task・Worker・実績の入力結合",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "実測・資格ではなく、入力対応/欠落保持のみを評価する。",
+      "basis": {
+        "l4_pointer": "/contracts/0",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-F01",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-F01"
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "op": "literal",
+          "value": "candidate_requires_actual_qualification"
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "not_evaluated"
+        },
+        "else": {
+          "op": "literal",
+          "value": "source_condition_candidate"
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.identity"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.identity",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.ticket"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.ticket"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.ticket",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.revision"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.revision",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.scope"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.scope"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.scope",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.type"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.type"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.type",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.domain"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.domain"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.domain",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.complexity"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.complexity"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.complexity",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "and",
+                    "args": [
+                      {
+                        "op": "or",
+                        "args": [
+                          {
+                            "op": "is_absent",
+                            "arg": {
+                              "op": "path",
+                              "path": "original_task.context"
+                            }
+                          },
+                          {
+                            "op": "is_null",
+                            "arg": {
+                              "op": "path",
+                              "path": "original_task.context"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "op": "not",
+                        "arg": {
+                          "op": "array_contains_any",
+                          "array": {
+                            "op": "path",
+                            "path": "claims"
+                          },
+                          "values": [
+                            {
+                              "op": "literal",
+                              "value": "invent_task_attribute"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "not",
+                    "arg": {
+                      "op": "array_contains_any",
+                      "array": {
+                        "op": "path",
+                        "path": "claims"
+                      },
+                      "values": [
+                        {
+                          "op": "literal",
+                          "value": "invent_task_attribute"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "invent_task_attribute"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.context",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.tool_requirement"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.tool_requirement"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "task.tool_requirement",
+            "result": "missing",
+            "return_owner": "OS-task-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.success"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.success"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.success",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.failure"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.failure"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.failure",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.rework"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.rework"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.rework",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.latency"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.latency"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.latency",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "and",
+                    "args": [
+                      {
+                        "op": "or",
+                        "args": [
+                          {
+                            "op": "is_absent",
+                            "arg": {
+                              "op": "path",
+                              "path": "original_performance.observations.cost"
+                            }
+                          },
+                          {
+                            "op": "is_null",
+                            "arg": {
+                              "op": "path",
+                              "path": "original_performance.observations.cost"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "op": "not",
+                        "arg": {
+                          "op": "array_contains_any",
+                          "array": {
+                            "op": "path",
+                            "path": "claims"
+                          },
+                          "values": [
+                            {
+                              "op": "literal",
+                              "value": "missing_is_zero"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "not",
+                    "arg": {
+                      "op": "array_contains_any",
+                      "array": {
+                        "op": "path",
+                        "path": "claims"
+                      },
+                      "values": [
+                        {
+                          "op": "literal",
+                          "value": "missing_is_zero"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "missing_is_zero"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.cost",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.reliability"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_performance.observations.reliability"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.reliability",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not_absent_or_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_task.ticket"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_performance.scope.ticket"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_task.ticket"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "performance.scope.ticket",
+            "result": "foreign",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "some",
+            "array": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "as": "worker",
+            "where": {
+              "op": "and",
+              "args": [
+                {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "bound_path",
+                    "as": "worker",
+                    "path": "identity"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_performance.worker"
+                  }
+                },
+                {
+                  "op": "or",
+                  "args": [
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "version"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "version"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "finding": {
+            "field": "workers.A.version",
+            "result": "missing",
+            "return_owner": "Worker-capability-source-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "some",
+            "array": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "as": "worker",
+            "where": {
+              "op": "and",
+              "args": [
+                {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "bound_path",
+                    "as": "worker",
+                    "path": "identity"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_performance.worker"
+                  }
+                },
+                {
+                  "op": "or",
+                  "args": [
+                    {
+                      "op": "is_absent",
+                      "arg": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "capability"
+                      }
+                    },
+                    {
+                      "op": "is_null",
+                      "arg": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "capability"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "finding": {
+            "field": "workers.A.capability",
+            "result": "missing",
+            "return_owner": "Worker-capability-source-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "missing_is_zero"
+            }
+          },
+          "finding": {
+            "field": "performance.cost",
+            "result": "unsupported_imputation",
+            "return_owner": "LABO-evidence-owner"
+          },
+          "rejected_claim": "missing_is_zero"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "invent_task_attribute"
+            }
+          },
+          "finding": {
+            "field": "task.context",
+            "result": "unsupported_imputation",
+            "return_owner": "OS-task-owner"
+          },
+          "rejected_claim": "invent_task_attribute"
+        }
+      ],
+      "comparison_expression": {
+        "op": "literal",
+        "value": "not_applicable"
+      },
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    },
+    {
+      "function_id": "INT010-F02",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F02",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F02",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F02",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "original_task",
+        "original_workers",
+        "original_performance",
+        "original_bench",
+        "original_proposal",
+        "submitted_proposal",
+        "claims"
+      ],
+      "algorithm_ja": "候補能力・性能・Bench適用範囲とproposal理由",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "価格/model名の順位式を定義しない。合成能力のdomain/tool包含とsource参照の整合だけを比較する。",
+      "basis": {
+        "l4_pointer": "/contracts/1",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-F02",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-F02"
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "op": "literal",
+          "value": "candidate_requires_actual_qualification"
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding",
+          "finding_results": [
+            "incompatible",
+            "unsupported_fit_basis"
+          ]
+        },
+        "then": {
+          "op": "literal",
+          "value": "excluded_by_condition"
+        },
+        "else": {
+          "if": {
+            "op": "any_finding"
+          },
+          "then": {
+            "op": "literal",
+            "value": "not_evaluated"
+          },
+          "else": {
+            "op": "literal",
+            "value": "source_condition_candidate"
+          }
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "some",
+                "array": {
+                  "op": "path",
+                  "path": "original_workers"
+                },
+                "as": "worker",
+                "where": {
+                  "op": "and",
+                  "args": [
+                    {
+                      "op": "array_contains",
+                      "array": {
+                        "op": "path",
+                        "path": "submitted_proposal.recommended"
+                      },
+                      "value": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "identity"
+                      }
+                    },
+                    {
+                      "op": "not",
+                      "arg": {
+                        "op": "array_contains",
+                        "array": {
+                          "op": "bound_path",
+                          "as": "worker",
+                          "path": "capability.domain"
+                        },
+                        "value": {
+                          "op": "path",
+                          "path": "original_task.domain"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "price_only_rank"
+                    },
+                    {
+                      "op": "literal",
+                      "value": "name_only_rank"
+                    },
+                    {
+                      "op": "literal",
+                      "value": "field_presence_is_fit"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "workers.A.capability.domain",
+            "result": "incompatible",
+            "return_owner": "OS-task-fit-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "some",
+                "array": {
+                  "op": "path",
+                  "path": "original_workers"
+                },
+                "as": "worker",
+                "where": {
+                  "op": "and",
+                  "args": [
+                    {
+                      "op": "array_contains",
+                      "array": {
+                        "op": "path",
+                        "path": "submitted_proposal.recommended"
+                      },
+                      "value": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "identity"
+                      }
+                    },
+                    {
+                      "op": "not_all_values_contained",
+                      "required": {
+                        "op": "path",
+                        "path": "original_task.tool_requirement"
+                      },
+                      "available": {
+                        "op": "bound_path",
+                        "as": "worker",
+                        "path": "capability.tools"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "price_only_rank"
+                    },
+                    {
+                      "op": "literal",
+                      "value": "name_only_rank"
+                    },
+                    {
+                      "op": "literal",
+                      "value": "field_presence_is_fit"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "workers.A.capability.tools",
+            "result": "incompatible",
+            "return_owner": "OS-task-fit-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_bench.task_class"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.task_class"
+              }
+            }
+          },
+          "finding": {
+            "field": "bench.task_class",
+            "result": "foreign",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "submitted_proposal.reason_refs"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_proposal.reason_refs"
+              }
+            }
+          },
+          "finding": {
+            "field": "proposal.reason_refs",
+            "result": "source_content_conflict",
+            "return_owner": "INTELLIGENCE-proposal-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "price_only_rank"
+            }
+          },
+          "finding": {
+            "field": "proposal.recommended",
+            "result": "unsupported_fit_basis",
+            "return_owner": "INTELLIGENCE-proposal-owner"
+          },
+          "rejected_claim": "price_only_rank"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "name_only_rank"
+            }
+          },
+          "finding": {
+            "field": "proposal.recommended",
+            "result": "unsupported_fit_basis",
+            "return_owner": "INTELLIGENCE-proposal-owner"
+          },
+          "rejected_claim": "name_only_rank"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "field_presence_is_fit"
+            }
+          },
+          "finding": {
+            "field": "proposal.recommended",
+            "result": "unsupported_fit_basis",
+            "return_owner": "INTELLIGENCE-proposal-owner"
+          },
+          "rejected_claim": "field_presence_is_fit"
+        }
+      ],
+      "comparison_expression": {
+        "op": "literal",
+        "value": "not_applicable"
+      },
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    },
+    {
+      "function_id": "INT010-F03",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F03",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F03",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F03",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "original_task",
+        "original_workers",
+        "original_bench",
+        "submitted_proposal",
+        "claims"
+      ],
+      "algorithm_ja": "Bench評価・profile・契約版のscope保持",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "未公開profileのscope内はcandidateとして保ち、実資格へ昇格しない。",
+      "basis": {
+        "l4_pointer": "/contracts/2",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-F03",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-F03"
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding",
+          "finding_result": "foreign"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "if": {
+            "op": "any_finding"
+          },
+          "then": {
+            "op": "literal",
+            "value": "held_candidate_unevaluated"
+          },
+          "else": {
+            "op": "literal",
+            "value": "candidate_requires_actual_qualification"
+          }
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "not_evaluated"
+        },
+        "else": {
+          "op": "literal",
+          "value": "source_condition_candidate"
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_bench.state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "evaluated_in_fixture_only"
+                  }
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "unevaluated_is_qualified"
+                    },
+                    {
+                      "op": "literal",
+                      "value": "unknown_task_guaranteed"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "bench.state",
+            "result": "unobserved_or_outside_scope",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_bench.compatibility"
+              },
+              "right": {
+                "op": "literal",
+                "value": "compatible_in_fixture_only"
+              }
+            }
+          },
+          "finding": {
+            "field": "bench.compatibility",
+            "result": "unobserved_or_outside_scope",
+            "return_owner": "placement-contract-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "some",
+            "array": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "as": "worker",
+            "where": {
+              "op": "and",
+              "args": [
+                {
+                  "op": "array_contains",
+                  "array": {
+                    "op": "path",
+                    "path": "submitted_proposal.recommended"
+                  },
+                  "value": {
+                    "op": "bound_path",
+                    "as": "worker",
+                    "path": "identity"
+                  }
+                },
+                {
+                  "op": "not",
+                  "arg": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "model_class"
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": "original_bench.model_class"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "finding": {
+            "field": "bench.model_class",
+            "result": "unobserved_or_outside_scope",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_bench.scope.contract_revision"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.contract_revision"
+              }
+            }
+          },
+          "finding": {
+            "field": "bench.scope.contract_revision",
+            "result": "unseen_revision",
+            "return_owner": "placement-contract-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "some",
+            "array": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "as": "worker",
+            "where": {
+              "op": "and",
+              "args": [
+                {
+                  "op": "array_contains",
+                  "array": {
+                    "op": "path",
+                    "path": "submitted_proposal.recommended"
+                  },
+                  "value": {
+                    "op": "bound_path",
+                    "as": "worker",
+                    "path": "identity"
+                  }
+                },
+                {
+                  "op": "not",
+                  "arg": {
+                    "op": "array_contains",
+                    "array": {
+                      "op": "path",
+                      "path": "original_bench.profiles"
+                    },
+                    "value": {
+                      "op": "bound_path",
+                      "as": "worker",
+                      "path": "profile"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "finding": {
+            "field": "workers.A.profile",
+            "result": "out_of_scope",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_bench.scope.scope"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.scope"
+              }
+            }
+          },
+          "finding": {
+            "field": "bench.scope.scope",
+            "result": "foreign",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "unevaluated_is_qualified"
+            }
+          },
+          "finding": {
+            "field": "bench.state",
+            "result": "unsupported_qualification",
+            "return_owner": "LABO-evidence-owner"
+          },
+          "rejected_claim": "unevaluated_is_qualified"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "new_model_inherits_qualification"
+            }
+          },
+          "finding": {
+            "field": "worker.version",
+            "result": "unsupported_qualification",
+            "return_owner": "LABO-evidence-owner"
+          },
+          "rejected_claim": "new_model_inherits_qualification"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "unknown_task_guaranteed"
+            }
+          },
+          "finding": {
+            "field": "bench.state",
+            "result": "unsupported_qualification",
+            "return_owner": "LABO-evidence-owner"
+          },
+          "rejected_claim": "unknown_task_guaranteed"
+        }
+      ],
+      "comparison_expression": {
+        "op": "literal",
+        "value": "not_applicable"
+      },
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    },
+    {
+      "function_id": "INT010-F04",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-F04",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-F04",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-F04",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "original_task",
+        "original_scope",
+        "original_decision",
+        "original_comparison",
+        "comparison_selected",
+        "human_intervention",
+        "claims"
+      ],
+      "algorithm_ja": "既決quality/priority再利用と比較選択の閉包",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "comparison_selected=false does not evaluate comparison fields; null selection remains unknown. No priority/tolerance formula is added.",
+      "basis": {
+        "l4_pointer": "/contracts/3",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-F04",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-F04"
+      },
+      "comparison_expression": {
+        "if": {
+          "op": "not_boolean",
+          "arg": {
+            "op": "path",
+            "path": "comparison_selected"
+          }
+        },
+        "then": {
+          "op": "literal",
+          "value": "unknown_selection"
+        },
+        "else": {
+          "if": {
+            "op": "json_equal",
+            "left": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "right": {
+              "op": "literal",
+              "value": true
+            }
+          },
+          "then": {
+            "op": "literal",
+            "value": "selected_requires_separate_closure"
+          },
+          "else": {
+            "op": "literal",
+            "value": "not_applicable"
+          }
+        }
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "op": "literal",
+          "value": "candidate_requires_actual_qualification"
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding",
+          "finding_result": "quality_not_satisfied"
+        },
+        "then": {
+          "op": "literal",
+          "value": "excluded_by_quality"
+        },
+        "else": {
+          "if": {
+            "op": "any_finding"
+          },
+          "then": {
+            "op": "literal",
+            "value": "not_evaluated"
+          },
+          "else": {
+            "op": "literal",
+            "value": "source_condition_candidate"
+          }
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_decision.state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "valid_in_fixture_only"
+                  }
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "confirm_every_valid_run"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "decision.state",
+            "result": "expired_or_missing",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "or",
+                "args": [
+                  {
+                    "op": "is_absent",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.priority_ref"
+                    }
+                  },
+                  {
+                    "op": "is_null",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.priority_ref"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "invent_priority_rank"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "decision.priority_ref",
+            "result": "expired_or_missing",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "or",
+                "args": [
+                  {
+                    "op": "is_absent",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.tolerance_ref"
+                    }
+                  },
+                  {
+                    "op": "is_null",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.tolerance_ref"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "invent_priority_rank"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "decision.tolerance_ref",
+            "result": "expired_or_missing",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.ticket"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.ticket"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.ticket",
+            "result": "foreign",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.task"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.task"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.task",
+            "result": "foreign",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.scope"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.scope"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.scope",
+            "result": "foreign",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.task_class"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.task_class"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.task_class",
+            "result": "foreign",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.contract_revision"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.contract_revision"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.contract_revision",
+            "result": "foreign",
+            "return_owner": "decision-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "json_equal",
+                "left": {
+                  "op": "path",
+                  "path": "original_decision.quality_result"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": "not_satisfied"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "hide_quality_failure"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "decision.quality_result",
+            "result": "quality_not_satisfied",
+            "return_owner": "quality-oracle-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "or",
+                "args": [
+                  {
+                    "op": "is_absent",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.quality_result"
+                    }
+                  },
+                  {
+                    "op": "is_null",
+                    "arg": {
+                      "op": "path",
+                      "path": "original_decision.quality_result"
+                    }
+                  },
+                  {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": "original_decision.quality_result"
+                    },
+                    "right": {
+                      "op": "literal",
+                      "value": "unknown"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "hide_quality_failure"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "decision.quality_result",
+            "result": "unobserved",
+            "return_owner": "quality-oracle-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not_boolean",
+            "arg": {
+              "op": "path",
+              "path": "comparison_selected"
+            }
+          },
+          "finding": {
+            "field": "comparison_selected",
+            "result": "unknown_selection",
+            "return_owner": "INTELLIGENCE-input-contract-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "json_equal",
+                "left": {
+                  "op": "path",
+                  "path": "comparison_selected"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": true
+                }
+              },
+              {
+                "op": "any_member_absent_or_null",
+                "record": {
+                  "op": "path",
+                  "path": "original_comparison"
+                },
+                "members": [
+                  "receipt_ref",
+                  "input_contract_ref",
+                  "sender_contract_ref",
+                  "receiver_contract_ref",
+                  "scope"
+                ]
+              }
+            ]
+          },
+          "finding": {
+            "field": "comparison.receipt",
+            "result": "missing",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": "comparison_selected"
+                    },
+                    "right": {
+                      "op": "literal",
+                      "value": true
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "arg": {
+                      "op": "json_equal",
+                      "left": {
+                        "op": "path",
+                        "path": "original_comparison.scope.scope"
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": "original_scope.scope"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "all_members_present_nonnull",
+                "record": {
+                  "op": "path",
+                  "path": "original_comparison"
+                },
+                "members": [
+                  "receipt_ref",
+                  "input_contract_ref",
+                  "sender_contract_ref",
+                  "receiver_contract_ref",
+                  "scope",
+                  "compatibility"
+                ]
+              }
+            ]
+          },
+          "finding": {
+            "field": "comparison.scope.scope",
+            "result": "foreign",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "and",
+                "args": [
+                  {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": "comparison_selected"
+                    },
+                    "right": {
+                      "op": "literal",
+                      "value": true
+                    }
+                  },
+                  {
+                    "op": "or",
+                    "args": [
+                      {
+                        "op": "is_absent",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_comparison.compatibility"
+                        }
+                      },
+                      {
+                        "op": "is_null",
+                        "arg": {
+                          "op": "path",
+                          "path": "original_comparison.compatibility"
+                        }
+                      },
+                      {
+                        "op": "not",
+                        "arg": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": "original_comparison.compatibility"
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": "compatible_in_fixture_only"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "op": "all_members_present_nonnull",
+                "record": {
+                  "op": "path",
+                  "path": "original_comparison"
+                },
+                "members": [
+                  "receipt_ref",
+                  "input_contract_ref",
+                  "sender_contract_ref",
+                  "receiver_contract_ref",
+                  "scope"
+                ]
+              }
+            ]
+          },
+          "finding": {
+            "field": "comparison.compatibility",
+            "result": "unobserved",
+            "return_owner": "INTELLIGENCE-input-contract-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "confirm_every_valid_run"
+            }
+          },
+          "finding": {
+            "field": "decision.reuse",
+            "result": "unsupported_cost_or_decision_claim",
+            "return_owner": "decision-owner"
+          },
+          "rejected_claim": "confirm_every_valid_run"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "hide_quality_failure"
+            }
+          },
+          "finding": {
+            "field": "decision.quality_result",
+            "result": "unsupported_cost_or_decision_claim",
+            "return_owner": "quality-oracle-owner"
+          },
+          "rejected_claim": "hide_quality_failure"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "total_cost_without_intervention"
+            }
+          },
+          "finding": {
+            "field": "human_intervention",
+            "result": "unsupported_cost_or_decision_claim",
+            "return_owner": "LABO-evidence-owner"
+          },
+          "rejected_claim": "total_cost_without_intervention"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "invent_priority_rank"
+            }
+          },
+          "finding": {
+            "field": "decision.priority_ref",
+            "result": "unsupported_cost_or_decision_claim",
+            "return_owner": "decision-owner"
+          },
+          "rejected_claim": "invent_priority_rank"
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "original_decision.scope.revision"
+              },
+              "right": {
+                "op": "path",
+                "path": "original_scope.revision"
+              }
+            }
+          },
+          "finding": {
+            "field": "decision.scope.revision",
+            "result": "foreign_revision",
+            "return_owner": "decision-owner"
+          }
+        }
+      ],
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    },
+    {
+      "function_id": "INT010-N01",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-N01",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-N01",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-N01",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "content_oracle_ref",
+        "original_task",
+        "original_bench",
+        "original_workers",
+        "claims"
+      ],
+      "algorithm_ja": "内容oracleとscope外推の拒否",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "内容oracleは合成caseの観測先。fixtureから全能力・一意最適・Acceptedを推定しない。",
+      "basis": {
+        "l4_pointer": "/contracts/4",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-N01",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-N01"
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "op": "literal",
+          "value": "candidate_requires_actual_qualification"
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "not_evaluated"
+        },
+        "else": {
+          "op": "literal",
+          "value": "source_condition_candidate"
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "is_object",
+                "arg": {
+                  "op": "path",
+                  "path": "original_bench"
+                }
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "original_bench.scope.task"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "original_task.identity"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "bench.scope.task",
+            "result": "foreign",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "or",
+            "args": [
+              {
+                "op": "is_absent",
+                "arg": {
+                  "op": "path",
+                  "path": "original_bench"
+                }
+              },
+              {
+                "op": "is_null",
+                "arg": {
+                  "op": "path",
+                  "path": "original_bench"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "bench",
+            "result": "unobserved",
+            "return_owner": "LABO-evidence-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "and",
+            "args": [
+              {
+                "op": "or",
+                "args": [
+                  {
+                    "op": "is_absent",
+                    "arg": {
+                      "op": "path",
+                      "path": "content_oracle_ref"
+                    }
+                  },
+                  {
+                    "op": "is_null",
+                    "arg": {
+                      "op": "path",
+                      "path": "content_oracle_ref"
+                    }
+                  }
+                ]
+              },
+              {
+                "op": "not",
+                "arg": {
+                  "op": "array_contains_any",
+                  "array": {
+                    "op": "path",
+                    "path": "claims"
+                  },
+                  "values": [
+                    {
+                      "op": "literal",
+                      "value": "unique_optimal_without_oracle"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "finding": {
+            "field": "content_oracle_ref",
+            "result": "missing",
+            "return_owner": "task-fit-oracle-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "shape_is_quality"
+            }
+          },
+          "finding": {
+            "field": "qualification_scope",
+            "result": "unsupported_extrapolation",
+            "return_owner": "task-fit-oracle-owner"
+          },
+          "rejected_claim": "shape_is_quality"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "all_int_capabilities_qualified"
+            }
+          },
+          "finding": {
+            "field": "qualification_scope",
+            "result": "unsupported_extrapolation",
+            "return_owner": "task-fit-oracle-owner"
+          },
+          "rejected_claim": "all_int_capabilities_qualified"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "unique_optimal_without_oracle"
+            }
+          },
+          "finding": {
+            "field": "content_oracle_ref",
+            "result": "unsupported_extrapolation",
+            "return_owner": "task-fit-oracle-owner"
+          },
+          "rejected_claim": "unique_optimal_without_oracle"
+        }
+      ],
+      "comparison_expression": {
+        "op": "literal",
+        "value": "not_applicable"
+      },
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    },
+    {
+      "function_id": "INT010-B01",
+      "l4_contract_id": "HELIXINTELLIGENCE-L4-010-B01",
+      "requirement_id": "HELIXINTELLIGENCE-L3-010-B01",
+      "oracle_id": "HELIXINTELLIGENCE-L10-010-B01",
+      "signature": {
+        "arguments": [
+          {
+            "name": "packet",
+            "type": "PlacementPacket",
+            "shape": "JSON object; member lookup is by the explicit L5 paths in checks/result_construction."
+          }
+        ],
+        "returns": "PlacementAssessment"
+      },
+      "reads": [
+        "handoff",
+        "claims",
+        "original_proposal",
+        "submitted_proposal"
+      ],
+      "algorithm_ja": "proposal・受領・assignment・permissionの境界",
+      "result_construction": {
+        "retained_inputs": {
+          "op": "record_project",
+          "fields": {
+            "original_scope": {
+              "op": "path",
+              "path": "original_scope"
+            },
+            "original_task": {
+              "op": "path",
+              "path": "original_task"
+            },
+            "original_workers": {
+              "op": "path",
+              "path": "original_workers"
+            },
+            "original_performance": {
+              "op": "path",
+              "path": "original_performance"
+            },
+            "original_bench": {
+              "op": "path",
+              "path": "original_bench"
+            },
+            "original_decision": {
+              "op": "path",
+              "path": "original_decision"
+            },
+            "original_proposal": {
+              "op": "path",
+              "path": "original_proposal"
+            },
+            "original_comparison": {
+              "op": "path",
+              "path": "original_comparison"
+            }
+          }
+        },
+        "retained_submitted_proposal": {
+          "op": "path",
+          "path": "submitted_proposal"
+        },
+        "retained_handoff": {
+          "op": "record_project",
+          "fields": {
+            "labo_level_owner": {
+              "op": "path",
+              "path": "handoff.labo_level_owner"
+            },
+            "proposal_owner": {
+              "op": "path",
+              "path": "handoff.proposal_owner"
+            },
+            "receipt_owner": {
+              "op": "path",
+              "path": "handoff.receipt_owner"
+            },
+            "receipt_state": {
+              "op": "path",
+              "path": "handoff.receipt_state"
+            },
+            "assignment_owner": {
+              "op": "path",
+              "path": "handoff.assignment_owner"
+            },
+            "assignment_state": {
+              "op": "path",
+              "path": "handoff.assignment_state"
+            },
+            "permission_owner": {
+              "op": "path",
+              "path": "handoff.permission_owner"
+            },
+            "permission_state": {
+              "op": "path",
+              "path": "handoff.permission_state"
+            }
+          }
+        },
+        "retained_auxiliary_inputs": {
+          "op": "record_project",
+          "fields": {
+            "comparison_selected": {
+              "op": "path",
+              "path": "comparison_selected"
+            },
+            "content_oracle_ref": {
+              "op": "path",
+              "path": "content_oracle_ref"
+            },
+            "human_intervention": {
+              "op": "path",
+              "path": "human_intervention"
+            }
+          }
+        },
+        "failure_reasons": {
+          "op": "ordered_findings_from_checks"
+        },
+        "return_owners": {
+          "op": "unique_first",
+          "array": {
+            "op": "map_field",
+            "array": {
+              "op": "ordered_findings_from_checks"
+            },
+            "field": "return_owner"
+          }
+        },
+        "rejected_claims": {
+          "op": "ordered_rejected_claims_from_checks",
+          "claims_path": "claims",
+          "checks_ref": "checks"
+        },
+        "actual_effects": {
+          "op": "literal",
+          "value": {
+            "assignment": false,
+            "dispatch": false,
+            "permission": false,
+            "scope_change": false,
+            "branch_change": false,
+            "merge_authority_change": false,
+            "acceptance": false,
+            "implementation_ready": false
+          }
+        },
+        "ordering": "checks配列順。project field順はASTのfields順。source arraysは入力順を保持。object key順は意味を持たない。",
+        "omission": "Absentのみ省略。nullをAbsentへ変換しない。"
+      },
+      "scope_limit": "返却ownerはL4/L9にある論理責務候補。実担当・権限・dispatchを意味しない。",
+      "basis": {
+        "l4_pointer": "/contracts/5",
+        "l3_id": "HELIXINTELLIGENCE-L3-010-B01",
+        "l10_id": "HELIXINTELLIGENCE-L10-010-B01"
+      },
+      "state_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "held_input_unqualified"
+        },
+        "else": {
+          "op": "literal",
+          "value": "candidate_requires_actual_qualification"
+        }
+      },
+      "fit_expression": {
+        "if": {
+          "op": "any_finding"
+        },
+        "then": {
+          "op": "literal",
+          "value": "not_evaluated"
+        },
+        "else": {
+          "op": "literal",
+          "value": "source_condition_candidate"
+        }
+      },
+      "checks": [
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "handoff.assignment_owner"
+              },
+              "right": {
+                "op": "literal",
+                "value": "OS"
+              }
+            }
+          },
+          "finding": {
+            "field": "handoff.assignment_owner",
+            "result": "wrong_owner",
+            "return_owner": "OS-assignment-owner"
+          }
+        },
+        {
+          "when": {
+            "op": "not",
+            "arg": {
+              "op": "json_equal",
+              "left": {
+                "op": "path",
+                "path": "handoff.permission_owner"
+              },
+              "right": {
+                "op": "literal",
+                "value": "HELIX-SECURITY"
+              }
+            }
+          },
+          "finding": {
+            "field": "handoff.permission_owner",
+            "result": "wrong_owner",
+            "return_owner": "HELIX-SECURITY"
+          }
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "proposal_is_assignment_success"
+            }
+          },
+          "finding": {
+            "field": "handoff.assignment",
+            "result": "unauthorized_state_promotion",
+            "return_owner": "OS-assignment-owner"
+          },
+          "rejected_claim": "proposal_is_assignment_success"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "bench_expands_authority"
+            }
+          },
+          "finding": {
+            "field": "handoff.permission",
+            "result": "unauthorized_state_promotion",
+            "return_owner": "HELIX-SECURITY"
+          },
+          "rejected_claim": "bench_expands_authority"
+        },
+        {
+          "when": {
+            "op": "array_contains",
+            "array": {
+              "op": "path",
+              "path": "claims"
+            },
+            "value": {
+              "op": "literal",
+              "value": "int_self_dispatch"
+            }
+          },
+          "finding": {
+            "field": "handoff.permission",
+            "result": "unauthorized_state_promotion",
+            "return_owner": "HELIX-SECURITY"
+          },
+          "rejected_claim": "int_self_dispatch"
+        }
+      ],
+      "comparison_expression": {
+        "op": "literal",
+        "value": "not_applicable"
+      },
+      "rule_program": {
+        "check_order": "checksを配列順で評価する。各when=trueで同じ配列位置のfindingを追加。返却の配列順も維持。",
+        "state": "state_expression",
+        "candidate_fit": "fit_expression",
+        "comparison_obligation": "comparison_expression",
+        "return_projection": "result_construction"
+      },
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。"
+    }
+  ],
+  "composition": {
+    "for_each": "F01,F02,F03,F04,N01,B01それぞれ対象raw packetへ個別適用。各関数出力はそのL9 caseの全11 root oracleと比較する。",
+    "no_cross_function_gate": "一方の関数を他方の成功/資格根拠にしない。",
+    "no_case_keying": "case id、basis、expected_materialは関数入力に含めず計算に使わない。"
+  },
+  "qualification_and_authority_boundary": "全source/owner/provider/Worker/Bench/quality判断はsynthetic fixture内の値。実source資格、実所有者資格、実性能/Bench評価、proposal送信、OS受領/assignment、SEC permission、dispatch、L11 Accepted、実装Readyを生成しない。",
+  "remaining": [
+    "owner-qualified exact source binding",
+    "正式schema/codec",
+    "実task・Worker・LABO Bench/decision source資格",
+    "比較選択閉包・全組合せ",
+    "実proposal/OS受領・assignment/SEC permission",
+    "実装前Red/Green・実運転・L11 acceptance",
+    "関数記述と一般JSON型全域の全域性/未知組合せは未検証"
+  ]
+}
