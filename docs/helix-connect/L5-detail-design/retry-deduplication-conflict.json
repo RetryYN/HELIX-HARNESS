@@ -2309,7 +2309,8 @@
                 "observed_values": [
                   "same_operation_key_digest_effect_once",
                   ""
-                ]
+                ],
+                "observed_values_source": "same_operation_key_digest_effect_onceは原L9。空文字はL8 C004-PROBE-F01-RECEIVER-CONTRACT-IDENTIFIER-EMPTYの独立局所素材。一般の契約rule意味や正式codecを定めない。"
               },
               "target": {
                 "kind": "record_shape",
@@ -3724,10 +3725,9 @@
         "target",
         "value",
         "attempt_binding",
-        "identity_or_ordinal",
         "identity_revision_or_rule"
       ],
-      "source_rule": "failure_rulesがemitする固定fieldとcomparison fields_refから導く表示field集合。観測済み返却だけで域を閉じず、declared comparisonの各fieldを表す。"
+      "source_rule": "failure_rulesがemitする固定fieldとcomparison fields_refから導く表示field集合。観測済み返却だけで域を閉じず、declared comparisonの各fieldを表す。 identity_and_ordinalは元L9のfield表示ラベルであり、論理積の条件ではない。identityまたはordinalのどちらかの重複を別々に検査する。"
     },
     {
       "name": "FailureReasonResult",
@@ -5786,9 +5786,11 @@
     "F01のattempt targetをoriginal_operationへ同indexで結ぶ固定素材上の比較を定義する。receiver contractのidentity/revision/ruleは存在と文字列形を照合するが、実sourceのissuer/qualificationやrule文字列の実意味を判定する独立sourceは無い。L9のRECEIVER-CONTRACT-OTHER-REVISIONはtarget差分をfailure_reasonsへ返しつつreceiver_effect_resultをone_effect_retained_in_fixture_onlyとするため、その原oracle値は保持し、実receiver資格へ一般化しない。",
     "F03のcounting_scopeは元policyとして保持・比較するが、approved L3/L4/L9は値から上限計算への一般変換を定めない。計算は固定fixtureのoriginal_cumulative_attemptsとmax_total_attemptsを直接比較する範囲に限り、counting_scopeの未見語義は未評価。",
     "F03のACK入力がobserved_values外の値である場合のcandidate semanticsは未評価。既存L9はunknown/received_terminalだけを含み、negative-list conditionを新しいACK停止policyに置き換えていない。",
-    "distinct_attemptsはsubmitted_attempts内のidentityとordinalをそれぞれ独立して一意検査する。原側arrayの一意性とattempt内容の全差分をfailureへ結ぶ一般規則はL4/L9固定素材だけでは閉じず、raw_binding_checksによる同index target→original_operation結合の外へ一般化しない。",
+    "F03のACK入力が宣言した観測値域外である場合の候補意味は未評価。原L9はunknown/received_terminalだけを含み、特定値を除外する条件から新しい一律ACK停止方針を生成しない。",
     "receiver contractのidentity/revision/ruleについては値のpresence/typeだけを読む。L3/L4は実receiver owner/source qualificationの供給元を固定しておらず、L9にも独立なrule authority sourceがないため、これらの文字列を実契約の資格証拠と扱わない。L9のreceiver target revision不一致とone_effect_retained_in_fixture_onlyは両方保持する。",
-    "F01のdistinct_attemptsはsubmitted_attempts側だけを検査する。原側配列の一意性、identity/ordinal以外のattempt差分をfailure conditionへ結ぶ一般規則はL4/L9固定素材だけでは閉じない。target→original_operation比較は同indexの固定素材に限り、他memberのfailure結線へ一般化しない。"
+    "F01のdistinct_attemptsはsubmitted_attempts側だけを検査する。原側配列の一意性、identity/ordinal以外のattempt差分をfailure conditionへ結ぶ一般規則はL4/L9固定素材だけでは閉じない。target→original_operation比較は同indexの固定素材に限り、他memberのfailure結線へ一般化しない。",
+    "F01のattempt bindingがboundでない、またはcontract識別情報がpresentでない複合欠陥では、raw_effect_set_resultに二重効果/未観測が残ってもreceiver_effect理由は抑止され、receiver-ownerへ別返却しない。operation-owner/receiver-contract-ownerの不足返却だけが先行する。L4 F01の各異常に対応したreceiver owner返却はこの複合域で未実現。",
+    "identityとordinalが同時重複するときの最初の報告field順、bindingのemptyとlength_mismatchの優先、片側空と両側空の区別は独立wholeで識別力を確認していない。正式式の順序は定義済みだが、その順序変更を既存probeが検出するとは主張しない。"
   ],
   "result_domain_contract": {
     "comparison": {
@@ -6598,7 +6600,7 @@
         "identity",
         "ordinal"
       ],
-      "attempt_distinctness_rule": "submitted_attemptsの各identity値と各ordinal値を、それぞれ独立に比較する。同じ値が同一field内で再出現したときdistinctionはfalse。異なるfield同士の値は比較しない。",
+      "attempt_distinctness_rule": "submitted_attemptsの各identity値と各ordinal値を、それぞれ独立に比較する。同じ値が同一field内で再出現したときdistinctionはfalse。異なるfield同士の値は比較しない。 failure field identity_and_ordinalは原L9由来の表示名であり、同時重複の要求ではない。",
       "attempt_binding_check": {
         "left_array": "original_attempts",
         "right_array": "submitted_attempts",
@@ -6667,12 +6669,12 @@
         "after"
       ],
       "reason_order": [
-        "incoming content差分",
-        "operation binding差分",
-        "receiver effect target差分",
-        "digest relation",
-        "conflict後のreceiver effect差分",
-        "effect content差分",
+        "受信内容の差分",
+        "処理対象との結合差分",
+        "receiver効果対象の差分",
+        "digestの同異",
+        "競合後のreceiver効果差分",
+        "効果内容の差分",
         "元effect beforeの観測不足"
       ],
       "owner_by_area": {
@@ -6687,8 +6689,8 @@
         "left": "original_operation.digest",
         "right": "original_incoming.digest",
         "unknown_if": "original_operation.digestまたはoriginal_incoming.digestのどちらかがAbsentまたはnull",
-        "same": "JSON values equal",
-        "different": "JSON values differ"
+        "same": "JSON値が等しい",
+        "different": "JSON値が異なる"
       },
       "candidate_action_rules": [
         {
@@ -7459,7 +7461,7 @@
             "pairing": "same_index",
             "absent_item": "Absent",
             "missing_comparison_value": "missing",
-            "project_original_fields": "only when the original item is present"
+            "project_original_fields": "原側itemが存在する場合だけ原fieldを投影する。"
           }
         },
         {
@@ -7508,7 +7510,7 @@
           "op": "array_length_delta",
           "left": "original_effect_observation.before",
           "right": "original_effect_observation.after_first",
-          "when": "state==observed_in_fixture_only AND both are arrays",
+          "when": "stateがobserved_in_fixture_onlyで、比較する両値がarrayの場合。",
           "otherwise": null,
           "observation": "original_effect_observation",
           "state_member": "state",
@@ -7521,7 +7523,7 @@
           "op": "array_length_delta",
           "left": "original_effect_observation.after_first",
           "right": "original_effect_observation.after_retry",
-          "when": "state==observed_in_fixture_only AND both are arrays",
+          "when": "stateがobserved_in_fixture_onlyで、比較する両値がarrayの場合。",
           "otherwise": null,
           "observation": "original_effect_observation",
           "state_member": "state",

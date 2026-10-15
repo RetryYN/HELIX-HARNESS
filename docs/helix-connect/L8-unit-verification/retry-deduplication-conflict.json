@@ -7531,7 +7531,7 @@
           "value": "held"
         }
       ],
-      "independent_basis": "L3/L4 F01の同operation identity/digestをattemptへ結ぶ義務を固定rawで点検する。原attempt 2と提出attempt 2を同じ異digestへ変え、pair同士の一致とoperation bindingを区別する。",
+      "independent_basis": "L4 F01が求めるreceiver重複排除契約への結合について、固定packetのcontract ruleが空文字の場合に、再送側・receiver効果側へ誤って返さずcontract ownerへ不足を示す。",
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
       "execution_state": "not_executed",
       "effect": "none",
@@ -7819,12 +7819,12 @@
       "historical_assessment": "**部分的**"
     }
   },
-  "additional_probe_count": 12,
+  "additional_probe_count": 13,
   "additional_probe_policy": "独立probeは原69ケースとは別に、固定source packetのJSON Patchと期待wholeを保持する。合成入力の局所識別力を確認し、実receiver資格・実再送・実効果は成立させない。",
   "l5_candidate_bytes_pin": {
     "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
     "scope": "同じ候補checkoutに保存されたL5全bytes",
-    "sha256": "1ec44d03b8f2d9d654f52b13e5b0042e5c47727de4159ea06939e7600a9bb30d"
+    "sha256": "743c5ad9f6bf7ce2e699f5d13876280fa49ba8669a36c0e058bd6c80aa39900d"
   },
   "unidentified_mutation_limits": [
     {
