@@ -1871,6 +1871,12 @@
                 "enum": [
                   "unknown"
                 ]
+              },
+              "placeholder_evaluation_content_target": {
+                "kind": "string",
+                "enum": [
+                  "unknown"
+                ]
               }
             },
             "required": [],
@@ -5506,7 +5512,8 @@
                   "failure",
                   "counterexample",
                   "unevaluated",
-                  "limitation"
+                  "limitation",
+                  "target"
                 ],
                 "markers": [
                   "",
@@ -5730,8 +5737,6 @@
                     "",
                     "TBD",
                     "tbd",
-                    "unknown",
-                    "Unknown",
                     "N/A"
                   ]
                 },
@@ -6361,16 +6366,8 @@
               },
               "forbidden_values_by_field": {
                 "state": [
-                  "adopted",
-                  "mature",
-                  "established",
-                  "established_pattern",
-                  "Established_pattern",
                   "universal_mature",
-                  "established_Pattern",
-                  "accepted",
-                  "universal",
-                  "Established"
+                  "universal"
                 ]
               }
             }
@@ -6671,16 +6668,8 @@
               },
               "forbidden_values_by_field": {
                 "state": [
-                  "adopted",
-                  "mature",
-                  "established",
-                  "established_pattern",
-                  "Established_pattern",
                   "universal_mature",
-                  "established_Pattern",
-                  "accepted",
-                  "universal",
-                  "Established"
+                  "universal"
                 ]
               }
             }
@@ -6795,16 +6784,8 @@
                   "state"
                 ],
                 "values": [
-                  "adopted",
-                  "mature",
-                  "established",
-                  "established_pattern",
-                  "Established_pattern",
                   "universal_mature",
-                  "established_Pattern",
-                  "accepted",
-                  "universal",
-                  "Established"
+                  "universal"
                 ],
                 "selection_path": [
                   "infrastructure_maturity_selected"
@@ -8563,7 +8544,7 @@
       "key_rule": "列挙名はuse site additional_checksから一意展開する。placeholder_pairのfields有りはname + \"_\" + field、無しはname。未出力は当該有限診断が発火していない意味だけで、資格/安全/採否の成功を意味しない。"
     }
   ],
-  "oracle_compatibility_boundary": "expected_materialと元packetは原L9 sourceとして保持する。現在のexpected_full_wholeは同じ元値に対するpresence・role・採否前提の評価を含むため、sourceの内容投影と区別して全rootを比較する。登録state unknownの原値は保存し、その比較結果はunknownとする。",
+  "oracle_compatibility_boundary": "expected_materialと元packetは原L9 sourceとして保持する。現在のexpected_full_wholeは同じ元値に対するpresence・role・採否前提の評価を含むため、sourceの内容投影と区別して全rootを比較する。登録state unknownの原値は保存する。同値なら内容はcontent_corresponding_in_fixtureとして対応付けるが、OS登録成立や採否前提の充足を意味しない。original unknownとsubmitted registeredのような相違はcontent_conflictとして保持する。",
   "diagnostic_marker_scope": {
     "values": [
       "",

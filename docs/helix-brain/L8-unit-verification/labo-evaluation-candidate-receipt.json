@@ -11008,7 +11008,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -11072,11 +11072,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "57f632f3f275a1ea22b91c967007220de9e3192174a17cd71f4263ae293ac5c5"
+      "expected_full_whole_canonical_sha256": "a65b1b6a5d65771876a6bfeea84cbdcce44a3f452e199476e49ce6ee94da831f"
     },
     {
       "id": "B020-F02-SENDER-RECEIPT-MISSING",
@@ -11327,7 +11325,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -11391,11 +11389,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "4c5a4bf1f63d445ff1735db1d567f25cda5b57d8bf09f9c9c80b3fa3273c8602"
+      "expected_full_whole_canonical_sha256": "7fce4d844d426288153cb62a0798319c1434ddc1c5b78c9054bfe6f5350b4140"
     },
     {
       "id": "B020-F02-RECEIVER-RECEIPT-MISSING",
@@ -11646,7 +11642,7 @@
         "submitted_receiver_receipt": null,
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -11710,11 +11706,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "5c66f7621de16ac62ac10a23a326735f32c45506a819cfdbc511270027bbad4e"
+      "expected_full_whole_canonical_sha256": "ab83a9e20fb6dee7c3647a3b9b96ca1d121aa55868835874536b75755a8057d1"
     },
     {
       "id": "B020-F02-RECEIVER-SOURCE-FOREIGN",
@@ -11996,7 +11990,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -12060,11 +12054,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "36694a1de229c79fc69fd5a9705f5d592424e1e3d12cb45e30ecf6e5672f223f"
+      "expected_full_whole_canonical_sha256": "bc009cdd76a97e9e02ff481f80d61756a3b3bf3a4b30aa9a7acacc543554b2c8"
     },
     {
       "id": "B020-F02-RECEIVER-CANDIDATE_IDENTITY-FOREIGN",
@@ -12346,7 +12338,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -12410,11 +12402,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "9b302cd56476233c1683a0412c97d7c69f49c21e486ab9b4953a949a2c198efd"
+      "expected_full_whole_canonical_sha256": "ff768e631d8be1c7743f7b9c5d24753908cf24b29ed18ffacb08dc1d7638640f"
     },
     {
       "id": "B020-F02-RECEIVER-CANDIDATE_REVISION-FOREIGN",
@@ -12696,7 +12686,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -12760,11 +12750,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "348bcba9a7ef47881839519b11efb803e0c56658ad172adfded63a4120e9b875"
+      "expected_full_whole_canonical_sha256": "2fa61391468f36717b10f96a28dece1e01d90f0c1d98e009cc70cbfd59e70a3f"
     },
     {
       "id": "B020-F02-RECEIVER-CANDIDATE_VERSION-FOREIGN",
@@ -13046,7 +13034,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -13110,11 +13098,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "18c4cf7a20eadacc31e9e1141d5e388fbb2bdceefdcd4141e5495253ec5026a0"
+      "expected_full_whole_canonical_sha256": "1c5fdfcbfec61d260b13babf16c072bf393bbc7c9149030f1ebdb7160eee0529"
     },
     {
       "id": "B020-F02-RECEIVER-EVALUATION_IDENTITY-FOREIGN",
@@ -13396,7 +13382,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -13460,11 +13446,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "8a784705bc4b1ecb7be5adaf8a93d5cb947cb959ed61e7c2e244ecade73bce1d"
+      "expected_full_whole_canonical_sha256": "c90fe4fd2dba35dfbc0c02090058be2caeb51386cc7a91c56375a66d5272d282"
     },
     {
       "id": "B020-F02-RECEIVER-EVALUATION_REVISION-FOREIGN",
@@ -13746,7 +13730,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -13810,11 +13794,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "f0545b4ae2895fbb18f45f425105be0b90533eed782784029ae6af979a27cc07"
+      "expected_full_whole_canonical_sha256": "28e9b82f493ff8ca6b625da36a2eb7a59a51867d106c3a8355cd118855190227"
     },
     {
       "id": "B020-F02-RECEIVER-SCOPE-FOREIGN",
@@ -14096,7 +14078,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -14160,11 +14142,9 @@
           "actual_acceptance": false
         },
         "review_diagnostics": {},
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "23b8557003d2ae928266b85d775af8da45bc6df55586ded21e19d25f40477ee3"
+      "expected_full_whole_canonical_sha256": "10a655c865149758b7cb2e43ed3e02c19f6affea54ded3d79327040b58c0b69e"
     },
     {
       "id": "B020-F02-LABO_PASS_MATURE",
@@ -14446,7 +14426,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -14511,11 +14491,10 @@
         },
         "review_diagnostics": {},
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "cd5bf9a501f78ed1df43a8c2521103a7218e1c9c1fd97b75a2e04ca891b6f3af"
+      "expected_full_whole_canonical_sha256": "9138d87f576bbbd9d5c3dc411ee9362fd447641aeefb543143d7268c78795a75"
     },
     {
       "id": "B020-F02-RECEIPT_ADOPTED",
@@ -14797,7 +14776,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -14864,11 +14843,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "71a15e35a7c0db5e5bd215b7f0d750c7a5f5945edb9c0ce3868ec3083efe2df1"
+      "expected_full_whole_canonical_sha256": "2e3dd824ec840e3daa0442af3b96706a37430a2ce24661c839eba81dfe738fea"
     },
     {
       "id": "B020-F02-OS_REGISTRATION_INFERRED",
@@ -15150,7 +15128,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_conflict",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -15218,7 +15196,7 @@
           "registration": "HELIX-OS"
         }
       },
-      "expected_full_whole_canonical_sha256": "8a7158bef4662dcb3c500ea68f15a8e77b09cfd747cede1309bc31c2cc014050"
+      "expected_full_whole_canonical_sha256": "e9eb3458b84e3baea7372003a922eb04b32e54efcc7868ac17f6e64f04aa4e55"
     },
     {
       "id": "B020-F02-SINGLE_SUCCESS_ESTABLISHED",
@@ -15500,7 +15478,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -15565,11 +15543,10 @@
         },
         "review_diagnostics": {},
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "d957ff6c37ce749ee16d83ceff099dd0b1e18aa33e8e6beaaeddbefd53c0b957"
+      "expected_full_whole_canonical_sha256": "68368fef609963f75740fba18b4db257ff79dcc226f51011d0fa05a3393d7a9a"
     },
     {
       "id": "B020-F02-AI_GENERATED_ESTABLISHED",
@@ -15851,7 +15828,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -15916,11 +15893,10 @@
         },
         "review_diagnostics": {},
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "25a6077dd172c8834ee7a386224d0057cbee15b16a72cf0e75fe43c20851a840"
+      "expected_full_whole_canonical_sha256": "d4de6a93a9c9e2a32fa73fd20957fcf14555feeb87f51fc045ae0479443d6280"
     },
     {
       "id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
@@ -23132,7 +23108,7 @@
   "qualification_boundary": "全packetはsynthetic_fixture_only_no_actual_source_qualification。内容一致を実評価・実受領・登録・採否・成熟と表現しない。",
   "candidate_l5_bytes_pin": {
     "path": "docs/helix-brain/L5-detail-design/labo-evaluation-candidate-receipt.json",
-    "sha256": "6216ab51c57420505bb13881e8f5082a1b364c97d0d60b1c4c2964f220f061e9",
+    "sha256": "c0b81521672d669bc80febeaed22433c55d07de60cca660b5b2414625c5e907c",
     "meaning": "保存されたL5文書byte全体のSHA-256。Git revisionや承認対象の根拠を偽装しない。"
   },
   "independent_probes": [
@@ -25197,11 +25173,6 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/scope",
           "value": ""
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
       "expected_whole": {
@@ -25236,7 +25207,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -25300,7 +25271,7 @@
           "actual_acceptance": false
         }
       },
-      "expected_whole_canonical_sha256": "60e2bd48aeb1c62e93738a82e5c76e9567fd8fd19ea7b49bbe35922cd9401cd8",
+      "expected_whole_canonical_sha256": "0ad13fbcd3af09baef30af83bd325248785dca7ad6203ab265fd251bda5c8d81",
       "expected_auxiliary": {
         "review_diagnostics": {
           "placeholder_receipt_content_source": "unknown",
@@ -25318,9 +25289,7 @@
           "placeholder_receiver_receipt_content_evaluation_revision": "unknown",
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "basis": "批准L3/L10と原L4の名指し不足・役割境界を元L9正常期待へ適用する。raw patch、原whole投影、補助rootを値まで分離し固定する。実資格/採否/作用は生成しない。",
       "execution_state": "not_executed",
@@ -25357,7 +25326,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -25436,11 +25405,9 @@
           "placeholder_receiver_receipt_content_evaluation_revision": "unknown",
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "43b072b66a8c6704a58d3bbafd145a5035b7081b3a152bda28e387d61e4665a0"
+      "expected_full_whole_canonical_sha256": "0dbc2bbc80ffed9b60069112cfc4fd198dd6c854bb64068971c537baed723832"
     },
     {
       "id": "B020-R1-PROBE-F02-ADOPTION-BEFORE-PREREQUISITES",
@@ -25542,11 +25509,6 @@
       "expected_patch_from_base": [
         {
           "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
-        {
-          "op": "replace",
           "path": "/state_results/adoption",
           "value": "content_conflict"
         },
@@ -25598,7 +25560,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -25662,13 +25624,12 @@
           "actual_acceptance": false
         }
       },
-      "expected_whole_canonical_sha256": "0c49518ef81e94cda1c6c4e1759b2f2ced764247fe7a14b4e4132107358f80c7",
+      "expected_whole_canonical_sha256": "dea780c979ee03bb48dadf6f7c01974f7eace509861a5128dd80710d4dfa6758",
       "expected_auxiliary": {
         "review_diagnostics": {
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
@@ -25707,7 +25668,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -25774,11 +25735,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "1a2871c03a586c4ec1a8033b147df94f81e8d2095dc1520da1a28ee18bc2a693"
+      "expected_full_whole_canonical_sha256": "34bca93139a9958f8594130ae306fc2822517afd6ebdb87235e909b18f4a8681"
     },
     {
       "id": "B020-R1-PROBE-B01-ESTABLISHED-PATTERN-STATE",
@@ -26975,7 +26935,8 @@
           "placeholder_evaluation_content_limitation": "unknown",
           "placeholder_evaluation_content_counterexample": "unknown",
           "placeholder_evaluation_content_unevaluated": "unknown",
-          "placeholder_evaluation_content_evidence": "unknown"
+          "placeholder_evaluation_content_evidence": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "basis": "批准L3/L10と原L4の名指し不足・役割境界を元L9正常期待へ適用する。raw patch、原whole投影、補助rootを値まで分離し固定する。実資格/採否/作用は生成しない。",
@@ -27110,10 +27071,11 @@
           "placeholder_evaluation_content_limitation": "unknown",
           "placeholder_evaluation_content_counterexample": "unknown",
           "placeholder_evaluation_content_unevaluated": "unknown",
-          "placeholder_evaluation_content_evidence": "unknown"
+          "placeholder_evaluation_content_evidence": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "3d7e386b3137c45d3c0c5408fdb520ad5e694bd05c95d437b0ce18b288a80f7a"
+      "expected_full_whole_canonical_sha256": "3fd14f5b0d977b270aa0b7657f6816433759e48df8b34d370fda7da858aa4466"
     },
     {
       "id": "B020-R1-PROBE-F02-REGISTRATION-RETURN-OWNER",
@@ -27211,7 +27173,7 @@
         {
           "op": "replace",
           "path": "/state_results/registration",
-          "value": "unknown"
+          "value": "content_conflict"
         },
         {
           "op": "replace",
@@ -27251,7 +27213,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_conflict",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -27315,7 +27277,7 @@
           "actual_acceptance": false
         }
       },
-      "expected_whole_canonical_sha256": "89ed3d211ae59ab09a94d776b6b54e26bd73bbee7e16cd4e011a4069542207e7",
+      "expected_whole_canonical_sha256": "5c4d47e01aa2c9ba6581bc337f0a6e2c0336c9bcf88744cea2d0ae33ea91544b",
       "expected_auxiliary": {
         "failure_return_owners": {
           "registration": "HELIX-OS"
@@ -27357,7 +27319,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_conflict",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -27425,7 +27387,7 @@
         },
         "review_diagnostics": {}
       },
-      "expected_full_whole_canonical_sha256": "511147f16bb06fc8b761a0f1c9a6acb6d84d760ad79231d244b91d91c72f0562"
+      "expected_full_whole_canonical_sha256": "96c6480f65f80b63a9e3cdcd8b0f0683b0b152ae23c0fb4bbcf420905abddd72"
     },
     {
       "id": "B020-R1-PROBE-F03-UNKNOWN-STATE-EMPTY-EVIDENCE",
@@ -40301,10 +40263,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_content_identity": "unknown"
+          "placeholder_candidate_content_identity": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "ff93c42b6f05664682055a3572c01fa45ce49cd2fd093d18e8298e355778926c",
+      "expected_full_whole_canonical_sha256": "26d0d4146dd865ef82f4d46b585dd1311090944fa824f718fb26f6b7817f3044",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -40445,7 +40408,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_content_identity": "unknown"
+          "placeholder_candidate_content_identity": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -40740,10 +40704,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_revision": "unknown"
+          "placeholder_candidate_revision": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "032f4af55a7e9bac404485d9711abce1f1f7bc718cd0670d4be82eed19021be1",
+      "expected_full_whole_canonical_sha256": "1c2c5104a45bac84da7fcb72cf46c0e9eefdc255049ce0f87009640d60440e52",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -40884,7 +40849,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_revision": "unknown"
+          "placeholder_candidate_revision": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -41179,10 +41145,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_content_version": "unknown"
+          "placeholder_candidate_content_version": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "30cf5a397e3175c87e4562c417770ce45e50bee01db62925619a74aa62d84e86",
+      "expected_full_whole_canonical_sha256": "8a80801ff29bb5fff554d05a5b606ddac01b7ba44d5963b77ac6c59a271916a9",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -41323,7 +41290,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_content_version": "unknown"
+          "placeholder_candidate_content_version": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -41618,10 +41586,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_content_source": "unknown"
+          "placeholder_candidate_content_source": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "3c3bf800842b816abdbf02cae1e11ffb694b429500d08edbe358497689e17a86",
+      "expected_full_whole_canonical_sha256": "4af5d634da44df97ec778af149f69b226e9860976a7b862bae627bcf30f5b070",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -41762,7 +41731,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_content_source": "unknown"
+          "placeholder_candidate_content_source": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -42057,10 +42027,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_content_state": "unknown"
+          "placeholder_candidate_content_state": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "4b3d84246f60c1446a3f9aa070960036ca24b7d2f63494376b2a644991ab15df",
+      "expected_full_whole_canonical_sha256": "8009888d5ef361817ec5552f17e16863b7d262fdab28477491f3957cb2361125",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -42201,7 +42172,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_content_state": "unknown"
+          "placeholder_candidate_content_state": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -42491,10 +42463,11 @@
         },
         "unknown_original_candidate_fields": [],
         "review_diagnostics": {
-          "placeholder_candidate_content_scope": "unknown"
+          "placeholder_candidate_content_scope": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
-      "expected_full_whole_canonical_sha256": "273409d780317ba210d1fb98db57420645cca597edb61c6a26fa1eaeabcbbaa2",
+      "expected_full_whole_canonical_sha256": "1daeb01f3cd4e5f03756759813e67c7b47c1cd19a633d0cb56e7f910e719af71",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -42635,7 +42608,8 @@
       },
       "expected_auxiliary": {
         "review_diagnostics": {
-          "placeholder_candidate_content_scope": "unknown"
+          "placeholder_candidate_content_scope": "unknown",
+          "placeholder_evaluation_content_target": "unknown"
         }
       },
       "execution_state": "not_executed",
@@ -42814,7 +42788,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -42881,11 +42855,9 @@
           "placeholder_receipt_content_source": "unknown",
           "placeholder_receiver_receipt_content_source": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "a164e23d5852935bd0d9c2ba995fe033ace34d4a17c9e8e18a28eef6e672a9a6",
+      "expected_full_whole_canonical_sha256": "a3fcca22545955764e61c180b36c82437ce39b0878eee9729f8b76fb052608b7",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -42928,7 +42900,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -42997,9 +42969,7 @@
           "placeholder_receipt_content_source": "unknown",
           "placeholder_receiver_receipt_content_source": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -43027,14 +42997,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/source",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "9c7b71ea83c09d74e0be8762626f2f85cb153fe4a6859df49c3c2b799bbbe446"
+      "expected_whole_canonical_sha256": "6f6ac020f57fad9e05a8c034dadccd9e0bbf446d69806cb16b2ccfb0ea494ee1"
     },
     {
       "id": "B020-R2-F02-RECEIPT-CANDIDATE_IDENTITY",
@@ -43167,7 +43132,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -43234,11 +43199,9 @@
           "placeholder_receipt_content_candidate_identity": "unknown",
           "placeholder_receiver_receipt_content_candidate_identity": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "631022f02251c832c56b1d998e1df4b253a1843b77f798b5996d86d3e57bfd56",
+      "expected_full_whole_canonical_sha256": "8cf0f6919e5a9c25b98499c9dfa3915b3b61943235da1b875e290f7ed42f0b44",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -43281,7 +43244,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -43350,9 +43313,7 @@
           "placeholder_receipt_content_candidate_identity": "unknown",
           "placeholder_receiver_receipt_content_candidate_identity": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -43380,14 +43341,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/candidate_identity",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "ac815393ca4183f3c34e90bcd3c226fffdb70267fc4bcb5a4cec40ed89446eb2"
+      "expected_whole_canonical_sha256": "f496895e48b32535b9d2fd8b39745f2a6b25b1b9110c84d408ac7bd85c2e8235"
     },
     {
       "id": "B020-R2-F02-RECEIPT-CANDIDATE_REVISION",
@@ -43520,7 +43476,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -43587,11 +43543,9 @@
           "placeholder_receipt_content_candidate_revision": "unknown",
           "placeholder_receiver_receipt_content_candidate_revision": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "1e38f538ed29d46b1d7e5e7d318ccc20af62074a7d5285242f6f41ec2f61071e",
+      "expected_full_whole_canonical_sha256": "460eacc3fe76d5df528668f8e98637ad29ac6954d8f95685f8d0e43307b0a433",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -43634,7 +43588,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -43703,9 +43657,7 @@
           "placeholder_receipt_content_candidate_revision": "unknown",
           "placeholder_receiver_receipt_content_candidate_revision": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -43733,14 +43685,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/candidate_revision",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "693a80afb3a7cac12b5d571657be471765a3f61a78da75f627b3321610ac2e26"
+      "expected_whole_canonical_sha256": "a3e43bb872f33fea675d678bd425d7c8ffbafd76af92da61287cfcd27e35f79b"
     },
     {
       "id": "B020-R2-F02-RECEIPT-CANDIDATE_VERSION",
@@ -43873,7 +43820,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -43940,11 +43887,9 @@
           "placeholder_receipt_content_candidate_version": "unknown",
           "placeholder_receiver_receipt_content_candidate_version": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "c7b24763f4ba45f94f40229f94907b571fff3b318982cca9150dc9d0a1774bb1",
+      "expected_full_whole_canonical_sha256": "ab3108f1e032eb3d946660f35c855651260b403bcaf67cc3724e5a394a06babd",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -43987,7 +43932,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44056,9 +44001,7 @@
           "placeholder_receipt_content_candidate_version": "unknown",
           "placeholder_receiver_receipt_content_candidate_version": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -44086,14 +44029,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/candidate_version",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "51f6965c41c13aeee352c279f3d98f2293cef47998c8185172a137034322f6fd"
+      "expected_whole_canonical_sha256": "d02007c353c08bd159431f9863b5966dde96419c87443402a759095c3a469604"
     },
     {
       "id": "B020-R2-F02-RECEIPT-EVALUATION_IDENTITY",
@@ -44226,7 +44164,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44293,11 +44231,9 @@
           "placeholder_receipt_content_evaluation_identity": "unknown",
           "placeholder_receiver_receipt_content_evaluation_identity": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "a100866a4e92b4adf2eb27ac013a285b505ed0f0400c12f0f9aa23e5dcd7e99b",
+      "expected_full_whole_canonical_sha256": "f37fa297cb0c4cc11af3ccd5865a497fbaee842a7822862d2d11b888d4253ad8",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -44340,7 +44276,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44409,9 +44345,7 @@
           "placeholder_receipt_content_evaluation_identity": "unknown",
           "placeholder_receiver_receipt_content_evaluation_identity": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -44439,14 +44373,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/evaluation_identity",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "b6f3c95543bee63d34fd75ae9d12bab717ca7468adcdb59c65756bb1e0532e26"
+      "expected_whole_canonical_sha256": "b62bc0f704d2522fc34ce1e78aa0e120860e33495b6124cf58a142f04af9b02c"
     },
     {
       "id": "B020-R2-F02-RECEIPT-EVALUATION_REVISION",
@@ -44579,7 +44508,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44646,11 +44575,9 @@
           "placeholder_receipt_content_evaluation_revision": "unknown",
           "placeholder_receiver_receipt_content_evaluation_revision": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "3969fa211f0a35b39f6cfbc9d3f8a321c107edd417f252b184d48cb5a8d52849",
+      "expected_full_whole_canonical_sha256": "c604412567c154abb211f25370ca11c51984017507ed2e34b28c7146473a3af0",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -44693,7 +44620,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44762,9 +44689,7 @@
           "placeholder_receipt_content_evaluation_revision": "unknown",
           "placeholder_receiver_receipt_content_evaluation_revision": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -44792,14 +44717,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/evaluation_revision",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "0a96c6b4bea6cd6cb3dff7581f7b5d3c2f1d382b6141bca74bc4bbcd83df44f7"
+      "expected_whole_canonical_sha256": "a16976ded580cac55618f020d374ba833e98ff6afd06189e3e62c8f55d197372"
     },
     {
       "id": "B020-R2-F02-RECEIPT-SCOPE",
@@ -44932,7 +44852,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -44999,11 +44919,9 @@
           "placeholder_receipt_content_scope": "unknown",
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "d7ea4daf2cd000391aaf732d0eb3287f868bfefc45d2197684d31ce5cda53369",
+      "expected_full_whole_canonical_sha256": "887ba464604e4a90c76b3b985ec2ee0a2f9438833516d4e0146e9ae1033777a7",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -45046,7 +44964,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -45115,9 +45033,7 @@
           "placeholder_receipt_content_scope": "unknown",
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -45145,14 +45061,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/scope",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "beb37f5b62b8aa0f5eed9035f53929453ce9f495f8b04e3cc7505473c95c13ce"
+      "expected_whole_canonical_sha256": "1b256a32ecc3177087138d66c567f210ebb5d059cf0e6a61dd498448bbafa49b"
     },
     {
       "id": "B020-R2-F02-RECEIVER-ONLY-TBD",
@@ -45275,7 +45186,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -45341,11 +45252,9 @@
         "review_diagnostics": {
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "16e10960c3be095dcdfe3dc9d1b03329113d86850b184a37183bc0502fbaf622",
+      "expected_full_whole_canonical_sha256": "246e9940c8cc5b8f0652622c8ec4d55f91e08a6ba69dd96fdcf9a59572d10ac0",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -45388,7 +45297,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -45456,9 +45365,7 @@
         "review_diagnostics": {
           "placeholder_receiver_receipt_content_scope": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
@@ -45471,14 +45378,9 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/scope",
           "value": "TBD"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
-      "expected_whole_canonical_sha256": "a77e76a16ccff2bac54c3d5d400246a0b76587ea4ee7a773b231414173f1ce2b"
+      "expected_whole_canonical_sha256": "4a1e8704d8ab7c61d390cafce8bdc3479a1d580923fa3f02b76ebbcd43f95782"
     },
     {
       "id": "B020-R2-F02-PREMATURE-ADOPTED",
@@ -45606,7 +45508,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -45673,11 +45575,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "1a2871c03a586c4ec1a8033b147df94f81e8d2095dc1520da1a28ee18bc2a693",
+      "expected_full_whole_canonical_sha256": "34bca93139a9958f8594130ae306fc2822517afd6ebdb87235e909b18f4a8681",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -45720,7 +45621,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -45789,17 +45690,11 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -45821,7 +45716,7 @@
           "value": "adopted"
         }
       ],
-      "expected_whole_canonical_sha256": "0c49518ef81e94cda1c6c4e1759b2f2ced764247fe7a14b4e4132107358f80c7"
+      "expected_whole_canonical_sha256": "dea780c979ee03bb48dadf6f7c01974f7eace509861a5128dd80710d4dfa6758"
     },
     {
       "id": "B020-R2-F02-PREMATURE-MATURE",
@@ -45949,7 +45844,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46016,11 +45911,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "b0444d1c14be20a4dbbc8080d68c61fc4da01281350915ea0f6d772b46dd81d0",
+      "expected_full_whole_canonical_sha256": "2356ac6933ff6059d999f1295443cbbceaf7b42f08f0b0988c1fdcd3ac83214f",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -46063,7 +45957,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46132,17 +46026,11 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -46164,7 +46052,7 @@
           "value": "mature"
         }
       ],
-      "expected_whole_canonical_sha256": "766e76ce70df8e390560a019fde1f65015680e34c8668eff1749e88793845d35"
+      "expected_whole_canonical_sha256": "088fe0e65a10b667d006d90804813fc5ae46b65466b2dec3f695e14275f392f6"
     },
     {
       "id": "B020-R2-F02-PREMATURE-ESTABLISHED",
@@ -46292,7 +46180,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46359,11 +46247,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "b75adb09dfbe55407e35b3e6f7b4343b3d3846ef5914abc23bac7954bc08e5a2",
+      "expected_full_whole_canonical_sha256": "36d7d02b36a6fdc133de69fea76eb0825c16daaa99ed8f4cc9039437625624fb",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -46406,7 +46293,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46475,17 +46362,11 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -46507,7 +46388,7 @@
           "value": "established"
         }
       ],
-      "expected_whole_canonical_sha256": "c465335f723755d3548777363f7f2b3d40da4c7f279ed190bc34e391f386598c"
+      "expected_whole_canonical_sha256": "108a755bef910bc5d2dd215f97634a38ed6903901a45ed5ffb98cb9e4a09d603"
     },
     {
       "id": "B020-R2-F02-PREMATURE-ESTABLISHED_PATTERN",
@@ -46635,7 +46516,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46702,11 +46583,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "3e6436bfb9607fe81aca99f3627864ebaad31c224c03cf99f0dbac7def133b7d",
+      "expected_full_whole_canonical_sha256": "55f6b200f48e6ef3e2a96478ef10e85a004d50476859cab915b0f6e2669b8b4d",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -46749,7 +46629,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -46818,17 +46698,11 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -46850,7 +46724,7 @@
           "value": "established_pattern"
         }
       ],
-      "expected_whole_canonical_sha256": "55f4f2cf9e94d9911c0e974fa9345b90a69da7caa42c75c37dd6497abbc046f2"
+      "expected_whole_canonical_sha256": "043d65a4f66353ace84de83eec404357033446d3e38d76280ac467cbbc44f309"
     },
     {
       "id": "B020-R2-F02-OWNER-EVALUATION",
@@ -46978,7 +46852,7 @@
         },
         "state_results": {
           "evaluation": "content_conflict",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47046,11 +46920,10 @@
           "evaluation_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "evaluation": "LABO"
         }
       },
-      "expected_full_whole_canonical_sha256": "c9ee8ad1892811e67aff1fa5105af4e86e84aefc52b7f559b7b5d47a01a253a9",
+      "expected_full_whole_canonical_sha256": "710947f5b0c73be36ffd5cd12dad0504a6f3e78dfbf63b20f3b9ffd816635930",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -47093,7 +46966,7 @@
         },
         "state_results": {
           "evaluation": "content_conflict",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47163,7 +47036,6 @@
           "evaluation_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "evaluation": "LABO"
         }
       },
@@ -47176,11 +47048,6 @@
         },
         {
           "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
-        {
-          "op": "replace",
           "path": "/retained_states/evaluation/owner",
           "value": "FOREIGN"
         },
@@ -47190,7 +47057,7 @@
           "value": "FOREIGN"
         }
       ],
-      "expected_whole_canonical_sha256": "19e378333c7bd930b12cad0e92e8d0e91824a23e03915b84bab59d851cdd8334"
+      "expected_whole_canonical_sha256": "00e5bff128480f9a656e0e7054339b4f8093d7d57ed201a10d105afe95a6093b"
     },
     {
       "id": "B020-R2-F02-OWNER-REGISTRATION",
@@ -47318,7 +47185,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_conflict",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47389,7 +47256,7 @@
           "registration": "HELIX-OS"
         }
       },
-      "expected_full_whole_canonical_sha256": "725f617a858ffc54155fc54bc7a6b4c82aa4a18662de4dabf396ffe7f8044ffd",
+      "expected_full_whole_canonical_sha256": "b656660114d0973cf80a5b810e45223aeeea4b2cc11d15727783ba32318e98dc",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -47432,7 +47299,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_conflict",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47510,7 +47377,7 @@
         {
           "op": "replace",
           "path": "/state_results/registration",
-          "value": "unknown"
+          "value": "content_conflict"
         },
         {
           "op": "replace",
@@ -47523,7 +47390,7 @@
           "value": "FOREIGN"
         }
       ],
-      "expected_whole_canonical_sha256": "ade8293bfa29dd4bb12b6ca4179c7ae801afd677d635a9328c9bf30710ff5960"
+      "expected_whole_canonical_sha256": "9d68899f0b4c5312780b1ff82b299805802070c34209b330b8abb9230823d42a"
     },
     {
       "id": "B020-R2-F02-OWNER-INDEPENDENT_VERIFICATION",
@@ -47651,7 +47518,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_conflict",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47719,11 +47586,10 @@
           "independent_verification_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "independent_verification": "BRAIN-independent-review"
         }
       },
-      "expected_full_whole_canonical_sha256": "3c8f6c4b303be77c7946695f7f056e92643c5ab3d98a3b730b998db7e1dc4d77",
+      "expected_full_whole_canonical_sha256": "13249d195dd3c34e3d13667dab7679cc0ac15471713acb9061cd9f694304797c",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -47766,7 +47632,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_conflict",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -47836,17 +47702,11 @@
           "independent_verification_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "independent_verification": "BRAIN-independent-review"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/independent_verification",
@@ -47863,7 +47723,7 @@
           "value": "FOREIGN"
         }
       ],
-      "expected_whole_canonical_sha256": "335ce2272ccb8e362c9b48b9fdad813526acc3c22501e1d16fa2238889739536"
+      "expected_whole_canonical_sha256": "ebb02c81116e4b28a8ea54d8efb1a742cbc635babdf4dba9bcb040d5bd15ac7f"
     },
     {
       "id": "B020-R2-F02-OWNER-ADOPTION",
@@ -47991,7 +47851,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -48059,11 +47919,10 @@
           "adoption_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "f24dab8d15620feb10b248ea3d6a87f9e9090c9527a567ceb4bbfc757d23b2bc",
+      "expected_full_whole_canonical_sha256": "b5566a97007a5b7fdfcb6007a1e2482ccb0c76a083bd9ed4d11fcf86170ae4c5",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -48106,7 +47965,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -48176,17 +48035,11 @@
           "adoption_owner_submitted": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -48203,7 +48056,7 @@
           "value": "FOREIGN"
         }
       ],
-      "expected_whole_canonical_sha256": "4da9f72c1a66dafbe977072480905ecf02233d04f19d96c7289afdb3c7dec878"
+      "expected_whole_canonical_sha256": "2fbc158e4c79c381945568862ded9b40e6b18fae1a297fea22f5da04aed7e13d"
     },
     {
       "id": "B020-R2-F03-IDENTITY",
@@ -54539,7 +54392,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -54606,11 +54459,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "09bf22dfb1188f3c1fda63a3c8477b3daee66dc6458f04153b3f5924143f1091",
+      "expected_full_whole_canonical_sha256": "41d7f1cc912770db3914c1ec2a1390137592f38ceaa1ccb54e6a411ee22f04b6",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -54658,7 +54510,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -54727,17 +54579,11 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
       "execution_state": "not_executed",
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
         {
           "op": "replace",
           "path": "/state_results/adoption",
@@ -54769,7 +54615,7 @@
           "value": "adopted"
         }
       ],
-      "expected_whole_canonical_sha256": "ad7fd94684a74d0fc0a103c627d88d592cc3d46f0a19b16afe889dba501657ab"
+      "expected_whole_canonical_sha256": "622ae2e1768acec847bcccc87f95c585c561eb44500a6742c3b6808e99504fdb"
     },
     {
       "id": "B020-R2-F02-VERIFICATION-ONLY",
@@ -56355,9 +56201,11 @@
           "actual_acceptance": false
         },
         "unknown_original_candidate_fields": [],
-        "review_diagnostics": {}
+        "review_diagnostics": {
+          "placeholder_evaluation_content_target": "unknown"
+        }
       },
-      "expected_full_whole_canonical_sha256": "dca4806384230e2356c5e00b333ee8fd8f0fc9def8536b205904ab2f8e9bd671",
+      "expected_full_whole_canonical_sha256": "00a5495f4ee65e35a918cb5f8d3b71c78d5fc940c4a3a5313ceb3f3d37917fc4",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F01",
         "l4": "HELIXBRAIN-L4-020-F01",
@@ -56502,7 +56350,9 @@
         "unknown_original_candidate_fields": []
       },
       "expected_auxiliary": {
-        "review_diagnostics": {}
+        "review_diagnostics": {
+          "placeholder_evaluation_content_target": "unknown"
+        }
       },
       "expected_patch_from_base": [
         {
@@ -57055,7 +56905,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -57122,11 +56972,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "726ceabdbe673540f76af757138e93fe99dbcd51789dca6b8ab5952725c202a1",
+      "expected_full_whole_canonical_sha256": "d66fb39cf8cd612154e4c9446359f49410b8fdd3606548e472bc948f0cc2e7a4",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -57174,7 +57023,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -57236,27 +57085,23 @@
           "actual_authority": false,
           "actual_implementation_ready": false,
           "actual_acceptance": false
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
         }
       },
       "expected_auxiliary": {
         "review_diagnostics": {
           "adoption_before_registration_and_verification": "rejected"
-        },
-        "failure_return_owners": {
-          "registration": "HELIX-OS",
-          "adoption": "BRAIN-change"
         }
       },
       "expected_patch_from_base": [
         {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/adoption",
-          "value": "content_conflict"
+          "op": "add",
+          "path": "/failure_return_owners",
+          "value": {
+            "adoption": "BRAIN-change"
+          }
         },
         {
           "op": "replace",
@@ -57272,10 +57117,15 @@
           "op": "replace",
           "path": "/adoption_state",
           "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/adoption",
+          "value": "content_conflict"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "14c3a969cf7d48e0ab4bac1f8831ce4d754fb6b44786f363b2e2ace0bc66ccd6"
+      "expected_whole_canonical_sha256": "ddc740caf3a3fa9eb6d0af2410080938957b2003b222e231dd8a860c87b0a96f"
     },
     {
       "id": "B020-R4-F02-ADOPTION-UNIVERSAL_MATURE",
@@ -57398,7 +57248,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -57465,11 +57315,10 @@
           "adoption_before_registration_and_verification": "rejected"
         },
         "failure_return_owners": {
-          "registration": "HELIX-OS",
           "adoption": "BRAIN-change"
         }
       },
-      "expected_full_whole_canonical_sha256": "b8bcab45f58f9f003a303d7b112edb596e5459a7d37d9bc6c99b4e9d98260093",
+      "expected_full_whole_canonical_sha256": "109ed837b2e29dd4053cf0815400d204731cbf95538c9a25e5f9ecd0d55edf9b",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -57517,7 +57366,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_conflict"
         },
@@ -57579,27 +57428,23 @@
           "actual_authority": false,
           "actual_implementation_ready": false,
           "actual_acceptance": false
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
         }
       },
       "expected_auxiliary": {
         "review_diagnostics": {
           "adoption_before_registration_and_verification": "rejected"
-        },
-        "failure_return_owners": {
-          "registration": "HELIX-OS",
-          "adoption": "BRAIN-change"
         }
       },
       "expected_patch_from_base": [
         {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/adoption",
-          "value": "content_conflict"
+          "op": "add",
+          "path": "/failure_return_owners",
+          "value": {
+            "adoption": "BRAIN-change"
+          }
         },
         {
           "op": "replace",
@@ -57615,10 +57460,15 @@
           "op": "replace",
           "path": "/adoption_state",
           "value": "universal_mature"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/adoption",
+          "value": "content_conflict"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "ab26a92a01e24d9fbcdd309bf2391b141aaf2020cd29922d78cb3359f31e969c"
+      "expected_whole_canonical_sha256": "a178c713be50d6d2a0ac472c268c8681640bd4a2ec87ea2f8925136d0873265d"
     },
     {
       "id": "B020-R4-F02-INDEPENDENTLY-VERIFIED",
@@ -57951,13 +57801,13 @@
         },
         {
           "op": "replace",
-          "path": "/retained_states/independent_verification/state",
-          "value": "independently_verified"
+          "path": "/retained_states/adoption/state",
+          "value": "adopted"
         },
         {
           "op": "replace",
-          "path": "/retained_states/adoption/state",
-          "value": "adopted"
+          "path": "/retained_states/independent_verification/state",
+          "value": "independently_verified"
         },
         {
           "op": "replace",
@@ -57966,13 +57816,13 @@
         },
         {
           "op": "replace",
-          "path": "/submitted_states/independent_verification/state",
-          "value": "independently_verified"
+          "path": "/submitted_states/adoption/state",
+          "value": "adopted"
         },
         {
           "op": "replace",
-          "path": "/submitted_states/adoption/state",
-          "value": "adopted"
+          "path": "/submitted_states/independent_verification/state",
+          "value": "independently_verified"
         },
         {
           "op": "replace",
@@ -58099,7 +57949,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -58165,11 +58015,9 @@
         "review_diagnostics": {
           "placeholder_receiver_receipt_content_source": "unknown"
         },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
-        }
+        "failure_return_owners": {}
       },
-      "expected_full_whole_canonical_sha256": "9074c3037c763d1803b0be302fe790de89aa641cdbd357ed76a882105a682dca",
+      "expected_full_whole_canonical_sha256": "50b698cf7d1578c208f896f15d7f105399960ab51f4da4fccb40b8654b8ed397",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F02",
         "l4": "HELIXBRAIN-L4-020-F02",
@@ -58217,7 +58065,7 @@
         },
         "state_results": {
           "evaluation": "content_corresponding_in_fixture",
-          "registration": "unknown",
+          "registration": "content_corresponding_in_fixture",
           "independent_verification": "content_corresponding_in_fixture",
           "adoption": "content_corresponding_in_fixture"
         },
@@ -58279,17 +58127,20 @@
           "actual_authority": false,
           "actual_implementation_ready": false,
           "actual_acceptance": false
-        }
+        },
+        "failure_return_owners": {}
       },
       "expected_auxiliary": {
         "review_diagnostics": {
           "placeholder_receiver_receipt_content_source": "unknown"
-        },
-        "failure_return_owners": {
-          "registration": "HELIX-OS"
         }
       },
       "expected_patch_from_base": [
+        {
+          "op": "add",
+          "path": "/failure_return_owners",
+          "value": {}
+        },
         {
           "op": "replace",
           "path": "/receiver_receipt_result",
@@ -58299,15 +58150,10 @@
           "op": "replace",
           "path": "/submitted_receiver_receipt/source",
           "value": "N/A"
-        },
-        {
-          "op": "replace",
-          "path": "/state_results/registration",
-          "value": "unknown"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "1174169d7304eca1b7371fe621de4e56f33bb376cb251f45e3f8fa92cb42e2cb"
+      "expected_whole_canonical_sha256": "f26cf3161a31d46a6e43af5bea727d1e380e9ffa68c179af59a3cc1afc774cb7"
     },
     {
       "id": "B020-R4-F03-MATURITY-UNIVERSAL",
@@ -58589,7 +58435,7 @@
       "raw_packet_sha256": "7a7fb8cfeb1103e4373f63608bf2e32eaeaffbcedbcb0ab35196ad9c90ba6fee",
       "expected_full_whole": {
         "selection": true,
-        "maturity_result": "content_conflict",
+        "maturity_result": "content_corresponding_in_fixture",
         "retained_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -58617,7 +58463,7 @@
           "limitation": "単一条件の観測例。universalではない"
         },
         "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "candidate_maturity_state": "original_state_in_fixture_only",
         "accepted_or_mature_established": false,
         "return_owners": [
           "BRAIN-INFRA017",
@@ -58638,12 +58484,10 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_conflict",
-        "review_diagnostics": {
-          "universal_maturity_state": "rejected"
-        }
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
       },
-      "expected_full_whole_canonical_sha256": "daa4e5b541d7ba8dab47df441dd00d6a538d8d2111e6fa4eb8bbe4e0ca02453e",
+      "expected_full_whole_canonical_sha256": "87d0b20c411da500f739464e01af1e881e51a91417c236d47236b3b182918699",
       "basis": {
         "l3": "HELIXBRAIN-L3-020-F03",
         "l4": "HELIXBRAIN-L4-020-F03",
@@ -58661,7 +58505,7 @@
       },
       "expected_whole": {
         "selection": true,
-        "maturity_result": "content_conflict",
+        "maturity_result": "content_corresponding_in_fixture",
         "retained_maturity": {
           "identity": "MATURITY-P",
           "revision": "maturity-r3",
@@ -58689,7 +58533,7 @@
           "limitation": "単一条件の観測例。universalではない"
         },
         "maturity_requirement": "INFRA017_selected_candidate_only",
-        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "candidate_maturity_state": "original_state_in_fixture_only",
         "accepted_or_mature_established": false,
         "return_owners": [
           "BRAIN-INFRA017",
@@ -58710,19 +58554,12 @@
           "actual_implementation_ready": false,
           "actual_acceptance": false
         },
-        "submitted_maturity_result": "content_conflict"
+        "submitted_maturity_result": "content_corresponding_in_fixture"
       },
       "expected_auxiliary": {
-        "review_diagnostics": {
-          "universal_maturity_state": "rejected"
-        }
+        "review_diagnostics": {}
       },
       "expected_patch_from_base": [
-        {
-          "op": "replace",
-          "path": "/maturity_result",
-          "value": "content_conflict"
-        },
         {
           "op": "replace",
           "path": "/retained_maturity/state",
@@ -58732,20 +58569,10 @@
           "op": "replace",
           "path": "/submitted_maturity/state",
           "value": "mature"
-        },
-        {
-          "op": "replace",
-          "path": "/candidate_maturity_state",
-          "value": "held_unknown_or_conflicting"
-        },
-        {
-          "op": "replace",
-          "path": "/submitted_maturity_result",
-          "value": "content_conflict"
         }
       ],
       "execution_state": "not_executed",
-      "expected_whole_canonical_sha256": "d518c8a56a26073b2ba4f8a9da97327ae767b5541e3c2544108d65aff670db4e"
+      "expected_whole_canonical_sha256": "1e1583fdbf45642ee2182859ae9bce9abadb545d15bff863b0ec3b3eef90a2e2"
     },
     {
       "id": "B020-R4-F03-SCOPE-BINDING",
@@ -60261,9 +60088,209 @@
       ],
       "execution_state": "not_executed",
       "expected_whole_canonical_sha256": "567f42d47ab624244e8a86b25fdc2a147aebe1447bd17b2edce745385b9b414d"
+    },
+    {
+      "id": "B020-R4-F03-MATURITY-ACCEPTED",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "単一条件の観測例。universalではない",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "単一条件の観測例。universalではない",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted"
+        }
+      },
+      "raw_packet_sha256": "1c7617d5ef9bf82d682ee9ff92763e129bc1ac84ee1dd148ea939d75787265b2",
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "submitted_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "daa543ba25d1c84531a330f82938adf978702dd68660cfc51d52b0df99291859",
+      "basis": {
+        "l3": "HELIXBRAIN-L3-020-F03",
+        "l4": "HELIXBRAIN-L4-020-F03",
+        "l10": "HELIXBRAIN-L10-020-F03",
+        "meaning": "F03/L10の単一実績によるuniversal/mature先取りを有限表記として検出する。実資格を評価せず候補を保留する。"
+      },
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "expected_whole": {
+        "selection": true,
+        "maturity_result": "content_corresponding_in_fixture",
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "submitted_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "accepted",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "original_state_in_fixture_only",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_maturity/state",
+          "value": "accepted"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/state",
+          "value": "accepted"
+        }
+      ],
+      "execution_state": "not_executed",
+      "expected_whole_canonical_sha256": "ba667ffbabb00a6c0bc9c8655c11d7551fd7bfde7df1dfb9b2aeb2fefd4c2b5a"
     }
   ],
-  "independent_probe_count": 111,
+  "independent_probe_count": 112,
   "review_diagnostic_expectations": [
     {
       "case_id": "B020-F02-RECEIPT_ADOPTED",
