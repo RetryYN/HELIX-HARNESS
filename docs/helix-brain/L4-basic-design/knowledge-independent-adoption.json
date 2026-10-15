@@ -171,7 +171,8 @@
         "別revision検証や段階混同で採否成立にしない。未完receiptを消さない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F01"
     },
     {
       "id": "HELIXBRAIN-L4-025-F02",
@@ -229,7 +230,8 @@
         "hold/unknown/rejection/未分離や製品意味をacceptedへ変換しない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F03"
     },
     {
       "id": "HELIXBRAIN-L4-025-F04",
@@ -259,7 +261,8 @@
         "構成候補で必要となる009、Infrastructure maturityで必要となるINFRA017の欠落・原版unknown・別版を局所保留する。原版unknownはnull一致で閉じない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/F04"
     },
     {
       "id": "HELIXBRAIN-L4-025-N01",
@@ -288,7 +291,8 @@
         "fixture成功を普遍性/全構成/全seed/PO Acceptedへ外挿しない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "return_contract_ref": "/responsibility_and_failure_return_contract/N01"
     },
     {
       "id": "HELIXBRAIN-L4-025-B01",
@@ -331,5 +335,63 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "responsibility_and_failure_return_contract": {
+    "meaning": "return_ownersは原L9の責務表示一覧を保つ。失敗がない場合も消去しない。欠陥別返却候補/実recipient/資格をこの一覧から生成しない。",
+    "source_basis": [
+      "HELIXBRAIN-L3-025-F01",
+      "HELIXBRAIN-L10-025-F01",
+      "HELIXBRAIN-L3-025-F03",
+      "HELIXBRAIN-L10-025-F03",
+      "HELIXBRAIN-L10-025-N01"
+    ],
+    "legacy_basis": "RCLS-BR-004/005/006は段階的検証、反例の保持、proposal/evidence提供と既存authority非変更を要求する。旧runtimeの配送や登録は採用しない。",
+    "role_inventory": {
+      "F01": {
+        "source_evaluation": "LABO",
+        "registration": "HELIX-OS",
+        "knowledge_meaning": "BRAIN-meaning-owner",
+        "verification": "BRAIN-change"
+      },
+      "F03": [
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-meaning-owner",
+        "BRAIN-change"
+      ],
+      "N01": [
+        "PRODUCT-CORE-R",
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-change"
+      ],
+      "N01_label_limit": "PRODUCT-CORE-Rは原合成製品Rの責務表示ラベル。実CORE owner IDでなく、別製品のrecipientへ流用/文字列parseしない。該当製品owner/source未供給は別route.recipient=nullに残す。"
+    },
+    "F01": {
+      "failure_owner_candidates": "段階内容/target不足は対応するoriginal_stagesのowner原値を保持し、欠落/不明のみunknown_in_fixture。proposal不足はproposal、adoption不足だけならadoption。未完receipt差分は元receiptのowner値を順序保持・重複除去して返す。実資格を検証しない。",
+      "role_check": "合成段階の有限役割比較。independent_verificationのBRAIN-change-independent-reviewは実際の原sourceでありBRAIN-changeと異なるactor名でも誤ownerとしない。任意actorの資格/役割解決は未成立。"
+    },
+    "F03": {
+      "failure_owner_routes": "元findingが提出finding配列にJSON内容同値で保持されていなければ、その元finding全値とowner原値をfinding_content所見へ結ぶ。固定finding IDから意味を推測しない。原ownerが非marker stringならrecipient原値、その他null。knowledge state不一致又はdocument_adopted/hold_success=trueはBRAIN-change責務候補、未分離又はproduct_meaning_generic=trueはmeaning責務候補、counterexample_erased=trueはmeaning責務候補へ、recipient未供給をnullとして返す。",
+      "order": "元finding配列順（重複も保存）、knowledge_state、product_separation、counterexample_claimの順。claim所見とdata所見は独立でfalse claimはdata不正を抑止しない。同一finding所見は元recordごとの値保持であり、別責務の所見へ無条件配送しない。",
+      "failure_owner_candidates": "各routeのrecipientを同順に投影。nullを資格済みownerに補完しない。",
+      "failure_reasons": "各route.kindを同順に投影。元findingの内容が同じでもhold/unknownの原stateと全findingはretained_*に保持してBRAIN変更検討へ渡す。",
+      "source_limit": "finding ownerの原値はqualification済みissuer/受領先の証明ではない。knowledge/claim責務には独立したrecipient recordがなくnullを保持する。"
+    },
+    "N01": {
+      "failure_owner_routes": "内容差分fieldと明示禁止claimの別所見を保持する。structure_meaning差はCORE製品意味責務候補、それ以外の差はL10列挙class内の個別帰属未束縛として明示。claimはBRAIN change責務候補。実recipientがrawにないためnull。原return_ownersをactive失敗配列に置換しない。",
+      "unclosed": "未見のfieldから具体CORE/LABO/OS/BRAIN recipientへ解決する独立sourceが未供給。責務一覧の存在をこの不足の合格としない。"
+    },
+    "F04": {
+      "selection": "原/提出の欠落はmissing、供給値が異なればcontent_conflict。原選択がnull/非booleanである情報はunknown_original_selectionへ別に保持し、falseへ補完しない。両側同null/非boolean一致も選択成立にしない。",
+      "required_reference": "原参照revision/scopeの不足はunknown_original_reference_informationと向きを保持。candidate_closureの局所不足表示はheld。",
+      "auxiliary_scope": "reference_content_resultsはoriginal_base_neededとoriginal_selectionで明示trueのoptional参照だけ比較する。false又はunknownのoptional参照は未観測であり比較mapへ加えない。原L9の保守的必要集合/不足は保持する。"
+    },
+    "consumer_binding": {
+      "role_inventory": "BRAIN変更検討receiptの責務説明として参照する。配送・登録・採否の証拠にしない。",
+      "failure_routes": "BRAIN変更検討が所見の対象record/責務/recipient不足を元ownerへの差戻し候補へ渡す。登録・振分け・ticket化は既存OS責務。recipient/source資格未解決時は未完として保持し実作用を起こさない。",
+      "preserved_records": "retained_findings/retained_unfinished_receipt等の元state/owner/target/revisionを失敗有無にかかわらず保持。"
+    },
+    "qualification": "全て純粋な合成入力の比較/返却候補。実配送、資格、authority、採否、CI、実装Readyは生成しない。"
   }
 }

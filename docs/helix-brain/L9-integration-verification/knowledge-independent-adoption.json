@@ -375,7 +375,31 @@
           },
           "basis": "5段階の異なるrecord版/owner/stateを同候補対象へ結ぶ。元未完と反例を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "d79d060252dbdd2abb66bc3861f1c5616fb66f9c4d69445d268c93a505e968b6",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-PROPOSAL-MISSING",
@@ -597,7 +621,31 @@
           },
           "basis": "段階不在を他段階の成功で補完しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "missing"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "PRODUCT-CORE-P",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "BRAIN-change",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "cb54e835add407504986e8f1426ca7c7764895ea17ab89e40b6140e7a2008af6",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-PROPOSAL-OTHER-REVISION",
@@ -831,7 +879,31 @@
           },
           "basis": "別revisionの段階を同対象へjoinしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "PRODUCT-CORE-P",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "dd5b4829b62eb6c791e6dc0d44f4fe36566a9706595dd984b4d18d41a1a3c619",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-PROPOSAL-OWNER-FOREIGN",
@@ -1065,7 +1137,31 @@
           },
           "basis": "段階ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "PRODUCT-CORE-P",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "2a9ea47cbf55f77ab08d0b28c59fec8a54b8938eedf246afc3f5fef3014c17b8",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-EVALUATION-MISSING",
@@ -1287,7 +1383,31 @@
           },
           "basis": "段階不在を他段階の成功で補完しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "missing",
+              "stage_key_identity_binding": "missing"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "LABO",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "unknown_in_fixture",
+              "stage_key_identity_binding": "BRAIN-change",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "2eddc2c77e4b7792122e054614665d479fb7bc03a5fb3733a07c9c6cee590d89",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-EVALUATION-OTHER-REVISION",
@@ -1521,7 +1641,31 @@
           },
           "basis": "別revisionの段階を同対象へjoinしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "LABO",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "435f4036f77b31805bc25dc4469e70506dbcf23604750832166543742cd5292a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-EVALUATION-OWNER-FOREIGN",
@@ -1755,7 +1899,31 @@
           },
           "basis": "段階ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "content_conflict",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "LABO",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "BRAIN-change",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "0a002eb337fcc70e9796177b1fc3e20d54a0d377078179517e9e083ab78fba4f",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-REGISTRATION-MISSING",
@@ -1977,7 +2145,31 @@
           },
           "basis": "段階不在を他段階の成功で補完しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "missing",
+              "stage_key_identity_binding": "missing"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "unknown_in_fixture",
+              "stage_key_identity_binding": "BRAIN-change",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "f882c63e53874ae447c184f32437b2497e8208ce198d4a968138f9e70be17e2f",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-REGISTRATION-OTHER-REVISION",
@@ -2211,7 +2403,31 @@
           },
           "basis": "別revisionの段階を同対象へjoinしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "07b08d2790b27eefa61b3f7229df13c43ac79dc01021387e2e989440113b303f",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-REGISTRATION-OWNER-FOREIGN",
@@ -2445,7 +2661,31 @@
           },
           "basis": "段階ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "content_conflict",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "BRAIN-change",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "a18960ceb302f1c5041b14ecda9e894f268988ecd8184661e20cb7b9e9d0138d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-INDEPENDENT_VERIFICATION-MISSING",
@@ -2667,7 +2907,31 @@
           },
           "basis": "段階不在を他段階の成功で補完しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "missing",
+              "stage_key_identity_binding": "missing"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change-independent-review",
+              "adoption_without_verification": "none",
+              "owner_assignment": "unknown_in_fixture",
+              "stage_key_identity_binding": "BRAIN-change",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "c1507b7936e7dfc320f43df912567f9a22a19c4d492849c3fa6fecb75dc3eadb",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-INDEPENDENT_VERIFICATION-OTHER-REVISION",
@@ -2901,7 +3165,31 @@
           },
           "basis": "別revisionの段階を同対象へjoinしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change-independent-review",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "23b7a621e936c0e9ca6e935e7af3cb4b9c169130a873b998dde3da95fe68e461",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-INDEPENDENT_VERIFICATION-OWNER-FOREIGN",
@@ -3135,7 +3423,31 @@
           },
           "basis": "段階ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "content_conflict",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change-independent-review",
+              "adoption_without_verification": "none",
+              "owner_assignment": "BRAIN-change",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "0af9c3aea069de3ba6d43e6e9a039b856aadf658016ca9ca1af22e69377de5d0",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-ADOPTION-MISSING",
@@ -3357,7 +3669,31 @@
           },
           "basis": "段階不在を他段階の成功で補完しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "missing",
+              "stage_key_identity_binding": "missing"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "BRAIN-change",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "unknown_in_fixture",
+              "stage_key_identity_binding": "BRAIN-change",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "1328f94b052beae130a9ec42eea7194da164d689d6dd45f4c39a6eaec8333af4",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-ADOPTION-OTHER-REVISION",
@@ -3591,7 +3927,31 @@
           },
           "basis": "別revisionの段階を同対象へjoinしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "BRAIN-change",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "595e505dbf2f1ee8e944452016a04ed6e841a0392b48f4d56369915397761aaa",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-ADOPTION-OWNER-FOREIGN",
@@ -3825,7 +4185,31 @@
           },
           "basis": "段階ownerを交換しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "content_conflict",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "BRAIN-change",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "BRAIN-change",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "49fa84e0a4cf822fe90b4d99499a374c8c00608c485c927977a5c2fb80061fdd",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-STAGES_SAME_STATE",
@@ -4059,7 +4443,31 @@
           },
           "basis": "段階混同/別revision採否/元未完消去claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "PRODUCT-CORE-P",
+              "source_evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change-independent-review",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "4dfa671055620440fcad65f9e86ad5fd71b198240d5c30b4c89107626fd0cc5d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-OTHER_REVISION_ADOPTION",
@@ -4293,7 +4701,31 @@
           },
           "basis": "段階混同/別revision採否/元未完消去claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "BRAIN-change",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change-independent-review",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": "none"
+            }
+          },
+          "expected_public_whole_sha256": "eba91dc5139a220dd381ba4fda350d88de35ffd1c2bcdb8e87439fd36a50828e",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F01-UNFINISHED_RECEIPT_ERASED",
@@ -4500,7 +4932,34 @@
           },
           "basis": "段階混同/別revision採否/元未完消去claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "state_consistency_results": {
+              "adoption_without_independent_verification": "not_observed_in_fixture",
+              "role_owner_mismatch": "not_observed_in_fixture",
+              "stage_key_identity_binding": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "proposal_or_adoption": "none",
+              "source_evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption_without_verification": "none",
+              "owner_assignment": "none",
+              "stage_key_identity_binding": "none",
+              "unfinished_receipt": [
+                "LABO",
+                "BRAIN-meaning-owner"
+              ]
+            }
+          },
+          "expected_public_whole_sha256": "bc8632ed67b0f5d5496060b5fb7eeb4439a7f1e4dad8f03b31ee0bd54a62d7f0",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -4677,7 +5136,41 @@
           },
           "basis": "同候補Pの独立選択scopeに3根拠を比較。全ticketへの一律規則ではない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            }
+          },
+          "expected_public_whole_sha256": "42eb91b4919a2d6780f653da5d1e0d927efbd346d9600796c9c14d3868c0b9d6",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-SHADOW-NOT-SELECTED-BY-SCOPE",
@@ -4799,7 +5292,40 @@
           },
           "basis": "独立scopeがshadowを選ばない入力へ固定shadow gateを課さない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            }
+          },
+          "expected_public_whole_sha256": "ab0cfafad4b4fed68d41c503b1e2b488fce6e47df4fbd71a96cc0777888ecc11",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ORIGINAL-INDEPENDENT-ACTOR-UNKNOWN",
@@ -4954,7 +5480,43 @@
           },
           "basis": "原検証actor不明は提出内容一致で独立性成立にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "BRAIN-change",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "b69a12741580298c9fec5079869223e63b313144ad5d8590098b3ea32bfa7f8d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ADOPTION-BEFORE-REGISTRATION",
@@ -5109,7 +5671,41 @@
           },
           "basis": "登録より先に採否を置いて同じ段階集合だけで順序成立にしない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "892eb073f56429e64fe47c4334cca4f46da0f7c341e7c9499bbd7d2312d51bad",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ORDER-SWAP-0",
@@ -5264,7 +5860,41 @@
           },
           "basis": "登録前採否/検証前採否を含む順序反転を拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "none",
+              "adoption": "none"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "none",
+              "adoption": "none"
+            }
+          },
+          "expected_public_whole_sha256": "fd6f37a8223708716843dc9d021d2bc1f2045362f8a163b8745d44feb1827966",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ORDER-SWAP-1",
@@ -5419,7 +6049,41 @@
           },
           "basis": "登録前採否/検証前採否を含む順序反転を拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "none"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "none"
+            }
+          },
+          "expected_public_whole_sha256": "1be8673ce2103a599dc5e81b4d70cf22f2ccdc145ea9eeaa150077257edc191c",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ORDER-SWAP-2",
@@ -5574,7 +6238,41 @@
           },
           "basis": "登録前採否/検証前採否を含む順序反転を拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "0a175c074a7a8b0cb83d88ff3a3c12c6a7ee353129e1ed0e5d00d4337dfb834a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-INDEPENDENT-PROOF-MISSING",
@@ -5717,7 +6415,43 @@
           },
           "basis": "選択根拠を未実行で閉じない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "BRAIN-change",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "d8d26733b2835de5cedfe40495a15dc05100741483bbd8d3d63d834667fc59ed",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-INDEPENDENT-NOT-EXECUTED",
@@ -5872,7 +6606,43 @@
           },
           "basis": "元未実行を原内容一致で完了しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "BRAIN-change",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "86a33a2d2e29f003a828f571148b2ed6a1788c86c7eb705727f5bc4d2dc0864f",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-CROSS_PROJECT-PROOF-MISSING",
@@ -6015,7 +6785,43 @@
           },
           "basis": "選択根拠を未実行で閉じない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "BRAIN-change",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "89c3ba9f1a2119ecf979c6fdad53df451161e5aa2869b3f84bc367419e2cc536",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-CROSS_PROJECT-NOT-EXECUTED",
@@ -6170,7 +6976,43 @@
           },
           "basis": "元未実行を原内容一致で完了しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "BRAIN-change",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "78f75b0d54fa017fad3a1f947ae69159502d7ecf88fd096f708d1b11ca88de88",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-SHADOW-PROOF-MISSING",
@@ -6313,7 +7155,43 @@
           },
           "basis": "選択根拠を未実行で閉じない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "BRAIN-change"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "bb3d79556b3dd3cfe8526b7051e5be474e734c3d1aa15962f89d503a35725ba5",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-SHADOW-NOT-EXECUTED",
@@ -6468,7 +7346,43 @@
           },
           "basis": "元未実行を原内容一致で完了しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "BRAIN-change"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "ccec0ceb0389c454d01e53cd9227d96df0695a32d373207fd74a3c8a1f0d7de5",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-OMIT_ORDER",
@@ -6620,7 +7534,41 @@
           },
           "basis": "独立性/順序/未実行scope/全ticket gateのshortcutを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-change",
+              "adoption": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "dcce01554efb4f6835415ceff08712520061f8e6593ac0702e64f36c1233b8fa",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-SELF_EVALUATION_INDEPENDENT",
@@ -6775,7 +7723,43 @@
           },
           "basis": "独立性/順序/未実行scope/全ticket gateのshortcutを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "BRAIN-change",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "f1e5e10ae32575b9c6ceee4b67a8141e66f9883ea33e46e338a03d61f67333c9",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-SHADOW_UNEXECUTED_DONE",
@@ -6930,7 +7914,43 @@
           },
           "basis": "独立性/順序/未実行scope/全ticket gateのshortcutを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "BRAIN-change"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none",
+              "scope_proofs": "BRAIN-change"
+            }
+          },
+          "expected_public_whole_sha256": "6af3c4e15a166ffb823c0cee18ee63369015f713b371fe538395d1d64751d8ec",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F02-ALL_TICKET_FIXED_SHADOW_GATE",
@@ -7085,7 +8105,41 @@
           },
           "basis": "独立性/順序/未実行scope/全ticket gateのshortcutを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "required_order_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            },
+            "proof_owner_candidates": {
+              "cross_project": "none",
+              "independent": "none",
+              "shadow": "none"
+            },
+            "scope_proof_container_result": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "return_owners": {
+              "evaluation": "none",
+              "registration": "none",
+              "independent_verification": "none",
+              "adoption": "none"
+            }
+          },
+          "expected_public_whole_sha256": "425068baffa8ff1b12dad5edc6a7ffb0d2c449d1ca15578e563d033c05369540",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F02",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -7223,7 +8277,20 @@
           },
           "basis": "全必要根拠という原fixtureでも実採用はBRAIN変更手続きへ残す。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "cfb97237d05ebe6c5b66ce92dfd42ca0cfbe52c6831c8c414e12067022d17085",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-ORIGINAL-ADOPTED-RECORD-DISTINCT",
@@ -7339,7 +8406,20 @@
           },
           "basis": "独立原採用recordの内容とcandidateを区別する。合成原記録から実採用を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "bbf7e6e6bf4b12903066d3e6a0221dea8f7dde197ceaf877caf14160b756056a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-AI_GENERATED-ONLY",
@@ -7451,7 +8531,20 @@
           },
           "basis": "各単独証拠を別caseで非昇格にする。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "3be96af126a93757661b8d292e44e91acebea3f93d61279c23103099250e3e01",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-SINGLE_SUCCESS-ONLY",
@@ -7563,7 +8656,20 @@
           },
           "basis": "各単独証拠を別caseで非昇格にする。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "ae77ff95795f3fcee65ae1c2949166d525a834005dfd9bf7c7e8c4ce93a21492",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-LABO_RESULT-ONLY",
@@ -7675,7 +8781,20 @@
           },
           "basis": "各単独証拠を別caseで非昇格にする。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "f635fe1c2954468be9fd954020686389b850b70c0e744bc71d0c8c6ea4b73ec2",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-OS_TICKET-ONLY",
@@ -7787,7 +8906,20 @@
           },
           "basis": "各単独証拠を別caseで非昇格にする。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "f2c7d2c23f1bc7e92da0ce8f07d5d90dd0599f1a31746a27997c070d49c5fe4d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-DOCUMENT_EXISTS-ONLY",
@@ -7899,7 +9031,20 @@
           },
           "basis": "各単独証拠を別caseで非昇格にする。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "f612c7a3cf08e4306db84830ded774e3cc4712aa8689da16104ead42f00f75d9",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-HOLD-PRESERVED",
@@ -8015,7 +9160,20 @@
           },
           "basis": "元保留/未知/却下の理由とownerを保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "ad40261e947c9969323114b412eda60cfdab9a46d8a8d7cb95a3f98a14ec3a65",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-UNKNOWN-PRESERVED",
@@ -8131,7 +9289,20 @@
           },
           "basis": "元保留/未知/却下の理由とownerを保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "e218aa3bfd087a6f986853347bb637459bcad18b067eef510021715d9d4c18bb",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/8/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-REJECTED-PRESERVED",
@@ -8247,7 +9418,20 @@
           },
           "basis": "元保留/未知/却下の理由とownerを保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [],
+            "failure_reasons": [],
+            "failure_owner_routes": []
+          },
+          "expected_public_whole_sha256": "21a31dde75e1a90402418e8fa1ed3b1b9230ade4ecb6bd3a8b9fb771ab6294f2",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/9/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-UNSEPARATED-PRESERVED",
@@ -8363,7 +9547,31 @@
           },
           "basis": "未分離製品意味をknowledgeへ昇格しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_conflict",
+            "failure_owner_candidates": [
+              null
+            ],
+            "failure_reasons": [
+              "product_separation"
+            ],
+            "failure_owner_routes": [
+              {
+                "kind": "product_separation",
+                "responsibility_role": "BRAIN-meaning-owner",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              }
+            ]
+          },
+          "expected_public_whole_sha256": "6e101bb1541cc52fa12f4b0cca2b193216f9476580b8c98e30360538bff5378d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/10/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-DOCUMENT_ADOPTED",
@@ -8475,7 +9683,31 @@
           },
           "basis": "文書/保留成功化/元反例削除/製品意味混入claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [
+              null
+            ],
+            "failure_reasons": [
+              "knowledge_state"
+            ],
+            "failure_owner_routes": [
+              {
+                "kind": "knowledge_state",
+                "responsibility_role": "BRAIN-change",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              }
+            ]
+          },
+          "expected_public_whole_sha256": "d432985fbd72189730f6806a42e946d93b87248b071104b21bd1e790453d77d3",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/11/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-HOLD_SUCCESS",
@@ -8591,7 +9823,31 @@
           },
           "basis": "文書/保留成功化/元反例削除/製品意味混入claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [
+              null
+            ],
+            "failure_reasons": [
+              "knowledge_state"
+            ],
+            "failure_owner_routes": [
+              {
+                "kind": "knowledge_state",
+                "responsibility_role": "BRAIN-change",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              }
+            ]
+          },
+          "expected_public_whole_sha256": "104f96f3c09586639c8185c0c894b00ab054cfef7bb0330631c7fa6e802ce545",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/12/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-COUNTEREXAMPLE_ERASED",
@@ -8680,7 +9936,73 @@
           },
           "basis": "文書/保留成功化/元反例削除/製品意味混入claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_corresponding_in_fixture",
+            "failure_owner_candidates": [
+              "LABO",
+              "BRAIN-meaning-owner",
+              null
+            ],
+            "failure_reasons": [
+              "finding_content",
+              "finding_content",
+              "counterexample_claim"
+            ],
+            "failure_owner_routes": [
+              {
+                "kind": "finding_content",
+                "responsibility_role": "original_finding_owner",
+                "original_finding": {
+                  "content": "未評価条件の追加評価",
+                  "identity": "FINDING-P",
+                  "owner": "LABO",
+                  "revision": "finding-r1",
+                  "state": "unfinished",
+                  "target": {
+                    "identity": "CANDIDATE-P",
+                    "revision": "candidate-r2",
+                    "scope": "ADOPTION-SCOPE-P",
+                    "source": "SOURCE-P@source-r1"
+                  }
+                },
+                "recipient": "LABO",
+                "resolution": "raw_owner_value_not_qualification"
+              },
+              {
+                "kind": "finding_content",
+                "responsibility_role": "original_finding_owner",
+                "original_finding": {
+                  "content": "compact contextの適用不能",
+                  "identity": "COUNTEREXAMPLE-P",
+                  "owner": "BRAIN-meaning-owner",
+                  "revision": "counterexample-r1",
+                  "state": "preserved",
+                  "target": {
+                    "identity": "CANDIDATE-P",
+                    "revision": "candidate-r2",
+                    "scope": "ADOPTION-SCOPE-P",
+                    "source": "SOURCE-P@source-r1"
+                  }
+                },
+                "recipient": "BRAIN-meaning-owner",
+                "resolution": "raw_owner_value_not_qualification"
+              },
+              {
+                "kind": "counterexample_claim",
+                "responsibility_role": "BRAIN-meaning-owner",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              }
+            ]
+          },
+          "expected_public_whole_sha256": "6354ac67974b33b0937b77d324a6b642eadc75ce8ccf6030d9c7b729a2682312",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/13/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F03-PRODUCT_MEANING_GENERIC",
@@ -8796,7 +10118,39 @@
           },
           "basis": "文書/保留成功化/元反例削除/製品意味混入claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "product_separation_result": "content_conflict",
+            "failure_owner_candidates": [
+              null,
+              null
+            ],
+            "failure_reasons": [
+              "knowledge_state",
+              "product_separation"
+            ],
+            "failure_owner_routes": [
+              {
+                "kind": "knowledge_state",
+                "responsibility_role": "BRAIN-change",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              },
+              {
+                "kind": "product_separation",
+                "responsibility_role": "BRAIN-meaning-owner",
+                "recipient": null,
+                "resolution": "responsibility_only_no_recipient_source"
+              }
+            ]
+          },
+          "expected_public_whole_sha256": "f3cbfcf83381668673046e9f19d774b7d025b6c8f099afe430ec67397341c036",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F03",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/2/concrete_cases/14/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -8887,7 +10241,32 @@
           },
           "basis": "原選択と独立必要表を照合。020以外の未選択実験成果を待たない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "8a38f8889773157c61cd608e130953a3e5399e0f34facb32d50f6252ad5d46dd",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-ORIGINAL-NEEDED-REFERENCE-REVISION-UNKNOWN",
@@ -8956,7 +10335,32 @@
           },
           "basis": "原必要参照の版未定をnull同士の一致で閉じない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "unknown_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "1de66394f3b7d0216df798e9688531369c819d7e40e78a62d8f8bf61d2b34ac1",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-007-NEEDED-MISSING",
@@ -9025,7 +10429,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "missing",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "3a47a7fcfc58c3b0ec340ca76095752145339d19ce36870dd770e0f8a20fd8b7",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-008-NEEDED-MISSING",
@@ -9094,7 +10523,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "missing",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "da721932b19f24b17911cbb49122f6dd17b3c9bade25c9e581b55eea54e53bbc",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-012-NEEDED-MISSING",
@@ -9163,7 +10617,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "missing",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "9d707d00d3b24032ac36cb0539161f76f16f1f4b5ae8a0d57f549a80218dd6f1",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-LABO-NEEDED-MISSING",
@@ -9232,7 +10711,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "missing",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "f81403467b6bd2ddb8d4dbc3a22b5adfc2c1f1bce5cbab4d60401ab918f41245",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-OS-NEEDED-MISSING",
@@ -9301,7 +10805,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "missing"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "9f780948717ca745a527a7d50cfc30fb4abf3a2d633588bcd9c59f308529400a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-BRAIN-CHANGE-NEEDED-MISSING",
@@ -9370,7 +10899,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "missing",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "505db9d076d10842a930a4b36d30c0383e77864984534cc7e791f552dc1c3c59",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-011-NEEDED-MISSING",
@@ -9439,7 +10993,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "missing",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "398f35c6e18e5d42200dc01d0c28a68e747c0e0f95652fa5a2f99846afc140cf",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/8/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-020-NEEDED-MISSING",
@@ -9508,7 +11087,32 @@
           },
           "basis": "必要参照を参考扱いで欠落させない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "missing",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "ecb3ea0b3a9b026c2e913d7597c052e29b649ed975ba37e118a8484867dfbee4",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/9/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-CORE_ORIGIN-SELECTED",
@@ -9577,7 +11181,32 @@
           },
           "basis": "各選択条件に当該必要参照を結ぶ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "8a38f8889773157c61cd608e130953a3e5399e0f34facb32d50f6252ad5d46dd",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/10/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-CORE_ORIGIN-UNKNOWN",
@@ -9647,7 +11276,31 @@
           },
           "basis": "選択unknownを全不要へ丸めない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "b4c0d004f60d63ebf45b8c297bd8796523ef75c06725e9c4f95bb0145728311a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/11/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-COMPOSITION_CANDIDATE-SELECTED",
@@ -9716,7 +11369,33 @@
           },
           "basis": "各選択条件に当該必要参照を結ぶ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "009": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "b6fab38c28dfebbb02314f46f01855d3dfd72e158e6c8cda2ac1462f7c3c473a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/12/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-COMPOSITION_CANDIDATE-UNKNOWN",
@@ -9786,7 +11465,32 @@
           },
           "basis": "選択unknownを全不要へ丸めない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "c39bc79a2a20b6916b09d363b395da86c361e3b224524bd81b72334fa260f06e",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/13/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-EVALUATION_CONNECTION-SELECTED",
@@ -9855,7 +11559,32 @@
           },
           "basis": "各選択条件に当該必要参照を結ぶ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "8a38f8889773157c61cd608e130953a3e5399e0f34facb32d50f6252ad5d46dd",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/14/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-EVALUATION_CONNECTION-UNKNOWN",
@@ -9925,7 +11654,31 @@
           },
           "basis": "選択unknownを全不要へ丸めない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "ecabb1548c635bf8f89f8853baa3bd96746c9c26e8528bf1a27b80a2916b928c",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/15/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-INFRASTRUCTURE_MATURITY-SELECTED",
@@ -9994,7 +11747,33 @@
           },
           "basis": "各選択条件に当該必要参照を結ぶ。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "INFRA017": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "d37f9b48701408b0ee03df138964246cc89ed809d330d8bf8d52c846722a20ed",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/16/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-INFRASTRUCTURE_MATURITY-UNKNOWN",
@@ -10064,7 +11843,32 @@
           },
           "basis": "選択unknownを全不要へ丸めない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "2b6a498ad9812b2dca307c55f8de3042f2cecb09d830787e5cf967fe8dfea0e3",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/17/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-LABO-INPUT-NOT-SELECTED",
@@ -10133,7 +11937,31 @@
           },
           "basis": "非選択評価接続の未観測を実験全能力完了gateにしない。LABO owner基本参照は保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "aef5a7ca2456303c8f6f7e2b030149528fbde65c07e8ebf9857fc1f22c2388ab",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/18/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-NEEDED_AS_REFERENCE_ONLY",
@@ -10202,7 +12030,32 @@
           },
           "basis": "必要参照参考化/未知全不要/非選択完成gate/単体green全構成claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "missing",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "a7ec8c4d93d13be01a1699a41002a0cee445d54e8fbc4b621d7e20881008081f",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/19/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-UNKNOWN_ALL_UNNEEDED",
@@ -10271,7 +12124,30 @@
           },
           "basis": "必要参照参考化/未知全不要/非選択完成gate/単体green全構成claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "b66da69d2ab93392ef1c3196677d41dda56c19058aa6a78723209b537206f67d",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/20/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-UNSELECTED_EXPERIMENT_COMPLETION_GATE",
@@ -10340,7 +12216,32 @@
           },
           "basis": "必要参照参考化/未知全不要/非選択完成gate/単体green全構成claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "a537bfc26a2264ea110e6effa69a7fe422775674484f09c45f11efba456f111b",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/21/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-UNIT_GREEN_ALL_COMPOSITION",
@@ -10409,7 +12310,32 @@
           },
           "basis": "必要参照参考化/未知全不要/非選択完成gate/単体green全構成claimを拒否。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "none"
+            },
+            "return_owners": {
+              "required_reference_owner": "none"
+            }
+          },
+          "expected_public_whole_sha256": "3d645146c209fde9e19c6176a210b4d033c7e51a31afd13bcc673df6220ffbac",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/22/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-009-SELECTED-NEEDED-MISSING",
@@ -10478,7 +12404,33 @@
           },
           "basis": "条件選択により必要となった009の欠落を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "009": "missing",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "9e70316d0f63a6ef71fa7d8c858e742c7b14d0be83302447fa6bc0ad85214947",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/23/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-009-SELECTED-NEEDED-REVISION-UNKNOWN",
@@ -10547,7 +12499,33 @@
           },
           "basis": "条件選択により必要となった009の原版不明（null一致）を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "009": "unknown_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "541afb12a0bbc3c9d91947a765cad79b17f19dfb06b82b760f18d947c080dd6b",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/24/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-009-SELECTED-NEEDED-REVISION-FOREIGN",
@@ -10616,7 +12594,33 @@
           },
           "basis": "条件選択により必要となった009の提出別版を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "009": "content_conflict",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "6d7f7909583813602fedad92611cd0c7000e36865e2ab20dbc0c0dd5e1c101fe",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/25/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-INFRA017-SELECTED-NEEDED-MISSING",
@@ -10685,7 +12689,33 @@
           },
           "basis": "条件選択により必要となったINFRA017の欠落を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "INFRA017": "missing",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "629126a06946585fde61fe31e5f2e8e664eb7036b5f77d8074c0f20b7a3dbc42",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/26/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-INFRA017-SELECTED-NEEDED-REVISION-UNKNOWN",
@@ -10754,7 +12784,33 @@
           },
           "basis": "条件選択により必要となったINFRA017の原版不明（null一致）を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "INFRA017": "unknown_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "937255fc9a480bbb7b1fee8e8f3eef1b399d259b3a7dd5c0539643e340b4b322",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/27/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-F04-INFRA017-SELECTED-NEEDED-REVISION-FOREIGN",
@@ -10823,7 +12879,33 @@
           },
           "basis": "条件選択により必要となったINFRA017の提出別版を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "reference_content_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "INFRA017": "content_conflict",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture"
+            },
+            "failure_owner_candidates": {
+              "required_reference_owner": "unknown_in_fixture"
+            },
+            "return_owners": {
+              "required_reference_owner": "unknown_in_fixture"
+            }
+          },
+          "expected_public_whole_sha256": "3d77a8dafe5f990b1198fc316241714c0fd55d8660195deca53f62de33e273d0",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-F04",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/3/concrete_cases/28/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -10945,7 +13027,56 @@
           },
           "basis": "伏せたcontext組合せに同内容oracleを適用。原未知/未実行を保持。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [],
+            "no_failure_route_when_content_same_and_claims_false": true
+          },
+          "expected_public_whole_sha256": "089c8e5183030855ef7d901941a94877fee0b98bc910dbf8caea93294edf3988",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-UNSEEN-PRODUCT-MEANING-MIXED",
@@ -11045,7 +13176,65 @@
           },
           "basis": "未公開製品固有要求を汎用構造意味へ混ぜない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_conflict"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "CORE/product-specific meaning source",
+                "trigger_fields": [
+                  "structure_meaning"
+                ],
+                "recipient": null,
+                "resolution": "no_product_core_owner_identity_in_raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "7f5d442d9c8ff926b240cb372442d42531b56a55d0ea36367807b253e984048a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-CANDIDATE_REVISION-FOREIGN",
@@ -11145,7 +13334,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_conflict",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "candidate_revision"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "2ee471b078739cffc79a27796ecfcd579cc985b72790e6fd547caf73b30b5529",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-EVALUATION_TARGET_REVISION-FOREIGN",
@@ -11245,7 +13492,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_conflict"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_conflict",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "evaluation_target_revision"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "e9a8571b007c7d200d87d151e19791c14862588b8e62bf9eb63e05c7f662e4e5",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-SCOPE-FOREIGN",
@@ -11345,7 +13650,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_conflict",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "scope"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "240f81b46baed0d200aff88990d002e76668e722231d95c69ad50ec2544b8d65",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-SOURCE-FOREIGN",
@@ -11445,7 +13808,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_conflict",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "source"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "4746f6f2d31c7ddbeb7af0b017ab4f6380872ebe497ed070c726b98adb2021b3",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-STRUCTURE_MEANING-FOREIGN",
@@ -11545,7 +13966,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_conflict"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "CORE/product-specific meaning source",
+                "trigger_fields": [
+                  "structure_meaning"
+                ],
+                "recipient": null,
+                "resolution": "no_product_core_owner_identity_in_raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "c2b4702af664cf89c27b53a3c478f7d0940eb148fda6fdb41ec6f4977e8a5fb9",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-PRODUCT_SEPARATION-FOREIGN",
@@ -11645,7 +14124,65 @@
           },
           "basis": "fieldは存在しても別版/意味混入/別scopeは一致でない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_conflict",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "product_separation"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "567b80088060b74c690d8c5bb973ea2f84b8e95bcf70815e9bd302b4dd919086",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-FIXTURE_UNIVERSAL",
@@ -11745,7 +14282,65 @@
           },
           "basis": "未見fixtureを普遍性/fieldのみ成功/未知採用/全seed PO Acceptedへ昇格しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "BRAIN change / knowledge-claim responsibility",
+                "trigger_claims": [
+                  "fixture_universal"
+                ],
+                "recipient": null,
+                "resolution": "claim responsibility is named; exact owner identity absent from raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "04c872e5e9afd6d790186977d887c651c4f9e2b43924f5a69cdbc1ba4031b2ed",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/8/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-FIELDS_ONLY_PASS",
@@ -11845,7 +14440,65 @@
           },
           "basis": "未見fixtureを普遍性/fieldのみ成功/未知採用/全seed PO Acceptedへ昇格しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "BRAIN change / knowledge-claim responsibility",
+                "trigger_claims": [
+                  "fields_only_pass"
+                ],
+                "recipient": null,
+                "resolution": "claim responsibility is named; exact owner identity absent from raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "48d3fa3b808a2ebf2d2ef83296a9af9cc2f8af95a4ae6fe57d9d32d0b5378832",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/9/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-UNKNOWN_ADOPTED",
@@ -11945,7 +14598,73 @@
           },
           "basis": "未見fixtureを普遍性/fieldのみ成功/未知採用/全seed PO Acceptedへ昇格しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_conflict",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "未解決（L10列挙のCORE/LABO/OS/BRAINのどれへ結ぶか原rawで未束縛）",
+                "trigger_fields": [
+                  "independent_verification"
+                ],
+                "recipient": null,
+                "resolution": "source_owner_binding_absent"
+              },
+              {
+                "responsibility_role": "BRAIN change / knowledge-claim responsibility",
+                "trigger_claims": [
+                  "unknown_adopted"
+                ],
+                "recipient": null,
+                "resolution": "claim responsibility is named; exact owner identity absent from raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "64e7b4e3dfdbffcce963149786bd40b0559db5fc28291533321d46c237c04d6b",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/10/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-N01-ALL_SEED_ACCEPTED",
@@ -12045,7 +14764,65 @@
           },
           "basis": "未見fixtureを普遍性/fieldのみ成功/未知採用/全seed PO Acceptedへ昇格しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "evaluation_target_binding_results": {
+              "original": "content_corresponding_in_fixture",
+              "submitted": "content_corresponding_in_fixture"
+            },
+            "product_meaning_owner_candidate": "unknown_in_fixture",
+            "compare_original_to_submitted_by_field": {
+              "candidate_identity": "content_corresponding_in_fixture",
+              "candidate_revision": "content_corresponding_in_fixture",
+              "candidate_type": "content_corresponding_in_fixture",
+              "counterexample": "content_corresponding_in_fixture",
+              "evaluation_target_revision": "content_corresponding_in_fixture",
+              "independent_verification": "content_corresponding_in_fixture",
+              "order": "content_corresponding_in_fixture",
+              "product_context": "content_corresponding_in_fixture",
+              "product_separation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "source": "content_corresponding_in_fixture",
+              "structure_meaning": "content_corresponding_in_fixture"
+            },
+            "preserve_original_unseen_content": {
+              "candidate_identity": "UNSEEN-CANDIDATE-R",
+              "candidate_revision": "unseen-candidate-r5",
+              "candidate_type": "unknown",
+              "counterexample": "compact contextでは未評価",
+              "evaluation_target_revision": "unseen-candidate-r5",
+              "independent_verification": "not_executed",
+              "order": [
+                "evaluation",
+                "registration",
+                "independent_verification",
+                "adoption"
+              ],
+              "product_context": "伏せた製品Rのcompact billing画面",
+              "product_separation": "unknown",
+              "scope": "UNSEEN-SCOPE-R",
+              "source": "SOURCE-R@source-r2",
+              "structure_meaning": "navigation到達保持だけの分離候補"
+            },
+            "failure_owner_routes": [
+              {
+                "responsibility_role": "BRAIN change / knowledge-claim responsibility",
+                "trigger_claims": [
+                  "all_seed_accepted"
+                ],
+                "recipient": null,
+                "resolution": "claim responsibility is named; exact owner identity absent from raw"
+              }
+            ],
+            "no_failure_route_when_content_same_and_claims_false": false
+          },
+          "expected_public_whole_sha256": "617e15258eb4008b5d12557f562633d6f6b9982d1cf84139b4a3d838d8f4e7db",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-N01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/4/concrete_cases/11/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -12113,7 +14890,18 @@
           },
           "basis": "意味不変技術差分と限定seed意味採用は実採否/成熟ではない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "13cc64e9653e738cdd605260b5e728453f4ef9ca337597488303e2aeaedb5129",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/0/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-UPSTREAM-MEANING-CHANGE-EXISTING-DECISION",
@@ -12159,7 +14947,18 @@
           },
           "basis": "上流意味変更の必要時だけ既存meaning ownerへ返す。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_true"
+          },
+          "expected_public_whole_sha256": "889255dcc2e6eb3870ede04c1acd700c6696bd01ad06cfee17b0e5fd830a9a36",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/1/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-EVERY_DELTA_HUMAN_APPROVAL",
@@ -12205,7 +15004,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "3dc1dd4acba1fdcbff341b882036bc7ad6ff432cb672ebf7a85d5f633150d023",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/2/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-KNOWLEDGE_ADOPTION_REQUIREMENT_UPDATE",
@@ -12251,7 +15061,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "093fe90d2b8d48aa70cec3eff7ffbc5cc5172a935b8c9919462ae98e238cf348",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/3/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-KNOWLEDGE_ADOPTION_DESIGN_UPDATE",
@@ -12297,7 +15118,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "ec2fc3394214ebeebda8ce649dcca9d3e69c593e6692752d6f1fc88dd2b35237",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/4/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-KNOWLEDGE_ADOPTION_MERGE",
@@ -12343,7 +15175,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "f2667119b827f476453131246b02c9e9bb248f803fb9d0b8829a3d9ce44e1f4a",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/5/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-KNOWLEDGE_ADOPTION_RELEASE",
@@ -12389,7 +15232,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "1cb599207f4df1ece4b6f114c2a00675b6810e435e014f7d2208b2b479b33772",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/6/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         },
         {
           "id": "B025-B01-LIMITED_SEED_RUNTIME_MATURE",
@@ -12435,7 +15289,18 @@
           },
           "basis": "知識採否から直接上流/merge/release/実成熟や毎回人承認を生成しない。",
           "execution_state": "not_executed",
-          "effect": "none"
+          "effect": "none",
+          "expected_additional_material": {
+            "runtime_promotion_consistency": "not_observed_in_fixture",
+            "upstream_flag_kind": "explicit_false"
+          },
+          "expected_public_whole_sha256": "225dfd69c8ca84a8cbe0819eb5c186addd9a669044085d21e181bd0f3aed9711",
+          "additional_expected_basis": {
+            "l4_contract": "HELIXBRAIN-L4-025-B01",
+            "return_contract_pointer": "/responsibility_and_failure_return_contract",
+            "source_raw_pointer": "/verification_obligations/5/concrete_cases/7/independent_source_packet",
+            "meaning": "原raw比較と批准L3/L10の責務から独立固定。L5評価結果から生成しない。"
+          }
         }
       ],
       "execution_state": "not_executed",
@@ -12454,5 +15319,16 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "public_return_contract": {
+    "primary": "各case.expected_materialは原100の責務一覧/内容比較/状態全値を保持する現在の主契約。historicalへ降格しない。",
+    "additional": "expected_additional_materialはL4の別memberとして独立固定した追加所見。primaryとroot集合がdisjointであり、既存rootを上書きしない。",
+    "whole": "expected_materialとexpected_additional_materialの互いに素なobject unionが全公開返却。expected_public_whole_sha256はそのcanonical hash。",
+    "consumer_binding_ref": {
+      "document": "HELIXBRAIN-L4-025",
+      "pointer": "/responsibility_and_failure_return_contract/consumer_binding",
+      "binding": "同一candidate文書。固定旧revisionのsource pinとは別。"
+    },
+    "atomic_pair": "L4/L9の責務表示/失敗所見契約の候補。L5/L8具体化pairとは別に検収する。"
   }
 }
