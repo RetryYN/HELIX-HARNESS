@@ -5704,7 +5704,6 @@
           "original_comparison.scope.task_class",
           "original_comparison.scope.ticket",
           "original_decision",
-          "original_decision.owner",
           "original_decision.priority_ref",
           "original_decision.quality_result",
           "original_decision.scope.contract_revision",
@@ -7060,27 +7059,6 @@
         },
         {
           "when": {
-            "op": "not",
-            "arg": {
-              "op": "json_equal",
-              "left": {
-                "op": "path",
-                "path": "original_decision.owner"
-              },
-              "right": {
-                "op": "literal",
-                "value": "decision-owner"
-              }
-            }
-          },
-          "finding": {
-            "field": "decision.owner",
-            "result": "wrong_owner",
-            "return_owner": "decision-owner"
-          }
-        },
-        {
-          "when": {
             "op": "array_contains",
             "array": {
               "op": "path",
@@ -7253,7 +7231,7 @@
         "comparison_obligation": "comparison_expression",
         "return_projection": "return_expressionを唯一の全返却式として評価し、function_expressionは同function内の指定式だけを参照する。"
       },
-      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。",
+      "qualification_boundary_ja": "fixture内で整合した材料を返すことと、実sourceの資格・実判断・実配置authorityは別であり、後者をこの関数は生成しない。 入力original_decision.ownerは原値のまま保持し、return_ownerの論理宛先名との一致を要件化しない。issuer/ownerの実資格は供給sourceがなく未成立で、owner値から資格を推論しない。",
       "data_finding_deduplication": true,
       "return_expression": {
         "op": "record_project",
@@ -8302,7 +8280,7 @@
   },
   "qualification_and_authority_boundary": "全source/owner/provider/Worker/Bench/quality判断はsynthetic fixture内の値。実source資格、実所有者資格、実性能/Bench評価、proposal送信、OS受領/assignment、SEC permission、dispatch、L11 Accepted、実装Readyを生成しない。",
   "remaining": [
-    "実source資格/issuer/custody/実Bench/実decision/OS受領・割当/SEC許可は未成立。既存の正当なassignment/permissionを本比較から取消さず、actual_effectsは全false。",
+    "実source資格/issuer/custody/実Bench/実decision/OS受領・割当/SEC許可は未成立。既存の正当なassignment/permissionを本比較から取消さず、actual_effectsは全false。 判断recordのowner文字列は入力原値として保持するが、issuer実資格とrecipient/custodyは未供給であり未成立。",
     "F01/F03/N01の同field data/claim診断選択は基本pair content_diagnostic_contract.remaining_claim_diagnostic_limitsの5例を保持。独立診断の全義務閉包ではなく、consumerへ返らない不足result/field/ownerは同sourceへ明示する。",
     "F02のtask根拠の独立locator、F03の各Workerへ独立したBench generation target、全source/owner資格は未供給。performance.ref/bench.refとworker/versionの供給済み原値だけを比較し、名前からparseして未供給refを創作しない。",
     "全入力形/全組合せ/全mutationの意味閉包、正式wire/schema/codec、実装前Red→Green→Refactor/TDD/新CI/実L9L10/PO L11/全92親430対の設計閉包と実装Readyは未成立。L6は関数設計、L7は対関数検証、実装は層外。"
@@ -8665,6 +8643,29 @@
       "reevaluation_inputs": [
         "Bench評価対象Worker/model世代の原値と評価版",
         "同Workerへの独立binding source/qualification"
+      ]
+    },
+    {
+      "function_ref": "INT010-F04",
+      "source_rule": {
+        "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
+        "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
+        "pointer": "/contracts/3"
+      },
+      "available_inputs": [
+        "/original_decision/owner",
+        "/original_decision/state",
+        "/original_decision/scope",
+        "/original_decision/priority_ref",
+        "/original_decision/tolerance_ref"
+      ],
+      "missing_input_role": "判断issuerの独立な資格・委任・source binding。L4はownerをreturn destinationとして示すが、入力ownerの許可値一覧や実資格判定sourceを供給しない。",
+      "witness": "original_decision.owner=\"PO\"を含むL9基底入力では、decision state/scope/priority/toleranceが整合していても、owner文字列だけからissuer資格を評価できない。",
+      "logical_return_owner": "decision-owner",
+      "consumer": "既決判断の実issuer資格を確認する責務。材料比較は資格認定ではない。",
+      "reevaluation_inputs": [
+        "owner/issuer identityの独立source",
+        "当該判断の委任・資格sourceと対象scope/revision"
       ]
     }
   ]
