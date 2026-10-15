@@ -102,7 +102,7 @@
         "basis_refs": "ReferenceSet",
         "validity": "valid | missing | unknown | conflict | stale",
         "value": "kindに対応する下記の閉じたBasis record。任意object/free textを渡さない。",
-        "kind": "boundary_basis | boundary_basis_content_check | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis | recovery_selection_basis"
+        "kind": "boundary_basis | boundary_basis_content_check | declaration_basis | dependency_observation | qualification_basis | reproduction_basis | composition_basis | maturity_basis | recovery_selection_basis | behavior_contract | behavior_contract_content_check"
       },
       "Context": {
         "subject_ref": "Reference",
@@ -727,6 +727,16 @@
         "basis_ref": "Reference（検査対象BoundaryBasisの完全なReference）",
         "check_kind": "owner-qualified-current-boundary-basis-content",
         "checked_value": "BoundaryBasis（basis_refが参照する現在内容との完全なtyped value）"
+      },
+      "BehaviorContract": {
+        "behavior_atom_refs": "ReferenceSet（契約が明示するbehavior atom集合。複数atom可）",
+        "split_invariant_refs": "ReferenceSet（分割で失われる不変条件。空集合も明示）"
+      },
+      "BehaviorContractContentCheck": {
+        "basis_ref": "Reference（対象current BoundaryBasisの完全なReference）",
+        "check_kind": "owner-qualified-current-behavior-contract-content",
+        "contract_ref": "Reference（独立照合対象の単一BehaviorContract sourceの完全なReference）",
+        "checked_value": "BehaviorContract（照合された契約本文。check自身のReference/digestは含めない）"
       }
     },
     "cardinality": "（1以上）等はdomain充足条件であり、tuple自体は空でも型上はtuple。空の必須契約/根拠はdomain finding/incompleteにする。required field自体の欠落はinput_invalid。"
@@ -767,14 +777,14 @@
       },
       "steps": [
         "共通の厳密record/Reference/Context検査を行う。必須field欠落・field型・ReferenceSetの重複key等はinput_invalid、outcome=invalid、value=nullとし、独立に識別できる全findingを返す。ReferenceSetは(identity, revision, owner, scope)をkeyとし、同key異digestと重複keyを拒否する。",
-        "pack_refと完全一致するsubjectのboundary_basis fact、current_basis_refs、およびfact_check_refsを既存Contextから解決する。BoundaryBasisContentCheckは新Context fieldではなく、既存Context.resolved_facts内のkind=boundary_basis_content_checkで渡される閉じたtyped BoundFact valueである。対象checkはsubject_ref全5 fieldがContext.fact_check_refsのmemberで、basis_refsに対象basis Reference全5 fieldがあり、validity=validのrecordに限る。fixture registryや関数外から本文をfetch/decodeせず、渡されたresolved_factsだけを読む。Contextのsubject/revision/scope/owner/current状態をinput宣言で書き換えない。無関係なresolved_facts/current refs/check refsを保持し、F01が使わない根拠をfailureへ昇格しない。",
-        "対象BoundaryBasisをowner-qualified current sourceとして内容照合する。対応するtyped BoundaryBasisContentCheckのvalueは、basis_refが対象basisの全5 field、check_kindがowner-qualified-current-boundary-basis-content、checked_valueがbasis内容全体と一致する場合だけ成立する。fact_check_refsにないrecord、別basisを示すrecord、invalid/missing/unknown/conflict/stale recordは対象根拠に数えない。無関係なcheckは保持するが対象basisの証拠にしない。digest一致やfield存在だけでは意味・authorityを生成しない。対象check欠落または内容未立証はfact_content_unproven/incompleteを/pack_refへ記録し、current source missingはreference_missing/incomplete、unknownはreference_unknown/unknown、既知矛盾はreference_conflict/conflict、旧revisionはreference_stale/staleとする。",
+        "pack_refと完全一致するsubjectのboundary_basis fact、current_basis_refs、およびfact_check_refsを既存Contextから解決する。BoundaryBasisContentCheckは新Context fieldではなく、既存Context.resolved_facts内のkind=boundary_basis_content_checkで渡される閉じたtyped BoundFact valueである。check候補はvalidityを見る前に、subject_refがfact_check_refsへ全5 fieldでmembershipし、basis_refsまたはvalue内targetのいずれかが対象basisを主張するrecordとして列挙する。ここではまだ採否を決めず、各候補の全5 field join、validity（valid/missing/unknown/conflict/stale）、value全体を個別検査して分類する。validだけで事前filterしない。fixture registryや関数外から本文をfetch/decodeせず、渡されたresolved_factsだけを読む。Contextのsubject/revision/scope/owner/current状態をinput宣言で書き換えない。無関係なresolved_facts/current refs/check refsを保持し、F01が使わない根拠をfailureへ昇格しない。 behavior_contract kindではBehaviorUnitBinding.refに全5 fieldで結ぶkind=behavior_contractのBoundFactと、そのrefをcurrent_basis_refsに含むことを解決する。対応するbehavior_contract_content_check BoundFactはresolved_factsから読み、check subject_ref全5 fieldがfact_check_refsにmemberで、basis_refsにtarget basisと元contract sourceの完全Refがあるものを候補として列挙する。fixture_recordsや外部pathから値をfetchしない。inseparable_group kindにはこの契約source/check要件を追加しない。",
+        "対象BoundaryBasisをowner-qualified current sourceとして内容照合する。boundary_basis_content_checkとbehavior_contract_content_checkの候補は、validityによる絞り込み前にtarget basisまたはvalue内targetのいずれかで対象を主張するrecordとして列挙し、完全Ref/validity/value一致を個別確認する。一致checkがあっても同じ対象のvalidな不一致checkを相殺しない。すべてのin-scope反証checkをreference_conflict/conflictとして残す。missing/unknown/stale/conflictは各checkごとに分類し、既存post優先invalid > conflict > stale > unknown > incompleteでaggregateする。対応するtyped BoundaryBasisContentCheckのvalueは、basis_refが対象basisの全5 field、check_kindがowner-qualified-current-boundary-basis-content、checked_valueがbasis内容全体と一致する場合だけ成立する。fact_check_refsにないrecord、別basisを示すrecord、invalid/missing/unknown/conflict/stale recordは対象根拠に数えない。無関係なcheckは保持するが対象basisの証拠にしない。digest一致やfield存在だけでは意味・authorityを生成しない。対象check欠落または内容未立証はfact_content_unproven/incompleteを/pack_refへ記録し、current source missingはreference_missing/incomplete、unknownはreference_unknown/unknown、既知矛盾はreference_conflict/conflict、旧revisionはreference_stale/staleとする。",
         "input.kind_refをBoundaryBasis.kind_owner_binding.kind_refへ全Reference値（identity, revision, owner, scope, content_sha256）でjoinする。owner_kindは同じowner-qualified bindingから読む。sharing_class=sharedでowner_kind=serviceならshared_owner_mismatch/conflictを/kind_refへ記録する。kindが既知の別値ならshared時はshared_owner_mismatch/conflict、local時はboundary_mismatch/conflictを/kind_refへ記録する。kindの意味差は共通Reference integrity findingと重ねない。source/evidence Reference自体のidentity/revision/owner/scope/digest異常は共通reference分類だけにする。identity文字列・kind名・owner名から対応を推測しない。",
         "input.owner_refsをowner_refへ、sharing_classはcurrent basisへ照合する。ownerは一件だけで、consumerをownerとして数えない。owner不一致・二重ownerはowner_conflict/conflict。sharing_classの既知不一致はboundary_mismatch/conflictを/sharing_classへ記録する。consumer_refsはL4がownerと別に要求するinput宣言であり、BoundaryBasisにはconsumer_refs source fieldが定義されていないため、既存ReferenceSet型の妥当性を検査した上でoutputへ同値を保持する。consumer membershipのauthority/qualified/current性をこの関数が新たに証明しない。",
         "各input.inseparable_group_refをBoundaryBasis.inseparable_groupsのgroup_refへ全Reference値で個別joinする。各対応record自身にbehavior_atom_refsとsplit_invariant_refsがある。BehaviorUnitBinding.refが指す単一sourceにも同じ全atom集合とsplit_invariant_refsを明示し、behavior contractならその一契約、inseparable_groupなら同じ一groupへ結ぶ。未解決groupはreference_missing/incomplete、unknown/stale/conflictは共通分類のまま残し、ID一致だけでatom集合や不変条件を補完しない。group同士の重複・overlap・singletonは、それ自体を拒否条件にしない。",
-        "BoundaryBasis.behavior_unitを全体の意味sourceとして確かめる。kind=behavior_contractならrefは一つの契約を指し、その明示atom集合とsplit_invariant_refsが単一契約sourceと一致し、atom集合がBoundaryBasis.behavior_atom_refs全体と完全一致する。kind=inseparable_groupならrefが全Reference一致でちょうど一つのgroup bindingへ結び、そのgroup atom集合とsplit_invariant_refsがbehavior_unitと一致し、atom集合がBoundaryBasis全体と完全一致する。契約数とatom数を同一視しない。独立groupを合併しただけでは単一behaviorまたは不可分全体の根拠にならない。",
+        "BoundaryBasis.behavior_unitを全体の意味sourceとして確かめる。kind=behavior_contractならrefは一つの契約を指す。BehaviorUnitBinding.ref、current_basis_refs、BoundFact.subject_refの全5 fieldをjoinし、BoundFact.valueの閉じたBehaviorContract本文（behavior_atom_refs, split_invariant_refs）を単一契約sourceとして比較する。さらに対応するbehavior_contract_content_checkをresolved_factsから読み、check subject_refはfact_check_refsに全5 fieldでmember、check.basis_refsはtarget basisと原contract Refの双方を全5 fieldで含み、check.value内contract_ref/target basisとchecked_valueの全体をsource・basisと照合する。原contract fact.valueとchecked_valueの既知不一致、またはtargetに結ぶvalid checkの既知不一致はreference_conflict/conflictを/pack_refに記録し、value=nullとする。一致checkは他のin-scope相反checkを消さない。契約sourceまたは照合checkの状態はmissing→reference_missing/incomplete、unknown→reference_unknown/unknown、stale→reference_stale/stale、conflictまたはvalidity=validの既知内容相反→reference_conflict/conflictとして各findingを保持する。対象checkが一件もなく内容未立証の場合はfact_content_unproven/incompleteを/pack_refへ返す。behavior contractのcontent check Refのみfact_check_refsへ結び、原contract Refはcurrent_basis_refsとbehavior_unit.refへ結ぶ。check Refを原source Refとして扱わない。kind=inseparable_groupならrefが全Reference一致でちょうど一つのgroup bindingへ結び、そのgroup atom集合とsplit_invariant_refsがbehavior_unitと一致し、atom集合がBoundaryBasis全体と完全一致する。group branchはcurrent BoundaryBasis内の明示group sourceを使い、新しいbehavior_contract source/check factの有無を追加gateにしない。契約数とatom数を同一視しない。独立groupを合併しただけでは単一behaviorまたは不可分全体の根拠にならない。",
         "input.behavior_atom_refsとowner-confirmed BoundaryBasis.behavior_atom_refsを全Reference集合で双方向比較する。well-formed empty ReferenceSetは型invalidではなくbehavior根拠の意味的欠落としてboundary_mismatch/incompleteを/behavior_atom_refsへ記録する。非emptyの既知集合差とunit atom集合・invariant source間の既知矛盾はboundary_mismatch/conflictとする。sharing mismatchは/sharing_class、kind mismatchは/kind_ref、group association mismatchは/inseparable_group_refsをpointerとする。説明文・フォルダ・関数名・fixture ID・配列順・atom/groupの個数から契約や不可分性を推論しない。",
-        "全findingを既存Finding型の全6 fieldで構成する。subject_refはinput.pack_ref、requirement_refはHARNESS-L3-010-F01、backflow_ownerはHELIX-HARNESS、pointerは変異/欠落を含むinput内JSON Pointerとする。evidence_refsは直接関与する入力Reference、対象current basis Reference、対象typed content-check Referenceのfull Reference集合だけを含める。Context内部の実原因はevidence_refsのbasis/check Referenceから辿る。ReferenceSetは意味上順序を持たない。wire JSON配列はReference全5 fieldのtuple (identity, revision, owner, scope, content_sha256) のUnicode code-point昇順でcanonicalizeする。Finding tupleは(code, pointer, subject_ref.identity, subject_ref.revision, evidence_refsのcanonical tuple列)の辞書順とし、evidence ReferenceSet比較はcanonical集合値として行う。同一の一件をcommon generic分類とF01 semantic codeで二重化しない。",
+        "全findingを既存Finding型の全6 fieldで構成する。subject_refはinput.pack_ref、requirement_refはHARNESS-L3-010-F01、backflow_ownerはHELIX-HARNESS、pointerは変異/欠落を含むinput内JSON Pointerとする。evidence_refsは直接比較したinput Reference、対象current basis Reference、実比較したBehaviorContract source Ref、当該sourceに対応して実比較したin-scope behavior_contract_content_check Ref、および対象basisを実比較したtyped boundary_basis_content_check Refだけのfull Reference集合とする。無関係checkは含めない。Context内部の実原因は含めたbasis/check Referenceから辿る。同じ(identity,revision,owner,scope) keyでdigestの異なるReferenceはReferenceSetへunion・統合・任意選択せず、共通reference_conflictとして入力上のpointerで示し、その衝突するRefはevidence集合から除く。ReferenceSetは意味上順序を持たない。wire JSON配列はReference全5 fieldのtuple (identity, revision, owner, scope, content_sha256) のUnicode code-point昇順でcanonicalizeする。Finding tupleは(code, pointer, subject_ref.identity, subject_ref.revision, evidence_refsのcanonical tuple列)の辞書順とし、evidence ReferenceSet比較はcanonical集合値として行う。同一の一件をcommon generic分類とF01 semantic codeで二重化しない。",
         "valueは既存の4-field outputだけを返す。owner_ref/behavior_atom_refs/boundary_basis_refsは一つのcurrent owner-qualified BoundaryBasisから投影し、consumer_refsは型検査済みのinput宣言値を同値保持する。consumer_refsをBoundaryBasisから読むことも、別sourceや資格gateで意味authorityを補うこともしない。invalid、basis内部矛盾、basis全体をcurrent owner-qualified sourceとして確定できない状態、または必要fieldの一つでも解決不能/矛盾で型を満たせない場合はnull。他の非satisfiedでbasisが内部一貫し、4 field全てが各明示sourceから確定できる場合だけ閉じた部分valueを返す。部分valueはsatisfied/qualified/登録・適格性を意味しない。"
       ],
       "codes": [
@@ -790,16 +800,18 @@
         "source": [
           "input.pack_ref, kind_ref, behavior_atom_refs, owner_refs, consumer_refs, sharing_class, inseparable_group_refs（既存signatureのまま）",
           "Context.current_basis_refs/resolved_facts/fact_check_refsから、pack_refに結ぶowner-qualified current BoundaryBasisと、fact_check_refsにsubject_ref全5 fieldがmemberとして含まれるkind=boundary_basis_content_checkのtyped BoundFactを解決する。入力外body fetch/providerはない。",
-          "BoundaryBasis.behavior_atom_refs, owner_ref, kind_owner_binding, sharing_class, inseparable_groups（各groupのsplit_invariant_refsを含む）, behavior_unit（split_invariant_refsを含む。consumer_refsは含まれない）"
+          "BoundaryBasis.behavior_atom_refs, owner_ref, kind_owner_binding, sharing_class, inseparable_groups（各groupのsplit_invariant_refsを含む）, behavior_unit（split_invariant_refsを含む。consumer_refsは含まれない）",
+          "kind=behavior_contract branch: Context.resolved_factsのkind=behavior_contract source BoundFactとkind=behavior_contract_content_check BoundFact（closed typed values）。原source RefはBehaviorUnitBinding.ref/current_basis_refsへ、check Refのみfact_check_refsへ完全join。fixture recordは試験資料であって関数の隠れた入力ではない。"
         ],
         "joins": {
           "reference_equality": "source identity/currentness/integrityと各joinはReferenceの5 field全体で検査する。keyのみ一致しdigest不一致ならreference_conflict、同じ対象の旧revisionはreference_stale、source/evidence参照のowner/scope/identity矛盾も共通分類にする。候補が見つからないmissing/unknownはその状態を保ち、別revision・別scopeをlatest扱いしない。健全なsource上でkind associationだけが既知の別値ならshared時はshared_owner_mismatch一件、local時はboundary_mismatch一件とし、generic reference_conflictを重ねない。source/evidence Reference自体の異常は共通reference分類だけにする。",
           "kind": "input.kind_ref = BoundaryBasis.kind_owner_binding.kind_ref（全field）。shared kind差はshared_owner_mismatch、local kind差はboundary_mismatch。owner_kindは同bindingの値。",
           "groups": "入力group refごとに1件のgroup bindingへ完全一致し、そのrecordに明示atomsetとsplit_invariant_refsがある。singleton/overlapそれ自体は拒否しない。",
           "whole_unit": "単一BehaviorUnitBindingが全atomsetとsplit_invariant_refsを明示する。group kindでは同一full Reference groupが全atomset/invariant setを持つ。複数group unionだけで全体性を作らない。",
-          "content_check": "Context.resolved_facts内のkind=boundary_basis_content_check BoundFactだけを候補とし、validity=valid、subject_ref全5 fieldがContext.fact_check_refsのmember、basis_refsにtarget basis全5 fieldを含む場合だけ対応checkとする。そのvalueのbasis_ref/check_kind/checked_value全体を対象current basisへ比較する。fact_check_refs外や別basisのcheckは保持するが対象証拠に使わない。関数外fetch/providerを仮定しない。"
+          "content_check": "Context.resolved_facts内のkind=boundary_basis_content_check BoundFactを、validityを見る前に候補化する。subject_refがContext.fact_check_refsへ全5 fieldでmembershipし、basis_refsまたはvalue.basis_refのいずれかがtarget basisを主張するrecordを全件候補として列挙し、validityによる事前filterはしない。各候補についてbasis_refs・subject_ref・value内targetのfull Reference joinとvalidity（valid/missing/unknown/conflict/stale）を個別に検査し、checked_valueとtarget basis全体を比較する。validity=validの既知不一致はreference_conflict/conflictとし、一致checkで相殺しない。missing/unknown/stale/conflictもそれぞれreference_missing/incomplete、reference_unknown/unknown、reference_stale/stale、reference_conflict/conflictとして全findingに残し、post優先invalid > conflict > stale > unknown > incompleteでoutcomeを選ぶ。fact_check_refs外またはtargetを一切主張しない別basis checkは保持するが対象証拠に使わない。関数外fetch/providerを仮定しない。",
+          "behavior_contract": "behavior_unit.kind=behavior_contractの場合に限る。source BoundFact.kind=behavior_contract、validity/valueのclosed membersを要求し、subject_refはbehavior_unit.ref/current_basis_refsに全5 field一致。content check BoundFact.kind=behavior_contract_content_checkは候補をtarget basisまたはvalue targetのいずれかによるassociation claimで先に列挙し、subject_refがfact_check_refsに全5 field membership、basis_refsがtarget basisと原source Refをfull Referenceで含むこと、value.basis_ref/contract_ref/check_kind/checked_valueをsourceとtargetへ全体比較する。validity、current revision/scope/owner、known value mismatchは候補ごとに検査し、valid mismatchをreference_conflict /pack_refとして保持。一致checkは他のin-scope mismatchを相殺しない。missing→reference_missing/incomplete、unknown→reference_unknown/unknown、stale→reference_stale/stale、conflictまたはvalidity=validの既知相反→reference_conflict/conflictを全findingとして保持し、post優先invalid > conflict > stale > unknown > incompleteでoutcome選択。対象checkなしはfact_content_unproven/incomplete。unrelated checkは対象evidenceに加えない."
         },
-        "result": "Findingは全6 fieldを閉じ、pointerはinput JSON Pointer、backflow_owner=HELIX-HARNESS、evidence_refsは直接関与するinput refs/current basis/current typed check refs。ReferenceSetのwire配列はReference全5 field tupleのUnicode code-point昇順、semantic比較は集合として行う。Findingは(code,pointer,subject identity,revision,canonical evidence tuple列)で辞書順。tupleは共通sort順とevidence tie-break。owner_ref/behavior_atom_refs/boundary_basis_refsは一致した一つのcurrent basis、consumer_refsは型検査済みinput.consumer_refsから投影。invalid/内部矛盾/必要出力未解決はnull。非satisfiedでもbasis一貫かつ4 field確定時だけ部分value。登録/適格性/実行は宣言しない。"
+        "result": "Finding.evidence_refsは直接比較したinput Reference、対象current basis Reference、実比較したBehaviorContract source Ref、当該sourceに対応して実比較したin-scope behavior_contract_content_check Ref、および対象basisを実比較したtyped boundary_basis_content_check Refだけのfull Reference集合。無関係checkは含めない。同じ(identity,revision,owner,scope) keyでdigestの異なるReferenceはReferenceSetへunion・統合・任意選択せず、共通reference_conflictとして入力pointerで示し、その衝突Refはevidence集合から除く。ReferenceSetのwire配列はReference全5 field tupleのUnicode code-point昇順、semantic比較は集合として行う。Findingは(code,pointer,subject identity,revision,canonical evidence tuple列)で辞書順。tupleは共通sort順とevidence tie-break。owner_ref/behavior_atom_refs/boundary_basis_refsは一致した一つのcurrent basis、consumer_refsは型検査済みinput.consumer_refsから投影。invalid/内部矛盾/必要出力未解決はnull。非satisfiedでもbasis一貫かつ4 field確定時だけ部分value。登録/適格性/実行は宣言しない。"
       }
     },
     {
@@ -3693,23 +3705,28 @@
     }
   },
   "boundary_basis_type_impact": {
-    "current_definition": "/type_contract/type_model/BoundaryBasisと追加record型が唯一の現行closed BoundaryBasis shape。",
-    "producer_boundary": "本設計に実producer/codec/登録器は定義しない。F01の既存Context.resolved_facts引数がowner-qualified current BoundaryBasisとtyped boundary_basis_content_checkを受け取る契約だけを定義する。本文fetch/providerは追加せず、provider未実装を欠陥とは数えない。",
+    "current_definition": "/type_contract/type_model/BoundaryBasisと追加record型が唯一の現行closed BoundaryBasis・BehaviorContract shape。BehaviorContract source/check kindはF01 behavior_contract branchだけのContext-resolved typed fact。",
+    "producer_boundary": "本設計に実producer/codec/登録器は定義しない。F01の既存Context.resolved_facts引数がowner-qualified current BoundaryBasis、typed boundary_basis_content_check、behavior_contract branchのtyped BehaviorContract source/content-checkを受け取る契約だけを定義する。本文fetch/providerは追加せず、provider未実装を欠陥とは数えない。",
     "consumer_inventory": [
       {
         "path": "/functions/0",
         "id": "HARNESS-L5-010-F01",
-        "change": "既存Context.resolved_factsに新しい閉じたboundary_basis_content_check BoundFact kindを読み、fact_check_refsのfull Reference membershipとbasis_refsを検査する。公開input/output signatureは不変。"
+        "change": "既存Context.resolved_factsのclosed kindを拡張。全てのF01呼出しでBoundaryBasis/check、behavior_contract branchのみBehaviorContract source/content-checkをfull Reference joinで読み、inseparable_group branchでは新契約factを必須化しない。公開input/output signatureは不変。"
       },
       {
         "path": "/cases/0",
         "id": "HARNESS-L8-010-F01",
-        "change": "14完全callのarguments.context.resolved_factsへtyped check factを載せる。unrelated-only例ではAのcheck factが存在してもfact_check_refs外なら対象証拠にならない。原9例とpositive/negative oracleは保持。"
+        "change": "14既存完全callのtyped Contextと期待を訂正し、2つのR2完全反例を追補。元positive_input/expected_observation/negative_mutationsは保持。contract source/check fixture bytesとContext factsを明示し、hidden fetchを仮定しない。"
       },
       {
         "path": "/extra_cases/7",
         "id": "HARNESS-L8-010-X08",
         "change": "F01外。関数/path名からbehavior atomを推測しない既存負例を保持し、本kindによる意味変更なし。"
+      },
+      {
+        "path": "/functions/1-2",
+        "id": "HARNESS-L5-010-F02/F03",
+        "change": "新kindをtarget factとして消費しない。既存関数意味を維持し、unrelated resolved_factsは保持する。"
       },
       {
         "path": "/functions/3/recovery_call_contract",
@@ -3725,15 +3742,13 @@
         "change": "現行consumerではなく同じ175e5528固定の歴史snapshot。値/hash不変。"
       }
     ],
-    "owner_kind_migration": "BoundaryBasis.kind_owner_binding内のowner_kindをF01だけがcurrent typed basisから読む既存設計を維持。新content-check BoundFact kindは既存Context.resolved_factsでcheck値を渡す型追加で、F01だけが消費する。F04はrecovery_selection_basisだけを読む。検索した現行詳細pair内に他のtyped BoundaryBasis consumerは見つからない。L5/L8 F04引用はimmutable歴史bytesとして保存。",
+    "owner_kind_migration": "BoundaryBasis.kind_owner_binding内のowner_kindをF01だけがcurrent typed basisから読む既存設計を維持。新BehaviorContract/BehaviorContractContentCheck BoundFact kindsは既存Context.resolved_factsの閉型拡張で、F01 behavior_contract branchだけが消費する。F02/F03/F04は新kindをtarget factsとして扱わず、F04はrecovery_selection_basisだけを読む。検索した現行詳細pair内に他のtyped BehaviorContract consumerは見つからない。L5/L8 F04引用はimmutable歴史bytesとして保存。",
     "not_in_scope": [
       "公開function signature/output変更",
       "wire JSON Schema、codec、provider、body-fetch port",
       "実装・runtime・qualification/authority gate",
       "新Context field",
-      "content-check本文fetch/provider/port",
-      "公開function signature/output変更",
-      "実装・runtime・qualification/authority gate"
+      "content-check本文fetch/provider/port"
     ]
   }
 }
