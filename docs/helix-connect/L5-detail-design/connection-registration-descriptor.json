@@ -547,7 +547,7 @@
         "10. claim boolean trueはrejected、falseはnone。effectは全てfalseで、登録/送信許可/transport/業務承認/authority/implementation readiness/acceptanceを生成しない。"
       ],
       "finite_input_domain": {
-        "original_common_unfinished_obligations": "原memberはDescriptorのJsonValue carrierを保持する。arrayは既知collection、absent/null/非arrayはcollection未解決（投影null・比較unknown・候補held）として返す。原declaration全体null等の外側record型外は本変更に含めない。",
+        "original_common_unfinished_obligations": "原memberはDescriptorのJsonValue carrierを保持する。arrayは既知collection、absent/null/非arrayはcollection未解決（投影null・比較unknown・候補held）として返す。原descriptor全体null等のDescriptorPacketのrecord型外は本変更に含めない。",
         "submitted_common_unfinished_obligations": "提出側もJsonValue/absenceのまま保持。原arrayなら通常のmissing/null/型内容差比較、原未解決ならunknown優先で、提出値から原collectionを生成しない。"
       }
     }
@@ -797,14 +797,27 @@
     "source_rederivation": {
       "keep": "原unknownは双方null一致でも保留し、元未完を消去せず、同接続の原rawと既知他fieldを保持する既存L4/L3/L10の意味。原81raw/wholeと既存他branchは保持。",
       "change": "retained_unfinished_obligationsをListだけからList|nullへ拡張し、原absent/null/非arrayのcollection未解決を表示する。原absentを[]へ投影する旧未観測枝もnullへ訂正し、既知空arrayと分ける。",
-      "reason": "原null/非arrayは広いDescriptor JsonValueで表せるのに旧有限preconditionで返却が未定義だった。原absentの旧[]表示は入力raw/field unknownで不足を別表示していたが、collection自身の既知空と未解決を区別できない。List|nullと既存比較state/候補を結んで、未完0件という成功補完を避ける。要求の変更/新authority gateではない。"
+      "reason": "原null/非arrayは広いDescriptor JsonValueで表せるのに旧有限preconditionで返却が未定義だった。原absentの旧[]表示は入力raw/field unknownで不足を別表示していたが、collection自身の既知空と未解決を区別できない。List|nullと既存比較state/候補を結んで、未完0件という成功補完を避ける。要求の変更/新authority gateではない。",
+      "legacy_basis": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "line_range": [
+          41,
+          57
+        ],
+        "selected_lines_sha256": "fcee7a502821376a85ced4c9850dbc8f97ee283d7c3a3b311c7cd92d147a5d4d",
+        "preserve": "不明versionやclassificationを通過/暗黙付与へ変えず、原source・owner・責務を分離する。",
+        "change": "旧broker/DB/権限処理は移植せず、原未完collectionの不明と既知空を異なる論理返却として保持する。"
+      }
     },
     "ordered_rules": [
       {
         "original_presence": "present_value",
         "original_shape": "array",
-        "projection": "原arrayをdeep immutable値としてそのまま保持",
-        "field_comparison": "既存ordinary comparisonの原値/提出presence/型内容比較。原arrayが空でも同じ。"
+        "projection": "原arrayを変更しないJSON値としてそのまま保持",
+        "field_comparison": "既存の通常比較の原値/提出presence/型内容比較。原arrayが空でも同じ。"
       },
       {
         "original_presence": "absent | present_null | present_value(non-array)",
@@ -814,12 +827,12 @@
         "raw_retention": "retained_descriptorのmember有無/原値を保持し、提出値から復元しない。"
       }
     ],
-    "priority": "原collection形の不足を普通のJSON双方等値より先に判定する。原arrayの場合だけ既存ordinary field比較へ進む。別field/claimの所見は独立に保持し、collectionのunknownで既知他fieldを消さない。",
-    "caller_consumer": "callerは原/提出descriptorを別memberのまま渡す。consumerはprojection nullとfield_results unknown/candidate heldを一緒に読み、原値はretained_descriptorへ辿る。配列が不明でも他fieldと適用/理由/claimの全返却は構成する。",
+    "priority": "原collection形の不足を通常のJSON双方等値より先に判定する。原arrayの場合だけ既存通常field比較へ進む。別field/claimの所見は独立に保持し、collectionのunknownで既知他fieldを消さない。",
+    "caller_consumer": "callerは原/提出descriptorを別memberのまま渡す。consumerは投影nullとfield_resultsのunknownおよび候補heldを一緒に読み、原値はretained_descriptorへ辿る。配列が不明でも他fieldと適用/理由/claimの全返却は構成する。",
     "limits": [
       "配列要素のJsonValue原値は保持するが、未完義務要素の実意味/資格を審査する方式は追加しない。",
-      "原declaration全体nullはRegistrationPacketのRecord型外。raw→typed caller型外返却/戻し先は別途未結線。",
-      "原sourceの実資格/共通pack参照の実resolver/実recipient/登録receipt/通信/実L9L10/L11/codec/TDD/CI/Readyは未成立。"
+      "原descriptor全体null等はDescriptorPacketのrecord型外。raw→typed caller型外返却/戻し先は別途未結線。",
+      "原sourceとownerの実資格、共通pack参照の実解決、登録証跡、通信および利用者受入の成立は本契約から導かない。"
     ]
   }
 }
