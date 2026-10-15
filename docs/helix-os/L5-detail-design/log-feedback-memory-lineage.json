@@ -1,0 +1,3824 @@
+{
+  "status": "draft_logical_contracts_pending_independent_review",
+  "parent": "HELIXOS-L2-007",
+  "document_id": "HELIXOS-L5-007",
+  "layer": "L5-detail-design",
+  "pair": "HELIXOS-L5-007/HELIXOS-L8-007",
+  "source_main": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+  "approved_content_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+  "approval_record": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "scope": {
+    "requirements": [
+      "HELIXOS-L3-007-F01",
+      "HELIXOS-L3-007-F02",
+      "HELIXOS-L3-007-F03"
+    ],
+    "oracles": [
+      "HELIXOS-L10-007-F01",
+      "HELIXOS-L10-007-F02",
+      "HELIXOS-L10-007-F03"
+    ],
+    "source_l4l9_parent": "HELIXOS-L2-007",
+    "limitation": "10/12の限定前提入力に対する純粋な文書材料照合。007へのversion_target追加なし。実記録、正式schema/codec、実owner資格、実authority、実operationを成立させない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-007-F01",
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "1280924b0fb382037a9ed220690c8f4a42eb4ca16fcf799e698b6987b7f376a8",
+      "object": {
+        "id": "HELIXOS-L3-007-F01",
+        "parent": "HELIXOS-L2-007",
+        "title": "共通ログと証拠の参照",
+        "obligation": "Worker・判断・操作・検証の原ログと証拠をConcept BASE-01の共通形式で保存し、対象project/要求revisionとsourceへ結ぶ。欠落/重複/staleと、共通形式不足で他機構へ結べない記録を成功証拠から分ける。",
+        "oracle_ref": "HELIXOS-L10-007-F01"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-007-F02",
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "da41491c76069e7f9e9b4cc8236e61876d9a16cc5612df5660c1712da4890f6b",
+      "object": {
+        "id": "HELIXOS-L3-007-F02",
+        "parent": "HELIXOS-L2-007",
+        "title": "feedbackの受領と解決",
+        "obligation": "feedbackのintake/classify/ack/pending/resolutionを別に記録し、未ack findingと元source HEADを保持する。受領や分類だけを解決にせず、projection/通知の消費で原findingを失わない。",
+        "oracle_ref": "HELIXOS-L10-007-F02"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-007-F03",
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "b552be84b7a2d4d24c9f02e4ef23e032cc0142e8068b4c291098676116ad453e",
+      "object": {
+        "id": "HELIXOS-L3-007-F03",
+        "parent": "HELIXOS-L2-007",
+        "title": "memoryの責務正本への反映",
+        "obligation": "memory内容を該当責務の正本へ反映してからretireし、古い指示・期限切れ・消費済み指示を再提示しない。provider memoryを要求や継続状態の正本にせず、反映元/反映先revision・retire/利用状態を辿る。",
+        "oracle_ref": "HELIXOS-L10-007-F03"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-007-F01",
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "203cbed0ca82e72f71656eeeae1ff879b65c77a2ef1e8dff64c3b4202c3372ec",
+      "object": {
+        "id": "HELIXOS-L10-007-F01",
+        "parent": "HELIXOS-L2-007",
+        "title": "共通ログと証拠の参照",
+        "requirement_ref": "HELIXOS-L3-007-F01",
+        "positive_input": "四種の記録と共通形式が不足する記録を同scopeへ入力する。",
+        "expected_observation": "出典/revisionと共通項目を辿れ、不完全な記録と成功証拠を区別する。",
+        "negative_input": "件数だけ、別HEADの証拠、欠落形式の黙示補完、重複を追加成功。",
+        "failure_observation": "不足形式・参照・発生元と未完を保持し、証拠の存在で承認/完了にしない。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-007-F02",
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "9dbc63edaa89b34be2895c049b2cd024df2aae3b728c64df4b3ba1fde71a6647",
+      "object": {
+        "id": "HELIXOS-L10-007-F02",
+        "parent": "HELIXOS-L2-007",
+        "title": "feedbackの受領と解決",
+        "requirement_ref": "HELIXOS-L3-007-F02",
+        "positive_input": "未ack/ack済未解決/解決根拠ありのfindingを再構築する。",
+        "expected_observation": "段階・source HEAD・解決根拠と未完が区別される。",
+        "negative_input": "未ack finding削除、prose handoverだけで解決、source HEAD不一致、重複配送で二重利用。",
+        "failure_observation": "元findingとsource不一致/未解決を残し、受領を解決へ昇格しない。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-007-F03",
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "canonical_sha256": "8cc71ef206f587746aaebee8ea9b79046c2006c187f00f1b7bd16aa797220c06",
+      "object": {
+        "id": "HELIXOS-L10-007-F03",
+        "parent": "HELIXOS-L2-007",
+        "title": "memoryの責務正本への反映",
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "positive_input": "未反映memory、反映済retire、期限切れ/消費済みの記録を比較する。",
+        "expected_observation": "反映とretireの順序が確認でき、未反映内容を消失させず古い指示をactive再表示しない。",
+        "negative_input": "未反映のretire、二重deliver/consume、terminal receiptのactive表示、memoryだけから正本判断。",
+        "failure_observation": "未反映義務や二重利用を示し、正本反映/retire/再提示の不成立を別に保持する。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3e",
+      "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
+      "role": "approval decision record; reviewed_content_head is 7f1719fb6a89837c1bb9775faa9a634a066df4a3; its YAML status is preserved as recorded"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "whole_sha256": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
+      "role": "approved requirement source"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "whole_sha256": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec",
+      "role": "approved verification source"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "whole_sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
+      "role": "basic design source; parent pair bytes"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "whole_sha256": "7eecd8271c19881b84a2b4c7e72117283fdab7ff88cb2f6674cbbd570222ad62",
+      "role": "integration verification source; fixed raw and expected material"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "role": "current parent requirement text"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "whole_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "role": "current acceptance text"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+      "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "whole_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+      "role": "historical feedback lifecycle design; reference only, never execute"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "whole_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "role": "legacy asset ledger"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
+      "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
+      "role": "actual-main-admission-merge-record-blob"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederive",
+    "preserve": "原feedback/source HEAD、未ack finding、intake/classify/ack/pending/resolutionの区別、正本反映後retire、expired/consumedの非再提示と一回利用の論理区別。",
+    "change": "旧provider memory DB、schema、runtime、固定TTLや旧CLIを採用せず、承認OS007の共通ログと責務正本参照へ再導出する。",
+    "reason": "旧assetはHistorical/unresolvedであり、現承認は記録/照合の限定意味を定める。旧実装・テストを現行動作の根拠にしない。",
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-F6E9EA3422A0EF1DF090",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+        "evidence": "L4/L9 source pinが旧L6関数設計を本文参照として固定。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-2AA90DD2EF4E6B48184E",
+        "path": "archive/legacy-generation-2026-09-14/root/src/policy/feedback-lifecycle.ts",
+        "evidence": "旧asset台帳のsource参照。コードは読取資料に限り実行しない。"
+      }
+    ],
+    "consumer_boundary": "旧feedbackのgeneration/alias/終端保持、JSONL/DB projection、delivery/consume/expiry/compaction/recoveryはこの論理比較の外に残す。旧24h/7day TTL、人間ACK、provider runtimeの条件を採用しない。",
+    "source_evidence": [
+      {
+        "asset_id": "LEGACY-ASSET-F6E9EA3422A0EF1DF090",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "selected_line_quotes": [
+          {
+            "line": 19,
+            "text": "`findings` / `quality_signals` / `feedback_events`のsource事実は削除・改変しない。lifecycleのdata SSoTは",
+            "utf8_sha256": "e9986cd0eaae115a902e5aa1716e6ee4997fbb8b80abb57ef42b97cd1a87e0f7"
+          },
+          {
+            "line": 20,
+            "text": "`.helix/logs/feedback-lifecycle.jsonl`、harness.dbの`feedback_lifecycle`は再構築可能なprojectionとする。",
+            "utf8_sha256": "f4539fcfe28d5be4a936ecf910846dbb7f8a4eb1c92363db5b3b16e91c67acec"
+          },
+          {
+            "line": 112,
+            "text": "| lifecycle journal | `reconcileFeedbackLifecycle(sources, mode, deps) => ReconcileResult` | source identity、scan completeness、operation intentを検証済み | 必要な遷移だけをappendし、同intent replayは追記0 | terminal generationを同世代の再投影でopenへ戻さない | `U-FLIFE-001..005` |",
+            "utf8_sha256": "c9251a22552c61dd3616c42f9a239b4f7ca5eace35f2469b7bd1aab203971c84"
+          },
+          {
+            "line": 113,
+            "text": "| lifecycle surface | `selectFeedbackWithLifecycle(sources, lifecycle, sessionId, budget) => FeedbackSurface` | sourceとjournalをcanonical aliasへ正規化可能 | lifecycle filter、dedupe、hidden理由を同時に返す | damaged時も未解決sourceを隠さない | `U-FLIFE-006..010` |",
+            "utf8_sha256": "0c2ed740ab2498bbd6b0886ee2bd7e2830f3e98443dd85783bfd45d6bbe51314"
+          },
+          {
+            "line": 114,
+            "text": "| promotion nudge | `memoryPromotionNudge(events) => PromotionNudgeResult` | session eventは有効行だけを入力 | 条件一致時だけdeterministic nudgeを最大1件返す | body、diff、secretを読まずStopをblockしない | `U-FLIFE-011..012` |",
+            "utf8_sha256": "cdccb55d0241f7e7c12722546de5315f941ef5c88e6478357d24e2e428dcf184"
+          },
+          {
+            "line": 200,
+            "text": "| FLIFE-S1 | strict event envelope/UTC/versionと全許可・禁止遷移を検証。破損行は対象を隠さずdiagnostic |",
+            "utf8_sha256": "0d57cc7a9b45e140e2c1dbbb0a6ceeaa6d090d350a2909ce9bb68282fd4c0729"
+          },
+          {
+            "line": 201,
+            "text": "| FLIFE-S2 | 同operation replayは追記ゼロ、異intent衝突は拒否。2 process terminal競合も1event |",
+            "utf8_sha256": "11ed2eb2225f97004dc9ed5d7ac25ded38bf30be66ba70fc1bfc5f8825b956c2"
+          },
+          {
+            "line": 202,
+            "text": "| FLIFE-S3 | journal成功/DB projection失敗・commit不明をoperationId再読とrebuildで回復 |",
+            "utf8_sha256": "3fcd79f58382f68c4814897d6df7da0d0fffeaee7aac799fb872657f7cf1df42"
+          },
+          {
+            "line": 203,
+            "text": "| FLIFE-S4 | same generation terminalは再投影でopen復活しない |",
+            "utf8_sha256": "424886479edd79a2be5afc065ea4973d86628a3df16e749acafe30013cd0da8b"
+          },
+          {
+            "line": 204,
+            "text": "| FLIFE-S5 | authoritative inactive→activeだけgeneration+1。同一active再投影/payload driftはfirstSeen/TTL不変、旧generation操作は新世代を隠さない |",
+            "utf8_sha256": "1944d52d34ca381fe3a7b07e84d014e80a8fcb32d9d715e6a5233b47b3920886"
+          },
+          {
+            "line": 205,
+            "text": "| FLIFE-S6 | telemetryだけ24h-1ms/一致/+1ms境界でauto-ackし、gate/actionable/future clockは対象外 |",
+            "utf8_sha256": "a12081a9f557c4485e937960cd6780a6fed0ec1dd81c2178973c0b595fd077ae"
+          },
+          {
+            "line": 206,
+            "text": "| FLIFE-S7 | findings/quality_signals直読とfeedback_events経路が同じlifecycle left join/filterを通る |",
+            "utf8_sha256": "0f734c53d3141698cf2caac38d46d32642c262c8022763c2e93ac37569543eb0"
+          },
+          {
+            "line": 207,
+            "text": "| FLIFE-S8 | lifecycle unavailable/破損時は未解決を隠さずruntime fail-open、mutationはfail-close |",
+            "utf8_sha256": "5adf991b9a14769a7ebc556f237c2e941adb9bdf971f257e9a08998ebc7d808b"
+          },
+          {
+            "line": 208,
+            "text": "| FLIFE-S9 | source横断dedupeでseverityを落とさずacked/TTL/dedupe/cap別breadcrumbを返す |",
+            "utf8_sha256": "97bc51437b98e95310b981674c6a9a7a6c20f29a7a454d024ae871656d5b2f5f"
+          },
+          {
+            "line": 209,
+            "text": "| FLIFE-S10 | surface receiptは同一sessionだけ抑止し、未ack actionableは次sessionで再表示 |",
+            "utf8_sha256": "708dcc227710b1f901c695add581a9f58699709246cc6f716d86ed572be43d3f"
+          },
+          {
+            "line": 210,
+            "text": "| FLIFE-S11 | commit/plan_switch成功かつmemory_write成功なしでnudge 1件。並行Stop/retry/破損行でもfail-open |",
+            "utf8_sha256": "ba86dd0ca5383ef3f42d11fa88fcc14cf1308b06a1a0fba0d04940e4dd330c06"
+          },
+          {
+            "line": 211,
+            "text": "| FLIFE-S12 | lifecycle/nudgeにbody/diff/secret/PIIを保存せず、状態・hidden理由・damaged metricsを出す |",
+            "utf8_sha256": "abedee7accf4a2c3edef2117250501702251f731d28bf4da83d14e30c3782568"
+          },
+          {
+            "line": 212,
+            "text": "| FLIFE-S13 | group-firstで多数refを束ねても、receiptは全refへ記録する。batchはlock/journal read/lifecycle resolveを各1回に抑え、同一session replayは追記0、次sessionでは再表示する |",
+            "utf8_sha256": "0e36d03c060508adcf7f4ebe832e3aec17b3e6f7138f925f7fac0093972f7b9a"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-2AA90DD2EF4E6B48184E",
+        "path": "archive/legacy-generation-2026-09-14/root/src/policy/feedback-lifecycle.ts",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "use": "参照に限る。旧runtimeは実行せず、このpairの現在動作根拠として再利用しない。",
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_sha256": "21f6e629a628229d67318888894628ab4bf8d8f97f2cfb4dd80c41219794e6a2"
+      }
+    ],
+    "parent_requirement": "HELIXOS-L2-007",
+    "pair": [
+      "HELIXOS-L5-007",
+      "HELIXOS-L8-007"
+    ],
+    "replacement": [
+      "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+      "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
+    ],
+    "consumer_switch": "旧runtimeのconsumerを切り替えず、現OS007の素材比較・未完保持の関数契約へ意味だけを再導出する。実consumer/codecの切替は未成立。"
+  },
+  "logical_types": {
+    "JsonValue": "null | boolean | number | string | array<JsonValue> | object<string,JsonValue>",
+    "StringValue": "JSON string, including empty string; rules that require non-empty string state that predicate explicitly",
+    "BooleanValue": "JSON boolean only; number 0/1 is not boolean",
+    "PositiveInteger": "JSON integer > 0 and not boolean",
+    "NonNegativeInteger": "JSON integer >= 0 and not boolean",
+    "LogRecord": "ObjectValue with exactly common_fields plus kind, state, success_evidence_claim; field values are JsonValue and checked by the rule predicates.",
+    "LogSet": "ObjectValue with exactly finite_domains.log_names; every member has the LogRecord shape.",
+    "FindingRecord": "JsonValue retained exactly; feedback_fields are read only when the value is an object.",
+    "StageRecord": "ObjectValue with exactly recorded plus stage_fields; values remain JsonValue and are checked under R01/R05.",
+    "FeedbackRecord": "object with original_finding, stages, resolution_origin, resolved_claim, discard_original_claim, projection values retained as JsonValue",
+    "MemorySourceRecord": "object with source and associated state/reflection/count values retained as JsonValue",
+    "EvidenceInput": "EvidencePacket {logs:LogSet, feedback:FeedbackSet, memory:MemorySet, whole_completion_claim:JsonValue, context:ContextPacket}.",
+    "ObjectValue": "JSON object with string keys; member values remain JsonValue and are never coerced.",
+    "FeedbackItem": "ObjectValue {original_finding:JsonValue, stages:StageSet, resolution_origin:JsonValue, resolved_claim:JsonValue, discard_original_claim:JsonValue, projection:JsonValue}.",
+    "FeedbackSet": "ObjectValue with exactly finite_domains.feedback_names; every member has the FeedbackItem shape.",
+    "MemorySource": "ObjectValue with exactly memory_fields; values remain JsonValue.",
+    "Reflection": "ObjectValue with exactly recorded, order, and reflection_fields; values remain JsonValue and are checked under R08/R09.",
+    "MemoryItem": "ObjectValue with exactly source, state, freshness, reflection, retire_order, active_instruction_present, deliver_success_count, consume_success_count, provider_authority_claim.",
+    "MemorySet": "ObjectValue with exactly pending_reflection, retired, expired, consumed; each value MemoryItem.",
+    "FacetStatus": "enum corresponding | unknown | violation.",
+    "Finding": "ObjectValue {code:string, pointer:string, return_owner:string}; unique and sort fields are declared by formal_program.assembly.",
+    "LogAssessment": "ObjectValue {facet_status:FacetStatus, items:LogMaterialMap, findings:array<Finding>, findings_by_item:FindingMap}.",
+    "FeedbackAssessment": "ObjectValue {facet_status:FacetStatus, items:FeedbackMaterialMap, findings:array<Finding>, findings_by_item:Object<FeedbackName,array<Finding>>}.",
+    "MemoryAssessment": "ObjectValue {facet_status:FacetStatus, items:MemoryMaterialMap, findings:array<Finding>, findings_by_item:Object<MemoryName,array<Finding>>}.",
+    "EvidenceAssessment": "ObjectValue whose exact keys are algorithm.output_contract; each producer map and finding array is checked through formal_program.shape_definitions."
+  },
+  "finite_domains": {
+    "log_names": [
+      "worker",
+      "decision",
+      "operation",
+      "verification"
+    ],
+    "feedback_names": [
+      "unacked",
+      "acked_pending",
+      "resolved"
+    ],
+    "memory_names": [
+      "pending_reflection",
+      "retired",
+      "expired",
+      "consumed"
+    ],
+    "common_fields": [
+      "project_id",
+      "requirement_id",
+      "requirement_revision",
+      "scope",
+      "record_id",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "actor_ref",
+      "observed_at_ref",
+      "configuration_revision",
+      "capability_revision",
+      "model_revision",
+      "causal_id",
+      "episode_ref",
+      "schema_revision",
+      "action_ref",
+      "result_ref"
+    ],
+    "feedback_fields": [
+      "finding_id",
+      "project_id",
+      "requirement_revision",
+      "scope",
+      "source_head",
+      "source_ref",
+      "source_digest"
+    ],
+    "stages": [
+      "intake",
+      "classify",
+      "ack",
+      "pending",
+      "resolution"
+    ],
+    "stage_fields": [
+      "record_ref",
+      "source_head",
+      "actor_ref",
+      "observed_at_ref"
+    ],
+    "memory_fields": [
+      "entry_id",
+      "project_id",
+      "requirement_revision",
+      "scope",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "responsibility_ref",
+      "original_content_ref",
+      "episode_ref"
+    ],
+    "reflection_fields": [
+      "reflection_ref",
+      "source_entry_id",
+      "source_revision",
+      "source_digest",
+      "target_canonical_ref",
+      "target_revision",
+      "target_content_digest",
+      "responsibility_ref",
+      "episode_ref"
+    ],
+    "log_states": [
+      "current_material",
+      "duplicate_material",
+      "stale_material",
+      "unobserved"
+    ],
+    "resolution_origins": [
+      "canonical_resolution_source",
+      "ack",
+      "classification",
+      "prose",
+      "notification",
+      "memory"
+    ],
+    "memory_states": [
+      "active",
+      "retired",
+      "expired",
+      "consumed"
+    ],
+    "memory_freshness": [
+      "current_material",
+      "stale_material"
+    ],
+    "owner_by_facet": {
+      "logs": "common-log-owner",
+      "feedback": "feedback-source-owner",
+      "memory": "memory-canonical-owner",
+      "boundary": "management-authority-owner"
+    },
+    "diagnostic_codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_kind_unknown",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_kind_conflict",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_state_unknown",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_state_conflict",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_duplicate",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_stale",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_success_claim_forbidden",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "boolean_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "boolean_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "finding_missing",
+        "facet": "feedback",
+        "disposition": "unknown"
+      },
+      {
+        "code": "original_finding_changed",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "stage_unrecorded_ref_present",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "resolution_origin_unknown",
+        "facet": "feedback",
+        "disposition": "unknown"
+      },
+      {
+        "code": "resolution_origin_forbidden",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "unresolved_claimed_resolved",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "memory_state_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "memory_state_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "memory_freshness_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "memory_freshness_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "reflection_unrecorded_ref_present",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "retire_before_reflection",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "terminal_instruction_resurfaced",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "use_count_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "use_count_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "duplicate_successful_use",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "provider_memory_authority_forbidden",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "whole_completion_forbidden",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "whole_claim_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "finding_discard_forbidden",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "order_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "order_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "reflection_not_before_retire",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "retirement_basis_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "consume_without_delivery",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "use_state_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "id": "assess_log_material",
+      "signature": "assess_log_material(actual_logs: LogSet, context_logs: LogSet) -> LogAssessment",
+      "reads": [
+        "actual_logs.{worker,decision,operation,verification} all common_fields, kind, state, success_evidence_claim",
+        "context_logs same paths",
+        "L5 finite_domains and rule clauses R01-R03"
+      ],
+      "returns": [
+        "facet_status",
+        "items[worker,decision,operation,verification].usable",
+        "findings",
+        "findings_by_item[worker,decision,operation,verification]"
+      ],
+      "preconditions": "sourceの意味対応や資格を事前仮定しない。非objectや欠落memberは宣言型が許す箇所だけ原JsonValueとして扱い、任意root shapeはこの有限入力域に含めない。",
+      "input_projection": {
+        "actual_logs": "EvidenceInput.logs",
+        "context_logs": "EvidenceInput.context.logs"
+      },
+      "formal_program_ref": "/formal_program/functions/assess_log_material"
+    },
+    {
+      "id": "assess_feedback_material",
+      "signature": "assess_feedback_material(actual_feedback: FeedbackSet, context_feedback: FeedbackSet) -> FeedbackAssessment",
+      "reads": [
+        "actual/context feedback unacked, acked_pending, resolved: original_finding, stages.{intake,classify,ack,pending,resolution}, resolution_origin, resolved_claim, discard_original_claim",
+        "L5 finite_domains and rule clauses R01,R04-R07"
+      ],
+      "returns": [
+        "facet_status",
+        "items[unacked,acked_pending,resolved]",
+        "findings",
+        "findings_by_item[unacked,acked_pending,resolved]"
+      ],
+      "preconditions": "原sourceやfixtureの資格を仮定せず、findingの材料対応と解決証拠を区別する。",
+      "input_projection": {
+        "actual_feedback": "EvidenceInput.feedback",
+        "context_feedback": "EvidenceInput.context.feedback"
+      },
+      "formal_program_ref": "/formal_program/functions/assess_feedback_material"
+    },
+    {
+      "id": "assess_memory_material",
+      "signature": "assess_memory_material(actual_memory: MemorySet, context_memory: MemorySet) -> MemoryAssessment",
+      "reads": [
+        "actual/context memory pending_reflection, retired, expired, consumed: source, state, freshness, reflection, retire_order, active_instruction_present, deliver_success_count, consume_success_count, provider_authority_claim",
+        "L5 finite_domains and rule clauses R01,R08-R11"
+      ],
+      "returns": [
+        "facet_status",
+        "items[pending_reflection,retired,expired,consumed]",
+        "findings",
+        "findings_by_item[pending_reflection,retired,expired,consumed]"
+      ],
+      "preconditions": "順序と回数は合成論理値であり、実時刻・custody・配信/消費receipt・authorityの証明ではない。",
+      "input_projection": {
+        "actual_memory": "EvidenceInput.memory",
+        "context_memory": "EvidenceInput.context.memory"
+      },
+      "formal_program_ref": "/formal_program/functions/assess_memory_material"
+    },
+    {
+      "id": "assemble_evidence_record",
+      "signature": "assemble_evidence_record(logs: LogAssessment, feedback: FeedbackAssessment, memory: MemoryAssessment, whole_completion_claim: JsonValue) -> EvidenceAssessment",
+      "reads": [
+        "three assessment outputs",
+        "whole_completion_claim",
+        "R12 precedence and retention rules"
+      ],
+      "returns": [
+        "all output roots declared in output_contract"
+      ],
+      "preconditions": "比較projectionを返す。操作や証拠承認の完了を生成しない。",
+      "input_projection": {
+        "logs": "result(assess_log_material)",
+        "feedback": "result(assess_feedback_material)",
+        "memory": "result(assess_memory_material)",
+        "whole_completion_claim": "EvidenceInput.whole_completion_claim"
+      },
+      "formal_program_ref": "/formal_program/assembly/output_expression"
+    }
+  ],
+  "algorithm": {
+    "ordered_rules": [
+      {
+        "rule_id": "R01",
+        "source_pointer": "/diagnostic_contract/rules/0",
+        "source_value": "共通string比較はactual/context各々が非空stringかを検査する。片側不明は各pointerにfield_unknown、両側knownで相違はactual pointerにfield_conflict。bool比較はtypeがboolでなければ各pointerにboolean_unknown、両側boolで相違ならactual pointerにboolean_conflict。比較codeは呼出元のlogs/feedback/memory facetに入れる。"
+      },
+      {
+        "rule_id": "R02",
+        "source_pointer": "/diagnostic_contract/rules/1",
+        "source_value": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、未知はlog_kind_unknown、fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesで未知は両側log_state_unknown、known差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale、actual unobservedはlog_state_unknown。原recordを捨てない。"
+      },
+      {
+        "rule_id": "R03",
+        "source_pointer": "/diagnostic_contract/rules/2",
+        "source_value": "actual log success_evidence_claim=trueはlog_success_claim_forbidden、非boolはboolean_unknown。log_material_usableはactual state=current_materialかつ当該logでfindingが0のときだけtrue（他log faultとは独立）。これは材料対応で正式成功ではない。"
+      },
+      {
+        "rule_id": "R04",
+        "source_pointer": "/diagnostic_contract/rules/3",
+        "source_value": "feedback original_findingがdictでなければ各側finding_missing。両側dictでcanonical JSON wholeが違えばactual original_finding_changed。その場合もfeedback_fieldsをR01で比較する。discard_original_claim=trueはfinding_discard_forbidden、非boolはboolean_unknown。actual未知でもreference原記録を別枠で保持し、補完してactual既知にしない。"
+      },
+      {
+        "rule_id": "R05",
+        "source_pointer": "/diagnostic_contract/rules/4",
+        "source_value": "全feedback stagesのrecordedをR01 bool比較する。各側recorded=falseでstage_fieldsに非nullがあればstage_unrecorded_ref_present（stage whole pointer）。片側でもrecorded=trueなら全stage_fieldsをstring比較し、actual stage.source_headをcontext original_finding.source_headへjoinする（context findingがdictのとき）。両側未記録なら未来receiptを必須にしない。"
+      },
+      {
+        "rule_id": "R06",
+        "source_pointer": "/diagnostic_contract/rules/5",
+        "source_value": "actual resolution.recorded=trueのときだけresolution_originを評価する。origins未知は各側resolution_origin_unknown、known actual/context差はactual field_conflict。actual known originがcanonical_resolution_source以外ならresolution_origin_forbidden。resolved_claim非boolはboolean_unknown。trueなのにresolution未記録または当該findingで任意findingがあればunresolved_claimed_resolved。通知/projection表示値は判定に使わない。"
+      },
+      {
+        "rule_id": "R07",
+        "source_pointer": "/diagnostic_contract/rules/6",
+        "source_value": "feedback_materialはactual stages recorded全値を保持。resolution_material_correspondingはactual resolution.recorded=true、origin=canonical_resolution_source、当該findingのfinding=0のときtrue。actual_resolvedは常にfalse。元finding、stage source、ACK未解決、解決根拠を別に保持する。"
+      },
+      {
+        "rule_id": "R08",
+        "source_pointer": "/diagnostic_contract/rules/7",
+        "source_value": "memory source各memory_fieldsをR01 string比較。state/freshnessは各closed集合で未知を両側memory_state_unknown/memory_freshness_unknown、known差はactual memory_state_conflict/memory_freshness_conflict。reflection.recordedはR01 bool比較。各側recorded=falseでreflection_fieldsまたはorderに非nullがあればreflection_unrecorded_ref_present。片側でもrecorded=trueならreflection_fieldsを比較し、actual source_entry_id/source_revision/source_digest/responsibility_ref/episode_refをcontext sourceのentry_id/source_revision/source_digest/responsibility_ref/episode_refへjoinする。"
+      },
+      {
+        "rule_id": "R09",
+        "source_pointer": "/diagnostic_contract/rules/8",
+        "source_value": "順序値はboolを含めず正のint。片側でもreflection.recorded=trueならreflection.orderの両側を検査し不明/0/負はorder_unknown、両側正int差はactual order_conflict。actual state=retiredの場合に限り（context側だけretiredでも以下のretire検査は実行しない）、actual reflection.recorded=falseをretire_before_reflection、bool true以外をretirement_basis_unknown。同じactual state=retiredの条件下でretire_orderの両側を正int検査し不明はorder_unknown、両側正int差はactual order_conflict。同じactual state=retiredの条件下でactual reflection.recorded=trueかつactual両orderが正intでreflection.order>=retire_orderならreflection_not_before_retire。順序成立は実writer実行ではない。"
+      },
+      {
+        "rule_id": "R10",
+        "source_pointer": "/diagnostic_contract/rules/9",
+        "source_value": "actual active_instruction_present非boolはboolean_unknown。trueでstate!=activeまたはfreshness!=current_materialならterminal_instruction_resurfaced。deliver/consume_success_countは各側boolを除く非負int、未知はuse_count_unknown、known差はactual use_count_conflict、actual>1はduplicate_successful_use。actual両count knownでconsume>deliverならconsume_without_delivery。actual consume knownで(activeかつconsume>0)または(consumedかつconsume=0)ならuse_state_conflict。actual provider_authority_claim=trueはprovider_memory_authority_forbidden、非boolはboolean_unknown。"
+      },
+      {
+        "rule_id": "R11",
+        "source_pointer": "/diagnostic_contract/rules/10",
+        "source_value": "memory_materialはactual state/freshness/reflection.recordedを保持。active_material_eligibleはactual active/current_materialかつ当該entryでfinding=0のみtrue。actual_retired/delivered/consumedは常にfalse。他entryのfaultで材料対応を取り消さない。"
+      },
+      {
+        "rule_id": "R12",
+        "source_pointer": "/diagnostic_contract/rules/11",
+        "source_value": "whole_completion_claim=trueはwhole_completion_forbidden、false以外はwhole_claim_unknown。facetと全体はviolation>unknown>corresponding。conditionはrecord_material_*。findingはcode/pointer/return_ownerで重複除去して同3field辞書順。return_ownerはowner_by_facetを使う。retained_actual_records(logs/feedback/memory)とretained_reference_records(context)を別々にdeepcopy保持。actual flags/whole_management_completeは全false、operation_effect none。"
+      }
+    ],
+    "output_contract": {
+      "condition": {
+        "type": "enum",
+        "values": [
+          "record_material_corresponding",
+          "record_material_unknown",
+          "record_material_violation"
+        ],
+        "rule": "facetの優先はviolation > unknown > corresponding。"
+      },
+      "facet_correspondence": {
+        "type": "record",
+        "fields": {
+          "logs": {
+            "type": "enum",
+            "values": [
+              "corresponding",
+              "unknown",
+              "violation"
+            ]
+          },
+          "feedback": {
+            "type": "enum",
+            "values": [
+              "corresponding",
+              "unknown",
+              "violation"
+            ]
+          },
+          "memory": {
+            "type": "enum",
+            "values": [
+              "corresponding",
+              "unknown",
+              "violation"
+            ]
+          },
+          "boundary": {
+            "type": "enum",
+            "values": [
+              "corresponding",
+              "unknown",
+              "violation"
+            ]
+          }
+        }
+      },
+      "log_material_usable": {
+        "type": "record",
+        "keys": [
+          "worker",
+          "decision",
+          "operation",
+          "verification"
+        ],
+        "value_type": "boolean",
+        "rule": "各log単独でactual state=current_materialかつ当該log findingsなし"
+      },
+      "feedback_material": {
+        "type": "record",
+        "keys": [
+          "unacked",
+          "acked_pending",
+          "resolved"
+        ],
+        "fields": {
+          "stage_recorded": {
+            "type": "record",
+            "keys": [
+              "intake",
+              "classify",
+              "ack",
+              "pending",
+              "resolution"
+            ],
+            "value_type": "boolean"
+          },
+          "resolution_material_corresponding": "boolean",
+          "actual_resolved": {
+            "type": "boolean",
+            "constant": false
+          }
+        }
+      },
+      "memory_material": {
+        "type": "record",
+        "keys": [
+          "pending_reflection",
+          "retired",
+          "expired",
+          "consumed"
+        ],
+        "fields": {
+          "state": "JsonValue copied from actual state",
+          "freshness": "JsonValue copied from actual freshness",
+          "reflection_recorded": "boolean",
+          "active_material_eligible": "boolean",
+          "actual_retired": {
+            "type": "boolean",
+            "constant": false
+          },
+          "actual_delivered": {
+            "type": "boolean",
+            "constant": false
+          },
+          "actual_consumed": {
+            "type": "boolean",
+            "constant": false
+          }
+        }
+      },
+      "retained_actual_records": {
+        "type": "record",
+        "fields": {
+          "logs": "actual.logs whole JSON value",
+          "feedback": "actual.feedback whole JSON value",
+          "memory": "actual.memory whole JSON value"
+        }
+      },
+      "retained_reference_records": {
+        "type": "record",
+        "fields": {
+          "logs": "context.logs whole JSON value",
+          "feedback": "context.feedback whole JSON value",
+          "memory": "context.memory whole JSON value"
+        }
+      },
+      "findings": {
+        "type": "array",
+        "item": {
+          "type": "record",
+          "fields": {
+            "code": "string from diagnostic_contract.codes",
+            "pointer": "JSON pointer string",
+            "return_owner": "owner_by_facet value"
+          }
+        },
+        "order": "R12: 重複排除後、(code,pointer,return_owner) のJSON文字列昇順。個々のrule生成順を成功扱いへ反映しない。"
+      },
+      "whole_management_complete": {
+        "type": "boolean",
+        "constant": false
+      },
+      "operation_effect": {
+        "type": "enum",
+        "values": [
+          "none"
+        ],
+        "constant": "none"
+      },
+      "actual_log_written": {
+        "type": "boolean",
+        "constant": false,
+        "meaning": "原log材料の保持は実保存を意味しない。"
+      },
+      "actual_feedback_resolved": {
+        "type": "boolean",
+        "constant": false,
+        "meaning": "source由来のresolved claimを物理的/運用上の解決完了へ昇格しない。"
+      },
+      "actual_memory_retired": {
+        "type": "boolean",
+        "constant": false,
+        "meaning": "reflection記録との対応は実retire operationを証明しない。"
+      }
+    },
+    "top_level_precedence": [
+      "violation",
+      "unknown",
+      "corresponding"
+    ],
+    "unknown_and_null": "null/unknownは元規則がfieldごとに定める。任意文字列をunknownへ、nullをAbsentへ変換せず、actual/contextの原値を型変換せず保持する。",
+    "object_comparison": "original_findingの比較はJSON型を区別したwhole等値。object member順を無視し、array順を保持する。",
+    "output_ownership": "owner名はL4の論理責務候補であり、人や組織の資格や操作認可を証明しない。",
+    "composition": [
+      {
+        "ordinal": 1,
+        "function": "assess_log_material",
+        "inputs": [
+          "EvidenceInput.actual.logs",
+          "EvidenceInput.context.logs"
+        ],
+        "result": "LogAssessment"
+      },
+      {
+        "ordinal": 2,
+        "function": "assess_feedback_material",
+        "inputs": [
+          "EvidenceInput.actual.feedback",
+          "EvidenceInput.context.feedback"
+        ],
+        "result": "FeedbackAssessment"
+      },
+      {
+        "ordinal": 3,
+        "function": "assess_memory_material",
+        "inputs": [
+          "EvidenceInput.actual.memory",
+          "EvidenceInput.context.memory"
+        ],
+        "result": "MemoryAssessment"
+      },
+      {
+        "ordinal": 4,
+        "function": "assemble_evidence_record",
+        "inputs": [
+          "LogAssessment",
+          "FeedbackAssessment",
+          "MemoryAssessment",
+          "EvidenceInput.actual.whole_completion_claim"
+        ],
+        "result": "EvidenceAssessment"
+      }
+    ],
+    "rule_source": {
+      "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "contract_rules_pointer": "/diagnostic_contract/rules",
+      "contracts_pointer": "/contracts",
+      "interpretation": "本L5はL4のR01-R12をルール根拠として値を写さず評価する。L4の文章規則を超える成功条件を追加しない。"
+    },
+    "projection": [
+      {
+        "output_pointer": "/facet_correspondence/logs",
+        "from": "LogAssessment.facet_status"
+      },
+      {
+        "output_pointer": "/facet_correspondence/feedback",
+        "from": "FeedbackAssessment.facet_status"
+      },
+      {
+        "output_pointer": "/facet_correspondence/memory",
+        "from": "MemoryAssessment.facet_status"
+      },
+      {
+        "output_pointer": "/facet_correspondence/boundary",
+        "rule": "whole_completion_claim が true なら whole_completion_forbidden により violation、false なら corresponding、それ以外は whole_claim_unknown により unknown。"
+      },
+      {
+        "output_pointer": "/condition",
+        "rule": "四facet statusのうち violation があれば record_material_violation、なければ unknown があれば record_material_unknown、それ以外 record_material_corresponding。"
+      },
+      {
+        "output_pointer": "/log_material_usable",
+        "from": "LogAssessment.usable_by_kind"
+      },
+      {
+        "output_pointer": "/feedback_material",
+        "from": "FeedbackAssessment.feedback_material"
+      },
+      {
+        "output_pointer": "/memory_material",
+        "from": "MemoryAssessment.memory_material"
+      },
+      {
+        "output_pointer": "/retained_actual_records",
+        "rule": "各評価結果の retained_actual を logs/feedback/memory のキーで保持する。"
+      },
+      {
+        "output_pointer": "/retained_reference_records",
+        "rule": "各評価結果の retained_reference を logs/feedback/memory のキーで保持する。"
+      },
+      {
+        "output_pointer": "/findings",
+        "rule": "三facetのfindingsとboundary findingを連結し、(code,pointer,return_owner)重複を除去後辞書順に整列する。"
+      },
+      {
+        "output_pointer": "/whole_management_complete",
+        "value": false
+      },
+      {
+        "output_pointer": "/operation_effect",
+        "value": "none"
+      },
+      {
+        "output_pointer": "/actual_log_written",
+        "value": false
+      },
+      {
+        "output_pointer": "/actual_feedback_resolved",
+        "value": false
+      },
+      {
+        "output_pointer": "/actual_memory_retired",
+        "value": false
+      }
+    ],
+    "algorithm_limits": [
+      "型域外rootの一般validationは未定義。",
+      "この純関数はログ材料の対応/欠落/矛盾を評価し、正式成功・承認・operation effectを作らない。",
+      "L4 R05は両stage未記録時に将来receiptを要求しない。L4 R09のactual state=retired条件などsource上の限定枝を保持する。"
+    ]
+  },
+  "unclosed_obligations": [
+    "BASE-01正式共通schema/codec・任意event集合/alias/generation/replay・部分journal破損の一般域。",
+    "実actor/capability/model/time/source資格、source custody、実記録保存。",
+    "feedback resolutionの十分条件・正式finding型・独立meaning/verification ownerによる判定。",
+    "memory target実体同一性・耐久成功・実順序証拠・expiry/fence/takeover/compaction/recovery・data-use/secret取扱い。",
+    "OS015/016/019/053とHARNESS共通意味へのowner-qualified exact binding、実証、L10/L11。"
+  ],
+  "limitations": "有限fixtureで定義した文書比較論理のみ。実資格・正式codec/schema・authority・実処理・実検証成立は未達。",
+  "formal_program": {
+    "language": "HELIX-PURE-RULE-TABLE/1",
+    "source": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules",
+    "generic_operator_contracts": [
+      {
+        "op": "path",
+        "meaning": "指定rootから文字列key pathを読み、欠落はAbsentを返す。"
+      },
+      {
+        "op": "equal",
+        "meaning": "JSON型を区別したwhole値を比較する。object key順を無視し、array順を保持する。"
+      },
+      {
+        "op": "has_json_type",
+        "meaning": "値のJSON型を検査する。Absent/nullはJSON primitive/container型ではない。"
+      },
+      {
+        "op": "member_of",
+        "meaning": "値がdomain配列のmemberとJSON型を区別して一致するか判定する。"
+      },
+      {
+        "op": "compare_fields",
+        "meaning": "fields_refを順に読み、predicate_definitionsで定義するpredicate不成立側だけunknown_codeを各side pointerへ追加。双方成立かつ異値ならconflict_codeを設定sideへ追加。"
+      },
+      {
+        "op": "validate_domain_both",
+        "meaning": "left/rightそれぞれがdomain_refに無い/Absentならunknown_codeを当該pointerへ追加。"
+      },
+      {
+        "op": "compare_known_values",
+        "meaning": "双方がdomain_refのmemberであり異値ならconflict_codeを設定pointer sideへ追加。"
+      },
+      {
+        "op": "emit_if",
+        "meaning": "conditionがJSON trueの場合だけfindingを追加。"
+      },
+      {
+        "op": "for_each",
+        "meaning": "参照された配列の各値へas変数を束縛しstepsを順に実行。"
+      },
+      {
+        "op": "unique_sort_findings",
+        "meaning": "(code,pointer,return_owner)完全重複を除き3文字列tuple昇順。"
+      },
+      {
+        "op": "validate_equals_iteration_key",
+        "meaning": "各sideが許容domainの値でiteration keyと異なる場合、そのsideのpointerへ指定診断を追加する。"
+      },
+      {
+        "op": "unrecorded_nonnull_fields",
+        "meaning": "recordedが厳密falseのsideについて、指定fieldsの値がAbsentでもnullでもなければrecord whole pointerへ診断を追加し、先頭の該当fieldで停止する。"
+      },
+      {
+        "op": "compare_whole_if_both_objects",
+        "meaning": "双方がobjectならJSON whole値を比較し、不一致時に指定side pointerへ診断を追加する。"
+      },
+      {
+        "op": "compare_fields_if_both_objects",
+        "meaning": "双方がobjectの場合だけ、指定field順にpredicate_definitionsに従うpredicate付き比較を行う。"
+      },
+      {
+        "op": "compare_fields_when_either_true",
+        "meaning": "記録flagのどちらかが厳密trueなら指定field順にpredicate_definitionsに従う比較を行う。"
+      },
+      {
+        "op": "compare_join_when_either_true",
+        "meaning": "記録flagのどちらかが厳密trueで、右側parentがobjectならpredicate_definitionsに従う指定field joinを比較する。"
+      },
+      {
+        "op": "if_path_equals",
+        "meaning": "path値がJSON型を区別したequals値と一致するときstepsを順に実行する。"
+      },
+      {
+        "op": "compare_field_when_left_recorded",
+        "meaning": "左recordedが厳密trueなら、field変数をdeclared join mapで右fieldへ写しpredicate_definitionsに従って比較する。"
+      },
+      {
+        "op": "order_checks",
+        "meaning": "operandで指定されたpredicate_definitions/code/state/recorded literal/comparison_definitionsだけを使う。reflection recordedがどちらかtrigger値ならreflection order双方を検査し、一致時はactual orderを基準に比較する。actual stateがretired literalのときだけretire flag/order規則を適用する。"
+      },
+      {
+        "op": "emit_count_relation",
+        "meaning": "両値がpredicate_definitions.nonnegative_integerを満たし、comparison_definitionsのrelationで比較条件を満たす場合にleft pointerへ診断を追加する。"
+      },
+      {
+        "op": "emit_use_state_conflict",
+        "meaning": "operandで指定されたstate literalとconsume条件が一致するときstate pointerへ診断を追加する。"
+      },
+      {
+        "op": "literal",
+        "meaning": "宣言されたJSON literal値を返す。"
+      },
+      {
+        "op": "all",
+        "meaning": "全operandが厳密trueのときtrueを返す。"
+      },
+      {
+        "op": "any",
+        "meaning": "operandの少なくとも一つが厳密trueのときtrueを返す。"
+      },
+      {
+        "op": "not",
+        "meaning": "operandが厳密trueでないときtrueを返す。"
+      },
+      {
+        "op": "item_prior_findings_empty",
+        "meaning": "現在のitem findings配列が空のときtrueを返す。"
+      },
+      {
+        "op": "prior_findings_nonempty",
+        "meaning": "現在のitem findings配列が空でないときtrueを返す。"
+      },
+      {
+        "op": "object",
+        "meaning": "宣言field expressionからJSON objectを構築する。"
+      },
+      {
+        "op": "copy",
+        "meaning": "value expressionのJSON wholeを複製する。"
+      },
+      {
+        "op": "concat",
+        "meaning": "arraysをoperand順に連結する。"
+      },
+      {
+        "op": "project_items",
+        "meaning": "宣言domain順にsource objectから各itemの指定fieldを抽出したobjectを構築する。"
+      },
+      {
+        "op": "status_from_values",
+        "meaning": "配列statusをpriority順でまとめ、最初の存在するstatusを返す。空配列の場合はassembly.empty_diagnostic_dispositionを返す。"
+      },
+      {
+        "op": "status_to_condition",
+        "meaning": "statusを宣言mappingでcondition literalへ写す。"
+      },
+      {
+        "op": "project_result_items",
+        "meaning": "関数結果のitems objectから宣言domain順に指定fieldだけを取り出してobjectを返す。"
+      },
+      {
+        "op": "get_result",
+        "meaning": "既に実行したfunction結果の宣言fieldを読み、欠落fieldはAbsentにする。"
+      },
+      {
+        "op": "validate_object_both",
+        "meaning": "left/right各root値がobjectでなければ、そのsideのpointerへ診断を追加する。"
+      }
+    ],
+    "predicate_definitions": {
+      "nonempty_string": {
+        "json_type": "string",
+        "condition": "string_length_greater_than",
+        "threshold": 0
+      },
+      "boolean": {
+        "json_type": "boolean",
+        "condition": "json_type_only"
+      },
+      "positive_integer": {
+        "json_type": "number",
+        "condition": "integer_token_greater_than",
+        "threshold": 0,
+        "boolean_is_excluded": true
+      },
+      "nonnegative_integer": {
+        "json_type": "number",
+        "condition": "integer_token_greater_than_or_equal",
+        "threshold": 0,
+        "boolean_is_excluded": true
+      }
+    },
+    "comparison_definitions": {
+      "greater_than": "left_numeric_value_greater_than_right_numeric_value",
+      "greater_than_or_equal": "left_numeric_value_greater_than_or_equal_right_numeric_value",
+      "not_equal": "json_whole_values_not_equal"
+    },
+    "constants": {
+      "log_duplicate_state": [
+        "duplicate_material"
+      ],
+      "log_stale_state": [
+        "stale_material"
+      ],
+      "count_gt_one": [
+        1
+      ],
+      "facet_statuses": [
+        "corresponding",
+        "unknown",
+        "violation"
+      ]
+    },
+    "finite_domains": {
+      "reflection_fields_plus_order": [
+        "reflection_ref",
+        "source_entry_id",
+        "source_revision",
+        "source_digest",
+        "target_canonical_ref",
+        "target_revision",
+        "target_content_digest",
+        "responsibility_ref",
+        "episode_ref",
+        "order"
+      ],
+      "reflection_join_fields": [
+        "source_entry_id",
+        "source_revision",
+        "source_digest",
+        "responsibility_ref",
+        "episode_ref"
+      ],
+      "reflection_join_field_map": {
+        "source_entry_id": "entry_id",
+        "source_revision": "source_revision",
+        "source_digest": "source_digest",
+        "responsibility_ref": "responsibility_ref",
+        "episode_ref": "episode_ref"
+      },
+      "deliver_consume_count_fields": [
+        "deliver_success_count",
+        "consume_success_count"
+      ],
+      "singletons": {
+        "recorded": [
+          "recorded"
+        ],
+        "reflection_recorded": [
+          "recorded"
+        ],
+        "deliver_consume_counts": [
+          "deliver_success_count",
+          "consume_success_count"
+        ]
+      }
+    },
+    "functions": {
+      "assess_log_material": {
+        "collection": "log_names",
+        "actual_path": [
+          "logs",
+          {
+            "var": "item"
+          }
+        ],
+        "context_path": [
+          "context",
+          "logs",
+          {
+            "var": "item"
+          }
+        ],
+        "steps": [
+          {
+            "op": "compare_fields",
+            "fields_ref": "/finite_domains/common_fields",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "predicate": "nonempty_string",
+            "unknown_code": "field_unknown",
+            "conflict_code": "field_conflict",
+            "conflict_side": "left",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "validate_domain_both",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "domain_ref": "/finite_domains/log_names",
+            "unknown_code": "log_kind_unknown",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "compare_known_values",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "domain_ref": "/finite_domains/log_names",
+            "conflict_code": "field_conflict",
+            "conflict_side": "left",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "validate_equals_iteration_key",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "kind"
+              ]
+            },
+            "iteration_var": "item",
+            "domain_ref": "/finite_domains/log_names",
+            "code": "log_kind_conflict",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "validate_domain_both",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "state"
+              ]
+            },
+            "domain_ref": "/finite_domains/log_states",
+            "unknown_code": "log_state_unknown",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "compare_known_values",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "state"
+              ]
+            },
+            "domain_ref": "/finite_domains/log_states",
+            "conflict_code": "log_state_conflict",
+            "conflict_side": "left",
+            "owner_facet": "logs"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "member_of",
+              "value": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "state"
+                ]
+              },
+              "domain_ref": "/formal_program/constants/log_duplicate_state"
+            },
+            "code": "log_duplicate",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "owner_facet": "logs"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "member_of",
+              "value": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "state"
+                ]
+              },
+              "domain_ref": "/formal_program/constants/log_stale_state"
+            },
+            "code": "log_stale",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "owner_facet": "logs"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "state"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "unobserved"
+              }
+            },
+            "code": "log_state_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "owner_facet": "logs"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "success_evidence_claim"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "code": "log_success_claim_forbidden",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "success_evidence_claim"
+              ]
+            },
+            "owner_facet": "logs"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "success_evidence_claim"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "boolean_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "success_evidence_claim"
+              ]
+            },
+            "owner_facet": "logs"
+          }
+        ],
+        "return_projection": {
+          "usable": {
+            "op": "all",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "state"
+                  ]
+                },
+                "right": {
+                  "op": "literal",
+                  "value": "current_material"
+                }
+              },
+              {
+                "op": "item_prior_findings_empty"
+              }
+            ]
+          }
+        },
+        "arguments": [
+          {
+            "name": "actual_logs",
+            "type": "LogSet",
+            "source_path": [
+              "logs"
+            ]
+          },
+          {
+            "name": "context_logs",
+            "type": "LogSet",
+            "source_path": [
+              "context",
+              "logs"
+            ]
+          }
+        ],
+        "return_shape": "LogAssessment",
+        "kind": "collection"
+      },
+      "assess_feedback_material": {
+        "collection": "feedback_names",
+        "actual_path": [
+          "feedback",
+          {
+            "var": "item"
+          }
+        ],
+        "context_path": [
+          "context",
+          "feedback",
+          {
+            "var": "item"
+          }
+        ],
+        "steps": [
+          {
+            "op": "validate_object_both",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "code": "finding_missing",
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "compare_whole_if_both_objects",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "code": "original_finding_changed",
+            "pointer_side": "left",
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "compare_fields_if_both_objects",
+            "left_base": {
+              "root": "actual_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "right_base": {
+              "root": "context_item",
+              "path": [
+                "original_finding"
+              ]
+            },
+            "fields_ref": "/finite_domains/feedback_fields",
+            "predicate": "nonempty_string",
+            "unknown_code": "field_unknown",
+            "conflict_code": "field_conflict",
+            "conflict_side": "invalid_or_left",
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "discard_original_claim"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "code": "finding_discard_forbidden",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "discard_original_claim"
+              ]
+            },
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "discard_original_claim"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "boolean_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "discard_original_claim"
+              ]
+            },
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "for_each",
+            "values_ref": "/finite_domains/stages",
+            "as": "stage",
+            "steps": [
+              {
+                "op": "compare_fields",
+                "fields_ref": "/formal_program/finite_domains/singletons/recorded",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "right": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "predicate": "boolean",
+                "unknown_code": "boolean_unknown",
+                "conflict_code": "boolean_conflict",
+                "conflict_side": "left",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "unrecorded_nonnull_fields",
+                "side": "left",
+                "recorded_path": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "record_path": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    }
+                  ]
+                },
+                "fields_ref": "/finite_domains/stage_fields",
+                "code": "stage_unrecorded_ref_present",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "unrecorded_nonnull_fields",
+                "side": "right",
+                "recorded_path": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "record_path": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    }
+                  ]
+                },
+                "fields_ref": "/finite_domains/stage_fields",
+                "code": "stage_unrecorded_ref_present",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "compare_fields_when_either_true",
+                "left_base": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    }
+                  ]
+                },
+                "right_base": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    }
+                  ]
+                },
+                "recorded_left": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "recorded_right": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "fields_ref": "/finite_domains/stage_fields",
+                "predicate": "nonempty_string",
+                "unknown_code": "field_unknown",
+                "conflict_code": "field_conflict",
+                "conflict_side": "invalid_or_left",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "compare_join_when_either_true",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "source_head"
+                  ]
+                },
+                "right": {
+                  "root": "context_item",
+                  "path": [
+                    "original_finding",
+                    "source_head"
+                  ]
+                },
+                "recorded_left": {
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "recorded_right": {
+                  "root": "context_item",
+                  "path": [
+                    "stages",
+                    {
+                      "var": "stage"
+                    },
+                    "recorded"
+                  ]
+                },
+                "right_parent_object": {
+                  "root": "context_item",
+                  "path": [
+                    "original_finding"
+                  ]
+                },
+                "predicate": "nonempty_string",
+                "unknown_code": "field_unknown",
+                "conflict_code": "field_conflict",
+                "conflict_side": "left",
+                "owner_facet": "feedback"
+              }
+            ]
+          },
+          {
+            "op": "if_path_equals",
+            "condition_path": {
+              "root": "actual_item",
+              "path": [
+                "stages",
+                "resolution",
+                "recorded"
+              ]
+            },
+            "equals": true,
+            "steps": [
+              {
+                "op": "validate_domain_both",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "right": {
+                  "root": "context_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "domain_ref": "/finite_domains/resolution_origins",
+                "unknown_code": "resolution_origin_unknown",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "compare_known_values",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "right": {
+                  "root": "context_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "domain_ref": "/finite_domains/resolution_origins",
+                "conflict_code": "field_conflict",
+                "conflict_side": "left",
+                "owner_facet": "feedback"
+              },
+              {
+                "op": "emit_if",
+                "condition": {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "root": "actual_item",
+                        "path": [
+                          "resolution_origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": "ack"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "root": "actual_item",
+                        "path": [
+                          "resolution_origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": "classification"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "root": "actual_item",
+                        "path": [
+                          "resolution_origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": "prose"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "root": "actual_item",
+                        "path": [
+                          "resolution_origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": "notification"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "root": "actual_item",
+                        "path": [
+                          "resolution_origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": "memory"
+                      }
+                    }
+                  ]
+                },
+                "code": "resolution_origin_forbidden",
+                "pointer": {
+                  "root": "actual_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "owner_facet": "feedback"
+              }
+            ]
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "resolved_claim"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "boolean_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "resolved_claim"
+              ]
+            },
+            "owner_facet": "feedback"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "root": "actual_item",
+                    "path": [
+                      "resolved_claim"
+                    ]
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": true
+                  }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "equal",
+                        "left": {
+                          "op": "path",
+                          "root": "actual_item",
+                          "path": [
+                            "stages",
+                            "resolution",
+                            "recorded"
+                          ]
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": true
+                        }
+                      }
+                    },
+                    {
+                      "op": "prior_findings_nonempty"
+                    }
+                  ]
+                }
+              ]
+            },
+            "code": "unresolved_claimed_resolved",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "resolved_claim"
+              ]
+            },
+            "owner_facet": "feedback"
+          }
+        ],
+        "return_projection": {
+          "stage_recorded": {
+            "op": "project_items",
+            "domain_ref": "/finite_domains/stages",
+            "source_root": "actual_item",
+            "path": [
+              "stages",
+              {
+                "var": "item"
+              },
+              "recorded"
+            ]
+          },
+          "resolution_material_corresponding": {
+            "op": "all",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "stages",
+                    "resolution",
+                    "recorded"
+                  ]
+                },
+                "right": {
+                  "op": "literal",
+                  "value": true
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "resolution_origin"
+                  ]
+                },
+                "right": {
+                  "op": "literal",
+                  "value": "canonical_resolution_source"
+                }
+              },
+              {
+                "op": "item_prior_findings_empty"
+              }
+            ]
+          },
+          "actual_resolved": {
+            "op": "literal",
+            "value": false
+          }
+        },
+        "arguments": [
+          {
+            "name": "actual_feedback",
+            "type": "FeedbackSet",
+            "source_path": [
+              "feedback"
+            ]
+          },
+          {
+            "name": "context_feedback",
+            "type": "FeedbackSet",
+            "source_path": [
+              "context",
+              "feedback"
+            ]
+          }
+        ],
+        "return_shape": "FeedbackAssessment",
+        "kind": "collection"
+      },
+      "assess_memory_material": {
+        "collection": "memory_names",
+        "actual_path": [
+          "memory",
+          {
+            "var": "item"
+          }
+        ],
+        "context_path": [
+          "context",
+          "memory",
+          {
+            "var": "item"
+          }
+        ],
+        "steps": [
+          {
+            "op": "compare_fields",
+            "fields_ref": "/finite_domains/memory_fields",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "source",
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "source",
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "predicate": "nonempty_string",
+            "unknown_code": "field_unknown",
+            "conflict_code": "field_conflict",
+            "conflict_side": "left",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "validate_domain_both",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "state"
+              ]
+            },
+            "domain_ref": "/finite_domains/memory_states",
+            "unknown_code": "memory_state_unknown",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "compare_known_values",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "state"
+              ]
+            },
+            "domain_ref": "/finite_domains/memory_states",
+            "conflict_code": "memory_state_conflict",
+            "conflict_side": "left",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "validate_domain_both",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "freshness"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "freshness"
+              ]
+            },
+            "domain_ref": "/finite_domains/memory_freshness",
+            "unknown_code": "memory_freshness_unknown",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "compare_known_values",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "freshness"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "freshness"
+              ]
+            },
+            "domain_ref": "/finite_domains/memory_freshness",
+            "conflict_code": "memory_freshness_conflict",
+            "conflict_side": "left",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "compare_fields",
+            "fields_ref": "/formal_program/finite_domains/singletons/reflection_recorded",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "predicate": "boolean",
+            "unknown_code": "boolean_unknown",
+            "conflict_code": "boolean_conflict",
+            "conflict_side": "left",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "unrecorded_nonnull_fields",
+            "side": "left",
+            "recorded_path": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "record_path": {
+              "root": "actual_item",
+              "path": [
+                "reflection"
+              ]
+            },
+            "fields_ref": "/formal_program/finite_domains/reflection_fields_plus_order",
+            "code": "reflection_unrecorded_ref_present",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "unrecorded_nonnull_fields",
+            "side": "right",
+            "recorded_path": {
+              "root": "context_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "record_path": {
+              "root": "context_item",
+              "path": [
+                "reflection"
+              ]
+            },
+            "fields_ref": "/formal_program/finite_domains/reflection_fields_plus_order",
+            "code": "reflection_unrecorded_ref_present",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "compare_fields_when_either_true",
+            "left_base": {
+              "root": "actual_item",
+              "path": [
+                "reflection"
+              ]
+            },
+            "right_base": {
+              "root": "context_item",
+              "path": [
+                "reflection"
+              ]
+            },
+            "recorded_left": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "recorded_right": {
+              "root": "context_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "fields_ref": "/finite_domains/reflection_fields",
+            "predicate": "nonempty_string",
+            "unknown_code": "field_unknown",
+            "conflict_code": "field_conflict",
+            "conflict_side": "invalid_or_left",
+            "owner_facet": "memory",
+            "trigger_value": true
+          },
+          {
+            "op": "for_each",
+            "values_ref": "/formal_program/finite_domains/reflection_join_fields",
+            "as": "field",
+            "steps": [
+              {
+                "op": "compare_field_when_left_recorded",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    "reflection",
+                    {
+                      "var": "field"
+                    }
+                  ]
+                },
+                "right": {
+                  "root": "context_item",
+                  "path": [
+                    "source",
+                    {
+                      "var": "join_field"
+                    }
+                  ]
+                },
+                "recorded": {
+                  "root": "actual_item",
+                  "path": [
+                    "reflection",
+                    "recorded"
+                  ]
+                },
+                "join_field_ref": "/formal_program/finite_domains/reflection_join_field_map",
+                "field_var": "field",
+                "predicate": "nonempty_string",
+                "unknown_code": "field_unknown",
+                "conflict_code": "field_conflict",
+                "conflict_side": "left",
+                "owner_facet": "memory"
+              }
+            ]
+          },
+          {
+            "op": "order_checks",
+            "actual_reflection_recorded": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "context_reflection_recorded": {
+              "root": "context_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "actual_order": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "order"
+              ]
+            },
+            "context_order": {
+              "root": "context_item",
+              "path": [
+                "reflection",
+                "order"
+              ]
+            },
+            "actual_state": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "context_state": {
+              "root": "context_item",
+              "path": [
+                "state"
+              ]
+            },
+            "actual_retire_order": {
+              "root": "actual_item",
+              "path": [
+                "retire_order"
+              ]
+            },
+            "context_retire_order": {
+              "root": "context_item",
+              "path": [
+                "retire_order"
+              ]
+            },
+            "owner_facet": "memory",
+            "reflection_order_predicate": "positive_integer",
+            "retire_order_predicate": "positive_integer",
+            "reflection_order_unknown_code": "order_unknown",
+            "reflection_order_conflict_code": "order_conflict",
+            "retire_reflection_false_code": "retire_before_reflection",
+            "retirement_basis_unknown_code": "retirement_basis_unknown",
+            "retire_order_unknown_code": "order_unknown",
+            "retire_order_conflict_code": "order_conflict",
+            "reflection_not_before_retire_code": "reflection_not_before_retire",
+            "retired_state": "retired",
+            "recorded_true": true,
+            "recorded_false": false,
+            "comparison_operator": "greater_than_or_equal",
+            "reflection_order_conflict_operator": "not_equal",
+            "retire_order_conflict_operator": "not_equal",
+            "reflection_not_before_operator": "greater_than_or_equal"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "active_instruction_present"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "boolean_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "active_instruction_present"
+              ]
+            },
+            "owner_facet": "memory"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "root": "actual_item",
+                    "path": [
+                      "active_instruction_present"
+                    ]
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": true
+                  }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "equal",
+                        "left": {
+                          "op": "path",
+                          "root": "actual_item",
+                          "path": [
+                            "state"
+                          ]
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": "active"
+                        }
+                      }
+                    },
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "equal",
+                        "left": {
+                          "op": "path",
+                          "root": "actual_item",
+                          "path": [
+                            "freshness"
+                          ]
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": "current_material"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "code": "terminal_instruction_resurfaced",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "active_instruction_present"
+              ]
+            },
+            "owner_facet": "memory"
+          },
+          {
+            "op": "compare_fields",
+            "fields_ref": "/formal_program/finite_domains/singletons/deliver_consume_counts",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "right": {
+              "root": "context_item",
+              "path": [
+                {
+                  "var": "field"
+                }
+              ]
+            },
+            "predicate": "nonnegative_integer",
+            "unknown_code": "use_count_unknown",
+            "conflict_code": "use_count_conflict",
+            "conflict_side": "left",
+            "owner_facet": "memory"
+          },
+          {
+            "op": "for_each",
+            "values_ref": "/formal_program/finite_domains/deliver_consume_count_fields",
+            "as": "field",
+            "steps": [
+              {
+                "op": "emit_count_relation",
+                "left": {
+                  "root": "actual_item",
+                  "path": [
+                    {
+                      "var": "field"
+                    }
+                  ]
+                },
+                "right": {
+                  "root": "literal",
+                  "path": []
+                },
+                "relation": "greater_than",
+                "code": "duplicate_successful_use",
+                "owner_facet": "memory",
+                "right_value": {
+                  "op": "literal",
+                  "value": 1
+                },
+                "left_predicate": "nonnegative_integer",
+                "right_predicate": "nonnegative_integer"
+              }
+            ]
+          },
+          {
+            "op": "emit_count_relation",
+            "left": {
+              "root": "actual_item",
+              "path": [
+                "consume_success_count"
+              ]
+            },
+            "right": {
+              "root": "actual_item",
+              "path": [
+                "deliver_success_count"
+              ]
+            },
+            "relation": "greater_than",
+            "code": "consume_without_delivery",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "consume_success_count"
+              ]
+            },
+            "owner_facet": "memory",
+            "left_predicate": "nonnegative_integer",
+            "right_predicate": "nonnegative_integer"
+          },
+          {
+            "op": "emit_use_state_conflict",
+            "state": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "consume": {
+              "root": "actual_item",
+              "path": [
+                "consume_success_count"
+              ]
+            },
+            "code": "use_state_conflict",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "owner_facet": "memory",
+            "active_state": "active",
+            "consumed_state": "consumed",
+            "active_consume_condition": "greater_than_zero",
+            "consumed_consume_condition": "equals_zero"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "root": "actual_item",
+                "path": [
+                  "provider_authority_claim"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "code": "provider_memory_authority_forbidden",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "provider_authority_claim"
+              ]
+            },
+            "owner_facet": "memory"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "provider_authority_claim"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "boolean_unknown",
+            "pointer": {
+              "root": "actual_item",
+              "path": [
+                "provider_authority_claim"
+              ]
+            },
+            "owner_facet": "memory"
+          }
+        ],
+        "return_projection": {
+          "state": {
+            "op": "path",
+            "root": "actual_item",
+            "path": [
+              "state"
+            ]
+          },
+          "freshness": {
+            "op": "path",
+            "root": "actual_item",
+            "path": [
+              "freshness"
+            ]
+          },
+          "reflection_recorded": {
+            "op": "path",
+            "root": "actual_item",
+            "path": [
+              "reflection",
+              "recorded"
+            ]
+          },
+          "active_material_eligible": {
+            "op": "all",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "state"
+                  ]
+                },
+                "right": {
+                  "op": "literal",
+                  "value": "active"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "root": "actual_item",
+                  "path": [
+                    "freshness"
+                  ]
+                },
+                "right": {
+                  "op": "literal",
+                  "value": "current_material"
+                }
+              },
+              {
+                "op": "item_prior_findings_empty"
+              }
+            ]
+          },
+          "actual_retired": {
+            "op": "literal",
+            "value": false
+          },
+          "actual_delivered": {
+            "op": "literal",
+            "value": false
+          },
+          "actual_consumed": {
+            "op": "literal",
+            "value": false
+          }
+        },
+        "arguments": [
+          {
+            "name": "actual_memory",
+            "type": "MemorySet",
+            "source_path": [
+              "memory"
+            ]
+          },
+          {
+            "name": "context_memory",
+            "type": "MemorySet",
+            "source_path": [
+              "context",
+              "memory"
+            ]
+          }
+        ],
+        "return_shape": "MemoryAssessment",
+        "kind": "collection"
+      },
+      "assemble_evidence_record": {
+        "kind": "assembly",
+        "actual_path": [],
+        "context_path": [],
+        "return_projection": {},
+        "boundary_steps": [
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "root": "arguments",
+                "path": [
+                  "whole_completion_claim"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "code": "whole_completion_forbidden",
+            "pointer": {
+              "root": "actual",
+              "path": [
+                "whole_completion_claim"
+              ]
+            },
+            "owner_facet": "boundary"
+          },
+          {
+            "op": "emit_if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "has_json_type",
+                "value": {
+                  "op": "path",
+                  "root": "arguments",
+                  "path": [
+                    "whole_completion_claim"
+                  ]
+                },
+                "json_type": "boolean"
+              }
+            },
+            "code": "whole_claim_unknown",
+            "pointer": {
+              "root": "actual",
+              "path": [
+                "whole_completion_claim"
+              ]
+            },
+            "owner_facet": "boundary"
+          }
+        ],
+        "arguments": [
+          {
+            "name": "logs",
+            "type": "LogAssessment",
+            "source_function": "assess_log_material"
+          },
+          {
+            "name": "feedback",
+            "type": "FeedbackAssessment",
+            "source_function": "assess_feedback_material"
+          },
+          {
+            "name": "memory",
+            "type": "MemoryAssessment",
+            "source_function": "assess_memory_material"
+          },
+          {
+            "name": "whole_completion_claim",
+            "type": "JsonValue",
+            "source_path": [
+              "whole_completion_claim"
+            ]
+          }
+        ],
+        "return_shape": "EvidenceAssessment",
+        "body": {
+          "boundary_rule_steps": "/formal_program/functions/assemble_evidence_record/boundary_steps",
+          "complete_output_projection": "/formal_program/assembly/output_expression",
+          "combination_order": "/formal_program/assembly/function_order"
+        }
+      }
+    },
+    "assembly": {
+      "function_order": [
+        "assess_log_material",
+        "assess_feedback_material",
+        "assess_memory_material",
+        "assemble_evidence_record"
+      ],
+      "condition_priority": [
+        "violation",
+        "unknown",
+        "corresponding"
+      ],
+      "condition_by_status": {
+        "violation": "record_material_violation",
+        "unknown": "record_material_unknown",
+        "corresponding": "record_material_corresponding"
+      },
+      "facet_status_fields": {
+        "logs": [
+          "assess_log_material",
+          "facet_status"
+        ],
+        "feedback": [
+          "assess_feedback_material",
+          "facet_status"
+        ],
+        "memory": [
+          "assess_memory_material",
+          "facet_status"
+        ],
+        "boundary": [
+          "assess_boundary",
+          "facet_status"
+        ]
+      },
+      "output_expression": {
+        "op": "object",
+        "fields": {
+          "condition": {
+            "op": "status_to_condition",
+            "value": {
+              "op": "status_from_values",
+              "values": [
+                {
+                  "op": "get_result",
+                  "function": "assess_log_material",
+                  "field": "facet_status"
+                },
+                {
+                  "op": "get_result",
+                  "function": "assess_feedback_material",
+                  "field": "facet_status"
+                },
+                {
+                  "op": "get_result",
+                  "function": "assess_memory_material",
+                  "field": "facet_status"
+                },
+                {
+                  "op": "get_result",
+                  "function": "boundary_rule",
+                  "field": "facet_status"
+                }
+              ]
+            }
+          },
+          "facet_correspondence": {
+            "op": "object",
+            "fields": {
+              "logs": {
+                "op": "get_result",
+                "function": "assess_log_material",
+                "field": "facet_status"
+              },
+              "feedback": {
+                "op": "get_result",
+                "function": "assess_feedback_material",
+                "field": "facet_status"
+              },
+              "memory": {
+                "op": "get_result",
+                "function": "assess_memory_material",
+                "field": "facet_status"
+              },
+              "boundary": {
+                "op": "get_result",
+                "function": "boundary_rule",
+                "field": "facet_status"
+              }
+            }
+          },
+          "log_material_usable": {
+            "op": "project_result_items",
+            "function": "assess_log_material",
+            "field": "usable",
+            "domain_ref": "/finite_domains/log_names"
+          },
+          "feedback_material": {
+            "op": "get_result",
+            "function": "assess_feedback_material",
+            "field": "items"
+          },
+          "memory_material": {
+            "op": "get_result",
+            "function": "assess_memory_material",
+            "field": "items"
+          },
+          "retained_actual_records": {
+            "op": "object",
+            "fields": {
+              "logs": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "logs"
+                  ]
+                }
+              },
+              "feedback": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "feedback"
+                  ]
+                }
+              },
+              "memory": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "memory"
+                  ]
+                }
+              }
+            }
+          },
+          "retained_reference_records": {
+            "op": "object",
+            "fields": {
+              "logs": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "context",
+                    "logs"
+                  ]
+                }
+              },
+              "feedback": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "context",
+                    "feedback"
+                  ]
+                }
+              },
+              "memory": {
+                "op": "copy",
+                "value": {
+                  "op": "path",
+                  "root": "actual",
+                  "path": [
+                    "context",
+                    "memory"
+                  ]
+                }
+              }
+            }
+          },
+          "findings": {
+            "op": "unique_sort_findings",
+            "value": {
+              "op": "concat",
+              "values": [
+                {
+                  "op": "get_result",
+                  "function": "assess_log_material",
+                  "field": "findings"
+                },
+                {
+                  "op": "get_result",
+                  "function": "assess_feedback_material",
+                  "field": "findings"
+                },
+                {
+                  "op": "get_result",
+                  "function": "assess_memory_material",
+                  "field": "findings"
+                },
+                {
+                  "op": "get_result",
+                  "function": "boundary_rule",
+                  "field": "findings"
+                }
+              ]
+            }
+          },
+          "whole_management_complete": {
+            "op": "literal",
+            "value": false
+          },
+          "operation_effect": {
+            "op": "literal",
+            "value": "none"
+          },
+          "actual_log_written": {
+            "op": "literal",
+            "value": false
+          },
+          "actual_feedback_resolved": {
+            "op": "literal",
+            "value": false
+          },
+          "actual_memory_retired": {
+            "op": "literal",
+            "value": false
+          }
+        }
+      },
+      "diagnostic_disposition_priority": [
+        "violation",
+        "unknown",
+        "corresponding"
+      ],
+      "empty_diagnostic_disposition": "corresponding",
+      "finding_identity_and_sort_fields": [
+        "code",
+        "pointer",
+        "return_owner"
+      ],
+      "boundary_result_name": "boundary_rule",
+      "aggregate_function": "assemble_evidence_record",
+      "boundary_steps_ref": "/formal_program/functions/assemble_evidence_record/boundary_steps"
+    },
+    "shape_definitions": {
+      "LogRecord": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/common_fields"
+          },
+          {
+            "literal": [
+              "kind",
+              "state",
+              "success_evidence_claim"
+            ]
+          }
+        ]
+      },
+      "LogSet": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "value_shape": "LogRecord"
+      },
+      "StageRecord": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/stage_fields"
+          },
+          {
+            "literal": [
+              "recorded"
+            ]
+          }
+        ]
+      },
+      "StageSet": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/stages"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/stages"
+          }
+        ],
+        "value_shape": "StageRecord"
+      },
+      "FeedbackItem": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "original_finding",
+              "stages",
+              "resolution_origin",
+              "resolved_claim",
+              "discard_original_claim",
+              "projection"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "stages": "StageSet"
+        }
+      },
+      "FeedbackSet": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/feedback_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/feedback_names"
+          }
+        ],
+        "value_shape": "FeedbackItem"
+      },
+      "MemorySource": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/memory_fields"
+          }
+        ]
+      },
+      "Reflection": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/reflection_fields"
+          },
+          {
+            "literal": [
+              "recorded",
+              "order"
+            ]
+          }
+        ]
+      },
+      "MemoryItem": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "source",
+              "state",
+              "freshness",
+              "reflection",
+              "retire_order",
+              "active_instruction_present",
+              "deliver_success_count",
+              "consume_success_count",
+              "provider_authority_claim"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "source": "MemorySource",
+          "reflection": "Reflection"
+        }
+      },
+      "MemorySet": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/memory_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/memory_names"
+          }
+        ],
+        "value_shape": "MemoryItem"
+      },
+      "EvidencePacket": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "logs",
+              "feedback",
+              "memory",
+              "whole_completion_claim",
+              "context"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "logs": "LogSet",
+          "feedback": "FeedbackSet",
+          "memory": "MemorySet",
+          "context": "ContextPacket"
+        }
+      },
+      "ContextPacket": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "logs",
+              "feedback",
+              "memory"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "logs": "LogSet",
+          "feedback": "FeedbackSet",
+          "memory": "MemorySet"
+        }
+      },
+      "FacetStatus": {
+        "json_type": "string",
+        "member_domain_ref": "/formal_program/constants/facet_statuses"
+      },
+      "Finding": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "code",
+              "pointer",
+              "return_owner"
+            ]
+          }
+        ],
+        "field_json_types": {
+          "code": "string",
+          "pointer": "string",
+          "return_owner": "string"
+        }
+      },
+      "FindingArray": {
+        "json_type": "array",
+        "items_shape": "Finding"
+      },
+      "LogMaterialItem": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "usable"
+            ]
+          }
+        ],
+        "field_json_types": {
+          "usable": "boolean"
+        }
+      },
+      "FeedbackMaterialItem": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "stage_recorded",
+              "resolution_material_corresponding",
+              "actual_resolved"
+            ]
+          }
+        ],
+        "field_json_types": {
+          "resolution_material_corresponding": "boolean",
+          "actual_resolved": "boolean"
+        },
+        "field_shapes": {
+          "stage_recorded": "StageRecordedMap"
+        }
+      },
+      "StageRecordedMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/stages"
+          }
+        ],
+        "field_shapes": {
+          "intake": "JsonValue",
+          "classify": "JsonValue",
+          "ack": "JsonValue",
+          "pending": "JsonValue",
+          "resolution": "JsonValue"
+        }
+      },
+      "MemoryMaterialItem": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "state",
+              "freshness",
+              "reflection_recorded",
+              "active_material_eligible",
+              "actual_retired",
+              "actual_delivered",
+              "actual_consumed"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "state": "JsonValue",
+          "freshness": "JsonValue",
+          "reflection_recorded": "JsonValue"
+        },
+        "field_json_types": {
+          "active_material_eligible": "boolean",
+          "actual_retired": "boolean",
+          "actual_delivered": "boolean",
+          "actual_consumed": "boolean"
+        }
+      },
+      "LogMaterialMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "value_shape": "LogMaterialItem"
+      },
+      "FeedbackMaterialMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/feedback_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/feedback_names"
+          }
+        ],
+        "value_shape": "FeedbackMaterialItem"
+      },
+      "MemoryMaterialMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/memory_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/memory_names"
+          }
+        ],
+        "value_shape": "MemoryMaterialItem"
+      },
+      "FindingMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "each_key_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "value_shape": "FindingArray"
+      },
+      "LogAssessment": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "facet_status",
+              "items",
+              "findings",
+              "findings_by_item"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "facet_status": "FacetStatus",
+          "items": "LogMaterialMap",
+          "findings": "FindingArray",
+          "findings_by_item": "FindingMap"
+        }
+      },
+      "FeedbackAssessment": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "facet_status",
+              "items",
+              "findings",
+              "findings_by_item"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "facet_status": "FacetStatus",
+          "items": "FeedbackMaterialMap",
+          "findings": "FindingArray",
+          "findings_by_item": {
+            "json_type": "object",
+            "exact_keys_from": [
+              {
+                "ref": "/finite_domains/feedback_names"
+              }
+            ],
+            "each_key_from": [
+              {
+                "ref": "/finite_domains/feedback_names"
+              }
+            ],
+            "value_shape": "FindingArray"
+          }
+        }
+      },
+      "MemoryAssessment": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "facet_status",
+              "items",
+              "findings",
+              "findings_by_item"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "facet_status": "FacetStatus",
+          "items": "MemoryMaterialMap",
+          "findings": "FindingArray",
+          "findings_by_item": {
+            "json_type": "object",
+            "exact_keys_from": [
+              {
+                "ref": "/finite_domains/memory_names"
+              }
+            ],
+            "each_key_from": [
+              {
+                "ref": "/finite_domains/memory_names"
+              }
+            ],
+            "value_shape": "FindingArray"
+          }
+        }
+      },
+      "EvidenceAssessment": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/algorithm/output_contract"
+          }
+        ],
+        "field_json_types": {
+          "condition": "string",
+          "whole_management_complete": "boolean",
+          "operation_effect": "string",
+          "actual_log_written": "boolean",
+          "actual_feedback_resolved": "boolean",
+          "actual_memory_retired": "boolean"
+        },
+        "field_shapes": {
+          "facet_correspondence": {
+            "json_type": "object",
+            "exact_keys_from": [
+              {
+                "literal": [
+                  "logs",
+                  "feedback",
+                  "memory",
+                  "boundary"
+                ]
+              }
+            ],
+            "each_key_from": [
+              {
+                "literal": [
+                  "logs",
+                  "feedback",
+                  "memory",
+                  "boundary"
+                ]
+              }
+            ],
+            "value_shape": "FacetStatus"
+          },
+          "log_material_usable": "LogUsabilityMap",
+          "feedback_material": "FeedbackMaterialMap",
+          "memory_material": "MemoryMaterialMap",
+          "findings": "FindingArray",
+          "retained_actual_records": "JsonValue",
+          "retained_reference_records": "JsonValue"
+        }
+      },
+      "JsonValue": {
+        "json_type": "any"
+      },
+      "LogUsabilityMap": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "ref": "/finite_domains/log_names"
+          }
+        ],
+        "field_json_types": {
+          "worker": "boolean",
+          "decision": "boolean",
+          "operation": "boolean",
+          "verification": "boolean"
+        }
+      },
+      "BoundaryAssessment": {
+        "json_type": "object",
+        "exact_keys_from": [
+          {
+            "literal": [
+              "facet_status",
+              "findings"
+            ]
+          }
+        ],
+        "field_shapes": {
+          "facet_status": "FacetStatus",
+          "findings": "FindingArray"
+        }
+      }
+    },
+    "input_shape_bindings": [
+      {
+        "function": "assess_log_material",
+        "argument": "actual_logs",
+        "packet_path": [
+          "logs"
+        ],
+        "shape": "LogSet"
+      },
+      {
+        "function": "assess_log_material",
+        "argument": "context_logs",
+        "packet_path": [
+          "context",
+          "logs"
+        ],
+        "shape": "LogSet"
+      },
+      {
+        "function": "assess_feedback_material",
+        "argument": "actual_feedback",
+        "packet_path": [
+          "feedback"
+        ],
+        "shape": "FeedbackSet"
+      },
+      {
+        "function": "assess_feedback_material",
+        "argument": "context_feedback",
+        "packet_path": [
+          "context",
+          "feedback"
+        ],
+        "shape": "FeedbackSet"
+      },
+      {
+        "function": "assess_memory_material",
+        "argument": "actual_memory",
+        "packet_path": [
+          "memory"
+        ],
+        "shape": "MemorySet"
+      },
+      {
+        "function": "assess_memory_material",
+        "argument": "context_memory",
+        "packet_path": [
+          "context",
+          "memory"
+        ],
+        "shape": "MemorySet"
+      },
+      {
+        "function": "assemble_evidence_record",
+        "argument": "whole_completion_claim",
+        "packet_path": [
+          "whole_completion_claim"
+        ],
+        "shape": "JsonValue"
+      }
+    ],
+    "input_packet_shape": "EvidencePacket"
+  },
+  "approval_admission_evidence": {
+    "admission_merge_commit": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
+    "admission_merge_subject": "Merge pull request #2951 from RetryYN/codex/prerequisite-os-management-l3-l10-20261012",
+    "decision_record_blob_sha256_at_admission": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
+    "decision_status_at_admission": "recorded_pending_final_review_and_main_admission",
+    "reviewed_content_head": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "record_revision_before_admission": "d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3e",
+    "source_main_at_pair_authoring": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+    "observed_origin_main_at_handoff": "ae33e1c8655d44965f5392122da72a7aefd89377",
+    "admission_is_ancestor_of_pair_source_main": true,
+    "authority_note": "decision recordの記録状態を転記する。pending metadataのみから最終承認・操作権限を生成しない。"
+  }
+}
