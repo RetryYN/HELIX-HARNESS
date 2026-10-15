@@ -1591,10 +1591,8 @@
             "additional_properties": "forbidden"
           },
           "metric_identity_collision": {
-            "kind": "union",
-            "members": [
-              "boolean"
-            ]
+            "kind": "scalar",
+            "type": "boolean"
           }
         },
         "additional_properties": "forbidden"
@@ -2959,38 +2957,49 @@
               "local_verification": {
                 "kind": "enum",
                 "values": [
-                  "bound_in_fixture"
+                  "bound_in_fixture",
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               },
               "method_design": {
                 "kind": "enum",
                 "values": [
-                  "bound_in_fixture"
+                  "bound_in_fixture",
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               },
               "probe_implementation": {
                 "kind": "enum",
                 "values": [
                   "bound_in_fixture",
-                  "meaning_conflict"
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               },
               "system_verification": {
                 "kind": "enum",
                 "values": [
-                  "bound_in_fixture"
+                  "bound_in_fixture",
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               },
               "time_series_evaluation": {
                 "kind": "enum",
                 "values": [
-                  "bound_in_fixture"
+                  "bound_in_fixture",
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               },
               "usage_acceptance": {
                 "kind": "enum",
                 "values": [
-                  "bound_in_fixture"
+                  "bound_in_fixture",
+                  "meaning_conflict",
+                  "missing_or_conflict"
                 ]
               }
             },
@@ -3002,40 +3011,49 @@
               "local_verification": {
                 "kind": "enum",
                 "values": [
-                  "pass_in_fixture"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               },
               "method_design": {
                 "kind": "enum",
                 "values": [
-                  "unobserved"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               },
               "probe_implementation": {
                 "kind": "enum",
                 "values": [
-                  "unobserved"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               },
               "system_verification": {
                 "kind": "enum",
                 "values": [
-                  "insufficient_stage_evidence",
-                  "unobserved"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               },
               "time_series_evaluation": {
                 "kind": "enum",
                 "values": [
-                  "insufficient_stage_evidence",
-                  "unobserved"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               },
               "usage_acceptance": {
                 "kind": "enum",
                 "values": [
-                  "insufficient_stage_evidence",
-                  "unobserved"
+                  "pass_in_fixture",
+                  "unobserved",
+                  "insufficient_stage_evidence"
                 ]
               }
             },
@@ -5893,7 +5911,7 @@
         "domain_results",
         "shared_threshold_imposed"
       ],
-      "algorithm": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknownまたはscope/source未確定はunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absentはmissing_NA_reason。performance.proposed_limit=unboundedまたはtarget_source=null/absentならperformanceだけunknown。impose_same_threshold=trueはrejected、falseはfalse。",
+      "algorithm": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknown/TBD/null/absentはunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absent/空はmissing_NA_reason。performanceの優先順は、proposed_limit=unboundedならunknown、次にnot_applicableでreasonなしならmissing_NA_reason、次にtarget_source=null/absentならunknown、それ以外は前記domain結果を保持する。impose_same_threshold=trueはrejected、falseはfalse。未見applicability/複合条件は未閉包。",
       "semantic_rules": [
         {
           "id": "F02-SOURCE-COMPARISON",
@@ -5904,7 +5922,7 @@
             "input.scope"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknownまたはscope/source未確定はunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absentはmissing_NA_reason。performance.proposed_limit=unboundedまたはtarget_source=null/absentならperformanceだけunknown。impose_same_threshold=trueはrejected、falseはfalse。",
+          "comparison": "domains各keyを独立処理する。applicability=requiredはrequired_in_fixture、unknown/TBD/null/absentはunknown、not_applicableとreason値ありはnot_applicable_in_fixture、not_applicableとreason null/absent/空はmissing_NA_reason。performanceの優先順は、proposed_limit=unboundedならunknown、次にnot_applicableでreasonなしならmissing_NA_reason、次にtarget_source=null/absentならunknown、それ以外は前記domain結果を保持する。impose_same_threshold=trueはrejected、falseはfalse。未見applicability/複合条件は未閉包。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "domain_results",
@@ -6023,7 +6041,7 @@
         "stage_meaning_results",
         "stage_results"
       ],
-      "algorithm": "6つの意味stageを同名keyで照合する。provided meaningの一致はbound_in_fixture、legacy推論等意味衝突はmeaning_conflict。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidence、それ以外に観測がなければunobserved。future measurement claim=trueはsupplemental rejected_candidate_claim、falseはnot_proposed、null/absentはunknown。requires_future_measurement_to_authorの原期待値はfalse。",
+      "algorithm": "required_stage_meaningsとprovided_stage_meaningsの同名keyを比較し、一致はbound_in_fixture、提案がlegacy_で始まる文字列の相反はmeaning_conflict、その他欠落/相反はmissing_or_conflict。stage_observations各keyの値がlocal_pass_substituted/instant_sample_onlyならinsufficient_stage_evidence、それ以外の有限fixture観測値pass_in_fixture/unobservedは原値で返す。未見観測語彙・全stage組合せは未閉包。future measurement claim=true/false/null-or-absentは別補足returnでrejected_candidate_claim/not_proposed/unknown。原requires_future_measurement_to_authorはfalse。",
       "semantic_rules": [
         {
           "id": "F04-SOURCE-COMPARISON",
@@ -6034,7 +6052,7 @@
             "input.stage_observations"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "6つの意味stageを同名keyで照合する。provided meaningの一致はbound_in_fixture、legacy推論等意味衝突はmeaning_conflict。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidence、それ以外に観測がなければunobserved。future measurement claim=trueはsupplemental rejected_candidate_claim、falseはnot_proposed、null/absentはunknown。requires_future_measurement_to_authorの原期待値はfalse。",
+          "comparison": "required_stage_meaningsとprovided_stage_meaningsの同名keyを比較し、一致はbound_in_fixture、提案がlegacy_で始まる文字列の相反はmeaning_conflict、その他欠落/相反はmissing_or_conflict。stage_observations各keyの値がlocal_pass_substituted/instant_sample_onlyならinsufficient_stage_evidence、それ以外の有限fixture観測値pass_in_fixture/unobservedは原値で返す。未見観測語彙・全stage組合せは未閉包。future measurement claim=true/false/null-or-absentは別補足returnでrejected_candidate_claim/not_proposed/unknown。原requires_future_measurement_to_authorはfalse。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "future_measurement_gate_claim",
@@ -6188,7 +6206,7 @@
         "target_result",
         "threshold_binding"
       ],
-      "algorithm": "identity/thresholdの完全一致=bound_in_fixture、不一致=conflict。target/hard_limitとの値比較結果はwithin_target_in_fixture/within_limit_in_fixture/violated。baseline null/absent=unknown。能力分類と技術選択を分ける場合separate_meanings、技術を能力扱いする場合technology_as_capability_rejected。",
+      "algorithm": "provided_identityとrequired_identity、thresholdsとproposed_thresholdsを完全比較し、一致はbound_in_fixture、差はconflict。baseline null/absentはunknown、提供値はspecified_in_fixture。target null/absentはtarget_result=unknown、合成数値value<=targetならwithin_target_in_fixture、それ以外の有限数値相反はtarget_not_met。hard_limit null/absentはhard_limit_result=unknown、合成数値value<=hard_limitならwithin_limit_in_fixture、超過はviolated。classifications.capability=legacy_DB_product_nameだけtechnology_as_capability_rejected、他の有限fixture分類はseparate_meanings。未見非数値/複合条件は未閉包。",
       "semantic_rules": [
         {
           "id": "F06-SOURCE-COMPARISON",
@@ -6201,7 +6219,7 @@
             "input.value"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "identity/thresholdの完全一致=bound_in_fixture、不一致=conflict。target/hard_limitとの値比較結果はwithin_target_in_fixture/within_limit_in_fixture/violated。baseline null/absent=unknown。能力分類と技術選択を分ける場合separate_meanings、技術を能力扱いする場合technology_as_capability_rejected。",
+          "comparison": "provided_identityとrequired_identity、thresholdsとproposed_thresholdsを完全比較し、一致はbound_in_fixture、差はconflict。baseline null/absentはunknown、提供値はspecified_in_fixture。target null/absentはtarget_result=unknown、合成数値value<=targetならwithin_target_in_fixture、それ以外の有限数値相反はtarget_not_met。hard_limit null/absentはhard_limit_result=unknown、合成数値value<=hard_limitならwithin_limit_in_fixture、超過はviolated。classifications.capability=legacy_DB_product_nameだけtechnology_as_capability_rejected、他の有限fixture分類はseparate_meanings。未見非数値/複合条件は未閉包。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "baseline_result",
@@ -6770,7 +6788,7 @@
         "internal_OS_forced",
         "oracle_result"
       ],
-      "algorithm": "author_contractではexternal_user_CI_selected。dependencies mapのinternal_OS explicit null/absent=not_required、future_INFRA=reference_only、CONNECT=not_selected。measureではexecutorを明示選択値から返し、依存条件を個別に保持する。force_internal_OS=falseはfalse、trueはrejected、null/absentはunknown。comparison_claims_authority=falseはnone、trueはrejected。",
+      "algorithm": "operation=author_contractではexecutor_result=external_user_CI_selected、依存SEC_data_use/resourceはnot_required_for_this_authoring_operation、CONNECT=not_selected、internal_OS=not_required、future_INFRA=reference_only。operation=measureではselected_executor=external_user_CIならexternal_user_CI_selected、internal_OSならinternal_OS_selected。measure依存のinternal_OSはnot_required、future_INFRAはreference_only。SEC_data_use/resourceおよびcommunicate_between_mechanisms=true時のCONNECTはqualified_in_fixtureならsupported_in_fixture、null/absentならmissing、その他提供値はreference_only。measureかつ通信false時のCONNECTと未見executorの組合せは未検証。original_oracle/proposed_oracle完全一致はheld、差はconflict。comparison_claims_authority=trueはrejected、falseはnone。author_contractでforce_internal_OS=trueはrejected、明示falseはfalse。未見null/absent強制flagはunknownとして未成立を保持する。",
       "semantic_rules": [
         {
           "id": "B01-SOURCE-COMPARISON",
@@ -6785,7 +6803,7 @@
             "input.selected_executor"
           ],
           "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
-          "comparison": "author_contractではexternal_user_CI_selected。dependencies mapのinternal_OS explicit null/absent=not_required、future_INFRA=reference_only、CONNECT=not_selected。measureではexecutorを明示選択値から返し、依存条件を個別に保持する。force_internal_OS=falseはfalse、trueはrejected、null/absentはunknown。comparison_claims_authority=falseはnone、trueはrejected。",
+          "comparison": "operation=author_contractではexecutor_result=external_user_CI_selected、依存SEC_data_use/resourceはnot_required_for_this_authoring_operation、CONNECT=not_selected、internal_OS=not_required、future_INFRA=reference_only。operation=measureではselected_executor=external_user_CIならexternal_user_CI_selected、internal_OSならinternal_OS_selected。measure依存のinternal_OSはnot_required、future_INFRAはreference_only。SEC_data_use/resourceおよびcommunicate_between_mechanisms=true時のCONNECTはqualified_in_fixtureならsupported_in_fixture、null/absentならmissing、その他提供値はreference_only。measureかつ通信false時のCONNECTと未見executorの組合せは未検証。original_oracle/proposed_oracle完全一致はheld、差はconflict。comparison_claims_authority=trueはrejected、falseはnone。author_contractでforce_internal_OS=trueはrejected、明示falseはfalse。未見null/absent強制flagはunknownとして未成立を保持する。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "comparison_authority",
