@@ -158,6 +158,22 @@
       "validity": "current | missing | unknown | conflict | stale",
       "basis_refs": "RefSet",
       "content_check_refs": "RefSet"
+    },
+    "BackflowTargetBinding": {
+      "consumer_requirement_ref": "HARNESS-L3-003-F02 | HARNESS-L3-008-F02",
+      "subject_ref": "Ref",
+      "target_ref": "Ref | null",
+      "state": "current | missing | unknown | conflict | stale",
+      "basis_refs": "RefSet",
+      "content_check_refs": "RefSet"
+    },
+    "F02Context": {
+      "base_type": "Context",
+      "additional_fields": {
+        "backflow_target_bindings": "BackflowTargetBinding tuple。明示未供給は空tuple。"
+      },
+      "closed": true,
+      "meaning": "基底Contextを一度だけ参照し、その全fieldと追加fieldを必須とする閉record。基底fieldを複製した別正本にしない。F01/B01のContextは変更しない。"
     }
   },
   "common_contract": [
@@ -275,7 +291,22 @@
         "両側not_applicableかつ両N/A根拠が完全の場合だけl25=not_applicable。一方applicableがあればrequired、残る側unknownも保持。それ以外はunknown。N/A不足でもl25をnot_applicableとしない。",
         "L2要求Refとcontextのcurrent要求Meaningを照合。nullならreference_missing。claimed_agreement_refsはcurrent l2_agreement Evidenceと同対象の内容へ照合する。prototype/poc resultは合意の証拠に転用しない。合意missingならagreement_missing。 現行合意がmissingで試作結果だけを合意として渡す場合は/claimed_agreement_refsのagreement_missing/incompleteとし、試作の成功から合意を生成しない。",
         "二つの適用と合意不足/003・008へのBackflow候補を独立に返す。L3凍結可能、承認、操作許可を返さない。"
-      ]
+      ],
+      "call_contract": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "未検査object。既存inputの10fieldを検査する。"
+          },
+          {
+            "name": "context",
+            "type": "F02Context"
+          }
+        ],
+        "result": "既存Resultと6field outputを保持。",
+        "constructor_ref": "#/f02_return_construction",
+        "context_boundary": "F01/B01は既存Contextのまま。F02Contextを旧Contextと無言に同一視しない。"
+      }
     },
     {
       "id": "HARNESS-L5-001-B01",
@@ -323,5 +354,1645 @@
   "remaining": [
     "L6/L7でmodule/symbol/test実物とoracle凍結を準備。実装前Red実観測とGreen/実検証/PO受入は未成立。",
     "040 catalog、056 pair結果、003/008要求二次形成、OS実保存/実運転、CONNECT wireの対設計へscope付き不足を戻す。全92親/430義務の残りをこの001対で充足したとしない。"
-  ]
+  ],
+  "f02_return_construction": {
+    "scope": "既存F02比較の後段を具体化する。公開symbol/入力10field/返却6fieldは保持し、第2引数だけF02Contextと明示する。L6はこの呼出しと内部段階を関数設計へ結ぶ。実装は層外、実行していない。",
+    "source_basis": [
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/types/Context",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "7593c48dda44e08e542339bb56c86009bcb0672de426ee754a317570557fad4b"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/types/Finding",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "3a5e329fac34e1c01e76beb233018fbbf04f8ae5327a3d6f753c090881d4eb35"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/types/Result",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "e756c52e3298c536129cf2dee0c5b647b079d68211fa4adb94ad9d174de7a7d4"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/types/Ref",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "cb771b2cf381593daa64c5b8f23e5d6221dcbd0986305e7380d38126ec102bba"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/types/RefSet",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "d1be1222d0f61c84d1b04ed06066e6dc737867e2a963b47570885e7d9dae2320"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/common_contract",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "e5cc3f0c4c8fb5a85b51e7ecef866dc6cb106d8d10eefb24046fcf822d7724ad"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/finding_classification",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "bda51dd6909d331a05ef4ad782df0db714cfc875378d7ac652205c3fd2a9f353"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/functions/0",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "e7344b8562936f6208620859e32b433d050e1590f58600effa6d9422759b44b8"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/functions/1",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "8a45033a2e799c55319c445d8983cfdfcfcb6db0dc87553db2db447c68f81d85"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/functions/2",
+        "file_bytes_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "object_canonical_sha256": "35398b21b69179a116c1bddef215160219f8925d6f07a2d0b57ab0a3a631426a"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+        "pointer": "/contracts/1",
+        "file_bytes_sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4",
+        "object_canonical_sha256": "657c784df904f2e3f5f1ffa0f45d38c6912cb29cb71a3b0cd0db285e0f1e1ebb"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+        "pointer": "/cases/1",
+        "file_bytes_sha256": "fdd95edb8f7f74348be6d38c1a576098907106b7ac7a20efe16f3a04737c591c",
+        "object_canonical_sha256": "42b1d645197f666bef2fa03c411b9f7b37346c78d59cbab2d130fe2c0e7d73d6"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+        "pointer": "/fixture_basis",
+        "file_bytes_sha256": "fdd95edb8f7f74348be6d38c1a576098907106b7ac7a20efe16f3a04737c591c",
+        "object_canonical_sha256": "1c72bd1efc3f00930adba737f4405b115ae28b6d4066b4619b7c5c7da7e1f658"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/types",
+        "file_bytes_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+        "object_canonical_sha256": "77f8060020dbad1e35e35d46bb131aadd65b0bff4bd5d67697f034a48a7bc6a2"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/common_contract",
+        "file_bytes_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+        "object_canonical_sha256": "effb0818f06c4bf2ea53baf5b24d31bc94db02d4ce8d48eacb7ff7a8f349ced4"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/process-state-port.json",
+        "pointer": "/functions/2",
+        "file_bytes_sha256": "e5f682ba781891911e73e91ff9f36383e7aa8dec8fcc8411c380edb07999b64a",
+        "object_canonical_sha256": "1fa39effcd4541a73aaf0b4b1f11505090d960f72b06ae43d3336aab55ac4dab"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+        "pointer": "/contracts/2",
+        "file_bytes_sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+        "object_canonical_sha256": "31741960cc9dec66a759949c5f85755c6870ba0a728bb0e3a20245863264d62b"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "348e4b6dbfae9fb3371c927f691033fcfd6bb1660e62fcd8de2595452bed8ccb"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/pure_function_signatures/3",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "c4b1e5d4cce8eb80cd52fce7e7e8164750f4bda0fab24f0bcb2040ce7c8401b2"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/type_contract/definitions/Input_F02",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "8dadb59c2a071b6f58e931af6323df55717a5d28877056176f5f7083f465d815"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/type_contract/definitions/BaseAssessment_F02",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "48d2453bc535700c2f2446aa6837c72af9e9b705ee2bd485b98c496c6030ce05"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/finite_raw_derivation/functions/F02",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "d42a02ec54d34ed2614bd67fba8c432e00a01d206ea71d9a76aea1ed494c5603"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/architecture",
+        "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+        "object_canonical_sha256": "4afe26c36d25c9d11cacd480a334b4e7d2b439e1efe1db4e488f68c46e4290ac"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L4-basic-design/requirement-formation-semantic-core.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "8a09b7fbb038a7e5226e1feca016f9e77370d3ca9968c8a2fe43baf17a8bb596",
+        "object_canonical_sha256": "434ad1a0f3eb71cd988f3c7f725495733a47883f019775c4a9a3e5da0c8e7bff"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/59",
+        "file_bytes_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "object_canonical_sha256": "6d1ba83a2a95411058bc8e88533ef98aa0cfe27446ed4c380a1255715e0126c9"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/65",
+        "file_bytes_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "object_canonical_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/75",
+        "file_bytes_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "object_canonical_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/59",
+        "file_bytes_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "object_canonical_sha256": "06adde99643b15987013fe29f0471af2eebfd1d79a61f5dde1ad7414829e48ca"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/65",
+        "file_bytes_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "object_canonical_sha256": "52fb92ca0adfe55b1a31fdbc4e213208b8e4e0340cd2f9d4e566b5fd56a48590"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/75",
+        "file_bytes_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "object_canonical_sha256": "ea1146b08069c0f95311c417b34d892488b988523a848a83cde90450cdf95180"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+        "pointer": "/verification_obligations/2/normal_cases/0",
+        "file_bytes_sha256": "a00417d6f052daefb9f00fb37f35fa3fff1428e23075afb72c1116f57153dd27",
+        "object_canonical_sha256": "d53ce1cdd5078288710cb2ae1f94633db8fb5671bdec79e2e0e1dea2dec803d2"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/unit_oracles/2/qualification_cases/20",
+        "file_bytes_sha256": "b4d481dd73a9f49b7cc707f25bbe7481053049019e209c08b8d5f6a1e2377836",
+        "object_canonical_sha256": "12ed6538d7de64214e17921ef68fd4dc0dbb71d900988d1ba35ad1418a304c3b"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+        "pointer": "/unit_oracles/2/qualification_cases/0",
+        "file_bytes_sha256": "b4d481dd73a9f49b7cc707f25bbe7481053049019e209c08b8d5f6a1e2377836",
+        "object_canonical_sha256": "e7a9e2c77b3d38cebfedc5fc8ea0e4ea12e2f6782dfe7a2787ce0dd3ed90912d"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L9-integration-verification/requirement-formation-semantic-core.json",
+        "pointer": "/verification_obligations/3/normal_cases/0",
+        "file_bytes_sha256": "0c76ee01f4707b9376a2ba0db072ad889c7b289d1ac2af6ca39db73b240f2614",
+        "object_canonical_sha256": "05f52f8ec8a2c75a6d41d1e19f5ec20ef0bf89ce8dd1a36c41f787c1ed61c3d5"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "docs/helix-harness/L8-unit-verification/requirement-formation-semantic-core.json",
+        "pointer": "/cases/139/function_io",
+        "file_bytes_sha256": "ab37c5b09d6d6c345aa26f0ce7b6b7a5106144800ebb86d0d568d81d3b306fef",
+        "object_canonical_sha256": "b6465cd855bc6d0f5131152dd8d80e65fa821ea856b0c2dc45a4be5e14dff0c7"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "c07f7754bc903e969c6d794d4b88b7f41f78932ebbab1b4ca9249c27cd0daad2"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/pure_function_signatures/3",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "a953dab1e7f38f280acc3c94e5644a3c02632bfd7c051f0cb3c60318443e8dea"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/finite_raw_derivation/functions/F02",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "73ad3df876f9cea163f048bb9894bbc826d2a44af536f7266e46de14a08dd1a4"
+      }
+    ],
+    "legacy_basis": [
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "start_line": 29,
+        "end_line": 66,
+        "file_bytes_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "quote_utf8": "### 要求の参照範囲と最新化\n\n利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。\n物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。\n[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。\nConcept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。\n[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、\nその追加条件に既存revisionの承認を転用しない。\n\nGitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。\nIssueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。\nDBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。\n\n### 層と対\n\n| L | 工程 | V字の対 | 完了条件の核 |\n|---|---|---|---|\n| L1 | 企画 | L12 運用テスト | 価値、目的、対象、非対象、route判断が確定 |\n| L2 | 要求＋画面プロト | L11 受入テスト | 要求とプロトを往復し、合意receiptまたは非UI N/A receiptが存在 |\n| L3 | 要件定義・凍結 | L10 総合テスト | FR/NFR/AC、出所、優先度、非目標、test oracleが凍結 |\n| L4 | 基本設計 | L9 結合テスト | 外部設計、architecture、境界、依存、接続が確定 |\n| L5 | 詳細設計＋先行テスト設計 | L8 単体テスト | 内部設計、契約、edge case、test designが対で凍結 |\n| L6 | 実装 | L7 TDD closure | L5契約内のproduct code。scope外機能を追加しない |\n| L7 | テスト実装・TDD closure | L6 実装 | Red→Green→Refactor、実装とtestの双方向traceを閉じる |\n| L8 | 単体テスト | L5 詳細設計 | 合成/局所データで内部設計を検証 |\n| L9 | 結合テスト | L4 基本設計 | 接続、依存、transaction、adapter境界を検証 |\n| L10 | 総合テスト | L3 要件 | system全体でFR/NFR/ACを検証 |\n| L11 | 受入テスト | L2 要求＋画面プロト | 実利用・実データで要求とUXを検証 |\n| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |\n\n本番releaseはL11受入とL12運用テストの間のmilestoneであり、独立layerを増設しない。\n\n正規V-pairは `L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7` の6組だけである。\n\n## 3. L2画面工程\n\n1. UIが存在する案件は、要求⇔画面プロトの反復と合意receiptなしにL3を凍結してはならない。\n2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。\n",
+        "quote_utf8_sha256": "235215ee2a59c4cf941dbb00891407b6419eda7bc8b8dc3a11d05f794bc5f954",
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+        "start_line": 28,
+        "end_line": 78,
+        "file_bytes_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+        "quote_utf8": "本契約は既存Requirement Engineを置換せず、次のrefinementとして追加する。\n\n| 既存owner | 再利用する責務 |\n|---|---|\n| `HR-FR-HIL-15` | surface適用判定、prototype、walkthrough、人間agreement |\n| `HR-FR-HIL-17` | 要求翻訳、原子化、異議、設計義務、定義revision |\n| `HR-FR-HIL-19` | Proposal → Candidate → Canonical、意味差分、原子的admission、rollback |\n| `HR-FR-HIL-20` | 必要十分なdesign portfolio、選択済みstyleへのbinding、発見deltaのback-propagation |\n| AI Vision Design HARNESS | Experience／UI／Frontend契約、prototype、反応、UX証拠 |\n\nL1は人間向けMarkdownを正本とする。L2はappend-only discovery eventとcandidate projectionを持つが\ncanonical requirementではない。L3で初めてstrict JSON IRを機械正本とし、G1/G3人間承認後だけfreezeする。\n別Requirement Engine、別台帳、別layer、別authoring DBを追加しない。\n\n## §1 refinement要件\n\n| ID | refinement要件 | 既存owner | AC |\n|---|---|---|---|\n| `RDJ-FR-001` | L1 initiative intakeは目的、価値、actor、context、scope/non-goal、制約、仮説、3軸候補を保持し、未確定値をAIが補完せずL2質問へ送る | `HR-FR-HIL-17` | `RDJ-AC-001` |\n| `RDJ-FR-002` | L2は質問、回答、prototype、reaction、candidate split/merge/reject/accept、contradiction、defer、agreement、compile/backflowをappend-only eventとして保持し、current candidateを決定論再構築する | `HR-FR-HIL-17` | `RDJ-AC-002` |\n| `RDJ-FR-003` | 次質問は影響度×不確実性×下流変更cost×人間専決度で選び、重複質問と理由なしの回答矛盾を拒否する | `HR-FR-HIL-17` | `RDJ-AC-003` |\n| `RDJ-FR-004` | `screen/cli/api/event/batch/notification/external_service/none`を共通surfaceとし、requirement→action→state transition→success/cancel/failure/timeout/recovery→AC→oracleを結ぶ。`none`は理由と再評価条件を要求する | `HR-FR-HIL-15` | `RDJ-AC-004` |\n| `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |\n| `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |\n| `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |\n| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を将来のDesign Template JSON接続口として出力し、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |\n| `RDJ-FR-009` | JSON IRはstable ID単位に分割し、revision、semantic digest、owner、statusを必須化し、unknown enum、extra property、range-only identityを拒否する | `HR-FR-HIL-19` | `RDJ-AC-009` |\n| `RDJ-FR-010` | Markdown・matrix・HTML等はJSONからのgenerated viewとし、直接編集をproposal eventへ戻す。cutoverはJSON canonical、generated view、DB projection、全consumerを一つのtransactionで切り替えdual authorityを作らない | `HR-FR-HIL-19` | `RDJ-AC-010` |\n| `RDJ-FR-011` | 現行153/24/72/24をshadow移行しsemantic parityを検査する。既知12要求は`HR-FR-HIL-23`／`HR-FR-HIL-24`へexact配線し、GitHub 5責務へ配線しない | `HR-FR-HIL-17` | `RDJ-AC-011` |\n| `RDJ-FR-012` | 3 production styleはL1〜L3 discovery/compile/freezeを共通必須とし、Discovery／PoCはS4前canonical化しないcase軸、Design HARNESSはprototypeを支援するspecialist軸として維持する | `HR-FR-HIL-20` | `RDJ-AC-012` |\n\n## §2 lifecycleと承認\n\nL2 candidate lifecycleは\n`hypothesis → elicited → prototyped → observed → accepted → specified → frozen`とし、\n`rejected/deferred/challenged/superseded/stale`をside/terminal状態とする。`accepted`は要求意図の人間受入、\n`specified`はL3 compile完了、`frozen`はG1/G3人間承認後だけ許可する。AIの沈黙承認は禁止する。\n\nPR-1は契約だけを定義し、schema/runtime/migration/cutoverを実装済みと主張しない。\n\n## §2.1 Design Template JSON successor境界\n\nRequirement JSONは`design_template_ids`、`design_obligation_ids`、\n`required_design_artifact_kinds`を型付き出力として持つ。未解決templateは\n`pending_template_resolution`として残し、存在しないtemplate IDをAIが捏造しない。\n\n設計templateの構造、適用条件、必須section／field、V-pair、negative oracle、measurement、\ncompletion conditionをJSON正本へ移す作業は#290の独立episodeとする。設計意図、代替案、\ntrade-off、背景はJSON IDへ束縛したMarkdownに残し、Markdown／HTML／Mermaid／画像を\ntemplateやdesign instanceの正本にしない。#290はPR-6／#288のG1/G3再束縛後だけactivationする。\n\n",
+        "quote_utf8_sha256": "0b2398ee0d44d26d906a260bd136ab504d690cea9d6357b84340b73ae29fe693",
+        "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+        "start_line": 13,
+        "end_line": 49,
+        "file_bytes_sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
+        "quote_utf8": "\n## 背景\n\nREBASELINE v0.4.0/v0.5.0 のフルチェック監査で、ADR-009 の「Python = proposal-only worker、\n分類不能な機能は reject して TS/Node 再実装」という条項と、ハイブリッド設計ドキュメント v1\n（実証済み Python コアエンジン、715 ファイル・122 文書カタログ・検出・trace）の温存方針が\n正面衝突した。両案の技術比較を行った結果は次のとおり。\n\n1. Python への DB 直接 write 開放（全面 supersede 案）は劣位。Claude↔Codex が同一\n   `harness.db`/Git を並行運用する本ハーネスでは、書き込み口が 2 つになると lease/fence/\n   監査証跡を Python 側へ二重実装する必要が生じ、競合破損リスクだけが増える。\n2. ADR-009 現状維持も劣位。「分類不能 → TS/Node 再実装」既定は、実証済みエンジンに対して\n   退行リスクのみでメリットがない。実測でも hybrid の全 29 ツールが既存 capability class に\n   分類され、この条項は一度も発火していない（死文の書き直し圧力）。\n3. ADR-009 で技術的価値が実証されているのは「commit の一手を Node の単一境界に通す」こと\n   のみ。従属的な呼称・再実装既定は本質ではない。\n\n## 決定\n\n1. **Python = 恒久意味コア（semantic core）**。ハイブリッド設計ドキュメント v1 由来の\n   Python 実装は、要件抽出・typed spec・trace・検出・impact・review・文書生成という\n   意味判断・生成能力の**正本**であり、書き換え対象ではない。TS/Node への再実装義務\n   （reject-for-TS-reimplementation 既定）は**廃止**する。capability class に分類できない\n   新規機能は、ADR 改定による class 追加で扱う（書き直しを既定姿勢にしない）。\n   逆方向の bulk port（動作している Python エンジンの TS 一括書き直し）は高リスク行為として\n   原則禁止し、実施には PO の個別承認を要する。\n2. **Node = 実行境界（transactional boundary）**。`harness.db` および Git/GitHub への\n   commit・副作用は従来どおり Node の単一境界のみが実行する（lease/fence/audit は既存\n   Node 機構）。Python へ DB path・credential・repository・`.helix/` を渡さない実装手段も\n   維持する。これは Python の従属ではなく、multi-runtime 並行運用の直列化点である。\n3. **呼称の改定**。「proposal-only worker」という従属的呼称を廃止し、\n   Python = 「意味コア（semantic core）」、Node = 「実行境界（transactional boundary）」とする。\n   両者は層別権威（layered authority）であり、意味判断の正本 = Python、\n   トランザクション・外部副作用の正本 = Node、として**同格**に扱う。\n4. **権威順序**。人が承認した要求・判断記録・確定 ADR を最上位とし、その直下に\n   「意味判断の正本 = Python semantic contract」と「実行の正本 = Node runtime contract」を\n   同格併記する。一方を他方の全面上位とする記述を禁止する。\n",
+        "quote_utf8_sha256": "67db7653f04e959777828ca18df4870b6f88cc40b462200259a062aba1f3c3ee",
+        "asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+        "start_line": 16,
+        "end_line": 47,
+        "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+        "quote_utf8": "## §1 module境界\n\n実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、\nrepository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは\n既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。\n\n```ts\ntype Finding = {\n  code: DesignTemplateFindingCode;\n  pointer: string;\n  message: string;\n};\n\ntype ValidationResult<T> =\n  | { ok: true; value: T; findings: [] }\n  | { ok: false; findings: Finding[] };\n```\n\nfindingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。\n\n## §2 `validateDesignTemplate`\n\n```ts\nfunction validateDesignTemplate(\n  input: unknown,\n  context: {\n    schemaVersion: \"helix-design-template.v1\";\n    currentPairs: ReadonlyArray<readonly [string, string]>;\n    allowedFieldPaths: ReadonlySet<string>;\n  },\n): ValidationResult<DesignTemplate>;\n```\n",
+        "quote_utf8_sha256": "3a33867fe15063bf7f5b6c6c173bc2ac717ec13f5ad08386406f75d1dd4e6c76",
+        "asset_id": "LEGACY-ASSET-EF18357A994D043719D5"
+      },
+      {
+        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+        "start_line": 86,
+        "end_line": 101,
+        "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+        "quote_utf8": "function evaluateTemplateApplicability(\n  predicate: PredicateNode,\n  facts: Readonly<Record<string, unknown>>,\n  limits?: { maxDepth: number; maxNodes: number },\n): {\n  outcome: \"applicable\" | \"not_applicable\" | \"evaluation_error\";\n  findings: Finding[];\n};\n```\n\n### DbC\n\n- `all/any/not/comparison`はexactly-one variant。\n- boolean short circuitを許可するが、unknown field/operator/type errorを隠さない。\n- `evaluation_error`が1件でもあればapplicable/not_applicableを返さない。\n- missing factをfalseへ丸めず、`exists`以外ではerrorにする。\n",
+        "quote_utf8_sha256": "b7bffb89087f6fbade5381b54db51e75f430c5bba11ea2bf863fa0205c629bb4",
+        "asset_id": "LEGACY-ASSET-EF18357A994D043719D5"
+      }
+    ],
+    "reuse": {
+      "disposition": "semantic_rederivation",
+      "keep": "旧L6のpure function/独立context入力/Result/所見の安定sortと、原結果・候補・合意・実作用の分離を保持。旧L6の2範囲をlegacy_basisへ直接結ぶ。ADR-010は意味値と外部作用の分離だけの根拠とし、その旧runtime配置/authorityを継承しない。",
+      "change": "003/008への戻し先を、prototype_result_refsではなくF02Contextで明示供給する論理consumer契約Refとして選択し既存backflow_refsへ返す。",
+      "reason": "既存L4 F02の003/008戻し責務を既存RefSet/Resultへ構成するため。実登録/実配送先を要求する新gateではない。"
+    },
+    "target_meaning": "003/008への責務は原L3/L10とL4で既決。対応の型付き値と返却構成だけが今回の下流設計提案。値の実供給/資格が未成立でも論理責務をunknownへ格下げしない。 backflow_refsは論理契約Refの既知部分集合。原結果Ref/合意Ref/実recipientの代用ではない。",
+    "snapshot_premise": [
+      "Contextと新binding行はいずれも既存common_contractのimmutable owner-qualified snapshot前提。同source対象/版/scope/owner/内容を解決した比較結果をstateとbasis/content_check_refsへ供給する。関数は資格発行やsource解決を行わない。",
+      "currentはfield/hash/非空配列から生成しない。実body解決や対象版の内容照合が未供給ならproviderはmissing/unknown/conflict/staleを保持する。currentなのにtargetがnullならreference_missing、basis又は内容根拠0件ならcontent_unproven。この必要条件の検査だけを資格十分条件としない。",
+      "target_refはconsumer_requirement_refの論理契約本文、scopeは既存親HARNESS-L2-003/008。その版/owner/bodyの正しさは当該snapshotの解決前提。target_refのrevisionをinput要求revisionと同値にしない（役割が異なる）。呼出し側の実source供給は未成立。",
+      "typed immutable Context自体が無い/不正な呼出しはこのdomain callの前提外。valid subjectを捏造してFindingを返す外側protocolは定義しない。入力inputの不正は既存invalid Resultとして返す。"
+    ],
+    "binding_rules": [
+      "行の全6field必須。未供給targetはnull、stateは不足を保持する。unknown property/不正Ref/未知stateは型外。record全体の入力検査とsnapshot形成はL6で明示し、型外を成功へ補完しない。",
+      "consumerごとにbasis_refs/content_check_refsを集合のcanonical順へ正規化してから同値行を同原因としてまとめる。異なる複数候補を先頭選択せずreference_conflict。順序だけの差は候補を失わせない。新registryのID重複許可規則ではない。",
+      "subject identity/owner/scopeの相反はreference_conflict。これら同値でrevisionが違えばdigestも変わり得る古い根拠としてreference_stale。同じrevisionでdigestが違う場合はreference_conflict。state不足とtarget nullは同原因を重ねずstateのreference_*を保持する。異consumerの不足/相反は別Finding。",
+      "入力型不正のinvalidはvalue=nullでそのResultを返す。それ以外は前段所見を003/008および明示Context subject ownerの論理候補へ返す。L2 Ref欠落はその事実を保持しtarget比較を重ねないが、独立prototype/poc/l25を捨てない。閉じた5fieldが得られるならagreement_state=missing、backflow_refs=[]を不足所見と併存する。前段の値自体を構成不能な場合のnullは保持する。",
+      "既知targetが0件でも、前段の5fieldが閉じていればbackflow_refs=[]と不足Finding/outcomeを併存して返す。これは既知の論理consumer契約Refが0件という表示であり、完全な返却先集合の解決又は成功ではない。1件なら既知Refと他consumerのFindingを併存する。全件knownでも実配送/合意/採用/完了へ昇格しない。invalidは前段Resultをそのまま返す。前段value=nullでもinvalidでなければ、target比較を行わず前段所見を003/008/Context subject ownerへ展開・整序した後、value=nullを保持する。前段5fieldが構成できる場合にnullへ落とさない。"
+    ],
+    "prior_stage": {
+      "name": "prior",
+      "public_argument": false,
+      "type": "{outcome: Result.outcome, value: F02の既存5field（backflow_refs除外）|null, findings: Finding tuple}。Findingのfield形は共通だが内部原因素材であり、最終返却先の展開済み一覧ではない。",
+      "producer": "#/functions/1/steps/0〜3と既存型/field検査。追加target比較より前の内部Result。",
+      "null_rule": "invalidは既存Result契約に従いvalue=null。L2要求Ref欠落だけでは独立した画面/技術適用をnullへ落とさない。適用値/合意不足/missing_na_fieldsを閉じた5fieldに構成できる範囲で返し、後段はL2欠落時のagreement_stateを同対象合意を束縛できないmissingへ確定する。前段が独立合意currentを保持していても、この後段の対象束縛判定を省略しない。前段5field自体が未構成の場合に限りvalue=null。",
+      "finding_owner_rule": "内部前段素材の非invalid所見は、明示Context subjectの論理ownerをこの段階の原因所在として表せる。これは欠落L2 ownerの推定でも003/008への展開済み配送結果でもない。finishは元code/pointer/subject/requirement/evidenceを保持して、003/008とContext subject ownerの各論理候補へ展開する。invalidだけは001への既存返却をそのまま保持する。前段owner fieldの値から最終返却先を選ばない。"
+    },
+    "finding_constructor": {
+      "fields": {
+        "code": "既存finding_classificationの原因code。",
+        "pointer": "入力fieldの既存locator。Contextだけの不足は空文字（input root）。/context等の偽input locatorは作らない。",
+        "subject_ref": "有効なL2要求Refに束縛した前段/target所見はそのRef。L2欠落ではContext.subject_refを使い、これはsnapshot subjectの所在であって欠落L2と同一だとの推定ではない。入力record不正もtyped Context.subject_ref。",
+        "requirement_ref": "既存HARNESS-L3-001-F02。",
+        "backflow_owner": "invalid入力はHARNESS-L2-001。適用/N/A/合意・参照の前段所見はHARNESS-L2-003/008とContext.subject_ref.ownerの論理返却候補へ分ける。後者はContextが明示するsnapshot subjectのowner役であって、欠落又は別のL2要求のownerを推定したものではない。target比較の所見はそのHARNESS-L2-003/008だけ。いずれも実recipient資格を生成しない。",
+        "evidence_refs": "target所見は比較対象の有効L2 Refとcontext.source_check_refsの集合。L2欠落は明示Contextのsource_check_refsだけで、無いL2 Refを作らない。前段所見はその比較が読んだ供給済みRef集合を保持する。最後にRefSetをcanonical順へ正規化し同値重複だけ除く。原row/値は不変Contextとinputから辿り、根拠の無いRefを追加しない。"
+      },
+      "sort": "既存code/pointer/subject identity/revision順。tieはbackflow_owner、evidence_refsのcanonical順。evidence_refsもRefSetとして先に正規化してから、同じ全6fieldの所見だけ重複除去する。異owner/異根拠は消さない。",
+      "limits": "F01/B01の既存契約は不変。この追補でその全Finding返却構成を固定したとはしない。既存型付き値にはContext locator baseが無いため任意同owner同Refの複数原因を全て識別する拡張は未具体化。"
+    },
+    "expression_language": {
+      "domain": "型検査済みF02Contextと内部prior。priorは公開引数ではなく既存F02比較から得る。invalidのprior.valueはnullという既存Result不変条件を保持する。JSON式は返却後段の唯一の値規範であり、case ID/期待値を読まない。",
+      "operators": {
+        "var": "lexical変数。",
+        "literal": "記載JSON値。",
+        "get": "値をRFC6901 pointerで辿る。空文字はroot。配列indexは十進数、~1/~0を復号。欠落をnullへ変換しない。",
+        "object": "field式を評価し記載memberだけのrecordを構成。",
+        "array": "記載順に評価し配列を構成。",
+        "equal": "JSON構造等値。booleanはnumberと別、numberは数値同値。record key順は不問、配列は順序を比較。",
+        "not": "Boolean否定。",
+        "and": "左からBoolean短絡AND。",
+        "or": "左からBoolean短絡OR。",
+        "if": "Boolean条件の選択枝だけ評価。",
+        "let": "記載順に局所束縛しbodyへ。",
+        "call": "definitionsの引数名へ位置束縛しbody評価。公開関数の新設ではない。",
+        "filter": "配列各要素をnameへ束縛しBoolean predicateがtrueの値を元順保持。",
+        "map": "配列各要素をnameへ束縛しexpressionを元順評価。",
+        "length": "配列の要素数。",
+        "first": "非空配列の先頭。guardの後だけ使用。",
+        "unique": "JSON構造等値の重複だけ除去し最初の値を保持。",
+        "sort_canonical": "sort_keys=true/ensure_ascii=false/separators=(comma,colon)のJSON文字列をUnicode code point順にsort。",
+        "concat": "記載配列を一段連結。",
+        "lookup": "mapのliteral keyを選ぶ。key欠落は前提違反、fallbackで成功にしない。",
+        "contains": "配列のJSON等値membership。",
+        "sort_by": "各要素をnameへ束縛しkey式の配列を辞書式codepoint順、tieはcanonical JSON順。",
+        "canonical_text": "sort_keys=true/ensure_ascii=false/separators=(comma,colon)でJSON値を文字列化。Ref集合の表示順は別の集合構成規則で確定する。",
+        "flat_map": "配列の各要素をnameへ束縛し、expressionが返す配列を元の順で一段連結する。業務条件は呼出し側のJSON式だけに置く。"
+      },
+      "definitions": {
+        "row_code": {
+          "parameters": [
+            "row",
+            "subject",
+            "consumer"
+          ],
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "row"
+                      },
+                      "pointer": "/subject_ref/identity"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "subject"
+                      },
+                      "pointer": "/identity"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "row"
+                      },
+                      "pointer": "/subject_ref/owner"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "subject"
+                      },
+                      "pointer": "/owner"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "row"
+                      },
+                      "pointer": "/subject_ref/scope"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "subject"
+                      },
+                      "pointer": "/scope"
+                    }
+                  }
+                ]
+              }
+            },
+            "then": {
+              "literal": "reference_conflict"
+            },
+            "else": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "get",
+                    "value": {
+                      "var": "row"
+                    },
+                    "pointer": "/subject_ref/revision"
+                  },
+                  "right": {
+                    "op": "get",
+                    "value": {
+                      "var": "subject"
+                    },
+                    "pointer": "/revision"
+                  }
+                }
+              },
+              "then": {
+                "literal": "reference_stale"
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "row"
+                      },
+                      "pointer": "/subject_ref/content_sha256"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "subject"
+                      },
+                      "pointer": "/content_sha256"
+                    }
+                  }
+                },
+                "then": {
+                  "literal": "reference_conflict"
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "row"
+                        },
+                        "pointer": "/state"
+                      },
+                      "right": {
+                        "literal": "current"
+                      }
+                    }
+                  },
+                  "then": {
+                    "op": "lookup",
+                    "map": {
+                      "literal": {
+                        "missing": "reference_missing",
+                        "unknown": "reference_unknown",
+                        "conflict": "reference_conflict",
+                        "stale": "reference_stale"
+                      }
+                    },
+                    "key": {
+                      "op": "get",
+                      "value": {
+                        "var": "row"
+                      },
+                      "pointer": "/state"
+                    }
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "row"
+                        },
+                        "pointer": "/target_ref"
+                      },
+                      "right": {
+                        "literal": null
+                      }
+                    },
+                    "then": {
+                      "literal": "reference_missing"
+                    },
+                    "else": {
+                      "op": "if",
+                      "condition": {
+                        "op": "not",
+                        "value": {
+                          "op": "and",
+                          "items": [
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "var": "row"
+                                },
+                                "pointer": "/target_ref/identity"
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "var": "consumer"
+                                },
+                                "pointer": "/requirement_ref"
+                              }
+                            },
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "var": "row"
+                                },
+                                "pointer": "/target_ref/scope"
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "var": "consumer"
+                                },
+                                "pointer": "/backflow_owner"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "then": {
+                        "literal": "reference_conflict"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "length",
+                                "value": {
+                                  "op": "get",
+                                  "value": {
+                                    "var": "row"
+                                  },
+                                  "pointer": "/basis_refs"
+                                }
+                              },
+                              "right": {
+                                "literal": 0
+                              }
+                            },
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "length",
+                                "value": {
+                                  "op": "get",
+                                  "value": {
+                                    "var": "row"
+                                  },
+                                  "pointer": "/content_check_refs"
+                                }
+                              },
+                              "right": {
+                                "literal": 0
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "literal": "content_unproven"
+                        },
+                        "else": {
+                          "literal": null
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "select_target": {
+          "parameters": [
+            "consumer",
+            "context",
+            "subject"
+          ],
+          "body": {
+            "op": "let",
+            "bindings": [
+              {
+                "name": "rows",
+                "value": {
+                  "op": "unique",
+                  "value": {
+                    "op": "map",
+                    "items": {
+                      "op": "filter",
+                      "items": {
+                        "op": "get",
+                        "value": {
+                          "var": "context"
+                        },
+                        "pointer": "/backflow_target_bindings"
+                      },
+                      "name": "r",
+                      "predicate": {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "r"
+                          },
+                          "pointer": "/consumer_requirement_ref"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "consumer"
+                          },
+                          "pointer": "/requirement_ref"
+                        }
+                      }
+                    },
+                    "name": "r",
+                    "expression": {
+                      "call": "normalize_binding",
+                      "args": [
+                        {
+                          "var": "r"
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "name": "code",
+                "value": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "op": "length",
+                      "value": {
+                        "var": "rows"
+                      }
+                    },
+                    "right": {
+                      "literal": 0
+                    }
+                  },
+                  "then": {
+                    "literal": "reference_missing"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "not",
+                      "value": {
+                        "op": "equal",
+                        "left": {
+                          "op": "length",
+                          "value": {
+                            "var": "rows"
+                          }
+                        },
+                        "right": {
+                          "literal": 1
+                        }
+                      }
+                    },
+                    "then": {
+                      "literal": "reference_conflict"
+                    },
+                    "else": {
+                      "call": "row_code",
+                      "args": [
+                        {
+                          "op": "first",
+                          "value": {
+                            "var": "rows"
+                          }
+                        },
+                        {
+                          "var": "subject"
+                        },
+                        {
+                          "var": "consumer"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "body": {
+              "op": "object",
+              "fields": {
+                "consumer": {
+                  "var": "consumer"
+                },
+                "code": {
+                  "var": "code"
+                },
+                "target_ref": {
+                  "op": "if",
+                  "condition": {
+                    "op": "equal",
+                    "left": {
+                      "var": "code"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  },
+                  "then": {
+                    "op": "get",
+                    "value": {
+                      "op": "first",
+                      "value": {
+                        "var": "rows"
+                      }
+                    },
+                    "pointer": "/target_ref"
+                  },
+                  "else": {
+                    "literal": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "route_finding": {
+          "parameters": [
+            "selected",
+            "subject",
+            "context"
+          ],
+          "body": {
+            "op": "object",
+            "fields": {
+              "code": {
+                "op": "get",
+                "value": {
+                  "var": "selected"
+                },
+                "pointer": "/code"
+              },
+              "pointer": {
+                "literal": ""
+              },
+              "subject_ref": {
+                "var": "subject"
+              },
+              "requirement_ref": {
+                "literal": "HARNESS-L3-001-F02"
+              },
+              "backflow_owner": {
+                "op": "get",
+                "value": {
+                  "var": "selected"
+                },
+                "pointer": "/consumer/backflow_owner"
+              },
+              "evidence_refs": {
+                "op": "unique",
+                "value": {
+                  "op": "concat",
+                  "items": [
+                    {
+                      "op": "array",
+                      "items": [
+                        {
+                          "var": "subject"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "var": "context"
+                        },
+                        "pointer": "/source_check_refs"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "finish": {
+          "parameters": [
+            "input",
+            "context",
+            "prior"
+          ],
+          "body": {
+            "op": "if",
+            "condition": {
+              "op": "equal",
+              "left": {
+                "op": "get",
+                "value": {
+                  "var": "prior"
+                },
+                "pointer": "/outcome"
+              },
+              "right": {
+                "literal": "invalid"
+              }
+            },
+            "then": {
+              "var": "prior"
+            },
+            "else": {
+              "op": "let",
+              "bindings": [
+                {
+                  "name": "l2_missing",
+                  "value": {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/l2_requirement_ref"
+                    },
+                    "right": {
+                      "literal": null
+                    }
+                  }
+                },
+                {
+                  "name": "prior_findings",
+                  "value": {
+                    "call": "order_findings",
+                    "args": [
+                      {
+                        "op": "flat_map",
+                        "items": {
+                          "op": "concat",
+                          "items": [
+                            {
+                              "op": "get",
+                              "value": {
+                                "var": "prior"
+                              },
+                              "pointer": "/findings"
+                            },
+                            {
+                              "op": "if",
+                              "condition": {
+                                "var": "l2_missing"
+                              },
+                              "then": {
+                                "op": "array",
+                                "items": [
+                                  {
+                                    "op": "object",
+                                    "fields": {
+                                      "code": {
+                                        "literal": "reference_missing"
+                                      },
+                                      "pointer": {
+                                        "literal": "/l2_requirement_ref"
+                                      },
+                                      "subject_ref": {
+                                        "op": "get",
+                                        "value": {
+                                          "var": "context"
+                                        },
+                                        "pointer": "/subject_ref"
+                                      },
+                                      "requirement_ref": {
+                                        "literal": "HARNESS-L3-001-F02"
+                                      },
+                                      "backflow_owner": {
+                                        "op": "get",
+                                        "value": {
+                                          "var": "context"
+                                        },
+                                        "pointer": "/subject_ref/owner"
+                                      },
+                                      "evidence_refs": {
+                                        "op": "sort_canonical",
+                                        "value": {
+                                          "op": "get",
+                                          "value": {
+                                            "var": "context"
+                                          },
+                                          "pointer": "/source_check_refs"
+                                        }
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "else": {
+                                "op": "array",
+                                "items": []
+                              }
+                            }
+                          ]
+                        },
+                        "name": "f",
+                        "expression": {
+                          "call": "expand_prior_finding",
+                          "args": [
+                            {
+                              "var": "f"
+                            },
+                            {
+                              "var": "context"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "selected",
+                  "value": {
+                    "op": "if",
+                    "condition": {
+                      "op": "or",
+                      "items": [
+                        {
+                          "var": "l2_missing"
+                        },
+                        {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "var": "prior"
+                            },
+                            "pointer": "/value"
+                          },
+                          "right": {
+                            "literal": null
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "array",
+                      "items": []
+                    },
+                    "else": {
+                      "op": "map",
+                      "items": {
+                        "literal": [
+                          {
+                            "requirement_ref": "HARNESS-L3-003-F02",
+                            "backflow_owner": "HARNESS-L2-003"
+                          },
+                          {
+                            "requirement_ref": "HARNESS-L3-008-F02",
+                            "backflow_owner": "HARNESS-L2-008"
+                          }
+                        ]
+                      },
+                      "name": "c",
+                      "expression": {
+                        "call": "select_target",
+                        "args": [
+                          {
+                            "var": "c"
+                          },
+                          {
+                            "var": "context"
+                          },
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "input"
+                            },
+                            "pointer": "/l2_requirement_ref"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "name": "refs",
+                  "value": {
+                    "op": "map",
+                    "items": {
+                      "op": "filter",
+                      "items": {
+                        "var": "selected"
+                      },
+                      "name": "s",
+                      "predicate": {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "s"
+                          },
+                          "pointer": "/code"
+                        },
+                        "right": {
+                          "literal": null
+                        }
+                      }
+                    },
+                    "name": "s",
+                    "expression": {
+                      "op": "get",
+                      "value": {
+                        "var": "s"
+                      },
+                      "pointer": "/target_ref"
+                    }
+                  }
+                },
+                {
+                  "name": "extra",
+                  "value": {
+                    "op": "map",
+                    "items": {
+                      "op": "filter",
+                      "items": {
+                        "var": "selected"
+                      },
+                      "name": "s",
+                      "predicate": {
+                        "op": "not",
+                        "value": {
+                          "op": "equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "var": "s"
+                            },
+                            "pointer": "/code"
+                          },
+                          "right": {
+                            "literal": null
+                          }
+                        }
+                      }
+                    },
+                    "name": "s",
+                    "expression": {
+                      "call": "route_finding",
+                      "args": [
+                        {
+                          "var": "s"
+                        },
+                        {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/l2_requirement_ref"
+                        },
+                        {
+                          "var": "context"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "findings",
+                  "value": {
+                    "call": "order_findings",
+                    "args": [
+                      {
+                        "op": "concat",
+                        "items": [
+                          {
+                            "var": "prior_findings"
+                          },
+                          {
+                            "var": "extra"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "states",
+                  "value": {
+                    "op": "concat",
+                    "items": [
+                      {
+                        "op": "array",
+                        "items": [
+                          {
+                            "op": "get",
+                            "value": {
+                              "var": "prior"
+                            },
+                            "pointer": "/outcome"
+                          }
+                        ]
+                      },
+                      {
+                        "op": "map",
+                        "items": {
+                          "var": "findings"
+                        },
+                        "name": "f",
+                        "expression": {
+                          "op": "lookup",
+                          "map": {
+                            "literal": {
+                              "input_invalid": "invalid",
+                              "reference_missing": "incomplete",
+                              "reference_unknown": "unknown",
+                              "reference_conflict": "conflict",
+                              "reference_stale": "stale",
+                              "content_unproven": "incomplete",
+                              "layer_universe_mismatch": "conflict",
+                              "pair_mismatch": "conflict",
+                              "artifact_meaning_mismatch": "conflict",
+                              "artifact_identity_conflict": "conflict",
+                              "implementation_trace_missing": "incomplete",
+                              "applicability_mismatch": "conflict",
+                              "fact_unknown": "unknown",
+                              "na_basis_missing": "incomplete",
+                              "agreement_missing": "incomplete",
+                              "authority_inferred": "incomplete",
+                              "verification_unobserved": "incomplete"
+                            }
+                          },
+                          "key": {
+                            "op": "get",
+                            "value": {
+                              "var": "f"
+                            },
+                            "pointer": "/code"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "outcome",
+                  "value": {
+                    "op": "first",
+                    "value": {
+                      "op": "filter",
+                      "items": {
+                        "literal": [
+                          "invalid",
+                          "conflict",
+                          "stale",
+                          "unknown",
+                          "incomplete",
+                          "satisfied"
+                        ]
+                      },
+                      "name": "o",
+                      "predicate": {
+                        "op": "contains",
+                        "items": {
+                          "var": "states"
+                        },
+                        "value": {
+                          "var": "o"
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "body": {
+                "op": "object",
+                "fields": {
+                  "outcome": {
+                    "var": "outcome"
+                  },
+                  "value": {
+                    "op": "if",
+                    "condition": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "prior"
+                        },
+                        "pointer": "/value"
+                      },
+                      "right": {
+                        "literal": null
+                      }
+                    },
+                    "then": {
+                      "literal": null
+                    },
+                    "else": {
+                      "op": "object",
+                      "fields": {
+                        "prototype": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/prototype"
+                        },
+                        "poc": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/poc"
+                        },
+                        "l25": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/l25"
+                        },
+                        "missing_na_fields": {
+                          "op": "get",
+                          "value": {
+                            "var": "prior"
+                          },
+                          "pointer": "/value/missing_na_fields"
+                        },
+                        "agreement_state": {
+                          "op": "if",
+                          "condition": {
+                            "var": "l2_missing"
+                          },
+                          "then": {
+                            "literal": "missing"
+                          },
+                          "else": {
+                            "op": "get",
+                            "value": {
+                              "var": "prior"
+                            },
+                            "pointer": "/value/agreement_state"
+                          }
+                        },
+                        "backflow_refs": {
+                          "var": "refs"
+                        }
+                      }
+                    }
+                  },
+                  "findings": {
+                    "var": "findings"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "normalize_binding": {
+          "parameters": [
+            "row"
+          ],
+          "body": {
+            "op": "object",
+            "fields": {
+              "consumer_requirement_ref": {
+                "op": "get",
+                "value": {
+                  "var": "row"
+                },
+                "pointer": "/consumer_requirement_ref"
+              },
+              "subject_ref": {
+                "op": "get",
+                "value": {
+                  "var": "row"
+                },
+                "pointer": "/subject_ref"
+              },
+              "target_ref": {
+                "op": "get",
+                "value": {
+                  "var": "row"
+                },
+                "pointer": "/target_ref"
+              },
+              "state": {
+                "op": "get",
+                "value": {
+                  "var": "row"
+                },
+                "pointer": "/state"
+              },
+              "basis_refs": {
+                "op": "sort_canonical",
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "row"
+                  },
+                  "pointer": "/basis_refs"
+                }
+              },
+              "content_check_refs": {
+                "op": "sort_canonical",
+                "value": {
+                  "op": "get",
+                  "value": {
+                    "var": "row"
+                  },
+                  "pointer": "/content_check_refs"
+                }
+              }
+            }
+          }
+        },
+        "order_findings": {
+          "parameters": [
+            "findings"
+          ],
+          "body": {
+            "op": "sort_by",
+            "value": {
+              "op": "unique",
+              "value": {
+                "op": "map",
+                "items": {
+                  "var": "findings"
+                },
+                "name": "f",
+                "expression": {
+                  "op": "object",
+                  "fields": {
+                    "code": {
+                      "op": "get",
+                      "value": {
+                        "var": "f"
+                      },
+                      "pointer": "/code"
+                    },
+                    "pointer": {
+                      "op": "get",
+                      "value": {
+                        "var": "f"
+                      },
+                      "pointer": "/pointer"
+                    },
+                    "subject_ref": {
+                      "op": "get",
+                      "value": {
+                        "var": "f"
+                      },
+                      "pointer": "/subject_ref"
+                    },
+                    "requirement_ref": {
+                      "op": "get",
+                      "value": {
+                        "var": "f"
+                      },
+                      "pointer": "/requirement_ref"
+                    },
+                    "backflow_owner": {
+                      "op": "get",
+                      "value": {
+                        "var": "f"
+                      },
+                      "pointer": "/backflow_owner"
+                    },
+                    "evidence_refs": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "var": "f"
+                        },
+                        "pointer": "/evidence_refs"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "name": "f",
+            "key": {
+              "op": "array",
+              "items": [
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/code"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/pointer"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/subject_ref/identity"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/subject_ref/revision"
+                },
+                {
+                  "op": "get",
+                  "value": {
+                    "var": "f"
+                  },
+                  "pointer": "/backflow_owner"
+                },
+                {
+                  "op": "canonical_text",
+                  "value": {
+                    "op": "get",
+                    "value": {
+                      "var": "f"
+                    },
+                    "pointer": "/evidence_refs"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "expand_prior_finding": {
+          "parameters": [
+            "finding",
+            "context"
+          ],
+          "body": {
+            "op": "map",
+            "items": {
+              "op": "sort_canonical",
+              "value": {
+                "op": "unique",
+                "value": {
+                  "op": "array",
+                  "items": [
+                    {
+                      "literal": "HARNESS-L2-003"
+                    },
+                    {
+                      "literal": "HARNESS-L2-008"
+                    },
+                    {
+                      "op": "get",
+                      "value": {
+                        "var": "context"
+                      },
+                      "pointer": "/subject_ref/owner"
+                    }
+                  ]
+                }
+              }
+            },
+            "name": "owner",
+            "expression": {
+              "op": "object",
+              "fields": {
+                "code": {
+                  "op": "get",
+                  "value": {
+                    "var": "finding"
+                  },
+                  "pointer": "/code"
+                },
+                "pointer": {
+                  "op": "get",
+                  "value": {
+                    "var": "finding"
+                  },
+                  "pointer": "/pointer"
+                },
+                "subject_ref": {
+                  "op": "get",
+                  "value": {
+                    "var": "finding"
+                  },
+                  "pointer": "/subject_ref"
+                },
+                "requirement_ref": {
+                  "op": "get",
+                  "value": {
+                    "var": "finding"
+                  },
+                  "pointer": "/requirement_ref"
+                },
+                "evidence_refs": {
+                  "op": "get",
+                  "value": {
+                    "var": "finding"
+                  },
+                  "pointer": "/evidence_refs"
+                },
+                "backflow_owner": {
+                  "var": "owner"
+                }
+              }
+            }
+          }
+        }
+      },
+      "entry": "finish(input, context, prior)"
+    },
+    "consumer_handoffs": [
+      {
+        "consumer_symbol": "assess_prototype_poc_backflow",
+        "signature_source": "docs/helix-harness/L5-detail-design/process-state-port.json#/functions/2/input",
+        "producer": "001 check_prototype_poc_applicability のResult.value.prototype/pocと元Fact/N/A/合意資料",
+        "mapping": "Context/各適用/各N/Aの独立SourceCellを別sourceとして組む。001 ResultのoutcomeだけをSourceCell資格へコピーしない。003 original_sources.applicabilityのprototype/pocに独立判定と元資料を結び、source_qualificationsも当該sourceごとに供給する。",
+        "not_connected": "SourceCell.ref/binding/original_contents/qualification_reasonのexact recordを供給する実producer/resolverは未指定。001のbackflow_refsやoutput primitiveだけでは003 input全体が完成しない。元結果/L2/還流各段は別供給。 原L8のqualification期待はsource_qualification_results/qualification_returnsを返し、L5 ProcessAssessment.owner_returnsとの同root/同型joinもこの提案では自動仮定しない。",
+        "retained_when_missing": "003の該当prototype_applicability/poc_applicability PartialValueはmissing/unknown,value=null、元source_packet_refと理由を保持。known他方を消さず、return_chain必要membershipを未観測emptyへ補完しない。"
+      },
+      {
+        "consumer_symbol": "assess_f02",
+        "signature_source": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json#/pure_function_signatures/3",
+        "producer": "001/003適用の原sourceとprimary/experiment/result/findingの独立材料",
+        "mapping": "001 applicableは008原正常素材のapplicability.state=requiredへ意味対応する候補。not_applicableは同名だがN/A全原fieldの明示再結線が必要。unknownをrequiredへ変換しない。001 FactとNaReasonのbody/対象scope/revisionを別に解決してowner_contract/reason/judge/target_revision/requirement_impact/reevaluationを供給する。001 result Refをそのまま008 result object又はagreementへ転写しない。",
+        "not_connected": "固定13e資料のapp.state unknown/result object優先という旧未決は、d5064cedの008 F02では非N/A stateがrequired以外ならmissing・retained_unresolved_experimentとして保持するよう具体化済み。現行sourceの3pinを別revisionで明示する。なおprimary原本文/実験result/finding/instruction/agreement/qualificationや、001 RefSetと008理由stringの意味対応の実供給は未成立。論理target Refだけではconsumer入力を構成しない。",
+        "retained_when_missing": "既存008有限入力のresult/applicability不足はexperiment_conditions missing、findingはretained_unresolved_experiment、agreementはmissing等。001の論理target Refが供給されてもこれを実行成功へ昇格させない。"
+      }
+    ],
+    "consumer_value_boundary": {
+      "source_scope": "元001 fixture/001・FX-001-Q2@r1と003/008 PRODUCT-P・REQ@r1/PRIMARY-1は異なるrecord。同一案件へのassociationは未供給。",
+      "material_correspondence": "001 applicable→003独立prototype/poc適用。008 requiredへの意味対応には原body/対象bindingが必要。unknownをrequiredへ変換しない。",
+      "unavailable_members_003": "ProcessContextと各SourceCellのref(4field)/binding/kind/original_contents/qualification_reason、独立source_qualifications、結果/chain各段。001 Refは5fieldで同型でない。",
+      "unavailable_members_008": "primary body/fields/raw/hash/binding、experiment result/finding、instruction/agreement/qualification、FixtureCaseContext/CandidateSubmission。001 NaReason.requirement_impact_refsはRefSet、008素材のstringとは別型付き値。",
+      "qualification_returns": "003既存qualification_returnsのowner_target_state=unknown/owner_target=nullと、この論理target Refの正常返却は両立。actual recipientを生成しない。",
+      "current_008_revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+      "current_008_rule": "required以外の非N/A stateはmissing、当該findingはretained_unresolved_experiment。13e固定matrixの値例は当時の材料として参照し、現行008の未実現扱いへ転用しない。"
+    },
+    "limits": [
+      "実source本文の解決と資格を供給する主体、および003/008の完全入力recordを構成する接続は未成立。",
+      "元8件と追加26件は、内部比較結果を明示して返却後段を源泉へ照合する素材。整序の単独対照は公開call数に加算しない。全3関数の完全結果再計算、全未見域、全AST・全変異の閉包や新しい完了条件を意味しない。",
+      "元L8の27否定と1つの独立variantの投影を保持し、完全引数/全所見が元資料で揃っていたとはしない。",
+      "実source資格/実操作/受入と実装準備の成立は、この局所返却の設計や照合から生成しない。"
+    ]
+  }
 }
