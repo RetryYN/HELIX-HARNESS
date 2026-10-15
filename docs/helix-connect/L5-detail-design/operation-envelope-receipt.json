@@ -270,20 +270,18 @@
         "receive_fields": "List<String>",
         "areas_in_order": "List<String>",
         "security_fields": "List<String>",
-        "failure_routes": "Map<String,String>",
-        "check_order_rule": "String",
         "header_comparison_order": "List<String>",
         "envelope_comparison_order": "List<String>",
-        "output_literals_ref": "String",
         "owner_values": "Map<String,String>",
-        "registration_fields": "List<String>",
-        "compatibility_fields": "List<String>",
-        "permission_fields": "List<String>",
         "receipt_side_order": "List<String>",
         "area_names": "Map<String,String>",
-        "outside_contract_field": "String",
         "unknown_original_field": "String",
-        "check_fields": "Map<String,List<String>>"
+        "check_fields": "Map<String,List<String>>",
+        "return_owner_rules": "List<ReturnOwnerRule>",
+        "check_order": "CheckOrderRule",
+        "comparison_policy": "ComparisonPolicy",
+        "envelope_member_policy": "EnvelopeMemberPolicy",
+        "state_observation_policy": "StateObservationPolicy"
       }
     },
     {
@@ -551,7 +549,8 @@
         "business_completion": "BusinessCompletion",
         "return_owner": "String",
         "effects": "EffectFlags"
-      }
+      },
+      "description": "retained_business_stateは原business stateがstringならその文字列を保持し、Absent/nullの場合は文字列unknownを返す表示fallback。retained_business_record側には原Presenceがそのまま残る。"
     },
     {
       "name": "BusinessCompletion",
@@ -593,11 +592,12 @@
         "content_results": "Map<String,ComparisonResult>",
         "target_header_results": "Map<String,ComparisonResult>",
         "envelope_digest_result": "ComparisonResult",
-        "retained_receipt": "Presence<Receipt>",
-        "submitted_receipt": "Presence<Receipt>",
+        "retained_receipt": "ReceiptProjection",
+        "submitted_receipt": "ReceiptProjection",
         "observation_location": "String",
         "retained_observation_state": "String"
-      }
+      },
+      "description": "Absent receiptは空object {}、Present receiptはsource object値を保持する。receipt不在自体の資格・送受信観測を表さない。"
     },
     {
       "name": "OperationAssessment",
@@ -625,6 +625,65 @@
         "requires_actual_source_and_transport_qualification",
         "held_or_rejected"
       ]
+    },
+    {
+      "name": "ReceiptProjection",
+      "kind": "map",
+      "key": "String",
+      "value": "JsonValue",
+      "description": "receiptがAbsentなら空object {}、Presentなら実source objectのfield/valueをそのまま保持するfixture projection"
+    },
+    {
+      "name": "ReturnOwnerRule",
+      "kind": "record",
+      "fields": {
+        "priority": "Integer",
+        "areas": "List<String>",
+        "owner_ref": "String",
+        "when_field_in": "String",
+        "fallback_owner_ref": "String",
+        "when_nonempty": "String"
+      },
+      "description": "priorityの昇順で最初にarea/field/when条件を満たす規則を適用する。条件/補助参照欄の空文字列は未指定を表し、owner_refが未供給ならfallback_owner_ref、最後はendpointへ戻す。"
+    },
+    {
+      "name": "CheckOrderRule",
+      "kind": "record",
+      "fields": {
+        "area_order_ref": "String",
+        "within_area": "String",
+        "duplicate_area_field": "String"
+      }
+    },
+    {
+      "name": "ComparisonPolicy",
+      "kind": "record",
+      "fields": {
+        "precedence": "List<String>",
+        "unknown_field_ref": "String",
+        "json_object_key_order": "String",
+        "json_array_order": "String",
+        "unknown_marker_values": "List<String>"
+      }
+    },
+    {
+      "name": "EnvelopeMemberPolicy",
+      "kind": "record",
+      "fields": {
+        "core_order_ref": "String",
+        "additional_members": "String",
+        "comparison": "String"
+      }
+    },
+    {
+      "name": "StateObservationPolicy",
+      "kind": "record",
+      "fields": {
+        "present": "String",
+        "absent": "String",
+        "null": "String",
+        "outside_declared_fixture_values": "String"
+      }
     }
   ],
   "contract_views": {
@@ -695,14 +754,6 @@
         "data_use_ref",
         "expiry"
       ],
-      "failure_routes": {
-        "scope": "HELIX-SECURITY",
-        "permission_ref": "HELIX-SECURITY",
-        "data_use_ref": "HELIX-SECURITY",
-        "expiry": "HELIX-SECURITY",
-        "default": "endpoint-contract-owner"
-      },
-      "check_order_rule": "checksはareas_in_order配列順、同一area内field名のUnicode code point昇順。check_fieldsは対象field集合を定め順序を与えない。header_results/envelope_results mapはheader_comparison_order/envelope_comparison_order順。failure_return_ownersは重複を除いて昇順。",
       "header_comparison_order": [
         "connection_identity",
         "operation_identity",
@@ -723,7 +774,6 @@
         "intent",
         "template_identity"
       ],
-      "output_literals_ref": "/output_literals",
       "owner_values": {
         "endpoint": "endpoint-contract-owner",
         "security": "HELIX-SECURITY",
@@ -731,27 +781,6 @@
         "receive": "consumer-endpoint-owner",
         "recovery_default": "endpoint-contract-owner"
       },
-      "registration_fields": [
-        "connection_identity",
-        "contract_revision",
-        "registration_revision",
-        "scope"
-      ],
-      "compatibility_fields": [
-        "connection_identity",
-        "contract_revision",
-        "dependency_revision",
-        "scope"
-      ],
-      "permission_fields": [
-        "connection_identity",
-        "contract_revision",
-        "data_use_ref",
-        "expiry",
-        "operation_identity",
-        "permission_ref",
-        "scope"
-      ],
       "receipt_side_order": [
         "send",
         "receive"
@@ -778,7 +807,6 @@
         "original_envelope_outside_contract": "original_envelope_outside_contract",
         "submitted_envelope_outside_contract": "submitted_envelope_outside_contract"
       },
-      "outside_contract_field": "field",
       "unknown_original_field": "contract_revision",
       "check_fields": {
         "header_content": [
@@ -899,6 +927,107 @@
         "recovery_content": [
           "unfinished"
         ]
+      },
+      "return_owner_rules": [
+        {
+          "priority": 1,
+          "areas": [
+            "permission_binding",
+            "permission_state",
+            "expiry_state"
+          ],
+          "owner_ref": "owner_values.security",
+          "when_field_in": "",
+          "fallback_owner_ref": "",
+          "when_nonempty": ""
+        },
+        {
+          "priority": 2,
+          "areas": [
+            "header_content",
+            "send_receipt_target_header",
+            "receive_receipt_target_header"
+          ],
+          "when_field_in": "security_fields",
+          "owner_ref": "owner_values.security",
+          "fallback_owner_ref": "",
+          "when_nonempty": ""
+        },
+        {
+          "priority": 3,
+          "areas": [
+            "send_receipt_content",
+            "send_observation_state"
+          ],
+          "owner_ref": "original_receipts.send.owner",
+          "fallback_owner_ref": "owner_values.send",
+          "when_field_in": "",
+          "when_nonempty": ""
+        },
+        {
+          "priority": 4,
+          "areas": [
+            "receive_receipt_content",
+            "receive_observation_state"
+          ],
+          "owner_ref": "original_receipts.receive.owner",
+          "fallback_owner_ref": "owner_values.receive",
+          "when_field_in": "",
+          "when_nonempty": ""
+        },
+        {
+          "priority": 5,
+          "areas": [
+            "recovery_content"
+          ],
+          "owner_ref": "original_recovery[0].owner",
+          "when_nonempty": "original_recovery",
+          "fallback_owner_ref": "owner_values.recovery_default",
+          "when_field_in": ""
+        },
+        {
+          "priority": 6,
+          "areas": [
+            "*"
+          ],
+          "owner_ref": "owner_values.endpoint",
+          "when_field_in": "",
+          "fallback_owner_ref": "",
+          "when_nonempty": ""
+        }
+      ],
+      "check_order": {
+        "area_order_ref": "areas_in_order",
+        "within_area": "field_unicode_code_point_ascending",
+        "duplicate_area_field": "retain_each_generated_check_in_generation_order"
+      },
+      "comparison_policy": {
+        "precedence": [
+          "absent_either_side",
+          "unknown_field_null_condition",
+          "equal_json_value",
+          "unknown_original_marker_condition",
+          "different_json_value"
+        ],
+        "unknown_field_ref": "contract_revision",
+        "json_object_key_order": "ignored",
+        "json_array_order": "preserved",
+        "unknown_marker_values": [
+          "unknown",
+          "unknown_in_fixture",
+          "unknown_original_information"
+        ]
+      },
+      "envelope_member_policy": {
+        "core_order_ref": "envelope_comparison_order",
+        "additional_members": "sorted_original_envelope_keys_excluding_core",
+        "comparison": "presence_aware"
+      },
+      "state_observation_policy": {
+        "present": "return_raw_string_value",
+        "absent": "output_literals.comparison.missing",
+        "null": "output_literals.comparison.unknown_original",
+        "outside_declared_fixture_values": "return_raw_string_without_qualification"
       }
     },
     "business": {
@@ -961,7 +1090,7 @@
       ],
       "return": "OperationAssessment",
       "effects": "none",
-      "reads": "input.raw_packetをOperationPacketとしてPresence保持で全field読む。contract_viewの順序/routeを読む。case_id/packet_sha256は判定に使わない。"
+      "reads": "input.raw_packetの全使用member、input.contract_viewの参照する順序・比較・route・area・field構成、/output_literalsの参照memberを読む。input.case_idとinput.packet_sha256は判定に使わない。"
     },
     {
       "id": "FN-C003-02",
@@ -974,26 +1103,24 @@
       ],
       "return": "BusinessAssessment",
       "effects": "none",
-      "reads": "input.raw_packetをBusinessPacketのPresence<T>として全field読む。contract_viewの配列順・failure_routeを読み、case_id/packet_sha256は判定に使用しない。"
+      "reads": "input.raw_packetの全使用member、input.contract_view.technical_fields/business_fields/target_fields/failure_fields/area_names/owner_valuesを読む。input.case_idとinput.packet_sha256は判定に使わない。"
     }
   ],
   "algorithms": [
     {
       "function_ref": "FN-C003-01",
       "steps": [
-        "OperationPacketを各Presence<T> memberについてAbsent/null/valueへ正規化し、入力の原文字列値は変更しない。",
-        "header_resultsはheader_comparison_order順に各fieldの原header/submitted headerを比較する。いずれかがAbsentならmissing、contract_revisionの片側がnullまたは値がunknown markerならunknown_original_information、同一のnull/valueならcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
-        "envelope_resultsはenvelope_comparison_order順に各fieldの原envelope/submitted envelopeを同じPresence比較で出力し、原envelopeにだけ存在する追加memberはkey昇順で後置する。",
-        "operation_identity判定はoriginal_header.operation_identityをoriginal_known_operationsの固定文字列列と照合する。値が列内にあればknown_in_fixture_only、Absent/null/列に無ければunknown_operation。これは実operation資格を意味しない。",
-        "registration_binding, compatibility_bindingはそれぞれ指定されたtarget field群を原登録/compatibility targetとoriginal_header間で比較する。",
-        "permission_bindingは指定field群を原permission targetとoriginal_header間で比較する。compatibility_state/permission_state/expiry_stateは原packetのPresenceを保持した観測checkとして加える。",
-        "send/receive順で各receiptの原memberと提出receipt memberをPresence比較する。いずれかAbsentならmissing。target_header_resultsは原receipt.target_headerをoriginal_headerと比較する。提出receipt/headerのtargetはこの照合の右辺に使わず、submitted_headerはheader_resultsで独立比較する。固定L9の48 rawでは両側の原receiptとtarget_headerは全て存在するため、そのAbsent枝はこのoracle集合では未検証。",
-        "send/receive envelope digest照合は元receipt.envelope_digestと、L5で定めたfixture-only canonical JSON SHA-256（UTF-8、ensure_ascii=false、key lexicographic、separators=comma/colon、no trailing LF）を比較する。このfixture規則は製品wire codec/hash資格ではない。",
-        "recovery_resultはoriginal_recoveryとsubmitted_recoveryをJSON値として順序込みで比較する。差があればrecovery_content/unfinishedをcheckへ追加する。",
-        "checksはareas_in_order順、各area内はfield名のUnicode code point昇順で連結する。check_fieldsは各areaの対象field集合を定める。header_results/envelope_results mapは各comparison_order配列順を保つ。security_fieldsはHELIX-SECURITY、receiptは原receipt.owner、recoveryは原unfinished owner、残りはowner_values.endpointを返却先にする。",
-        "submitted_envelopeとoriginal_envelopeのmemberをそれぞれoriginal_allowed_envelope_fieldsと比較する。列外memberはcontract_outside_fieldとして、original_envelope_outside_contract/submitted_envelope_outside_contract areaへfield名昇順で追加する。",
-        "failure_reasonsはchecks順のままnormal_check_results外のcheckを全て写し、failure_return_ownersはfailure順のownerを初出順に重複排除した後、辞書順に整列する。",
-        "claim_resultsはclaimsのbool true→rejected,false→none,Absent/null/非bool→unknown_in_fixture。technical_receipt_candidateはfailureが空ならrequires_actual_source_and_transport_qualification、そうでなければheld_or_rejected。attempt_countは原packetに試行arrayが無ければ0。effectsは全flag false。"
+        "OperationPacketのobject memberは不在ならAbsent、明示nullならNull、その他はValueとして扱い、元JSONを変更しない。",
+        "header_resultsはheader_comparison_order順、各fieldでPresence比較する。comparison_policy.precedenceに従い、Absent片側以上ならmissing、unknown_original_fieldの片側がnullならunknown_original_information、JSON値同値ならcontent_corresponding_in_fixture、原側がunknown markerならunknown_original_information、それ以外はcontent_conflict。object key順は比較せずarray順は保持する。同じ\"unknown\" marker同士は同値が優先される。",
+        "envelope_resultsはenvelope_member_policy.core_order_refにあるcore fieldをその配列順に比較し、その後original_envelopeに存在するcore field外memberをfield Unicode code point昇順で比較する。各比較はsubmitted_envelope側の有無も使い、Absent片側はmissingとしてmapへ残す。submitted側だけにある追加memberはenvelope_resultsへ足さず、submitted_envelope_outside_contract checkで報告する。",
+        "operation_identityはoriginal_header.operation_identityをoriginal_known_operationsとJSON文字列同値で照合し、列にあればknown_in_fixture_only、Absent/null/列外ならunknown_operationを出す。実operation資格を示さない。",
+        "registration_binding、compatibility_binding、permission_bindingの各fieldはcheck_fieldsに列挙されたfield集合を両targetとoriginal_headerの間で前述の比較関数により比較する。state checkは原stateがPresentなら文字列をそのまま返し、Absentなら比較missing、nullならunknown_original_informationを返す。enum外文字列も原値を返すが資格を付与しない。",
+        "receipt_side_orderの各sideについて、原receiptと提出receiptのsend_fields/receive_fieldsを比較し、target_header_resultsは原receipt.target_header対original_headerをheader_fields順で比較する。submitted側target_headerはこの比較の右辺に使わない。receiptがAbsentならassessmentのretained_receipt/submitted_receiptは型ReceiptProjectionの空object {}、Presentなら元objectを保持する。receipt content/stateのroute ownerは原receipt.owner、Absent/nullならowner_valuesの当該side fallback。observation_locationはstate_observation_policyと同じ表示規則で、原receiptのraw文字列を保持し、Absentならoutput_literals.comparison.missing、nullならoutput_literals.comparison.unknown_originalを返す。",
+        "receipt envelope digestは原receipt.envelope_digestとoriginal_envelopeのfixture-only canonical JSON SHA-256（UTF-8、ensure_ascii=false、key昇順、comma/colon、末尾LFなし）を比較する。object key順はdigest前に正規化しarray順は維持する。この規則はwire codec/hash資格ではない。",
+        "recovery_resultはoriginal_recoveryとsubmitted_recoveryをJSON値として比較し、同値でも常にrecovery_content/unfinished checkを1つ生成する。route ownerはoriginal_recovery[0].owner、空ならowner_values.recovery_default。",
+        "各checkのreturn_ownerはreturn_owner_rulesをpriority昇順に最初に適用できる規則から選ぶ。when_field_inはfieldが指すsecurity_fields配列に含まれる条件、when_nonemptyはsource配列が非空である条件。owner_ref/fallback_owner_refはcontract view又はraw_packetの明示memberだけを参照し、該当value不在ならfallback、fallbackも無いときだけowner_values.endpointを使う。",
+        "checksはcheck_order.area_order_refのarea配列順、そのarea内field Unicode code point昇順に出す。各area内の重複fieldがあれば生成順を保つ。check_fieldsはfield集合を与えるが順序を与えない。列外envelope memberは original_allowed_envelope_fields に対するoriginal/submitted各側の差集合をそれぞれfield昇順でoriginal_envelope_outside_contract/submitted_envelope_outside_contractへ追加する。",
+        "failure_reasonsはchecksの順序を保ちnormal_check_results外だけを写す。failure_return_ownersはfailure順のownerを重複除去して昇順にする。claim_resultsはbool true→rejected、false→none、Absent/null/非bool→unknown_in_fixture。technical_receipt_candidateはfailureが空ならrequires_actual_source_and_transport_qualification、そうでなければheld_or_rejected。attempt_countは未供給なら0、effectsは全flag false。"
       ],
       "invariants": [
         "case_id/hashは判定に使わない。",
@@ -1004,7 +1131,8 @@
       "output_root": "OperationAssessment",
       "output_literals_ref": "/output_literals",
       "typed_input_root": "OperationInput",
-      "contract_view_root": "/contract_views/operation"
+      "contract_view_root": "/contract_views/operation",
+      "reads": "input.raw_packetの全使用member、input.contract_view.header_comparison_order/envelope_comparison_order/check_fields/areas_in_order/area_names/security_fields/return_owner_rules/owner_values/receipt_side_order/send_fields/receive_fields/header_fields/envelope_fields/comparison_policy/envelope_member_policy/check_order/state_observation_policy、および/output_literalsの参照memberを読む。input.case_idとinput.packet_sha256は判定に使用しない。 original_allowed_envelope_fieldsはinput.raw_packetのmemberを読む。"
     },
     {
       "function_ref": "FN-C003-02",
@@ -1013,10 +1141,10 @@
         "technical_content_resultsはcontract_view.technical_fields順にreceipt同名fieldをPresence比較する。",
         "business_content_resultsはcontract_view.business_fields順にoriginal_business_recordとsubmitted_business_recordの同名fieldをPresence比較する。",
         "business_target_resultsはcontract_view.target_fields順にoriginal_business_recordの値とoriginal_technical_receipt.target_headerの同名値をPresence比較する。",
-        "各比較は片側でもAbsentならmissing（両側Absentもmissing）。Present同士で原側stringがunknown markerならunknown_original_information、同じnull/valueならcontent_corresponding_in_fixture、異なるnull/valueならcontent_conflict。固定L9の14 rawではtechnical/business/targetの比較対象fieldは全て両側Presentであり、Absent枝は未検証。",
+        "Presence比較はAbsent片側以上ならmissing、unknown_original_fieldの片側がnullならunknown_original_information、JSON値同値ならcontent_corresponding_in_fixture、原側がunknown markerならunknown_original_information、それ以外はcontent_conflictとする。object key順は比較せずarray順を保持するため、双方state=\"unknown\"はcontent_corresponding_in_fixtureとなる。",
         "failure_reasonsはbusiness_fields配列順のcontent_conflictを先に、target_fields配列順のcontent_conflictを次に、meaning_authority owner値のconflictを最後に追加する。business failureのreturn_ownerは原business owner、meaning_authority failureは原meaning-authority owner。missing/unknownは結果へ残し、それだけでfailureやsuccessへ昇格しない。",
         "claim_resultsはclaimsの各bool valueからtrue→rejected、false→none、Absent/null/非bool→unknown_in_fixtureをfield順で返す。",
-        "retained_*はoriginal値を、submitted_business_recordはsubmitted値をそのまま保持。retained_business_state/unfinishedはoriginal business recordの対応memberのPresenceを保持する。",
+        "retained_*はoriginal値、submitted_business_recordはsubmitted値をそのまま保持する。retained_business_stateは原stateがstringならその文字列、Absent/nullなら文字列unknownを返す便宜表示であり、Presenceや資格を表さない。retained_unfinishedは原member値を保持する。",
         "business_completionはnot_generated_by_technical_receipt、return_ownerはoriginal_business_record.owner、全effect flagはfalse。"
       ],
       "invariants": [
@@ -1133,7 +1261,24 @@
       "trailing_lf": false,
       "formal_wire_codec": false
     },
-    "failure_owner_order": "unique sorted lexicographically"
+    "failure_owner_order": "unique sorted lexicographically",
+    "comparison_policy": {
+      "precedence": [
+        "absent_either_side",
+        "unknown_field_null_condition",
+        "equal_json_value",
+        "unknown_original_marker_condition",
+        "different_json_value"
+      ],
+      "unknown_field_ref": "contract_revision",
+      "json_object_key_order": "ignored",
+      "json_array_order": "preserved",
+      "unknown_marker_values": [
+        "unknown",
+        "unknown_in_fixture",
+        "unknown_original_information"
+      ]
+    }
   },
   "result_domain_contract": {
     "comparison": {
@@ -1145,7 +1290,9 @@
         "unknown",
         "unknown_in_fixture",
         "unknown_original_information"
-      ]
+      ],
+      "object_and_array_equality": "JSON object member order is ignored; JSON array order is preserved.",
+      "unknown_precedence": "missing > unknown-field-null > equal-value > unknown-original-marker > different; equal unknown marker values remain content_corresponding_in_fixture."
     },
     "operation_identification": {
       "known": "known_in_fixture_only",

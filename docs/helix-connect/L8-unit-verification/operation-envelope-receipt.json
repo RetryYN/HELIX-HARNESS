@@ -165,7 +165,7 @@
   "integration_ref": "HELIXCONNECT-L9-003",
   "method": {
     "kind": "pure_source_to_oracle",
-    "rule": "L5関数をraw_utf8から独立実行し、L9 expected_materialと全field/array順を厳密比較する。expected値は関数出力を構築する入力にしない。",
+    "rule": "L5の宣言済み純粋規則をraw_utf8から独立適用し、L9 expected_materialと全fieldおよびarray順を厳密比較する。object key順はJSON意味比較で無視し、array順は保持する。expected値は出力構築に使わない。",
     "execution_state": "not_executed"
   },
   "cases": [
