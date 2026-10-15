@@ -2478,7 +2478,8 @@
                   "sync.receipt_ref",
                   "sync.work_ref",
                   "sync.change_ref",
-                  "sync.state"
+                  "sync.state",
+                  "sync.owner"
                 ]
               },
               "result": {
@@ -3094,12 +3095,10 @@
   ],
   "raw_comparison_reference": {
     "primitive_operators": {
-      "string_exact_equal": "両辺がJSON stringで、Unicode code point列を変換・trimせず完全一致するときtrue。",
-      "json_deep_equal": "JSON kindが同じで、integerとnumberはlogical_typesで別kindとして宣言される限り区別する。scalarは値一致、arrayは長さとindex順を含め各要素一致、objectはキー集合と対応値が再帰一致するときtrue。MISSINGはJSON値ではなく、同じMISSING sentinel同士だけを等しいとし、nullとは異なる。",
-      "json_deep_not_equal": "json_deep_equalの論理否定。MISSINGは同じsentinelだけ同値、JSON nullとは別。",
-      "non_empty_string": "値がstringかつ長さ1以上。空白trim等の追加規則は置かない。",
-      "member_of": "JSON値が列挙した有限文字列literalのいずれかとstring_exact_equal。",
-      "any": "配列要素をindex昇順で検査し、条件trueが一つ以上ならtrue。空配列はfalse。"
+      "kind": "candidate_document",
+      "json_pointer": "/pure_reference_semantics/expression_operators",
+      "action_json_pointer": "/pure_reference_semantics/action_operators",
+      "meaning": "使用する演算子とactionはこの唯一の定義へ参照する。未使用の別表は置かない。"
     },
     "presence": "required/optional/nullはlogical_typesの各member宣言どおり区別。型外欠落/nullを相互変換しない。",
     "priority": "pure_reference_programsのordered_rules/actions配列順を唯一の具体的順序とする。B01はclaim→ordinary経路→Worker→OS復帰→sync。sync内はoperation_ref,result_ref,target,receipt_ref,work_ref,change_ref,owner,state。F01の依存間複合優先はprogramの条件群順であり、全未見組合せの意味oracle成立は主張しない。"
@@ -3198,7 +3197,8 @@
       "sync.receipt_ref",
       "sync.work_ref",
       "sync.change_ref",
-      "sync.state"
+      "sync.state",
+      "sync.owner"
     ],
     "B01Result.failure_reasons.return_owner": [
       "OS/HELIX-SECURITY/recovery-owner",
@@ -3266,27 +3266,6 @@
         }
       },
       "ordered_rules": [
-        {
-          "when": {
-            "op": "nullish",
-            "value": {
-              "op": "get",
-              "path": "original_path"
-            }
-          },
-          "actions": [
-            {
-              "op": "failure",
-              "information_state": "stopped_with_unconfirmed_recovery_scope",
-              "field": "path",
-              "result": "missing",
-              "return_owner": "independent-path-owner"
-            },
-            {
-              "op": "return"
-            }
-          ]
-        },
         {
           "when": {
             "op": "eq",
@@ -4153,7 +4132,9 @@
       "claim_failures": "valuesをpriority順に走査し、raw claims内にある各distinct literalをrejected_claimsへ並べ、同順のfailureを追加。owner tokenは一個のstring。",
       "return": "現在のout全体を返して後続ruleを評価しない。"
     },
-    "type_validation": "各値のJSON kind、宣言member/presence、array itemを再帰検査する。schemaのenumまたはallowed_valuesがある値は同じstrict JSON deep equalityでdomain内か検査する。MISSINGはJSON kindではなく、必須member欠落は失敗。"
+    "type_validation": "各値のJSON kind、宣言member/presence、array itemを再帰検査する。schemaのenumまたはallowed_valuesがある値は同じstrict JSON deep equalityでdomain内か検査する。MISSINGはJSON kindではなく、必須member欠落は失敗。",
+    "projection_presence": "retained_projectionの全sourceは各input型のrequired memberである。型検査を先行し、member欠落は有限入力域外としてprogramを評価せず、nullへ正規化しない。MISSING sentinelをJSON返却へ出さない。",
+    "non_array_any": "any_eq/any_ne/any_nullishへ非配列値が渡る場合はfalse。null/missingはこれと別のnullish条件で先に検査する。型外入力をこの規則だけで有効にしない。"
   },
   "r1_resolution": {
     "official_comment": 6182648853,
@@ -4164,5 +4145,10 @@
       "INFRA06D-03"
     ],
     "scope": "全結果語・形式定義/型・責務/source記録を是正。原39raw/whole期待と上流は不変。"
+  },
+  "r2_resolution": {
+    "official_comment": 6182855218,
+    "finding": "INFRA06D-04",
+    "change": "sync.owner enumと2独立whole反例、型外path/missing枝撤去、投影presence/非配列any意味、L5由来probe根拠、単一演算子表を整合。元39raw/whole期待不変。"
   }
 }

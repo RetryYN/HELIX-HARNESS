@@ -8377,7 +8377,7 @@
           "failure_reasons/return_ownersはpathの最初のfailureを保持",
           "retained_path.requires_os_responseはcompound rawのtrueを保持"
         ],
-        "rule_basis": "HELIXINFRASTRUCTURE-L4-006-F01: 経路の失敗は独立経路ownerへ戻し、authority不明はSEC ownerへ返す。停止経路を満たさない入力では回復scopeを未確認のまま停止する。",
+        "rule_basis": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE のpure_reference_programs ordered_rulesで定めた検査順を根拠とする。L4は責務境界の参照に限り、L4にこの局所優先順が記載されているとはしない。",
         "unmodified_baseline_members": "上記列挙以外はbaseline expected_materialと同値を保持する。",
         "changed_output_paths": [
           "/information_state",
@@ -8615,7 +8615,7 @@
           "retained_sync.operation_refはraw FOREIGNを保持",
           "failure_reasons/return_ownersはWorker状態failureを保持"
         ],
-        "rule_basis": "HELIXINFRASTRUCTURE-L4-006-B01: 実operation/resultはSEC制約下のWorker契約を通し、未成立ならWorker/SEC/recovery ownerへ返す。OS同期内容の不一致は保持するが、Worker不成立より先行させない。",
+        "rule_basis": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE のpure_reference_programs ordered_rulesで定めた検査順を根拠とする。L4は責務境界の参照に限り、L4にこの局所優先順が記載されているとはしない。",
         "unmodified_baseline_members": "上記列挙以外はbaseline expected_materialと同値を保持する。",
         "changed_output_paths": [
           "/information_state",
@@ -8750,7 +8750,8 @@
   "case_count": {
     "original_l9_cases": 37,
     "local_compound_probes": 2,
-    "total": 39
+    "r2_branch_probes": 2,
+    "total": 41
   },
   "document_id": "HELIXINFRASTRUCTURE-L8-006",
   "pair": "HELIXINFRASTRUCTURE-L5/L8-006",
@@ -8865,5 +8866,536 @@
       "INFRA06D-03"
     ],
     "scope": "全結果語・形式定義/型・責務/source記録を是正。原39raw/whole期待と上流は不変。"
+  },
+  "r2_branch_probes": [
+    {
+      "probe_id": "I006-PROBE-B01-SYNC-OWNER-FOREIGN",
+      "derived_from_case": "I006-B01-RETURN-SYNC-REFERENCED",
+      "mutations": {
+        "original_sync.owner": "FOREIGN"
+      },
+      "source_raw_utf8": "{\"claims\":[],\"original_authority\":{\"credential_ref\":\"SEC-CREDENTIAL-P@r2\",\"kind\":\"separate_recovery_authority\",\"operation\":\"bootstrap\",\"owner\":\"HELIX-SECURITY\",\"policy_ref\":\"SEC-POLICY-P@r2\",\"ref\":\"SEC-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_control_plane_state\":\"restored_in_fixture_only\",\"original_last_eligible_revision\":\"ELIGIBLE-OS-P@r1\",\"original_operation\":{\"kind\":\"bootstrap\",\"profile\":\"bounded_recovery\",\"ref\":\"RECOVERY-OP-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_os_return_state\":\"restored_in_fixture_only\",\"original_path\":{\"dependencies\":[{\"available\":\"qualified_in_fixture_only\",\"ref\":\"RECOVERY-RESOURCE-P@r2\",\"requires_stopped_control_plane\":false}],\"independence\":\"qualified_in_fixture_only\",\"owner\":\"independent-path-owner\",\"ref\":\"INDEPENDENT-PATH-P@r2\",\"requires_os_response\":false,\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_recovery_verification_ref\":\"I005-RECOVERY-P@r2\",\"original_result\":{\"operation_ref\":\"RECOVERY-OP-P@r2\",\"ref\":\"RECOVERY-RESULT-P@r2\",\"state\":\"succeeded_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_sync\":{\"change_ref\":\"OS-CHANGE-P@r2\",\"operation_ref\":\"RECOVERY-OP-P@r2\",\"owner\":\"FOREIGN-OWNER\",\"receipt_ref\":\"OS-SYNC-RECEIPT-P@r2\",\"result_ref\":\"RECOVERY-RESULT-P@r2\",\"state\":\"received_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"},\"work_ref\":\"OS-WORK-P@r2\"},\"original_target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"},\"original_unfinished\":[\"recovery_verification_pending\",\"os_sync_pending\"],\"original_worker_contract\":{\"authority_ref\":\"SEC-RECOVERY-P@r2\",\"owner\":\"OS-worker-contract-owner\",\"ref\":\"WORKER-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\"},\"submitted_authority\":{\"credential_ref\":\"SEC-CREDENTIAL-P@r2\",\"kind\":\"separate_recovery_authority\",\"operation\":\"bootstrap\",\"owner\":\"HELIX-SECURITY\",\"policy_ref\":\"SEC-POLICY-P@r2\",\"ref\":\"SEC-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}}}",
+      "source_raw_sha256": "263644ad1eed78ed7c1a2f2fca25895bdec891bafc4162783bdc23b0a31e2253",
+      "typed_input": {
+        "claims": [],
+        "original_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "kind": "separate_recovery_authority",
+          "operation": "bootstrap",
+          "owner": "HELIX-SECURITY",
+          "policy_ref": "SEC-POLICY-P@r2",
+          "ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_control_plane_state": "restored_in_fixture_only",
+        "original_last_eligible_revision": "ELIGIBLE-OS-P@r1",
+        "original_operation": {
+          "kind": "bootstrap",
+          "profile": "bounded_recovery",
+          "ref": "RECOVERY-OP-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_os_return_state": "restored_in_fixture_only",
+        "original_path": {
+          "dependencies": [
+            {
+              "available": "qualified_in_fixture_only",
+              "ref": "RECOVERY-RESOURCE-P@r2",
+              "requires_stopped_control_plane": false
+            }
+          ],
+          "independence": "qualified_in_fixture_only",
+          "owner": "independent-path-owner",
+          "ref": "INDEPENDENT-PATH-P@r2",
+          "requires_os_response": false,
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_recovery_verification_ref": "I005-RECOVERY-P@r2",
+        "original_result": {
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "ref": "RECOVERY-RESULT-P@r2",
+          "state": "succeeded_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_sync": {
+          "change_ref": "OS-CHANGE-P@r2",
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "owner": "FOREIGN-OWNER",
+          "receipt_ref": "OS-SYNC-RECEIPT-P@r2",
+          "result_ref": "RECOVERY-RESULT-P@r2",
+          "state": "received_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "work_ref": "OS-WORK-P@r2"
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "mechanism": "HELIX-OS",
+          "revision": "OS-P-r2",
+          "scope": "PRODUCT-P"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "os_sync_pending"
+        ],
+        "original_worker_contract": {
+          "authority_ref": "SEC-RECOVERY-P@r2",
+          "owner": "OS-worker-contract-owner",
+          "ref": "WORKER-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only"
+        },
+        "submitted_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "kind": "separate_recovery_authority",
+          "operation": "bootstrap",
+          "owner": "HELIX-SECURITY",
+          "policy_ref": "SEC-POLICY-P@r2",
+          "ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        }
+      },
+      "function_ref": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "expected_boundary": "当該有限枝のfailureであり、information_stateが正常情報stateでない。",
+      "basis": "R2で型内到達が確認されたsync.owner枝を、L9正常baselineから原ownerを変更/除外して全返却期待へ独立固定する。旧oracleは変更しない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
+      "baseline_case_id": "I006-B01-RETURN-SYNC-REFERENCED",
+      "expected_source_pointer": "/verification_obligations/1/cases/0/expected_material",
+      "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
+      "expected_derivation": {
+        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
+        "baseline_changes": [
+          "retained_syncの原owner変更/欠落を保持",
+          "information_stateを同期未成立へ",
+          "sync.ownerの既定failure/owner候補を保持"
+        ],
+        "rule_basis": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATEのsync.owner規則。L4由来の優先順ではない。",
+        "unmodified_baseline_members": "上記列挙以外はbaseline expected_materialと同値を保持する。",
+        "changed_output_paths": [
+          "/information_state",
+          "/retained_sync/owner",
+          "/failure_reasons",
+          "/return_owners"
+        ],
+        "calculator_used_to_generate_expected": false,
+        "expected_source_pointer_hash": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d"
+      },
+      "expected_output": {
+        "information_state": "held_with_os_sync_pending",
+        "retained_path": {
+          "ref": "INDEPENDENT-PATH-P@r2",
+          "owner": "independent-path-owner",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "independence": "qualified_in_fixture_only",
+          "dependencies": [
+            {
+              "ref": "RECOVERY-RESOURCE-P@r2",
+              "available": "qualified_in_fixture_only",
+              "requires_stopped_control_plane": false
+            }
+          ],
+          "requires_os_response": false
+        },
+        "retained_operation": {
+          "ref": "RECOVERY-OP-P@r2",
+          "kind": "bootstrap",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "profile": "bounded_recovery"
+        },
+        "retained_authority": {
+          "kind": "separate_recovery_authority",
+          "ref": "SEC-RECOVERY-P@r2",
+          "owner": "HELIX-SECURITY",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "operation": "bootstrap",
+          "state": "qualified_in_fixture_only",
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "policy_ref": "SEC-POLICY-P@r2"
+        },
+        "retained_worker_contract": {
+          "ref": "WORKER-RECOVERY-P@r2",
+          "owner": "OS-worker-contract-owner",
+          "authority_ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only"
+        },
+        "retained_result": {
+          "ref": "RECOVERY-RESULT-P@r2",
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "state": "succeeded_in_fixture_only"
+        },
+        "retained_last_eligible_revision": "ELIGIBLE-OS-P@r1",
+        "retained_recovery_verification_ref": "I005-RECOVERY-P@r2",
+        "retained_sync": {
+          "owner": "FOREIGN-OWNER",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "result_ref": "RECOVERY-RESULT-P@r2",
+          "work_ref": "OS-WORK-P@r2",
+          "change_ref": "OS-CHANGE-P@r2",
+          "receipt_ref": "OS-SYNC-RECEIPT-P@r2",
+          "state": "received_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "os_sync_pending"
+        ],
+        "failure_reasons": [
+          {
+            "field": "sync.owner",
+            "result": "not_received_for_same_operation_result",
+            "return_owner": "OS-Work-Change-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-Work-Change-owner"
+        ],
+        "rejected_claims": [],
+        "automatic_failover_required": false,
+        "ordinary_authority_exemption": false,
+        "actual_effects": {
+          "authority_issue": false,
+          "authority_bypass": false,
+          "operation": false,
+          "recovery": false,
+          "source_overwrite": false,
+          "os_sync": false,
+          "incident_close": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_output_canonical_sha256": "3347c336504d5c70a9df78b2e9bf5778a121bd8d940deb183c669e669eff62b8",
+      "source_identity": {
+        "identity": "I006-PROBE-B01-SYNC-OWNER-FOREIGN",
+        "revision": "local-sha256:263644ad1eed78ed7c1a2f2fca25895bdec891bafc4162783bdc23b0a31e2253",
+        "owner": "local logical fixture only",
+        "scope": "HELIXINFRASTRUCTURE-L2-006 selected fixture"
+      }
+    },
+    {
+      "probe_id": "I006-PROBE-B01-SYNC-OWNER-ABSENT",
+      "derived_from_case": "I006-B01-RETURN-SYNC-REFERENCED",
+      "mutations": {
+        "original_sync.owner": "ABSENT"
+      },
+      "source_raw_utf8": "{\"claims\":[],\"original_authority\":{\"credential_ref\":\"SEC-CREDENTIAL-P@r2\",\"kind\":\"separate_recovery_authority\",\"operation\":\"bootstrap\",\"owner\":\"HELIX-SECURITY\",\"policy_ref\":\"SEC-POLICY-P@r2\",\"ref\":\"SEC-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_control_plane_state\":\"restored_in_fixture_only\",\"original_last_eligible_revision\":\"ELIGIBLE-OS-P@r1\",\"original_operation\":{\"kind\":\"bootstrap\",\"profile\":\"bounded_recovery\",\"ref\":\"RECOVERY-OP-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_os_return_state\":\"restored_in_fixture_only\",\"original_path\":{\"dependencies\":[{\"available\":\"qualified_in_fixture_only\",\"ref\":\"RECOVERY-RESOURCE-P@r2\",\"requires_stopped_control_plane\":false}],\"independence\":\"qualified_in_fixture_only\",\"owner\":\"independent-path-owner\",\"ref\":\"INDEPENDENT-PATH-P@r2\",\"requires_os_response\":false,\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_recovery_verification_ref\":\"I005-RECOVERY-P@r2\",\"original_result\":{\"operation_ref\":\"RECOVERY-OP-P@r2\",\"ref\":\"RECOVERY-RESULT-P@r2\",\"state\":\"succeeded_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}},\"original_sync\":{\"change_ref\":\"OS-CHANGE-P@r2\",\"operation_ref\":\"RECOVERY-OP-P@r2\",\"receipt_ref\":\"OS-SYNC-RECEIPT-P@r2\",\"result_ref\":\"RECOVERY-RESULT-P@r2\",\"state\":\"received_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"},\"work_ref\":\"OS-WORK-P@r2\"},\"original_target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"},\"original_unfinished\":[\"recovery_verification_pending\",\"os_sync_pending\"],\"original_worker_contract\":{\"authority_ref\":\"SEC-RECOVERY-P@r2\",\"owner\":\"OS-worker-contract-owner\",\"ref\":\"WORKER-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\"},\"submitted_authority\":{\"credential_ref\":\"SEC-CREDENTIAL-P@r2\",\"kind\":\"separate_recovery_authority\",\"operation\":\"bootstrap\",\"owner\":\"HELIX-SECURITY\",\"policy_ref\":\"SEC-POLICY-P@r2\",\"ref\":\"SEC-RECOVERY-P@r2\",\"state\":\"qualified_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"mechanism\":\"HELIX-OS\",\"revision\":\"OS-P-r2\",\"scope\":\"PRODUCT-P\"}}}",
+      "source_raw_sha256": "c421c191b321e2b9960dccf9bd1577305e783a13938f6df43a465da41fee6c3f",
+      "typed_input": {
+        "claims": [],
+        "original_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "kind": "separate_recovery_authority",
+          "operation": "bootstrap",
+          "owner": "HELIX-SECURITY",
+          "policy_ref": "SEC-POLICY-P@r2",
+          "ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_control_plane_state": "restored_in_fixture_only",
+        "original_last_eligible_revision": "ELIGIBLE-OS-P@r1",
+        "original_operation": {
+          "kind": "bootstrap",
+          "profile": "bounded_recovery",
+          "ref": "RECOVERY-OP-P@r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_os_return_state": "restored_in_fixture_only",
+        "original_path": {
+          "dependencies": [
+            {
+              "available": "qualified_in_fixture_only",
+              "ref": "RECOVERY-RESOURCE-P@r2",
+              "requires_stopped_control_plane": false
+            }
+          ],
+          "independence": "qualified_in_fixture_only",
+          "owner": "independent-path-owner",
+          "ref": "INDEPENDENT-PATH-P@r2",
+          "requires_os_response": false,
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_recovery_verification_ref": "I005-RECOVERY-P@r2",
+        "original_result": {
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "ref": "RECOVERY-RESULT-P@r2",
+          "state": "succeeded_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "original_sync": {
+          "change_ref": "OS-CHANGE-P@r2",
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "receipt_ref": "OS-SYNC-RECEIPT-P@r2",
+          "result_ref": "RECOVERY-RESULT-P@r2",
+          "state": "received_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "work_ref": "OS-WORK-P@r2"
+        },
+        "original_target": {
+          "environment": "ENV-STAGING",
+          "mechanism": "HELIX-OS",
+          "revision": "OS-P-r2",
+          "scope": "PRODUCT-P"
+        },
+        "original_unfinished": [
+          "recovery_verification_pending",
+          "os_sync_pending"
+        ],
+        "original_worker_contract": {
+          "authority_ref": "SEC-RECOVERY-P@r2",
+          "owner": "OS-worker-contract-owner",
+          "ref": "WORKER-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only"
+        },
+        "submitted_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "kind": "separate_recovery_authority",
+          "operation": "bootstrap",
+          "owner": "HELIX-SECURITY",
+          "policy_ref": "SEC-POLICY-P@r2",
+          "ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only",
+          "target": {
+            "environment": "ENV-STAGING",
+            "mechanism": "HELIX-OS",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          }
+        }
+      },
+      "function_ref": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "expected_boundary": "当該有限枝のfailureであり、information_stateが正常情報stateでない。",
+      "basis": "R2で型内到達が確認されたsync.owner枝を、L9正常baselineから原ownerを変更/除外して全返却期待へ独立固定する。旧oracleは変更しない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
+      "baseline_case_id": "I006-B01-RETURN-SYNC-REFERENCED",
+      "expected_source_pointer": "/verification_obligations/1/cases/0/expected_material",
+      "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
+      "expected_derivation": {
+        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
+        "baseline_changes": [
+          "retained_syncの原owner変更/欠落を保持",
+          "information_stateを同期未成立へ",
+          "sync.ownerの既定failure/owner候補を保持"
+        ],
+        "rule_basis": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATEのsync.owner規則。L4由来の優先順ではない。",
+        "unmodified_baseline_members": "上記列挙以外はbaseline expected_materialと同値を保持する。",
+        "changed_output_paths": [
+          "/information_state",
+          "/retained_sync",
+          "/failure_reasons",
+          "/return_owners"
+        ],
+        "calculator_used_to_generate_expected": false,
+        "expected_source_pointer_hash": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d"
+      },
+      "expected_output": {
+        "information_state": "held_with_os_sync_pending",
+        "retained_path": {
+          "ref": "INDEPENDENT-PATH-P@r2",
+          "owner": "independent-path-owner",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "independence": "qualified_in_fixture_only",
+          "dependencies": [
+            {
+              "ref": "RECOVERY-RESOURCE-P@r2",
+              "available": "qualified_in_fixture_only",
+              "requires_stopped_control_plane": false
+            }
+          ],
+          "requires_os_response": false
+        },
+        "retained_operation": {
+          "ref": "RECOVERY-OP-P@r2",
+          "kind": "bootstrap",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "profile": "bounded_recovery"
+        },
+        "retained_authority": {
+          "kind": "separate_recovery_authority",
+          "ref": "SEC-RECOVERY-P@r2",
+          "owner": "HELIX-SECURITY",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "operation": "bootstrap",
+          "state": "qualified_in_fixture_only",
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "policy_ref": "SEC-POLICY-P@r2"
+        },
+        "retained_worker_contract": {
+          "ref": "WORKER-RECOVERY-P@r2",
+          "owner": "OS-worker-contract-owner",
+          "authority_ref": "SEC-RECOVERY-P@r2",
+          "state": "qualified_in_fixture_only"
+        },
+        "retained_result": {
+          "ref": "RECOVERY-RESULT-P@r2",
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "state": "succeeded_in_fixture_only"
+        },
+        "retained_last_eligible_revision": "ELIGIBLE-OS-P@r1",
+        "retained_recovery_verification_ref": "I005-RECOVERY-P@r2",
+        "retained_sync": {
+          "target": {
+            "mechanism": "HELIX-OS",
+            "environment": "ENV-STAGING",
+            "revision": "OS-P-r2",
+            "scope": "PRODUCT-P"
+          },
+          "operation_ref": "RECOVERY-OP-P@r2",
+          "result_ref": "RECOVERY-RESULT-P@r2",
+          "work_ref": "OS-WORK-P@r2",
+          "change_ref": "OS-CHANGE-P@r2",
+          "receipt_ref": "OS-SYNC-RECEIPT-P@r2",
+          "state": "received_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "recovery_verification_pending",
+          "os_sync_pending"
+        ],
+        "failure_reasons": [
+          {
+            "field": "sync.owner",
+            "result": "not_received_for_same_operation_result",
+            "return_owner": "OS-Work-Change-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-Work-Change-owner"
+        ],
+        "rejected_claims": [],
+        "automatic_failover_required": false,
+        "ordinary_authority_exemption": false,
+        "actual_effects": {
+          "authority_issue": false,
+          "authority_bypass": false,
+          "operation": false,
+          "recovery": false,
+          "source_overwrite": false,
+          "os_sync": false,
+          "incident_close": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_output_canonical_sha256": "f0e16b83dab4e79cfbbfed3ff5f36c5a9e1d1bcd0d0bff15c0659a8a5842e879",
+      "source_identity": {
+        "identity": "I006-PROBE-B01-SYNC-OWNER-ABSENT",
+        "revision": "local-sha256:c421c191b321e2b9960dccf9bd1577305e783a13938f6df43a465da41fee6c3f",
+        "owner": "local logical fixture only",
+        "scope": "HELIXINFRASTRUCTURE-L2-006 selected fixture"
+      }
+    }
+  ],
+  "r2_resolution": {
+    "official_comment": 6182855218,
+    "finding": "INFRA06D-04",
+    "change": "sync.owner enumと2独立whole反例、型外path/missing枝撤去、投影presence/非配列any意味、L5由来probe根拠、単一演算子表を整合。元39raw/whole期待不変。"
   }
 }
