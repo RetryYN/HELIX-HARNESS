@@ -17,7 +17,7 @@
   "candidate_l5_binding": {
     "path": "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json",
     "binding": "同一candidateのbytes。既存source revisionに新pathがあると主張しない。",
-    "sha256": "944ab0c82e291eff4ca99ff39ab92ed251a1d8ddcc112795a4b7947cf43de353"
+    "sha256": "b8ed54d9091a020b0b4fec0f25da119765f81b3ff2f8c61991a2ba346aa501fe"
   },
   "source_basis": {
     "existing_source_pins": [
@@ -365,7 +365,7 @@
   ],
   "oracle_freeze": {
     "original_cases": 281,
-    "additional_independent_cases": 65,
+    "additional_independent_cases": 71,
     "method": "元L9 whole281を原packet値のまま保持。追加wholeはL3/L4/L10から正式計算前に独立固定。原値と新診断を同一欄で上書きしない。",
     "not_claimed": "実TDD/旧test/CI/資格/完了の成立ではない。",
     "independent_material_hashes": [
@@ -457,6 +457,19 @@
         "sha256": "ce7db15c3e3a291f4aacb38a07c6fe610d22f0de45d2e600a75a460f35ea9a67",
         "recipe": "casesの文書順でcase_idsに含まれるcaseを抽出し、各{ id, expected_return }を配列化。JSON sort_keys=true/ensure_ascii=false/separators=(comma,colon)、UTF-8、改行無しのSHA-256。",
         "role": "必須内部値・target・状態・回数・診断・不足witness"
+      },
+      {
+        "case_count": 6,
+        "case_ids": [
+          "LOCAL-C009-F02-DECLARATION-IDENTITY-NULL",
+          "LOCAL-C009-F02-DECLARATION-OWNER-NULL",
+          "LOCAL-C009-F02-DECLARATION-IDENTITY-OWNER-NULL",
+          "LOCAL-C009-F03-DECLARATION-IDENTITY-NULL",
+          "LOCAL-C009-F03-DECLARATION-OWNER-NULL",
+          "LOCAL-C009-F03-DECLARATION-IDENTITY-OWNER-NULL"
+        ],
+        "sha256": "f8d7f14bf10442ce0ec84ae0d2ec23d82faafe749fb2262e1371d338a02c18b2",
+        "recipe": "casesを保存順に選び、id/expected_returnだけの配列をUTF-8 ensure_ascii=False sort_keys=True separators=comma/colonでcanonical hashする。"
       }
     ],
     "witness_cases": [
@@ -150788,6 +150801,2597 @@
         "HELIXCONNECT-L10-009-F07"
       ],
       "expectation_scope": "unclosed_binding_witness_not_requirement_pass"
+    },
+    {
+      "id": "LOCAL-C009-F02-DECLARATION-IDENTITY-NULL",
+      "function": "HELIXCONNECT-L5-009-F02",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F02\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":null,\"kind\":\"serial\",\"owner\":\"HARNESS/OS-workflow-owner\"}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"original_needed_roles\":[\"declared_topology\",\"topology_owner\",\"ordered_edge_set\",\"needed_predecessor_results\",\"predecessor_contract_conditions\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":null,\"kind\":\"serial\",\"owner\":\"HARNESS/OS-workflow-owner\"}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "2df75d8acf67583137a2b3afd96fbff7acfb4c4ebcbbc2a100a58c66eabafbeb",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F02",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": null,
+                "kind": "serial",
+                "owner": "HARNESS/OS-workflow-owner"
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "original_needed_roles": [
+            "declared_topology",
+            "topology_owner",
+            "ordered_edge_set",
+            "needed_predecessor_results",
+            "predecessor_contract_conditions"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": null,
+                "kind": "serial",
+                "owner": "HARNESS/OS-workflow-owner"
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "declared_topology": "unknown",
+          "topology_owner": "content_corresponding_in_fixture",
+          "ordered_edge_set": "content_corresponding_in_fixture",
+          "needed_predecessor_results": "content_corresponding_in_fixture",
+          "predecessor_contract_conditions": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_topology",
+            "result": "unknown",
+            "return_owner": "HARNESS/OS-workflow-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "HARNESS/OS-workflow-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_topology": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "identity": null,
+              "kind": "serial",
+              "owner": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "needed_predecessor_results": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "contract_revision": "CONNECTION-AB-r1",
+                "edge": "EDGE-A",
+                "operation": "OP-AB",
+                "result": "success_in_fixture_only"
+              }
+            ]
+          },
+          "ordered_edge_set": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "predecessor_contract_conditions": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "edge": "EDGE-A",
+                "state": "satisfied_in_fixture_only"
+              }
+            ]
+          },
+          "topology_owner": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": "HARNESS/OS-workflow-owner"
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "successor": "held_successor",
+          "original_initial_result": "retained"
+        },
+        "relation_details": {},
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "267474662f6b5fd970e9151d53f9d3154f31e2748b038ef89347672c0594083f",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0",
+        "sha256": "700d714fa33be1ad80178fee978f7e36c3bfd20f55023a3188a3bb4eba9aca68"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_topology/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_topology/value/identity",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F02はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
+    },
+    {
+      "id": "LOCAL-C009-F02-DECLARATION-OWNER-NULL",
+      "function": "HELIXCONNECT-L5-009-F02",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F02\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":\"SERIAL-P\",\"kind\":\"serial\",\"owner\":null}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"original_needed_roles\":[\"declared_topology\",\"topology_owner\",\"ordered_edge_set\",\"needed_predecessor_results\",\"predecessor_contract_conditions\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":\"SERIAL-P\",\"kind\":\"serial\",\"owner\":null}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "2ae0ee37c87b487bbecde8da6222fcc3238b6b5e02bb855007254c4cee9bb338",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F02",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": "SERIAL-P",
+                "kind": "serial",
+                "owner": null
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "original_needed_roles": [
+            "declared_topology",
+            "topology_owner",
+            "ordered_edge_set",
+            "needed_predecessor_results",
+            "predecessor_contract_conditions"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": "SERIAL-P",
+                "kind": "serial",
+                "owner": null
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "declared_topology": "unknown",
+          "topology_owner": "content_corresponding_in_fixture",
+          "ordered_edge_set": "content_corresponding_in_fixture",
+          "needed_predecessor_results": "content_corresponding_in_fixture",
+          "predecessor_contract_conditions": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_topology",
+            "result": "unknown",
+            "return_owner": "HARNESS/OS-workflow-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "HARNESS/OS-workflow-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_topology": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "identity": "SERIAL-P",
+              "kind": "serial",
+              "owner": null
+            }
+          },
+          "needed_predecessor_results": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "contract_revision": "CONNECTION-AB-r1",
+                "edge": "EDGE-A",
+                "operation": "OP-AB",
+                "result": "success_in_fixture_only"
+              }
+            ]
+          },
+          "ordered_edge_set": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "predecessor_contract_conditions": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "edge": "EDGE-A",
+                "state": "satisfied_in_fixture_only"
+              }
+            ]
+          },
+          "topology_owner": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": "HARNESS/OS-workflow-owner"
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "successor": "held_successor",
+          "original_initial_result": "retained"
+        },
+        "relation_details": {},
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "e6af68d8df93ef7e574c51fe03763bc6555dca1280846c387b76025f860f4bd1",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0",
+        "sha256": "700d714fa33be1ad80178fee978f7e36c3bfd20f55023a3188a3bb4eba9aca68"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_topology/value/owner",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_topology/value/owner",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F02はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
+    },
+    {
+      "id": "LOCAL-C009-F02-DECLARATION-IDENTITY-OWNER-NULL",
+      "function": "HELIXCONNECT-L5-009-F02",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F02\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":null,\"kind\":\"serial\",\"owner\":null}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"original_needed_roles\":[\"declared_topology\",\"topology_owner\",\"ordered_edge_set\",\"needed_predecessor_results\",\"predecessor_contract_conditions\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_topology\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"edges\":[\"EDGE-A\",\"EDGE-B\"],\"identity\":null,\"kind\":\"serial\",\"owner\":null}},\"needed_predecessor_results\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"contract_revision\":\"CONNECTION-AB-r1\",\"edge\":\"EDGE-A\",\"operation\":\"OP-AB\",\"result\":\"success_in_fixture_only\"}]},\"ordered_edge_set\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"predecessor_contract_conditions\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"edge\":\"EDGE-A\",\"state\":\"satisfied_in_fixture_only\"}]},\"topology_owner\":{\"owner\":\"HARNESS/OS-workflow-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":\"HARNESS/OS-workflow-owner\"}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "f715ed082fa986870b126821c349a0a9b6330fb7a9b854ae8345a3e05ce9f453",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F02",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": null,
+                "kind": "serial",
+                "owner": null
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "original_needed_roles": [
+            "declared_topology",
+            "topology_owner",
+            "ordered_edge_set",
+            "needed_predecessor_results",
+            "predecessor_contract_conditions"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_topology": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "identity": null,
+                "kind": "serial",
+                "owner": null
+              }
+            },
+            "needed_predecessor_results": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "edge": "EDGE-A",
+                  "operation": "OP-AB",
+                  "result": "success_in_fixture_only"
+                }
+              ]
+            },
+            "ordered_edge_set": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "predecessor_contract_conditions": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "edge": "EDGE-A",
+                  "state": "satisfied_in_fixture_only"
+                }
+              ]
+            },
+            "topology_owner": {
+              "owner": "HARNESS/OS-workflow-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": "HARNESS/OS-workflow-owner"
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "declared_topology": "unknown",
+          "topology_owner": "content_corresponding_in_fixture",
+          "ordered_edge_set": "content_corresponding_in_fixture",
+          "needed_predecessor_results": "content_corresponding_in_fixture",
+          "predecessor_contract_conditions": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_topology",
+            "result": "unknown",
+            "return_owner": "HARNESS/OS-workflow-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "HARNESS/OS-workflow-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_topology": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "identity": null,
+              "kind": "serial",
+              "owner": null
+            }
+          },
+          "needed_predecessor_results": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "contract_revision": "CONNECTION-AB-r1",
+                "edge": "EDGE-A",
+                "operation": "OP-AB",
+                "result": "success_in_fixture_only"
+              }
+            ]
+          },
+          "ordered_edge_set": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "predecessor_contract_conditions": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "edge": "EDGE-A",
+                "state": "satisfied_in_fixture_only"
+              }
+            ]
+          },
+          "topology_owner": {
+            "owner": "HARNESS/OS-workflow-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": "HARNESS/OS-workflow-owner"
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "successor": "held_successor",
+          "original_initial_result": "retained"
+        },
+        "relation_details": {},
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "d9cf523323a55fff9f25c0aa1134a553e894f2d22bf6d1a94b668c2f8428d5c3",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/1/verification_scenarios/0",
+        "sha256": "700d714fa33be1ad80178fee978f7e36c3bfd20f55023a3188a3bb4eba9aca68"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_topology/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_topology/value/owner",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_topology/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_topology/value/owner",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F02はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
+    },
+    {
+      "id": "LOCAL-C009-F03-DECLARATION-IDENTITY-NULL",
+      "function": "HELIXCONNECT-L5-009-F03",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F03\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":null,\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":\"composite-join-owner\"}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"original_needed_roles\":[\"independent_edge_identities\",\"scope_contract_operation_result_per_edge\",\"declared_join\",\"needed_join_result_set\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":null,\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":\"composite-join-owner\"}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "bc6d8fed122539acd6f50ac5c5f0c7b46495a262902c5491561f423d34ad2825",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F03",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": null,
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": "composite-join-owner"
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "original_needed_roles": [
+            "independent_edge_identities",
+            "scope_contract_operation_result_per_edge",
+            "declared_join",
+            "needed_join_result_set"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": null,
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": "composite-join-owner"
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "independent_edge_identities": "content_corresponding_in_fixture",
+          "scope_contract_operation_result_per_edge": "content_corresponding_in_fixture",
+          "declared_join": "unknown",
+          "needed_join_result_set": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_join",
+            "result": "unknown",
+            "return_owner": "composite-join-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "composite-join-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_join": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "identity": null,
+              "needed_edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "owner": "composite-join-owner"
+            }
+          },
+          "independent_edge_identities": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "needed_join_result_set": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "scope_contract_operation_result_per_edge": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-AB",
+                "contract_revision": "CONNECTION-AB-r1",
+                "identity": "EDGE-A",
+                "operation": "OP-AB",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-AB"
+              },
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-BC",
+                "contract_revision": "CONNECTION-BC-r1",
+                "identity": "EDGE-B",
+                "operation": "OP-BC",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-BC"
+              }
+            ]
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "edge_candidates": {
+            "EDGE-A": "content_edge_inputs_correspond_require_actual_qualification",
+            "EDGE-B": "content_edge_inputs_correspond_require_actual_qualification"
+          },
+          "join": "held_join",
+          "composite_complete": false
+        },
+        "relation_details": {
+          "retained_edge_records": [
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-AB",
+              "contract_revision": "CONNECTION-AB-r1",
+              "identity": "EDGE-A",
+              "operation": "OP-AB",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-AB"
+            },
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-BC",
+              "contract_revision": "CONNECTION-BC-r1",
+              "identity": "EDGE-B",
+              "operation": "OP-BC",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-BC"
+            }
+          ],
+          "success_result_edges": [
+            "EDGE-A",
+            "EDGE-B"
+          ]
+        },
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "7e16c061b8b64888c3e4cd869e9aac9ffbe13715545d7bbcc9349bbfcf342b77",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0",
+        "sha256": "b6a064bf1c6a2ca31b7467a4afa129a03b36f7ca2a83d9103dc33318347e336a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_join/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_join/value/identity",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F03はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
+    },
+    {
+      "id": "LOCAL-C009-F03-DECLARATION-OWNER-NULL",
+      "function": "HELIXCONNECT-L5-009-F03",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F03\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":\"JOIN-P\",\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":null}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"original_needed_roles\":[\"independent_edge_identities\",\"scope_contract_operation_result_per_edge\",\"declared_join\",\"needed_join_result_set\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":\"JOIN-P\",\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":null}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "6a0940f5ff9c40c6a1b7ebbeadd69014f9ee1753aec6509f6b002feb24418064",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F03",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": "JOIN-P",
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": null
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "original_needed_roles": [
+            "independent_edge_identities",
+            "scope_contract_operation_result_per_edge",
+            "declared_join",
+            "needed_join_result_set"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": "JOIN-P",
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": null
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "independent_edge_identities": "content_corresponding_in_fixture",
+          "scope_contract_operation_result_per_edge": "content_corresponding_in_fixture",
+          "declared_join": "unknown",
+          "needed_join_result_set": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_join",
+            "result": "unknown",
+            "return_owner": "composite-join-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "composite-join-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_join": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "identity": "JOIN-P",
+              "needed_edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "owner": null
+            }
+          },
+          "independent_edge_identities": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "needed_join_result_set": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "scope_contract_operation_result_per_edge": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-AB",
+                "contract_revision": "CONNECTION-AB-r1",
+                "identity": "EDGE-A",
+                "operation": "OP-AB",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-AB"
+              },
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-BC",
+                "contract_revision": "CONNECTION-BC-r1",
+                "identity": "EDGE-B",
+                "operation": "OP-BC",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-BC"
+              }
+            ]
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "edge_candidates": {
+            "EDGE-A": "content_edge_inputs_correspond_require_actual_qualification",
+            "EDGE-B": "content_edge_inputs_correspond_require_actual_qualification"
+          },
+          "join": "held_join",
+          "composite_complete": false
+        },
+        "relation_details": {
+          "retained_edge_records": [
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-AB",
+              "contract_revision": "CONNECTION-AB-r1",
+              "identity": "EDGE-A",
+              "operation": "OP-AB",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-AB"
+            },
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-BC",
+              "contract_revision": "CONNECTION-BC-r1",
+              "identity": "EDGE-B",
+              "operation": "OP-BC",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-BC"
+            }
+          ],
+          "success_result_edges": [
+            "EDGE-A",
+            "EDGE-B"
+          ]
+        },
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "e8255d03517ac613d1eda798dfa00a49dd5766d1b267efc96bec50080d0f3bd9",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0",
+        "sha256": "b6a064bf1c6a2ca31b7467a4afa129a03b36f7ca2a83d9103dc33318347e336a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_join/value/owner",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_join/value/owner",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F03はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
+    },
+    {
+      "id": "LOCAL-C009-F03-DECLARATION-IDENTITY-OWNER-NULL",
+      "function": "HELIXCONNECT-L5-009-F03",
+      "raw_utf8": "{\"claims\":{\"all_edges_stopped_by_join\":false,\"budget_reset\":false,\"business_order_rewritten\":false,\"implicit_reverse_permission\":false,\"new_fixed_limit\":false,\"partial_composite_success\":false,\"prose_resolved\":false,\"successor_before_predecessor\":false,\"task_completed\":false,\"unsent_feedback_success\":false},\"operation_kind\":\"F03\",\"original_forward_target\":{\"consumer\":\"ENDPOINT-B\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"CONNECTION-AB\",\"operation\":\"OP-AB\",\"scope\":\"PRODUCT-P/OP-AB\",\"source\":\"ENDPOINT-A\"},\"original_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":null,\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":null}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"original_needed_roles\":[\"independent_edge_identities\",\"scope_contract_operation_result_per_edge\",\"declared_join\",\"needed_join_result_set\"],\"original_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]},\"original_return_target\":{\"consumer\":\"ENDPOINT-A\",\"contract_revision\":\"CONNECTION-BA-r1\",\"identity\":\"CONNECTION-BA\",\"operation\":\"OP-BA\",\"scope\":\"PRODUCT-P/OP-BA\",\"source\":\"ENDPOINT-B\"},\"original_target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"reverse_permission_state\":\"valid_in_fixture_only\",\"reverse_selected\":true,\"session\":\"SESSION-TWO\",\"submitted_inputs\":{\"declared_join\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":{\"identity\":null,\"needed_edges\":[\"EDGE-A\",\"EDGE-B\"],\"owner\":null}},\"independent_edge_identities\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"needed_join_result_set\":{\"owner\":\"composite-join-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[\"EDGE-A\",\"EDGE-B\"]},\"scope_contract_operation_result_per_edge\":{\"owner\":\"edge-owner\",\"state\":\"known_fixture_only\",\"target\":{\"identity\":\"RELATION-P\",\"operation\":\"OP-AB\",\"revision\":\"relation-r1\",\"scope\":\"PRODUCT-P/relation\"},\"value\":[{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-AB\",\"contract_revision\":\"CONNECTION-AB-r1\",\"identity\":\"EDGE-A\",\"operation\":\"OP-AB\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-AB\"},{\"compatibility_state\":\"current_in_fixture_only\",\"connection\":\"CONNECTION-BC\",\"contract_revision\":\"CONNECTION-BC-r1\",\"identity\":\"EDGE-B\",\"operation\":\"OP-BC\",\"permission_state\":\"valid_in_fixture_only\",\"result\":\"success_in_fixture_only\",\"scope\":\"PRODUCT-P/OP-BC\"}]}},\"submitted_preserved\":{\"cumulative_attempts\":2,\"initial_result\":{\"operation\":\"OP-AB\",\"state\":\"sent_unfinished_in_fixture_only\"},\"other_scope\":{\"scope\":\"PRODUCT-Q\",\"state\":\"unchanged_in_fixture_only\"},\"unfinished\":[\"OBLIGATION-P\"]}}",
+      "raw_sha256": "af9fd97303427e81b9007fd303eddc7763684a54cf4d244abb20471c98a8c449",
+      "arguments": {
+        "packet": {
+          "claims": {
+            "all_edges_stopped_by_join": false,
+            "budget_reset": false,
+            "business_order_rewritten": false,
+            "implicit_reverse_permission": false,
+            "new_fixed_limit": false,
+            "partial_composite_success": false,
+            "prose_resolved": false,
+            "successor_before_predecessor": false,
+            "task_completed": false,
+            "unsent_feedback_success": false
+          },
+          "operation_kind": "F03",
+          "original_forward_target": {
+            "consumer": "ENDPOINT-B",
+            "contract_revision": "CONNECTION-AB-r1",
+            "identity": "CONNECTION-AB",
+            "operation": "OP-AB",
+            "scope": "PRODUCT-P/OP-AB",
+            "source": "ENDPOINT-A"
+          },
+          "original_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": null,
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": null
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "original_needed_roles": [
+            "independent_edge_identities",
+            "scope_contract_operation_result_per_edge",
+            "declared_join",
+            "needed_join_result_set"
+          ],
+          "original_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          },
+          "original_return_target": {
+            "consumer": "ENDPOINT-A",
+            "contract_revision": "CONNECTION-BA-r1",
+            "identity": "CONNECTION-BA",
+            "operation": "OP-BA",
+            "scope": "PRODUCT-P/OP-BA",
+            "source": "ENDPOINT-B"
+          },
+          "original_target": {
+            "identity": "RELATION-P",
+            "operation": "OP-AB",
+            "revision": "relation-r1",
+            "scope": "PRODUCT-P/relation"
+          },
+          "reverse_permission_state": "valid_in_fixture_only",
+          "reverse_selected": true,
+          "session": "SESSION-TWO",
+          "submitted_inputs": {
+            "declared_join": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": {
+                "identity": null,
+                "needed_edges": [
+                  "EDGE-A",
+                  "EDGE-B"
+                ],
+                "owner": null
+              }
+            },
+            "independent_edge_identities": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "needed_join_result_set": {
+              "owner": "composite-join-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                "EDGE-A",
+                "EDGE-B"
+              ]
+            },
+            "scope_contract_operation_result_per_edge": {
+              "owner": "edge-owner",
+              "state": "known_fixture_only",
+              "target": {
+                "identity": "RELATION-P",
+                "operation": "OP-AB",
+                "revision": "relation-r1",
+                "scope": "PRODUCT-P/relation"
+              },
+              "value": [
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-AB",
+                  "contract_revision": "CONNECTION-AB-r1",
+                  "identity": "EDGE-A",
+                  "operation": "OP-AB",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-AB"
+                },
+                {
+                  "compatibility_state": "current_in_fixture_only",
+                  "connection": "CONNECTION-BC",
+                  "contract_revision": "CONNECTION-BC-r1",
+                  "identity": "EDGE-B",
+                  "operation": "OP-BC",
+                  "permission_state": "valid_in_fixture_only",
+                  "result": "success_in_fixture_only",
+                  "scope": "PRODUCT-P/OP-BC"
+                }
+              ]
+            }
+          },
+          "submitted_preserved": {
+            "cumulative_attempts": 2,
+            "initial_result": {
+              "operation": "OP-AB",
+              "state": "sent_unfinished_in_fixture_only"
+            },
+            "other_scope": {
+              "scope": "PRODUCT-Q",
+              "state": "unchanged_in_fixture_only"
+            },
+            "unfinished": [
+              "OBLIGATION-P"
+            ]
+          }
+        }
+      },
+      "expected_return": {
+        "field_results": {
+          "independent_edge_identities": "content_corresponding_in_fixture",
+          "scope_contract_operation_result_per_edge": "content_corresponding_in_fixture",
+          "declared_join": "unknown",
+          "needed_join_result_set": "content_corresponding_in_fixture"
+        },
+        "failure_reasons": [
+          {
+            "area": "needed_input",
+            "field": "declared_join",
+            "result": "unknown",
+            "return_owner": "composite-join-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "composite-join-owner"
+        ],
+        "preservation_result": "content_corresponding_in_fixture",
+        "retained_original_inputs": {
+          "declared_join": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": {
+              "identity": null,
+              "needed_edges": [
+                "EDGE-A",
+                "EDGE-B"
+              ],
+              "owner": null
+            }
+          },
+          "independent_edge_identities": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "needed_join_result_set": {
+            "owner": "composite-join-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              "EDGE-A",
+              "EDGE-B"
+            ]
+          },
+          "scope_contract_operation_result_per_edge": {
+            "owner": "edge-owner",
+            "state": "known_fixture_only",
+            "target": {
+              "identity": "RELATION-P",
+              "operation": "OP-AB",
+              "revision": "relation-r1",
+              "scope": "PRODUCT-P/relation"
+            },
+            "value": [
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-AB",
+                "contract_revision": "CONNECTION-AB-r1",
+                "identity": "EDGE-A",
+                "operation": "OP-AB",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-AB"
+              },
+              {
+                "compatibility_state": "current_in_fixture_only",
+                "connection": "CONNECTION-BC",
+                "contract_revision": "CONNECTION-BC-r1",
+                "identity": "EDGE-B",
+                "operation": "OP-BC",
+                "permission_state": "valid_in_fixture_only",
+                "result": "success_in_fixture_only",
+                "scope": "PRODUCT-P/OP-BC"
+              }
+            ]
+          }
+        },
+        "retained_original_preserved": {
+          "cumulative_attempts": 2,
+          "initial_result": {
+            "operation": "OP-AB",
+            "state": "sent_unfinished_in_fixture_only"
+          },
+          "other_scope": {
+            "scope": "PRODUCT-Q",
+            "state": "unchanged_in_fixture_only"
+          },
+          "unfinished": [
+            "OBLIGATION-P"
+          ]
+        },
+        "operation_states": {
+          "edge_candidates": {
+            "EDGE-A": "content_edge_inputs_correspond_require_actual_qualification",
+            "EDGE-B": "content_edge_inputs_correspond_require_actual_qualification"
+          },
+          "join": "held_join",
+          "composite_complete": false
+        },
+        "relation_details": {
+          "retained_edge_records": [
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-AB",
+              "contract_revision": "CONNECTION-AB-r1",
+              "identity": "EDGE-A",
+              "operation": "OP-AB",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-AB"
+            },
+            {
+              "compatibility_state": "current_in_fixture_only",
+              "connection": "CONNECTION-BC",
+              "contract_revision": "CONNECTION-BC-r1",
+              "identity": "EDGE-B",
+              "operation": "OP-BC",
+              "permission_state": "valid_in_fixture_only",
+              "result": "success_in_fixture_only",
+              "scope": "PRODUCT-P/OP-BC"
+            }
+          ],
+          "success_result_edges": [
+            "EDGE-A",
+            "EDGE-B"
+          ]
+        },
+        "claim_results": {
+          "all_edges_stopped_by_join": "none",
+          "budget_reset": "none",
+          "business_order_rewritten": "none",
+          "implicit_reverse_permission": "none",
+          "new_fixed_limit": "none",
+          "partial_composite_success": "none",
+          "prose_resolved": "none",
+          "successor_before_predecessor": "none",
+          "task_completed": "none",
+          "unsent_feedback_success": "none"
+        },
+        "effects": {
+          "actual_send": false,
+          "actual_retry": false,
+          "actual_join": false,
+          "actual_receipt": false,
+          "actual_permission": false,
+          "actual_resolution": false,
+          "actual_operation_complete": false,
+          "actual_composite_complete": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_return_sha256": "bfcc3ae4087f3d7fff4db7dde7c0dd11b14d6e5fede65b7719fac4b40cfeff8a",
+      "oracle_basis": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0/expected_material",
+        "method": "既存L9固定whole。正式計算から期待を生成しない。"
+      },
+      "expectation_scope": "local_material_rule_not_actual_qualification",
+      "baseline_source": {
+        "path": "docs/helix-connect/L9-integration-verification/direction-order-feedback-relations.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "pointer": "/verification_obligations/2/verification_scenarios/0",
+        "sha256": "b6a064bf1c6a2ca31b7467a4afa129a03b36f7ca2a83d9103dc33318347e336a"
+      },
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_join/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/original_inputs/declared_join/value/owner",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_join/value/identity",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_inputs/declared_join/value/owner",
+          "value": null
+        }
+      ],
+      "independent_basis": "L3/L4 F03はownerが宣言するidentity付きtopology/joinを扱う。原unknownを同値unknownで通過させず当該roleへ返し、独立する既知辺と原結果は保持する。"
     }
   ],
   "traceability": [
@@ -150872,7 +153476,8 @@
     "F06はconnection_identity/契約版/authority.operationを供給済みoriginal_targetへ結ぶ。endpoint.source/consumerを独立端点契約へ結ぶ供給元は未供給。F07はreturn側identity/reverse.identity/契約版/authority.operationをoriginal_targetへ結ぶが、source_identityの順方向connection/operationの独立原targetは当該packet未供給。F09のoriginal_target.revisionは接続版でありjoin_contract_revisionの独立join版targetは未供給。異なる契約を単純同一化しない。これらの材料対応は当該binding義務の合格でない。",
     "F07 source側binding不足はfeedback-endpoint-owner/connection-contract-ownerが順方向原targetとそのsource/custodyを供給して再評価する。F09 join版binding不足はcomposite-join-ownerが独立join identity/契約版/適用scopeとsourceを供給して再評価する。新registryや実権限を作らない。",
     "型内有限摂動・原281例・追加局所例の一致は全意味域閉包や実装Readyを意味しない。全92親430対を保持。",
-    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。"
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。",
+    "F02の同一edge identityを繰り返す直列の独立attempt/edge識別と自己先行判定は未閉包。F07 target_identity.ownerは独立原targetにownerが未供給で、原/提出の同値比較だけではforeign ownerを排除できない。各workflow/feedback-endpoint/connection-contract ownerが独立targetとscopeを供給して再評価する。"
   ],
   "template_application": {
     "template": "DT-MSG-001",

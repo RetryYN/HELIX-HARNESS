@@ -2530,6 +2530,18 @@
             "connection",
             "contract_revision"
           ]
+        },
+        "F02": {
+          "declared_topology": [
+            "identity",
+            "owner"
+          ]
+        },
+        "F03": {
+          "declared_join": [
+            "identity",
+            "owner"
+          ]
         }
       }
     },
@@ -22881,8 +22893,8 @@
       "required": "REQUIRED_VALUE_MEMBERSは批准役割に必要なmemberの論理投影。列挙member不在/null/空/markerは当該role unknownへ。追加keyを拒否せずrawを全保持し、正式wire schema/資格を生成しない。",
       "delegated": {
         "F01": "方向ごとのconnection/endpoint/scope/authorityはassessのdirection_binding。BA未選択は評価しない。",
-        "F02": "topology/順序/結果/条件の配列はassessのserial_declaration/predecessor_*。空必要集合と各stateをその専用不足に保ち、同値null辺はserial_declarationへ。",
-        "F03": "配列の辺ID/recordはassessのedge_eligibility/join_*で個別評価し、join不足が既知個別辺を一括停止しない。",
+        "F02": "topology/順序/結果/条件の配列はassessのserial_declaration/predecessor_*。空必要集合と各stateをその専用不足に保ち、同値null辺はserial_declarationへ。 topologyのidentity/ownerの欠落はREQUIRED_VALUE_MEMBERSでrole unknownとする。",
+        "F03": "配列の辺ID/recordはassessのedge_eligibility/join_*で個別評価し、join不足が既知個別辺を一括停止しない。 joinのidentity/ownerの欠落はREQUIRED_VALUE_MEMBERSでrole unknownとする。",
         "F04": "reasonはreason_code又はevidence_refのOR。lineageはfeedback_relation_target。",
         "F05/F08": "budget/expiry stateと回数/limitはloop_*。policy ref不足はrole unknown。",
         "F06/F07": "authority stateはoperation_authority。F07 reasonはF04同様OR。",
@@ -22982,7 +22994,8 @@
     "F06はconnection_identity/契約版/authority.operationを供給済みoriginal_targetへ結ぶ。endpoint.source/consumerを独立端点契約へ結ぶ供給元は未供給。F07はreturn側identity/reverse.identity/契約版/authority.operationをoriginal_targetへ結ぶが、source_identityの順方向connection/operationの独立原targetは当該packet未供給。F09のoriginal_target.revisionは接続版でありjoin_contract_revisionの独立join版targetは未供給。異なる契約を単純同一化しない。これらの材料対応は当該binding義務の合格でない。",
     "F07 source側binding不足はfeedback-endpoint-owner/connection-contract-ownerが順方向原targetとそのsource/custodyを供給して再評価する。F09 join版binding不足はcomposite-join-ownerが独立join identity/契約版/適用scopeとsourceを供給して再評価する。新registryや実権限を作らない。",
     "型内有限摂動・原281例・追加局所例の一致は全意味域閉包や実装Readyを意味しない。全92親430対を保持。",
-    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。"
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。",
+    "F02の同一edge identityを繰り返す直列の独立attempt/edge識別と自己先行判定は未閉包。F07 target_identity.ownerは独立原targetにownerが未供給で、原/提出の同値比較だけではforeign ownerを排除できない。各workflow/feedback-endpoint/connection-contract ownerが独立targetとscopeを供給して再評価する。"
   ],
   "internal_signatures": [
     {
@@ -25885,6 +25898,6 @@
     "decision_section": "採用する意味と範囲"
   },
   "verification_limits": {
-    "current_scope": "追加局所期待がF08各値・F07 authority/reason・F04 lineage・F01 unknown・F05負数/非整数などの該当条件を検証する。全mutant・未見の複合域・全意味閉包は未証明。"
+    "current_scope": "原281＋既存65＋追加6の有限全返却、型内例外境界と15局所AST変異を確認する。F08 limit/budget/expiry等を含む全変異の識別力を主張しない。"
   }
 }
