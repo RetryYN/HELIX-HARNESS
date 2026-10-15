@@ -234,7 +234,8 @@
             "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
             "source_line": 309,
             "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
-            "case_id": "HST-CASE-032-01"
+            "case_id": "HST-CASE-032-01",
+            "quote": "| HST-CASE-032-01 | HST-HIL-032 | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | canonical 5 V-pair、L6↔L7 TDD closure、L12→L0 anchor feedbackが双方向current | horizontal pairを評価する | ledger_ready | verified | V-pair gap 0 receipt | なし（正常系） | FX-HST-032-01 | design-defined | not-implemented |"
           },
           {
             "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
@@ -526,7 +527,8 @@
     "legacy_labels_not_inherited": [
       "L6 implementation unit",
       "L7 TDD closure"
-    ]
+    ],
+    "current_meanings_source": "docs/helix-harness/L4-basic-design/v12-layer-contract.json at source_main（現行L6関数設計・L7対関数検証。実装は層外）。layer-ledger-catalogのpair台帳責務とは区別する。"
   },
   "human_readable_contracts": [
     {
@@ -535,7 +537,7 @@
     },
     {
       "id": "R056-F02-LOCAL-CONDITIONS",
-      "説明": "設計義務、検証証拠、oracle identity、実行状態、適用状態、pair定義の6条件をoracleごとに独立して返す。unknown、missing、conflict、not_executedを他条件の成功へ畳まない。"
+      "説明": "設計義務、検証証拠、oracle identity、実行状態、適用状態、pair定義をoracleごとに独立して返す。unknown、missing、conflict、not_executed、staleを他条件の成功で消さない。返却可能値は条件別の宣言enumに従う。"
     },
     {
       "id": "R056-F03-DUAL-DESTINATION",
@@ -552,7 +554,7 @@
   ],
   "logical_types": {
     "PairPacket": {
-      "representation": "L9 independent_source_packet.raw_utf8のJSON Pointerを解決してJSONとしてparseしたrecord。固定synthetic fixtureに観測した有限domainであり正式wire schema/codecではない。",
+      "representation": "原L9固定synthetic JSONとsource由来の局所反例を材料とする有限論理型。observed_valuesは原fixtureだけでなく明示した局所probeの値も含む。正式wire schema/codecや一般入力域ではない。",
       "schema": {
         "json_kinds": [
           "object"
@@ -693,10 +695,11 @@
                 ],
                 "properties": {
                   "applicability": {
-                    "presence": "required_in_all_observed_objects",
+                    "presence": "may_be_absent_in_observed_fixtures_or_local_probes",
                     "schema": {
                       "json_kinds": [
-                        "string"
+                        "string",
+                        "null"
                       ],
                       "observed_values": [
                         "required_in_fixture",
@@ -845,7 +848,7 @@
                     }
                   },
                   "pair_definition": {
-                    "presence": "required_in_all_observed_objects",
+                    "presence": "may_be_absent_in_observed_fixtures_or_local_probes",
                     "schema": {
                       "json_kinds": [
                         "string",
@@ -906,7 +909,8 @@
                               "string"
                             ],
                             "observed_values": [
-                              "PRODUCT-P"
+                              "PRODUCT-P",
+                              "PRODUCT-Q"
                             ]
                           }
                         },
@@ -1904,9 +1908,7 @@
                 "values": [
                   "supported_synthetic_condition",
                   "missing",
-                  "conflict",
-                  "unknown",
-                  "not_executed"
+                  "conflict"
                 ]
               },
               "verification": {
@@ -1914,9 +1916,7 @@
                 "values": [
                   "supported_synthetic_condition",
                   "missing",
-                  "conflict",
-                  "unknown",
-                  "not_executed"
+                  "conflict"
                 ]
               },
               "oracle_identity": {
@@ -1924,39 +1924,33 @@
                 "values": [
                   "supported_synthetic_condition",
                   "missing",
-                  "conflict",
-                  "unknown",
-                  "not_executed"
+                  "conflict"
                 ]
               },
               "execution": {
                 "kind": "enum",
                 "values": [
                   "supported_synthetic_condition",
-                  "missing",
-                  "conflict",
+                  "not_executed",
                   "unknown",
-                  "not_executed"
+                  "conflict",
+                  "stale"
                 ]
               },
               "applicability": {
                 "kind": "enum",
                 "values": [
                   "supported_synthetic_condition",
-                  "missing",
-                  "conflict",
                   "unknown",
-                  "not_executed"
+                  "conflict"
                 ]
               },
               "pair_definition": {
                 "kind": "enum",
                 "values": [
                   "supported_synthetic_condition",
-                  "missing",
-                  "conflict",
                   "unknown",
-                  "not_executed"
+                  "conflict"
                 ]
               }
             }
@@ -2302,7 +2296,29 @@
         "case IDやexpected_materialを分岐条件に使わない",
         "実source資格・実行結果・実authorityを生成しない"
       ],
-      "program_ref": "PROGRAM-F01"
+      "program_ref": "PROGRAM-F01",
+      "declared_input_scope": "宣言schemaの有限入力域のみ。型外の未知string/形は結果stateへ補完せず未評価。schemaはsourceと独立局所probeの論理素材であり正式codec/資格を生成しない。",
+      "read_return_boundary": {
+        "read_paths": [
+          "/required_oracles/*/{design,oracle,pair,verification}",
+          "/provided_rows/*/{oracle,design_obligation,verification_evidence,pair,pair_definition,applicability}",
+          "/provided_rows/*/{forward,reverse}/{design,oracle,verification}",
+          "/provided_rows/*/result/{oracle,revision,scope,snapshot,state}",
+          "/frame/{revision,scope,snapshot}",
+          "/pair_definition",
+          "/layer_meanings/{L6,L7}"
+        ],
+        "unread": [
+          "/claims"
+        ],
+        "notation": "説明用path族。*は配列要素、{a,b}は列挙したmemberだけ。機械評価ではprogram_refのASTだけを使う。",
+        "return_roots": [
+          "oracle_results",
+          "pair_results",
+          "effects",
+          "unaffected_Q"
+        ]
+      }
     },
     {
       "id": "FN056-F02",
@@ -2338,11 +2354,11 @@
         "derive_design_from_design_obligation_presence",
         "derive_verification_from_verification_evidence_and_both_edges",
         "derive_oracle_identity_from_row_forward_reverse_and_required_tuple",
-        "derive_execution_from_result_presence_and_state",
+        "derive_execution_from_result_presence_then_revision_scope_snapshot_then_state",
         "derive_applicability_from_row_applicability",
         "derive_pair_definition_from_top_and_row_pair_definition",
         "preserve_each_condition_state_without_cross_condition_collapse",
-        "aggregate_pair_supported_only_when_both_oracles_all_six_supported",
+        "aggregate_pair_supported_only_when_nonempty_required_entries_all_six_supported",
         "emit_complete_result_record"
       ],
       "signature": {
@@ -2369,7 +2385,30 @@
         "case IDやexpected_materialを分岐条件に使わない",
         "実source資格・実行結果・実authorityを生成しない"
       ],
-      "program_ref": "PROGRAM-F02"
+      "program_ref": "PROGRAM-F02",
+      "declared_input_scope": "宣言schemaの有限入力域のみ。型外の未知string/形は結果stateへ補完せず未評価。schemaはsourceと独立局所probeの論理素材であり正式codec/資格を生成しない。",
+      "read_return_boundary": {
+        "read_paths": [
+          "/required_oracles/*/{design,oracle,pair,verification}",
+          "/provided_rows/*/{design_obligation,verification_evidence,oracle,pair,pair_definition,applicability}",
+          "/provided_rows/*/{forward,reverse}/{design,oracle,verification}",
+          "/provided_rows/*/result/{oracle,revision,scope,snapshot,state}",
+          "/frame/{revision,scope,snapshot}",
+          "/pair_definition",
+          "/layer_meanings/{L6,L7}"
+        ],
+        "unread": [
+          "/claims"
+        ],
+        "notation": "説明用path族。*は配列要素、{a,b}は列挙したmemberだけ。機械評価ではprogram_refのASTだけを使う。",
+        "return_roots": [
+          "oracle_condition_results",
+          "pair_results",
+          "all_six_supported_in_fixture",
+          "effects",
+          "unaffected_Q"
+        ]
+      }
     },
     {
       "id": "FN056-F03",
@@ -2431,7 +2470,31 @@
         "case IDやexpected_materialを分岐条件に使わない",
         "実source資格・実行結果・実authorityを生成しない"
       ],
-      "program_ref": "PROGRAM-F03"
+      "program_ref": "PROGRAM-F03",
+      "declared_input_scope": "宣言schemaの有限入力域のみ。型外の未知string/形は結果stateへ補完せず未評価。schemaはsourceと独立局所probeの論理素材であり正式codec/資格を生成しない。",
+      "read_return_boundary": {
+        "read_paths": [
+          "/edges/{L1,L0}/{destination,revision,source_layer}",
+          "/required_destinations/{L1,L0}/{identity,revision}",
+          "/proposed_pairs/*"
+        ],
+        "unread": [
+          "/source/layer",
+          "/source/revision",
+          "/source/scope",
+          "/requested_upstream_effect"
+        ],
+        "notation": "説明用path族。*は配列要素、{a,b}は列挙したmemberだけ。機械評価ではprogram_refのASTだけを使う。",
+        "return_roots": [
+          "destination_results",
+          "feedback_complete_in_fixture",
+          "pair_count",
+          "extra_pair_rejected",
+          "upstream_effect",
+          "effects",
+          "unaffected_Q"
+        ]
+      }
     },
     {
       "id": "FN056-N01",
@@ -2499,7 +2562,30 @@
         "case IDやexpected_materialを分岐条件に使わない",
         "実source資格・実行結果・実authorityを生成しない"
       ],
-      "program_ref": "PROGRAM-N01"
+      "program_ref": "PROGRAM-N01",
+      "declared_input_scope": "宣言schemaの有限入力域のみ。型外の未知string/形は結果stateへ補完せず未評価。schemaはsourceと独立局所probeの論理素材であり正式codec/資格を生成しない。",
+      "read_return_boundary": {
+        "read_paths": [
+          "/evidence/frame/{revision,scope,snapshot}",
+          "/required_frame/{revision,scope,snapshot}",
+          "/evidence/{origin,state}",
+          "/held_out/{design_obligation,pair,oracle}",
+          "/claimed_NFR29_adopted"
+        ],
+        "unread": [
+          "/evidence/oracle",
+          "/held_out/verification_evidence"
+        ],
+        "notation": "説明用path族。*は配列要素、{a,b}は列挙したmemberだけ。機械評価ではprogram_refのASTだけを使う。",
+        "return_roots": [
+          "evidence_result",
+          "NFR29_holding",
+          "NFR29_adoption_claim",
+          "held_out_gap",
+          "effects",
+          "unaffected_Q"
+        ]
+      }
     },
     {
       "id": "FN056-B01",
@@ -2532,8 +2618,6 @@
       "steps": [
         "retain_meaning_conditions_exactly",
         "retain_OS_conditions_exactly",
-        "emit_os_owner_candidates_in_execution_save_registration_order_for_each_value_not_known",
-        "emit_harness_candidates_in_pair_then_feedback_order_for_each_value_not_known",
         "owner_candidate_order_is_OS_execution_then_HARNESS_pair_then_HARNESS_feedback_then_OS_save_then_OS_registration",
         "catalog_implies_gate_success_false",
         "save_implies_execution_success_false",
@@ -2565,13 +2649,37 @@
         "case IDやexpected_materialを分岐条件に使わない",
         "実source資格・実行結果・実authorityを生成しない"
       ],
-      "program_ref": "PROGRAM-B01"
+      "program_ref": "PROGRAM-B01",
+      "declared_input_scope": "宣言schemaの有限入力域のみ。型外の未知string/形は結果stateへ補完せず未評価。schemaはsourceと独立局所probeの論理素材であり正式codec/資格を生成しない。",
+      "read_return_boundary": {
+        "read_paths": [
+          "/meaning_conditions/{pair_contract,feedback_contract}",
+          "/OS_conditions/{execution,save,registration}"
+        ],
+        "unread": [
+          "/acceptance022",
+          "/design025026",
+          "/catalog_present",
+          "/gate_claims"
+        ],
+        "notation": "説明用path族。*は配列要素、{a,b}は列挙したmemberだけ。機械評価ではprogram_refのASTだけを使う。",
+        "return_roots": [
+          "owner_return_candidates",
+          "retained_meaning_conditions",
+          "retained_OS_conditions",
+          "catalog_implies_gate_success",
+          "save_implies_execution_success",
+          "requires_025026_completion_to_author",
+          "effects",
+          "unaffected_Q"
+        ]
+      }
     }
   ],
   "calculation_programs": {
     "input_presence_and_json_comparison": {
       "objects": "JSON objectのmember順は意味に影響しない。配列順は意味を持ち、固定順を保つ。JSON scalarは型と値を比較し、trueと1は同値にしない。",
-      "presence": "各memberはAbsent/Null/Valueを区別して読み取る。L9で観測した枝ではrequired_oraclesのmember自体はrequired。arrayは空を許すが空集合を成立結果にしない。",
+      "presence": "memberをabsent（内部Absent sentinel）/null（明示JSON null）/valueで区別する。空map/listはvalue。required_oracles自体はrequired、配列は空を許すが空集合を成立結果にしない。",
       "selection_order": "F01/F02はrequired_oraclesの配列順でjoin結果を作る。pair出力はcanonical_pair_domain.pairsの順、F03はL1→L0の順を使う。objectのkey順は結果に影響しない。"
     },
     "oracle_join": {
@@ -2596,11 +2704,12 @@
         "pair": "required pairと一致。差は両方向conflict。",
         "pair_definition": "input.pair_definitionとcurrent_001_fixture、およびrow.pair_definitionの一致。Null/Absent/TBDはconflict。",
         "applicability": "required_in_fixtureであること。その他の値はconflict。",
-        "result_frame": "result.revision/scope/snapshotがpacket.frameの三値へ一致。Absent/Null resultはmissing、frame値差はconflict。"
+        "result_frame": "resultがAbsent/nullならmissing。objectならrevision/scope/snapshotがpacket.frame三値と一致し、result.oracleがrequired oracle、stateがobserved_pass_in_fixture_onlyに一致した場合だけbound。不一致はconflict。"
       },
       "pair_result": "pair内全oracleのforward/reverseがboundかつlayer meaning一致ならcorresponding_in_fixture_only。どれかmissing/conflictならincomplete。L6-L7 meaning不一致だけmeaning_conflict。claimsは使わない。",
       "compound_limit": "L9固定caseは単一欠陥を一件ずつ変える有限素材。複数前提が同時に欠落/不一致する組合せの優先規則は未閉包。",
-      "row_prerequisite_priority": "一意行の必要条件はdesign、verification、pair、pair_definition、applicability、result_frameの順に評価する。欠落が一つでもあればdirectionをmissingとし、欠落が無く不一致があればconflictとする。行のcardinalityが0ならmissing、2件以上なら両direction conflictで行を選ばない。pairに必要oracleが0件ならincomplete。"
+      "row_prerequisite_priority": "一意行の必要条件はdesign、verification、pair、pair_definition、applicability、result_frameの順に評価する。欠落が一つでもあればdirectionをmissingとし、欠落が無く不一致があればconflictとする。行のcardinalityが0ならmissing、2件以上なら両direction conflictで行を選ばない。pairに必要oracleが0件ならincomplete。",
+      "coarse_diagnostic_limit": "原L9のforward/reverse有限返却はmissing/conflict/boundだけ。resultのTBD/未実行やrevision差もconflictへ局所化するが、unknown/staleの個別返却はこの関数では未実現。raw値を保持し、これを実sourceの資格不一致と同一視しない。"
     },
     "F02": {
       "condition_order": [
@@ -2612,17 +2721,17 @@
         "pair_definition"
       ],
       "design": "row.design_obligationがrequired designと一致ならsupported_synthetic_condition。Absent/Nullはmissing。その他conflict。",
-      "verification": "row.verification_evidenceがrequired verificationと一致ならsupported_synthetic_condition。Absent/Nullはmissing。その他conflict。",
+      "verification": "row.verification_evidenceまたは両方向edgeがAbsent/nullならmissing。その他はverification値とrequired、および両edgeのdesign/oracle/verification全値・正確な三key集合が対応する場合だけsupported_synthetic_condition。不一致/形不足はconflict。",
       "oracle_identity": "row.oracle/pairとrequired tupleが一致し、存在するresult.oracleとforward/reverse oracleも一致ならsupported_synthetic_condition。result Absent/Nullはidentityを壊さずexecutionをnot_executedにする。差はconflict。",
-      "execution": "result Absent/Null→not_executed、state=observed_pass_in_fixture_only→supported_synthetic_condition、state=TBD/unknown→unknown、その他conflict。",
+      "execution": "result非object→not_executed。objectはrevision差→stale、revision一致後scope/snapshot差→conflict、その後stateがobserved_pass_in_fixture_only→supported_synthetic_condition、TBD/unknown→unknown、その他conflict。この順序で局所判定し他条件へ転用しない。",
       "applicability": "required_in_fixture→supported_synthetic_condition、TBD/unknown/Absent/Null→unknown、その他conflict。",
-      "pair_definition": "top-levelとrowがcurrent_001_fixtureで一致→supported_synthetic_condition。TBD/unknown/Absent/Nullはいずれもunknown。それ以外conflict。",
+      "pair_definition": "L6-L7でlayer_meaningsが現行L6設計/L7検証と異なればconflictを優先。他はtop/rowのAbsent/null→unknown、両current_001_fixture→supported_synthetic_condition、TBD/unknown→unknown、その他conflict。",
       "pair_result": "canonical pairについて、raw input.required_oraclesから当該pairへ結び付く全entryの6条件がsupported_synthetic_conditionで、entryが1件以上ある場合にsupported_synthetic_condition。それ以外はincomplete。6 pairすべてsupportedの場合だけall_six_supported_in_fixture=true。L9 fixtureのpairごとの2件を一般必須件数としない。",
-      "duplicate_join": "一致行が0件ならdesign/verification/oracle_identity=missing、execution=not_executed、applicability/pair_definition=unknown。一致行が複数なら行を選ばず、design/verification=missing、oracle_identity=conflict、execution=not_executed、applicability/pair_definition=unknown。",
+      "duplicate_join": "一致行が0件ならdesign/verification/oracle_identity=missing、execution=not_executed、applicability/pair_definition=unknown。一致行が複数なら行を選ばず、design/verification/oracle_identity=conflict、execution=not_executed、applicability/pair_definition=unknown。",
       "pair_cardinality": "pairの判定対象はraw input.required_oraclesから当該pairへ結び付く全entry。空ならincomplete、1件以上なら全entryの6条件がsupported_synthetic_conditionの場合に限りsupported。L9固定fixtureの各pairが2件であることを一般必須件数へ転用しない。未見subset/supersetの必要集合同定は未評価。"
     },
     "F03": {
-      "source_frame_limit": "source.layerはL12として確認できるが、edgeにL12 source revision/scopeとのbind値がなく、原L9 wholeにも比較出力がない。このsource consistencyは未閉包。",
+      "source_frame_limit": "source.layerは宣言した有限入力型でL12だけに限定されるがASTは未読。edge.source_layer=L12のみ比較する。source.revision/scopeを結ぶ独立required frame/edge scopeは未供給でsource consistencyは未実現。",
       "destination_order": [
         "L1",
         "L0"
@@ -2636,7 +2745,7 @@
         "scope",
         "snapshot"
       ],
-      "comparison": "evidence.frameとrequired_frameのrevision差→stale。revision一致後scope/snapshot差→conflict。evidence Absent/Null、origin=legacy_assertion_only、stateが合成観測pass以外ならnot_executed。その他supported_synthetic_condition。",
+      "comparison": "evidence.frameとrequired_frameのrevision差→stale。revision一致後scope/snapshot差→conflict。evidence Absent/Null、origin=legacy_assertion032、stateが合成観測pass以外ならnot_executed。その他supported_synthetic_condition。",
       "held_out": "held_out Absent/Null→held_out_gap:null。objectでdesign_obligation Absent/Nullならpair/oracleを保持しcondition=design_missing。",
       "holding": "NFR29はunmigratedを保持。claimed_NFR29_adopted=trueだけrejected、それ以外none。"
     },
@@ -2656,7 +2765,7 @@
         "requires_025026_completion_to_author": false,
         "gate_claims": "計算/権限に使わない。approval/execution/stage completionを生成しない。"
       },
-      "candidate_label_source": "owner候補の文字列はL10 B01の独立whole oracleで固定された合成表示値に対応する。これらはowner資格・実在account・権限を証明せず、condition別の候補routing labelとしてのみ返す。"
+      "candidate_label_source": "owner候補literalは原L9 B01 expected_material.owner_return_candidatesの合成表示値。L10は責務を要求し、このfixture labelそのものを規定しない。実account/資格/配送を証明しない。"
     },
     "expression_language": {
       "version": "finite-json-expression-1",
@@ -2665,7 +2774,7 @@
         "variable": "字句束縛値を読む。",
         "field": "objectのmemberを読む。AbsentはJSON nullと異なる内部状態として返す。",
         "field_dynamic": "評価したkeyでobject memberを読む。",
-        "presence_state": "member式の状態をAbsent/Null/Valueで返す。",
+        "presence_state": "内部Absent sentinelには文字列absent、JSON nullには文字列null、それ以外（空map/listを含む）には文字列valueを返す。表記上のAbsent/Null/Valueと区別する。",
         "strict_json_equal": "JSON型と値を再帰比較する。objectのmember順は無視し、array順は保持する。 numberは数値として比較し1と1.0は同値。booleanとnumberは別型。原値投影の表記は保持する。",
         "json_kind_is": "JSON型を変換せず比較する。",
         "if": "条件を評価し、選択した片方の分岐だけを評価する。",
@@ -3148,41 +3257,83 @@
                   "condition": {
                     "op": "all_boolean",
                     "items": {
-                      "op": "map_array",
-                      "items": {
-                        "op": "literal",
-                        "value": [
-                          "revision",
-                          "scope",
-                          "snapshot"
-                        ]
-                      },
-                      "binding": "member",
-                      "body": {
-                        "op": "strict_json_equal",
-                        "left": {
-                          "op": "field",
-                          "base": {
-                            "op": "variable",
-                            "name": "result"
-                          },
-                          "key": {
-                            "op": "variable",
-                            "name": "member"
+                      "op": "array",
+                      "items": [
+                        {
+                          "op": "all_boolean",
+                          "items": {
+                            "op": "map_array",
+                            "items": {
+                              "op": "literal",
+                              "value": [
+                                "revision",
+                                "scope",
+                                "snapshot"
+                              ]
+                            },
+                            "binding": "member",
+                            "body": {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "field",
+                                "base": {
+                                  "op": "variable",
+                                  "name": "result"
+                                },
+                                "key": {
+                                  "op": "variable",
+                                  "name": "member"
+                                }
+                              },
+                              "right": {
+                                "op": "field",
+                                "base": {
+                                  "op": "variable",
+                                  "name": "frame"
+                                },
+                                "key": {
+                                  "op": "variable",
+                                  "name": "member"
+                                }
+                              }
+                            }
                           }
                         },
-                        "right": {
-                          "op": "field",
-                          "base": {
-                            "op": "variable",
-                            "name": "frame"
+                        {
+                          "op": "strict_json_equal",
+                          "left": {
+                            "op": "field",
+                            "base": {
+                              "op": "variable",
+                              "name": "result"
+                            },
+                            "key": "oracle"
                           },
-                          "key": {
-                            "op": "variable",
-                            "name": "member"
+                          "right": {
+                            "op": "field",
+                            "base": {
+                              "op": "variable",
+                              "name": "req"
+                            },
+                            "key": "oracle"
+                          }
+                        },
+                        {
+                          "op": "strict_json_equal",
+                          "left": {
+                            "op": "field",
+                            "base": {
+                              "op": "variable",
+                              "name": "result"
+                            },
+                            "key": "state"
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": "observed_pass_in_fixture_only"
                           }
                         }
-                      }
+                      ]
                     }
                   },
                   "then": {
@@ -3661,11 +3812,11 @@
                 "fields": {
                   "design": {
                     "op": "literal",
-                    "value": "missing"
+                    "value": "conflict"
                   },
                   "verification": {
                     "op": "literal",
-                    "value": "missing"
+                    "value": "conflict"
                   },
                   "oracle_identity": {
                     "op": "literal",
@@ -3839,24 +3990,66 @@
                   "verification": {
                     "op": "if",
                     "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "strict_json_equal",
-                        "left": {
-                          "op": "presence_state",
-                          "value": {
-                            "op": "field",
-                            "base": {
-                              "op": "variable",
-                              "name": "row"
-                            },
-                            "key": "verification_evidence"
+                      "op": "or",
+                      "values": {
+                        "op": "array",
+                        "items": [
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "presence_state",
+                                "value": {
+                                  "op": "field",
+                                  "base": {
+                                    "op": "variable",
+                                    "name": "row"
+                                  },
+                                  "key": "verification_evidence"
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "value"
+                              }
+                            }
+                          },
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "presence_state",
+                                "value": {
+                                  "op": "variable",
+                                  "name": "fwd"
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "value"
+                              }
+                            }
+                          },
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "presence_state",
+                                "value": {
+                                  "op": "variable",
+                                  "name": "rev"
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "value"
+                              }
+                            }
                           }
-                        },
-                        "right": {
-                          "op": "literal",
-                          "value": "value"
-                        }
+                        ]
                       }
                     },
                     "then": {
@@ -3866,22 +4059,80 @@
                     "else": {
                       "op": "if",
                       "condition": {
-                        "op": "strict_json_equal",
-                        "left": {
-                          "op": "field",
-                          "base": {
-                            "op": "variable",
-                            "name": "row"
-                          },
-                          "key": "verification_evidence"
-                        },
-                        "right": {
-                          "op": "field",
-                          "base": {
-                            "op": "variable",
-                            "name": "req"
-                          },
-                          "key": "verification"
+                        "op": "all_boolean",
+                        "items": {
+                          "op": "array",
+                          "items": [
+                            {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "field",
+                                "base": {
+                                  "op": "variable",
+                                  "name": "row"
+                                },
+                                "key": "verification_evidence"
+                              },
+                              "right": {
+                                "op": "field",
+                                "base": {
+                                  "op": "variable",
+                                  "name": "req"
+                                },
+                                "key": "verification"
+                              }
+                            },
+                            {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "call",
+                                "definition": "edge_status",
+                                "arguments": {
+                                  "row": {
+                                    "op": "variable",
+                                    "name": "row"
+                                  },
+                                  "direction": {
+                                    "op": "literal",
+                                    "value": "forward"
+                                  },
+                                  "req": {
+                                    "op": "variable",
+                                    "name": "req"
+                                  }
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "bound_in_fixture"
+                              }
+                            },
+                            {
+                              "op": "strict_json_equal",
+                              "left": {
+                                "op": "call",
+                                "definition": "edge_status",
+                                "arguments": {
+                                  "row": {
+                                    "op": "variable",
+                                    "name": "row"
+                                  },
+                                  "direction": {
+                                    "op": "literal",
+                                    "value": "reverse"
+                                  },
+                                  "req": {
+                                    "op": "variable",
+                                    "name": "req"
+                                  }
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "bound_in_fixture"
+                              }
+                            }
+                          ]
                         }
                       },
                       "then": {
@@ -4082,18 +4333,197 @@
                     "else": {
                       "op": "if",
                       "condition": {
+                        "op": "not",
+                        "value": {
+                          "op": "strict_json_equal",
+                          "left": {
+                            "op": "field",
+                            "base": {
+                              "op": "variable",
+                              "name": "result"
+                            },
+                            "key": "revision"
+                          },
+                          "right": {
+                            "op": "field",
+                            "base": {
+                              "op": "field",
+                              "base": {
+                                "op": "variable",
+                                "name": "packet"
+                              },
+                              "key": "frame"
+                            },
+                            "key": "revision"
+                          }
+                        }
+                      },
+                      "then": {
+                        "op": "literal",
+                        "value": "stale"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "values": {
+                            "op": "array",
+                            "items": [
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "strict_json_equal",
+                                  "left": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "result"
+                                    },
+                                    "key": "scope"
+                                  },
+                                  "right": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "field",
+                                      "base": {
+                                        "op": "variable",
+                                        "name": "packet"
+                                      },
+                                      "key": "frame"
+                                    },
+                                    "key": "scope"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "strict_json_equal",
+                                  "left": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "result"
+                                    },
+                                    "key": "snapshot"
+                                  },
+                                  "right": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "field",
+                                      "base": {
+                                        "op": "variable",
+                                        "name": "packet"
+                                      },
+                                      "key": "frame"
+                                    },
+                                    "key": "snapshot"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "then": {
+                          "op": "literal",
+                          "value": "conflict"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "strict_json_equal",
+                            "left": {
+                              "op": "field",
+                              "base": {
+                                "op": "variable",
+                                "name": "result"
+                              },
+                              "key": "state"
+                            },
+                            "right": {
+                              "op": "literal",
+                              "value": "observed_pass_in_fixture_only"
+                            }
+                          },
+                          "then": {
+                            "op": "literal",
+                            "value": "supported_synthetic_condition"
+                          },
+                          "else": {
+                            "op": "if",
+                            "condition": {
+                              "op": "member_of",
+                              "value": {
+                                "op": "field",
+                                "base": {
+                                  "op": "variable",
+                                  "name": "result"
+                                },
+                                "key": "state"
+                              },
+                              "items": {
+                                "op": "literal",
+                                "value": [
+                                  "unknown",
+                                  "TBD"
+                                ]
+                              }
+                            },
+                            "then": {
+                              "op": "literal",
+                              "value": "unknown"
+                            },
+                            "else": {
+                              "op": "literal",
+                              "value": "conflict"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "applicability": {
+                    "op": "if",
+                    "condition": {
+                      "op": "not",
+                      "value": {
+                        "op": "strict_json_equal",
+                        "left": {
+                          "op": "presence_state",
+                          "value": {
+                            "op": "field",
+                            "base": {
+                              "op": "variable",
+                              "name": "row"
+                            },
+                            "key": "applicability"
+                          }
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": "value"
+                        }
+                      }
+                    },
+                    "then": {
+                      "op": "literal",
+                      "value": "unknown"
+                    },
+                    "else": {
+                      "op": "if",
+                      "condition": {
                         "op": "strict_json_equal",
                         "left": {
                           "op": "field",
                           "base": {
                             "op": "variable",
-                            "name": "result"
+                            "name": "row"
                           },
-                          "key": "state"
+                          "key": "applicability"
                         },
                         "right": {
                           "op": "literal",
-                          "value": "observed_pass_in_fixture_only"
+                          "value": "required_in_fixture"
                         }
                       },
                       "then": {
@@ -4108,9 +4538,9 @@
                             "op": "field",
                             "base": {
                               "op": "variable",
-                              "name": "result"
+                              "name": "row"
                             },
-                            "key": "state"
+                            "key": "applicability"
                           },
                           "items": {
                             "op": "literal",
@@ -4131,57 +4561,6 @@
                       }
                     }
                   },
-                  "applicability": {
-                    "op": "if",
-                    "condition": {
-                      "op": "strict_json_equal",
-                      "left": {
-                        "op": "field",
-                        "base": {
-                          "op": "variable",
-                          "name": "row"
-                        },
-                        "key": "applicability"
-                      },
-                      "right": {
-                        "op": "literal",
-                        "value": "required_in_fixture"
-                      }
-                    },
-                    "then": {
-                      "op": "literal",
-                      "value": "supported_synthetic_condition"
-                    },
-                    "else": {
-                      "op": "if",
-                      "condition": {
-                        "op": "member_of",
-                        "value": {
-                          "op": "field",
-                          "base": {
-                            "op": "variable",
-                            "name": "row"
-                          },
-                          "key": "applicability"
-                        },
-                        "items": {
-                          "op": "literal",
-                          "value": [
-                            "unknown",
-                            "TBD"
-                          ]
-                        }
-                      },
-                      "then": {
-                        "op": "literal",
-                        "value": "unknown"
-                      },
-                      "else": {
-                        "op": "literal",
-                        "value": "conflict"
-                      }
-                    }
-                  },
                   "pair_definition": {
                     "op": "if",
                     "condition": {
@@ -4195,28 +4574,62 @@
                               "op": "field",
                               "base": {
                                 "op": "variable",
-                                "name": "packet"
+                                "name": "req"
                               },
-                              "key": "pair_definition"
+                              "key": "pair"
                             },
                             "right": {
                               "op": "literal",
-                              "value": "current_001_fixture"
+                              "value": "L6-L7"
                             }
                           },
                           {
-                            "op": "strict_json_equal",
-                            "left": {
-                              "op": "field",
-                              "base": {
-                                "op": "variable",
-                                "name": "row"
-                              },
-                              "key": "pair_definition"
-                            },
-                            "right": {
-                              "op": "literal",
-                              "value": "current_001_fixture"
+                            "op": "not",
+                            "value": {
+                              "op": "all_boolean",
+                              "items": {
+                                "op": "array",
+                                "items": [
+                                  {
+                                    "op": "strict_json_equal",
+                                    "left": {
+                                      "op": "field",
+                                      "base": {
+                                        "op": "field",
+                                        "base": {
+                                          "op": "variable",
+                                          "name": "packet"
+                                        },
+                                        "key": "layer_meanings"
+                                      },
+                                      "key": "L6"
+                                    },
+                                    "right": {
+                                      "op": "literal",
+                                      "value": "current_layer_design"
+                                    }
+                                  },
+                                  {
+                                    "op": "strict_json_equal",
+                                    "left": {
+                                      "op": "field",
+                                      "base": {
+                                        "op": "field",
+                                        "base": {
+                                          "op": "variable",
+                                          "name": "packet"
+                                        },
+                                        "key": "layer_meanings"
+                                      },
+                                      "key": "L7"
+                                    },
+                                    "right": {
+                                      "op": "literal",
+                                      "value": "current_layer_verification"
+                                    }
+                                  }
+                                ]
+                              }
                             }
                           }
                         ]
@@ -4224,7 +4637,7 @@
                     },
                     "then": {
                       "op": "literal",
-                      "value": "supported_synthetic_condition"
+                      "value": "conflict"
                     },
                     "else": {
                       "op": "if",
@@ -4234,41 +4647,45 @@
                           "op": "array",
                           "items": [
                             {
-                              "op": "member_of",
+                              "op": "not",
                               "value": {
-                                "op": "field",
-                                "base": {
-                                  "op": "variable",
-                                  "name": "packet"
+                                "op": "strict_json_equal",
+                                "left": {
+                                  "op": "presence_state",
+                                  "value": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "packet"
+                                    },
+                                    "key": "pair_definition"
+                                  }
                                 },
-                                "key": "pair_definition"
-                              },
-                              "items": {
-                                "op": "literal",
-                                "value": [
-                                  "unknown",
-                                  "TBD",
-                                  null
-                                ]
+                                "right": {
+                                  "op": "literal",
+                                  "value": "value"
+                                }
                               }
                             },
                             {
-                              "op": "member_of",
+                              "op": "not",
                               "value": {
-                                "op": "field",
-                                "base": {
-                                  "op": "variable",
-                                  "name": "row"
+                                "op": "strict_json_equal",
+                                "left": {
+                                  "op": "presence_state",
+                                  "value": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "row"
+                                    },
+                                    "key": "pair_definition"
+                                  }
                                 },
-                                "key": "pair_definition"
-                              },
-                              "items": {
-                                "op": "literal",
-                                "value": [
-                                  "unknown",
-                                  "TBD",
-                                  null
-                                ]
+                                "right": {
+                                  "op": "literal",
+                                  "value": "value"
+                                }
                               }
                             }
                           ]
@@ -4279,8 +4696,106 @@
                         "value": "unknown"
                       },
                       "else": {
-                        "op": "literal",
-                        "value": "conflict"
+                        "op": "if",
+                        "condition": {
+                          "op": "all_boolean",
+                          "items": {
+                            "op": "array",
+                            "items": [
+                              {
+                                "op": "strict_json_equal",
+                                "left": {
+                                  "op": "field",
+                                  "base": {
+                                    "op": "variable",
+                                    "name": "packet"
+                                  },
+                                  "key": "pair_definition"
+                                },
+                                "right": {
+                                  "op": "literal",
+                                  "value": "current_001_fixture"
+                                }
+                              },
+                              {
+                                "op": "strict_json_equal",
+                                "left": {
+                                  "op": "field",
+                                  "base": {
+                                    "op": "variable",
+                                    "name": "row"
+                                  },
+                                  "key": "pair_definition"
+                                },
+                                "right": {
+                                  "op": "literal",
+                                  "value": "current_001_fixture"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "then": {
+                          "op": "literal",
+                          "value": "supported_synthetic_condition"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "or",
+                            "values": {
+                              "op": "array",
+                              "items": [
+                                {
+                                  "op": "member_of",
+                                  "value": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "packet"
+                                    },
+                                    "key": "pair_definition"
+                                  },
+                                  "items": {
+                                    "op": "literal",
+                                    "value": [
+                                      "unknown",
+                                      "TBD",
+                                      null
+                                    ]
+                                  }
+                                },
+                                {
+                                  "op": "member_of",
+                                  "value": {
+                                    "op": "field",
+                                    "base": {
+                                      "op": "variable",
+                                      "name": "row"
+                                    },
+                                    "key": "pair_definition"
+                                  },
+                                  "items": {
+                                    "op": "literal",
+                                    "value": [
+                                      "unknown",
+                                      "TBD",
+                                      null
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "then": {
+                            "op": "literal",
+                            "value": "unknown"
+                          },
+                          "else": {
+                            "op": "literal",
+                            "value": "conflict"
+                          }
+                        }
                       }
                     }
                   }
@@ -4746,7 +5261,7 @@
                               },
                               "right": {
                                 "op": "literal",
-                                "value": "legacy_assertion_only"
+                                "value": "legacy_assertion032"
                               }
                             },
                             {
@@ -5550,6 +6065,151 @@
     "OS実保存/登録/feedback運転未成立",
     "実oracle execution・gate・approval・acceptance未成立",
     "限定92親430対すべてのL5/L8意味閉包と全域ケースは未成立",
-    "通常L3再開/Stage 5全能力/実装/CI/L11受入は未成立"
-  ]
+    "通常L3再開/Stage 5全能力/実装/CI/L11受入は未成立",
+    "N01にはevidence.oracle/held_out tupleの独立比較対象が未供給で原子対応は未実現。L8不足witnessを義務合格へ数えない。",
+    "F02/F03のowner返却は未出力であり返却consumer member接続も未具体化。",
+    "B01 acceptance022/design025026の個別比較は未実現。入力値/無作用出力だけで受入や設計を成立扱いしない。",
+    "F01 unknown/staleの個別返却は原L9有限診断では未実現。raw保持とconflictへの局所縮約の範囲を区別する。",
+    "R1独立mutation291件の元packetは未供給。追加局所wholeは列挙分だけで、全単独枝/複合枝を網羅したとしない。"
+  ],
+  "unclosed_comparison_and_owner_obligations": {
+    "N01": {
+      "source_refs": [
+        "HARNESS-L3-056-N01",
+        "HARNESS-L4-056-N01",
+        "HARNESS-L10-056-N01"
+      ],
+      "missing_inputs": [
+        "evidence.oracleと比較する独立required_oracle",
+        "held_outのpair/oracleと比較する独立required tuple/必要集合"
+      ],
+      "implemented": "required_frameとevidence.frame比較、origin/stateの有限診断、欠落designのpair/oracle保持",
+      "not_implemented": "evidence.oracleの原子的対象対応とheld_out tupleの正対応。名前の部分文字列から推測しない。supported_synthetic_conditionはframe/stateだけの局所診断であり原L4原子義務の全合格ではない。",
+      "witness_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/atomic-pair-result-feedback.json",
+        "binding": "same_candidate_document",
+        "json_pointer": "/unclosed_comparison_witnesses/0"
+      }
+    },
+    "F02_owner": {
+      "source_refs": [
+        "HARNESS-L10-056-F02"
+      ],
+      "missing_output": "不足/unknownの対応owner返却。現在返却はoracle条件とpairだけでownerは未出力。owner供給/bindingとconsumer宛先は未具体化、原whole保全のため成功扱いしない。"
+    },
+    "F03_owner_and_source": {
+      "source_refs": [
+        "HARNESS-L4-056-F03",
+        "HARNESS-L10-056-F03"
+      ],
+      "missing_output": "欠けるfeedback先をHARNESS ownerへ返す候補record/consumer memberは未出力。destination_resultsだけでowner返却成立としない。",
+      "missing_input": "source revision/scopeを結ぶ独立required frame/edge scopeは未供給。source.layerは有限宣言型でL12に限られAST未読。edge.source_layerとdestination identity/revisionだけを比較する。"
+    },
+    "B01_unread_inputs": {
+      "paths": [
+        "/acceptance022",
+        "/design025026",
+        "/catalog_present",
+        "/gate_claims"
+      ],
+      "meaning": "これら個別入力は計算の判定に使わない。受入/設計/許可の成立を写さず、固定falseで非推論を示す。入力schemaは有限closed domainで型外stateは未評価。"
+    }
+  },
+  "mutation_observation_limit": {
+    "historical_review": "PR3166 exact c80625428816f5b6ed86244028aa2c53851993ebの独立R1で291 mutation中81未識別との観測。元mutation全packetはこの文書には供給されず全291を再検証済みとしない。",
+    "new_material": "L8の22独立wholeでresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7を具体化。既存107+6+親追加1は保持。",
+    "remaining": "F03 source frame/owner、N01独立required tuple、F02owner、一般未知必要集合と複合欠陥全域、実資格/codec/TDD/CI/L11/Readyは未成立。L9原期待一致とこれら義務の達成を区別。",
+    "unobserved_or_type_excluded_branches": [
+      "edge_statusのobjectキー不足/余剰は宣言入力型が三key必須/余剰拒否のため型外。プログラムのconflict枝にあるが型内whole試験は未実施。",
+      "F03 edge.source_layerとsource.layerはL12のみの有限入力型。別layerという値は型外でありsource layer照合の一般域は未具体化。",
+      "F02 result.state unknown/その他のstringは現在の入力型では型外。unknown返却はTBDで観測し、自由string入力へ一般化しない。",
+      "applicability/pair_definitionのunknown文字列は現入力型にはない。unknown返却はTBD/Absent/null（適用枝）から到達。",
+      "原required集合以外の一般的必要集合の確定と、全原子source owner/資格bindingは未成立。"
+    ]
+  },
+  "literal_and_output_basis": {
+    "source": {
+      "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779"
+    },
+    "by_function": [
+      {
+        "function_ref": "FN056-F01",
+        "expected_roots_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "output_roots": [
+          "oracle_results",
+          "pair_results",
+          "effects",
+          "unaffected_Q"
+        ],
+        "qualification": "合成表示literal/固定falseのみ。実owner/資格/操作を示さない。"
+      },
+      {
+        "function_ref": "FN056-F02",
+        "expected_roots_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "output_roots": [
+          "oracle_condition_results",
+          "pair_results",
+          "all_six_supported_in_fixture",
+          "effects",
+          "unaffected_Q"
+        ],
+        "qualification": "合成表示literal/固定falseのみ。実owner/資格/操作を示さない。"
+      },
+      {
+        "function_ref": "FN056-F03",
+        "expected_roots_pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
+        "output_roots": [
+          "destination_results",
+          "feedback_complete_in_fixture",
+          "pair_count",
+          "extra_pair_rejected",
+          "upstream_effect",
+          "effects",
+          "unaffected_Q"
+        ],
+        "qualification": "合成表示literal/固定falseのみ。実owner/資格/操作を示さない。"
+      },
+      {
+        "function_ref": "FN056-N01",
+        "expected_roots_pointer": "/verification_obligations/3/concrete_cases/0/expected_material",
+        "output_roots": [
+          "evidence_result",
+          "NFR29_holding",
+          "NFR29_adoption_claim",
+          "held_out_gap",
+          "effects",
+          "unaffected_Q"
+        ],
+        "qualification": "合成表示literal/固定falseのみ。実owner/資格/操作を示さない。"
+      },
+      {
+        "function_ref": "FN056-B01",
+        "expected_roots_pointer": "/verification_obligations/4/concrete_cases/0/expected_material",
+        "output_roots": [
+          "owner_return_candidates",
+          "retained_meaning_conditions",
+          "retained_OS_conditions",
+          "catalog_implies_gate_success",
+          "save_implies_execution_success",
+          "requires_025026_completion_to_author",
+          "effects",
+          "unaffected_Q"
+        ],
+        "qualification": "合成表示literal/固定falseのみ。実owner/資格/操作を示さない。"
+      }
+    ],
+    "new_reachable_literal": [
+      {
+        "literal": "stale",
+        "target": "LocalConditionResult.oracle_condition_results.*.execution",
+        "basis": "原L9 N01のstale表示値を、L3 N01/L4 qualificationが要求するF02の適用revision不足へ局所的に用いる。revision→scope→snapshotの順で比較し実資格を生成しない。",
+        "source_occurrences": [
+          "/verification_obligations/3/concrete_cases/1/expected_material/evidence_result"
+        ]
+      }
+    ],
+    "new_rule_basis": "両edge内容はL4 F01/F02、結果frameはL3 N01/L4 qualification、layer意味は現行v12-layer-contract、duplicateは一意joinの不成立として局所conflict。新gate/一般禁止条件は追加しない。"
+  }
 }

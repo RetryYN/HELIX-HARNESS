@@ -16,7 +16,7 @@
   "peer_binding": {
     "paired_document_id": "HARNESS-L5-056",
     "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
-    "binding": "同じsource_mainとsame 10 approved object setを相互参照。候補文書自体はsource pinとしない。"
+    "binding": "同一candidateのL5関数とL8素材を相互参照し、上流10承認objectの同一性は別のexact source pinで照合する。"
   },
   "source_pins": [
     {
@@ -234,7 +234,8 @@
             "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
             "source_line": 309,
             "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
-            "case_id": "HST-CASE-032-01"
+            "case_id": "HST-CASE-032-01",
+            "quote": "| HST-CASE-032-01 | HST-HIL-032 | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | canonical 5 V-pair、L6↔L7 TDD closure、L12→L0 anchor feedbackが双方向current | horizontal pairを評価する | ledger_ready | verified | V-pair gap 0 receipt | なし（正常系） | FX-HST-032-01 | design-defined | not-implemented |"
           },
           {
             "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
@@ -4176,11 +4177,16 @@
     "OS実保存/登録/feedback運転未成立",
     "実oracle execution・gate・approval・acceptance未成立",
     "限定92親430対すべてのL5/L8意味閉包と全域ケースは未成立",
-    "通常L3再開/Stage 5全能力/実装/CI/L11受入は未成立"
+    "通常L3再開/Stage 5全能力/実装/CI/L11受入は未成立",
+    "N01にはevidence.oracle/held_out tupleの独立比較対象が未供給で原子対応は未実現。L8不足witnessを義務合格へ数えない。",
+    "F02/F03のowner返却は未出力であり返却consumer member接続も未具体化。",
+    "B01 acceptance022/design025026の個別比較は未実現。入力値/無作用出力だけで受入や設計を成立扱いしない。",
+    "F01 unknown/staleの個別返却は原L9有限診断では未実現。raw保持とconflictへの局所縮約の範囲を区別する。",
+    "R1独立mutation291件の元packetは未供給。追加局所wholeは列挙分だけで、全単独枝/複合枝を網羅したとしない。"
   ],
   "local_binding_probes": {
-    "method": "L9のH056-F01-NORMAL raw packetを固定sourceとして参照し、各probeのJSON Patch列を適用した完全packetを保持する。expected_wholeはL4 F01の両方向/一意対応条件から原normal expected wholeへ手作業で差分固定し、L5 evaluatorの出力から生成しない。",
-    "count": 6,
+    "method": "各probeのsource_packet_ref.source_case_idで指定した原L9 rawを固定sourceとし、JSON Patchで完全packetを構成する。expected_wholeは対応する元L3/L4/L10義務から原normal wholeへ独立差分を固定し、L5計算から生成しない。",
+    "count": 7,
     "probes": [
       {
         "probe_id": "H056-LP01-F01-FORWARD-ABSENT",
@@ -6732,18 +6738,3534 @@
         },
         "expected_whole_canonical_sha256": "8b13b6086cf7a270eca640fb25a11214bdc3c7b3ab15994a5c7ba8a9adbf6926",
         "qualification_limit": "合成finite fixtureの必要集合を一件へ縮めた比較probe。正式registry/一般必要集合の資格や実検証成功を示さない。"
+      },
+      {
+        "probe_id": "H056-N01-LEGACY-OBSERVED-PASS",
+        "function_ref": "FN056-N01",
+        "requirement_ref": "HARNESS-L3-056-N01",
+        "oracle_ref": "HARNESS-L10-056-N01",
+        "l4_ref": "HARNESS-L4-056-N01",
+        "source_packet_ref": {
+          "source_case_id": "H056-N01-NORMAL",
+          "source_identity": "SOURCE-H056-N01-NORMAL",
+          "source_revision": "fixture-content-0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+          "source_packet_sha256": "0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/evidence/origin",
+              "value": "legacy_assertion032"
+            }
+          ]
+        },
+        "resolved_raw_packet": {
+          "claimed_NFR29_adopted": false,
+          "evidence": {
+            "frame": {
+              "revision": "REQ-P@r1",
+              "scope": "PRODUCT-P",
+              "snapshot": "SNAP-P@r1"
+            },
+            "oracle": "ORACLE-L4-L9-A",
+            "origin": "legacy_assertion032",
+            "state": "observed_pass_in_fixture_only"
+          },
+          "held_out": null,
+          "holding_NFR29": "unmigrated",
+          "required_frame": {
+            "revision": "REQ-P@r1",
+            "scope": "PRODUCT-P",
+            "snapshot": "SNAP-P@r1"
+          }
+        },
+        "resolved_raw_canonical_sha256": "f6d02a9f4d4e2992f1b6079b3f8f9b417ea61902a9c135975004deae22c2c48c",
+        "independent_expected_basis": "L3/L10 N01は旧assertionを新世代greenにしない。原L9のN01正常wholeを基底としoriginだけ旧assertion032へ変更。evidence_resultだけnot_executedへ手固定。",
+        "expected_whole": {
+          "evidence_result": "not_executed",
+          "NFR29_holding": "unmigrated",
+          "NFR29_adoption_claim": "none",
+          "held_out_gap": null,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "1dd4e88afc825a94ddf8c01b095f3209e5ebdea6c84f36d294de0018f37a9fef",
+        "qualification_limit": "旧assertion由来を実結果へ昇格しない有限反例。実source資格を示さない。"
       }
     ],
     "limit": "これらは通常107件とは別の局所境界probeであり、有限合成入力にない型・issuer・実資格を閉じない。",
     "source_case_refs": [
       "H056-F01-NORMAL",
-      "H056-F02-NORMAL"
+      "H056-F02-NORMAL",
+      "H056-N01-NORMAL"
     ]
   },
   "l5_candidate_binding": {
     "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
     "document_id": "HARNESS-L5-056",
-    "candidate_file_sha256": "005e61402d2286297ae2f94e182ffbf96ed813c3a050faf0c3406be34b3f7374",
+    "candidate_file_sha256": "366795847310b620460aec3731396c1c6dc1aa4aed8f08e6976608f3dd13ba35",
     "meaning": "本L8が照合するL5 candidate bytes。上流承認や実source資格のbindingではない。"
-  }
+  },
+  "independent_comparison_probes": {
+    "method": "正式変更前に原L9正常wholeと原L3/L4比較義務からraw差分と全返却を独立固定。期待の生成に正式AST/evaluatorを使わない。source+RFC6902 patchで全入力を解決可能。",
+    "probes": [
+      {
+        "probe_id": "R1-F01-RESULT-ORACLE",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/oracle",
+              "value": "OTHER-ORACLE"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "d32043fdc6b8a970e11deb92d078ee1b74c3779fbe4551fd90e44fd68b6e886e",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-RESULT-STATE",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/state",
+              "value": "TBD"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "fde3567d5d88fd6591f838362f11f6d3b51321f3943a683732e7bc2c29177ee3",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-RESULT-REVISION",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/revision",
+              "value": "REQ-P@r0"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "18ee88c81d5321ca00c4ea1f6d5a12e7a7f39a279ab9829cdc584e5664cc8d33",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-RESULT-SNAPSHOT",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/snapshot",
+              "value": "SNAP-P@r0"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "ba9cac19b91ff615125a55acc5853398b2db4553d621fc0dc62da45b4a274d0d",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-RESULT-SCOPE",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/scope",
+              "value": "PRODUCT-Q"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "425721e62685e7a7bc28e65cb345d425887e5051db4d64ed0d5f48dd62a13f74",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-DESIGN-CONTENT",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/design_obligation",
+              "value": "DESIGN-ORACLE-L1-L12-B"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "263e036142e4b840868986f9ae05984ba3cffd9a9f3b9944a65f5b760b6b69b5",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-VERIFICATION-CONTENT",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/verification_evidence",
+              "value": "VERIFY-ORACLE-L1-L12-B"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "b4a8387f0484d21bda555daccb08f5ad620c17b8a69b17bffd997cd70ea1fc01",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-ROW-PAIR",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/pair",
+              "value": "L2-L11"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "4e5aa80b0cfa50ec3d33363509dd185cb4e1798a8c16941a9929857b27d271fa",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-PAIR-DEFINITION",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/pair_definition",
+              "value": null
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "8649ad1f88ca76bfb5316f7f00c09b6e2f322aa35415110428ab78ae8ef4a5d3",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F01-APPLICABILITY",
+        "function_ref": "FN056-F01",
+        "requirement_ref": "HARNESS-L3-056-F01",
+        "oracle_ref": "HARNESS-L10-056-F01",
+        "l4_ref": "HARNESS-L4-056-F01",
+        "source_packet_ref": {
+          "source_case_id": "H056-F01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F01-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/applicability",
+              "value": "TBD"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "89c1e3887f9ab022c67c65593b27d1f2af84dfcbd9fbbe7c00ad4b5ae9dd1345",
+        "expected_whole": {
+          "oracle_results": {
+            "ORACLE-L1-L12-A": {
+              "forward": "conflict",
+              "reverse": "conflict"
+            },
+            "ORACLE-L1-L12-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L2-L11-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L3-L10-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L4-L9-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L5-L8-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-A": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            },
+            "ORACLE-L6-L7-B": {
+              "forward": "bound_in_fixture",
+              "reverse": "bound_in_fixture"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "corresponding_in_fixture_only",
+            "L3-L10": "corresponding_in_fixture_only",
+            "L4-L9": "corresponding_in_fixture_only",
+            "L5-L8": "corresponding_in_fixture_only",
+            "L6-L7": "corresponding_in_fixture_only"
+          },
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "744e123d09d03df25a1f63f0dc679a4093234df417ce42c2c60f16fa3cfa79d7",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/forward",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_results/ORACLE-L1-L12-A/reverse",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          }
+        ],
+        "basis": "L3/L4 F01の設計/検証/実結果/同対象oracle・frame・適用pair比較。両方向の局所不成立を他pair成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-RESULT-STALE",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/revision",
+              "value": "REQ-P@r0"
+            },
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/snapshot",
+              "value": "SNAP-P@r0"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "4fe4aa1bab1aded497fec1401fc69fa6e8730bd7058359f45b4bc443e1cf674a",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "stale",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "2c069b5bc857f92f1a89f2465692bd41ff5dcce3b8a707c9509e14fea2b20f63",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/execution",
+            "value": "stale"
+          }
+        ],
+        "basis": "L3 N01/L4 qualificationのcurrent revision不足を局所staleとして保持。revisionをsnapshotより先に判定する有限優先。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-RESULT-SNAPSHOT",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/snapshot",
+              "value": "SNAP-P@r0"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "ba9cac19b91ff615125a55acc5853398b2db4553d621fc0dc62da45b4a274d0d",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "conflict",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "a422b62a7ef89a39e3e208403182fd57550747cde7d2ff414e03111775626c5e",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/execution",
+            "value": "conflict"
+          }
+        ],
+        "basis": "同current revisionでも別snapshotは実行対応ではない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-RESULT-SCOPE",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/result/scope",
+              "value": "PRODUCT-Q"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "425721e62685e7a7bc28e65cb345d425887e5051db4d64ed0d5f48dd62a13f74",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "conflict",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "a422b62a7ef89a39e3e208403182fd57550747cde7d2ff414e03111775626c5e",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/execution",
+            "value": "conflict"
+          }
+        ],
+        "basis": "結果の対象scope不一致をcurrent実行条件へ保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-FORWARD-DESIGN",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/forward/design",
+              "value": "DESIGN-ORACLE-L1-L12-B"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "38448248fde40435dd3049fe47dbffedbc82a5f3c089212075cf38490fecfbb6",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "conflict",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "c30d7cf99eb22d24fdc75aba3db087832a495bfb315a4b745b2b756e49924d8c",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/verification",
+            "value": "conflict"
+          }
+        ],
+        "basis": "検証証拠と両方向edgeのdesign/oracle/verification内容を比較するL4義務。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-REVERSE-VERIFICATION",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/reverse/verification",
+              "value": "VERIFY-ORACLE-L1-L12-B"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "7ae320b13447f47ee9c0646631b6072ae281fdfb8130f314c2697e0773b1fb34",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "conflict",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "c30d7cf99eb22d24fdc75aba3db087832a495bfb315a4b745b2b756e49924d8c",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/verification",
+            "value": "conflict"
+          }
+        ],
+        "basis": "reverse edgeのverification内容不一致を同oracleに局所化。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-EDGE-ABSENT",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "remove",
+              "path": "/provided_rows/0/forward"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "9f5c1890f8ffb28df657814fc1aca9850cf67dff04aa9d473a2de76118caa5df",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "missing",
+              "oracle_identity": "conflict",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "ffaae3dc5efcc9bcdbeba714f8361395b90f44b13cbaff046b94bf426715c639",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/verification",
+            "value": "missing"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/oracle_identity",
+            "value": "conflict"
+          }
+        ],
+        "basis": "片側edge欠落はverification missing。oracle tupleの比較は未成立としてconflictを保ち、他五条件の成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-EDGE-NULL",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/forward",
+              "value": null
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "cf8f38afa36501d799aaa236c55e2ac2d9f9bd19da3a418324da2fa429f1c2f0",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "missing",
+              "oracle_identity": "conflict",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "ffaae3dc5efcc9bcdbeba714f8361395b90f44b13cbaff046b94bf426715c639",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/verification",
+            "value": "missing"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/oracle_identity",
+            "value": "conflict"
+          }
+        ],
+        "basis": "片側edge欠落はverification missing。oracle tupleの比較は未成立としてconflictを保ち、他五条件の成功で補わない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-APPLICABILITY-ABSENT",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "remove",
+              "path": "/provided_rows/0/applicability"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "3402f7c31a3d58af898c53d53bf955e7ee0973a263ed6acf3b6df0eb5e616b14",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "unknown",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "e6fea33c00e245377b1f13bb3103afc0834007bf1f34f91bf1dbf36cb526dafb",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/applicability",
+            "value": "unknown"
+          }
+        ],
+        "basis": "明示したL4の適用性不明をunknown保持。Absent/nullを普通の値の不一致へ潰さない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-APPLICABILITY-NULL",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/provided_rows/0/applicability",
+              "value": null
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "6589c9f87c0ad214e50ff5829b57299c3c650fa94b911380b34e79ed51cbd79c",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "unknown",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "e6fea33c00e245377b1f13bb3103afc0834007bf1f34f91bf1dbf36cb526dafb",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/applicability",
+            "value": "unknown"
+          }
+        ],
+        "basis": "明示したL4の適用性不明をunknown保持。Absent/nullを普通の値の不一致へ潰さない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-PAIR-DEFINITION-ABSENT",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "remove",
+              "path": "/provided_rows/0/pair_definition"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "8ce997a04b608ea9a93652314244ec3fa453e8bfbacf5f2ccd8a20ac2a2d8fe4",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "unknown"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "1c50c81b0dfd1750c2b3d38f9d2b58fcc7e2052902b840bd753d0d9c45ccc8f4",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/pair_definition",
+            "value": "unknown"
+          }
+        ],
+        "basis": "pair定義欠落のunknown保持。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-DUPLICATE-ROW",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "add",
+              "path": "/provided_rows/-",
+              "value": {
+                "applicability": "required_in_fixture",
+                "design_obligation": "DESIGN-ORACLE-L1-L12-A",
+                "forward": {
+                  "design": "DESIGN-ORACLE-L1-L12-A",
+                  "oracle": "ORACLE-L1-L12-A",
+                  "verification": "VERIFY-ORACLE-L1-L12-A"
+                },
+                "oracle": "ORACLE-L1-L12-A",
+                "pair": "L1-L12",
+                "pair_definition": "current_001_fixture",
+                "result": {
+                  "oracle": "ORACLE-L1-L12-A",
+                  "revision": "REQ-P@r1",
+                  "scope": "PRODUCT-P",
+                  "snapshot": "SNAP-P@r1",
+                  "state": "observed_pass_in_fixture_only"
+                },
+                "reverse": {
+                  "design": "DESIGN-ORACLE-L1-L12-A",
+                  "oracle": "ORACLE-L1-L12-A",
+                  "verification": "VERIFY-ORACLE-L1-L12-A"
+                },
+                "verification_evidence": "VERIFY-ORACLE-L1-L12-A"
+              }
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "7fbedb2db7659444ee027f7d9524adb8dfd6dcfdba596582f4bf130e3c69e80d",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "conflict",
+              "verification": "conflict",
+              "oracle_identity": "conflict",
+              "execution": "not_executed",
+              "applicability": "unknown",
+              "pair_definition": "unknown"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "incomplete",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "supported_synthetic_condition"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "8245275283f1dcbfd484ed8765dcb8f621c526cf81860782e1e74d18d4dda6f0",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/pair_results/L1-L12",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/design",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/verification",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/oracle_identity",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/execution",
+            "value": "not_executed"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/applicability",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L1-L12-A/pair_definition",
+            "value": "unknown"
+          }
+        ],
+        "basis": "同oracle複数rowは一意な行を選べず、存在しないmissingとは区別してdesign/verification/oracleをconflictにする。新しい実操作policyではない。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      },
+      {
+        "probe_id": "R1-F02-LEGACY-LAYER-MEANINGS",
+        "function_ref": "FN056-F02",
+        "requirement_ref": "HARNESS-L3-056-F02",
+        "oracle_ref": "HARNESS-L10-056-F02",
+        "l4_ref": "HARNESS-L4-056-F02",
+        "source_packet_ref": {
+          "source_case_id": "H056-F02-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-F02-NORMAL",
+          "source_revision": "fixture-content-5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "source_packet_sha256": "5877bdeef7c56a404ab86c5e2afac3e2d24943745b04988530b6cda994bb43ec",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/layer_meanings/L6",
+              "value": "legacy_implementation"
+            },
+            {
+              "op": "replace",
+              "path": "/layer_meanings/L7",
+              "value": "legacy_TDD_closure"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "d495c269b8e6d2dec0a0c30b0ac5ab78e5d07a155949b350cd4215b324bc2cc3",
+        "expected_whole": {
+          "oracle_condition_results": {
+            "ORACLE-L1-L12-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L1-L12-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L2-L11-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L3-L10-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L4-L9-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L5-L8-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "supported_synthetic_condition"
+            },
+            "ORACLE-L6-L7-A": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "conflict"
+            },
+            "ORACLE-L6-L7-B": {
+              "design": "supported_synthetic_condition",
+              "verification": "supported_synthetic_condition",
+              "oracle_identity": "supported_synthetic_condition",
+              "execution": "supported_synthetic_condition",
+              "applicability": "supported_synthetic_condition",
+              "pair_definition": "conflict"
+            }
+          },
+          "pair_results": {
+            "L1-L12": "supported_synthetic_condition",
+            "L2-L11": "supported_synthetic_condition",
+            "L3-L10": "supported_synthetic_condition",
+            "L4-L9": "supported_synthetic_condition",
+            "L5-L8": "supported_synthetic_condition",
+            "L6-L7": "incomplete"
+          },
+          "all_six_supported_in_fixture": false,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "f7e7c3d5c1beb41c02418b09a314253c8970fb4b9aaf84e6777cd973304b684d",
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L6-L7-A/pair_definition",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/oracle_condition_results/ORACLE-L6-L7-B/pair_definition",
+            "value": "conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/pair_results/L6-L7",
+            "value": "incomplete"
+          },
+          {
+            "op": "replace",
+            "path": "/all_six_supported_in_fixture",
+            "value": false
+          }
+        ],
+        "basis": "現行001のL6設計/L7検証と旧意味を分け、L6-L7だけを未完にする。",
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        }
+      }
+    ]
+  },
+  "unclosed_comparison_witnesses": [
+    {
+      "probe_id": "R1-N01-HELD-TUPLE-NOT-BOUND",
+      "function_ref": "FN056-N01",
+      "requirement_ref": "HARNESS-L3-056-N01",
+      "oracle_ref": "HARNESS-L10-056-N01",
+      "l4_ref": "HARNESS-L4-056-N01",
+      "source_packet_ref": {
+        "source_case_id": "H056-N01-NORMAL",
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+        "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+        "json_pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8",
+        "source_identity": "SOURCE-H056-N01-NORMAL",
+        "source_revision": "fixture-content-0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+        "source_packet_sha256": "0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+        "patches": [
+          {
+            "op": "replace",
+            "path": "/held_out",
+            "value": {
+              "design_obligation": null,
+              "oracle": "ORACLE-L1-L12-HELDOUT",
+              "pair": "L6-L7",
+              "verification_evidence": "HELDOUT-EVIDENCE"
+            }
+          }
+        ]
+      },
+      "resolved_raw_canonical_sha256": "1f604e6829fbab175394bfae30cae97f5344ed3194406d956fe166657b4b04b5",
+      "expected_whole": {
+        "evidence_result": "supported_synthetic_condition",
+        "NFR29_holding": "unmigrated",
+        "NFR29_adoption_claim": "none",
+        "held_out_gap": {
+          "pair": "L6-L7",
+          "oracle": "ORACLE-L1-L12-HELDOUT",
+          "condition": "design_missing"
+        },
+        "effects": {
+          "actual_oracle_executed": false,
+          "actual_gate_complete": false,
+          "actual_feedback_written": false,
+          "actual_OS_execution": false,
+          "actual_authority": false,
+          "actual_requirement_stage_end": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_whole_canonical_sha256": "28783b3f97aeb2503717a36fa9a2b12a27a4c5ec217f8dbde6f93947aec1b70e",
+      "independent_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/held_out_gap",
+          "value": {
+            "pair": "L6-L7",
+            "oracle": "ORACLE-L1-L12-HELDOUT",
+            "condition": "design_missing"
+          }
+        }
+      ],
+      "basis": "独立required tupleが入力にないためpair/oracle対応を実現できない不足witness。名称から正対応を推測せず、この返却を原L4義務の合格に数えない。",
+      "role": "unclosed_witness_not_obligation_pass",
+      "execution_state": "not_executed",
+      "source_qualification": "synthetic_only_not_qualified",
+      "argument_binding": {
+        "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+      }
+    }
+  ],
+  "unclosed_comparison_and_owner_obligations": {
+    "N01": {
+      "source_refs": [
+        "HARNESS-L3-056-N01",
+        "HARNESS-L4-056-N01",
+        "HARNESS-L10-056-N01"
+      ],
+      "missing_inputs": [
+        "evidence.oracleと比較する独立required_oracle",
+        "held_outのpair/oracleと比較する独立required tuple/必要集合"
+      ],
+      "implemented": "required_frameとevidence.frame比較、origin/stateの有限診断、欠落designのpair/oracle保持",
+      "not_implemented": "evidence.oracleの原子的対象対応とheld_out tupleの正対応。名前の部分文字列から推測しない。supported_synthetic_conditionはframe/stateだけの局所診断であり原L4原子義務の全合格ではない。",
+      "witness_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/atomic-pair-result-feedback.json",
+        "binding": "same_candidate_document",
+        "json_pointer": "/unclosed_comparison_witnesses/0"
+      }
+    },
+    "F02_owner": {
+      "source_refs": [
+        "HARNESS-L10-056-F02"
+      ],
+      "missing_output": "不足/unknownの対応owner返却。現在返却はoracle条件とpairだけでownerは未出力。owner供給/bindingとconsumer宛先は未具体化、原whole保全のため成功扱いしない。"
+    },
+    "F03_owner_and_source": {
+      "source_refs": [
+        "HARNESS-L4-056-F03",
+        "HARNESS-L10-056-F03"
+      ],
+      "missing_output": "欠けるfeedback先をHARNESS ownerへ返す候補record/consumer memberは未出力。destination_resultsだけでowner返却成立としない。",
+      "missing_input": "source revision/scopeを結ぶ独立required frame/edge scopeは未供給。source.layerは有限宣言型でL12に限られAST未読。edge.source_layerとdestination identity/revisionだけを比較する。"
+    },
+    "B01_unread_inputs": {
+      "paths": [
+        "/acceptance022",
+        "/design025026",
+        "/catalog_present",
+        "/gate_claims"
+      ],
+      "meaning": "これら個別入力は計算の判定に使わない。受入/設計/許可の成立を写さず、固定falseで非推論を示す。入力schemaは有限closed domainで型外stateは未評価。"
+    }
+  },
+  "mutation_observation_limit": {
+    "historical_review": "PR3166 exact c80625428816f5b6ed86244028aa2c53851993ebの独立R1で291 mutation中81未識別との観測。元mutation全packetはこの文書には供給されず全291を再検証済みとしない。",
+    "new_material": "L8の22独立wholeでresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7を具体化。既存107+6+親追加1は保持。",
+    "remaining": "F03 source frame/owner、N01独立required tuple、F02owner、一般未知必要集合と複合欠陥全域、実資格/codec/TDD/CI/L11/Readyは未成立。L9原期待一致とこれら義務の達成を区別。",
+    "unobserved_or_type_excluded_branches": [
+      "edge_statusのobjectキー不足/余剰は宣言入力型が三key必須/余剰拒否のため型外。プログラムのconflict枝にあるが型内whole試験は未実施。",
+      "F03 edge.source_layerとsource.layerはL12のみの有限入力型。別layerという値は型外でありsource layer照合の一般域は未具体化。",
+      "F02 result.state unknown/その他のstringは現在の入力型では型外。unknown返却はTBDで観測し、自由string入力へ一般化しない。",
+      "applicability/pair_definitionのunknown文字列は現入力型にはない。unknown返却はTBD/Absent/null（適用枝）から到達。",
+      "原required集合以外の一般的必要集合の確定と、全原子source owner/資格bindingは未成立。"
+    ]
+  },
+  "duplicate_material_limit": "LP02は原L9と同一rawの再構成確認であり新しい独立境界ではない。元107、元6、親追加1、新22whole、未閉包witness1を件数上区別する。"
 }
