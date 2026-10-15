@@ -507,9 +507,6 @@
         "unresolved_scope",
         "registration_target",
         "permission_target",
-        "unresolved_binding",
-        "registration_target",
-        "permission_target",
         "unresolved_binding"
       ]
     },
@@ -687,8 +684,6 @@
         "requested_attempt",
         "unresolved_scope",
         "handoff_lineage",
-        "unresolved_binding",
-        "handoff_lineage",
         "unresolved_binding"
       ]
     },
@@ -772,7 +767,6 @@
     "if": "条件がBooleanであることを確認し、選択されたbranchだけを評価する。",
     "sha256_canonical_json": "object keyを再帰的に整列したcompact UTF-8 JSONのSHA-256。合成fixture projectionに限る。",
     "parse_json": "評価済みJSON textをparseする。この有限fixture契約では不正textをnullとして返す。",
-    "field_relations": "明示field列の順に同名member値をrelateし、fieldをkeyとするrecordを返す。",
     "changed_fields": "明示field列のrecord間を比較し、指定順序で変更名を返す。",
     "outside_fields": "変更名から許可名を除いた差集合をcodepoint順に返す。",
     "not_empty": "評価済みarrayに1要素以上あればtrue。",
@@ -782,14 +776,12 @@
     "map": "array itemごとに列挙順でbodyを評価し、named local itemを束縛する。",
     "greater_than": "fixtureのattempt-count整数を比較する。",
     "is_placeholder": "評価値がmarkersのいずれかとJSON型込みで一致する場合true。markerは呼出しASTが明示する。",
-    "length": "評価済みarrayの要素数を返す。",
     "all_true": "評価済みboolean arrayの全要素がtrueの場合true。非booleanは評価失敗。",
     "is_unique": "評価済みJSON arrayにJSON等値の重複要素がない場合true。object順は無視、array順は保持。",
-    "relation_at_paths": "同一引数rootからleft/rightのJSON Pointerを解決しrelationを返す。Absent/nullはunknown。",
+    "relation_at_paths": "left/rightは同じpacket root上のJSON Pointer文字列、fieldはJSON objectの単一member名である。各base pointerへRFC 6901のescapeを適用したfield segmentを連結して左右の値を解決しrelationを返す。fieldがAbsent、対象memberがAbsent、または値がnullならunknown。",
     "filter_present": "配列からAbsent/null要素を除き、残りの順序を保つ。",
-    "unique_json": "配列からJSON値が再帰的に完全一致する重複を除き、最初の出現順を保つ。",
-    "less_than": "両operandがintegerであることを確認し、左値が右値より小さい場合true。",
-    "targeted_placeholder_markers": "今回列挙した合成fixtureの識別子/reference値に限り、空文字/TBD/tbd/unknown/UNKNOWNをplaceholderとして検出する。全域の文字列規則ではない。"
+    "unique_json": "配列からJSON値が再帰的に完全一致する重複を除き、最初の出現順を保つ。F01/F02のfailure_reasonsには適用せず、独立したfailure occurrenceを保持する。",
+    "less_than": "両operandがintegerであることを確認し、左値が右値より小さい場合true。"
   },
   "comparison_semantics": {
     "JSON object member order": "再帰比較で無視する",
@@ -1608,66 +1600,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_compatibility/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_compatibility/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_compatibility/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_compatibility/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_compatibility/target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -1705,66 +1652,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_permission/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_permission/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_permission/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_permission/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_permission/target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -1802,66 +1704,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_registration/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_registration/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_registration/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_registration/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_registration/target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -1899,66 +1756,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -1996,66 +1808,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_transport_receipt/target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -2093,66 +1860,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_transport_receipt/target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_transport_receipt/target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -5250,541 +4972,6 @@
                       "op": "array",
                       "items": []
                     }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "kind_selected_revision_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_conflict"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "changed_scope"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "kind_selected_revision"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "kind_selected_revision_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "changed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not_empty",
-                      "value": {
-                        "op": "var",
-                        "name": "kind_allowed_changed_fields"
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "changed_scope"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "kind_specific_fields"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "outside_selected_component"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "changed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "fixed_bytes_before_profile_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "fixed_bytes_preservation"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "before_profile"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "fixed_bytes_before_profile_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "fixed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "fixed_bytes_after_profile_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "fixed_bytes_preservation"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "after_profile"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "fixed_bytes_after_profile_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "fixed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "var",
-                    "name": "target_binding_failures_nonnull"
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_target/connection_identity"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_target/connection_identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_target/exchange_operation"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_target/exchange_operation"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_target/connection_contract_revision"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_target/connection_contract_revision"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_fixed_after/endpoint_identity"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_fixed_after/endpoint_identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "fixed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_changed_after/endpoint_identity"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_changed_after/endpoint_identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "changed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_changed_after/contract_revision"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/original_changed_after/contract_revision"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "changed-endpoint-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/submitted_transport_receipt/target/connection_identity"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "/submitted_transport_receipt/target/connection_identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "adapter-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
                   }
                 ]
               },
@@ -6554,9 +5741,9 @@
       "meaning": "選択時の片側交換材料をpureに比較する。固定側/変更側のprofileとbytes、scope、target derivation、登録・互換・許可・receiptのsource target/state、提出receipt、meaning stateを分離し、失敗理由と役割ラベルを列順で返す。",
       "postconditions": [
         "交換非選択なら診断なし・not_selected_unobserved。",
-        "選択時の不整合はfailure_reasonsへ規則順で出し、owner labelは重複除去してcodepoint順で返す。",
+        "選択時の不整合は規則順で返す。既存F01 source wholeとの有限互換projectionではfailure recordの同値重複を1件にまとめ、owner labelは重複除去してcodepoint順で返す。これは原source表示の保持であり、異なるowner資格を統合しない。",
         "全材料がfixture上で対応しても実交換資格を要するcandidate stateを返す。effectsは常にfalse、実送信/許可/authority/acceptanceを生成しない。",
-        "選択時、scope_resolutionに列挙したscopeが空文字/TBD/unknown/nullなら、双方同値でもunresolved_scopeとconnection-contract-ownerへ返し、候補を保留する。内容比較の等値表示とは別に判定する。"
+        "選択時、列挙scope fieldがfinite_rule_catalog.scope_marker_valuesの値とJSON等値なら、そのfieldごとにunresolved_scopeとconnection-contract-ownerを返す。scope値同士の内容一致とは別に候補を保留し、未選択時はscope所見を生成しない。"
       ],
       "unclosed": [
         "4種の交換kind/field projectionは合成入力例であり、実製品のschema・互換表・owner identity・実source資格は未確定。",
@@ -6979,66 +6166,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_exchange_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7076,66 +6218,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_handoff/exchange_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7173,66 +6270,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_handoff/original_unfinished/operation/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7270,66 +6322,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_resume/exchange_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7367,66 +6374,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_resume/operation_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7464,66 +6426,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/original_unfinished/operation/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7561,66 +6478,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_handoff/exchange_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7658,66 +6530,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_handoff/original_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_handoff/original_unfinished/operation/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7755,66 +6582,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/exchange_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_resume/exchange_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7852,66 +6634,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_resume/operation_target/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_resume/operation_target/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -7949,66 +6686,21 @@
                   {
                     "op": "if",
                     "condition": {
-                      "op": "not",
+                      "op": "is_placeholder",
                       "value": {
-                        "op": "and",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": ""
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "TBD"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "unknown"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "path",
-                                "path": "/submitted_unfinished/operation/scope"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": null
-                              }
-                            }
-                          }
+                        "op": "path",
+                        "path": "/submitted_unfinished/operation/scope"
+                      },
+                      "markers": {
+                        "op": "const",
+                        "value": [
+                          "",
+                          "TBD",
+                          "tbd",
+                          "unknown",
+                          "UNKNOWN",
+                          "Unknown",
+                          null
                         ]
                       }
                     },
@@ -11330,983 +10022,6 @@
                       "op": "array",
                       "items": []
                     }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "original_kind_exchange_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_exchange_target"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_kind"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "original_kind_exchange_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "original_kind_handoff_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_exchange_target"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "handoff_kind"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "original_kind_handoff_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "original_kind_resume_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "resume_exchange_target"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "resume_kind"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "original_kind_resume_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "connection-contract-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "handoff_connection_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "exchange_target.connection_identity"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "handoff_connection_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "handoff_operation_connection_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_unfinished.operation.connection_identity"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "handoff_operation_connection_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "submitted_handoff_connection_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_handoff.exchange_target.connection_identity"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "submitted_handoff_connection_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "json_equal",
-                        "left": {
-                          "op": "var",
-                          "name": "submitted_resume_connection_relation"
-                        },
-                        "right": {
-                          "op": "const",
-                          "value": "content_corresponding_in_fixture"
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_resume.exchange_target.connection_identity"
-                            },
-                            "result": {
-                              "op": "var",
-                              "name": "submitted_resume_connection_relation"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_empty",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_handoff/original_unfinished/obligations"
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_handoff.original_unfinished.obligations"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "missing_or_empty_obligations"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_empty",
-                      "value": {
-                        "op": "path",
-                        "path": "/submitted_handoff/original_unfinished/obligations"
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_handoff.original_unfinished.obligations"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "missing_or_empty_obligations"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "is_unique",
-                        "value": {
-                          "op": "map",
-                          "items": {
-                            "op": "path",
-                            "path": "/original_handoff/original_unfinished/obligations"
-                          },
-                          "item_name": "obligation",
-                          "body": {
-                            "op": "path_from_value",
-                            "value": {
-                              "op": "var",
-                              "name": "obligation"
-                            },
-                            "path": "/identity"
-                          }
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_handoff.original_unfinished.obligations.identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "duplicate_obligation_identity"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "is_unique",
-                        "value": {
-                          "op": "map",
-                          "items": {
-                            "op": "path",
-                            "path": "/submitted_handoff/original_unfinished/obligations"
-                          },
-                          "item_name": "obligation",
-                          "body": {
-                            "op": "path_from_value",
-                            "value": {
-                              "op": "var",
-                              "name": "obligation"
-                            },
-                            "path": "/identity"
-                          }
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_handoff.original_unfinished.obligations.identity"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "duplicate_obligation_identity"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "all_true",
-                        "value": {
-                          "op": "map",
-                          "items": {
-                            "op": "path",
-                            "path": "/original_handoff/original_unfinished/obligations"
-                          },
-                          "item_name": "obligation",
-                          "body": {
-                            "op": "and",
-                            "items": [
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/identity"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/owner"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/recovery_ref"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/owner"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/original_handoff/owner"
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/recovery_ref"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/original_handoff/recovery_ref"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_handoff.original_unfinished.obligations.owner_or_recovery_ref"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "obligation_binding_incomplete_or_mismatched"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "not",
-                      "value": {
-                        "op": "all_true",
-                        "value": {
-                          "op": "map",
-                          "items": {
-                            "op": "path",
-                            "path": "/submitted_handoff/original_unfinished/obligations"
-                          },
-                          "item_name": "obligation",
-                          "body": {
-                            "op": "and",
-                            "items": [
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/identity"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/owner"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "not",
-                                "value": {
-                                  "op": "is_placeholder",
-                                  "value": {
-                                    "op": "path_from_value",
-                                    "value": {
-                                      "op": "var",
-                                      "name": "obligation"
-                                    },
-                                    "path": "/recovery_ref"
-                                  },
-                                  "markers": {
-                                    "op": "const",
-                                    "value": [
-                                      "",
-                                      "TBD",
-                                      "tbd",
-                                      "unknown",
-                                      "UNKNOWN"
-                                    ]
-                                  }
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/owner"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/submitted_handoff/owner"
-                                }
-                              },
-                              {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "path_from_value",
-                                  "value": {
-                                    "op": "var",
-                                    "name": "obligation"
-                                  },
-                                  "path": "/recovery_ref"
-                                },
-                                "right": {
-                                  "op": "path",
-                                  "path": "/submitted_handoff/recovery_ref"
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "handoff_lineage"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_handoff.original_unfinished.obligations.owner_or_recovery_ref"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "obligation_binding_incomplete_or_mismatched"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_unfinished/operation/permission_ref"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_unfinished.operation.permission_ref"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "HELIX-SECURITY"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/original_handoff/recovery_ref"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "original_handoff.recovery_ref"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
-                  },
-                  {
-                    "op": "if",
-                    "condition": {
-                      "op": "is_placeholder",
-                      "value": {
-                        "op": "path",
-                        "path": "/submitted_handoff/recovery_ref"
-                      },
-                      "markers": {
-                        "op": "const",
-                        "value": [
-                          "",
-                          "TBD",
-                          "tbd",
-                          "unknown",
-                          "UNKNOWN"
-                        ]
-                      }
-                    },
-                    "then": {
-                      "op": "array",
-                      "items": [
-                        {
-                          "op": "object",
-                          "fields": {
-                            "area": {
-                              "op": "const",
-                              "value": "unresolved_binding"
-                            },
-                            "field": {
-                              "op": "const",
-                              "value": "submitted_handoff.recovery_ref"
-                            },
-                            "result": {
-                              "op": "const",
-                              "value": "unknown_original_information"
-                            },
-                            "return_owner": {
-                              "op": "const",
-                              "value": "operation-owner"
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "else": {
-                      "op": "array",
-                      "items": []
-                    }
                   }
                 ]
               },
@@ -12753,11 +10468,8 @@
               }
             },
             "failure_reasons": {
-              "op": "unique_json",
-              "value": {
-                "op": "var",
-                "name": "failures"
-              }
+              "op": "var",
+              "name": "failures"
             },
             "failure_return_owners": {
               "op": "unique_sorted",
@@ -12865,11 +10577,11 @@
       },
       "meaning": "選択時に元unfinished・handoff・resumeと提出値を独立比較し、target/operation bindingと単一contract revision、互換/meaning/permission/expiry/recovery/resume条件を順序付けて照合する。未完の消去やattempt実行を行わない。",
       "postconditions": [
-        "交換非選択なら診断なし・not_selected_unobserved。",
+        "交換非選択なら診断なし・not_selected_unobserved。選択時は原側・提出側それぞれのfield locatorを保持し、同じresult/ownerでもfailure occurrenceを順序どおり別に返す。",
         "条件不成立ではheld_with_original_unfinishedを返し、candidate追加attemptは0。",
         "全条件がfixture内で対応しても実resume資格を要する状態を返す。candidate追加attempt値は提案射影でactual_attempt_countは0。",
         "effectsは常にfalse。rollback・retry・permission・authorityを生成しない。",
-        "選択時、scope_resolutionに列挙したscopeが空文字/TBD/unknown/nullなら、双方同値でもunresolved_scopeとconnection-contract-ownerへ返し、候補を保留する。内容比較の等値表示とは別に判定する。"
+        "選択時、列挙scope fieldがfinite_rule_catalog.scope_marker_valuesの値とJSON等値なら、そのfieldごとにunresolved_scopeとconnection-contract-ownerを返す。scope値同士の内容一致とは別に候補を保留し、未選択時はscope所見を生成しない。"
       ],
       "unclosed": [
         "recovery destination、権限、時計/expiry、actual ACK、実送受信receiptの資格は入力fixtureだけでは成立しない。",
@@ -12947,7 +10659,23 @@
       "actual_acceptance": false
     },
     "claim_projection": "true→rejected、false→none。これは原raw中の主張判定で実在事実を示さない。",
-    "fixture_limit": "機械規則が定義するのはこのJSON値形のpure projectionのみ。実qualifier/owner authority/通信・再開の資格を補わない。"
+    "fixture_limit": "機械規則が定義するのはこのJSON値形のpure projectionのみ。実qualifier/owner authority/通信・再開の資格を補わない。",
+    "scope_marker_values": [
+      "",
+      "TBD",
+      "tbd",
+      "unknown",
+      "UNKNOWN",
+      "Unknown",
+      null
+    ],
+    "identifier_placeholder_values": [
+      "",
+      "TBD",
+      "tbd",
+      "unknown",
+      "UNKNOWN"
+    ]
   },
   "source_lineage_note": "HELIXCONNECT-L4/L9-006の固定pair bytesは最初に5cbc07fe715f4e9f45b7196ee041186a4b8efcb0で導入され、24a8086c50e48b289a149d3f9f5382bbde629839まで不変。基本文書source_mainのd5afd6f36eb4341573aedaeaf242fc0a06bd330dにはL4/L9ファイルが存在しないため、本詳細のpinは初回導入commitと現mainでの実bytesへ結ぶ。",
   "unclosed": [
@@ -12959,6 +10687,8 @@
       "HELIXCONNECT-L2-006",
       "HELIXCONNECT-L3-006-F01",
       "HELIXCONNECT-L3-006-F02",
+      "HELIXCONNECT-L4-006-F01",
+      "HELIXCONNECT-L4-006-F02",
       "HELIXCONNECT-L10-006-F01",
       "HELIXCONNECT-L10-006-F02"
     ],
@@ -12988,22 +10718,32 @@
     "unresolved_values": [
       "",
       "TBD",
+      "tbd",
       "unknown",
+      "UNKNOWN",
+      "Unknown",
       null
     ],
     "priority": "選択時の既存失敗判定に先行し、列挙path順に全件返す。非選択は観測外のまま。",
     "return_owner": "connection-contract-owner",
-    "meaning": "scope内容の不足は接続契約の対象束縛の不足であり、SECURITY許可自体の承認・拒否ではない。"
+    "meaning": "選択時にこの有限marker値とJSON等値になるscopeは内容一致とは別にunknown_original_informationとして全件列挙する。非選択時は観測外。自由語全般の解釈や実資格は定義しない。",
+    "marker_values_ref": "/finite_rule_catalog/scope_marker_values"
   },
   "finite_input_limitations": [
     "F01/F02 logical packetの必須record memberは固定fixtureで全て供給される。Absent/nullはrelation演算ではunknownへ保持するが、必須string memberでのAbsent/nullは宣言型外であり、この有限case群から一般wire挙動を主張しない。",
     "JSON PointerはL5 ASTに固定されたpathだけを読む。存在しないmemberまたはnullを通過できないpathはAbsentとしてrelationへ渡る。malformed external pointerの一般処理はこの関数入力契約に含めない。",
-    "placeholder検出はASTに列挙したfieldと marker values 空文字/TBD/tbd/unknown/UNKNOWNに限る。全stringのgrammar・実ID資格を定義しない。",
-    "unresolved_scopeはsourceにあるscope不足を説明する局所failure-area labelであり、L2/L3/L4の新しいstate、承認gate、許可拒否語彙ではない。"
+    "scopeはfinite_rule_catalog.scope_marker_valuesをscope_resolution.pathsで列挙したfieldに適用する。その他の識別子/reference marker検出はfinite_rule_catalog.identifier_placeholder_valuesをASTで列挙したfieldに限る。自由語全般のgrammar・実ID資格は定義しない。",
+    "unresolved_scopeはsourceにあるscope不足を説明する局所failure-area labelであり、L2/L3/L4の新しいstate、承認gate、許可拒否語彙ではない。",
+    "failure_reasonsはfailure判定ASTの列挙順を保持し、同一内容を値だけで重複除去しない。同じpathの同じrule nodeの重複はASTから除き、原/提出など別pathの所見はfield locatorで区別する。",
+    "F01のprofile revision/digestとF02のoperation_identityなど、identifier_placeholder_valuesのAST対象外fieldに対するmarker値の資格判定は未実現。単純な値一致からscope/identityの意味を推測しない。"
   ],
   "diagnostic_vocabulary": {
     "unresolved_scope": "L2-006 unknown/stale時に通信停止しrecovery先を記録する義務と、L4-006のscope material比較に基づく診断label。資格やowner認可を表さない。",
-    "unresolved_binding": "この有限packet内で空/TBD等の識別子/reference markerを観測した診断label。実資源不存在の証明や包括拒否policyを表さない。"
+    "unresolved_binding": "この有限packet内で空/TBD等の識別子/reference markerを観測した診断label。実資源不存在の証明や包括拒否policyを表さない。",
+    "handoff_lineage": "L4/L10で要求されるhandoffと未完義務の対応を有限fixture上で示す局所診断分類。原sourceのenum名や資格を意味せず、field locatorと併せて読む。",
+    "missing_or_empty_obligations": "必須として照合するobligations配列のAbsent/空を示す局所診断値。原wire値や新しい状態語彙ではない。",
+    "negative_attempt_count": "要求されたattempt数が非負条件に合わない場合の局所診断値。「負の累積attempt」ではなくrequest countの比較結果を表す。",
+    "rolled_back_done": "合成packetに存在するrollback_state値。独立receiptなしでこの値が主張されても実rollback事実へ昇格しない。"
   },
   "fixture_consistency_boundary": [
     "登録・許可・提出receiptの全target比較と固定bytes/profile比較をfailure_reasonsへ結ぶ。",
