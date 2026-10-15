@@ -1241,7 +1241,7 @@
       "state_rule_source": {
         "path": "docs/helix-brain/L4-basic-design/candidate-authority-boundary.json",
         "json_pointer": "/contracts/0/content_comparison/1",
-        "scope": "判断不能/unknownの保持集合。文字列successを比較定数として使う旧2語組合せ規則は廃止。"
+        "scope": "判断不能/unknownの保持集合。集合外の提出値を原不足の解消根拠にしない。"
       },
       "input_value_examples": {
         "path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
@@ -1250,7 +1250,7 @@
           "undecidable",
           "success"
         ],
-        "scope": "旧2語判定の出所である原入力例。successは新式の決定定数ではなく任意stringの一つ。"
+        "scope": "原L9入力の2表示例。successは任意stringの一例で判定定数として使わない。"
       }
     },
     {
@@ -1652,7 +1652,7 @@
     },
     {
       "id": "B012-U10",
-      "source": "HELIXBRAIN-L4-012-F02 content_comparison; R2未選択route独立whole",
+      "source": "HELIXBRAIN-L4-012-F02 content_comparison; L8未選択route独立whole",
       "gap": "全route非選択でconnection_success=trueの場合に、有限式のconnection_claimはnone。このclaimと無選択の整合/返却ownerは未具体化で、noneを接続成功の成立と読まない。",
       "state": "selection_claim_semantic_validation_not_implemented"
     }
