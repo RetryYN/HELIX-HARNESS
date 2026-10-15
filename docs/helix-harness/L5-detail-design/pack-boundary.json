@@ -355,12 +355,182 @@
                 "literal": true
               }
             }
+          },
+          {
+            "id": "prior_known_value_requires_input_mapping",
+            "when": "outcome!=invalid and value!=null",
+            "require": "old_pack_ref/new_pack_refは元inputとReference全field等値、unchanged_refsはunchanged_before.pack_refの集合、reproduction_evidence_refsはbasis_refsとcomparison_content_check_refsの集合和。配列順は意味にしない。",
+            "predicate": {
+              "op": "if",
+              "condition": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/outcome"
+                      },
+                      "right": {
+                        "literal": "invalid"
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "var": "stage"
+                        },
+                        "pointer": "/value"
+                      },
+                      "right": {
+                        "literal": null
+                      }
+                    }
+                  }
+                ]
+              },
+              "then": {
+                "op": "and",
+                "items": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/value/old_pack_ref"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/old_pack_ref"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "var": "stage"
+                      },
+                      "pointer": "/value/new_pack_ref"
+                    },
+                    "right": {
+                      "op": "get",
+                      "value": {
+                        "var": "input"
+                      },
+                      "pointer": "/new_pack_ref"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "get",
+                          "value": {
+                            "var": "stage"
+                          },
+                          "pointer": "/value/unchanged_refs"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "map",
+                          "items": {
+                            "op": "get",
+                            "value": {
+                              "var": "input"
+                            },
+                            "pointer": "/unchanged_before"
+                          },
+                          "name": "member",
+                          "expression": {
+                            "op": "get",
+                            "value": {
+                              "var": "member"
+                            },
+                            "pointer": "/pack_ref"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "get",
+                          "value": {
+                            "var": "stage"
+                          },
+                          "pointer": "/value/reproduction_evidence_refs"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": "sort_canonical",
+                      "value": {
+                        "op": "unique",
+                        "value": {
+                          "op": "concat",
+                          "items": [
+                            {
+                              "op": "get",
+                              "value": {
+                                "var": "input"
+                              },
+                              "pointer": "/reproduction_comparison/basis_refs"
+                            },
+                            {
+                              "op": "get",
+                              "value": {
+                                "var": "input"
+                              },
+                              "pointer": "/reproduction_comparison/value/comparison_content_check_refs"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "else": {
+                "literal": true
+              }
+            }
           }
         ],
         "predicate_language_ref": "#/f04_recovery_construction/expression_language",
         "predicate_environment": {
-          "stage": "当該producerの内部結果値。公開inputとは別の値。"
-        }
+          "stage": "当該producerの内部結果値。公開inputとは別の値。",
+          "input": "当該F04呼出しの元input。prior producerのvalueへ差し替えない。"
+        },
+        "type_parameter": "input: functions[3].inputの元値。公開引数を追加しない。"
       },
       "F04QualificationStageResult": {
         "shape": {
@@ -1211,7 +1381,7 @@
       "caller": "owner-qualifiedな不変Contextを供給する既存caller側の責務。実provider/issuer/body custodyは未成立。typed値の作成だけで実資格にしない。"
     },
     "binding_rules": [
-      "recovery選択factはkindと完全subject key（identity/owner/scope/revision）で同operationの候補を選ぶ。完全一致候補が一意なら採用し、別revision/別scope等の同identity factは無関係なContext履歴として残しselector重複に数えない。同key複数定義だけをreference_conflictにする。完全一致0件の場合に限りidentity候補を照合し、owner/scope一致かつrevision差はcurrent subject stale、owner/scope差はframe conflictとして全所見を返す。候補targetで先に絞らず、sourceが明示した別targetをmissingとして隠さない。identity候補0件はrecovery_unknown/incomplete。",
+      "recovery選択factはkindと完全subject key（identity/owner/scope/revision）で同operationの候補を選ぶ。完全一致候補が一意なら採用し、別revision/別scope/別ownerの履歴を同key重複へ数えない。同key複数定義だけをreference_conflictにする。完全一致0件ではidentity/owner/scope一致候補だけをrevision fallbackへ使い、その版差をreference_staleへ返す。別scope/別ownerだけの履歴は現subjectのsourceを供給せずrecovery_unknown/incomplete。候補targetで先に絞らず、sourceが明示した別targetをmissingとして隠さない。",
       "subject_refのcurrent対象とのrevision差はreference_stale。source recordのold/new/recovery targetとpublic candidateの差は選択/関係のreference_conflictであり、recovery targetの版文字列から前後や直前性を推定しない。同identity/owner/scopeでもtarget revisionが異なればconflict。異なるowner/scope等のRef相反もconflict。value.old/new/recoveryを各入力Refへ別々に照合し、独立差を全Findingに保持する。",
       "previous_qualifiedとexplicit_replacementはいずれも原recordの明示内容を保持する。文字列の大小/版番号から直前を推定せず、recovery==oldや同identityを一律必須にしない。",
       "source factのvalidity、source/bodyと独立current内容照合はshared_pre_postの前提に従う。basis/content_check_refs非空・集合所属は必要条件に過ぎず、field/hash/qualifiedの自己表示から役割/資格を認定しない。source未供給ならfactを捏造しない。",
@@ -1222,7 +1392,7 @@
       "prior": {
         "public_argument": false,
         "producer": "functions[3].steps[0:3]。参照/再生成/非対象保持の既存比較結果。全一般域をこの追補の式へ移植したものではない。",
-        "type": "F04PriorStageResult",
+        "type": "F04PriorStageResult<input>",
         "known_value_mapping": {
           "old_pack_ref": "input.old_pack_ref",
           "new_pack_ref": "input.new_pack_ref",
@@ -2514,6 +2684,40 @@
                           },
                           "pointer": "/new_pack_ref/identity"
                         }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/owner"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/owner"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "var": "f"
+                          },
+                          "pointer": "/subject_ref/scope"
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "var": "input"
+                          },
+                          "pointer": "/new_pack_ref/scope"
+                        }
                       }
                     ]
                   }
@@ -2966,7 +3170,7 @@
           "parameter_types": {
             "input": "existing F04 public input record",
             "context": "existing Context",
-            "prior": "F04PriorStageResult",
+            "prior": "F04PriorStageResult<input>",
             "qualification": "F04QualificationStageResult<input.recovery_fact.pack_ref>"
           },
           "contract": "受理済み内部stage型のみを消費する。stage契約違反はproducer→consumer境界で型域外となり、公開inputの適格性gateや架空のResultへ変換しない。"
@@ -3464,7 +3668,7 @@
     "stage_domain_binding": {
       "producer_to_consumer": "functions[3].steps[0:3] -> internal_stages.prior -> expression_language.definitions.finish.prior; functions[3].steps[3] -> internal_stages.qualification -> expression_language.definitions.finish.qualification",
       "parameter_types": {
-        "prior": "F04PriorStageResult",
+        "prior": "F04PriorStageResult<input>",
         "qualification": "F04QualificationStageResult<input.recovery_fact.pack_ref>"
       },
       "validation": "producerの返却は、finishへ渡す前に当該内部型の全dependent_invariants.predicateを満たす。各predicateは既存expression_languageと型のpredicate_environmentから評価する。不整合な内部値は呼出しの有効域外であり、公開inputへの追加条件、値の修復、架空の公開Resultへの変換を行わない。",
