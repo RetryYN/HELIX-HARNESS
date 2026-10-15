@@ -667,7 +667,7 @@
       "size_bytes": 11262
     }
   ],
-  "paired_l5_sha256": "8f18f3a0b75e1ba9a70e710b4a39f713fb873b0e3f006fa2f88dbe5c1ad028a5",
+  "paired_l5_sha256": "6cd65f4b68f79be4a9ae050ec59ee324d4323fe6c1b6bd977e41f3a8e1980044",
   "source_oracle": {
     "path": "docs/helix-os/L9-integration-verification/limited-first-worker-cycle.json",
     "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
@@ -34883,7 +34883,7 @@
   "limits": [
     "fixture sourceの再構成は静的検証であり、製品runtime実行を証明しない。",
     "実資格/実操作/receipt保存/Worker起動/CI/L11/Readyを生成しない。",
-    "原2270全whole・新22whole・旧4部分期待・350有限境界の一致を越えて、全manifest/全複合/全mutation識別や独立source資格の閉包を主張しない。"
+    "L9全wholeと補完probe（全返却期待・部分期待）の一致を越えて、全manifest/全複合/全mutation識別や独立source資格の閉包を主張しない。"
   ],
   "type_boundary_probes": {
     "scope": "任意JSONValue phaseの一部型境界であり全意味閉包を示さない。",

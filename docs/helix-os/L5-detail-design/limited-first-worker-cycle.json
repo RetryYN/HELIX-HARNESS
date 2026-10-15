@@ -1488,13 +1488,13 @@
                   "/context/binding/scope"
                 ]
               ],
-              "unknown": "field_unknown",
               "conflict": "field_conflict",
               "facet": "proposal",
               "activation": {
                 "group": "proposal",
                 "requires_both_group_objects": true
-              }
+              },
+              "unknown": "field_unknown"
             }
           ]
         },
@@ -1985,13 +1985,13 @@
                   "/context/binding/scope"
                 ]
               ],
-              "unknown": "field_unknown",
               "conflict": "field_conflict",
               "facet": "authority",
               "activation": {
                 "group": "authority",
                 "requires_both_group_objects": true
-              }
+              },
+              "unknown": "field_unknown"
             },
             {
               "op": "required_true_pair",
@@ -2317,13 +2317,13 @@
                   "/context/binding/obligation_set_ref"
                 ]
               ],
-              "unknown": "field_unknown",
               "conflict": "field_conflict",
               "facet": "verification",
               "activation": {
                 "group": "verification",
                 "requires_both_group_objects": true
-              }
+              },
+              "unknown": "field_unknown"
             },
             {
               "op": "human_role_actor",
@@ -3622,7 +3622,7 @@
         },
         "join_binding_fields": {
           "reads": "pairsの左pathおよび最後のcontext binding path",
-          "rule": "context bindingが非空stringである場合だけ、左path（wildcardは実在object keyを昇順）と比較。入力そのもののR01 findingを重複して追加しない。"
+          "rule": "context binding（各pairの最後のpath）が非空stringでない場合はこのjoinを評価せず、R01の入力診断へ委ねる。非空stringなら左path（wildcardは実在object key昇順）をcontext bindingと比較し、左値が非空stringでない場合はunknown codeを左pointerへ、双方knownで相違ならconflict codeを左pointerへ返す。finding全tupleが同一の場合だけ全体のsort_unique_findingsで重複除去する。unknown codeの到達条件は左operand不正かつcontext bindingがknownの場合であり、未使用codeではない。"
         },
         "nonnegative_number_actual": {
           "reads": "paths",
@@ -3639,7 +3639,7 @@
             "containers": "output_recordsとasset_recordsの全4containerがobjectである場合だけ処理。そうでなければ他R02/R05が不足を診断。",
             "keys": "両側outputの共通keyをUnicode codepoint昇順。actual planned keyは非空string必須、違反/Absent/nullはactual key pointerへunknown。reference keyの非空/string差はR05へ委ねる。",
             "resolution": "actual planned keyをliteral keyとして両側asset recordsへ解決し、どちらかがobjectでなければactual output key pointerへunknown。",
-            "fields": "field_orderのactual outputとcontext planned assetの同名fieldを比較。delegate_fieldsは他R05診断へ委譲して再比較しない。boolean_fieldsは両trueなら対応、どちらかfalseならactual output fieldへfalse code、それ以外は他診断へ委譲。残るfieldは両方非空stringの場合だけ等値比較し、差はactual fieldへconflict。非string/空/Absent/nullは他R05/R06診断へ委譲し、ここではviolationへ変更しない。"
+            "fields": "field_orderのactual outputとcontext planned assetの同名fieldを比較する。delegate_fieldsは他R05診断へ委譲して再比較しない。残るfieldは両方非空stringの場合だけ等値比較し、差はactual fieldへconflict。非string/空/Absent/nullは他R05/R06診断へ委譲し、ここではviolationへ変更しない。boolean専用分岐とfalse codeはこのopには無い。"
           }
         },
         "planned_scope_join": {
@@ -3652,7 +3652,7 @@
         },
         "record_boolean_true": {
           "reads": "containers共通member key昇順、fields順",
-          "rule": "共通record key昇順・field順でboolean_pair_semantics.required_trueを適用。known falseは必ず実false側のmember pointerへ返し、null側をrefused根拠と表示しない。"
+          "rule": "共通record key昇順・field順でboolean_pair_semantics.required_trueを適用する。各fieldでknown falseの実側pointerへ1件だけ返し、両側falseならactual側の1件だけとする。null側をrefused根拠と表示しない。"
         },
         "record_classification": {
           "reads": "containers共通member key昇順、field",
@@ -3715,11 +3715,29 @@
       "source_quote_role": "source_rule_textは固定L4の読取証拠。実計算は構造化checkとprogram内のoperator/operand/output契約が一意の規範であり、source引用から未宣言のdefault/path/分岐を補完しない。",
       "check_activation_semantics": "各checkはactivation.groupがnullなら常時、それ以外はactual phaseのactive群に含まれる場合だけ評価する。requires_both_group_objects=trueなら、そのgroupのactual/context両object成立時に限る。path文字列を見てhelperがgroupを推測しない。非object群の不足はR02が返す。",
       "boolean_pair_semantics": {
-        "required_true": "片側でもknown falseなら、その実false側pointerへfalse/refused code。両側falseはactualを先にする。falseが無くtrue以外の不明があれば最初の不正側unknown。",
-        "required_false": "片側でもknown trueなら、その実true側pointerへtrue/refused code。両側trueはactualを先にする。trueが無くfalse以外の不明があれば最初の不正側unknown。",
+        "required_true": "片側でもknown falseなら、その実false側pointerへfalse/refused codeを1件だけ返す。両側falseならactual側pointerの1件だけを返す。falseが無くtrue以外の不明があれば最初の不正側unknown。",
+        "required_false": "片側でもknown trueなら、その実true側pointerへtrue/refused codeを1件だけ返す。両側trueならactual側pointerの1件だけを返す。trueが無くfalse以外の不明があれば最初の不正側unknown。",
         "scope": "一般string/number pairのunknown規則とは区別する。knownな拒否値をnull側の所見と偽表示せず、追加の実許可や分類語を生成しない。"
       },
-      "common_boolean_comparison_ref": "/formal_programs/0/boolean_pair_semantics"
+      "common_boolean_comparison_ref": "/formal_programs/0/boolean_pair_semantics",
+      "output_operator_contracts": {
+        "literal": "valueをdeep-copyして返す。",
+        "and": "argsのboolean式が全てtrueならtrue。空集合はtrue。",
+        "or": "argsのboolean式のいずれかがtrueならtrue。空集合はfalse。",
+        "eq": "left/right式のJSON値を型を保って比較する。numberはnumeric_domainの厳密値比較、boolとnumberは異なる。",
+        "known_actual": "pathのraw値を返す。Absentだけnullへ投影する。",
+        "actual_phase_known": "actual phaseがphase_order内のstringならtrue。",
+        "no_findings_for_facets": "facetsをlogical_return_owner_by_facetでownerへ対応付け、そのownerのfindingが無いときtrue。",
+        "any_finding_code": "codes内のcodeを持つfindingがあるときtrue。",
+        "any_finding": "codeとpointerがともに指定値のfindingがあるときtrue。",
+        "any_finding_facet": "facetsをlogical_return_owner_by_facetでownerへ対応付け、そのownerのfindingがあるときtrue。",
+        "facet_map": "fields順にfacet stateを返す。always_active_facetsとactive群はinitial_state、非activeはinactive_value。所見のownerをlogical_return_owner_by_facetからfacetへ戻し、diagnostic_dispositionsとfacet_priorityで最大状態へ集約する。",
+        "project": "fieldsの各出力keyへ指定raw pointerの値をdeep-copyする。Absentだけabsent_projectionのnullへ投影する。",
+        "highest_state_as_condition": "集約facetの最大状態をfacet_priorityで選び、state_to_conditionへ対応付ける。not_applicableは対応状態より高く扱わない。",
+        "known_actual_or_null": "path値がdomain内stringなら返し、それ以外はnull。group配下はrequires_group_selectedのactive性と両group objectを要求する。",
+        "actual_or_null_if_domain_known": "requires_group_selectedがあればactiveで、requires_objects全pointerがobjectのときだけpath値をdomain内stringとして採用する。それ以外はnull。",
+        "sort_unique_findings": "keys列の全tupleで重複除去し、同tupleの辞書順でfindingを返す。"
+      }
     }
   ],
   "interpreter_contract": {
