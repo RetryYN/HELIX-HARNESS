@@ -270,11 +270,11 @@
           },
           {
             "field": "source_envelope_ref",
-            "meaning": "source envelope recordの原Ref。結果Refではない。"
+            "meaning": "source envelope recordに含まれる元Ref。結果Refとは別の値として保持する。"
           },
           {
             "field": "result_ref",
-            "meaning": "envelope中にsourceが明示した結果Ref。欠落/nullを別に保つ。入力Ref、関数名、path、digest、NA ref、hashから作らない。"
+            "meaning": "envelope内でsourceが明示した結果Ref。Absentとnullを区別する。入力Ref、関数名、path、digest、N/A Ref、hashから生成しない。"
           }
         ],
         "row_candidate_selection": {
@@ -303,18 +303,18 @@
           "na_attributes"
         ],
         "condition_pair_rule": {
-          "shape": "condition_pairsは順序付きrecord列。各recordは{condition_ref: Ref, condition_value: RawValue}を持つ。",
+          "shape": "比較に有効なcondition_pairsは順序付きrecord配列で、各recordは{condition_ref: Ref, condition_value: RawValue}を持つ。raw mirrorはPresence<JsonValue>で元の欠落/null/異型を保ち、有効shape要件を緩めない。",
           "comparison": "各condition_refとcondition_valueを同じrecord内で比較する。別配列のzip、配列位置だけの対応、semantic_comparison.same_meaningの代用をしない。same_meaning=nullは意味比較の未確定値であり、condition_value=nullへ転用しない。"
         },
         "presence_rule": {
-          "representation": "比較対象fieldは{presence:\"absent\"}または{presence:\"present\",value:RawValue}として返す。nullとemptyはpresentの値として保持する。",
-          "json_equality": "object key順は無視し、array順・重複は保持する。JSON booleanはnumberと区別し、number同士はJSON数値値を比較する。absenceはnullと等しくない。",
+          "representation": "raw mirrorとして宣言された比較対象fieldはPresence<JsonValue>で返す。Absentは{presence:\"absent\"}、null・empty・非object等のpresent値は{presence:\"present\",value:元JSON値}で保持する。この返却型は値を正規化せず、適用や資格の成立を示さない。",
+          "json_equality": "objectのkey順は無視し、arrayの順序・重複は保持する。JSON booleanはnumberと区別し、number同士はJSON数値として比較する。Absentとnullは等しくない。",
           "na_only": "N/Aの適用判断自体に必要なreason/decider/target_revision/reentry_conditionは既存比較の責務のまま欠落を失敗所見にする。このsource relationがN/A以外へ四属性を必須化しない。N/A以外で供給された属性もpresence/valueごと比較・返却する。"
         },
         "evaluation_order": [
           "F03の既存適用判定/義務/OS記録は変更しない。",
-          "source envelopeは候補としてprojectし、failure semantic axisとpath evidenceから既存backflowへ返す。",
-          "存在しないsource、unknown owner、unknown refをcontent_correspondingへ変換しない。"
+          "source envelopeは候補として投影し、failureの意味軸とpath evidenceから既存の戻し先候補へ結ぶ。",
+          "source、owner、Refがunknownならcontent_correspondingへ変換しない。"
         ],
         "result_row_shape": {
           "fields": [
@@ -340,14 +340,14 @@
             "decision_impact",
             "source_role_claims"
           ],
-          "route": "source_relationがcontent_correspondingならlogical_backflow_owner=not_required。それ以外はowner_route_rulesのfinding kind/path evidenceからknown candidateまたはunknownを返す。COREの固定owner defaultはない。実recipient資格は常にnot_established。全状態でdecision_impact=none。",
+          "route": "source_relationがcontent_correspondingならlogical_backflow_owner=not_required。それ以外はowner_route_rulesのfinding kindとpath evidenceから既知候補またはunknownを返す。CORE固定ownerのdefaultは持たない。実recipient資格は常にnot_established、全状態でdecision_impact=none。",
           "field_types": {
-            "application_policy_ref": "Ref",
-            "template_ref": "Ref",
-            "binding": "JSONValue",
-            "computed_disposition": "Disposition",
-            "computed_condition_pairs": "Array<ConditionPair>",
-            "computed_obligation_refs": "Array<Ref>",
+            "application_policy_ref": "Presence<JsonValue>",
+            "template_ref": "Presence<JsonValue>",
+            "binding": "Presence<JsonValue>",
+            "computed_disposition": "Presence<JsonValue>",
+            "computed_condition_pairs": "Presence<JsonValue>",
+            "computed_obligation_refs": "Presence<JsonValue>",
             "computed_na_attributes": "Presence<JsonValue>",
             "source_envelopes_input": "Presence<JsonValue>",
             "source_candidate_envelopes": "Array<JsonValue>",
@@ -373,7 +373,7 @@
               "OS",
               "unknown"
             ],
-            "meaning": "論理的な戻し先候補。これは実際のrecipient資格を示さない。複数または非該当owner mappingはunknown。"
+            "meaning": "論理上の戻し先候補。実recipient資格を表さない。複数候補またはmapping不能はunknown。"
           },
           "field_order": [
             "application_policy_ref",
@@ -434,7 +434,7 @@
               ]
             },
             "JSONPointer": {
-              "shape": "RFC6901 string beginning with /"
+              "shape": "RFC6901に従うJSON pointer文字列。rootを指す空文字列または/で始まるpointer。"
             },
             "Natural": {
               "shape": "JSON integer >= 0"
@@ -473,10 +473,41 @@
               "rows": "Array<ResultRow | InvalidComputedRowObservation>",
               "input_findings": "Array<ProjectionInputFinding>"
             },
-            "normal": "input_findings is empty; rows exactly preserve computed_rows order and duplicates.",
-            "missing_or_invalid_computed_rows": "rows empty and exactly one input finding records the raw root member presence/kind; no fabricated row.",
-            "invalid_computed_row_member": "emit InvalidComputedRowObservation at that index with its raw value/presence; continue other elements."
-          }
+            "normal": "通常時はinput_findingsを空配列とし、rowsはcomputed_rowsの順序と重複をそのまま保つ。",
+            "missing_or_invalid_computed_rows": "rootのcomputed_rowsがAbsent/null/非配列ならrowsは空配列とし、root memberのpresence/kindを記録するinput findingをちょうど1件返す。行を補作しない。",
+            "invalid_computed_row_member": "そのindexにraw値とpresenceを保持するInvalidComputedRowObservationを出し、後続要素も処理する。"
+          },
+          "raw_mirror_fields": [
+            {
+              "output_field": "application_policy_ref",
+              "input_path": "/computed_row/application_policy_ref"
+            },
+            {
+              "output_field": "template_ref",
+              "input_path": "/computed_row/template_ref"
+            },
+            {
+              "output_field": "binding",
+              "input_path": "/computed_row/binding"
+            },
+            {
+              "output_field": "computed_disposition",
+              "input_path": "/computed_row/disposition"
+            },
+            {
+              "output_field": "computed_condition_pairs",
+              "input_path": "/computed_row/condition_pairs"
+            },
+            {
+              "output_field": "computed_obligation_refs",
+              "input_path": "/computed_row/obligation_refs"
+            },
+            {
+              "output_field": "computed_na_attributes",
+              "input_path": "/computed_row/na_attributes"
+            }
+          ],
+          "raw_mirror_presence_rule_ja": "raw_mirror_fieldsの各fieldはinput_pathで指定するcomputed_row memberのpresence/valueをそのままPresence<JsonValue>へ写す。Absentは{presence: absent}、present値（nullを含む）は{presence: present, value: 元JSON値}。比較診断用の投影であり、Ref形状や資格は検査しない。"
         },
         "finite_source_cases_basis": {
           "approved_requirement_object": {
@@ -494,7 +525,7 @@
           "decision_record": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
           "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
           "actual_main_admission": "6ccc5d57dded942bb269e0cf83fcb9a0e47f2ab7",
-          "approval_scope": "HELIX-HARNESSのStage 1におけるCORE009 F03のみ。OS状態、実authority、issuer、qualificationは成立しない。",
+          "approval_scope": "対象はHELIX-HARNESS Stage 1のCORE009 F03のみ。OS状態、実authority、issuer、qualificationは成立させない。",
           "local_case_matrix": {
             "case_count": 24,
             "result_row_count": 27,
@@ -508,7 +539,7 @@
               "string",
               "null",
               "absent",
-              "non-string JSON value"
+              "string以外のJSON値"
             ],
             "qualification_effect": "なし。全出力のactual_source_qualificationとactual_recipient_qualificationはnot_established。"
           },
@@ -524,7 +555,7 @@
               "SourceEnvelope.role",
               "Ref.identity"
             ],
-            "meaning_limit": "role semantics/field domainsの根拠のみ。実資格・source acceptanceを導かない。"
+            "meaning_limit": "SourceEnvelope roleとRef field domainの根拠に限る。実資格やsource acceptanceを導かない。"
           }
         },
         "legacy_and_failure_basis": [
@@ -601,7 +632,7 @@
                 "quote_kind": "exact_line"
               }
             ],
-            "preserve": "source identityと版を別に扱い、unknown/N/A理由とpair traceを保全。",
+            "preserve": "source identityとrevisionを分け、unknown/N/A理由とpair traceを保全する。",
             "change": "legacy registry digest、instance digest、planner/runtime、schema allowlistをこの基本source projectionへ移さない。result_refをpath/digest/function nameから作らない。"
           },
           {
@@ -730,7 +761,9 @@
             },
             "unknown_selector": {
               "source_relation": "unresolved",
-              "reason": "candidate_relation_unresolved"
+              "reason": "candidate_relation_unresolved",
+              "priority": "既知selectorで一致するcandidateがあっても、同じ選択集合に一致可能性を排除できないunknown selectorが残ればunknown_selectorを優先する。既知不一致のselector軸が一つ以上あればそのenvelopeは候補外とし、無関係なunknown軸で選択を阻害しない。",
+              "missing_paths": "unknownなselectorのsource/computed pointerを宣言順に返す。Ref parent slotが明示Absent/null/非objectならslot pointer、object中のselector axisがAbsent/null/非stringならaxis pointerを記録する。"
             },
             "one": "compare_source_envelope",
             "more_than_one": {
@@ -740,11 +773,11 @@
           },
           "required_source_members": {
             "ref": "#/source_envelope_required_members",
-            "resolution": "RFC6901 pointer, exact single canonical list"
+            "resolution": "RFC6901 pointerで示す単一の正本リスト。"
           },
           "comparison_paths": {
             "ref": "#/source_comparison_paths",
-            "resolution": "RFC6901 pointer, one canonical ordered pair list"
+            "resolution": "RFC6901 pointerで示す順序付き比較pairの正本リスト。"
           },
           "comparison_outcomes": {
             "missing_required_member": {
@@ -783,12 +816,12 @@
             "resolution": "result_ref、identityのAbsent/null/型の別と診断理由・pathは、参照先の単一規則だけで定義し、この要約欄では重複定義しない。"
           },
           "reference_identity_requirements": {
-            "rule": "Listed identity/revision/scope/owner members must be present and non-null before comparison success; other JSON members (including condition_value and optional non-N/A attributes) retain JSON presence/value comparison and are not rejected by this rule.",
+            "rule": "宣言したRef slotが選択対象として存在し、objectである場合に限り、identity/revision/scope/ownerの各memberが存在しnullでないことを比較前に確認する。Ref型のnullableなsource_locator/sha256や、condition_value、N/A以外の任意属性を拒否しない。slot自体が必要な位置でAbsent/nullならそのslot pointerを未解決として返す。",
             "outcome": {
               "source_relation": "unresolved",
               "reason": "candidate_relation_unresolved"
             },
-            "compare_only_these_identity_axes": "Other fields in a Ref, including nullable source_locator and sha256, are compared as supplied when present; they are not a qualification shortcut.",
+            "compare_only_these_identity_axes": "Refのidentity/revision/scope/ownerだけを必要な意味軸として検査する。他の供給memberは比較に存在する範囲で保持し、資格の代用にしない。",
             "reference_objects": [
               "/source_envelope_ref",
               "/result_ref",
@@ -808,7 +841,10 @@
               "/computed_row/binding/process_contract_ref",
               "/computed_row/binding/application_contract_ref",
               "/material/condition_pairs/*/condition_ref",
-              "/computed_row/condition_pairs/*/condition_ref"
+              "/computed_row/condition_pairs/*/condition_ref",
+              "/row_binding/binding/template_ref",
+              "/application_input/binding/template_ref",
+              "/computed_row/binding/template_ref"
             ],
             "required_axes": [
               "identity",
@@ -816,8 +852,162 @@
               "scope",
               "owner"
             ],
-            "wildcard": "* selects each array element in order; absent/non-array parent yields no element paths and the parent required/presence rule diagnoses it.",
-            "path_expansion_rule": "reference_objectsの宣言順で各row/envelope/inputの対応rootへ展開し、wildcard arrayはindex順、各対象Ref objectのrequired_axesは宣言順で検査する。Absent parentは親presence/比較path規則で診断し、wildcardが0件のときRef objectを補作しない。"
+            "wildcard": "*は配列の要素を元順に列挙する。親がAbsentまたは配列でない場合は要素pathを作らず、親やslotの存在確認規則が診断する。",
+            "path_expansion_rule": "reference_objectsの宣言順でrow/envelope/inputの対応rootへ展開し、wildcard arrayはindex順、required_axesはidentity/revision/scope/owner順。親slotがAbsent/null/非objectでも無視せず、required_reference_slotsの同位置規則でslot pointerを診断する。wildcardを空配列へ置き換えたりRef objectを補作しない。",
+            "required_reference_slots": {
+              "purpose": "member軸検査と別に、選択操作に必要なRefのslotそのものが供給されたか確認する。Ref内のnull軸と、Ref slot自体のAbsent/null/非objectを区別する。",
+              "order": "候補を選択した後、source envelope、application input、computed rowのslotを宣言順に確認し、最後に既存condition pairをindex順に確認する。各pairはsource sideを先にしcomputed sideを後にする。",
+              "rules": [
+                {
+                  "root": "source_envelope",
+                  "path": "/source_envelope_ref",
+                  "applies_when": "候補envelopeが選ばれた場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "source_envelope",
+                  "path": "/qualification_claim/subject_ref",
+                  "applies_when": "候補envelopeが選ばれた場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "source_envelope",
+                  "path": "/row_binding/application_policy_ref",
+                  "applies_when": "候補envelopeが選ばれた場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "source_envelope",
+                  "path": "/row_binding/template_ref",
+                  "applies_when": "候補envelopeが選ばれた場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "application_input",
+                  "path": "/input_ref",
+                  "applies_when": "object型computed result rowが存在する場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "computed_row",
+                  "path": "/application_policy_ref",
+                  "applies_when": "object型computed result rowが存在する場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "computed_row",
+                  "path": "/template_ref",
+                  "applies_when": "object型computed result rowが存在する場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "source_envelope",
+                  "path": "/row_binding/binding/template_ref",
+                  "applies_when": "候補envelopeが選ばれた場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "computed_row",
+                  "path": "/binding/template_ref",
+                  "applies_when": "object型computed result rowが存在する場合",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                },
+                {
+                  "root": "paired_condition_arrays",
+                  "path": "/condition_pairs/*/condition_ref",
+                  "applies_when": "同じindexにobject型condition pairが存在する各side",
+                  "absent_or_null": "slotがAbsentまたは明示nullなら、そのsideのslot pointerをmissing_pathsへ追加する。",
+                  "non_object": "slot値がobjectでなければ、そのsideのslot pointerをmissing_pathsへ追加する。"
+                }
+              ],
+              "result": "必要slotが一つでもAbsent/null/非objectならsource_relation=unresolved、reason=candidate_relation_unresolvedとする。missing_pathsには不備のある実side pointerだけを宣言順かつ重複なく記録する。値比較のcontent_conflictへ上書きしない。非objectのraw値はsource/candidate projectionに保持する。",
+              "slot_states": {
+                "absent": "unresolvedとし、slot pointerをmissing_pathsへ追加する。",
+                "null": "unresolvedとし、slot pointerをmissing_pathsへ追加する。",
+                "non_object": "unresolvedとし、raw値を保持したままslot pointerをmissing_pathsへ追加する。",
+                "object": "required_axesの確認を続ける。",
+                "precedence": "slot不備は値比較より先に処理し、content_conflict/content_correspondingへ上書きしない。"
+              },
+              "condition_pair_alignment": {
+                "array_paths": [
+                  "/material/condition_pairs",
+                  "/computed_row/condition_pairs"
+                ],
+                "index_range": "source/computedのうち長い配列の0から最終indexまで",
+                "inspect_side_when": "当該sideの同じindexにobject型pairがある場合",
+                "slot_suffix": "/condition_ref",
+                "if_element_missing_on_one_side": "pairやRefを補わない。比較規則が欠けているsideの配列要素pointerを報告する。"
+              },
+              "failure_outcome": {
+                "source_relation": "unresolved",
+                "reason": "candidate_relation_unresolved",
+                "diagnostic_field": "source_relation_missing_paths"
+              }
+            },
+            "axis_evaluation_groups": [
+              {
+                "name": "選択とqualification対象のRef軸",
+                "paths": [
+                  "/source_envelope_ref",
+                  "/qualification_claim/subject_ref",
+                  "/row_binding/application_policy_ref",
+                  "/row_binding/template_ref",
+                  "/application_input/input_ref",
+                  "/computed_row/application_policy_ref",
+                  "/computed_row/template_ref"
+                ],
+                "on_any_unknown": "このgroup内の全missing axisを宣言順で返し、後続binding/condition groupsは次の評価段階へ回す。比較対応を成功としない。",
+                "scalar_paths": [
+                  {
+                    "root": "source_envelope",
+                    "path": "/qualification_claim/subject_revision"
+                  },
+                  {
+                    "root": "source_envelope",
+                    "path": "/qualification_claim/subject_scope"
+                  },
+                  {
+                    "root": "source_envelope",
+                    "path": "/qualification_claim/subject_owner"
+                  }
+                ]
+              },
+              {
+                "name": "operation binding内のRef軸",
+                "paths": [
+                  "/row_binding/binding/requirement_ref",
+                  "/row_binding/binding/process_contract_ref",
+                  "/row_binding/binding/application_contract_ref",
+                  "/row_binding/binding/template_ref",
+                  "/application_input/binding/requirement_ref",
+                  "/application_input/binding/process_contract_ref",
+                  "/application_input/binding/application_contract_ref",
+                  "/application_input/binding/template_ref",
+                  "/computed_row/binding/requirement_ref",
+                  "/computed_row/binding/process_contract_ref",
+                  "/computed_row/binding/application_contract_ref",
+                  "/computed_row/binding/template_ref"
+                ],
+                "on_any_unknown": "このgroup内の全missing axisを宣言順で返し、後続condition groupは次の評価段階へ回す。比較対応を成功としない。"
+              },
+              {
+                "name": "condition pair内のRef軸",
+                "paths": [
+                  "/material/condition_pairs/*/condition_ref",
+                  "/computed_row/condition_pairs/*/condition_ref"
+                ],
+                "on_any_unknown": "当該condition pairのmissing axisを返し、比較対応を成功としない。"
+              }
+            ]
           },
           "result_ref_validation": {
             "stage_after": "required_source_members_except_result_ref_and_role",
@@ -828,8 +1018,8 @@
               "identity_absent",
               "identity_null",
               "identity_other_kind",
-              "reference_axes_unknown",
-              "valid_string_identity"
+              "valid_string_identity",
+              "reference_axes_unknown"
             ],
             "outcomes": {
               "result_ref_absent": {
@@ -864,9 +1054,23 @@
               },
               "reference_axes_unknown": {
                 "source_relation": "unresolved",
-                "reason": "candidate_relation_unresolved"
+                "reason": "candidate_relation_unresolved",
+                "missing_paths_rule": "identity_axes_refの順でidentity_axis_already_checkedを除き、Absent/nullの/result_ref/{axis}を返す。"
               },
               "valid_string_identity": "continue"
+            },
+            "identity_axes": {
+              "axes_ref": "#/calculation_rules/reference_identity_requirements/required_axes",
+              "already_checked": [
+                "identity"
+              ],
+              "pointer_prefix": "/result_ref/",
+              "outcome": "reference_axes_unknown",
+              "presence_values": [
+                "absent",
+                "null"
+              ],
+              "meaning_ja": "妥当な文字列identityを確認した後、宣言軸の順にidentity以外を読む。軸値がAbsent/nullならreference_axes_unknownを選び、そのpointerをmissing_pathsへ返す。非null値をこの規則だけで拒否しない。"
             }
           },
           "input_domain_rules": {
@@ -886,7 +1090,7 @@
                 "reason": "application_input_invalid_kind",
                 "difference_path": "/application_input"
               },
-              "object": "use declared field presence; unresolved required Ref axes stop correspondence"
+              "object": "宣言fieldのpresenceを保つ。必須Ref軸が未解決なら内容対応としない。"
             },
             "computed_rows": {
               "absent": {
@@ -919,7 +1123,7 @@
                   }
                 ]
               },
-              "array": "preserve order and duplicates. A non-object/null member yields an InvalidComputedRowObservation preserving position and raw presence/value; do not coerce it into an empty ComputedRow."
+              "array": "配列順と重複を保つ。null/非object要素は位置とraw presence/valueを保持したInvalidComputedRowObservationへ写し、空ComputedRowに変換しない。"
             },
             "source_envelopes": {
               "absent": {
@@ -934,31 +1138,50 @@
                 "relation": "unprovided",
                 "reason": "source_envelopes_empty"
               },
-              "array": "preserve order and duplicates"
+              "array": "配列の順序と重複を保つ。"
             }
           },
           "na_required_attributes": {
-            "applies_when": "computed_row.disposition equals na",
+            "applies_when": "computed_row.dispositionがnaと等しい場合。",
             "paths": [
               "/reason",
               "/decider",
               "/target_revision",
               "/reentry_condition"
             ],
-            "both_sides_absent_or_null": "unresolved; report each absent/null material path; retain original computed disposition and do not change decision_impact",
-            "other_dispositions": "attributes are optional; compare presence/value if supplied; null remains a JSON value"
+            "both_sides_absent_or_null": "対象pathのいずれかがAbsent/nullなら、そのsideのpointerを報告する。computed dispositionとdecision_impactは変更しない。",
+            "other_dispositions": "他dispositionでは4属性を必須にしない。供給された場合はpresenceとJSON値を比較し、nullをJSON値として保つ。"
           },
           "comparison_semantics": {
             "json_equal": "JSON objectのmember順は無視し、配列は順序と重複を保つ。booleanはnumberと異なる。number同士はJSON数値として比較する。",
             "presence": "Absentと明示nullは異なる。required comparison pathが両側Absentなら両sideのpointerをmissingとして返し、対応扱いしない。明示nullは通常RawValue上で保持し、双方nullだけでRef identity/revision/scope/ownerの不足を解消しない。",
-            "differences": "object/arrayは再帰比較する。comparison pairの宣言順を保ち、各object内はescape後UTF-8 key昇順、各arrayはnumeric index昇順で走査する。片側だけのmember/indexは該当side pointerをmissing_pathsへ出し、value differenceには出さない。両側presentの異なるscalar/null-valueはdifference_pathsへ出す。object key orderは無視、array order/lengthは比較する。",
+            "differences": "object/arrayはJSON値として再帰比較する。比較pairごとにsource_pathとcomputed_pathの両方を保つ。片側だけのleaf/indexは欠けている側の実pointerをmissing_pathsへ記録する。両側に値があり異なる場合はsource側のcanonical leaf pointerをdifference_pathsへ出す。objectのkey順は無視しarrayの順序/長さは比較する。JSON number同士を数値比較しboolをnumberと同一視しない。",
             "comparison_path_presence": "source_comparison_pathsの各pairはrequired。双方Absentはsource_pathとcomputed_pathをmissingへ出す。ただしconditionally_optional_comparison_pathsに列挙したpairだけは条件非成立時に双方Absentを許容する。",
             "stage_precedence": [
-              "ProjectionResultではcomputed_rowsのAbsent/null/non-arrayを先にroot findingへ返す。",
-              "computed_rows arrayの各rowについてapplication_inputのpresence/kindを先に判定する。",
-              "次にsource_envelopesのpresence/kind、既知selector、候補数、required source members、role、result_ref、Ref軸、N/A限定属性、比較、戻し先の順で評価する。"
+              "ProjectionResultではcomputed_rowsのAbsent/null/非arrayを先にroot findingへ返す。",
+              "computed_rows配列の各rowについてapplication_inputのpresence/kindを先に判定する。",
+              "次にsource_envelopesのpresence/kind、既知selector、候補数、必須source members、role、result_ref、Ref軸、N/A限定属性、比較、戻し先の順で評価する。"
             ],
-            "path_order": "source_comparison_pathsのpair宣言順を外側順序とする。各pair内はobject memberをRFC6901 escape後UTF-8昇順、array indexを数値昇順に走査する。同一pointerの重複は最初の出現だけ保持する。reference_objectsは宣言順、wildcard arrayはindex順、required_axesは宣言順でidentity/revision/scope/ownerのmissingを並べる。"
+            "path_order": "source_comparison_pathsの宣言順を外側順序とする。両側に存在する差分値はobject memberをRFC6901 escape後UTF-8昇順、array indexを数値昇順で再帰走査する。片側だけのmember/indexは欠けている側の実pointerをmissing_pathsに記録する。slot/axis missingは各規則の宣言順、重複pointerは最初の一件だけ残す。",
+            "route_path_mapping": {
+              "mirror_root": "/computed_row",
+              "pair_match": {
+                "exact": true,
+                "descendant_segment_separator": "/"
+              },
+              "source_suffix_action": "append_unmatched_computed_path_suffix",
+              "unmatched_mirror": "unknown",
+              "raw_owner_match": {
+                "exact": true,
+                "descendant_segment_separator": "/"
+              },
+              "side_independence": true,
+              "explanation_ja": "比較のsource側かcomputed側かで同じ欠陥のowner候補を変えない。unmapped mirrorはunknownへ保つ。",
+              "source_suffix_action_ja": "computed_pathより後の文字列suffixをsource_pathへ追加する。RFC6901でescape済みsegmentを再解釈しない。"
+            },
+            "unmapped_mirror": "source_comparison_pathsに対応するpairがないcomputed側pointerは無視しない。source_relation=unresolved、reason=candidate_relation_unresolved、owner=unknownとしてpointerを保持する。",
+            "unknown_candidate_precedence": "既知selectorが一致したenvelopeがあっても、選択集合に既知不一致で除外できずselectorが不明なenvelopeが残るときは、一意な候補と確定しない。既知不一致があるenvelopeは、他axisがunknownでも候補外とする。",
+            "array_pair_behavior": "対応arrayの要素値をindex順に比べる。長さが異なるとき、片側に無いindexの実side pointerをmissing_pathsに返す。condition pairのRef slotは同indexにobject pairがあるsideだけ確認する。片側のpair自体が無い場合はRefを補わず、配列比較でそのindexを診断する。"
           },
           "owner_route_rules": {
             "corresponding": "not_required",
@@ -966,7 +1189,9 @@
               {
                 "finding_kind": "template_definition_or_version",
                 "source_paths": [
-                  "/row_binding/template_ref"
+                  "/row_binding/template_ref",
+                  "/row_binding/binding/template_ref",
+                  "/application_input/binding/template_ref"
                 ],
                 "logical_owner_candidate": "BRAIN"
               },
@@ -1005,25 +1230,29 @@
             ],
             "pair_oracle_or_source_envelope_missing": "unknown",
             "unmapped_or_multiple_axes": "unknown",
-            "route_basis": "Select by the finding kind/semantic axis and exact path evidence, not by whether data happened to be in original or submitted input. A known value is only a logical return candidate; it does not establish actual owner/recipient qualification. Preserve unknown when the mapping is not determined."
+            "route_basis": "findingの意味軸と正確なsource pointerを使う。computed側pointerは明示comparison pairのsegment boundary対応だけをsource pointerへ写し、未対応mirrorはunknownとする。raw側pointerは宣言済みsource pathの完全一致またはsegment boundaryで照合する。source側かcomputed側かで責務候補を変えない。論理owner候補は実owner/recipient資格を示さず、mappingが無いまたは複数ならunknownを保持する。"
           },
           "stage_order": [
-            "source collectionのpresence",
-            "候補選択",
-            "候補数",
-            "source必須member",
-            "roleおよび単一result_ref検証",
-            "object computed rowがある場合のoperation-time binding member presence",
-            "存在するRef objectの必須軸",
-            "source/computed field比較",
-            "result row組立"
+            "computed_rowsのpresence/kind",
+            "application_inputのpresence/kind",
+            "source_envelopes配列のpresence/kind",
+            "candidate selectorのRef親slotとselector axisを調べる",
+            "unknown selectorを含めた候補数と優先順を確定する",
+            "選択candidateのrequired source membersを確認する",
+            "roleとresult_ref専用検証",
+            "condition-pair Refを含むrequired_reference_slots",
+            "operation binding required members",
+            "供給されたRef objectの必須axis",
+            "N/A限定属性",
+            "source/computed値の比較",
+            "論理routeとresult rowの組立"
           ],
           "conditionally_optional_comparison_paths": [
             {
               "source_path": "/material/na_attributes",
               "computed_path": "/computed_row/na_attributes",
               "required_when_disposition": "na",
-              "otherwise": "both_absent_is_permitted; if present on either side, compare presence and JSON value"
+              "otherwise": "na以外では双方Absentを許容する。片側でも値があればpresenceとJSON値を比較する。"
             }
           ],
           "selector_unknown_path_order": "candidate_selector pair宣言順、各pairでsource_pathの後にcomputed_path。重複pointerは最初の出現だけ残す。",
@@ -1034,19 +1263,19 @@
                 "root": "raw",
                 "path": "/application_input/binding",
                 "diagnostic_path": "/application_input/binding",
-                "meaning": "selected operation input binding"
+                "meaning": "選択operationの入力binding"
               },
               {
                 "root": "source_envelope",
                 "path": "/row_binding/binding",
                 "diagnostic_path": "/row_binding/binding",
-                "meaning": "source result row binding"
+                "meaning": "source結果rowのbinding"
               },
               {
                 "root": "computed_row",
                 "path": "/binding",
                 "diagnostic_path": "/computed_row/binding",
-                "meaning": "computed operation result binding"
+                "meaning": "computed operation結果のbinding"
               }
             ],
             "members_in_order": [
@@ -1060,7 +1289,7 @@
                 "name": "product_scope",
                 "kind": "RawValue",
                 "meaning": "F01 product-scope binding",
-                "null_policy": "explicit null is missing under this required-member rule; any present non-null JSON RawValue kind is retained for comparison"
+                "null_policy": "この必須member規則では明示nullを不足扱いにする。presentな非null JSON RawValueはkindで狭めず比較へ渡す。"
               },
               {
                 "name": "process_contract_ref",
@@ -1077,31 +1306,37 @@
             ],
             "missing_or_null_or_wrong_kind": "memberの欠落pathはrecords_in_order、次にmembers_in_orderで返す。binding親がAbsent/null/non-objectなら、そのrecordのdiagnostic_pathだけを返す。Ref memberはobjectであることを要し、identity/revision/scope/owner軸はreference_identity_requirementsで検査する。product_scopeはL5 ApplicationBindingのRawValueであり、必須memberとして明示nullだけを不足扱いにする。その他のpresent JSON値はkindで狭めず、元値をcomparisonへ渡す。",
             "outcome_ref": "#/calculation_rules/comparison_outcomes/missing_required_member",
-            "purpose": "F01は要求/製品scopeと工程・適用契約のidentity/revisionを常時必須とし、選択操作時にはその操作入力を照合する。computed_rowsのobject rowがある場合に限り、対応する入力・source row・computed rowのbinding recordでこの確認を行う。requirement_ref/process_contract_ref/application_contract_refはRef object、product_scopeはL5 ApplicationBinding.product_scopeのRawValueである。product_scopeは必要presenceを検査しnullを不足扱いにするが、非null JSONのstring/number/boolean/array/objectを型だけで拒否しない。computed rowが無いときに操作fieldを全体必須にはしない。またsource/recipient資格を成立させない。"
+            "purpose": "F01は要求/product scopeと工程・適用contractのidentity/revisionを常時必須とし、選択時に操作入力を照合する。computed_rowsにobject rowがある場合だけ、対応するinput/source/computed rowのbinding recordを確認する。requirement_ref/process_contract_ref/application_contract_refはRef object、product_scopeはL5 ApplicationBinding.product_scopeのRawValueである。product_scopeはpresenceを必要とし明示nullを不足とするが、非null JSONのstring/number/boolean/array/objectをkindだけで拒否しない。computed rowがないときは操作fieldを全体必須にせず、source/recipient資格も成立させない。"
+          },
+          "candidate_selector_rule": {
+            "pairs_ref": "#/calculation_rules/candidate_selector",
+            "slot_before_axis": "各selector pairでは親Ref slotの状態を区別する。親slotが明示null/非objectならそのslot pointerをunknown pathとする。親slot自体がAbsentの場合、またはobject中のselector axisがAbsent/null/non-stringの場合はaxis pointerをunknown pathとする。この順序は未供給位置の診断を定める。",
+            "known_mismatch": "既知のstring axisが対向する既知stringと異なるenvelopeは候補外とする。同じenvelopeの別axisがunknownでも候補へ戻さない。",
+            "unknown_candidate_precedence_ref": "#/calculation_rules/comparison_semantics/unknown_candidate_precedence",
+            "path_order": "candidate_selectorの宣言順。各pairではsourceのslotまたはaxisを先にし、次にcomputedのslotまたはaxisを記録する。同じpointerは最初の出現だけ残す。"
           }
         },
-        "legacy_delta_reason": "旧資産のexact set・source identity・版・N/A根拠を保持しつつ、COREのsource result_refを新しい外部source fieldからそのまま投影する候補関係を明示する。旧path/digest・関数名からのID生成を禁止するのは旧template identity規則とCORE Ref field分離に沿う。source資格は別未成立。",
+        "legacy_delta_reason": "旧資産のexact set、source identity、revision、N/A根拠を保持しつつ、COREのsource result_refを別sourceから供給された明示値として示す。旧path/digest/関数名からIDを生成しないのは、旧template identity規則とCORE Ref fieldの区別に沿う。実source資格は別途未成立。",
         "fixture_disposition_values": {
-          "required": "原L8 normal fixture",
-          "conditional": "原L8 normal fixture",
-          "na": "原L8 normal fixture N/A表記",
-          "unresolved": "原L8 normal fixture"
+          "required": "原L8 normal fixtureの値",
+          "conditional": "原L8 normal fixtureの値",
+          "na": "原L8 normal fixtureのN/A表記",
+          "unresolved": "原L8 normal fixtureの値"
         },
         "source_record_role": {
-          "source_type": "SourceEnvelope.role (既存L5 logical type)",
+          "source_type": "既存L5 logical type SourceEnvelope.role",
           "finite_values": [
             "semantic_source",
             "derived_view",
             "explanation",
             "reference_only"
           ],
-          "comparison_use": "semantic_sourceだけをsource content relationの根拠候補として比較する。他roleは原envelope/role claimを保持してunresolvedへ返す。role値はqualification_ref/qualification claim、issuer、owner資格、source受入を成立させない。",
-          "source_envelope_adapter": "このF03 SourceResultEnvelopeはSourceEnvelopeのrole semanticsを保持し、別途qualification claim・row binding・materialを同梱する投影record。L5の基底SourceEnvelopeそのものと同一wire shapeとは主張しない。"
+          "comparison_use": "semantic_sourceだけをsource content relationの根拠候補として比較する。他roleは元envelope/role claimを保ったままunresolvedへ返す。role値はqualification_ref/claim、issuer、owner資格、source受入を成立させない。",
+          "source_envelope_adapter": "F03のSourceResultEnvelopeはSourceEnvelope.roleの意味を保ち、qualification claim、row binding、materialを同梱する投影recordである。L5基底のSourceEnvelopeと同一wire shapeだとはしない。"
         },
         "result_reference_identity_rule": {
-          "source_type": "Ref.identity (既存L5 logical type: string|null)",
-          "usable_for_reference_projection": "result_refがobjectでidentity memberが存在し、そのvalueがJSON stringの場合だけ参照claimとして保持する。identity=nullまたはAbsentは参照identity未供給、他JSON型はinvalid raw valueとして保持しunresolvedにする。空文字を勝手に資格/意味/有効性へ昇格しない。",
-          "qualification_boundary": "参照identityが供給されても独立source envelopeとの内容対応以外の資格・真正性・採用を意味しない。"
+          "ref": "#/calculation_rules/result_ref_validation",
+          "resolution": "result_refのslot/identity判定はcalculation_rules.result_ref_validationのみを正本とする。"
         },
         "same_parent_meaning_basis": {
           "purpose": "既存の適用判断・意味トレースを内部表現へ写す。未選択または無関係な操作を止める前提条件ではない。",
@@ -1111,7 +1346,7 @@
               "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
               "pointer": "/requirements/23",
               "canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
-              "relevant_meaning": "選択時に要求/template identity・version・意味契約revision/source/利用状態・選択根拠を照合する。操作に不要な入力を常時必須化しない。"
+              "relevant_meaning": "選択時に要求/template identity・version・意味契約revision/source/利用状態・選択根拠を照合し、不要な入力を常時必須にしない。"
             },
             {
               "id": "HARNESS-L10-009-F01",
@@ -1149,8 +1384,32 @@
               "relevant_meaning": "四判定とN/A4属性の欠落を個別に識別し、unknownを義務消失へ変換しない。"
             }
           ],
-          "derivation": "F03の判定・根拠・判定者・対象revision/scope・条件・再評価条件を保持し、F01の選択時における要求/template identity・version・意味契約revision/source照合、N01の意味照合・不足と戻し先の保持を、source envelopeとcomputed applicability rowの対応表示へ写す。これは既存19軸の適用判断を置換せず、すべてのoperationへsource gateを追加しない。",
-          "boundary": "source envelope、role、result_refはこの投影内の論理的な記録/参照表示である。名称、path、hash、producer symbolだけから実issuer・source qualification・owner資格・OS受入を成立させない。"
+          "derivation": "F03の判定・根拠・判定者・対象revision/scope・条件・再評価条件を保持し、F01の選択時に要求/template identity・version・意味契約revision/sourceを照合する。N01が求める意味照合、不足、戻し先をsource envelopeとcomputed applicability rowの対応表示へ写す。既存19軸の適用判断を置換せず、全operationへsource gateを追加しない。",
+          "boundary": "source envelope、role、result_refはこの投影内の論理record/参照表示である。名称、path、hash、producer symbolから実issuer、source qualification、owner資格、OS受入を成立させない。",
+          "additional_rule_derivations": [
+            {
+              "rule_ref": "#/calculation_rules/reference_identity_requirements/required_reference_slots",
+              "approved_refs": [
+                "HARNESS-L3-009-F01#/requirements/23",
+                "HARNESS-L10-009-F01#/cases/23",
+                "HARNESS-L3-009-F03#/requirements/25",
+                "HARNESS-L10-009-F03#/cases/25"
+              ],
+              "legacy_asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+              "meaning_ja": "選択された操作のidentity/revisionと条件pairの参照を値比較するには、比較対象となるRef slot自体が供給されている必要がある。Absent/nullを一致扱いにしないが、未選択/非該当の任意入力へ常時拡張しない。"
+            },
+            {
+              "rule_ref": "#/calculation_rules/comparison_semantics/route_path_mapping",
+              "approved_refs": [
+                "HARNESS-L3-009-F01#/requirements/23",
+                "HARNESS-L10-009-F01#/cases/23",
+                "HARNESS-L3-009-N01#/requirements/4",
+                "HARNESS-L10-009-N01#/cases/4"
+              ],
+              "legacy_asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+              "meaning_ja": "比較の対象scopeと元義務の戻し先を、source/computedどちら側の欠陥かで変えず、明示された比較pairから辿る。"
+            }
+          ]
         },
         "source_relation_fields_ref": "#/source_comparison_paths",
         "projection_rule_derivations": [
@@ -1171,7 +1430,7 @@
               }
             ],
             "legacy_source": "LEGACY-ASSET-4F5A1F0739EC1111D91D line 30, 37",
-            "result": "known string identityで候補行を選択し、その後にidentity/revision/scope/ownerと完全bindingを比較する。unknown/nullは一致としない。"
+            "result": "既知のstring identityで候補rowを選択し、その後identity/revision/scope/ownerとbindingを比較する。unknown/nullを一致としない。"
           },
           {
             "rule": "四判定とN/A属性の保持",
@@ -1189,7 +1448,7 @@
                 "supports": "四判定を識別し、N/A属性の欠落とunknownの義務消失を検出する。"
               }
             ],
-            "result": "sourceとcomputed rowの宣言項目を比較し、N/A四属性はN/A行だけ必須にする。source relationだけでは採択・qualificationを成立させない。"
+            "result": "sourceとcomputed rowの宣言fieldを比較する。N/Aの4属性だけをN/A rowで必須とする。source relationだけで採択/qualificationを成立させない。"
           },
           {
             "rule": "意味内容・不足・戻し先を値から区別",
@@ -1208,13 +1467,22 @@
               }
             ],
             "legacy_source": "LEGACY-ASSET-4F5A1F0739EC1111D91D line 85-91; predecessor audit UTW-014/020/021",
-            "result": "leaf-level差分/Absent/missingを分け、finding pathと既存分類から論理的戻し先候補を返す。不明ならunknown。recipient資格は作らない。"
+            "result": "leaf差分、Absent、missingを区別し、finding pathと既存分類から論理owner候補を返す。不明ならunknown。recipient資格は作らない。"
           },
           {
             "rule": "source envelope / role / result_refの位置づけ",
-            "l5_source": "docs/helix-harness/L5-detail-design/product-template-application.json#/type_contract/types/SourceEnvelope and /type_contract/types/Ref",
-            "supports": "既存L5の論理record role値とRef shapeを内部投影で再利用し、資格とは区別する。",
-            "result": "semantic_source roleはsource materialの分類値としてだけ候補比較へ進める。derived_view/explanation/reference_only等はunresolvedとして元値を保持する。result_refは行内のlogical reference claimであり、OS用outputや実在ref/権限の証明ではない。"
+            "l5_source": "docs/helix-harness/L5-detail-design/product-template-application.json の /type_contract/types/SourceEnvelope と /type_contract/types/Ref",
+            "supports": "既存L5 logical record role値とRef shapeを内部投影で参照し、実資格とは区別する。",
+            "result": "semantic_source roleはsource materialを分類する値としてのみ候補比較へ進める。derived_view/explanation/reference_only等は元値を保ってunresolvedへ返す。result_refはrow内の論理参照claimであり、OS向けoutput、実在参照、権限の証明ではない。",
+            "choice_classification": "L5の既存論理型から選ぶ詳細設計上のrecord表現。L3/L10に独立のresult_ref要件があるとの主張ではない。",
+            "l5_source_revision": "28b97e2c5666084c2fe6772f32d9c92e82414b89",
+            "l5_source_sha256": "42fc4ed7a67b93456b8f8e8698a0e6e831f516a1a082857eab157dab181bd6b5",
+            "l5_source_pointers": [
+              "/type_contract/types/SourceEnvelope",
+              "/type_contract/types/Ref"
+            ],
+            "approved_meaning_relation": "L3/L10 F03の根拠・対象revision/scope・四判定・未評価を失わずsource入力を表示するための内部record選択。F01の選択比較とN01の不足/戻し先照合を手段として表す。",
+            "qualification_limit": "L5 role/Ref shapeまたはrecord名だけでsource/issuer/ownerの実資格、採用、OS用output、権限を成立させない。"
           }
         ],
         "source_relation_reason_values": [
@@ -1245,7 +1513,41 @@
         "local_pointer_basis": {
           "root": "source_result_reference_projectionオブジェクト自身",
           "rule": "このオブジェクト内の #/ で始まるfragmentはRFC6901として本オブジェクトをrootに解決する。L9独立probe内のlocal参照は各probe blockが別rootを宣言する。"
-        }
+        },
+        "condition_pair_collection_validation": {
+          "source_path": "/material/condition_pairs",
+          "computed_path": "/computed_row/condition_pairs",
+          "valid_present_kind": "array",
+          "absent_handling": {
+            "source": "source_envelope_required_membersの既存required member判定でcandidate_source_members_missingへ返す。",
+            "computed": "比較pathの既存presence判定でcandidate_source_members_missingへ返す。"
+          },
+          "present_non_array": {
+            "including_null": true,
+            "source_relation": "unresolved",
+            "reason": "candidate_relation_unresolved",
+            "missing_paths": "存在しない/不正な各sideのsource_path/computed_pathを宣言順で返す。",
+            "precedence": "順序付き配列要件に合わないcollectionを同値比較でcontent_correspondingにしない。raw mirrorには元値を保持する。",
+            "result_relation": "unresolved",
+            "diagnostic_path_source": "各不正sideのdiagnostic_path",
+            "diagnostic_path_order": "sides宣言順、重複なし"
+          },
+          "applies_to": "選択済みenvelopeとobject型computed rowのcondition_pairs collectionのみ。collection内recordのRef slotはrequired_reference_slotsで別途判定する。",
+          "sides": [
+            {
+              "root": "source_envelope",
+              "path": "/material/condition_pairs",
+              "diagnostic_path": "/material/condition_pairs"
+            },
+            {
+              "root": "computed_row",
+              "path": "/condition_pairs",
+              "diagnostic_path": "/computed_row/condition_pairs"
+            }
+          ],
+          "sides_order_ja": "source_envelope、computed_rowの順に判定し、presentかつarray以外（nullを含む）のsideをdiagnostic_path順で記録する。Absentは既存required-member/required-slot判定へ委ねる。"
+        },
+        "source_result_ref_claim_rule_ja": "result_refは元sourceのclaimとしてpresence/valueを保持する。同時にreference_identity_requirementsで宣言されたRef軸を検査し、結果参照のidentity/revision/scope/ownerが不明な場合はsource relationを未解決へ戻す。claimの存在・軸充足はsource真正性、issuer資格、実recipient資格の証明ではない。"
       }
     },
     {
