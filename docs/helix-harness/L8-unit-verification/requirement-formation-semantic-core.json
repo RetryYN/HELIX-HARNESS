@@ -246877,5 +246877,935 @@
     "correction": "status/pack格納先/duplicate literal、全出力語彙・書式・列順・比較元・優先・digestを有限参照記法へ具体化。candidate入力/全401期待/2005 joinsを保持。",
     "history": "R1の321原normal/original全出力再計算unreviewedは当時の限界。R2公式で10関数/401出力の独立再計算実施済みと記録された。今回もscratchで全rawから別計算し、公式再reviewの代わりにしない。",
     "limits": "実資格/正式codec/TDD/CI/L11/全92親430意味閉包/Ready未成立。"
+  },
+  "applicability_state_correction": {
+    "id": "H008-F02-APPLICABILITY-INDEPENDENT-COMPARISON",
+    "design_ref": "HARNESS-L5-008-F02",
+    "function_ref": "F-008-F02",
+    "basis": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "1581eee6e5cd94ab2c6dc9cf51dada7c470bfae1",
+        "pointer": "/requirements/75"
+      },
+      {
+        "path": "docs/helix-harness/L4-basic-design/requirement-formation-semantic-core.json",
+        "revision": "1581eee6e5cd94ab2c6dc9cf51dada7c470bfae1",
+        "pointer": "/contracts/3/connection_detail/comparison_detail/origin"
+      }
+    ],
+    "reason_ja": "実験結果がobjectでも適用unknownを対応済みへ縮約しない。既存required正常と根拠付きN/Aを保持し、適用stateが未確定なoriginの変更だけを候補から除く。",
+    "old_rule_history": {
+      "revision": "1581eee6e5cd94ab2c6dc9cf51dada7c470bfae1",
+      "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+      "pointer": "/finite_raw_derivation/functions/F02/reference_steps/4",
+      "file_bytes_sha256": "df474d9e6cb75ad4c7c5618301790b88c1c7789d2efbd13d8fc3c0df5da033c2",
+      "value_canonical_sha256": "53c49987d808f7aadc2827b00615a8bce318bd1e139e2d42ae84946b8d7ad010",
+      "value": "  state='missing' if not isinstance(app,dict) else 'stale' if e.get('binding')!=expected else 'conflict' if e.get('scope')!=scope else 'not_applicable_synthetic_material' if app.get('state')=='not_applicable' and all(valid(app.get(k)) for k in ['reason','judge','target_revision','requirement_impact','reevaluation']) and app['target_revision']==expected else 'missing' if app.get('state')=='not_applicable' else 'supported_synthetic_material' if isinstance(r,dict) else 'missing';conditions[key]=state"
+    },
+    "cases": [
+      {
+        "id": "H008-F02-APPLICABILITY-UNKNOWN-WITH-RESULT",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/experiments/poc/applicability/state",
+            "value": "unknown"
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "unknown",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "1bdcfe71779e1fd2937a50e6369fb79016b3c78991e169b0ac4627b4f91c18d5",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "missing"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "be7905014f0d730b27a9a83b3a0136fc5da84153d5aa3f2742a26999cdce72fb",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-APPLICABILITY-NULL-WITH-RESULT",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/experiments/poc/applicability/state",
+            "value": null
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": null,
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "11a73964964533755bdb3edee6bc505ca3e965259b3b19d54344938aa837dcaa",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "missing"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "be7905014f0d730b27a9a83b3a0136fc5da84153d5aa3f2742a26999cdce72fb",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-APPLICABILITY-ABSENT-WITH-RESULT",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "remove",
+            "path": "/experiments/poc/applicability/state"
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "bbe2adfd08373e98ba6a34937539473badf157dc7d7123fbc3e86f14015d57ee",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "missing"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "be7905014f0d730b27a9a83b3a0136fc5da84153d5aa3f2742a26999cdce72fb",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-APPLICABILITY-UNRECOGNIZED-WITH-RESULT",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/experiments/poc/applicability/state",
+            "value": "unrecognized"
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "unrecognized",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "6e5798d7b4349c622da0c0e5a9fafc648db1878259f0dedcc65b89c68db8ebd8",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "missing"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "be7905014f0d730b27a9a83b3a0136fc5da84153d5aa3f2742a26999cdce72fb",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-REQUIRED-RESULT-CONTROL",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "623b8b1ee8b64e16bd5727ad8493d61de90b20b8f55d9ebecd7b9808f93f887e",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "supported_synthetic_material"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_proposal"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 2
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 2
+          },
+          "required_redesign_fields": [
+            "cancel_message",
+            "retry_limit"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_pending_agreement",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "e9300a8deab8ee2265f56482950364392018989e5a1c6d5f1b4677bb149cc19f",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H008-F02-UNKNOWN-APPLICABILITY-WITH-STALE-BINDING",
+        "base_input_pointer": "/cases/139/function_io/typed_arguments/input",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/experiments/poc/applicability/state",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/experiments/poc/binding",
+            "value": "REQ@r0"
+          }
+        ],
+        "input": {
+          "primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiments": {
+            "prototype": {
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "required",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic",
+                "finding_refs": [
+                  "F-PROTOTYPE"
+                ]
+              }
+            },
+            "poc": {
+              "binding": "REQ@r0",
+              "scope": "PRODUCT-P",
+              "applicability": {
+                "state": "unknown",
+                "owner_contract": "001/003-approved-meaning-not-unmerged-basic-design"
+              },
+              "result": {
+                "outcome": "observed_synthetic_success",
+                "finding_refs": [
+                  "F-POC"
+                ]
+              }
+            }
+          },
+          "findings": [
+            {
+              "id": "F-PROTOTYPE",
+              "origin": "prototype",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "cancel_message",
+                "before": null,
+                "proposed": "show cancellation"
+              }
+            },
+            {
+              "id": "F-POC",
+              "origin": "poc",
+              "binding": "REQ@r1",
+              "scope": "PRODUCT-P",
+              "change": {
+                "field": "retry_limit",
+                "before": 0,
+                "proposed": 2
+              }
+            }
+          ],
+          "instruction": {
+            "kind": "continue",
+            "binding": "REQ@r1",
+            "scope": "PRODUCT-P",
+            "source": {
+              "identity": "USER-INSTRUCTION",
+              "revision": "fixture-sha256-6797aca9d38965dc48a57a390668896dbe0bf681d2258f9975dc323c2960d2c7",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            }
+          },
+          "agreement": null,
+          "unrelated_scope": {
+            "id": "Q",
+            "state": "valid_synthetic"
+          },
+          "qualification": "synthetic_secondary_candidate_not_actual_experiment_or_user_agreement"
+        },
+        "input_canonical_sha256": "7e74a14dee0b27d2a3d8090284343cb75ae89ad2345fa915df3de6c70e17ca75",
+        "expected_output": {
+          "preserved_primary": {
+            "ref": {
+              "identity": "PRIMARY-1",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-secondary-original-owner"
+            },
+            "binding": "REQ@r1",
+            "fields": {
+              "cancel_message": null,
+              "retry_limit": 0
+            },
+            "raw_utf8": "{\"cancel_message\":null,\"retry_limit\":0}",
+            "sha256": "a24841f5a30fcab40019921c37dcdf09c43b104c36a4ea68ec1ff01a8fc3a47a"
+          },
+          "experiment_conditions": {
+            "prototype": "supported_synthetic_material",
+            "poc": "stale"
+          },
+          "finding_dispositions": {
+            "F-PROTOTYPE": "retained_proposal",
+            "F-POC": "retained_unresolved_experiment"
+          },
+          "retained_finding_ids": [
+            "F-PROTOTYPE",
+            "F-POC"
+          ],
+          "historical_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "active_secondary_fields": {
+            "cancel_message": "show cancellation",
+            "retry_limit": 0
+          },
+          "required_redesign_fields": [
+            "cancel_message"
+          ],
+          "instruction_condition": "supported_synthetic_material",
+          "old_candidate_disposition": "candidate_with_unresolved_basis",
+          "agreement_condition": "missing",
+          "actual_requirement_agreed": false,
+          "actual_primary_overwritten": false,
+          "actual_candidate_adopted": false,
+          "actual_pair_rederived": false,
+          "unrelated_Q": "preserved_valid_synthetic"
+        },
+        "expected_output_canonical_sha256": "d68e4c0600d66f7310a89c6808049a9e3f1f3c539bf0e46ede8e2029ca0e71d9",
+        "execution_state": "not_executed"
+      }
+    ],
+    "existing_case_count": 401,
+    "existing_f02_case_count": 27,
+    "scope_limit_ja": "全fixture/全意味閉包・source実資格・実関数実行の証明ではない。新6対照は候補lane未選択のbase assessment全15field。原401caseとlocal_valuesは不変。",
+    "priority_control_ja": "binding stale、次scope conflict、次N/A、次非required state不足の順。新しいunknown state+古いbinding対照はpoc staleでこの優先を固定する。"
   }
 }
