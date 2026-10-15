@@ -67,6 +67,18 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 
 ## 配送状態・再開
 
+`receive`とそれを使うhookは、待受開始時に直ちに通知箱を確認し、空の場合は最大1秒間隔で再確認する。
+待受期限まで1秒未満なら残り時間だけsleepする。`--wait 0`は1回だけ確認し、sleepしない。
+従来の0.25秒間隔から確認頻度を抑える応急処置で、通知の検出には次の確認までの待ち時間とJSON読取・lock待ちが加わる。
+1秒以内の配送保証やCPU負荷の固定削減率を意味しない。稼働中の待受processは起動時のコードを保持するため、変更は次に同じ経路から起動した待受に適用される。
+ACK済み記録の保持・移動・削除、payload、TTL、lease、watcher、明示retryの規則は変更しない。
+記録のライフサイクルとhot stateの縮小は[#3079](https://github.com/RetryYN/HELIX-HARNESS/issues/3079)の残作業であり、この応急処置で同Issueを完了にしない。
+
+旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts:1561–1647`
+（`LEGACY-ASSET-0F66E2A823A36187D315`）の待受は、世代照合・claim・timeoutと既定2秒のpollを分離していた。
+既存GUIへの通知を未信頼dataとして扱う意味と世代／claimの分離を保持し、旧memory/runtimeは再利用・実行せず、現行仮設の間隔だけを1秒へ変更する。
+変更理由は#3079と2026-10-16の待受負荷の実測であり、新しいauthorityや承認経路は追加しない。
+
 `queued`は保存、`claimed`はhook／receiverによる確保、`acked`は受信セッションによる明示受領。意味reviewとmergeは別。
 同じevent IDとpayloadの再送、および同じrequest／responseの別ID再送は重複配送しない。
 未ACKのclaimを自動で再表示せず、送信側が`retry --runtime RUNTIME --session SESSION --id EVENT_ID`した場合だけ再配送する。

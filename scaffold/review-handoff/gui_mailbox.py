@@ -17,6 +17,7 @@ HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
 BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = ("claude", "codex")
+RECEIVE_POLL_SECONDS = 1.0
 
 
 def binding_active(path=BINDING):
@@ -196,7 +197,7 @@ def receive(runtime, session, wait, store=STORE, watcher=None):
             return message
         if time.monotonic() >= deadline:
             return None
-        time.sleep(min(0.25, max(0, deadline - time.monotonic())))
+        time.sleep(min(RECEIVE_POLL_SECONDS, max(0, deadline - time.monotonic())))
 
 
 def notification(message):
