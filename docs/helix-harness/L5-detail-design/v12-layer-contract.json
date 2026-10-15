@@ -683,7 +683,7 @@
       "change": "003/008への戻し先を、prototype_result_refsではなくF02Contextで明示供給する論理consumer契約Refとして選択し既存backflow_refsへ返す。",
       "reason": "既存L4 F02の003/008戻し責務を既存RefSet/Resultへ構成するため。実登録/実配送先を要求する新gateではない。"
     },
-    "target_meaning": "003/008への責務は原L3/L10とL4で既決。mapping carrier/constructorだけが今回の下流設計提案。値の実供給/資格が未成立でも論理責務をunknownへ格下げしない。 backflow_refsは論理契約Refの既知部分集合。原結果Ref/合意Ref/実recipientの代用ではない。",
+    "target_meaning": "003/008への責務は原L3/L10とL4で既決。対応の型付き値と返却構成だけが今回の下流設計提案。値の実供給/資格が未成立でも論理責務をunknownへ格下げしない。 backflow_refsは論理契約Refの既知部分集合。原結果Ref/合意Ref/実recipientの代用ではない。",
     "snapshot_premise": [
       "Contextと新binding行はいずれも既存common_contractのimmutable owner-qualified snapshot前提。同source対象/版/scope/owner/内容を解決した比較結果をstateとbasis/content_check_refsへ供給する。関数は資格発行やsource解決を行わない。",
       "currentはfield/hash/非空配列から生成しない。実body解決や対象版の内容照合が未供給ならproviderはmissing/unknown/conflict/staleを保持する。currentなのにtargetがnullならreference_missing、basis又は内容根拠0件ならcontent_unproven。この必要条件の検査だけを資格十分条件としない。",
