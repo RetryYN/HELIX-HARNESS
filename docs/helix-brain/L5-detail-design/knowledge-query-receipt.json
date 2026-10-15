@@ -11827,5 +11827,11 @@
       "bytes": 650921
     }
   ],
-  "source_pin_policy": "source_pinsは対象revisionの固定bytesを読む原資料証拠。同一candidate L4/L9の現在意味・wholeはcandidate_design_bindingsの保存bytesへ束縛する。旧revisionに新candidate bytesが存在したと主張しない。上流L3/L10/判断記録等は現在も旧pinと不変照合する。"
+  "source_pin_policy": "source_pinsは対象revisionの固定bytesを読む原資料証拠。同一candidate L4/L9の現在意味・wholeはcandidate_design_bindingsの保存bytesへ束縛する。旧revisionに新candidate bytesが存在したと主張しない。上流L3/L10/判断記録等は現在も旧pinと不変照合する。",
+  "design_admission": {
+    "revision": "fa5c16d17ca1b0015439ff45257bfb442cf7105a",
+    "pr": 3178,
+    "review_comment": 6186997361,
+    "meaning": "candidate_design_bindingsのL4/L9 bytesはこの統合revisionと完全一致。source_pinsは変更前の固定源泉証拠として保全する。"
+  }
 }
