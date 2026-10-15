@@ -1,0 +1,4834 @@
+{
+  "document_id": "HELIXOS-L5-027",
+  "parent": "HELIXOS-L2-027",
+  "layer": "L5",
+  "pair": "HELIXOS-L8-027",
+  "source_main": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+  "approved_content_revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+  "approval_record": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "status": "draft_detail_design_pending_independent_review",
+  "version_target": "1.0",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "full_goal_scope_preserved": true,
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-027-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未評価と初回実行許可の分離",
+        "obligation": "開始前に要求/authority exact revision、ticket/task/scope、分類/data-use、操作許可、限定Worker/capability、proposal、LABO水準または明示未評価、予算/期限/停止条件、固定HARNESS oracle/義務、人確認を同attemptへ結ぶ。性能未評価だけで独立に許可された限定runを拒否せず、開始必須条件unknownは実行しない。",
+        "oracle_ref": "HELIXOS-L10-027-F01"
+      },
+      "object_canonical_sha256": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6"
+    },
+    {
+      "id": "HELIXOS-L3-027-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F02",
+        "parent": "HELIXOS-L2-027",
+        "title": "人の配置案代行の同契約照合",
+        "obligation": "人代行案はINT010/066の同入力属性・契約revision・scope、根拠/不確実性/未評価表示を持ち、INT出力と偽装しない。OS受領receiptへsource/actor・入力/契約revision・task/scope・作成時点・根拠・未評価・受領側revisionを結ぶ。OSだけが割当/停止する。",
+        "oracle_ref": "HELIXOS-L10-027-F02"
+      },
+      "object_canonical_sha256": "722e77aaa2aae2589ffd0b0bd4147bb66ce77123bf81e9a598f8cbb86876dd9c"
+    },
+    {
+      "id": "HELIXOS-L3-027-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F03",
+        "parent": "HELIXOS-L2-027",
+        "title": "狭いscope内の有限初回仕事",
+        "obligation": "人が確認した狭いtask/scope、指定Worker、明示budget/期限/停止条件、固定検証義務に限ってOS018が実行を統制する。超過/scope変更/検証欠落は停止し、費用・attempt・部分成果・未完・再開条件を保持する。",
+        "oracle_ref": "HELIXOS-L10-027-F03"
+      },
+      "object_canonical_sha256": "8ceccbdd71798426c04e9851b96b961ff5cb2958c3d2350700f0fee24fce8d2a"
+    },
+    {
+      "id": "HELIXOS-L3-027-F04",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F04",
+        "parent": "HELIXOS-L2-027",
+        "title": "HARNESS検証と独立した人確認",
+        "obligation": "HARNESS022の固定oracle/義務に沿う実検証結果と、作成Workerとは別actorの人確認をOS019へ結ぶ。許容された人の検証分担を明示でき、OS020実装を初回の必須条件にしない。確認対象/結果/actor/対象revision/scope/受領時刻/未完を残す。",
+        "oracle_ref": "HELIXOS-L10-027-F04"
+      },
+      "object_canonical_sha256": "06239f069e1bd09b1bf3efc5d05c317febdd098eec4576eb2362165090350f90"
+    },
+    {
+      "id": "HELIXOS-L3-027-F05",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F05",
+        "parent": "HELIXOS-L2-027",
+        "title": "実行後の観測受渡し",
+        "obligation": "OS018のassignment/attempt結果、019原証拠、023handoffを実行後に同scope/revisionへ結んでLABO観測へ渡す。027は構成candidate provenance参照であり、LABO057の実行依存にしない。026導出器も自分の入力/実行依存にしない。",
+        "oracle_ref": "HELIXOS-L10-027-F05"
+      },
+      "object_canonical_sha256": "326c61d3575fffc9af7ec115a5d8c790b2f2c61dbba1550ef39e6dc6a056d772"
+    },
+    {
+      "id": "HELIXOS-L3-027-F06",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F06",
+        "parent": "HELIXOS-L2-027",
+        "title": "評価済み化の実適用証拠",
+        "obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。Bench score単独でscope・branch・assignment・操作権限を変更しない。",
+        "oracle_ref": "HELIXOS-L10-027-F06"
+      },
+      "object_canonical_sha256": "e963c99115028bfd1074d408542f0198a2e98ec84c86c95a6d34b2deb818b7a4"
+    },
+    {
+      "id": "HELIXOS-L3-027-F07",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F07",
+        "parent": "HELIXOS-L2-027",
+        "title": "全資産の分類と利用区分",
+        "obligation": "SEC015/016の全読込・入力・生成/出力資産identity/owner/source/revision/分類を照合し、unknown/secret/HELIX-restrictedを含めない。公開範囲とdata-use許可/操作authorityを分け、生成予定scope/分類から出力が外れたら受渡しを止める。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F07"
+      },
+      "object_canonical_sha256": "1ec19ac87b2b1b05de757395e40387069edd5e2b47bf55ebcdd5c76189f9cf66"
+    },
+    {
+      "id": "HELIXOS-L3-027-F08",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F08",
+        "parent": "HELIXOS-L2-027",
+        "title": "credential不使用と遮断",
+        "obligation": "SEC005/007に従いcredential-useとraw secretの読込/入力/出力を必要とせず、credentialアクセスが遮断されている。credentialを要する仕事は本経路の対象外。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F08"
+      },
+      "object_canonical_sha256": "7511e1e89b0b81737b2bf701781e46a33934636fd76e82510b31ad7400835c79"
+    },
+    {
+      "id": "HELIXOS-L3-027-F09",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F09",
+        "parent": "HELIXOS-L2-027",
+        "title": "egress許可の一致",
+        "obligation": "SEC006のdefault denyと明示allowlistにより、通信なし、またはdestination/protocol/path・data分類/量・purpose/authority/expiryに一致する通信だけを使う。未確認宛先へ再送しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F09"
+      },
+      "object_canonical_sha256": "311826594036b5f80ed3e136158cd4165acf2296f86a7ab1db4fee56c0d921bc"
+    },
+    {
+      "id": "HELIXOS-L3-027-F10",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F10",
+        "parent": "HELIXOS-L2-027",
+        "title": "隔離と実制約適用",
+        "obligation": "SEC003のproject/tenant/environment/assignment隔離と007のwrite path/network/credential/env/timeout/resources/差分/rollback/回収制約が実環境へ適用されている。unsupported/未適用/host fallbackを許さない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F10"
+      },
+      "object_canonical_sha256": "78df3ad5f18a544d088f34a17ba2682c79f684050fc16107b8431fb12bc4bf8f"
+    },
+    {
+      "id": "HELIXOS-L3-027-F11",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F11",
+        "parent": "HELIXOS-L2-027",
+        "title": "操作別authority",
+        "obligation": "SEC008のactor/target/operation/revision/environment/scope/expiryに一致する有効許可を全操作へ結び、列挙漏れを許さない。性能未評価や人案を許可の代替にしない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F11"
+      },
+      "object_canonical_sha256": "51b83037dc4032e6c619b04899a28f0c539b4350ee73994587868376011795f2"
+    },
+    {
+      "id": "HELIXOS-L3-027-F12",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F12",
+        "parent": "HELIXOS-L2-027",
+        "title": "可逆性と事前復旧",
+        "obligation": "許可scope内で取り消せる変更だけとし、変更前状態・復旧手段/復旧先を事前確認する。不可逆外部作用/release/tag/配布と可逆性unknownは本経路の対象外。人確認で免除しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F12"
+      },
+      "object_canonical_sha256": "df6488fe8c50a75a765a7d74fcd7e6b22a91a77c060f63e521954eeaf8654692"
+    },
+    {
+      "id": "HELIXOS-L3-027-N01",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "object": {
+        "id": "HELIXOS-L3-027-N01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未見scopeと部分成功の限界",
+        "obligation": "未見task/model/scope/actorと一境界故障を使い、authority/classification/proposal/assignment/実record/検証/人確認/LABO受領を別々に検査する。部分成功で欠落を相殺せず、適用外/未観測/未評価を保持する。",
+        "oracle_ref": "HELIXOS-L10-027-N01"
+      },
+      "object_canonical_sha256": "f7c368c917bddd9558b8d9a4d5ef10ae3e9d6a4753db069307e2e535a65ddb38"
+    },
+    {
+      "id": "HELIXOS-L3-027-B01",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-B01",
+        "parent": "HELIXOS-L2-027",
+        "title": "初回経路と責務・許可の境界",
+        "obligation": "本経路は既存六条件の積としての限定適格性で、一般risk分類器やSEC016のtaskリスク出力を新設しない。人の配置案、操作許可、OS assignment、実検証、人確認、LABO観測/評価を別に扱う。全能力/固定provider/後続版/権限拡大を要求しない。",
+        "oracle_ref": "HELIXOS-L10-027-B01"
+      },
+      "object_canonical_sha256": "e8fb184d935ea9090baf6daa50eb3431429fead4bf06954dc69053b855b13f51"
+    },
+    {
+      "id": "HELIXOS-L10-027-B01",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-B01",
+        "parent": "HELIXOS-L2-027",
+        "title": "初回経路と責務・許可の境界",
+        "requirement_ref": "HELIXOS-L3-027-B01",
+        "positive_input": "各ownerの入力と判定を同scopeで照合する。",
+        "expected_observation": "条件付き開始と不成立を個別に表示し、無関係な機構全体の完成待ちを追加しない。",
+        "negative_input": "新risk分類、候補だけで実許可、単体成功で構成体成功、全機構完成待ち。",
+        "failure_observation": "責務または必要条件の不足を各ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "71ceebbce4a6a212a08e8f1474b9bafef6db6267a7d153a364ddc6fda79af656"
+    },
+    {
+      "id": "HELIXOS-L10-027-N01",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-N01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未見scopeと部分成功の限界",
+        "requirement_ref": "HELIXOS-L3-027-N01",
+        "positive_input": "既知正常例と伏せた未見例、必要receipt一件欠落を比較する。",
+        "expected_observation": "失敗端/戻し先/未完と再評価条件が辿れ、未知scopeへ成功を外挿しない。",
+        "negative_input": "件数/field存在で全体合格、成功runで他scopeの穴を相殺。",
+        "failure_observation": "該当境界を未成立として記録し、全体成功を主張しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "baf9fc9bca2210b37b4eb4fb921e2f35b5c25c68eefe62c04031147fa90e7a6b"
+    },
+    {
+      "id": "HELIXOS-L10-027-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未評価と初回実行許可の分離",
+        "requirement_ref": "HELIXOS-L3-027-F01",
+        "positive_input": "未評価かつ必要条件が揃うcaseとauthorityまたは必須入力だけ欠けるcaseを比較する。",
+        "expected_observation": "性能状態/適格性/実行許可/案/assignmentを別に保持する。",
+        "negative_input": "未評価をqualified、未評価のみで拒否、文書候補で許可、future receiptを開始条件。",
+        "failure_observation": "不足ownerへ戻し、性能未評価と不許可理由を別に残す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "4daa6baff63453b2f7da1c2cf8b07b1586127c2f1c49b81565d82520676b516f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F02",
+        "parent": "HELIXOS-L2-027",
+        "title": "人の配置案代行の同契約照合",
+        "requirement_ref": "HELIXOS-L3-027-F02",
+        "positive_input": "INT未利用で同契約の人案を供給し、actor/revision/scopeだけ欠けるcaseを比較する。",
+        "expected_observation": "代行案と受領、OS割当が別に辿れ、実INT能力成立を主張しない。",
+        "negative_input": "人案がOS assignmentを代行、根拠/actor/版欠落、INT実出力へ偽装。",
+        "failure_observation": "案または受領不足をOS/案ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "3626f4a5cbeb46e92c157b8c728b0d25866c8b17b3a383c0736b6c5a9b0e6a46"
+    },
+    {
+      "id": "HELIXOS-L10-027-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F03",
+        "parent": "HELIXOS-L2-027",
+        "title": "狭いscope内の有限初回仕事",
+        "requirement_ref": "HELIXOS-L3-027-F03",
+        "positive_input": "各制約に収まる初回runと一条件だけ超えるrunを比較する。",
+        "expected_observation": "指定と実runが同scopeへ辿れ、限界超過で継続しない。",
+        "negative_input": "無期限retry、budget reset、scope拡大、人確認で安全条件免除。",
+        "failure_observation": "停止までの原記録と再開条件を管理/推進へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "c2397dfcfa8cab77f439006c963cf709981d2fe3bf5fd066ccc62fc0ae4f4e8f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F04",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F04",
+        "parent": "HELIXOS-L2-027",
+        "title": "HARNESS検証と独立した人確認",
+        "requirement_ref": "HELIXOS-L3-027-F04",
+        "positive_input": "同HEAD/scopeの実検証と別actor確認を、別HEAD/自己確認/未実行と比較する。",
+        "expected_observation": "検証・人確認・CI利用状態を別に受け入れる。",
+        "negative_input": "CI未構築をpass、oracle変更、別HEAD証拠、自己review、暗黙の人分担。",
+        "failure_observation": "検証不足はHARNESS、確認/記録不足は当該ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "f3d3890541f371a886cfa535eea785a8048a707e41ffaf843ad01dd0d96d9ff4"
+    },
+    {
+      "id": "HELIXOS-L10-027-F05",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F05",
+        "parent": "HELIXOS-L2-027",
+        "title": "実行後の観測受渡し",
+        "requirement_ref": "HELIXOS-L3-027-F05",
+        "positive_input": "success/fail/denied/interrupted/unknownと未完を含む実recordを受け渡す。",
+        "expected_observation": "結果とLABO受領を別に辿れ、初回成功は観測済み・未評価のまま。",
+        "negative_input": "成功だけ記録、未受領を観測済み、future結果捏造、026/027自己依存。",
+        "failure_observation": "実record/受渡し不足をOS、観測受領不足をLABOへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "c4e6649a900c2f280f95e60c9c6ab8fbae98d207b7f3eb1382d974d4e197cbd6"
+    },
+    {
+      "id": "HELIXOS-L10-027-F06",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F06",
+        "parent": "HELIXOS-L2-027",
+        "title": "評価済み化の実適用証拠",
+        "requirement_ref": "HELIXOS-L3-027-F06",
+        "positive_input": "実評価receiptのある範囲と単一成功/未適用oracle/別scope/staleを比較する。",
+        "expected_observation": "評価済みは適用範囲付き、他範囲は未評価/評価不能を保持する。",
+        "negative_input": "oracleの存在だけで評価済み、一律件数/閾値新設、全taskへ外挿、LABOが割当、Bench scoreだけでscope/branch/assignment/権限変更。",
+        "failure_observation": "評価不足をLABOへ返し、次の限定仕事は同契約の明示人案を保持する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "229d4f1ac499a7b60057ee64207f16769130e5949f772459b7c6411470850421"
+    },
+    {
+      "id": "HELIXOS-L10-027-F07",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F07",
+        "parent": "HELIXOS-L2-027",
+        "title": "全資産の分類と利用区分",
+        "requirement_ref": "HELIXOS-L3-027-F07",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一資産unknown、分類だけで利用許可、生成後逸脱。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "ab02927a431474f3fa0d9bc84e5bdf1ffec1c7f4213634f90faef2c532705a7e"
+    },
+    {
+      "id": "HELIXOS-L10-027-F08",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F08",
+        "parent": "HELIXOS-L2-027",
+        "title": "credential不使用と遮断",
+        "requirement_ref": "HELIXOS-L3-027-F08",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "credential必要またはアクセス未遮断。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "1d39eb50db160f62cfe259bf03550b804304494be9c145b809e710d5ead1c1db"
+    },
+    {
+      "id": "HELIXOS-L10-027-F09",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F09",
+        "parent": "HELIXOS-L2-027",
+        "title": "egress許可の一致",
+        "requirement_ref": "HELIXOS-L3-027-F09",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一通信field不一致、未確認宛先へretry。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "dc76fe387cf0c4b5da29af5c7137efcb95878bf06fa94d31a778ad5b8a48191a"
+    },
+    {
+      "id": "HELIXOS-L10-027-F10",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F10",
+        "parent": "HELIXOS-L2-027",
+        "title": "隔離と実制約適用",
+        "requirement_ref": "HELIXOS-L3-027-F10",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一隔離/制約未適用、host fallback。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2df4d5d88a8a168a0a06dc6d3135a329a9d8fa9973a57c7dc32e549e32e41bf1"
+    },
+    {
+      "id": "HELIXOS-L10-027-F11",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F11",
+        "parent": "HELIXOS-L2-027",
+        "title": "操作別authority",
+        "requirement_ref": "HELIXOS-L3-027-F11",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一操作漏れ/期限切れ/別actor、案を認可へ昇格。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2551faa3bd9f7e4d0a2265f9380fef69b67c0f63eec2a747abb007d840c919d2"
+    },
+    {
+      "id": "HELIXOS-L10-027-F12",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F12",
+        "parent": "HELIXOS-L2-027",
+        "title": "可逆性と事前復旧",
+        "requirement_ref": "HELIXOS-L3-027-F12",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "復旧不明/不可逆作用、人確認で免除。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "56ab5a75e676ed0cd0a149180998b5b9011f06bdda74c742de4fd044adf3a23e"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXOS-L3-027-F01",
+      "canonical_sha256": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6"
+    },
+    {
+      "id": "HELIXOS-L3-027-F02",
+      "canonical_sha256": "722e77aaa2aae2589ffd0b0bd4147bb66ce77123bf81e9a598f8cbb86876dd9c"
+    },
+    {
+      "id": "HELIXOS-L3-027-F03",
+      "canonical_sha256": "8ceccbdd71798426c04e9851b96b961ff5cb2958c3d2350700f0fee24fce8d2a"
+    },
+    {
+      "id": "HELIXOS-L3-027-F04",
+      "canonical_sha256": "06239f069e1bd09b1bf3efc5d05c317febdd098eec4576eb2362165090350f90"
+    },
+    {
+      "id": "HELIXOS-L3-027-F05",
+      "canonical_sha256": "326c61d3575fffc9af7ec115a5d8c790b2f2c61dbba1550ef39e6dc6a056d772"
+    },
+    {
+      "id": "HELIXOS-L3-027-F06",
+      "canonical_sha256": "e963c99115028bfd1074d408542f0198a2e98ec84c86c95a6d34b2deb818b7a4"
+    },
+    {
+      "id": "HELIXOS-L3-027-F07",
+      "canonical_sha256": "1ec19ac87b2b1b05de757395e40387069edd5e2b47bf55ebcdd5c76189f9cf66"
+    },
+    {
+      "id": "HELIXOS-L3-027-F08",
+      "canonical_sha256": "7511e1e89b0b81737b2bf701781e46a33934636fd76e82510b31ad7400835c79"
+    },
+    {
+      "id": "HELIXOS-L3-027-F09",
+      "canonical_sha256": "311826594036b5f80ed3e136158cd4165acf2296f86a7ab1db4fee56c0d921bc"
+    },
+    {
+      "id": "HELIXOS-L3-027-F10",
+      "canonical_sha256": "78df3ad5f18a544d088f34a17ba2682c79f684050fc16107b8431fb12bc4bf8f"
+    },
+    {
+      "id": "HELIXOS-L3-027-F11",
+      "canonical_sha256": "51b83037dc4032e6c619b04899a28f0c539b4350ee73994587868376011795f2"
+    },
+    {
+      "id": "HELIXOS-L3-027-F12",
+      "canonical_sha256": "df6488fe8c50a75a765a7d74fcd7e6b22a91a77c060f63e521954eeaf8654692"
+    },
+    {
+      "id": "HELIXOS-L3-027-N01",
+      "canonical_sha256": "f7c368c917bddd9558b8d9a4d5ef10ae3e9d6a4753db069307e2e535a65ddb38"
+    },
+    {
+      "id": "HELIXOS-L3-027-B01",
+      "canonical_sha256": "e8fb184d935ea9090baf6daa50eb3431429fead4bf06954dc69053b855b13f51"
+    },
+    {
+      "id": "HELIXOS-L10-027-B01",
+      "canonical_sha256": "71ceebbce4a6a212a08e8f1474b9bafef6db6267a7d153a364ddc6fda79af656"
+    },
+    {
+      "id": "HELIXOS-L10-027-N01",
+      "canonical_sha256": "baf9fc9bca2210b37b4eb4fb921e2f35b5c25c68eefe62c04031147fa90e7a6b"
+    },
+    {
+      "id": "HELIXOS-L10-027-F01",
+      "canonical_sha256": "4daa6baff63453b2f7da1c2cf8b07b1586127c2f1c49b81565d82520676b516f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F02",
+      "canonical_sha256": "3626f4a5cbeb46e92c157b8c728b0d25866c8b17b3a383c0736b6c5a9b0e6a46"
+    },
+    {
+      "id": "HELIXOS-L10-027-F03",
+      "canonical_sha256": "c2397dfcfa8cab77f439006c963cf709981d2fe3bf5fd066ccc62fc0ae4f4e8f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F04",
+      "canonical_sha256": "f3d3890541f371a886cfa535eea785a8048a707e41ffaf843ad01dd0d96d9ff4"
+    },
+    {
+      "id": "HELIXOS-L10-027-F05",
+      "canonical_sha256": "c4e6649a900c2f280f95e60c9c6ab8fbae98d207b7f3eb1382d974d4e197cbd6"
+    },
+    {
+      "id": "HELIXOS-L10-027-F06",
+      "canonical_sha256": "229d4f1ac499a7b60057ee64207f16769130e5949f772459b7c6411470850421"
+    },
+    {
+      "id": "HELIXOS-L10-027-F07",
+      "canonical_sha256": "ab02927a431474f3fa0d9bc84e5bdf1ffec1c7f4213634f90faef2c532705a7e"
+    },
+    {
+      "id": "HELIXOS-L10-027-F08",
+      "canonical_sha256": "1d39eb50db160f62cfe259bf03550b804304494be9c145b809e710d5ead1c1db"
+    },
+    {
+      "id": "HELIXOS-L10-027-F09",
+      "canonical_sha256": "dc76fe387cf0c4b5da29af5c7137efcb95878bf06fa94d31a778ad5b8a48191a"
+    },
+    {
+      "id": "HELIXOS-L10-027-F10",
+      "canonical_sha256": "2df4d5d88a8a168a0a06dc6d3135a329a9d8fa9973a57c7dc32e549e32e41bf1"
+    },
+    {
+      "id": "HELIXOS-L10-027-F11",
+      "canonical_sha256": "2551faa3bd9f7e4d0a2265f9380fef69b67c0f63eec2a747abb007d840c919d2"
+    },
+    {
+      "id": "HELIXOS-L10-027-F12",
+      "canonical_sha256": "56ab5a75e676ed0cd0a149180998b5b9011f06bdda74c742de4fd044adf3a23e"
+    }
+  ],
+  "source_pins": [
+    {
+      "name": "entry",
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+      "size_bytes": 19587
+    },
+    {
+      "name": "restart_decision",
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "size_bytes": 6104
+    },
+    {
+      "name": "l3l10_decision",
+      "path": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "d0ce49f8e870a396628da2cc366b65db64f33820c2af6a3392debde04b87bddc",
+      "size_bytes": 5013
+    },
+    {
+      "name": "audit",
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "size_bytes": 18373797
+    },
+    {
+      "name": "l2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "size_bytes": 457982
+    },
+    {
+      "name": "l11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "size_bytes": 335168
+    },
+    {
+      "name": "l4",
+      "path": "docs/helix-os/L4-basic-design/limited-first-worker-cycle.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "69539b504c0e0ea9287b78862e20f115a97c8fa626df0cbeab9d167c24198acb",
+      "size_bytes": 93294
+    },
+    {
+      "name": "l9",
+      "path": "docs/helix-os/L9-integration-verification/limited-first-worker-cycle.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "a1b3ebf677e337016ae112895cbf1197342d1d617b91552702e2dbcc6522727e",
+      "size_bytes": 5934351
+    },
+    {
+      "name": "l3b",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "size_bytes": 32244
+    },
+    {
+      "name": "l3f",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "size_bytes": 57023
+    },
+    {
+      "name": "l3n",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84",
+      "size_bytes": 32367
+    },
+    {
+      "name": "l10b",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "size_bytes": 35642
+    },
+    {
+      "name": "l10f",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "size_bytes": 71611
+    },
+    {
+      "name": "l10n",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81",
+      "size_bytes": 36651
+    },
+    {
+      "name": "legacy_req",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "size_bytes": 42556
+    },
+    {
+      "name": "legacy_accept",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "size_bytes": 4078
+    },
+    {
+      "name": "legacy_ledger",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "size_bytes": 4857919
+    },
+    {
+      "name": "legacy_control",
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "size_bytes": 7991
+    },
+    {
+      "name": "msg004-meaning-source-0",
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "size_bytes": 539806
+    },
+    {
+      "name": "msg004-meaning-source-1",
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "size_bytes": 5902
+    },
+    {
+      "name": "msg004-meaning-source-2",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "size_bytes": 11262
+    }
+  ],
+  "source_authority": {
+    "restart_decision": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+    "limited_scope": "10/12限定再開のphase1/2：既存委任/対象承認/要件対の範囲で前提形成と基本/詳細設計を行う。全consumer事前完了・全能力gateを新設しない。",
+    "individual_decision": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "l3l10_reviewed_content_revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+    "l3l10_actual_admission": "75ab7c2e764e00565521050dd51978e0459e1d8a",
+    "parent": "HELIXOS-L2-027",
+    "approved_pair_count": 14,
+    "approval_objects": [
+      {
+        "id": "HELIXOS-L3-027-B01",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/business-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/8",
+        "canonical_sha256_at_approval": "e8fb184d935ea9090baf6daa50eb3431429fead4bf06954dc69053b855b13f51",
+        "canonical_sha256_current": "e8fb184d935ea9090baf6daa50eb3431429fead4bf06954dc69053b855b13f51",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-B01",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/business-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/8",
+        "canonical_sha256_at_approval": "71ceebbce4a6a212a08e8f1474b9bafef6db6267a7d153a364ddc6fda79af656",
+        "canonical_sha256_current": "71ceebbce4a6a212a08e8f1474b9bafef6db6267a7d153a364ddc6fda79af656",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F01",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/48",
+        "canonical_sha256_at_approval": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6",
+        "canonical_sha256_current": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F01",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/48",
+        "canonical_sha256_at_approval": "4daa6baff63453b2f7da1c2cf8b07b1586127c2f1c49b81565d82520676b516f",
+        "canonical_sha256_current": "4daa6baff63453b2f7da1c2cf8b07b1586127c2f1c49b81565d82520676b516f",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F02",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/49",
+        "canonical_sha256_at_approval": "722e77aaa2aae2589ffd0b0bd4147bb66ce77123bf81e9a598f8cbb86876dd9c",
+        "canonical_sha256_current": "722e77aaa2aae2589ffd0b0bd4147bb66ce77123bf81e9a598f8cbb86876dd9c",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F02",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/49",
+        "canonical_sha256_at_approval": "3626f4a5cbeb46e92c157b8c728b0d25866c8b17b3a383c0736b6c5a9b0e6a46",
+        "canonical_sha256_current": "3626f4a5cbeb46e92c157b8c728b0d25866c8b17b3a383c0736b6c5a9b0e6a46",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F03",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/50",
+        "canonical_sha256_at_approval": "8ceccbdd71798426c04e9851b96b961ff5cb2958c3d2350700f0fee24fce8d2a",
+        "canonical_sha256_current": "8ceccbdd71798426c04e9851b96b961ff5cb2958c3d2350700f0fee24fce8d2a",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F03",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/50",
+        "canonical_sha256_at_approval": "c2397dfcfa8cab77f439006c963cf709981d2fe3bf5fd066ccc62fc0ae4f4e8f",
+        "canonical_sha256_current": "c2397dfcfa8cab77f439006c963cf709981d2fe3bf5fd066ccc62fc0ae4f4e8f",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F04",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/51",
+        "canonical_sha256_at_approval": "06239f069e1bd09b1bf3efc5d05c317febdd098eec4576eb2362165090350f90",
+        "canonical_sha256_current": "06239f069e1bd09b1bf3efc5d05c317febdd098eec4576eb2362165090350f90",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F04",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/51",
+        "canonical_sha256_at_approval": "f3d3890541f371a886cfa535eea785a8048a707e41ffaf843ad01dd0d96d9ff4",
+        "canonical_sha256_current": "f3d3890541f371a886cfa535eea785a8048a707e41ffaf843ad01dd0d96d9ff4",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F05",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/52",
+        "canonical_sha256_at_approval": "326c61d3575fffc9af7ec115a5d8c790b2f2c61dbba1550ef39e6dc6a056d772",
+        "canonical_sha256_current": "326c61d3575fffc9af7ec115a5d8c790b2f2c61dbba1550ef39e6dc6a056d772",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F05",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/52",
+        "canonical_sha256_at_approval": "c4e6649a900c2f280f95e60c9c6ab8fbae98d207b7f3eb1382d974d4e197cbd6",
+        "canonical_sha256_current": "c4e6649a900c2f280f95e60c9c6ab8fbae98d207b7f3eb1382d974d4e197cbd6",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F06",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/53",
+        "canonical_sha256_at_approval": "e963c99115028bfd1074d408542f0198a2e98ec84c86c95a6d34b2deb818b7a4",
+        "canonical_sha256_current": "e963c99115028bfd1074d408542f0198a2e98ec84c86c95a6d34b2deb818b7a4",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F06",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/53",
+        "canonical_sha256_at_approval": "229d4f1ac499a7b60057ee64207f16769130e5949f772459b7c6411470850421",
+        "canonical_sha256_current": "229d4f1ac499a7b60057ee64207f16769130e5949f772459b7c6411470850421",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F07",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/54",
+        "canonical_sha256_at_approval": "1ec19ac87b2b1b05de757395e40387069edd5e2b47bf55ebcdd5c76189f9cf66",
+        "canonical_sha256_current": "1ec19ac87b2b1b05de757395e40387069edd5e2b47bf55ebcdd5c76189f9cf66",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F07",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/54",
+        "canonical_sha256_at_approval": "ab02927a431474f3fa0d9bc84e5bdf1ffec1c7f4213634f90faef2c532705a7e",
+        "canonical_sha256_current": "ab02927a431474f3fa0d9bc84e5bdf1ffec1c7f4213634f90faef2c532705a7e",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F08",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/55",
+        "canonical_sha256_at_approval": "7511e1e89b0b81737b2bf701781e46a33934636fd76e82510b31ad7400835c79",
+        "canonical_sha256_current": "7511e1e89b0b81737b2bf701781e46a33934636fd76e82510b31ad7400835c79",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F08",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/55",
+        "canonical_sha256_at_approval": "1d39eb50db160f62cfe259bf03550b804304494be9c145b809e710d5ead1c1db",
+        "canonical_sha256_current": "1d39eb50db160f62cfe259bf03550b804304494be9c145b809e710d5ead1c1db",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F09",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/56",
+        "canonical_sha256_at_approval": "311826594036b5f80ed3e136158cd4165acf2296f86a7ab1db4fee56c0d921bc",
+        "canonical_sha256_current": "311826594036b5f80ed3e136158cd4165acf2296f86a7ab1db4fee56c0d921bc",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F09",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/56",
+        "canonical_sha256_at_approval": "dc76fe387cf0c4b5da29af5c7137efcb95878bf06fa94d31a778ad5b8a48191a",
+        "canonical_sha256_current": "dc76fe387cf0c4b5da29af5c7137efcb95878bf06fa94d31a778ad5b8a48191a",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F10",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/57",
+        "canonical_sha256_at_approval": "78df3ad5f18a544d088f34a17ba2682c79f684050fc16107b8431fb12bc4bf8f",
+        "canonical_sha256_current": "78df3ad5f18a544d088f34a17ba2682c79f684050fc16107b8431fb12bc4bf8f",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F10",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/57",
+        "canonical_sha256_at_approval": "2df4d5d88a8a168a0a06dc6d3135a329a9d8fa9973a57c7dc32e549e32e41bf1",
+        "canonical_sha256_current": "2df4d5d88a8a168a0a06dc6d3135a329a9d8fa9973a57c7dc32e549e32e41bf1",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F11",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/58",
+        "canonical_sha256_at_approval": "51b83037dc4032e6c619b04899a28f0c539b4350ee73994587868376011795f2",
+        "canonical_sha256_current": "51b83037dc4032e6c619b04899a28f0c539b4350ee73994587868376011795f2",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F11",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/58",
+        "canonical_sha256_at_approval": "2551faa3bd9f7e4d0a2265f9380fef69b67c0f63eec2a747abb007d840c919d2",
+        "canonical_sha256_current": "2551faa3bd9f7e4d0a2265f9380fef69b67c0f63eec2a747abb007d840c919d2",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-F12",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/59",
+        "canonical_sha256_at_approval": "df6488fe8c50a75a765a7d74fcd7e6b22a91a77c060f63e521954eeaf8654692",
+        "canonical_sha256_current": "df6488fe8c50a75a765a7d74fcd7e6b22a91a77c060f63e521954eeaf8654692",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-F12",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/59",
+        "canonical_sha256_at_approval": "56ab5a75e676ed0cd0a149180998b5b9011f06bdda74c742de4fd044adf3a23e",
+        "canonical_sha256_current": "56ab5a75e676ed0cd0a149180998b5b9011f06bdda74c742de4fd044adf3a23e",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L3-027-N01",
+        "kind": "requirement",
+        "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/requirements/9",
+        "canonical_sha256_at_approval": "f7c368c917bddd9558b8d9a4d5ef10ae3e9d6a4753db069307e2e535a65ddb38",
+        "canonical_sha256_current": "f7c368c917bddd9558b8d9a4d5ef10ae3e9d6a4753db069307e2e535a65ddb38",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      },
+      {
+        "id": "HELIXOS-L10-027-N01",
+        "kind": "oracle",
+        "path": "docs/helix-os/L10-verification/nfr-verification.json",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "json_pointer": "/cases/9",
+        "canonical_sha256_at_approval": "baf9fc9bca2210b37b4eb4fb921e2f35b5c25c68eefe62c04031147fa90e7a6b",
+        "canonical_sha256_current": "baf9fc9bca2210b37b4eb4fb921e2f35b5c25c68eefe62c04031147fa90e7a6b",
+        "required_join": "exact_oracle_ref_requirement_ref_parent"
+      }
+    ]
+  },
+  "l4_source_binding": {
+    "path": "docs/helix-os/L4-basic-design/limited-first-worker-cycle.json",
+    "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+    "sha256": "69539b504c0e0ea9287b78862e20f115a97c8fa626df0cbeab9d167c24198acb",
+    "canonical_whole_sha256": "2cc2827bf65a9a71cd738bf8a5ffdb99aeed6f3d4ca1965cc8fc37c578695217"
+  },
+  "l9_source_binding": {
+    "path": "docs/helix-os/L9-integration-verification/limited-first-worker-cycle.json",
+    "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+    "sha256": "a1b3ebf677e337016ae112895cbf1197342d1d617b91552702e2dbcc6522727e",
+    "canonical_whole_sha256": "496e740605800118a10e5b8adfdfc589cd6445e79191c6f6c9ee76ed46b78e46"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "quote_locator": "RLO-FR-040, lines 663-666",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "preserve": "未評価値を推測しない。score単独でscope/branch/assignment/merge authorityを変更しない。",
+      "change": "限定初回の材料対応と段階別引渡しを追加。旧runtime/provider/fixed effortを移植しない。",
+      "reuse": "semantic_rederive",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "source_revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "source": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "quote_locator": "RLO-AC-030, line 43",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "preserve": "未評価Workerのeffortを推測値にしない。",
+      "change": "旧受入はsource basisのみ。実行済み証拠にしない。",
+      "reuse": "semantic_rederive",
+      "read_lines": [
+        43,
+        43
+      ],
+      "quote": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |",
+      "selected_lines_sha256": "33c38a11d5a1734c4530e0f8c308f4b9b7e96509ffdd8d32dfdb92774e95af1c",
+      "source_revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171"
+    }
+  ],
+  "legacy_failure_consumer_reading": {
+    "asset_ledger": "docs/governance/legacy-asset-disposition.jsonl",
+    "reuse_control": "docs/governance/legacy-asset-reuse-control.md",
+    "consumer": "旧HIL-BR-31/FR-61/62/63/NFR-35およびHOT-HIL-54/55は保持。OS027単独で共通consumer完了を生成しない。",
+    "failure_return": "開始authority/classificationは各owner、task/proposal receiptはOS/INTELLIGENCE、Bench evidenceはLABO、resource stateはINFRASTRUCTURE、verification/oracleはHARNESSへ戻す。実recipient資格は未確認。",
+    "l2_l11_sources": [
+      "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-027",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-027"
+    ],
+    "old_failure_basis": "RLO-AC-030のeffort推測とscore単独の権限変更拒否を保持する。現行の不足はL2 OS027 failure-returnに従い各facetへ戻す。旧受入はsourceであり実行済み証拠ではない。"
+  },
+  "formal_types": {
+    "JSONValue": {
+      "kind": "recursive_union",
+      "variants": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array<JSONValue>",
+        "object<string,JSONValue>"
+      ],
+      "number": "任意精度の有限JSON number。十進数値として厳密比較しbinary64の範囲/精度制限を導入しない。booleanは別kind。",
+      "object_order": "member順は意味を持たない。",
+      "array_order": "要素順を保持して比較する。"
+    },
+    "Presence": {
+      "kind": "tagged_union",
+      "variants": {
+        "absent": {},
+        "present_null": {
+          "value": "null"
+        },
+        "present_value": {
+          "value": "JSONValue excluding null"
+        }
+      }
+    },
+    "CycleInput": {
+      "kind": "record_with_tagged_presence_members",
+      "members": {
+        "phase": "Presence<JSONValue>",
+        "binding": "Presence<JSONValue>",
+        "groups": "Presence<JSONValue>",
+        "claims": "Presence<JSONValue>",
+        "context": "Presence<JSONValue>"
+      },
+      "exact_members_only": true,
+      "unknown_members": "宣言された5member以外はこの有限logical input domainの対象外。元資料rawはsource側に保持し、不明propertyの成功投影を定義しない。",
+      "omitted_member": "Absent",
+      "explicit_null": "present_null",
+      "meaning_ja": "raw top-level memberを一律object/array/string等へ絞らない。L4のdomain guard前に型不正を例外化せず、対象ruleのunknown/violationとして診断する。正式wire schemaではない。",
+      "fixed_member_set": [
+        "phase",
+        "binding",
+        "groups",
+        "claims",
+        "context"
+      ],
+      "extra_members": "有限logical input domain外。unknown propertyの成功投影は定義しない。"
+    },
+    "Finding": {
+      "kind": "record",
+      "required_fields": {
+        "code": "DiagnosticCode",
+        "pointer": "JSONPointer",
+        "return_owner": "LogicalReturnOwner"
+      },
+      "exact_members_only": true
+    },
+    "FacetState": {
+      "kind": "closed_enum",
+      "values": [
+        "corresponding",
+        "unknown",
+        "violation",
+        "not_applicable"
+      ]
+    },
+    "CycleCondition": {
+      "kind": "closed_enum",
+      "values": [
+        "cycle_material_corresponding",
+        "cycle_material_unknown",
+        "cycle_material_violation"
+      ]
+    },
+    "DiagnosticCode": {
+      "kind": "closed_enum",
+      "values": [
+        "budget_exceeded",
+        "claim_unknown",
+        "classification_forbidden",
+        "classification_unknown",
+        "credential_required",
+        "deadline_exceeded",
+        "evaluation_basis_unproven",
+        "field_conflict",
+        "field_unknown",
+        "forbidden_claim",
+        "group_missing",
+        "human_role_forbidden",
+        "human_role_unknown",
+        "isolation_fallback_forbidden",
+        "network_mode_conflict",
+        "network_mode_unknown",
+        "numeric_conflict",
+        "numeric_unknown",
+        "origin_conflict",
+        "origin_unknown",
+        "performance_conflict",
+        "performance_unknown",
+        "phase_conflict",
+        "phase_unknown",
+        "proposal_origin_forged",
+        "required_flag_refused",
+        "required_flag_unknown",
+        "result_conflict",
+        "result_unknown",
+        "run_limit_violation",
+        "run_state_conflict",
+        "run_state_unknown",
+        "self_confirmation_forbidden",
+        "set_conflict",
+        "set_unknown"
+      ]
+    },
+    "JSONPointer": {
+      "kind": "string",
+      "format": "actual/contextを含むraw rootからのRFC6901 JSON Pointer。"
+    },
+    "LogicalReturnOwner": {
+      "kind": "finite_enum",
+      "values": [
+        "binding-source-owner",
+        "start-source-owner",
+        "proposal-source-owner",
+        "assets-source-owner",
+        "credential-source-owner",
+        "egress-source-owner",
+        "isolation-source-owner",
+        "authority-source-owner",
+        "reversibility-source-owner",
+        "assignment-source-owner",
+        "run-source-owner",
+        "selection_trace-source-owner",
+        "output-source-owner",
+        "verification-source-owner",
+        "human_result-source-owner",
+        "handoff-source-owner",
+        "observation-source-owner",
+        "evaluation-source-owner",
+        "boundary-source-owner"
+      ]
+    },
+    "FacetMap": {
+      "kind": "record",
+      "required_fields": {
+        "binding": "FacetState",
+        "start": "FacetState",
+        "proposal": "FacetState",
+        "assets": "FacetState",
+        "credential": "FacetState",
+        "egress": "FacetState",
+        "isolation": "FacetState",
+        "authority": "FacetState",
+        "reversibility": "FacetState",
+        "assignment": "FacetState",
+        "run": "FacetState",
+        "selection_trace": "FacetState",
+        "output": "FacetState",
+        "verification": "FacetState",
+        "human_result": "FacetState",
+        "handoff": "FacetState",
+        "observation": "FacetState",
+        "evaluation": "FacetState",
+        "boundary": "FacetState"
+      }
+    },
+    "CycleProposal": {
+      "kind": "record",
+      "exact_members_only": true,
+      "required_fields": {
+        "condition": "CycleCondition",
+        "phase": "JSONValue|null",
+        "facet_correspondence": "FacetMap",
+        "start_material_supported": "boolean",
+        "performance_state": "JSONValue|null",
+        "run_state": "JSONValue|null",
+        "verification_result": "JSONValue|null",
+        "human_result": "JSONValue|null",
+        "observation_result": "JSONValue|null",
+        "evaluation_result": "JSONValue|null",
+        "scoped_evaluation_material": "boolean",
+        "stop_material_required": "boolean",
+        "retained_actual": "JSONValue",
+        "retained_reference": "JSONValue",
+        "findings": "array<Finding>",
+        "actual_assignment_created": {
+          "literal": false
+        },
+        "actual_Worker_run": {
+          "literal": false
+        },
+        "actual_verified": {
+          "literal": false
+        },
+        "actual_LABO_received": {
+          "literal": false
+        },
+        "actual_evaluated": {
+          "literal": false
+        },
+        "whole_cycle_complete": {
+          "literal": false
+        },
+        "operation_effect": {
+          "literal": "none"
+        }
+      }
+    },
+    "ComparisonFacetMarker": {
+      "kind": "metadata_only",
+      "value": "comparison",
+      "meaning": "code分類のメタ値。出力FacetMapのkeyではなくcheckのfacetへ解決してから返す。"
+    }
+  },
+  "functions": [
+    {
+      "id": "OS027-FN-EVALUATE-CYCLE",
+      "signature": "evaluate_cycle(input: CycleInput) -> CycleProposal",
+      "pure": true,
+      "reads": "formal_programs[OS027-EVAL-1]で宣言されたroot pathと、そのrule rowに列挙したmembersのみ",
+      "returns": "CycleProposalの22 fieldsを全て構成。raw inputからの算出値とretained raw projectionを分離。",
+      "preconditions": [
+        "JSONValue rootはobject。宣言memberは個別L4規則のdomain検査までAbsent/nullを含むJSON値のまま保持する。",
+        "ネスト値の非object/非array/非bool/非stringは宣言した診断へ結び、runtime例外へしない。"
+      ],
+      "postconditions": [
+        "入力を変更しない",
+        "case id / label / expected_proposal / oracle_refを計算入力として読まない",
+        "authority/実qualification/provider/実操作/receiptを生成しない",
+        "future groupsは保持して判定対象にしない"
+      ]
+    }
+  ],
+  "formal_programs": [
+    {
+      "program_id": "OS027-EVAL-1",
+      "source_contracts": [
+        "HELIXOS-L4-027-F01",
+        "HELIXOS-L4-027-F02",
+        "HELIXOS-L4-027-F03",
+        "HELIXOS-L4-027-F04",
+        "HELIXOS-L4-027-F05",
+        "HELIXOS-L4-027-F06",
+        "HELIXOS-L4-027-F07",
+        "HELIXOS-L4-027-F08",
+        "HELIXOS-L4-027-F09",
+        "HELIXOS-L4-027-F10",
+        "HELIXOS-L4-027-F11",
+        "HELIXOS-L4-027-F12",
+        "HELIXOS-L4-027-N01",
+        "HELIXOS-L4-027-B01"
+      ],
+      "signature": "evaluate_cycle(input: CycleInput) -> CycleProposal",
+      "rule_data": [
+        {
+          "id": "R01",
+          "applies": "L4 R01の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "compare": "known_nonempty_string(actual,context)",
+          "fields_ref": "/formal_programs/0/binding_fields",
+          "group_binding": "選択groupのbindingをcontext同group、その後context共通bindingへ照合。",
+          "witness_ref": "/formal_programs/0/witness_fields",
+          "string_fields_ref": "/formal_programs/0/string_fields",
+          "supported_rule": "両側trueのみ対応。known falseは実false側のrequired_flag_refused、known falseがない非booleanはrequired_flag_unknown。",
+          "effects": {
+            "unknown": "field_unknown",
+            "conflict": "field_conflict",
+            "unsupported": "required_flag_refused",
+            "unsupported_unknown": "required_flag_unknown"
+          },
+          "source_pointer": "/diagnostic_contract/rules/0",
+          "source_rule_text": "binding各15fieldはactual/contextの非空stringを比較する。非string/空値は当該側field_unknown、両側knownの差はactual field_conflict。各active groupのbindingはcontext同groupへ比較し、context共通bindingへもjoinする。source witness各4fieldとgroup string_fieldsも同じ比較。supportedは両側trueのみ対応し、falseはrequired_flag_refused、非boolはrequired_flag_unknown。参照stringの存在はowner資格や実環境適用の証明ではない。"
+        },
+        {
+          "id": "R02",
+          "applies": "L4 R02の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "phase_domain": [
+            "prepare",
+            "run",
+            "verify",
+            "handoff",
+            "evaluate"
+          ],
+          "group_projection_ref": "/formal_programs/0/active_group_projection",
+          "group_required": "actual/context両groupがobjectのときだけ評価。不成立側はgroup_missing。",
+          "future_group": "未来groupは保持のみで評価しない。",
+          "source_pointer": "/diagnostic_contract/rules/1",
+          "source_rule_text": "phaseはprepare/run/verify/handoff/evaluate。両側の集合外はphase_unknown、known差はactual phase_conflict。適用groupはactual known phaseだけから決める。両側dictのgroupだけR01と以後の固有規則を評価し、非dict側はgroup_missing。未来groupは入力を保持するだけで判定しない。outputが片側非dictならstop_material_required=true。成果値の採用も両側dictの場合に限る。",
+          "phase_paths": [
+            "/phase",
+            "/context/phase"
+          ],
+          "group_paths": [
+            "/groups/{group}",
+            "/context/groups/{group}"
+          ],
+          "phase_unknown_code": "phase_unknown",
+          "phase_conflict_code": "phase_conflict",
+          "phase_facet": "boundary",
+          "group_missing_code": "group_missing"
+        },
+        {
+          "id": "R03",
+          "applies": "L4 R03の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "performance_domain": [
+            "unevaluated",
+            "evaluated_material"
+          ],
+          "numeric_fields": [
+            "budget_limit",
+            "deadline"
+          ],
+          "numeric_predicate": "任意精度の有限JSON numberかつ正。booleanを除外。",
+          "human_plan_confirmed": true,
+          "clock_ref_domain": "string_including_empty",
+          "unevaluated_is_failure": false,
+          "source_pointer": "/diagnostic_contract/rules/2",
+          "source_rule_text": "start.performance_stateはunevaluated/evaluated_materialのclosed値。不明側performance_unknown、known差performance_conflict。performance_stateは両側dict時のactual known値かnull。unevaluated単独を不足にしない。human_plan_confirmedは両側true、clock_refはstring比較。budget_limit/deadlineは有限・bool以外の正の数を両側に要求し、不正側numeric_unknown、両側正の数の差numeric_conflict。値10/100はfixtureだけで、共通閾値を定めない。",
+          "checks": [
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/start/performance_state",
+                "/context/groups/start/performance_state"
+              ],
+              "values": [
+                "unevaluated",
+                "evaluated_material"
+              ],
+              "unknown": "performance_unknown",
+              "conflict": "performance_conflict",
+              "facet": "start",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "positive_number_pair",
+              "fields": [
+                "budget_limit",
+                "deadline"
+              ],
+              "root": "/groups/start",
+              "reference": "/context/groups/start",
+              "unknown": "numeric_unknown",
+              "conflict": "numeric_conflict",
+              "facet": "start",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "required_true_pair",
+              "paths": [
+                "/groups/start/human_plan_confirmed",
+                "/context/groups/start/human_plan_confirmed"
+              ],
+              "unknown": "required_flag_unknown",
+              "facet": "start",
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "string_pair",
+              "paths": [
+                "/groups/start/clock_ref",
+                "/context/groups/start/clock_ref"
+              ],
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "start",
+              "domain": "string",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R04",
+          "applies": "L4 R04の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "origin_domain": [
+            "human",
+            "INTELLIGENCE"
+          ],
+          "origin_compare": [
+            "origin",
+            "asserted_origin"
+          ],
+          "join_paths": [
+            "/groups/proposal/input_revision",
+            "/binding/input_revision",
+            "/groups/proposal/task_id",
+            "/binding/task_id",
+            "/groups/proposal/scope",
+            "/binding/scope"
+          ],
+          "assignment_effect": false,
+          "source_pointer": "/diagnostic_contract/rules/3",
+          "source_rule_text": "proposal.origin/asserted_originはhuman/INTELLIGENCE。不明側の各fieldへorigin_unknown。origin known差はorigin_conflict、actual originとactual asserted_originのknown差はproposal_origin_forged。input_revision/task_id/scopeはcontext共通bindingへjoinする。source/actor/contract/input/根拠/未評価/OS受領を保存し、案からOS assignmentを作らない。",
+          "checks": [
+            {
+              "op": "enum_member_pairs",
+              "fields": [
+                "origin",
+                "asserted_origin"
+              ],
+              "root": "/groups/proposal",
+              "reference": "/context/groups/proposal",
+              "values": [
+                "human",
+                "INTELLIGENCE"
+              ],
+              "unknown": "origin_unknown",
+              "conflict": "origin_conflict",
+              "facet": "proposal",
+              "compare_fields": [
+                "origin"
+              ],
+              "domain_only_fields": [
+                "asserted_origin"
+              ],
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "actual_pair_difference",
+              "paths": [
+                "/groups/proposal/origin",
+                "/groups/proposal/asserted_origin"
+              ],
+              "when": "both known and different",
+              "code": "proposal_origin_forged",
+              "facet": "proposal",
+              "known_values": [
+                "human",
+                "INTELLIGENCE"
+              ],
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "join_binding_fields",
+              "pairs": [
+                [
+                  "/groups/proposal/input_revision",
+                  "/binding/input_revision",
+                  "/context/binding/input_revision"
+                ],
+                [
+                  "/groups/proposal/task_id",
+                  "/binding/task_id",
+                  "/context/binding/task_id"
+                ],
+                [
+                  "/groups/proposal/scope",
+                  "/binding/scope",
+                  "/context/binding/scope"
+                ]
+              ],
+              "conflict": "field_conflict",
+              "facet": "proposal",
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              },
+              "unknown": "field_unknown"
+            }
+          ]
+        },
+        {
+          "id": "R05",
+          "applies": "L4 R05の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "container_domain": "object",
+          "keys": "exact set equality",
+          "asset_fields_ref": "/formal_programs/0/asset_fields",
+          "authority_fields_ref": "/formal_programs/0/authority_fields",
+          "required_flags": [
+            "/groups/assets/records/*/classified",
+            "/groups/assets/records/*/data_use_allowed",
+            "/groups/authority/permissions/*/allowed"
+          ],
+          "empty_set_proves_manifest_complete": false,
+          "source_pointer": "/diagnostic_contract/rules/4",
+          "source_rule_text": "assets/outputのrecordsとauthority.permissionsは両側dictを要求。不明側set_unknown、両側dictのkey集合差set_conflict。共通keyのasset_fields/authority_fieldsをstring比較する。資産のclassified/data_use_allowedと許可のallowedは両側trueのみ対応する。空集合同士から全資産・全操作の列挙完全性は証明できず、正式manifest資格・全集合解決は未成立として残す。 output.recordsのplanned_asset_keyも両側非空stringを比較し、未知/差異はfield_unknown/field_conflictで出力facetへ返す。",
+          "checks": [
+            {
+              "op": "record_set_pair",
+              "containers": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "unknown": "set_unknown",
+              "conflict": "set_conflict",
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_set_pair",
+              "containers": [
+                "/groups/output/records",
+                "/context/groups/output/records"
+              ],
+              "unknown": "set_unknown",
+              "conflict": "set_conflict",
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_set_pair",
+              "containers": [
+                "/groups/authority/permissions",
+                "/context/groups/authority/permissions"
+              ],
+              "unknown": "set_unknown",
+              "conflict": "set_conflict",
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_fields",
+              "containers": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "fields_ref": "asset_fields",
+              "exclude": [
+                "classified",
+                "data_use_allowed"
+              ],
+              "domain": "nonempty_string",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_fields",
+              "containers": [
+                "/groups/output/records",
+                "/context/groups/output/records"
+              ],
+              "fields_ref": "asset_fields",
+              "exclude": [
+                "classified",
+                "data_use_allowed"
+              ],
+              "domain": "nonempty_string",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "output",
+              "fields": [
+                "asset_id",
+                "owner_ref",
+                "source_ref",
+                "source_revision",
+                "source_digest",
+                "classification_ref",
+                "classification",
+                "data_use_ref",
+                "planned_output_scope",
+                "planned_asset_key"
+              ],
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_fields",
+              "containers": [
+                "/groups/authority/permissions",
+                "/context/groups/authority/permissions"
+              ],
+              "fields_ref": "authority_fields",
+              "exclude": [
+                "allowed"
+              ],
+              "domain": "nonempty_string",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_boolean_true",
+              "containers": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "fields": [
+                "classified",
+                "data_use_allowed"
+              ],
+              "unknown": "required_flag_unknown",
+              "false": "required_flag_refused",
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_boolean_true",
+              "containers": [
+                "/groups/output/records",
+                "/context/groups/output/records"
+              ],
+              "fields": [
+                "classified",
+                "data_use_allowed"
+              ],
+              "unknown": "required_flag_unknown",
+              "false": "required_flag_refused",
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_boolean_true",
+              "containers": [
+                "/groups/authority/permissions",
+                "/context/groups/authority/permissions"
+              ],
+              "fields": [
+                "allowed"
+              ],
+              "unknown": "required_flag_unknown",
+              "false": "required_flag_refused",
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R06",
+          "applies": "L4 R06の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "forbidden_classifications": [
+            "unknown",
+            "secret",
+            "HELIX-restricted"
+          ],
+          "unknown_classes": [
+            "absent",
+            "null",
+            "empty string"
+          ],
+          "other_class": "両側の文字列を厳密照合し、新しい分類語彙を作らない。",
+          "planned_scope_join": "context.binding.scope",
+          "output_key": "各output.recordsのliteral member keyにあるplanned_asset_keyを、literal asset.records keyへ解決する。dotをpathへ解釈しない。",
+          "output_scope": "actual生成物のclassificationとplanned_output_scopeを独立予定資産へ照合。",
+          "diagnostic_stops_handoff": true,
+          "source_pointer": "/diagnostic_contract/rules/5",
+          "source_rule_text": "各資産のclassificationは両側でunknown/null/空値をclassification_unknown、secret/HELIX-restrictedをclassification_forbiddenとする。その他のstringは独立参照との一致とclassified/data_use_allowedを照合し、新しい分類語彙を定めない。actual planned_output_scopeをcontext共通scopeへjoinする。outputのplanned_asset_keyを両側string比較し、actual keyでcontext assets.recordsの予定資産を参照する。参照集合/key不明はoutput set_unknown、解決したclassification/planned_output_scopeへactual生成物をstring比較する。output内の全診断は受渡し停止材料を返す。観測側も同分類へ改変された場合であっても事前予定との差を検出する。任意の複数予定物の正式関係型はL5へ残す。",
+          "checks": [
+            {
+              "op": "record_classification",
+              "containers": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "field": "classification",
+              "unknown_values": [
+                "unknown",
+                null,
+                ""
+              ],
+              "forbidden_values": [
+                "secret",
+                "HELIX-restricted"
+              ],
+              "unknown": "classification_unknown",
+              "forbidden": "classification_forbidden",
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "record_classification",
+              "containers": [
+                "/groups/output/records",
+                "/context/groups/output/records"
+              ],
+              "field": "classification",
+              "unknown_values": [
+                "unknown",
+                null,
+                ""
+              ],
+              "forbidden_values": [
+                "secret",
+                "HELIX-restricted"
+              ],
+              "unknown": "classification_unknown",
+              "forbidden": "classification_forbidden",
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "planned_scope_join",
+              "records": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "field": "planned_output_scope",
+              "scope_paths": [
+                "/binding/scope",
+                "/context/binding/scope"
+              ],
+              "unknown": "set_unknown",
+              "conflict": "field_conflict",
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "output_asset_key_join",
+              "output_records": [
+                "/groups/output/records",
+                "/context/groups/output/records"
+              ],
+              "asset_records": [
+                "/groups/assets/records",
+                "/context/groups/assets/records"
+              ],
+              "key_field": "planned_asset_key",
+              "field_order": [
+                "classification",
+                "data_use_ref",
+                "data_use_allowed",
+                "planned_output_scope"
+              ],
+              "unknown": "set_unknown",
+              "conflict": "field_conflict",
+              "facet": "output",
+              "stop": true,
+              "delegate_fields": [
+                "data_use_allowed"
+              ],
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
+            }
+          ],
+          "multiple_planned_relations": "未供給関係の詳細はL5 /unclosed_planned_output_relationsへ。有限joinを全関係義務の完成としない。"
+        },
+        {
+          "id": "R07",
+          "applies": "L4 R07の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "required_pair": {
+            "actual": false,
+            "context": false
+          },
+          "true_code": "credential_required",
+          "unknown_code": "required_flag_unknown",
+          "blocked_access_ref_compare": true,
+          "reference_proves_actual_blocking": false,
+          "source_pointer": "/diagnostic_contract/rules/6",
+          "source_rule_text": "credential_requiredは両側false。trueはcredential_required、非boolはrequired_flag_unknown。blocked_access_refとsource witnessを照合する。参照存在で実遮断を認定せず、実資格/適用/raw secret排除は別の実証を要する。",
+          "checks": [
+            {
+              "op": "required_false_pair",
+              "paths": [
+                "/groups/credential/credential_required",
+                "/context/groups/credential/credential_required"
+              ],
+              "true": "credential_required",
+              "unknown": "required_flag_unknown",
+              "facet": "credential",
+              "activation": {
+                "group": "credential",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R08",
+          "applies": "L4 R08の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "mode_domain": [
+            "none",
+            "allowlisted"
+          ],
+          "allowlist_fields_ref": "/formal_programs/0/network_fields",
+          "compare_allowlist_only_when_actual_mode_allowlisted": true,
+          "none_requires_allowlist": false,
+          "retry_required_pair": {
+            "actual": false,
+            "context": false
+          },
+          "source_pointer": "/diagnostic_contract/rules/7",
+          "source_rule_text": "egress.modeはnone/allowlisted。集合外はnetwork_mode_unknown、known差network_mode_conflict。両側dictかつactual allowlistedだけallowlist_refとnetwork_fieldsをstring比較する。noneには通信先やallowlist参照を要求しない。default_deny_refとsource/bindingは両modeで比較。unconfirmed_retryは両側false、trueはrequired_flag_refused、非boolはrequired_flag_unknown。",
+          "checks": [
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/egress/mode",
+                "/context/groups/egress/mode"
+              ],
+              "values": [
+                "none",
+                "allowlisted"
+              ],
+              "unknown": "network_mode_unknown",
+              "conflict": "network_mode_conflict",
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "conditional_record_fields",
+              "when_path": "/groups/egress/mode",
+              "when_value": "allowlisted",
+              "fields_ref": "network_fields",
+              "root": "/groups/egress/network",
+              "reference": "/context/groups/egress/network",
+              "domain": "nonempty_string",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "required_false_pair",
+              "paths": [
+                "/groups/egress/unconfirmed_retry",
+                "/context/groups/egress/unconfirmed_retry"
+              ],
+              "true": "required_flag_refused",
+              "unknown": "required_flag_unknown",
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R09",
+          "applies": "L4 R09の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "host_fallback_required_pair": {
+            "actual": false,
+            "context": false
+          },
+          "true_code": "isolation_fallback_forbidden",
+          "unsupported_code": "required_flag_unknown",
+          "references_ref": "/formal_programs/0/string_fields.isolation",
+          "references_prove_applied_controls": false,
+          "source_pointer": "/diagnostic_contract/rules/8",
+          "source_rule_text": "isolation.host_fallbackは両側false。trueはisolation_fallback_forbidden、非boolはrequired_flag_unknown。各隔離/制約参照とsupportedをR01で照合。実適用/unsupported/credential・network・環境・回収等の各実制約の資格はこの素材比較から生成しない。",
+          "checks": [
+            {
+              "op": "required_false_pair",
+              "paths": [
+                "/groups/isolation/host_fallback",
+                "/context/groups/isolation/host_fallback"
+              ],
+              "true": "isolation_fallback_forbidden",
+              "unknown": "required_flag_unknown",
+              "facet": "isolation",
+              "activation": {
+                "group": "isolation",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R10",
+          "applies": "L4 R10の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "authority_fields_ref": "/formal_programs/0/authority_fields",
+          "operation_permissions": "全entryをR05の宣言fieldで比較する。",
+          "environment_scope_join": [
+            "/groups/authority/permissions/*/environment_id",
+            "/binding/environment_id",
+            "/groups/authority/permissions/*/scope",
+            "/binding/scope"
+          ],
+          "reversible_pair": {
+            "actual": true,
+            "context": true
+          },
+          "irreversible_effect_pair": {
+            "actual": false,
+            "context": false
+          },
+          "assignment_owner_kind": "OS only",
+          "source_pointer": "/diagnostic_contract/rules/9",
+          "source_rule_text": "authorityは各列挙操作の全authority_fieldsとallowedをR05照合し、actual environment_id/scopeをcontext共通bindingへjoinする。reversibility.reversibleは両側true、irreversible_external_effectは両側false（trueはrequired_flag_refused、非boolはrequired_flag_unknown）。復旧前状態/手段/先の参照を照合し、実取消成功とはしない。assignment.owner_kindは両側非空stringならOSだけ対応、他known値field_conflict、不明field_unknown。",
+          "checks": [
+            {
+              "op": "record_fields",
+              "containers": [
+                "/groups/authority/permissions",
+                "/context/groups/authority/permissions"
+              ],
+              "fields_ref": "authority_fields",
+              "exclude": [
+                "allowed"
+              ],
+              "domain": "nonempty_string",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "join_binding_fields",
+              "pairs": [
+                [
+                  "/groups/authority/permissions/*/environment_id",
+                  "/binding/environment_id",
+                  "/context/binding/environment_id"
+                ],
+                [
+                  "/groups/authority/permissions/*/scope",
+                  "/binding/scope",
+                  "/context/binding/scope"
+                ]
+              ],
+              "conflict": "field_conflict",
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              },
+              "unknown": "field_unknown"
+            },
+            {
+              "op": "required_true_pair",
+              "paths": [
+                "/groups/reversibility/reversible",
+                "/context/groups/reversibility/reversible"
+              ],
+              "unknown": "required_flag_unknown",
+              "facet": "reversibility",
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "reversibility",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "required_false_pair",
+              "paths": [
+                "/groups/reversibility/irreversible_external_effect",
+                "/context/groups/reversibility/irreversible_external_effect"
+              ],
+              "true": "required_flag_refused",
+              "unknown": "required_flag_unknown",
+              "facet": "reversibility",
+              "activation": {
+                "group": "reversibility",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "nonempty_string_pair_with_required_value",
+              "paths": [
+                "/groups/assignment/owner_kind",
+                "/context/groups/assignment/owner_kind"
+              ],
+              "required_value": "OS",
+              "unknown": "field_unknown",
+              "conflict": "field_conflict",
+              "facet": "assignment",
+              "activation": {
+                "group": "assignment",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R11",
+          "applies": "L4 R11の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "run_domain": [
+            "success",
+            "failed",
+            "denied",
+            "interrupted",
+            "unknown"
+          ],
+          "numeric_fields": [
+            "cumulative_cost",
+            "observed_time"
+          ],
+          "numeric_predicate": "任意精度の有限JSON numberかつ非負。booleanを除外。",
+          "compare_actual_usage_against": "actual/context startが両方objectの場合に限りcontext startのknown数値予算/期限へ比較する。",
+          "excess_codes": [
+            "budget_exceeded",
+            "deadline_exceeded"
+          ],
+          "stop_flags": [
+            "scope_changed",
+            "verification_missing"
+          ],
+          "preserve_partial_unfinished_resume": true,
+          "normal_result_filter": false,
+          "source_pointer": "/diagnostic_contract/rules/10",
+          "source_rule_text": "run.stateはsuccess/failed/denied/interrupted/unknown。集合外はrun_state_unknown、known差run_state_conflict。run_stateはactual known値かnull。actual cumulative_cost/observed_timeは有限・bool以外の非負数、不正はnumeric_unknown。actual/context startが両側dictのとき、actual値をcontext startの非負known予算/期限と比較し超過はbudget_exceeded/deadline_exceeded、stop_material_required=true。actual scope_changed/verification_missingはtrueでrun_limit_violationと停止材料、非boolはrequired_flag_unknown。選択traceを各fieldへ照合し、原記録・部分成果・未完・再開条件を保持する。正常結果だけを採用するfilterを置かない。contextのrun使用量/停止flagは独立予定閾値ではなく原参照として保存し、actual使用量をその値に等しいことは要求しない。",
+          "checks": [
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/run/state",
+                "/context/groups/run/state"
+              ],
+              "values": [
+                "success",
+                "failed",
+                "denied",
+                "interrupted",
+                "unknown"
+              ],
+              "unknown": "run_state_unknown",
+              "conflict": "run_state_conflict",
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "nonnegative_number_actual",
+              "paths": [
+                "/groups/run/cumulative_cost",
+                "/groups/run/observed_time"
+              ],
+              "unknown": "numeric_unknown",
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "exceeds_limit",
+              "actual": "/groups/run/cumulative_cost",
+              "limit": "/context/groups/start/budget_limit",
+              "code": "budget_exceeded",
+              "facet": "run",
+              "requires_objects": [
+                "/groups/start",
+                "/context/groups/start"
+              ],
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "exceeds_limit",
+              "actual": "/groups/run/observed_time",
+              "limit": "/context/groups/start/deadline",
+              "code": "deadline_exceeded",
+              "facet": "run",
+              "requires_objects": [
+                "/groups/start",
+                "/context/groups/start"
+              ],
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "required_false_actual",
+              "paths": [
+                "/groups/run/scope_changed"
+              ],
+              "true": "run_limit_violation",
+              "unknown": "required_flag_unknown",
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "required_false_actual",
+              "paths": [
+                "/groups/run/verification_missing"
+              ],
+              "true": "run_limit_violation",
+              "unknown": "required_flag_unknown",
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R12",
+          "applies": "L4 R12の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "domains": {
+            "verification": [
+              "verified_material",
+              "failed_material",
+              "unobserved"
+            ],
+            "human_result": [
+              "confirmed_material",
+              "rejected_material",
+              "unobserved"
+            ],
+            "observation": [
+              "received_material",
+              "rejected_material",
+              "unobserved"
+            ],
+            "evaluation": [
+              "evaluated_material",
+              "unevaluated",
+              "inapplicable",
+              "unknown"
+            ]
+          },
+          "unknown_code": "result_unknown",
+          "conflict_code": "result_conflict",
+          "output_actual_known_or_null": true,
+          "source_pointer": "/diagnostic_contract/rules/11",
+          "source_rule_text": "verification.resultはverified_material/failed_material/unobserved、human_result.resultはconfirmed_material/rejected_material/unobserved、observation.resultはreceived_material/rejected_material/unobserved、evaluation.resultはevaluated_material/unevaluated/inapplicable/unknown。不明側result_unknown、known差result_conflict。各返却値は両側dict時のactual known値かnull。unobserved等の明示状態を未知文字列と混同せず、保存することから実受入や実評価は生成しない。",
+          "checks": [
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/verification/result",
+                "/context/groups/verification/result"
+              ],
+              "values": [
+                "verified_material",
+                "failed_material",
+                "unobserved"
+              ],
+              "unknown": "result_unknown",
+              "conflict": "result_conflict",
+              "facet": "verification",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/human_result/result",
+                "/context/groups/human_result/result"
+              ],
+              "values": [
+                "confirmed_material",
+                "rejected_material",
+                "unobserved"
+              ],
+              "unknown": "result_unknown",
+              "conflict": "result_conflict",
+              "facet": "human_result",
+              "activation": {
+                "group": "human_result",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/observation/result",
+                "/context/groups/observation/result"
+              ],
+              "values": [
+                "received_material",
+                "rejected_material",
+                "unobserved"
+              ],
+              "unknown": "result_unknown",
+              "conflict": "result_conflict",
+              "facet": "observation",
+              "activation": {
+                "group": "observation",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "enum_pair",
+              "paths": [
+                "/groups/evaluation/result",
+                "/context/groups/evaluation/result"
+              ],
+              "values": [
+                "evaluated_material",
+                "unevaluated",
+                "inapplicable",
+                "unknown"
+              ],
+              "unknown": "result_unknown",
+              "conflict": "result_conflict",
+              "facet": "evaluation",
+              "activation": {
+                "group": "evaluation",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R13",
+          "applies": "L4 R13の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "verification_oracle_applied_pair": {
+            "actual": true,
+            "context": true
+          },
+          "verification_join": [
+            "applied_oracle_ref",
+            "binding.oracle_ref",
+            "applied_obligation_ref",
+            "binding.obligation_set_ref"
+          ],
+          "human_role_domain": "非空stringのhumanのみ対応。他のknown stringはforbidden、不明は各側unknown。",
+          "self_review": "actual人確認actor_refとactual binding.worker_idのknown同値を拒否する。",
+          "CI_success_from_reference": false,
+          "source_pointer": "/diagnostic_contract/rules/12",
+          "source_rule_text": "verificationはoracle_applied両側trueを照合し、applied_oracle_ref/applied_obligation_refをcontext共通oracle_ref/obligation_set_refへjoinする。human_result.roleは両側非空stringでhuman以外ならhuman_role_forbidden、不明はhuman_role_unknown。actual actor_refがactual worker_idとknown一致ならself_confirmation_forbidden。確認対象/時刻/未完、分担/CI利用参照を保存する。分担資料からOS020実装成功や実CI成功を作らない。",
+          "checks": [
+            {
+              "op": "required_true_pair",
+              "paths": [
+                "/groups/verification/oracle_applied",
+                "/context/groups/verification/oracle_applied"
+              ],
+              "unknown": "required_flag_unknown",
+              "facet": "verification",
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              }
+            },
+            {
+              "op": "join_binding_fields",
+              "pairs": [
+                [
+                  "/groups/verification/applied_oracle_ref",
+                  "/binding/oracle_ref",
+                  "/context/binding/oracle_ref"
+                ],
+                [
+                  "/groups/verification/applied_obligation_ref",
+                  "/binding/obligation_set_ref",
+                  "/context/binding/obligation_set_ref"
+                ]
+              ],
+              "conflict": "field_conflict",
+              "facet": "verification",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              },
+              "unknown": "field_unknown"
+            },
+            {
+              "op": "human_role_actor",
+              "role": "/groups/human_result/role",
+              "actor": "/groups/human_result/actor_ref",
+              "worker": "/binding/worker_id",
+              "unknown": "human_role_unknown",
+              "forbidden_role": "human_role_forbidden",
+              "self": "self_confirmation_forbidden",
+              "facet": "human_result",
+              "required_value": "human",
+              "context_prefix": "/context",
+              "activation": {
+                "group": "human_result",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R14",
+          "applies": "L4 R14の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "postrun_reference_fields": {
+            "handoff": [
+              "OS018_result_ref",
+              "OS019_evidence_ref",
+              "OS023_handoff_ref",
+              "candidate_provenance_ref"
+            ],
+            "observation": [
+              "LABO_receipt_ref",
+              "scope_ref"
+            ]
+          },
+          "evaluation_performed_pair_required_only_if_actual_result_evaluated_material": true,
+          "scoped_evaluation_condition": [
+            "actual phase == evaluate",
+            "actual evaluation.result == evaluated_material",
+            "no evaluation/binding/boundary finding"
+          ],
+          "formal_receipt_qualification": false,
+          "source_pointer": "/diagnostic_contract/rules/13",
+          "source_rule_text": "handoff/observationは実行後のOS018/019/023/LABO各参照と同bindingをR01で照合する。027 candidate provenanceと026構成導出を実行依存にしない。evaluationは固有全参照とsource/bindingを照合。actual result=evaluated_materialの場合だけoracle_applied/application_performedを両側true要求し、true以外はevaluation_basis_unproven。scoped_evaluation_materialはactual phase=evaluate、actual known evaluated_material、evaluation/binding/boundaryのfinding=0だけtrue。これは当該評価資料の対応であり、他groupの成功や全循環完了ではない。他groupの不足はfacetへ残し、正式receipt資格と実適用範囲の解決が成立するまで実評価済みへ昇格しない。",
+          "checks": [
+            {
+              "op": "evaluation_if_evaluated",
+              "result": "/groups/evaluation/result",
+              "flags": [
+                "/groups/evaluation/oracle_applied",
+                "/groups/evaluation/application_performed"
+              ],
+              "code": "evaluation_basis_unproven",
+              "facet": "evaluation",
+              "when_value": "evaluated_material",
+              "context_prefix": "/context",
+              "activation": {
+                "group": "evaluation",
+                "requires_both_group_objects": true
+              }
+            }
+          ]
+        },
+        {
+          "id": "R15",
+          "applies": "L4 R15の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "true_code": "forbidden_claim",
+          "false_code": null,
+          "nonboolean_code": "claim_unknown",
+          "does_not_assert_existing_owner_fact_false": true,
+          "source_pointer": "/diagnostic_contract/rules/14",
+          "source_rule_text": "claimsの各trueはforbidden_claim、false以外はclaim_unknown。既存ownerの事実を否定する意味ではなく、この文書照合を根拠に新しい許可/成立/依存/一般risk分類/全機構完成待ちを生成する主張を拒否する。境界の不足を個別に返す。",
+          "checks": [
+            {
+              "op": "claims",
+              "path": "/claims",
+              "true": "forbidden_claim",
+              "unknown": "claim_unknown",
+              "facet": "boundary",
+              "claim_names": [
+                "permission_from_candidate",
+                "assign_from_proposal",
+                "INT_output_from_human",
+                "evaluation_from_one_success",
+                "scope_or_authority_from_score",
+                "new_risk_classifier",
+                "all_mechanisms_required",
+                "OS020_required",
+                "OS026_self_dependency",
+                "OS027_LABO_dependency",
+                "future_receipt_used",
+                "budget_reset",
+                "safety_waived_by_human",
+                "result_from_unobserved",
+                "whole_cycle_complete"
+              ],
+              "domain": "closed_named_boolean_members",
+              "activation": {
+                "group": null,
+                "requires_both_group_objects": true
+              }
+            }
+          ],
+          "claim_names": [
+            "permission_from_candidate",
+            "assign_from_proposal",
+            "INT_output_from_human",
+            "evaluation_from_one_success",
+            "scope_or_authority_from_score",
+            "new_risk_classifier",
+            "all_mechanisms_required",
+            "OS020_required",
+            "OS026_self_dependency",
+            "OS027_LABO_dependency",
+            "future_receipt_used",
+            "budget_reset",
+            "safety_waived_by_human",
+            "result_from_unobserved",
+            "whole_cycle_complete"
+          ],
+          "meaning": "declared claimは候補比較から新許可/割当/評価/依存を生成する主張。既存のSEC許可・OS割当を否定しない。"
+        },
+        {
+          "id": "R16",
+          "applies": "L4 R16の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "facet_priority": [
+            "corresponding",
+            "unknown",
+            "violation"
+          ],
+          "condition_priority": [
+            "cycle_material_corresponding",
+            "cycle_material_unknown",
+            "cycle_material_violation"
+          ],
+          "start_material_supported": "actual phaseがknownで、binding/boundary/開始各active群の所見が0件のときだけ対応。",
+          "future_group_state": "not_applicable",
+          "finding_dedup_keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "finding_sort_keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "all_effect_flags": false,
+          "operation_effect": "none",
+          "stop_material_required_is_effect_only": false,
+          "source_pointer": "/diagnostic_contract/rules/15",
+          "source_rule_text": "facetはviolation>unknown>corresponding。binding/boundaryとactive groupはfindingなしならcorresponding、未来groupはnot_applicable。全体conditionはcycle_material_violation/cycle_material_unknown/cycle_material_corresponding。start_material_supportedはactual phase knownかつbinding/boundary/開始8groupのfinding=0だけtrue。後続記録不足から事前の資料対応を取り消さず、未来記録を開始gateにしない。actual/referenceをdeepcopyで保持。findingsはcode/pointer/return_ownerで重複除去して同3fieldの辞書順。return_ownerは固定facet名に-source-ownerを付した戻し先（正式owner資格ではない）。actual_assignment_created/actual_Worker_run/actual_verified/actual_LABO_received/actual_evaluated/whole_cycle_completeは全false、operation_effect=none。stop_material_requiredも実停止操作ではない。"
+        }
+      ],
+      "phase_order": [
+        "prepare",
+        "run",
+        "verify",
+        "handoff",
+        "evaluate"
+      ],
+      "active_group_projection": {
+        "prepare": [
+          "start",
+          "proposal",
+          "assets",
+          "credential",
+          "egress",
+          "isolation",
+          "authority",
+          "reversibility"
+        ],
+        "run": [
+          "start",
+          "proposal",
+          "assets",
+          "credential",
+          "egress",
+          "isolation",
+          "authority",
+          "reversibility",
+          "assignment",
+          "run",
+          "selection_trace",
+          "output"
+        ],
+        "verify": [
+          "start",
+          "proposal",
+          "assets",
+          "credential",
+          "egress",
+          "isolation",
+          "authority",
+          "reversibility",
+          "assignment",
+          "run",
+          "selection_trace",
+          "output",
+          "verification",
+          "human_result"
+        ],
+        "handoff": [
+          "start",
+          "proposal",
+          "assets",
+          "credential",
+          "egress",
+          "isolation",
+          "authority",
+          "reversibility",
+          "assignment",
+          "run",
+          "selection_trace",
+          "output",
+          "verification",
+          "human_result",
+          "handoff",
+          "observation"
+        ],
+        "evaluate": [
+          "start",
+          "proposal",
+          "assets",
+          "credential",
+          "egress",
+          "isolation",
+          "authority",
+          "reversibility",
+          "assignment",
+          "run",
+          "selection_trace",
+          "output",
+          "verification",
+          "human_result",
+          "handoff",
+          "observation",
+          "evaluation"
+        ]
+      },
+      "binding_fields": [
+        "project_id",
+        "tenant_id",
+        "environment_id",
+        "requirement_revision",
+        "authority_revision",
+        "ticket_id",
+        "task_id",
+        "scope",
+        "attempt_id",
+        "worker_id",
+        "model_class",
+        "input_revision",
+        "target_head",
+        "oracle_ref",
+        "obligation_set_ref"
+      ],
+      "witness_fields": [
+        "source_ref",
+        "source_revision",
+        "source_digest",
+        "owner_ref"
+      ],
+      "string_fields": {
+        "start": [
+          "worker_capability_ref",
+          "budget_ref",
+          "deadline_ref",
+          "stop_conditions_ref",
+          "human_plan_ref",
+          "human_actor_ref",
+          "verification_plan_ref",
+          "verification_division_ref",
+          "resource_applied_ref"
+        ],
+        "proposal": [
+          "actor_ref",
+          "input_attributes_ref",
+          "input_revision",
+          "contract_revision",
+          "task_id",
+          "scope",
+          "created_at_ref",
+          "basis_ref",
+          "uncertainty_ref",
+          "unevaluated_ref",
+          "OS_receipt_ref",
+          "receiver_revision"
+        ],
+        "credential": [
+          "blocked_access_ref"
+        ],
+        "egress": [
+          "default_deny_ref",
+          "allowlist_ref"
+        ],
+        "isolation": [
+          "project_isolation_ref",
+          "tenant_isolation_ref",
+          "environment_isolation_ref",
+          "assignment_isolation_ref",
+          "write_path_ref",
+          "network_ref",
+          "credential_ref",
+          "env_ref",
+          "timeout_ref",
+          "resource_limit_ref",
+          "difference_check_ref",
+          "rollback_ref",
+          "collection_ref"
+        ],
+        "reversibility": [
+          "before_state_ref",
+          "recovery_method_ref",
+          "recovery_target_ref"
+        ],
+        "assignment": [
+          "OS_assignment_ref",
+          "OS_actor_ref",
+          "stop_owner_ref"
+        ],
+        "run": [
+          "attempt_result_ref",
+          "cost_ref",
+          "partial_result_ref",
+          "outstanding_ref",
+          "resume_condition_ref",
+          "stopped_at_ref"
+        ],
+        "verification": [
+          "applied_oracle_ref",
+          "applied_obligation_ref",
+          "verification_result_ref",
+          "verifier_actor_ref",
+          "declared_division_ref",
+          "CI_use_ref"
+        ],
+        "human_result": [
+          "actor_ref",
+          "confirmation_target_ref",
+          "confirmation_result_ref",
+          "received_at_ref",
+          "outstanding_ref"
+        ],
+        "handoff": [
+          "OS018_result_ref",
+          "OS019_evidence_ref",
+          "OS023_handoff_ref",
+          "candidate_provenance_ref"
+        ],
+        "observation": [
+          "LABO_receipt_ref",
+          "scope_ref"
+        ],
+        "evaluation": [
+          "applied_oracle_ref",
+          "standard_revision",
+          "decision_conditions_ref",
+          "comparison_conditions_ref",
+          "application_result_ref",
+          "failure_counterexample_unknown_ref",
+          "evaluator_actor_ref",
+          "evaluated_at_ref",
+          "decision_receipt_ref"
+        ],
+        "selection_trace": [
+          "task_ref",
+          "risk_basis_ref",
+          "runtime_ref",
+          "requested_model_ref",
+          "effective_model_ref",
+          "requested_effort_ref",
+          "effective_effort_ref",
+          "retry_ref",
+          "quality_ref",
+          "cost_ref",
+          "default_deviation_ref",
+          "escalation_order_ref",
+          "receipt_ref"
+        ]
+      },
+      "asset_fields": [
+        "asset_id",
+        "owner_ref",
+        "source_ref",
+        "source_revision",
+        "source_digest",
+        "classification_ref",
+        "classification",
+        "data_use_ref",
+        "planned_output_scope"
+      ],
+      "authority_fields": [
+        "actor_ref",
+        "target_ref",
+        "operation_ref",
+        "target_revision",
+        "environment_id",
+        "scope",
+        "expiry_ref",
+        "permission_ref"
+      ],
+      "network_fields": [
+        "destination_ref",
+        "protocol_ref",
+        "path_ref",
+        "data_class_ref",
+        "amount_ref",
+        "purpose_ref",
+        "authority_ref",
+        "expiry_ref"
+      ],
+      "diagnostic_dispositions": {
+        "field_unknown": "unknown",
+        "field_conflict": "violation",
+        "phase_unknown": "unknown",
+        "phase_conflict": "violation",
+        "group_missing": "unknown",
+        "required_flag_unknown": "unknown",
+        "required_flag_refused": "violation",
+        "performance_unknown": "unknown",
+        "performance_conflict": "violation",
+        "origin_unknown": "unknown",
+        "origin_conflict": "violation",
+        "proposal_origin_forged": "violation",
+        "set_unknown": "unknown",
+        "set_conflict": "violation",
+        "classification_unknown": "unknown",
+        "classification_forbidden": "violation",
+        "credential_required": "violation",
+        "network_mode_unknown": "unknown",
+        "network_mode_conflict": "violation",
+        "isolation_fallback_forbidden": "violation",
+        "numeric_unknown": "unknown",
+        "numeric_conflict": "violation",
+        "budget_exceeded": "violation",
+        "deadline_exceeded": "violation",
+        "run_limit_violation": "violation",
+        "run_state_unknown": "unknown",
+        "run_state_conflict": "violation",
+        "result_unknown": "unknown",
+        "result_conflict": "violation",
+        "self_confirmation_forbidden": "violation",
+        "human_role_unknown": "unknown",
+        "human_role_forbidden": "violation",
+        "evaluation_basis_unproven": "unknown",
+        "forbidden_claim": "violation",
+        "claim_unknown": "unknown"
+      },
+      "finding_order": [
+        "code",
+        "pointer",
+        "return_owner"
+      ],
+      "facet_priority": [
+        "corresponding",
+        "unknown",
+        "violation"
+      ],
+      "condition_priority": [
+        "cycle_material_corresponding",
+        "cycle_material_unknown",
+        "cycle_material_violation"
+      ],
+      "output_projection_fields": [
+        "condition",
+        "phase",
+        "facet_correspondence",
+        "start_material_supported",
+        "performance_state",
+        "run_state",
+        "verification_result",
+        "human_result",
+        "observation_result",
+        "evaluation_result",
+        "scoped_evaluation_material",
+        "stop_material_required",
+        "retained_actual",
+        "retained_reference",
+        "findings",
+        "actual_assignment_created",
+        "actual_Worker_run",
+        "actual_verified",
+        "actual_LABO_received",
+        "actual_evaluated",
+        "whole_cycle_complete",
+        "operation_effect"
+      ],
+      "generic_operator_vocabulary": [
+        {
+          "op": "presence_at_path",
+          "arguments": [
+            "record",
+            "json_pointer"
+          ],
+          "returns": "Presence<JSONValue>",
+          "meaning_ja": "JSON Pointer位置のAbsent/null/valueを区別する。"
+        },
+        {
+          "op": "domain_classify",
+          "arguments": [
+            "Presence<JSONValue>",
+            "declared_domain"
+          ],
+          "returns": "known(value)|unknown(reason)",
+          "meaning_ja": "L5 operandsで宣言した有限domainに照らす。"
+        },
+        {
+          "op": "compare_known",
+          "arguments": [
+            "left_domain_result",
+            "right_domain_result",
+            "unknown_code",
+            "conflict_code"
+          ],
+          "returns": "corresponding|unknown|violation + optional Finding",
+          "meaning_ja": "どちらかunknownならunknown、双方knownで異なるならviolation、等しければcorresponding。"
+        },
+        {
+          "op": "compare_member_list",
+          "arguments": [
+            "left_record",
+            "right_record",
+            "member_names",
+            "domain",
+            "pointer_root",
+            "owner"
+          ],
+          "returns": "ordered Finding[] + FacetState",
+          "meaning_ja": "宣言順で全memberを比較する。"
+        },
+        {
+          "op": "phase_project",
+          "arguments": [
+            "actual_phase",
+            "phase_domain",
+            "enabled_groups"
+          ],
+          "returns": "active_group_names|unknown",
+          "meaning_ja": "既知actual phaseに対応するactive groupsだけを選ぶ。"
+        },
+        {
+          "op": "aggregate_facet",
+          "arguments": [
+            "states_in_declared_order",
+            "priority"
+          ],
+          "returns": "FacetState",
+          "meaning_ja": "指定priorityの右端を高優先として最も高い観測状態を返す。"
+        },
+        {
+          "op": "sort_unique_findings",
+          "arguments": [
+            "findings",
+            "sort_keys",
+            "unique_keys"
+          ],
+          "returns": "Finding[]",
+          "meaning_ja": "指定tupleで安定sortし、同じtupleを1件にする。"
+        },
+        {
+          "op": "project_json",
+          "arguments": [
+            "input",
+            "declared_path_map",
+            "literal_map"
+          ],
+          "returns": "JSONValue",
+          "meaning_ja": "raw projectionとL5で定義したliteralsだけを出力する。Absentの投影規則をfieldごとに明示する。"
+        },
+        {
+          "op": "object_key_set",
+          "arguments": [
+            "object"
+          ],
+          "returns": "set<string>",
+          "meaning_ja": "JSON object keysを順不同集合として返す。"
+        },
+        {
+          "op": "finite_json_number",
+          "arguments": [
+            "Presence<JSONValue>",
+            "positive|nonnegative"
+          ],
+          "returns": "known(number)|unknown",
+          "meaning_ja": "有限JSON numberのみ。boolean, null, Absent, string, NaN/Infinityはdomain外。"
+        },
+        {
+          "op": "is_literal_boolean",
+          "arguments": [
+            "Presence<JSONValue>",
+            "true|false"
+          ],
+          "returns": "known(boolean)|unknown",
+          "meaning_ja": "JSON booleanだけを受け、数値0/1と同一視しない。"
+        },
+        {
+          "op": "enum_member",
+          "arguments": [
+            "Presence<JSONValue>",
+            "declared_values"
+          ],
+          "returns": "known(string)|unknown",
+          "meaning_ja": "列挙値はL5に宣言された値だけ。"
+        }
+      ],
+      "facet_priority_semantics": "priorityは左から低→高。violationがあればviolation、無くunknownがあればunknown、無ければcorresponding。選択groupの不正recordはunknown、未来groupはnot_applicable。",
+      "condition_priority_semantics": "conditionも宣言配列の右端を最高優先として集約する。",
+      "diagnostic_codes": {
+        "field_unknown": {
+          "code": "field_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "field_conflict": {
+          "code": "field_conflict",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "phase_unknown": {
+          "code": "phase_unknown",
+          "facet": "boundary",
+          "disposition": "unknown"
+        },
+        "phase_conflict": {
+          "code": "phase_conflict",
+          "facet": "boundary",
+          "disposition": "violation"
+        },
+        "group_missing": {
+          "code": "group_missing",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "required_flag_unknown": {
+          "code": "required_flag_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "required_flag_refused": {
+          "code": "required_flag_refused",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "performance_unknown": {
+          "code": "performance_unknown",
+          "facet": "start",
+          "disposition": "unknown"
+        },
+        "performance_conflict": {
+          "code": "performance_conflict",
+          "facet": "start",
+          "disposition": "violation"
+        },
+        "origin_unknown": {
+          "code": "origin_unknown",
+          "facet": "proposal",
+          "disposition": "unknown"
+        },
+        "origin_conflict": {
+          "code": "origin_conflict",
+          "facet": "proposal",
+          "disposition": "violation"
+        },
+        "proposal_origin_forged": {
+          "code": "proposal_origin_forged",
+          "facet": "proposal",
+          "disposition": "violation"
+        },
+        "set_unknown": {
+          "code": "set_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "set_conflict": {
+          "code": "set_conflict",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "classification_unknown": {
+          "code": "classification_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "classification_forbidden": {
+          "code": "classification_forbidden",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "credential_required": {
+          "code": "credential_required",
+          "facet": "credential",
+          "disposition": "violation"
+        },
+        "network_mode_unknown": {
+          "code": "network_mode_unknown",
+          "facet": "egress",
+          "disposition": "unknown"
+        },
+        "network_mode_conflict": {
+          "code": "network_mode_conflict",
+          "facet": "egress",
+          "disposition": "violation"
+        },
+        "isolation_fallback_forbidden": {
+          "code": "isolation_fallback_forbidden",
+          "facet": "isolation",
+          "disposition": "violation"
+        },
+        "numeric_unknown": {
+          "code": "numeric_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "numeric_conflict": {
+          "code": "numeric_conflict",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "budget_exceeded": {
+          "code": "budget_exceeded",
+          "facet": "run",
+          "disposition": "violation"
+        },
+        "deadline_exceeded": {
+          "code": "deadline_exceeded",
+          "facet": "run",
+          "disposition": "violation"
+        },
+        "run_limit_violation": {
+          "code": "run_limit_violation",
+          "facet": "run",
+          "disposition": "violation"
+        },
+        "run_state_unknown": {
+          "code": "run_state_unknown",
+          "facet": "run",
+          "disposition": "unknown"
+        },
+        "run_state_conflict": {
+          "code": "run_state_conflict",
+          "facet": "run",
+          "disposition": "violation"
+        },
+        "result_unknown": {
+          "code": "result_unknown",
+          "facet": "comparison",
+          "disposition": "unknown"
+        },
+        "result_conflict": {
+          "code": "result_conflict",
+          "facet": "comparison",
+          "disposition": "violation"
+        },
+        "self_confirmation_forbidden": {
+          "code": "self_confirmation_forbidden",
+          "facet": "human_result",
+          "disposition": "violation"
+        },
+        "human_role_unknown": {
+          "code": "human_role_unknown",
+          "facet": "human_result",
+          "disposition": "unknown"
+        },
+        "human_role_forbidden": {
+          "code": "human_role_forbidden",
+          "facet": "human_result",
+          "disposition": "violation"
+        },
+        "evaluation_basis_unproven": {
+          "code": "evaluation_basis_unproven",
+          "facet": "evaluation",
+          "disposition": "unknown"
+        },
+        "forbidden_claim": {
+          "code": "forbidden_claim",
+          "facet": "boundary",
+          "disposition": "violation"
+        },
+        "claim_unknown": {
+          "code": "claim_unknown",
+          "facet": "boundary",
+          "disposition": "unknown"
+        }
+      },
+      "logical_return_owner_by_facet": {
+        "binding": "binding-source-owner",
+        "start": "start-source-owner",
+        "proposal": "proposal-source-owner",
+        "assets": "assets-source-owner",
+        "credential": "credential-source-owner",
+        "egress": "egress-source-owner",
+        "isolation": "isolation-source-owner",
+        "authority": "authority-source-owner",
+        "reversibility": "reversibility-source-owner",
+        "assignment": "assignment-source-owner",
+        "run": "run-source-owner",
+        "selection_trace": "selection_trace-source-owner",
+        "output": "output-source-owner",
+        "verification": "verification-source-owner",
+        "human_result": "human_result-source-owner",
+        "handoff": "handoff-source-owner",
+        "observation": "observation-source-owner",
+        "evaluation": "evaluation-source-owner",
+        "boundary": "boundary-source-owner"
+      },
+      "dynamic_finding_facet_rule": "固定codeはdiagnostic_codes[code].facetを使う。R01比較findingはactual pointerのgroup facet、root binding比較はbinding。return_ownerはfacetへlogical_return_owner_by_facetを適用する。",
+      "output_expressions": {
+        "condition": {
+          "op": "highest_state_as_condition",
+          "inputs": [
+            "all facet states"
+          ],
+          "priority": [
+            "cycle_material_corresponding",
+            "cycle_material_unknown",
+            "cycle_material_violation"
+          ],
+          "rightmost_highest": true,
+          "state_to_condition": {
+            "corresponding": "cycle_material_corresponding",
+            "unknown": "cycle_material_unknown",
+            "violation": "cycle_material_violation"
+          }
+        },
+        "phase": {
+          "op": "known_actual_or_null",
+          "path": "/phase",
+          "domain": [
+            "prepare",
+            "run",
+            "verify",
+            "handoff",
+            "evaluate"
+          ]
+        },
+        "facet_correspondence": {
+          "op": "facet_map",
+          "fields": [
+            "binding",
+            "start",
+            "proposal",
+            "assets",
+            "credential",
+            "egress",
+            "isolation",
+            "authority",
+            "reversibility",
+            "assignment",
+            "run",
+            "selection_trace",
+            "output",
+            "verification",
+            "human_result",
+            "handoff",
+            "observation",
+            "evaluation",
+            "boundary"
+          ],
+          "active_rule": "binding/boundaryは常時、phaseで選択されたgroupだけ初期corresponding。未来groupはnot_applicable。codeのcomparisonは出力facet名でなく対象groupへ置換するメタ値。",
+          "initial_state": "corresponding",
+          "inactive_value": "not_applicable",
+          "always_active_facets": [
+            "binding",
+            "boundary"
+          ]
+        },
+        "start_material_supported": {
+          "op": "and",
+          "args": [
+            {
+              "op": "actual_phase_known"
+            },
+            {
+              "op": "no_findings_for_facets",
+              "facets": [
+                "binding",
+                "boundary",
+                "start",
+                "proposal",
+                "assets",
+                "credential",
+                "egress",
+                "isolation",
+                "authority",
+                "reversibility"
+              ]
+            }
+          ]
+        },
+        "performance_state": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/start/performance_state",
+          "domain": [
+            "unevaluated",
+            "evaluated_material"
+          ],
+          "requires_group_selected": "start",
+          "requires_objects": [
+            "/groups/start",
+            "/context/groups/start"
+          ]
+        },
+        "run_state": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/run/state",
+          "domain": [
+            "success",
+            "failed",
+            "denied",
+            "interrupted",
+            "unknown"
+          ],
+          "requires_group_selected": "run",
+          "requires_objects": [
+            "/groups/run",
+            "/context/groups/run"
+          ]
+        },
+        "verification_result": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/verification/result",
+          "domain": [
+            "verified_material",
+            "failed_material",
+            "unobserved"
+          ],
+          "requires_group_selected": "verification",
+          "requires_objects": [
+            "/groups/verification",
+            "/context/groups/verification"
+          ]
+        },
+        "human_result": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/human_result/result",
+          "domain": [
+            "confirmed_material",
+            "rejected_material",
+            "unobserved"
+          ],
+          "requires_group_selected": "human_result",
+          "requires_objects": [
+            "/groups/human_result",
+            "/context/groups/human_result"
+          ]
+        },
+        "observation_result": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/observation/result",
+          "domain": [
+            "received_material",
+            "rejected_material",
+            "unobserved"
+          ],
+          "requires_group_selected": "observation",
+          "requires_objects": [
+            "/groups/observation",
+            "/context/groups/observation"
+          ]
+        },
+        "evaluation_result": {
+          "op": "actual_or_null_if_domain_known",
+          "path": "/groups/evaluation/result",
+          "domain": [
+            "evaluated_material",
+            "unevaluated",
+            "inapplicable",
+            "unknown"
+          ],
+          "requires_group_selected": "evaluation",
+          "requires_objects": [
+            "/groups/evaluation",
+            "/context/groups/evaluation"
+          ]
+        },
+        "scoped_evaluation_material": {
+          "op": "and",
+          "args": [
+            {
+              "op": "eq",
+              "left": {
+                "op": "known_actual",
+                "path": "/phase"
+              },
+              "right": {
+                "op": "literal",
+                "value": "evaluate"
+              }
+            },
+            {
+              "op": "eq",
+              "left": {
+                "op": "known_actual",
+                "path": "/groups/evaluation/result"
+              },
+              "right": {
+                "op": "literal",
+                "value": "evaluated_material"
+              }
+            },
+            {
+              "op": "no_findings_for_facets",
+              "facets": [
+                "evaluation",
+                "binding",
+                "boundary"
+              ]
+            }
+          ]
+        },
+        "stop_material_required": {
+          "op": "or",
+          "args": [
+            {
+              "op": "any_finding_code",
+              "codes": [
+                "budget_exceeded",
+                "deadline_exceeded",
+                "run_limit_violation"
+              ]
+            },
+            {
+              "op": "any_finding",
+              "code": "group_missing",
+              "pointer": "/groups/output"
+            },
+            {
+              "op": "any_finding_facet",
+              "facets": [
+                "output"
+              ]
+            }
+          ]
+        },
+        "retained_actual": {
+          "op": "project",
+          "fields": {
+            "binding": "/binding",
+            "groups": "/groups",
+            "claims": "/claims"
+          },
+          "absent_projection": "null",
+          "meaning": "未供給memberは公開保持投影でnull。原raw/presenceの記録と区別する。"
+        },
+        "retained_reference": {
+          "op": "project",
+          "fields": {
+            "phase": "/context/phase",
+            "binding": "/context/binding",
+            "groups": "/context/groups"
+          },
+          "absent_projection": "null",
+          "meaning": "未供給memberは公開保持投影でnull。原raw/presenceの記録と区別する。"
+        },
+        "findings": {
+          "op": "sort_unique_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ]
+        },
+        "actual_assignment_created": {
+          "op": "literal",
+          "value": false
+        },
+        "actual_Worker_run": {
+          "op": "literal",
+          "value": false
+        },
+        "actual_verified": {
+          "op": "literal",
+          "value": false
+        },
+        "actual_LABO_received": {
+          "op": "literal",
+          "value": false
+        },
+        "actual_evaluated": {
+          "op": "literal",
+          "value": false
+        },
+        "whole_cycle_complete": {
+          "op": "literal",
+          "value": false
+        },
+        "operation_effect": {
+          "op": "literal",
+          "value": "none"
+        }
+      },
+      "output_assembly_order": [
+        "condition",
+        "phase",
+        "facet_correspondence",
+        "start_material_supported",
+        "performance_state",
+        "run_state",
+        "verification_result",
+        "human_result",
+        "observation_result",
+        "evaluation_result",
+        "scoped_evaluation_material",
+        "stop_material_required",
+        "retained_actual",
+        "retained_reference",
+        "findings",
+        "actual_assignment_created",
+        "actual_Worker_run",
+        "actual_verified",
+        "actual_LABO_received",
+        "actual_evaluated",
+        "whole_cycle_complete",
+        "operation_effect"
+      ],
+      "finding_disposition_rule": "diagnostic_codes[code].dispositionを読み、各findingの解決済みfacetごとに最大priorityを集約する。conditionは全facetの最大値から返す。",
+      "stop_material_semantics_ja": "実停止操作ではない。L4 R02のactive output group非dictによるgroup_missing、R06のoutput facet内finding、R11のbudget/deadline/run-limit違反があるときだけtrue。別groupのgroup_missingを一律停止へ拡張しない。",
+      "field_comparison_semantics": {
+        "operand_order": [
+          "actual",
+          "reference"
+        ],
+        "presence_order": "一般pairはactual→reference順で最初の不正側1件。R04 enum_member_pairsとhuman_role_actorは明示例外として不正側それぞれを返す。",
+        "unknown": "一般pairでAbsent/null/declared domain外なら最初の不正operand pointerへunknown。R04は両側を別にdomain判定し不正な各fieldへorigin_unknown。 literal boolean条件はboolean_pair_semanticsのknown拒否値優先を明示例外とする。",
+        "conflict": "両側が宣言domain内で異なればactual pointerへconflict。",
+        "corresponding": "両側domain内で同値、または各固有演算の成立条件どおり。",
+        "json_equality": "object key順を無視、array順を保持。booleanとnumberを区別。numberは任意精度の有限JSON十進数値を厳密比較し1と1.0を同値とする。binary64の範囲/精度を入力制限にしない。",
+        "finding_deduplication": "全規則の後でcode/pointer/return_ownerの全一致だけを一意化。",
+        "group_domain": "選択groupのactual/contextが両方objectの場合に固有比較を行う。そうでない側はgroup_missing。",
+        "set_domain": "record key集合は順序無視、record memberは宣言順で照合。",
+        "owner_candidate": "論理facet戻し先のみ。既存SEC許可/OS割当の事実を否定せず、文書照合から新たな実成立を作らない。"
+      },
+      "finding_order_rule": {
+        "rule": "規則は宣言順、fieldは各宣言順に処理し、最終findingsをcode/pointer/return_ownerの順で辞書順sort・全一致重複除去する。",
+        "final_sort": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "unknown_operand_order": "一般pairはactual→context。R04/human role等の各側診断は各op契約を優先する。"
+      },
+      "return_owner_derivation": {
+        "rule": "固定codeはdiagnostic_codesのfacet、comparisonメタcodeはcheckの対象group/binding、phase/claimsはboundaryを使う。対応facetのsource-ownerラベルを論理返却候補とする。",
+        "known_labels": {
+          "binding": "binding-source-owner",
+          "start": "start-source-owner",
+          "proposal": "proposal-source-owner",
+          "assets": "assets-source-owner",
+          "credential": "credential-source-owner",
+          "egress": "egress-source-owner",
+          "isolation": "isolation-source-owner",
+          "authority": "authority-source-owner",
+          "reversibility": "reversibility-source-owner",
+          "assignment": "assignment-source-owner",
+          "run": "run-source-owner",
+          "selection_trace": "selection_trace-source-owner",
+          "output": "output-source-owner",
+          "verification": "verification-source-owner",
+          "human_result": "human_result-source-owner",
+          "handoff": "handoff-source-owner",
+          "observation": "observation-source-owner",
+          "evaluation": "evaluation-source-owner",
+          "boundary": "boundary-source-owner"
+        },
+        "qualification": "候補ラベルは責務の戻し先を指すだけで、実組織/個人の受領・所有・資格を証明しない。"
+      },
+      "common_comparison_rows": [
+        {
+          "id": "ROOT-BINDING",
+          "active_when": "always",
+          "actual_path": "/binding/{field}",
+          "reference_path": "/context/binding/{field}",
+          "fields_ref": "binding_fields",
+          "domain": "nonempty_string",
+          "unknown_code": "field_unknown",
+          "conflict_code": "field_conflict",
+          "facet": "binding"
+        },
+        {
+          "id": "GROUP-BINDING",
+          "active_when": "group in active_group_projection[actual_phase]",
+          "actual_path": "/groups/{group}/binding/{field}",
+          "reference_paths": [
+            "/context/groups/{group}/binding/{field}",
+            "/context/binding/{field}"
+          ],
+          "fields_ref": "binding_fields",
+          "domain": "nonempty_string",
+          "unknown_code": "field_unknown",
+          "conflict_code": "field_conflict",
+          "facet_from_group": true
+        },
+        {
+          "id": "GROUP-WITNESS",
+          "active_when": "group in active_group_projection[actual_phase]",
+          "actual_path": "/groups/{group}/{field}",
+          "reference_path": "/context/groups/{group}/{field}",
+          "fields_ref": "witness_fields",
+          "domain": "nonempty_string",
+          "unknown_code": "field_unknown",
+          "conflict_code": "field_conflict",
+          "facet_from_group": true
+        },
+        {
+          "id": "GROUP-STRING-MEMBERS",
+          "active_when": "group in active_group_projection[actual_phase]",
+          "actual_path": "/groups/{group}/{field}",
+          "reference_path": "/context/groups/{group}/{field}",
+          "fields_ref": "string_fields[{group}]",
+          "domain": "nonempty_string",
+          "unknown_code": "field_unknown",
+          "conflict_code": "field_conflict",
+          "facet_from_group": true,
+          "conditional_exclusions": [
+            {
+              "field": "allowlist_ref",
+              "when": "actual /groups/egress/mode != allowlisted",
+              "reason": "L4 R08はactual mode=allowlisted時だけallowlist/networkを比較する。noneへ同参照を要求しない。",
+              "when_path": "/groups/egress/mode",
+              "equals_value": "allowlisted",
+              "skip_when_not_equal": true
+            }
+          ]
+        },
+        {
+          "id": "GROUP-SUPPORTED",
+          "active_when": "group in active_group_projection[actual_phase]",
+          "actual_path": "/groups/{group}/{field}",
+          "reference_path": "/context/groups/{group}/{field}",
+          "domain": "boolean_true",
+          "false_code": "required_flag_refused",
+          "invalid_code": "required_flag_unknown",
+          "facet_from_group": true,
+          "fields": [
+            "supported"
+          ]
+        }
+      ],
+      "check_operators": [
+        "actual_pair_difference",
+        "claims",
+        "conditional_record_fields",
+        "enum_member_pairs",
+        "enum_pair",
+        "evaluation_if_evaluated",
+        "exceeds_limit",
+        "human_role_actor",
+        "join_binding_fields",
+        "nonempty_string_pair_with_required_value",
+        "nonnegative_number_actual",
+        "output_asset_key_join",
+        "planned_scope_join",
+        "positive_number_pair",
+        "record_boolean_true",
+        "record_classification",
+        "record_fields",
+        "record_set_pair",
+        "required_false_actual",
+        "required_false_pair",
+        "required_true_pair",
+        "string_pair"
+      ],
+      "check_operator_semantics_ja": "各opはL5で宣言したpath、field集合、domain、優先、診断code、facetのみを読み、固定順に評価する。record_set_pairは両containerがobjectのときkey集合を比較し、record_fieldsは共通keyをUnicode昇順、fieldをL5宣言順で比較する。未知operandはfield/recordの観測側を指す。case ID/期待wholeによる分岐をしない。 required_false_actualはactual観測だけをfalse条件と比較し、context側の値は事前recordとして保持する。",
+      "check_operator_contracts": {
+        "actual_pair_difference": {
+          "reads": "paths[0],paths[1]",
+          "rule": "両側が列挙domain内のstringで、異なる場合だけcodeをpaths[1]へ返す。"
+        },
+        "claims": {
+          "reads": "pathのobject member",
+          "rule": "pathがAbsent/null/nonobjectならpathへunknownを1件返す。objectなら宣言claim_namesを順に読み、欠落/boolean以外をmember pointerへunknown、trueをtrue code、falseは所見なし。宣言外keyはunknown。既存ownerの権限ではなく、この文書照合から新しく成立させる主張の有限flagである。"
+        },
+        "conditional_record_fields": {
+          "reads": "when_path,root,reference,fields_ref,domain",
+          "rule": "when_pathがwhen_valueのときだけfield順・object-key昇順にrecord_fieldsを適用する。"
+        },
+        "enum_member_pairs": {
+          "reads": "root/referenceのfields順とvalues",
+          "rule": "field宣言順にactualとreferenceをそれぞれ有限列挙domainへ照合し、不正な各側へunknownを独立返却。両側validかつcompare_fieldsに含むfieldが異なればactual conflict。domain_only_fieldsは両側domainだけを検査する。"
+        },
+        "enum_pair": {
+          "reads": "paths[0],paths[1],values",
+          "rule": "両側がstringかつvalues内であることを要求。先に不正な側へunknown、双方knownで相違ならactual pathへconflict。"
+        },
+        "evaluation_if_evaluated": {
+          "reads": "resultとflags",
+          "rule": "actual resultがwhen_valueならflagsを宣言順に読み、各flagのactual/contextを独立に判定しtrue以外の各pointerへcodeを返す。"
+        },
+        "exceeds_limit": {
+          "reads": "actual,limit,requires_objects",
+          "rule": "requires_objectsの全pointerがobjectのときだけ、actual/limitがbool以外の有限JSON numberでactual>limitならcodeをactual pointerへ返す。start片側非objectなら超過比較は行わず、group_missingと原使用量を保持する。これは実予算内/実継続許可の判定ではない。"
+        },
+        "human_role_actor": {
+          "reads": "role,actor,workerと同じcontext role",
+          "rule": "actual roleとcontext roleをそれぞれ非空stringとして判定。不明な各側へunknown、human以外のknown値は各側へforbidden_role。actual actorとworkerが非空stringかつ等値ならactor pointerへself。"
+        },
+        "join_binding_fields": {
+          "reads": "pairsの左pathおよび最後のcontext binding path",
+          "rule": "context binding（各pairの最後のpath）が非空stringでない場合はこのjoinを評価せず、R01の入力診断へ委ねる。非空stringなら左path（wildcardは実在object key昇順）をcontext bindingと比較し、左値が非空stringでない場合はunknown codeを左pointerへ、双方knownで相違ならconflict codeを左pointerへ返す。finding全tupleが同一の場合だけ全体のsort_unique_findingsで重複除去する。unknown codeの到達条件は左operand不正かつcontext bindingがknownの場合であり、未使用codeではない。"
+        },
+        "nonnegative_number_actual": {
+          "reads": "paths",
+          "rule": "actual pathごと有限JSON number（bool除外）かつ0以上を要求。不正はそのpathへunknown。"
+        },
+        "nonempty_string_pair_with_required_value": {
+          "reads": "paths[0],paths[1],required_value",
+          "rule": "actual、referenceの順で非空stringを検査。先に不正な側へunknown。known値のうちrequired_valueでない最初の側へconflict。"
+        },
+        "output_asset_key_join": {
+          "reads": "output_records,asset_records,key_field,field_order,delegate_fields、全operand_domains",
+          "rule": "operand_domainsとfield_orderに従う。null classificationを一般compare_knownでconflictへ解釈しない。",
+          "operand_domains": {
+            "containers": "output_recordsとasset_recordsの全4containerがobjectである場合だけ処理。そうでなければ他R02/R05が不足を診断。",
+            "keys": "両側outputの共通keyをUnicode codepoint昇順。actual planned keyは非空string必須、違反/Absent/nullはactual key pointerへunknown。reference keyの非空/string差はR05へ委ねる。",
+            "resolution": "actual planned keyをliteral keyとして両側asset recordsへ解決し、どちらかがobjectでなければactual output key pointerへunknown。",
+            "fields": "field_orderのactual outputとcontext planned assetの同名fieldを比較する。delegate_fieldsは他R05診断へ委譲して再比較しない。残るfieldは両方非空stringの場合だけ等値比較し、差はactual fieldへconflict。非string/空/Absent/nullは他R05/R06診断へ委譲し、ここではviolationへ変更しない。boolean専用分岐とfalse codeはこのopには無い。"
+          }
+        },
+        "planned_scope_join": {
+          "reads": "records,field,scope_paths",
+          "rule": "actual recordsのkey昇順でplanned_output_scopeをcontext共通binding.scopeへ比較。Absent/null/非stringの診断はR05 field comparisonが返し、ここでは重複しない。known不一致はconflict。"
+        },
+        "positive_number_pair": {
+          "reads": "root/referenceのfields順",
+          "rule": "各値が有限JSON number（bool除外）かつ正であることをactual→reference順に検査。不正な最初の側へunknown。両側known相違はactual pathへconflict。"
+        },
+        "record_boolean_true": {
+          "reads": "containers共通member key昇順、fields順",
+          "rule": "共通record key昇順・field順でboolean_pair_semantics.required_trueを適用する。各fieldでknown falseの実側pointerへ1件だけ返し、両側falseならactual側の1件だけとする。null側をrefused根拠と表示しない。"
+        },
+        "record_classification": {
+          "reads": "containers共通member key昇順、field",
+          "rule": "actual→reference双方を独立判定。unknown_valuesはunknown、forbidden_valuesはforbidden。他の非stringはunknown。双方通常stringならこのoperatorは相違を返さずR05 record field comparisonに委ねる。"
+        },
+        "record_fields": {
+          "reads": "containers共通member key昇順、fields_refまたはfields順、exclude,domain",
+          "rule": "field宣言順でactual→referenceを検査。先にinvalid側へunknown、双方knownで相違ならactual pointerへconflict。"
+        },
+        "record_set_pair": {
+          "reads": "containers",
+          "rule": "両側object必須。actualがobjectでない場合actual pointer、そうでなければreference pointerへunknown。双方objectならkey集合のみ順序無視で比較し差はactual container pointerへconflict。"
+        },
+        "required_false_actual": {
+          "reads": "pathsのactual memberだけ",
+          "rule": "trueはtrue code、booleanでない/Absent/nullはunknown、falseはfindingなし。context側はこの観測を上書きしない。"
+        },
+        "required_false_pair": {
+          "reads": "paths[0],paths[1]",
+          "rule": "boolean_pair_semantics.required_falseに従う。known trueの実側が拒否、known trueが無いとき最初の非boolean側がunknown。"
+        },
+        "required_true_pair": {
+          "reads": "paths[0],paths[1]",
+          "rule": "boolean_pair_semantics.required_trueに従う。known falseの実側がrefused、known falseが無いとき最初の非boolean側がunknown。"
+        },
+        "string_pair": {
+          "reads": "paths[0],paths[1]",
+          "rule": "domain=stringなら空を含む文字列、domain=nonempty_stringまたは省略なら非空文字列。一般pairはactual→reference順の最初の不正側へunknown。両側validで異なればactual conflict。"
+        }
+      },
+      "group_root_paths": [
+        "/groups",
+        "/context/groups"
+      ],
+      "normative_scope": {
+        "location": "/formal_programs/0",
+        "contains": "全field集合・所有者map・演算契約・guard・output式・finding/condition優先順を含むこのobject全体。",
+        "external_documents": "批准L3/L10/L4は意味の出典。計算時に外部のdomain/default/語彙を足さない。",
+        "specialized_operator_contract": "human_role_actor等の合成素材opは下記check_operator_contractsに閉じた有限演算。汎用語彙だけを使うと偽称しない。"
+      },
+      "numeric_domain": {
+        "kind": "exact_finite_json_number",
+        "value": "符号・整数部・小数部・十進指数から得る数学的有限値。整数/十進数を任意精度で比較し、booleanを除外する。",
+        "lexeme": "1e400は有限値10^400であり、同値の整数lexemeと等値。1e-400を0へ丸めない。NaN/InfinityはJSON numberではない。",
+        "resource_limit": "ここで精度/指数/桁数/二進数幅の許可上限を新設しない。正式codec/library/資源制限の方式採用は別未成立。",
+        "static_reader": "raw JSONはexact parseで数値内容を保持する。Python floatを通すと失われるlexemeの正確さを復元したとは主張しない。"
+      },
+      "pointer_semantics": {
+        "syntax": "RFC6901。空pointerはroot。tokenごと~1→/、~0→~。不正escapeはAbsent。空object keyを省略しない。array indexは0または先頭0無し十進正整数、範囲外はAbsent。",
+        "dynamic_keys": "record identityはliteral key。dotをpathとして解釈せず、/と~をescapeしてtokenへ結ぶ。",
+        "missing": "member/index無し・途中noncontainerはAbsent。nullとは別。"
+      },
+      "comparison_facet_marker": {
+        "marker": "comparison",
+        "kind": "dynamic_code_metadata",
+        "not_in_output_FacetMap": true,
+        "resolution": "rule/checkが指定する比較対象group/bindingへ解決してからownerを作る。"
+      },
+      "numeric_domain_ref": "/formal_programs/0/numeric_domain",
+      "source_quote_role": "source_rule_textは固定L4の読取証拠。実計算は構造化checkとprogram内のoperator/operand/output契約が一意の規範であり、source引用から未宣言のdefault/path/分岐を補完しない。",
+      "check_activation_semantics": "各checkはactivation.groupがnullなら常時、それ以外はactual phaseのactive群に含まれる場合だけ評価する。requires_both_group_objects=trueなら、そのgroupのactual/context両object成立時に限る。path文字列を見てhelperがgroupを推測しない。非object群の不足はR02が返す。",
+      "boolean_pair_semantics": {
+        "required_true": "片側でもknown falseなら、その実false側pointerへfalse/refused codeを1件だけ返す。両側falseならactual側pointerの1件だけを返す。falseが無くtrue以外の不明があれば最初の不正側unknown。",
+        "required_false": "片側でもknown trueなら、その実true側pointerへtrue/refused codeを1件だけ返す。両側trueならactual側pointerの1件だけを返す。trueが無くfalse以外の不明があれば最初の不正側unknown。",
+        "scope": "一般string/number pairのunknown規則とは区別する。knownな拒否値をnull側の所見と偽表示せず、追加の実許可や分類語を生成しない。"
+      },
+      "common_boolean_comparison_ref": "/formal_programs/0/boolean_pair_semantics",
+      "output_operator_contracts": {
+        "literal": "valueをdeep-copyして返す。",
+        "and": "argsのboolean式が全てtrueならtrue。空集合はtrue。",
+        "or": "argsのboolean式のいずれかがtrueならtrue。空集合はfalse。",
+        "eq": "left/right式のJSON値を型を保って比較する。numberはnumeric_domainの厳密値比較、boolとnumberは異なる。",
+        "known_actual": "pathのraw値を返す。Absentだけnullへ投影する。",
+        "actual_phase_known": "actual phaseがphase_order内のstringならtrue。",
+        "no_findings_for_facets": "facetsをlogical_return_owner_by_facetでownerへ対応付け、そのownerのfindingが無いときtrue。",
+        "any_finding_code": "codes内のcodeを持つfindingがあるときtrue。",
+        "any_finding": "codeとpointerがともに指定値のfindingがあるときtrue。",
+        "any_finding_facet": "facetsをlogical_return_owner_by_facetでownerへ対応付け、そのownerのfindingがあるときtrue。",
+        "facet_map": "fields順にfacet stateを返す。always_active_facetsとactive群はinitial_state、非activeはinactive_value。所見のownerをlogical_return_owner_by_facetからfacetへ戻し、diagnostic_dispositionsとfacet_priorityで最大状態へ集約する。",
+        "project": "fieldsの各出力keyへ指定raw pointerの値をdeep-copyする。Absentだけabsent_projectionのnullへ投影する。",
+        "highest_state_as_condition": "集約facetの最大状態をfacet_priorityで選び、state_to_conditionへ対応付ける。not_applicableは対応状態より高く扱わない。",
+        "known_actual_or_null": "path値がdomain内stringなら返し、それ以外はnull。group配下はrequires_group_selectedのactive性と両group objectを要求する。",
+        "actual_or_null_if_domain_known": "requires_group_selectedがあればactiveで、requires_objects全pointerがobjectのときだけpath値をdomain内stringとして採用する。それ以外はnull。",
+        "sort_unique_findings": "keys列の全tupleで重複除去し、同tupleの辞書順でfindingを返す。"
+      }
+    }
+  ],
+  "interpreter_contract": {
+    "name": "OS027-PURE-READER-1",
+    "input": "CycleInput",
+    "output": "CycleProposal",
+    "determinism": "同じJSON値と同じprogramから同じ全返却。",
+    "normative_root": "/formal_programs/0",
+    "execution": "formal_programs[0]の全内容だけが計算規範。rule_data/check_operator_contracts/field集合/field_comparison_semantics/owner map/output式/順序/domainを含む。外のdiagnostic_contract/l4_contracts/architecture/traceはsource証拠であり計算へ読まない。",
+    "generic_only": false,
+    "reader_scope": "op名には業務素材を表すものがあるが、その全path/operand/guard/code/owner/順序の意味はprogram内に明記する。readerは宣言されたop契約を実現し、独自の業務条件を補完しない。",
+    "business_semantics_location": "/formal_programs/0 全体",
+    "no_case_lookup": true,
+    "no_external_oracle_lookup": "case ID/L9期待/label/要求IDで答えを選ばない。",
+    "presence": "Absentとnull/空/false/0を区別し、不正containerを成功へ補完しない。公開retained投影のAbsentはnullと明記し、入力raw側のAbsentは別に保持する。"
+  },
+  "architecture": {
+    "input": "各ownerの独立source/expected参照とactual原資料を同bindingへ結ぶimmutable snapshot。資格は正式owner契約で後続確認する。",
+    "components": [
+      "開始資料と六条件照合",
+      "案/OS指定と有限run照合",
+      "固定oracle/別actor確認照合",
+      "OS原記録→LABO観測照合",
+      "適用範囲付き評価照合"
+    ],
+    "dependency_direction": "owner source snapshot→OS027文書照合→OS018/019/023、HARNESS、LABO/INT/SEC/INFRA各consumer。027照合自体はconsumer生成/保存/実行を呼ばない。",
+    "output": "phase別材料対応、状態原値、不足と戻し先・停止材料。既存authorityや状態を上書きしない。"
+  },
+  "diagnostic_contract": {
+    "binding_fields": [
+      "project_id",
+      "tenant_id",
+      "environment_id",
+      "requirement_revision",
+      "authority_revision",
+      "ticket_id",
+      "task_id",
+      "scope",
+      "attempt_id",
+      "worker_id",
+      "model_class",
+      "input_revision",
+      "target_head",
+      "oracle_ref",
+      "obligation_set_ref"
+    ],
+    "witness_fields": [
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "owner_ref"
+    ],
+    "string_fields": {
+      "start": [
+        "worker_capability_ref",
+        "budget_ref",
+        "deadline_ref",
+        "stop_conditions_ref",
+        "human_plan_ref",
+        "human_actor_ref",
+        "verification_plan_ref",
+        "verification_division_ref",
+        "resource_applied_ref"
+      ],
+      "proposal": [
+        "actor_ref",
+        "input_attributes_ref",
+        "input_revision",
+        "contract_revision",
+        "task_id",
+        "scope",
+        "created_at_ref",
+        "basis_ref",
+        "uncertainty_ref",
+        "unevaluated_ref",
+        "OS_receipt_ref",
+        "receiver_revision"
+      ],
+      "credential": [
+        "blocked_access_ref"
+      ],
+      "egress": [
+        "default_deny_ref",
+        "allowlist_ref"
+      ],
+      "isolation": [
+        "project_isolation_ref",
+        "tenant_isolation_ref",
+        "environment_isolation_ref",
+        "assignment_isolation_ref",
+        "write_path_ref",
+        "network_ref",
+        "credential_ref",
+        "env_ref",
+        "timeout_ref",
+        "resource_limit_ref",
+        "difference_check_ref",
+        "rollback_ref",
+        "collection_ref"
+      ],
+      "reversibility": [
+        "before_state_ref",
+        "recovery_method_ref",
+        "recovery_target_ref"
+      ],
+      "assignment": [
+        "OS_assignment_ref",
+        "OS_actor_ref",
+        "stop_owner_ref"
+      ],
+      "run": [
+        "attempt_result_ref",
+        "cost_ref",
+        "partial_result_ref",
+        "outstanding_ref",
+        "resume_condition_ref",
+        "stopped_at_ref"
+      ],
+      "verification": [
+        "applied_oracle_ref",
+        "applied_obligation_ref",
+        "verification_result_ref",
+        "verifier_actor_ref",
+        "declared_division_ref",
+        "CI_use_ref"
+      ],
+      "human_result": [
+        "actor_ref",
+        "confirmation_target_ref",
+        "confirmation_result_ref",
+        "received_at_ref",
+        "outstanding_ref"
+      ],
+      "handoff": [
+        "OS018_result_ref",
+        "OS019_evidence_ref",
+        "OS023_handoff_ref",
+        "candidate_provenance_ref"
+      ],
+      "observation": [
+        "LABO_receipt_ref",
+        "scope_ref"
+      ],
+      "evaluation": [
+        "applied_oracle_ref",
+        "standard_revision",
+        "decision_conditions_ref",
+        "comparison_conditions_ref",
+        "application_result_ref",
+        "failure_counterexample_unknown_ref",
+        "evaluator_actor_ref",
+        "evaluated_at_ref",
+        "decision_receipt_ref"
+      ],
+      "selection_trace": [
+        "task_ref",
+        "risk_basis_ref",
+        "runtime_ref",
+        "requested_model_ref",
+        "effective_model_ref",
+        "requested_effort_ref",
+        "effective_effort_ref",
+        "retry_ref",
+        "quality_ref",
+        "cost_ref",
+        "default_deviation_ref",
+        "escalation_order_ref",
+        "receipt_ref"
+      ]
+    },
+    "asset_fields": [
+      "asset_id",
+      "owner_ref",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "classification_ref",
+      "classification",
+      "data_use_ref",
+      "planned_output_scope"
+    ],
+    "authority_fields": [
+      "actor_ref",
+      "target_ref",
+      "operation_ref",
+      "target_revision",
+      "environment_id",
+      "scope",
+      "expiry_ref",
+      "permission_ref"
+    ],
+    "network_fields": [
+      "destination_ref",
+      "protocol_ref",
+      "path_ref",
+      "data_class_ref",
+      "amount_ref",
+      "purpose_ref",
+      "authority_ref",
+      "expiry_ref"
+    ],
+    "phases": [
+      "prepare",
+      "run",
+      "verify",
+      "handoff",
+      "evaluate"
+    ],
+    "enabled_groups": {
+      "prepare": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility"
+      ],
+      "run": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output"
+      ],
+      "verify": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result"
+      ],
+      "handoff": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result",
+        "handoff",
+        "observation"
+      ],
+      "evaluate": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result",
+        "handoff",
+        "observation",
+        "evaluation"
+      ]
+    },
+    "rules": [
+      {
+        "id": "R01",
+        "rule": "binding各15fieldはactual/contextの非空stringを比較する。非string/空値は当該側field_unknown、両側knownの差はactual field_conflict。各active groupのbindingはcontext同groupへ比較し、context共通bindingへもjoinする。source witness各4fieldとgroup string_fieldsも同じ比較。supportedは両側trueのみ対応し、falseはrequired_flag_refused、非boolはrequired_flag_unknown。参照stringの存在はowner資格や実環境適用の証明ではない。"
+      },
+      {
+        "id": "R02",
+        "rule": "phaseはprepare/run/verify/handoff/evaluate。両側の集合外はphase_unknown、known差はactual phase_conflict。適用groupはactual known phaseだけから決める。両側dictのgroupだけR01と以後の固有規則を評価し、非dict側はgroup_missing。未来groupは入力を保持するだけで判定しない。outputが片側非dictならstop_material_required=true。成果値の採用も両側dictの場合に限る。"
+      },
+      {
+        "id": "R03",
+        "rule": "start.performance_stateはunevaluated/evaluated_materialのclosed値。不明側performance_unknown、known差performance_conflict。performance_stateは両側dict時のactual known値かnull。unevaluated単独を不足にしない。human_plan_confirmedは両側true、clock_refはstring比較。budget_limit/deadlineは有限・bool以外の正の数を両側に要求し、不正側numeric_unknown、両側正の数の差numeric_conflict。値10/100はfixtureだけで、共通閾値を定めない。"
+      },
+      {
+        "id": "R04",
+        "rule": "proposal.origin/asserted_originはhuman/INTELLIGENCE。不明側の各fieldへorigin_unknown。origin known差はorigin_conflict、actual originとactual asserted_originのknown差はproposal_origin_forged。input_revision/task_id/scopeはcontext共通bindingへjoinする。source/actor/contract/input/根拠/未評価/OS受領を保存し、案からOS assignmentを作らない。"
+      },
+      {
+        "id": "R05",
+        "rule": "assets/outputのrecordsとauthority.permissionsは両側dictを要求。不明側set_unknown、両側dictのkey集合差set_conflict。共通keyのasset_fields/authority_fieldsをstring比較する。資産のclassified/data_use_allowedと許可のallowedは両側trueのみ対応する。空集合同士から全資産・全操作の列挙完全性は証明できず、正式manifest資格・全集合解決は未成立として残す。"
+      },
+      {
+        "id": "R06",
+        "rule": "各資産のclassificationは両側でunknown/null/空値をclassification_unknown、secret/HELIX-restrictedをclassification_forbiddenとする。その他のstringは独立参照との一致とclassified/data_use_allowedを照合し、新しい分類語彙を定めない。actual planned_output_scopeをcontext共通scopeへjoinする。outputのplanned_asset_keyを両側string比較し、actual keyでcontext assets.recordsの予定資産を参照する。参照集合/key不明はoutput set_unknown、解決したclassification/planned_output_scopeへactual生成物をstring比較する。output内の全診断は受渡し停止材料を返す。観測側も同分類へ改変された場合であっても事前予定との差を検出する。任意の複数予定物の正式関係型はL5へ残す。"
+      },
+      {
+        "id": "R07",
+        "rule": "credential_requiredは両側false。trueはcredential_required、非boolはrequired_flag_unknown。blocked_access_refとsource witnessを照合する。参照存在で実遮断を認定せず、実資格/適用/raw secret排除は別の実証を要する。"
+      },
+      {
+        "id": "R08",
+        "rule": "egress.modeはnone/allowlisted。集合外はnetwork_mode_unknown、known差network_mode_conflict。両側dictかつactual allowlistedだけallowlist_refとnetwork_fieldsをstring比較する。noneには通信先やallowlist参照を要求しない。default_deny_refとsource/bindingは両modeで比較。unconfirmed_retryは両側false、trueはrequired_flag_refused、非boolはrequired_flag_unknown。"
+      },
+      {
+        "id": "R09",
+        "rule": "isolation.host_fallbackは両側false。trueはisolation_fallback_forbidden、非boolはrequired_flag_unknown。各隔離/制約参照とsupportedをR01で照合。実適用/unsupported/credential・network・環境・回収等の各実制約の資格はこの素材比較から生成しない。"
+      },
+      {
+        "id": "R10",
+        "rule": "authorityは各列挙操作の全authority_fieldsとallowedをR05照合し、actual environment_id/scopeをcontext共通bindingへjoinする。reversibility.reversibleは両側true、irreversible_external_effectは両側false（trueはrequired_flag_refused、非boolはrequired_flag_unknown）。復旧前状態/手段/先の参照を照合し、実取消成功とはしない。assignment.owner_kindは両側非空stringならOSだけ対応、他known値field_conflict、不明field_unknown。"
+      },
+      {
+        "id": "R11",
+        "rule": "run.stateはsuccess/failed/denied/interrupted/unknown。集合外はrun_state_unknown、known差run_state_conflict。run_stateはactual known値かnull。actual cumulative_cost/observed_timeは有限・bool以外の非負数、不正はnumeric_unknown。actual/context startが両側dictのとき、actual値をcontext startの非負known予算/期限と比較し超過はbudget_exceeded/deadline_exceeded、stop_material_required=true。actual scope_changed/verification_missingはtrueでrun_limit_violationと停止材料、非boolはrequired_flag_unknown。選択traceを各fieldへ照合し、原記録・部分成果・未完・再開条件を保持する。正常結果だけを採用するfilterを置かない。contextのrun使用量/停止flagは独立予定閾値ではなく原参照として保存し、actual使用量をその値に等しいことは要求しない。"
+      },
+      {
+        "id": "R12",
+        "rule": "verification.resultはverified_material/failed_material/unobserved、human_result.resultはconfirmed_material/rejected_material/unobserved、observation.resultはreceived_material/rejected_material/unobserved、evaluation.resultはevaluated_material/unevaluated/inapplicable/unknown。不明側result_unknown、known差result_conflict。各返却値は両側dict時のactual known値かnull。unobserved等の明示状態を未知文字列と混同せず、保存することから実受入や実評価は生成しない。"
+      },
+      {
+        "id": "R13",
+        "rule": "verificationはoracle_applied両側trueを照合し、applied_oracle_ref/applied_obligation_refをcontext共通oracle_ref/obligation_set_refへjoinする。human_result.roleは両側非空stringでhuman以外ならhuman_role_forbidden、不明はhuman_role_unknown。actual actor_refがactual worker_idとknown一致ならself_confirmation_forbidden。確認対象/時刻/未完、分担/CI利用参照を保存する。分担資料からOS020実装成功や実CI成功を作らない。"
+      },
+      {
+        "id": "R14",
+        "rule": "handoff/observationは実行後のOS018/019/023/LABO各参照と同bindingをR01で照合する。027 candidate provenanceと026構成導出を実行依存にしない。evaluationは固有全参照とsource/bindingを照合。actual result=evaluated_materialの場合だけoracle_applied/application_performedを両側true要求し、true以外はevaluation_basis_unproven。scoped_evaluation_materialはactual phase=evaluate、actual known evaluated_material、evaluation/binding/boundaryのfinding=0だけtrue。これは当該評価資料の対応であり、他groupの成功や全循環完了ではない。他groupの不足はfacetへ残し、正式receipt資格と実適用範囲の解決が成立するまで実評価済みへ昇格しない。"
+      },
+      {
+        "id": "R15",
+        "rule": "claimsの各trueはforbidden_claim、false以外はclaim_unknown。既存ownerの事実を否定する意味ではなく、この文書照合を根拠に新しい許可/成立/依存/一般risk分類/全機構完成待ちを生成する主張を拒否する。境界の不足を個別に返す。"
+      },
+      {
+        "id": "R16",
+        "rule": "facetはviolation>unknown>corresponding。binding/boundaryとactive groupはfindingなしならcorresponding、未来groupはnot_applicable。全体conditionはcycle_material_violation/cycle_material_unknown/cycle_material_corresponding。start_material_supportedはactual phase knownかつbinding/boundary/開始8groupのfinding=0だけtrue。後続記録不足から事前の資料対応を取り消さず、未来記録を開始gateにしない。actual/referenceをdeepcopyで保持。findingsはcode/pointer/return_ownerで重複除去して同3fieldの辞書順。return_ownerは固定facet名に-source-ownerを付した戻し先（正式owner資格ではない）。actual_assignment_created/actual_Worker_run/actual_verified/actual_LABO_received/actual_evaluated/whole_cycle_completeは全false、operation_effect=none。stop_material_requiredも実停止操作ではない。"
+      }
+    ],
+    "codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "phase_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "phase_conflict",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "group_missing",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "required_flag_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "required_flag_refused",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "performance_unknown",
+        "facet": "start",
+        "disposition": "unknown"
+      },
+      {
+        "code": "performance_conflict",
+        "facet": "start",
+        "disposition": "violation"
+      },
+      {
+        "code": "origin_unknown",
+        "facet": "proposal",
+        "disposition": "unknown"
+      },
+      {
+        "code": "origin_conflict",
+        "facet": "proposal",
+        "disposition": "violation"
+      },
+      {
+        "code": "proposal_origin_forged",
+        "facet": "proposal",
+        "disposition": "violation"
+      },
+      {
+        "code": "set_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "set_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "classification_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "classification_forbidden",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "credential_required",
+        "facet": "credential",
+        "disposition": "violation"
+      },
+      {
+        "code": "network_mode_unknown",
+        "facet": "egress",
+        "disposition": "unknown"
+      },
+      {
+        "code": "network_mode_conflict",
+        "facet": "egress",
+        "disposition": "violation"
+      },
+      {
+        "code": "isolation_fallback_forbidden",
+        "facet": "isolation",
+        "disposition": "violation"
+      },
+      {
+        "code": "numeric_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "numeric_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "budget_exceeded",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "deadline_exceeded",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "run_limit_violation",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "run_state_unknown",
+        "facet": "run",
+        "disposition": "unknown"
+      },
+      {
+        "code": "run_state_conflict",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "result_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "result_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "self_confirmation_forbidden",
+        "facet": "human_result",
+        "disposition": "violation"
+      },
+      {
+        "code": "human_role_unknown",
+        "facet": "human_result",
+        "disposition": "unknown"
+      },
+      {
+        "code": "human_role_forbidden",
+        "facet": "human_result",
+        "disposition": "violation"
+      },
+      {
+        "code": "evaluation_basis_unproven",
+        "facet": "evaluation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "forbidden_claim",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "claim_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      }
+    ],
+    "dynamic_comparison_facet": "comparisonのcodeは比較対象group/bindingのfacetへ返す。固定facet codeはcodesのfacetへ返す。",
+    "output_fields": [
+      "condition",
+      "phase",
+      "facet_correspondence",
+      "start_material_supported",
+      "performance_state",
+      "run_state",
+      "verification_result",
+      "human_result",
+      "observation_result",
+      "evaluation_result",
+      "scoped_evaluation_material",
+      "stop_material_required",
+      "retained_actual",
+      "retained_reference",
+      "findings",
+      "actual_assignment_created",
+      "actual_Worker_run",
+      "actual_verified",
+      "actual_LABO_received",
+      "actual_evaluated",
+      "whole_cycle_complete",
+      "operation_effect"
+    ],
+    "fixture_domain": "既存dict-keyを持つ限定素材fixture。欠落はnullで表す。追加key/任意shape/graph完全性は正式schemaで未成立。",
+    "material_limit": "correspondingは資料対応であり適格性/許可/実適用/成功ではない。独立source資格・実証が未成立なら実装Readyにしない。"
+  },
+  "l4_contracts": [
+    {
+      "id": "HELIXOS-L4-027-F01",
+      "requirement_ref": "HELIXOS-L3-027-F01",
+      "system_oracle_ref": "HELIXOS-L10-027-F01",
+      "oracle_ref": "HELIXOS-L9-027-F01",
+      "title": "未評価と初回実行許可の分離",
+      "approved_obligation": "開始前に要求/authority exact revision、ticket/task/scope、分類/data-use、操作許可、限定Worker/capability、proposal、LABO水準または明示未評価、予算/期限/停止条件、固定HARNESS oracle/義務、人確認を同attemptへ結ぶ。性能未評価だけで独立に許可された限定runを拒否せず、開始必須条件unknownは実行しない。",
+      "rules": [
+        "R01",
+        "R02",
+        "R03",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F02",
+      "requirement_ref": "HELIXOS-L3-027-F02",
+      "system_oracle_ref": "HELIXOS-L10-027-F02",
+      "oracle_ref": "HELIXOS-L9-027-F02",
+      "title": "人の配置案代行の同契約照合",
+      "approved_obligation": "人代行案はINT010/066の同入力属性・契約revision・scope、根拠/不確実性/未評価表示を持ち、INT出力と偽装しない。OS受領receiptへsource/actor・入力/契約revision・task/scope・作成時点・根拠・未評価・受領側revisionを結ぶ。OSだけが割当/停止する。",
+      "rules": [
+        "R04",
+        "R10",
+        "R15"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F03",
+      "requirement_ref": "HELIXOS-L3-027-F03",
+      "system_oracle_ref": "HELIXOS-L10-027-F03",
+      "oracle_ref": "HELIXOS-L9-027-F03",
+      "title": "狭いscope内の有限初回仕事",
+      "approved_obligation": "人が確認した狭いtask/scope、指定Worker、明示budget/期限/停止条件、固定検証義務に限ってOS018が実行を統制する。超過/scope変更/検証欠落は停止し、費用・attempt・部分成果・未完・再開条件を保持する。",
+      "rules": [
+        "R03",
+        "R11"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F04",
+      "requirement_ref": "HELIXOS-L3-027-F04",
+      "system_oracle_ref": "HELIXOS-L10-027-F04",
+      "oracle_ref": "HELIXOS-L9-027-F04",
+      "title": "HARNESS検証と独立した人確認",
+      "approved_obligation": "HARNESS022の固定oracle/義務に沿う実検証結果と、作成Workerとは別actorの人確認をOS019へ結ぶ。許容された人の検証分担を明示でき、OS020実装を初回の必須条件にしない。確認対象/結果/actor/対象revision/scope/受領時刻/未完を残す。",
+      "rules": [
+        "R12",
+        "R13"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F05",
+      "requirement_ref": "HELIXOS-L3-027-F05",
+      "system_oracle_ref": "HELIXOS-L10-027-F05",
+      "oracle_ref": "HELIXOS-L9-027-F05",
+      "title": "実行後の観測受渡し",
+      "approved_obligation": "OS018のassignment/attempt結果、019原証拠、023handoffを実行後に同scope/revisionへ結んでLABO観測へ渡す。027は構成candidate provenance参照であり、LABO057の実行依存にしない。026導出器も自分の入力/実行依存にしない。",
+      "rules": [
+        "R11",
+        "R12",
+        "R14"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F06",
+      "requirement_ref": "HELIXOS-L3-027-F06",
+      "system_oracle_ref": "HELIXOS-L10-027-F06",
+      "oracle_ref": "HELIXOS-L9-027-F06",
+      "title": "評価済み化の実適用証拠",
+      "approved_obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。Bench score単独でscope・branch・assignment・操作権限を変更しない。",
+      "rules": [
+        "R11",
+        "R14",
+        "R15"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F07",
+      "requirement_ref": "HELIXOS-L3-027-F07",
+      "system_oracle_ref": "HELIXOS-L10-027-F07",
+      "oracle_ref": "HELIXOS-L9-027-F07",
+      "title": "全資産の分類と利用区分",
+      "approved_obligation": "SEC015/016の全読込・入力・生成/出力資産identity/owner/source/revision/分類を照合し、unknown/secret/HELIX-restrictedを含めない。公開範囲とdata-use許可/操作authorityを分け、生成予定scope/分類から出力が外れたら受渡しを止める。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R05",
+        "R06"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F08",
+      "requirement_ref": "HELIXOS-L3-027-F08",
+      "system_oracle_ref": "HELIXOS-L10-027-F08",
+      "oracle_ref": "HELIXOS-L9-027-F08",
+      "title": "credential不使用と遮断",
+      "approved_obligation": "SEC005/007に従いcredential-useとraw secretの読込/入力/出力を必要とせず、credentialアクセスが遮断されている。credentialを要する仕事は本経路の対象外。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R07"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F09",
+      "requirement_ref": "HELIXOS-L3-027-F09",
+      "system_oracle_ref": "HELIXOS-L10-027-F09",
+      "oracle_ref": "HELIXOS-L9-027-F09",
+      "title": "egress許可の一致",
+      "approved_obligation": "SEC006のdefault denyと明示allowlistにより、通信なし、またはdestination/protocol/path・data分類/量・purpose/authority/expiryに一致する通信だけを使う。未確認宛先へ再送しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R08"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F10",
+      "requirement_ref": "HELIXOS-L3-027-F10",
+      "system_oracle_ref": "HELIXOS-L10-027-F10",
+      "oracle_ref": "HELIXOS-L9-027-F10",
+      "title": "隔離と実制約適用",
+      "approved_obligation": "SEC003のproject/tenant/environment/assignment隔離と007のwrite path/network/credential/env/timeout/resources/差分/rollback/回収制約が実環境へ適用されている。unsupported/未適用/host fallbackを許さない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R09"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F11",
+      "requirement_ref": "HELIXOS-L3-027-F11",
+      "system_oracle_ref": "HELIXOS-L10-027-F11",
+      "oracle_ref": "HELIXOS-L9-027-F11",
+      "title": "操作別authority",
+      "approved_obligation": "SEC008のactor/target/operation/revision/environment/scope/expiryに一致する有効許可を全操作へ結び、列挙漏れを許さない。性能未評価や人案を許可の代替にしない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R05",
+        "R10"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F12",
+      "requirement_ref": "HELIXOS-L3-027-F12",
+      "system_oracle_ref": "HELIXOS-L10-027-F12",
+      "oracle_ref": "HELIXOS-L9-027-F12",
+      "title": "可逆性と事前復旧",
+      "approved_obligation": "許可scope内で取り消せる変更だけとし、変更前状態・復旧手段/復旧先を事前確認する。不可逆外部作用/release/tag/配布と可逆性unknownは本経路の対象外。人確認で免除しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R10"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-N01",
+      "requirement_ref": "HELIXOS-L3-027-N01",
+      "system_oracle_ref": "HELIXOS-L10-027-N01",
+      "oracle_ref": "HELIXOS-L9-027-N01",
+      "title": "未見scopeと部分成功の限界",
+      "approved_obligation": "未見task/model/scope/actorと一境界故障を使い、authority/classification/proposal/assignment/実record/検証/人確認/LABO受領を別々に検査する。部分成功で欠落を相殺せず、適用外/未観測/未評価を保持する。",
+      "rules": [
+        "R01",
+        "R02",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-B01",
+      "requirement_ref": "HELIXOS-L3-027-B01",
+      "system_oracle_ref": "HELIXOS-L10-027-B01",
+      "oracle_ref": "HELIXOS-L9-027-B01",
+      "title": "初回経路と責務・許可の境界",
+      "approved_obligation": "本経路は既存六条件の積としての限定適格性で、一般risk分類器やSEC016のtaskリスク出力を新設しない。人の配置案、操作許可、OS assignment、実検証、人確認、LABO観測/評価を別に扱う。全能力/固定provider/後続版/権限拡大を要求しない。",
+      "rules": [
+        "R02",
+        "R15",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    }
+  ],
+  "formal_pipeline": [
+    {
+      "step": "read_input_and_presence",
+      "rule": "JSONValue/Presence"
+    },
+    {
+      "step": "classify_phase",
+      "rule": "R02"
+    },
+    {
+      "step": "select_active_groups",
+      "rule": "R02"
+    },
+    {
+      "step": "compare_binding_witness_and_group_string_members",
+      "rule": "R01"
+    },
+    {
+      "step": "evaluate_specific_active_group_rules",
+      "rules": [
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15"
+      ]
+    },
+    {
+      "step": "aggregate_facets_and_condition",
+      "rule": "R16"
+    },
+    {
+      "step": "sort_and_unique_findings",
+      "rule": "R16"
+    },
+    {
+      "step": "project_cycle_proposal",
+      "rule": "R16"
+    }
+  ],
+  "scope_limitations": [
+    "この有限合成fixtureの対応は実owner資格/実環境適用/schema/codecを成立させない。",
+    "empty asset/permission setsは全manifestの完全性を証明しない。",
+    "開始前の未評価performance状態だけでは開始を拒否しない。",
+    "後段consumerの未達を一律の開始前gateにしない。",
+    "全L2/L11/実operation/実評価/CI/Readyは未成立。",
+    "未供給のmanifest/role関係はunclosed_planned_output_relationsを参照。有限比較の対応をL4全義務の完成としない。"
+  ],
+  "remaining": [
+    "実owner/source資格・actual environment enforcement・effective expiry/manifestの別証拠",
+    "旧consumer全体のclosureと実operation/実Red-Green・L7対検証・L11受入",
+    "全92親430対の意味閉包",
+    "L4が割り当てた任意資産/操作/複数予定生成物の完全関係はunclosed_planned_output_relationsの供給不足/witness/consumerへ残す。"
+  ],
+  "approval_admission": {
+    "decision_record_path": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "decision_record_sha256": "d0ce49f8e870a396628da2cc366b65db64f33820c2af6a3392debde04b87bddc",
+    "reviewed_content_revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+    "actual_admission": "75ab7c2e764e00565521050dd51978e0459e1d8a"
+  },
+  "output_projection": {
+    "root_fields": [
+      "condition",
+      "phase",
+      "facet_correspondence",
+      "start_material_supported",
+      "performance_state",
+      "run_state",
+      "verification_result",
+      "human_result",
+      "observation_result",
+      "evaluation_result",
+      "scoped_evaluation_material",
+      "stop_material_required",
+      "retained_actual",
+      "retained_reference",
+      "findings",
+      "actual_assignment_created",
+      "actual_Worker_run",
+      "actual_verified",
+      "actual_LABO_received",
+      "actual_evaluated",
+      "whole_cycle_complete",
+      "operation_effect"
+    ],
+    "source": "formal_programs[OS027-EVAL-1].output_expressions",
+    "owner_route_source": "formal_programs[OS027-EVAL-1].logical_return_owner_by_facet",
+    "meaning_ja": "全root fieldは規則から評価または原入力の明示projectionで構成する。raw-preservationと資格・成功判定を混同しない。"
+  },
+  "legacy_asset_ledger_rows": [
+    {
+      "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "line": 477,
+      "source_path": "docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "line": 2838,
+      "source_path": "docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "source_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "consumer_refs": []
+    }
+  ],
+  "template_application": {
+    "identity": "DT-MSG-004",
+    "source_candidate_version": "0.1.0-seed-candidate",
+    "meaning_source": {
+      "name": "msg004-meaning-source-0",
+      "path": "docs/helix-brain/candidates/first-cycle-design-template-knowledge.json",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "3779f7612a1555a07796bb3097f124ca4c63878bc3a42ec6fc864cb317d5d1a8",
+      "size_bytes": 539806,
+      "json_pointer": "/templates/1/semantic_descriptors"
+    },
+    "adoption_decision": {
+      "name": "msg004-meaning-source-1",
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "size_bytes": 5902
+    },
+    "source_text": {
+      "name": "msg004-meaning-source-2",
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/templates/DT-MSG-004-unit-behavior.md",
+      "revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171",
+      "working_bytes_sha256": "71e0acb5bfaecaf295c1b1951c1f87864f955c068d022c132edbb69dec2f32b5",
+      "size_bytes": 11262
+    },
+    "applicability": "required",
+    "reason": "限定初回循環の局所純粋関数を設計するため。",
+    "judge": "設計作成担当",
+    "target_revision": "このL5/L8 exact bytesをgitとpaired_l5_sha256で特定する。",
+    "reevaluation": "要求/関数/対oracle/適用条件の意味変更時。",
+    "mapping": {
+      "対象と要求": "/functionsと/l4_contracts",
+      "入出力・条件・不変": "/formal_typesと/formal_programsと/interpreter_contract",
+      "副作用": "N/A。外部状態を変更しない純粋計算。",
+      "失敗": "各ruleのunknown/violationとfinding/ownerを保持し、未来groupは判定しない。",
+      "回復": "外部副作用の途中状態はN/A。停止材料は返却値であり実停止/復旧を生成しない。",
+      "検証引渡し": "L8の原2270whole参照と型境界4部分期待へ結ぶ。"
+    },
+    "limit": "限定意味の参照のみ。全template採用/運用knowledge昇格/正式schema/実資格は成立しない。"
+  },
+  "unclosed_planned_output_relations": {
+    "status": "unclosed",
+    "l4_obligation": "任意資産/操作/予定生成物の全関係とmanifest完全性。",
+    "implemented": "供給された両側record key集合、各field、actual output keyからcontext asset recordへの有限join。",
+    "missing_inputs": [
+      "独立した予定生成物の必要集合producer/全列挙資格",
+      "各assetの入力/予定生成物roleを識別するsource-qualified tag",
+      "複数予定物とoutput recordの完全な対応関係の独立schema/consumer"
+    ],
+    "witnesses": [
+      "LOCAL-OS027-OUTPUT-EMPTY-RELATION-WITNESS",
+      "LOCAL-OS027-OUTPUT-INPUT-ASSET-ROLE-WITNESS"
+    ],
+    "meaning": "空集合/双方同値や命名input_a/planned_output_aから役割を推測してL4義務合格にしない。対応という現material表示は関係閉包/実許可を意味しない。"
+  },
+  "legacy_normative_whole_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-36",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-36",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。",
+          "semantic_digest": "sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3"
+        },
+        "assertion_id": "HIA-NFR-036",
+        "primary_system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-36",
+          "owner_id": "HR-FR-HIL-22",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-36",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
+          "authority_id": "RAS-HIL-22"
+        },
+        "semantic_digest": "sha256:1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065"
+      },
+      "object_canonical_sha256": "f2ef202e0fc7e7de9a258b8338620f2a2f89b6981befb33ec86187b31ffd6ee6",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id": "HR-FR-HIL-22",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-22",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-31",
+          "HIL-FR-61",
+          "HIL-FR-62",
+          "HIL-FR-63",
+          "HIL-NFR-35",
+          "HIL-NFR-36"
+        ],
+        "behavior": "候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする",
+        "transition_contract": "fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt",
+        "failure_and_evidence": "smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f"
+      },
+      "object_canonical_sha256": "dccc7db6dfe7895688ca8bd048e94c9347ccf547fb402ea1a176c1e163669069",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22a",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22a",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "positive",
+        "statement": "blind benchと実taskで用途別選択",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80"
+      },
+      "object_canonical_sha256": "10cebedcb421979e3a3981414c50f6a084a15bce2fe36a4caa170cb944959def",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22b",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22b",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "negative",
+        "statement": "重大failure/範囲逸脱を平均で相殺しない",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763"
+      },
+      "object_canonical_sha256": "da1a9fc5c92a97f0e0e2305851edb55677504681060ed7974be365ceb1815844",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22c",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "boundary",
+        "statement": "品質悪化時にmodel/effortを比較再route",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5"
+      },
+      "object_canonical_sha256": "8b6ee48b269806bdc8f904daa0032eab5e307665972e4fa25454b363e1e4457d",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id": "HAT-HIL-22",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-22",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "supporting_test_ids": [
+          "HOT-HIL-54",
+          "HOT-HIL-55"
+        ],
+        "scenario": "worker bench、実task scorecard、effort routingを検証",
+        "required_evidence": "fixture/rubric、blind score、実効cost、route receipt",
+        "negative_boundary": "smoke-only、重大failure相殺、単価/effort固定",
+        "semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8"
+      },
+      "object_canonical_sha256": "01061d2080f831e4202443356e1362db302616d69a0f1ee75e3a8c9d9acb344a",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    }
+  ],
+  "mutation_coverage_limit": {
+    "status": "未成立",
+    "meaning": "R13 joinとR06 data_use_refの局所反例を識別しても、残family・未見の複合入力・全規則の変異識別は未閉包。有限wholeの一致を全域へ一般化せず、全mutation合格の新しい一律gateを設けない。"
+  }
+}
