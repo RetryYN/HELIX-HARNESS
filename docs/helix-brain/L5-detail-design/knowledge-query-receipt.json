@@ -436,9 +436,7 @@
     {
       "id": "B030-U10",
       "source": "L4 B01",
-      "gap": "product_conclusionsは最終製品結論を載せる専用mapという宣言役割。member存在をBRAIN製品決定の提出として拒否する。null/空値もrawを保全するが、有効な製品schema値かは判断しない。",
-      "basis": "L8の独立wholeは、L3/L4に対応する明示有限反例を固定し、L5 ASTの観測済みfamilyを照合する。",
-      "unclosed": "L8には指定された各意味familyの代表wholeを置くが、報告された124の非等価変異それぞれへ個別raw/input/期待を対応づける情報は供給されていない。各familyの代表反例は保持し、個々の変異と未観測組合せの識別は未閉包である。"
+      "gap": "product_conclusionsは最終製品結論を載せる専用mapという宣言役割。member存在をBRAIN製品決定の提出として拒否する。null/空値もrawを保全するが、有効な製品schema値かは判断しない。"
     },
     {
       "id": "B030-U11",
@@ -448,8 +446,8 @@
     {
       "id": "B030-U12",
       "topic": "required-field一覧全体の不足返却",
-      "basis": "L10-030-F02はrequired-field一覧欠落とfield定義不足をBRAINへ戻す。個別field identityが存在しない一覧不足はfield=null、list_scope=required_fields、reason=required_field_list_missingまたはrequired_field_list_unresolvedとして表す。これは実owner資格・実source解決を示さない。",
-      "unclosed": "未供給の一覧source/owner資格と、unknownの全原因の一般分類は未成立。有限ASTは明示null/欠落・未知比較stateでの一覧範囲返却を定義する。"
+      "basis": "L10-030-F02はrequired-field一覧欠落とfield定義不足をBRAINへ戻す。個別field identityが存在しない一覧不足はfield=null、list_scope=required_fields、reason=required_field_list_missingとして表す。これは実owner資格・実source解決を示さない。",
+      "unclosed": "未供給の一覧source/owner資格と、unknownの全原因の一般分類は未成立。空rowの一覧範囲返却はmissingだけを対象とし、unknown一覧は非空rowの各fieldで不足を保持する。"
     }
   ],
   "implementation_readiness": "not_ready",
@@ -1873,8 +1871,7 @@
             "reason": {
               "type": "string",
               "enum": [
-                "required_field_list_missing",
-                "required_field_list_unresolved"
+                "required_field_list_missing"
               ]
             }
           },
@@ -5216,31 +5213,15 @@
                       "op": "and",
                       "items": [
                         {
-                          "op": "or",
-                          "items": [
-                            {
-                              "op": "equal",
-                              "left": {
-                                "op": "var",
-                                "name": "list_state"
-                              },
-                              "right": {
-                                "op": "literal",
-                                "value": "missing"
-                              }
-                            },
-                            {
-                              "op": "equal",
-                              "left": {
-                                "op": "var",
-                                "name": "list_state"
-                              },
-                              "right": {
-                                "op": "literal",
-                                "value": "unknown"
-                              }
-                            }
-                          ]
+                          "op": "equal",
+                          "left": {
+                            "op": "var",
+                            "name": "list_state"
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": "missing"
+                          }
                         },
                         {
                           "op": "equal",
@@ -5277,26 +5258,8 @@
                               "value": "BRAIN-field-definition-owner"
                             },
                             "reason": {
-                              "op": "if",
-                              "condition": {
-                                "op": "equal",
-                                "left": {
-                                  "op": "var",
-                                  "name": "list_state"
-                                },
-                                "right": {
-                                  "op": "literal",
-                                  "value": "missing"
-                                }
-                              },
-                              "then": {
-                                "op": "literal",
-                                "value": "required_field_list_missing"
-                              },
-                              "else": {
-                                "op": "literal",
-                                "value": "required_field_list_unresolved"
-                              }
+                              "op": "literal",
+                              "value": "required_field_list_missing"
                             }
                           }
                         }
@@ -12239,9 +12202,9 @@
   },
   "domain_verification": {
     "current_L9_cases": 99,
-    "independent_probes": 82,
-    "current_full_materials": 181,
-    "meaning": "L9の99件とL8の独立whole 82件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
+    "independent_probes": 84,
+    "current_full_materials": 183,
+    "meaning": "L9の99件とL8の独立whole 84件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
     "mutation_scope": {
       "observed_rule_families": [
         "有限marker12語の削除",
@@ -12265,8 +12228,7 @@
       "limit": "L8の独立wholeで具体的に示した有限AST変異だけを照合する。比較された変異集合の件数は未成立証拠であり、未見全scope/全branch/全変異の網羅を主張しない。未観測のN01 fallback条件、実source/qualification/未見複合は保持課題。"
     },
     "independent_mutation_witnesses": {
-      "reported_non_equivalent_total": 124,
-      "basis": "公式6189840122に列挙された非等価変異総数と変異原因family。変異ごとのidentity/input一覧は供給されていないため件数をcoverage証明へ転用しない。",
+      "basis": "各意味familyに対応するL3/L4の義務と独立固定raw/whole。代表例はfamily全域の識別や実資格を証明しない。",
       "family_refs": [
         {
           "family": "compareの片側null/marker",
@@ -12337,9 +12299,16 @@
           "probe_ids": [
             "B030-R4-N01-RELATION-KNOWLEDGE-REVISION-MARKER"
           ]
+        },
+        {
+          "family": "定義済み案件値のunknown/value_unset分離と両field未決の保持",
+          "probe_ids": [
+            "LOCAL-F02-A-UNKNOWN-B-UNSET",
+            "LOCAL-F02-A-VALUE-UNSET-B-UNSET"
+          ]
         }
       ],
-      "limit": "family代表例は独立wholeである。列挙family内の全演算子変異と報告された124件を1対1に網羅したとは主張しない。"
+      "limit": "family代表例の有限whole比較であり、同一family内の全演算子変異・全複合入力の識別は未閉包。"
     }
   },
   "candidate_design_bindings": [
