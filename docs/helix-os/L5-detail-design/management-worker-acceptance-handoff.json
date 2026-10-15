@@ -657,9 +657,37 @@
         "observation_path_template": "JSONPointer",
         "selection_literal_domain_pointer": "JSONPointer",
         "return_owner": "string",
-        "code_dispositions_pointer": "JSONPointer"
+        "code_dispositions_pointer": "JSONPointer",
+        "selection_rule": "N01SelectionRule"
       },
       "rule": "正式programのselection/observation path・codeはこのdataだけから解決する。"
+    },
+    {
+      "name": "N01SelectionRule",
+      "definition": {
+        "known": "string",
+        "invalid_root_code": "string",
+        "unknown_item_code": "string",
+        "unknown_item_pointer": "N01UnknownItemPointerRule",
+        "conflict_code": "string",
+        "conflict_pointer": "string",
+        "actual_invalid_coverage": "string",
+        "expected_invalid_coverage": "string",
+        "known_inactive_edge": "string",
+        "known_active_initial": "string",
+        "set_conflict_does_not_suppress_actual_active_edges": "boolean"
+      },
+      "rule": "actual/context双方のselection domainと所見pointerを定める。"
+    },
+    {
+      "name": "N01UnknownItemPointerRule",
+      "definition": {
+        "selection_operand_pointer_refs": "list<string>",
+        "pointer_template": "string",
+        "zero_based_index": "number",
+        "member_predicate": "enum(not_string_or_not_in_edge_domain)"
+      },
+      "rule": "両selection operandそれぞれのlist memberから所見pointerを作る。"
     },
     {
       "name": "N01Evaluation",
@@ -825,8 +853,8 @@
       "name": "aggregate_handoff",
       "signature": "(map<EdgeId,map<Facet,FacetState>>,list<Finding>,PhaseSelection,Presence<JsonValue>)->AggregateResult",
       "reads": [
-        "edge facet maps in edge_order/facet_order",
-        "F01/F02/N01/F03 finding arrays",
+        "edge_order/facet_order順のedge facet map。",
+        "F01/F02/N01/F03のfinding配列。",
         "PhaseSelection.actual_known/context_known/actual_ids/context_ids",
         "whole_scope_claim"
       ],
@@ -906,7 +934,7 @@
         "/phase",
         "/selected_edges",
         "/context/selected_edges",
-        "F01/F02/N01/F03 complete declared return records",
+        "F01/F02/N01/F03の宣言済み全返却record。",
         "/whole_scope_claim",
         "/diagnostic_code_dispositions",
         "/edge_order",
@@ -1229,7 +1257,7 @@
     ],
     "L2": "docs/helix-os/L2-requirements/governance-requirements.md lines 724-733",
     "L11": "docs/helix-os/L11-acceptance/governance-acceptance.md lines 380-386",
-    "L3_L10": "8 exact whole snapshots in approved_whole_objects",
+    "L3_L10": "approved_whole_objects内の8件のexact whole snapshot。",
     "source_boundary": "L2 015-020にあるauthority/connection/ticket/assignment/attempt/evidence/verification義務を版付きで結ぶ。L4は実qualification/authority発行をしない。"
   },
   "observed_source_finding_codes": {
@@ -1267,7 +1295,7 @@
     ],
     "basis": "原L9の322 source expected proposalsで観測されたcodeのみ。未知のcode/一般域の閉包は未成立。",
     "owner_literal": "management-handoff-owner",
-    "owner_boundary": "L4/L9 synthetic label only, not an actual qualified owner."
+    "owner_boundary": "L4/L9の合成素材にある責務labelで、実owner資格を示さない。"
   },
   "ordered_rule_plan": {
     "iteration": {
@@ -1481,7 +1509,7 @@
         "facet": "binding",
         "unknown_code": "source_unresolved",
         "conflict_code": "source_conflict",
-        "comparison_source": "fixed L4 edge_roles, independently checked against context role as L4 diagnostic_contract.algorithm states",
+        "comparison_source": "L4の固定edge_rolesを使い、diagnostic_contract.algorithmに従ってcontext roleへも独立照合する。",
         "role_index": 0,
         "comparison_meaning": "context roleをL4で固定されたedge_rolesへ照合する"
       },
@@ -1492,7 +1520,7 @@
         "facet": "binding",
         "unknown_code": "source_unresolved",
         "conflict_code": "source_conflict",
-        "comparison_source": "fixed L4 edge_roles, independently checked against context role as L4 diagnostic_contract.algorithm states",
+        "comparison_source": "L4の固定edge_rolesを使い、diagnostic_contract.algorithmに従ってcontext roleへも独立照合する。",
         "role_index": 1,
         "comparison_meaning": "context roleをL4で固定されたedge_rolesへ照合する"
       }
@@ -1905,13 +1933,13 @@
         "receive",
         "reconcile"
       ],
-      "true_only_if": "binding,delivery,reception,coverage facet has no marker",
+      "true_only_if": "binding/delivery/reception/coverageの全facetにmarkerが無い場合だけ。",
       "ack_is_ignored": true,
       "unit_success_is_sufficient": false
     },
     "connection_rule": {
       "phase": "reconcile",
-      "true_only_if": "binding,units,delivery,reception,connection,review,coverage facets have no marker",
+      "true_only_if": "binding/units/delivery/reception/connection/review/coverageの全facetにmarkerが無い場合だけ。",
       "unfinished_is_independent": true
     },
     "aggregate_rule": {
@@ -1995,7 +2023,7 @@
           "/cases/66/expected_proposal"
         ]
       ],
-      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+      "meaning": "原L9の固定oracleへのtraceであり、独立した実行証拠ではない。"
     },
     {
       "requirement_id": "HELIXOS-L3-023-F02",
@@ -2028,7 +2056,7 @@
           "/cases/45/expected_proposal"
         ]
       ],
-      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+      "meaning": "原L9の固定oracleへのtraceであり、独立した実行証拠ではない。"
     },
     {
       "requirement_id": "HELIXOS-L3-023-F03",
@@ -2066,7 +2094,7 @@
           "/cases/64/expected_proposal"
         ]
       ],
-      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+      "meaning": "原L9の固定oracleへのtraceであり、独立した実行証拠ではない。"
     },
     {
       "requirement_id": "HELIXOS-L3-023-N01",
@@ -2104,7 +2132,7 @@
           "/cases/260/expected_proposal"
         ]
       ],
-      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+      "meaning": "原L9の固定oracleへのtraceであり、独立した実行証拠ではない。"
     }
   ],
   "l10_obligation_unclosed": [
@@ -2256,7 +2284,7 @@
           },
           "closed_enum": {
             "kind": "string",
-            "allowed_values_source": "comparison row allowed_values"
+            "allowed_values_source": "比較rowのallowed_valuesを参照する。"
           },
           "json_equal": {
             "json_kind_must_match": true,
@@ -2268,27 +2296,27 @@
         },
         "comparison_priority_machine": [
           {
-            "when": "any operand outside comparator domain",
+            "when": "operandのいずれかが比較domain外。",
             "emit": "unknown_code_for_each_unknown_operand_pointer",
             "state": "unknown_unless_already_violation"
           },
           {
-            "when": "both operands known and unequal",
+            "when": "両operandがknownで相反。",
             "emit": "conflict_code_at_actual_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset false",
+            "when": "relation=subset_ofで全operandがknown、包含条件は不成立。",
             "emit": "failure_code_at_failure_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset true",
+            "when": "relation=subset_ofで全operandがknown、包含条件が成立。",
             "emit": "none",
             "state": "preserve"
           },
           {
-            "when": "both operands known and equal",
+            "when": "両operandがknownで等値。",
             "emit": "none",
             "state": "preserve"
           }
@@ -2514,7 +2542,7 @@
           },
           "closed_enum": {
             "kind": "string",
-            "allowed_values_source": "comparison row allowed_values"
+            "allowed_values_source": "比較rowのallowed_valuesを参照する。"
           },
           "json_equal": {
             "json_kind_must_match": true,
@@ -2526,27 +2554,27 @@
         },
         "comparison_priority_machine": [
           {
-            "when": "any operand outside comparator domain",
+            "when": "operandのいずれかが比較domain外。",
             "emit": "unknown_code_for_each_unknown_operand_pointer",
             "state": "unknown_unless_already_violation"
           },
           {
-            "when": "both operands known and unequal",
+            "when": "両operandがknownで相反。",
             "emit": "conflict_code_at_actual_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset false",
+            "when": "relation=subset_ofで全operandがknown、包含条件は不成立。",
             "emit": "failure_code_at_failure_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset true",
+            "when": "relation=subset_ofで全operandがknown、包含条件が成立。",
             "emit": "none",
             "state": "preserve"
           },
           {
-            "when": "both operands known and equal",
+            "when": "両operandがknownで等値。",
             "emit": "none",
             "state": "preserve"
           }
@@ -2567,7 +2595,7 @@
           "not_selected",
           "corresponding"
         ],
-        "projection_rules": "groups[].value_projection; only active selected edge and applicable phase; raw path values outside allowed_values become null"
+        "projection_rules": "groups[].value_projectionに従い、選択済みactive edgeかつ適用phaseだけを投影する。allowed_values外のraw値はnull。"
       },
       "execution_plan": [
         {
@@ -2590,7 +2618,7 @@
         },
         {
           "operator": "check_shapes_then_compare_rows",
-          "input": "group.shape_checks and group.plan_pointer",
+          "input": "group.shape_checksとgroup.plan_pointerを入力とする。",
           "priority": "unknown operandを先に診断し、facetはdispositionのviolationをunknownより優先する。"
         },
         {
@@ -2627,22 +2655,30 @@
         "return_owner": "management-handoff-owner",
         "code_dispositions_pointer": "/diagnostic_code_dispositions",
         "selection_rule": {
-          "known": "array of unique known EdgeId strings; empty array is known empty set",
+          "known": "一意で、宣言済みEdgeIdだけを含む配列。空配列は既知の空集合。",
           "invalid_root_code": "edge_selection_unresolved",
           "unknown_item_code": "unknown_edge_identity",
-          "unknown_item_pointer": "実selectionの未知edge IDは0始まりの配列indexを用いて/selected_edges/{index}へunknown_edge_identityを出す。selection自体の型不明/欠落等は/selected_edgesのedge_selection_unresolvedで示す。",
+          "unknown_item_pointer": {
+            "selection_operand_pointer_refs": [
+              "rule_data.actual_selection_pointer",
+              "rule_data.expected_selection_pointer"
+            ],
+            "pointer_template": "{selection_pointer}/{index}",
+            "zero_based_index": 0,
+            "member_predicate": "not_string_or_not_in_edge_domain"
+          },
           "conflict_code": "edge_selection_conflict",
-          "conflict_pointer": "actual selection root",
-          "actual_invalid_coverage": "unknown for all edges",
-          "expected_invalid_coverage": "unknown for all edges",
+          "conflict_pointer": "実selection root",
+          "actual_invalid_coverage": "全edgeのcoverageをunknownにする。",
+          "expected_invalid_coverage": "全edgeのcoverageをunknownにする。",
           "known_inactive_edge": "not_selected",
           "known_active_initial": "corresponding",
           "set_conflict_does_not_suppress_actual_active_edges": true
         },
         "observation_rule": {
-          "boolean_true": "corresponding, no finding",
-          "boolean_false": "unknown and edge_unobserved",
-          "nonboolean_or_missing_or_null": "unknown and edge_observation_unresolved",
+          "boolean_true": "correspondingとし、findingを出さない。",
+          "boolean_false": "unknownとし、edge_unobservedを出す。",
+          "nonboolean_or_missing_or_null": "unknownとし、edge_observation_unresolvedを出す。",
           "evaluated_only_when_both_selections_are_known": true,
           "false_code": "edge_unobserved",
           "nonboolean_code": "edge_observation_unresolved",
@@ -2676,7 +2712,7 @@
           },
           "closed_enum": {
             "kind": "string",
-            "allowed_values_source": "comparison row allowed_values"
+            "allowed_values_source": "比較rowのallowed_valuesを参照する。"
           },
           "json_equal": {
             "json_kind_must_match": true,
@@ -2688,27 +2724,27 @@
         },
         "comparison_priority_machine": [
           {
-            "when": "any operand outside comparator domain",
+            "when": "operandのいずれかが比較domain外。",
             "emit": "unknown_code_for_each_unknown_operand_pointer",
             "state": "unknown_unless_already_violation"
           },
           {
-            "when": "both operands known and unequal",
+            "when": "両operandがknownで相反。",
             "emit": "conflict_code_at_actual_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset false",
+            "when": "relation=subset_ofで全operandがknown、包含条件は不成立。",
             "emit": "failure_code_at_failure_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset true",
+            "when": "relation=subset_ofで全operandがknown、包含条件が成立。",
             "emit": "none",
             "state": "preserve"
           },
           {
-            "when": "both operands known and equal",
+            "when": "両operandがknownで等値。",
             "emit": "none",
             "state": "preserve"
           }
@@ -2805,7 +2841,7 @@
       "argument_types": {
         "ExpandedInput": "formal_types.ExpandedInput"
       },
-      "meaning_ja": "実selectionとcontext selectionを比較し、各edgeのobservationだけからcoverageを返す。"
+      "meaning_ja": "実selectionとcontext selectionの双方を検査し、各listの未知memberを当該listのindexへ診断する。coverageは両選択の既知性とobservationだけから返す。"
     },
     {
       "program_id": "OS023-F03-RECEIVER-TRANSFER",
@@ -2870,7 +2906,7 @@
           "failure_value": "refused_material",
           "failure_code": "receiver_refused",
           "non_success_code": "receiver_unobserved",
-          "unknown_output": "facet unknown; do not synthesize a receipt"
+          "unknown_output": "facetはunknownとし、receiptを生成しない。"
         },
         "claim_rules": [
           {
@@ -2878,13 +2914,13 @@
             "boolean_true_if_transfer_false": "source_completion_without_receiver",
             "boolean_true_if_transfer_true": "source_completion_unproven",
             "nonboolean_code": "source_completion_claim_unresolved",
-            "false": "no finding"
+            "false": "findingを出さない。"
           },
           {
             "path_template": "/edges/{edge}/meaning_resolved_claim",
             "boolean_true_code": "ack_not_meaning_resolution",
             "nonboolean_code": "meaning_resolution_claim_unresolved",
-            "false": "no finding"
+            "false": "findingを出さない。"
           }
         ],
         "finding_sort": [
@@ -2893,7 +2929,7 @@
           "return_owner"
         ],
         "finding_dedup": "exact tuple",
-        "execution_boundary": "synthetic material projection only; source work completion remains false",
+        "execution_boundary": "合成素材の投影に限り、元作業の完了はfalseのまま。",
         "transfer_required_state": "corresponding",
         "reception_finding_codes": [
           "receiver_obligation_lost",
@@ -2929,7 +2965,7 @@
           },
           "closed_enum": {
             "kind": "string",
-            "allowed_values_source": "comparison row allowed_values"
+            "allowed_values_source": "比較rowのallowed_valuesを参照する。"
           },
           "json_equal": {
             "json_kind_must_match": true,
@@ -2941,27 +2977,27 @@
         },
         "comparison_priority_machine": [
           {
-            "when": "any operand outside comparator domain",
+            "when": "operandのいずれかが比較domain外。",
             "emit": "unknown_code_for_each_unknown_operand_pointer",
             "state": "unknown_unless_already_violation"
           },
           {
-            "when": "both operands known and unequal",
+            "when": "両operandがknownで相反。",
             "emit": "conflict_code_at_actual_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset false",
+            "when": "relation=subset_ofで全operandがknown、包含条件は不成立。",
             "emit": "failure_code_at_failure_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset true",
+            "when": "relation=subset_ofで全operandがknown、包含条件が成立。",
             "emit": "none",
             "state": "preserve"
           },
           {
-            "when": "both operands known and equal",
+            "when": "両operandがknownで等値。",
             "emit": "none",
             "state": "preserve"
           }
@@ -3098,9 +3134,9 @@
           "operation_effect": "none"
         },
         "aggregation_order": [
-          "global findings",
-          "active selected edges in edge_order",
-          "facet priority violation then unknown then corresponding"
+          "globalのfindingを集約する。",
+          "選択済みactive edgeをedge_order順に集約する。",
+          "facetの優先順はviolation、unknown、corresponding。"
         ],
         "inactive_edge_condition": "not_selectedは成功根拠へ数えない。両known emptyはN01の具体的なglobal不足findingによりunknown。別global violationは優先する。",
         "finding_order": [
@@ -3130,7 +3166,7 @@
           },
           "closed_enum": {
             "kind": "string",
-            "allowed_values_source": "comparison row allowed_values"
+            "allowed_values_source": "比較rowのallowed_valuesを参照する。"
           },
           "json_equal": {
             "json_kind_must_match": true,
@@ -3142,27 +3178,27 @@
         },
         "comparison_priority_machine": [
           {
-            "when": "any operand outside comparator domain",
+            "when": "operandのいずれかが比較domain外。",
             "emit": "unknown_code_for_each_unknown_operand_pointer",
             "state": "unknown_unless_already_violation"
           },
           {
-            "when": "both operands known and unequal",
+            "when": "両operandがknownで相反。",
             "emit": "conflict_code_at_actual_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset false",
+            "when": "relation=subset_ofで全operandがknown、包含条件は不成立。",
             "emit": "failure_code_at_failure_pointer",
             "state": "violation"
           },
           {
-            "when": "relation=subset_of and all operands known and subset true",
+            "when": "relation=subset_ofで全operandがknown、包含条件が成立。",
             "emit": "none",
             "state": "preserve"
           },
           {
-            "when": "both operands known and equal",
+            "when": "両operandがknownで等値。",
             "emit": "none",
             "state": "preserve"
           }
@@ -3200,7 +3236,7 @@
           "unfinished": {
             "argument": "F01Evaluation",
             "path": "unfinished_states.{edge}",
-            "overlay": "F03 claim finding disposition"
+            "overlay": "F03のclaim findingのdispositionを反映する。"
           },
           "coverage": {
             "argument": "N01Evaluation",
@@ -3245,14 +3281,14 @@
           "actual_pointer": "/selected_edges",
           "context_pointer": "/context/selected_edges",
           "edge_domain_pointer": "/edge_order",
-          "known_selection_predicate": "JSON array; every element is a non-empty string in edge_domain; no duplicate elements; empty array is known empty selection",
-          "set_equality": "both selections known and member sets equal; array order is ignored",
-          "actual_active": "actual selection known and edge ID is a member of actual_ids",
+          "known_selection_predicate": "JSON配列で、全要素がedge_domain内の非空文字列かつ重複なし。空配列は既知空選択。",
+          "set_equality": "両選択がknownで要素集合が等値。配列順は無視する。",
+          "actual_active": "実selectionがknownで、edge IDがactual_idsに含まれる。",
           "inactive_edge_facets": {
             "both_selections_known": "not_selected",
             "otherwise": "unknown"
           },
-          "actual_selection_unknown": "all edges inactive_selection_facets=unknown",
+          "actual_selection_unknown": "全edgeのinactive selection facetをunknownにする。",
           "active_edge_context_selection_unknown": "unknown",
           "inactive_edge_materials": {
             "unit_material_states": null,
@@ -3262,13 +3298,13 @@
             "retained_obligations": null
           },
           "empty_actual_selection_condition": "actual selectionがknown emptyで、より高優先のglobal violationがない場合はhandoff_material_unknown。global violationがあればcondition_priority_machineに従ってhandoff_material_violationを優先する。",
-          "invalid_selection_findings": "use the existing F01/F02/N01 findings; this assembly stage creates no new diagnostic code",
-          "source_basis": "L4 diagnostic_contract.algorithm selection and inactive-edge clauses; no new code or edge-role mapping is inferred"
+          "invalid_selection_findings": "既存F01/F02/N01のfindingを使い、この組立段階で新しい診断codeを生成しない。",
+          "source_basis": "L4 diagnostic_contract.algorithmのselection/inactive edge条項に基づき、新codeやedge-role対応を推測しない。"
         },
         "selected_phase_projection": {
           "input_pointer": "/phase",
           "domain_pointer": "/phase_order",
-          "provided_and_member": "original phase string",
+          "provided_and_member": "原phase文字列を保持する。",
           "otherwise": null
         },
         "finding_union_order": [
@@ -3276,8 +3312,8 @@
           "F02Evaluation.findings",
           "N01Evaluation.findings",
           "F03Evaluation.findings",
-          "phase_unknown finding",
-          "whole_scope_claim finding"
+          "phase_unknownのfinding。",
+          "whole_scope_claimのfinding。"
         ]
       },
       "execution_plan": [
@@ -4274,7 +4310,7 @@
         "id": "merge_global_and_active_edge_states",
         "rule_ja": "not_selectedは成功根拠に数えず、active edgeとglobal findingをviolation>unknown>correspondingで集約。",
         "input": [
-          "global findings",
+          "globalのfindingを集約する。",
           "edge facets",
           "selection resolution",
           "condition_priority_machine"
