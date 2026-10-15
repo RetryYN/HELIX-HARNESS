@@ -13,7 +13,7 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "d24bd470256409b226a97a9b2ecc31deeb0fb80f885ae264c5efc44bc0205fac"
+      "sha256": "ed818b234e754e299fe96a788afa00a563767c230853b2a16bd7e89461c7702c"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
@@ -8085,7 +8085,7 @@
             },
             "behavior_contract_content_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-behavior-contract-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]},\"contract_ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}",
             "behavior_contract_content_check_body_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf",
-            "r2_behavior_contract_source_mutation": "typed source value only: atom X→Y; source/check refs and independent checked_value remain unchanged",
+            "behavior_contract_source_typed_mutation": "typed source value only: atom X→Y; source/check refs and independent checked_value remain unchanged",
             "behavior_contract_fixture_role": "explicit single behavior contract"
           },
           "rationale": "contract source本文と同じsourceを照合したtyped check本文の既知相反を保ち、basis checkで相殺しない。"
@@ -8618,15 +8618,15 @@
             },
             "behavior_contract_content_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-behavior-contract-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]},\"contract_ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}",
             "behavior_contract_content_check_body_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf",
-            "r2_contradictory_basis_check_ref": {
+            "contradictory_basis_check_ref": {
               "identity": "F01-CHECK-CONTRADICTORY-ONLY-SHARING",
               "revision": "r2",
               "owner": "fixture-independent-check",
               "scope": "fixture/010/f01",
               "content_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c"
             },
-            "r2_contradictory_basis_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"0bf55b564aca4584c2dc82743b8fee41688d2787ce4bddbeb2dd79e85ac5ed79\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"df0b55d542151781a9ccfcdc97ff9ccabc358f1189e36547b6d84161565a6660\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
-            "r2_contradictory_basis_check_body_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c",
+            "contradictory_basis_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"0bf55b564aca4584c2dc82743b8fee41688d2787ce4bddbeb2dd79e85ac5ed79\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"df0b55d542151781a9ccfcdc97ff9ccabc358f1189e36547b6d84161565a6660\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
+            "contradictory_basis_check_body_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c",
             "behavior_contract_fixture_role": "explicit single behavior contract"
           },
           "rationale": "一致するtarget basis checkとbasis内容に反するvalid target checkを併存させ、健康checkで既知矛盾を消さない。"
@@ -10173,7 +10173,7 @@
                 },
                 {
                   "subject_ref": {
-                    "identity": "F01-CHECK-R3-OWNER-CONFLICT",
+                    "identity": "F01-CHECK-OWNER-CONTEXT-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -10253,7 +10253,7 @@
                 },
                 {
                   "subject_ref": {
-                    "identity": "F01-CHECK-R3-SHARING-CONFLICT",
+                    "identity": "F01-CHECK-SHARING-CLASS-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -10500,14 +10500,14 @@
                   "content_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
                 },
                 {
-                  "identity": "F01-CHECK-R3-OWNER-CONFLICT",
+                  "identity": "F01-CHECK-OWNER-CONTEXT-CONFLICT",
                   "revision": "r2",
                   "owner": "fixture-independent-check",
                   "scope": "fixture/010/f01",
                   "content_sha256": "cc6422f310aaca270848fe11e3cd4843b5bdfc76d92397d7eef382014ec8cfcf"
                 },
                 {
-                  "identity": "F01-CHECK-R3-SHARING-CONFLICT",
+                  "identity": "F01-CHECK-SHARING-CLASS-CONFLICT",
                   "revision": "r2",
                   "owner": "fixture-independent-check",
                   "scope": "fixture/010/f01",
@@ -10548,7 +10548,7 @@
                     "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
                   },
                   {
-                    "identity": "F01-CHECK-R3-OWNER-CONFLICT",
+                    "identity": "F01-CHECK-OWNER-CONTEXT-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -10577,7 +10577,7 @@
                     "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
                   },
                   {
-                    "identity": "F01-CHECK-R3-SHARING-CONFLICT",
+                    "identity": "F01-CHECK-SHARING-CLASS-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -10656,24 +10656,24 @@
             "behavior_contract_content_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-behavior-contract-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]},\"contract_ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}",
             "behavior_contract_content_check_body_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf",
             "behavior_contract_fixture_role": "explicit single behavior contract",
-            "f01_check_r3_sharing_conflict_ref": {
-              "identity": "F01-CHECK-R3-SHARING-CONFLICT",
+            "sharing_class_conflict_check_ref": {
+              "identity": "F01-CHECK-SHARING-CLASS-CONFLICT",
               "revision": "r2",
               "owner": "fixture-independent-check",
               "scope": "fixture/010/f01",
               "content_sha256": "1beb9ed65a0381f39aa5c3aaee6fd4a12799611544930d028ff2702409d94494"
             },
-            "f01_check_r3_sharing_conflict_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
-            "f01_check_r3_sharing_conflict_body_sha256": "1beb9ed65a0381f39aa5c3aaee6fd4a12799611544930d028ff2702409d94494",
-            "f01_check_r3_owner_conflict_ref": {
-              "identity": "F01-CHECK-R3-OWNER-CONFLICT",
+            "sharing_class_conflict_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
+            "sharing_class_conflict_check_body_sha256": "1beb9ed65a0381f39aa5c3aaee6fd4a12799611544930d028ff2702409d94494",
+            "owner_context_conflict_check_ref": {
+              "identity": "F01-CHECK-OWNER-CONTEXT-CONFLICT",
               "revision": "r2",
               "owner": "fixture-independent-check",
               "scope": "fixture/010/f01",
               "content_sha256": "cc6422f310aaca270848fe11e3cd4843b5bdfc76d92397d7eef382014ec8cfcf"
             },
-            "f01_check_r3_owner_conflict_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"34c227eb39fc38d0f16f96e6206ca47e15ea4707ba6a826240e2a6fb5fc3e13d\",\"identity\":\"F01-OWNER-ALT\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
-            "f01_check_r3_owner_conflict_body_sha256": "cc6422f310aaca270848fe11e3cd4843b5bdfc76d92397d7eef382014ec8cfcf"
+            "owner_context_conflict_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"34c227eb39fc38d0f16f96e6206ca47e15ea4707ba6a826240e2a6fb5fc3e13d\",\"identity\":\"F01-OWNER-ALT\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "owner_context_conflict_check_body_sha256": "cc6422f310aaca270848fe11e3cd4843b5bdfc76d92397d7eef382014ec8cfcf"
           },
           "rationale": "target basisを全5 fieldで主張する2件のvalid content checkがそれぞれ異なるchecked_valueを持つ。checkごとに1 findingを返し、二件をまとめたりhealthy checkで相殺しない。"
         },
@@ -10839,7 +10839,7 @@
                 },
                 {
                   "subject_ref": {
-                    "identity": "F01-CHECK-R3-TARGET-CLAIM-CONFLICT",
+                    "identity": "F01-CHECK-BASIS-ASSOCIATION-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -11078,7 +11078,7 @@
                   "content_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
                 },
                 {
-                  "identity": "F01-CHECK-R3-TARGET-CLAIM-CONFLICT",
+                  "identity": "F01-CHECK-BASIS-ASSOCIATION-CONFLICT",
                   "revision": "r2",
                   "owner": "fixture-independent-check",
                   "scope": "fixture/010/f01",
@@ -11119,7 +11119,7 @@
                     "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
                   },
                   {
-                    "identity": "F01-CHECK-R3-TARGET-CLAIM-CONFLICT",
+                    "identity": "F01-CHECK-BASIS-ASSOCIATION-CONFLICT",
                     "revision": "r2",
                     "owner": "fixture-independent-check",
                     "scope": "fixture/010/f01",
@@ -11198,17 +11198,469 @@
             "behavior_contract_content_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-behavior-contract-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]},\"contract_ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}",
             "behavior_contract_content_check_body_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf",
             "behavior_contract_fixture_role": "explicit single behavior contract",
-            "f01_check_r3_target_claim_conflict_ref": {
-              "identity": "F01-CHECK-R3-TARGET-CLAIM-CONFLICT",
+            "basis_association_conflict_check_ref": {
+              "identity": "F01-CHECK-BASIS-ASSOCIATION-CONFLICT",
               "revision": "r2",
               "owner": "fixture-independent-check",
               "scope": "fixture/010/f01",
               "content_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
             },
-            "f01_check_r3_target_claim_conflict_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
-            "f01_check_r3_target_claim_conflict_body_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
+            "basis_association_conflict_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "basis_association_conflict_check_body_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
           },
           "rationale": "check.value.basis_refはtargetを主張する一方、basis_refsは空である。同じcheckの二つのassociation claimをreference_conflictとして扱い、missingとの重複findingを作らない。"
+        },
+        {
+          "id": "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
+          "arguments": {
+            "input": {
+              "pack_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "kind_ref": {
+                "identity": "F01-KIND-CORE",
+                "revision": "r1",
+                "owner": "fixture-kind-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
+              },
+              "behavior_atom_refs": [
+                {
+                  "identity": "F01-ATOM-X",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
+                }
+              ],
+              "owner_refs": [
+                {
+                  "identity": "F01-OWNER-CORE",
+                  "revision": "r1",
+                  "owner": "fixture-owner-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
+                }
+              ],
+              "consumer_refs": [
+                {
+                  "identity": "F01-CONSUMER-S1",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
+                },
+                {
+                  "identity": "F01-CONSUMER-S2",
+                  "revision": "r1",
+                  "owner": "fixture-consumer-owner",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
+                }
+              ],
+              "sharing_class": "shared",
+              "inseparable_group_refs": []
+            },
+            "context": {
+              "subject_ref": {
+                "identity": "F01-PACK-A",
+                "revision": "r1",
+                "owner": "CORE",
+                "scope": "fixture/010/f01",
+                "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+              },
+              "current_basis_refs": [
+                {
+                  "identity": "F01-BASIS-74ed4b7633be",
+                  "revision": "r2",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                },
+                {
+                  "identity": "F01-CONTRACT-X",
+                  "revision": "r1",
+                  "owner": "fixture-contract-catalog",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                }
+              ],
+              "resolved_facts": [
+                {
+                  "subject_ref": {
+                    "identity": "F01-CHECK-4bc99510c147",
+                    "revision": "r2",
+                    "owner": "fixture-independent-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis_content_check",
+                  "value": {
+                    "basis_ref": {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    },
+                    "check_kind": "owner-qualified-current-boundary-basis-content",
+                    "checked_value": {
+                      "behavior_atom_refs": [
+                        {
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                          "identity": "F01-ATOM-X",
+                          "owner": "CORE",
+                          "revision": "r1",
+                          "scope": "fixture/010/f01"
+                        }
+                      ],
+                      "behavior_unit": {
+                        "behavior_atom_refs": [
+                          {
+                            "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                            "identity": "F01-ATOM-X",
+                            "owner": "CORE",
+                            "revision": "r1",
+                            "scope": "fixture/010/f01"
+                          }
+                        ],
+                        "kind": "behavior_contract",
+                        "ref": {
+                          "identity": "F01-CONTRACT-X",
+                          "revision": "r1",
+                          "owner": "fixture-contract-catalog",
+                          "scope": "fixture/010/f01",
+                          "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                        },
+                        "split_invariant_refs": []
+                      },
+                      "inseparable_groups": [],
+                      "kind_owner_binding": {
+                        "kind_ref": {
+                          "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158",
+                          "identity": "F01-KIND-CORE",
+                          "owner": "fixture-kind-catalog",
+                          "revision": "r1",
+                          "scope": "fixture/010/f01"
+                        },
+                        "owner_kind": "core"
+                      },
+                      "owner_ref": {
+                        "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b",
+                        "identity": "F01-OWNER-CORE",
+                        "owner": "fixture-owner-catalog",
+                        "revision": "r1",
+                        "scope": "fixture/010/f01"
+                      },
+                      "sharing_class": "shared"
+                    }
+                  }
+                },
+                {
+                  "subject_ref": {
+                    "identity": "F01-CONTRACT-CHECK-ba276fb867ba",
+                    "revision": "r2",
+                    "owner": "fixture-independent-contract-check",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    },
+                    {
+                      "identity": "F01-CONTRACT-X",
+                      "revision": "r1",
+                      "owner": "fixture-contract-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "behavior_contract_content_check",
+                  "value": {
+                    "basis_ref": {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    },
+                    "check_kind": "owner-qualified-current-behavior-contract-content",
+                    "checked_value": {
+                      "behavior_atom_refs": [
+                        {
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                          "identity": "F01-ATOM-X",
+                          "owner": "CORE",
+                          "revision": "r1",
+                          "scope": "fixture/010/f01"
+                        }
+                      ],
+                      "split_invariant_refs": []
+                    },
+                    "contract_ref": {
+                      "identity": "F01-CONTRACT-X",
+                      "revision": "r1",
+                      "owner": "fixture-contract-catalog",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                    }
+                  }
+                },
+                {
+                  "subject_ref": {
+                    "identity": "F01-CONTRACT-X",
+                    "revision": "r1",
+                    "owner": "fixture-contract-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "behavior_contract",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                        "identity": "F01-ATOM-X",
+                        "owner": "CORE",
+                        "revision": "r1",
+                        "scope": "fixture/010/f01"
+                      }
+                    ],
+                    "split_invariant_refs": []
+                  }
+                },
+                {
+                  "subject_ref": {
+                    "identity": "F01-PACK-A",
+                    "revision": "r1",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                  },
+                  "basis_refs": [
+                    {
+                      "identity": "F01-BASIS-74ed4b7633be",
+                      "revision": "r2",
+                      "owner": "CORE",
+                      "scope": "fixture/010/f01",
+                      "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                    }
+                  ],
+                  "validity": "valid",
+                  "kind": "boundary_basis",
+                  "value": {
+                    "behavior_atom_refs": [
+                      {
+                        "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                        "identity": "F01-ATOM-X",
+                        "owner": "CORE",
+                        "revision": "r1",
+                        "scope": "fixture/010/f01"
+                      }
+                    ],
+                    "behavior_unit": {
+                      "behavior_atom_refs": [
+                        {
+                          "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                          "identity": "F01-ATOM-X",
+                          "owner": "CORE",
+                          "revision": "r1",
+                          "scope": "fixture/010/f01"
+                        }
+                      ],
+                      "kind": "behavior_contract",
+                      "ref": {
+                        "identity": "F01-CONTRACT-X",
+                        "revision": "r1",
+                        "owner": "fixture-contract-catalog",
+                        "scope": "fixture/010/f01",
+                        "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                      },
+                      "split_invariant_refs": []
+                    },
+                    "inseparable_groups": [],
+                    "kind_owner_binding": {
+                      "kind_ref": {
+                        "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158",
+                        "identity": "F01-KIND-CORE",
+                        "owner": "fixture-kind-catalog",
+                        "revision": "r1",
+                        "scope": "fixture/010/f01"
+                      },
+                      "owner_kind": "core"
+                    },
+                    "owner_ref": {
+                      "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b",
+                      "identity": "F01-OWNER-CORE",
+                      "owner": "fixture-owner-catalog",
+                      "revision": "r1",
+                      "scope": "fixture/010/f01"
+                    },
+                    "sharing_class": "shared"
+                  }
+                }
+              ],
+              "expected_local_pairs": [],
+              "fact_check_refs": []
+            }
+          },
+          "expected_result": {
+            "outcome": "incomplete",
+            "value": null,
+            "findings": [
+              {
+                "code": "fact_content_unproven",
+                "pointer": "/pack_ref",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HELIX-HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-BASIS-74ed4b7633be",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                  }
+                ]
+              },
+              {
+                "code": "fact_content_unproven",
+                "pointer": "/pack_ref",
+                "subject_ref": {
+                  "identity": "F01-PACK-A",
+                  "revision": "r1",
+                  "owner": "CORE",
+                  "scope": "fixture/010/f01",
+                  "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
+                },
+                "requirement_ref": "HARNESS-L3-010-F01",
+                "backflow_owner": "HELIX-HARNESS",
+                "evidence_refs": [
+                  {
+                    "identity": "F01-BASIS-74ed4b7633be",
+                    "revision": "r2",
+                    "owner": "CORE",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+                  },
+                  {
+                    "identity": "F01-CONTRACT-X",
+                    "revision": "r1",
+                    "owner": "fixture-contract-catalog",
+                    "scope": "fixture/010/f01",
+                    "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+                  }
+                ]
+              }
+            ]
+          },
+          "fixture_records": {
+            "boundary_basis_ref": {
+              "identity": "F01-BASIS-74ed4b7633be",
+              "revision": "r2",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+            },
+            "boundary_basis_canonical_body_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}",
+            "boundary_basis_body_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4",
+            "fact_check_ref": {
+              "identity": "F01-CHECK-4bc99510c147",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9"
+            },
+            "fact_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"shared\"}}",
+            "fact_check_body_sha256": "cda4688fa22ccb01b5a2c2d049ca0edcbc543e8fa992c20e48c280a7e669a1e9",
+            "behavior_unit": {
+              "behavior_atom_refs": [
+                {
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                  "identity": "F01-ATOM-X",
+                  "owner": "CORE",
+                  "revision": "r1",
+                  "scope": "fixture/010/f01"
+                }
+              ],
+              "kind": "behavior_contract",
+              "ref": {
+                "identity": "F01-CONTRACT-X",
+                "revision": "r1",
+                "owner": "fixture-contract-catalog",
+                "scope": "fixture/010/f01",
+                "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+              },
+              "split_invariant_refs": []
+            },
+            "behavior_contract_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+            },
+            "behavior_contract_body_canonical_utf8": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]}",
+            "behavior_contract_source_value": {
+              "behavior_atom_refs": [
+                {
+                  "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+                  "identity": "F01-ATOM-X",
+                  "owner": "CORE",
+                  "revision": "r1",
+                  "scope": "fixture/010/f01"
+                }
+              ],
+              "split_invariant_refs": []
+            },
+            "behavior_contract_content_check_ref": {
+              "identity": "F01-CONTRACT-CHECK-ba276fb867ba",
+              "revision": "r2",
+              "owner": "fixture-independent-contract-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf"
+            },
+            "behavior_contract_content_check_canonical_body_utf8": "{\"basis_ref\":{\"content_sha256\":\"f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-behavior-contract-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]},\"contract_ref\":{\"content_sha256\":\"5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}}",
+            "behavior_contract_content_check_body_sha256": "e9f51edd66d2d76a126e0fa83c62d19f11c8b37dc518fb98e7b0c1a1589e9dbf",
+            "behavior_contract_fixture_role": "explicit single behavior contract"
+          },
+          "rationale": "target basisのcontent-check候補もbehavior contractのcontent-check候補もfact_check_refsへのmembershipがない。basis証明欠落はtarget basisだけ、contract本文の証明欠落はtarget basisと原contract Refを証拠として別findingにし、異なる証明責務を一件へ潰さない。"
         }
       ],
       "synthetic_reference_mutations": [
@@ -11221,6 +11673,7 @@
             "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11275,6 +11728,7 @@
             "content_sha256": "6919646e70f0ddf514ce6a41884d545114aefe508ebf052ace66100fe474d56b"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11309,6 +11763,7 @@
             "content_sha256": "bfe44296de5af44e0c9e84c1045f4d8cc32728a03b3ce69526c805b9f4b4891e"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11389,6 +11844,7 @@
             "content_sha256": "8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11440,6 +11896,7 @@
             "content_sha256": "7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11474,6 +11931,7 @@
             "content_sha256": "4abd7d0db84a54d8ad13f14911350cfbc6eb4f509c38a3fc7f33eee2220d3bc3"
           },
           "call_ids": [
+            "F01-BASIS-AND-CONTRACT-CHECKS-UNAVAILABLE",
             "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED",
             "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT",
             "F01-CHECK-ONLY-STALE",
@@ -11512,6 +11970,147 @@
           ],
           "fixture_status": "synthetic_reference_only; no raw source body is supplied",
           "meaning": "opaque split invariant Ref used only to expose unit-vs-contract association mismatch; not an authority source or production asset"
+        },
+        {
+          "reference": {
+            "identity": "F01-CONTRACT-Y",
+            "revision": "r1",
+            "owner": "fixture-contract-catalog",
+            "scope": "fixture/010/f01",
+            "content_sha256": "0a70522e9a926979d96778798add13c37d97a41d0d25bc3678c52b5d752c71f3"
+          },
+          "call_ids": [
+            "F01-UNRELATED-CHECK-ONLY-DOES-NOT-PROVE-TARGET",
+            "F01-UNRELATED-CURRENT-CONTEXT-PRESERVED"
+          ],
+          "fixture_status": "synthetic_reference_only; no raw source body is supplied",
+          "meaning": "opaque fixture Reference used as an explicit unrelated/alternate typed association input; it is not an authority source, and no source body or production asset is claimed"
+        },
+        {
+          "reference": {
+            "identity": "F01-OWNER-ALT",
+            "revision": "r1",
+            "owner": "fixture-owner-catalog",
+            "scope": "fixture/010/f01",
+            "content_sha256": "34c227eb39fc38d0f16f96e6206ca47e15ea4707ba6a826240e2a6fb5fc3e13d"
+          },
+          "call_ids": [
+            "F01-MULTIPLE-CONTRADICTORY-BASIS-CHECKS"
+          ],
+          "fixture_status": "synthetic_reference_only; no raw source body is supplied",
+          "meaning": "opaque fixture Reference used as an explicit unrelated/alternate typed association input; it is not an authority source, and no source body or production asset is claimed"
+        }
+      ],
+      "synthetic_typed_value_mutations": [
+        {
+          "id": "F01-SYNTHETIC-TYPED-CONTRACT-SOURCE-VS-RAW",
+          "call_ids": [
+            "F01-BEHAVIOR-CONTRACT-SOURCE-CHECK-CONFLICT"
+          ],
+          "fixture_status": "意図的なsynthetic typed-value mutation。raw source本文とReference digestは保持し、typed BoundFact.valueだけを反例用に変異。",
+          "raw_source": {
+            "fixture_record_key": "behavior_contract_body_canonical_utf8",
+            "canonical_body": "{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"split_invariant_refs\":[]}",
+            "source_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+            },
+            "body_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+          },
+          "typed_fact_selector": {
+            "kind": "behavior_contract",
+            "subject_ref": {
+              "identity": "F01-CONTRACT-X",
+              "revision": "r1",
+              "owner": "fixture-contract-catalog",
+              "scope": "fixture/010/f01",
+              "content_sha256": "5407ccb8f2f2d238ea0c59d08a7379e8231bb6c188a365f7580448072da076f6"
+            }
+          },
+          "typed_value_pointer": "/behavior_atom_refs",
+          "input_pointer": "/cases/0/complete_calls_and_results/14/arguments/context/resolved_facts/2/value/behavior_atom_refs",
+          "raw_baseline_value": [
+            {
+              "content_sha256": "1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8",
+              "identity": "F01-ATOM-X",
+              "owner": "CORE",
+              "revision": "r1",
+              "scope": "fixture/010/f01"
+            }
+          ],
+          "typed_mutated_value": [
+            {
+              "identity": "F01-ATOM-Y",
+              "revision": "r1",
+              "owner": "CORE",
+              "scope": "fixture/010/f01",
+              "content_sha256": "18f0be480a2b22c7bb99f193119c1efb3623b0b51da7821f24aa9956ca693752"
+            }
+          ],
+          "reason": "原contract sourceのtyped値と独立content-checkのchecked_valueが異なるときのreference_conflictを観察する。raw/body digestをtyped値へ合わせて再生成すると意図した相反が消えるため、差分は明示的fixture mutationとして保持する。"
+        },
+        {
+          "id": "F01-SYNTHETIC-TYPED-BASIS-CHECK-TARGET-VS-RAW",
+          "call_ids": [
+            "F01-BASIS-CHECK-CONTRADICTION-NOT-CANCELLED"
+          ],
+          "fixture_status": "意図的なsynthetic typed-value mutation。raw check本文とReference digestは保持し、typed check.value.basis_refだけを反例用に変異。",
+          "raw_source": {
+            "fixture_record_key": "contradictory_basis_check_canonical_body_utf8",
+            "canonical_body": "{\"basis_ref\":{\"content_sha256\":\"0bf55b564aca4584c2dc82743b8fee41688d2787ce4bddbeb2dd79e85ac5ed79\",\"identity\":\"F01-BASIS-74ed4b7633be\",\"owner\":\"CORE\",\"revision\":\"r2\",\"scope\":\"fixture/010/f01\"},\"check_kind\":\"owner-qualified-current-boundary-basis-content\",\"checked_value\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"behavior_unit\":{\"behavior_atom_refs\":[{\"content_sha256\":\"1d57cd0fbb88c4ddba3c5462f06320d55b5adfdc59a659c876c64140a5a086d8\",\"identity\":\"F01-ATOM-X\",\"owner\":\"CORE\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"}],\"kind\":\"behavior_contract\",\"ref\":{\"content_sha256\":\"df0b55d542151781a9ccfcdc97ff9ccabc358f1189e36547b6d84161565a6660\",\"identity\":\"F01-CONTRACT-X\",\"owner\":\"fixture-contract-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"split_invariant_refs\":[]},\"inseparable_groups\":[],\"kind_owner_binding\":{\"kind_ref\":{\"content_sha256\":\"8507fbb0da8e803e0a6bcb5430bc46eb5827da6bf2f4f9cff15519542586c158\",\"identity\":\"F01-KIND-CORE\",\"owner\":\"fixture-kind-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"owner_kind\":\"core\"},\"owner_ref\":{\"content_sha256\":\"7f84078cee08384fafab08e94d923df8353179b8c554fe70455e794f3397732b\",\"identity\":\"F01-OWNER-CORE\",\"owner\":\"fixture-owner-catalog\",\"revision\":\"r1\",\"scope\":\"fixture/010/f01\"},\"sharing_class\":\"local\"}}",
+            "source_ref": {
+              "identity": "F01-CHECK-CONTRADICTORY-ONLY-SHARING",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c"
+            },
+            "body_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c"
+          },
+          "typed_fact_selector": {
+            "kind": "boundary_basis_content_check",
+            "subject_ref": {
+              "identity": "F01-CHECK-CONTRADICTORY-ONLY-SHARING",
+              "revision": "r2",
+              "owner": "fixture-independent-check",
+              "scope": "fixture/010/f01",
+              "content_sha256": "1e2d65342c17bc8d154e86599b277da969b42703b77e9a70116bae78d4dde14c"
+            }
+          },
+          "typed_value_pointer": "/basis_ref",
+          "input_pointer": "/cases/0/complete_calls_and_results/15/arguments/context/resolved_facts/1/value/basis_ref",
+          "raw_baseline_value": {
+            "content_sha256": "0bf55b564aca4584c2dc82743b8fee41688d2787ce4bddbeb2dd79e85ac5ed79",
+            "identity": "F01-BASIS-74ed4b7633be",
+            "owner": "CORE",
+            "revision": "r2",
+            "scope": "fixture/010/f01"
+          },
+          "typed_mutated_value": {
+            "identity": "F01-BASIS-74ed4b7633be",
+            "revision": "r2",
+            "owner": "CORE",
+            "scope": "fixture/010/f01",
+            "content_sha256": "f62a127e9efb9fb1a1fa41a04a1e415d2378af9b075f31dfe7160d1e59c36fb4"
+          },
+          "reason": "typed checkが対象basisの相反内容を主張する場合に他の健全checkが反証を相殺しないことを観察する。rawの旧basis Refをtyped claimへ合わせると意図した矛盾が消えるため、差分を明示的fixture mutationとして保持する。"
+        }
+      ],
+      "source_pins": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+          "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+          "sha256": "4162014899b5b427372545dfef58fe134f4242c12e08a04075b328199b826778"
+        },
+        {
+          "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+          "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
         }
       ]
     },
@@ -15221,7 +15820,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "d24bd470256409b226a97a9b2ecc31deeb0fb80f885ae264c5efc44bc0205fac",
+      "sha256": "ed818b234e754e299fe96a788afa00a563767c230853b2a16bd7e89461c7702c",
       "scope": "同一candidate bytes。承認/source revisionではない。"
     },
     "comparison": "全Result/全Finding memberを比較し、ReferenceSetの順は意味にしない。input/context/source原値を変更しない。",
