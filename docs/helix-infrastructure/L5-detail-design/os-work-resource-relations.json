@@ -646,10 +646,18 @@
       "reference_program_ref": "INFRA009-F02",
       "algorithm_role": "人向け要約。pure_reference_programs対応idとpure_reference_semantics.actionsが唯一の判定定義。pure_rule_catalogはそのpointer索引のみ。",
       "unclosed_obligations": [
-        "stage_idとruntime/pack/contract/artifact/dependency版のデータ上の流用検出は未実現。現programはidentity claim tokenとstage_id=原INFRA runtimeの組合せだけを所見にする。claimなしで各文字列が等しくても検出しない。原値は別memberへ保存するが、それだけで別identity義務を満たしたとはしない。",
-        "各refはPresence<string>の有限素材で、typed namespace/source-role、参照先identity、issuer/custody、別identity対応の証拠を供給する引数/consumer bindingは未定義。同じ文字列が同identityを意味するか未確定な一般域へ、文字列等値だけの禁止規則を作らない。L4 F02の別identity義務そのものは未閉包として残す。",
-        "stage.ownerはretained_stageへ保存するが比較には使わない。OS-stage-ownerというliteralから正式owner資格を生成せず、stage owner/provider/root bindingを検査する責務は未実現。",
-        "F02は既知4claimのみ拒否記録し、F01向け3claimや未見tokenはAssessmentのrejected_claimsへ転記しない。raw入力fixtureは保持するがF02診断/返却への接続は未実現。F01検査を実行済みとも当該claimが無害とも表示しない。"
+        {
+          "json_pointer": "/unclosed_source_supply/5"
+        },
+        {
+          "json_pointer": "/unclosed_source_supply/6"
+        },
+        {
+          "json_pointer": "/unclosed_source_supply/7"
+        },
+        {
+          "json_pointer": "/unclosed_source_supply/8"
+        }
       ]
     }
   ],
@@ -1137,7 +1145,6 @@
                       "missing_result": "missing",
                       "foreign_result": "foreign-stage",
                       "return_owner": "OS/INFRA",
-                      "stop_on_first": true,
                       "field_prefix": "stage.evidence.",
                       "evidence_revision_field": "stage_revision",
                       "evidence_stage_id_field": "stage_id",
@@ -1648,16 +1655,17 @@
     "field_order": "元44所見順を保持する有限L5具体化。局所追加stop_resumeはevidence後operation前、stage本体対応は証拠前、証拠内部はrevision→ID→target→ref。新しい上流の必須順ではない。"
   },
   "coverage_limit": {
-    "reviewer_mutation_observation": {
-      "comment": 6183492186,
-      "tested": 212,
-      "undetected": 27,
-      "scope": "reviewerの当該HEADでの観測。27変異の個別編集一覧/IDはコメントに無く、今回の局所probeで27件すべてを識別したと主張しない。新gate/閾値ではない。",
-      "source_head": "75a257e49e8f7a05afb4553b857c6d3ff25a3150"
-    },
     "added_witnesses": "partial対complete、target_revision単独差、証拠revision/ID/target優先、証拠first failureとroot抑止、relation/OS/INFRA/claim所見順を独立wholeで観測。型域検査はmutation十分性の証明ではない。",
     "unclosed": "未見state/claim、全多重順序/全mutation、データidentity/owner/他関数claimの未実現域は未閉包。",
-    "removed_dead_step": "set_information_if_equalはfinalize_f01が同じ最終状態を選び常に上書きするため削除。全既存wholeの意味は不変。"
+    "removed_dead_step": "set_information_if_equalはfinalize_f01が同じ最終状態を選び常に上書きするため削除。全既存wholeの意味は不変。",
+    "unobserved_changes": [
+      "F01 reference_fieldsの順序変更",
+      "F01 target_fieldsの順序変更",
+      "INFRA target_revisionの比較削除",
+      "stage root fieldの検査順序変更",
+      "claim_literals配列の順序変更"
+    ],
+    "unreachable_branch": "check_stage_runtime.stage_missing_fieldは先行root検査がstage側の不足を返す通常経路では到達しない。該当parameterの効果を固定corpusで観測したとはしない。"
   },
   "unclosed_obligation_basis": {
     "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",

@@ -12431,7 +12431,7 @@
       }
     }
   ],
-  "expected_material_policy": "原44+既存2はraw/whole不変。追加49は独立44+null guard3+既存2で合計49 probe（原44との合計93）。このうちruntime対照nullの旧診断期待は値を消さず保持し、probe_expectation_correctionsの別whole/根拠でactive期待を明示補正する。追加14wholeは先固定raw/wholeとJSON Patchを保持。未実現義務witnessの無所見は当該義務の合格を意味しない。期待値を製品関数のlookupに使わない。",
+  "expected_material_policy": "原44+既存2の46 raw/wholeは不変。独立44とnull guard3を追加した93件に、別枠14件を加え計107件。null guard1件の診断帰属は独立固定した補正wholeを現expected_materialへ実体化し、旧whole/patch/hashはhistorical_*へ別保存する。未実現義務witnessの無所見は義務合格ではない。期待値を製品関数のlookupに使わない。",
   "not_executed": true,
   "r1_independent_probes": [
     {
@@ -12670,7 +12670,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "L3/L4 F01のstop-resume参照不足を局所unknownへ返し、対側の値で補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -13007,7 +13007,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "L3/L4 F01のstop-resume参照不足を局所unknownへ返し、対側の値で補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -13346,7 +13346,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "L3/L4 F01のstop-resume参照不足を局所unknownへ返し、対側の値で補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -13678,7 +13678,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "L3/L4 F01のstop-resume参照不足を局所unknownへ返し、対側の値で補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -14018,7 +14018,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "両側nullも同一比較fieldの不足1件。原値は両側でnull保持。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -14363,7 +14363,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -14698,7 +14698,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -15033,7 +15033,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -15368,7 +15368,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -15703,7 +15703,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -16038,7 +16038,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -16373,7 +16373,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -16708,7 +16708,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -17043,7 +17043,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -17378,7 +17378,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -17713,7 +17713,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -18048,7 +18048,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "原source参照とsubmittedの非null値は同target内でも個別に一致が必要。文字列/版差を存在だけで受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -18383,7 +18383,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "original/submitted各targetをoriginal_target全4fieldへ別々に比較する。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -18724,7 +18724,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "original/submitted各targetをoriginal_target全4fieldへ別々に比較する。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -19065,7 +19065,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/0",
         "obligation": "L4 F01の停止中operationを成立へ丸めない義務。原relation markerだけがcompleteでも、既知stoppedの原値を保持してOSへ返す。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -19593,7 +19593,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage.target全4fieldをoriginal_targetへ対応付け、対象違いをOS/INFRAへ返す。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -20156,7 +20156,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage.target全4fieldをoriginal_targetへ対応付け、対象違いをOS/INFRAへ返す。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -20719,7 +20719,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage.target全4fieldをoriginal_targetへ対応付け、対象違いをOS/INFRAへ返す。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -21282,7 +21282,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage.target全4fieldをoriginal_targetへ対応付け、対象違いをOS/INFRAへ返す。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -21830,7 +21830,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage対象原値が不足なら元targetから生成しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -22395,7 +22395,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "stage ID原値不足はruntimeや証拠から生成しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -22939,7 +22939,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択stage対象原値が不足なら元targetから生成しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -23498,7 +23498,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "stage ID原値不足はruntimeや証拠から生成しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -24059,7 +24059,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "同版証拠の比較元stage_revision不足を保持する。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -24622,7 +24622,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠のstage_idを選択stage.stage_idへ個別比較し、版一致だけで別IDを受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -25185,7 +25185,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "各証拠の対象を選択stage targetへ対応付ける。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -25748,7 +25748,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠のstage_idを選択stage.stage_idへ個別比較し、版一致だけで別IDを受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -26311,7 +26311,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "各証拠の対象を選択stage targetへ対応付ける。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -26874,7 +26874,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠のstage_idを選択stage.stage_idへ個別比較し、版一致だけで別IDを受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -27437,7 +27437,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "各証拠の対象を選択stage targetへ対応付ける。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -28000,7 +28000,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠のstage_idを選択stage.stage_idへ個別比較し、版一致だけで別IDを受理しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -28563,7 +28563,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "各証拠の対象を選択stage targetへ対応付ける。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -29126,7 +29126,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠原member不足を局所missingへ。存在する別のfield/証拠から補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -29689,7 +29689,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠原member不足を局所missingへ。存在する別のfield/証拠から補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -30237,7 +30237,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠原member不足を局所missingへ。存在する別のfield/証拠から補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -30802,7 +30802,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "証拠原member不足を局所missingへ。存在する別のfield/証拠から補完しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -31380,7 +31380,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "L4 F02は全HELIX/全7製品/無関係episodeを条件に追加しない。選択trueでも拒否claimを保存し、identity claim拒否記録と実identity_coalesced所見を分離する。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -31952,7 +31952,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "選択unknownのまま全既知の禁止claimを拒否記録する。stage判定は走らない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -32539,7 +32539,7 @@
         "l4_path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
         "l4_contract_pointer": "/contracts/1",
         "obligation": "stage未選択のidentity claimは拒否記録のみ。stage追加条件/identity所見を発明しない。",
-        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序は今回L5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
+        "finite_design_choice": "findingのfield表示・unknown/foreign等の適用・順序はL5の局所具体化であり、L4がこの詳細順を既定したとはしない。未見一般域/実資格未成立。"
       },
       "expectation_fixed_before_program_change": true,
       "execution_state": "not_executed",
@@ -34382,7 +34382,7 @@
         ],
         "failure_reasons": [
           {
-            "field": "stage.runtime_revision",
+            "field": "infra.runtime_revision",
             "result": "missing",
             "return_owner": "OS/INFRA"
           }
@@ -34402,7 +34402,7 @@
           "implementation_ready": false
         }
       },
-      "expected_canonical_sha256": "ca8b6420b6000fad78b652847fba4717588b44e2bfed3744cd98e5bb7af69f0d",
+      "expected_canonical_sha256": "d116b39fade3cc1f338a9da3f8005d4eef132ecec6b8461d124ae2ae3c3c5df1",
       "independent_basis": {
         "l4_source": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json#/contracts/1",
         "rule": "missing/nullのidentity/controlを等値coalescence/既知foreignへ読み替えない。stage_id不足を先に1件、runtime対照不足はmissing。既知拒否claim記録とcoalescence所見は別軸。"
@@ -34437,13 +34437,19 @@
           "value": [
             "OS/INFRA"
           ]
+        },
+        {
+          "op": "replace",
+          "path": "/failure_reasons/0/field",
+          "value": "infra.runtime_revision"
         }
       ],
       "changed_output_paths": [
         "/information_state",
         "/retained_infra/runtime_revision",
         "/failure_reasons",
-        "/return_owners"
+        "/return_owners",
+        "/failure_reasons/0/field"
       ],
       "presence_map": {
         "/claims": "empty_array",
@@ -34539,8 +34545,165 @@
         "/submitted_os/target/target_revision": "value",
         "/submitted_os/ticket_ref": "value"
       },
-      "expected_oracle_status": "historical_diagnostic_superseded_by_explicit_correction",
-      "active_expectation_ref": "#/probe_expectation_corrections/0/corrected_expected_material"
+      "expected_oracle_status": "current_materialized_corrected_diagnostic",
+      "historical_expected_material": {
+        "information_state": "held_stage_unqualified",
+        "retained_os": {
+          "owner": "OS",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "change_ref": "OS-CHANGE-P@r2",
+          "actor_ref": "WORKER-P@r2",
+          "evidence_ref": "WORK-RESULT-P@r2",
+          "stop_resume": "active_in_fixture_only",
+          "operation_ref": "OP-P@r2",
+          "target": {
+            "resource": "RESOURCE-P",
+            "environment": "ENV-STAGING",
+            "scope": "PRODUCT-P",
+            "target_revision": "TARGET-P-r2"
+          }
+        },
+        "retained_infra": {
+          "actual_ref": "I004-ACTUAL-P@r2",
+          "deployment_ref": "DEPLOY-P@r2",
+          "owner": "INFRA",
+          "recovery_state": "observed_in_fixture_only",
+          "rollback_ref": "I005-ELIGIBLE-P@r1",
+          "runtime_revision": null,
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "RESOURCE-P",
+            "scope": "PRODUCT-P",
+            "target_revision": "TARGET-P-r2"
+          },
+          "topology_ref": "I001-TOPOLOGY-P@r2"
+        },
+        "retained_stage": {
+          "artifact_ref": "INFRA-ARTIFACT-P@r2",
+          "contract_ref": "INFRA-CONTRACT-P@r2",
+          "dependency_ref": "INFRA-DEPENDENCY-P@r2",
+          "evidence": {
+            "composition": {
+              "ref": "COMPOSITION-P@r2",
+              "stage_id": "STAGE-P",
+              "stage_revision": "STAGE-P-r2",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "scope": "PRODUCT-P",
+                "target_revision": "TARGET-P-r2"
+              }
+            },
+            "recovery": {
+              "ref": "RECOVERY-P@r2",
+              "stage_id": "STAGE-P",
+              "stage_revision": "STAGE-P-r2",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "scope": "PRODUCT-P",
+                "target_revision": "TARGET-P-r2"
+              }
+            },
+            "same_version": {
+              "ref": "SAME_VERSION-P@r2",
+              "stage_id": "STAGE-P",
+              "stage_revision": "STAGE-P-r2",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "scope": "PRODUCT-P",
+                "target_revision": "TARGET-P-r2"
+              }
+            },
+            "update": {
+              "ref": "UPDATE-P@r2",
+              "stage_id": "STAGE-P",
+              "stage_revision": "STAGE-P-r2",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "scope": "PRODUCT-P",
+                "target_revision": "TARGET-P-r2"
+              }
+            }
+          },
+          "owner": "OS-stage-owner",
+          "pack_ref": "INFRA-PACK-P@r2",
+          "runtime_revision": "RUNTIME-P-r2",
+          "stage_id": "STAGE-P",
+          "stage_revision": "STAGE-P-r2",
+          "target": {
+            "environment": "ENV-STAGING",
+            "resource": "RESOURCE-P",
+            "scope": "PRODUCT-P",
+            "target_revision": "TARGET-P-r2"
+          }
+        },
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "failure_reasons": [
+          {
+            "field": "stage.runtime_revision",
+            "result": "missing",
+            "return_owner": "OS/INFRA"
+          }
+        ],
+        "return_owners": [
+          "OS/INFRA"
+        ],
+        "rejected_claims": [],
+        "stage_additional_obligation": "selected_stage_evidence",
+        "actual_effects": {
+          "work_approval": false,
+          "resource_change": false,
+          "source_overwrite": false,
+          "release": false,
+          "permission": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "historical_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/information_state",
+          "value": "held_stage_unqualified"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_infra/runtime_revision",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "field": "stage.runtime_revision",
+              "result": "missing",
+              "return_owner": "OS/INFRA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/return_owners",
+          "value": [
+            "OS/INFRA"
+          ]
+        }
+      ],
+      "historical_changed_output_paths": [
+        "/information_state",
+        "/retained_infra/runtime_revision",
+        "/failure_reasons",
+        "/return_owners"
+      ],
+      "historical_expected_canonical_sha256": "ca8b6420b6000fad78b652847fba4717588b44e2bfed3744cd98e5bb7af69f0d",
+      "historical_expectation_ref": "#/probe_expectation_corrections/0/old_expected_material",
+      "diagnostic_correction_basis_ref": "#/probe_expectation_corrections/0"
     }
   ],
   "presence_map_semantics": "presence_mapのempty_array/empty_objectはPresence<T>.valueの観測細分類であり新しいPresence stateではない。nullはnull、不存在memberはmapに現れない。list<T>の空値やopaque objectの空値を消さず保持する。型Tが空containerを許すかは別の再帰型照合で判定する。",
@@ -41852,5 +42015,5 @@
     }
   ],
   "additional_local_probe_count": 14,
-  "active_expectation_policy": "各case通常はexpected_material。明示的なexpected_oracle_status=historical_diagnostic_superseded_by_explicit_correctionの場合のみactive_expectation_refの別固定wholeを使う。旧whole/旧patchを歴史証拠として保持し、同一入力に二つのactive期待は与えない。"
+  "active_expectation_policy": "全caseの現在有効な期待はexpected_materialの実体を読む。補正した1局所例はhistorical_expected_material/patch/hashとprobe_expectation_correctionsへ旧期待を履歴として保存し、現expected_materialとexpected_patch/hashは補正後へ一致させる。historical_*を現在期待として使わない。"
 }
