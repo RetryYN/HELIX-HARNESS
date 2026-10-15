@@ -6775,13 +6775,6 @@
           "revision": "fb3734e1bc05564319d73a4aee10ceb1b779727f",
           "sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
           "pointer": "/cross_design_candidate_ref_projection/input_projection"
-        },
-        {
-          "file": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-          "pointer": "/cross_design_candidate_ref_projection",
-          "revision": "local-detail-pair",
-          "sha256": "computed_after_write",
-          "role": "対L8 oracleとケース結線"
         }
       ],
       "input": {
