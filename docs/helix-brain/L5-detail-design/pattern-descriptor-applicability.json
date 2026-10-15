@@ -122,22 +122,30 @@
       {
         "id": "HELIXBRAIN-L3-003-F01",
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-        "canonical_sha256": "cec792882c5beb182ef8bb2a068927c2d5178f95dba6d4e4b93d418d84576a66"
+        "canonical_sha256": "cec792882c5beb182ef8bb2a068927c2d5178f95dba6d4e4b93d418d84576a66",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/requirements/15"
       },
       {
         "id": "HELIXBRAIN-L3-003-F02",
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-        "canonical_sha256": "f9534fcb64abc623df336e38b2b81dc7430530691bb905eb6ba5f565d8e66e7d"
+        "canonical_sha256": "f9534fcb64abc623df336e38b2b81dc7430530691bb905eb6ba5f565d8e66e7d",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/requirements/16"
       },
       {
         "id": "HELIXBRAIN-L10-003-F01",
         "path": "docs/helix-brain/L10-verification/functional-verification.json",
-        "canonical_sha256": "e5c64bf7253e2eb9435847b1d7386d1114dd30e2f7a465dc4250c6f525e581de"
+        "canonical_sha256": "e5c64bf7253e2eb9435847b1d7386d1114dd30e2f7a465dc4250c6f525e581de",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/cases/15"
       },
       {
         "id": "HELIXBRAIN-L10-003-F02",
         "path": "docs/helix-brain/L10-verification/functional-verification.json",
-        "canonical_sha256": "05504245cbe246acd51ec5eff8b11ea3c7f1437cb2a41a2544b10e05a7aacec7"
+        "canonical_sha256": "05504245cbe246acd51ec5eff8b11ea3c7f1437cb2a41a2544b10e05a7aacec7",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/cases/16"
       }
     ],
     "admission": {
@@ -145,10 +153,12 @@
       "approved_content_head": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
       "approval_comment_id": 6113444040,
       "main_merge_commit": "990ffad297804dd39d4da1474545e90ddc060c7f",
-      "decision_record_admission_commit": "38bc9b7c58eac2a357b9888e46921aef519f8641",
+      "decision_record_admission_commit": "990ffad297804dd39d4da1474545e90ddc060c7f",
       "decision_sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33",
       "audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
-      "audit_sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+      "audit_sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "decision_record_content_commit": "38bc9b7c58eac2a357b9888e46921aef519f8641",
+      "audit_revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
     }
   },
   "authority_boundary": {
@@ -191,7 +201,8 @@
       "changed": "旧schema/実行時機構/operator registryを移植せず、承認済みL3/L10とL4/L9の有限素材だけを論理比較する。",
       "reason": "現行L3-003/L10-003は問題・前提・適用性等の12意味項目と充足/不充足/unknown・定義不足/値不足の区別を定めている。",
       "selected_lines_sha256": "d63061573b5422f30b69296fe9a38958a5bf8f4e0d793a54d30afde263ba17e2",
-      "selection_method": "1始まり両端包含の行をUTF-8 raw bytesで改行終端を保持し、列挙順に連結してSHA-256を計算する。引用範囲hashは全file hashと分ける。"
+      "selection_method": "1始まり両端包含の行をUTF-8 raw bytesで改行終端を保持し、列挙順に連結してSHA-256を計算する。引用範囲hashは全file hashと分ける。",
+      "reuse_class": "意味の再導出。旧schema/runtime/承認制度は移植しない。"
     },
     {
       "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
@@ -233,12 +244,13 @@
         "DesignPortfolioPlanner",
         "TemplateShadowCompiler"
       ],
-      "failure_handling_change": "旧failure tokenを新規規範として移植しない。承認済みunknown/定義欠落/値未設定/conflictの差とBRAIN/COREの既存責務だけをL5比較へ反映する。"
+      "failure_handling_change": "旧failure tokenを新規規範として移植しない。承認済みunknown/定義欠落/値未設定/conflictの差とBRAIN/COREの既存責務だけをL5比較へ反映する。",
+      "reuse_class": "意味の再導出。旧schema/runtime/承認制度は移植しない。"
     }
   ],
   "failure_consumer_basis": {
     "failure_source": {
-      "path": "archive/legacy-generation-2026-09-14/root/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
       "lines": [
         65,
         103
@@ -253,11 +265,12 @@
         "UTW-023",
         "UTW-024"
       ],
-      "use": "この有限fixtureから、範囲外の挙動、HEAD/source参照の固定不足、欠如見落とし、未評価の自己申告昇格を実証したとはしない。"
+      "use": "この有限fixtureから、範囲外の挙動、HEAD/source参照の固定不足、欠如見落とし、未評価の自己申告昇格を実証したとはしない。",
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17"
     },
     "failure_consumer_crosswalk": {
       "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
-      "source_record": "legacy L4 design-template-json-authority.md mapping",
+      "source_record": "旧L4 design-template-json-authority.mdの対応記録",
       "consumer_refs": [
         "docs/helix-brain/L2-requirements/brain-requirements.md:544-546",
         "docs/governance/audits/requirements-stage/helix-brain-internal-resolution-2026-09-27.md:14",
@@ -274,7 +287,8 @@
     ],
     "case_count": 30,
     "scope_limit": "L9の30固定caseとそのraw/expectedに限る。全Pattern、正式条件言語、すべてのinput状態、他ownerへの実bindingは未評価。",
-    "derived_local_probe_count": 2
+    "derived_local_probe_count": 2,
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
   },
   "type_definitions": {
     "SourceRef": {
@@ -761,7 +775,7 @@
       "id": "R-F01-REF",
       "order": 1,
       "rule": "PatternRefのidentity/revision/source_refをexact比較する。いずれか不一致ならcontent_conflict、全一致ならcontent_corresponding_in_fixture。項目比較は続け、参照状態と項目状態を別に返す。",
-      "basis": "L3-003-F01 obligation / L10-003-F01 expected_observation, negative_input; L9 REVISION-FOREIGN,SOURCE_REF-FOREIGN"
+      "basis": "L3-003-F01の項目参照とL10-003-F01の版/根拠の追跡、L9 REVISION-FOREIGN/SOURCE_REF-FOREIGN。"
     },
     {
       "id": "R-F01-SOURCE-BINDING",
@@ -779,44 +793,49 @@
       "id": "R-F01-NAME",
       "order": 4,
       "rule": "representationがmeaning_descriptorの時meaning_descriptor_in_fixture、name_onlyの時name_only_rejected。固定rawの文字列以外は型域外。reference_resultがcontent_conflict、descriptor_resultsにmissing/content_conflictがある、field_source_binding_resultsにsource_binding_conflictがある、またはrepresentation_result=name_only_rejectedのいずれかならowner_return_candidates=[BRAIN-meaning-owner-candidate]、それ以外は空配列。これは戻し先候補表示で実routingやowner資格ではない。knowledge_stateはcandidate_only。全effectsはfalse、unaffected_Qはoriginal_Q。",
-      "basis": "L10-003-F01 negative_input及びL9 NAME-ONLY-PATTERNと全caseのeffects/Q"
+      "basis": "L10-003-F01の名称だけの負例とBRAIN meaning ownerへの返却、L4-003-F01 output_meanings、L9 NAME-ONLY-PATTERNおよび各effect/Qの境界。"
     },
     {
       "id": "R-F02-DEFINITION",
       "order": 1,
       "rule": "provided_condition memberが存在して明示nullならmissing。member absentはApplicabilityInput型不一致であり定義欠落へ分類しない。objectならidentity,meaning,required_input_identity,required_value,revisionをこの順でoriginal_conditionと比較し、いずれか違えばcontent_conflict、全一致ならcontent_corresponding_in_fixture。",
-      "basis": "L3-003-F02/L10-003-F02 distinction; L9 CONDITION-DEFINITION-MISSING/CONDITION-MEANING-FOREIGN"
+      "basis": "L3-003-F02/L10-003-F02の定義不足と値不足の区別。L9 CONDITION-DEFINITION-MISSING/CONDITION-MEANING-FOREIGN。"
     },
     {
       "id": "R-F02-INPUT",
       "order": 2,
       "rule": "product_input memberが存在して明示nullならmissing。member absentはApplicabilityInput型不一致であり値欠落/unknownへ分類しない。object.identityがoriginal_condition.required_input_identityと違えばidentity_conflict。次にstate=unknownならunknown、state=value_unsetならvalue_unset、state=supplied_fixture_onlyならsupplied_fixture_only。その他状態は有限case外の型域外。",
-      "basis": "L3-003-F02 required input missing; L9 INPUT-UNKNOWN/DEFINED-VALUE-UNSET/REQUIRED-INPUT-MISSING/FOREIGN"
+      "basis": "L3-003-F02のrequired input不足とL9 INPUT-UNKNOWN/DEFINED-VALUE-UNSET/REQUIRED-INPUT-MISSING/FOREIGN。"
     },
     {
       "id": "R-F02-APPLICABILITY",
       "order": 3,
-      "rule": "優先順: definition_result=missing→definition_missing; definition_result=content_conflict→definition_conflict; input結果がmissing/identity_conflict/unknown/value_unset→unknown; 上記以外ではproduct_input.valueとoriginal_condition.required_valueがexact一致ならsatisfied_in_fixture_only、不一致ならunsatisfied_in_fixture_only。定義状態を値不足へ、unknownを適用可能へ丸めない。"
+      "rule": "優先順: definition_result=missing→definition_missing; definition_result=content_conflict→definition_conflict; input結果がmissing/identity_conflict/unknown/value_unset→unknown; 上記以外ではproduct_input.valueとoriginal_condition.required_valueがexact一致ならsatisfied_in_fixture_only、不一致ならunsatisfied_in_fixture_only。定義状態を値不足へ、unknownを適用可能へ丸めない。",
+      "basis": "L3-003-F02 obligationとL10-003-F02 expected/failure_observation、L4-003-F02 content_comparison、原L9対応caseと追加の定義欠落＋案件値unknown局所例から、定義/値/採用/義務の独立性を保って導出。"
     },
     {
       "id": "R-F02-PROPOSAL",
       "order": 4,
-      "rule": "applicabilityがdefinition_missing/definition_conflict/unknownならheld、satisfied_in_fixture_onlyならcandidate_for_CORE_only、unsatisfied_in_fixture_onlyならnot_applicable_in_fixture。これらは有限fixture上の候補表示のみ。"
+      "rule": "applicabilityがdefinition_missing/definition_conflict/unknownならheld、satisfied_in_fixture_onlyならcandidate_for_CORE_only、unsatisfied_in_fixture_onlyならnot_applicable_in_fixture。これらは有限fixture上の候補表示のみ。",
+      "basis": "L3-003-F02 obligationとL10-003-F02 expected/failure_observation、L4-003-F02 content_comparison、原L9対応caseと追加の定義欠落＋案件値unknown局所例から、定義/値/採用/義務の独立性を保って導出。"
     },
     {
       "id": "R-F02-RETURN",
       "order": 5,
-      "rule": "definition_resultがmissing/conflictならowner_return_candidatesへBRAIN-definition-ownerを先に追加する。input resultがmissing/identity_conflict/unknown/value_unsetなら、definition状態にかかわらずCORE-input-ownerを次に追加する。claim existence_adopted=trueまたはreceived_obligation_complete=trueならCORE-application-obligation-ownerをこの順で追加し重複を除く。unfulfilled_contract_refsは、input resultがmissing/identity_conflict/unknown/value_unsetなら[BRAIN032,HARNESS009,BRAIN030]、それ以外は空配列。definition欠落はapplicability/proposalをheldにするが、別に観測した案件値未決を消さない。"
+      "rule": "definition_resultがmissing/conflictならowner_return_candidatesへBRAIN-definition-ownerを先に追加する。input resultがmissing/identity_conflict/unknown/value_unsetなら、definition状態にかかわらずCORE-input-ownerを次に追加する。claim existence_adopted=trueまたはreceived_obligation_complete=trueならCORE-application-obligation-ownerをこの順で追加し重複を除く。unfulfilled_contract_refsは、input resultがmissing/identity_conflict/unknown/value_unsetなら[BRAIN032,HARNESS009,BRAIN030]、それ以外は空配列。definition欠落はapplicability/proposalをheldにするが、別に観測した案件値未決を消さない。",
+      "basis": "L3-003-F02 obligationとL10-003-F02 expected/failure_observation、L4-003-F02 content_comparison、原L9対応caseと追加の定義欠落＋案件値unknown局所例から、定義/値/採用/義務の独立性を保って導出。"
     },
     {
       "id": "R-F02-CLAIM",
       "order": 6,
-      "rule": "4つのclaimのbooleanは個別に判定し、trueなら対応するclaim_resultsの値rejected、falseならnone。1 claimの不正を他claimへ波及させず、正常条件結果のapplicability/proposal値は維持する。"
+      "rule": "4つのclaimのbooleanは個別に判定し、trueなら対応するclaim_resultsの値rejected、falseならnone。1 claimの不正を他claimへ波及させず、正常条件結果のapplicability/proposal値は維持する。",
+      "basis": "L3-003-F02 obligationとL10-003-F02 expected/failure_observation、L4-003-F02 content_comparison、原L9対応caseと追加の定義欠落＋案件値unknown局所例から、定義/値/採用/義務の独立性を保って導出。"
     },
     {
       "id": "R-F02-BOUNDARY",
       "order": 7,
-      "rule": "全effects false、unaffected_Q=original_Q。applicabilityが成立しても採用/成熟/製品選択/CORE適用/義務完了/接続/authority/設計完成/受入を生成しない。"
+      "rule": "全effects false、unaffected_Q=original_Q。applicabilityが成立しても採用/成熟/製品選択/CORE適用/義務完了/接続/authority/設計完成/受入を生成しない。",
+      "basis": "L3-003-F02 obligationとL10-003-F02 expected/failure_observation、L4-003-F02 content_comparison、原L9対応caseと追加の定義欠落＋案件値unknown局所例から、定義/値/採用/義務の独立性を保って導出。"
     }
   ],
   "functions": [
@@ -832,10 +851,10 @@
         "input.provided_ref.revision",
         "input.provided_ref.source_ref.identity",
         "input.provided_ref.source_ref.revision",
-        "input.original_descriptor[12 keys].source_ref.identity/revision and entry presence",
-        "input.provided_descriptor[12 keys].source_ref.identity/revision and entry presence",
-        "input.original_descriptor[12 keys].meaning/source_ref/value_state",
-        "input.provided_descriptor[12 keys].meaning/source_ref/value_state",
+        "input.original_descriptor[12項目].source_ref.identity/revisionと項目keyの有無",
+        "input.provided_descriptor[12項目].source_ref.identity/revisionと項目keyの有無",
+        "input.original_descriptor[12項目].meaning/source_ref/value_state",
+        "input.provided_descriptor[12項目].meaning/source_ref/value_state",
         "input.representation"
       ],
       "returns": [
@@ -1027,6 +1046,66 @@
   "pure_function_boundary": {
     "input": "immutableなfixture入力だけを受け取る。",
     "effects": "filesystem/DB/network/env/clockへのアクセス、保存、送信、製品選択、採用、義務消込、authority変更を行わない。",
-    "basis": "source L4 architecture.python_boundary"
-  }
+    "basis": "L4 architecture.python_boundaryの不変入力・純粋比較と無作用の境界。"
+  },
+  "comparison_semantics": {
+    "objects": "JSON object/mapのkey挿入順は比較せず、key集合と各値を再帰的に型も含めて比較する。",
+    "arrays": "配列は要素順を保持して比較する。",
+    "traversal": "12項目はDescriptorStatusMap.key_domainの固定順、owner返却は規則の固定順。汎用key列挙の辞書順はUnicode code point順とし、locale/正規化で変更しない。"
+  },
+  "l4_contract_bindings": [
+    {
+      "requirement_ref": "HELIXBRAIN-L3-003-F01",
+      "l4_contract_ref": "HELIXBRAIN-L4-003-F01",
+      "l9_obligation_ref": "HELIXBRAIN-L9-003-F01",
+      "function": "compare_f01",
+      "l5_contract_ref": "HELIXBRAIN-L5-003-F01"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-003-F02",
+      "l4_contract_ref": "HELIXBRAIN-L4-003-F02",
+      "l9_obligation_ref": "HELIXBRAIN-L9-003-F02",
+      "function": "compare_f02",
+      "l5_contract_ref": "HELIXBRAIN-L5-003-F02"
+    }
+  ],
+  "audit_basis": [
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    }
+  ],
+  "additional_literal_provenance": {
+    "field_source_binding_results": "L3-003-F01の項目とPattern source/revisionの結合、L4-003-F01 content_comparisonからこのL5で具体化した追加返却名。原L9の返却fieldではない。",
+    "source_bound_in_fixture": "L5 R-F01-SOURCE-BINDINGで導入した参照間整合の表示語彙。実資格や原L9の観測literalではない。",
+    "source_binding_conflict": "同規則で導入した参照間不一致の表示語彙。原L9にはない。局所probeでのみ識別を確認。",
+    "owner_return_candidates": "F01ではL4 output_meaningsとL10 failure_observationからこのL5へ追加した戻し先候補返却。原L9 fieldではない。",
+    "BRAIN-meaning-owner-candidate": "L10-003-F01 failure_observationのBRAIN/該当上流meaning ownerへの返却を表すL5固有の候補表示。実owner identity/資格を供給する値ではない。"
+  },
+  "unobserved_branches": [
+    "original側だけのdescriptor key欠落は原30＋局所2例では未観測。",
+    "PatternRef.identity/revisionおよびsource_refのidentity/revisionの単独差を全て個別に識別したとはしない。",
+    "条件identity/revision/required_input_identity/required_valueの全単独差・複合差、input identityの単独不一致は未見組合せが残る。",
+    "source bindingの片側だけの差、各11項目のsource単独差は局所problem共変例で網羅したとはしない。"
+  ]
 }

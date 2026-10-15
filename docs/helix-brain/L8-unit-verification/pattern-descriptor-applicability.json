@@ -117,27 +117,35 @@
       "docs/helix-brain/L3-requirements/functional-requirements.json",
       "docs/helix-brain/L10-verification/functional-verification.json"
     ],
-    "approval_scope": "HELIXBRAIN-L2-003から導いた003-F01/F02の該当exact wholeのみ。通常L3再開、実source資格/knowledge採用/製品適用/実装許可を含まない。",
+    "approval_scope": "HELIXBRAIN-L2-003から導いた003-F01/F02に対応する承認whole objectだけ。通常L3再開、実source資格/knowledge採用/製品適用/実装許可を含まない。",
     "approved_object_hashes": [
       {
         "id": "HELIXBRAIN-L3-003-F01",
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-        "canonical_sha256": "cec792882c5beb182ef8bb2a068927c2d5178f95dba6d4e4b93d418d84576a66"
+        "canonical_sha256": "cec792882c5beb182ef8bb2a068927c2d5178f95dba6d4e4b93d418d84576a66",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/requirements/15"
       },
       {
         "id": "HELIXBRAIN-L3-003-F02",
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-        "canonical_sha256": "f9534fcb64abc623df336e38b2b81dc7430530691bb905eb6ba5f565d8e66e7d"
+        "canonical_sha256": "f9534fcb64abc623df336e38b2b81dc7430530691bb905eb6ba5f565d8e66e7d",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/requirements/16"
       },
       {
         "id": "HELIXBRAIN-L10-003-F01",
         "path": "docs/helix-brain/L10-verification/functional-verification.json",
-        "canonical_sha256": "e5c64bf7253e2eb9435847b1d7386d1114dd30e2f7a465dc4250c6f525e581de"
+        "canonical_sha256": "e5c64bf7253e2eb9435847b1d7386d1114dd30e2f7a465dc4250c6f525e581de",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/cases/15"
       },
       {
         "id": "HELIXBRAIN-L10-003-F02",
         "path": "docs/helix-brain/L10-verification/functional-verification.json",
-        "canonical_sha256": "05504245cbe246acd51ec5eff8b11ea3c7f1437cb2a41a2544b10e05a7aacec7"
+        "canonical_sha256": "05504245cbe246acd51ec5eff8b11ea3c7f1437cb2a41a2544b10e05a7aacec7",
+        "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "pointer": "/cases/16"
       }
     ],
     "admission": {
@@ -145,10 +153,12 @@
       "approved_content_head": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
       "approval_comment_id": 6113444040,
       "main_merge_commit": "990ffad297804dd39d4da1474545e90ddc060c7f",
-      "decision_record_admission_commit": "38bc9b7c58eac2a357b9888e46921aef519f8641",
+      "decision_record_admission_commit": "990ffad297804dd39d4da1474545e90ddc060c7f",
       "decision_sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33",
       "audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
-      "audit_sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+      "audit_sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "decision_record_content_commit": "38bc9b7c58eac2a357b9888e46921aef519f8641",
+      "audit_revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
     }
   },
   "authority_boundary": {
@@ -164,7 +174,8 @@
     "source": "docs/helix-brain/L9-integration-verification/pattern-descriptor-applicability.json",
     "raw_oracle_mutated": false,
     "limits": "原L9固定30caseと、L3/L4から期待を導出した追加2局所反例。原L9の分母/期待を置換しない。実source資格、正式codec、実行/採用/適用を示さない。",
-    "derived_local_probe_count": 2
+    "derived_local_probe_count": 2,
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
   },
   "contracts": [
     {
@@ -191,7 +202,28 @@
         "negative_input": "名称だけをPattern契約、negative/failure/evidence無しを有効、maturity不明を成熟済み。",
         "failure_observation": "定義不足はBRAIN/該当上流meaning ownerへ返す。",
         "execution_state": "not_executed"
-      }
+      },
+      "id": "HELIXBRAIN-L8-003-F01",
+      "case_ids": [
+        "B003-F01-FULL-MEANING-DESCRIPTOR",
+        "B003-F01-PROBLEM-MISSING",
+        "B003-F01-PREMISE-MISSING",
+        "B003-F01-APPLICABILITY-MISSING",
+        "B003-F01-REQUIRED_INPUT-MISSING",
+        "B003-F01-CONSTRAINT-MISSING",
+        "B003-F01-TRADE_OFF-MISSING",
+        "B003-F01-NEGATIVE_CASE-MISSING",
+        "B003-F01-FAILURE_MODE-MISSING",
+        "B003-F01-COMPATIBLE_PATTERN-MISSING",
+        "B003-F01-INCOMPATIBLE_PATTERN-MISSING",
+        "B003-F01-EVIDENCE-MISSING",
+        "B003-F01-MATURITY-MISSING",
+        "B003-F01-NAME-ONLY-PATTERN",
+        "B003-F01-REVISION-FOREIGN",
+        "B003-F01-SOURCE_REF-FOREIGN",
+        "B003-F01-NEGATIVE-MEANING-FOREIGN",
+        "B003-F01-UNKNOWN-MATURITY-AS-MATURE"
+      ]
     },
     {
       "l3": "HELIXBRAIN-L3-003-F02",
@@ -217,7 +249,22 @@
         "negative_input": "unknownを適用可能、定義欠落を値未決扱い、存在で今回の採用、知識受領で義務完了。",
         "failure_observation": "知識定義はBRAIN、製品要求値/適用はCOREへ返し、未成立を残す。",
         "execution_state": "not_executed"
-      }
+      },
+      "id": "HELIXBRAIN-L8-003-F02",
+      "case_ids": [
+        "B003-F02-CONDITION-SATISFIED",
+        "B003-F02-CONDITION-UNSATISFIED",
+        "B003-F02-INPUT-UNKNOWN",
+        "B003-F02-DEFINED-VALUE-UNSET",
+        "B003-F02-REQUIRED-INPUT-MISSING",
+        "B003-F02-REQUIRED-INPUT-FOREIGN",
+        "B003-F02-CONDITION-DEFINITION-MISSING",
+        "B003-F02-CONDITION-MEANING-FOREIGN",
+        "B003-F02-UNKNOWN-AS-APPLICABLE",
+        "B003-F02-DEFINITION-MISSING-AS-VALUE-UNSET",
+        "B003-F02-EXISTENCE_ADOPTED",
+        "B003-F02-RECEIVED_OBLIGATION_COMPLETE"
+      ]
     }
   ],
   "typed_cases": [
@@ -6910,10 +6957,14 @@
     }
   ],
   "verification_method": {
-    "checker": "scaffold/review-handoff/local/brain003-authoring/verify_independent.py",
     "method": "原L9のraw UTF-8 bytesとhash/typed_input、expected_resultと原expected_materialの不変一致を確認する。別計算した全L5返却はexpected_l5_resultと完全比較する。F01で増やしたsource bindingとowner候補はL3/L4の責務から局所的に期待を導出し、原L9のoracleがそれらを検証済みとはしない。追加2反例も原packetへの明示変化から全入力を復元し、全返却/全型/保持すべき非変更項目を照合する。case名/完成oracleを計算器の判定入力に使わない。",
     "run_state": "static_only_not_execution",
-    "input_presence_boundary": "ApplicabilityInputの宣言memberはすべて必須。provided_condition/product_inputの明示nullはrawどおり保持するが、member自体の欠落はL8固定caseに存在せず型不一致として扱う。nullやunknownへ補完しない。"
+    "input_presence_boundary": "ApplicabilityInputの宣言memberはすべて必須。provided_condition/product_inputの明示nullはrawどおり保持するが、member自体の欠落はL8固定caseに存在せず型不一致として扱う。nullやunknownへ補完しない。",
+    "comparison_definition": {
+      "path": "docs/helix-brain/L5-detail-design/pattern-descriptor-applicability.json",
+      "pointer": "/rules"
+    },
+    "tool_publication_state": "専用の自動checkerは本HEADの追跡artifactとして公開していない。正式な計算定義は上記L5規則、比較対象は本L8の全入力/全期待であり、独立reviewで再計算できる。ローカルの補助検査実行と新世代CI/正式checkerの提供を混同しない。"
   },
   "completion": {
     "all_case_expected_recomputed": true,
@@ -7333,5 +7384,42 @@
       "result": "not_supplied_not_assessed",
       "effect": "実source qualificationを成立させず、unknown/mismatch/equalの値を合成しない。"
     }
+  ],
+  "comparison_semantics": {
+    "objects": "JSON object/mapのkey挿入順は比較せず、key集合と各値を再帰的に型も含めて比較する。",
+    "arrays": "配列は要素順を保持して比較する。",
+    "traversal": "12項目はDescriptorStatusMap.key_domainの固定順、owner返却は規則の固定順。汎用key列挙の辞書順はUnicode code point順とし、locale/正規化で変更しない。"
+  },
+  "audit_basis": [
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
+    }
+  ],
+  "unobserved_branches": [
+    "original側だけのdescriptor key欠落は原30＋局所2例では未観測。",
+    "PatternRef.identity/revisionおよびsource_refのidentity/revisionの単独差を全て個別に識別したとはしない。",
+    "条件identity/revision/required_input_identity/required_valueの全単独差・複合差、input identityの単独不一致は未見組合せが残る。",
+    "source bindingの片側だけの差、各11項目のsource単独差は局所problem共変例で網羅したとはしない。"
   ]
 }
