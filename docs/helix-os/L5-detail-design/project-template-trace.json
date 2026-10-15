@@ -1465,6 +1465,18 @@
           "endpoint_resolved_absent": "L4 Presence.absentをL5 resolved_valueのField.missingへ写し、wire memberを省略する。",
           "endpoint_resolved_present": "L4 Presence.present(x)をField.supplied(x)へ写し、wireへ元xを置く。present(null)はsupplied(null)のmember:nullであり、member欠落と区別する。",
           "raw_packet": "入力packetのexpected_valueはL4のPresence原値として保持し、出力Fieldのwire表現と混同しない。"
+        },
+        "presence_projection_binding": {
+          "source_l4_logical_result_ref": {
+            "revision": "5b99b6f329183a2c7bf0b12bcba53e9d93769e63",
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/5/source_output_association/logical_output_types/AssociationResult",
+            "file_sha256": "4c881803a25b9c90b3fa046e887ed9e6760970b6c0d888d042f87ce77771c26c",
+            "canonical_sha256": "fd499b797fd0d5e868ccad80d5f51588e1744b43f34fe858c7f4863bb77dacd2"
+          },
+          "wire_projection_ref": "functions[6].source_output_association_rule.presence_projection",
+          "wire_projection_canonical_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "comparison_rule": "L9のexpected_complete_return_recipeはこのL4論理形を表す。L5のpresence_projectionを適用してからF04 observationのwire値と比較する。L4 Presence形とwire値を直接比較しない。"
         }
       }
     },
@@ -8279,7 +8291,8 @@
         "N01RecordObservation",
         "N02RecordObservation",
         "AssociationEndpointResult",
-        "SourceOutputAssociationResult"
+        "SourceOutputAssociationResult",
+        "OriginalAssociationSnapshots"
       ],
       "declared_field_pointer_root": "/type_contract/types",
       "required_rule": "原Field<T>は省略/supplied(null)/原供給値を保持。入力plain member欠落も既存意味不足へ渡し、全requiredを新設しない。既存生成結果4型のplain requiredを保持。新しいF04生成結果AssociationEndpointResult/SourceOutputAssociationResultもplain memberは宣言どおりrequired、Field<JsonValue> resolved_valueは省略/null/原値を保存する。",

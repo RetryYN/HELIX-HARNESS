@@ -82353,7 +82353,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/0/expected_complete_return_recipe",
           "expected_recipe_sha256": "0eddfb079d91a98635a1fb4d01fbf76d02b1adf094f548d22e833ff43df63353",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "380212a878be75876b13ac70cabffd9396835a69f9f7254c37226f1ac0eac38e",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/0/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "575f7699b11415a16666bdd4e99a6560020f6e6ec658c1ad265ce3ab5f4f7995",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-SNAPSHOT-MISSING",
@@ -82371,7 +82377,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/1/expected_complete_return_recipe",
           "expected_recipe_sha256": "c64441cee8aad3bdbad33d9c140548dd07b627a2b096fdba709006c6d0782a1e",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "a95a43c1a6124e78484d41fe1b538bf891ded0f1e19e33662cd4cd8f1637f24c",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/1/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "684bbcec8a78d09f7590446269a457af158e08791a78a27566fc841fbadd95d7",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-SNAPSHOT-DUPLICATE",
@@ -82389,7 +82401,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/2/expected_complete_return_recipe",
           "expected_recipe_sha256": "e4ec97410e0f442f38abbf88f46b90428ea8f80b18a8370b175a8aeee50ef5e6",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "6547ea72c53e7ea9c3c937366fc1440e2ce0cd7d710d22dca4e668ba965b2bc0",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/2/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "07eef64426bdd03b687bfb84cc84a0fa86a8c797975eb29245d20bf960e582aa",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-POINTER-ABSENT",
@@ -82407,7 +82425,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/3/expected_complete_return_recipe",
           "expected_recipe_sha256": "81ae23ba4e8687f14557209fe02eb64a95ed3771fab80c588786841d710be5dd",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "b62bc55725579ea17e83ece1d6412ae16f8ad039d34bfa1fcc0096f6434eae45",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/3/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "1236f3607b1c82621004ccfa9c133fd47e7e8588d52c063e4c810a1c0c6f898b",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-REF-REVISION-STALE",
@@ -82425,7 +82449,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/4/expected_complete_return_recipe",
           "expected_recipe_sha256": "a66f648103321222b3f0a2979eb1c496af0a824b0d5ba6972068a9ad27458ef4",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "50c797988aed8cdabdec851cf0eb2bafa1f008689b5c6d6ee02a846ab382d0da",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/4/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "f6f35e0fcccc9333134261a8c1bc77b5a5438a8e8269790152298e854feb6293",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-REF-OWNER-CONFLICT",
@@ -82443,7 +82473,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/5/expected_complete_return_recipe",
           "expected_recipe_sha256": "3222cbe159e46ad33718b34dbffd4eea8c971a0bb3f6b653d36a506a0c74cf2e",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "f7a99bf3a94dd20656eb438623317e98e2e99a3547907ca76c734fcaf1448bd7",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/5/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "27eaf8e39799a31c583ea89aa0dbb6b9b6b8d35da57156e765684cae1d5a50da",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-EXPECTED-NULL",
@@ -82461,7 +82497,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/6/expected_complete_return_recipe",
           "expected_recipe_sha256": "d2ccb6fbf97a9b328ca2df0360a4144566f43bd3d6e3898943df3b7f77bd940b",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "b64b969c340d4fc413a2a41962fe4ce484a0ff80d21bc3718ad6f7132847b402",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/6/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "9e1670bcaf9b896e54be7a8594892e2c1e546869b4e9518c137e3e9fbfb51736",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-REF-UNKNOWN",
@@ -82479,7 +82521,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/7/expected_complete_return_recipe",
           "expected_recipe_sha256": "567ab57bd717af0df14f5e2b8e2aefbbf188493d8d51d4fd8730405c4e16fb4b",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "a1a283edcb51d783263652e9fb4a949c407f70f84f257dfce1bd440001c63651",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/7/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "cac569850c28b5a6f17aee87a25a36f0a0e8b870b0654911537c518fa6961520",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "OS-POINTER-ESCAPE-INVALID",
@@ -82497,7 +82545,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/8/expected_complete_return_recipe",
           "expected_recipe_sha256": "c1bb9d8760c82fdbdab2b0e7963abe58792904617cec5eb1cbaebbcb07f99511",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "6a182ea41f0ee406d96e25c099033796ce9473db0998196f5a494546e1b6d2d5",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/8/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "a3c82816c723188ae0cb83c64ebd184ee529e14dbb3d731dd440a743edfcd485",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-PAYLOAD-ABSENT",
@@ -82515,7 +82569,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/9/expected_complete_return_recipe",
           "expected_recipe_sha256": "03af22773a66cafa76169caeb75939d501b264902b3d5ccf77a2756c49f593ae",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "a3dd79a02576b80daf9515b573313cf7e499bd29f8c1edfc18434d2453a5fac4",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/9/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "12e7a70fd011ba7d7decec5d564afa77db119f081c4180dfc74b4601420cc5b0",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-IDENTITY-UNKNOWN",
@@ -82533,7 +82593,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/10/expected_complete_return_recipe",
           "expected_recipe_sha256": "d7dd6a774305aaf97fa65c44f40b91925d675d241bdc2e5b808190d000bb1b78",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "07a3bd45c428c1b2c31ded341c3376bdf9e7e7aa5d6767180e6c58ca4b0fba97",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/10/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "68cacfc3f166fa4c2048b8166ac888b12a6b5f034dd7f0800f3759ea66ccaa76",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-SCOPE-CONFLICT",
@@ -82551,7 +82617,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/11/expected_complete_return_recipe",
           "expected_recipe_sha256": "36e9f61457e6493e2eaa2bc36fe7a343580e9efa4ce27e6ecea82ee38763ecb1",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "2b3e52119eeba7db17b18938f09b579dab3b71a145f0ca54b266c663f8720ead",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/11/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "d4a7eb29bdc762ece64af025216c02efa451a8ec495351eacb181716e949854e",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "CORE-NULL-PAYLOAD-NESTED-POINTER",
@@ -82569,7 +82641,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/12/expected_complete_return_recipe",
           "expected_recipe_sha256": "92a3cfc08c9544d034d1d70047af7a61e94f44cd786854df8491b9eef2561f61",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "c3d6ec55c0b591d26e1af283a0ae471215c1b9981e2e98311eb76454259f0772",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/12/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "7e6289719e968e711f2d526e99e5bd108313ece72b92b22052f5d74dd66cfdbf",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ABSENT-BOTH",
@@ -82587,7 +82665,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/13/expected_complete_return_recipe",
           "expected_recipe_sha256": "a051c14c8bc36a2a96724bbafd20da6faf3710a2325d84c988bd677eee18372a",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "38cb20ffc10392203756abbe6e757e1d16269f69e622897e8cacfc7e42925027",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/13/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "ec2ac86b6a7cbdc3e1e2be2dc4474325d9e1b43aa201a3cbb7638706e6d43684",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ARRAY-DASH-ABSENT",
@@ -82605,7 +82689,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/14/expected_complete_return_recipe",
           "expected_recipe_sha256": "521c4f6d3e108e777bea6ebe7572175950824862b91de60d84dcbc5e6e154ac0",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "f2e4e710dba5abae7c60660b8363a407901877a7b60136914f311d51cea59c29",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/14/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "fc41345f5d49cfca788ec22fbb86bc695c4a54af5f08b288097d7980c76bff26",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ARRAY-DASH-PRESENT",
@@ -82623,7 +82713,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/15/expected_complete_return_recipe",
           "expected_recipe_sha256": "0dbfb9ca13a8f7295bf42e28c7487d9b385542c6c4efa88df4b7105f714b8268",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "f9cd43f6dc50b1315b6dc7255cdbf4dadeb9bae2a1b1bbae7615ee94e5c34e09",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/15/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "780987f44c75503aa18ed394570da7398b8dee26815e8f8c0a614ae7aa3d29ce",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-NO-IDENTITY-MATCH",
@@ -82641,7 +82737,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/16/expected_complete_return_recipe",
           "expected_recipe_sha256": "6c3b93c405cfcee800f2f5e85c07c51bc7c0b7fe3e42b38cfd2d26ac55d638b5",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "45f6f3d3df512ef9a2a412c382d4f8ec87715347ad5cf160c734470f7f06005b",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/16/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "c582a00286c49cfceb0cc01fe70145c1f2c259c1f66f707ee9fac158e828cfde",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-KNOWN-AND-UNKNOWN-SELECTOR",
@@ -82659,7 +82761,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/17/expected_complete_return_recipe",
           "expected_recipe_sha256": "9ba5d52df833da6b59204def94f5d5f10248081724837d48e65a641427fb8343",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "4afb82f47a55a881dabfc1a22eb0963fc95fd0152a598c247af2d28cb0ce4523",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/17/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "4087cda9bf9ddd5459db571d7f7e39f98121d66f734cadba0619dd3c7239364f",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-EXPECTED-PRESENT-NO-VALUE",
@@ -82677,7 +82785,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/18/expected_complete_return_recipe",
           "expected_recipe_sha256": "50c143872b58eed2803b89c007a0a05efceadf5140b9e818cca6f5a8989452ee",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "a536794b268c3921ca4730b64c07d385ab42f0a4f9521f4a4a3e3dffebbc4ccc",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/18/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "78d1a7c1b7c3d5afbbaf06b3ea08d58e5e7e01461476b59334a2d363c8fa3449",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-EXPECTED-PRESENT-EXTRA",
@@ -82695,7 +82809,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/19/expected_complete_return_recipe",
           "expected_recipe_sha256": "b93e4181204074566ea87b0b395f872ef8a7c86e645ff56b8ecbabf4fa95ed49",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "eef1053d7174509d8a7759bd64916731a89a1b0fe7f3db0779a02b33e6437796",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/19/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "e45ef740f365c5bc50f569be4c0b11a4c8d1d28ea5622e3dee8078aed5fb1ea1",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-EXPECTED-ABSENT-EXTRA",
@@ -82713,7 +82833,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/20/expected_complete_return_recipe",
           "expected_recipe_sha256": "a74b06d27fb49f7f1b233d2234e5bcb765ab6960a32612d952f42dbc09876b79",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "7aa8d61292dd6f149c6300db257e7c5fc7b0def09ce48d4c6e9424d79ced962d",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/20/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "bd0847c03557e4f76ea77de55e64c6bf7f168649ff6271895644886b1969b7cd",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-OWNER-BEFORE-STALE",
@@ -82731,7 +82857,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/21/expected_complete_return_recipe",
           "expected_recipe_sha256": "2c02935c9b96b4578ed7bd627cc52b56bfdae1811f90dea2475113ce3222ebda",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "f99199cb1a1cc73d32f284717acdf9bbecef6ed71bd8b3a5e18b13bc104f10f0",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/21/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "bacb91d355dcf2807105ca1c93656b99e0110eba64edba5cec935f7e806706b3",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-SCOPE-BEFORE-STALE",
@@ -82749,7 +82881,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/22/expected_complete_return_recipe",
           "expected_recipe_sha256": "f0c1a36bdeccda0f4b678dbc128028d48e144c862e8cc7f5a0f2036afe04599d",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "644c652a662e5900394efcc8637cf27b079d8528f97c2155ca467c8a3c0c6331",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/22/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "b081c0dd018c59b55e3b35c4da425d23605b3656d8f715bde89ffd917eb15713",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-EMPTY-REQUEST-IDENTITY",
@@ -82767,7 +82905,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/23/expected_complete_return_recipe",
           "expected_recipe_sha256": "7a08f2c282c00b0a54192f0b7d2532b8a6c8af6287628a8520667be6cbc95e65",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "518622d8434f86ee0b781ae240ad33bfa7db36aebe1930b0004f4f00e834f13e",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/23/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "5068558c6bc444efcc3fc47d08cb9fec49b0c680e277cc832041c2b3ba3eb568",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-EMPTY-SNAPSHOT-IDENTITY",
@@ -82785,7 +82929,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/24/expected_complete_return_recipe",
           "expected_recipe_sha256": "1c87d37b840e97c2121683269e162320d172b6b53e293ee8d79c283c90e64c43",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "49eb74b79fde4e9930def4ba1aabe78b9fda707c2be9fb6b3120bd549b01ed39",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/24/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "1c26980da01582f7ba30315652db16795be8c5c4399e699621347460483849fd",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-REQUEST-SCOPE-NONOBJECT",
@@ -82803,7 +82953,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/25/expected_complete_return_recipe",
           "expected_recipe_sha256": "d2eb1ab9db133c0803d1d70a6f4506404cd226ca47f84fba90e2d50eb407fbf9",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "22014f80fbb32a9b17d7897cc8ce587d94a826d6d4df93fd45561cad246a75d3",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/25/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "18557a96f1e2e674708140f541217ae4fba39cca184d9ea366811ce99e2ea007",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-SNAPSHOT-SCOPE-NONOBJECT",
@@ -82821,7 +82977,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/26/expected_complete_return_recipe",
           "expected_recipe_sha256": "bb1e80362e5006f130e67290ed6951b7adf70427f3c80927faec9fc948041551",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "ffb594448a888797d44f992cbf6f258473584e2af0e233ffa9968a3a5ff2535e",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/26/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "8708629031dfa651d11a2559125fc922d8ccb15abac1c2a4a4360cbd0053f2d7",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-PAYLOAD-ABSENT-EXPECTED-ABSENT",
@@ -82839,7 +83001,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/27/expected_complete_return_recipe",
           "expected_recipe_sha256": "b076b50a6e86c1befde6a73442a3bbd433b56490c3862fbfd7954a2cf63b5a6c",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "9aa13f2caf82a3e0935407da83cbf9c294ef4668867339d9d7a87a510e9ebc95",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/27/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "a252f80ababde7049d5e91175ad8aeaf957417d6d61afef0a8407fbff365a5cd",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-NULL-PRESENT",
@@ -82857,7 +83025,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/28/expected_complete_return_recipe",
           "expected_recipe_sha256": "e97cec42f5ce33de81ca0d0588590238aa1a2c39d991cdb19cd86152c9403681",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "2303ebe4086d7cb631966eec31233c225f36ca5eec7968463721f0c0f7442732",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/28/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "8832427f400587364d5fff8f884df0190484873ee1052d32698ba3eac15debd1",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-NULL-VS-ABSENT",
@@ -82875,7 +83049,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/29/expected_complete_return_recipe",
           "expected_recipe_sha256": "40116b8f0c2d62770a3b14b96ad3d2a34855d8e4f2aa0c4217f16f95af2502dc",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "1efc2a137fdab15ad9aac8bc3c081ebd0d4db6cbc3218d4528205918713d1fc5",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/29/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "31963f5cc45482c52885c239728d4a6991aadcc740400ebbd4aaf2cb391b996e",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-BOOL-VS-NUMBER",
@@ -82893,7 +83073,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/30/expected_complete_return_recipe",
           "expected_recipe_sha256": "810227dbfe99a8933f0944d504b6074cb529db5b20e1c6599b09477e8b3dc09b",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "fd0ac01b9615742ec7560e8a1cef78d4365a96b3dd007df1270e06454f8f6126",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/30/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "a084f7fde396b1ccd9d3d1ad74554a08ddbff2d9c8ee84421a50070ec9930b0b",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-NUMBER-VS-BOOL",
@@ -82911,7 +83097,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/31/expected_complete_return_recipe",
           "expected_recipe_sha256": "5eb7d75ef3e8ac7a8be8f0e99d2ff6f5a4a90d951c16e7023708c38cdcedb289",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "a2991cc24f1f5fb39e7c4872f1de27e77f61c64852166ac3bd79abc87124a410",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/31/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "4121a87141250be5e230e166ab77b45545a146e85d08fcf8636d8ef0766719f2",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-NUMERIC-EQUIVALENCE",
@@ -82929,7 +83121,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/32/expected_complete_return_recipe",
           "expected_recipe_sha256": "81b01dc303455d6d6ab89f1d56956858e5616ad6f03c7d69138a7fcb4d8d723a",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "240dbb77b7f6566151e42ecbe026a529e07d723ef18a4b4ad59a2e714a56ee3e",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/32/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "8692f883064f738c82b057504b2706cbb52ee1b9de23bfae1ddac572524c3047",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ARRAY-ORDER",
@@ -82947,7 +83145,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/33/expected_complete_return_recipe",
           "expected_recipe_sha256": "4d85e83e2b17c615c5def35ab9851fed838cb6aabbadf5932251e7769dfc5f23",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "66da0126f1d5c231ea312f4260643d2415ce6594af4941feffc15990e7a56484",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/33/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "da481d6c362e82e13bbe317f5dde62e427e815c0cb158bb9411c1e96c3040385",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ARRAY-DUPLICATE",
@@ -82965,7 +83169,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/34/expected_complete_return_recipe",
           "expected_recipe_sha256": "9dbb8bd7ed2dbeacb716e5f1b03c8cb8b3cd50690f52f78c1651e14a8c0553ac",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "2f28b520b3250a3031247f355f72b8c0a1b057e1d25365bf9077ce49555d4801",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/34/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "3e3ee881025bb7e7fbc1274a104a1abe51848b60007e52944f6858a8022ea97b",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-OBJECT-KEY-ORDER",
@@ -82983,7 +83193,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/35/expected_complete_return_recipe",
           "expected_recipe_sha256": "219d589ffcaa58c7bfb6c16043eb10756fdaa2acf6ac4fb92ece568afa396406",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "e652ca480d4ed774f59c283860358b30757f9191898826f2628735422a3186de",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/35/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "bc34081af456d5f223f19ecba4df63cbf7ff190980354d3a76573fc43757da80",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ARRAY-LEADING-ZERO",
@@ -83001,7 +83217,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/36/expected_complete_return_recipe",
           "expected_recipe_sha256": "10923e6595280dd7572c79c17d0ce6749b529d835b6ee05297a4a2bb8759b549",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "ec1ea7e49ba7d69e37dccbaa924d211491e7cd8b2121c77aba08e643d674c3f8",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/36/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "77eb23a031b46a4a52c7c43404d21811a3c20368d247395de05fae0588b22e1d",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-OBJECT-DASH",
@@ -83019,7 +83241,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/37/expected_complete_return_recipe",
           "expected_recipe_sha256": "54129fcb0b2ee750b52026704aef3489d5924701cf1df9eb950e1134b6f2915c",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "ad27e7e5c4d1fb04a139c31ad4459d4f1ad7885a214a21b76ef2bfb89d36395b",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/37/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "164e79bfdf6b507df63005c8515bea7f439cf6ef36db6dffc462241a0f98f724",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-OBJECT-LEADING-ZERO",
@@ -83037,7 +83265,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/38/expected_complete_return_recipe",
           "expected_recipe_sha256": "79ae968e7699331effe6832ad45861577833ad28a0d30146e46c30afc1ec73fd",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "92bf372137d89f3b5bdd29965ae27bf5f0af0da2f990f0f49d3f61af9b4d187a",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/38/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "616b8276f4edf07cf910ea937707fa46a5f94a0d34986fd20aff0d61a65b865d",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-ESCAPED-POINTER",
@@ -83055,7 +83289,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/39/expected_complete_return_recipe",
           "expected_recipe_sha256": "bf7827dc279a77ec3f9af846125aba86b8ddaf583657439e9b3d23fb262e8c2e",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "bf4e7690dd3c7da7d64c7691ddfb79eb5e2ac009850f0d7f3a09bdb202202ab5",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/39/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "cb6dddcf3af8220604d03d1f4164d582950247fcd808661b2e58b031c2d1617b",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-INTERMEDIATE-OBJECT-ABSENT",
@@ -83073,7 +83313,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/40/expected_complete_return_recipe",
           "expected_recipe_sha256": "f33035a7a0de7a20517fcea4c499862eb409d418aa9a0e173d7e38ffbee6bc4e",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "88e885ad643e58f948063858438a57857f52b1a83ca606061235cb0ac5b904b1",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/40/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "47195e4d53b07f2d0b5bdda41625d41f746dcd956c904cf68737d589f85f17d5",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-INTERMEDIATE-ARRAY-ABSENT",
@@ -83091,7 +83337,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/41/expected_complete_return_recipe",
           "expected_recipe_sha256": "5bdcfa33ea382c6a20068cbc3cd30b2cfd8d7ec4a8fa60bfee22c781623e6266",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "7960c4e02f4a36f3ac6f6bdb8a428465b0e5bbd1167b343ea856ac4821eb1b21",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/41/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "a393bec028745b8642f5feb6566602a7e0cee2591e9ddd63bb78cecfb2719f3d",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-INTERMEDIATE-ARRAY-DASH",
@@ -83109,7 +83361,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/42/expected_complete_return_recipe",
           "expected_recipe_sha256": "bcf76f7d96b89c4e3ed1a9303f031dad0215c0170a7f05566954cc5f12267ab2",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "63c262e184ef28f3a27c83f9712319e0c38f0058c9e2006f8e4547db22410956",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/42/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "1b7e528709539b01f37f72153d3d56cacdeb2a2456d963abf607008916b7b7c0",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-OWNER-AND-SCOPE-CONFLICT",
@@ -83127,7 +83385,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/43/expected_complete_return_recipe",
           "expected_recipe_sha256": "15f58d73628bf6b662a5878e2e821b09e7b0a277e11b2026771f6045c63694d1",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "9e840c6d7bd88b92122f09a19fd9acdd74e7cd3debb982598f1e206e357454e7",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/43/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "1e339aeea67b56909fe69bce90dfe9f9016769a31275111244e66b60c71e65b2",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-REQUEST-MULTIPLE-AXES-MISSING",
@@ -83145,7 +83409,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/44/expected_complete_return_recipe",
           "expected_recipe_sha256": "543b4d7256941cda16b2b2ea997b448ebebe4dc3f4e33061fa5f19a03b961a35",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "3cac00e4d339b86f71b3980f386e76d449860da5aabaedfadd7427129c7c4e9d",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/44/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "3be8cc950a31a8d85d9d88fe371f749565d8adc3d5b0b02cf5c4e21da655c5e3",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-CANDIDATE-MULTIPLE-AXES-MISSING",
@@ -83163,7 +83433,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/45/expected_complete_return_recipe",
           "expected_recipe_sha256": "1dbefbe8e25f0a82e6bcaac2c003a52303c2b52eea0f243821bff91517285012",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "ddf974cb2ede53f4ce3a3e7f5828657f65b51da55360f09170f372672ad3a58f",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/45/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "926dfb3b15c4ff49abb627d66703b9df5837dc6e70eeb840d8382b3427d5d5fc",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         },
         {
           "id": "LOCAL-SNAPSHOT-MEMBER-ABSENT",
@@ -83181,7 +83457,13 @@
           "expected_output_projection": "TraceSectionResult[].observation.variant.F04RecordObservation.source_output_association",
           "expected_recipe_ref": "/cases/5/source_output_association_oracles/cases/46/expected_complete_return_recipe",
           "expected_recipe_sha256": "d430314c7d6920a48cc1ff2c6a8bc700631582e739d3f1403a6f1c3dc1583381",
-          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。"
+          "source_independence_note": "raw入力とexpected recipeはL9の固定source。計算期待はL5とL4の規則から導出し、case idやexpected値は分岐選択に使わない。",
+          "expected_output_projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection",
+          "expected_output_projection_rule_sha256": "1ddeae952bc7e355b89afac01eea26a3f4474c7e5353bc91ee6aa76ad49d45dd",
+          "expected_projected_association_sha256": "ecb2bf1ef8dfe690b13fc1197318da8a3935eea72bdcaa0e99d244c1154d01d0",
+          "trace_section_result_array_sha256_ref": "/cases/5/f04_full_composition/cases/46/trace_section_result_array_canonical_sha256",
+          "trace_section_result_array_sha256": "c49d49842f1d21c1adebb82ca5f77112c279478e77b222bbc6aed9245c1ba676",
+          "projection_before_comparison": "L9のL4形expected recipeへL5 presence_projectionを適用し、projected association値でwire observationと照合する。L4 recipeとwire値は直接比較しない。"
         }
       ],
       "association_projection_cases_source_ref": {
@@ -100279,9 +100561,2558 @@
               }
             }
           ],
-          "independent_preformal_path": "scaffold/review-handoff/local/os002-f04-detail/r1-repair/independent-endpoint-controls-before-formal.json",
-          "independent_preformal_sha256": "01000ff956a9068d1adacd64a76ef5686c21480c0d94fcb597faf0313eac0d89",
-          "expected_projection": "L4 endpoint Presence is projected to wrapper-free Field JSON. Input packet expected_value remains the original L4 Presence."
+          "expected_projection": "L4 endpoint PresenceをL5のwrapper-free Field JSONへ投影する。入力packetのexpected_valueはL4 Presence原値として保持する。",
+          "complete_contrast_controls": [
+            {
+              "id": "REQUEST_OWNER_PRECEDES_SCOPE_CONFLICT",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "requested-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "requested-other-scope"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "requested-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "requested-other-scope"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/owner"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "conflict"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                }
+              },
+              "expected_l4_association_result_sha256": "9939ef2652f2307395545a6e5d7b4f23d702ed916bec9743d22db36dc7467584",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "requested-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "requested-other-scope"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/owner"
+                  ],
+                  "state": "conflict"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                }
+              },
+              "expected_l5_wire_projection_sha256": "7506cdb734315f4c5e41f1c9ac55fbacb96d5264dff31bd3dcde5c1065a2e5fd",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "CANDIDATE_OWNER_PRECEDES_SCOPE_CONFLICT",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "candidate-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "candidate-other-scope"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "candidate-other-owner",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "candidate-other-scope"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/owner"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "conflict"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "candidate-other-owner",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "candidate-other-scope"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                }
+              },
+              "expected_l4_association_result_sha256": "79954079223f148897dbc2f208a0317d476abf9fa159ca8e0f837e371131e31c",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "candidate-other-owner",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "candidate-other-scope"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/snapshot_ref/owner"
+                  ],
+                  "state": "conflict"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "candidate-other-owner",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "candidate-other-scope"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                }
+              },
+              "expected_l5_wire_projection_sha256": "e99ea825d464cbd9d7ef37f1d8a40b7b0734ba83878bd4489ad3a18bf7b792d3",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "SCALAR_TERMINAL_EXPECTED_ABSENT_IS_PRESENT",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": "scalar",
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": "scalar",
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/expected_value"
+                  ],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": "scalar"
+                  },
+                  "state": "conflict"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": "scalar",
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                }
+              },
+              "expected_l4_association_result_sha256": "bdf828c08b54fb5bd050b4b010459e399441b625ecf13832f5b33ff2ccd055fe",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": "scalar",
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/expected_value"
+                  ],
+                  "state": "conflict",
+                  "resolved_value": "scalar"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": "scalar",
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                }
+              },
+              "expected_l5_wire_projection_sha256": "63bffb3aad0e284a0815b8aef991ea00a9654dabc496abf4c3c713878971be5d",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "NONSTRING_POINTER_IS_NOT_STRINGIFIED",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": 5,
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "5": 1
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": 5,
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "5": 1
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/pointer"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "unresolved"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "5": 1
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                }
+              },
+              "expected_l4_association_result_sha256": "0e543336f055498f7d76fe615cc4eecf21c238c408c88e33fc5989c03dcb7365",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": 5,
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "5": 1
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/pointer"
+                  ],
+                  "state": "unresolved"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "5": 1
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                }
+              },
+              "expected_l5_wire_projection_sha256": "14e58762164ac907d233dae267edce1c387cb24857d981a542bec801ce226844",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "NEGATIVE_ARRAY_INDEX_IS_NOT_ABSENT",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/-1",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/-1",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/pointer"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "unresolved"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                }
+              },
+              "expected_l4_association_result_sha256": "2bb0ed454aa7dbb0530c5c42aa5b0e6b09a69f2466bd5f61469866315158a92d",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/-1",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/core_endpoint/pointer"
+                  ],
+                  "state": "unresolved"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                }
+              },
+              "expected_l5_wire_projection_sha256": "81b97558cdd860dc1f9c23d89a884d0f3904a0f8895cc268ecc182edc4107de6",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "OS_SCOPE_CONFLICT_IS_NOT_IGNORED",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "other-scope"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "other-scope"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/snapshot_ref/scope"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "conflict"
+                }
+              },
+              "expected_l4_association_result_sha256": "2ab1fef89558de28ca76c24eec1f057b2a174e3093155baed25cc03ab819c61c",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "other-scope"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/snapshot_ref/scope"
+                  ],
+                  "state": "conflict"
+                }
+              },
+              "expected_l5_wire_projection_sha256": "8921dcedb91eddd989ba81ab2331f4c72b40d89bfcb85c90379333d51476f439",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "OS_INTERMEDIATE_SCALAR_IS_MISSING_NOT_ABSENT",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/0/x",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/0/x",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/pointer"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "missing"
+                }
+              },
+              "expected_l4_association_result_sha256": "cda072fb29f62c4786f378579e4b2cb80e34e8cece01f4408ae436b29702426c",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/0/x",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/association/os_endpoint/pointer"
+                  ],
+                  "state": "missing"
+                }
+              },
+              "expected_l5_wire_projection_sha256": "305e6f15e648c4cd011cb8be3b1fa8e11efb294c67755d7c574c5fc69672dc68",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            },
+            {
+              "id": "OS_UNKNOWN_SELECTOR_IS_NOT_IGNORED",
+              "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  {
+                    "payload": {},
+                    "ref": {
+                      "identity": null
+                    }
+                  }
+                ]
+              },
+              "expected_l4_association_result": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "resolved_value": {
+                    "presence": "present",
+                    "value": 1
+                  },
+                  "state": "content_corresponding"
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    },
+                    {
+                      "payload": {},
+                      "ref": {
+                        "identity": null
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/os_snapshots/1/ref/identity"
+                  ],
+                  "resolved_value": {
+                    "presence": "absent"
+                  },
+                  "state": "unresolved"
+                }
+              },
+              "expected_l4_association_result_sha256": "6e8094c38854ae92d53618520883be544621d48dc21ede6264645fcf511c67b8",
+              "expected_l5_wire_projection": {
+                "actual_source_qualification": "not_established",
+                "association_input": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [],
+                  "state": "content_corresponding",
+                  "resolved_value": 1
+                },
+                "effects": "none",
+                "meaning_comparison": "not_established",
+                "original_snapshots": {
+                  "core_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "C",
+                        "owner": "core-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "os_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    },
+                    {
+                      "payload": {},
+                      "ref": {
+                        "identity": null
+                      }
+                    }
+                  ]
+                },
+                "os_endpoint": {
+                  "candidate_snapshots": [
+                    {
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      },
+                      "ref": {
+                        "identity": "O",
+                        "owner": "os-source",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        }
+                      }
+                    }
+                  ],
+                  "diagnostic_paths": [
+                    "/os_snapshots/1/ref/identity"
+                  ],
+                  "state": "unresolved"
+                }
+              },
+              "expected_l5_wire_projection_sha256": "060b0c34703e84d9f307fd1a724e917326b53a77a3ea6f0bd884ee85b98ee004",
+              "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
+              "projection_rule_ref": "/functions/6/source_output_association_rule/presence_projection"
+            }
+          ]
         }
       }
     },
@@ -148728,7 +151559,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "5b30944cb6b1b1b4e4f5791ceed95b1de3edb355761786fc1092caf6d2e7d203",
+    "working_bytes_sha256": "32e93f5920a088d39baf1a598dcf8a1994af280d4d8dbf9ee38029d8080ce54c",
     "binding_scope": "同一candidate pairのL5 exact bytes。既存source pinを保持し、今回使うL4/L9だけ既決5b99b6f3へ更新する。",
     "revision_note": "同一PRのcandidate L5 file bytes。自己参照するGit revisionや承認を表さない。",
     "binding_kind": "candidate_file_bytes"
