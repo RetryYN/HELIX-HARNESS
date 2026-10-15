@@ -170720,28 +170720,28 @@
     },
     "selection_contract_corrections": [
       {
-        "pointer": "/logical_types/HarnessF03SelectionSource/fields/inventory_refs",
-        "change": "Field<list<string>>に一致。元packet内の豊富なraw sourceはsource_bundle:RawValueとharness_source_snapshotで保持。"
+        "change": "Field<list<string>>に一致。元packet内の豊富なraw sourceはsource_bundle:RawValueとharness_source_snapshotで保持。",
+        "design_locator": "/logical_types/HarnessF03SelectionSource/fields/inventory_refs"
       },
       {
-        "pointer": "/functions/F02002/profile_selection_stage_program/comparison_rules/os_selected_vs_harness_inventory",
-        "change": "left operandを/profile/obligationsへ戻し、L4のminimum_subset_comparison、inventory_subset_comparisonへ揃えた。"
+        "change": "left operandを/profile/obligationsへ戻し、L4のminimum_subset_comparison、inventory_subset_comparisonへ揃えた。",
+        "design_locator": "/functions/F02002/profile_selection_stage_program/comparison_rules/os_selected_vs_harness_inventory"
       },
       {
-        "pointer": "/functions/F02002/profile_selection_stage_program/comparison_rules/plan_items_vs_context_items",
-        "change": "L4にない比較はstatus-onlyとし、unknown/conflictをfindingへ追加しない。"
+        "change": "L4にない比較はstatus-onlyとし、unknown/conflictをfindingへ追加しない。",
+        "design_locator": "/functions/F02002/profile_selection_stage_program/comparison_rules/plan_items_vs_context_items"
       },
       {
-        "pointer": "/functions/F02002/profile_selection_stage_program/source_presence_rule",
-        "change": "HARNESS source port全体Absentはnot_suppliedのまま追加F03 findingを作らない。供給済みsourceのnull/member欠落は原operand pointerのunknownを保つ。"
+        "change": "HARNESS source port全体Absentはnot_suppliedのまま追加F03 findingを作らない。供給済みsourceのnull/member欠落は原operand pointerのunknownを保つ。",
+        "design_locator": "/functions/F02002/profile_selection_stage_program/source_presence_rule"
       },
       {
-        "pointer": "/source_bound_selection_pipeline/cases/*/calls/F02002/typed_arguments/input/profile/items and context/profile/items",
-        "change": "F02001→F02009の同一snapshotで供給されたitemsを用いてcontext.binding.oracle_ref/environment_refとの4case分岐をL4どおり対応させた。item IDsとobligation refsおよびoutside-inventory差分は保持。"
+        "change": "F02001→F02009の同一snapshotで供給されたitemsを用いてcontext.binding.oracle_ref/environment_refとの4case分岐をL4どおり対応させた。item IDsとobligation refsおよびoutside-inventory差分は保持。",
+        "design_locator": "/source_bound_selection_pipeline/cases/*/calls/F02002/typed_arguments/input/profile/items and context/profile/items"
       },
       {
-        "pointer": "/source_bound_selection_pipeline/cases/*/calls/F02002/expected_return and calls/F02008/expected_return",
-        "change": "現L5の同じprofile stageとcommon binding比較からF02002全返却とF02008全14rootを再計算し、inventory外はprofile_obligation_inventory_conflictを/profile/obligationsへ返す。"
+        "change": "現L5の同じprofile stageとcommon binding比較からF02002全返却とF02008全14rootを再計算し、inventory外はprofile_obligation_inventory_conflictを/profile/obligationsへ返す。",
+        "design_locator": "/source_bound_selection_pipeline/cases/*/calls/F02002/expected_return and calls/F02008/expected_return"
       }
     ],
     "source_contract_refs": [
@@ -170757,6 +170757,7 @@
         "document": "L9",
         "pointer": "/profile_selection_probes"
       }
-    ]
+    ],
+    "design_locator_notation": "selection_contract_correctionsのdesign_locatorは設計上の所在を示す記法でありRFC6901 JSON Pointerではない。functions/F02002はidがF02002の要素、logical_types/HarnessF03SelectionSourceはnameがHarnessF03SelectionSourceの要素、comparison_rulesの名前はid一致で選ぶ。*は該当全要素、andは複数箇所、callsの関数名はfunction一致で選ぶ。実JSON Pointerを持つsource_contract_refsとは区別する。"
   }
 }
