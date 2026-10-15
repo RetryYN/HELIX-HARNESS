@@ -1,0 +1,2877 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-006",
+  "source_main": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+  "status": "limited_logical_detail_candidate_not_implementation_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approval_record": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approval_record_sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1",
+  "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+  "admission": {
+    "pr": 2956,
+    "approved_content_head": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "approval_comment": 6113938878,
+    "merge_commit": "5267fcccfc90b3da4988c3f2d35066a98cd31521",
+    "decision_sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1",
+    "review_base": "ddb7420f9d72a8c421cf8e073c368d24ba923030"
+  },
+  "approved_whole_files": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 12759,
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11258,
+      "sha256": "15fef5f815966fc21a2645aac5428206cb2fa8b5b6e998e4d63007fc790df13e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 24801,
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 21613,
+      "sha256": "e2963d1680e6a649136a6c00a10ea5d824dd0c50f7a08bbabd1c856912ad4095"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11473,
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10140,
+      "sha256": "168f6d5abf97c76ce8a3b9218c7a5d083da7d842c9e384490412e30a269fe1b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11648,
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10253,
+      "sha256": "c116499e028730f5078613f0df192eafcb53ee03063b83a5d90038c3e952c24b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 20531,
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 17981,
+      "sha256": "6dc799ffea4fd3cae4bb34ddd077292efa71909737686527bb7f19b8055a2481"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10825,
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 9535,
+      "sha256": "b56a6f0dae1c49d97a956a16c2ac652ed93555c61434331cdd6132610fb5c40e"
+    }
+  ],
+  "approved_objects": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/12",
+      "canonical_sha256": "78d97e7696122642448febf5a77617dd365e633c204b8a69cb389af8cc228e9a",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-006-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-006",
+        "title": "独立bootstrap/recovery",
+        "obligation": "OS/通常control plane停止中でも独立して使える資源/経路と別SEC authorityにより限定bootstrap/点検/health/service停止/rollback/recoveryを選択する。停止中OSへ修復を依頼する循環を作らない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-F01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/3",
+      "canonical_sha256": "a477b524d385399e36f16b9201b2b1335e8b5a0aaaeffe11d86c937f4bd963fc",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-006-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-006",
+        "title": "通常経路への復帰",
+        "obligation": "独立復旧は限定経路であり万能運用/一般authority免除にしない。実操作はSEC制約下のWorker契約を通し、復旧後はoperation/resultをOS Work/Changeへ同期する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-B01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/12",
+      "canonical_sha256": "b4dca456ba40995553a95b8e2cda8de5dfe414c48cbe5013687d19724c7786f2",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-006-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-006",
+        "title": "独立bootstrap/recovery",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-F01",
+        "positive_input": "OS不能と有効独立経路、停止中OS依存/別authority欠落を比較する。",
+        "expected_observation": "独立対象・操作・最終適格revisionと残作業が辿れる。",
+        "negative_input": "OS応答待ち循環、通常権限流用、完全自動failover必須。",
+        "failure_observation": "独立経路/SEC ownerへ返し安全に復旧不能な範囲を停止する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/3",
+      "canonical_sha256": "8b67d33a7ce32f056b6b29b67a5b7ae9727b045c9277abf8fe373397a693edfa",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-006-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-006",
+        "title": "通常経路への復帰",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-B01",
+        "positive_input": "限定復旧と通常操作、復旧後同期不足を比較する。",
+        "expected_observation": "独立操作と通常ticket/authority、未同期義務が分かれる。",
+        "negative_input": "独立経路で任意操作、通常ticket一般免除、未同期完了。",
+        "failure_observation": "OS/SECと復旧ownerへ未完を返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-006-F01",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "json_pointer": "/requirements/12",
+      "canonical_sha256": "78d97e7696122642448febf5a77617dd365e633c204b8a69cb389af8cc228e9a"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-006-B01",
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "json_pointer": "/requirements/3",
+      "canonical_sha256": "a477b524d385399e36f16b9201b2b1335e8b5a0aaaeffe11d86c937f4bd963fc"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-006-F01",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "json_pointer": "/cases/12",
+      "canonical_sha256": "b4dca456ba40995553a95b8e2cda8de5dfe414c48cbe5013687d19724c7786f2"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-006-B01",
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "json_pointer": "/cases/3",
+      "canonical_sha256": "8b67d33a7ce32f056b6b29b67a5b7ae9727b045c9277abf8fe373397a693edfa"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/independent-bootstrap-recovery.json",
+      "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "sha256": "6cee91d2a59a0217f8401676e857aaefa2aefdd105e7ef550a22845821866ddc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/independent-bootstrap-recovery.json",
+      "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "sha256": "cfb7e5fdd76c88434fb94da6357b2416ef2e1ca58943eb622ddf98dc4ed5f751"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        112,
+        112
+      ],
+      "quote": "missing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "4ddb0da840eae3c730873633b20ddfe2730f73b75da54d8820721bdb5dfef2c5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧復旧Runbookのbounded authorityを保持する。",
+      "change": "旧自動復旧を採用せず、9/26採択006の停止中OS非依存/別SEC authority/Worker限定操作へ再導出する。",
+      "reason": "10/12承認006が対象を明示する。旧復旧/CLI/DBを移植しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "read_lines": [
+        99,
+        99
+      ],
+      "quote": "1. 切替済みの通常開発経路では、admitted Ticket・有効Assignment・必要なlease/fenceなしに変更実行しない。bootstrap、read-only診断、formal/shadowは別の明示的実行profileで扱い、抜け道にしない。",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧候補のbootstrap別profileを万能な抜け道にしない境界を参照する。",
+      "change": "旧Ticket/lease/fence/runtimeを移植せず、採択006の限定復旧と別SEC authority/Worker契約/復旧後OS同期へ再導出する。",
+      "reason": "旧candidateの自動採用や通常authority免除を作らない。10/12承認006を起点にする。"
+    }
+  ],
+  "legacy_search_evidence": {
+    "scope": [
+      "archive/root/docs/governance",
+      "archive/root/docs/design"
+    ],
+    "patterns": [
+      "out.of.band",
+      "停止中.*OS",
+      "独立.*bootstrap"
+    ],
+    "direct_out_of_band_os_recovery_match": false,
+    "limit": "直接一致は未発見。006の採択本文を起点にし、旧bounded authorityとの差分を明示する。"
+  },
+  "logical_types": {
+    "F01Input": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "required",
+      "members": {
+        "claims": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "original_authority": {
+          "json_kinds": [
+            "object",
+            "null"
+          ],
+          "presence": "required",
+          "members": {
+            "credential_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "optional",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_control_plane_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_last_eligible_revision": {
+          "json_kinds": [
+            "string",
+            "null"
+          ],
+          "presence": "required"
+        },
+        "original_operation": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "profile": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_os_return_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_path": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "dependencies": {
+              "json_kinds": [
+                "array",
+                "null"
+              ],
+              "presence": "required",
+              "items": {
+                "json_kinds": [
+                  "object"
+                ],
+                "presence": "required",
+                "members": {
+                  "available": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "ref": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "requires_stopped_control_plane": {
+                    "json_kinds": [
+                      "boolean"
+                    ],
+                    "presence": "required"
+                  }
+                },
+                "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+              }
+            },
+            "independence": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "requires_os_response": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_recovery_verification_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_result": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_sync": {
+          "json_kinds": [
+            "null"
+          ],
+          "presence": "required"
+        },
+        "original_target": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "environment": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "mechanism": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "revision": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "scope": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_unfinished": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "original_worker_contract": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "authority_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "submitted_authority": {
+          "json_kinds": [
+            "object",
+            "null"
+          ],
+          "presence": "required",
+          "members": {
+            "credential_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "optional",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        }
+      },
+      "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+    },
+    "B01Input": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "required",
+      "members": {
+        "claims": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "original_authority": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "credential_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_control_plane_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_last_eligible_revision": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_operation": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "profile": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_os_return_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_path": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "dependencies": {
+              "json_kinds": [
+                "array"
+              ],
+              "presence": "required",
+              "items": {
+                "json_kinds": [
+                  "object"
+                ],
+                "presence": "required",
+                "members": {
+                  "available": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "ref": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "requires_stopped_control_plane": {
+                    "json_kinds": [
+                      "boolean"
+                    ],
+                    "presence": "required"
+                  }
+                },
+                "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+              }
+            },
+            "independence": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "requires_os_response": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_recovery_verification_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "original_result": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_sync": {
+          "json_kinds": [
+            "object",
+            "null"
+          ],
+          "presence": "required",
+          "members": {
+            "change_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "receipt_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "result_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "optional",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "work_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_target": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "environment": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "mechanism": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "revision": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "scope": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "original_unfinished": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "original_worker_contract": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "authority_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "submitted_authority": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "credential_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "ordinary_authority_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "optional"
+        },
+        "ordinary_ticket_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "optional"
+        }
+      },
+      "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+    },
+    "F01Result": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "required",
+      "members": {
+        "information_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "retained_path": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "independence": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "dependencies": {
+              "json_kinds": [
+                "array",
+                "null"
+              ],
+              "presence": "required",
+              "items": {
+                "json_kinds": [
+                  "object"
+                ],
+                "presence": "required",
+                "members": {
+                  "ref": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "available": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "requires_stopped_control_plane": {
+                    "json_kinds": [
+                      "boolean"
+                    ],
+                    "presence": "required"
+                  }
+                },
+                "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+              }
+            },
+            "requires_os_response": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_operation": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "profile": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_authority": {
+          "json_kinds": [
+            "object",
+            "null"
+          ],
+          "presence": "required",
+          "members": {
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "optional",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "credential_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_worker_contract": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "authority_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_result": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_last_eligible_revision": {
+          "json_kinds": [
+            "string",
+            "null"
+          ],
+          "presence": "required"
+        },
+        "retained_recovery_verification_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "retained_sync": {
+          "json_kinds": [
+            "null"
+          ],
+          "presence": "required"
+        },
+        "retained_unfinished": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "failure_reasons": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "object"
+            ],
+            "presence": "required",
+            "members": {
+              "field": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              },
+              "result": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              },
+              "return_owner": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              }
+            },
+            "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+          }
+        },
+        "return_owners": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "rejected_claims": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "automatic_failover_required": {
+          "json_kinds": [
+            "boolean"
+          ],
+          "presence": "required"
+        },
+        "ordinary_authority_exemption": {
+          "json_kinds": [
+            "boolean"
+          ],
+          "presence": "required"
+        },
+        "actual_effects": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "authority_issue": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "authority_bypass": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "operation": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "recovery": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "source_overwrite": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "os_sync": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "incident_close": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "deployment": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "acceptance": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "implementation_ready": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        }
+      },
+      "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+    },
+    "B01Result": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "required",
+      "members": {
+        "information_state": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "retained_path": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "independence": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "dependencies": {
+              "json_kinds": [
+                "array"
+              ],
+              "presence": "required",
+              "items": {
+                "json_kinds": [
+                  "object"
+                ],
+                "presence": "required",
+                "members": {
+                  "ref": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "available": {
+                    "json_kinds": [
+                      "string"
+                    ],
+                    "presence": "required"
+                  },
+                  "requires_stopped_control_plane": {
+                    "json_kinds": [
+                      "boolean"
+                    ],
+                    "presence": "required"
+                  }
+                },
+                "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+              }
+            },
+            "requires_os_response": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_operation": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "profile": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_authority": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "kind": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "operation": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "credential_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "policy_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_worker_contract": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "authority_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_result": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "required",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_last_eligible_revision": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "retained_recovery_verification_ref": {
+          "json_kinds": [
+            "string"
+          ],
+          "presence": "required"
+        },
+        "retained_sync": {
+          "json_kinds": [
+            "object",
+            "null"
+          ],
+          "presence": "required",
+          "members": {
+            "owner": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "target": {
+              "json_kinds": [
+                "object"
+              ],
+              "presence": "optional",
+              "members": {
+                "mechanism": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "environment": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "revision": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "optional"
+                },
+                "scope": {
+                  "json_kinds": [
+                    "string"
+                  ],
+                  "presence": "required"
+                }
+              },
+              "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+            },
+            "operation_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "result_ref": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            },
+            "work_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "change_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "receipt_ref": {
+              "json_kinds": [
+                "string",
+                "null"
+              ],
+              "presence": "optional"
+            },
+            "state": {
+              "json_kinds": [
+                "string"
+              ],
+              "presence": "optional"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        },
+        "retained_unfinished": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "failure_reasons": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "object"
+            ],
+            "presence": "required",
+            "members": {
+              "field": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              },
+              "result": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              },
+              "return_owner": {
+                "json_kinds": [
+                  "string"
+                ],
+                "presence": "required"
+              }
+            },
+            "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+          }
+        },
+        "return_owners": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "rejected_claims": {
+          "json_kinds": [
+            "array"
+          ],
+          "presence": "required",
+          "items": {
+            "json_kinds": [
+              "string"
+            ],
+            "presence": "required"
+          }
+        },
+        "automatic_failover_required": {
+          "json_kinds": [
+            "boolean"
+          ],
+          "presence": "required"
+        },
+        "ordinary_authority_exemption": {
+          "json_kinds": [
+            "boolean"
+          ],
+          "presence": "required"
+        },
+        "actual_effects": {
+          "json_kinds": [
+            "object"
+          ],
+          "presence": "required",
+          "members": {
+            "authority_issue": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "authority_bypass": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "operation": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "recovery": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "source_overwrite": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "os_sync": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "incident_close": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "deployment": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "acceptance": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            },
+            "implementation_ready": {
+              "json_kinds": [
+                "boolean"
+              ],
+              "presence": "required"
+            }
+          },
+          "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+        }
+      },
+      "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
+    }
+  },
+  "function_contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-F01",
+      "signature": "calculate_f01(input: F01Input) -> F01Result",
+      "input_type_ref": "F01Input",
+      "return_type_ref": "F01Result",
+      "reads": [
+        "claims",
+        "original_target",
+        "original_path",
+        "original_operation",
+        "original_authority",
+        "submitted_authority",
+        "original_worker_contract",
+        "original_result",
+        "original_last_eligible_revision",
+        "original_recovery_verification_ref",
+        "original_sync",
+        "original_unfinished",
+        "original_control_plane_state"
+      ],
+      "returns": [
+        "information_state",
+        "retained_path",
+        "retained_operation",
+        "retained_authority",
+        "retained_worker_contract",
+        "retained_result",
+        "retained_last_eligible_revision",
+        "retained_recovery_verification_ref",
+        "retained_sync",
+        "retained_unfinished",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "automatic_failover_required",
+        "ordinary_authority_exemption",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "JSON objectの全キー/型は当該functionのinput_type_refで宣言した有限fixture形に従う。nullと欠落は別状態として保持し、欠落をnullへ変換しない。",
+        "F01の有限fixtureはoriginal_control_plane_state=stoppedを前提とする。欠落/null/他stateの処理はこのL9素材から出力・戻し先を導けないため未評価のまま残す。",
+        "各F01原caseではoriginal_control_plane_state=stopped、original_operation.target=original_targetが成立する。不一致/欠落/明示null時の返却・ownerは元L9で観測されず未評価とする。",
+        "F01の有限caseはoperation.kindがbootstrap/inspection/health_check/service_stop/rollback/recoveryのいずれかである。その他kindの処理は未評価。"
+      ],
+      "algorithm": [
+        "1. 入力がF01Inputの有限形を満たす場合、original_path、original_operation、original_authority、original_worker_contract、original_result、original_last_eligible_revision、original_recovery_verification_ref、original_sync、original_unfinishedをretained_*へ値投影する。original_authorityの明示nullはnull、欠落は欠落のまま扱う。",
+        "2. pathを先に検査する。requires_os_response=trueならpath/os-response-required。次にpath.target≠original_targetならpath/path-target-foreign。dependenciesが明示nullまたは空ならpath/dependency-unknown。要素にrequires_stopped_control_plane=trueがあればpath/resource-os-dependent。各dependency.availableがunavailableならpath/resource-unavailable、それ以外でqualified_in_fixture_only以外/欠落/nullならpath/dependency-unknown。最初の該当1件をinformation_state=stopped_with_unconfirmed_recovery_scope、owner=independent-path-ownerで返す。",
+        "3. pathが通った後、original_authorityがnullならauthority/missing。次にsubmitted_authority≠original_authorityならauthority.ref/submitted_content_conflict。続いてkind, state, credential_ref, policy_ref, target, operationの固定順に検査し、kind=separate_recovery_authority、state=qualified_in_fixture_only、credential_ref/policy_refが非空文字列、target=original_target、operation=original_operation.kindを要求する。最初の不一致をauthority.<field>/not_qualified_for_bounded_operationとしてHELIX-SECURITYへ返す。これらはfixture整合であり、実資格確認ではない。",
+        "4. authorityが通りoriginal_last_eligible_revisionが明示nullならlast_eligible_revision/missingをrecovery-ownerへ返す。欠落memberはnullと同じ枝へ入れず、有限入力shape外とする。",
+        "5. claimsにcomplete_auto_failover_requiredが含まれる場合はrejected_claimsへ同tokenを保持するが、failure_reasons・automatic_failover_required・information_stateは変えない。",
+        "6. 失敗がない場合はinformation_state=bounded_operation_content_requires_actual_qualification。全枝でactual_effectsの10fieldをfalse、automatic_failover_required=false、ordinary_authority_exemption=falseとする。"
+      ],
+      "postconditions": [
+        "出力はF01Resultの全memberを持つ。retained値は入力値の投影であり、operation/recovery/authority発行等の実行を意味しない。",
+        "欠落memberはJSON nullと同一視せず、schema必須性を満たさない入力は当該有限fixtureで計算対象外とする。",
+        "全返却memberは明示したreturn_type_refのfieldに限る。余分なfieldや暗黙のowner/資格は返さない。"
+      ],
+      "branches": [
+        "path不成立: stopped_with_unconfirmed_recovery_scope、path由来理由とindependent-path-owner。",
+        "authority不足/不整合: stopped_with_unconfirmed_recovery_scope、該当authority理由とHELIX-SECURITY。",
+        "最終適格revision欠落: stopped_with_unconfirmed_recovery_scope、last_eligible_revision/missing/recovery-owner。",
+        "有限fixtureでfailureなし: bounded_operation_content_requires_actual_qualification。"
+      ]
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-B01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-B01",
+      "signature": "calculate_b01(input: B01Input) -> B01Result",
+      "input_type_ref": "B01Input",
+      "return_type_ref": "B01Result",
+      "reads": [
+        "claims",
+        "original_operation",
+        "original_target",
+        "original_result",
+        "original_path",
+        "original_authority",
+        "original_worker_contract",
+        "original_last_eligible_revision",
+        "original_recovery_verification_ref",
+        "original_sync",
+        "original_unfinished",
+        "original_os_return_state",
+        "ordinary_authority_ref",
+        "ordinary_ticket_ref"
+      ],
+      "returns": [
+        "information_state",
+        "retained_path",
+        "retained_operation",
+        "retained_authority",
+        "retained_worker_contract",
+        "retained_result",
+        "retained_last_eligible_revision",
+        "retained_recovery_verification_ref",
+        "retained_sync",
+        "retained_unfinished",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "automatic_failover_required",
+        "ordinary_authority_exemption",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "JSON objectの全キー/型は当該functionのinput_type_refで宣言した有限fixture形に従う。nullと欠落は別状態として保持し、欠落をnullへ変換しない。",
+        "claim拒否判定後にordinary profileへ進むL9有限caseではordinary_authority_refおよびordinary_ticket_refの両方が提供される。claimsが先に拒否されるcaseではこの2memberを分岐入力として読まない。claim拒否後のordinary refs欠落/null/空の返却は未評価。",
+        "原L9の全caseは0または1個の対象claimを持つ。複数claim同時入力の返却順は未評価。"
+      ],
+      "algorithm": [
+        "1. 入力がB01Inputの有限形を満たす場合、全original_*記録をretained_*へ値投影する。",
+        "2. claimsのうち原L9にあるindependent_path_arbitrary_operation、ordinary_ticket_exemption、missing_sync_is_completeをこの固定順で走査する。見つかったtokenをfailure_reasons/rejected_claimsへこの固定順で列挙し、held_claim_rejectedとしてOS/HELIX-SECURITY/recovery-ownerへ返す。",
+        "3. claim不成立でoriginal_operation.profile=ordinaryかつordinary_authority_ref/ordinary_ticket_refが提供される場合はreturn_to_ordinary_ticket_authority_no_independent_executionを返す。raw refsの存在は保持条件であり、実行/通常authority免除は生成しない。",
+        "4. original_worker_contract.state≠qualified_in_fixture_onlyまたはoriginal_authorityがnull/欠落、もしくはworker.authority_ref≠authority.refなら、worker_contract.stateまたはworker_contract.authority_refをheld_bounded_operation_unqualifiedとしてOS/HELIX-SECURITY/recovery-ownerへ返す。state条件を先、authority_ref条件を後に評価する。",
+        "5. original_os_return_state≠restored_in_fixture_onlyならos_return_state/not_restoredをheld_with_os_sync_pendingとしてOS/recovery-ownerへ返す。",
+        "6. original_sync=nullならsync/missingをOS-Work-Change-ownerへ返す。存在時はoperation_ref=original_operation.ref、result_ref=original_result.ref、target=original_targetを順に比較し、次にreceipt_ref/work_ref/change_refが非空、owner=OS-Work-Change-owner、state=received_in_fixture_onlyを順に検査する。最初の不一致fieldをsync.<field>/not_received_for_same_operation_resultとして同ownerへ返す。",
+        "7. すべて一致する有限fixtureはsync_content_referenced_requires_actual_qualificationとする。これは実同期/実受領の資格ではない。"
+      ],
+      "postconditions": [
+        "出力はB01Resultの全memberを持つ。同期判定は原operation/result/targetへの参照一致のみを述べ、operation実行やincident closeを主張しない。",
+        "欠落memberはJSON nullと同一視せず、schema必須性を満たさない入力は当該有限fixtureで計算対象外とする。",
+        "全返却memberは明示したreturn_type_refのfieldに限る。余分なfieldや暗黙のowner/資格は返さない。"
+      ],
+      "branches": [
+        "ordinary profile (通常profile): 通常ticket/authorityへ戻す。",
+        "不許容claim: held_claim_rejected。",
+        "Worker契約状態/authority参照不一致: held_bounded_operation_unqualified。",
+        "OS復帰未成立: held_with_os_sync_pending/os_return_state/not_restored。",
+        "sync欠落または内容不一致: held_with_os_sync_pending。",
+        "受領参照一致: sync_content_referenced_requires_actual_qualification。"
+      ]
+    }
+  ],
+  "source_to_case_trace": [
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-F01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-006-F01",
+      "case_ids": [
+        "I006-F01-OP-bootstrap",
+        "I006-F01-OP-inspection",
+        "I006-F01-OP-health_check",
+        "I006-F01-OP-service_stop",
+        "I006-F01-OP-rollback",
+        "I006-F01-OP-recovery",
+        "I006-F01-OS-RESPONSE-REQUIRED",
+        "I006-F01-RESOURCE-OS-DEPENDENT",
+        "I006-F01-DEPENDENCY-UNKNOWN",
+        "I006-F01-RESOURCE-UNAVAILABLE",
+        "I006-F01-PATH-TARGET-FOREIGN",
+        "I006-F01-AUTHORITY-kind",
+        "I006-F01-AUTHORITY-state",
+        "I006-F01-AUTHORITY-credential_ref",
+        "I006-F01-AUTHORITY-policy_ref",
+        "I006-F01-AUTHORITY-target",
+        "I006-F01-AUTHORITY-operation",
+        "I006-F01-AUTHORITY-SUBMITTED-FOREIGN",
+        "I006-F01-ELIGIBLE-REVISION-MISSING",
+        "I006-F01-REJECT-AUTO-FAILOVER-GATE",
+        "I006-F01-AUTHORITY-MISSING"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-B01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-B01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-006-B01",
+      "case_ids": [
+        "I006-B01-RETURN-SYNC-REFERENCED",
+        "I006-B01-SYNC-MISSING",
+        "I006-B01-OS-NOT-RESTORED",
+        "I006-B01-SYNC-operation_ref",
+        "I006-B01-SYNC-result_ref",
+        "I006-B01-SYNC-target",
+        "I006-B01-SYNC-receipt_ref",
+        "I006-B01-SYNC-work_ref",
+        "I006-B01-SYNC-change_ref",
+        "I006-B01-SYNC-state",
+        "I006-B01-WORKER-state",
+        "I006-B01-WORKER-authority_ref",
+        "I006-B01-REJECT-independent_path_arbitrary_operation",
+        "I006-B01-REJECT-ordinary_ticket_exemption",
+        "I006-B01-REJECT-missing_sync_is_complete",
+        "I006-B01-ORDINARY-ROUTE"
+      ]
+    }
+  ],
+  "closure_boundary": [
+    "有限L9 fixtureから論理値を計算する設計候補。fixture markerは実resource/SEC/Worker資格、実operation/recovery/同期の証拠ではない。",
+    "正式codec/schema、source resolver、独立経路、権限・資格、OS Work/Change実接続、Red→Green→Refactor、L9/L10実評価、L11 acceptance、実装Ready、全92/430 pair閉包は未成立。",
+    "L6は関数設計、L7は関数検証の層。製品実装・実行・CIはこの草稿の対象外。",
+    "原L9は37件を保持。局所複合probeは現L4既存順序の有限入力確認であり原L9 oracleを改変せず、未評価部分を追加期待として扱わない。"
+  ],
+  "presence_and_scope_rules": [
+    {
+      "rule": "member欠落と明示nullは異なる。入力rawの存在しないmemberはL8 typed_inputからも省き、nullへ正規化しない。required memberが欠けるrawは有限schemaの範囲外として未評価とする。",
+      "source": "各独立_source_packet.raw_utf8のJSON member有無、およびL9のnull fixture。"
+    },
+    {
+      "rule": "array順序はraw配列の順序を保持する。単一claimの原値順を保持する。既知claimの列挙論理順はB01 algorithmに従い、複数claim一般域は未評価とする。sync照合順はoperation_ref,result_ref,target,receipt_ref,work_ref,change_ref,owner,state。最初の失敗だけをこの有限fixtureでfailure_reasonsへ返す。",
+      "source": "L9 raw/expected_materialのclaim・sync失敗各case。"
+    },
+    {
+      "rule": "qualified_in_fixture_only / received_in_fixture_only / succeeded_in_fixture_onlyはfixture文字列であり、実resource/authority/Worker/operation/receipt資格を発行しない。",
+      "source": "L9 rawとapproved L3/L10のnot_executed。"
+    }
+  ],
+  "unclosed_domains": [
+    {
+      "area": "未観測input shape",
+      "items": [
+        "required raw memberの欠落",
+        "original_control_plane_stateがstopped以外/null/欠落",
+        "original_operation.targetとoriginal_targetの不一致",
+        "ordinary profileでordinary_authority_ref/ordinary_ticket_refが欠落/null/空",
+        "operation.kindが有限6種以外/null/欠落"
+      ],
+      "handling": "局所返却/ownerを原L9から導けないため規則を創作せず未評価。"
+    },
+    {
+      "area": "複合優先の未評価範囲",
+      "items": [
+        "複数claim同時入力",
+        "複数sync field同時不一致",
+        "path複数条件の同時不成立",
+        "F01 authorityに複数field同時不成立"
+      ],
+      "handling": "明示した2複合probe以外の全順序を一般化しない。"
+    },
+    {
+      "area": "現実世界の成立",
+      "items": [
+        "独立resource/path/依存",
+        "SEC authority/credential/policy",
+        "Worker資格",
+        "復旧/rollback/operationの実結果",
+        "OS Work/Changeの実受領・同期",
+        "actual source qualification",
+        "正式codec/schema・L6関数設計/L7対検証・実TDD/CI・L11 acceptance"
+      ],
+      "handling": "fixture文字列から実成立を推論しない。"
+    }
+  ],
+  "requirement_clause_trace": [
+    {
+      "requirement_id": "HELIXINFRASTRUCTURE-L3-006-F01",
+      "approved_obligation_verbatim": "OS/通常control plane停止中でも独立して使える資源/経路と別SEC authorityにより限定bootstrap/点検/health/service停止/rollback/recoveryを選択する。停止中OSへ修復を依頼する循環を作らない。",
+      "l4_contract": "HELIXINFRASTRUCTURE-L4-006-F01",
+      "l5_location": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE",
+      "clauses": [
+        {
+          "clause": "停止中OSへ依存しない独立resource/path/dependencies",
+          "handling": "path.requires_os_response、path.target、dependencies、dependency.requires_stopped_control_plane/availableを有限順に比較。fixture markerのみ。実独立性未成立。"
+        },
+        {
+          "clause": "限定bootstrap/inspection/health/service_stop/rollback/recovery操作を対象へ束縛",
+          "handling": "6 operation.kind literalは有限入力scopeとして列挙。operation/target/ref/authorityとの関係をL9で検査した範囲のみ扱う。許可/実行は意味しない。その他のkindは未評価。"
+        },
+        {
+          "clause": "別SEC authority",
+          "handling": "authority存在・submitted全体一致・kind/state/credential_ref/policy_ref/target/operationの有限field整合を確認。実資格/実credential/policyの解決はしない。"
+        },
+        {
+          "clause": "005復旧/検証条件、最終適格revision、残る操作/制約",
+          "handling": "005 verification ref、last eligible revision、unfinishedをそのまま保持し、null eligible revisionを返す。005 owner-qualified verification chainの実再評価/参照解決は未実装・未評価。"
+        },
+        {
+          "clause": "経路/authority不明ならowner返却、安全復旧不能時停止。automatic failoverは必須化しない",
+          "handling": "L9観測のpath/authority/eligible revision失敗を既定ownerへ返し停止stateを返す。complete_auto_failover_required claimを拒否一覧へ残しgate化しない。未観測failure組合せは未評価。"
+        }
+      ]
+    },
+    {
+      "requirement_id": "HELIXINFRASTRUCTURE-L3-006-B01",
+      "approved_obligation_verbatim": "独立復旧は限定経路であり万能運用/一般authority免除にしない。実操作はSEC制約下のWorker契約を通し、復旧後はoperation/resultをOS Work/Changeへ同期する。",
+      "l4_contract": "HELIXINFRASTRUCTURE-L4-006-B01",
+      "l5_location": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "clauses": [
+        {
+          "clause": "限定経路、万能化/一般免除なし",
+          "handling": "原3 claim literalを拒否しordinary profileを通常ticket/authorityへの戻しとして表す。claim/route一般域は未評価。"
+        },
+        {
+          "clause": "SEC制約下Worker契約",
+          "handling": "state markerとauthority_refの参照整合を有限比較しfailureを保持。source-qualified契約/SEC許可/worker実行は成立させない。"
+        },
+        {
+          "clause": "operation/resultをOS Work/Changeへ同期",
+          "handling": "operation_ref/result_ref/targetとreceipt/work/change refs/owner/stateを有限順で比較。原operation/result/unfinishedを保持。受領receiptの真正性、atomicity、冪等性、同一revisionの実結合は未評価。"
+        }
+      ]
+    }
+  ],
+  "responsibility_boundary": {
+    "retained_from_approved_source": [
+      "limited recovery scope",
+      "separate SEC authority requirement",
+      "stopped control plane circularity avoidance",
+      "last eligible revision and unfinished duty retention",
+      "ordinary authority exemption rejection",
+      "OS Work/Change synchronization reference requirement",
+      "failure return/stop",
+      "automatic failover not a mandatory gate"
+    ],
+    "not_closed_or_not_observed": [
+      "operation-kind/target combinations beyond fixed L9 literals",
+      "actual resource/path/dependency independence and qualified ownership",
+      "SEC credentials/policy/authority qualification",
+      "L2-005 recovery verification predicate and source resolution",
+      "Worker contract qualification and execution authority",
+      "OS receipt authenticity, sync atomicity/idempotence, actual revision binding",
+      "all absent/null shapes and multi-failure precedence beyond explicitly checked fixture/probes",
+      "actual recovery/rollback/operation, incident closure/acceptance, L11, and all 92/430 design closure"
+    ],
+    "change_reason": "原L3/L4の既存meaningを維持する。L9有限fixtureが未供給の実source/qualification/atomicity/owner evidenceを合成で補わず、未閉包として記録した。新承認gateは追加していない。"
+  },
+  "upstream_source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    }
+  ]
+}
