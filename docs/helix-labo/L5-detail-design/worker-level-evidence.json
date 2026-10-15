@@ -295,10 +295,14 @@
       "operation_refs": [
         "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
         "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
+        "resolve_source_map(source_ref_id: SourceRefID, source_map: SourceMap) -> SourceResolution",
         "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult",
-        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial"
+        "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
+        "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
+        "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial"
       ],
-      "operation": "ここに記すのは定義済み関数の合成であり、別のsummarize_history/render_material関数を宣言するものではない。partition_by_class(snapshot)、各partitionへのbind_evidence(partition, source_map)、resolve_applicability(group, claims)で根拠付きassessmentを得る。既存assignment参照を伴う場合はrender_metric_and_failures(claim, reconstruction)が入力claimの参照だけを表示し、判定・更新しない。experiment_selected=falseのとき006依存を追加しない。",
+      "operation": "partition_by_classで履歴を分け、各partitionをbind_evidenceへ渡す。bind_evidenceはsource参照ごとにresolve_source_mapを使う。resolve_applicabilityは入力claimまたは履歴に明示された評価stateをtask/model/source revision/period/scopeごとに保持し、classify_unknownは不明点を収集する。metric claimが明示された場合だけreconstruct_metricの後にrender_metric_and_failuresを呼ぶ。各戻りをassemble_evaluation_materialへ渡し、既存assignment参照はsource入力のFieldValueを保持する。実験未選択の通常履歴にL2-006依存を加えない。",
       "invariants": [
         "assignment_refは入力と同一値で保持し、Benchが新規生成しない。",
         "evaluation_state=unassessedはassignment stateへ統合・昇格しない。",
@@ -321,9 +325,12 @@
       "operation_refs": [
         "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
         "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
-        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult"
+        "resolve_source_map(source_ref_id: SourceRefID, source_map: SourceMap) -> SourceResolution",
+        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult",
+        "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
+        "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial"
       ],
-      "operation": "partition_by_class(snapshot)はtask/model class単位に分割する。bind_evidence(partition, source_map)はsource revision/period/scope/evaluation refを値のまま束縛する。resolve_applicability(group, claims)は完全な一致根拠のある範囲のみ水準候補を返し、未知・未評価を確定へ昇格しない。",
+      "operation": "partition_by_classでtask/model classごとに分け、各source/node参照をbind_evidenceからresolve_source_mapへ解決する。resolve_applicabilityは完全tupleが一致するclaimのみlevelを使い、claimが無い場合はHistoryEntryの明示stateだけを評価状態として保持する。classify_unknownを含む全戻りをassemble_evaluation_materialで集約する。",
       "invariants": [
         "同一snapshotであってもtask class、model class、source revision、period、scopeを別軸として保持する。",
         "unknown/missing/nullを0、evaluated、既知のscopeへ変換しない。",
@@ -344,9 +351,12 @@
       "output_type": "ReconstructedMetric(numerator/denominator as defined by supplied fixture rule, contributing positions, non-success dispositions/reasons, rule/scorer revisions) または UnresolvedMetric(unknown reasons); qualitative claim retains basis/applicability/unassessed range.",
       "operation_refs": [
         "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
-        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial",
+        "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
+        "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial"
       ],
-      "operation": "reconstruct_metric(claim)はclaimが供給するeligible id集合と規則から算入を再現する。denominatorを結果確認後に選び直さず、unknownをnumeric zeroへ変換しない。render_qualitative(claim)はclaim自身が供給するscopeの定性値・根拠・未評価範囲をそのまま表現し、別tupleへの適用判定は行わない。",
+      "operation": "各MetricClaimについてreconstruct_metricのMetricReconstructionをrender_metric_and_failuresへ渡す。各QualitativeClaimはrender_qualitativeで自身のscope/condition/basisを表す。欠落/unknownはclassify_unknownで保持する。各戻りをassemble_evaluation_materialへ渡し、結果からscopeや分母を逆算しない。",
       "invariants": [
         "denominatorの適格性はsource receiptが与える集合に限定し、結果から逆算しない。",
         "failure/missing/refused/stopped/unknownのdispositionと算入/除外理由を個別保持する。",
@@ -370,9 +380,10 @@
         "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
         "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
         "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
-        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial",
+        "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial"
       ],
-      "operation": "reconstruct_metric(claim)が算術結果を再構成し、render_metric_and_failures(claim, reconstruction)が提供された算術規則だけを用いて既知failure一覧と集計値を別々に返す。classify_unknown(snapshot)はunknownを保つ。render_qualitative(claim)はclaimに含まれる自身のscopeに限って表現し、別scopeへの適用や他scopeの評価状態は判定しない。",
+      "operation": "各MetricClaimについてreconstruct_metricの戻りをrender_metric_and_failuresへ渡し、算術値とfailure factsを分けて保持する。classify_unknownはunknownを維持し、render_qualitativeはclaim自身のscopeだけを表す。各結果をassemble_evaluation_materialへ連結し、全portfolioやthresholdを追加しない。",
       "invariants": [
         "WH-R31の0.99と0.97はsum=1.96, mean=0.98を作るがRUN-32 major-scope-failureはfailureのまま別表示する。高平均の閾値やpass判定は追加しない。",
         "WH-R32のunknown scorer/scope/resultはunknownのまま。",
@@ -390,7 +401,8 @@
     "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
     "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
     "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
-    "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
+    "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial",
+    "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial"
   ],
   "trace_matrix": [
     {
@@ -535,8 +547,9 @@
         },
         {
           "name": "owner_ref",
-          "type": "string",
-          "presence": "provided。source ownerの名前だけを示す。"
+          "type": "FieldValue<string>",
+          "presence": "provided owner label, absent/null/emptyも区別",
+          "meaning": "入力source recordが供給したowner labelだけを保持する。envelope ownerを補完値にせず、owner未供給から資格を作らない。"
         },
         {
           "name": "receipt_ref",
@@ -549,7 +562,8 @@
           "presence": "provided",
           "rule": "論理的な形だけでは資格を成立させない。"
         }
-      ]
+      ],
+      "meaning": "source参照の論理carrier。ID解決とowner/qualification bindingは別であり、owner_refの不在を明示的に保持する。"
     },
     "HistoryEntry": {
       "fields": [
@@ -651,6 +665,11 @@
           "known_values_from_input": "success | failure | missing | refused | stopped | unknown; preserve other provided source values without mapping"
         },
         {
+          "name": "failure_class",
+          "type": "FieldValue<string>",
+          "meaning": "元入力に明示されたfailure分類をpresence・値・source locatorごと保持する。failure判定や集計値は生成しない。"
+        },
+        {
           "name": "disposition",
           "type": "FieldValue<string>"
         },
@@ -672,6 +691,45 @@
           "type": "NodeLocator"
         }
       ]
+    },
+    "MetricCalculationOperation": {
+      "fields": [
+        {
+          "name": "operation_kind",
+          "type": "literal count_ratio | arithmetic_mean | unsupported"
+        },
+        {
+          "name": "source_definition_locator",
+          "type": "NodeLocator",
+          "meaning": "元calculation_definitionの値を示すsource locator。wrapperでも同じsource ref idを保持する。"
+        },
+        {
+          "name": "source_rule_revision",
+          "type": "FieldValue<string>",
+          "meaning": "RuleScorer.rule_revisionと同じsource値。版が不一致なら計算しない。"
+        },
+        {
+          "name": "numerator_position_ids",
+          "type": "FieldValue<list<string>>",
+          "meaning": "count_ratioのみ。原sourceのincluded/count値から導いた分子ID。空listは0件の既知集合。"
+        },
+        {
+          "name": "denominator_position_ids",
+          "type": "FieldValue<list<string>>",
+          "meaning": "count_ratioのみ。原sourceのeligible集合から導いた分母ID。空listは未定義。"
+        },
+        {
+          "name": "mean_position_ids",
+          "type": "FieldValue<list<string>>",
+          "meaning": "arithmetic_meanのみ。原sourceのincluded集合から導いた対象ID。空listは未定義。"
+        },
+        {
+          "name": "mean_value_member",
+          "type": "FieldValue<literal score>",
+          "meaning": "arithmetic_meanの数値を読むMetricPosition member。現source projectionはscore。"
+        }
+      ],
+      "meaning": "原文式を解析した結果ではなく、原sourceの式・ID/状態・disposition/scoreから作る明示的な型付き投影。実source operationの存在や資格を証明しない。"
     },
     "RuleScorer": {
       "fields": [
@@ -707,6 +765,11 @@
         {
           "name": "disposition_rules_ref",
           "type": "FieldValue<string>"
+        },
+        {
+          "name": "calculation_operation",
+          "type": "FieldValue<MetricCalculationOperation>",
+          "meaning": "元calculation_definition/RuleScorer版/locatorを保持した上で、source原文から明示できる算術操作を別の型付きprojectionとして受ける。欠落・不明は元presenceのまま。文字列parserやfixture literal whitelistではない。"
         },
         {
           "name": "source_node_ref",
@@ -819,7 +882,7 @@
         },
         {
           "name": "evaluation_state",
-          "type": "FieldValue<literal evaluated | unassessed | unknown>",
+          "type": "FieldValue<literal evaluated | unassessed | unknown | qualitative>",
           "meaning": "claim sourceが明示した評価状態を保持し、推定しない。"
         }
       ]
@@ -848,7 +911,7 @@
         },
         {
           "name": "evaluation_state",
-          "type": "literal evaluated | unassessed | unknown"
+          "type": "literal evaluated | unassessed | unknown | qualitative"
         },
         {
           "name": "basis_refs",
@@ -878,6 +941,11 @@
         {
           "name": "metric_summaries",
           "type": "list<MetricSummary>"
+        },
+        {
+          "name": "failure_observations",
+          "type": "list<MetricPosition>",
+          "meaning": "metric集約とは独立に返す原failure position。入力順で、outcome_stateが明示的にfailureのposition全体を保持する。資格・scope・成功判定を含意しない。"
         },
         {
           "name": "unresolved",
@@ -976,6 +1044,11 @@
         {
           "name": "observed_values",
           "type": "list<ObservedValue>"
+        },
+        {
+          "name": "logical_backflow_role_candidates",
+          "type": "list<LogicalBackflowRoleCandidate>",
+          "rule": "L10の役割候補をsource locator付きで保持する。実owner return_to_owner_refとは独立。空listは候補未供給を表す。"
         }
       ]
     },
@@ -1181,7 +1254,7 @@
           "type": "list<SourceRef>"
         }
       ],
-      "meaning": "入力として明示されたsource recordの集合。別途提供されないrecordは解決済みと扱わない。"
+      "meaning": "呼出元が明示したsource record論理carrierの集合。owner_ref欠落を保持できるが、ID解決はqualification/owner bindingの成立を意味しない。別途提供されないrecordは解決済みと扱わない。"
     },
     "SourceResolution": {
       "fields": [
@@ -1230,6 +1303,74 @@
         "presence=explicit_nullならjson_kindはprovided(\"null\")という文字列kind tag、raw_json_utf8はprovided(\"null\")という元JSON表記である。JSON kind tagは観測値のnullそのものではない。",
         "presence=providedまたはemptyならjson_kindは実際のJSON kindをprovidedで持ち、raw_json_utf8は元表記を保持する。"
       ]
+    },
+    "MaterialAssemblyInput": {
+      "meaning": "既存の純粋関数が返した型付き結果をEvaluationMaterialへ結ぶための入力組。入力出典や資格を生成しない。",
+      "fields": [
+        {
+          "name": "partitions",
+          "type": "list<PartitionResult>",
+          "presence": "provided。空listは実際に分割対象が無い場合だけ。"
+        },
+        {
+          "name": "bindings",
+          "type": "list<BindResult>",
+          "presence": "provided。対応するpartitionの入力順を保つ。"
+        },
+        {
+          "name": "applicability_results",
+          "type": "list<ApplicabilityResult>",
+          "presence": "provided。対応partition順を保つ。"
+        },
+        {
+          "name": "metric_renderings",
+          "type": "list<EvaluationMaterial>",
+          "presence": "provided。MetricClaimの入力順を保つ。"
+        },
+        {
+          "name": "qualitative_renderings",
+          "type": "list<EvaluationMaterial>",
+          "presence": "provided。QualitativeClaimの入力順を保つ。"
+        },
+        {
+          "name": "unknown_results",
+          "type": "list<Unresolved>",
+          "presence": "provided。classify_unknownが返した元順を保つ。"
+        },
+        {
+          "name": "existing_assignment_refs",
+          "type": "FieldValue<list<SourceRef>>",
+          "presence": "callerがsourceから渡すtag/valueをそのまま保持する。"
+        },
+        {
+          "name": "logical_backflow_role_candidates",
+          "type": "list<LogicalBackflowRoleCandidate>",
+          "presence": "callerが当該L10 contractから明示して渡す。未供給なら空list。raw packet sourceとは別の規範context。"
+        }
+      ],
+      "rules": [
+        "各elementは対応する既存宣言型を満たす。",
+        "absent/null/emptyを空listへ変換する入力補助型ではない。",
+        "assignment参照はcallerが明示したFieldValueをそのまま出力し、新規値を作らない。",
+        "logical_backflow_role_candidatesはL10 failure_observation由来のrole文言とlocatorだけを持ち、実owner identity/qualification/dispatchを補わない。"
+      ]
+    },
+    "LogicalBackflowRoleCandidate": {
+      "meaning": "L10 failure_observationからcallerが渡す論理的な差戻し先候補。実owner identity、source qualification、permission、配送receiptを表さない。",
+      "fields": [
+        {
+          "name": "role",
+          "type": "string"
+        },
+        {
+          "name": "source_ref",
+          "type": "NodeLocator"
+        }
+      ],
+      "rules": [
+        "source_refはL10 approved caseのfailure_observation位置を示す。IDが存在することだけで実source資格を示さない。",
+        "roleは責務候補の文言を保持し、return_to_owner_refへ変換しない。"
+      ]
     }
   },
   "function_signatures_and_decisions": [
@@ -1244,13 +1385,15 @@
       "postconditions": [
         "一致recordが一件ならそのbody参照を返す。",
         "recordが無い、または同一IDが複数なら未解決として返す。",
-        "source qualification_stateをunknown/not_assertedから昇格しない。"
+        "source qualification_stateをunknown/not_assertedから昇格しない。",
+        "一意IDでbodyを解決してもowner_refのabsent/null/emptyを保持し、owner bindingやsource qualificationの成立へ変換しない。"
       ],
       "algorithm": [
         "source_map.recordsからsource_idがsource_ref_id.valueに一致するrecordを探す。",
         "一致が一件ならresolved bodyを返す。",
         "一致なしまたは複数ならsource_reference_unboundのUnresolvedを返す。",
-        "bodyに含まれるqualification_stateをそのまま保持し、IDやshapeから資格を生成しない。"
+        "bodyに含まれるqualification_stateをそのまま保持し、IDやshapeから資格を生成しない。",
+        "一致recordのowner_ref presenceはSourceRefのtagged FieldValueのまま返す。欠落ownerはenvelope metadataで補完しない。"
       ],
       "branches": [
         {
@@ -1318,7 +1461,7 @@
         "既存参照は元source ownerに帰属したままである。"
       ],
       "algorithm": [
-        "partition内のsource_ref_idをsource_map.recordsへ照合し、bodyを変更せず解決する。",
+        "partition内のsource_ref_idごとにresolve_source_map(source_ref_id, source_map)を呼ぶ。",
         "各evidence fieldのprovided/absent/explicit_null/emptyを別々に保持する。",
         "source refがmapに無い、または一意に解決できないentryはUnresolved(source_reference_unbound)に分け、receiptやownerを合成しない。",
         "解決できた参照をBoundPartitionへ束縛し、未解決entryは別に保持する。"
@@ -1349,9 +1492,10 @@
       ],
       "algorithm": [
         "claimsからgroup.keyのtask/model class、source revision、evaluation period、scopeと全field stateが一致するものだけを選ぶ。",
-        "一致claimが無ければ、入力claim/stateの観測範囲をunknownまたはunassessedとして保持し、存在しないlevelは作らない。",
-        "一致claimがmissing/conflicting/unknownなら元locator/source refと既存owner戻し先を伴うUnresolvedを返す。",
-        "一致claimがexplicit evaluatedでlevelを供給するときだけ、そのlevelと根拠をAssessmentへ写す。class名からlevelを推定しない。"
+        "一致claimがあれば、その明示evaluation_stateに従いAssessmentを作る。evaluatedでlevelを供給するときだけそのlevelを写す。unknown/unassessedではlevelを出さない。",
+        "一致claimが無い場合、group.entriesのoutcome_stateを読む。明示unassessedはunassessed Assessmentとして保持する。明示unknownまたはmissing/explicit_nullはunknown/unassessedとして保持し、levelを作らない。",
+        "outcome_state=successで、evaluation_ref・task/model class・source revision・evaluation period・scopeがすべてprovidedのときはevaluation_state=evaluatedとして観測stateだけをAssessmentへ写す。levelはclaimが供給しない限りAbsent。",
+        "stateとtupleの必要fieldが不足/不整合ならsource/node refs付きUnresolvedを加え、値を成功/評価済みへ補完しない。"
       ],
       "branches": [
         {
@@ -1360,11 +1504,23 @@
         },
         {
           "condition": "一致claimのstateがunassessed",
-          "output": "unassessed Assessmentと未評価部分を保持する。"
+          "output": "unassessed Assessmentと未評価部分を保持し、levelは出さない。"
         },
         {
-          "condition": "claimが無い、またはtuple/stateがunknown/absent/null/empty/conflict",
+          "condition": "一致claimのstateがunknown/absent/null/empty/conflict",
           "output": "範囲を推定せず、source/node refs付きunknownまたはUnresolvedを返す。"
+        },
+        {
+          "condition": "一致claimがなく、entry outcome_stateがunassessed",
+          "output": "元entry tupleとlocatorを持つunassessed Assessmentを返す。"
+        },
+        {
+          "condition": "一致claimがなく、entry outcome_state=successかつevaluation_refと全tuple軸がprovided",
+          "output": "評価済みである観測stateのみ返す。levelはAbsentのまま。"
+        },
+        {
+          "condition": "一致claimがなくstateがunknown、またはevaluation_ref/tuple軸が不足",
+          "output": "unknown/unassessedと不足fieldのUnresolvedを返し、levelを作らない。"
         }
       ]
     },
@@ -1373,66 +1529,82 @@
       "signature": "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
       "result_shape": "MetricReconstructionは再構成可能なMetricSummaryまたはUnresolved記録を返す。未再構成の値を完全な結果として扱わない。",
       "preconditions": [
-        "snapshot、scope、eligible IDs、positions、RuleScorer、rule/scorer各revisionがsource-boundで供給される。",
-        "計算値を求める場合はsourceが供給した計算ruleがある。"
+        "snapshot、scope、eligible IDs、positions、metric-rule revision、scorer-oracle revision、元calculation_definitionは同一sourceに結び、FieldValueのpresenceとlocatorを保つ。rule_ref/scorer_oracle_ref/disposition_rules_refのIDが欠けるだけでは停止しない。",
+        "算術の入力operationはRuleScorer.calculation_operationの型付き値からのみ取る。元calculation_definitionの文字列は原文・版・locatorとして保持し、本関数で解析、完全一致whitelist照合、部分一致、fixture名照合をしない。",
+        "型付きoperationは元式を含むRuleScorerと同じsource identity/field locatorへ結び、source_rule_revisionをRuleScorer.rule_revisionと一致させる。operationの生成はcaller/source adapterによるsource-derived projectionであり、実source qualificationではない。",
+        "本関数は論理算術のみを再構成する。sourceからoperationを一意に供給できないclaimはそのclaimだけUnresolvedにし、別の履歴/定性claimを停止しない。"
       ],
       "postconditions": [
-        "eligible denominatorは完全一致を確認したeligible ID集合の要素数に限る。",
-        "各eligible positionのstate/dispositionと算入/除外理由を保持する。",
-        "unknown/missing/refused/stopped/failureをsuccessまたは0へ変換しない。",
+        "入力したeligible_position_idsとpositionsを保持し、summaryの分子/対象/分母はoperationが明示したID集合から計算する。",
+        "count_ratioではnumerator IDs ⊆ denominator IDs ⊆ 元eligible IDsを検証する。分子の空集合は既知0件、分母の空集合は算術未定義としてUnresolved。",
+        "arithmetic_meanでは明示対象IDごとにscoreが数値として提供される場合だけ算術平均する。対象空、欠落/null/empty/unknown score、数値でない値ではUnresolved。",
+        "すべてのpositionの元state/disposition/reason/failure classは算入の有無と独立に返却可能な根拠として保つ。unknown/missing/refused/stopped/failureをsuccessや0へ変換しない。",
         "threshold/pass結果を追加しない。"
       ],
       "algorithm": [
-        "数値再構成に必要なscope/eligible IDs/positions/rule revision/scorer-oracle revisionがprovidedでない場合はUnresolved(rule_not_suppliedまたはmissing_evidence)を返す。",
-        "position IDの重複とeligible集合との過不足を照合し、不一致ならeligible_set_mismatchを返す。",
-        "各positionと固有disposition/reasonを保持する。報告displayからformulaを推定せず、source ruleが指定する計算だけを行う。",
-        "計算に要る値がabsent/null/empty/unknownなら保持し、ruleがその処理を明示しない限り値を未解決にする。",
-        "再構成summaryに算入ID、denominator、revision、source refsを含める。"
+        "scope、snapshot、eligible IDs、positions、RuleScorer.rule_revision/scorer_oracle_revision、calculation_definitionの各FieldValueを確認する。必要意味値がabsent/explicit_null/empty/unknownなら値とlocatorをUnresolvedへ保持する。補助identity refsの欠落だけでは停止しない。",
+        "calculation_operationがabsent/explicit_null/emptyならformula文字列を解析せずoperation_not_suppliedを返す。operation_kind=unsupportedなら原文とlocatorを保持してunsupported_operationを返す。",
+        "operation.source_definition_locatorとcalculation_definitionのlocator/source_ref_idが同一で、operation.source_rule_revisionとRuleScorer.rule_revisionが同じprovided値であることを確認する。不一致はoperation_source_conflictとしてUnresolvedにし、別版のoperationを適用しない。",
+        "eligible_position_idsとpositions.position_idの重複・過不足を検査し、各IDが一意に位置へ結びつくことを確認する。分子/対象のIDの存在とeligible=trueも照合する。重複、存在しないID、別source/revision、不一致は数値化せずUnresolvedにする。",
+        "operation_kind=count_ratioの場合、numerator_position_idsとdenominator_position_idsの両方がprovidedかつ重複なしであることを確認する。denominator IDsは空でなく、denominator⊆元eligible、numerator⊆denominatorを満たすこと。denominator件数を分母、numerator件数を分子として除算する。numerator=[]は0/denominator件とする。",
+        "count_ratioの各分子IDについて、対応positionのstate=successかつdisposition=count_as_confirmed_successを確認する。分母IDの各positionはeligible=trueであること。反しまたは不明の元state/dispositionはsource_conflict/Unresolvedに保持し、分子へ補完しない。",
+        "operation_kind=arithmetic_meanの場合、mean_position_idsはprovided・重複なし・非空で、全て元eligible集合内かつpositionsへ一意に結びつくこと。mean_value_member=scoreであり、各対象scoreがprovidedのJSON number（booleanを除く）のときだけ合計を件数で割る。",
+        "count_ratio/arithmetic_meanとも入力operationが選ばなかったpositionsを捨てず、state/disposition/reason/failure classをsummary/FailureObservationへ保持する。failure classは算術値で相殺しない。",
+        "rule/scorer revision、scope、snapshot_ref、source refs、全positionのstate/disposition/reasonをsummaryへ保持する。display_labelは元値として写すだけで、数値からthreshold/passを推定しない。",
+        "unsupported kind、field presence不足、集合/locator/revision矛盾、空分母/空mean対象、非数値/欠落scoreは、原値と原因をUnresolvedへ返し、別operationへ丸めない。"
       ],
       "branches": [
         {
-          "condition": "eligible setが完全一致しsource計算ruleを再現できる",
-          "output": "source/fixtureが明示するmetricだけを再構成する。"
+          "condition": "operation_kind=count_ratio、source/revision locator整合、numerator/denominatorがprovided・一意、denominatorが非空、numerator⊆denominator⊆eligible、対象position条件が成立",
+          "output": "分子と分母を明示ID件数から計算。numerator=[]なら計算値0。全position理由/failureは独立に保持。"
         },
         {
-          "condition": "rule/scorer/denominator不足またはposition不整合",
-          "output": "Unresolvedを返し、数値を出さない。"
+          "condition": "operation_kind=arithmetic_mean、source/revision locator整合、mean IDsがprovided・一意・非空でeligible内、全scoreがprovided JSON number",
+          "output": "明示対象scoreの合計/対象件数を返し、全positionのfailure factsを別保持。"
         },
         {
-          "condition": "outcomeがunknown/missing",
-          "output": "state/dispositionを保持し0へ置換しない。"
+          "condition": "calculation_operationが欠落/null/empty、unsupported、source locator/revision不一致、ID重複/不存在/範囲外、空分母/空mean集合、または必要score欠落/unknown/非数値",
+          "output": "当該metricのみUnresolved。元式、operation/presence、revision、locator、position状態を保持し、数値を作らない。"
+        },
+        {
+          "condition": "rule_ref/scorer_oracle_ref/disposition_rules_refが欠落するが、その他の必須意味入力とsource-bound typed operationが成立",
+          "output": "参照presenceを保持したままoperationを適用。欠落identityを創作しない。"
+        },
+        {
+          "condition": "eligible positionがfailure/missing/refused/stopped/unknownまたはmajor failure",
+          "output": "元state/disposition/reason/failure classを返却し、source operationが明示的に選ばない限り算入数値へ加えず、successや0へ変換しない。"
         }
       ]
     },
     {
       "name": "render_metric_and_failures",
       "signature": "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
-      "result_shape": "metric summaryとfailure/disposition、display label、assignment refsを型付きで保持する。display labelと算術値は別fieldである。",
+      "result_shape": "EvaluationMaterialにはmetric_summariesと独立したfailure_observationsを返す。failure_observationsは明示failure状態の元MetricPositionを保持し、集約値を意味しない。display labelと算術値は別fieldである。",
       "preconditions": [
         "claim.display_label、positions、existing_assignment_refsはFieldValueとして入力presenceを保持する。",
         "reconstruction.summaryが未提供ならunresolvedを保持する。"
       ],
       "postconditions": [
-        "算術にfailure scoreが含まれる場合もfailure事実を独立して参照できる。",
         "positionsまたはassignment refsがabsent/null/emptyなら同じpresenceを出力し、空listへ置換しない。",
         "高いmeanからthreshold/pass-fail policyを推定しない。",
-        "renderingでauthority/assignmentを変更しない。"
+        "renderingでauthority/assignmentを変更しない。",
+        "明示的にoutcome_state=\"failure\"の元positionは、scopeや算術再構成の可否にかかわらずfailure_observationsへ入力順で返す。failure_classとsource_node_refを含む元全fieldを保持し、metric_summariesへ混ぜない。"
       ],
       "algorithm": [
-        "reconstructionの計算値とclaim.display_labelを別fieldに写す。",
-        "claim.positionsがprovidedならfailure/dispositionだけを算出してmetric summaryへ分離し、入力positionsもpresence付きで保持する。",
-        "claim.positionsがabsent/null/emptyならそのstateを出力に保持しfailure一覧を合成しない。",
-        "display labelのabsent/null/empty状態をそのまま保持しHIGH/LOWを合成しない。",
+        "reconstruction.summaryがprovidedならそのMetricSummaryだけをmetric_summariesへ写し、absentならmetric_summaries=[]とする。",
+        "claim.positionsがprovidedなら、入力順に走査しoutcome_state.tag=providedかつoutcome_state.value=\"failure\"のposition全体をfailure_observationsへコピーする。failure_classを含む各FieldValueとsource_node_refを保持する。",
+        "claim.positionsがabsent/null/emptyならそのpresenceを既存の未解決情報へ保持し、failure_observations=[]とする。",
+        "claim.display_labelのpresence/valueをsummary内で数値と別に保持し、値からHIGH/LOWやpassを合成しない。",
         "claimから既存assignment refsのpresence/valueだけを写し、authority_effect=noneのEvaluationMaterialを返す。"
       ],
       "branches": [
         {
-          "condition": "数値meanと既知failureがともにある",
-          "output": "算術mean、failure、display labelを別claimとして示す。"
+          "condition": "positions内にoutcome_state=\"failure\"のpositionがある",
+          "output": "metric_summariesとは独立したfailure_observationsへ、元positionを入力順で全field保持する。"
         },
         {
-          "condition": "入力またはlabelがunknown/absent/null/empty",
-          "output": "元stateを保持しsuccess分類を生成しない。"
+          "condition": "positionsがprovidedだが明示failure状態がない",
+          "output": "failure_observations=[]とし、unknown/missingをfailureまたはsuccessへ変換しない。"
         },
         {
           "condition": "positionsまたはexisting assignment refsがabsent/null/empty",
@@ -1446,60 +1618,149 @@
       "result_shape": "影響を受けたfield/rangeごとに、source/node locatorと型付きObservedValueを持つUnresolvedを返す。",
       "preconditions": [
         "unknown/absent/null/empty tagが相互に潰されていない。",
-        "任意JSON値は元source locatorとraw_json_utf8を利用できる。"
+        "任意JSON値は元source locatorとraw_json_utf8を利用できる。",
+        "入力がHistorySnapshotならHistorySnapshot以下、MetricClaimならMetricClaim以下だけを走査する。packet envelopeやL9 expectedは入力型外であり走査しない。"
       ],
       "postconditions": [
         "unknownをunknownのまま保ち、success/0/evaluated/既知scopeへ置換しない。",
-        "boolean/number/array/object値も元JSON kindとraw表記を保持する。"
+        "boolean/number/array/object値も元JSON kindとraw表記を保持する。",
+        "各Unresolvedは発生したfield/source occurrenceを別々に保持する。return_to_owner_refは最近接SourceRef.owner_refのtag付き元値をそのまま返し、異なるsource ownerを併合・代替しない。",
+        "owner_ref/receipt_refの欠落をpacket envelopeや別assignment ownerで補わず、SourceRef内の元presenceとして保持する。"
       ],
       "algorithm": [
-        "宣言FieldValueを走査し、unknown/absent/null/empty stateを元locatorとともに集める。",
-        "値がある場合はJSON kindと正確なraw_json_utf8をObservedValueに記録し、任意JSONをstringへ変換しない。",
-        "既存source/history/evaluation/metric owner参照を付与し、無い場合は戻し先を未解決のまま残す。",
-        "入力snapshotを変更せずUnresolved一覧を返す。"
+        "入力unionの実際のroot typeを判定し、そのrootからlogical_type_definitionsの宣言field順に深さ優先で走査する。listはindex昇順。未宣言JSON key、packet envelope、L8/L9 expectedは走査入力へ混ぜない。",
+        "field_state_rules.logical_path_patternに一致するFieldValueだけを分類対象にする。claim_id、snapshot_id、position_id等の識別子FieldValueの未供給だけでは新しい欠測診断を作らない。",
+        "分類対象FieldValueのtagがprovidedで文字列値\"unknown\"ならreason=unknown_state、absent/explicit_null/emptyならreason=missing_evidenceとする。providedの他の値はunknown扱いしない。",
+        "同一path patternに複数FieldValueがあっても各source occurrenceを独立に一件ずつ返す。同一owner/refの値または同一reasonだけを理由にdeduplicate/aggregateしない。出力順は宣言順の深さ優先、配列index順。",
+        "affected_fieldsは完全なlogical pathを一要素として返す。source_refsはそのleafを含む最も近い入力SourceRefを元値のまま保持し、node_refsはFieldValue.parent_node_locatorに対応するsource pathを保持する。",
+        "return_to_owner_refは、対象fieldを含む最も近いSourceRef.owner_refのtag付き値をそのまま写す。provided/absent/explicit_null/emptyを区別し、packet envelope owner、assignment候補owner、別sourceのownerで補完・集約しない。owner_ref自体はこの関数の欠測field走査対象にせず、owner binding不足はbind_evidenceが当該source locatorで返す。",
+        "receipt_refはこの関数の一般欠測field走査対象にしない。SourceRefのreceipt_refはpresenceをそのまま保持し、特定metricが同一source receiptを必要とする場合の不足診断はmetric/source consumer側で行う。",
+        "sourceを変更せず、順序どおりのUnresolved一覧を返す。入力snapshot/claimを変更しない。"
       ],
       "branches": [
         {
-          "condition": "stateが明示unknown",
-          "output": "reason=unknown_stateのUnresolvedを返す。"
+          "condition": "field_state_rulesに一致しないFieldValue、または一致fieldがprovidedで値が\"unknown\"以外",
+          "output": "field_state_rulesに一致しないFieldValue（owner_ref/receipt_refを含むrouting/provenance metadata）、または一致fieldがprovidedで値が\"unknown\"以外なら、そのfieldについてUnresolvedを追加しない。"
         },
         {
-          "condition": "memberがabsent/null/empty",
-          "output": "presence stateを区別して保持しUnresolvedを返す。"
+          "condition": "分類対象fieldがprovidedかつ文字列値\"unknown\"",
+          "output": "当該leafごとにreason=unknown_stateを一件返す。"
         },
         {
-          "condition": "必要値がすべてprovided",
-          "output": "そのfieldについてUnresolvedを追加しない。"
+          "condition": "分類対象fieldがabsent/explicit_null/empty",
+          "output": "当該leafごとにreason=missing_evidenceを一件返す。presenceを区別し、同一reason/ownerで他leafへ併合しない。"
+        }
+      ],
+      "meaning": "HistorySnapshotまたはMetricClaimの明示された評価・根拠fieldだけを宣言型順に走査し、unknown/missing/null/emptyをsource locator付きUnresolvedへ保持する。SourceRef.owner_ref/receipt_refはprovenance metadataとして元presenceを保ち、別consumerの責務をこの関数へ重複させない。",
+      "field_state_rules": [
+        {
+          "logical_path_pattern": "**.outcome_state | **.evaluation_state",
+          "selected_presence": [
+            "provided",
+            "absent",
+            "explicit_null",
+            "empty"
+          ],
+          "provided_marker": "値がliteral \"unknown\"ならunknown_state。その他のprovided値は分類しない。",
+          "nonprovided_reason": "missing_evidence",
+          "basis": "HELIXLABO-L4-055-F01/F02/F03: unknown/未評価/欠測を成功へ変換しない。"
+        },
+        {
+          "logical_path_pattern": "HistorySnapshot.entries | **.evaluation_ref | **.source_revision | **.evaluation_period | **.scope | MetricClaim.eligible_position_ids | MetricClaim.positions | **.eligible | **.disposition | **.inclusion_reason | **.exclusion_reason | **.rule_revision | **.scorer_oracle_revision | **.applicability_scope | **.calculation_definition | **.disposition_rules_ref",
+          "selected_presence": [
+            "provided",
+            "absent",
+            "explicit_null",
+            "empty"
+          ],
+          "provided_marker": "fieldのprovided値が文字列literal \"unknown\"のときだけunknown_state。その他のprovided値は分類しない。",
+          "nonprovided_reason": "missing_evidence",
+          "basis": "HELIXLABO-L4-055-F01/F02/F03: 必要tuple、eligible set、metric/scorer根拠、各position dispositionを出所と状態付きで保持する。"
         }
       ]
     },
     {
       "name": "render_qualitative",
       "signature": "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial",
-      "result_shape": "claim自身が供給するscope内のlevel/applicability/basis/unassessed portionを持つAssessment、またはUnresolvedを返す。別の要求tupleへの適用判定は行わない。",
+      "result_shape": "claim自身が供給するscopeとapplicability conditionで限定されたAssessment、またはUnresolvedを返す。claim内の明示task/model/scope tupleに対する適用可能性と、evaluation_stateは別に扱う。Assessment.levelはそのtuple内のsource claim値であり、評価済み結果・実source資格ではない。要求側の別tupleへの適用判定は行わない。",
       "preconditions": [
-        "claim scope、applicability condition、basis refsはclaim入力内にsource-boundで供給される。",
-        "levelは供給済みclaimであり数値thresholdから生成しない。"
+        "claim.scope、applicability_condition、basis_refは入力sourceからpresence付きで供給する。これらが揃うときだけclaim自身の明示tupleを描画対象として扱い、別の要求tupleへの一致を意味しない。",
+        "evaluation_stateのabsent/null/emptyをFieldValueでそのまま受ける。明示levelだけからevaluatedを推定しない。applicability_condition/scope/basisの解決状態とは独立に扱う。",
+        "levelは供給済みclaimのsource値として保持し、数値thresholdから生成しない。Assessment.levelへの保持はclaim自身のscopeに限る。"
       ],
       "postconditions": [
-        "render範囲はclaim自身が供給するscopeとapplicability conditionに限る。",
+        "render範囲はclaim自身が供給するscopeとapplicability conditionに限り、外部要求tupleとの比較結果を生成しない。",
+        "claim自身のscope/condition/basisが解決済みの場合、Assessment.levelはそのscope内で主張されたsource値として保持する。evaluation_stateがunknown/unassessedなら、これを評価済み結果へ昇格しない。",
+        "applicabilityが未解決の場合はAssessment.levelを出さず、原levelをObservedValueでUnresolvedへ保持する。",
         "unassessed portionを明示したままにする。",
         "数値threshold、pass state、assignment、authority変更を生成しない。"
       ],
       "algorithm": [
-        "claim入力内のsource-bound applicability_condition、scope、basis_refを確認する。",
-        "いずれかがabsent/null/empty/unknownならlevel無しのUnresolvedを返す。",
-        "それ以外はlevel/condition/basis/unassessed portionを供給値のまま写す。",
+        "source-bound applicability_condition、scope、basis_refが供給済みか確認する。これら3値が揃う場合に限り、claim自身の明示tupleを描画対象として定める。要求側の別tupleとの一致はこの関数の入力にないため判定しない。",
+        "いずれかがabsent/null/empty/unknownならapplicabilityを未解決とし、Assessment.levelを出さず、元levelと他のsource値をObservedValueでUnresolvedへ保持する。",
+        "claim自身のscope/condition/basisが供給済みなら、そのclaim-scoped applicabilityは解決済みとして扱う。この解決は外部対象への適用性・source資格・実評価を証明しない。",
+        "evaluation_stateがabsent/null/emptyならAssessment.evaluation_state=unknownとする。claim.levelはclaim自身のscope内に記録されたsource claim値としてAssessment.levelへ保持し、unknown_state Unresolvedへ欠落stateとlevel/condition/basis/unassessed portionのObservedValueも載せる。これはlevelの評価済み資格を確定しない。",
+        "明示評価状態が\"qualitative\"なら同じliteralをAssessmentへ保持する。これは評価完了を意味しない。unassessed portionはsource値のまま保つ。",
+        "evaluation_stateが明示unassessedまたはunknownならその値を保持し、供給済みlevelはclaim自身のscopeに属するsource claim値として保持する。適用成功・評価完了を意味しない。",
+        "evaluation_state=evaluatedが入力に明示される場合だけevaluatedを返す。level、condition、basis、unassessed portionは供給値のまま写す。",
         "claim自身が示すunassessed portionを保持し、claim外のclass/rangeへ外挿しない。"
       ],
       "branches": [
         {
-          "condition": "claim入力内のscope/basisが供給され、必要情報が解決できる",
-          "output": "供給claimをそのscope内でrenderする。別tupleへの適用性は出力しない。"
+          "condition": "scope/condition/basisが供給され、evaluation_state=evaluatedが明示される",
+          "output": "claim自身の明示tupleに限ったAssessmentへ供給値を写す。外部要求tupleとの一致や実source資格は主張しない。assignment/authorityは変更しない。"
         },
         {
-          "condition": "claim入力内のscope/basisがabsent/null/empty/unknown、またはsource参照を解決できない",
-          "output": "外挿claimを作らずUnresolvedを返す。別tupleとの比較はしない。"
+          "condition": "scope/condition/basisが供給されevaluation_state=\"qualitative\"が明示される",
+          "output": "literal \"qualitative\"を保持し、source level/unassessed portionをclaim-scoped Assessmentへ写す。evaluated/資格/実sourceの成立は示さない。"
+        },
+        {
+          "condition": "scope/condition/basisが供給され、evaluation_stateがabsent/null/empty/unknown/unassessed",
+          "output": "claim自身の明示scopeを保持し、evaluation_stateはunknown/unassessedのまま返す。supplied levelはclaim-scoped source値として保持し、評価結果へ昇格しない。欠落stateはUnresolved.unknown_stateで返す。"
+        },
+        {
+          "condition": "scope/condition/basisのいずれかがabsent/null/empty/unknown",
+          "output": "claim applicabilityを未解決とし、Assessment.levelは出さない。原levelと他の未解決値をsource locator付きObservedValueでUnresolvedへ保持する。"
+        }
+      ]
+    },
+    {
+      "name": "assemble_evaluation_material",
+      "signature": "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial",
+      "result_shape": "EvaluationMaterial = {assessments, metric_summaries, failure_observations, unresolved, existing_assignment_refs, authority_effect:none}。failure_observationsはmetric集約から独立した元failure factsである。Unresolvedは論理差戻し役割候補と実owner refを別fieldで保持する。",
+      "preconditions": [
+        "各argumentは宣言された結果型。各listは対応する呼出し順を保持する。",
+        "existing_assignment_refsはcallerが元sourceから明示したFieldValueである。"
+      ],
+      "postconditions": [
+        "各入力Assessment/MetricSummary/Unresolvedを元順で連結し、値・重複・presenceを変更しない。",
+        "各metric_renderings[].failure_observationsを入力順で連結し、算術集約やfailure dispositionを再計算せず保持する。",
+        "logical_backflow_role_candidatesが空でなければ、出力unresolvedの各要素へ候補列を元順で追記する。各Unresolved.return_to_owner_refは変更しない。",
+        "logical_backflow_role_candidatesが空なら、入力Unresolvedの候補列を保持する。",
+        "existing_assignment_refsは引数FieldValueをそのまま返す。",
+        "authority_effectはnone。placement/assignment/permission/source qualificationを出力・生成しない。"
+      ],
+      "algorithm": [
+        "assessmentsへapplicability_results[].assessments、metric_renderings[].assessments、qualitative_renderings[].assessmentsを、この順で各listの入力順に連結する。",
+        "metric_summariesへmetric_renderings[].metric_summaries、qualitative_renderings[].metric_summariesをこの順で連結する。",
+        "failure_observationsへmetric_renderings[].failure_observationsを入力順で連結する。これは個々のfailure事実だけを返し、metric_summariesの算術・分母・判定を変更しない。",
+        "unresolvedの基底列へpartitions[].unresolved、bindings[].unresolved、applicability_results[].unresolved、metric_renderings[].unresolved、qualitative_renderings[].unresolved、unknown_resultsをこの順で連結する。重複排除や優先消去をしない。",
+        "logical_backflow_role_candidatesが空でない場合、基底列の各Unresolved.logical_backflow_role_candidates末尾へ入力候補列を入力順で追記する。元の候補列と重複も消さない。空の場合は各元候補列をそのまま保持する。",
+        "existing_assignment_refsは入力値をtag/valueごとコピーする。",
+        "authority_effect=noneとしてEvaluationMaterialを返す。"
+      ],
+      "branches": [
+        {
+          "condition": "各引数が宣言型を満たし、logical_backflow_role_candidatesが空list",
+          "output": "既存Unresolvedの候補列を含め、指定順でassessments/metric_summaries/failure_observations/unresolvedを構成しassignment FieldValueを保持したEvaluationMaterial。"
+        },
+        {
+          "condition": "各引数が宣言型を満たし、logical_backflow_role_candidatesに1件以上ある",
+          "output": "failure_observationsも含め、各連結Unresolvedへ候補列を元順で追記する。actual return_to_owner_refは変更しないEvaluationMaterial。"
+        },
+        {
+          "condition": "引数が型外",
+          "output": "この論理関数の定義域外。元caller/sourceへ戻す。"
         }
       ]
     }
@@ -1522,5 +1783,51 @@
     "undefined_typename_count": 0,
     "scope": "宣言済みlogical field型、全function signature/result shapeの型名を照合する。primitive/genericは明記した集合に限る。",
     "finite_graph": "FieldValueのprovenance edgeはSourceRefID/NodeLocatorの葉を指す。source bodyはSourceMapから別途解決する。"
+  },
+  "pure_pipeline_contract": {
+    "entrypoint": "assemble_evaluation_material",
+    "signature": "assemble_evaluation_material(input: MaterialAssemblyInput) -> EvaluationMaterial",
+    "caller": "L8のcomponent verification driverが各既存関数を宣言型引数で呼び、その戻りを渡す。これは関数設計上の合成であり、pack登録/実資格/実行を示さない。",
+    "order": [
+      "partition_by_class",
+      "bind_evidence (内部でresolve_source_map)",
+      "resolve_applicability",
+      "reconstruct_metric → render_metric_and_failures",
+      "render_qualitative",
+      "classify_unknown",
+      "assemble_evaluation_material"
+    ],
+    "absence_rules": [
+      "各L8 caseはsourceにあるmemberだけをFieldValueへ写す。absent/null/emptyを既定値や成功へ変換しない。",
+      "source_mapが無い/未解決ならbindのUnresolvedを保持し、資格を作らない。",
+      "metric/qualitative claimが無い場合はその呼出しlistが空であることを明示し、数値/levelを作らない。"
+    ],
+    "return_rules": [
+      "EvaluationMaterialの配列memberは入力function-return orderを保持して連結し、重複排除しない。",
+      "existing_assignment_refsはsource callerのFieldValueをそのまま保持する。",
+      "authority_effect=none。assignment/placement/branch/permissionの操作memberを持たない。",
+      "該当L10 caseのfailure_observationをlogical_backflow_role_candidatesとして明示入力する。assemblyはこれをUnresolvedのrole candidateとして保持し、実owner refへ変換しない。"
+    ],
+    "system_observation_boundary": "L8 expected_resultはL9 system oracle。EvaluationMaterialの全返却値と同一objectではない。L8のcase mappingで各rootを型返却、raw観測、構造的非作用、または別owner証拠に分類する。",
+    "sequence": [
+      "partition_by_class(snapshot)を一度呼び、PartitionResultを保持する。以後の同じ入力case内のpartition呼出しは、この戻り値partitions[index]を選択して渡す。",
+      "各indexについてbind_evidence(partition_result.partitions[index], source_map)を呼ぶ。戻り値BindResultはbindingとして別保存し、HistoryPartitionへ読み替えない。",
+      "同じindexについてresolve_applicability(partition_result.partitions[index], claims)を呼ぶ。groupは直前のbind戻り値ではなく、partition結果の同じ要素である。",
+      "各呼出し戻りとsource由来の他結果をMaterialAssemblyInputへ明示的に束ね、assemble_evaluation_materialへ渡す。",
+      "対象system contractに対応するL10 caseのfailure_observationとJSON locatorをlogical_backflow_role_candidatesへ写し、MaterialAssemblyInputに明示する。これはL10要件contextでありraw packet値ではない。"
+    ],
+    "partition_projection_rule": {
+      "input": "partition_by_class(snapshot)の当該呼出し戻りPartitionResult",
+      "projection": "partitions[index]のHistoryPartition値そのもの",
+      "same_occurrence": "bind_evidence.partitionとresolve_applicability.groupは同じPartitionResult呼出し・同じindexのprojectionを使う",
+      "not_a_projection": "BindResult.boundはHistoryPartitionではなく、group/partition引数へ渡さない",
+      "empty": "partitionsが空なら両関数を呼ばず、空の対応結果列をassemblyへ渡す。"
+    },
+    "metric_calculation_reference": {
+      "input": "RuleScorer.calculation_definition + calculation_operation + rule_revision + source_node_ref",
+      "meaning": "元式文字列・版・locatorは証拠として保持する。算術はsource原文から別途作ったCalculationOperationだけを入力にする。製品関数は英語文字列を解釈しない。",
+      "projection_boundary": "sourceに型付きoperationがなく意味を一意に投影できない場合は当該claimをUnresolved。fixture投影を実provider契約/資格とみなさない。",
+      "authority_limit": "評価source/receiptの実資格・実評価・配置権限は生成しない。"
+    }
   }
 }
