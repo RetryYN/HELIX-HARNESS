@@ -74361,7 +74361,7 @@
     },
     {
       "id": "HELIXOS-L9-001-C0880",
-      "title": "coherence_unknownをpublication未確認から独立に検出",
+      "title": "初期書込み故障でもcoherence未知とpublication未確認を保持する",
       "primary_trace": {
         "requirement_ref": "HELIXOS-L3-001-F01",
         "oracle_ref": "HELIXOS-L10-001-F01"
@@ -74486,11 +74486,16 @@
                 "code": "coherence_unknown",
                 "pointer": "/operation/observation/revision_coherence",
                 "return_owner": "OS053-store-owner"
+              },
+              {
+                "code": "publication_coherence_unproven",
+                "pointer": "/operation/observation/revision_coherence",
+                "return_owner": "OS053-store-owner"
               }
             ]
           }
         ],
-        "expanded_output_sha256": "0b54b24e472f9f54c746037a40db48213b2e4d385a77d8b30acbc134d8cba5f5"
+        "expanded_output_sha256": "39d8efca776b09c99bcb3e135ef8117d9ac9ad6043fa993d5ca88de20da5cc26"
       },
       "execution_state": "synthetic_document_comparison_only"
     }
@@ -74500,5 +74505,28 @@
     "independent_review": "pending",
     "formal_closure": "unproven",
     "actual_red_green_refactor": "not_executed"
-  }
+  },
+  "source_expectation_corrections": [
+    {
+      "case_id": "HELIXOS-L9-001-C0880",
+      "source_revision": "ba76a8a5b5e45fe3202552a24cf622a2b12fed2d",
+      "source_file_sha256": "ac4391dbd146d52a263632c281dd6af9ee627d52c084a5d4e7a335c04fe54b68",
+      "source_pointer": "/cases/878",
+      "prior_case_canonical_json_utf8": "{\"execution_state\":\"synthetic_document_comparison_only\",\"expected_proposal\":{\"base_ref\":\"meaning_change_observe\",\"expanded_output_sha256\":\"0b54b24e472f9f54c746037a40db48213b2e4d385a77d8b30acbc134d8cba5f5\",\"replacements\":[{\"path\":[\"condition\"],\"value\":\"update_material_unknown\"},{\"path\":[\"facet_correspondence\",\"update_observation\"],\"value\":\"unknown\"},{\"path\":[\"update_observed_state\"],\"value\":\"initial_write_fault\"},{\"path\":[\"canonicalization_material_corresponding\"],\"value\":false},{\"path\":[\"retained_actual\",\"operation\",\"observation\",\"state\"],\"value\":\"initial_write_fault\"},{\"path\":[\"retained_actual\",\"operation\",\"observation\",\"revision_coherence\"],\"value\":null},{\"path\":[\"retained_reference\",\"operation\",\"observation\",\"state\"],\"value\":\"initial_write_fault\"},{\"path\":[\"retained_reference\",\"operation\",\"observation\",\"revision_coherence\"],\"value\":null},{\"path\":[\"findings\"],\"value\":[{\"code\":\"coherence_unknown\",\"pointer\":\"/context/operation/observation/revision_coherence\",\"return_owner\":\"OS053-store-owner\"},{\"code\":\"coherence_unknown\",\"pointer\":\"/operation/observation/revision_coherence\",\"return_owner\":\"OS053-store-owner\"}]}]},\"given\":{\"input\":{\"base_ref\":\"meaning_change_observe\",\"expanded_input_sha256\":\"a18abc10fcdc1c0fb8eba65a257c87d165d57c54b8ff4f247c8bc762a13574c5\",\"replacements\":[{\"path\":[\"operation\",\"observation\",\"state\"],\"value\":\"initial_write_fault\"},{\"path\":[\"context\",\"operation\",\"observation\",\"state\"],\"value\":\"initial_write_fault\"},{\"path\":[\"operation\",\"observation\",\"revision_coherence\"],\"value\":null},{\"path\":[\"context\",\"operation\",\"observation\",\"revision_coherence\"],\"value\":null}]}},\"id\":\"HELIXOS-L9-001-C0880\",\"primary_trace\":{\"oracle_ref\":\"HELIXOS-L10-001-F01\",\"requirement_ref\":\"HELIXOS-L3-001-F01\"},\"title\":\"coherence_unknownをpublication未確認から独立に検出\"}",
+      "prior_case_canonical_sha256": "29281e7808841c8aa2ff945c96c88547c645574a6db0503e9a4b70a87e36dd75",
+      "prior_expected_whole_canonical_sha256": "0b54b24e472f9f54c746037a40db48213b2e4d385a77d8b30acbc134d8cba5f5",
+      "corrected_expected_whole_canonical_sha256": "39d8efca776b09c99bcb3e135ef8117d9ac9ad6043fa993d5ca88de20da5cc26",
+      "source_rule": {
+        "path": "docs/helix-os/L4-basic-design/requirement-update-six-condition-binding.json",
+        "revision": "ba76a8a5b5e45fe3202552a24cf622a2b12fed2d",
+        "file_sha256": "86ad22635838a15a4a485498c979e18a8a5ab91430b7190ae77d0e12fb98542e",
+        "json_pointer": "/diagnostic_contract/rules/5",
+        "text": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。 noncoherentはcoherent_material以外の全値（未知/null/未観測を含む）を指す。ただしknown mixed_materialは前段mixed_current_forbiddenで扱い、publication_coherence_unprovenと併記しない。"
+      },
+      "preserved": "全879raw、残878caseの全期待、承認済L3/L10、R06と全L4規範を保持する。初期write故障をcommitやknown mixedに変換しない。",
+      "changed": "C0880のunknown findingsへpublication_coherence_unprovenを1件追補し、既存2件のcoherence_unknownを保持する。",
+      "reason": "R06はcoherent_material以外の未知/nullをnoncoherentと明示している。原L9の該当診断省略だけを訂正し、下流でcase例外を作らない。要求/要件の意味変更・新gateではない。",
+      "effect": "文書oracleの訂正だけ。実canonicalization/実保存/実復旧/実受入を成立させない。"
+    }
+  ]
 }
