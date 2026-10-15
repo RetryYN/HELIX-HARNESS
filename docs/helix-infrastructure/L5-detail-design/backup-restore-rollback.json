@@ -3092,7 +3092,10 @@
       "sorted object keyはUnicode文字の辞書順、arrayはindex昇順。nullとmember absentはmembershipで別扱い、型差は必ず差分。",
       "pathはmemberを.で、array indexを[n]で連結。root型差はrecord。宣言carrier keyは既知のASCII identifierであり、任意opaque keyのescaping grammarへ一般化しない。",
       "truthinessはclaims空/非空、rollback objectの有無とdelta空pathを区別する。suppliedはNone/空文字/unknown文字列だけを不足とし、空map/list/False/0まで暗黙にmissingへしない。",
-      "関数内のローカルrecord/list更新のみ。clock/env/fs/network/DB/GitHub/権限/実operationなし。"
+      "関数内のローカルrecord/list更新のみ。clock/env/fs/network/DB/GitHub/権限/実operationなし。",
+      "range(n)は0からn-1までの整数昇順、str(int)は整数の10進文字列化、文字列+は順序を保つ連結。三項式x if c else yはcの真偽で片側だけ評価。",
+      "tupleは固定順の論理組、==は各位置の値比較、[n]は0始点添字。failure/diagnosticの内部組を表しJSON返却には直接置かない。",
+      "defは明示引数の純粋関数定義、デフォルト引数とkeyword引数は宣言値に従う。all(generator)は要素順に条件を評価し、falseで短絡、空ならtrue。"
     ],
     "decisions": {
       "INFRA005-F01": [
@@ -3540,6 +3543,24 @@
         "QUALIFIED": "/original_restore/environment/independent"
       },
       "meaning": "原4check/restore/compatibility/独立環境の合成marker。実sourceはunclosed_source_supply。"
+    },
+    {
+      "constants": [
+        "OWNER_BACKUP"
+      ],
+      "value_constant": "OWNER_BACKUP",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/return_owners/0",
+      "meaning": "原L9の合成owner候補表示を定数化する。実owner identity/資格/authorityではない。"
+    },
+    {
+      "constants": [
+        "OWNER_RECOVERY"
+      ],
+      "value_constant": "OWNER_RECOVERY",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/return_owners/0",
+      "meaning": "原L9の合成owner候補表示を定数化する。実owner identity/資格/authorityではない。"
     }
   ],
   "r1_resolution": {
@@ -4124,6 +4145,30 @@
       "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
       "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/result",
       "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_job_green_is_restore",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/18/expected_material/rejected_claims/0",
+      "meaning": "原oracleの拒否claim token。入力claimの保持を示し、実判断や権限ではない。"
+    },
+    {
+      "value": "other_check_offsets_missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/19/expected_material/rejected_claims/0",
+      "meaning": "原oracleの拒否claim token。入力claimの保持を示し、実判断や権限ではない。"
     }
-  ]
+  ],
+  "r2_resolution": {
+    "official_comment": 6182830353,
+    "findings": [
+      "INFRA05D-05",
+      "INFRA05D-06"
+    ],
+    "change": "使用する全primitiveの意味、拒否claim2語とowner定数2件のsourceを補完。原62raw/whole期待と関数定義・型は不変。"
+  }
 }

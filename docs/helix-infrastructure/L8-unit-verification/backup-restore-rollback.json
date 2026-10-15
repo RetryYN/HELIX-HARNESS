@@ -20341,6 +20341,24 @@
         "QUALIFIED": "/original_restore/environment/independent"
       },
       "meaning": "原4check/restore/compatibility/独立環境の合成marker。実sourceはunclosed_source_supply。"
+    },
+    {
+      "constants": [
+        "OWNER_BACKUP"
+      ],
+      "value_constant": "OWNER_BACKUP",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/0/cases/2/expected_material/return_owners/0",
+      "meaning": "原L9の合成owner候補表示を定数化する。実owner identity/資格/authorityではない。"
+    },
+    {
+      "constants": [
+        "OWNER_RECOVERY"
+      ],
+      "value_constant": "OWNER_RECOVERY",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "json_pointer": "/verification_obligations/1/cases/1/expected_material/return_owners/0",
+      "meaning": "原L9の合成owner候補表示を定数化する。実owner identity/資格/authorityではない。"
     }
   ],
   "output_schema_binding": {
@@ -22920,6 +22938,30 @@
       "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
       "json_pointer": "/verification_obligations/0/cases/10/expected_material/failure_reasons/0/result",
       "meaning": "原oracleの合成診断/状態/返却token。実qualification/owner authorityではない。"
+    },
+    {
+      "value": "backup_job_green_is_restore",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/18/expected_material/rejected_claims/0",
+      "meaning": "原oracleの拒否claim token。入力claimの保持を示し、実判断や権限ではない。"
+    },
+    {
+      "value": "other_check_offsets_missing",
+      "kind": "fixed_source_token",
+      "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "json_pointer": "/verification_obligations/1/cases/19/expected_material/rejected_claims/0",
+      "meaning": "原oracleの拒否claim token。入力claimの保持を示し、実判断や権限ではない。"
     }
-  ]
+  ],
+  "r2_resolution": {
+    "official_comment": 6182830353,
+    "findings": [
+      "INFRA05D-05",
+      "INFRA05D-06"
+    ],
+    "change": "使用する全primitiveの意味、拒否claim2語とowner定数2件のsourceを補完。原62raw/whole期待と関数定義・型は不変。"
+  }
 }
