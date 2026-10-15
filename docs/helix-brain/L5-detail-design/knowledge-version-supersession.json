@@ -298,7 +298,7 @@
       "required": [
         "project"
       ],
-      "presence": "各行はproject identityを必須とする。その他の宣言memberは個別にAbsentを許し、明示nullは値として保持する。7 field全体の厳密比較でAbsent/余分なfield/不一致を区別する。"
+      "presence": "各行はproject identity必須。他の宣言memberはAbsentを許す。join一意時も7memberのどちらかがAbsentならmissing、全存在時にJSON型/値を比較する。explicit nullは値。余分なmemberは閉じた論理型の外で、比較statusを付けない。"
     },
     "ProjectResult": {
       "kind": "record",
@@ -868,7 +868,8 @@
             "provided_knowledge.scope",
             "provided_CORE_reference.identity",
             "provided_CORE_reference.knowledge_revision",
-            "provided_CORE_reference.knowledge_version"
+            "provided_CORE_reference.knowledge_version",
+            "provided_CORE_reference.core"
           ],
           "held_states": [
             "retired",
@@ -1416,7 +1417,7 @@
           "join_key": "project",
           "order": "original_project_recordsの配列順を保つ。",
           "missing": "同じprojectの提出行がなければmissingとし、submitted_record=null、project_observation_state=unknown_record_missingを返す。",
-          "matched": "project, owner, record_revision, knowledge_identity, used_revision, state, scopeの全7項目をJSON型込みで厳密比較する。一致はcontent_corresponding_in_fixture/source_record_in_fixture_only、不一致はcontent_conflict/conflict。",
+          "matched": "一意join後、7項目のいずれかが片側Absentならmissing/unknown_record_missing。全項目が存在するときだけJSON型込み同値を比較し、一致はcontent_corresponding_in_fixture/source_record_in_fixture_only、不一致はcontent_conflict/conflict。",
           "extra_submitted": "対応付けられない提出行は出力せず、全対象の充足証拠にも使わない。",
           "to": "project_results",
           "project_key_presence": "ProjectRecord.projectは必須で、null以外のstring/boolean/number JSON scalarとする。",
@@ -1647,7 +1648,8 @@
           "provided_knowledge.stateのheld_states検査",
           "else値"
         ],
-        "result": "必須pathの欠落/null、指定された比較結果の集約がcontent_corresponding_in_fixture以外、または知識stateがheld_states内ならheldを返す。それ以外はelse値を返す。"
+        "result": "必須pathの欠落/null、指定された比較結果の集約がcontent_corresponding_in_fixture以外、または知識stateがheld_states内ならheldを返す。それ以外はelse値を返す。",
+        "core_identity_requirement": "provided_CORE_reference.coreは候補の必須利用identity。Absent/nullは左右比較の同値だけで補わずheld。実CORE資格を生成しない。"
       },
       "claims": {
         "input": "必須claims objectからclaim_namesに列挙されたkeyだけを記載順に読む。",
@@ -2009,7 +2011,7 @@
       "id": "B008-UO-01",
       "function_ref": "HELIXBRAIN-L5-008-F01",
       "witness_or_mutation": "provided_knowledge.identity/revision/version/state/source/scope各memberを個別Absentまたはnullにする。",
-      "status": "原26 wholeでは各memberを同時条件下で個別除去する組合せは未観測。",
+      "status": "6 memberの個別Absentは元MISSINGケースで観測済み。両側nullの扱いを変える変異は固定wholeで識別していない。",
       "disposition": "L9原whole/probeで検証済みとは主張しない。"
     },
     {
@@ -2030,7 +2032,7 @@
       "id": "B008-UO-04",
       "function_ref": "HELIXBRAIN-L5-008-F01",
       "witness_or_mutation": "held判定にprovided stateでなくoriginal stateを使う変異。",
-      "status": "original/provided state不一致を使った独立fixtureなし。",
+      "status": "RETIRED_AS_CURRENT/UNKNOWN_AS_CURRENT/OLD_NEW_STATE_SAMEは原/提出state不一致を含む。ただし比較conflict経由で既にheldとなるため、held_statesの判定側だけを替える変異を識別しない。",
       "disposition": "L9原whole/probeで検証済みとは主張しない。"
     },
     {
@@ -2050,8 +2052,8 @@
     {
       "id": "B008-UO-07",
       "function_ref": "HELIXBRAIN-L5-008-F02",
-      "witness_or_mutation": "meaning_contracts.old_meaning/new_applicabilityのrevisionだけを変える。",
-      "status": "L9 15 caseではrevision/contentの個別比較省略を識別する期待がない。",
+      "witness_or_mutation": "meaning_contractsのcontent比較を省く変異。",
+      "status": "revisionだけの変更はNEW-CONDITION-OLD-REVISIONで観測済み。content比較省略を識別する独立wholeはない。",
       "disposition": "L9原whole/probeで検証済みとは主張しない。"
     },
     {
@@ -2102,6 +2104,20 @@
       "witness_or_mutation": "version_targetをactual revision/versionと同値にして claim=false、またはidentityをfilename由来文字列にして claim=false。",
       "status": "data-level filename/version-target bindingはL5出力とrawに存在せず、unclosed_data_constraintsへ記録。",
       "disposition": "L9原whole/probeで検証済みとは主張しない。"
+    },
+    {
+      "id": "B008-UO-15",
+      "function_ref": "HELIXBRAIN-L5-008-F02",
+      "witness_or_mutation": "既知claim keyのAbsentやfalse以外の扱いを変える変異。",
+      "status": "F02 claimの当該分岐を個別固定wholeで識別していない。nonbooleanは宣言型外。",
+      "disposition": "全claim域の意味検証済みとしない。"
+    },
+    {
+      "id": "B008-UO-16",
+      "function_ref": "HELIXBRAIN-L5-008-F01",
+      "witness_or_mutation": "knowledge.sourceの値比較を省く変異。",
+      "status": "source値だけを違えた独立wholeはなく、比較省略を固定corpusで識別していない。",
+      "disposition": "実source資格を含め完了へ昇格しない。"
     }
   ],
   "unclosed_unknown_and_transition": [
