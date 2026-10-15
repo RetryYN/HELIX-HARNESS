@@ -66015,10 +66015,10 @@
     },
     "full_return_comparison": "126件（原100 + local18 + type-domain8）で、L5 primary出力とL4 additional出力の全root unionを照合する。",
     "original_expectation_source": "L9の100 primary expected_materialを保持し、同一rawへL4 additional_material_derivationを適用した出力がL9のexpected_additional_materialと一致することを確認する。",
-    "local_type_expectation_source": "L9 baseline primary wholeに明示input patchを適用してprimary expectedを再構成し、同じrawへL4 additional derivationを適用してwholeを照合する。R2で追加した2件のsource-derived independent full wholeはこのL8に全値を保持し、L4根拠・baseline・raw patchを識別する。候補出力は期待生成に使わず、公開hashのみから作成時系列は主張しない。",
+    "local_type_expectation_source": "L9 baseline primary wholeに明示input patchを適用してprimary expectedを再構成し、同じrawへL4 additional derivationを適用してwholeを照合する。採用段階と参照版型の2境界のsource-derived independent full wholeはこのL8に全値を保持し、L4根拠・baseline・raw patchを識別する。候補出力は期待生成に使わず、公開hashのみから作成時系列は主張しない。",
     "expected_output_patch": "baselineのL9 primary plus L4追加rootのwholeから、現在のsource-derived expected wholeへ適用するJSON Patch。全patchを再生し全返却hashを確認する。",
     "historical_values": "過去の候補/期待はGit履歴と独立した作業記録へ保持し、現在の公開契約の依存先にしない。現在のsource baseline、input/expected patch、全期待、L4規則の対応は本L8で解決する。追加F02の独立期待は公開caseの全値を参照し、local作成時系列を公開hashから証明しない。",
-    "l4_additional_expectations": "L4 additional_material_derivationを汎用AST readerでrawへ直接適用し、original 100はL9のexpected_additional_materialと照合。ignored scratchのexpected生成物を使わない。",
+    "l4_additional_expectations": "L4 additional_material_derivationを汎用AST readerでrawへ直接適用し、original 100はL9のexpected_additional_materialと照合。計算入力はrawと固定L4式に限定する。",
     "current_l5_sha256": "ba6b60cfcca87643afbbcff2968f1839b5288ad1f5b38419a3c6f21a8aa6ea9d",
     "local_and_type_cases": 26
   },
@@ -66028,24 +66028,13 @@
     "typed": 8,
     "total_whole": 126,
     "source_of_new_expectations": "原100はL9 primaryとL4 additional rootに照合する。既存24 local/typeはsource baselineからの回帰期待。現L8に追加した2件は、L9 baseline whole/rawとL4 F01/F04の明示規則に基づく個別全期待を保持する。候補出力は期待生成へ使わない。公開内容はsourceと期待の結合を示すが、期待を候補前に固定した時系列証拠とはしない。",
-    "historical_bindings": {
-      "revision": "9ee0d88d9ea0451e334169c97b144a7448a5e9a4",
-      "documents": [
-        {
-          "path": "docs/helix-brain/L5-detail-design/knowledge-independent-adoption.json",
-          "file_bytes_sha256": "c51566dbd7b1f98021ac3747f635c68b663b613d94b772813af4a55e96490967",
-          "bytes": 1340843
-        },
-        {
-          "path": "docs/helix-brain/L8-unit-verification/knowledge-independent-adoption.json",
-          "file_bytes_sha256": "2fdead44a9d227d67d9d40a078e1c4e2d4eadd468054fc6344263ebf5a9b036e",
-          "bytes": 2813464
-        }
-      ],
-      "role": "修正前の公開候補の固定bytesを特定する履歴参照。現在の計算規範・期待作成の時系列証明には使わない。"
-    },
     "independence_boundary": "L4 additional AST照合はL4定義への有限source-conformance。7件の独立全wholeは、L3/L4/L9原文と固定raw/source baselineから個別に導出した有限標本であり、126件全体の独立oracleではない。",
     "unclosed_scope": "追加22件はL9がadditional-only oracleを提供するため、primary full-outputの独立期待は未提供。実資格・実評価・任意domain全域も未成立。",
     "local_and_type_full_wholes": 26
+  },
+  "mutation_coverage_limit": {
+    "F02_stage_readiness": "固定順序、各containerのpresence、proof内容・actor・stateの各条件を独立に変える場合と、それらの複合について、全非等価変更の識別性は未証明。有限probeの一致はこれらの全domain検出を意味しない。",
+    "other_function_roots": "F01のstage/state、F03のcandidate_action、F04のclosureなどの返却rootでも、未見の規則/operand変更の識別性は残る。",
+    "qualification": "実source・実recipient資格、独立検証receipt、全意味domain・全mutationの成立を本有限集合から認定しない。"
   }
 }
