@@ -265,7 +265,8 @@
     {
       "name": "JsonValue",
       "kind": "recursive_json_union",
-      "definition": "JSON null/boolean/number/string/array/object。JSON numberとbooleanを区別し、object key順は比較時に無視、array順は保持する。"
+      "definition": "JSON null/boolean/有限number/string/array/object。numberは数学的に有限な論理carrier。booleanとnumberは別kindでobject key順無視、array順保持。NaN/±Infinityは値域外。有限整数へ固定幅/float上限を新設しない。",
+      "number_domain": "finite_only"
     },
     {
       "name": "Presence<T>",
@@ -7257,12 +7258,14 @@
     "ref": "L5-C007-JSON-VALUE-SEMANTICS-01",
     "equality": "JSON再帰等値。nullとAbsent、booleanとnumberを区別する。整数/小数表記のJSON numberは数値で比較し、arrayは列順、objectはkey集合と全値を比較する。",
     "presence": "欠落pathはAbsentでnullへ変換しない。明示nullはNull。両状態の返却は正式ASTの分岐で定める。",
-    "fixed_configuration": "contract_viewはconfiguration_bindingsに結ぶL5固定値。変形viewは当該固定引数のinstanceでない。rawのJsonValue宣言memberは再帰JSON域を維持し、例外へ落とさない。"
+    "fixed_configuration": "contract_viewはconfiguration_bindingsに結ぶL5固定値。変形viewは当該固定引数のinstanceでない。rawのJsonValue宣言memberは再帰JSON域を維持し、例外へ落とさない。",
+    "number_domain": "論理carrierのnumberは有限。NaN/±InfinityはJsonValueに入らず、型外carrierを本関数へ供給しない。JSON字句1e400からどの精度/carrierへdecodeするかは正式codec未設計。有限なexact整数10^400は値域内だが、特定parserが返すfloat Infinityは値域外。"
   },
   "input_domain_contracts": {
     "function_configurations": "pure_signaturesのcontract_viewは、同一revisionのL5 /contract_views/<function>を指す固定設計引数。JSON canonical equalityで完全一致し、L8 invocation間で内容を変えない。これはraw packetの入力domainを狭めない。",
     "raw_packet": "logical_typesのraw型で宣言したJSON値は、その宣言domain内で計算対象。additional_members=preserve_as_json_valueの値はJSON再帰domain全体を許容する。Absent/null/empty/duplicateは各演算子定義の状態を保持し、成功やnullへ暗黙補完しない。",
-    "fixed_configuration_bindings": "configuration_bindings"
+    "fixed_configuration_bindings": "configuration_bindings",
+    "finite_carrier_boundary": "全raw/extensionのJsonValueは再帰的に有限numberだけを含む。非有限carrierの型外識別は論理型前提の静的確認であり、製品codec/エラー応答/gateの採用ではない。型外を迂回してint変換を直接呼ぶ経路は当該関数契約に含めない。"
   },
   "formal_reference": {
     "meaning": "全業務path・条件・優先・順序・owner候補・返却組立の唯一の計算規範。definitionsは構造化した純ASTであり、読取器はnodeの汎用意味だけを実行する。calculation_programsはASTが明示的に読む固定operand表、calculation_operatorsはその索引であり独立の散文アルゴリズムではない。case ID、hash、expected oracleを計算入力にしない。",
@@ -7308,7 +7311,8 @@
       "domain": "contract_viewはconfiguration_bindingsの固定canonical値。自由JSONはrawの宣言JsonValue領域で保持し、固定viewのdomainへ暗黙限定しない。MISSINGは通常の文字列Absentではない。",
       "identity_map": "schema/引数でidentityと宣言されたmap keyはdict.get(identity, MISSING)で文字列全体を引く。get(obj,path)は明示した構造field path専用であり、identity値へ流用しない。dotを禁止しない。",
       "downstream_count": "suffix.statusが対応のときだけ各literal edge keyを引く。未記録はmissing、null/非回数/負数はunknown、整数値0は対応、正の回数は内容衝突。明示衝突のときだけattempt_without_predecessor_conditionを出し、欠落を実attemptへ補完しない。",
-      "owner_display": "F01は宣言route区分順。他F02/N01/B01は所見の最初の出現順に非null/非Absent ownerを重複除去。診断表示順であり実recipient資格や作用優先ではない。"
+      "owner_display": "F01は宣言route区分順。他F02/N01/B01は所見の最初の出現順に非null/非Absent ownerを重複除去。診断表示順であり実recipient資格や作用優先ではない。",
+      "json_number_kind": "type(x) in (int,float)はJSON number kindのcarrier判別で、boolean/null/string/array/objectを含めない。すべての数値carrierは宣言型により有限。負数/非整数のattempt観測はunknownを保持し、正整数のみ後続attemptの比較へ進む。固定幅・float rangeを数値域へ導入しない。"
     },
     "definitions": {
       "get": {
@@ -25805,62 +25809,10 @@
                             {
                               "node": "Compare",
                               "left": {
-                                "node": "Name",
-                                "id": "val",
-                                "ctx": {
-                                  "node": "Load"
-                                }
-                              },
-                              "ops": [
-                                {
-                                  "node": "Is"
-                                }
-                              ],
-                              "comparators": [
-                                {
-                                  "node": "Constant",
-                                  "value": null,
-                                  "kind": null
-                                }
-                              ]
-                            },
-                            {
-                              "node": "Call",
-                              "func": {
-                                "node": "Name",
-                                "id": "isinstance",
-                                "ctx": {
-                                  "node": "Load"
-                                }
-                              },
-                              "args": [
-                                {
-                                  "node": "Name",
-                                  "id": "val",
-                                  "ctx": {
-                                    "node": "Load"
-                                  }
-                                },
-                                {
-                                  "node": "Name",
-                                  "id": "bool",
-                                  "ctx": {
-                                    "node": "Load"
-                                  }
-                                }
-                              ],
-                              "keywords": []
-                            },
-                            {
-                              "node": "UnaryOp",
-                              "op": {
-                                "node": "Not"
-                              },
-                              "operand": {
                                 "node": "Call",
                                 "func": {
                                   "node": "Name",
-                                  "id": "isinstance",
+                                  "id": "type",
                                   "ctx": {
                                     "node": "Load"
                                   }
@@ -25872,32 +25824,39 @@
                                     "ctx": {
                                       "node": "Load"
                                     }
-                                  },
-                                  {
-                                    "node": "Tuple",
-                                    "elts": [
-                                      {
-                                        "node": "Name",
-                                        "id": "int",
-                                        "ctx": {
-                                          "node": "Load"
-                                        }
-                                      },
-                                      {
-                                        "node": "Name",
-                                        "id": "float",
-                                        "ctx": {
-                                          "node": "Load"
-                                        }
-                                      }
-                                    ],
-                                    "ctx": {
-                                      "node": "Load"
-                                    }
                                   }
                                 ],
                                 "keywords": []
-                              }
+                              },
+                              "ops": [
+                                {
+                                  "node": "NotIn"
+                                }
+                              ],
+                              "comparators": [
+                                {
+                                  "node": "Tuple",
+                                  "elts": [
+                                    {
+                                      "node": "Name",
+                                      "id": "int",
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    {
+                                      "node": "Name",
+                                      "id": "float",
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    }
+                                  ],
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                }
+                              ]
                             },
                             {
                               "node": "Compare",
