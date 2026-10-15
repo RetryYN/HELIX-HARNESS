@@ -1246,12 +1246,7 @@
           "submitted_actual_profile",
           "original_other_scope",
           "submitted_other_scope",
-          "original_desired_resource_set",
-          "original_observed_resource_set",
-          "original_inventory_state",
-          "original_compatibility_state",
           "original_unobserved_fields",
-          "original_unknown_dependency_refs",
           "claims"
         ]
       },
@@ -1622,7 +1617,7 @@
       "F02 inventory completeの時だけ原desired順missing→observed順unexpectedを追加。partialは差異不在の断言をせずinventory所見とresource_inventory未確認を保持する。集合membership比較だが入力順/重複を変更しない。",
       "F02 PROFILE_KINDS順で原desired/actual profile比較。片方null/不在はunknown所見と未確認field、既知相反は型付きdifferenceを追加。dependencies相反のcandidateを保持し、明示unknown_dependency_refs非空なら別にunknown source所見/未確認を併記する。",
       "F02 compatibilityがfixture既知互換以外なら所見と未確認compatibility。unconfirmedは原順をdeep copyし、profile等からの追補fieldだけ既存重複を避ける。inventory追補は原規則記法どおりappendし、原重複を黙って消さない。",
-      "candidate_stateはfailure有を最優先。F01はheld_three_states/three_state_correspondence、F02はheld_unconfirmed→差異有→内容対応の順。差異候補は保留時も残す。所見順はstate各field/target/state→link→入力保全→inventory→profile→dependency→compatibility。",
+      "candidate_stateはfailure有を最優先。F01はheld_with_original_three_states / three_state_content_correspondence_requires_actual_qualification、F02はheld_with_original_unconfirmed_range → content_differences_require_actual_qualification → content_correspondence_requires_actual_qualificationの順。差異候補は保留時も残す。所見順はstate各field/target/state→link→入力保全→inventory→profile→dependency→compatibility。",
       "CLAIMS順でraw trueだけrejected、他none。claimだけから所見/承認/実作用を生成しない。correction_routeはOS ticket/SEC/Workerの既存3owner順をそのまま返す。"
     ],
     "steps": [
