@@ -2005,16 +2005,16 @@
     "requirement_ref": "HARNESS-L3-009-F01",
     "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
     "system_oracle_ref": "HARNESS-L10-009-F01",
-    "input_packet_boundary": "各normal fixtureはApplicationInput相当のuniverses/templatesとcandidate_refsを全て供給する。boundary fixtureはAbsent/null/異型を意図的に表現し、ApplicationInput正常形として扱わない。source qualification/selectionの観測ではない。",
+    "input_packet_boundary": "normal comparison fixture supplies outer candidate_refs/universes/templates collection slots, but does not assert that every nested CandidateUniverse/TemplateSnapshot binding or provenance field is present. Some nested required fields are absent by construction. Boundary fixtures explicitly exercise Absent/null/invalid_type. No fixture establishes source qualification or selection.",
     "oracle_boundary": "L9は各caseのraw input_packetとindependent_expected_projectionを比較用に保持する。計算器は期待値を入力にせず、L4のprojection_ruleとrawから結果を再計算する。この記録は期待値を候補評価より前に固定した時系列証明ではない。",
-    "original_case_preservation": "従来L9 cases 11件・negative_cases 106件は不変。29 projection control（重複2組を別のunknown+known-difference条件に修正）、8 Ref/presence境界、4 malformed container境界の計41件。normal_complete_syntheticとboundary_presence_or_domainをcaseごとに明示。",
-    "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+    "original_case_preservation": "従来のL9 top-level cases 11件とnegative_cases 106件は保持する。追加のprojection 41件は29 control、8 Ref/presence境界、4 malformed container境界。重複していたcontrolはknown version/scope differenceと別occurrence unknownを区別するrawへ修正し、case 2/3/5の既知差分期待をunknown_ref_fieldsからsame_identity_revision_or_scope_mismatchへ、case 20のuniverses presence期待を実rawに合わせて更新した。全追加caseのtrace IDと誤記も訂正。normal synthetic projection shapeとboundary presence/domainを区別し、完全なbindingを主張しない。",
+    "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
     "cases": [
       {
         "id": "CORE009-F01-PROJ-EXACT-01",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -2755,13 +2755,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -2977,24 +2971,12 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -3009,13 +2991,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -3158,13 +3134,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -3272,13 +3242,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -3695,21 +3659,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-EXACT-01"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-REVISION-02",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -4120,9 +4084,7 @@
                       "different_fields": [
                         "revision"
                       ],
-                      "unresolved_fields": [
-                        "revision"
-                      ],
+                      "unresolved_fields": [],
                       "candidate_values": [
                         {
                           "field": "identity",
@@ -4172,11 +4134,6 @@
                           "responsibility_source": "knowledge_definition_or_version",
                           "recipient": "BRAIN",
                           "qualification": "not_established_by_projection"
-                        },
-                        {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
-                          "qualification": "not_established_by_projection"
                         }
                       ]
                     }
@@ -4189,40 +4146,26 @@
                       "responsibility_source": "knowledge_definition_or_version",
                       "recipient": "BRAIN",
                       "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
                     }
                   ],
                   "different_fields": [
                     "revision"
                   ],
-                  "unresolved_fields": [
-                    "revision"
-                  ],
+                  "unresolved_fields": [],
                   "context_state": "not_evaluated",
-                  "projection_state": "unknown_ref_fields"
+                  "projection_state": "same_identity_revision_or_scope_mismatch"
                 }
               ],
               "different_fields": [
                 "revision"
               ],
-              "unresolved_fields": [
-                "revision"
-              ],
+              "unresolved_fields": [],
               "projection_state": "unknown_ref_fields",
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
                   "responsibility_source": "knowledge_definition_or_version",
                   "recipient": "BRAIN",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -4445,21 +4388,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-REVISION-02"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SCOPE-03",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -4870,9 +4813,7 @@
                       "different_fields": [
                         "scope"
                       ],
-                      "unresolved_fields": [
-                        "scope"
-                      ],
+                      "unresolved_fields": [],
                       "candidate_values": [
                         {
                           "field": "identity",
@@ -4919,13 +4860,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "knowledge_definition_or_version",
-                          "recipient": "BRAIN",
-                          "qualification": "not_established_by_projection"
-                        },
-                        {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -4936,43 +4872,29 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "knowledge_definition_or_version",
-                      "recipient": "BRAIN",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
                   "different_fields": [
                     "scope"
                   ],
-                  "unresolved_fields": [
-                    "scope"
-                  ],
+                  "unresolved_fields": [],
                   "context_state": "not_evaluated",
-                  "projection_state": "unknown_ref_fields"
+                  "projection_state": "same_identity_revision_or_scope_mismatch"
                 }
               ],
               "different_fields": [
                 "scope"
               ],
-              "unresolved_fields": [
-                "scope"
-              ],
+              "unresolved_fields": [],
               "projection_state": "unknown_ref_fields",
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "knowledge_definition_or_version",
-                  "recipient": "BRAIN",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -5195,21 +5117,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SCOPE-03"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-OWNER-04",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -5665,13 +5587,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -5924,21 +5840,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-OWNER-04"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-BRAIN-SCOPE-SHAPE-05",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -6349,9 +6265,7 @@
                       "different_fields": [
                         "scope"
                       ],
-                      "unresolved_fields": [
-                        "scope"
-                      ],
+                      "unresolved_fields": [],
                       "candidate_values": [
                         {
                           "field": "identity",
@@ -6398,13 +6312,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "knowledge_definition_or_version",
-                          "recipient": "BRAIN",
-                          "qualification": "not_established_by_projection"
-                        },
-                        {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -6415,43 +6324,29 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "knowledge_definition_or_version",
-                      "recipient": "BRAIN",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
                   "different_fields": [
                     "scope"
                   ],
-                  "unresolved_fields": [
-                    "scope"
-                  ],
+                  "unresolved_fields": [],
                   "context_state": "not_evaluated",
-                  "projection_state": "unknown_ref_fields"
+                  "projection_state": "same_identity_revision_or_scope_mismatch"
                 }
               ],
               "different_fields": [
                 "scope"
               ],
-              "unresolved_fields": [
-                "scope"
-              ],
+              "unresolved_fields": [],
               "projection_state": "unknown_ref_fields",
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "knowledge_definition_or_version",
-                  "recipient": "BRAIN",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -6674,21 +6569,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-BRAIN-SCOPE-SHAPE-05"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-DUPLICATE-ORDER-06",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -7303,13 +7198,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -7528,13 +7417,7 @@
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -7549,13 +7432,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -7809,13 +7686,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -8034,13 +7905,7 @@
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -8055,13 +7920,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             }
           ],
           "universes_presence": "value",
@@ -8317,21 +8176,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-DUPLICATE-ORDER-06"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATES-ABSENT-07",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -8829,18 +8688,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATES-ABSENT-07"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATES-NULL-08",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -9342,18 +9201,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATES-NULL-08"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-ABSENT-09",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -9842,18 +9701,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-ABSENT-09"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-NULL-10",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -10344,18 +10203,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-NULL-10"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-EMPTY-11",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -10925,21 +10784,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-EMPTY-11"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-ABSENT-12",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -11262,8 +11121,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -11279,8 +11138,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -11363,18 +11222,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-ABSENT-12"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-NULL-13",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -11698,8 +11557,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -11715,8 +11574,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -11800,18 +11659,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-NULL-13"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-QUALIFICATION-UNESTABLISHED-14",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -12613,21 +12472,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-QUALIFICATION-UNESTABLISHED-14"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-CONTEXT-MISMATCH-15",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -13447,21 +13306,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-CONTEXT-MISMATCH-15"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-NULL-16",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -13803,8 +13662,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -13820,8 +13679,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -14034,18 +13893,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-NULL-16"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-ABSENT-17",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -14386,8 +14245,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -14403,8 +14262,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -14616,18 +14475,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-ABSENT-17"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-IDENTITY-NULL-18",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -15335,18 +15194,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-IDENTITY-NULL-18"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-IDENTITY-ABSENT-19",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -16046,18 +15905,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-IDENTITY-ABSENT-19"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSES-EMPTY-20",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -16887,21 +16746,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSES-EMPTY-20"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-DUPLICATE-21",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -17689,13 +17548,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -17911,24 +17764,12 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -18172,13 +18013,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -18394,24 +18229,12 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -18426,13 +18249,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -18575,13 +18392,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -18689,13 +18500,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -18841,13 +18646,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -18955,13 +18754,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -19425,21 +19218,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-DUPLICATE-21"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-ORDER-22",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -20237,13 +20030,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -20459,24 +20246,12 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -20491,13 +20266,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -20675,13 +20444,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -20789,13 +20552,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -21234,21 +20991,21 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-ORDER-22"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-IDENTITY-NULL-23",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -21876,8 +21633,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -21988,13 +21745,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -22002,12 +21753,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -22032,12 +21778,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -22181,8 +21922,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -22293,13 +22034,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -22307,12 +22042,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -22337,12 +22067,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -22733,18 +22458,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-IDENTITY-NULL-23"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-IDENTITY-ABSENT-24",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -23371,8 +23096,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -23483,13 +23208,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -23497,12 +23216,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -23527,12 +23241,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -23676,8 +23385,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -23788,13 +23497,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -23802,12 +23505,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -23832,12 +23530,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -24227,18 +23920,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-IDENTITY-ABSENT-24"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-UNKNOWN-PLUS-KNOWN-DIFFERENCE-25",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -24866,8 +24559,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -24979,13 +24672,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -24993,12 +24680,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -25025,12 +24707,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -25174,8 +24851,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -25287,13 +24964,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -25301,12 +24972,7 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
@@ -25333,12 +24999,7 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
@@ -25729,19 +25390,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-UNKNOWN-PLUS-KNOWN-DIFFERENCE-25"
         },
         "mutation_basis": "独立反例: unknown fieldを持つ一targetと、既知のrevision差を持つ別targetを同時に保持する。",
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-NULL-26",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -26480,13 +26141,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -26593,8 +26248,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -26705,26 +26360,15 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -26748,13 +26392,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -26900,13 +26539,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -27014,13 +26647,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -27440,18 +27067,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-NULL-26"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-ABSENT-27",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -28189,13 +27816,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -28302,8 +27923,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -28414,26 +28035,15 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -28457,13 +28067,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -28609,13 +28214,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -28723,13 +28322,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -29148,18 +28741,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-ABSENT-27"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-UNKNOWN-PLUS-KNOWN-DIFFERENCE-28",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -29898,13 +29491,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -30011,8 +29598,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -30124,26 +29711,15 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -30169,13 +29745,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -30321,13 +29892,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -30435,13 +30000,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -30861,19 +30420,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-UNKNOWN-PLUS-KNOWN-DIFFERENCE-28"
         },
         "mutation_basis": "独立反例: unknown fieldを持つ一snapshotと、既知のscope差を持つ別snapshotを同時に保持する。",
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-EXACT-WITH-UNRELATED-UNKNOWN-TARGETS-29",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -31765,13 +31324,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -31876,8 +31429,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -32096,13 +31649,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "template_snapshot_ref",
@@ -32207,8 +31754,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -32216,23 +31763,7 @@
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -32247,23 +31778,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -32406,13 +31921,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -32520,13 +32029,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -32631,8 +32134,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -32643,13 +32146,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -32673,13 +32171,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -33221,18 +32714,18 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-EXACT-WITH-UNRELATED-UNKNOWN-TARGETS-29"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-CANDIDATE-ELEMENT-30",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -34080,13 +33573,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -34194,13 +33681,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -34609,19 +34090,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-CANDIDATE-ELEMENT-30"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-UNIVERSE-ELEMENT-31",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -35094,8 +34575,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -35111,8 +34592,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -35146,8 +34627,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -35163,8 +34644,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -35508,19 +34989,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-UNIVERSE-ELEMENT-31"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-MEMBER-ELEMENT-32",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -36226,8 +35707,8 @@
                       "target_values": [],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -36446,29 +35927,12 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -36483,18 +35947,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -36637,13 +36090,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -36727,8 +36174,8 @@
                       "target_values": [],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -36739,13 +36186,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -36775,13 +36217,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -37160,19 +36597,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-MEMBER-ELEMENT-32"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-SNAPSHOT-ELEMENT-33",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -37775,13 +37212,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -37973,8 +37404,8 @@
                       "target_values": [],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -37982,18 +37413,7 @@
                   ],
                   "aggregate_classification": "corresponding",
                   "context_return_owner_candidates": [],
-                  "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
-                      "qualification": "not_established_by_projection"
-                    }
-                  ],
+                  "return_owner_candidates": [],
                   "different_fields": [
                     "identity"
                   ],
@@ -38008,18 +37428,7 @@
               "unresolved_fields": [],
               "projection_state": "corresponding_in_fixture",
               "aggregate_classification": "corresponding",
-              "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
-                  "qualification": "not_established_by_projection"
-                }
-              ]
+              "return_owner_candidates": []
             },
             {
               "candidate_index": 1,
@@ -38162,13 +37571,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -38276,13 +37679,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -38564,19 +37961,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-SNAPSHOT-ELEMENT-33"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
       },
       {
         "id": "CORE009-F01-PROJ-BOOL-NUMBER-SCOPE-DISTINCTION-34",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -39162,9 +38559,7 @@
                       "different_fields": [
                         "scope"
                       ],
-                      "unresolved_fields": [
-                        "scope"
-                      ],
+                      "unresolved_fields": [],
                       "candidate_values": [
                         {
                           "field": "identity",
@@ -39211,13 +38606,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "knowledge_definition_or_version",
-                          "recipient": "BRAIN",
-                          "qualification": "not_established_by_projection"
-                        },
-                        {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -39283,9 +38673,7 @@
                       "different_fields": [
                         "scope"
                       ],
-                      "unresolved_fields": [
-                        "scope"
-                      ],
+                      "unresolved_fields": [],
                       "candidate_values": [
                         {
                           "field": "identity",
@@ -39332,13 +38720,8 @@
                       ],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "knowledge_definition_or_version",
-                          "recipient": "BRAIN",
-                          "qualification": "not_established_by_projection"
-                        },
-                        {
-                          "responsibility_source": "product_requirement_value",
-                          "recipient": "HARNESS008",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -39349,43 +38732,29 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "knowledge_definition_or_version",
-                      "recipient": "BRAIN",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
                   "different_fields": [
                     "scope"
                   ],
-                  "unresolved_fields": [
-                    "scope"
-                  ],
+                  "unresolved_fields": [],
                   "context_state": "not_evaluated",
-                  "projection_state": "unknown_ref_fields"
+                  "projection_state": "same_identity_revision_or_scope_mismatch"
                 }
               ],
               "different_fields": [
                 "scope"
               ],
-              "unresolved_fields": [
-                "scope"
-              ],
+              "unresolved_fields": [],
               "projection_state": "unknown_ref_fields",
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "knowledge_definition_or_version",
-                  "recipient": "BRAIN",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -39531,13 +38900,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -39646,13 +39009,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -40071,22 +39428,22 @@
           }
         },
         "oracle_limit": "Ref対応の合成fixtureのみを判定する。この値からsource資格、CORE/OSの選択、製品適用の実成立は推論しない。",
-        "fixture_class": "normal_complete_synthetic",
+        "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-BOOL-NUMBER-SCOPE-DISTINCTION-34"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-REF-ABSENT-35",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -40813,13 +40170,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -40905,8 +40256,8 @@
                       "target_values": [],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -41017,26 +40368,15 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -41066,13 +40406,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -41218,13 +40553,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -41332,13 +40661,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -41746,19 +41069,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-REF-ABSENT-35"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-REF-NULL-36",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -42486,13 +41809,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -42578,8 +41895,8 @@
                       "target_values": [],
                       "return_owner_candidates": [
                         {
-                          "responsibility_source": "application_contract",
-                          "recipient": "HARNESS",
+                          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                          "recipient": "unresolved",
                           "qualification": "not_established_by_projection"
                         }
                       ]
@@ -42690,26 +42007,15 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -42739,13 +42045,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -42891,13 +42192,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -43005,13 +42300,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -43420,19 +42709,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-REF-NULL-36"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-REF-ABSENT-37",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -44149,13 +43438,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [
@@ -44371,13 +43654,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "aggregate_classification": "unknown",
@@ -44389,11 +43666,6 @@
                     }
                   ],
                   "return_owner_candidates": [
-                    {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
-                      "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
                     {
                       "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
@@ -44415,11 +43687,6 @@
               "projection_state": "unknown_ref_fields",
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
-                {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
-                  "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
                 {
                   "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
@@ -44556,13 +43823,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -44670,13 +43931,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -45084,19 +44339,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-REF-ABSENT-37"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATE-REFS-NONARRAY-38",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -45907,19 +45162,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATE-REFS-NONARRAY-38"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSES-NONARRAY-39",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -46756,19 +46011,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSES-NONARRAY-39"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-NONARRAY-40",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -47275,8 +46530,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -47292,8 +46547,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -47338,8 +46593,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "product_requirement_value",
-                      "recipient": "HARNESS008",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                      "recipient": "unresolved",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -47355,8 +46610,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "product_requirement_value",
-                  "recipient": "HARNESS008",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
+                  "recipient": "unresolved",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -47723,19 +46978,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-NONARRAY-40"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
       },
       {
         "id": "CORE009-F01-PROJ-TEMPLATES-NONARRAY-41",
         "requirement_ref": "HARNESS-L3-009-F01",
         "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L4-009-F01",
+        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -48199,13 +47454,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -48213,13 +47462,8 @@
                   "context_return_owner_candidates": [],
                   "return_owner_candidates": [
                     {
-                      "responsibility_source": "relevant_design_or_oracle_owner",
+                      "responsibility_source": "product_requirement_or_application_contract_unresolved",
                       "recipient": "unresolved",
-                      "qualification": "not_established_by_projection"
-                    },
-                    {
-                      "responsibility_source": "application_contract",
-                      "recipient": "HARNESS",
                       "qualification": "not_established_by_projection"
                     }
                   ],
@@ -48239,13 +47483,8 @@
               "aggregate_classification": "unknown",
               "return_owner_candidates": [
                 {
-                  "responsibility_source": "relevant_design_or_oracle_owner",
+                  "responsibility_source": "product_requirement_or_application_contract_unresolved",
                   "recipient": "unresolved",
-                  "qualification": "not_established_by_projection"
-                },
-                {
-                  "responsibility_source": "application_contract",
-                  "recipient": "HARNESS",
                   "qualification": "not_established_by_projection"
                 }
               ]
@@ -48391,13 +47630,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     },
                     {
                       "side": "universe_member_ref",
@@ -48505,13 +47738,7 @@
                           "value": "synthetic-brain-owner"
                         }
                       ],
-                      "return_owner_candidates": [
-                        {
-                          "responsibility_source": "relevant_design_or_oracle_owner",
-                          "recipient": "unresolved",
-                          "qualification": "not_established_by_projection"
-                        }
-                      ]
+                      "return_owner_candidates": []
                     }
                   ],
                   "snapshot_comparison_occurrences": [],
@@ -48653,16 +47880,16 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
-          "oracle_ref": "HARNESS-L9-009-F01",
+          "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-TEMPLATES-NONARRAY-41"
         },
-        "source_expectation_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
         "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
       }
     ],
-    "candidate_design_file_sha256": "59ecffae6eb76aa04ec8b0cac3d0e10742fca009aff11d62db2131bc40a1d88a",
+    "candidate_design_file_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
     "approval_binding": {
       "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
       "decision_commit": "bd56f07b91d6777b1c549d0db9bc35318b3f52d3",
@@ -48720,7 +47947,7 @@
           }
         }
       },
-      "meaning": "reviewed content, decision record creation commit, actual main admission, and current bytes are distinct evidence; approvals are exact target objects only.",
+      "meaning": "このfixture projectionのL3/L10対象objectを、承認recordのreviewed content head・admission・canonical wholeへ結ぶ。設計候補や合成入力の存在だけで承認/資格を生成しない。",
       "decision_record_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
       "actual_main_admission_parent": "4a66eab95c6309140bf9b56505f6520d81f82e8a",
       "actual_main_admission_second_parent": "bd56f07b91d6777b1c549d0db9bc35318b3f52d3",
@@ -48736,8 +47963,8 @@
     },
     "expectation_derivation": {
       "case_count": 41,
-      "embedded_expected_material_sha256": "9b760a75cebcd6c6dc5b62b2a8ecd0ce3458c5172088733e57030bf48bdff22c",
-      "derivation": "各raw packetへL4 projection_ruleのcompare_fields/presence/state_precedence/state_by_input/state_class_by_universe_state/aggregate_class_rule/target_occurrence_ruleを適用する。期待値は比較用の埋込oracleであり、計算器はcase_id・expected projectionを入力に使わずraw packetとL4規則から再計算する。",
+      "embedded_expected_material_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+      "derivation": "各raw packetからL4 projection_ruleのpresence、compare_fields、state precedence、state/state-class mapping、aggregate、owner deficiency classification、input preservation規則を適用する。case_id/expected値は計算入力にしない。source expectation hashのcanonical materialはL4 canonical_digest_ruleに定義する。",
       "reproducible_source_file": "このL9文書自身のcases[].input_packet + cases[].independent_expected_projection",
       "source_rule_refs": [
         "HARNESS-L3-009-F01",
@@ -48745,7 +47972,7 @@
         "HARNESS-L10-009-F01",
         "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION"
       ],
-      "limit": "このL9は期待値の作成順序や候補評価前固定を証明しない。埋込rawとexpected、L4規則から同じ出力を再計算できることを検証する。実source資格、実owner資格、選択・適用、TRACE02全体は証明しない。"
+      "limit": "固定41 synthetic fixtureに限る。L9は期待値が候補評価前に作られた時系列を証明しない。実source資格、実owner資格、selection/application成立、TRACE-02全体は証明しない。"
     }
   }
 }
