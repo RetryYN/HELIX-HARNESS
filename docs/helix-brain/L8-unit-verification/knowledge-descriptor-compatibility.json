@@ -34068,7 +34068,7 @@
   "candidate_document_binding": {
     "paired_document_id": "HELIXBRAIN-L5-028",
     "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
-    "same_candidate_head_sha256": "4d4e140c273426f692386f8078628c318f8ddfff8971ca687c5088181c701f95",
+    "same_candidate_head_sha256": "f47fb40d3109489240dfb4f7413b47e19fc89d006de8705664f308d2aeefab78",
     "meaning": "同一候補pair L5の保存bytes pin。source_mainの固定source pinや承認wholeと混同しない。"
   },
   "unclosed_obligations": [
@@ -34149,7 +34149,7 @@
   },
   "candidate_pair_local_binding": {
     "l4_path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
-    "l4_sha256_after_edit": "12a6255274ac052fcd9393a8d753f2f3e32af054007230e0deb8c97e3ccb2c6d",
+    "l4_sha256_after_edit": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
     "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
     "l9_sha256_after_edit": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
     "classification": "candidate-local bytes; not source_main pins or approved content"
@@ -34380,5 +34380,10 @@
       }
     ],
     "probe_reference_shape": "全probeのsource_packet_refはidentity/revision/scope/owner/raw_sha256/derived_from_caseの同一field集合。derived_from_caseは常にbaseline_case_idと一致する。"
+  },
+  "design_admission": {
+    "revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
+    "pr": 3179,
+    "meaning": "candidate-local L4/L9 bytesはこの統合revisionと完全一致。source_main/source_pinsは固定した原資料の証拠として保持する。"
   }
 }

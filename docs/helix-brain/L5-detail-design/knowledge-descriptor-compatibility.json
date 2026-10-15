@@ -3390,7 +3390,7 @@
       "requirement_ref": "HELIXBRAIN-L3-028-F02",
       "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
       "oracle_ref": "HELIXBRAIN-L9-028-F02",
-      "contract_sha256": "3f6f20a5ddd154b1aa0673ee93279beedde4d0cdc0ec15673d3930ba00e49b0a",
+      "contract_sha256": "4b2517d6a53a1da1e2cc10cb24e83608ccc4dd25c7eb7fb82d9582fd1edc8342",
       "approved_requirement": {
         "id": "HELIXBRAIN-L3-028-F02",
         "parent": "HELIXBRAIN-L2-028",
@@ -3613,9 +3613,14 @@
   ],
   "candidate_pair_local_binding": {
     "l4_path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
-    "l4_sha256_after_edit": "12a6255274ac052fcd9393a8d753f2f3e32af054007230e0deb8c97e3ccb2c6d",
+    "l4_sha256_after_edit": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
     "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
     "l9_sha256_after_edit": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
     "classification": "candidate-local bytes; not source_main pins or approved content"
+  },
+  "design_admission": {
+    "revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
+    "pr": 3179,
+    "meaning": "candidate-local L4/L9 bytesはこの統合revisionと完全一致。source_main/source_pinsは固定した原資料の証拠として保持する。"
   }
 }
