@@ -20,7 +20,7 @@
       "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
       "authority_effect": "effective_when_this_record_is_admitted_to_main"
     },
-    "limit": "承認済みL3/L10の3 wholeと固定L4/L9の42 synthetic raw/wholeだけを限定比較する。候補比較・接続候補提示に限り、actual source/owner qualification、knowledge adoption、product/runtime decision、formal schema/codec、実評価を成立させない。"
+    "limit": "承認済みL3/L10の3対・6 wholeと原L4/L9の42 raw/whole、別枠の独立反例を限定比較する。候補比較・接続候補提示に限り、実source/owner資格、知識採用、製品/runtime判断、正式schema/codec、実評価を成立させない。"
   },
   "source_pins": [
     {
@@ -634,8 +634,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "3e6c2509bd4646abe45055d13ee601f30e013d9f4f810171aac9c7c56906cf3f"
@@ -799,8 +799,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "5c95383b8a390f5c4592a5fb150ca57278e08ae37c5fc8c4f49bc5f83c63d5c2"
@@ -970,8 +970,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "faf500e54448d676a953decb60b71f700ba8ca7d61f21e82cef34ece7118fa33"
@@ -1137,8 +1137,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "80e897044cbef1e32877a91a4a8d938ccc671d3937616912e7e7df422a0ec60c"
@@ -1308,8 +1308,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "3590581a85298ff28fe14b6271ebf0e978416db563a1c886ad8696bc63585aba"
@@ -1479,8 +1479,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "8233b86034253dffe6e0255ec92d7e7f9f81849f83b2876734753d52cb68b8e9"
@@ -1647,8 +1647,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "1066ccb37e0a0d380d0d93d064f29e9dc39e91728df075709b17aed66565aa3d"
@@ -1821,8 +1821,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "a7e756f3f50164040ad9f24af8b219d19019caa4bc99f21d512659396679a027"
@@ -1989,8 +1989,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "9da98daf57543c6dcaf4c5cb331fcfc46f12290dad32a2e7afdfbaa6ef9c61d3"
@@ -2164,8 +2164,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "2feef29db8d432a79ade489f60e1a91038f1b0713651b0ad2e1155981618ba3f"
@@ -2339,8 +2339,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "8ff2cb387d429b0b93c2412f4420d8c15f39c02272b021705f7fcb3b2f40430e"
@@ -2514,8 +2514,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "49750723c0e85d078117ed156d4fe0c5781f68ab51e75c4fada9427f74d5a788"
@@ -2689,8 +2689,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "85f83dc2839bd3933e06b5ba1899a0cb25b67e2e8f3efddf4a24872268a545af"
@@ -2864,8 +2864,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "a0795955c3fe4ca0b59a47eb1f87f7db015470bd5abf63e5f7167cb27819c288"
@@ -3030,8 +3030,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "7c7d6be41db5f3adeb3077210a7ef6e0a054dff4e3a0f593413de059f999295e"
@@ -3187,8 +3187,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "cbcfcbcaeec4de0a8c14b296fba9ee33c1221089ff64d1763c05936ba196c498"
@@ -3355,8 +3355,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "02923e8ab0a7c4441e1bc47127a453a4c75e725a9366b80082bc03bcd05e01b3"
@@ -3523,8 +3523,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "248e82efe46bc92dab2f3f33f19870273ff221c2136a5d124c01ee0d54aed51d"
@@ -3691,8 +3691,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "84fdc7abf40d441dfea48291be871fe2e7e41d3d7a0cceefab2f29580b531ebb"
@@ -3859,8 +3859,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "71ad5c2f9423a57e50969e17b59f111148b454f770671f5e83e6a4e7cbcdefc3"
@@ -4016,8 +4016,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "ffd88e291fad34382c882febc73b9856e77642fe7e817145d2da70e62cbc5d9e"
@@ -4184,8 +4184,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "02e19746af298b7aa4546859d59aa42e94892d04775ec85fe161496999106c2e"
@@ -4352,8 +4352,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "8d793c9142efa6463f538488d2c499c0d97761fc0b97170604d227bdbd6f00cf"
@@ -4520,8 +4520,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "1de80bc13becf75cb2d36e25383426050c99ad5f36f3a1099201e5e036747827"
@@ -4688,8 +4688,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "af8a574b50ae3cdc64a037d2c451263c5086afcae88d6267a80b38ebd92b615c"
@@ -4845,8 +4845,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a63050a6f603393b580dbd8354fc6480dfc9628ef514fdba7eac9b70e3a9a120"
@@ -5013,8 +5013,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "c3d7840ae5b6c6169fa8ff93bb395b9b56550f7dd3c21a1f7edb73741cdb56cd"
@@ -5181,8 +5181,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "4a248cfe8b91c9c5a569211c4ff8aff21a30d27b8e08705bf3e6e5f2f89f01a0"
@@ -5349,8 +5349,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "f11d72c478aef7e0e3ead0586ecb0eddf872ba7b7709934c45d86a66e1539b11"
@@ -5517,8 +5517,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "7cda6e72b855c0e3e9ff059daa2fc52ce6a4101637b4306f4ed09b531cdf0ffa"
@@ -5674,8 +5674,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "c024ef422169cf2594dac5574401ee07626789d0f6e993769a0f805c15aa4c24"
@@ -5842,8 +5842,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "38d5e8b52b9809176175add62bef82b63f9237161ba75189bccaddd3fc83fdb3"
@@ -6000,8 +6000,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "9d6603c57b997d3efd5ff8029bd95a7fae3735a35c3650589962c1bc066b764c"
@@ -6167,8 +6167,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "9e38017865645ffb03e7b53b1eb6621b0a57fc7530611e25acbdd306003face6"
@@ -6249,8 +6249,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "a0a8023d0594c15ec9136ece11c6d1776c3a926aad1bc28995733a1f3be1bd32"
@@ -6331,8 +6331,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "6c822db314a33f3227654ef9565a308a0bd696588e5449cc19f7ef0cf260989c"
@@ -6413,8 +6413,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "ee19aec86c38da220b3b173fc176ecf24fc0249c84f9e02c3d34cc464b38bc5b"
@@ -6495,8 +6495,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "54ded359eed7c2b874fc0232841a203803c06dae0c9ba51ba3d8beb21caac65d"
@@ -6577,8 +6577,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "92c600391fe3ebb1dfbfdda3e2ea197c040c60cdbbcfc2d6a940d8ffdea1900d"
@@ -6659,8 +6659,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "6b8384d6843a5b6d2088ba39ff5bc23837b68b11d7980ef9483f279ac23df079"
@@ -6741,8 +6741,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "b4022b6cd45302a15d0b3ead4abd35b6d3c2f58102bfea27c6e636e8a14d28e5"
@@ -6816,8 +6816,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3"
@@ -6956,6 +6956,12 @@
       "gap": "有限ReplyContentはL4に明示された六意味fieldだけを型として受ける。L4全域で将来加わる別fieldの意味/比較/ownerはこのpairでは定義せず、F02の追加contract keyと追加routeも現在のroute table外。未知の内容を既存六fieldへ折り畳まず、全Domain closureを主張しない。",
       "upstream_or_consumer": "BRAIN/CORE/HARNESS/INT各L4 consumer契約",
       "state": "finite_field_projection_only; additional meaning remains unclosed"
+    },
+    {
+      "id": "B012-U09",
+      "source": "L4 F01/B01 content_comparison",
+      "gap": "F01の内容比較は等値だけであり、両側同じ空候補/TBD/空文字/unknown本文の内容不足は診断しない。B01のexisting_authority/original_product_stateの値も原値として複写し、BRAIN権限/採用という不適切な値かどうかを判定しない。原値保存を実権限/採用の成立としない。",
+      "state": "supplied_value_semantic_validation_not_implemented"
     }
   ],
   "full_goal_scope_preserved": {
@@ -6977,18 +6983,24 @@
   "operation_effect": "none",
   "comparison_semantics": {
     "json_equality": "reference_program json_equal: object key set/valueを再帰比較し、arrayの順序/長さを比較する。JSON integer/decimalは単一number domainで1と1.0を同値扱いし、booleanはnumberと区別する。AbsentはJSON値でなくnullと異なる。",
-    "iteration_order": "L5 ASTが明示するordered fields, routes, contracts, claim fields, and missing-state fieldsの列順を保持する。JSON map/objectの入力member順は意味に使用せず、明示list以外の辞書順走査を要求しない。",
+    "iteration_order": "L5 ASTが明示するfield/route/contract/claim/不足状態の列順を保持する。入力objectのmember順は意味へ使用しない。",
     "scope": "reference_programは42原packetで固定された有限projectionを定義する。fixture外state/contract/literalを採用済み全域enumまたは資格としない。"
   },
   "audit_basis": {
-    "checkpoint_path": "scaffold/review-handoff/local/brain012-authoring/source-reading-checkpoint.json",
-    "checkpoint_sha256": "0456adf8bd335ab7184a4bc1e178d18a1888ae20a26b844c0453c3636d3eaffd",
+    "source_pin": {
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "bytes": 1130244,
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "role": "L3/L10 delegated decision admission row"
+    },
     "approved_whole_count": 6,
-    "case_count": 42,
+    "original_case_count": 42,
     "scope_count": {
       "parents": 92,
       "pairs": 430
-    }
+    },
+    "limit": "批准記録の監査sourceへの固定参照。scope件数だけで全意味閉包を証明しない。"
   },
   "local_probes": [
     {
@@ -7016,8 +7028,8 @@
       ],
       "independent_source_packet": {
         "ref": {
-          "identity": "SOURCE-B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
-          "revision": "fixture-content-3e6c2509bd4646abe45055d13ee601f30e013d9f4f810171aac9c7c56906cf3f",
+          "identity": "SOURCE-B012-LOCAL-F01-NULL-CONTEXT-ABSENT-EVIDENCE",
+          "revision": "fixture-content-96b8dd8fb7057ca33ef0d04ed3ea148b52a1019dcb69626907e29221dc283adf",
           "scope": "KNOWLEDGE-SCOPE-P",
           "owner": "synthetic-fixture-owner"
         },
@@ -7185,8 +7197,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       },
       "raw_canonical_sha256": "96b8dd8fb7057ca33ef0d04ed3ea148b52a1019dcb69626907e29221dc283adf"
@@ -7222,8 +7234,8 @@
       ],
       "independent_source_packet": {
         "ref": {
-          "identity": "SOURCE-B012-F02-SELECTED-CORE-OBLIGATIONS-INT-NOT-SELECTED",
-          "revision": "fixture-content-7c7d6be41db5f3adeb3077210a7ef6e0a054dff4e3a0f593413de059f999295e",
+          "identity": "SOURCE-B012-LOCAL-F02-EMPTY-MAPS",
+          "revision": "fixture-content-a66ec16dbff6627d28e13d01366f2d9d76e39db40c3d19939418b764c6348b5e",
           "scope": "KNOWLEDGE-SCOPE-P",
           "owner": "synthetic-fixture-owner"
         },
@@ -7293,8 +7305,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a66ec16dbff6627d28e13d01366f2d9d76e39db40c3d19939418b764c6348b5e"
@@ -7320,8 +7332,8 @@
       ],
       "independent_source_packet": {
         "ref": {
-          "identity": "SOURCE-B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
-          "revision": "fixture-content-61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3",
+          "identity": "SOURCE-B012-LOCAL-B01-MISSING-KNOWLEDGE",
+          "revision": "fixture-content-32d519fa0c3461dcaf490f050c0da77690b2cec9f6bd08592859fd826b00a735",
           "scope": "KNOWLEDGE-SCOPE-P",
           "owner": "synthetic-fixture-owner"
         },
@@ -7407,8 +7419,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "cc1005cb5de1e5dcebd70080d92d1d257b8fa6e657c2ee6ee31dfb5ddd43ebec",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
         "program_ref": "B012-PROGRAM-B01"
       },
       "raw_canonical_sha256": "32d519fa0c3461dcaf490f050c0da77690b2cec9f6bd08592859fd826b00a735"
@@ -7437,8 +7449,8 @@
       ],
       "independent_source_packet": {
         "ref": {
-          "identity": "SOURCE-B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
-          "revision": "fixture-content-3e6c2509bd4646abe45055d13ee601f30e013d9f4f810171aac9c7c56906cf3f",
+          "identity": "SOURCE-B012-LOCAL-F01-EXPLICIT-NULL-REPLY-MEMBER",
+          "revision": "fixture-content-a60e236ad4d9db670240d96c3be9046d587422295cfe7abc7078fe47d961c01f",
           "scope": "KNOWLEDGE-SCOPE-P",
           "owner": "synthetic-fixture-owner"
         },
@@ -7605,8 +7617,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "e088e477ff0a78b2ff4bee42875d5b7fe9331da9336f2fcd8dab88200e58ce78",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
         "program_ref": "B012-PROGRAM-F01"
       }
     }
@@ -7622,13 +7634,13 @@
       "HELIXBRAIN-L4-012-F02.output_meanings",
       "HELIXBRAIN-L4-012-B01.output_meanings"
     ],
-    "finite_fixture_status": "L9 expected contains candidate labels only; output preserves those values through a deterministic finite expression.",
+    "finite_fixture_status": "L9の候補ラベルと独立反例の候補返却を有限式で定義する。実資格・配送・受領を示さない。",
     "not_established": [
-      "actual owner identity resolution",
-      "sender/receiver binding",
-      "delivery or receipt",
-      "owner acceptance",
-      "authority to decide"
+      "実owner identity解決",
+      "送受信端のbinding",
+      "配送/受領receipt",
+      "owner受入",
+      "判断権限"
     ],
     "unclosed_ref": "B012-U06",
     "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。"
@@ -7672,7 +7684,7 @@
       "obligations": [
         {
           "source_field": "output_meanings[0]",
-          "meaning": "必要契約ごとの対応/不足/不明",
+          "meaning": "必要契約ごとのcandidate対応/不足/不明",
           "formal_returns": [
             "F02Result.contract_results",
             "F02Result.route_results"
@@ -7703,23 +7715,23 @@
       "obligations": [
         {
           "source_field": "output_meanings[0]",
-          "meaning": "candidate/保留/product採用/runtime許可を区別",
+          "meaning": "候補/提案保留/製品採用/実行許可の区別",
           "formal_returns": [
             "B01Result.proposal_state",
             "B01Result.product_state",
             "B01Result.runtime_state",
             "B01Result.effects"
           ],
-          "status": "原product/runtime/authority保持。actual decision/execution remains false and unobserved."
+          "status": "原product/runtime/authority保持。実判断/実行は未観測で作用表示false。"
         },
         {
           "source_field": "output_meanings[1]",
-          "meaning": "CORE/INT/人/BRAINの責務別不足候補",
+          "meaning": "CORE/INT/人/BRAINの責務別返却候補",
           "formal_returns": [
             "B01Result.missing_inputs",
             "B01Result.owner_return_candidates"
           ],
-          "status": "fixture owner candidate string only。実返却/受領/判断はB012-U06へ未閉包."
+          "status": "合成owner候補文字列のみ。実返却/受領/判断はB012-U06へ未閉包."
         },
         {
           "source_field": "content_comparison",
@@ -7729,44 +7741,44 @@
             "B01Result.claim_results",
             "B01Result.effects"
           ],
-          "status": "限定有限式; actual qualification/decision未成立."
+          "status": "限定有限式; 実資格/判断未成立."
         }
       ]
     }
   ],
   "type_domain_notes": [
     {
-      "scope": "function inputs",
+      "scope": "関数入力",
       "rule": "F01Input/F02Input/B01Inputの宣言fieldは必須。record additional_properties=forbidden。required inputの欠落とnullは異なり、nullは当該宣言型がJSON nullを含む場合だけ許容。"
     },
     {
-      "scope": "nested raw records",
+      "scope": "入れ子の原record",
       "rule": "ReplyContentのmemberはfixture input上Optional。Absentはmapから除外され、explicit nullはJsonValueとして比較される。ConnectionContract/KnowledgeRefはrequired memberを持つ。"
     },
     {
-      "scope": "collection identity",
-      "rule": "JSON object/map keyは一意。F02 contract resultは選択route/table順でkeyごと1回生成。配列の重複は一般に許すが、本限定programにjoin配列はなく一意化しない。"
+      "scope": "集合identity",
+      "rule": "JSON object/map keyは一意。F02の結果は明示route/table順で契約keyごとに作る。入力配列は一般に重複を許す。owner候補だけはunique_concatで初出を保持して重複を除く。"
     },
     {
-      "scope": "numeric equality",
+      "scope": "数値同値",
       "rule": "JSON integer/decimalは一つのnumber domainで比較し1と1.0は等値。booleanはnumberと異なる。raw projectionは元のJSON数値値を保持する。"
     },
     {
-      "scope": "nullable whole records",
-      "rule": "F01 outer context fields are JsonValue and may be explicit null. ReplyContent, KnowledgeRef, F02 ContractMap entries, and B01 outer inputs are non-nullable records under their declared types; a whole-record null is a type violation, not an implicit missing/empty record. Optional nested ReplyContent members may be Absent; present null remains a JSON value."
+      "scope": "record全体のnull",
+      "rule": "F01の外側contextはJsonValueなのでnullも許す。ReplyContent/KnowledgeRef/ContractMap entry/B01入力recordは非null。record全体のnullは型違反で、欠落や空recordへ補完しない。ReplyContentの任意memberは欠落を許し、明示nullはJSON値として比較する。"
     },
     {
-      "scope": "empty and duplicate collections",
-      "rule": "F02 empty selected_routes/required_contracts/provided_contracts are valid typed maps and evaluate to empty contract results plus not_selected route results. JSON object duplicate keys are invalid and rejected during raw parsing. The finite F02 route table has distinct route and contract keys. No array join/deduplication is defined outside explicit owner candidate deduplication."
+      "scope": "空集合と重複",
+      "rule": "空mapは宣言型内。未選択routeはnot_selected、選択されて契約がない場合はmissing_held。JSONの重複keyはparse時に拒否する。明示route/contract keyは一意。owner候補だけを重複除去する。"
     },
     {
-      "scope": "finite state literal domains",
+      "scope": "有限状態語彙",
       "rule": "ConnectionState/ConnectionUsage/RequirementMeaningState/DecisionWeightState/KnowledgeStateは原L9 42 rawで観測されたliteralを型検査する限定domain。未観測literalはこのfinite logical input domain外とし、適合/成功へ分類しない。これは全BRAIN domainの採択enumではなく、一般state意味はB012-U07に未閉包。"
     }
   ],
   "program_binding_policy": {
     "formal_l5_path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-    "binding_method": "each case/probe pins the L5 file sha256 and selected program canonical sha256",
+    "binding_method": "各case/probeを同一candidate L5のfile SHA-256と選択programのcanonical SHA-256へ結ぶ。",
     "calculation_source": "formal reference_program only; no function-ID-specific calculator"
   },
   "binding_probes": [
@@ -7939,7 +7951,7 @@
       "expected_patch_note": "必要契約側だけのknowledge参照不整合を当該CORE接続保留へ結び、他経路/claim/effects/Qを保持する。",
       "execution_state": "not_executed",
       "qualification": "not_established",
-      "whole_expectation_basis": "正式修正前に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
+      "whole_expectation_basis": "原L9根拠から独立に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
       "input_type": "F02Input",
       "output_type": "F02Result",
       "expected_patch": [
@@ -7965,8 +7977,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "a707f53ccd51af4ec2dc4be3447f322e0129659f7460557d8d30646b3e8f5c8c",
@@ -8145,7 +8157,7 @@
       "expected_patch_note": "必要契約側だけのknowledge参照不整合を当該CORE接続保留へ結び、他経路/claim/effects/Qを保持する。",
       "execution_state": "not_executed",
       "qualification": "not_established",
-      "whole_expectation_basis": "正式修正前に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
+      "whole_expectation_basis": "原L9根拠から独立に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
       "input_type": "F02Input",
       "output_type": "F02Result",
       "expected_patch": [
@@ -8171,8 +8183,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "bebcf3ed7736b961adf7cd7244e3b93205d5c25ca9b235dc4009af367f236651",
@@ -8351,7 +8363,7 @@
       "expected_patch_note": "必要契約側だけのknowledge参照不整合を当該CORE接続保留へ結び、他経路/claim/effects/Qを保持する。",
       "execution_state": "not_executed",
       "qualification": "not_established",
-      "whole_expectation_basis": "正式修正前に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
+      "whole_expectation_basis": "原L9根拠から独立に原L9 wholeと同軸の版/scope反例を根拠に独立固定した値。identity不整合は既存contract_content_conflict_held語彙を用いる。正式計算から期待値を生成していない。",
       "input_type": "F02Input",
       "output_type": "F02Result",
       "expected_patch": [
@@ -8377,8 +8389,8 @@
       "l5_program_binding": {
         "document_id": "HELIXBRAIN-L5-012",
         "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
-        "candidate_sha256": "753b5e3baa264a440b9fda7be9432ee628eb8f9775d589d4b591afcc5c32afc1",
-        "program_canonical_sha256": "14cec24b884fae84be495bad32d346dec42e028267a704080efc63290c460170",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
         "program_ref": "B012-PROGRAM-F02"
       },
       "raw_canonical_sha256": "718d70ff4e16dc9870e64cce333839fac5271424351d285c0b8996fe50a1f558",
@@ -8389,5 +8401,782 @@
       }
     }
   ],
-  "binding_probe_count": 3
+  "binding_probe_count": 3,
+  "failure_probes": [
+    {
+      "id": "B012-B01-CLAIM-WITH-SUPPLIED-INPUTS",
+      "l5_function_ref": "HELIXBRAIN-L5-012-B01",
+      "reference_program_ref": "B012-PROGRAM-B01",
+      "l9_source_case_ref": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+      "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+      "base_raw_sha256": "61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3",
+      "base_expected_canonical_sha256": "de3c607c1d159fc2560eada432b63b46a34941e4d286b98f36dbd9bef81b2d71",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/claims_execution_permitted",
+          "value": true
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_decided",
+          "value": true
+        }
+      ],
+      "independent_source_packet": {
+        "ref": {
+          "identity": "SOURCE-B012-B01-CLAIM-WITH-SUPPLIED-INPUTS",
+          "revision": "fixture-content-33e8b38a4fbf0957e7cc68755e6195470bc29ff8c52fa76a32761bb62c34ea47",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"claims_authority_expanded\":false,\"claims_execution_permitted\":true,\"claims_product_decided\":true,\"claims_requirement_generated\":false,\"claims_runtime_decided\":false,\"decision_weight_state\":\"supplied_fixture_only\",\"existing_authority\":\"original_authority_unchanged\",\"knowledge_state\":\"identified_fixture_only\",\"original_product_state\":\"not_selected\",\"original_runtime_state\":\"undecided\",\"requirement_meaning_state\":\"supplied_fixture_only\",\"requires_new_human_approval_every_reply\":false}",
+        "sha256": "33e8b38a4fbf0957e7cc68755e6195470bc29ff8c52fa76a32761bb62c34ea47"
+      },
+      "typed_input": {
+        "claims_authority_expanded": false,
+        "claims_execution_permitted": true,
+        "claims_product_decided": true,
+        "claims_requirement_generated": false,
+        "claims_runtime_decided": false,
+        "decision_weight_state": "supplied_fixture_only",
+        "existing_authority": "original_authority_unchanged",
+        "knowledge_state": "identified_fixture_only",
+        "original_product_state": "not_selected",
+        "original_runtime_state": "undecided",
+        "requirement_meaning_state": "supplied_fixture_only",
+        "requires_new_human_approval_every_reply": false
+      },
+      "raw_sha256": "33e8b38a4fbf0957e7cc68755e6195470bc29ff8c52fa76a32761bb62c34ea47",
+      "expected_result": {
+        "proposal_state": "candidate_for_connected_owner_only",
+        "product_state": "not_selected",
+        "runtime_state": "undecided",
+        "authority_state": "original_authority_unchanged",
+        "missing_inputs": [],
+        "claim_results": {
+          "product_decided": "rejected",
+          "runtime_decided": "none",
+          "requirement_generated": "none",
+          "execution_permitted": "rejected",
+          "authority_expanded": "none",
+          "new_human_approval_every_reply": "none"
+        },
+        "owner_return_candidates": [
+          "responsible-CORE-INT-or-human-decision-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_runtime_decision": false,
+          "actual_requirement_value_generated": false,
+          "actual_connection": false,
+          "actual_execution_permitted": false,
+          "actual_authority_expanded": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "655b2afa71be34e80a77cbea234eae0364635afe516da546ae46f052627bc968",
+      "expected_patch_note": "L3/L10 B01該当製品判断owner返却。既存responsible decision owner候補語彙を用い、実資格を作らない。",
+      "execution_state": "not_executed",
+      "qualification": "not_established",
+      "whole_expectation_basis": "L3/L10 B01該当製品判断owner返却。既存responsible decision owner候補語彙を用い、実資格を作らない。",
+      "input_type": "B01Input",
+      "output_type": "B01Result",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/claim_results/product_decided",
+          "value": "rejected"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/execution_permitted",
+          "value": "rejected"
+        },
+        {
+          "op": "replace",
+          "path": "/owner_return_candidates",
+          "value": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ]
+        }
+      ],
+      "independent_expected_pointer": "/verification_obligations/2/concrete_cases/7/expected_material",
+      "l5_program_binding": {
+        "document_id": "HELIXBRAIN-L5-012",
+        "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "program_ref": "B012-PROGRAM-B01"
+      },
+      "raw_canonical_sha256": "33e8b38a4fbf0957e7cc68755e6195470bc29ff8c52fa76a32761bb62c34ea47",
+      "independent_frozen_basis": {
+        "basis": "L3/L10 B01該当製品判断owner返却。既存responsible decision owner候補語彙を用い、実資格を作らない。"
+      }
+    },
+    {
+      "id": "B012-F01-UNDECIDABLE-SUCCESS-NO-CLAIM",
+      "l5_function_ref": "HELIXBRAIN-L5-012-F01",
+      "reference_program_ref": "B012-PROGRAM-F01",
+      "l9_source_case_ref": "B012-F01-UNDECIDABLE-AS-SUCCESS",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/12",
+      "source_case_canonical_sha256": "78eac62f14cf24eef52f14c38cafeefc184bcbf0bd13b154a388d89856ef2c05",
+      "base_raw_sha256": "85f83dc2839bd3933e06b5ba1899a0cb25b67e2e8f3efddf4a24872268a545af",
+      "base_expected_canonical_sha256": "1c3a6fea471e9b28d2fb372d951b3488e3551ad8b724442e96576b30eb024da6",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/claims_unknown_success",
+          "value": false
+        }
+      ],
+      "independent_source_packet": {
+        "ref": {
+          "identity": "SOURCE-B012-F01-UNDECIDABLE-SUCCESS-NO-CLAIM",
+          "revision": "fixture-content-0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"claims_reply_adopted\":false,\"claims_unknown_success\":false,\"knowledge_maturity\":\"not_evaluated\",\"knowledge_ref_original\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"knowledge_ref_provided\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"original_context\":{\"identity\":\"CONTEXT-P\",\"knowledge_domains\":[\"Data / Database\"],\"meaning\":\"合成の利用要求/design context\",\"revision\":\"r1\"},\"original_judgement_state\":\"undecidable\",\"original_reply_content\":{\"alternative\":[\"PATTERN-A@r1\",\"PATTERN-B@r2\"],\"constraint\":[\"合成制約A\",\"合成制約B\"],\"evidence\":[{\"identity\":\"EVIDENCE-A\",\"limit\":\"synthetic_only\",\"revision\":\"r1\"}],\"pattern_candidates\":[{\"identity\":\"PATTERN-A\",\"revision\":\"r1\"},{\"identity\":\"PATTERN-B\",\"revision\":\"r2\"}],\"relation\":[{\"from\":\"PATTERN-A@r1\",\"kind\":\"alternative_to\",\"meaning\":\"合成の同問題代替候補\",\"to\":\"PATTERN-B@r2\"}],\"required_input\":[\"INPUT-A\",\"INPUT-B\"]},\"provided_context\":{\"identity\":\"CONTEXT-P\",\"knowledge_domains\":[\"Data / Database\"],\"meaning\":\"合成の利用要求/design context\",\"revision\":\"r1\"},\"provided_judgement_state\":\"success\",\"provided_reply_content\":{\"alternative\":[\"PATTERN-A@r1\",\"PATTERN-B@r2\"],\"constraint\":[\"合成制約A\",\"合成制約B\"],\"evidence\":[{\"identity\":\"EVIDENCE-A\",\"limit\":\"synthetic_only\",\"revision\":\"r1\"}],\"pattern_candidates\":[{\"identity\":\"PATTERN-A\",\"revision\":\"r1\"},{\"identity\":\"PATTERN-B\",\"revision\":\"r2\"}],\"relation\":[{\"from\":\"PATTERN-A@r1\",\"kind\":\"alternative_to\",\"meaning\":\"合成の同問題代替候補\",\"to\":\"PATTERN-B@r2\"}],\"required_input\":[\"INPUT-A\",\"INPUT-B\"]}}",
+        "sha256": "0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74"
+      },
+      "typed_input": {
+        "claims_reply_adopted": false,
+        "claims_unknown_success": false,
+        "knowledge_maturity": "not_evaluated",
+        "knowledge_ref_original": {
+          "identity": "KNOWLEDGE-CANDIDATES",
+          "revision": "r1",
+          "scope": "KNOWLEDGE-SCOPE-P"
+        },
+        "knowledge_ref_provided": {
+          "identity": "KNOWLEDGE-CANDIDATES",
+          "revision": "r1",
+          "scope": "KNOWLEDGE-SCOPE-P"
+        },
+        "original_context": {
+          "identity": "CONTEXT-P",
+          "knowledge_domains": [
+            "Data / Database"
+          ],
+          "meaning": "合成の利用要求/design context",
+          "revision": "r1"
+        },
+        "original_judgement_state": "undecidable",
+        "original_reply_content": {
+          "alternative": [
+            "PATTERN-A@r1",
+            "PATTERN-B@r2"
+          ],
+          "constraint": [
+            "合成制約A",
+            "合成制約B"
+          ],
+          "evidence": [
+            {
+              "identity": "EVIDENCE-A",
+              "limit": "synthetic_only",
+              "revision": "r1"
+            }
+          ],
+          "pattern_candidates": [
+            {
+              "identity": "PATTERN-A",
+              "revision": "r1"
+            },
+            {
+              "identity": "PATTERN-B",
+              "revision": "r2"
+            }
+          ],
+          "relation": [
+            {
+              "from": "PATTERN-A@r1",
+              "kind": "alternative_to",
+              "meaning": "合成の同問題代替候補",
+              "to": "PATTERN-B@r2"
+            }
+          ],
+          "required_input": [
+            "INPUT-A",
+            "INPUT-B"
+          ]
+        },
+        "provided_context": {
+          "identity": "CONTEXT-P",
+          "knowledge_domains": [
+            "Data / Database"
+          ],
+          "meaning": "合成の利用要求/design context",
+          "revision": "r1"
+        },
+        "provided_judgement_state": "success",
+        "provided_reply_content": {
+          "alternative": [
+            "PATTERN-A@r1",
+            "PATTERN-B@r2"
+          ],
+          "constraint": [
+            "合成制約A",
+            "合成制約B"
+          ],
+          "evidence": [
+            {
+              "identity": "EVIDENCE-A",
+              "limit": "synthetic_only",
+              "revision": "r1"
+            }
+          ],
+          "pattern_candidates": [
+            {
+              "identity": "PATTERN-A",
+              "revision": "r1"
+            },
+            {
+              "identity": "PATTERN-B",
+              "revision": "r2"
+            }
+          ],
+          "relation": [
+            {
+              "from": "PATTERN-A@r1",
+              "kind": "alternative_to",
+              "meaning": "合成の同問題代替候補",
+              "to": "PATTERN-B@r2"
+            }
+          ],
+          "required_input": [
+            "INPUT-A",
+            "INPUT-B"
+          ]
+        }
+      },
+      "raw_sha256": "0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74",
+      "expected_result": {
+        "context_result": "content_corresponding_in_fixture",
+        "reply_results": {
+          "pattern_candidates": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "relation": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "evidence": "content_corresponding_in_fixture"
+        },
+        "knowledge_ref_result": "content_corresponding_in_fixture",
+        "judgement_state": "undecidable",
+        "candidate_state": "returned_candidates_only",
+        "reply_adoption_claim": "none",
+        "unknown_success_claim": "none",
+        "owner_return_candidates": [
+          "BRAIN-knowledge-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_runtime_decision": false,
+          "actual_requirement_value_generated": false,
+          "actual_connection": false,
+          "actual_execution_permitted": false,
+          "actual_authority_expanded": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "e5b9be763b971d99188b1610373374216b64a01a5d050f625135b560918c926f",
+      "expected_patch_note": "L10 F01否定入力/知識不足をBRAINへ返す。原judgement state保持とfalse claim noneを保ち、データ上の成功補完をBRAINへ返す。",
+      "execution_state": "not_executed",
+      "qualification": "not_established",
+      "whole_expectation_basis": "L10 F01否定入力/知識不足をBRAINへ返す。原judgement state保持とfalse claim noneを保ち、データ上の成功補完をBRAINへ返す。",
+      "input_type": "F01Input",
+      "output_type": "F01Result",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/unknown_success_claim",
+          "value": "none"
+        }
+      ],
+      "independent_expected_pointer": "/verification_obligations/0/concrete_cases/12/expected_material",
+      "l5_program_binding": {
+        "document_id": "HELIXBRAIN-L5-012",
+        "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "5048a0cb0a722f4bf52130b9dfb03f9a58fda5f9790546af98702b7617f6b2fa",
+        "program_ref": "B012-PROGRAM-F01"
+      },
+      "raw_canonical_sha256": "0042f16b6f6d7f09cfaa39e6f5db6b83c79dd200b798bea72bca46d071622a74",
+      "independent_frozen_basis": {
+        "basis": "L10 F01否定入力/知識不足をBRAINへ返す。原judgement state保持とfalse claim noneを保ち、データ上の成功補完をBRAINへ返す。"
+      }
+    },
+    {
+      "id": "B012-F02-WRONG-IDENTITY-IN-HARNESS009-KEY",
+      "l5_function_ref": "HELIXBRAIN-L5-012-F02",
+      "reference_program_ref": "B012-PROGRAM-F02",
+      "l9_source_case_ref": "B012-F02-SELECTED-CORE-OBLIGATIONS-INT-NOT-SELECTED",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+      "source_case_pointer": "/verification_obligations/1/concrete_cases/0",
+      "source_case_canonical_sha256": "f23b05fc54b2baca0b1a41e550b2789310bff477af4d6074cd40528097e511bd",
+      "base_raw_sha256": "7c7d6be41db5f3adeb3077210a7ef6e0a054dff4e3a0f593413de059f999295e",
+      "base_expected_canonical_sha256": "95732a085e62faa1c30a235c0d78da16063af8b9002b946e7640ca25f0cdcf8d",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/provided_contracts/HARNESS009/identity",
+          "value": "BRAIN022"
+        },
+        {
+          "op": "replace",
+          "path": "/required_contracts/HARNESS009/identity",
+          "value": "BRAIN022"
+        }
+      ],
+      "independent_source_packet": {
+        "ref": {
+          "identity": "SOURCE-B012-F02-WRONG-IDENTITY-IN-HARNESS009-KEY",
+          "revision": "fixture-content-73768d233704073f1a99fc016c74d57697cd6a855d0ab873be243707fa6737d8",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"claims_connection_success\":false,\"provided_contracts\":{\"BRAIN019\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN019\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"BRAIN021\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN021\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"BRAIN022\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN022\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"HARNESS009\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN022\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"}},\"required_contracts\":{\"BRAIN019\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN019\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"BRAIN021\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN021\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"BRAIN022\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN022\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"},\"HARNESS009\":{\"contract_revision\":\"fixture-contract-r1\",\"identity\":\"BRAIN022\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"state\":\"qualified_fixture_only\",\"usage\":\"normative_candidate_only\"}},\"requires_unselected_INT_completion\":false,\"selected_routes\":{\"CORE_reply\":true,\"HARNESS_obligations\":true,\"INT_query\":false},\"target_knowledge_ref\":{\"identity\":\"KNOWLEDGE-CANDIDATES\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"}}",
+        "sha256": "73768d233704073f1a99fc016c74d57697cd6a855d0ab873be243707fa6737d8"
+      },
+      "typed_input": {
+        "claims_connection_success": false,
+        "provided_contracts": {
+          "BRAIN019": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN019",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "BRAIN021": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN021",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "BRAIN022": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN022",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "HARNESS009": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN022",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          }
+        },
+        "required_contracts": {
+          "BRAIN019": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN019",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "BRAIN021": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN021",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "BRAIN022": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN022",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          },
+          "HARNESS009": {
+            "contract_revision": "fixture-contract-r1",
+            "identity": "BRAIN022",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-CANDIDATES",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "state": "qualified_fixture_only",
+            "usage": "normative_candidate_only"
+          }
+        },
+        "requires_unselected_INT_completion": false,
+        "selected_routes": {
+          "CORE_reply": true,
+          "HARNESS_obligations": true,
+          "INT_query": false
+        },
+        "target_knowledge_ref": {
+          "identity": "KNOWLEDGE-CANDIDATES",
+          "revision": "r1",
+          "scope": "KNOWLEDGE-SCOPE-P"
+        }
+      },
+      "raw_sha256": "73768d233704073f1a99fc016c74d57697cd6a855d0ab873be243707fa6737d8",
+      "expected_result": {
+        "contract_results": {
+          "BRAIN019": "content_corresponding_candidate_only",
+          "BRAIN022": "content_corresponding_candidate_only",
+          "HARNESS009": "contract_content_conflict_held"
+        },
+        "route_results": {
+          "CORE_reply": "candidate_contracts_corresponding",
+          "HARNESS_obligations": "selected_contract_missing_or_conflicting_held",
+          "INT_query": "not_selected"
+        },
+        "connection_claim": "none",
+        "unselected_INT_gate_claim": "none",
+        "owner_return_candidates": [
+          "HARNESS009-connection-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_runtime_decision": false,
+          "actual_requirement_value_generated": false,
+          "actual_connection": false,
+          "actual_execution_permitted": false,
+          "actual_authority_expanded": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "d2de58e86a41cc2b5ca80442924b22f8769ebdbed2e803d32372d5d01eff5229",
+      "expected_patch_note": "L3/L4 F02の受領側009へ結ぶ義務。keyと両側identityの不一致を既存content conflict語彙へ分類する。 route返却語彙は原L9 HARNESS009欠落caseのselected_contract_missing_or_conflicting_heldと同軸に固定。",
+      "execution_state": "not_executed",
+      "qualification": "not_established",
+      "whole_expectation_basis": "L3/L4 F02の受領側009へ結ぶ義務。keyと両側identityの不一致を既存content conflict語彙へ分類する。 route返却語彙は原L9 HARNESS009欠落caseのselected_contract_missing_or_conflicting_heldと同軸に固定。",
+      "input_type": "F02Input",
+      "output_type": "F02Result",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/contract_results/HARNESS009",
+          "value": "contract_content_conflict_held"
+        },
+        {
+          "op": "replace",
+          "path": "/route_results/HARNESS_obligations",
+          "value": "selected_contract_missing_or_conflicting_held"
+        },
+        {
+          "op": "replace",
+          "path": "/owner_return_candidates",
+          "value": [
+            "HARNESS009-connection-owner"
+          ]
+        }
+      ],
+      "independent_expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+      "l5_program_binding": {
+        "document_id": "HELIXBRAIN-L5-012",
+        "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "ad1276664544b43aff1a616a05b7aa61308722518c27bfb30795b3734dbfeac6",
+        "program_ref": "B012-PROGRAM-F02"
+      },
+      "raw_canonical_sha256": "73768d233704073f1a99fc016c74d57697cd6a855d0ab873be243707fa6737d8",
+      "independent_frozen_basis": {
+        "basis": "L3/L4 F02の受領側009へ結ぶ義務。keyと両側identityの不一致を既存content conflict語彙へ分類する。 route返却語彙は原L9 HARNESS009欠落caseのselected_contract_missing_or_conflicting_heldと同軸に固定。"
+      }
+    },
+    {
+      "id": "B012-B01-SINGLE-REQUIREMENT_MEANING",
+      "l5_function_ref": "HELIXBRAIN-L5-012-B01",
+      "reference_program_ref": "B012-PROGRAM-B01",
+      "l9_source_case_ref": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+      "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+      "base_raw_sha256": "61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3",
+      "base_expected_canonical_sha256": "de3c607c1d159fc2560eada432b63b46a34941e4d286b98f36dbd9bef81b2d71",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/requirement_meaning_state",
+          "value": "unknown"
+        }
+      ],
+      "independent_source_packet": {
+        "ref": {
+          "identity": "SOURCE-B012-B01-SINGLE-REQUIREMENT_MEANING",
+          "revision": "fixture-content-53ff3c4f13e73b32da3f07b73ca866226950138be79f43f7603108d8c031ec8b",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"claims_authority_expanded\":false,\"claims_execution_permitted\":false,\"claims_product_decided\":false,\"claims_requirement_generated\":false,\"claims_runtime_decided\":false,\"decision_weight_state\":\"supplied_fixture_only\",\"existing_authority\":\"original_authority_unchanged\",\"knowledge_state\":\"identified_fixture_only\",\"original_product_state\":\"not_selected\",\"original_runtime_state\":\"undecided\",\"requirement_meaning_state\":\"unknown\",\"requires_new_human_approval_every_reply\":false}",
+        "sha256": "53ff3c4f13e73b32da3f07b73ca866226950138be79f43f7603108d8c031ec8b"
+      },
+      "typed_input": {
+        "claims_authority_expanded": false,
+        "claims_execution_permitted": false,
+        "claims_product_decided": false,
+        "claims_requirement_generated": false,
+        "claims_runtime_decided": false,
+        "decision_weight_state": "supplied_fixture_only",
+        "existing_authority": "original_authority_unchanged",
+        "knowledge_state": "identified_fixture_only",
+        "original_product_state": "not_selected",
+        "original_runtime_state": "undecided",
+        "requirement_meaning_state": "unknown",
+        "requires_new_human_approval_every_reply": false
+      },
+      "raw_sha256": "53ff3c4f13e73b32da3f07b73ca866226950138be79f43f7603108d8c031ec8b",
+      "expected_result": {
+        "proposal_state": "held",
+        "product_state": "not_selected",
+        "runtime_state": "undecided",
+        "authority_state": "original_authority_unchanged",
+        "missing_inputs": [
+          "requirement_meaning"
+        ],
+        "claim_results": {
+          "product_decided": "none",
+          "runtime_decided": "none",
+          "requirement_generated": "none",
+          "execution_permitted": "none",
+          "authority_expanded": "none",
+          "new_human_approval_every_reply": "none"
+        },
+        "owner_return_candidates": [
+          "responsible-CORE-INT-or-human-decision-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_runtime_decision": false,
+          "actual_requirement_value_generated": false,
+          "actual_connection": false,
+          "actual_execution_permitted": false,
+          "actual_authority_expanded": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "c46352b07a9915daa3d0f50db3debca54f302a40f85daf72cd4b07295dacb2f4",
+      "expected_patch_note": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。",
+      "execution_state": "not_executed",
+      "qualification": "not_established",
+      "whole_expectation_basis": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。",
+      "input_type": "B01Input",
+      "output_type": "B01Result",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/proposal_state",
+          "value": "held"
+        },
+        {
+          "op": "replace",
+          "path": "/missing_inputs",
+          "value": [
+            "requirement_meaning"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/owner_return_candidates",
+          "value": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ]
+        }
+      ],
+      "independent_expected_pointer": "/verification_obligations/2/concrete_cases/7/expected_material",
+      "l5_program_binding": {
+        "document_id": "HELIXBRAIN-L5-012",
+        "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "program_ref": "B012-PROGRAM-B01"
+      },
+      "raw_canonical_sha256": "53ff3c4f13e73b32da3f07b73ca866226950138be79f43f7603108d8c031ec8b",
+      "independent_frozen_basis": {
+        "basis": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。"
+      }
+    },
+    {
+      "id": "B012-B01-SINGLE-DECISION_WEIGHT",
+      "l5_function_ref": "HELIXBRAIN-L5-012-B01",
+      "reference_program_ref": "B012-PROGRAM-B01",
+      "l9_source_case_ref": "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "source_file_sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/7",
+      "source_case_canonical_sha256": "61880c08f8bcc7f1ff2a7100c64353387f8c2c0ef8a7934273c24afc7dec6f34",
+      "base_raw_sha256": "61533fd2a8f553bfc8fd4d33c9862bdbb1591e41dc15bb6e58cdfa67564f14f3",
+      "base_expected_canonical_sha256": "de3c607c1d159fc2560eada432b63b46a34941e4d286b98f36dbd9bef81b2d71",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/decision_weight_state",
+          "value": "missing"
+        }
+      ],
+      "independent_source_packet": {
+        "ref": {
+          "identity": "SOURCE-B012-B01-SINGLE-DECISION_WEIGHT",
+          "revision": "fixture-content-37699c30c2c706455af6e1fd2d1b8ac433e00762e2da05dead0651578aa6f7cc",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "raw_utf8": "{\"claims_authority_expanded\":false,\"claims_execution_permitted\":false,\"claims_product_decided\":false,\"claims_requirement_generated\":false,\"claims_runtime_decided\":false,\"decision_weight_state\":\"missing\",\"existing_authority\":\"original_authority_unchanged\",\"knowledge_state\":\"identified_fixture_only\",\"original_product_state\":\"not_selected\",\"original_runtime_state\":\"undecided\",\"requirement_meaning_state\":\"supplied_fixture_only\",\"requires_new_human_approval_every_reply\":false}",
+        "sha256": "37699c30c2c706455af6e1fd2d1b8ac433e00762e2da05dead0651578aa6f7cc"
+      },
+      "typed_input": {
+        "claims_authority_expanded": false,
+        "claims_execution_permitted": false,
+        "claims_product_decided": false,
+        "claims_requirement_generated": false,
+        "claims_runtime_decided": false,
+        "decision_weight_state": "missing",
+        "existing_authority": "original_authority_unchanged",
+        "knowledge_state": "identified_fixture_only",
+        "original_product_state": "not_selected",
+        "original_runtime_state": "undecided",
+        "requirement_meaning_state": "supplied_fixture_only",
+        "requires_new_human_approval_every_reply": false
+      },
+      "raw_sha256": "37699c30c2c706455af6e1fd2d1b8ac433e00762e2da05dead0651578aa6f7cc",
+      "expected_result": {
+        "proposal_state": "held",
+        "product_state": "not_selected",
+        "runtime_state": "undecided",
+        "authority_state": "original_authority_unchanged",
+        "missing_inputs": [
+          "decision_weight"
+        ],
+        "claim_results": {
+          "product_decided": "none",
+          "runtime_decided": "none",
+          "requirement_generated": "none",
+          "execution_permitted": "none",
+          "authority_expanded": "none",
+          "new_human_approval_every_reply": "none"
+        },
+        "owner_return_candidates": [
+          "responsible-CORE-INT-or-human-decision-owner"
+        ],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_runtime_decision": false,
+          "actual_requirement_value_generated": false,
+          "actual_connection": false,
+          "actual_execution_permitted": false,
+          "actual_authority_expanded": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "expected_canonical_sha256": "6225b8eba641526942b7a08d084a3e59be12119f43b7447171e41cc5c9fcce4c",
+      "expected_patch_note": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。",
+      "execution_state": "not_executed",
+      "qualification": "not_established",
+      "whole_expectation_basis": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。",
+      "input_type": "B01Input",
+      "output_type": "B01Result",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/proposal_state",
+          "value": "held"
+        },
+        {
+          "op": "replace",
+          "path": "/missing_inputs",
+          "value": [
+            "decision_weight"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/owner_return_candidates",
+          "value": [
+            "responsible-CORE-INT-or-human-decision-owner"
+          ]
+        }
+      ],
+      "independent_expected_pointer": "/verification_obligations/2/concrete_cases/7/expected_material",
+      "l5_program_binding": {
+        "document_id": "HELIXBRAIN-L5-012",
+        "path": "docs/helix-brain/L5-detail-design/candidate-authority-boundary.json",
+        "candidate_sha256": "83b6fa1f78b1a6e6b878a2101e4141a17d73d3636e5727138019fccd488bc6e6",
+        "program_canonical_sha256": "a0cbd25db65f2dfa67868a693b1ad68b66ef3cc8dce6f1599b5e2c3838c3ff4d",
+        "program_ref": "B012-PROGRAM-B01"
+      },
+      "raw_canonical_sha256": "37699c30c2c706455af6e1fd2d1b8ac433e00762e2da05dead0651578aa6f7cc",
+      "independent_frozen_basis": {
+        "basis": "L3/L4 B01の要求意味または判断重みが不足なら保留して責務先へ返す規則を、知識不足と分離して観測する独立whole。"
+      }
+    }
+  ],
+  "failure_probe_count": 5,
+  "mutation_coverage_limit": [
+    {
+      "scope": "F02 classify_contract",
+      "limit": "契約衝突の各条件を単独で除去する変異、map_has_value_other_than条件、unique_concat重複除去の一部を全保存wholeで識別するとは主張しない。"
+    },
+    {
+      "scope": "F02 claimと選択の食違い",
+      "limit": "claim flagを判定するだけで、全契約候補対応のconnection_success claimや選択INTに対するrequires_unselected_INT_completion flagのデータ上の整合は検査しない。"
+    },
+    {
+      "scope": "F02 required/providedの非対称",
+      "limit": "requiredだけunknownのとき、actual unknown専用分岐へ入らず後続の内容不一致へ分類する。必要側と提出側の一般unknown意味を対称としない。"
+    }
+  ]
 }

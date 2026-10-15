@@ -20,7 +20,7 @@
       "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
       "authority_effect": "effective_when_this_record_is_admitted_to_main"
     },
-    "limit": "承認済みL3/L10の3 wholeと固定L4/L9の42 synthetic raw/wholeだけを限定比較する。候補比較・接続候補提示に限り、actual source/owner qualification、knowledge adoption、product/runtime decision、formal schema/codec、実評価を成立させない。"
+    "limit": "承認済みL3/L10の3対・6 wholeと原L4/L9の42 raw/whole、別枠の独立反例を限定比較する。候補比較・接続候補提示に限り、実source/owner資格、知識採用、製品/runtime判断、正式schema/codec、実評価を成立させない。"
   },
   "source_pins": [
     {
@@ -935,7 +935,7 @@
         "content_corresponding_in_fixture",
         "content_conflict"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
     },
     {
       "name": "KnowledgeStatus",
@@ -944,7 +944,7 @@
         "content_corresponding_in_fixture",
         "content_conflict"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
     },
     {
       "name": "ContractStatus",
@@ -958,7 +958,7 @@
         "contract_content_conflict_held",
         "content_corresponding_candidate_only"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
     },
     {
       "name": "RouteStatus",
@@ -968,7 +968,7 @@
         "selected_contract_missing_or_conflicting_held",
         "not_selected"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
     },
     {
       "name": "ClaimStatus",
@@ -977,7 +977,7 @@
         "rejected",
         "none"
       ],
-      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.finite_rule_catalogが出所を指す。"
     },
     {
       "name": "F01Result",
@@ -1164,7 +1164,8 @@
       "literals": [
         "content_corresponding_in_fixture",
         "missing",
-        "content_conflict"
+        "content_conflict",
+        "CORE-query-owner"
       ],
       "basis": [
         "HELIXBRAIN-L4-012-F01",
@@ -1235,7 +1236,8 @@
       "inputs": [
         "original_judgement_state",
         "claims_reply_adopted",
-        "claims_unknown_success"
+        "claims_unknown_success",
+        "provided_judgement_state"
       ],
       "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
       "outputs": [
@@ -1249,7 +1251,8 @@
         "returned_candidates_only",
         "rejected",
         "none",
-        "CORE-product-decision-owner"
+        "CORE-product-decision-owner",
+        "BRAIN-knowledge-owner"
       ],
       "basis": [
         "HELIXBRAIN-L3-012-F01",
@@ -1305,7 +1308,12 @@
         "selected_contract_missing_or_conflicting_held",
         "not_selected",
         "rejected",
-        "none"
+        "none",
+        "BRAIN019-connection-owner",
+        "BRAIN022-connection-owner",
+        "HARNESS009-connection-owner",
+        "BRAIN021-connection-owner",
+        "BRAIN012-connection-owner"
       ],
       "basis": [
         "HELIXBRAIN-L4-012-F02",
@@ -1338,7 +1346,6 @@
       "literals": [
         "unknown",
         "missing",
-        "fixture-supplied",
         "held",
         "candidate_for_connected_owner_only",
         "not_selected",
@@ -1347,7 +1354,9 @@
         "responsible-CORE-INT-or-human-decision-owner",
         "BRAIN-knowledge-owner",
         "rejected",
-        "none"
+        "none",
+        "supplied_fixture_only",
+        "identified_fixture_only"
       ],
       "basis": [
         "HELIXBRAIN-L3-012-B01",
@@ -1371,7 +1380,8 @@
         "input.knowledge_ref_provided",
         "input.original_judgement_state",
         "input.claims_reply_adopted",
-        "input.claims_unknown_success"
+        "input.claims_unknown_success",
+        "input.provided_judgement_state"
       ],
       "returns": [
         "F01Result.context_result",
@@ -1434,14 +1444,6 @@
           "basis": [
             "HELIXBRAIN-L4-012-F01.qualification_rule",
             "HELIXBRAIN-L9-012-F01"
-          ]
-        },
-        {
-          "path": "input.provided_judgement_state",
-          "reason": "判断状態は原値だけを返し、提出側から採択/判断変化を作らない。",
-          "basis": [
-            "HELIXBRAIN-L4-012-F01",
-            "HELIXBRAIN-L10-012-F01"
           ]
         }
       ],
@@ -1647,6 +1649,12 @@
       "gap": "有限ReplyContentはL4に明示された六意味fieldだけを型として受ける。L4全域で将来加わる別fieldの意味/比較/ownerはこのpairでは定義せず、F02の追加contract keyと追加routeも現在のroute table外。未知の内容を既存六fieldへ折り畳まず、全Domain closureを主張しない。",
       "upstream_or_consumer": "BRAIN/CORE/HARNESS/INT各L4 consumer契約",
       "state": "finite_field_projection_only; additional meaning remains unclosed"
+    },
+    {
+      "id": "B012-U09",
+      "source": "L4 F01/B01 content_comparison",
+      "gap": "F01の内容比較は等値だけであり、両側同じ空候補/TBD/空文字/unknown本文の内容不足は診断しない。B01のexisting_authority/original_product_stateの値も原値として複写し、BRAIN権限/採用という不適切な値かどうかを判定しない。原値保存を実権限/採用の成立としない。",
+      "state": "supplied_value_semantic_validation_not_implemented"
     }
   ],
   "full_goal_scope_preserved": {
@@ -1667,18 +1675,24 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "audit_basis": {
-    "checkpoint_path": "scaffold/review-handoff/local/brain012-authoring/source-reading-checkpoint.json",
-    "checkpoint_sha256": "0456adf8bd335ab7184a4bc1e178d18a1888ae20a26b844c0453c3636d3eaffd",
+    "source_pin": {
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "bytes": 1130244,
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "role": "L3/L10 delegated decision admission row"
+    },
     "approved_whole_count": 6,
-    "case_count": 42,
+    "original_case_count": 42,
     "scope_count": {
       "parents": 92,
       "pairs": 430
-    }
+    },
+    "limit": "批准記録の監査sourceへの固定参照。scope件数だけで全意味閉包を証明しない。"
   },
   "comparison_semantics": {
     "json_equality": "reference_program json_equal: object key set/valueを再帰比較し、arrayの順序/長さを比較する。JSON integer/decimalは単一number domainで1と1.0を同値扱いし、booleanはnumberと区別する。AbsentはJSON値でなくnullと異なる。",
-    "iteration_order": "L5 ASTが明示するordered fields, routes, contracts, claim fields, and missing-state fieldsの列順を保持する。JSON map/objectの入力member順は意味に使用せず、明示list以外の辞書順走査を要求しない。",
+    "iteration_order": "L5 ASTが明示するfield/route/contract/claim/不足状態の列順を保持する。入力objectのmember順は意味へ使用しない。",
     "scope": "reference_programは42原packetで固定された有限projectionを定義する。fixture外state/contract/literalを採用済み全域enumまたは資格としない。"
   },
   "reference_program": {
@@ -1921,15 +1935,47 @@
                       {
                         "op": "if",
                         "condition": {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "path",
-                            "path": "input.claims_unknown_success"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": true
-                          }
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_unknown_success"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            },
+                            {
+                              "op": "and",
+                              "items": [
+                                {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "path",
+                                    "path": "input.original_judgement_state"
+                                  },
+                                  "right": {
+                                    "op": "const",
+                                    "value": "undecidable"
+                                  }
+                                },
+                                {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "path",
+                                    "path": "input.provided_judgement_state"
+                                  },
+                                  "right": {
+                                    "op": "const",
+                                    "value": "success"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
                         },
                         "then": {
                           "op": "const",
@@ -1975,7 +2021,8 @@
             "parameters": [
               "expected",
               "actual",
-              "target"
+              "target",
+              "contract_key"
             ],
             "body": {
               "op": "if",
@@ -2005,23 +2052,49 @@
               "else": {
                 "op": "if",
                 "condition": {
-                  "op": "json_equal",
-                  "left": {
-                    "op": "get",
-                    "value": {
-                      "op": "path",
-                      "path": "actual"
+                  "op": "or",
+                  "items": [
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": "expected"
+                          },
+                          "key": "identity"
+                        },
+                        "right": {
+                          "op": "path",
+                          "path": "contract_key"
+                        }
+                      }
                     },
-                    "key": "state"
-                  },
-                  "right": {
-                    "op": "const",
-                    "value": "unknown"
-                  }
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": "actual"
+                          },
+                          "key": "identity"
+                        },
+                        "right": {
+                          "op": "path",
+                          "path": "contract_key"
+                        }
+                      }
+                    }
+                  ]
                 },
                 "then": {
                   "op": "const",
-                  "value": "unknown_held"
+                  "value": "contract_content_conflict_held"
                 },
                 "else": {
                   "op": "if",
@@ -2033,79 +2106,37 @@
                         "op": "path",
                         "path": "actual"
                       },
-                      "key": "usage"
+                      "key": "state"
                     },
                     "right": {
                       "op": "const",
-                      "value": "reference_only"
+                      "value": "unknown"
                     }
                   },
                   "then": {
                     "op": "const",
-                    "value": "reference_only_held"
+                    "value": "unknown_held"
                   },
                   "else": {
                     "op": "if",
                     "condition": {
-                      "op": "or",
-                      "items": [
-                        {
-                          "op": "not",
-                          "value": {
-                            "op": "json_equal",
-                            "left": {
-                              "op": "get",
-                              "value": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": "actual"
-                                },
-                                "key": "knowledge_ref"
-                              },
-                              "key": "revision"
-                            },
-                            "right": {
-                              "op": "get",
-                              "value": {
-                                "op": "path",
-                                "path": "target"
-                              },
-                              "key": "revision"
-                            }
-                          }
+                      "op": "json_equal",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": "actual"
                         },
-                        {
-                          "op": "not",
-                          "value": {
-                            "op": "json_equal",
-                            "left": {
-                              "op": "get",
-                              "value": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": "expected"
-                                },
-                                "key": "knowledge_ref"
-                              },
-                              "key": "revision"
-                            },
-                            "right": {
-                              "op": "get",
-                              "value": {
-                                "op": "path",
-                                "path": "target"
-                              },
-                              "key": "revision"
-                            }
-                          }
-                        }
-                      ]
+                        "key": "usage"
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "reference_only"
+                      }
                     },
                     "then": {
                       "op": "const",
-                      "value": "revision_foreign_held"
+                      "value": "reference_only_held"
                     },
                     "else": {
                       "op": "if",
@@ -2126,7 +2157,7 @@
                                   },
                                   "key": "knowledge_ref"
                                 },
-                                "key": "scope"
+                                "key": "revision"
                               },
                               "right": {
                                 "op": "get",
@@ -2134,7 +2165,7 @@
                                   "op": "path",
                                   "path": "target"
                                 },
-                                "key": "scope"
+                                "key": "revision"
                               }
                             }
                           },
@@ -2152,7 +2183,7 @@
                                   },
                                   "key": "knowledge_ref"
                                 },
-                                "key": "scope"
+                                "key": "revision"
                               },
                               "right": {
                                 "op": "get",
@@ -2160,7 +2191,7 @@
                                   "op": "path",
                                   "path": "target"
                                 },
-                                "key": "scope"
+                                "key": "revision"
                               }
                             }
                           }
@@ -2168,57 +2199,13 @@
                       },
                       "then": {
                         "op": "const",
-                        "value": "scope_foreign_held"
+                        "value": "revision_foreign_held"
                       },
                       "else": {
                         "op": "if",
                         "condition": {
                           "op": "or",
                           "items": [
-                            {
-                              "op": "not",
-                              "value": {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "actual"
-                                  },
-                                  "key": "identity"
-                                },
-                                "right": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "expected"
-                                  },
-                                  "key": "identity"
-                                }
-                              }
-                            },
-                            {
-                              "op": "not",
-                              "value": {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "actual"
-                                  },
-                                  "key": "contract_revision"
-                                },
-                                "right": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "expected"
-                                  },
-                                  "key": "contract_revision"
-                                }
-                              }
-                            },
                             {
                               "op": "not",
                               "value": {
@@ -2233,7 +2220,7 @@
                                     },
                                     "key": "knowledge_ref"
                                   },
-                                  "key": "identity"
+                                  "key": "scope"
                                 },
                                 "right": {
                                   "op": "get",
@@ -2241,51 +2228,7 @@
                                     "op": "path",
                                     "path": "target"
                                   },
-                                  "key": "identity"
-                                }
-                              }
-                            },
-                            {
-                              "op": "not",
-                              "value": {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "actual"
-                                  },
-                                  "key": "state"
-                                },
-                                "right": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "expected"
-                                  },
-                                  "key": "state"
-                                }
-                              }
-                            },
-                            {
-                              "op": "not",
-                              "value": {
-                                "op": "json_equal",
-                                "left": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "actual"
-                                  },
-                                  "key": "usage"
-                                },
-                                "right": {
-                                  "op": "get",
-                                  "value": {
-                                    "op": "path",
-                                    "path": "expected"
-                                  },
-                                  "key": "usage"
+                                  "key": "scope"
                                 }
                               }
                             },
@@ -2303,7 +2246,7 @@
                                     },
                                     "key": "knowledge_ref"
                                   },
-                                  "key": "identity"
+                                  "key": "scope"
                                 },
                                 "right": {
                                   "op": "get",
@@ -2311,7 +2254,7 @@
                                     "op": "path",
                                     "path": "target"
                                   },
-                                  "key": "identity"
+                                  "key": "scope"
                                 }
                               }
                             }
@@ -2319,11 +2262,163 @@
                         },
                         "then": {
                           "op": "const",
-                          "value": "contract_content_conflict_held"
+                          "value": "scope_foreign_held"
                         },
                         "else": {
-                          "op": "const",
-                          "value": "content_corresponding_candidate_only"
+                          "op": "if",
+                          "condition": {
+                            "op": "or",
+                            "items": [
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "actual"
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "expected"
+                                    },
+                                    "key": "identity"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "actual"
+                                    },
+                                    "key": "contract_revision"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "expected"
+                                    },
+                                    "key": "contract_revision"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": "actual"
+                                      },
+                                      "key": "knowledge_ref"
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "target"
+                                    },
+                                    "key": "identity"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "actual"
+                                    },
+                                    "key": "state"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "expected"
+                                    },
+                                    "key": "state"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "actual"
+                                    },
+                                    "key": "usage"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "expected"
+                                    },
+                                    "key": "usage"
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": "expected"
+                                      },
+                                      "key": "knowledge_ref"
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "target"
+                                    },
+                                    "key": "identity"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "contract_content_conflict_held"
+                          },
+                          "else": {
+                            "op": "const",
+                            "value": "content_corresponding_candidate_only"
+                          }
                         }
                       }
                     }
@@ -2334,7 +2429,8 @@
             "parameter_types": {
               "expected": "ConnectionContract | Absent",
               "actual": "ConnectionContract | Absent",
-              "target": "KnowledgeRef"
+              "target": "KnowledgeRef",
+              "contract_key": "string"
             },
             "return_type": "ContractStatus",
             "binding_derivation": {
@@ -2395,7 +2491,8 @@
                 "op": "path",
                 "path": "input.target_knowledge_ref"
               },
-              "status_function": "classify_contract"
+              "status_function": "classify_contract",
+              "key_argument": "contract_key"
             },
             "route_results": {
               "op": "route_result_map",
@@ -2738,14 +2835,41 @@
                       {
                         "op": "if",
                         "condition": {
-                          "op": "any_list_has",
-                          "list": {
-                            "op": "path",
-                            "path": "missing_inputs"
-                          },
-                          "values": [
-                            "requirement_meaning",
-                            "decision_weight"
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "any_list_has",
+                              "list": {
+                                "op": "path",
+                                "path": "missing_inputs"
+                              },
+                              "values": [
+                                "requirement_meaning",
+                                "decision_weight"
+                              ]
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_product_decided"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "path",
+                                "path": "input.claims_execution_permitted"
+                              },
+                              "right": {
+                                "op": "const",
+                                "value": true
+                              }
+                            }
                           ]
                         },
                         "then": {
@@ -2885,7 +3009,7 @@
       },
       {
         "op": "selected_route_contract_map",
-        "meaning": "宣言routes、各routeのcontractsの順で走査。selected[route]が厳密にtrueの時だけそのkeyを出力し、required/providedのkey欠落はAbsentのままhelperへ渡す。指定status helperを呼び出し、contract key mapを返す。"
+        "meaning": "宣言routes、各routeのcontractsの順で走査。selected[route]が厳密にtrueの時だけそのkeyを出力し、required/providedのkey欠落はAbsentのままhelperへ渡す。指定status helperを呼び出し、contract key mapを返す。 key_argument指定時は、各route.contractsのkey文字列を指定名のhelper引数へ渡す。helperはmissing判定後、原/提出identityをそのkeyへ独立比較し、不一致をcontract_content_conflict_heldへ分類する。"
       },
       {
         "op": "route_result_map",
@@ -2940,31 +3064,31 @@
   "program_precedence": "reference_programのprogram expression、helper、operator semanticsが限定計算の唯一の規範。function_contractsはsignature/read/outputとprogram参照、finite_rule_catalogはL3/L4/L9 obligation traceのみ。",
   "type_domain_notes": [
     {
-      "scope": "function inputs",
+      "scope": "関数入力",
       "rule": "F01Input/F02Input/B01Inputの宣言fieldは必須。record additional_properties=forbidden。required inputの欠落とnullは異なり、nullは当該宣言型がJSON nullを含む場合だけ許容。"
     },
     {
-      "scope": "nested raw records",
+      "scope": "入れ子の原record",
       "rule": "ReplyContentのmemberはfixture input上Optional。Absentはmapから除外され、explicit nullはJsonValueとして比較される。ConnectionContract/KnowledgeRefはrequired memberを持つ。"
     },
     {
-      "scope": "collection identity",
-      "rule": "JSON object/map keyは一意。F02 contract resultは選択route/table順でkeyごと1回生成。配列の重複は一般に許すが、本限定programにjoin配列はなく一意化しない。"
+      "scope": "集合identity",
+      "rule": "JSON object/map keyは一意。F02の結果は明示route/table順で契約keyごとに作る。入力配列は一般に重複を許す。owner候補だけはunique_concatで初出を保持して重複を除く。"
     },
     {
-      "scope": "numeric equality",
+      "scope": "数値同値",
       "rule": "JSON integer/decimalは一つのnumber domainで比較し1と1.0は等値。booleanはnumberと異なる。raw projectionは元のJSON数値値を保持する。"
     },
     {
-      "scope": "nullable whole records",
-      "rule": "F01 outer context fields are JsonValue and may be explicit null. ReplyContent, KnowledgeRef, F02 ContractMap entries, and B01 outer inputs are non-nullable records under their declared types; a whole-record null is a type violation, not an implicit missing/empty record. Optional nested ReplyContent members may be Absent; present null remains a JSON value."
+      "scope": "record全体のnull",
+      "rule": "F01の外側contextはJsonValueなのでnullも許す。ReplyContent/KnowledgeRef/ContractMap entry/B01入力recordは非null。record全体のnullは型違反で、欠落や空recordへ補完しない。ReplyContentの任意memberは欠落を許し、明示nullはJSON値として比較する。"
     },
     {
-      "scope": "empty and duplicate collections",
-      "rule": "F02 empty selected_routes/required_contracts/provided_contracts are valid typed maps and evaluate to empty contract results plus not_selected route results. JSON object duplicate keys are invalid and rejected during raw parsing. The finite F02 route table has distinct route and contract keys. No array join/deduplication is defined outside explicit owner candidate deduplication."
+      "scope": "空集合と重複",
+      "rule": "空mapは宣言型内。未選択routeはnot_selected、選択されて契約がない場合はmissing_held。JSONの重複keyはparse時に拒否する。明示route/contract keyは一意。owner候補だけを重複除去する。"
     },
     {
-      "scope": "finite state literal domains",
+      "scope": "有限状態語彙",
       "rule": "ConnectionState/ConnectionUsage/RequirementMeaningState/DecisionWeightState/KnowledgeStateは原L9 42 rawで観測されたliteralを型検査する限定domain。未観測literalはこのfinite logical input domain外とし、適合/成功へ分類しない。これは全BRAIN domainの採択enumではなく、一般state意味はB012-U07に未閉包。"
     }
   ],
@@ -2979,13 +3103,13 @@
       "HELIXBRAIN-L4-012-F02.output_meanings",
       "HELIXBRAIN-L4-012-B01.output_meanings"
     ],
-    "finite_fixture_status": "L9 expected contains candidate labels only; output preserves those values through a deterministic finite expression.",
+    "finite_fixture_status": "L9の候補ラベルと独立反例の候補返却を有限式で定義する。実資格・配送・受領を示さない。",
     "not_established": [
-      "actual owner identity resolution",
-      "sender/receiver binding",
-      "delivery or receipt",
-      "owner acceptance",
-      "authority to decide"
+      "実owner identity解決",
+      "送受信端のbinding",
+      "配送/受領receipt",
+      "owner受入",
+      "判断権限"
     ],
     "unclosed_ref": "B012-U06",
     "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。"
@@ -3029,7 +3153,7 @@
       "obligations": [
         {
           "source_field": "output_meanings[0]",
-          "meaning": "必要契約ごとの対応/不足/不明",
+          "meaning": "必要契約ごとのcandidate対応/不足/不明",
           "formal_returns": [
             "F02Result.contract_results",
             "F02Result.route_results"
@@ -3060,23 +3184,23 @@
       "obligations": [
         {
           "source_field": "output_meanings[0]",
-          "meaning": "candidate/保留/product採用/runtime許可を区別",
+          "meaning": "候補/提案保留/製品採用/実行許可の区別",
           "formal_returns": [
             "B01Result.proposal_state",
             "B01Result.product_state",
             "B01Result.runtime_state",
             "B01Result.effects"
           ],
-          "status": "原product/runtime/authority保持。actual decision/execution remains false and unobserved."
+          "status": "原product/runtime/authority保持。実判断/実行は未観測で作用表示false。"
         },
         {
           "source_field": "output_meanings[1]",
-          "meaning": "CORE/INT/人/BRAINの責務別不足候補",
+          "meaning": "CORE/INT/人/BRAINの責務別返却候補",
           "formal_returns": [
             "B01Result.missing_inputs",
             "B01Result.owner_return_candidates"
           ],
-          "status": "fixture owner candidate string only。実返却/受領/判断はB012-U06へ未閉包."
+          "status": "合成owner候補文字列のみ。実返却/受領/判断はB012-U06へ未閉包."
         },
         {
           "source_field": "content_comparison",
@@ -3086,9 +3210,27 @@
             "B01Result.claim_results",
             "B01Result.effects"
           ],
-          "status": "限定有限式; actual qualification/decision未成立."
+          "status": "限定有限式; 実資格/判断未成立."
         }
       ]
+    }
+  ],
+  "failure_owner_rules": {
+    "B01": "要求意味/判断重みの不足、またはproduct_decided/execution_permitted claimの棄却をresponsible-CORE-INT-or-human-decision-ownerへ結ぶ。知識不足のBRAIN候補と重複を除いて併記する。実owner資格は生成しない。",
+    "F01": "original_judgement_state=undecidableとprovided_judgement_state=successの組合せはclaim値に依存せずBRAIN-knowledge-ownerへ返す。原judgement_stateとflagのnone/rejected表示は保持する。"
+  },
+  "mutation_coverage_limit": [
+    {
+      "scope": "F02 classify_contract",
+      "limit": "契約衝突の各条件を単独で除去する変異、map_has_value_other_than条件、unique_concat重複除去の一部を全保存wholeで識別するとは主張しない。"
+    },
+    {
+      "scope": "F02 claimと選択の食違い",
+      "limit": "claim flagを判定するだけで、全契約候補対応のconnection_success claimや選択INTに対するrequires_unselected_INT_completion flagのデータ上の整合は検査しない。"
+    },
+    {
+      "scope": "F02 required/providedの非対称",
+      "limit": "requiredだけunknownのとき、actual unknown専用分岐へ入らず後続の内容不一致へ分類する。必要側と提出側の一般unknown意味を対称としない。"
     }
   ]
 }
