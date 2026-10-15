@@ -279,7 +279,20 @@
         57
       ],
       "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
-      "disposition": "版付き契約・stale/再検証・partial failureの対応を参照。product-data固有運用をCONNECT共通規則として移さない。"
+      "disposition": "版付き契約・stale/再検証・partial failureの対応を参照。product-data固有運用をCONNECT共通規則として移さない。",
+      "selected_line_sha256": "ac63696d602a9a023fb84201ef609a493b68f8721eaf60a209e8df57601a5349",
+      "quote": "本書はversioned read connectorからproduct dataをfull/incremental取得し、lineage、schema、freshness、classification、\nredactionを検証したcanonical snapshot/entity/mapping/watermarkへ投影する契約を定義する。外部service、product DB、\ncredential storeへの実接続、認証設定、token取得、write-backは行わない。fixtureとinjected portによるcontract設計だけを扱う。\n\n既定はread-onlyである。product側write-backは別Issue、Universal Reverse、security review、action-binding approvalを備えた\n別設計が承認されるまでNode/Python双方から拒否する。connectorのgreen、Python workerの完了、raw snapshotの取得だけを\ncurrent projectionの完了証拠にしない。\n\n## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "additional_read_ranges": [
+        {
+          "read_lines": [
+            86,
+            109
+          ],
+          "quote": "credentialはopaque referenceだけを受理し、値、header、connection string、secret bodyをregistry、run、artifact、logへ保存しない。\n同じsourceでactive connector versionは最大1件とする。version/schema/mapping/config digest変更は旧run/snapshotをstaleにし、\n旧greenを新versionへ流用しない。disabled/revoked/quarantined connectorのclaimは0件にする。\nactivationはpure decisionだけで完了させず、operation ID、contract digest、expected registry head、idempotency keyを持つ\nNode commit transactionでregistry event、旧active stale化、新active pointer、receiptをCAS commitする。fault時の部分active化、\n同一key別digest、head競合を拒否し、seal済みactivation evidenceからNode reconcileできるようにする。\n\n## §3 full／incremental取り込み\n\n```text\nreceived -> claimed -> fetching -> staged -> validating -> committing -> completed\n                |          |          |            |              |\n                +----------+----------+------------+-> failed\n                                      +--------------> quarantined\n                +------------------------------------> cancelled\n```\n\nfullはcursorなしの固定source intentから全pageを取得し、source record key digestの重複・欠落、page chain、終端cursorを検査する。\nincrementalはcurrent watermarkを`cursor_start`として固定し、page/event sequenceと`cursor_end`の単調前進を検査する。\ncursorの比較はconnector登録済みcodecだけが行い、文字列辞書順や時刻推測へ縮退しない。\n\noperation idempotency keyはsource、connector version、mode、cursor start、intent digestから導出する。同じkey・同じdigestの再送は\n同じreceiptを返して増分0、同じkey・異なるdigestは`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。full/incrementalとも\nsnapshot、entity、mapping、watermarkを別々の成功として公開しない。",
+          "selected_line_sha256": "35aeafd322e2a9324a4edd5972cfbf5e5150d286fe02ef355dc24f0c9e175011",
+          "disposition": "full/incremental/cursor/activation/idempotencyの旧製品固有文脈を読む。CONNECT002の一般規則やNode transaction方式へ採用せず、版とstale/consumer境界の参照に限る。"
+        }
+      ]
     }
   ],
   "source_trace": [
@@ -6228,7 +6241,7 @@
       ],
       "algorithm": [
         "(1) connection_order P,Qの順でoriginal_before / original_after / submitted_after / original_rechecks / submitted_rechecksを参照する。",
-        "(2) field_order=[\"connection_identity\",\"source_endpoint\",\"consumer_endpoint\",\"source_contract_revision\",\"consumer_contract_revision\",\"adapter_revision\",\"transport_revision\",\"range_declaration\",\"scope\"]の順で、両原recordが持つfieldをJSON完全値比較し変更fieldを順序付きで返す。afterの欠落/null fieldはunknownとして保持する。",
+        "(2) field_order順で両original_before/afterにkeyが存在するfieldをJSON完全値比較する。afterが明示nullでもbeforeと異なればchanged_fieldsへ含め、同時にunknown_original_fieldsへ含める。after key absentは変更差分へ加えずunknownへ保持する。",
         "(3) submitted tupleのfieldごとの比較はmissing / unknown_original_information / content_corresponding_in_fixture / content_conflictを返す。beforeとafterに差がある接続だけstale candidateを付ける。",
         "(4) 同connectionのoriginal_rechecksとsubmitted_rechecksを別々に保持し、afterから得た全field tupleとreceipt target tupleのfield値一致、および両receiptが同じJSON recordかを別判定する。差があるときに限り両判定成立かつ双方resultがcompatible_in_fixture_onlyならstale_clear_candidate=true、それ以外はfalse。",
         "(5) claims objectの全boolean key/valueを順序を保って出力しtrueはrejected、falseはnoneとする。effect_fieldsを全てfalse、attempt_countを0にする。"
@@ -6251,7 +6264,7 @@
           "range_declaration",
           "scope"
         ],
-        "changed_fields": "original_before[connection]とoriginal_after[connection]の共通fieldをfield_order順にJSON完全値比較し相違keyを列挙。",
+        "changed_fields": "field_order順で両original_before/afterにkeyが存在するfieldをJSON完全値比較する。afterが明示nullでもbeforeと異なればchanged_fieldsへ含め、同時にunknown_original_fieldsへ含める。after key absentは変更差分へ加えずunknownへ保持する。",
         "unknown_original_fields": "original_afterにkeyがない、又は値がnullのfieldをfield_order順に記録。欠落/nullは推測補完しない。",
         "stale": "changed_fieldsが空でなければ当該connectionのstale候補。空ならunchanged_original_tuple_only。Q/Pの結果は個別に保つ。",
         "recheck": "original_rechecks/submitted_rechecksのconnection別recordについて、afterの上記field tupleとreceipt target tupleのfield値を比較。全値一致かつreceipt result compatibleの時だけstale_clear_candidate。receipt不在、null、unknown、不一致は解除不可。",
@@ -6291,7 +6304,7 @@
         },
         "ordered_checks": [
           "raw rootのoriginal_before/original_after/submitted_after/original_rechecks/submitted_rechecks/claimsを読む。存在しないchange_kindsや単数recheck fieldは読まない。",
-          "connection_order=[\"P\",\"Q\"]を順に走査し、field_orderの各fieldでoriginal_before[connection]とoriginal_after[connection]をJSON完全値比較する。両方にあるfieldだけ変更差分へ、after側欠落またはnullはunknown_original_fieldsへ保持する。",
+          "field_order順で両original_before/afterにkeyが存在するfieldをJSON完全値比較する。afterが明示nullでもbeforeと異なればchanged_fieldsへ含め、同時にunknown_original_fieldsへ含める。after key absentは変更差分へ加えずunknownへ保持する。",
           "submitted_afterの各fieldをoriginal_afterと比較し、key欠落=missing、原側欠落/null=unknown_original_information、同じJSON値=content_corresponding_in_fixture、異なる値=content_conflictとする。",
           "原/提出rechecksはconnection key別に読み、同一connectionのreceipt内容比較と、after field_orderの実tupleがreceipt targetと一致するかを別々に出力する。receiptが欠落/nullならfalse/unobservedを保持し、他connectionのreceiptで補完しない。"
         ]
@@ -6299,7 +6312,7 @@
       "return_projection": {
         "rule_basis": "finite_rule_catalog.connection_order/field_orderとF02 algorithm。connectionごとの投影で、一方の結果を他方へ集約しない。",
         "field_rules": {
-          "connection_results.P/Q.changed_fields": "両original_before/afterに存在するfieldだけをfield_order順で完全値比較し違いを返す。",
+          "connection_results.P/Q.changed_fields": "field_order順で両original_before/afterにkeyが存在するfieldをJSON完全値比較する。afterが明示nullでもbeforeと異なればchanged_fieldsへ含め、同時にunknown_original_fieldsへ含める。after key absentは変更差分へ加えずunknownへ保持する。",
           "connection_results.P/Q.unknown_original_fields": "original_afterのfield_order各fieldのうち欠落/nullをfield_order順で返す。",
           "connection_results.P/Q.submitted_tuple_results": "各fieldについてsubmitted_afterの欠落=missing、original_afterの欠落/null=unknown_original_information、一致=content_corresponding_in_fixture、その他content_conflict。",
           "connection_results.P/Q.retained_before/retained_after": "field_orderにある実在fieldをその順で抽出し保持する。object key挿入順を意味にせず、欠落値を補完しない。",
@@ -6352,10 +6365,10 @@
       ],
       "algorithm": [
         "(1) send_requested=false/trueを区別する。falseでもraw観察を計算するが、理由・送信候補は発行せずnot_evaluatedとattempt_count=0を返す。",
-        "(2) operation tupleの7fieldおよびcompatibility receiptの5fieldは、比較結果recordを作る際にfield名Unicode codepoint昇順で走査する。提出側field absent=missing、原側absent/null=unknown_original_information、JSON完全値一致=content_corresponding_in_fixture、その他=content_conflict。",
-        "(3) receipt target_tupleをoriginal_used_tupleの全12fieldとfield名Unicode codepoint昇順で比較し、original_used_tuple内のnull値field名を同順でunknown_original_used_tuple_fieldsへ返す。",
-        "(4) receipt binding配列はconnection_identity, scope, operation_revisionの固定順に作る。左辺はoriginal_compatibility_receiptの同名値、scope/connection_identityの右辺はoriginal_used_tuple、operation_revisionの右辺はoriginal_operation_tuple.revision。欠落/nullは一致候補にせずcontent_conflictまたはunknownを記録する。",
-        "(5) original/submitted permission recordの完全値、permission.tupleとoperation tuple、validityを別判定する。permission tuple比較結果object内はUnicode codepoint昇順。data conditionはclassification, data_use順にrecordの完全一致・state・operation scopeとの一致を個別記録する。",
+        "(2) operation/compatibilityのfieldを各宣言集合で比較する。提出key absent=missing、原key absent/null=unknown_original_information、完全一致=content_corresponding_in_fixture、その他=content_conflict。結果objectのkey挿入順は意味を持たず、eligibility_checksへ並べる際のみfield名Unicode codepoint昇順。原L9/保存期待のobject挿入順をこの演算の必須順としない。",
+        "(3) original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
+        "(4) compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。",
+        "(5) permission内容はoriginal/submitted全recordを既定優先で比較する。permission_tuple_resultsはoriginal_permission.tuple（permission/tupleがrecordでなければ空record）を提出側、original_operation_tupleを原側として比較する。data_condition_resultsはdata_use,classificationを識別keyとして原/提出record比較（object順に意味なし）。各data conditionのstateとscopeはoriginal_data_conditionsから読み、scopeの右辺はoriginal_operation_tuple.scope。eligibility checkへの列挙はdata_condition_orderのclassification,data_use順。",
         "(6) eligibility_checksは定義済みgroup順、その各内部fieldはUnicode codepoint昇順で作る。send_requested=trueのとき、許容literal以外を配列順に理由化し、ownerを初出順で重複除去する。"
       ],
       "meaning": "適格性は要求時の複合候補判定であり実SEC認可や送信ではない。",
@@ -6413,7 +6426,7 @@
         ],
         "presence_and_comparison": "submitted key absent→missing; original key absent/null→unknown_original_information; both provided exact JSON equality→content_corresponding_in_fixture; otherwise content_conflict. ただし元L9の明示state/compatibility literalは対応する結果として保持。",
         "reason_projection": "send_requested=falseでは理由を空にしてnot_evaluated。trueでは順序保持して各check resultのうちcorresponding/compatible_in_fixture_only/valid_in_fixture_only以外を理由へ投影し、owner候補を重複なく同順で返す。",
-        "owner_sources": "compatibility/actual tuple=endpoint-contract-owner、SEC permission=HELIX-SECURITY、data-use/classification=source-owner（L4/L9 fixture内の候補表示）。実owner資格/認可ではない。",
+        "owner_sources": "operation_content/compatibility_receipt_content/compatibility_target_vs_used_tuple/compatibility_binding/compatibility_stateはendpoint-contract-owner。permission_content/permission_tuple/permission_validityはHELIX-SECURITY。data_condition_content/state/scopeはsource-owner。原L9の候補表示であり実owner資格/認可ではない。",
         "finite_fields_and_literals": {
           "operation_fields": [
             "actor",
@@ -6478,9 +6491,9 @@
         },
         "ordered_checks": [
           "packet.send_requestedとclaimsをbool値で読む。send_requested=falseでも他の入力観察は行うが送信候補はnot_evaluated、attempt_count=0に限定する。",
-          "operation tupleと互換receipt/permission/data-useを各fieldについて比較する。比較fieldのJSON object出力はfield名をUnicode codepoint昇順で列挙する。",
-          "compatibility target_tupleをoriginal_used_tupleと12 tuple fieldで対応比較する。original_used_tupleのnull fieldはunknown_original_used_tuple_fieldsに昇順で保持する。",
-          "compatibility bindingのconnection_identity/scope/operation_revisionはこの順で評価する。permission tupleとoperation tupleはfield名のUnicode codepoint昇順で対応し、data conditionの順はclassification,data_use。",
+          "(2) operation/compatibilityのfieldを各宣言集合で比較する。提出key absent=missing、原key absent/null=unknown_original_information、完全一致=content_corresponding_in_fixture、その他=content_conflict。結果objectのkey挿入順は意味を持たず、eligibility_checksへ並べる際のみfield名Unicode codepoint昇順。原L9/保存期待のobject挿入順をこの演算の必須順としない。",
+          "(3) original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
+          "(4) compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。 permission/data条件はalgorithm(5)の入力recordを使う。",
           "eligibility_checks配列のgroup順はoperation_content→compatibility_receipt_content→compatibility_target_vs_used_tuple→compatibility_binding→compatibility_state→permission_content→permission_tuple→permission_validity→data_condition_content/state/scope。各field比較groupの内部はUnicode codepoint昇順。",
           "send_requested=trueならchecksのうち許容literal content_corresponding_in_fixture / compatible_in_fixture_only / valid_in_fixture_only以外を、配列順を維持してwithheld_reasonsへ複製し、return_ownerの初出順で重複なくwithheld_return_ownersへ集約する。理由が空ならeligible_in_fixture_only、それ以外はwithheld。falseなら送信候補not_evaluated、reasons/ownersは空。"
         ]
@@ -6488,15 +6501,15 @@
       "return_projection": {
         "rule_basis": "finite_rule_catalogのfield lists、group order、reason projection。実送信authorityを評価・生成しない。",
         "field_rules": {
-          "operation_tuple_results": "operation_fields集合をUnicode codepoint昇順で比較。提出field absent=missing、原field absent/null=unknown_original_information、完全一致=content_corresponding_in_fixture、他content_conflict。",
-          "compatibility_content_results": "compatibility_fieldsをUnicode昇順で同じpresence/comparison規則で比較。",
-          "compatibility_target_tuple_results": "used_tuple_fields全fieldをUnicode昇順でtarget_tuple対original_used_tuple比較。",
+          "operation_tuple_results": "operation_fields集合を同じpresence/comparison規則で比較。object挿入順は意味を持たず、check配列の順はUnicode昇順。",
+          "compatibility_content_results": "original/submitted_compatibility_receiptを原/提出としてcompatibility_fieldsを同規則で比較。object挿入順は意味を持たない。",
+          "compatibility_target_tuple_results": "(3) original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
           "unknown_original_used_tuple_fields": "original_used_tupleのうち値nullのfield名をUnicode昇順で返す。",
           "retained_compatibility_receipt": "original_compatibility_receiptのnull/recordをそのまま保持。",
           "permission_content_result": "submitted_permissionのkey absentはmissing。present_nullもL9固定fixtureのpermission_content_resultではmissing literalへ写すが、これはpermission record内容が無いという当該field限定の出力であり、raw packetとretained_permissionのpresent_nullをabsentへ置換しない。次にoriginal_permissionがabsent/nullならunknown_original_information。双方にrecord値がある場合、全JSON値一致ならcontent_corresponding_in_fixture、それ以外content_conflict。この優先順で有限fixtureを分類し、実permission資格を発行しない。",
-          "permission_tuple_results": "permission tupleとoriginal_operation_tupleをpermission_fields集合のUnicode昇順で比較し同じmissing/unknown/corresponding/conflict literalを返す。",
+          "permission_tuple_results": "(5) permission内容はoriginal/submitted全recordを既定優先で比較する。permission_tuple_resultsはoriginal_permission.tuple（permission/tupleがrecordでなければ空record）を提出側、original_operation_tupleを原側として比較する。data_condition_resultsはdata_use,classificationを識別keyとして原/提出record比較（object順に意味なし）。各data conditionのstateとscopeはoriginal_data_conditionsから読み、scopeの右辺はoriginal_operation_tuple.scope。eligibility checkへの列挙はdata_condition_orderのclassification,data_use順。",
           "retained_permission": "original_permissionのJSON値を保持。明示nullもnull。",
-          "data_condition_results": "classification,data_use順に、submitted key absent=missing、原key absent=unknown_original_information、両record完全値一致=content_corresponding_in_fixture、その他content_conflict。",
+          "data_condition_results": "data_useとclassification各keyについて提出key absent=missing、原key absent/null=unknown_original_information、原/提出recordの完全値一致=content_corresponding_in_fixture、その他content_conflict。objectのkey挿入順は意味を持たない。",
           "retained_data_conditions": "original_data_conditionsのJSON recordを保持。",
           "eligibility_checks": "group_orderを配列順に連結。group内部のfield比較結果はUnicode昇順。compatibility bindingはconnection_identity,scope,operation_revision順。各checkはkind/field/result/return_ownerを持つ。",
           "withheld_reasons": "send_requested=trueのとき許容literal content_corresponding_in_fixture, compatible_in_fixture_only, valid_in_fixture_only以外のeligibility_checksを元配列順に全field保持。falseなら空配列。",
@@ -6506,7 +6519,15 @@
           "compatibility_and_permission_are_separate": "常にtrue（異なる入力record・別checkとして保持することを示す論理値）。",
           "return_owners": "catalog return_ownersを返す。",
           "claim_results": "raw claimsを同一keyで写しtrue=rejected、false=none。",
-          "effects": "finite_fields_and_literals.effect_fields全てfalse。"
+          "effects": "finite_fields_and_literals.effect_fields全てfalse。",
+          "eligibility_check_details": {
+            "compatibility_state": "kind=compatibility_state, field=result。original_compatibility_receipt.resultを読み、key absentはmissing、raw compatibleだけcompatible_in_fixture_onlyへ写す。その他は明示nullを含む原値を保持。",
+            "permission_content": "kind=permission_content, field=record, result=permission_content_result。",
+            "permission_validity": "kind=permission_validity, field=validity。original_permissionがrecordならvalidityの原値（key absentはmissing）、permissionがnullならmissing。明示nullのvalidityは原値nullを保持。",
+            "data_condition_state": "kind=data_condition_state, fieldはclassification/data_use。original_data_conditions[field]がrecordならstate原値（key absentはmissing）、recordでなければmissing。",
+            "data_condition_scope": "kind=data_condition_scope, fieldはclassification/data_use。original_data_conditions[field]がrecordで、そのscope原値がoriginal_operation_tuple.scopeと完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。入力全体の欠落/nullは有限型と未観測境界を守り、資格を生成しない。",
+            "compatibility_binding": "(4) compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。"
+          }
         }
       }
     }
@@ -6652,5 +6673,15 @@
     "objects": "JSON object keyの挿入順は比較せず、key集合と値/型を再帰的に比較する。",
     "arrays": "配列の要素順を保持する。",
     "ordering": "Unicode code point順と、各関数の明示field/group順を区別し、locale/暗黙正規化を使わない。"
+  },
+  "review_correction": {
+    "official_comment": 6182538690,
+    "head": "802fb61ffebd2155726c0ca61a445457d21a2f50",
+    "findings": [
+      "C02D-01",
+      "C02D-02",
+      "C02D-03"
+    ],
+    "scope": "有限source/元90whole期待は不変。欠落/nullの未観測枝も規則を一意にし、一般域完了を生成しない。"
   }
 }
