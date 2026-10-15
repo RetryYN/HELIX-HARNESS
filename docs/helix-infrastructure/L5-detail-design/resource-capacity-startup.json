@@ -1329,12 +1329,12 @@
           "claims",
           "target",
           "model_scope_selected",
-          "model_attributes_ref",
           "model_scope_ref"
         ]
       },
       "pass_through_context": [
         "autoscaling",
+        "model_attributes_ref",
         "network_attributes_ref",
         "offered_route",
         "proposed_product_limit",
@@ -1714,12 +1714,18 @@
       "get": "親key欠落を比較用nullとして観測するだけ。rawを書き換えない。",
       ">=/integer": "原fixture condition rule/boundaryが与えられる有限整数比較。実十分性条件を新設しない。",
       "sorted(set(owners))": "所見owner列のみscalar順unique。",
-      "revision slice": "原identity+ハイフン+suffix形式を前提にidentity+@+suffixへ対応。実source資格を生成しない。"
+      "revision slice": "原identity+ハイフン+suffix形式を前提にidentity+@+suffixへ対応。実source資格を生成しない。",
+      "isinstance(value, dict)": "JSON値がobject/mapであるかだけを型確認する。null/list/stringはobject扱いせず、source資格や条件の適格性を生成しない。",
+      "not x / if x": "有限JSON値のtruthiness。null/false/0/空文字/空list/空mapはfalse、他はtrue。source/ownerの空文字等もnot xで不足側となる。原素材外shapeの意味資格を補完しない。",
+      "in / not in": "record/mapではkey存在、listでは要素membership。原属性のmissing/nullを分離し、存在だけを資格にしない。",
+      "string + string": "所見field名のcapacity_condition.とfield、原request identity+@+revision suffix等を順に連結する。実source resolver/正式revision規約を新設しない。",
+      "len / string slice": "原identity文字数+1の位置からrevision suffixを切り出す。原素材identity-版のprecondition内の有限対応であり、未知形式は未閉包。",
+      "dict.fromkeys / append / update": "固定EFFECTSの全memberをfalseにする。所見appendは順序/重複保持、out.updateは宣言返却rootへ計算値を束縛するだけで実状態/保存を変更しない。"
     },
     "decisions": [
       "共通retentionは8rootを原値から構成。資格literalはsynthetic-only未成立、actual_effects全10false。各public関数は同rawをretentionへ供給して所見/stateを追加する。",
       "claimありを各rootの診断選択で先に処理。F01 unsupported_inference、F02 unsupported_startup_or_threshold、B01 wrong_authority_or_dependencyを原claim順に返し、通常raw不足の追加診断はこの有限scopeで抑止する。claimの実認可/安全性一般免除にせず、全rawをsource保持する。",
-      "F01 freshness→source_ref→targetの順に所見。これらが無い時だけATTRIBUTES順でmissing/null/明示unobservedを列挙。次にModel選択unknown→selected true→明示scope_refを持つfalse。単なるfalse/null attributes_refだけの基本例は観測参照の状態を保持し、明示false scope例だけ追加3memberを返す。",
+      "F01 freshness→source_ref→targetの順に所見。これらが無い時だけATTRIBUTES順でmissing/null/明示unobservedを列挙。次にModel選択unknown→selected true→明示scope_refを持つfalse。model_scope_selected=falseでmodel_scope_ref未供給の基本例は観測参照の状態を保持し、明示false scope例だけ追加3memberを返す。model_attributes_refは本判定で読まず原raw contextとして保持する。",
       "F02 claim無しではcondition record null、boundary、state、target、applies_to、owner、capacity unitの順で条件所見。条件不足時は最後にstartup unfinishedを併記してunknown。条件のfield存在/markerだけから実条件資格を認定しない。",
       "F02 条件所見無しならneeded unknown→capacity unknown→observation stale→request target foreign→needed unit foreignを先に判定。いずれもnot_comparable。これら無しで原fixture inclusive/available_at_least_needed ruleのcapacity.value>=needed.valueだけを比較。等値は適格情報、不足はdecision ownerへ返す。実起動/予約や製品閾値ではない。",
       "B01 claim無しでは同request identity/revisionから組み立てたrequest_ref、raw.resource_snapshot_ref、candidate ownerの順で不足bindingを比較。binding不一致が優先し、無い場合だけshortage unknownを返す。原candidate全順/未選択stateを保存し、offered_routeが6経路のいずれでも実候補採用を生成しない。原oracleに無いoffered route返却rootは足さない。",
