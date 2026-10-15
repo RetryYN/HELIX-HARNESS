@@ -4452,5 +4452,10 @@
     "status": "corrected_pending_parent_and_independent_review",
     "original_33_raw_expected": "unchanged",
     "new_domain": "有限NDJSON域を明示し12局所診断whole、unknown/unsupported3whole、contextnull/empty3wholeを追加。原74wholeの期待は不変。"
+  },
+  "r2_resolution": {
+    "official_comment": 6182639928,
+    "finding": "H41D-04",
+    "change": "SOURCE-IDENTITY-ABSENTをMISSINGへ統合し、旧IDは引数/期待を重複保存しないalias metadataへ。91独立完全IO=33+30+16+12。原33/元期待値は不変。"
   }
 }

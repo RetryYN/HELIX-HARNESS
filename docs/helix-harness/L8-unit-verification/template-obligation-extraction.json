@@ -453,7 +453,7 @@
   "fixture_contract": {
     "original_cases": 33,
     "local_material_cases": 30,
-    "source_attribute_cases": 17,
+    "source_attribute_cases": 16,
     "scope": "原wholeの書換なし。局所wholeはL4から独立に手固定。全argument/read/returnを型と値で照合しcase ID/完成期待lookupを判定へ使わない。",
     "execution_state": "not_executed",
     "effect": "none",
@@ -19379,79 +19379,6 @@
       }
     },
     {
-      "id": "SOURCE-IDENTITY-ABSENT",
-      "function_ref": "compare_source_attributes",
-      "arguments": {
-        "actual": {
-          "revision": "r1",
-          "scope": "PRODUCT-P",
-          "owner": "synthetic-source-owner"
-        },
-        "required": {
-          "identity": "SYNTHETIC-SOURCE",
-          "revision": "r1",
-          "scope": "PRODUCT-P",
-          "owner": "synthetic-source-owner"
-        }
-      },
-      "expected_return": {
-        "attribute_results": {
-          "identity": {
-            "state": "missing",
-            "value": null
-          },
-          "revision": {
-            "state": "supported_synthetic_condition",
-            "value": "r1"
-          },
-          "scope": {
-            "state": "supported_synthetic_condition",
-            "value": "PRODUCT-P"
-          },
-          "owner": {
-            "state": "supported_synthetic_condition",
-            "value": "synthetic-source-owner"
-          }
-        },
-        "attribute_comparison": {
-          "state": "missing",
-          "value": null
-        },
-        "actual_qualification_established": false,
-        "qualification_provider": {
-          "state": "unknown",
-          "value": null
-        }
-      },
-      "expected_canonical_sha256": "5d393446fa39de8da232a2f1709b595b9e015eb956f0b2d0c3d608f349f9623e",
-      "independent_oracle_rule": "L4 qualification_ruleのidentity absentは当該属性missing。他属性一致と実資格未成立を別保持。",
-      "basis": {
-        "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
-        "json_pointer": "/contracts/0/qualification_rule",
-        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158"
-      },
-      "execution_state": "not_executed",
-      "effect": "none",
-      "equivalent_input_alias_of": "SOURCE-IDENTITY-MISSING",
-      "qualification_scope_difference": {
-        "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/0/qualification_rule",
-        "implemented_subset": [
-          "identity",
-          "revision",
-          "scope",
-          "owner"
-        ],
-        "not_implemented_by_helper": [
-          "meaning",
-          "required_set"
-        ],
-        "preserve": "原L4の意味と必要集合の独立比較義務は保持。4属性helperは部分材料であり全qualificationではない。",
-        "change": "この補助関数はRef属性の比較だけを具体化し、意味と必要集合の完成を返さない。",
-        "reason": "実meaning source/必要集合/owner root/providerのexact bindingは未供給。metadataから意味/必要集合を推測する実装を作らない。",
-        "responsibility": "meaningは各原HARNESS template/CORE009 applicability/source契約、必要集合は同scopeのowner-qualified原母集合を供給し別内容比較へ結ぶ。実provider/qualificationは未成立。"
-      }
-    },
-    {
       "id": "SOURCE-IDENTITY-NULL",
       "function_ref": "compare_source_attributes",
       "arguments": {
@@ -20472,5 +20399,18 @@
     "status": "corrected_pending_parent_and_independent_review",
     "original_33_raw_expected": "unchanged",
     "new_domain": "有限NDJSON域を明示し12局所診断whole、unknown/unsupported3whole、contextnull/empty3wholeを追加。原74wholeの期待は不変。"
+  },
+  "source_attribute_aliases": [
+    {
+      "retired_case_id": "SOURCE-IDENTITY-ABSENT",
+      "canonical_case_id": "SOURCE-IDENTITY-MISSING",
+      "expected_canonical_sha256": "5d393446fa39de8da232a2f1709b595b9e015eb956f0b2d0c3d608f349f9623e",
+      "reason": "同一完全引数・同一whole期待の重複caseを統合。旧IDは元git記録から辿り、このaliasで同じ期待へ解決する。独立IO/被覆として数えない。"
+    }
+  ],
+  "r2_resolution": {
+    "official_comment": 6182639928,
+    "finding": "H41D-04",
+    "change": "SOURCE-IDENTITY-ABSENTをMISSINGへ統合し、旧IDは引数/期待を重複保存しないalias metadataへ。91独立完全IO=33+30+16+12。原33/元期待値は不変。"
   }
 }
