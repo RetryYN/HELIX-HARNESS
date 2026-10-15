@@ -15807,6 +15807,587 @@
               "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
               "meaning": "L4 endpoint_order[4:6]のPresenceおよびJSON型付き値比較。"
             }
+          },
+          {
+            "id": "LOCAL-INTERMEDIATE-OBJECT-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/nokey/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "missing",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/core_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/association/core_endpoint/pointer"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "f33035a7a0de7a20517fcea4c499862eb409d418aa9a0e173d7e38ffbee6bc4e",
+            "expected_endpoint_states": {
+              "core": "missing",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "L4 endpoint_order[4]の途中null/scalar容器不足をmissingとして保持する既存意味に沿い、残tokenがある途中Absentも容器不足とする。終端Absentの一致規則へ進めない。L3/L10 F04の原参照/不足保持。"
+            }
+          },
+          {
+            "id": "LOCAL-INTERMEDIATE-ARRAY-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/9/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "missing",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/core_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/association/core_endpoint/pointer"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "5bdcfa33ea382c6a20068cbc3cd30b2cfd8d7ec4a8fa60bfee22c781623e6266",
+            "expected_endpoint_states": {
+              "core": "missing",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "L4 endpoint_order[4]の途中null/scalar容器不足をmissingとして保持する既存意味に沿い、残tokenがある途中Absentも容器不足とする。終端Absentの一致規則へ進めない。L3/L10 F04の原参照/不足保持。"
+            }
+          },
+          {
+            "id": "LOCAL-INTERMEDIATE-ARRAY-DASH",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/-/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "missing",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/core_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/association/core_endpoint/pointer"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "bcf76f7d96b89c4e3ed1a9303f031dad0215c0170a7f05566954cc5f12267ab2",
+            "expected_endpoint_states": {
+              "core": "missing",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "L4 endpoint_order[4]の途中null/scalar容器不足をmissingとして保持する既存意味に沿い、残tokenがある途中Absentも容器不足とする。終端Absentの一致規則へ進めない。L3/L10 F04の原参照/不足保持。"
+            }
+          },
+          {
+            "id": "LOCAL-OWNER-AND-SCOPE-CONFLICT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/owner",
+                "value": "other"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/scope",
+                "value": {}
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "conflict",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/core_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/association/core_endpoint/snapshot_ref/owner"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "15f58d73628bf6b662a5878e2e821b09e7b0a277e11b2026771f6045c63694d1",
+            "expected_endpoint_states": {
+              "core": "conflict",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "既存endpoint_order[3]/diagnostic_path_rules.owner_or_scope_conflictのowner優先。"
+            }
+          },
+          {
+            "id": "LOCAL-REQUEST-MULTIPLE-AXES-MISSING",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref",
+                "value": {}
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "unresolved",
+                "candidate_snapshots": [],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/association/core_endpoint/snapshot_ref/identity"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "543b4d7256941cda16b2b2ea997b448ebebe4dc3f4e33061fa5f19a03b961a35",
+            "expected_endpoint_states": {
+              "core": "unresolved",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "既存endpoint_order[0]でidentity/revision/scope/ownerの最初の不足だけを返す。"
+            }
+          },
+          {
+            "id": "LOCAL-CANDIDATE-MULTIPLE-AXES-MISSING",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/ref",
+                "value": {
+                  "identity": "core-snapshot"
+                }
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "core_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/core_snapshots"
+                  }
+                },
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "unresolved",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/core_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/core_snapshots/0/ref/revision"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "1dbefbe8e25f0a82e6bcaac2c003a52303c2b52eea0f243821bff91517285012",
+            "expected_endpoint_states": {
+              "core": "unresolved",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "既存endpoint_order[2]で選択candidateのrevision/scope/ownerの最初の不足だけを返す。"
+            }
+          },
+          {
+            "id": "LOCAL-SNAPSHOT-MEMBER-ABSENT",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/core_snapshots"
+              }
+            ],
+            "expected_complete_return_recipe": {
+              "association_input": {
+                "$copy": {
+                  "root": "case_input",
+                  "pointer": "/association"
+                }
+              },
+              "original_snapshots": {
+                "os_snapshots": {
+                  "$copy": {
+                    "root": "case_input",
+                    "pointer": "/os_snapshots"
+                  }
+                }
+              },
+              "core_endpoint": {
+                "state": "unresolved",
+                "candidate_snapshots": [],
+                "resolved_value": {
+                  "presence": "absent"
+                },
+                "diagnostic_paths": [
+                  "/core_snapshots"
+                ]
+              },
+              "os_endpoint": {
+                "state": "content_corresponding",
+                "candidate_snapshots": [
+                  {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0"
+                    }
+                  }
+                ],
+                "resolved_value": {
+                  "presence": "present",
+                  "value": {
+                    "$copy": {
+                      "root": "case_input",
+                      "pointer": "/os_snapshots/0/payload/core_outputs/0"
+                    }
+                  }
+                },
+                "diagnostic_paths": []
+              },
+              "meaning_comparison": "not_established",
+              "actual_source_qualification": "not_established",
+              "effects": "none"
+            },
+            "expected_complete_return_sha256": "d430314c7d6920a48cc1ff2c6a8bc700631582e739d3f1403a6f1c3dc1583381",
+            "expected_endpoint_states": {
+              "core": "unresolved",
+              "os": "content_corresponding"
+            },
+            "expected_basis": {
+              "l4_pointer": "/contracts/5/source_output_association/endpoint_order",
+              "meaning": "既存logical_output_types.AssociationResult.original_snapshotsは存在するmemberだけを原値保持。欠落memberをnullで補わない。"
+            }
           }
         ],
         "comparison_semantics": "全返却を比較する。boolとnumberを区別し、object key順は無視、array順/重複/Presence/nullを保持する。shaは補助証拠で、値の全比較を省略しない。",
