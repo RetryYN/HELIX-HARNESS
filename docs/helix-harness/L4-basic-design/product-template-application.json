@@ -241,7 +241,489 @@
       ],
       "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
-      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
+      "source_result_reference_projection": {
+        "status": "CORE producerの基本設計。OS記録・source資格・owner資格・使用可否を成立させない。",
+        "purpose": "既存の19軸比較と四つの適用判定をそのまま保ち、その材料に対応するとsourceが主張する結果参照の内容関係を別の返却行で示す。参照の一致は適用判定を承認・変更しない。",
+        "input_roles": [
+          {
+            "field": "application_input",
+            "meaning": "要求Ref、製品scope、工程contract Ref、適用contract Refを含む元入力。これらの値とpresenceを保存する。"
+          },
+          {
+            "field": "computed_rows",
+            "meaning": "既存比較から得た各policy/template/完全binding、disposition、condition_ref/value組、N/A属性のpresence/value、obligation_refs列。既存判定を再計算・上書きしない。"
+          },
+          {
+            "field": "source_envelopes",
+            "meaning": "別sourceから供給されたsource-envelope Ref、qualification claim、result_ref、対象row binding、比較material。入力と別のsource主張として保持する。"
+          }
+        ],
+        "ref_roles": [
+          {
+            "field": "application_policy_ref",
+            "meaning": "入力policyのRef。result_refではない。"
+          },
+          {
+            "field": "na_attributes.ref",
+            "meaning": "NA-recordの原Ref。N/A行のsource result_refではない。"
+          },
+          {
+            "field": "source_envelope_ref",
+            "meaning": "source envelope recordの原Ref。結果Refではない。"
+          },
+          {
+            "field": "result_ref",
+            "meaning": "envelope中にsourceが明示した結果Ref。欠落/nullを別に保つ。入力Ref、関数名、path、digest、NA ref、hashから作らない。"
+          }
+        ],
+        "row_candidate_selection": {
+          "candidate_keys": [
+            "application_policy_ref.identity",
+            "template_ref.identity"
+          ],
+          "meaning": "identityは同一候補の比較集合を作るためだけに使い、受理には使わない。revision/scope/ownerを含む完全Refと完全bindingは次段で比較する。候補が0件なら未解決、複数なら曖昧。先頭選択しない。"
+        },
+        "source_envelope_required_members": [
+          "source_envelope_ref",
+          "qualification_claim.subject_ref",
+          "qualification_claim.subject_revision",
+          "qualification_claim.subject_scope",
+          "qualification_claim.subject_owner",
+          "result_ref",
+          "row_binding.application_policy_ref",
+          "row_binding.template_ref",
+          "row_binding.binding",
+          "material.disposition",
+          "material.condition_pairs",
+          "material.obligation_refs",
+          "role"
+        ],
+        "source_relation_fields": [
+          "qualification_claim.subject_ref",
+          "qualification_claim.subject_revision",
+          "qualification_claim.subject_scope",
+          "qualification_claim.subject_owner",
+          "row_binding.application_policy_ref",
+          "row_binding.template_ref",
+          "row_binding.binding",
+          "material.disposition",
+          "material.condition_pairs",
+          "material.obligation_refs",
+          "material.na_attributes"
+        ],
+        "material_projection_fields": [
+          "disposition",
+          "condition_pairs",
+          "obligation_refs",
+          "na_attributes"
+        ],
+        "condition_pair_rule": {
+          "shape": "condition_pairsは順序付きrecord列。各recordは{condition_ref: Ref, condition_value: RawValue}を持つ。",
+          "comparison": "各condition_refとcondition_valueを同じrecord内で比較する。別配列のzip、配列位置だけの対応、semantic_comparison.same_meaningの代用をしない。same_meaning=nullは意味比較の未確定値であり、condition_value=nullへ転用しない。"
+        },
+        "presence_rule": {
+          "representation": "比較対象fieldは{presence:\"absent\"}または{presence:\"present\",value:RawValue}として返す。nullとemptyはpresentの値として保持する。",
+          "json_equality": "object key順は無視し、array順・重複は保持する。JSON booleanはnumberと区別し、number同士はJSON数値値を比較する。absenceはnullと等しくない。",
+          "na_only": "N/Aの適用判断自体に必要なreason/decider/target_revision/reentry_conditionは既存比較の責務のまま欠落を失敗所見にする。このsource relationがN/A以外へ四属性を必須化しない。N/A以外で供給された属性もpresence/valueごと比較・返却する。"
+        },
+        "evaluation_order": [
+          "このsource relationはf03基本契約内の独立投影。計算はcalculation_rules、path比較はsource_comparison_pathsに従う。既存applicability decision、義務集合、OS記録に影響しない。"
+        ],
+        "result_row_shape": {
+          "fields": [
+            "application_policy_ref",
+            "template_ref",
+            "binding",
+            "computed_disposition",
+            "computed_condition_pairs",
+            "computed_obligation_refs",
+            "computed_na_attributes",
+            "source_envelopes_input",
+            "source_candidate_envelopes",
+            "candidate_count",
+            "source_result_ref_claims",
+            "source_qualification_claims",
+            "source_relation",
+            "source_relation_reason",
+            "source_relation_difference_paths",
+            "source_relation_missing_paths",
+            "actual_source_qualification",
+            "logical_backflow_owner",
+            "actual_recipient_qualification",
+            "decision_impact",
+            "source_role_claims"
+          ],
+          "route": "source_relationがcontent_correspondingならlogical_backflow_owner=not_required、それ以外は論理戻し先core_owner。実recipient資格は常にnot_established。全状態でdecision_impact=none。 source_role_claimsは各候補の原role presence/valueをそのまま示す。"
+        },
+        "finite_source_cases_basis": {
+          "approved_requirement_object": {
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/25",
+            "id": "HARNESS-L3-009-F03",
+            "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+          },
+          "approved_oracle_object": {
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/25",
+            "id": "HARNESS-L10-009-F03",
+            "canonical_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308"
+          },
+          "decision_record": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+          "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+          "actual_main_admission": "6ccc5d57dded942bb269e0cf83fcb9a0e47f2ab7",
+          "approval_scope": "HELIX-HARNESS x Stage 1 CORE009 F03 only; no OS state, actual authority, issuer, or qualification established.",
+          "local_case_matrix": {
+            "case_count": 24,
+            "result_row_count": 27,
+            "source_role_cases": [
+              "semantic_source",
+              "derived_view",
+              "explanation",
+              "reference_only"
+            ],
+            "result_ref_identity_cases": [
+              "string",
+              "null",
+              "absent",
+              "non-string JSON value"
+            ],
+            "qualification_effect": "なし。全出力のactual_source_qualificationとactual_recipient_qualificationはnot_established。"
+          },
+          "logical_type_source": {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "revision": "28b97e2c5666084c2fe6772f32d9c92e82414b89",
+            "sha256": "42fc4ed7a67b93456b8f8e8698a0e6e831f516a1a082857eab157dab181bd6b5",
+            "pointers": [
+              "/type_contract/types/SourceEnvelope",
+              "/type_contract/types/Ref"
+            ],
+            "used_members": [
+              "SourceEnvelope.role",
+              "Ref.identity"
+            ],
+            "meaning_limit": "role semantics/field domainsの根拠のみ。実資格・source acceptanceを導かない。"
+          }
+        },
+        "legacy_and_failure_basis": [
+          {
+            "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+            "ledger_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+            "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+            "line_quotes": [
+              {
+                "lines": "30",
+                "text": "画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。"
+              },
+              {
+                "lines": "37",
+                "text": "ApplicabilityEvaluatorの不明operator/field/enum、自由文条件はfailureへ返す。"
+              },
+              {
+                "lines": "80-81",
+                "text": "field、operator、value type、enumはschema registryのallowlistで閉じる。unknownはfalseへ丸めず evaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。"
+              },
+              {
+                "lines": "85-91",
+                "text": "template completionはcoverage、requirement/obligation trace、negative oracle、thresholdまたは根拠付きN/A、V-pair edge、unresolved owner/re-entry、source/template/instance revision digest一致を持つ。"
+              }
+            ],
+            "preserve": "source identityと版を別に扱い、unknown/N/A理由とpair traceを保全。",
+            "change": "legacy registry digest、instance digest、planner/runtime、schema allowlistをこの基本source projectionへ移さない。result_refをpath/digest/function nameから作らない。"
+          },
+          {
+            "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+            "source_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+            "line_quotes": [
+              {
+                "lines": "80",
+                "text": "UTW-014: source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る。"
+              },
+              {
+                "lines": "86",
+                "text": "UTW-020: DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い。"
+              },
+              {
+                "lines": "87",
+                "text": "UTW-021: completion evidenceが時刻・prose・自己申告へ戻る余地がある。"
+              }
+            ],
+            "preserve": "absence/null/emptyとrow単位診断、内容根拠の分離。",
+            "change": "旧DB/test/runtime/evidence機構は実行・移植しない。"
+          }
+        ],
+        "unclosed_boundary": "合成packetでの内容比較を検証する設計であり、SourceEnvelope/Qualificationの実issuer・owner資格、実source供給、実OS側record受入を成立させない。OS状態は別pairの別入力のまま。",
+        "source_relation_values": [
+          "content_corresponding",
+          "content_conflict",
+          "unresolved",
+          "unprovided",
+          "ambiguous_duplicate"
+        ],
+        "source_relation_reason_values": [
+          "all_declared_fields_equal",
+          "declared_fields_differ",
+          "source_envelopes_absent",
+          "source_envelopes_empty",
+          "source_envelopes_explicit_null_or_non_array",
+          "candidate_not_found",
+          "candidate_source_members_missing",
+          "candidate_relation_unresolved",
+          "candidate_result_ref_missing",
+          "multiple_candidate_envelopes",
+          "source_role_not_semantic",
+          "candidate_result_ref_identity_invalid"
+        ],
+        "source_comparison_paths": [
+          {
+            "source_path": "/qualification_claim/subject_ref",
+            "computed_path": "/application_input/input_ref"
+          },
+          {
+            "source_path": "/qualification_claim/subject_revision",
+            "computed_path": "/application_input/input_ref/revision"
+          },
+          {
+            "source_path": "/qualification_claim/subject_scope",
+            "computed_path": "/application_input/input_ref/scope"
+          },
+          {
+            "source_path": "/qualification_claim/subject_owner",
+            "computed_path": "/application_input/input_ref/owner"
+          },
+          {
+            "source_path": "/row_binding/application_policy_ref",
+            "computed_path": "/computed_row/application_policy_ref"
+          },
+          {
+            "source_path": "/row_binding/template_ref",
+            "computed_path": "/computed_row/template_ref"
+          },
+          {
+            "source_path": "/row_binding/binding",
+            "computed_path": "/computed_row/binding"
+          },
+          {
+            "source_path": "/material/disposition",
+            "computed_path": "/computed_row/disposition"
+          },
+          {
+            "source_path": "/material/condition_pairs",
+            "computed_path": "/computed_row/condition_pairs"
+          },
+          {
+            "source_path": "/material/obligation_refs",
+            "computed_path": "/computed_row/obligation_refs"
+          },
+          {
+            "source_path": "/material/na_attributes",
+            "computed_path": "/computed_row/na_attributes"
+          }
+        ],
+        "required_source_members": [
+          "/source_envelope_ref",
+          "/qualification_claim/subject_ref",
+          "/qualification_claim/subject_revision",
+          "/qualification_claim/subject_scope",
+          "/qualification_claim/subject_owner",
+          "/result_ref",
+          "/row_binding/application_policy_ref",
+          "/row_binding/template_ref",
+          "/row_binding/binding",
+          "/material/disposition",
+          "/material/condition_pairs",
+          "/material/obligation_refs",
+          "/role"
+        ],
+        "output_path_policy": "source_comparison_pathsはL4で宣言したJSON pointer対応だけを比較する。reader側でsource/computedのfield対応や優先を固定しない。",
+        "calculation_rules": {
+          "collection_member": "source_envelopes",
+          "collection_outcomes": {
+            "absent": {
+              "source_relation": "unprovided",
+              "reason": "source_envelopes_absent"
+            },
+            "explicit_null_or_non_array": {
+              "source_relation": "unresolved",
+              "reason": "source_envelopes_explicit_null_or_non_array"
+            },
+            "empty_array": {
+              "source_relation": "unprovided",
+              "reason": "source_envelopes_empty"
+            }
+          },
+          "candidate_selector": [
+            {
+              "source_path": "/row_binding/application_policy_ref/identity",
+              "computed_path": "/computed_row/application_policy_ref/identity"
+            },
+            {
+              "source_path": "/row_binding/template_ref/identity",
+              "computed_path": "/computed_row/template_ref/identity"
+            }
+          ],
+          "candidate_cardinality": {
+            "zero": {
+              "source_relation": "unresolved",
+              "reason": "candidate_not_found"
+            },
+            "one": "compare_source_envelope",
+            "more_than_one": {
+              "source_relation": "ambiguous_duplicate",
+              "reason": "multiple_candidate_envelopes"
+            }
+          },
+          "required_source_members": [
+            "/source_envelope_ref",
+            "/qualification_claim/subject_ref",
+            "/qualification_claim/subject_revision",
+            "/qualification_claim/subject_scope",
+            "/qualification_claim/subject_owner",
+            "/result_ref",
+            "/row_binding/application_policy_ref",
+            "/row_binding/template_ref",
+            "/row_binding/binding",
+            "/material/disposition",
+            "/material/condition_pairs",
+            "/material/obligation_refs"
+          ],
+          "comparison_paths": [
+            {
+              "source_path": "/qualification_claim/subject_ref",
+              "computed_path": "/application_input/input_ref"
+            },
+            {
+              "source_path": "/qualification_claim/subject_revision",
+              "computed_path": "/application_input/input_ref/revision"
+            },
+            {
+              "source_path": "/qualification_claim/subject_scope",
+              "computed_path": "/application_input/input_ref/scope"
+            },
+            {
+              "source_path": "/qualification_claim/subject_owner",
+              "computed_path": "/application_input/input_ref/owner"
+            },
+            {
+              "source_path": "/row_binding/application_policy_ref",
+              "computed_path": "/computed_row/application_policy_ref"
+            },
+            {
+              "source_path": "/row_binding/template_ref",
+              "computed_path": "/computed_row/template_ref"
+            },
+            {
+              "source_path": "/row_binding/binding",
+              "computed_path": "/computed_row/binding"
+            },
+            {
+              "source_path": "/material/disposition",
+              "computed_path": "/computed_row/disposition"
+            },
+            {
+              "source_path": "/material/condition_pairs",
+              "computed_path": "/computed_row/condition_pairs"
+            },
+            {
+              "source_path": "/material/obligation_refs",
+              "computed_path": "/computed_row/obligation_refs"
+            },
+            {
+              "source_path": "/material/na_attributes",
+              "computed_path": "/computed_row/na_attributes"
+            }
+          ],
+          "comparison_outcomes": {
+            "missing_result_ref": {
+              "source_relation": "unresolved",
+              "reason": "candidate_result_ref_missing"
+            },
+            "any_value_difference": {
+              "source_relation": "content_conflict",
+              "reason": "declared_fields_differ"
+            },
+            "all_values_equal": {
+              "source_relation": "content_corresponding",
+              "reason": "all_declared_fields_equal"
+            },
+            "required_member_missing_priority": {
+              "result_ref": "missing_result_ref",
+              "other_required_members": "missing_required_member"
+            },
+            "missing_required_member": {
+              "source_relation": "unresolved",
+              "reason": "candidate_source_members_missing"
+            }
+          },
+          "fixed_outputs": {
+            "actual_source_qualification": "not_established",
+            "actual_recipient_qualification": "not_established",
+            "decision_impact": "none"
+          },
+          "route_by_relation": {
+            "content_corresponding": "not_required",
+            "all_other_values": "core_owner"
+          },
+          "candidate_role_rule": {
+            "path": "/role",
+            "allowed_value": "semantic_source",
+            "other_declared_values": {
+              "source_relation": "unresolved",
+              "reason": "source_role_not_semantic"
+            },
+            "unknown_or_invalid_value": "原role値を保持してsource_relation=unresolved、reason=source_role_not_semantic。資格や内容一致へ丸めない。"
+          },
+          "result_ref_identity_rule": {
+            "object_path": "/result_ref",
+            "identity_path": "/result_ref/identity",
+            "valid_when": "result_ref is object AND identity member is present AND its JSON value kind is string",
+            "absent_or_null": {
+              "source_relation": "unresolved",
+              "reason": "candidate_result_ref_missing",
+              "missing_path": "/result_ref/identity"
+            },
+            "other_kind": {
+              "source_relation": "unresolved",
+              "reason": "candidate_result_ref_identity_invalid",
+              "difference_path": "/result_ref/identity"
+            },
+            "preserve_raw": true
+          },
+          "stage_order": [
+            "collection presence",
+            "candidate selection",
+            "candidate cardinality",
+            "required member確認",
+            "roleとresult_ref.identity確認",
+            "source/computed field比較",
+            "return row組立"
+          ]
+        },
+        "legacy_delta_reason": "旧資産のexact set・source identity・版・N/A根拠を保持しつつ、COREのsource result_refを新しい外部source fieldからそのまま投影する候補関係を明示する。旧path/digest・関数名からのID生成を禁止するのは旧template identity規則とCORE Ref field分離に沿う。source資格は別未成立。",
+        "fixture_disposition_values": {
+          "required": "原L8 normal fixture",
+          "conditional": "原L8 normal fixture",
+          "na": "原L8 normal fixture N/A表記",
+          "unresolved": "原L8 normal fixture"
+        },
+        "source_record_role": {
+          "source_type": "SourceEnvelope.role (既存L5 logical type)",
+          "finite_values": [
+            "semantic_source",
+            "derived_view",
+            "explanation",
+            "reference_only"
+          ],
+          "comparison_use": "semantic_sourceだけをsource content relationの根拠候補として比較する。他roleは原envelope/role claimを保持してunresolvedへ返す。role値はqualification_ref/qualification claim、issuer、owner資格、source受入を成立させない。",
+          "source_envelope_adapter": "このF03 SourceResultEnvelopeはSourceEnvelopeのrole semanticsを保持し、別途qualification claim・row binding・materialを同梱する投影record。L5の基底SourceEnvelopeそのものと同一wire shapeとは主張しない。"
+        },
+        "result_reference_identity_rule": {
+          "source_type": "Ref.identity (既存L5 logical type: string|null)",
+          "usable_for_reference_projection": "result_refがobjectでidentity memberが存在し、そのvalueがJSON stringの場合だけ参照claimとして保持する。identity=nullまたはAbsentは参照identity未供給、他JSON型はinvalid raw valueとして保持しunresolvedにする。空文字を勝手に資格/意味/有効性へ昇格しない。",
+          "qualification_boundary": "参照identityが供給されても独立source envelopeとの内容対応以外の資格・真正性・採用を意味しない。"
+        }
+      }
     },
     {
       "id": "HARNESS-L4-009-F04",
