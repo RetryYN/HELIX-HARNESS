@@ -10,7 +10,7 @@
     "historical_sequence_stage": "Stage 1",
     "authoring_stage": "Stage 1",
     "approved_content_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
-    "boundary": "知識と共通descriptorの各版軸、互換と未観測限界の局所照合。実呼出し/lifecycle成立を生成しない。"
+    "boundary": "知識と共通descriptorの版軸、互換、未観測限界を局所照合する。実呼出しやlifecycle成立は生成しない。"
   },
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -241,87 +241,103 @@
       }
     ],
     "approved_content_admission_commit": "967bc8f9adc44e40757c0d25238366a87157be89",
-    "admission_audit_head": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "admission_audit_head": "193852a7069ab8c79c49b4766d680c70466e0e55",
     "admission_audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
     "record_path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
     "record_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-    "record_sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+    "record_sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21",
+    "admission_audit_note": "監査fileはPR admission commit 888c6208時点には存在しない。後続の193852a7069ab8c79c49b4766d680c70466e0e55で初出し、その後のsource_mainに固定されている。承認自体はdecision recordとactual admission entryで確認し、監査fileの遡及存在を主張しない。"
   },
   "source_pins": [
     {
       "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+      "bytes": 48699
     },
     {
       "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+      "bytes": 24929
     },
     {
       "path": "docs/helix-brain/L3-requirements/business-requirements.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+      "bytes": 28431
     },
     {
       "path": "docs/helix-brain/L10-verification/functional-verification.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+      "bytes": 55987
     },
     {
       "path": "docs/helix-brain/L10-verification/nfr-verification.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+      "bytes": 27095
     },
     {
       "path": "docs/helix-brain/L10-verification/business-verification.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+      "bytes": 31508
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "bytes": 78839
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+      "bytes": 27596
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "bytes": 474763
     },
     {
       "path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+      "sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21",
+      "bytes": 5295
     },
     {
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "bytes": 1130244
     },
     {
       "path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "08b7f93899d3b5aeeb335b8445901d451cdac55a07616f83d9651c77bb8391ea"
+      "sha256": "08b7f93899d3b5aeeb335b8445901d451cdac55a07616f83d9651c77bb8391ea",
+      "bytes": 16076
     },
     {
       "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "8be2d54ea8bd0404ee2e96913a4a1a150d74629d35fe676f177fc15ed1f7c4fb"
+      "sha256": "8be2d54ea8bd0404ee2e96913a4a1a150d74629d35fe676f177fc15ed1f7c4fb",
+      "bytes": 682866
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "bytes": 6317
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
-      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919
     }
   ],
   "legacy_source_basis": {
@@ -612,15 +628,7 @@
         "missing",
         "unknown",
         "content_corresponding_in_fixture",
-        "content_conflict",
-        "mismatch",
-        "in_declared_fixture_range",
-        "out_of_declared_fixture_range",
-        "state_eligible_in_fixture",
-        "state_not_eligible_in_fixture",
-        "same_target_in_fixture",
-        "different_target",
-        "evidence_corresponding_in_fixture_only"
+        "content_conflict"
       ]
     },
     "NoEffectFlags": {
@@ -711,7 +719,8 @@
       "kind": "enum",
       "values": [
         "same exact candidate revisions and scope only; no actual held-out evaluation"
-      ]
+      ],
+      "human_explanation_ja": "同一候補revision/scopeの合成fixture観測だけを示し、実際の未見評価を示さない。"
     },
     "CandidateEvidenceResult": {
       "kind": "enum",
@@ -724,6 +733,7 @@
       "kind": "enum",
       "values": [
         "missing",
+        "unknown",
         "content_corresponding_in_fixture",
         "content_conflict"
       ]
@@ -1051,6 +1061,14 @@
         "null",
         "boolean"
       ]
+    },
+    "JsonValueOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "JsonValue"
+      ],
+      "meaning": "JSON null、または有限fixtureから保持したJSON値。Absentはオブジェクトmemberの欠落として別に表す。"
     }
   },
   "functions": [
@@ -1128,7 +1146,14 @@
           "present_equal": "content_corresponding_in_fixture",
           "present_different": "content_conflict",
           "equality": "json_value_equality",
-          "to": "knowledge_results"
+          "to": "knowledge_results",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 2,
@@ -1148,7 +1173,14 @@
           "present_equal": "content_corresponding_in_fixture",
           "present_different": "content_conflict",
           "equality": "json_value_equality",
-          "to": "descriptor_results"
+          "to": "descriptor_results",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 3,
@@ -1311,6 +1343,43 @@
         },
         {
           "step": 12,
+          "op": "mark_unknown_on_equalities",
+          "comparisons": [
+            {
+              "left": "input.original_knowledge.version",
+              "right": "input.original_descriptor.artifact_version",
+              "output_record": "output.descriptor_results",
+              "output_field": "artifact_version",
+              "unless_claim_true": "knowledge_as_artifact"
+            },
+            {
+              "left": "input.submitted_knowledge.version",
+              "right": "input.submitted_descriptor.artifact_version",
+              "output_record": "output.descriptor_results",
+              "output_field": "artifact_version",
+              "unless_claim_true": "knowledge_as_artifact"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.original_descriptor.contract_version",
+              "output_record": "output.descriptor_results",
+              "output_field": "contract_version",
+              "unless_claim_true": "target_as_contract"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.submitted_descriptor.contract_version",
+              "output_record": "output.descriptor_results",
+              "output_field": "contract_version",
+              "unless_claim_true": "target_as_contract"
+            }
+          ],
+          "result": "unknown",
+          "meaning": "同じJSON値だけでは別版軸間の来歴を証明しない。knowledge.versionとartifact_versionが同値ならartifact軸をunknown、version_targetとcontract_versionが同値なら実contract版の根拠をunknownにする。値が違う場合にも正式版資格は生成しない。",
+          "to": "descriptor_results"
+        },
+        {
+          "step": 12,
           "op": "fixed_value",
           "value": "not_established",
           "to": "actual_reference_state"
@@ -1401,7 +1470,14 @@
           "different": "mismatch",
           "json_equality": "json_value_equality",
           "to": "axis_input_relations",
-          "null_is_missing": true
+          "null_is_missing": true,
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 2,
@@ -1465,6 +1541,168 @@
                     "op": "is_list",
                     "path": "input.submitted_range_meaning.members_by_axis.$axis"
                   }
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.original_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_required_reference.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
                 }
               ]
             },
@@ -1532,7 +1770,13 @@
             "mismatch",
             "member",
             "nonmember"
-          ]
+          ],
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "scope_binding_rule": "宣言range.scopeは対応するrequired_reference.verification_scopeと一致する場合だけ当該rangeを評価する。未供給/不一致はunknown。"
         },
         {
           "step": 3,
@@ -1613,6 +1857,15 @@
                     "op": "present_nonnull",
                     "path": "input.submitted_state_applicability.eligible_in_fixture"
                   }
+                },
+                {
+                  "op": "contains_placeholder",
+                  "path": "input.submitted_state_applicability",
+                  "markers": [
+                    "",
+                    "TBD",
+                    "unknown"
+                  ]
                 }
               ]
             },
@@ -1699,13 +1952,66 @@
                   "value": false
                 }
               ]
+            },
+            "state_different": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "present_nonnull",
+                  "path": "input.original_required_reference.knowledge_state"
+                },
+                {
+                  "op": "present_nonnull",
+                  "path": "input.submitted_required_reference.knowledge_state"
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "json_equal",
+                    "left": "input.original_required_reference.knowledge_state",
+                    "right": "input.submitted_required_reference.knowledge_state"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "contains_placeholder",
+                    "path": "input.original_required_reference.knowledge_state",
+                    "markers": [
+                      "",
+                      "TBD",
+                      "unknown"
+                    ]
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "contains_placeholder",
+                    "path": "input.submitted_required_reference.knowledge_state",
+                    "markers": [
+                      "",
+                      "TBD",
+                      "unknown"
+                    ]
+                  }
+                }
+              ]
             }
           },
           "branch_result_order": [
+            "state_different",
             "unknown",
             "eligible_true",
             "eligible_false"
-          ]
+          ],
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "state_different": "state_not_eligible_in_fixture",
+          "state_difference_rule": "両required referenceのknowledge_stateが存在し、placeholderでなく、異なる場合はこの候補でstate適用不可を返す。state-applicability record一致だけで異なる要求状態を上書きしない。Absent/Null/placeholderはunknownを優先する。"
         },
         {
           "step": 4,
@@ -1824,20 +2130,6 @@
               "relation_source": "output.axis_input_relations"
             }
           },
-          "merge_relations_from": [
-            "axis_input_relations",
-            "range_axis_relations",
-            "state_axis_relation"
-          ],
-          "axis_precedence": {
-            "missing_or_null": "unknown",
-            "exact_difference": "mismatch",
-            "range_out": "out_of_declared_fixture_range",
-            "range_in": "in_declared_fixture_range",
-            "eligible": "state_eligible_in_fixture",
-            "ineligible": "state_not_eligible_in_fixture",
-            "exact_equal": "content_corresponding_in_fixture"
-          },
           "to": "axis_results",
           "array_order_source": "配列順はaxis_orderで固定し、axis_sourcesは項目定義のlookupにのみ使う。",
           "original_record": "input.original_required_reference",
@@ -1847,7 +2139,8 @@
           "result_output_field": "result",
           "owner_output_field": "return_owner",
           "submitted_output_field": "submitted",
-          "absent_output_value": null
+          "absent_output_value": null,
+          "relation_selection_rule": "各axis_sourcesのrelation_sourceをそのまま用いる。knowledge_stateはstate_eligibilityだけを出所とし、他軸のrange/exact relationを混ぜない。aggregate_reference_applicabilityはstep 10の独立priorityを適用する。"
         },
         {
           "step": 5,
@@ -1859,7 +2152,14 @@
           "different": "content_conflict",
           "to": "range_meaning_result",
           "basis_note": "このwhole比較で供給された宣言の同一性だけを観測し、range意味の実資格を成立させない。",
-          "null_is_absent": true
+          "null_is_absent": true,
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 6,
@@ -1870,7 +2170,14 @@
           "equal": "content_corresponding_in_fixture",
           "different": "content_conflict",
           "to": "state_meaning_result",
-          "null_is_absent": true
+          "null_is_absent": true,
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 7,
@@ -1931,7 +2238,54 @@
               "mismatch",
               "out_of_declared_fixture_range",
               "state_not_eligible_in_fixture"
-            ]
+            ],
+            "range_scope_mismatch": {
+              "op": "or",
+              "values": [
+                {
+                  "op": "and",
+                  "values": [
+                    {
+                      "op": "present_nonnull",
+                      "path": "input.original_range_meaning.scope"
+                    },
+                    {
+                      "op": "present_nonnull",
+                      "path": "input.original_required_reference.verification_scope"
+                    },
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "json_equal",
+                        "left": "input.original_range_meaning.scope",
+                        "right": "input.original_required_reference.verification_scope"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "op": "and",
+                  "values": [
+                    {
+                      "op": "present_nonnull",
+                      "path": "input.submitted_range_meaning.scope"
+                    },
+                    {
+                      "op": "present_nonnull",
+                      "path": "input.submitted_required_reference.verification_scope"
+                    },
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "json_equal",
+                        "left": "input.submitted_range_meaning.scope",
+                        "right": "input.submitted_required_reference.verification_scope"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
           },
           "to": "reference_P_result",
           "priority_order": [
@@ -1955,7 +2309,8 @@
               "not_applicable",
               "applicable"
             ]
-          }
+          },
+          "meaning": "range scopeがrequired verification_scopeと不一致なら不適用。scopeが欠落/unknownならunknownが優先される。"
         },
         {
           "step": 11,
@@ -2078,7 +2433,13 @@
           "different": "content_conflict",
           "to": "evaluation_result",
           "absent": "missing",
-          "null_is_absent": true
+          "null_is_absent": true,
+          "unresolved_relation": "unknown",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ]
         },
         {
           "step": 2,
@@ -2103,10 +2464,25 @@
             "root_absent_or_null",
             "root_not_record",
             "required_field_absent_or_null",
+            "placeholder_unknown",
             "all_required_fields_equal",
             "present_value_different"
           ],
-          "meaning": "非recordのtarget JSON値は比較対象recordを表せずunknown。record内の必要field absent/nullはexisting absent literalを返す。"
+          "meaning": "非recordのtarget JSON値は比較対象recordを表せずunknown。record内の必要field absent/nullはexisting absent literalを返す。",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved": "unknown",
+          "branch_literals": {
+            "root_absent_or_null": "missing",
+            "root_not_record": "unknown",
+            "required_field_absent_or_null": "missing",
+            "placeholder_unknown": "unknown",
+            "all_required_fields_equal": "same_target_in_fixture",
+            "present_value_different": "different_target"
+          }
         },
         {
           "step": 3,
@@ -2290,7 +2666,14 @@
           "present_equal": "content_corresponding_in_fixture",
           "present_different": "content_conflict",
           "equality": "json_value_equality",
-          "to": "common_reference_results"
+          "to": "common_reference_results",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 2,
@@ -2306,7 +2689,14 @@
           "present_equal": "content_corresponding_in_fixture",
           "present_different": "content_conflict",
           "equality": "json_value_equality",
-          "to": "owner_results"
+          "to": "owner_results",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown"
         },
         {
           "step": 3,
@@ -2319,7 +2709,8 @@
             "descriptor_identity",
             "knowledge_revision",
             "scope",
-            "state"
+            "state",
+            "owner"
           ],
           "absent": "missing",
           "present_equal": "content_corresponding_in_fixture",
@@ -2332,13 +2723,24 @@
             "descriptor_identity",
             "knowledge_revision",
             "scope",
-            "state"
+            "state",
+            "owner"
           ],
           "equal": "content_corresponding_in_fixture",
           "different": "content_conflict",
           "missing_precedence": "missing",
           "different_precedence": "content_conflict",
-          "equal_result": "content_corresponding_in_fixture"
+          "equal_result": "content_corresponding_in_fixture",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved_priority": "after_absence_before_equality",
+          "unresolved_relation": "unknown",
+          "meaning": "ownerを含む全指定fieldを比較する。",
+          "unresolved_precedence": "unknown_precedence",
+          "unknown_precedence": "unknown"
         },
         {
           "step": 4,
@@ -2428,6 +2830,90 @@
         },
         {
           "step": 13,
+          "op": "validate_bindings",
+          "checks": [
+            {
+              "left": "input.original_unfinished_obligation.descriptor_identity",
+              "right": "input.descriptor.identity",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.submitted_unfinished_obligation.descriptor_identity",
+              "right": "input.descriptor.identity",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.original_unfinished_obligation.knowledge_revision",
+              "right": "input.knowledge.revision",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.submitted_unfinished_obligation.knowledge_revision",
+              "right": "input.knowledge.revision",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.original_unfinished_obligation.scope",
+              "right": "input.descriptor.verification_scope",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.submitted_unfinished_obligation.scope",
+              "right": "input.descriptor.verification_scope",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.original_unfinished_obligation.owner",
+              "literal": "HARNESS",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.submitted_unfinished_obligation.owner",
+              "literal": "HARNESS",
+              "target": "output.obligation_result"
+            },
+            {
+              "left": "input.original_owners.knowledge_revision_state",
+              "literal": "BRAIN008",
+              "target": "output.owner_results.knowledge_revision_state"
+            },
+            {
+              "left": "input.submitted_owners.knowledge_revision_state",
+              "literal": "BRAIN008",
+              "target": "output.owner_results.knowledge_revision_state"
+            },
+            {
+              "left": "input.original_owners.common_contract",
+              "literal": "HARNESS",
+              "target": "output.owner_results.common_contract"
+            },
+            {
+              "left": "input.submitted_owners.common_contract",
+              "literal": "HARNESS",
+              "target": "output.owner_results.common_contract"
+            }
+          ],
+          "missing": "missing",
+          "different": "content_conflict",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "unresolved": "unknown",
+          "literal_basis": {
+            "HARNESS": "HELIXBRAIN-L3-028-B01は共通exchange/update/unfinished obligationをHARNESS010/011へ参照する。戻し先候補の根拠はL4-028-B01.content_comparison[0..2]。",
+            "BRAIN008": "HELIXBRAIN-L3-028-B01 assigns knowledge revision/state to BRAIN; L4 contract HELIXBRAIN-L4-028-B01 input/output meaning."
+          },
+          "qualification_limit": "owner文字列一致は自己申告recordの整合に限り、実owner資格/権限は成立しない。",
+          "status_priority": [
+            "missing",
+            "unresolved",
+            "different"
+          ]
+        },
+        {
+          "step": 13,
           "op": "fixed_record",
           "value": {
             "actual_call": false,
@@ -2447,13 +2933,16 @@
     }
   ],
   "semantics": {
-    "presence": "Absent/Null/Valueは別状態とする。object member省略はAbsent、明示JSON nullはNull。NullをAbsentへ読み替えない。",
+    "presence": {
+      "説明": "Absentはmemberなし、Nullは明示JSON null、Valueはnull以外のJSON値。欠落はunknownまたはmissingとして契約fieldごとの規則で返し、NullをAbsentへ暗黙変換しない。"
+    },
     "json_equality": "JSON型と値を比較し、真偽値と数値は別型とする。object key順は無視し、array順は保持する。",
-    "unknown": "required source memberがAbsent/Null、またはsource relationを解決できない場合にunknownを返す。新しいwire typeは追加しない。",
+    "unknown": "AbsentとNullを区別する。各algorithm stepのnull_is_missing/null_is_absent等の明示設定に従い、NullをJSON値として比較するfieldとunknown/missingへ送るfieldを分ける。明示placeholder（空文字列、TBD、unknown）はstepが列挙したfieldでunknownを返し、一般の全string domainへ拡張しない。",
     "claim_results": "各関数が列挙した出力keyを固定順で全て返す。入力claim key absent/null/non-booleanはunknown、明示falseはnone、明示trueはrejected。未知keyは当該有限field群で評価しない。claimは入力値を変更せず、資格を成立させない。",
     "effect_boundary": "全actual effect flagはfalse、actual operation/reference状態はnot_establishedのままとする。",
     "range_limit": "members_by_axisは独立に供給された合成fixture内の有限集合としてのみ比較する。この文書はSemVer、caret、比較演算子、集合完全性、実compatibility codecを定義しない。",
-    "owner_limit": "BRAIN008/HARNESSはL4/L10で指定された戻し先候補であり、合成owner値からowner資格や権限を成立させない。"
+    "owner_limit": "BRAIN008/HARNESSはL4/L10で指定された戻し先候補であり、合成owner値からowner資格や権限を成立させない。",
+    "input_domain": "signature型外のraw値は型付き関数の引数ではなく、この論理比較へ渡さない。型外入力時の実runtime応答や資格判定は未成立。型定義を拡張してcurrent/acceptedをCandidateStateとして受理しない。"
   },
   "owner_output_boundary": {
     "implemented_owner_return_roots": [
@@ -2478,7 +2967,20 @@
     "実descriptor/knowledge source qualification",
     "runtime動作、実call/registration/distribution/rollback/adoption",
     "L6関数設計/L7関数対検証/L11実受入",
-    "全92親/430対の詳細設計閉包"
+    "全92親/430対の詳細設計閉包",
+    {
+      "obligation_ref": "HELIXBRAIN-L3-028-N01 / HELIXBRAIN-L4-028-N01.input_meanings[0]",
+      "field": "CandidateTarget.descriptor_version_axis / CandidateTarget.knowledge_version_axis",
+      "reason": "L9-N01固定sourceには未見候補のidentity/revision/scopeはあるが各version軸とdescriptor compatibility range/state applicability recordが供給されていない。L5-N01署名も同じ情報を受け取らないため、F01/F02契約を未見候補へ適用したとは判定しない。",
+      "consumer": "BRAIN L2-008はknowledge revision/state、HARNESS L2-010/011はdescriptor版・依存・scope。対象field witnessの追加まではこの要求の版軸適用義務は未実現であり、accepted/currentへ外挿しない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "l4_ref": "HELIXBRAIN-L4-028-F02",
+      "field": "original/submitted_range_meaning.identity/revision と required_reference.compatibility_range_ref",
+      "reason": "L9-F02 rawには宣言range recordとrequired descriptor tupleがあるがrequired referenceへcompatibility_range_ref identity/revisionを結ぶ独立fieldが供給されない。scopeとversion-membershipは照合するが、range identity/revisionのdescriptorへの正式bindingは成立したとしない。",
+      "return_owner": "HARNESS L2-010/011 descriptor boundary"
+    }
   ],
   "json_equality_semantics": {
     "operator": "json_value_equality",
@@ -2487,5 +2989,193 @@
     "arrays": "要素数と順序を保って再帰比較する。",
     "objects": "key集合を比較し、対応するvalueを再帰比較する。",
     "null_and_absent": "nullは明示値。Absentは未供給として区別する。"
+  },
+  "operator_contract": {
+    "語彙出所": "本L5のfunctions[*].algorithmに実在する演算子の閉じた語彙。追加/未定義演算子はこの候補関数の論理域外。",
+    "operators": {
+      "aggregate_reference_applicability": "axis_resultsとrange/state意味結果、range_scope_mismatch式からpriority_orderどおりに適用結果を返す。",
+      "candidate_evidence_relation": "target relation、評価whole relation、evaluation.result/stateをstep operandsどおり照合する。",
+      "claims_true_rejected": "列挙keyを順に全て出力し、absent/null/nonboolean/true/falseをstep literalsへ写す。",
+      "collect_null_members": "指定されたrecord群の明示null memberだけを観測順に出力する。",
+      "compare_fields": "宣言field順でmember presence、placeholder、JSON等値を評価しfield-result recordを返す。",
+      "compare_record_projection": "指定fieldを順に比較し、stepのmissing/conflict/equal優先でscalar relationを返す。",
+      "compare_records": "指定fieldごとにmissing、placeholder unknown、JSON等値を評価する。",
+      "compare_target": "target record field群のpresence、placeholder、JSON等値をbranch_result_orderで評価する。",
+      "compare_whole": "whole値のpresence、placeholder、JSON等値を評価する。",
+      "copy_field": "source pathのJSON valueを保持し、Absent時のみabsent_valueを返す。",
+      "copy_value": "source pathのJSON valueを保持し、Absent時のみabsent_valueを返す。",
+      "fixed_record": "stepに宣言した合成有限recordをそのまま返す。",
+      "fixed_value": "stepに宣言した有限値をそのまま返す。",
+      "mark_unknown_on_equalities": "stepのpath pairがJSON等値なら対応する出力relationをunknownへ置く。ただしstepが指定したtrue claimが存在する場合はclaim拒否との順序に従い保持する。",
+      "membership_by_axis": "version_axes順にbranch_conditionsを評価しbranch_result_orderの先頭一致をresult_literalsへ写す。",
+      "ordered_axis_results": "axis_order順にstep axis_sourcesで参照したraw値と中間relationを返す。",
+      "owner_routes": "fixed_routesで宣言された戻し先候補または入力値を出力へ写す。資格を示さない。",
+      "project_record": "fieldsの順で指定memberだけをAbsent除外して投影する。",
+      "state_eligibility": "step branch_conditionsとbranch_result_orderを評価しstate relationを返す。",
+      "validate_bindings": "checksの左右path/固定literalをJSON等値で確認し、stepのpriorityで宣言済みtarget relationを更新する。"
+    },
+    "operator_order": [
+      "aggregate_reference_applicability",
+      "candidate_evidence_relation",
+      "claims_true_rejected",
+      "collect_null_members",
+      "compare_fields",
+      "compare_record_projection",
+      "compare_records",
+      "compare_target",
+      "compare_whole",
+      "copy_field",
+      "copy_value",
+      "fixed_record",
+      "fixed_value",
+      "mark_unknown_on_equalities",
+      "membership_by_axis",
+      "ordered_axis_results",
+      "owner_routes",
+      "project_record",
+      "state_eligibility",
+      "validate_bindings"
+    ],
+    "expression_operators": {
+      "all_record_field_pairs_equal_nonnull": "左record/right recordのfield pair全てが存在しnullでなくJSON等値かを返す。",
+      "and": "values配列の全式がtrueか返す。",
+      "contains_placeholder": "path値にmarkersのいずれかがscalarまたは再帰memberとして含まれるか返す。",
+      "is_list": "path値がJSON arrayか返す。",
+      "json_equal": "両pathが存在し、JSON number/boolを区別するJSON等値か返す。",
+      "list_contains_equal": "list_pathの要素にvalue_pathとJSON等値な値があるか返す。",
+      "literal_equal": "pathの値がstepのliteralとJSON等値か返す。",
+      "not": "value式の真偽を反転する。",
+      "or": "values配列のいずれかがtrueか返す。",
+      "present_nonnull": "path memberが存在し、明示nullでないか返す。"
+    },
+    "normative_authority": "functions[*].algorithmのstep順・branch priority・operandと本operator_contractが唯一の有限計算規範。required_relation等の説明文は対応する式の意味説明で、別の判定枝を追加しない。型外はinput_type_boundaryに従い関数を呼ばない。実資格を生成しない。"
+  },
+  "l4_contract_bindings": [
+    {
+      "contract_id": "HELIXBRAIN-L4-028-F01",
+      "requirement_ref": "HELIXBRAIN-L3-028-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F01",
+      "oracle_ref": "HELIXBRAIN-L9-028-F01",
+      "contract_sha256": "5a999477e42f7871070e0e90e2858e642aa6319893bae861fb6348c7b70f4360",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-F01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "知識版とpack版の別照合",
+        "obligation": "HARNESS010/011のdescriptor identity/kind/contract version/artifact version/dependency identity-version/compatibility range/verification scopeへ、BRAIN固有のknowledge identity/revision/version/stateを別に結ぶ。version_targetは能力目標で実版ではない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-F01"
+      },
+      "component": "knowledge_descriptor_axis_reader",
+      "input_meanings": [
+        "独立知識identity/revision/version/state",
+        "共通descriptor identity/kind/contract/artifact/dependency/compatibility/verification scope",
+        "version_targetと提出版軸"
+      ],
+      "output_meanings": [
+        "版軸別対応/未定情報と元内容保全",
+        "不足別BRAIN008/HARNESS返却候補"
+      ],
+      "content_comparison": [
+        "knowledge versionをartifact/contract/dependency版へ転写しない。",
+        "version_targetは能力目標で実版ではない。知識存在でdescriptor欠落を補わない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-028-F02",
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
+      "oracle_ref": "HELIXBRAIN-L9-028-F02",
+      "contract_sha256": "31cf2e5a883241ab0173105b14b38957eb7a68bca756a03761e1f925348fd3f9",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-F02",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "互換範囲とunknownの返却",
+        "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-F02"
+      },
+      "component": "knowledge_compatibility_reply_reader",
+      "input_meanings": [
+        "要求対象の知識とdescriptor各版軸",
+        "独立宣言range意味とstate適用条件",
+        "当該参照Pと無関係な有効参照Q"
+      ],
+      "output_meanings": [
+        "適用可能/不適用/unknownと版軸/戻し先",
+        "P未成立とQ元状態の保全"
+      ],
+      "content_comparison": [
+        "required versionは宣言range意味内でのみ参照候補。unknown/range外/mismatchを呼出し成立にしない。",
+        "宣言range/state適用の意味を補完せず、旧current/latestへ無言fallbackしない。",
+        "局所の不成立で無関係な有効参照を失効させない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-028-N01",
+      "requirement_ref": "HELIXBRAIN-L3-028-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
+      "oracle_ref": "HELIXBRAIN-L9-028-N01",
+      "contract_sha256": "ec4473c76b4a820d12b1b8549a4d20c93d247ec337e665a7f5c6f4eea258993e",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-N01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "未見版と照合証拠の限界",
+        "obligation": "同scopeの未見knowledge/descriptor候補にも同じ版軸/互換/state契約を適用し、別revisionの成功結果や未観測を利用可能へ補完しない。根拠のあるscopeと未評価/未完を保持し、限定照合から全知識/全案件の安全や成熟を保証しない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-N01"
+      },
+      "component": "knowledge_compatibility_evidence_reader",
+      "input_meanings": [
+        "未見知識/descriptor候補の版軸",
+        "同対象revision/scopeへ結ぶ観測内容",
+        "旧成功/別scope/未評価と外挿claim"
+      ],
+      "output_meanings": [
+        "根拠が当該対象へ対応する範囲と未評価",
+        "未見候補の局所unknownと元状態保全"
+      ],
+      "content_comparison": [
+        "同scopeでも別revisionの成功は対象候補の成功ではない。",
+        "未見fixtureは実未見評価でない。current/accepted/全pack互換の外挿をしない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-028-B01",
+      "requirement_ref": "HELIXBRAIN-L3-028-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-B01",
+      "oracle_ref": "HELIXBRAIN-L9-028-B01",
+      "contract_sha256": "420297269585c25e16e17a9840880a1f7248d8f995f2f7aed4af4c3435c0ceae",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-B01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "共通pack lifecycleへの参照",
+        "obligation": "共通交換/更新/rollback/未完義務の引継ぎはHARNESS010/011を参照し、BRAINが別lifecycleを再定義しない。BRAINは知識revision/stateとdescriptorへの適用を提供し、実呼出し/登録/配布/rollbackの成功を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-B01"
+      },
+      "component": "knowledge_common_lifecycle_boundary_reader",
+      "input_meanings": [
+        "独立HARNESS010/011 common参照とowner",
+        "知識変更対象と未完共通義務の対象",
+        "別実operation ownerと成功claim"
+      ],
+      "output_meanings": [
+        "common参照/未完義務の内容対応",
+        "知識変更/実操作/未完の別結果と戻し先"
+      ],
+      "content_comparison": [
+        "共通exchange/update/rollback/未完義務引継ぎをBRAINが再定義しない。",
+        "descriptor内容一致で実rollback/呼出し/登録/配布成功を生成しない。",
+        "knowledge currentで元の未完共通義務を消さない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "input_type_boundary": {
+    "domain": "functionsのinput_typeへ再帰解決するlogical typeの値だけを受け取る。Absentはrecord member欠落で保持しNullとは区別する。",
+    "outside_domain": "型外入力はこのpure signatureの呼出しではない。具体runtime応答は未成立であり、CandidateStateをcurrent/acceptedへ拡張しない。"
   }
 }
