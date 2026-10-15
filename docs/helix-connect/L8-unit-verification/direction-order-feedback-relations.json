@@ -17,7 +17,7 @@
   "candidate_l5_binding": {
     "path": "docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json",
     "binding": "同一candidateのbytes。既存source revisionに新pathがあると主張しない。",
-    "sha256": "b8ed54d9091a020b0b4fec0f25da119765f81b3ff2f8c61991a2ba346aa501fe"
+    "sha256": "af5c097d0f4ba07cdca3126640f58c93240a0a8d8f9fb9efbc373e5c0da959a3"
   },
   "source_basis": {
     "existing_source_pins": [

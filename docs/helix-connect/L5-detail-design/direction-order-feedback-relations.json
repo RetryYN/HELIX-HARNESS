@@ -25898,6 +25898,6 @@
     "decision_section": "採用する意味と範囲"
   },
   "verification_limits": {
-    "current_scope": "原281＋既存65＋追加6の有限全返却、型内例外境界と15局所AST変異を確認する。F08 limit/budget/expiry等を含む全変異の識別力を主張しない。"
+    "current_scope": "原281＋既存65＋追加6の有限全返却と型内例外境界を確認する。F08 limit/budget/expiry等を含む全変異の識別力を主張しない。"
   }
 }
