@@ -609,30 +609,34 @@
     "ClaimMapF01": {
       "kind": "map",
       "key": "string",
-      "value": "boolean",
+      "value": "JsonValue",
       "key_domain": "この入力群で宣言したclaim field名",
-      "unknown_key": "この有限vectorでは未知keyを評価しない"
+      "unknown_key": "この有限vectorでは未知keyを評価しない",
+      "value_domain_basis": "L5のclaims_true_rejectedはboolean true/false・Absent/null・非booleanを別枝に分け、非booleanをunknownへ保持する。rawの値をbooleanへ強制変換しない。"
     },
     "ClaimMapF02": {
       "kind": "map",
       "key": "string",
-      "value": "boolean",
+      "value": "JsonValue",
       "key_domain": "この入力群で宣言したclaim field名",
-      "unknown_key": "この有限vectorでは未知keyを評価しない"
+      "unknown_key": "この有限vectorでは未知keyを評価しない",
+      "value_domain_basis": "L5のclaims_true_rejectedはboolean true/false・Absent/null・非booleanを別枝に分け、非booleanをunknownへ保持する。rawの値をbooleanへ強制変換しない。"
     },
     "ClaimMapN01": {
       "kind": "map",
       "key": "string",
-      "value": "boolean",
+      "value": "JsonValue",
       "key_domain": "この入力群で宣言したclaim field名",
-      "unknown_key": "この有限vectorでは未知keyを評価しない"
+      "unknown_key": "この有限vectorでは未知keyを評価しない",
+      "value_domain_basis": "L5のclaims_true_rejectedはboolean true/false・Absent/null・非booleanを別枝に分け、非booleanをunknownへ保持する。rawの値をbooleanへ強制変換しない。"
     },
     "ClaimMapB01": {
       "kind": "map",
       "key": "string",
-      "value": "boolean",
+      "value": "JsonValue",
       "key_domain": "この入力群で宣言したclaim field名",
-      "unknown_key": "この有限vectorでは未知keyを評価しない"
+      "unknown_key": "この有限vectorでは未知keyを評価しない",
+      "value_domain_basis": "L5のclaims_true_rejectedはboolean true/false・Absent/null・非booleanを別枝に分け、非booleanをunknownへ保持する。rawの値をbooleanへ強制変換しない。"
     },
     "Relation": {
       "kind": "enum",
@@ -3391,30 +3395,165 @@
       "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
       "oracle_ref": "HELIXBRAIN-L9-028-F02",
       "contract_sha256": "4b2517d6a53a1da1e2cc10cb24e83608ccc4dd25c7eb7fb82d9582fd1edc8342",
-      "approved_requirement": {
-        "id": "HELIXBRAIN-L3-028-F02",
-        "parent": "HELIXBRAIN-L2-028",
-        "title": "互換範囲とunknownの返却",
-        "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
-        "oracle_ref": "HELIXBRAIN-L10-028-F02"
-      },
-      "component": "knowledge_compatibility_reply_reader",
-      "input_meanings": [
-        "要求対象の知識とdescriptor各版軸",
-        "独立宣言range意味とstate適用条件",
-        "当該参照Pと無関係な有効参照Q"
-      ],
-      "output_meanings": [
-        "適用可能/不適用/unknownと版軸/戻し先",
-        "P未成立とQ元状態の保全"
-      ],
-      "content_comparison": [
-        "required versionは宣言range意味内でのみ参照候補。unknown/range外/mismatchを呼出し成立にしない。",
-        "宣言range/state適用の意味を補完せず、旧current/latestへ無言fallbackしない。",
-        "局所の不成立で無関係な有効参照を失効させない。"
-      ],
-      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "contract": {
+        "id": "HELIXBRAIN-L4-028-F02",
+        "requirement_ref": "HELIXBRAIN-L3-028-F02",
+        "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
+        "oracle_ref": "HELIXBRAIN-L9-028-F02",
+        "approved_requirement": {
+          "id": "HELIXBRAIN-L3-028-F02",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "互換範囲とunknownの返却",
+          "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-F02"
+        },
+        "component": "knowledge_compatibility_reply_reader",
+        "input_meanings": [
+          "要求対象の知識とdescriptor各版軸",
+          "独立宣言range意味とstate適用条件",
+          "当該参照Pと無関係な有効参照Q"
+        ],
+        "output_meanings": [
+          "適用可能/不適用/unknownと版軸/戻し先",
+          "P未成立とQ元状態の保全",
+          "宣言rangeとstate意味の供給状態（presence/marker/owner照合）の結果をmeaning_binding_resultsで返す。identity/revisionの独立正本targetが無い場合、その値の存在だけを示し真正性を主張しない。",
+          "meaning_return_ownersは未成立の版軸をHARNESS/BRAIN008の責務候補へ戻す。range scopeと対象verification_scopeの不一致はHARNESSへ返し、資格や実ownerを生成しない。"
+        ],
+        "content_comparison": [
+          "required versionは宣言range意味内でのみ参照候補。unknown/range外/mismatchを呼出し成立にしない。",
+          "宣言range/state適用の意味を補完せず、旧current/latestへ無言fallbackしない。",
+          "局所の不成立で無関係な有効参照を失効させない。",
+          "range/state meaning bindingは宣言recordの必要fieldの供給状態とowner値を検査する。独立identity/revision targetが無い値は一致・資格へ昇格しない。",
+          "range meaning scopeと各側required verification_scopeを別々に照合し、不一致なら当該range軸をHARNESSへ返す。"
+        ],
+        "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+        "operation_effect": "none",
+        "meaning_binding_contract": {
+          "source_obligations": [
+            "HELIXBRAIN-L3-028-F02",
+            "HELIXBRAIN-L10-028-F02"
+          ],
+          "axis_order": [
+            "range",
+            "state"
+          ],
+          "per_axis": {
+            "range": {
+              "input_records": [
+                "original_range_meaning",
+                "submitted_range_meaning"
+              ],
+              "owner_literal": "HARNESS",
+              "return_owner": "HARNESS"
+            },
+            "state": {
+              "input_records": [
+                "original_state_applicability",
+                "submitted_state_applicability"
+              ],
+              "owner_literal": "BRAIN008",
+              "return_owner": "BRAIN008"
+            }
+          },
+          "presence_fields": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ],
+          "presence_only_fields": [
+            "identity",
+            "revision",
+            "scope"
+          ],
+          "types": {
+            "MeaningBindingResults": {
+              "kind": "record",
+              "required": [
+                "range",
+                "state"
+              ],
+              "fields": {
+                "range": {
+                  "enum": [
+                    "content_corresponding_in_fixture",
+                    "missing",
+                    "unknown",
+                    "content_conflict"
+                  ]
+                },
+                "state": {
+                  "enum": [
+                    "content_corresponding_in_fixture",
+                    "missing",
+                    "unknown",
+                    "content_conflict"
+                  ]
+                }
+              },
+              "additional_members": false
+            },
+            "MeaningReturnOwner": {
+              "kind": "record",
+              "required": [
+                "axis",
+                "return_owner"
+              ],
+              "fields": {
+                "axis": {
+                  "enum": [
+                    "range",
+                    "state"
+                  ]
+                },
+                "return_owner": {
+                  "enum": [
+                    "HARNESS",
+                    "BRAIN008"
+                  ]
+                }
+              },
+              "additional_members": false,
+              "axis_owner_pairs": [
+                [
+                  "range",
+                  "HARNESS"
+                ],
+                [
+                  "state",
+                  "BRAIN008"
+                ]
+              ]
+            }
+          },
+          "markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "marker_comparison": "JSON文字列の完全一致。大小文字/空白を補正せず、配列要素とrecord値を再帰走査する。",
+          "binding_status_priority": [
+            "missing",
+            "unknown",
+            "content_conflict",
+            "content_corresponding_in_fixture"
+          ],
+          "binding_rules": [
+            "各sideの必要memberがAbsent/nullならmissing、再帰markerならunknown。ownerが供給済みで非markerかつ当該軸literalと異なるならcontent_conflict。identity/revision/scopeの供給はpresenceだけを観測し、独立targetとの一致・真正性は主張しない。",
+            "軸内の不足をbinding_status_priorityの先行値へ合成し、同順位は既存値を保持する。供給済みpresence-only memberは既存値を上書きしない。"
+          ],
+          "return_composition": {
+            "when": "当該range/stateのmeaning_resultまたはbinding_resultがcontent_corresponding_in_fixture以外なら当該axis/return_owner候補を返す。rangeでは、各sideのrange scopeと同側required_reference.verification_scopeが供給済み・非null・非markerで異なる場合もHARNESSへ返す。",
+            "order": [
+              "range",
+              "state"
+            ],
+            "duplicates": "同じaxis/return_ownerの完全一致recordは一件。binding不足・meaning不一致・scope不一致が重なっても同じ候補を増やさない。",
+            "empty": "両軸に返却条件が無ければ[]。",
+            "qualification": "論理上の責務候補であり実owner資格・認可・呼出し成立ではない。"
+          }
+        }
+      }
     },
     {
       "contract_id": "HELIXBRAIN-L4-028-N01",
@@ -3611,16 +3750,17 @@
       "l4_ref": "HELIXBRAIN-L4-028-F02"
     }
   ],
-  "candidate_pair_local_binding": {
-    "l4_path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
-    "l4_sha256_after_edit": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
-    "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
-    "l9_sha256_after_edit": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
-    "classification": "candidate-local bytes; not source_main pins or approved content"
-  },
   "design_admission": {
     "revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
     "pr": 3179,
     "meaning": "candidate-local L4/L9 bytesはこの統合revisionと完全一致。source_main/source_pinsは固定した原資料の証拠として保持する。"
+  },
+  "admitted_pair_source_binding": {
+    "admitted_source_revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
+    "l4_path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
+    "l4_sha256": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
+    "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+    "l9_sha256": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
+    "classification": "admitted main 405 のL4/L9 bytes。source_main/a451の歴史pinおよびL3/L10承認wholeとは別の役割。"
   }
 }
