@@ -7972,7 +7972,7 @@
       "independent_frozen_basis": {
         "L4": "/contracts/1/content_comparison/0、qualification_rule：独立契約参照と対象knowledge版/scopeへ結ぶ。必要契約側のknowledge_refも入力に明示供給されている。",
         "L9_analogue_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
-        "classification_limit": "対応/候補継続が不適切であることは上流義務による。個別コードはL4では規定されないため、既存同軸L9のheld literalを用いた独立whole案として先固定。最終コード選択は親検収へ返す。実source資格を作らない。"
+        "classification_limit": "対応/候補継続が不適切であることはL3/L4の独立契約と対象knowledge版/scopeの束縛義務による。返却literalは同軸L9のheld分類を参照する局所表現であり、実source資格を生成しない。"
       }
     },
     {
@@ -8178,7 +8178,7 @@
       "independent_frozen_basis": {
         "L4": "/contracts/1/content_comparison/0、qualification_rule：独立契約参照と対象knowledge版/scopeへ結ぶ。必要契約側のknowledge_refも入力に明示供給されている。",
         "L9_analogue_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
-        "classification_limit": "対応/候補継続が不適切であることは上流義務による。個別コードはL4では規定されないため、既存同軸L9のheld literalを用いた独立whole案として先固定。最終コード選択は親検収へ返す。実source資格を作らない。"
+        "classification_limit": "対応/候補継続が不適切であることはL3/L4の独立契約と対象knowledge版/scopeの束縛義務による。返却literalは同軸L9のheld分類を参照する局所表現であり、実source資格を生成しない。"
       }
     },
     {
@@ -8384,7 +8384,7 @@
       "independent_frozen_basis": {
         "L4": "/contracts/1/content_comparison/0、qualification_rule：独立契約参照と対象knowledge版/scopeへ結ぶ。必要契約側のknowledge_refも入力に明示供給されている。",
         "L9_analogue_pointer": null,
-        "classification_limit": "対応/候補継続が不適切であることは上流義務による。個別コードはL4では規定されないため、既存同軸L9のheld literalを用いた独立whole案として先固定。最終コード選択は親検収へ返す。実source資格を作らない。"
+        "classification_limit": "対応/候補継続が不適切であることはL3/L4の独立契約と対象knowledge版/scopeの束縛義務による。返却literalは同軸L9のheld分類を参照する局所表現であり、実source資格を生成しない。"
       }
     }
   ],
