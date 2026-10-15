@@ -190,7 +190,9 @@
     "source_pointer": "/verification_obligations/{j}/concrete_cases/{i}/independent_source_packet",
     "source_revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
     "expected_oracle_pointer": "/verification_obligations/{j}/concrete_cases/{i}/expected_material",
-    "oracle_role": "比較専用。実際の出力はL5の関数規則をraw packetから独立計算する。case ID/expected pointerから判定値をlookupしない。"
+    "oracle_role": "独立期待の役割: L9 expected_materialは、rawから算出した結果と後から照合する独立oracleであり、計算器の出力値を供給しない。",
+    "calculation_role": "計算器の役割: 参照されたraw packetをparseし、L5関数規則を適用する。case IDとexpected pointerは計算入力にしない。",
+    "fixture_literal_role": "fixture literalの役割: L5 fixture_boundary_literalsが示す固定境界表示値だけをL5定数として使う。raw owner根拠または実owner資格として扱わない。"
   },
   "cases": [
     {
@@ -3115,5 +3117,52 @@
     "正式schema/codec/registry/実署名/authority/実登録/通信/receipt。",
     "この有限synthetic packet外の値域、型不正値の正式入力時処理、運用時の資格評価。",
     "実L9/L10成立、PO L11 Accepted、全92親/430対の設計閉包と実装準備。"
-  ]
+  ],
+  "document_id": "HELIXCONNECT-L8-001",
+  "source_document_bindings": {
+    "requirement_document_id": "HELIXCONNECT-L3-PREREQUISITE-FUNCTIONAL",
+    "requirements": [
+      "HELIXCONNECT-L3-001-F01",
+      "HELIXCONNECT-L3-001-F02"
+    ],
+    "basic_design_document_id": "HELIXCONNECT-L4-001",
+    "basic_design_contracts": [
+      "HELIXCONNECT-L4-001-F01",
+      "HELIXCONNECT-L4-001-F02"
+    ],
+    "integration_verification_document_id": "HELIXCONNECT-L9-001",
+    "integration_obligations": [
+      "HELIXCONNECT-L9-001-F01",
+      "HELIXCONNECT-L9-001-F02"
+    ],
+    "oracle_document_id": "HELIXCONNECT-L10-PREREQUISITE-FUNCTIONAL",
+    "system_oracles": [
+      "HELIXCONNECT-L10-001-F01",
+      "HELIXCONNECT-L10-001-F02"
+    ]
+  },
+  "fixture_boundary_literals_ref": {
+    "l5_document_id": "HELIXCONNECT-L5-001",
+    "field": "fixture_boundary_literals",
+    "role": "rawから計算する関数は、adapter_transportとF02 return_ownersに限りL5の固定fixture表示literalを使う。これは照合用ラベルで、実ownerの証拠ではない。",
+    "oracle_role": "各L9 expected_materialはraw計算後に照合する独立oracleであり、実出力値やcase ID別lookupの供給元ではない。"
+  },
+  "comparison_semantics": {
+    "json_object": "比較時JSON object key順は無視する。",
+    "json_array": "array要素順を保持して比較する。",
+    "ordinary_field_precedence": [
+      "原member欠落/null → unknown_original_information",
+      "原値あり・提出member欠落 → missing",
+      "提出null → content_conflict",
+      "双方が値あり → JSON型と内容の一致を比較"
+    ],
+    "applicability_precedence": [
+      "原値欠落/null/boolean以外 → unknown_original_information",
+      "提出member欠落 → missing",
+      "提出null/boolean以外、またはboolean値が相違 → content_conflict",
+      "同じboolean値 → content_corresponding_in_fixture"
+    ],
+    "unobserved": "固定81 rawには元declaration全体null、unknown text marker、F02 unfinished member欠落は0件。これらの未観測一般枝を新しいqualification/permissionとして補わない。",
+    "f01_owner_projection": "return_owners.source/consumerはraw absent/nullをnullable outputのnullへ投影し、元のabsent/null distinctionはretained_declarationで保つ。adapter_transportはL5の固定fixture literalであり、実owner根拠ではない。"
+  }
 }

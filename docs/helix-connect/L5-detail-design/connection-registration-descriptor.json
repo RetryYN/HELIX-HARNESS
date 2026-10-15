@@ -275,10 +275,10 @@
         "content_conflict"
       ],
       "semantics": {
-        "content_corresponding_in_fixture": "両側が値を持ちJSON型・内容が等しい",
-        "missing": "期待側が存在するfieldを提出側が省略",
-        "unknown_original_information": "原側の値がnullまたは明示unknown markerで比較不能",
-        "content_conflict": "両側に比較可能な値があるがJSON型または内容が異なる"
+        "content_corresponding_in_fixture": "通常fieldの原値と提出値がともにpresentで、JSON型と内容が一致する。object key順は無視し、array順は保持する。",
+        "missing": "通常fieldでは原値がpresentのとき提出memberがabsent。元側declaration自体の欠落はfield比較用に{}へ投影した結果であり、raw packetの欠落を消さない。非適用理由fieldはF02 step 4の原/提出presence規則に従う。",
+        "unknown_original_information": "通常fieldでは提出側の状態より先に、原memberがabsentまたはnullならunknown。明示unknown文字列markerは固定rawに0件で、任意文字列をunknownとする一般規則は未評価。",
+        "content_conflict": "通常fieldで提出memberがnull、JSON型が違う、または内容が違う場合。F02 applicability boolが原/提出で異なる場合もcontent_conflict。"
       }
     },
     "RegistrationCandidate": {
@@ -501,12 +501,12 @@
       "return_root": "ConnectionRegistrationAssessment",
       "algorithm": [
         "1. 宣言keyの和集合は、original_declarationsのkey挿入順を先に保ち、その後にsubmitted_declarationsだけにあるkeyを提出側の挿入順で追加する。比較処理の走査順はこの順とする。declaration内のJSON object比較ではkey順を無視し、配列の順序は保持する。",
-        "2. connection identityの存在を原宣言から読み、同一identityグループ内で原declaration全体が異なればoriginal_declaration_collisionをtrueにする。提出側も同様にsubmitted_declaration_collisionを計算する。",
+        "2. 原側と提出側を別々に評価する。各側でidentity memberがabsentまたはnullのdeclarationは衝突groupの対象外にする。値ありidentityごとにdeclaration全体をgroup化し、同じ値のgroup内に異なるdeclarationが複数あれば、その側のcollision=trueとする。個別connectionのidentity_collisionはoriginal_declaration_collision OR submitted_declaration_collisionである。",
         "3. 各connectionごとにL3-001-F01の18 fieldを規定順に走査する。片側にdeclaration keyがない場合、その側はfield比較に限り空object {} として投影する（元packet自体はそのまま保持する）。元fieldがnullまたは欠落ならunknown_original_information、元fieldが値ありで提出fieldが欠落ならmissing、提出fieldがnullならcontent_conflict、双方が値ならJSON構造等値でcontent_corresponding_in_fixture、異なればcontent_conflictとする。元declaration全体がnullのpacketは固定素材にないためその枝は未評価であり、nullを空objectへ読み替えない。",
         "4. retained_declarationへ原JSON object全体、submitted_declarationへ提出JSON object全体を保持し、member削除・正規化・暗黙補完をしない。",
         "5. connectionごとに全fieldがcontent_corresponding_in_fixtureかつ原/提出identity collisionなしならregistration_receipt_candidate=requires_actual_qualification、それ以外はheld。",
-        "6. 各connectionのreturn_ownersは原source_owner/consumer_ownerと固定端点責務HELIX-CONNECTを出所のまま記録する。欠落ownerはnullとして保持し、資格を推測しない。communication_readinessは常にnot_proved_by_registration。",
-        "7. shared_endpoints_are_not_a_collisionはL3-F01の規則命題としてtrueを返す。個々のidentity collisionはconnectionごとのcollision fieldで別に返し、共有endpointだけを衝突理由にしない。",
+        "6. 各connectionのreturn_owners.source/consumerは元declarationのraw owner値から作る。raw memberがabsentまたはnullならこのnullable出力fieldはnullとし、値ありならそのJSON値を返す。元declaration全体はretained_declarationへ保持するため、元packet上のabsentとnullはそこで区別できる。adapter_transportはL5 fixture_boundary_literals.connection_return_owners.adapter_transport.valueを返す。これはL9独立oracleの有限fixture表示literalでありraw/L4のowner根拠ではなく、実資格を示さない。communication_readinessは常にnot_proved_by_registration。",
+        "7. shared_endpoints_are_not_a_collisionはL3-F01の規則命題としてtrueを返す。個別identity_collisionは原側衝突または提出側衝突の論理和としてconnectionごとに返し、identity absent/nullはその側の衝突groupに入れない。共有endpointだけを衝突理由にしない。",
         "8. claimsの各宣言済みbooleanを読み、trueならrejected、falseならnoneを返す。claimsの値で前段のraw比較を上書きしない。",
         "9. effectsは次の7値を常にfalseで返す: actual_registration, actual_send_permission, actual_transport, actual_business_approval, actual_authority, actual_implementation_ready, actual_acceptance。raw比較結果やclaimからこれらを生成しない。"
       ]
@@ -528,14 +528,14 @@
       "return_root": "DescriptorRegistrationAssessment",
       "algorithm": [
         "1. L3-001-F02の20 fieldを規定順に走査しPresenceを比較結果へ写す。共通比較順は、元値が欠落またはnullならunknown_original_information、次に提出値が欠落ならmissing、提出値がnullならcontent_conflict、双方が存在する値ならJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflictとする。JSON objectのkey順は比較せず、配列順は保持する。固定素材に未知を示す文字列markerはなく、任意文字列をunknownへ分類する一般則は未評価である。",
-        "2. 各SECURITY参照fieldごとにoriginal_applicability→submitted_applicabilityを比較する。原値がnull/欠落/boolean以外ならunknown_original_information、次に提出値の欠落はmissing、提出値がnullまたはboolean以外ならcontent_conflict、同じboolean値ならcontent_corresponding_in_fixtureとする。",
+        "2. 各SECURITY参照fieldごとにoriginal_applicability→submitted_applicabilityを比較する。原値がnull/欠落/boolean以外ならunknown_original_information、次に提出値の欠落はmissing、提出値がnullまたはboolean以外ならcontent_conflict、原/提出のbooleanが異なればcontent_conflict、同じboolean値ならcontent_corresponding_in_fixtureとする。",
         "3. 原applicabilityがtrueならsource descriptorとsubmitted descriptorの参照値を比較する。原refがnull/欠落ならfield resultをunknown_original_informationとし、参照を補完しない。",
         "4. 原applicabilityがfalseなら原・提出双方の非適用理由をPresence込みで次の順で比較する: 原理由の欠落はmissing、原理由がnullならunknown_original_information、提出理由の欠落はmissing、提出理由がnullならcontent_conflict、双方が値を持つ場合はJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
         "5. 原applicabilityが欠落/null/nonbooleanならunknown_original_applicabilityへ列挙し、適用/非適用どちらにも確定しない。元の値はそのまま保持する。原で明示falseまたはunknownの参照memberはfield_resultsの対象外にする。",
         "6. not_selected_security_referencesは原の明示falseのみ列挙する。unknown/absentを非適用と扱わない。",
         "7. retained_descriptorとsubmitted_descriptorは全objectをそのまま出力し、retained_unfinished_obligationsは原descriptorにcommon_unfinished_obligationsがあればその配列全体を順序保持で返し、member欠落時は[]を返す。固定48 packetでは当該member欠落は0件のため、欠落時の[]分岐は未観測である。transport_execution_stateはraw値を保持し、宣言比較はtransportを要求しない。",
         "8. 対象となる全field（非適用/unknown参照を除く）とapplicability/reason照合がcontent_corresponding_in_fixtureならrequires_actual_qualification、それ以外はheld。raw claimの拒否結果はこの内容候補値を変えず、claim_resultsとして独立に返す。",
-        "9. return_ownersはL9 raw fixtureに記載されたdeclaration、SECURITY、source-owner、HARNESS010/011の責務識別子を保持する。固定値はL4のfield責務根拠とこのsource packetのowner値に限る。",
+        "9. return_ownersはL5 fixture_boundary_literals.descriptor_return_owners.valuesにある有限fixture表示literalを返す。各値のsourceは記載のL9 independent expected_material pointerであり、raw fixtureやL4のowner記載ではない。これらは実owner資格、権限、approval、routingの事実を表さない。",
         "10. claim boolean trueはrejected、falseはnone。effectは全てfalseで、登録/送信許可/transport/業務承認/authority/implementation readiness/acceptanceを生成しない。"
       ]
     }
@@ -596,5 +596,56 @@
     "F01": 33,
     "F02": 48,
     "source_packets": "L8はL9独立source packetをJSON pointerで参照し、原bytesを複製しない。"
+  },
+  "document_id": "HELIXCONNECT-L5-001",
+  "source_document_bindings": {
+    "requirement_document_id": "HELIXCONNECT-L3-PREREQUISITE-FUNCTIONAL",
+    "requirements": [
+      "HELIXCONNECT-L3-001-F01",
+      "HELIXCONNECT-L3-001-F02"
+    ],
+    "basic_design_document_id": "HELIXCONNECT-L4-001",
+    "basic_design_contracts": [
+      "HELIXCONNECT-L4-001-F01",
+      "HELIXCONNECT-L4-001-F02"
+    ],
+    "integration_verification_document_id": "HELIXCONNECT-L9-001",
+    "integration_obligations": [
+      "HELIXCONNECT-L9-001-F01",
+      "HELIXCONNECT-L9-001-F02"
+    ],
+    "oracle_document_id": "HELIXCONNECT-L10-PREREQUISITE-FUNCTIONAL",
+    "system_oracles": [
+      "HELIXCONNECT-L10-001-F01",
+      "HELIXCONNECT-L10-001-F02"
+    ]
+  },
+  "fixture_boundary_literals": {
+    "connection_return_owners": {
+      "adapter_transport": {
+        "value": "HELIX-CONNECT",
+        "source_path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "source_obligation_id": "HELIXCONNECT-L9-001-F01",
+        "source_json_pointer": "/verification_obligations/0/concrete_cases/0/expected_material/connection_results/P/return_owners/adapter_transport",
+        "meaning": "L9 oracleが要求するfixture表示literal。raw packetやL4から導かれたowner名ではなく、実adapter/transport owner資格の根拠でもない。"
+      },
+      "raw_owner_fields": {
+        "source": "元declarationのsource_ownerはkeyの有無と値をそのまま保持する。return_owners.sourceでは原member欠落/nullをnullへ投影し、値ありなら原JSON値を返す。実資格は含意しない。",
+        "consumer": "元declarationのconsumer_ownerはkeyの有無と値をそのまま保持する。return_owners.consumerでは原member欠落/nullをnullへ投影し、値ありなら原JSON値を返す。実資格は含意しない。"
+      }
+    },
+    "descriptor_return_owners": {
+      "values": {
+        "declaration": "CONNECTION-P-declaration-owner",
+        "security_permission_ref": "HELIX-SECURITY",
+        "data_use_ref": "SOURCE-P-owner",
+        "classification_ref": "SOURCE-P-owner",
+        "common_obligations": "HARNESS010/011-contract-owner"
+      },
+      "source_path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+      "source_obligation_id": "HELIXCONNECT-L9-001-F02",
+      "source_json_pointer": "/verification_obligations/1/concrete_cases/0/expected_material/return_owners",
+      "meaning": "L9 oracleとの有限fixture照合用の固定表示値。L4/rawのowner記載ではなく、実owner、資格、権限、routingの根拠や生成ではない。"
+    }
   }
 }
