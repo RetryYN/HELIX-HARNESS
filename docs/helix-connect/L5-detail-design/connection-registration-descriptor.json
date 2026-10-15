@@ -277,7 +277,7 @@
       "semantics": {
         "content_corresponding_in_fixture": "通常fieldの原値と提出値がともにpresentで、JSON型と内容が一致する。object key順は無視し、array順は保持する。",
         "missing": "通常fieldでは原値がpresentのとき提出memberがabsent。元側declaration自体の欠落はfield比較用に{}へ投影した結果であり、raw packetの欠落を消さない。非適用理由fieldはF02 step 4の原/提出presence規則に従う。",
-        "unknown_original_information": "通常fieldでは提出側の状態より先に、原memberがabsentまたはnullならunknown。明示unknown文字列markerは固定rawに0件で、任意文字列をunknownとする一般規則は未評価。",
+        "unknown_original_information": "通常fieldでは提出側の状態より先に、原memberがabsentまたはnullならunknown。明示unknown文字列markerは固定rawに0件で、任意文字列をunknownとする一般規則は未評価。 common_unfinished_obligationsは原memberがarray以外のとき、collection内容を未解決としてこのstateを返す。fieldの字面や数値自体を禁止する一般規則ではない。",
         "content_conflict": "通常fieldで提出memberがnull、JSON型が違う、または内容が違う場合。F02 applicability boolが原/提出で異なる場合もcontent_conflict。"
       }
     },
@@ -436,7 +436,7 @@
         "retained_descriptor": "Descriptor",
         "submitted_descriptor": "Descriptor",
         "registration_receipt_candidate": "RegistrationCandidate",
-        "retained_unfinished_obligations": "List<JsonValue>",
+        "retained_unfinished_obligations": "UnfinishedObligationsProjection",
         "not_selected_security_references": "List<SecurityRef>",
         "transport_execution_state": "JsonValue",
         "transport_required_for_declaration_comparison": {
@@ -485,6 +485,14 @@
         "null",
         "JsonValue"
       ]
+    },
+    "UnfinishedObligationsProjection": {
+      "kind": "union",
+      "variants": [
+        "null",
+        "List<JsonValue>"
+      ],
+      "meaning": "原memberがarrayなら原配列全体（既知空arrayを含む）。原memberがabsent/null/非arrayならcollection未解決としてnull。原値/有無はretained_descriptorに保持し、field_results.common_unfinished_obligationsのunknown_original_informationとheldを併存する。nullを実際の未完0件や完了へ読み替えない。"
     }
   },
   "function_signatures_and_branches": [
@@ -527,20 +535,20 @@
       ],
       "return_root": "DescriptorRegistrationAssessment",
       "algorithm": [
-        "1. L3-001-F02の20 fieldを規定順に走査しPresenceを比較結果へ写す。共通比較順は、元値が欠落またはnullならunknown_original_information、次に提出値が欠落ならmissing、提出値がnullならcontent_conflict、双方が存在する値ならJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflictとする。JSON objectのkey順は比較せず、配列順は保持する。固定素材に未知を示す文字列markerはなく、任意文字列をunknownへ分類する一般則は未評価である。",
+        "1. L3-001-F02の20 fieldを規定順に走査しPresenceを比較結果へ写す。共通比較順は、元値が欠落またはnullならunknown_original_information、次に提出値が欠落ならmissing、提出値がnullならcontent_conflict、双方が存在する値ならJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflictとする。JSON objectのkey順は比較せず、配列順は保持する。固定素材に未知を示す文字列markerはなく、任意文字列をunknownへ分類する一般則は未評価である。 common_unfinished_obligationsだけは先に本書unfinished_information_contractの原collection形を判定し、原非arrayを通常の双方同値へ進めずunknown_original_informationとする。",
         "2. 各SECURITY参照fieldごとにoriginal_applicability→submitted_applicabilityを比較する。原値がnull/欠落/boolean以外ならunknown_original_information、次に提出値の欠落はmissing、提出値がnullまたはboolean以外ならcontent_conflict、原/提出のbooleanが異なればcontent_conflict、同じboolean値ならcontent_corresponding_in_fixtureとする。",
         "3. 原applicabilityがtrueならsource descriptorとsubmitted descriptorの参照値を比較する。原refがnull/欠落ならfield resultをunknown_original_informationとし、参照を補完しない。",
         "4. 原applicabilityがfalseなら原・提出双方の非適用理由をPresence込みで次の順で比較する: 原理由の欠落はmissing、原理由がnullならunknown_original_information、提出理由の欠落はmissing、提出理由がnullならcontent_conflict、双方が値を持つ場合はJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
         "5. 原applicabilityが欠落/null/nonbooleanならunknown_original_applicabilityへ列挙し、適用/非適用どちらにも確定しない。元の値はそのまま保持する。原で明示falseまたはunknownの参照memberはfield_resultsの対象外にする。",
         "6. not_selected_security_referencesは原の明示falseのみ列挙する。unknown/absentを非適用と扱わない。",
-        "7. retained_descriptorとsubmitted_descriptorは全objectをそのまま出力し、retained_unfinished_obligationsは原descriptorにcommon_unfinished_obligationsがあればその配列全体を順序保持で返し、member欠落時は[]を返す。固定48 packetでは当該member欠落は0件のため、欠落時の[]分岐は未観測である。transport_execution_stateはraw値を保持し、宣言比較はtransportを要求しない。 本有限関数の入力条件として、原common_unfinished_obligationsはmember存在時にJSON arrayである。明示nullまたは配列以外はこの条件を満たさず、本関数の有限出力は定義しない（未評価）。空arrayへの変換や成功補完はしない。提出側の値はこの原値保持条件を狭めず、通常fieldの比較で評価する。",
+        "7. retained_descriptorとsubmitted_descriptorは全objectのmember有無と原値を変更せず出力する。原common_unfinished_obligationsがarrayならその全体を順序保持でretained_unfinished_obligationsへ返し、空arrayも既知の空として保持する。原memberがabsent/null/非arrayならretained_unfinished_obligations=null、field_results.common_unfinished_obligations=unknown_original_information、registration_receipt_candidate=heldとする。これはcollection未解決の投影で、原rawはretained_descriptorへ辿れる。提出側が同値でもこの原不足を相殺しない。既知他19field、適用/非適用理由、claim、transport表示、全false effectは失わない。原arrayで提出が欠落/null/非arrayのときは原arrayを保持し、通常field比較のmissing/content_conflictを残す。transport_execution_stateはraw値を保持し、宣言比較はtransport実行を要求しない。",
         "8. 対象となる全field（非適用/unknown参照を除く）とapplicability/reason照合がcontent_corresponding_in_fixtureならrequires_actual_qualification、それ以外はheld。raw claimの拒否結果はこの内容候補値を変えず、claim_resultsとして独立に返す。",
         "9. return_ownersはL5 fixture_boundary_literals.descriptor_return_owners.valuesにある有限fixture表示literalを返す。各値のsourceは記載のL9 independent expected_material pointerであり、raw fixtureやL4のowner記載ではない。これらは実owner資格、権限、approval、routingの事実を表さない。",
         "10. claim boolean trueはrejected、falseはnone。effectは全てfalseで、登録/送信許可/transport/業務承認/authority/implementation readiness/acceptanceを生成しない。"
       ],
       "finite_input_domain": {
-        "original_common_unfinished_obligations": "原member欠落は未観測の[]表示枝。member存在時はJSON arrayに限る。原48 packetは全件array。原null/非array時の一般的な診断・回復・返却は未評価。",
-        "submitted_common_unfinished_obligations": "提出側は元のJsonValue carrierを保持し、不一致/null/欠落を通常比較へ渡す。"
+        "original_common_unfinished_obligations": "原memberはDescriptorのJsonValue carrierを保持する。arrayは既知collection、absent/null/非arrayはcollection未解決（投影null・比較unknown・候補held）として返す。原declaration全体null等の外側record型外は本変更に含めない。",
+        "submitted_common_unfinished_obligations": "提出側もJsonValue/absenceのまま保持。原arrayなら通常のmissing/null/型内容差比較、原未解決ならunknown優先で、提出値から原collectionを生成しない。"
       }
     }
   ],
@@ -651,5 +659,167 @@
       "source_json_pointer": "/verification_obligations/1/concrete_cases/0/expected_material/return_owners",
       "meaning": "L9 oracleとの有限fixture照合用の固定表示値。L4/rawのowner記載ではなく、実owner、資格、権限、routingの根拠や生成ではない。"
     }
+  },
+  "unfinished_information_contract": {
+    "scope": "FN-C001-02の原common_unfinished_obligationsだけの論理返却具体化。外側record型外、実source資格、登録、通信、SEC許可は生成しない。全92親430対を保持する。",
+    "source_basis": [
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+        "file_bytes_sha256": "0ba016f3b159905a488bb732303a50a9ec056619ab7f4c9337f0e8ad6190f1fe",
+        "pointer": "/contracts/1",
+        "object_canonical_sha256": "cfd4f108daf13605c9f9357f5a86ecc2e51ea6d9563121d7a0bb7de8411c11eb",
+        "exact_value": {
+          "id": "HELIXCONNECT-L4-001-F02",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "oracle_ref": "HELIXCONNECT-L9-001-F02",
+          "approved_requirement": {
+            "id": "HELIXCONNECT-L3-001-F02",
+            "parent": "HELIXCONNECT-L2-001",
+            "title": "共通descriptorと登録境界",
+            "obligation": "能力名、契約/成果物/依存版、scope、correlation、期限、idempotency、result state、適用SECURITY許可/data-use/classification参照を同接続へ保持する。HARNESS010/011の宣言・互換・検証・更新/切戻し/未完義務を参照し、登録を利用許可や業務承認へ変えない。",
+            "oracle_ref": "HELIXCONNECT-L10-001-F02"
+          },
+          "component": "common_descriptor_receipt_reader",
+          "input_meanings": [
+            "原共通descriptor/適用条件/非適用理由",
+            "HARNESS010/011の宣言・互換・検証・更新・切戻し・未完原参照",
+            "提出descriptor/適用条件"
+          ],
+          "output_meanings": [
+            "同接続に束縛した必須field対照と元未完",
+            "適用SEC/source参照の不足と非適用理由/owner返却"
+          ],
+          "content_comparison": [
+            "適用される許可/data-use/classification参照は必要。原適用unknownを全不要にしない。",
+            "原版unknownはnull一致や推測で補完しない。元未完を消去しない。",
+            "登録の宣言対照へ通信実行を必須にせず、許可/業務承認の成立を生成しない。",
+            "原適用trueを提出falseと非適用理由だけで不要にしない。非適用理由の欠落・別版も局所保留する。"
+          ],
+          "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
+          "operation_effect": "none"
+        }
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+        "file_bytes_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421",
+        "pointer": "/requirements/1",
+        "object_canonical_sha256": "8d5668c058b16e09832069ced9860f385776b7f0162db9257cc426b6022f20e1",
+        "exact_value": {
+          "id": "HELIXCONNECT-L3-001-F02",
+          "parent": "HELIXCONNECT-L2-001",
+          "title": "共通descriptorと登録境界",
+          "obligation": "能力名、契約/成果物/依存版、scope、correlation、期限、idempotency、result state、適用SECURITY許可/data-use/classification参照を同接続へ保持する。HARNESS010/011の宣言・互換・検証・更新/切戻し/未完義務を参照し、登録を利用許可や業務承認へ変えない。",
+          "oracle_ref": "HELIXCONNECT-L10-001-F02"
+        }
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L10-verification/functional-verification.json",
+        "file_bytes_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d",
+        "pointer": "/cases/1",
+        "object_canonical_sha256": "d67c68e2228a14cc276b4231856e7c6d93e18faa212fb6d18d16be3e90971954",
+        "exact_value": {
+          "id": "HELIXCONNECT-L10-001-F02",
+          "parent": "HELIXCONNECT-L2-001",
+          "title": "共通descriptorと登録境界",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "positive_input": "完全descriptorと必須値を一つずつ欠落させた入力を比較する。",
+          "expected_observation": "登録/未成立と不足fieldが辿れ、通信実行を登録成立の必須条件にしない。",
+          "negative_input": "登録から送信権/業務承認、依存版推測、必須値欠落。",
+          "failure_observation": "不足は宣言owner、適用許可/data-use意味はSEC/source ownerへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+        "file_bytes_sha256": "514fde6d6d3920875b2e49082558e208c6c8c42f24bd77cacbdfa193dee3cdcd",
+        "pointer": "/logical_type_definitions/Descriptor",
+        "object_canonical_sha256": "1fc550d1bad5787b19b0b91aa01d6caedf56cf4049ee9193c5961b6df0d9a51e",
+        "exact_value": {
+          "kind": "record",
+          "optional_fields": {
+            "connection_identity": "JsonValue",
+            "registration_revision": "JsonValue",
+            "capability": "JsonValue",
+            "contract_revision": "JsonValue",
+            "artifact_revision": "JsonValue",
+            "dependency_revision": "JsonValue",
+            "scope": "JsonValue",
+            "correlation": "JsonValue",
+            "deadline": "JsonValue",
+            "idempotency": "JsonValue",
+            "result_state": "JsonValue",
+            "security_permission_ref": "JsonValue",
+            "data_use_ref": "JsonValue",
+            "classification_ref": "JsonValue",
+            "common_declaration_ref": "JsonValue",
+            "common_compatibility_ref": "JsonValue",
+            "common_validation_ref": "JsonValue",
+            "common_update_ref": "JsonValue",
+            "common_rollback_ref": "JsonValue",
+            "common_unfinished_obligations": "JsonValue"
+          },
+          "additional_keys": "JsonValue mapとして保持。raw JSONのkey欠落とnullをそのまま区別し、Presence wrapperをfixtureへ挿入しない。"
+        }
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+        "file_bytes_sha256": "514fde6d6d3920875b2e49082558e208c6c8c42f24bd77cacbdfa193dee3cdcd",
+        "pointer": "/logical_type_definitions/DescriptorRegistrationAssessment/fields/retained_unfinished_obligations",
+        "object_canonical_sha256": "b247f2411459ed8f44327916cd3f2f3acd44229839c8af57dba010e76718ac87",
+        "exact_value": "List<JsonValue>"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+        "file_bytes_sha256": "514fde6d6d3920875b2e49082558e208c6c8c42f24bd77cacbdfa193dee3cdcd",
+        "pointer": "/function_signatures_and_branches/1/algorithm/6",
+        "object_canonical_sha256": "a1a27ea0fe39edb1875d8fd61bfb3aa87ea04b432ba6afb7521e22effab55d46",
+        "exact_value": "7. retained_descriptorとsubmitted_descriptorは全objectをそのまま出力し、retained_unfinished_obligationsは原descriptorにcommon_unfinished_obligationsがあればその配列全体を順序保持で返し、member欠落時は[]を返す。固定48 packetでは当該member欠落は0件のため、欠落時の[]分岐は未観測である。transport_execution_stateはraw値を保持し、宣言比較はtransportを要求しない。 本有限関数の入力条件として、原common_unfinished_obligationsはmember存在時にJSON arrayである。明示nullまたは配列以外はこの条件を満たさず、本関数の有限出力は定義しない（未評価）。空arrayへの変換や成功補完はしない。提出側の値はこの原値保持条件を狭めず、通常fieldの比較で評価する。"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-connect/L5-detail-design/connection-registration-descriptor.json",
+        "file_bytes_sha256": "514fde6d6d3920875b2e49082558e208c6c8c42f24bd77cacbdfa193dee3cdcd",
+        "pointer": "/function_signatures_and_branches/1/finite_input_domain",
+        "object_canonical_sha256": "74e4e4816424276234dcf7ba6588632c2de96446f3a64088072854003cae2e14",
+        "exact_value": {
+          "original_common_unfinished_obligations": "原member欠落は未観測の[]表示枝。member存在時はJSON arrayに限る。原48 packetは全件array。原null/非array時の一般的な診断・回復・返却は未評価。",
+          "submitted_common_unfinished_obligations": "提出側は元のJsonValue carrierを保持し、不一致/null/欠落を通常比較へ渡す。"
+        }
+      }
+    ],
+    "source_rederivation": {
+      "keep": "原unknownは双方null一致でも保留し、元未完を消去せず、同接続の原rawと既知他fieldを保持する既存L4/L3/L10の意味。原81raw/wholeと既存他branchは保持。",
+      "change": "retained_unfinished_obligationsをListだけからList|nullへ拡張し、原absent/null/非arrayのcollection未解決を表示する。原absentを[]へ投影する旧未観測枝もnullへ訂正し、既知空arrayと分ける。",
+      "reason": "原null/非arrayは広いDescriptor JsonValueで表せるのに旧有限preconditionで返却が未定義だった。原absentの旧[]表示は入力raw/field unknownで不足を別表示していたが、collection自身の既知空と未解決を区別できない。List|nullと既存比較state/候補を結んで、未完0件という成功補完を避ける。要求の変更/新authority gateではない。"
+    },
+    "ordered_rules": [
+      {
+        "original_presence": "present_value",
+        "original_shape": "array",
+        "projection": "原arrayをdeep immutable値としてそのまま保持",
+        "field_comparison": "既存ordinary comparisonの原値/提出presence/型内容比較。原arrayが空でも同じ。"
+      },
+      {
+        "original_presence": "absent | present_null | present_value(non-array)",
+        "projection": null,
+        "field_comparison": "unknown_original_information",
+        "candidate": "held",
+        "raw_retention": "retained_descriptorのmember有無/原値を保持し、提出値から復元しない。"
+      }
+    ],
+    "priority": "原collection形の不足を普通のJSON双方等値より先に判定する。原arrayの場合だけ既存ordinary field比較へ進む。別field/claimの所見は独立に保持し、collectionのunknownで既知他fieldを消さない。",
+    "caller_consumer": "callerは原/提出descriptorを別memberのまま渡す。consumerはprojection nullとfield_results unknown/candidate heldを一緒に読み、原値はretained_descriptorへ辿る。配列が不明でも他fieldと適用/理由/claimの全返却は構成する。",
+    "limits": [
+      "配列要素のJsonValue原値は保持するが、未完義務要素の実意味/資格を審査する方式は追加しない。",
+      "原declaration全体nullはRegistrationPacketのRecord型外。raw→typed caller型外返却/戻し先は別途未結線。",
+      "原sourceの実資格/共通pack参照の実resolver/実recipient/登録receipt/通信/実L9L10/L11/codec/TDD/CI/Readyは未成立。"
+    ]
   }
 }
