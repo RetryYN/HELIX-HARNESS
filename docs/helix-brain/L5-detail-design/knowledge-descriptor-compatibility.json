@@ -246,7 +246,7 @@
     "record_path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
     "record_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
     "record_sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21",
-    "admission_audit_note": "監査fileはPR admission commit 888c6208時点には存在しない。後続の193852a7069ab8c79c49b4766d680c70466e0e55で初出し、その後のsource_mainに固定されている。承認自体はdecision recordとactual admission entryで確認し、監査fileの遡及存在を主張しない。"
+    "admission_audit_note": "対象PR2949のactual admissionは967bc8f9adc44e40757c0d25238366a87157be89。888c6208は別PR2961のmergeで、この対象のadmissionではない。監査fileは193852a7069ab8c79c49b4766d680c70466e0e55のbytes（L8 admission_audit_binding）とsource_mainのbytes（source_pins）を別に固定する。両時点のbytesは同一と主張しない。承認はdecision recordとactual admission entryで確認する。"
   },
   "source_pins": [
     {
@@ -378,7 +378,11 @@
           161,
           169
         ],
-        "meaning": "L2-008はknowledge identity/version/stateをBRAINに保持し、状態不明は候補利用を停止、project状態をOSへ戻す。"
+        "meaning": "L2-008はknowledge identity/version/stateをBRAINに保持し、状態不明は候補利用を停止、project状態をOSへ戻す。",
+        "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "quote": "### HELIXBRAIN-L2-008 identity・版・状態\n\n- **親L1**：`HELIXBRAIN-L1-008`。\n\n- **受け取るもの**：再利用構造の機能identity、版、状態、supersession relationとProduct Core利用参照。\n- **提供するもの**：current、superseded、deprecated、experimental、retired等を区別し、どの製品COREがどの構造版を参照したか辿れる識別情報。\n- **保証すること**：古いPatternを無言で新しいものへ置換しない。構造の版と状態はBRAINが持ち、実projectで使った版・状態の登録はOSへ委ねる。\n- **依存・検証／版**：L1-008、L2-028、CORE/OS接続L2-018/019/025。参照先版を固定した履歴とsupersession後の旧参照を追跡する。1.0。\n- **失敗時の戻し先**：版・利用identityが不明なら候補利用を停止し、構造変更はBRAIN、project状態はOSへ戻す。\n",
+        "quote_sha256": "d4bf2cd43fad8fafa077c560e261f87ed4d60d3bcd3a803c77e2fc661c4ccfb6"
       },
       {
         "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
@@ -386,7 +390,11 @@
           494,
           502
         ],
-        "meaning": "L2-028はL2-008の知識revision/stateとHARNESS-L2-010/011の共通descriptorを別にし、知識差分をBRAIN、共通pack境界/compatibilityをHARNESSへ返す。"
+        "meaning": "L2-028はL2-008の知識revision/stateとHARNESS-L2-010/011の共通descriptorを別にし、知識差分をBRAIN、共通pack境界/compatibilityをHARNESSへ返す。",
+        "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "quote": "### HELIXBRAIN-L2-028 BRAIN知識pack descriptorの版・互換適用（unit）\n\n- **親L1**：`HELIXBRAIN-L1-008`。\n- **受け取るもの**：HARNESS-L2-010/011に従うBRAIN capability descriptor（identity/kind、contract version、artifact version、dependency identity/version、compatibility range、verification scope）と、BRAIN knowledge revision identity/version/state。\n- **提供するもの**：要求元に対し、exact knowledge revision/versionとdescriptor互換性を照合した適用可能/不適用/unknown response。\n- **保証すること**：BRAINのknowledge identity/version/state（L2-008）と共通pack identity/contract/artifact/dependencyの各versionを混同しない。required versionが宣言compatibility range内である場合のみ参照を許し、`version_target`を実版とみなさない。HARNESS-L2-010/011の共通交換、更新、rollback、未完義務のlifecycleを再定義しない。\n- **依存・検証／版**：L2-008、HARNESS-L2-010/011 descriptor contract。descriptor identity/version、knowledge revision/version/state、dependency rangeが一致し、unknown/mismatchで利用拒否されることを確認する。1.0。\n- **失敗時の戻し先**：知識revision/stateはL2-008、共通pack boundary/compatibilityはHARNESS ownerへ戻す。古い版への黙った置換は禁止。\n- **束ねる条件**：BRAIN L1-008、HARNESS-L2-010/011共通pack契約。\n",
+        "quote_sha256": "e3d58bda2215f1a5aeb846d7160f31d832c8e46866a8a53c5e8115664cd72df8"
       },
       {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -394,7 +402,11 @@
           343,
           364
         ],
-        "meaning": "HARNESS-L2-010/011はpackの入力/出力/依存/verification scope/版と、呼出しの能力名/契約版/依存版を持つ。共通交換/更新/停止・再開等はBRAIN側で再定義しない。"
+        "meaning": "HARNESS-L2-010はpack入力/出力/依存/検証範囲/版、011は能力名/契約版/依存版、結果/証拠/停止再開を所有する。知識戻し先BRAIN008の出所は別のL2-008/L3-F01、共通条件の戻し先HARNESSの出所は承認L3/L10-B01。",
+        "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "file_sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+        "quote": "### HARNESS-L2-010 パックの境界\n\n利用者は、HARNESSの能力を、入力・出力・必要な依存・検証範囲・版が明確で、交換・更新できる能力のまとまり（パック）として識別し、検証済みのパックを組み合わせてリリース単位を成立させられる。\n\n- パックは関数やフォルダの単位ではない。一つのbehavior contract、または分けると意味を失う密結合したcontractのまとまりとする。\n- 各パックは、入力の契約、出力の契約、必要な依存（他のパック、部品、コア、外部の実行接続）、検証範囲（単体として証明する義務とoracle）、版を宣言する。宣言のない依存を実行時に暗黙に使わない。\n- パックは所属するリリース単位（サービス①〜⑦）、部品、コアのいずれかに所有される。一つのパックを二つのリリース単位が所有しない。複数のリリース単位から使う能力は部品またはコアに置く（Conceptの「サービスを支えるもの」）。\n- リリース単位へ収めるパックと収めないパックを明示する。未検証・未適格のパックを暗黙に収めない。パックの版と成熟度、リリース単位の版、統合した製品の版を別に持ち、パックの昇格だけで上位を昇格させない。上位の未完の部分で、適格なパックを隠さない。\n- 同じ入力と版から同じパックの成果物を再現でき、失敗時は直前の適格な版または明示した置換えへ戻せる。\n- 全部を一つの巨大なパックへ戻さない。パックが大きくなり交換・更新できなくなったら、Design-refactorで分ける（HARNESS-L2-005の密結合の扱い）。\n- 束ねる既存の条件：「提供構成と再現性の条件」のFRS-BR-001／002／003／005／009、HARNESS-L2-008の単体・接続・構成体の区別。\n\n### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件\n\n利用者は、各パックを、特定の画面や作業環境に依存しない呼出しで使える。これは、後でHELIX-Web等の別の利用者側から使えなくなる作り方を避けるための条件であり、Webの要求・設計を本要求から導かない。\n\n- **入出力**：特定の画面、特定のGUI、特定のローカルpath、特定のAI provider、特定のCI製品を前提にせず、宣言した入出力の契約で呼べる。画面は入出力を使う側に置く。\n- **版・依存**：呼出しは、能力名、契約の版、必要な依存の版を持つ。未対応の版を黙って読み替えない（Conceptの1.0土台「接続契約と版」）。\n- **権限の受渡し**：パックは、呼出し元が渡した権限と隔離の単位（project、tenant、環境）の範囲で動く。パックを使うことを、HELIX本体の稼働DB、鍵、内部統制を呼出し元と共有することにしない。権限の方針とauthorityはHELIX-SECURITYが持つ。\n- **進行・結果・証拠**：進行の状態、結果の状態、証拠を、相関IDとともに呼出し元へ返す（Conceptの1.0土台「ログと証拠」）。結果の保存と表示は呼出し元が行う。\n- **停止・再開**：途中で止められ、冪等キーと記録した途中の状態から再開でき、期限切れを成功にしない（Conceptの1.0土台「接続契約と版」「構成版の固定と切戻し」）。\n- 束ねる既存の条件：Conceptの1.0土台7項目、HARNESS-L2-006の「HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる」。\n",
+        "quote_sha256": "54576a0807d669c932f67098d4634c15f4d9b7ba76a0715d32460a55037ca81d"
       }
     ],
     "consumer_refs": [
@@ -1069,6 +1081,38 @@
         "JsonValue"
       ],
       "meaning": "JSON null、または有限fixtureから保持したJSON値。Absentはオブジェクトmemberの欠落として別に表す。"
+    },
+    "MeaningBindingResults": {
+      "kind": "record",
+      "required": [
+        "range",
+        "state"
+      ],
+      "fields": {
+        "range": "ContentRelation",
+        "state": "ContentRelation"
+      }
+    },
+    "MeaningReturnOwner": {
+      "kind": "record",
+      "required": [
+        "axis",
+        "return_owner"
+      ],
+      "fields": {
+        "axis": {
+          "enum": [
+            "range",
+            "state"
+          ]
+        },
+        "return_owner": {
+          "enum": [
+            "HARNESS",
+            "BRAIN008"
+          ]
+        }
+      }
     }
   },
   "functions": [
@@ -1348,44 +1392,98 @@
             {
               "left": "input.original_knowledge.version",
               "right": "input.original_descriptor.artifact_version",
-              "output_record": "output.descriptor_results",
-              "output_field": "artifact_version",
-              "unless_claim_true": "knowledge_as_artifact"
+              "output_field": "artifact_version"
+            },
+            {
+              "left": "input.original_knowledge.version",
+              "right": "input.original_descriptor.contract_version",
+              "output_field": "contract_version"
+            },
+            {
+              "left": "input.original_knowledge.version",
+              "right": "input.original_descriptor.dependency_identity_versions[*].version",
+              "output_field": "dependency_identity_versions",
+              "right_values": "list_member_path"
             },
             {
               "left": "input.submitted_knowledge.version",
               "right": "input.submitted_descriptor.artifact_version",
-              "output_record": "output.descriptor_results",
-              "output_field": "artifact_version",
-              "unless_claim_true": "knowledge_as_artifact"
+              "output_field": "artifact_version"
+            },
+            {
+              "left": "input.submitted_knowledge.version",
+              "right": "input.submitted_descriptor.contract_version",
+              "output_field": "contract_version"
+            },
+            {
+              "left": "input.submitted_knowledge.version",
+              "right": "input.submitted_descriptor.dependency_identity_versions[*].version",
+              "output_field": "dependency_identity_versions",
+              "right_values": "list_member_path"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.original_descriptor.artifact_version",
+              "output_field": "artifact_version"
             },
             {
               "left": "input.version_target",
               "right": "input.original_descriptor.contract_version",
-              "output_record": "output.descriptor_results",
-              "output_field": "contract_version",
-              "unless_claim_true": "target_as_contract"
+              "output_field": "contract_version"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.original_descriptor.dependency_identity_versions[*].version",
+              "output_field": "dependency_identity_versions",
+              "right_values": "list_member_path"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.submitted_descriptor.artifact_version",
+              "output_field": "artifact_version"
             },
             {
               "left": "input.version_target",
               "right": "input.submitted_descriptor.contract_version",
-              "output_record": "output.descriptor_results",
-              "output_field": "contract_version",
-              "unless_claim_true": "target_as_contract"
+              "output_field": "contract_version"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.submitted_descriptor.dependency_identity_versions[*].version",
+              "output_field": "dependency_identity_versions",
+              "right_values": "list_member_path"
             }
           ],
           "result": "unknown",
-          "meaning": "同じJSON値だけでは別版軸間の来歴を証明しない。knowledge.versionとartifact_versionが同値ならartifact軸をunknown、version_targetとcontract_versionが同値なら実contract版の根拠をunknownにする。値が違う場合にも正式版資格は生成しない。",
-          "to": "descriptor_results"
+          "meaning": "knowledge.version（各側ごとの版）またはversion_targetと実artifact/contract/依存versionの六つの軸組を各側で照合する。既存content_conflict/missingを保持し、内容対応/unknownの場合だけ別軸の同値来歴をunknownとして表示する。claim true/falseはこのデータ判定を変更しない。値同一だけで転写原因や正式版資格を立証しない。",
+          "to": "descriptor_results",
+          "overwrite_relations": [
+            "content_corresponding_in_fixture",
+            "unknown"
+          ]
         },
         {
-          "step": 12,
+          "step": 13,
           "op": "fixed_value",
           "value": "not_established",
           "to": "actual_reference_state"
         }
       ],
-      "purpose": "知識版軸と共通descriptor版軸を別々に比較・保持し、知識値をpack軸へ転写しない。"
+      "purpose": "知識版軸と共通descriptor版軸を別々に比較・保持し、知識値をpack軸へ転写しない。",
+      "read_contract": {
+        "arguments": [
+          "original_descriptor",
+          "original_knowledge",
+          "submitted_descriptor",
+          "submitted_knowledge",
+          "unaffected_reference_Q",
+          "claims",
+          "version_target"
+        ],
+        "retention_reads": "copy_value/project_recordは指定root/memberの原JSONを保持する。保持は当該memberの意味/資格検査の主張ではない。",
+        "comparison_reads": "algorithm各stepのleft/right/from/paths/checks/field_pairs/axis_sources/required_nonnull_pathsが比較または保持の具体pathである。",
+        "unread_semantics": "未知map keyや全自由stringの意味、独立targetの真正性/実owner資格は比較しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L5-028-F02",
@@ -1429,7 +1527,9 @@
           "reference_P_actual_call",
           "unaffected_reference_Q",
           "claim_results",
-          "effects"
+          "effects",
+          "meaning_binding_results",
+          "meaning_return_owners"
         ],
         "fields": {
           "axis_results": "list<AxisApplicabilityResult>",
@@ -1442,7 +1542,9 @@
           "reference_P_actual_call": "ActualCallState",
           "unaffected_reference_Q": "ReferenceRecord",
           "claim_results": "ClaimResultMapF02",
-          "effects": "NoEffectFlags"
+          "effects": "NoEffectFlags",
+          "meaning_binding_results": "MeaningBindingResults",
+          "meaning_return_owners": "list<MeaningReturnOwner>"
         },
         "meaning": "元入力のoptional recordはNullならNullのまま保持する。"
       },
@@ -1568,141 +1670,6 @@
                     "TBD",
                     "unknown"
                   ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.original_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.original_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.original_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.original_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.original_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_required_reference.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
-                },
-                {
-                  "op": "contains_placeholder",
-                  "path": "input.submitted_range_meaning.members_by_axis.$axis",
-                  "markers": [
-                    "",
-                    "TBD",
-                    "unknown"
-                  ]
                 }
               ]
             },
@@ -1776,7 +1743,7 @@
             "TBD",
             "unknown"
           ],
-          "scope_binding_rule": "宣言range.scopeは対応するrequired_reference.verification_scopeと一致する場合だけ当該rangeを評価する。未供給/不一致はunknown。"
+          "scope_binding_rule": "range.scopeがAbsent/null/placeholderなら主適用結果unknown、供給済みrequired verification_scopeと不一致なら主適用結果not_applicable。各version軸の有限membership比較自体とは別の主判定条件である。"
         },
         {
           "step": 3,
@@ -2214,7 +2181,116 @@
           "absent_value": null
         },
         {
-          "step": 10,
+          "op": "fixed_record",
+          "to": "meaning_binding_results",
+          "value": {
+            "range": "content_corresponding_in_fixture",
+            "state": "content_corresponding_in_fixture"
+          },
+          "step": 10
+        },
+        {
+          "op": "validate_bindings",
+          "checks": [
+            {
+              "left": "input.original_range_meaning.identity",
+              "right": "input.original_range_meaning.identity",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.original_range_meaning.revision",
+              "right": "input.original_range_meaning.revision",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.original_range_meaning.scope",
+              "right": "input.original_range_meaning.scope",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.original_range_meaning.owner",
+              "literal": "HARNESS",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.original_state_applicability.identity",
+              "right": "input.original_state_applicability.identity",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.original_state_applicability.revision",
+              "right": "input.original_state_applicability.revision",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.original_state_applicability.scope",
+              "right": "input.original_state_applicability.scope",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.original_state_applicability.owner",
+              "literal": "BRAIN008",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.submitted_range_meaning.identity",
+              "right": "input.submitted_range_meaning.identity",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.submitted_range_meaning.revision",
+              "right": "input.submitted_range_meaning.revision",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.submitted_range_meaning.scope",
+              "right": "input.submitted_range_meaning.scope",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.submitted_range_meaning.owner",
+              "literal": "HARNESS",
+              "target": "output.meaning_binding_results.range"
+            },
+            {
+              "left": "input.submitted_state_applicability.identity",
+              "right": "input.submitted_state_applicability.identity",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.submitted_state_applicability.revision",
+              "right": "input.submitted_state_applicability.revision",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.submitted_state_applicability.scope",
+              "right": "input.submitted_state_applicability.scope",
+              "target": "output.meaning_binding_results.state"
+            },
+            {
+              "left": "input.submitted_state_applicability.owner",
+              "literal": "BRAIN008",
+              "target": "output.meaning_binding_results.state"
+            }
+          ],
+          "missing": "missing",
+          "unresolved": "unknown",
+          "different": "content_conflict",
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "status_priority": [
+            "missing",
+            "unresolved",
+            "different"
+          ],
+          "composition": "既存relationと新binding statusをstatus_priorityの順位で合成する。表外の内容対応は最下位。同順位は既存値。成功checkは既存値を保持。scalar/member共通。",
+          "step": 11
+        },
+        {
+          "step": 12,
           "op": "aggregate_reference_applicability",
           "axes": "output.axis_results",
           "meaning_relations": [
@@ -2231,6 +2307,13 @@
                 "state_meaning_result"
               ],
               "value": "content_corresponding_in_fixture"
+            },
+            "binding_any_in": {
+              "path": "output.meaning_binding_results",
+              "values": [
+                "missing",
+                "unknown"
+              ]
             }
           },
           "not_applicable_if": {
@@ -2285,6 +2368,12 @@
                   ]
                 }
               ]
+            },
+            "binding_any_in": {
+              "path": "output.meaning_binding_results",
+              "values": [
+                "content_conflict"
+              ]
             }
           },
           "to": "reference_P_result",
@@ -2310,23 +2399,23 @@
               "applicable"
             ]
           },
-          "meaning": "range scopeがrequired verification_scopeと不一致なら不適用。scopeが欠落/unknownならunknownが優先される。"
+          "meaning": "axis unknown、意味whole非対応、meaning binding missing/unknownを優先してunknown。次にaxis不一致/range外/state不可、供給済みscope不一致、owner binding不一致をnot_applicableとし、それ以外だけ有限候補表示を返す。独立state/range identity/revision対象の真正性と実資格は別の未成立事項。"
         },
         {
-          "step": 11,
+          "step": 13,
           "op": "fixed_value",
           "value": "not_established",
           "to": "reference_P_actual_call"
         },
         {
-          "step": 12,
+          "step": 14,
           "op": "copy_value",
           "from": "input.unaffected_reference_Q",
           "to": "unaffected_reference_Q",
           "absent_value": null
         },
         {
-          "step": 13,
+          "step": 15,
           "op": "claims_true_rejected",
           "from": "input.claims",
           "true": "rejected",
@@ -2351,7 +2440,7 @@
           "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
         },
         {
-          "step": 14,
+          "step": 16,
           "op": "fixed_record",
           "value": {
             "actual_call": false,
@@ -2365,9 +2454,54 @@
             "actual_acceptance": false
           },
           "to": "effects"
+        },
+        {
+          "op": "collect_routes",
+          "to": "meaning_return_owners",
+          "checks": [
+            {
+              "relations": [
+                "output.range_meaning_result",
+                "output.meaning_binding_results.range"
+              ],
+              "success": "content_corresponding_in_fixture",
+              "value": {
+                "axis": "range",
+                "return_owner": "HARNESS"
+              }
+            },
+            {
+              "relations": [
+                "output.state_meaning_result",
+                "output.meaning_binding_results.state"
+              ],
+              "success": "content_corresponding_in_fixture",
+              "value": {
+                "axis": "state",
+                "return_owner": "BRAIN008"
+              }
+            }
+          ],
+          "rule": "checks順にrelationsのどれかがsuccess以外ならvalueを一件出力し、全てsuccessなら省略する。同じaxisを重複出力しない。資格ではなく不足の返却先候補。",
+          "step": 17
         }
       ],
-      "purpose": "宣言range/state意味と必要参照の有限packet比較を行い、unknown/mismatch/range外を実呼出しに変えず、Qを保全する。L9に独立した改ざん不能targetが無いため、originalとsubmittedの両方が同じ誤recordへ置換された場合の真正性判定は未実現。"
+      "purpose": "宣言range/state意味と必要参照の有限packet比較を行い、unknown/mismatch/range外を実呼出しに変えず、Qを保全する。L9に独立した改ざん不能targetが無いため、originalとsubmittedの両方が同じ誤recordへ置換された場合の真正性判定は未実現。",
+      "read_contract": {
+        "arguments": [
+          "original_range_meaning",
+          "submitted_range_meaning",
+          "original_required_reference",
+          "submitted_required_reference",
+          "original_state_applicability",
+          "submitted_state_applicability",
+          "unaffected_reference_Q",
+          "claims"
+        ],
+        "retention_reads": "copy_value/project_recordは指定root/memberの原JSONを保持する。保持は当該memberの意味/資格検査の主張ではない。",
+        "comparison_reads": "algorithm各stepのleft/right/from/paths/checks/field_pairs/axis_sources/required_nonnull_pathsが比較または保持の具体pathである。",
+        "unread_semantics": "未知map keyや全自由stringの意味、独立targetの真正性/実owner資格は比較しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L5-028-N01",
@@ -2529,7 +2663,21 @@
           "rule": "fixture証拠の対応にはoriginal/submitted評価recordの一致、candidate targetとsubmitted evaluation.targetの一致、submitted評価のobserved_in_fixture/compatible_in_fixtureが必要。",
           "evidence_limit_value": "same exact candidate revisions and scope only; no actual held-out evaluation",
           "evaluation_relation": "output.evaluation_result",
-          "evaluation_corresponding_result": "content_corresponding_in_fixture"
+          "evaluation_corresponding_result": "content_corresponding_in_fixture",
+          "required_nonnull_paths": [
+            "input.original_evaluation.identity",
+            "input.original_evaluation.revision",
+            "input.original_evaluation.owner",
+            "input.submitted_evaluation.identity",
+            "input.submitted_evaluation.revision",
+            "input.submitted_evaluation.owner"
+          ],
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ],
+          "meaning": "既存target/result/state条件に加えrequired_nonnull_pathsが全て存在しnull/再帰placeholderでない場合だけ有限証拠対応。独立evaluation source資格は成立させない。"
         },
         {
           "step": 8,
@@ -2586,7 +2734,20 @@
           "to": "effects"
         }
       ],
-      "purpose": "対象revision/scopeが一致する証拠と他revision/別scopeを分け、未評価や未見を使える参照へ補完しない。"
+      "purpose": "対象revision/scopeが一致する証拠と他revision/別scopeを分け、未評価や未見を使える参照へ補完しない。",
+      "read_contract": {
+        "arguments": [
+          "candidate_target",
+          "original_evaluation",
+          "submitted_evaluation",
+          "retained_candidate_state",
+          "unaffected_reference_Q",
+          "claims"
+        ],
+        "retention_reads": "copy_value/project_recordは指定root/memberの原JSONを保持する。保持は当該memberの意味/資格検査の主張ではない。",
+        "comparison_reads": "algorithm各stepのleft/right/from/paths/checks/field_pairs/axis_sources/required_nonnull_pathsが比較または保持の具体pathである。",
+        "unread_semantics": "未知map keyや全自由stringの意味、独立targetの真正性/実owner資格は比較しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L5-028-B01",
@@ -2673,10 +2834,40 @@
             "unknown"
           ],
           "unresolved_priority": "after_absence_before_equality",
-          "unresolved_relation": "unknown"
+          "unresolved_relation": "unknown",
+          "null_is_missing": true
         },
         {
-          "step": 2,
+          "op": "mark_relation_on_values",
+          "to": "common_reference_results",
+          "checks": [
+            {
+              "paths": [
+                "input.original_common_references.exchange_update",
+                "input.submitted_common_references.exchange_update"
+              ],
+              "equals": "BRAIN-LOCAL-EXCHANGE",
+              "field": "exchange_update"
+            },
+            {
+              "paths": [
+                "input.original_common_references.calling_contract",
+                "input.submitted_common_references.calling_contract"
+              ],
+              "equals": "BRAIN-LOCAL-EXCHANGE",
+              "field": "calling_contract"
+            }
+          ],
+          "overwrite_relations": [
+            "content_corresponding_in_fixture",
+            "unknown"
+          ],
+          "result": "content_conflict",
+          "basis": "L3/L10-B01の別lifecycle再定義禁止と原L9 BRAIN_EXCHANGE_REDEFINITION negativeの明示値。未知の全reference文字列に一般化した禁止policyではない。claimは別欄で評価する。",
+          "step": 2
+        },
+        {
+          "step": 3,
           "op": "compare_fields",
           "left": "input.original_owners",
           "right": "input.submitted_owners",
@@ -2699,7 +2890,7 @@
           "unresolved_relation": "unknown"
         },
         {
-          "step": 3,
+          "step": 4,
           "op": "compare_record_projection",
           "left": "input.original_unfinished_obligation",
           "right": "input.submitted_unfinished_obligation",
@@ -2740,58 +2931,59 @@
           "unresolved_relation": "unknown",
           "meaning": "ownerを含む全指定fieldを比較する。",
           "unresolved_precedence": "unknown_precedence",
-          "unknown_precedence": "unknown"
+          "unknown_precedence": "unknown",
+          "null_is_missing": true
         },
         {
-          "step": 4,
+          "step": 5,
           "op": "copy_value",
           "from": "input.original_common_references",
           "to": "retained_common_references",
           "absent_value": null
         },
         {
-          "step": 5,
+          "step": 6,
           "op": "copy_value",
           "from": "input.original_owners",
           "to": "retained_owners",
           "absent_value": null
         },
         {
-          "step": 6,
+          "step": 7,
           "op": "copy_value",
           "from": "input.original_unfinished_obligation",
           "to": "retained_unfinished_obligation",
           "absent_value": null
         },
         {
-          "step": 7,
+          "step": 8,
           "op": "copy_value",
           "from": "input.submitted_unfinished_obligation",
           "to": "submitted_unfinished_obligation",
           "absent_value": null
         },
         {
-          "step": 8,
+          "step": 9,
           "op": "copy_field",
           "from": "input.knowledge.state",
           "to": "knowledge_state",
           "absent_value": null
         },
         {
-          "step": 9,
+          "step": 10,
           "op": "copy_field",
           "from": "input.original_unfinished_obligation.state",
           "to": "common_obligation_state",
           "absent_value": null
         },
         {
-          "step": 10,
+          "step": 11,
           "op": "fixed_value",
           "value": "not_established",
           "to": "actual_operation_state"
         },
         {
-          "step": 11,
+          "step": 12,
           "op": "owner_routes",
           "fixed_routes": {
             "knowledge_revision_state": "BRAIN008",
@@ -2803,7 +2995,7 @@
           "meaning": "knowledge_revision_state と common_conditions は固定候補を返し、actual_operation は original_owners.actual_operation を元JSON値のまま返す。Absentのみnullへ写す。候補文字列や値は実owner資格・権限の証拠ではない。"
         },
         {
-          "step": 12,
+          "step": 13,
           "op": "claims_true_rejected",
           "from": "input.claims",
           "true": "rejected",
@@ -2829,7 +3021,7 @@
           "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
         },
         {
-          "step": 13,
+          "step": 14,
           "op": "validate_bindings",
           "checks": [
             {
@@ -2902,18 +3094,19 @@
           ],
           "unresolved": "unknown",
           "literal_basis": {
-            "HARNESS": "HELIXBRAIN-L3-028-B01は共通exchange/update/unfinished obligationをHARNESS010/011へ参照する。戻し先候補の根拠はL4-028-B01.content_comparison[0..2]。",
-            "BRAIN008": "HELIXBRAIN-L3-028-B01 assigns knowledge revision/state to BRAIN; L4 contract HELIXBRAIN-L4-028-B01 input/output meaning."
+            "HARNESS": "承認L3/L10-B01の共通条件owner。L4-B01は当該L3 wholeを保持する。",
+            "BRAIN008": "L2-008と承認L3/L10-F01の知識identity/revision/stateの戻し先候補。実資格ではない。"
           },
           "qualification_limit": "owner文字列一致は自己申告recordの整合に限り、実owner資格/権限は成立しない。",
           "status_priority": [
             "missing",
             "unresolved",
             "different"
-          ]
+          ],
+          "composition": "既存relationと新binding statusをstatus_priorityの順位で合成する。表外の内容対応は最下位。同順位は既存値。成功checkは既存値を保持。scalar/member共通。"
         },
         {
-          "step": 13,
+          "step": 15,
           "op": "fixed_record",
           "value": {
             "actual_call": false,
@@ -2929,7 +3122,23 @@
           "to": "effects"
         }
       ],
-      "purpose": "共通参照/未完義務/知識状態/各ownerを分離して保持し、descriptor一致だけから実operation成功や共通義務の解消を生成しない。"
+      "purpose": "共通参照/未完義務/知識状態/各ownerを分離して保持し、descriptor一致だけから実operation成功や共通義務の解消を生成しない。",
+      "read_contract": {
+        "arguments": [
+          "descriptor",
+          "knowledge",
+          "original_common_references",
+          "submitted_common_references",
+          "original_owners",
+          "submitted_owners",
+          "original_unfinished_obligation",
+          "submitted_unfinished_obligation",
+          "claims"
+        ],
+        "retention_reads": "copy_value/project_recordは指定root/memberの原JSONを保持する。保持は当該memberの意味/資格検査の主張ではない。",
+        "comparison_reads": "algorithm各stepのleft/right/from/paths/checks/field_pairs/axis_sources/required_nonnull_pathsが比較または保持の具体pathである。",
+        "unread_semantics": "未知map keyや全自由stringの意味、独立targetの真正性/実owner資格は比較しない。"
+      }
     }
   ],
   "semantics": {
@@ -2938,11 +3147,16 @@
     },
     "json_equality": "JSON型と値を比較し、真偽値と数値は別型とする。object key順は無視し、array順は保持する。",
     "unknown": "AbsentとNullを区別する。各algorithm stepのnull_is_missing/null_is_absent等の明示設定に従い、NullをJSON値として比較するfieldとunknown/missingへ送るfieldを分ける。明示placeholder（空文字列、TBD、unknown）はstepが列挙したfieldでunknownを返し、一般の全string domainへ拡張しない。",
-    "claim_results": "各関数が列挙した出力keyを固定順で全て返す。入力claim key absent/null/non-booleanはunknown、明示falseはnone、明示trueはrejected。未知keyは当該有限field群で評価しない。claimは入力値を変更せず、資格を成立させない。",
+    "claim_results": "各関数が列挙した出力keyを固定順で全て返す。入力claim key absent/null/non-booleanはunknown、明示falseはnone、明示trueはrejected。未知keyは当該有限field群で評価しない。claimは入力値を変更せず、資格を成立させない。 全データ比較結果はclaimの真偽に依存させない。データ比較のmissing/conflict/unknownとclaim拒否は別欄で同時に残す。",
     "effect_boundary": "全actual effect flagはfalse、actual operation/reference状態はnot_establishedのままとする。",
     "range_limit": "members_by_axisは独立に供給された合成fixture内の有限集合としてのみ比較する。この文書はSemVer、caret、比較演算子、集合完全性、実compatibility codecを定義しない。",
     "owner_limit": "BRAIN008/HARNESSはL4/L10で指定された戻し先候補であり、合成owner値からowner資格や権限を成立させない。",
-    "input_domain": "signature型外のraw値は型付き関数の引数ではなく、この論理比較へ渡さない。型外入力時の実runtime応答や資格判定は未成立。型定義を拡張してcurrent/acceptedをCandidateStateとして受理しない。"
+    "input_domain": "signature型外のraw値は型付き関数の引数ではなく、この論理比較へ渡さない。型外入力時の実runtime応答や資格判定は未成立。型定義を拡張してcurrent/acceptedをCandidateStateとして受理しない。",
+    "binding_composition": "validate_bindingsのstatus_priorityはmissing > unknown > content_conflict > 内容対応。既存比較結果との合成にも同じ順位を用いる。版転写同値のunknown化は別演算であり、content_conflict/missingを保持する。",
+    "null_fields": "B01共通参照/unfinishedの宣言fieldと各validate_bindingsではnullはmissing診断。N01評価identity/revision/owner nullは候補unknown。F01等でnull同士を内容等値として表示するfieldは元JSON内容比較だけで、実版/資格成立ではない。保持値からnull/Absentを消さない。",
+    "path_language": "algorithmのinput./output.はdotted member pathでありJSON Pointerではない。途中がrecordでない/fieldが無い場合はAbsent。rightの[*].memberは宣言された配列要素memberの観測に限り、非配列は空集合、非record要素のmemberはAbsent。raw_patch/expected_patchはRFC6902 JSON Pointerで、配列は数値index、~0/~1を復号する。",
+    "marker_recursion": "contains_placeholderは文字列がmarkersの要素と完全一致するかを確認し、list要素/object値を再帰する。object key名は判定しない。空list/mapにmarkerを創作しない。null/Absentは各stepのpresence設定に従う。",
+    "general_domain_limit": "三種以外のmarker表記や未知state/knowledge/reference名の世界全体意味、state/range identity/revisionの独立要求対象、N01各版軸の必要集合/適用条件は未具体化。有限内容対応とtyped total性だけでこれらの義務合格/資格を成立させない。"
   },
   "owner_output_boundary": {
     "implemented_owner_return_roots": [
@@ -2950,7 +3164,9 @@
       "F01.descriptor_axes",
       "B01.knowledge_revision_state",
       "B01.common_conditions",
-      "B01.actual_operation"
+      "B01.actual_operation",
+      "F02.axis_results[*].return_owner",
+      "F02.meaning_return_owners[*].return_owner"
     ],
     "source_obligations": [
       "F02 各axisのreturn_owner",
@@ -2959,7 +3175,8 @@
       "B01 未完義務のfailure別戻し先"
     ],
     "status": "partial",
-    "handling": "L9 expectedにはB01の固定routeとF02のaxis別ownerがあるため保持する。owner-qualified exact binding、およびL4の全failure routeごとの資格確認は未閉包として残す。"
+    "handling": "L9 expectedにはB01の固定routeとF02のaxis別ownerがあるため保持する。owner-qualified exact binding、およびL4の全failure routeごとの資格確認は未閉包として残す。",
+    "meaning_return_owners": "F02の当該range/state意味不足をHARNESS/BRAIN008へ渡すconsumer用の返却先候補。axis_resultsの版軸ownerと併用し、qualification/実呼出し権限/全知識の無効化へ変換しない。"
   },
   "not_established": [
     "正式schema/codec/range resolver/実identityのauthority",
@@ -2980,6 +3197,27 @@
       "field": "original/submitted_range_meaning.identity/revision と required_reference.compatibility_range_ref",
       "reason": "L9-F02 rawには宣言range recordとrequired descriptor tupleがあるがrequired referenceへcompatibility_range_ref identity/revisionを結ぶ独立fieldが供給されない。scopeとversion-membershipは照合するが、range identity/revisionのdescriptorへの正式bindingは成立したとしない。",
       "return_owner": "HARNESS L2-010/011 descriptor boundary"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "missing_fields": [
+        "original_required_reference.compatibility_range_ref.identity",
+        "original_required_reference.compatibility_range_ref.revision",
+        "required_state_applicability_ref.identity",
+        "required_state_applicability_ref.revision"
+      ],
+      "consumer": "F02のrange/state意味を利用するBRAIN028 consumer",
+      "supplier_responsibility": "range対象はHARNESS、state対象はBRAIN008が独立した要求参照を供給する責務。実source custody/資格は別途未成立。",
+      "observed_limit": "供給済みowner/scopeとmember presenceは照合するが、両側同じ別identity/revisionは独立対象が無いため有限内容候補表示のまま。表示を義務合格/qualifiedへ解釈しない。",
+      "reevaluation_input": "上記独立要求参照、当該revisionのsource bytes/root/正式資格を別々に供給して再照合する。名前からidentity/revisionを推定しない。"
+    },
+    {
+      "function_ref": "HELIXBRAIN-L5-028-B01",
+      "field": "original/submitted_common_references.*",
+      "observed_domain": "原L9明示negative BRAIN-LOCAL-EXCHANGE、Absent/null、三種marker、原/提出の内容差を判定する。",
+      "unclosed_domain": "同じ未知referenceのsemantic namespace/契約revisionを独立HARNESS exact refへ照合するresolver・required common refは未供給。任意名の文字列から共通lifecycleの正当性を生成しない。",
+      "return_owner": "HARNESS",
+      "reevaluation_input": "HARNESS010/011の対象identity/revision/source scopeを独立に供給した参照と資格を別々に渡す。"
     }
   ],
   "json_equality_semantics": {
@@ -2993,32 +3231,35 @@
   "operator_contract": {
     "語彙出所": "本L5のfunctions[*].algorithmに実在する演算子の閉じた語彙。追加/未定義演算子はこの候補関数の論理域外。",
     "operators": {
-      "aggregate_reference_applicability": "axis_resultsとrange/state意味結果、range_scope_mismatch式からpriority_orderどおりに適用結果を返す。",
-      "candidate_evidence_relation": "target relation、評価whole relation、evaluation.result/stateをstep operandsどおり照合する。",
+      "aggregate_reference_applicability": "axesのresult、meaning_relationsとunknown_if.or_meaning_not_equal、binding_any_inのpath record値をstepの列挙集合へ照合し、scope_mismatchのBoolean式と合わせpriority_orderを適用する。binding_any_inは指定pathのrecord値のいずれかがvaluesに含まれるかであり、record以外は空集合とする。",
+      "candidate_evidence_relation": "target/evaluation relationと評価result/stateのstep指定条件が全て成立し、required_nonnull_pathsが全てAbsent/null/再帰markerを含まない時だけresult、それ以外otherwise。",
       "claims_true_rejected": "列挙keyを順に全て出力し、absent/null/nonboolean/true/falseをstep literalsへ写す。",
-      "collect_null_members": "指定されたrecord群の明示null memberだけを観測順に出力する。",
-      "compare_fields": "宣言field順でmember presence、placeholder、JSON等値を評価しfield-result recordを返す。",
-      "compare_record_projection": "指定fieldを順に比較し、stepのmissing/conflict/equal優先でscalar relationを返す。",
-      "compare_records": "指定fieldごとにmissing、placeholder unknown、JSON等値を評価する。",
+      "collect_null_members": "observations順、[*]指定時は入力配列順、fields順で明示null memberだけのaxis/owner recordを追加。非配列/nonrecordは観測対象なし。Absentは追加せず他比較のmissingへ保持する。重複axisも原観測として保持。",
+      "compare_fields": "fields順。Absent、またはnull_is_missing=trueの明示nullならabsent。次にobject値/list要素を再帰し列挙markersのstringがあればunresolved_relation、次にJSON等値でpresent_equal、それ以外present_different。null_is_missing未指定ならnullは元JSON値として比較・保持する。",
+      "compare_record_projection": "projection_fields順にcompare_fields同様のpresence/再帰marker/等値を観測する。null_is_missing=trueなら明示nullもabsent。missing_precedence、different_precedence、unresolved_precedence、equal_resultの順でscalarへ縮約する。",
+      "compare_records": "fields順。Absentまたはnull_is_missing=trueのnullならmissing、再帰markerならunresolved_relation、JSON等値ならequal、それ以外different。全fieldのrelationを返す。",
       "compare_target": "target record field群のpresence、placeholder、JSON等値をbranch_result_orderで評価する。",
-      "compare_whole": "whole値のpresence、placeholder、JSON等値を評価する。",
+      "compare_whole": "root Absentまたはnull_is_absent=trueの明示nullならabsent。次にlist要素/object値へ再帰したmarkerならunresolved_relation、次にJSON内容等値ならequal、それ以外different。内容等値は意味資格ではない。",
       "copy_field": "source pathのJSON valueを保持し、Absent時のみabsent_valueを返す。",
       "copy_value": "source pathのJSON valueを保持し、Absent時のみabsent_valueを返す。",
       "fixed_record": "stepに宣言した合成有限recordをそのまま返す。",
       "fixed_value": "stepに宣言した有限値をそのまま返す。",
-      "mark_unknown_on_equalities": "stepのpath pairがJSON等値なら対応する出力relationをunknownへ置く。ただしstepが指定したtrue claimが存在する場合はclaim拒否との順序に従い保持する。",
+      "mark_unknown_on_equalities": "comparisons順。各側のknowledge.version/version_targetと実版を比較。right_values=list_member_pathなら [*] の配列を走査し指定memberを比較、配列以外は空集合、要素nonobjectはAbsent。左右がAbsent/nullでなくJSON等値、かつ現在のoutput field relationがoverwrite_relationsに含まれる場合だけresultへ更新。既存content_conflict/missingを上書きしない。claimは一切読まない。",
       "membership_by_axis": "version_axes順にbranch_conditionsを評価しbranch_result_orderの先頭一致をresult_literalsへ写す。",
-      "ordered_axis_results": "axis_order順にstep axis_sourcesで参照したraw値と中間relationを返す。",
+      "ordered_axis_results": "axis_order順にaxis_sourcesのrequired/submitted原値（Absentだけabsent_output_value）と指定relation_source/ownerを組み立てる。relation_sourceがrecordならaxis key、scalarならその値を使い、他軸へfallbackしない。",
       "owner_routes": "fixed_routesで宣言された戻し先候補または入力値を出力へ写す。資格を示さない。",
       "project_record": "fieldsの順で指定memberだけをAbsent除外して投影する。",
       "state_eligibility": "step branch_conditionsとbranch_result_orderを評価しstate relationを返す。",
-      "validate_bindings": "checksの左右path/固定literalをJSON等値で確認し、stepのpriorityで宣言済みtarget relationを更新する。"
+      "validate_bindings": "checks順にleft/rightまたはliteralを評価。Absent/nullをmissing、再帰markerをunresolved、JSON不一致をdifferentとする。この順で単独checkを選ぶ。各statusの合成順位はstatus_priority先頭を最高とし、scalar/member共通で既存statusより高い場合だけ更新。表外の対応状態は最下位。同順位・成功checkは既存値保持。",
+      "mark_relation_on_values": "checks順にpathsのいずれかがequalsとJSON等値、かつ現在to[field]がoverwrite_relationsに含まれる場合のみresultへ置く。claimは読まない。",
+      "collect_routes": "checks順にrelationsの出力pathを読む。どれかがsuccess以外ならそのcheckのvalueを一件追加、全てsuccessなら省略。重複valueは最初だけ保持する。"
     },
     "operator_order": [
       "aggregate_reference_applicability",
       "candidate_evidence_relation",
       "claims_true_rejected",
       "collect_null_members",
+      "collect_routes",
       "compare_fields",
       "compare_record_projection",
       "compare_records",
@@ -3028,6 +3269,7 @@
       "copy_value",
       "fixed_record",
       "fixed_value",
+      "mark_relation_on_values",
       "mark_unknown_on_equalities",
       "membership_by_axis",
       "ordered_axis_results",
@@ -3177,5 +3419,123 @@
   "input_type_boundary": {
     "domain": "functionsのinput_typeへ再帰解決するlogical typeの値だけを受け取る。Absentはrecord member欠落で保持しNullとは区別する。",
     "outside_domain": "型外入力はこのpure signatureの呼出しではない。具体runtime応答は未成立であり、CandidateStateをcurrent/acceptedへ拡張しない。"
-  }
+  },
+  "literal_source_basis": [
+    {
+      "value": "missing",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/1/expected_material/knowledge_results/identity",
+      "value_canonical_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "unknown",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/1/concrete_cases/1/expected_material/axis_results/0/result",
+      "value_canonical_sha256": "eb8bf0d80db323992f6b634aab492b1e6d9e96a8e87a511c2a0db75ab929452c",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "content_conflict",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/12/expected_material/knowledge_results/identity",
+      "value_canonical_sha256": "310cd90d2557ae6afdeecc837a15a74e95188ea6ec94f2352cd7b89e117c2348",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "content_corresponding_in_fixture",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/knowledge_results/identity",
+      "value_canonical_sha256": "a1405eb4ddfa6ec2c92906f6e6744f9888d7db87b70ad540a3b41c5019dccf28",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "BRAIN008",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/return_owners/knowledge_axes",
+      "value_canonical_sha256": "966c7abd6a0ced0e9bc0b22a47946111e74d342d9dd41b9ce5a53766efe4ef62",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "HARNESS",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/return_owners/descriptor_axes",
+      "value_canonical_sha256": "27a65532611f43a0dfc204b489d482bce647984902204591b342c085bbbfd853",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "not_applicable_in_fixture",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/1/concrete_cases/12/expected_material/reference_P_result",
+      "value_canonical_sha256": "51b357c635203acc43da6fb742faf0c389c14be346bc1eccc6e992a3ca9a2848",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "applicable_candidate_in_fixture_only",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/1/concrete_cases/0/expected_material/reference_P_result",
+      "value_canonical_sha256": "2bb13a4fd458d422e453e7e3b3ed47043e76627db8ea6993e616f0e70bec8530",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "not_established",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/actual_reference_state",
+      "value_canonical_sha256": "434e0a30986d284f55880579dfb506626caa5f8b11991300db324a0cc0e4838d",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "none",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/authority_effect",
+      "value_canonical_sha256": "30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "rejected",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/26/expected_material/claim_results/knowledge_as_artifact",
+      "value_canonical_sha256": "d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": false,
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/0/concrete_cases/0/expected_material/effects/actual_call",
+      "value_canonical_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+    },
+    {
+      "value": "BRAIN-LOCAL-EXCHANGE",
+      "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "pointer": "/verification_obligations/3/concrete_cases/13/independent_source_packet/raw_utf8",
+      "raw_json_pointer": "/submitted_common_references/exchange_update",
+      "raw_sha256": "e9bdfa08bf03813a9c66ba8967d91cb76109f589ca3b1ff866ab2f6b045660f9",
+      "value_canonical_sha256": "100fae03f4b4af642c9e8d2a2434a9dc54110060801883a131e9d64e44edd1f6",
+      "meaning": "承認L3/L10-B01の独自lifecycle再定義negativeの具体値。未知名全般の禁止へ外挿しない。"
+    },
+    {
+      "values": [
+        "range",
+        "state"
+      ],
+      "classification": "derived_display_axis_labels",
+      "meaning": "RangeMeaning/StateApplicabilityの不足を返却先に対応させる構造表示label。独立状態分類・許可・資格ではない。原L4-F02のrange/state意味とowner返却義務から導出。",
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "l4_ref": "HELIXBRAIN-L4-028-F02"
+    }
+  ]
 }
