@@ -81,7 +81,7 @@
         "disposition": "unresolved",
         "source_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba"
       },
-      "reuse": "semantic_rederivation_reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "作成/検収/統合を別capacityとして扱い、登録可能poolとactive WIPを混同せず、候補単独でruntime dispatch権限を変更しない境界を参照する。モデル世代の適性継承禁止をこの引用だけに帰属しない。",
       "change": "固定provider/数値pool/8slot等を配置の閾値へ写さず、010のtask/実績を使う提案と実割当の責務分離を意味再導出する。",
       "reason": "旧3L-BR-010はcapacityと候補による権限変更禁止の一部を支える。task-class/model世代の正確な意味は現010と下記RLO-FR-034へ別に結ぶ。",
@@ -107,7 +107,7 @@
         "disposition": "unresolved",
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
-      "reuse": "semantic_rederivation_reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "AI routerは候補提案のみでdispatch authorityを直接持たない責務を保持する。",
       "change": "旧control plane/runtimeの物理実装を再利用せず、INT提案→OS指定とSEC許可の境界へ再導出する。",
       "reason": "RLO-FR-031の明示境界と採択010-B01を対応付ける。Bench適性/世代更新の根拠はこの2行へ混載しない。",
@@ -133,7 +133,7 @@
         "disposition": "unresolved",
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
-      "reuse": "semantic_rederivation_reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "FE/BE/設計の適性軸を分け、provider名でなくモデル世代に結び、モデル更新時の旧適性の自動継承をしない意味を保持する。",
       "change": "旧軸名を現Workerの固定enumへせず、010-F03のtask/model-class・scope/版の不足へ意味再導出する。",
       "reason": "RLO-FR-034が軸混用と世代継承を具体的に支える。未供給の独立Bench generation targetや実資格は作らない。",
@@ -159,7 +159,7 @@
         "disposition": "unresolved",
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
-      "reuse": "semantic_rederivation_reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "task-class evidenceに基づくeffort policy、未評価表示、score単独によるscope/branch/assignment/merge authority変更禁止を保持する。",
       "change": "旧provider_default_unbenchmarkedやeffort表を現行runtimeへ移植せず、010の未評価/根拠と提案/実権限分離へ結ぶ。",
       "reason": "RLO-FR-040が未評価とscoreによる権限拡大禁止を支える。実Bench/採用/effort値を新たに決定しない。",
@@ -234,7 +234,8 @@
       "content_rules": [
         "task条件と候補Worker capability、同task-class/model-classの観測実績/Bench scopeを根拠に適合と除外を説明する。",
         "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。",
-        "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。"
+        "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。",
+        "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -342,7 +343,24 @@
           "profile"
         ]
       },
-      "meaning": "入力値に対するWorkerデータ所見のfieldは、当該契約の必要Worker参照/推薦集合から選んだ要素の実位置へ結ぶ。複数対象は対象ごとの所見を保持する。claim拒否の論理主題field（worker.version等）は実位置の略称でなく、既存claim名の主題を示す。"
+      "meaning": "入力値に対するWorkerデータ所見のfieldは、当該契約の必要Worker参照/推薦集合から選んだ要素の実位置へ結ぶ。複数対象は対象ごとの所見を保持する。claim拒否の論理主題field（worker.version等）は実位置の略称でなく、既存claim名の主題を示す。",
+      "selection_by_contract": {
+        "F01": {
+          "identity_source": "/original_performance/worker",
+          "worker_identity_member": "identity",
+          "comparison": "JSON意味等値で実績のworker identityと一致するoriginal_workers要素だけを原配列順に選ぶ。未参照Workerのversion/capability不足を当該実績の不足へ混載しない。"
+        },
+        "F02": {
+          "identities_source": "/submitted_proposal/recommended",
+          "worker_identity_member": "identity",
+          "comparison": "推薦arrayの値にJSON意味等値で一致するWorkerを原配列順に選ぶ。推薦値が原Worker配列に無い場合は別途selected_identity_bindingの所見を保持する。"
+        },
+        "F03": {
+          "identities_source": "/submitted_proposal/recommended",
+          "worker_identity_member": "identity",
+          "comparison": "推薦arrayにJSON意味等値で含まれるidentityを持つoriginal_workers要素だけを原配列順に選び、profileと元Bench profilesの対応を照合する。"
+        }
+      }
     },
     "logical_field_bindings": {
       "task": "/original_task",
@@ -380,7 +398,7 @@
           "return_owner": "OS-task-fit-owner"
         }
       ],
-      "ordering": "raw Worker配列順で選択対象を辿り各対象domain→tools。続いてBench class、理由対応、推薦/除外対応、claim宣言順。",
+      "ordering": "提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出除外内容→推薦/除外対応→claim宣言順。",
       "bench_class": {
         "left": "/original_bench/task_class",
         "right": "/original_scope/task_class",
@@ -416,7 +434,26 @@
         "return_owner": "INTELLIGENCE-proposal-owner"
       },
       "state": "data所見またはclaim所見があればheld_input_unqualified。なければcandidate_requires_actual_qualification。",
-      "fit": "incompatibleまたはunsupported_fit_basis所見があればexcluded_by_condition。その他所見があればnot_evaluated。なければsource_condition_candidate。"
+      "fit": "incompatibleまたはunsupported_fit_basis所見があればexcluded_by_condition。その他所見があればnot_evaluated。なければsource_condition_candidate。",
+      "selected_identity_binding": {
+        "submitted": "/submitted_proposal/recommended",
+        "source_workers": "/original_workers",
+        "source_identity_member": "identity",
+        "comparison": "提出推薦arrayをindex順に辿る。要素値とJSON意味等値のidentityを持つ原Workerが1件も無ければ、その提出要素へのRFC6901 fieldでforeign所見を返す。名前/prefixから代替Workerや実資格を生成しない。",
+        "field_template": "/submitted_proposal/recommended/{decimal_zero_based_index}",
+        "result": "foreign",
+        "return_owner": "INTELLIGENCE-proposal-owner",
+        "basis": "L3-F02の同scopeの理由/候補適合照合、L10-F02の事前適合条件と候補/除外/根拠の一致。根拠に対応する候補identityが無いのは案の内容不足であり、範囲外Workerの実task適性を判定するものではない。"
+      },
+      "exclusion_content": {
+        "source": "/original_proposal/excluded",
+        "submitted": "/submitted_proposal/excluded",
+        "comparison": "原/提出の除外arrayをJSON意味等値で比較する。array順とrecord内容を保持し、不一致なら1件の内容所見を返す。推薦/除外の同一identity矛盾とは条件を別に評価し、field/result/owner全一致の場合だけ既存一意化に従う。",
+        "field": "proposal.excluded",
+        "result": "source_content_conflict",
+        "return_owner": "INTELLIGENCE-proposal-owner",
+        "basis": "L10-F02の適合候補と除外/根拠が事前の適合条件へ一致する義務。明示された原除外を無所見で消去/改変しない。"
+      }
     },
     "F04": {
       "ordering": "判断state→priority_ref→tolerance_ref→scope各軸→品質→比較選択/入力/scope/互換→介入欠測→claim宣言順→既存の判断scope.revision所見。各fieldの条件が成立すれば他fieldの欠落やclaimで抑止しない。",
@@ -638,6 +675,335 @@
       },
       "comparison_obligation": "F04は明示falseならnot_applicable、明示trueならselected_requires_separate_closure、それ以外unknown_selection。F02のこの材料関数はnot_applicableを保持し比較受領を成立させない。",
       "remaining_roots": "information_state/candidate_fit/failure_reasons/return_owners/rejected_claimsは各契約とordering_and_multiplicityによる。保持したsourceから実資格や実作用を生成しない。"
+    },
+    "remaining_claim_diagnostic_limits": {
+      "scope": "次の5固定caseはclaim診断だけが同fieldの原データ不足診断を代表する原oracleを保持する。F02/F04の独立data/claim規則を他契約へ適用したとは主張しない。欠落rawは保持し、qualification/permissionの免除ではない。",
+      "cases": [
+        {
+          "case_id": "INT010-F01-REJECT-missing_is_zero",
+          "data_field": "performance.cost",
+          "not_separately_returned_result": "unobserved",
+          "logical_consumer": "LABO-evidence-owner",
+          "retained_claim_finding": [
+            {
+              "field": "performance.cost",
+              "result": "unsupported_imputation",
+              "return_owner": "LABO-evidence-owner"
+            }
+          ],
+          "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
+        },
+        {
+          "case_id": "INT010-F01-REJECT-invent_task_attribute",
+          "data_field": "task.context",
+          "not_separately_returned_result": "missing",
+          "logical_consumer": "OS-task-owner",
+          "retained_claim_finding": [
+            {
+              "field": "task.context",
+              "result": "unsupported_imputation",
+              "return_owner": "OS-task-owner"
+            }
+          ],
+          "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
+        },
+        {
+          "case_id": "INT010-F03-REJECT-unevaluated_is_qualified",
+          "data_field": "bench.state",
+          "not_separately_returned_result": "unobserved_or_outside_scope",
+          "logical_consumer": "LABO-evidence-owner",
+          "retained_claim_finding": [
+            {
+              "field": "bench.state",
+              "result": "unsupported_qualification",
+              "return_owner": "LABO-evidence-owner"
+            }
+          ],
+          "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
+        },
+        {
+          "case_id": "INT010-F03-REJECT-unknown_task_guaranteed",
+          "data_field": "bench.state",
+          "not_separately_returned_result": "unobserved_or_outside_scope",
+          "logical_consumer": "LABO-evidence-owner",
+          "retained_claim_finding": [
+            {
+              "field": "bench.state",
+              "result": "unsupported_qualification",
+              "return_owner": "LABO-evidence-owner"
+            }
+          ],
+          "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
+        },
+        {
+          "case_id": "INT010-N01-REJECT-unique_optimal_without_oracle",
+          "data_field": "content_oracle_ref",
+          "not_separately_returned_result": "missing",
+          "logical_consumer": "task-fit-oracle-owner",
+          "retained_claim_finding": [
+            {
+              "field": "content_oracle_ref",
+              "result": "unsupported_extrapolation",
+              "return_owner": "task-fit-oracle-owner"
+            }
+          ],
+          "unclosed": "当該契約のdata所見とclaim所見の独立性。原固定oracleの意味検収/対基本設計具体化を要し、このF02/F04の追補から全契約へ一般化しない。"
+        }
+      ],
+      "consumer_limit": "原caseのconsumerはfailure_reasonsとreturn_ownersを受け取るため、下記data resultを独立所見としては受け取れない。failure表示とrawの保持だけで独立診断義務が完了したとはしない。"
     }
+  },
+  "source_revision_role": {
+    "source_main_role": "読取比較元のsource snapshot revision。新しい本文がそのrevisionに既に存在したというbindingではない。",
+    "candidate_binding": "L4本文は当該candidate bytes、L9のsame_pair_l4_bytes_bindingは同candidate L4のbytes/hashへ結ぶ。新しいpair本文のgit revisionは公開後のexact HEADで別に特定する。"
+  },
+  "upstream_whole_inventory": {
+    "revision": "ba76a8a5b5e45fe3202552a24cf622a2b12fed2d",
+    "role": "現在の上流48JSONの固定source inventory。下位候補本文の存在/authorityを生成しない。",
+    "file_count": 48,
+    "l3_l10_pairs": 430,
+    "l2_parents": 92,
+    "files": [
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "bytes": 31508,
+        "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "bytes": 55987,
+        "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "bytes": 27095,
+        "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "bytes": 28431,
+        "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "bytes": 48699,
+        "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "bytes": 24929,
+        "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/business-verification.json",
+        "bytes": 12950,
+        "sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/functional-verification.json",
+        "bytes": 27845,
+        "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+      },
+      {
+        "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+        "bytes": 12893,
+        "sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+        "bytes": 12207,
+        "sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+        "bytes": 22953,
+        "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+      },
+      {
+        "path": "docs/helix-connect/L3-requirements/nfr-grade.json",
+        "bytes": 12198,
+        "sha256": "0fc000a1bd25a5a9c77cb845870b294bc246367051e49daa378cabb4fd6ffdd4"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.json",
+        "bytes": 64223,
+        "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "bytes": 117873,
+        "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+        "bytes": 61634,
+        "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "bytes": 58725,
+        "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "bytes": 97148,
+        "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "bytes": 56112,
+        "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+        "bytes": 12759,
+        "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+        "bytes": 24801,
+        "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+        "bytes": 11473,
+        "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+        "bytes": 11648,
+        "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "bytes": 20531,
+        "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+        "bytes": 10825,
+        "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+        "bytes": 9249,
+        "sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "bytes": 13322,
+        "sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+      },
+      {
+        "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+        "bytes": 8644,
+        "sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+        "bytes": 8619,
+        "sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "bytes": 11831,
+        "sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+      },
+      {
+        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+        "bytes": 8179,
+        "sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.json",
+        "bytes": 14455,
+        "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "bytes": 23610,
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+        "bytes": 12101,
+        "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+        "bytes": 13197,
+        "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "bytes": 20536,
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+        "bytes": 11612,
+        "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.json",
+        "bytes": 35642,
+        "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "bytes": 71611,
+        "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/nfr-verification.json",
+        "bytes": 36651,
+        "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/business-requirements.json",
+        "bytes": 32244,
+        "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "bytes": 57023,
+        "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "bytes": 32367,
+        "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "bytes": 26273,
+        "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.json",
+        "bytes": 47395,
+        "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/nfr-verification.json",
+        "bytes": 24296,
+        "sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "bytes": 23819,
+        "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "bytes": 37724,
+        "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+        "bytes": 22243,
+        "sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+      }
+    ]
   }
 }
