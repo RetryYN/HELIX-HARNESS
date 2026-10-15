@@ -1464,6 +1464,29 @@
         },
         {
           "step": 13,
+          "op": "mark_unknown_on_equalities",
+          "comparisons": [
+            {
+              "left": "input.version_target",
+              "right": "input.original_knowledge.version",
+              "output_field": "version"
+            },
+            {
+              "left": "input.version_target",
+              "right": "input.submitted_knowledge.version",
+              "output_field": "version"
+            }
+          ],
+          "to": "knowledge_results",
+          "overwrite_relations": [
+            "content_corresponding_in_fixture",
+            "unknown"
+          ],
+          "result": "unknown",
+          "meaning": "version_targetは能力目標で実版ではない。original/submittedのknowledge.versionと一致したときは該当版結果をunknownへする。missing/content_conflictは上書きしない。claimを読まない。"
+        },
+        {
+          "step": 14,
           "op": "fixed_value",
           "value": "not_established",
           "to": "actual_reference_state"
@@ -2194,83 +2217,99 @@
           "checks": [
             {
               "left": "input.original_range_meaning.identity",
-              "right": "input.original_range_meaning.identity",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.original_range_meaning.revision",
-              "right": "input.original_range_meaning.revision",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.original_range_meaning.scope",
-              "right": "input.original_range_meaning.scope",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.original_range_meaning.owner",
               "literal": "HARNESS",
-              "target": "output.meaning_binding_results.range"
-            },
-            {
-              "left": "input.original_state_applicability.identity",
-              "right": "input.original_state_applicability.identity",
-              "target": "output.meaning_binding_results.state"
-            },
-            {
-              "left": "input.original_state_applicability.revision",
-              "right": "input.original_state_applicability.revision",
-              "target": "output.meaning_binding_results.state"
-            },
-            {
-              "left": "input.original_state_applicability.scope",
-              "right": "input.original_state_applicability.scope",
-              "target": "output.meaning_binding_results.state"
-            },
-            {
-              "left": "input.original_state_applicability.owner",
-              "literal": "BRAIN008",
-              "target": "output.meaning_binding_results.state"
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "L4の責務候補との値比較。実source owner資格を証明しない。"
             },
             {
               "left": "input.submitted_range_meaning.identity",
-              "right": "input.submitted_range_meaning.identity",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_range_meaning.revision",
-              "right": "input.submitted_range_meaning.revision",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_range_meaning.scope",
-              "right": "input.submitted_range_meaning.scope",
-              "target": "output.meaning_binding_results.range"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_range_meaning.owner",
               "literal": "HARNESS",
-              "target": "output.meaning_binding_results.range"
+              "target": "output.meaning_binding_results.range",
+              "field_meaning": "L4の責務候補との値比較。実source owner資格を証明しない。"
+            },
+            {
+              "left": "input.original_state_applicability.identity",
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
+            },
+            {
+              "left": "input.original_state_applicability.revision",
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
+            },
+            {
+              "left": "input.original_state_applicability.scope",
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
+            },
+            {
+              "left": "input.original_state_applicability.owner",
+              "literal": "BRAIN008",
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "L4の責務候補との値比較。実source owner資格を証明しない。"
             },
             {
               "left": "input.submitted_state_applicability.identity",
-              "right": "input.submitted_state_applicability.identity",
-              "target": "output.meaning_binding_results.state"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_state_applicability.revision",
-              "right": "input.submitted_state_applicability.revision",
-              "target": "output.meaning_binding_results.state"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_state_applicability.scope",
-              "right": "input.submitted_state_applicability.scope",
-              "target": "output.meaning_binding_results.state"
+              "presence_only": true,
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "入力値の供給状態だけを観測。独立targetとの一致/資格を示さない。"
             },
             {
               "left": "input.submitted_state_applicability.owner",
               "literal": "BRAIN008",
-              "target": "output.meaning_binding_results.state"
+              "target": "output.meaning_binding_results.state",
+              "field_meaning": "L4の責務候補との値比較。実source owner資格を証明しない。"
             }
           ],
           "missing": "missing",
@@ -2287,7 +2326,13 @@
             "different"
           ],
           "composition": "既存relationと新binding statusをstatus_priorityの順位で合成する。表外の内容対応は最下位。同順位は既存値。成功checkは既存値を保持。scalar/member共通。",
-          "step": 11
+          "step": 11,
+          "meaning": "各sideのID/revision/scopeはAbsent/nullならmissing、再帰markerならunknown、供給値は対応表示を維持するだけで独立targetとの一致を主張しない。owner値はL4の固定責務候補と比較し異値をcontent_conflictへする。",
+          "presence_only_fields": [
+            "identity",
+            "revision",
+            "scope"
+          ]
         },
         {
           "step": 12,
@@ -2468,7 +2513,19 @@
               "value": {
                 "axis": "range",
                 "return_owner": "HARNESS"
-              }
+              },
+              "scope_target_pairs": [
+                {
+                  "left": "input.original_range_meaning.scope",
+                  "right": "input.original_required_reference.verification_scope"
+                },
+                {
+                  "left": "input.submitted_range_meaning.scope",
+                  "right": "input.submitted_required_reference.verification_scope"
+                }
+              ],
+              "scope_mismatch_counts_as_failure": true,
+              "scope_source_meaning": "原/提出それぞれのrange scopeと同側required verification_scopeを比較。両値が供給済み・非null・非placeholderで異なるとHARNESS routeを出す。"
             },
             {
               "relations": [
@@ -2482,8 +2539,13 @@
               }
             }
           ],
-          "rule": "checks順にrelationsのどれかがsuccess以外ならvalueを一件出力し、全てsuccessなら省略する。同じaxisを重複出力しない。資格ではなく不足の返却先候補。",
-          "step": 17
+          "rule": "checks順にrelationsがsuccess以外、またはscope_target_pairsのどれかが供給済み・非null・非placeholderの相違ならvalueを出力する。重複axis/ownerは一件だけ。identity/revisionの独立target不足はこのrouteから解消したとしない。資格ではなく不足の返却先候補。",
+          "step": 17,
+          "unresolved_markers": [
+            "",
+            "TBD",
+            "unknown"
+          ]
         }
       ],
       "purpose": "宣言range/state意味と必要参照の有限packet比較を行い、unknown/mismatch/range外を実呼出しに変えず、Qを保全する。L9に独立した改ざん不能targetが無いため、originalとsubmittedの両方が同じ誤recordへ置換された場合の真正性判定は未実現。",
@@ -3250,9 +3312,9 @@
       "owner_routes": "fixed_routesで宣言された戻し先候補または入力値を出力へ写す。資格を示さない。",
       "project_record": "fieldsの順で指定memberだけをAbsent除外して投影する。",
       "state_eligibility": "step branch_conditionsとbranch_result_orderを評価しstate relationを返す。",
-      "validate_bindings": "checks順にleft/rightまたはliteralを評価。Absent/nullをmissing、再帰markerをunresolved、JSON不一致をdifferentとする。この順で単独checkを選ぶ。各statusの合成順位はstatus_priority先頭を最高とし、scalar/member共通で既存statusより高い場合だけ更新。表外の対応状態は最下位。同順位・成功checkは既存値保持。",
+      "validate_bindings": "checks順にleftを読む。presence_only=trueならAbsent/nullをmissing、再帰markerをunresolved、その他の供給値は一致を主張せず変更しない。presence_only未指定ならright/literalも読み、Absent/null→missing、再帰marker→unresolved、JSON不一致→different。各statusをstatus_priorityの順で既存結果へ合成し、より高い場合だけ更新。同順位・成功checkは既存値保持。",
       "mark_relation_on_values": "checks順にpathsのいずれかがequalsとJSON等値、かつ現在to[field]がoverwrite_relationsに含まれる場合のみresultへ置く。claimは読まない。",
-      "collect_routes": "checks順にrelationsの出力pathを読む。どれかがsuccess以外ならそのcheckのvalueを一件追加、全てsuccessなら省略。重複valueは最初だけ保持する。"
+      "collect_routes": "checks順にrelationsの出力pathを読む。いずれかがsuccess以外、またはscope_target_pairsの両側が存在/non-null/marker-freeでJSON不一致ならcheck.valueを追加する。JSON値等値はboolとnumberを区別し、配列順を保持する。重複valueは最初だけ保持。"
     },
     "operator_order": [
       "aggregate_reference_applicability",
@@ -3328,7 +3390,7 @@
       "requirement_ref": "HELIXBRAIN-L3-028-F02",
       "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
       "oracle_ref": "HELIXBRAIN-L9-028-F02",
-      "contract_sha256": "31cf2e5a883241ab0173105b14b38957eb7a68bca756a03761e1f925348fd3f9",
+      "contract_sha256": "3f6f20a5ddd154b1aa0673ee93279beedde4d0cdc0ec15673d3930ba00e49b0a",
       "approved_requirement": {
         "id": "HELIXBRAIN-L3-028-F02",
         "parent": "HELIXBRAIN-L2-028",
@@ -3497,9 +3559,20 @@
       "value": "none",
       "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
       "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
-      "pointer": "/authority_effect",
+      "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
       "value_canonical_sha256": "30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666",
-      "meaning": "原L9の診断/返却候補/無作用表示の語彙。実資格や一般の状態policyを導出しない。"
+      "meaning": "原L9 F01 rawの明示false claimをL5 claims_true_rejectedがnoneへ写す入力根拠。authority_effectとは異なる。",
+      "raw_json_pointer": "/claims/knowledge_as_artifact",
+      "raw_sha256": "8f33e687c532b1ffdda0438c32b026c444d0f09eccb921610691ceae368edb14",
+      "raw_value": false,
+      "raw_value_canonical_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+      "source_mapping": {
+        "function_ref": "HELIXBRAIN-L5-028-F01",
+        "operator": "claims_true_rejected",
+        "input_case": "boolean_false",
+        "output_field": "claim_results.knowledge_as_artifact",
+        "output_literal": "none"
+      }
     },
     {
       "value": "rejected",
@@ -3537,5 +3610,12 @@
       "requirement_ref": "HELIXBRAIN-L3-028-F02",
       "l4_ref": "HELIXBRAIN-L4-028-F02"
     }
-  ]
+  ],
+  "candidate_pair_local_binding": {
+    "l4_path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
+    "l4_sha256_after_edit": "12a6255274ac052fcd9393a8d753f2f3e32af054007230e0deb8c97e3ccb2c6d",
+    "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+    "l9_sha256_after_edit": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
+    "classification": "candidate-local bytes; not source_main pins or approved content"
+  }
 }
