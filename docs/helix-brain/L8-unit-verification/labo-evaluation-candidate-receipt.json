@@ -66123,9 +66123,3006 @@
         "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
       },
       "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-REGISTRATION-MARKER-0",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/registration/state",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": ""
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          }
+        }
+      },
+      "raw_packet_sha256": "3dff59719026c1021f9afc9a1d8e01b40d023d94249c5de13bd34fa916a6023f",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "7a27b999b4fd7cbc1d80b9df1c57d501ebdece64f1c45da0df5858c0c8eb4850",
+      "expected_auxiliary": {
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": ""
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "b05bc0b57cfc67d77af2ebf98c75a26e9d767b2c5f22eea1a1597f310fca89b6",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_states/registration/state",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/registration",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": ""
+        }
+      ],
+      "basis": "L4 F02の登録内容未確定を保持し、登録責務HELIX-OSへ返す。両側同じmarkerでも既知内容対応へ補完しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-REGISTRATION-MARKER-1",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/registration/state",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "TBD"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          }
+        }
+      },
+      "raw_packet_sha256": "5ac0391cd61129607d00d763a5168c60b74322c10b611271fca2498969f89bbf",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "9ab561035d2c6cb0e49bc05441d3190f9f7039d720f9414c34c8b477fa8c8019",
+      "expected_auxiliary": {
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "TBD"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "5409603d9cd07421b0f4f8ba22978f4a4650745e0c8c8be6926504cf69d28670",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_states/registration/state",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/registration",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "TBD"
+        }
+      ],
+      "basis": "L4 F02の登録内容未確定を保持し、登録責務HELIX-OSへ返す。両側同じmarkerでも既知内容対応へ補完しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-REGISTRATION-MARKER-2",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/registration/state",
+          "value": "tbd"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "tbd"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          }
+        }
+      },
+      "raw_packet_sha256": "e6bed6023b1122919d4fecf13e61cc6489f8284922a35db29b3f976dbf2f0af3",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "f94c202c9193f0c99e863d0e25f09de425acf5513570a3059c66a95b7fbb7772",
+      "expected_auxiliary": {
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "tbd"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "c8457f17feb41a141d50570334194dc28e88ad9e0a2a2466e7c6550b29d22aec",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_states/registration/state",
+          "value": "tbd"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/registration",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "tbd"
+        }
+      ],
+      "basis": "L4 F02の登録内容未確定を保持し、登録責務HELIX-OSへ返す。両側同じmarkerでも既知内容対応へ補完しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-REGISTRATION-MARKER-3",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/registration/state",
+          "value": "N/A"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "N/A"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          }
+        }
+      },
+      "raw_packet_sha256": "e10418cb8f34b72a29d9302baf6dd276bcbee5877f44ddc033db573c2b654171",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "12a883497334b591630da38fc9eba53bb277ab0e27d729d3e4b6d7330832b0cd",
+      "expected_auxiliary": {
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "unknown",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "N/A"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "26aeb8c437ff202085303a79973af84f5535f46529d96ede673597e4b4e5826b",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_states/registration/state",
+          "value": "N/A"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/registration",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/registration/state",
+          "value": "N/A"
+        }
+      ],
+      "basis": "L4 F02の登録内容未確定を保持し、登録責務HELIX-OSへ返す。両側同じmarkerでも既知内容対応へ補完しない。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-PROMOTION-ALIAS-0",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/adoption/state",
+          "value": "established_Pattern"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/adoption/state",
+          "value": "established_Pattern"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          }
+        }
+      },
+      "raw_packet_sha256": "e1e50c98e33f9ec4623da2e91ab65bf2937c5882d2d3bcf36ba937ca0431746c",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_conflict"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          }
+        },
+        "adoption_state": "established_Pattern",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "1751f3552c3fa54e4c3cd4afaee0bb08a9ddb504407ff41edf2546e4bca0e38f",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "adoption_before_registration_and_verification": "rejected"
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_conflict"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "established_Pattern"
+          }
+        },
+        "adoption_state": "established_Pattern",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {
+          "adoption_before_registration_and_verification": "rejected"
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "b7c85e9e874f204451b2196cb9058c223d90e58c5ce1b248ade0de477ade39db",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/adoption_state",
+          "value": "established_Pattern"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_states/adoption/state",
+          "value": "established_Pattern"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/adoption",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/adoption/state",
+          "value": "established_Pattern"
+        }
+      ],
+      "basis": "登録unknown・独立未検証を保持し、両側の昇格表示で採用成立にしない。L4 F02の登録/検証/採否分離と前提義務による。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-PROMOTION-ALIAS-1",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/adoption/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/adoption/state",
+          "value": "universal"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          }
+        }
+      },
+      "raw_packet_sha256": "c7158cd5bb0f2aa8c31d385c9874e55a3ffb92585aaed54b9a674eb40748af45",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_conflict"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          }
+        },
+        "adoption_state": "universal",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "6b2e84d81b19769da40dfb5686cec6f997801a41231ec75b124024b601811f87",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "adoption_before_registration_and_verification": "rejected"
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_corresponding_in_fixture",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_conflict"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "universal"
+          }
+        },
+        "adoption_state": "universal",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {
+          "adoption_before_registration_and_verification": "rejected"
+        },
+        "failure_return_owners": {
+          "adoption": "BRAIN-change"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "0c78c38848ff98f0b1cf28c26d41800405131852a8cd0df490c19f23b5c87e67",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/adoption_state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_states/adoption/state",
+          "value": "universal"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/adoption",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_states/adoption/state",
+          "value": "universal"
+        }
+      ],
+      "basis": "登録unknown・独立未検証を保持し、両側の昇格表示で採用成立にしない。L4 F02の登録/検証/採否分離と前提義務による。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-ONE-SIDE-REGISTRATION-OWNER",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "base_case_id": "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_states/registration/owner",
+          "value": "OTHER-ROLE"
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "AI_generated_established": false,
+          "LABO_pass_mature": false,
+          "OS_registration_inferred": false,
+          "receipt_adopted": false,
+          "single_success_established": false
+        },
+        "original_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "original_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "OTHER-ROLE",
+            "state": "unknown"
+          }
+        },
+        "submitted_receiver_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_sender_receipt": {
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1"
+        },
+        "submitted_states": {
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          },
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          }
+        }
+      },
+      "raw_packet_sha256": "38cced313abe639b7128569a7cfd41259b197ca6a1210d18c8567668393a011a",
+      "expected_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_conflict",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "OTHER-ROLE",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "c224067f0916c0f9f2b946bbf12883bc240034dba00c05919c9d739164eb842a",
+      "expected_auxiliary": {
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole": {
+        "sender_receipt_result": "content_corresponding_in_fixture",
+        "receiver_receipt_result": "content_corresponding_in_fixture",
+        "retained_receipt_meaning": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_sender_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "submitted_receiver_receipt": {
+          "source": "SOURCE-P@source-r1",
+          "candidate_identity": "CANDIDATE-P",
+          "candidate_revision": "candidate-r2",
+          "candidate_version": "knowledge-K2",
+          "evaluation_identity": "EVALUATION-P",
+          "evaluation_revision": "evaluation-r7",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+        },
+        "state_results": {
+          "evaluation": "content_corresponding_in_fixture",
+          "registration": "content_conflict",
+          "independent_verification": "content_corresponding_in_fixture",
+          "adoption": "content_corresponding_in_fixture"
+        },
+        "retained_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "OTHER-ROLE",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "submitted_states": {
+          "evaluation": {
+            "owner": "LABO",
+            "state": "bounded_success_in_fixture"
+          },
+          "registration": {
+            "owner": "HELIX-OS",
+            "state": "unknown"
+          },
+          "independent_verification": {
+            "owner": "BRAIN-independent-review",
+            "state": "not_verified"
+          },
+          "adoption": {
+            "owner": "BRAIN-change",
+            "state": "not_adopted"
+          }
+        },
+        "adoption_state": "not_adopted",
+        "return_owners": {
+          "evaluation_source": "LABO",
+          "registration": "HELIX-OS",
+          "adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "LABO_pass_mature": "none",
+          "receipt_adopted": "none",
+          "OS_registration_inferred": "none",
+          "single_success_established": "none",
+          "AI_generated_established": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {},
+        "failure_return_owners": {
+          "registration": "HELIX-OS"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "0647d0ab112918871d68e7457f7acc8e252a72908b18c3902ed885e1629d83eb",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/retained_states/registration/owner",
+          "value": "OTHER-ROLE"
+        },
+        {
+          "op": "replace",
+          "path": "/state_results/registration",
+          "value": "content_conflict"
+        }
+      ],
+      "basis": "原側だけ別owner。主比較はconflictだが両側同一ownerを前提とする追加診断は出さない。原owner内容と提出内容の差を保持し、登録責務へ返す。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l9_ref": "HELIXBRAIN-L9-020-F02",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "b33f27858cfdcac19793c3c2e9414a1f2ef0c7b48af2d5af2074ca3787057fa1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-MATURITY-CANDIDATE-IDENTITY",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "base_case_id": "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_maturity/candidate_identity",
+          "value": "OTHER-CANDIDATE"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/candidate_identity",
+          "value": "OTHER-CANDIDATE"
+        }
+      ],
+      "raw_packet": {
+        "candidate": {
+          "identity": "CANDIDATE-P",
+          "revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "source": "SOURCE-P@source-r1",
+          "state": "candidate_only",
+          "version": "knowledge-K2"
+        },
+        "claims": {
+          "maturity_missing_filled": false,
+          "non_selected_requires_all_INFRA": false,
+          "one_success_universal": false
+        },
+        "infrastructure_maturity_selected": true,
+        "original_maturity": {
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "単一条件の観測例。universalではない",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed"
+        },
+        "submitted_maturity": {
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "identity": "MATURITY-P",
+          "limitation": "単一条件の観測例。universalではない",
+          "owner": "BRAIN-INFRA017",
+          "revision": "maturity-r3",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed"
+        }
+      },
+      "raw_packet_sha256": "4923d96d93aa9b0baaae2b3a73ea4ac850ac373c0bff5edf441070ce9d8a018b",
+      "expected_whole": {
+        "selection": true,
+        "maturity_result": "different_candidate_target",
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "submitted_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture"
+      },
+      "expected_whole_canonical_sha256": "166f9e45ecb36cf85713df0a7bc4392b34125e31d121c00c965ac6e2b9e50b50",
+      "expected_auxiliary": {
+        "review_diagnostics": {}
+      },
+      "expected_full_whole": {
+        "selection": true,
+        "maturity_result": "different_candidate_target",
+        "retained_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "submitted_maturity": {
+          "identity": "MATURITY-P",
+          "revision": "maturity-r3",
+          "owner": "BRAIN-INFRA017",
+          "candidate_identity": "OTHER-CANDIDATE",
+          "candidate_revision": "candidate-r2",
+          "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+          "state": "observed",
+          "evidence": [
+            "EVALUATION-P@evaluation-r7"
+          ],
+          "limitation": "単一条件の観測例。universalではない"
+        },
+        "maturity_requirement": "INFRA017_selected_candidate_only",
+        "candidate_maturity_state": "held_unknown_or_conflicting",
+        "accepted_or_mature_established": false,
+        "return_owners": [
+          "BRAIN-INFRA017",
+          "LABO"
+        ],
+        "claim_results": {
+          "one_success_universal": "none",
+          "maturity_missing_filled": "none",
+          "non_selected_requires_all_INFRA": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "submitted_maturity_result": "content_corresponding_in_fixture",
+        "review_diagnostics": {}
+      },
+      "expected_full_whole_canonical_sha256": "42831bda5b622197f7e3275119bf0326e9af4ed4bc45e4ee0a7f0582b4b9b0c9",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/candidate_maturity_state",
+          "value": "held_unknown_or_conflicting"
+        },
+        {
+          "op": "replace",
+          "path": "/maturity_result",
+          "value": "different_candidate_target"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_maturity/candidate_identity",
+          "value": "OTHER-CANDIDATE"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_maturity/candidate_identity",
+          "value": "OTHER-CANDIDATE"
+        }
+      ],
+      "basis": "両側成熟recordが一致しても選択candidate.identityと異なれば対象不一致。L4 F03の同一候補への結合を満たさず保留する。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l9_ref": "HELIXBRAIN-L9-020-F03",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "f854926b4acdd1bbfba10205df91cb7d63d173af59227044817c36d65a929c6e"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-B01-EVALUATION-GENERATED-STATE",
+      "requirement_ref": "HELIXBRAIN-L3-020-B01",
+      "base_case_id": "B020-B01-EVALUATION-RETURNED-OS-HELD-COMPOSITION-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_evaluation_record/state",
+          "value": "BRAIN_evaluated_success"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_evaluation_record/state",
+          "value": "BRAIN_evaluated_success"
+        }
+      ],
+      "raw_packet": {
+        "candidate_state": "undecided_composition_candidate",
+        "claims": {
+          "BRAIN_registration_original_copy": false,
+          "BRAIN_self_evaluation": false,
+          "composition_established_pattern": false
+        },
+        "composition_candidate_selected": true,
+        "failure_knowledge_selected": false,
+        "original_contract_references": {
+          "007": {
+            "identity": "HELIXBRAIN-L2-007",
+            "revision": "contract-007-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "008": {
+            "identity": "HELIXBRAIN-L2-008",
+            "revision": "contract-008-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "009": {
+            "identity": "HELIXBRAIN-L2-009",
+            "revision": "contract-009-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "010": {
+            "identity": "HELIXBRAIN-L2-010",
+            "revision": "contract-010-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          }
+        },
+        "original_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "owner": "LABO",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success"
+        },
+        "original_owners": {
+          "candidate_and_adoption": "BRAIN-change",
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS"
+        },
+        "original_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "owner": "HELIX-OS",
+          "revision": "registration-r4",
+          "state": "held"
+        },
+        "submitted_contract_references": {
+          "007": {
+            "identity": "HELIXBRAIN-L2-007",
+            "revision": "contract-007-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "008": {
+            "identity": "HELIXBRAIN-L2-008",
+            "revision": "contract-008-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "009": {
+            "identity": "HELIXBRAIN-L2-009",
+            "revision": "contract-009-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          }
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "owner": "LABO",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success"
+        },
+        "submitted_owners": {
+          "candidate_and_adoption": "BRAIN-change",
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "owner": "HELIX-OS",
+          "revision": "registration-r4",
+          "state": "held"
+        }
+      },
+      "raw_packet_sha256": "443302dfe8292e22a669172dccf6c3f15ed47bdc66195c93a4cad9db14bbca73",
+      "expected_whole": {
+        "owner_results": {
+          "evaluation_original": "content_corresponding_in_fixture",
+          "registration_original": "content_corresponding_in_fixture",
+          "candidate_and_adoption": "content_corresponding_in_fixture"
+        },
+        "needed_contract_reference_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "009": "content_corresponding_in_fixture"
+        },
+        "unselected_contracts": [
+          "010"
+        ],
+        "evaluation_record_result": "content_conflict",
+        "registration_record_result": "content_corresponding_in_fixture",
+        "retained_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success",
+          "owner": "LABO"
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success",
+          "owner": "LABO"
+        },
+        "retained_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "held",
+          "owner": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "held",
+          "owner": "HELIX-OS"
+        },
+        "candidate_state": "undecided_composition_candidate",
+        "receipt_state": "candidate_received_fixture_only",
+        "return_owners": {
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS",
+          "candidate_and_adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "BRAIN_self_evaluation": "none",
+          "BRAIN_registration_original_copy": "none",
+          "composition_established_pattern": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "4f9f78ff0cc96aa2f3b178a6588d7781f01de8c18366e50e07a1f2983aa36a5e",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "evaluation_record_generated_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "owner_results": {
+          "evaluation_original": "content_corresponding_in_fixture",
+          "registration_original": "content_corresponding_in_fixture",
+          "candidate_and_adoption": "content_corresponding_in_fixture"
+        },
+        "needed_contract_reference_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "009": "content_corresponding_in_fixture"
+        },
+        "unselected_contracts": [
+          "010"
+        ],
+        "evaluation_record_result": "content_conflict",
+        "registration_record_result": "content_corresponding_in_fixture",
+        "retained_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success",
+          "owner": "LABO"
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "BRAIN_evaluated_success",
+          "owner": "LABO"
+        },
+        "retained_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "held",
+          "owner": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "held",
+          "owner": "HELIX-OS"
+        },
+        "candidate_state": "undecided_composition_candidate",
+        "receipt_state": "candidate_received_fixture_only",
+        "return_owners": {
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS",
+          "candidate_and_adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "BRAIN_self_evaluation": "none",
+          "BRAIN_registration_original_copy": "none",
+          "composition_established_pattern": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {
+          "evaluation_record_generated_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "2b87cce4d5d91fbbc4463d948fc01d6312bf868e8de8348ae44c772a8ce5bdd7",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/evaluation_record_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_evaluation_record/state",
+          "value": "BRAIN_evaluated_success"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_evaluation_record/state",
+          "value": "BRAIN_evaluated_success"
+        }
+      ],
+      "basis": "L4 B01の評価原本LABO・登録原本OSを分離し、BRAINによる成功原本の代用を内容不整合にする。原値は消さず保持する。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-B01",
+      "l9_ref": "HELIXBRAIN-L9-020-B01",
+      "l10_ref": "HELIXBRAIN-L10-020-B01",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "91bb5a460e51455e67674393a3521be908122ac7834221afde9c8a74f3369ee4"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "B020-B01-REGISTRATION-GENERATED-STATE",
+      "requirement_ref": "HELIXBRAIN-L3-020-B01",
+      "base_case_id": "B020-B01-EVALUATION-RETURNED-OS-HELD-COMPOSITION-UNDECIDED",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_registration_record/state",
+          "value": "BRAIN_evaluated_success"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_registration_record/state",
+          "value": "BRAIN_evaluated_success"
+        }
+      ],
+      "raw_packet": {
+        "candidate_state": "undecided_composition_candidate",
+        "claims": {
+          "BRAIN_registration_original_copy": false,
+          "BRAIN_self_evaluation": false,
+          "composition_established_pattern": false
+        },
+        "composition_candidate_selected": true,
+        "failure_knowledge_selected": false,
+        "original_contract_references": {
+          "007": {
+            "identity": "HELIXBRAIN-L2-007",
+            "revision": "contract-007-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "008": {
+            "identity": "HELIXBRAIN-L2-008",
+            "revision": "contract-008-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "009": {
+            "identity": "HELIXBRAIN-L2-009",
+            "revision": "contract-009-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "010": {
+            "identity": "HELIXBRAIN-L2-010",
+            "revision": "contract-010-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          }
+        },
+        "original_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "owner": "LABO",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation"
+        },
+        "original_owners": {
+          "candidate_and_adoption": "BRAIN-change",
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS"
+        },
+        "original_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "owner": "HELIX-OS",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success"
+        },
+        "submitted_contract_references": {
+          "007": {
+            "identity": "HELIXBRAIN-L2-007",
+            "revision": "contract-007-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "008": {
+            "identity": "HELIXBRAIN-L2-008",
+            "revision": "contract-008-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          },
+          "009": {
+            "identity": "HELIXBRAIN-L2-009",
+            "revision": "contract-009-r1",
+            "scope": "EVALUATED-CANDIDATE-SCOPE-P"
+          }
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "owner": "LABO",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation"
+        },
+        "submitted_owners": {
+          "candidate_and_adoption": "BRAIN-change",
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "owner": "HELIX-OS",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success"
+        }
+      },
+      "raw_packet_sha256": "bd951caaa641e69c70a74eace912fec3c7a840491d482a839413fc8f732e15b6",
+      "expected_whole": {
+        "owner_results": {
+          "evaluation_original": "content_corresponding_in_fixture",
+          "registration_original": "content_corresponding_in_fixture",
+          "candidate_and_adoption": "content_corresponding_in_fixture"
+        },
+        "needed_contract_reference_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "009": "content_corresponding_in_fixture"
+        },
+        "unselected_contracts": [
+          "010"
+        ],
+        "evaluation_record_result": "content_corresponding_in_fixture",
+        "registration_record_result": "content_conflict",
+        "retained_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation",
+          "owner": "LABO"
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation",
+          "owner": "LABO"
+        },
+        "retained_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success",
+          "owner": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success",
+          "owner": "HELIX-OS"
+        },
+        "candidate_state": "undecided_composition_candidate",
+        "receipt_state": "candidate_received_fixture_only",
+        "return_owners": {
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS",
+          "candidate_and_adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "BRAIN_self_evaluation": "none",
+          "BRAIN_registration_original_copy": "none",
+          "composition_established_pattern": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_whole_canonical_sha256": "68e395f7c070033afa0b32d16ab0c8595f660fea60045fbd91dfc4d976c3c6a8",
+      "expected_auxiliary": {
+        "review_diagnostics": {
+          "registration_record_generated_state": "rejected"
+        }
+      },
+      "expected_full_whole": {
+        "owner_results": {
+          "evaluation_original": "content_corresponding_in_fixture",
+          "registration_original": "content_corresponding_in_fixture",
+          "candidate_and_adoption": "content_corresponding_in_fixture"
+        },
+        "needed_contract_reference_results": {
+          "007": "content_corresponding_in_fixture",
+          "008": "content_corresponding_in_fixture",
+          "009": "content_corresponding_in_fixture"
+        },
+        "unselected_contracts": [
+          "010"
+        ],
+        "evaluation_record_result": "content_corresponding_in_fixture",
+        "registration_record_result": "content_conflict",
+        "retained_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation",
+          "owner": "LABO"
+        },
+        "submitted_evaluation_record": {
+          "identity": "EVALUATION-P",
+          "revision": "evaluation-r7",
+          "state": "returned_for_further_evaluation",
+          "owner": "LABO"
+        },
+        "retained_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success",
+          "owner": "HELIX-OS"
+        },
+        "submitted_registration_record": {
+          "identity": "OS-REGISTRATION-P",
+          "revision": "registration-r4",
+          "state": "BRAIN_evaluated_success",
+          "owner": "HELIX-OS"
+        },
+        "candidate_state": "undecided_composition_candidate",
+        "receipt_state": "candidate_received_fixture_only",
+        "return_owners": {
+          "evaluation_original": "LABO",
+          "registration_original": "HELIX-OS",
+          "candidate_and_adoption": "BRAIN-change"
+        },
+        "claim_results": {
+          "BRAIN_self_evaluation": "none",
+          "BRAIN_registration_original_copy": "none",
+          "composition_established_pattern": "none"
+        },
+        "effects": {
+          "actual_LABO_evaluation": false,
+          "actual_OS_registration": false,
+          "actual_BRAIN_adoption": false,
+          "actual_maturity_promotion": false,
+          "actual_operation_permission": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "review_diagnostics": {
+          "registration_record_generated_state": "rejected"
+        }
+      },
+      "expected_full_whole_canonical_sha256": "5376742043c51eed99708b891a8eac0457913ea3b7488f408b171062cf0668c8",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/registration_record_result",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_registration_record/state",
+          "value": "BRAIN_evaluated_success"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_registration_record/state",
+          "value": "BRAIN_evaluated_success"
+        }
+      ],
+      "basis": "L4 B01の評価原本LABO・登録原本OSを分離し、BRAINによる成功原本の代用を内容不整合にする。原値は消さず保持する。",
+      "qualification": "合成比較のみ。実評価・登録・採否・資格を生成しない。",
+      "l4_ref": "HELIXBRAIN-L4-020-B01",
+      "l9_ref": "HELIXBRAIN-L9-020-B01",
+      "l10_ref": "HELIXBRAIN-L10-020-B01",
+      "source_packet_ref": {
+        "document": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "91bb5a460e51455e67674393a3521be908122ac7834221afde9c8a74f3369ee4"
+      },
+      "execution_state": "not_executed"
     }
   ],
-  "independent_probe_count": 135,
+  "independent_probe_count": 145,
   "review_diagnostic_expectations": [
     {
       "case_id": "B020-F02-RECEIPT_ADOPTED",
@@ -66188,6 +69185,29 @@
       "classification": "outside_declared_F03_signature",
       "function_invocation": "not_invoked",
       "reason": "evidenceの非array文字列は宣言されたF03入力型の外。pure operatorの条件確認とtyped F03全返却検証を混同しない。"
+    }
+  ],
+  "operator_boundary_cases": [
+    {
+      "id": "B020-OPERATOR-NONARRAY-INSUFFICIENT",
+      "operator_source": "/raw_comparison_reference/source",
+      "function": "conditional_value_violation",
+      "record": {
+        "candidate_identity": "CANDIDATE-P",
+        "candidate_revision": "candidate-r2",
+        "evidence": "EVIDENCE-1@r1",
+        "identity": "MATURITY-P",
+        "limitation": "複数条件の合成根拠。実汎用性/実資格は未成立",
+        "owner": "BRAIN-INFRA017",
+        "revision": "maturity-r3",
+        "scope": "EVALUATED-CANDIDATE-SCOPE-P",
+        "state": "universal"
+      },
+      "field": "state",
+      "policy_ref": "/pure_reference_semantics/programs/HELIXBRAIN-L3-020-F03/output/maturity_result/placeholder_rule/conditional_forbidden_values_by_field/state",
+      "expected": true,
+      "basis": "証拠が非arrayなら不足とする演算子規則。F03署名の許容入力や実成熟成立を拡張しない。",
+      "classification": "operator_unit_only; F03_not_invoked"
     }
   ]
 }
