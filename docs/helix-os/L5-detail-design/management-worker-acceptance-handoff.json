@@ -1,0 +1,3707 @@
+{
+  "document_id": "HELIXOS-L5-023",
+  "parent": "HELIXOS-L2-023",
+  "layer": "L5",
+  "pair": "HELIXOS-L8-023",
+  "source_main": "a1b93ecfb1ea17722c0b288d5dd4daea40d6742e",
+  "approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+  "approval_record": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "status": "draft_detail_design_pending_independent_review",
+  "version_target": "1.0",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-023-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "6c0c2eb79171b619250fd870cd2226890cccae8e6869cd01d34e2ffa81155850",
+      "current_canonical_sha256": "6c0c2eb79171b619250fd870cd2226890cccae8e6869cd01d34e2ffa81155850",
+      "object": {
+        "id": "HELIXOS-L3-023-F01",
+        "parent": "HELIXOS-L2-023",
+        "title": "各handoffの束縛",
+        "obligation": "015/016のauthorityと接続状況、017ticket、018assignment/attempt、020検証義務/結果、019evidenceの関係する必要unitと版付きinterfaceを使い、管理→推進→Worker→検収→管理の各handoffを対象revision/digest・因果ID・scope・未完義務・停止理由・証拠へ結ぶ。初回結果/receiptは当該実行後に生じる証拠として扱う。",
+        "oracle_ref": "HELIXOS-L10-023-F01"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "ec179a0eeafd5cb8a345b11fe2a78ff83fdaa66428388ffa70518c26ce4e1557",
+      "current_canonical_sha256": "ec179a0eeafd5cb8a345b11fe2a78ff83fdaa66428388ffa70518c26ce4e1557",
+      "object": {
+        "id": "HELIXOS-L10-023-F01",
+        "parent": "HELIXOS-L2-023",
+        "title": "各handoffの束縛",
+        "requirement_ref": "HELIXOS-L3-023-F01",
+        "positive_input": "各端の対応recordと受渡しを同scopeへ結び、開始前と実行後の入力を分ける。",
+        "expected_observation": "handoffごとの相関/元revisionと未完、未来receiptの未発生が辿れる。",
+        "negative_input": "別revision/scope/因果IDの組合せ、必要interface版欠落、未来の実結果を左要件起草の前提。",
+        "failure_observation": "当該connectionを未成立にし、発生側sourceまたは管理へ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "e24dacfe2c216704f279e70710c8c0cec168db3c43bbd49a2cc009994ddf4b07",
+      "current_canonical_sha256": "e24dacfe2c216704f279e70710c8c0cec168db3c43bbd49a2cc009994ddf4b07",
+      "object": {
+        "id": "HELIXOS-L3-023-F02",
+        "parent": "HELIXOS-L2-023",
+        "title": "単体と接続の別受入",
+        "obligation": "各unitの成功、handoffの成功、接続固有受入、構成体の成立を別々に確認する。作成側の自己reviewを独立reviewにせず、provider名だけで独立性を確定しない。推進/Worker/検収のauthorityを混同しない。",
+        "oracle_ref": "HELIXOS-L10-023-F02"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "1784088266c74379a6e6ce0ac3d58efb9d45aa851f402242c453053dc36bd823",
+      "current_canonical_sha256": "1784088266c74379a6e6ce0ac3d58efb9d45aa851f402242c453053dc36bd823",
+      "object": {
+        "id": "HELIXOS-L10-023-F02",
+        "parent": "HELIXOS-L2-023",
+        "title": "単体と接続の別受入",
+        "requirement_ref": "HELIXOS-L3-023-F02",
+        "positive_input": "unitは成功だがhandoffまたは固有受入が不足するfixtureを分ける。",
+        "expected_observation": "判定が別に残り、independent reviewerのidentity/context/authority/routeへ辿れる。",
+        "negative_input": "unit successで次段受入/完了、作成側兼独立review、推進が検収義務変更、検収が要求/ticket発行。",
+        "failure_observation": "不足する接続/独立性を保持し、unit成功だけで合格にしない。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "93c55d42c9b83bb7fb802071ad25aa77a3f36a7102ad11030f16bf34b0f4257b",
+      "current_canonical_sha256": "93c55d42c9b83bb7fb802071ad25aa77a3f36a7102ad11030f16bf34b0f4257b",
+      "object": {
+        "id": "HELIXOS-L3-023-F03",
+        "parent": "HELIXOS-L2-023",
+        "title": "未完義務の受理と元作業",
+        "obligation": "受渡し不一致では停止理由/未完義務を保持し、受信側が同revision/scopeの未完義務を受理した証拠を確認するまで元作業を完了にしない。受理/ACKと意味解決/検証合格を分け、元義務の消込条件はそのownerの契約へ戻る。",
+        "oracle_ref": "HELIXOS-L10-023-F03"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "1abf2f9306ac84847e8a14d509f15032706e4ff55e7f70de448005e4dee70b59",
+      "current_canonical_sha256": "1abf2f9306ac84847e8a14d509f15032706e4ff55e7f70de448005e4dee70b59",
+      "object": {
+        "id": "HELIXOS-L10-023-F03",
+        "parent": "HELIXOS-L2-023",
+        "title": "未完義務の受理と元作業",
+        "requirement_ref": "HELIXOS-L3-023-F03",
+        "positive_input": "返却/ACK/受信側受理/実解決/元義務消込を別々に照合する。",
+        "expected_observation": "元作業と受信側に対応する未完・証拠と解消先が辿れる。",
+        "negative_input": "通知ACKだけで未完消失、受理なし元作業完了。",
+        "failure_observation": "当該handoff/完了を未成立にし、受理不足と元義務を保持する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-N01",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "23a91542df5e974c2fb2c7d92298643ef1cb74318566a5b448f2a43eaf84d2c3",
+      "current_canonical_sha256": "23a91542df5e974c2fb2c7d92298643ef1cb74318566a5b448f2a43eaf84d2c3",
+      "object": {
+        "id": "HELIXOS-L3-023-N01",
+        "parent": "HELIXOS-L2-023",
+        "title": "局所失敗と未観測範囲",
+        "obligation": "各端のrevision/digest/authority/証拠不一致を接続単位で識別し、他unit/他scope成功で穴を埋めない。未見actor/project/revisionのfixtureで受渡しを再構築し、未観測/未発生の接続は未成立のまま残す。",
+        "oracle_ref": "HELIXOS-L10-023-N01"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-N01",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "a3893a1af0af5fb6326e3aad71fc8ee33e0c6b6f580b03913fdbc249ae6dee43",
+      "current_canonical_sha256": "a3893a1af0af5fb6326e3aad71fc8ee33e0c6b6f580b03913fdbc249ae6dee43",
+      "object": {
+        "id": "HELIXOS-L10-023-N01",
+        "parent": "HELIXOS-L2-023",
+        "title": "局所失敗と未観測範囲",
+        "requirement_ref": "HELIXOS-L3-023-N01",
+        "positive_input": "伏せた別project/actorと一端だけの故障から各handoffを照合する。",
+        "expected_observation": "発生端/戻し先・未完が具体的で、無関係な有効unitを保持する。",
+        "negative_input": "field存在/件数だけで接続成功、全scope成功へ外挿、未知edgeを影響なし。",
+        "failure_observation": "未観測/未解決edgeを保持し、全体成立を主張しない。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXOS-L3-023-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "6c0c2eb79171b619250fd870cd2226890cccae8e6869cd01d34e2ffa81155850"
+    },
+    {
+      "id": "HELIXOS-L10-023-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "ec179a0eeafd5cb8a345b11fe2a78ff83fdaa66428388ffa70518c26ce4e1557"
+    },
+    {
+      "id": "HELIXOS-L3-023-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "e24dacfe2c216704f279e70710c8c0cec168db3c43bbd49a2cc009994ddf4b07"
+    },
+    {
+      "id": "HELIXOS-L10-023-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "1784088266c74379a6e6ce0ac3d58efb9d45aa851f402242c453053dc36bd823"
+    },
+    {
+      "id": "HELIXOS-L3-023-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "93c55d42c9b83bb7fb802071ad25aa77a3f36a7102ad11030f16bf34b0f4257b"
+    },
+    {
+      "id": "HELIXOS-L10-023-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "1abf2f9306ac84847e8a14d509f15032706e4ff55e7f70de448005e4dee70b59"
+    },
+    {
+      "id": "HELIXOS-L3-023-N01",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "23a91542df5e974c2fb2c7d92298643ef1cb74318566a5b448f2a43eaf84d2c3"
+    },
+    {
+      "id": "HELIXOS-L10-023-N01",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "canonical_sha256": "a3893a1af0af5fb6326e3aad71fc8ee33e0c6b6f580b03913fdbc249ae6dee43"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "9b94cc9ea65b158191ea782f2c66d1b7f8c0340d4da3f69c1ac8529fa3998dcc"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "1a7814e6016c464777a394ee41587aa4903de12887b77d8dc684ac5495499a8d"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "whole_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-worker-acceptance-handoff.json",
+      "revision": "5ae021738987e22269c4a87a4306140ea24a90c6",
+      "whole_sha256": "e8eb1a3089027181ad6188b5c7f79eca59b1b637530091f4a1fa52b307a5a155"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
+      "revision": "f71f746e407162e1d9425d4e44f530d17529dc3d",
+      "whole_sha256": "17f176a5e45349c0f9b52b5a0ce4245c673c1a58e02c49bebccdea466647aa2f"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/management-worker-acceptance-handoff.json",
+      "revision": "5ae021738987e22269c4a87a4306140ea24a90c6",
+      "whole_sha256": "e8eb1a3089027181ad6188b5c7f79eca59b1b637530091f4a1fa52b307a5a155"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
+      "revision": "f71f746e407162e1d9425d4e44f530d17529dc3d",
+      "whole_sha256": "17f176a5e45349c0f9b52b5a0ce4245c673c1a58e02c49bebccdea466647aa2f"
+    }
+  ],
+  "contracts": [
+    {
+      "contract_id": "HELIXOS-L4-023-F01",
+      "requirement_id": "HELIXOS-L3-023-F01",
+      "l10_id": "HELIXOS-L10-023-F01",
+      "l9_id": "HELIXOS-L9-023-F01",
+      "component": "versioned_local_handoff_binding",
+      "input_meaning": "015/016のauthorityと接続状況、017ticket、018assignment/attempt、020検証義務/結果、019evidenceの関係する必要unitと版付きinterfaceを使い、管理→推進→Worker→検収→管理の各handoffを対象revision/digest・因果ID・scope・未完義務・停止理由・証拠へ結ぶ。初回結果/receiptは当該実行後に生じる証拠として扱う。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXOS-L4-023-F02",
+      "requirement_id": "HELIXOS-L3-023-F02",
+      "l10_id": "HELIXOS-L10-023-F02",
+      "l9_id": "HELIXOS-L9-023-F02",
+      "component": "separate_unit_connection_review_material",
+      "input_meaning": "各unitの成功、handoffの成功、接続固有受入、構成体の成立を別々に確認する。作成側の自己reviewを独立reviewにせず、provider名だけで独立性を確定しない。推進/Worker/検収のauthorityを混同しない。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXOS-L4-023-F03",
+      "requirement_id": "HELIXOS-L3-023-F03",
+      "l10_id": "HELIXOS-L10-023-F03",
+      "l9_id": "HELIXOS-L9-023-F03",
+      "component": "unfinished_receiver_acceptance_and_source_work_boundary",
+      "input_meaning": "受渡し不一致では停止理由/未完義務を保持し、受信側が同revision/scopeの未完義務を受理した証拠を確認するまで元作業を完了にしない。受理/ACKと意味解決/検証合格を分け、元義務の消込条件はそのownerの契約へ戻る。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXOS-L4-023-N01",
+      "requirement_id": "HELIXOS-L3-023-N01",
+      "l10_id": "HELIXOS-L10-023-N01",
+      "l9_id": "HELIXOS-L9-023-N01",
+      "component": "unobserved_local_scope_and_unseen_reconstruction_material",
+      "input_meaning": "各端のrevision/digest/authority/証拠不一致を接続単位で識別し、他unit/他scope成功で穴を埋めない。未見actor/project/revisionのfixtureで受渡しを再構築し、未観測/未発生の接続は未成立のまま残す。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_line_quotes": [
+        {
+          "line": 222,
+          "text": "Assignmentはexactly-one Ticket revision/digestへ束縛し、actor/lane/runtime、実行場所、base/head、予算、lease/fence、capabilityを所有する。scopeやacceptanceを独自変更しない。provider交代は旧lease失効とhandoverを要求し、同一仕事ならTicketを作り直さない。",
+          "utf8_sha256": "4cc3ce0941a2383c23b62ff20b02e23b9d06b767d381526b3059de6611eeffc8"
+        },
+        {
+          "line": 230,
+          "text": "cell/delegation/acceptance receiptへTicket ID/revision/digestをversionedに結合する。Issueやbehaviorが同じでもTicketが違えば別仕事とする。既存dependency/conflict/parent acceptanceを複製せず、旧receiptは明示adapterで読む。",
+          "utf8_sha256": "f1044419f9569d060b5533a3f66640233dacdf2e5e57eed90fb13c2c9bca1d2d"
+        },
+        {
+          "line": 238,
+          "text": "一回の実行を独立recordとし、Ticket/Assignment、実際のruntime/model/effort/profile、input/packet/fixture/base/head、時刻、outcome、output/test/egress/review refs、retry lineageを保持する。requested/admitted/deniedと実際のprovider起動を区別し、全状態を観測イベントへ接続する。",
+          "utf8_sha256": "21feea976c9b27414507c5050da19aa3c2ba0839a3beede736c86419646d6611"
+        },
+        {
+          "line": 242,
+          "text": "連続失敗・retry budgetはdurable eventと既存Recovery policyから導出する。session再開を初回扱いしない。台帳取得不能・上限超過は新規retryを止め、理由に応じてRecovery/Reverse/Requirement Re-entry/Human Requiredへ戻す。実験retryは本線retryと別budgetで数える。",
+          "utf8_sha256": "a25826895972b79062aeedfe4bb058326101a2bed8f9b093231fd58c1e32f113"
+        },
+        {
+          "line": 246,
+          "text": "通常変更のcloseはcurrent Ticket/Assignment、必要なexact-head CI/oracle/独立review、scope/lease/fence、証拠本体、必要なGitHub/DB read-afterで判定する。PR merge、CI green、LLM申告だけでは閉じない。測定eventのdurable記録は必要だが、分析dashboard更新・shadow結果・後日観測窓の終了は一般closeの待ち条件にしない。明示Release qualificationは既存Release policyに従う。",
+          "utf8_sha256": "37ccc180665552a8f61585e71d3a98e2382d59fb1e2b9b8a3e48a613ecfd320d"
+        },
+        {
+          "line": 250,
+          "text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+          "utf8_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be"
+        },
+        {
+          "line": 258,
+          "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
+          "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "selected_line_quotes": [
+        {
+          "line": 51,
+          "text": "| **HBR-P1** | **合意した範囲での連続自律走行** — L2要求の合意とL3凍結後、選択済み開発スタイルに従って作業・検証・復旧を継続する。resume条件、job-queue、累積budget／time-capを維持し、今版外作業はversion-upへ保全する。要求の意味変更、L11利用者受入、release／cutover等の人間判断を自動承認しない | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |",
+          "utf8_sha256": "3921d0439222afe55f9d61ab8f840ee09fc9cf6367fe6da630140885155a4808"
+        },
+        {
+          "line": 52,
+          "text": "| **HBR-P2** | **オーケストレーション根本強化＋ループエンジニアリング** — サブエージェントを loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、worker≠verifier 自己評価禁止、effort/budget 制御。Claude 視点だけでなく **Codex CLI / Codex IDE / hosted API tool surface でも同じ状態遷移・同じ判定**で動く | FR-L1-09/12/28/37/39/41/46/48（guard/injection/W設計/model-effort/difficulty/drive-routing/roster/CLI） | loop 構造・worker≠verifier 専用 FR は既存に無し → **PLAN-L7-175/176/177 で一部充足済**。Codex `spawn_agent` guard parity は PLAN-L7-139 continuation で direct spawn/bulk spawn を fail-close 化済み。typed agent↔tool request/response registry core は PLAN-L7-213 で doctor hard gate 化済み。loop 内 effort-budget 制御は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` 接続済み。hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + CLI JSON evidence 化済み |",
+          "utf8_sha256": "a4bd9f6680e43e76415481ea8ea3b8055ef8a085cd8ca75e5535e177c8e2f2b3"
+        },
+        {
+          "line": 53,
+          "text": "| **HBR-P3** | **強い検証基盤（完全自動の安全要）** — pair_closure/片肺禁止/機械 vs AI 判定境界を機械強制、成果を外部真実に照合（held-out） | FR-L1-02/03/05/21/22/25/45/50（TDD/trace/gate/W-gate/FE detector/refactor/doc-reviewer/DDD-TDD） | **pair_closure 専用 FR・片肺禁止 standalone・機械 vs AI 境界の formalize 無し**。**external-truth grounding（held-out）FR 無し** |",
+          "utf8_sha256": "b4bdd4e3b933bbea6e7d28cf0ef9f2f3b62caa6863f79362bf5c4d685a4f088b"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "selected_line_quotes": [
+        {
+          "line": 198,
+          "text": "- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。",
+          "utf8_sha256": "0f4ac6cd2d760c36b9032182292094e578268acfa5eefd61b6138d4bec43a72e"
+        },
+        {
+          "line": 199,
+          "text": "  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。",
+          "utf8_sha256": "3ed80e7efe7bb09422b6792d1a396305ccbfe40fba6f2e0dae19ed290362ee98"
+        },
+        {
+          "line": 200,
+          "text": "  GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。",
+          "utf8_sha256": "1fc2325d2ca12fe26078b44762ee9361a7f69857801a3307685c49a3ff338557"
+        },
+        {
+          "line": 202,
+          "text": "- AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。",
+          "utf8_sha256": "e3174bf7196d03f51472ce63558c396d9d4d05a84b1b451eb23eb99f7f143501"
+        },
+        {
+          "line": 203,
+          "text": "  AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの",
+          "utf8_sha256": "f8a51cd4e541cd5062821d81506146e69d3a0ae0d5479a6881cdafedd856bb6a"
+        },
+        {
+          "line": 204,
+          "text": "  `review_evidence`と`left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を",
+          "utf8_sha256": "ab9ff5185e8cfaf1d231dc1fe23b8af490a4b56200cb269b8f8b298574b7e112"
+        },
+        {
+          "line": 207,
+          "text": "- current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、",
+          "utf8_sha256": "3ac8f789c56bc65cc72715788f8ae0c68d67ba98cbf7013201aed1e15f70463b"
+        },
+        {
+          "line": 208,
+          "text": "  虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる",
+          "utf8_sha256": "2624049275f911a520798d1bf6b5c18fb1dab1c7f3e648f6202e751fa01433e1"
+        },
+        {
+          "line": 209,
+          "text": "  findingもcurrent PR内で修正する。独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、",
+          "utf8_sha256": "9634439467bcbe89611c5c06fc82f5910e148b2b890290de5c90c10b8446dbe9"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    }
+  ],
+  "legacy_failure_consumer_reading": [
+    {
+      "asset_id": "LEGACY-ASSET-8E9E06111D6FE1538308",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md",
+      "sha256": "db4eb979037a611e51edaab22fe31f774fd7038d7ffb72bcf26ece6fb9de8b42",
+      "failure": "dependency未完了、未来receipt、自己review、HEAD drift、review前terminal、worker自己acceptance",
+      "consumer": "work graph validator、delegation/terminal/review receipt issuer、parent acceptance evaluator。旧実装・schemaは移管しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md",
+      "sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+      "failure": "未sealed origin、actor自己申告、identity/session/context衝突",
+      "consumer": "旧independent review経路。source historyのみ。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2E1B77FCB2F00DA8C750",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/work-graph-receipt-acceptance.md",
+      "sha256": "c3bbcad829de4e8c4fae046593e905d8293aad217c43ebb4f2e17e293fc9565e",
+      "failure_consumer": "前段receipt不足/拒否/HEAD不一致のhistorical consumer。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0449CFE6165EF25515B7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-independent-review.md",
+      "sha256": "0447d1fbc82fb60577ae58eb939d710290fb7c2d22bdfbf1cd66c725cc734b76",
+      "failure_consumer": "schema/provenance/separationのhistorical consumer。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-64AE3DCA397FADF087C3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-work-graph-receipt-acceptance-system-test-design.md",
+      "sha256": "0bbbb1258dba488a59c80ecbb99dbf61c4a66ab7ad3e22aad915e8f8c818150e",
+      "failure_consumer": "旧system-test oracleの記述。読取のみ、未実行。"
+    }
+  ],
+  "types": [
+    {
+      "name": "JsonValue",
+      "definition": "null|boolean|number|string|list<JsonValue>|map<string,JsonValue>",
+      "rule": "JSON number 1と1.0は同値、booleanはnumberと別kind。"
+    },
+    {
+      "name": "Presence<T>",
+      "definition": "Absent|ExplicitNull|Provided(T)",
+      "rule": "欠落/null/empty/valueを分離。"
+    },
+    {
+      "name": "CaseInput",
+      "definition": {
+        "base_ref": "enum(preflight,receive,reconcile)",
+        "replacements": "list<{path:list<string|nonnegative_integer>,value:JsonValue}>",
+        "expanded_input_sha256": "sha256_hex"
+      }
+    },
+    {
+      "name": "ExpandedInput",
+      "definition": "record {phase,selected_edges,edges,whole_scope_claim,context}; 各member Presence<JsonValue>."
+    },
+    {
+      "name": "Proposal",
+      "definition": {
+        "condition": "enum(handoff_material_corresponding,handoff_material_unknown,handoff_material_violation)",
+        "selected_phase": "string|null",
+        "edge_correspondence": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],map<['binding', 'units', 'delivery', 'reception', 'connection', 'review', 'unfinished', 'coverage'],FacetState>>",
+        "unit_material_states": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],JsonValue|null>",
+        "delivery_material_states": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],JsonValue|null>",
+        "receiver_transfer_material": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],boolean>",
+        "connection_material_correspondence": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],boolean>",
+        "retained_obligations": "map<['management_promotion', 'promotion_worker', 'worker_acceptance', 'acceptance_management'],list<string>|null>",
+        "findings": "list<{code:string,pointer:json_pointer,return_owner:string}>",
+        "actual_handoff_performed": "false",
+        "actual_source_work_completed": "false",
+        "whole_composition_verified": "false",
+        "operation_effect": "none"
+      }
+    },
+    {
+      "name": "EdgeId",
+      "definition": "enum(management_promotion,promotion_worker,worker_acceptance,acceptance_management)"
+    },
+    {
+      "name": "Facet",
+      "definition": "enum(binding,units,delivery,reception,connection,review,unfinished,coverage)"
+    },
+    {
+      "name": "FacetState",
+      "definition": "enum(corresponding,unknown,violation,not_selected)"
+    },
+    {
+      "name": "Condition",
+      "definition": "enum(handoff_material_corresponding,handoff_material_unknown,handoff_material_violation)"
+    },
+    {
+      "name": "UnitState",
+      "definition": "enum(success_material,failed_material,unobserved,not_occurred)"
+    },
+    {
+      "name": "DeliveryState",
+      "definition": "enum(delivered_material,failed_material,unobserved,not_occurred)"
+    },
+    {
+      "name": "ReceiverAcceptanceState",
+      "definition": "enum(accepted_material,refused_material,unobserved,not_occurred)"
+    },
+    {
+      "name": "ConnectionAcceptanceState",
+      "definition": "enum(verified_material,failed_material,unobserved,not_occurred)"
+    },
+    {
+      "name": "Finding",
+      "definition": {
+        "code": "enum(ack_not_meaning_resolution,connection_acceptance_failed,connection_acceptance_unobserved,delivery_failed,delivery_unobserved,edge_observation_unresolved,edge_selection_conflict,edge_selection_unresolved,edge_unobserved,meaning_resolution_claim_unresolved,phase_unresolved,producer_self_review,receiver_obligation_lost,receiver_obligations_unresolved,receiver_refused,receiver_unobserved,review_context_not_independent,review_record_unresolved,source_completion_claim_unresolved,source_completion_unproven,source_completion_without_receiver,source_conflict,source_obligation_lost,source_obligations_unresolved,source_unresolved,unit_failed,unit_unobserved,unknown_edge_identity,whole_scope_claim_unproven,whole_scope_claim_unresolved)",
+        "pointer": "json_pointer",
+        "return_owner": "string literal management-handoff-owner"
+      },
+      "boundary": "code values are observed source L9 literals; the owner label is synthetic and grants no authority."
+    },
+    {
+      "name": "ExpandedInputResult",
+      "definition": "union<{status:expanded,input:ExpandedInput,canonical_sha256:sha256_hex,error_pointer:null},{status:error,input:null,canonical_sha256:null,error_pointer:json_pointer}>"
+    },
+    {
+      "name": "AggregateResult",
+      "definition": {
+        "condition": "Condition",
+        "whole_composition_verified": "false",
+        "operation_effect": "none"
+      }
+    },
+    {
+      "name": "F01Evaluation",
+      "definition": "formal_types.F01Evaluation",
+      "rule": "F01の純関数出力。binding比較、source_remaining保持、およびcontext.sender_outstandingがsource_remainingへ含まれない/照合できない所見。unfinishedの最終FacetStateはF03/他ruleとの合成後に算出する。"
+    },
+    {
+      "name": "F01RulePlan",
+      "definition": "record {rule_data: F01ProgramRuleData}",
+      "rule": "F01の比較入力。F01ProgramRuleDataは同文書formal_programs[program_id=OS023-F01].rule_data。"
+    },
+    {
+      "name": "F01ProgramRuleData",
+      "definition": {
+        "edge_order_pointer": "JSONPointer",
+        "edge_role_map_pointer": "JSONPointer",
+        "actual_selection_pointer": "JSONPointer",
+        "edge_identity_domain_pointer": "JSONPointer",
+        "comparison_plan_pointers": "list<JSONPointer>",
+        "comparator_domain": "map<string,string>",
+        "comparison_priority": "list<string>",
+        "facet_priority": "list<FacetState>",
+        "finding_sort": "list<string>",
+        "return_owner_literal": "string",
+        "output_projection": "record",
+        "retained_obligations_rule": "string",
+        "state_facet": "Facet",
+        "retained_source_path_template": "JSONPointer template"
+      },
+      "rule": "formal_programsの機械可読規則dataを入力として与える。"
+    },
+    {
+      "name": "F02RulePlan",
+      "definition": "record {rule_data: F02ProgramRuleData}",
+      "rule": "F02の機械可読比較plan参照。"
+    },
+    {
+      "name": "F02ProgramRuleData",
+      "definition": {
+        "phase_domain_pointer": "JSONPointer",
+        "edge_order_pointer": "JSONPointer",
+        "actual_selection_pointer": "JSONPointer",
+        "groups": "list<record>",
+        "owner_literal": "string",
+        "state_priority": "list<FacetState>"
+      },
+      "rule": "正式ASTの各グループはordered_rule_planの明示pointerを使う。"
+    },
+    {
+      "name": "F02Evaluation",
+      "definition": "formal_types.F02Evaluation",
+      "rule": "F02が担当する4facetとunit/delivery状態・F02所見。"
+    },
+    {
+      "name": "N01RulePlan",
+      "definition": "record {rule_data: N01ProgramRuleData}",
+      "rule": "N01の機械可読selection/coverage rule参照。"
+    },
+    {
+      "name": "N01ProgramRuleData",
+      "definition": {
+        "edge_order_pointer": "JSONPointer",
+        "actual_selection_pointer": "JSONPointer",
+        "expected_selection_pointer": "JSONPointer",
+        "observation_path_template": "JSONPointer",
+        "selection_literal_domain_pointer": "JSONPointer",
+        "return_owner": "string",
+        "code_dispositions_pointer": "JSONPointer"
+      },
+      "rule": "正式programのselection/observation path・codeはこのdataだけから解決する。"
+    },
+    {
+      "name": "N01Evaluation",
+      "definition": "formal_types.N01Evaluation",
+      "rule": "N01が担当するcoverage statesとglobal selection/coverage所見。"
+    },
+    {
+      "name": "F03RulePlan",
+      "definition": "record {rule_data: F03ProgramRuleData}",
+      "rule": "F03の比較・transfer合成・claim規則。"
+    },
+    {
+      "name": "F03ProgramRuleData",
+      "definition": {
+        "phase_pointer": "JSONPointer",
+        "phase_domain_pointer": "JSONPointer",
+        "edge_order_pointer": "JSONPointer",
+        "actual_selection_pointer": "JSONPointer",
+        "acceptance_plan_pointer": "JSONPointer",
+        "acceptance_role_plan_pointer": "JSONPointer",
+        "transfer_inputs": "record",
+        "claim_rules": "list<record>",
+        "owner_literal": "string"
+      },
+      "rule": "各計算path/value/phase/ownerを明示する純規則data。"
+    },
+    {
+      "name": "F03Evaluation",
+      "definition": "formal_types.F03Evaluation",
+      "rule": "F03のreception facet、receiver transfer、F03 finding。"
+    }
+  ],
+  "edge_order": [
+    "management_promotion",
+    "promotion_worker",
+    "worker_acceptance",
+    "acceptance_management"
+  ],
+  "edge_roles": {
+    "management_promotion": [
+      "management",
+      "promotion"
+    ],
+    "promotion_worker": [
+      "promotion",
+      "worker"
+    ],
+    "worker_acceptance": [
+      "worker",
+      "acceptance"
+    ],
+    "acceptance_management": [
+      "acceptance",
+      "management"
+    ]
+  },
+  "facet_order": [
+    "binding",
+    "units",
+    "delivery",
+    "reception",
+    "connection",
+    "review",
+    "unfinished",
+    "coverage"
+  ],
+  "binding_fields": [
+    "project",
+    "requirement_revision",
+    "scope",
+    "causal_id",
+    "subject_ref",
+    "subject_revision",
+    "subject_digest",
+    "interface_ref",
+    "interface_revision",
+    "authority_ref"
+  ],
+  "join_fields": [
+    "project",
+    "requirement_revision",
+    "scope",
+    "causal_id",
+    "subject_ref",
+    "subject_revision",
+    "subject_digest",
+    "interface_ref",
+    "interface_revision"
+  ],
+  "review_fields": [
+    "actor",
+    "context",
+    "authority_ref",
+    "route_ref"
+  ],
+  "phase_order": [
+    "preflight",
+    "receive",
+    "reconcile"
+  ],
+  "pure_functions": [
+    {
+      "name": "expand_case",
+      "signature": "(CaseInput,map<string,JsonValue>)->ExpandedInputResult",
+      "reads": [
+        "base_ref",
+        "replacements.path/value",
+        "expanded_input_sha256",
+        "fixture_inputs"
+      ],
+      "returns": [
+        "status:enum(expanded,error)",
+        "input:ExpandedInput|null",
+        "canonical_sha256:sha256_hex|null",
+        "error_pointer:json_pointer|null"
+      ],
+      "effect": "none"
+    },
+    {
+      "name": "evaluate_f01",
+      "signature": "(ExpandedInput,F01RulePlan)->F01Evaluation",
+      "reads": [
+        "selected_edges",
+        "edges.{edge}.sender.{binding_fields}",
+        "edges.{edge}.receiver.{binding_fields}",
+        "context.edges.{edge}.sender.{binding_fields}",
+        "context.edges.{edge}.receiver.{binding_fields}",
+        "context.edges.{edge}.selected_edges (本関数では参照しない。全体coverage評価用)",
+        "context.edges.{edge}.sender_outstanding",
+        "edges.{edge}.sender_outstanding",
+        "edges.{edge}.stop_reason_ref",
+        "edges.{edge}.source_remaining",
+        "edge_order",
+        "edge_roles",
+        "ordered_rule_plan.binding_comparisons",
+        "ordered_rule_plan.receiver_binding_comparisons",
+        "ordered_rule_plan.role_comparisons",
+        "ordered_rule_plan.unfinished_comparisons"
+      ],
+      "returns": [
+        "binding_states:map<EdgeId,FacetState>",
+        "unfinished_states:map<EdgeId,FacetState>",
+        "retained_obligations:map<EdgeId,list<string>|null>",
+        "findings:list<Finding>"
+      ],
+      "effect": "none",
+      "purpose": "L4 F01のbinding比較、未完義務のsourceとの照合、原source_remaining保持を導出する。L9 expectedやcase IDは入力にしない。"
+    },
+    {
+      "name": "evaluate_handoff",
+      "signature": "(ExpandedInput)->ProposalEvaluation",
+      "reads": [
+        "all top-level and nested edge/context input values"
+      ],
+      "returns": [
+        "all Proposal fields, each edge map with all four edge IDs"
+      ],
+      "effect": "none",
+      "input_domain": "formal_types.ExpandedInputで宣言したJSON objectを入力とし、参照memberの欠落・null・異種JSON値を保持してformal_programsで診断する。object以外のrootは署名外。任意の型内入力に対する全域totalityは未証明。"
+    },
+    {
+      "name": "aggregate_handoff",
+      "signature": "(map<EdgeId,map<Facet,FacetState>>,list<Finding>,PhaseSelection,Presence<JsonValue>)->AggregateResult",
+      "reads": [
+        "all facets fixed order",
+        "global markers",
+        "selection result",
+        "whole_scope_claim"
+      ],
+      "returns": [
+        "condition:Condition",
+        "whole_composition_verified:false",
+        "operation_effect:none"
+      ],
+      "effect": "none"
+    },
+    {
+      "name": "evaluate_f02",
+      "signature": "(ExpandedInput,F02RulePlan)->F02Evaluation",
+      "reads": [
+        "phase",
+        "selected_edges",
+        "edge_order",
+        "unit_state_comparisons",
+        "delivery_comparisons",
+        "reconcile_connection_comparisons",
+        "review_comparisons",
+        "selected edge review/producer fields"
+      ],
+      "returns": [
+        "facet_states:map<EdgeId,map<Facet,FacetState>>",
+        "unit_material_states:map<EdgeId,record|null>",
+        "delivery_material_states:map<EdgeId,enum|null>",
+        "findings:list<Finding>"
+      ],
+      "effect": "none",
+      "purpose": "L4 F02の単体・delivery・connection・review素材を個別照合し、単体成功を接続/受入成立へ代用しない。"
+    },
+    {
+      "name": "evaluate_n01",
+      "signature": "(ExpandedInput,N01RulePlan)->N01Evaluation",
+      "reads": [
+        "selected_edges",
+        "context.selected_edges",
+        "edge_order",
+        "edges.{edge}.observed"
+      ],
+      "returns": [
+        "coverage_states:map<EdgeId,FacetState>",
+        "findings:list<Finding>"
+      ],
+      "effect": "none",
+      "purpose": "L4 N01のselection一意性・各edge観測状態を計算し、未選択/unknownを成功補完しない。"
+    },
+    {
+      "name": "evaluate_f03",
+      "signature": "(ExpandedInput,F01Evaluation,F02Evaluation,N01Evaluation,F03RulePlan)->F03Evaluation",
+      "reads": [
+        "phase",
+        "selected_edges",
+        "receiver_acceptance_comparisons",
+        "receiver_acceptance_role_comparison",
+        "F01.binding_states",
+        "F02.facet_states.delivery",
+        "N01.coverage_states",
+        "source_completion_claim",
+        "meaning_resolved_claim"
+      ],
+      "returns": [
+        "reception_states:map<EdgeId,FacetState>",
+        "receiver_transfer_material:map<EdgeId,boolean>",
+        "findings:list<Finding>"
+      ],
+      "effect": "none",
+      "purpose": "L4 F03の受理・未完保持・transfer境界を計算する。ACKまたはclaimだけでは実行/元作業完了を作らない。"
+    }
+  ],
+  "formal_rule_catalog": {
+    "ordered_source_rules": [
+      "L9 given.inputは保存用base_ref/replacements/expanded_input_sha256。fixture_inputs[base_ref]を独立deepcopyし、各replacement.path（既存dict keyまたはlist indexの配列）の原位置をvalueへ置換する。展開したinputをJSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseでcanonical化しSHA-256一致を確認した後、以下の意味比較に渡す。これはpaper fixtureだけの保存表現で、正式schema/codec/runtimeへ採用しない。",
+      "phaseはpreflight/receive/reconcileだけ。不明phaseはphase_unresolved→global、selected_phase=null。selected_edges/context.selected_edgesは重複なしstring listかつ全IDが4edge語彙に存在するときだけknown selection。片側不明は原selection root edge_selection_unresolved、未知非空IDは当該list index unknown_edge_identityを併記。両known集合相反はactual selection root edge_selection_conflict。未知を非適用/影響なしへ補完しない。",
+      "known stringは非空文字列、known setは重複なし非空文字列list（集合自体は空を許す）。比較は片側unknownなら原pointer source_unresolved、両側unknownなら両pointer、両known相反だけactual pointer source_conflict。setはsort比較。固定codeのfacet/violation/unknownは宣言表に従い、generic比較codeのfacetはその比較を記すlaneとする。findingはcode/pointer/return_ownerで一意化し同順sort。ownerはmanagement-handoff-owner。",
+      "4edgeを固定順に出力。actual known selectionに含むedgeだけをactiveにする。inactiveで両側selection knownなら全8facet not_selected、それ以外全8facet unknown。inactiveのunit/delivery/retainedはnull、transfer/connectionはfalse。activeだがexpected selection不明ならcoverage unknownを先に保持。",
+      "active全phaseでsender/receiverの10binding fieldとroleを独立context同端へstring比較。context roleは固定edge_rolesへも比較。receiver→senderはauthority_refを除く9fieldを比較する。両端authorityは別owner sourceであり同一権限に固定しない。sender_outstandingを独立context同fieldへset比較、stop_reason_refはstring比較する。source_remainingがset型不明ならsource_obligations_unresolved、knowncontext.sender_outstandingがknownsource_remainingに包含されなければsource_obligation_lost。retained_obligationsはknownsource_remaining原値かnull。",
+      "receive/reconcileだけunit sender/receiver stateを独立context同fieldへ比較。閉集合success_material/failed_material/unobserved/not_occurred。両known状態相反はsource_conflict、閉集合外は各原位置source_unresolved。actual failed_materialはunit_failed、success_material以外はunit_unobservedを併記。出力は各原閉集合stateかnullで、原failureを他unit成功で消さない。",
+      "同phaseのdelivery stateはdelivered_material/failed_material/unobserved/not_occurredで同じclosed comparison、actual failedはdelivery_failed、normal以外はdelivery_unobserved。delivery_refをcontext同fieldへstring比較。receiver_acceptance stateはaccepted_material/refused_material/unobserved/not_occurredで同じ比較、actual refusedはreceiver_refused、normal以外はreceiver_unobserved。source_refは独立context acceptance.source_ref、binding10fieldとroleはcontext.receiverへ比較。outstandingがset型不明ならreceiver_obligations_unresolved、context.sender_outstandingがそのknown集合に包含されなければreceiver_obligation_lost。observed=falseはedge_unobserved、true以外はedge_observation_unresolved。ack値とprovider名はこれらの素材を補わない。",
+      "reconcileだけconnection_acceptance.stateをverified_material/failed_material/unobserved/not_occurred閉集合で同context比較し、failedはconnection_acceptance_failed、normal以外はconnection_acceptance_unobserved。source_refは独立context同fieldへ比較。reviewが非dictなら原record root review_record_unresolved、expected非dictならexpected root同code。両dictの場合actor/context/authority_ref/route_refを独立context.reviewへ比較し、producer.actor/contextも独立context.producerへ比較。known reviewer actorがproducer actorと同じならproducer_self_review、knowncontextが同じならreview_context_not_independent。provider名だけで独立性を確定しない。",
+      "receiver_transfer_materialはreceive/reconcileでbinding/delivery/reception/coverageにmarkerが1つもないときだけtrue。unit成功/ACKだけではtransferを生成しない。source_completion_claim=trueでは、そのtransferがfalseならsource_completion_without_receiver、trueでもsource_completion_unprovenとしてsource-work ownerの残る消込契約を未成立に保持。false以外のunknownはsource_completion_claim_unresolved。meaning_resolved_claim=trueはack_not_meaning_resolution、false以外はmeaning_resolution_claim_unresolved。受理と意味解決/検証合格は別で、元義務の消込条件はownerへ戻る。",
+      "connection_material_correspondenceはreconcileでbinding/units/delivery/reception/connection/review/coverageにmarkerが1つもないときだけtrue（unfinishedは独立に原未完を保持）。whole_scope_claim=trueはglobal whole_scope_claim_unproven、false以外はwhole_scope_claim_unresolved。全actual flagsはfalse、whole_composition_verified=false、operation_effect=none。facetはviolation優先、次unknown、次not_selected、他corresponding。conditionはglobalと全edge facetを同じ優先でhandoff_material_violation/handoff_material_unknown/handoff_material_correspondingへ集約し、not_selectedは成功の証拠へ数えない。素材対応・件数・paper再束縛で実構成体/独立actual heldoutを成立させない。"
+    ],
+    "known_string": "Provided non-empty string only; otherwise unknown.",
+    "known_set": "Provided unique string array; empty list is known empty set; duplicates/wrong type/empty member are unknown.",
+    "comparison_order": [
+      "operand missing/null/wrong type => source_unresolved at each unknown operand pointer",
+      "else unequal => source_conflict at actual pointer",
+      "else corresponding"
+    ],
+    "facet_priority": [
+      "violation",
+      "unknown",
+      "not_selected",
+      "corresponding"
+    ],
+    "condition_priority": [
+      "violation",
+      "unknown",
+      "corresponding"
+    ],
+    "fixed_flags": {
+      "actual_handoff_performed": false,
+      "actual_source_work_completed": false,
+      "whole_composition_verified": false,
+      "operation_effect": "none"
+    },
+    "finding_owner_literal": "management-handoff-owner",
+    "finding_owner_boundary": "synthetic L4/L9 diagnostic label only; actual source/management owner identity and qualification are not supplied."
+  },
+  "limits": [
+    "合成fixtureのfieldは、実owner資格・source保全・配送・受入・意味解決・検証合格・構成体成立を証明しない。",
+    "実装・正式codec・runtime・TDD・製品CI・実物L11受入・全92親430対の閉包は未成立。",
+    "formal_programsの5計算契約から、原L9の318例と追加4例のProposal全13rootを再計算して照合する。期待値とcase IDは計算入力にしない。",
+    "追加41個のsingle-path変種は宣言入力型と全中間・返却型の確認に限る。有限例の一致を、再帰型domain全体のtotalityや未観測分岐の意味充足へ広げない。"
+  ],
+  "approval_admission": {
+    "decision_id": "HDEC-OS-WORKFLOW-PREREQUISITE-L3L10-2026-10-12",
+    "approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+    "admission_pr": 2952,
+    "admission_merge_sha": "2945b75bc5a71c19885a62a867b0a884399bffae",
+    "record_path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "scope": "OS017/020/023追加12 L3/L10 pair。L3/L10承認の限定scopeであり、実hand-off・作業許可・実装完了ではない。"
+  },
+  "full_goal_scope_preserved": {
+    "requirement_parents": 92,
+    "l3_l10_pairs": 430,
+    "meaning": "OS023のこのpairだけを対象とし、母集団の完了を主張しない。"
+  },
+  "requirement_basis": {
+    "L1": [
+      "HELIXOS-L1-001",
+      "HELIXOS-L1-002",
+      "HELIXOS-L1-003",
+      "HELIXOS-L1-004",
+      "HELIXOS-L1-009",
+      "HELIXOS-L1-010"
+    ],
+    "L2": "docs/helix-os/L2-requirements/governance-requirements.md lines 724-733",
+    "L11": "docs/helix-os/L11-acceptance/governance-acceptance.md lines 380-386",
+    "L3_L10": "8 exact whole snapshots in approved_whole_objects",
+    "source_boundary": "L2 015-020にあるauthority/connection/ticket/assignment/attempt/evidence/verification義務を版付きで結ぶ。L4は実qualification/authority発行をしない。"
+  },
+  "observed_source_finding_codes": {
+    "values": [
+      "ack_not_meaning_resolution",
+      "connection_acceptance_failed",
+      "connection_acceptance_unobserved",
+      "delivery_failed",
+      "delivery_unobserved",
+      "edge_observation_unresolved",
+      "edge_selection_conflict",
+      "edge_selection_unresolved",
+      "edge_unobserved",
+      "meaning_resolution_claim_unresolved",
+      "phase_unresolved",
+      "producer_self_review",
+      "receiver_obligation_lost",
+      "receiver_obligations_unresolved",
+      "receiver_refused",
+      "receiver_unobserved",
+      "review_context_not_independent",
+      "review_record_unresolved",
+      "source_completion_claim_unresolved",
+      "source_completion_unproven",
+      "source_completion_without_receiver",
+      "source_conflict",
+      "source_obligation_lost",
+      "source_obligations_unresolved",
+      "source_unresolved",
+      "unit_failed",
+      "unit_unobserved",
+      "unknown_edge_identity",
+      "whole_scope_claim_unproven",
+      "whole_scope_claim_unresolved"
+    ],
+    "basis": "現L9 318 source expected proposalsで観測されたcodeのみ。未知のcode/一般域の閉包は未成立。",
+    "owner_literal": "management-handoff-owner",
+    "owner_boundary": "L4/L9 synthetic label only, not an actual qualified owner."
+  },
+  "ordered_rule_plan": {
+    "iteration": {
+      "edges": [
+        "management_promotion",
+        "promotion_worker",
+        "worker_acceptance",
+        "acceptance_management"
+      ],
+      "order": "edge_order",
+      "selection_source": "input.selected_edges AND input.context.selected_edges; both must be distinct lists of known EdgeId literals for a known selection"
+    },
+    "phase_domain": [
+      "preflight",
+      "receive",
+      "reconcile"
+    ],
+    "comparison_priority": [
+      "If either operand is not a known value under its comparator, emit source_unresolved at every unknown pointer.",
+      "Otherwise, if values differ, emit source_conflict at the actual-value pointer.",
+      "Otherwise emit no finding and mark the relevant facet corresponding."
+    ],
+    "binding_comparisons": [
+      {
+        "actual": "/edges/{edge}/sender/project",
+        "expected": "/context/edges/{edge}/sender/project",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/requirement_revision",
+        "expected": "/context/edges/{edge}/sender/requirement_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/scope",
+        "expected": "/context/edges/{edge}/sender/scope",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/causal_id",
+        "expected": "/context/edges/{edge}/sender/causal_id",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/subject_ref",
+        "expected": "/context/edges/{edge}/sender/subject_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/subject_revision",
+        "expected": "/context/edges/{edge}/sender/subject_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/subject_digest",
+        "expected": "/context/edges/{edge}/sender/subject_digest",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/interface_ref",
+        "expected": "/context/edges/{edge}/sender/interface_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/interface_revision",
+        "expected": "/context/edges/{edge}/sender/interface_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/sender/authority_ref",
+        "expected": "/context/edges/{edge}/sender/authority_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      }
+    ],
+    "receiver_binding_comparisons": [
+      {
+        "actual": "/edges/{edge}/receiver/project",
+        "expected": "/context/edges/{edge}/receiver/project",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/requirement_revision",
+        "expected": "/context/edges/{edge}/receiver/requirement_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/scope",
+        "expected": "/context/edges/{edge}/receiver/scope",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/causal_id",
+        "expected": "/context/edges/{edge}/receiver/causal_id",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/subject_ref",
+        "expected": "/context/edges/{edge}/receiver/subject_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/subject_revision",
+        "expected": "/context/edges/{edge}/receiver/subject_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/subject_digest",
+        "expected": "/context/edges/{edge}/receiver/subject_digest",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/interface_ref",
+        "expected": "/context/edges/{edge}/receiver/interface_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/interface_revision",
+        "expected": "/context/edges/{edge}/receiver/interface_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/authority_ref",
+        "expected": "/context/edges/{edge}/receiver/authority_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      }
+    ],
+    "role_comparisons": [
+      {
+        "actual": "/edges/{edge}/sender/role",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "expected": "/context/edges/{edge}/sender/role",
+        "comparison_meaning": "原actual roleを同じendpointのcontext roleと照合する"
+      },
+      {
+        "actual": "/edges/{edge}/receiver/role",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "expected": "/context/edges/{edge}/receiver/role",
+        "comparison_meaning": "原actual roleを同じendpointのcontext roleと照合する"
+      },
+      {
+        "actual": "/context/edges/{edge}/sender/role",
+        "expected_edge_role": "edge_roles[edge][{index}]",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "comparison_source": "fixed L4 edge_roles, independently checked against context role as L4 diagnostic_contract.algorithm states",
+        "role_index": 0,
+        "comparison_meaning": "context roleをL4で固定されたedge_rolesへ照合する"
+      },
+      {
+        "actual": "/context/edges/{edge}/receiver/role",
+        "expected_edge_role": "edge_roles[edge][{index}]",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "comparison_source": "fixed L4 edge_roles, independently checked against context role as L4 diagnostic_contract.algorithm states",
+        "role_index": 1,
+        "comparison_meaning": "context roleをL4で固定されたedge_rolesへ照合する"
+      }
+    ],
+    "edge_join_comparisons": [
+      {
+        "left": "/edges/{edge}/receiver/project",
+        "right": "/edges/{edge}/sender/project",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/requirement_revision",
+        "right": "/edges/{edge}/sender/requirement_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/scope",
+        "right": "/edges/{edge}/sender/scope",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/causal_id",
+        "right": "/edges/{edge}/sender/causal_id",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/subject_ref",
+        "right": "/edges/{edge}/sender/subject_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/subject_revision",
+        "right": "/edges/{edge}/sender/subject_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/subject_digest",
+        "right": "/edges/{edge}/sender/subject_digest",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/interface_ref",
+        "right": "/edges/{edge}/sender/interface_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "left": "/edges/{edge}/receiver/interface_revision",
+        "right": "/edges/{edge}/sender/interface_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "binding",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      }
+    ],
+    "unfinished_comparisons": [
+      {
+        "actual": "/edges/{edge}/sender_outstanding",
+        "expected": "/context/edges/{edge}/sender_outstanding",
+        "comparator": "known_unique_string_set",
+        "facet": "unfinished",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/stop_reason_ref",
+        "expected": "/context/edges/{edge}/stop_reason_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "unfinished",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/context/edges/{edge}/sender_outstanding",
+        "relation": "subset_of",
+        "right": "/edges/{edge}/source_remaining",
+        "comparator": "known_unique_string_set",
+        "facet": "unfinished",
+        "failure_code": "source_obligation_lost",
+        "unknown_code": "source_obligations_unresolved",
+        "failure_pointer": "/edges/{edge}/source_remaining",
+        "basis": "L4 diagnostic_contract.algorithm: context.sender_outstandingがsource_remainingに包含されるかを確認"
+      }
+    ],
+    "unit_state_comparisons": [
+      {
+        "actual": "/edges/{edge}/unit_sender_state",
+        "expected": "/context/edges/{edge}/unit_sender_state",
+        "comparator": "closed_enum",
+        "allowed_values": [
+          "success_material",
+          "failed_material",
+          "unobserved",
+          "not_occurred"
+        ],
+        "facet": "units",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "actual_failure_value": "failed_material",
+        "failure_code": "unit_failed",
+        "non_success_code": "unit_unobserved",
+        "success_value": "success_material"
+      },
+      {
+        "actual": "/edges/{edge}/unit_receiver_state",
+        "expected": "/context/edges/{edge}/unit_receiver_state",
+        "comparator": "closed_enum",
+        "allowed_values": [
+          "success_material",
+          "failed_material",
+          "unobserved",
+          "not_occurred"
+        ],
+        "facet": "units",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "actual_failure_value": "failed_material",
+        "failure_code": "unit_failed",
+        "non_success_code": "unit_unobserved",
+        "success_value": "success_material"
+      }
+    ],
+    "delivery_comparisons": [
+      {
+        "actual": "/edges/{edge}/delivery_state",
+        "expected": "/context/edges/{edge}/delivery_state",
+        "comparator": "closed_enum",
+        "allowed_values": [
+          "delivered_material",
+          "failed_material",
+          "unobserved",
+          "not_occurred"
+        ],
+        "facet": "delivery",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "actual_failure_value": "failed_material",
+        "failure_code": "delivery_failed",
+        "non_success_code": "delivery_unobserved",
+        "success_value": "delivered_material"
+      },
+      {
+        "actual": "/edges/{edge}/delivery_ref",
+        "expected": "/context/edges/{edge}/delivery_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "delivery",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "success_value": "delivered_material"
+      }
+    ],
+    "receiver_acceptance_comparisons": [
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/state",
+        "expected": "/context/edges/{edge}/receiver_acceptance/state",
+        "comparator": "closed_enum",
+        "allowed_values": [
+          "accepted_material",
+          "refused_material",
+          "unobserved",
+          "not_occurred"
+        ],
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "actual_failure_value": "refused_material",
+        "failure_code": "receiver_refused",
+        "success_value": "accepted_material",
+        "non_success_code": "receiver_unobserved"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/source_ref",
+        "expected": "/context/edges/{edge}/receiver_acceptance/source_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/project",
+        "expected": "/context/edges/{edge}/receiver/project",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/requirement_revision",
+        "expected": "/context/edges/{edge}/receiver/requirement_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/scope",
+        "expected": "/context/edges/{edge}/receiver/scope",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/causal_id",
+        "expected": "/context/edges/{edge}/receiver/causal_id",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/subject_ref",
+        "expected": "/context/edges/{edge}/receiver/subject_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/subject_revision",
+        "expected": "/context/edges/{edge}/receiver/subject_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/subject_digest",
+        "expected": "/context/edges/{edge}/receiver/subject_digest",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/interface_ref",
+        "expected": "/context/edges/{edge}/receiver/interface_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/interface_revision",
+        "expected": "/context/edges/{edge}/receiver/interface_revision",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/authority_ref",
+        "expected": "/context/edges/{edge}/receiver/authority_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/context/edges/{edge}/sender_outstanding",
+        "relation": "subset_of",
+        "right": "/edges/{edge}/receiver_acceptance/outstanding",
+        "comparator": "known_unique_string_set",
+        "facet": "reception",
+        "unknown_code": "receiver_obligations_unresolved",
+        "failure_code": "receiver_obligation_lost",
+        "failure_pointer": "/edges/{edge}/receiver_acceptance/outstanding",
+        "basis": "L4 F03: 受信側outstandingにcontext sender_outstandingの未完を含める"
+      }
+    ],
+    "review_comparisons": [
+      {
+        "actual": "/edges/{edge}/review/actor",
+        "expected": "/context/edges/{edge}/review/actor",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/review/context",
+        "expected": "/context/edges/{edge}/review/context",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/review/authority_ref",
+        "expected": "/context/edges/{edge}/review/authority_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/review/route_ref",
+        "expected": "/context/edges/{edge}/review/route_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/producer/actor",
+        "expected": "/context/edges/{edge}/producer/actor",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      },
+      {
+        "actual": "/edges/{edge}/producer/context",
+        "expected": "/context/edges/{edge}/producer/context",
+        "comparator": "known_nonempty_string",
+        "facet": "review",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict"
+      }
+    ],
+    "reconcile_connection_comparisons": [
+      {
+        "actual": "/edges/{edge}/connection_acceptance/state",
+        "expected": "/context/edges/{edge}/connection_acceptance/state",
+        "comparator": "closed_enum",
+        "allowed_values": [
+          "verified_material",
+          "failed_material",
+          "unobserved",
+          "not_occurred"
+        ],
+        "facet": "connection",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "actual_failure_value": "failed_material",
+        "failure_code": "connection_acceptance_failed",
+        "non_success_code": "connection_acceptance_unobserved",
+        "success_value": "verified_material"
+      },
+      {
+        "actual": "/edges/{edge}/connection_acceptance/source_ref",
+        "expected": "/context/edges/{edge}/connection_acceptance/source_ref",
+        "comparator": "known_nonempty_string",
+        "facet": "connection",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "success_value": "verified_material"
+      }
+    ],
+    "boolean_and_claim_rules": [
+      {
+        "actual": "/edges/{edge}/observed",
+        "when": false,
+        "code": "edge_unobserved",
+        "facet": "reception"
+      },
+      {
+        "actual": "/edges/{edge}/observed",
+        "when_not": true,
+        "code": "edge_observation_unresolved",
+        "facet": "reception"
+      },
+      {
+        "actual": "/edges/{edge}/source_completion_claim",
+        "when": true,
+        "if_transfer_false": "source_completion_without_receiver",
+        "if_transfer_true": "source_completion_unproven"
+      },
+      {
+        "actual": "/edges/{edge}/source_completion_claim",
+        "when_not_boolean": true,
+        "code": "source_completion_claim_unresolved"
+      },
+      {
+        "actual": "/edges/{edge}/meaning_resolved_claim",
+        "when": true,
+        "code": "ack_not_meaning_resolution"
+      },
+      {
+        "actual": "/edges/{edge}/meaning_resolved_claim",
+        "when_not_boolean": true,
+        "code": "meaning_resolution_claim_unresolved"
+      }
+    ],
+    "transfer_rule": {
+      "phases": [
+        "receive",
+        "reconcile"
+      ],
+      "true_only_if": "binding,delivery,reception,coverage facet has no marker",
+      "ack_is_ignored": true,
+      "unit_success_is_sufficient": false
+    },
+    "connection_rule": {
+      "phase": "reconcile",
+      "true_only_if": "binding,units,delivery,reception,connection,review,coverage facets have no marker",
+      "unfinished_is_independent": true
+    },
+    "aggregate_rule": {
+      "facet_priority": [
+        "violation",
+        "unknown",
+        "not_selected",
+        "corresponding"
+      ],
+      "condition_priority": [
+        "violation",
+        "unknown",
+        "corresponding"
+      ],
+      "not_selected_is_success": false,
+      "whole_scope_claim_true_finding": "whole_scope_claim_unproven",
+      "whole_scope_claim_non_boolean_finding": "whole_scope_claim_unresolved",
+      "fixed_false_flags": [
+        "actual_handoff_performed",
+        "actual_source_work_completed",
+        "whole_composition_verified"
+      ],
+      "fixed_effect": "none"
+    },
+    "receiver_acceptance_role_comparisons": [
+      {
+        "actual": "/edges/{edge}/receiver_acceptance/binding/role",
+        "expected": "/context/edges/{edge}/receiver/role",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "comparison_meaning": "receiver receipt roleをcontext receiver roleへ照合する"
+      },
+      {
+        "actual": "/context/edges/{edge}/receiver/role",
+        "expected_edge_role": "edge_roles[edge][1]",
+        "comparator": "known_nonempty_string",
+        "facet": "reception",
+        "unknown_code": "source_unresolved",
+        "conflict_code": "source_conflict",
+        "role_index": 1,
+        "comparison_meaning": "context receiver roleをL4で固定されたedge_rolesのreceiver位置へ照合する"
+      }
+    ]
+  },
+  "l10_obligation_case_coverage": [
+    {
+      "requirement_id": "HELIXOS-L3-023-F01",
+      "case_ids": [
+        "OS023-NORMAL-PREFLIGHT",
+        "OS023-NORMAL-RECEIVE",
+        "OS023-MANAGEMENT_PROMOTION-SENDER-PROJECT-UNKNOWN",
+        "OS023-MANAGEMENT_PROMOTION-RECEIVER-PROJECT-CONFLICT",
+        "OS023-MANAGEMENT_PROMOTION-EXPECTED-SENDER-PROJECT-UNKNOWN",
+        "OS023-MANAGEMENT_PROMOTION-PREFLIGHT-NO-FUTURE-GATE"
+      ],
+      "raw_and_expected_pointers": [
+        [
+          "/cases/0/given/input",
+          "/cases/0/expected_proposal"
+        ],
+        [
+          "/cases/1/given/input",
+          "/cases/1/expected_proposal"
+        ],
+        [
+          "/cases/4/given/input",
+          "/cases/4/expected_proposal"
+        ],
+        [
+          "/cases/5/given/input",
+          "/cases/5/expected_proposal"
+        ],
+        [
+          "/cases/6/given/input",
+          "/cases/6/expected_proposal"
+        ],
+        [
+          "/cases/66/given/input",
+          "/cases/66/expected_proposal"
+        ]
+      ],
+      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+    },
+    {
+      "requirement_id": "HELIXOS-L3-023-F02",
+      "case_ids": [
+        "OS023-NORMAL-RECONCILE",
+        "OS023-MANAGEMENT_PROMOTION-UNIT_SENDER_STATE-FAILED-ALIGNED",
+        "OS023-MANAGEMENT_PROMOTION-SELF-REVIEW",
+        "OS023-MANAGEMENT_PROMOTION-SAME-CONTEXT",
+        "OS023-MANAGEMENT_PROMOTION-CONNECTION_ACCEPTANCE-UNKNOWN"
+      ],
+      "raw_and_expected_pointers": [
+        [
+          "/cases/2/given/input",
+          "/cases/2/expected_proposal"
+        ],
+        [
+          "/cases/34/given/input",
+          "/cases/34/expected_proposal"
+        ],
+        [
+          "/cases/57/given/input",
+          "/cases/57/expected_proposal"
+        ],
+        [
+          "/cases/58/given/input",
+          "/cases/58/expected_proposal"
+        ],
+        [
+          "/cases/45/given/input",
+          "/cases/45/expected_proposal"
+        ]
+      ],
+      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+    },
+    {
+      "requirement_id": "HELIXOS-L3-023-F03",
+      "case_ids": [
+        "OS023-NORMAL-RECEIVE",
+        "OS023-NORMAL-RECONCILE",
+        "OS023-MANAGEMENT_PROMOTION-RECEIVER_ACCEPTANCE-UNKNOWN",
+        "OS023-MANAGEMENT_PROMOTION-RECEIVER-OBLIGATION-LOST",
+        "OS023-MANAGEMENT_PROMOTION-ACK-WITHOUT-RECEIVER-COMPLETION",
+        "OS023-MANAGEMENT_PROMOTION-SOURCE-COMPLETION-UNPROVEN"
+      ],
+      "raw_and_expected_pointers": [
+        [
+          "/cases/1/given/input",
+          "/cases/1/expected_proposal"
+        ],
+        [
+          "/cases/2/given/input",
+          "/cases/2/expected_proposal"
+        ],
+        [
+          "/cases/43/given/input",
+          "/cases/43/expected_proposal"
+        ],
+        [
+          "/cases/46/given/input",
+          "/cases/46/expected_proposal"
+        ],
+        [
+          "/cases/65/given/input",
+          "/cases/65/expected_proposal"
+        ],
+        [
+          "/cases/64/given/input",
+          "/cases/64/expected_proposal"
+        ]
+      ],
+      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+    },
+    {
+      "requirement_id": "HELIXOS-L3-023-N01",
+      "case_ids": [
+        "OS023-UNSEEN-REBOUND-SOURCE-MATERIAL",
+        "OS023-SELECTION-UNKNOWN",
+        "OS023-EXPECTED-SELECTION-UNKNOWN",
+        "OS023-UNKNOWN-EDGE",
+        "OS023-SELECTION-CONFLICT",
+        "OS023-PHASE-UNKNOWN"
+      ],
+      "raw_and_expected_pointers": [
+        [
+          "/cases/264/given/input",
+          "/cases/264/expected_proposal"
+        ],
+        [
+          "/cases/256/given/input",
+          "/cases/256/expected_proposal"
+        ],
+        [
+          "/cases/257/given/input",
+          "/cases/257/expected_proposal"
+        ],
+        [
+          "/cases/258/given/input",
+          "/cases/258/expected_proposal"
+        ],
+        [
+          "/cases/259/given/input",
+          "/cases/259/expected_proposal"
+        ],
+        [
+          "/cases/260/given/input",
+          "/cases/260/expected_proposal"
+        ]
+      ],
+      "meaning": "fixed L9 source oracle trace, not independent execution evidence"
+    }
+  ],
+  "l10_obligation_unclosed": [
+    "F03 L10 positive wording separates semantic resolution and source-work completion; source L9 cases preserve both flags false or unproven. They do not exhibit completed source duty or qualified semantic resolution.",
+    "N01 unseen project/actor values are synthetic and paired with synthetic context; they test local joins, not real unseen identity or source qualification."
+  ],
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "disposition": "source_snapshot_preservation",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8E9E06111D6FE1538308",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md",
+      "sha256": "db4eb979037a611e51edaab22fe31f774fd7038d7ffb72bcf26ece6fb9de8b42",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md",
+      "sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2E1B77FCB2F00DA8C750",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/work-graph-receipt-acceptance.md",
+      "sha256": "c3bbcad829de4e8c4fae046593e905d8293aad217c43ebb4f2e17e293fc9565e",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0449CFE6165EF25515B7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-independent-review.md",
+      "sha256": "0447d1fbc82fb60577ae58eb939d710290fb7c2d22bdfbf1cd66c725cc734b76",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-64AE3DCA397FADF087C3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-work-graph-receipt-acceptance-system-test-design.md",
+      "sha256": "0bbbb1258dba488a59c80ecbb99dbf61c4a66ab7ad3e22aad915e8f8c818150e",
+      "disposition": "unresolved",
+      "execution": "read_only_not_executed"
+    }
+  ],
+  "formal_programs": [
+    {
+      "program_id": "OS023-F01",
+      "source_contract": "HELIXOS-L4-023-F01",
+      "input_type": "ExpandedInput",
+      "output_type": "F01Evaluation",
+      "rule_data": {
+        "edge_order_pointer": "/edge_order",
+        "edge_role_map_pointer": "/edge_roles",
+        "actual_selection_pointer": "/selected_edges",
+        "edge_identity_domain_pointer": "/edge_order",
+        "selection_comparison": "実selected_edgesだけで本F01関数のactive edgeを決める。context.selected_edgesとの違いはglobal/coverageで扱い、このF01 binding計算から実selected edgeを外さない。",
+        "selection_domain": "実selected_edgesが一意なEdgeId文字列の配列である場合だけknown。それ以外は全edgeの本F01結果をunknownにする。",
+        "selection_unknown_finding": {
+          "code": "edge_selection_unresolved",
+          "pointer": "/selected_edges",
+          "return_owner": "management-handoff-owner"
+        },
+        "unknown_selection_result": "unknown",
+        "inactive_selection_result": "not_selected",
+        "active_initial_result": "corresponding",
+        "comparison_plan_pointers": [
+          "/ordered_rule_plan/binding_comparisons",
+          "/ordered_rule_plan/receiver_binding_comparisons",
+          "/ordered_rule_plan/role_comparisons",
+          "/ordered_rule_plan/unfinished_comparisons"
+        ],
+        "comparison_order": "plan pointer order, then array row order; iterate edge_order in order",
+        "comparator_domain": {
+          "known_nonempty_string": "memberが存在し、nullでなく、非空stringである。",
+          "known_unique_string_set": "memberが存在するarrayで、全要素が非空string、重複なし。空arrayはknown empty set。"
+        },
+        "comparison_priority": [
+          "比較planの配列順に評価する。actual/expectedのいずれかが当該comparator域外なら、域外側ごとにunknown_codeをそのoperand pointerへ追加する。既存violationはunknownで上書きしない。",
+          "両側がknownでJSON kindまたは値が相違するとき、conflict_codeをactual pointerへ追加し、binding facetだけviolationへ上げる。",
+          "relation=subset_ofの行は両operandをknown_unique_string_setとして評価する。片側でもdomain外なら不明側pointerへunknown_codeを追加。両側knownでactual要素の一つでもrightに含まれないとき、failure_codeをfailure_pointer（なければactual pointer）へ追加する。",
+          "順序: comparison_plan_pointersの配列、各planの行配列、edge_orderの順。findingはcode/pointer/return_ownerでsortし、同一tupleを一つにする。"
+        ],
+        "facet_priority": [
+          "bindingのみ: violation > unknown > not_selected > corresponding。unfinished等他facetは別関数との合成後に決める。"
+        ],
+        "role_expected_resolution": "role rowにexpectedがあればrawから相手roleを読む。expected_edge_role rowはedge_role_map_pointer[edge][role_index]を読む。role_indexとpathはplan rowに明示。",
+        "finding_sort": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_deduplication": "同一{code,pointer,return_owner} tupleを重複除去し、finding_sort順で返す。",
+        "return_owner_literal": "management-handoff-owner",
+        "output_projection": {
+          "binding_states": "edge_order順の各edgeに一つずつbinding FacetStateを返す。inactiveはnot_selected、selection不明時はunknown。",
+          "retained_obligations": "active edgeのraw source_remainingがknown_unique_string_setなら原配列を保持。それ以外またはinactive edgeはnull。",
+          "findings": "4 comparison planのF01 findingsを返す。"
+        },
+        "retained_obligations_rule": {
+          "source_path_template": "retained_source_path_template",
+          "retain_when": "known_unique_string_set",
+          "otherwise": "null",
+          "preserve_order": true
+        },
+        "return_owner_boundary": "この値はL9固定fixtureの診断label。実owner資格/identityを生成しない。",
+        "state_facet": "binding",
+        "retained_source_path_template": "/edges/{edge}/source_remaining",
+        "state_results": {
+          "corresponding": "corresponding",
+          "unknown": "unknown",
+          "violation": "violation",
+          "not_selected": "not_selected"
+        },
+        "comparison_operators": {
+          "known_nonempty_string": {
+            "kind": "string",
+            "presence": "provided_nonempty",
+            "empty": "unknown"
+          },
+          "known_unique_string_set": {
+            "kind": "array<string>",
+            "presence": "provided",
+            "duplicates": "unknown",
+            "empty": "known_empty_set"
+          },
+          "closed_enum": {
+            "kind": "string",
+            "allowed_values_source": "comparison row allowed_values"
+          },
+          "json_equal": {
+            "json_kind_must_match": true,
+            "number_1_equals_1_0": true,
+            "boolean_is_not_number": true,
+            "object_key_order_ignored": true,
+            "array_order_preserved": true
+          }
+        },
+        "comparison_priority_machine": [
+          {
+            "when": "any operand outside comparator domain",
+            "emit": "unknown_code_for_each_unknown_operand_pointer",
+            "state": "unknown_unless_already_violation"
+          },
+          {
+            "when": "both operands known and unequal",
+            "emit": "conflict_code_at_actual_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset false",
+            "emit": "failure_code_at_failure_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset true",
+            "emit": "none",
+            "state": "preserve"
+          },
+          {
+            "when": "both operands known and equal",
+            "emit": "none",
+            "state": "preserve"
+          }
+        ],
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_dedup": "exact tuple",
+        "selection_shape": {
+          "type": "unique array<EdgeId>",
+          "unknown_result": "unknown_selection_result",
+          "invalid_finding": "selection_unknown_finding"
+        },
+        "facet_results": {
+          "violation": "violation",
+          "unknown": "unknown"
+        }
+      },
+      "rule_input_type": "F01RulePlan",
+      "execution_plan": [
+        {
+          "operator": "select_edges",
+          "input": "rule_data.actual_selection_pointer",
+          "domain": "rule_data.edge_identity_domain_pointer",
+          "result": "active_edge_set",
+          "invalid_result": "unknown_selection_result"
+        },
+        {
+          "operator": "for_each_edge_in_order",
+          "input": {
+            "ref": "rule_data.edge_order_pointer"
+          },
+          "body": "選択結果に従いbinding・unfinished・retainedの各mapを初期化する。"
+        },
+        {
+          "operator": "for_each_plan_pointer_then_row_then_edge",
+          "input": {
+            "ref": "rule_data.comparison_plan_pointers"
+          },
+          "body": "actual/expected operandを読み、宣言comparatorで判定し、診断を出し、行に対応するfacetだけを更新する。"
+        },
+        {
+          "operator": "project_retained_obligations",
+          "input": {
+            "ref": "rule_data.retained_source_path_template"
+          },
+          "rule": "rule_data.retained_obligations_rule"
+        },
+        {
+          "operator": "sort_deduplicate_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate": "exact_tuple"
+        }
+      ],
+      "argument_types": {
+        "ExpandedInput": "formal_types.ExpandedInput"
+      },
+      "meaning_ja": "選択edgeを固定順に走査し、宣言した各比較行の既知性・値・relationを照合してbinding/unfinished/retainedを返す。"
+    },
+    {
+      "program_id": "OS023-F02-UNIT-CONNECTION-REVIEW",
+      "source_contract": "HELIXOS-L4-023-F02",
+      "input_type": "ExpandedInput",
+      "rule_input_type": "F02RulePlan",
+      "output_type": "F02Evaluation",
+      "rule_data": {
+        "phase_domain_pointer": "/phase_order",
+        "edge_order_pointer": "/edge_order",
+        "actual_selection_pointer": "/selected_edges",
+        "groups": [
+          {
+            "facet": "units",
+            "plan_pointer": "/ordered_rule_plan/unit_state_comparisons",
+            "applicable_phases": [
+              "receive",
+              "reconcile"
+            ],
+            "output": "unit_material_states",
+            "success_value": "success_material",
+            "failure_code": "unit_failed",
+            "non_success_code": "unit_unobserved",
+            "value_projection": {
+              "output_field": "unit_material_states",
+              "kind": "record_from_paths",
+              "members": {
+                "sender": "/edges/{edge}/unit_sender_state",
+                "receiver": "/edges/{edge}/unit_receiver_state"
+              },
+              "allowed_values": [
+                "success_material",
+                "failed_material",
+                "unobserved",
+                "not_occurred"
+              ]
+            }
+          },
+          {
+            "facet": "delivery",
+            "plan_pointer": "/ordered_rule_plan/delivery_comparisons",
+            "applicable_phases": [
+              "receive",
+              "reconcile"
+            ],
+            "output": "delivery_material_states",
+            "success_value": "delivered_material",
+            "failure_code": "delivery_failed",
+            "non_success_code": "delivery_unobserved",
+            "value_projection": {
+              "output_field": "delivery_material_states",
+              "kind": "scalar_from_path",
+              "path": "/edges/{edge}/delivery_state",
+              "allowed_values": [
+                "delivered_material",
+                "failed_material",
+                "unobserved",
+                "not_occurred"
+              ]
+            }
+          },
+          {
+            "facet": "connection",
+            "plan_pointer": "/ordered_rule_plan/reconcile_connection_comparisons",
+            "applicable_phases": [
+              "reconcile"
+            ],
+            "output": null,
+            "success_value": "verified_material",
+            "failure_code": "connection_acceptance_failed",
+            "non_success_code": "connection_acceptance_unobserved",
+            "value_projection": null
+          },
+          {
+            "facet": "review",
+            "plan_pointer": "/ordered_rule_plan/review_comparisons",
+            "applicable_phases": [
+              "reconcile"
+            ],
+            "output": null,
+            "shape_checks": [
+              {
+                "actual": "/edges/{edge}/review",
+                "expected": "/context/edges/{edge}/review",
+                "unknown_actual_code": "review_record_unresolved",
+                "unknown_expected_code": "review_record_unresolved"
+              }
+            ],
+            "independence_checks": [
+              {
+                "actual": "/edges/{edge}/review/actor",
+                "expected": "/edges/{edge}/producer/actor",
+                "code": "producer_self_review"
+              },
+              {
+                "actual": "/edges/{edge}/review/context",
+                "expected": "/edges/{edge}/producer/context",
+                "code": "review_context_not_independent"
+              }
+            ],
+            "value_projection": null
+          }
+        ],
+        "selection": "L5 F01のactual selected_edges domainとunknown規則を共有。actual selected_edgesはknown EdgeIdの重複なしlist。それ以外は各F02 facet unknown。known inactive edgeはnot_selected。",
+        "phase_behavior": "input.phaseがgroup.applicable_phasesの値と一致するときだけそのgroupを評価する。他phaseまたはunknown phaseではそのgroup state fieldをnull、active facetはcorrespondingとする。phase findingはglobal規則が返す。",
+        "comparison_operator": "plan rowのcomparator (closed_enumまたはknown_nonempty_string)を使う。missing/null/wrong kind/enum域外はrow.unknown_codeを各invalid operand pointerへ。両knownで不一致ならrow.conflict_codeをactual pointerへ。finding dispositionでfacet stateを定める。",
+        "state_projection": "applicable active edgeでactual stateがgroup.state_valuesに属す場合だけ値を保持し、それ以外はnull。actual failure valueならfailure_code、success_value以外のvalid stateならnon_success_codeを独立に追加する。",
+        "review_shape": "applicable active edgeでreview source/contextのいずれかがobjectでなければ当該root pointerへreview_record_unresolvedを出し、そのobjectのmember比較をskip。両objectならreview_comparisonsを順に評価。",
+        "finding_owner": "management-handoff-owner",
+        "finding_sort": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_dedup": "exact tuple",
+        "disposition_map_pointer": "/diagnostic_code_dispositions",
+        "facet_priority": [
+          "violation",
+          "unknown",
+          "not_selected",
+          "corresponding"
+        ],
+        "selection_rule": {
+          "actual_selection_pointer": "/selected_edges",
+          "edge_identity_domain_pointer": "/edge_order",
+          "valid": "array of distinct strings all present in edge identity domain",
+          "invalid_facet_state": "unknown",
+          "inactive_facet_state": "not_selected",
+          "active_initial_facet_state": "corresponding"
+        },
+        "facet_state_by_code_pointer": "/diagnostic_code_dispositions",
+        "state_projection_rule": "各plan rowにactual_failure_value/failure_codeがある場合、actualがその値と一致すればfailure_codeを追加する。それ以外でsuccess_value/non_success_codeが定義されている場合、actualがcomparator域外またはknown success_value以外ならnon_success_codeを追加する。",
+        "phase_pointer": "/phase",
+        "state_results": {
+          "corresponding": "corresponding",
+          "unknown": "unknown",
+          "violation": "violation",
+          "not_selected": "not_selected"
+        },
+        "comparison_operators": {
+          "known_nonempty_string": {
+            "kind": "string",
+            "presence": "provided_nonempty",
+            "empty": "unknown"
+          },
+          "known_unique_string_set": {
+            "kind": "array<string>",
+            "presence": "provided",
+            "duplicates": "unknown",
+            "empty": "known_empty_set"
+          },
+          "closed_enum": {
+            "kind": "string",
+            "allowed_values_source": "comparison row allowed_values"
+          },
+          "json_equal": {
+            "json_kind_must_match": true,
+            "number_1_equals_1_0": true,
+            "boolean_is_not_number": true,
+            "object_key_order_ignored": true,
+            "array_order_preserved": true
+          }
+        },
+        "comparison_priority_machine": [
+          {
+            "when": "any operand outside comparator domain",
+            "emit": "unknown_code_for_each_unknown_operand_pointer",
+            "state": "unknown_unless_already_violation"
+          },
+          {
+            "when": "both operands known and unequal",
+            "emit": "conflict_code_at_actual_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset false",
+            "emit": "failure_code_at_failure_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset true",
+            "emit": "none",
+            "state": "preserve"
+          },
+          {
+            "when": "both operands known and equal",
+            "emit": "none",
+            "state": "preserve"
+          }
+        ],
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "selection_results": {
+          "invalid": "unknown",
+          "inactive": "not_selected",
+          "active": "corresponding"
+        },
+        "facet_priority_machine": [
+          "violation",
+          "unknown",
+          "not_selected",
+          "corresponding"
+        ],
+        "projection_rules": "groups[].value_projection; only active selected edge and applicable phase; raw path values outside allowed_values become null"
+      },
+      "execution_plan": [
+        {
+          "operator": "select_edges",
+          "input": "rule_data.actual_selection_pointer",
+          "domain": "rule_data.edge_order_pointer",
+          "result": "active_edge_set"
+        },
+        {
+          "operator": "for_each_group_then_edge",
+          "input": {
+            "ref": "rule_data.groups"
+          },
+          "condition": "入力phaseがgroup.applicable_phasesに含まれ、かつedgeが選択されている場合に処理する。"
+        },
+        {
+          "operator": "project_group_value",
+          "input": "group.value_projection",
+          "rule": "raw値がallowed_valuesに含まれる場合は保持し、それ以外はnullにする。"
+        },
+        {
+          "operator": "check_shapes_then_compare_rows",
+          "input": "group.shape_checks and group.plan_pointer",
+          "priority": "unknown operandを先に診断し、facetはdispositionのviolationをunknownより優先する。"
+        },
+        {
+          "operator": "derive_facet_by_disposition_priority",
+          "input": "rule_data.disposition_map_pointer"
+        },
+        {
+          "operator": "sort_deduplicate_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate": "exact_tuple"
+        }
+      ],
+      "argument_types": {
+        "ExpandedInput": "formal_types.ExpandedInput"
+      },
+      "meaning_ja": "phaseと選択edgeごとにunit/delivery/connection/reviewを独立比較し、原状態と診断から各facetを返す。"
+    },
+    {
+      "program_id": "OS023-N01-SELECTION-COVERAGE",
+      "source_contract": "HELIXOS-L4-023-N01",
+      "input_type": "ExpandedInput",
+      "rule_input_type": "N01RulePlan",
+      "output_type": "N01Evaluation",
+      "rule_data": {
+        "edge_order_pointer": "/edge_order",
+        "actual_selection_pointer": "/selected_edges",
+        "expected_selection_pointer": "/context/selected_edges",
+        "selection_literal_domain_pointer": "/edge_order",
+        "observation_path_template": "/edges/{edge}/observed",
+        "return_owner": "management-handoff-owner",
+        "code_dispositions_pointer": "/diagnostic_code_dispositions",
+        "selection_rule": {
+          "known": "array of unique known EdgeId strings; empty array is known empty set",
+          "invalid_root_code": "edge_selection_unresolved",
+          "unknown_item_code": "unknown_edge_identity",
+          "unknown_item_pointer": "each invalid array index",
+          "conflict_code": "edge_selection_conflict",
+          "conflict_pointer": "actual selection root",
+          "actual_invalid_coverage": "unknown for all edges",
+          "expected_invalid_coverage": "unknown for all edges",
+          "known_inactive_edge": "not_selected",
+          "known_active_initial": "corresponding",
+          "set_conflict_does_not_suppress_actual_active_edges": true
+        },
+        "observation_rule": {
+          "boolean_true": "corresponding, no finding",
+          "boolean_false": "unknown and edge_unobserved",
+          "nonboolean_or_missing_or_null": "unknown and edge_observation_unresolved",
+          "evaluated_only_when_both_selections_are_known": true,
+          "false_code": "edge_unobserved",
+          "nonboolean_code": "edge_observation_unresolved",
+          "true_state": "corresponding",
+          "false_state": "unknown",
+          "unknown_state": "unknown"
+        },
+        "finding_sort": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_dedup": "exact tuple",
+        "state_results": {
+          "corresponding": "corresponding",
+          "unknown": "unknown",
+          "violation": "violation",
+          "not_selected": "not_selected"
+        },
+        "comparison_operators": {
+          "known_nonempty_string": {
+            "kind": "string",
+            "presence": "provided_nonempty",
+            "empty": "unknown"
+          },
+          "known_unique_string_set": {
+            "kind": "array<string>",
+            "presence": "provided",
+            "duplicates": "unknown",
+            "empty": "known_empty_set"
+          },
+          "closed_enum": {
+            "kind": "string",
+            "allowed_values_source": "comparison row allowed_values"
+          },
+          "json_equal": {
+            "json_kind_must_match": true,
+            "number_1_equals_1_0": true,
+            "boolean_is_not_number": true,
+            "object_key_order_ignored": true,
+            "array_order_preserved": true
+          }
+        },
+        "comparison_priority_machine": [
+          {
+            "when": "any operand outside comparator domain",
+            "emit": "unknown_code_for_each_unknown_operand_pointer",
+            "state": "unknown_unless_already_violation"
+          },
+          {
+            "when": "both operands known and unequal",
+            "emit": "conflict_code_at_actual_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset false",
+            "emit": "failure_code_at_failure_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset true",
+            "emit": "none",
+            "state": "preserve"
+          },
+          {
+            "when": "both operands known and equal",
+            "emit": "none",
+            "state": "preserve"
+          }
+        ],
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "selection_results": {
+          "invalid": "unknown",
+          "actual_not_selected": "not_selected",
+          "observed_true": "corresponding",
+          "observed_false": "unknown",
+          "observation_other": "unknown"
+        }
+      },
+      "execution_plan": [
+        {
+          "operator": "validate_two_selections",
+          "inputs": [
+            {
+              "ref": "rule_data.actual_selection_pointer"
+            },
+            {
+              "ref": "rule_data.expected_selection_pointer"
+            }
+          ],
+          "domain": "rule_data.edge_order_pointer"
+        },
+        {
+          "operator": "compare_selection_membership",
+          "outputs": "global findingだけを返し、edge identityを合成しない。"
+        },
+        {
+          "operator": "project_observation_per_edge",
+          "rule": {
+            "ref": "rule_data.observation_rule"
+          }
+        },
+        {
+          "operator": "sort_deduplicate_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate": "exact_tuple"
+        }
+      ],
+      "argument_types": {
+        "ExpandedInput": "formal_types.ExpandedInput"
+      },
+      "meaning_ja": "実selectionとcontext selectionを比較し、各edgeのobservationだけからcoverageを返す。"
+    },
+    {
+      "program_id": "OS023-F03-RECEIVER-TRANSFER",
+      "source_contract": "HELIXOS-L4-023-F03",
+      "input_type": "ExpandedInput",
+      "additional_input_types": [
+        "F01Evaluation",
+        "F02Evaluation",
+        "N01Evaluation"
+      ],
+      "rule_input_type": "F03RulePlan",
+      "output_type": "F03Evaluation",
+      "rule_data": {
+        "phase_pointer": "/phase",
+        "phase_domain_pointer": "/phase_order",
+        "active_phases": [
+          "receive",
+          "reconcile"
+        ],
+        "edge_order_pointer": "/edge_order",
+        "actual_selection_pointer": "/selected_edges",
+        "acceptance_plan_pointer": "/ordered_rule_plan/receiver_acceptance_comparisons",
+        "acceptance_role_plan_pointer": "/ordered_rule_plan/receiver_acceptance_role_comparisons",
+        "owner_literal": "management-handoff-owner",
+        "disposition_map_pointer": "/diagnostic_code_dispositions",
+        "selection_domain": "実selected_edgesがuniqueな既知EdgeId listのときだけactive edgeを評価する。その他はreception unknown・transfer false、既知で非選択のedgeはnot_selected。",
+        "transfer_inputs": {
+          "binding": {
+            "argument": "F01Evaluation",
+            "path": "binding_states.{edge}"
+          },
+          "delivery": {
+            "argument": "F02Evaluation",
+            "path": "facet_states.{edge}.delivery"
+          },
+          "reception": {
+            "argument": "local",
+            "path": "reception_states.{edge}"
+          },
+          "coverage": {
+            "argument": "N01Evaluation",
+            "path": "coverage_states.{edge}"
+          }
+        },
+        "transfer_rule": {
+          "applicable_phases": [
+            "receive",
+            "reconcile"
+          ],
+          "true_if_all_paths_equal": [
+            "corresponding",
+            "corresponding",
+            "corresponding",
+            "corresponding"
+          ],
+          "otherwise": false,
+          "ack_read": false,
+          "unit_success_is_sufficient": false
+        },
+        "receiver_acceptance_state_rule": {
+          "success_value": "accepted_material",
+          "failure_value": "refused_material",
+          "failure_code": "receiver_refused",
+          "non_success_code": "receiver_unobserved",
+          "unknown_output": "facet unknown; do not synthesize a receipt"
+        },
+        "claim_rules": [
+          {
+            "path_template": "/edges/{edge}/source_completion_claim",
+            "boolean_true_if_transfer_false": "source_completion_without_receiver",
+            "boolean_true_if_transfer_true": "source_completion_unproven",
+            "nonboolean_code": "source_completion_claim_unresolved",
+            "false": "no finding"
+          },
+          {
+            "path_template": "/edges/{edge}/meaning_resolved_claim",
+            "boolean_true_code": "ack_not_meaning_resolution",
+            "nonboolean_code": "meaning_resolution_claim_unresolved",
+            "false": "no finding"
+          }
+        ],
+        "finding_sort": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_dedup": "exact tuple",
+        "execution_boundary": "synthetic material projection only; source work completion remains false",
+        "transfer_required_state": "corresponding",
+        "reception_finding_codes": [
+          "receiver_obligation_lost",
+          "receiver_obligations_unresolved",
+          "receiver_refused",
+          "receiver_unobserved",
+          "source_conflict",
+          "source_unresolved"
+        ],
+        "argument_types": {
+          "F01Evaluation": "formal_types.F01Evaluation",
+          "F02Evaluation": "formal_types.F02Evaluation",
+          "N01Evaluation": "formal_types.N01Evaluation"
+        },
+        "role_map_pointer": "/edge_roles",
+        "state_results": {
+          "corresponding": "corresponding",
+          "unknown": "unknown",
+          "violation": "violation",
+          "not_selected": "not_selected"
+        },
+        "comparison_operators": {
+          "known_nonempty_string": {
+            "kind": "string",
+            "presence": "provided_nonempty",
+            "empty": "unknown"
+          },
+          "known_unique_string_set": {
+            "kind": "array<string>",
+            "presence": "provided",
+            "duplicates": "unknown",
+            "empty": "known_empty_set"
+          },
+          "closed_enum": {
+            "kind": "string",
+            "allowed_values_source": "comparison row allowed_values"
+          },
+          "json_equal": {
+            "json_kind_must_match": true,
+            "number_1_equals_1_0": true,
+            "boolean_is_not_number": true,
+            "object_key_order_ignored": true,
+            "array_order_preserved": true
+          }
+        },
+        "comparison_priority_machine": [
+          {
+            "when": "any operand outside comparator domain",
+            "emit": "unknown_code_for_each_unknown_operand_pointer",
+            "state": "unknown_unless_already_violation"
+          },
+          {
+            "when": "both operands known and unequal",
+            "emit": "conflict_code_at_actual_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset false",
+            "emit": "failure_code_at_failure_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset true",
+            "emit": "none",
+            "state": "preserve"
+          },
+          {
+            "when": "both operands known and equal",
+            "emit": "none",
+            "state": "preserve"
+          }
+        ],
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "selection_results": {
+          "invalid": "unknown",
+          "inactive": "not_selected",
+          "active": "corresponding"
+        },
+        "acceptance_result_rule": "receiver_acceptance_state_rule",
+        "transfer_false": false
+      },
+      "execution_plan": [
+        {
+          "operator": "select_edges_and_phase",
+          "inputs": [
+            "rule_data.actual_selection_pointer",
+            "rule_data.phase_pointer"
+          ],
+          "domains": [
+            "rule_data.edge_order_pointer",
+            "rule_data.phase_domain_pointer"
+          ]
+        },
+        {
+          "operator": "compare_acceptance_plan_rows",
+          "input": {
+            "refs": [
+              "rule_data.acceptance_plan_pointer",
+              "rule_data.acceptance_role_plan_pointer"
+            ]
+          },
+          "order": "行配列の順、その後edge_orderの順"
+        },
+        {
+          "operator": "derive_reception_state",
+          "input": "rule_data.reception_finding_codes",
+          "priority": "violation、unknown、初期状態の順に優先する。"
+        },
+        {
+          "operator": "derive_transfer_from_facets",
+          "inputs": {
+            "ref": "rule_data.transfer_inputs"
+          },
+          "required": "rule_data.transfer_required_state",
+          "phase": "rule_data.transfer_rule.applicable_phases"
+        },
+        {
+          "operator": "evaluate_claim_rules",
+          "input": {
+            "ref": "rule_data.claim_rules"
+          },
+          "boolean_rules": "trueならfindingを返し、falseなら何も返さず、boolean以外はunresolvedを返す。"
+        },
+        {
+          "operator": "sort_deduplicate_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate": "exact_tuple"
+        }
+      ],
+      "argument_types": {
+        "ExpandedInput": "formal_types.ExpandedInput"
+      },
+      "meaning_ja": "受領状態・role・binding・未完集合を照合し、F01/F02/N01結果がすべて対応するときだけ有限のfixture上のtransfer値を返す。"
+    },
+    {
+      "program_id": "OS023-PROPOSAL-WHOLE-ASSEMBLY",
+      "source_contracts": [
+        "HELIXOS-L4-023-F01",
+        "HELIXOS-L4-023-F02",
+        "HELIXOS-L4-023-F03",
+        "HELIXOS-L4-023-N01"
+      ],
+      "input_type": "ExpandedInput",
+      "additional_input_types": [
+        "F01Evaluation",
+        "F02Evaluation",
+        "N01Evaluation",
+        "F03Evaluation"
+      ],
+      "output_type": "ProposalEvaluation",
+      "rule_data": {
+        "edge_order_pointer": "/edge_order",
+        "phase_pointer": "/phase",
+        "phase_domain_pointer": "/phase_order",
+        "selection_pointer": "/selected_edges",
+        "disposition_map_pointer": "/diagnostic_code_dispositions",
+        "owner_literal": "management-handoff-owner",
+        "phase_unknown": {
+          "code": "phase_unresolved",
+          "pointer": "/phase"
+        },
+        "whole_scope_claim_pointer": "/whole_scope_claim",
+        "whole_scope_claim": {
+          "true_code": "whole_scope_claim_unproven",
+          "nonboolean_code": "whole_scope_claim_unresolved"
+        },
+        "unfinished_claim_codes": [
+          "source_completion_without_receiver",
+          "source_completion_unproven",
+          "source_completion_claim_unresolved",
+          "ack_not_meaning_resolution",
+          "meaning_resolution_claim_unresolved"
+        ],
+        "connection_phase": "reconcile",
+        "connection_facets": [
+          "binding",
+          "units",
+          "delivery",
+          "reception",
+          "connection",
+          "review",
+          "coverage"
+        ],
+        "corresponding_state": "corresponding",
+        "condition_values": {
+          "violation": "handoff_material_violation",
+          "unknown": "handoff_material_unknown",
+          "corresponding": "handoff_material_corresponding"
+        },
+        "fixed_outputs": {
+          "actual_handoff_performed": false,
+          "actual_source_work_completed": false,
+          "whole_composition_verified": false,
+          "operation_effect": "none"
+        },
+        "aggregation_order": [
+          "global findings",
+          "active selected edges in edge_order",
+          "facet priority violation then unknown then corresponding"
+        ],
+        "inactive_edge_condition": "not_selected facets are excluded from condition aggregation and do not count as success evidence; if actual selection is empty, condition is unknown",
+        "finding_order": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "finding_dedup": "exact tuple",
+        "state_results": {
+          "corresponding": "corresponding",
+          "unknown": "unknown",
+          "violation": "violation",
+          "not_selected": "not_selected"
+        },
+        "comparison_operators": {
+          "known_nonempty_string": {
+            "kind": "string",
+            "presence": "provided_nonempty",
+            "empty": "unknown"
+          },
+          "known_unique_string_set": {
+            "kind": "array<string>",
+            "presence": "provided",
+            "duplicates": "unknown",
+            "empty": "known_empty_set"
+          },
+          "closed_enum": {
+            "kind": "string",
+            "allowed_values_source": "comparison row allowed_values"
+          },
+          "json_equal": {
+            "json_kind_must_match": true,
+            "number_1_equals_1_0": true,
+            "boolean_is_not_number": true,
+            "object_key_order_ignored": true,
+            "array_order_preserved": true
+          }
+        },
+        "comparison_priority_machine": [
+          {
+            "when": "any operand outside comparator domain",
+            "emit": "unknown_code_for_each_unknown_operand_pointer",
+            "state": "unknown_unless_already_violation"
+          },
+          {
+            "when": "both operands known and unequal",
+            "emit": "conflict_code_at_actual_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset false",
+            "emit": "failure_code_at_failure_pointer",
+            "state": "violation"
+          },
+          {
+            "when": "relation=subset_of and all operands known and subset true",
+            "emit": "none",
+            "state": "preserve"
+          },
+          {
+            "when": "both operands known and equal",
+            "emit": "none",
+            "state": "preserve"
+          }
+        ],
+        "condition_priority_machine": [
+          "violation",
+          "unknown",
+          "corresponding"
+        ],
+        "facet_result_bindings": {
+          "binding": {
+            "argument": "F01Evaluation",
+            "path": "binding_states.{edge}"
+          },
+          "units": {
+            "argument": "F02Evaluation",
+            "path": "facet_states.{edge}.units"
+          },
+          "delivery": {
+            "argument": "F02Evaluation",
+            "path": "facet_states.{edge}.delivery"
+          },
+          "reception": {
+            "argument": "F03Evaluation",
+            "path": "reception_states.{edge}"
+          },
+          "connection": {
+            "argument": "F02Evaluation",
+            "path": "facet_states.{edge}.connection"
+          },
+          "review": {
+            "argument": "F02Evaluation",
+            "path": "facet_states.{edge}.review"
+          },
+          "unfinished": {
+            "argument": "F01Evaluation",
+            "path": "unfinished_states.{edge}",
+            "overlay": "F03 claim finding disposition"
+          },
+          "coverage": {
+            "argument": "N01Evaluation",
+            "path": "coverage_states.{edge}"
+          }
+        },
+        "output_bindings": {
+          "unit_material_states": {
+            "argument": "F02Evaluation",
+            "path": "unit_material_states"
+          },
+          "delivery_material_states": {
+            "argument": "F02Evaluation",
+            "path": "delivery_material_states"
+          },
+          "receiver_transfer_material": {
+            "argument": "F03Evaluation",
+            "path": "receiver_transfer_material"
+          },
+          "retained_obligations": {
+            "argument": "F01Evaluation",
+            "path": "retained_obligations"
+          }
+        },
+        "finding_sources": [
+          "F01Evaluation",
+          "F02Evaluation",
+          "N01Evaluation",
+          "F03Evaluation"
+        ],
+        "edge_facet_order": [
+          "binding",
+          "units",
+          "delivery",
+          "reception",
+          "connection",
+          "review",
+          "unfinished",
+          "coverage"
+        ]
+      },
+      "execution_plan": [
+        {
+          "operator": "bind_eight_facets",
+          "inputs": {
+            "ref": "rule_data.facet_result_bindings"
+          },
+          "order": "edge_order_pointerの順、各edge内はfacet列の宣言順"
+        },
+        {
+          "operator": "apply_unfinished_claim_dispositions",
+          "input": {
+            "ref": "rule_data.unfinished_claim_codes"
+          },
+          "priority": "violationをunknownより優先する。"
+        },
+        {
+          "operator": "derive_connection_material",
+          "input": {
+            "ref": "rule_data.connection_facets"
+          },
+          "condition": "phaseがconnection_phaseでedgeが選択され、列挙された全facetがcorrespondingの場合に限る。"
+        },
+        {
+          "operator": "merge_global_and_active_edge_states",
+          "priority": "rule_data.condition_priority_machine",
+          "ignore": "not_selectedは成功根拠として数えない。"
+        },
+        {
+          "operator": "project_fixed_boundary_outputs",
+          "input": {
+            "ref": "rule_data.fixed_outputs"
+          }
+        },
+        {
+          "operator": "sort_deduplicate_findings",
+          "keys": [
+            "code",
+            "pointer",
+            "return_owner"
+          ],
+          "deduplicate": "exact_tuple"
+        }
+      ],
+      "argument_types": {
+        "ExpandedInput": "formal_types.ExpandedInput"
+      },
+      "meaning_ja": "4関数の結果とglobal診断をL4で宣言された13 rootへ組み立て、not_selectedを成功として数えない。"
+    }
+  ],
+  "formal_types": {
+    "EdgeId": {
+      "enum_ref": "/edge_order"
+    },
+    "FacetState": {
+      "enum": [
+        "corresponding",
+        "unknown",
+        "violation",
+        "not_selected"
+      ]
+    },
+    "Finding": {
+      "record": {
+        "code": {
+          "primitive": "string"
+        },
+        "pointer": {
+          "primitive": "string"
+        },
+        "return_owner": {
+          "literal": "management-handoff-owner"
+        }
+      },
+      "extra_members": "reject"
+    },
+    "F01Evaluation": {
+      "record": {
+        "binding_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": "FacetState",
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "retained_obligations": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "array": {
+                    "item_type": {
+                      "primitive": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "findings": {
+          "array": {
+            "item_type": "Finding"
+          }
+        },
+        "unfinished_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": "FacetState",
+            "exact_keys_ref": "/edge_order"
+          }
+        }
+      },
+      "extra_members": "reject"
+    },
+    "F02Evaluation": {
+      "record": {
+        "facet_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "map": {
+                "key_type": "string",
+                "value_type": "FacetState",
+                "exact_keys": [
+                  "units",
+                  "delivery",
+                  "connection",
+                  "review"
+                ]
+              }
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "unit_material_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "record": {
+                    "sender": {
+                      "union": [
+                        {
+                          "primitive": "null"
+                        },
+                        {
+                          "enum": [
+                            "success_material",
+                            "failed_material",
+                            "unobserved",
+                            "not_occurred"
+                          ]
+                        }
+                      ]
+                    },
+                    "receiver": {
+                      "union": [
+                        {
+                          "primitive": "null"
+                        },
+                        {
+                          "enum": [
+                            "success_material",
+                            "failed_material",
+                            "unobserved",
+                            "not_occurred"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "extra_members": "reject"
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "delivery_material_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "enum": [
+                    "delivered_material",
+                    "failed_material",
+                    "unobserved",
+                    "not_occurred"
+                  ]
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "findings": {
+          "array": {
+            "item_type": "Finding"
+          }
+        }
+      },
+      "extra_members": "reject"
+    },
+    "N01Evaluation": {
+      "record": {
+        "coverage_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": "FacetState",
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "findings": {
+          "array": {
+            "item_type": "Finding"
+          }
+        }
+      },
+      "extra_members": "reject"
+    },
+    "F03Evaluation": {
+      "record": {
+        "reception_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": "FacetState",
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "receiver_transfer_material": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "primitive": "boolean"
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "findings": {
+          "array": {
+            "item_type": "Finding"
+          }
+        }
+      },
+      "extra_members": "reject"
+    },
+    "ProposalEvaluation": {
+      "record": {
+        "condition": {
+          "enum": [
+            "handoff_material_corresponding",
+            "handoff_material_unknown",
+            "handoff_material_violation"
+          ]
+        },
+        "selected_phase": {
+          "union": [
+            {
+              "primitive": "null"
+            },
+            {
+              "enum_ref": "/phase_order"
+            }
+          ]
+        },
+        "edge_correspondence": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "record": {
+                "binding": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "units": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "delivery": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "reception": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "connection": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "review": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "unfinished": {
+                  "enum_ref": "/facet_state_domain"
+                },
+                "coverage": {
+                  "enum_ref": "/facet_state_domain"
+                }
+              },
+              "extra_members": "reject"
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "unit_material_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "record": {
+                    "sender": {
+                      "union": [
+                        {
+                          "primitive": "null"
+                        },
+                        {
+                          "enum": [
+                            "success_material",
+                            "failed_material",
+                            "unobserved",
+                            "not_occurred"
+                          ]
+                        }
+                      ]
+                    },
+                    "receiver": {
+                      "union": [
+                        {
+                          "primitive": "null"
+                        },
+                        {
+                          "enum": [
+                            "success_material",
+                            "failed_material",
+                            "unobserved",
+                            "not_occurred"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "extra_members": "reject"
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "delivery_material_states": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "enum": [
+                    "delivered_material",
+                    "failed_material",
+                    "unobserved",
+                    "not_occurred"
+                  ]
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "receiver_transfer_material": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "primitive": "boolean"
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "connection_material_correspondence": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "primitive": "boolean"
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "retained_obligations": {
+          "map": {
+            "key_type": "EdgeId",
+            "value_type": {
+              "union": [
+                {
+                  "primitive": "null"
+                },
+                {
+                  "array": {
+                    "item_type": {
+                      "primitive": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "exact_keys_ref": "/edge_order"
+          }
+        },
+        "findings": {
+          "array": {
+            "item_type": "Finding"
+          }
+        },
+        "actual_handoff_performed": {
+          "literal": false
+        },
+        "actual_source_work_completed": {
+          "literal": false
+        },
+        "whole_composition_verified": {
+          "literal": false
+        },
+        "operation_effect": {
+          "literal": "none"
+        }
+      },
+      "extra_members": "reject"
+    },
+    "JsonValue": {
+      "union": [
+        {
+          "primitive": "null"
+        },
+        {
+          "primitive": "boolean"
+        },
+        {
+          "primitive": "number"
+        },
+        {
+          "primitive": "string"
+        },
+        {
+          "array": {
+            "item_type": "JsonValue"
+          }
+        },
+        {
+          "map": {
+            "key_type": {
+              "primitive": "string"
+            },
+            "value_type": "JsonValue"
+          }
+        }
+      ]
+    },
+    "ExpandedInput": {
+      "map": {
+        "key_type": {
+          "primitive": "string"
+        },
+        "value_type": "JsonValue"
+      }
+    }
+  },
+  "diagnostic_code_dispositions": {
+    "source_unresolved": "unknown",
+    "source_conflict": "violation",
+    "phase_unresolved": "unknown",
+    "edge_selection_unresolved": "unknown",
+    "edge_selection_conflict": "violation",
+    "unknown_edge_identity": "unknown",
+    "unit_failed": "violation",
+    "unit_unobserved": "unknown",
+    "delivery_failed": "violation",
+    "delivery_unobserved": "unknown",
+    "receiver_refused": "violation",
+    "receiver_unobserved": "unknown",
+    "receiver_obligations_unresolved": "unknown",
+    "receiver_obligation_lost": "violation",
+    "connection_acceptance_failed": "violation",
+    "connection_acceptance_unobserved": "unknown",
+    "review_record_unresolved": "unknown",
+    "producer_self_review": "violation",
+    "review_context_not_independent": "violation",
+    "source_obligations_unresolved": "unknown",
+    "source_obligation_lost": "violation",
+    "source_completion_without_receiver": "violation",
+    "source_completion_unproven": "unknown",
+    "source_completion_claim_unresolved": "unknown",
+    "ack_not_meaning_resolution": "violation",
+    "meaning_resolution_claim_unresolved": "unknown",
+    "edge_unobserved": "unknown",
+    "edge_observation_unresolved": "unknown",
+    "whole_scope_claim_unproven": "violation",
+    "whole_scope_claim_unresolved": "unknown"
+  },
+  "formal_pipeline": [
+    {
+      "step": 1,
+      "program_id": "OS023-F01",
+      "feeds": [
+        "binding states",
+        "retained obligations",
+        "F01 findings"
+      ]
+    },
+    {
+      "step": 2,
+      "program_id": "OS023-F02-UNIT-CONNECTION-REVIEW",
+      "feeds": [
+        "unit/delivery/connection/review facets",
+        "unit/delivery states",
+        "F02 findings"
+      ]
+    },
+    {
+      "step": 3,
+      "program_id": "OS023-N01-SELECTION-COVERAGE",
+      "feeds": [
+        "coverage states",
+        "selection/observation findings"
+      ]
+    },
+    {
+      "step": 4,
+      "program_id": "OS023-F03-RECEIVER-TRANSFER",
+      "feeds": [
+        "reception states",
+        "receiver transfer material",
+        "F03 claim findings"
+      ],
+      "requires": [
+        "OS023-F01",
+        "OS023-F02-UNIT-CONNECTION-REVIEW",
+        "OS023-N01-SELECTION-COVERAGE"
+      ]
+    },
+    {
+      "step": 5,
+      "program_id": "OS023-PROPOSAL-WHOLE-ASSEMBLY",
+      "requires": [
+        "OS023-F01",
+        "OS023-F02-UNIT-CONNECTION-REVIEW",
+        "OS023-N01-SELECTION-COVERAGE",
+        "OS023-F03-RECEIVER-TRANSFER"
+      ],
+      "feeds": [
+        "ProposalEvaluationの全13root"
+      ]
+    }
+  ],
+  "unclosed_program_composition": {
+    "status": "finite_static_recalculation_only",
+    "formal_program": "OS023-PROPOSAL-WHOLE-ASSEMBLY",
+    "covered": "4つの関数結果・phase・global claimを合成するProposal全13rootを318原例と追加4例で静的照合する。",
+    "unclosed": "任意の型内入力の全域totality、実source/owner資格、実handoffと実行結果は未成立。"
+  },
+  "facet_state_domain": [
+    "corresponding",
+    "unknown",
+    "violation",
+    "not_selected"
+  ],
+  "interpreter_contract": {
+    "language": "OS023-L5-plan-v1",
+    "value_model": {
+      "input_root": "ExpandedInputのobject",
+      "absent_member": "MISSING sentinelとして保持しnullと同一視しない",
+      "json_number": "JSON numberはintegerとdecimalを同じnumber kindとし数値として比較する",
+      "boolean": "boolean kindはnumber kindと区別する"
+    },
+    "generic_operators": [
+      {
+        "id": "read_json_pointer",
+        "input": [
+          "root",
+          "pointer"
+        ],
+        "output": "present JSON value or MISSING",
+        "rule": "RFC 6901 pointer segmentで読む。不在memberまたはscalar traversalはMISSINGを返し、nullへ置換しない。"
+      },
+      {
+        "id": "known_nonempty_string",
+        "input": "value",
+        "output": "boolean",
+        "rule": "memberが存在する非空stringの場合だけtrue。"
+      },
+      {
+        "id": "known_unique_string_set",
+        "input": "value",
+        "output": "boolean",
+        "rule": "非空stringのみからなる重複なしarrayの場合true。空arrayは既知の空集合。"
+      },
+      {
+        "id": "closed_enum",
+        "input": [
+          "value",
+          "allowed_values"
+        ],
+        "output": "boolean",
+        "rule": "宣言rowのallowed_valuesに含まれるstringの場合だけtrue。"
+      },
+      {
+        "id": "strict_json_equal",
+        "input": [
+          "left",
+          "right"
+        ],
+        "output": "boolean",
+        "rule": "MISSINGはMISSINGとのみ等しい。JSON kindが一致し、object key順を無視、array順を保持する。number 1と1.0は等しく、booleanは別kind。"
+      },
+      {
+        "id": "set_subset",
+        "input": [
+          "left",
+          "right"
+        ],
+        "output": "boolean",
+        "rule": "両operandがknown_unique_string_setを通過した後だけ適用する。"
+      },
+      {
+        "id": "template_edge",
+        "input": [
+          "path_template",
+          "EdgeId"
+        ],
+        "output": "JSON pointer",
+        "rule": "template内の{edge}を選択edge IDへ置換する。"
+      },
+      {
+        "id": "emit_finding",
+        "input": [
+          "code",
+          "pointer",
+          "return_owner"
+        ],
+        "output": "Finding",
+        "rule": "宣言operandの値を変えずFindingへコピーする。"
+      },
+      {
+        "id": "state_by_disposition",
+        "input": [
+          "findings",
+          "diagnostic_code_dispositions"
+        ],
+        "output": "state",
+        "rule": "violationをunknownより優先し、どちらもなければ初期状態を保持する。"
+      },
+      {
+        "id": "ordered_union_findings",
+        "input": "Finding arrays",
+        "output": "Finding array",
+        "rule": "(code,pointer,return_owner)完全一致tupleを重複排除し、各fieldの辞書順でsortする。"
+      },
+      {
+        "id": "map_edges",
+        "input": [
+          "edge_order",
+          "expression"
+        ],
+        "output": "map<EdgeId,T>",
+        "rule": "宣言edge_order順に各edgeの式を一度評価し、同じkey集合のmapを返す。"
+      },
+      {
+        "id": "select_edges",
+        "rule_ja": "selection pointerをedge domainと重複規則で検査し、valid集合またはinvalid結果を返す。"
+      },
+      {
+        "id": "for_each_edge_in_order",
+        "rule_ja": "宣言edge順を保ちedgeごとに初期map valuesを作る。"
+      },
+      {
+        "id": "for_each_plan_pointer_then_row_then_edge",
+        "rule_ja": "plan pointer/row array/edge domainをこの順序で走査する。"
+      },
+      {
+        "id": "project_retained_obligations",
+        "rule_ja": "宣言source path値がknown_unique_string_setなら原配列を保持し、その他はnull。"
+      },
+      {
+        "id": "sort_deduplicate_findings",
+        "rule_ja": "finding tupleを完全一致で一意化し宣言key順にsortする。"
+      },
+      {
+        "id": "for_each_group_then_edge",
+        "rule_ja": "groups配列の順、各groupのedge順順で処理する。"
+      },
+      {
+        "id": "project_group_value",
+        "rule_ja": "value_projectionの型別member/pathを読み、allowed domain外はnullへ投影する。"
+      },
+      {
+        "id": "check_shapes_then_compare_rows",
+        "rule_ja": "宣言shape checksを先に適用し、shape unresolved時は同groupの比較rowsを実行しない。"
+      },
+      {
+        "id": "derive_facet_by_disposition_priority",
+        "rule_ja": "groupで発生したfindingのdispositionを参照しviolation>unknown>初期値へ畳み込む。"
+      },
+      {
+        "id": "validate_two_selections",
+        "rule_ja": "actual/context selections双方を同一EdgeId domainで個別検査する。"
+      },
+      {
+        "id": "compare_selection_membership",
+        "rule_ja": "両selectionが既知のときだけ集合差を診断し、未知IDは元pointer/indexを保つ。"
+      },
+      {
+        "id": "project_observation_per_edge",
+        "rule_ja": "selection knownかつedge activeのときraw boolean observationをrule_dataの結果へ写す。"
+      },
+      {
+        "id": "select_edges_and_phase",
+        "rule_ja": "selectionとphaseをそれぞれ宣言domainで検査し、該当phase外はacceptance比較を行わない。"
+      },
+      {
+        "id": "compare_acceptance_plan_rows",
+        "rule_ja": "acceptance comparison rowsとrole rowsを順に照合する。"
+      },
+      {
+        "id": "derive_reception_state",
+        "rule_ja": "reception finding codesのdispositionをviolation>unknown>selection初期状態へ畳み込む。"
+      },
+      {
+        "id": "derive_transfer_from_facets",
+        "rule_ja": "transfer_inputsの各pathを読み全てtransfer_required_stateならphase適用時true、それ以外false。"
+      },
+      {
+        "id": "evaluate_claim_rules",
+        "rule_ja": "claim pathごとにtrue/false/nonbooleanを区別し宣言されたfinding codeを返す。"
+      },
+      {
+        "id": "bind_eight_facets",
+        "rule_ja": "各edgeについてrule_data.facet_result_bindingsに従い8 facetをexact key mapへ写す。"
+      },
+      {
+        "id": "apply_unfinished_claim_dispositions",
+        "rule_ja": "F03 claim findingのcode dispositionだけを該当edge unfinished stateへ適用する。"
+      },
+      {
+        "id": "derive_connection_material",
+        "rule_ja": "reconcile phaseかつactive edgeでconnection_facetsの全値がcorrespondingのときtrue。"
+      },
+      {
+        "id": "merge_global_and_active_edge_states",
+        "rule_ja": "global findingsとactive selected edge facetを宣言priorityでreduceし、not_selectedは成功の根拠にしない。"
+      },
+      {
+        "id": "project_fixed_boundary_outputs",
+        "rule_ja": "rule_data.fixed_outputsの値をそのまま返却rootへ写す。"
+      }
+    ],
+    "program_binding": "各formal_program.execution_planが演算子の順序を宣言し、rule_dataが全path・literal・domain・状態遷移・返却rootの対応を供給する。",
+    "not_claimed": "有限fixtureの計算は、実source、owner資格、permission、receipt、実行、acceptanceの成立を示さない。"
+  }
+}
