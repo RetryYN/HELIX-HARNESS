@@ -2607,7 +2607,7 @@
     {
       "id": "C004-PROBE-F01-RETRY-EFFECT-DECREMENT",
       "function_ref": "FN-C004-01",
-      "basis": "固定L9 rawの対象fieldを一部置換しても件数のみで同一効果と誤認しないことを、L4の効果内容照合から確認する。",
+      "basis": "L4 F01は同内容の再送で効果を増やさないことを求める。固定rawのafter_retry要素を取り除き、件数差が負になる場合も効果保持と判定しないことを照合する。",
       "base_case_id": "C004-F01-RESPONSE-LOSS-SAME-CONTENT-ONE-EFFECT",
       "base_source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -3011,12 +3011,13 @@
           "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
           "sha256": "af086d8d333f2e8d72a9d7ea6938749a341ccc8ed719114f741977df9bd43a99"
         }
-      ]
+      ],
+      "base_whole_canonical_sha256": "513cfbf15d07e4eb64b89e3c7db3bf1fcd407192420454088bfeefef7777e1ab"
     },
     {
       "id": "C004-PROBE-F02-JSON-BOOLEAN-NUMBER-DISTINCTION",
       "function_ref": "FN-C004-02",
-      "basis": "固定L9 rawの対象fieldを一部置換しても件数のみで同一効果と誤認しないことを、L4の効果内容照合から確認する。",
+      "basis": "JSON比較でbooleanとnumberを別型として扱うことを、原側trueと提出側1の固定値比較で照合する。",
       "base_case_id": "C004-F02-SAME-KEY-SAME-DIGEST",
       "base_source_packet_ref": {
         "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -3328,7 +3329,8 @@
           "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
           "sha256": "c350d6c02c5f962628379db59638d4b7de786203bc25fb3815833446aa432b8c"
         }
-      ]
+      ],
+      "base_whole_canonical_sha256": "c4c353fcff02b67393fb5983294f486c493afe0ee783317911c1afb9d03037b6"
     },
     {
       "id": "C004-PROBE-F01-EFFECT-VALUE-REPLACED-SAME-COUNT",
@@ -4536,7 +4538,7 @@
         "actual_attempt_count": 0
       },
       "expected_whole_canonical_sha256": "8156440d737f5fc453c72d997ff350bb476758b628146d58d2f4b6b4f7d1240d",
-      "independent_basis": "元L4の比較義務と固定L9 rawを起点に、変更したJSON pointerと期待する局所診断を明示した有限の合成比較。実資格・実作用は示さない。",
+      "independent_basis": "L4 F03のretryable stateと停止条件を、提出policyからstate集合を除いた固定rawで照合する。",
       "source_qualification": "not_established",
       "execution_state": "not_executed",
       "effect": "none",
@@ -4547,8 +4549,8 @@
       "evidence_basis": [
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
-          "pointer": "/contracts/2/content_comparison/0",
-          "meaning": "原L4義務に基づく有限packet内容比較"
+          "pointer": "/contracts/2/content_comparison/1",
+          "meaning": "L4 F03のretryable stateと停止条件の照合義務"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -5259,7 +5261,7 @@
         "actual_attempt_count": 0
       },
       "expected_whole_canonical_sha256": "3f83933491f53664bc8ac53f30006a699ec9f1a8c4d751a1f5d015ec4b13b7f6",
-      "independent_basis": "L4 F02「別内容の成功で相殺しない」を、同一件数のeffect value置換で照合する。raw beforeはEFFECT-P、after両側はEFFECT-REPLACEMENT-Pであり、原69 oracleから値置換を期待へ転用せず、wholeを先に固定。",
+      "independent_basis": "L4 F02「別内容の成功で相殺しない」を、同一件数のeffect value置換で照合する。raw beforeはEFFECT-P、原/提出afterはEFFECT-REPLACEMENT-Pとし、入力差分と出力診断を対応づける。",
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
       "execution_state": "not_executed",
       "effect": "none",
@@ -5270,8 +5272,8 @@
       "evidence_basis": [
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
-          "pointer": "/contracts/1/content_comparison/0",
-          "meaning": "原L4義務に基づく有限packet内容比較"
+          "pointer": "/contracts/1/content_comparison/1",
+          "meaning": "L4 F02の異なる内容による相殺を許さない義務"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -5279,7 +5281,7 @@
           "sha256": "b2ca9ef3c22b396258cbbaebca5a11019ca665a33cbdbb551694e274e8908fa8"
         }
       ],
-      "basis": "L4 F02「別内容の成功で相殺しない」を、同一件数のeffect value置換で照合する。raw beforeはEFFECT-P、after両側はEFFECT-REPLACEMENT-Pであり、原69 oracleから値置換を期待へ転用せず、wholeを先に固定。"
+      "basis": "L4 F02の「別内容の成功で相殺しない」を、同一件数でeffect値だけを置換した有限rawで照合する。原69 oracleの期待を流用せず、変更した入力と出力診断を別々に固定する。"
     },
     {
       "id": "C004-PROBE-F01-ATTEMPT-TARGET-UNBOUND",
@@ -5472,20 +5474,22 @@
           "value": "unknown_or_conflicting_effect_binding"
         },
         {
-          "op": "add",
-          "path": "/failure_reasons/0",
-          "value": {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
-          }
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "area": "retry_target",
+              "field": "attempt_binding",
+              "result": "content_conflict",
+              "return_owner": "operation-owner"
+            }
+          ]
         },
         {
           "op": "replace",
           "path": "/failure_return_owners",
           "value": [
-            "receiver-owner"
+            "operation-owner"
           ]
         },
         {
@@ -5633,14 +5637,14 @@
         "receiver_effect_result": "unknown_or_conflicting_effect_binding",
         "failure_reasons": [
           {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
+            "area": "retry_target",
+            "field": "attempt_binding",
+            "result": "content_conflict",
+            "return_owner": "operation-owner"
           }
         ],
         "failure_return_owners": [
-          "receiver-owner"
+          "operation-owner"
         ],
         "candidate_retry_receipt": "held",
         "claim_results": {
@@ -5660,7 +5664,7 @@
         },
         "actual_attempt_count": 0
       },
-      "expected_whole_canonical_sha256": "73fc6995073daa1b7ef3599dc3eb7f2b91b23840abfb5249f76ea502b34cb207",
+      "expected_whole_canonical_sha256": "720c8f587cf63b3f24bf4b73daa6516221b9099162ee902e7f7d937d9552ec92",
       "independent_basis": "L3/L4 F01の同operation identity/digestをattemptへ結ぶ義務を固定rawで点検する。原attempt 2と提出attempt 2を同じ異digestへ変え、pair同士の一致とoperation bindingを区別する。",
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
       "execution_state": "not_executed",
@@ -5673,7 +5677,7 @@
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
           "pointer": "/contracts/0/content_comparison/0",
-          "meaning": "原L4義務に基づく有限packet内容比較"
+          "meaning": "L4 F01の再送対象とattempt識別・効果照合"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -5813,20 +5817,22 @@
           "value": "unknown_or_conflicting_effect_binding"
         },
         {
-          "op": "add",
-          "path": "/failure_reasons/0",
-          "value": {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
-          }
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "area": "retry_target",
+              "field": "attempt_binding",
+              "result": "missing",
+              "return_owner": "operation-owner"
+            }
+          ]
         },
         {
           "op": "replace",
           "path": "/failure_return_owners",
           "value": [
-            "receiver-owner"
+            "operation-owner"
           ]
         },
         {
@@ -5929,14 +5935,14 @@
         "receiver_effect_result": "unknown_or_conflicting_effect_binding",
         "failure_reasons": [
           {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
+            "area": "retry_target",
+            "field": "attempt_binding",
+            "result": "missing",
+            "return_owner": "operation-owner"
           }
         ],
         "failure_return_owners": [
-          "receiver-owner"
+          "operation-owner"
         ],
         "candidate_retry_receipt": "held",
         "claim_results": {
@@ -5956,7 +5962,7 @@
         },
         "actual_attempt_count": 0
       },
-      "expected_whole_canonical_sha256": "644b77f128bea79cc9e8293d8f64ed6bfe7a3d23e44c707846df65e0a30015a5",
+      "expected_whole_canonical_sha256": "cac016bae771e2396d3aab2eac6363475d371d3a99a250a9cd0f23a2696ed6d4",
       "independent_basis": "L10 F01はattemptを区別するとする。retry_selected時に原/提出attemptが空である場合、観測済みeffectだけから再送receiptの結合を推定しない。",
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
       "execution_state": "not_executed",
@@ -5969,7 +5975,7 @@
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
           "pointer": "/contracts/0/content_comparison/0",
-          "meaning": "原L4義務に基づく有限packet内容比較"
+          "meaning": "L4 F01の再送対象とattempt識別・効果照合"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -6191,27 +6197,73 @@
       "raw_packet_canonical_sha256": "3de663fa681d4c066664d2a8a26e10ab6ff7b1156b3c1f0db120006b9313ac44",
       "expected_patch_from_base": [
         {
-          "op": "add",
-          "path": "/attempt_results/2",
-          "value": {
-            "content_results": {
-              "identity": "missing",
-              "ordinal": "missing",
-              "target": "missing",
-              "state": "missing"
+          "op": "replace",
+          "path": "/attempt_results",
+          "value": [
+            {
+              "identity": "ATTEMPT-P-1",
+              "ordinal": 1,
+              "state": "first_response_lost",
+              "content_results": {
+                "identity": "content_corresponding_in_fixture",
+                "ordinal": "content_corresponding_in_fixture",
+                "target": "content_corresponding_in_fixture",
+                "state": "content_corresponding_in_fixture"
+              },
+              "target_results": {
+                "connection_identity": "content_corresponding_in_fixture",
+                "operation_identity": "content_corresponding_in_fixture",
+                "idempotency": "content_corresponding_in_fixture",
+                "digest": "content_corresponding_in_fixture",
+                "scope": "content_corresponding_in_fixture",
+                "expiry": "content_corresponding_in_fixture",
+                "permission_ref": "content_corresponding_in_fixture",
+                "contract_revision": "content_corresponding_in_fixture",
+                "correlation": "content_corresponding_in_fixture"
+              }
             },
-            "target_results": {
-              "connection_identity": "missing",
-              "operation_identity": "missing",
-              "idempotency": "missing",
-              "digest": "missing",
-              "scope": "missing",
-              "expiry": "missing",
-              "permission_ref": "missing",
-              "contract_revision": "missing",
-              "correlation": "missing"
+            {
+              "identity": "ATTEMPT-P-2",
+              "ordinal": 2,
+              "state": "duplicate_receipt_in_fixture_only",
+              "content_results": {
+                "identity": "content_corresponding_in_fixture",
+                "ordinal": "content_corresponding_in_fixture",
+                "target": "content_corresponding_in_fixture",
+                "state": "content_corresponding_in_fixture"
+              },
+              "target_results": {
+                "connection_identity": "content_corresponding_in_fixture",
+                "operation_identity": "content_corresponding_in_fixture",
+                "idempotency": "content_corresponding_in_fixture",
+                "digest": "content_corresponding_in_fixture",
+                "scope": "content_corresponding_in_fixture",
+                "expiry": "content_corresponding_in_fixture",
+                "permission_ref": "content_corresponding_in_fixture",
+                "contract_revision": "content_corresponding_in_fixture",
+                "correlation": "content_corresponding_in_fixture"
+              }
+            },
+            {
+              "content_results": {
+                "identity": "missing",
+                "ordinal": "missing",
+                "target": "missing",
+                "state": "missing"
+              },
+              "target_results": {
+                "connection_identity": "missing",
+                "operation_identity": "missing",
+                "idempotency": "missing",
+                "digest": "missing",
+                "scope": "missing",
+                "expiry": "missing",
+                "permission_ref": "missing",
+                "contract_revision": "missing",
+                "correlation": "missing"
+              }
             }
-          }
+          ]
         },
         {
           "op": "replace",
@@ -6219,20 +6271,22 @@
           "value": "unknown_or_conflicting_effect_binding"
         },
         {
-          "op": "add",
-          "path": "/failure_reasons/0",
-          "value": {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
-          }
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "area": "retry_target",
+              "field": "attempt_binding",
+              "result": "missing",
+              "return_owner": "operation-owner"
+            }
+          ]
         },
         {
           "op": "replace",
           "path": "/failure_return_owners",
           "value": [
-            "receiver-owner"
+            "operation-owner"
           ]
         },
         {
@@ -6399,14 +6453,14 @@
         "receiver_effect_result": "unknown_or_conflicting_effect_binding",
         "failure_reasons": [
           {
-            "area": "receiver_effect",
-            "field": "delta",
-            "result": "unknown_or_conflicting_effect_binding",
-            "return_owner": "receiver-owner"
+            "area": "retry_target",
+            "field": "attempt_binding",
+            "result": "missing",
+            "return_owner": "operation-owner"
           }
         ],
         "failure_return_owners": [
-          "receiver-owner"
+          "operation-owner"
         ],
         "candidate_retry_receipt": "held",
         "claim_results": {
@@ -6426,7 +6480,7 @@
         },
         "actual_attempt_count": 0
       },
-      "expected_whole_canonical_sha256": "b2c915918d4534c86b0cbc72f02e042f3fab79982db1afc244ae57858dd68e21",
+      "expected_whole_canonical_sha256": "2a480b9c8717400753844866e34de7f6a0790275c67c2e6487636ae8baa1eb4e",
       "independent_basis": "L10 F01のattempt区別を、余剰の提出attemptがindex順missing診断として残ることでも確認する。配列長差で末尾を黙って落とさない。",
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
       "execution_state": "not_executed",
@@ -6439,7 +6493,7 @@
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
           "pointer": "/contracts/0/content_comparison/0",
-          "meaning": "原L4義務に基づく有限packet内容比較"
+          "meaning": "L4 F01の再送対象とattempt識別・効果照合"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
@@ -7000,18 +7054,70 @@
       "expected_patch_from_base": [
         {
           "op": "replace",
+          "path": "/attempt_results",
+          "value": [
+            {
+              "identity": "ATTEMPT-P-1",
+              "ordinal": 1,
+              "state": "first_response_lost",
+              "content_results": {
+                "identity": "content_corresponding_in_fixture",
+                "ordinal": "content_corresponding_in_fixture",
+                "target": "content_corresponding_in_fixture",
+                "state": "content_corresponding_in_fixture"
+              },
+              "target_results": {
+                "connection_identity": "content_corresponding_in_fixture",
+                "operation_identity": "content_corresponding_in_fixture",
+                "idempotency": "content_corresponding_in_fixture",
+                "digest": "content_corresponding_in_fixture",
+                "scope": "content_corresponding_in_fixture",
+                "expiry": "content_corresponding_in_fixture",
+                "permission_ref": "content_corresponding_in_fixture",
+                "contract_revision": "content_corresponding_in_fixture",
+                "correlation": "content_corresponding_in_fixture"
+              }
+            },
+            {
+              "identity": "ATTEMPT-P-2",
+              "ordinal": 1,
+              "state": "duplicate_receipt_in_fixture_only",
+              "content_results": {
+                "identity": "content_corresponding_in_fixture",
+                "ordinal": "content_corresponding_in_fixture",
+                "target": "content_corresponding_in_fixture",
+                "state": "content_corresponding_in_fixture"
+              },
+              "target_results": {
+                "connection_identity": "content_corresponding_in_fixture",
+                "operation_identity": "content_corresponding_in_fixture",
+                "idempotency": "content_corresponding_in_fixture",
+                "digest": "content_corresponding_in_fixture",
+                "scope": "content_corresponding_in_fixture",
+                "expiry": "content_corresponding_in_fixture",
+                "permission_ref": "content_corresponding_in_fixture",
+                "contract_revision": "content_corresponding_in_fixture",
+                "correlation": "content_corresponding_in_fixture"
+              }
+            }
+          ]
+        },
+        {
+          "op": "replace",
           "path": "/distinct_attempts",
           "value": false
         },
         {
-          "op": "add",
-          "path": "/failure_reasons/0",
-          "value": {
-            "area": "attempt_distinction",
-            "field": "identity_and_ordinal",
-            "result": "duplicate_attempt_identity",
-            "return_owner": "operation-owner"
-          }
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "area": "attempt_distinction",
+              "field": "identity_and_ordinal",
+              "result": "duplicate_attempt_ordinal",
+              "return_owner": "operation-owner"
+            }
+          ]
         },
         {
           "op": "replace",
@@ -7024,11 +7130,6 @@
           "op": "replace",
           "path": "/candidate_retry_receipt",
           "value": "held"
-        },
-        {
-          "op": "replace",
-          "path": "/attempt_results/1/ordinal",
-          "value": 1
         }
       ],
       "expected_whole": {
@@ -7172,7 +7273,7 @@
           {
             "area": "attempt_distinction",
             "field": "identity_and_ordinal",
-            "result": "duplicate_attempt_identity",
+            "result": "duplicate_attempt_ordinal",
             "return_owner": "operation-owner"
           }
         ],
@@ -7197,17 +7298,19 @@
         },
         "actual_attempt_count": 0
       },
-      "expected_whole_canonical_sha256": "c8e7dec846b1e7820f58130b43f81554282bf394383f7a031b9fa0178c03c722",
+      "expected_whole_canonical_sha256": "4327f573b35b68c42e7a3a71269ebe426a2c4bde3c0907d56e576116702f2302",
       "independent_basis": "L10 F01のattempt識別について、異なるidentityでもordinalが重複したrawを与える。既存のattempt_distinction failure routeを用い、authorityや実retryを追加しない。",
       "evidence_basis": [
         {
           "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
           "pointer": "/contracts/0/content_comparison/0",
-          "meaning": "L4 F01のattempt区別と内容比較"
+          "meaning": "L4 F01の再送対象とattempt識別・効果照合"
         },
         {
           "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
-          "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+          "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "sha256": "af086d8d333f2e8d72a9d7ea6938749a341ccc8ed719114f741977df9bd43a99",
+          "meaning": "重複ordinalを作る前の固定L9 source packet"
         }
       ],
       "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
@@ -7217,6 +7320,405 @@
       "l4_ref": "HELIXCONNECT-L4-004-F01",
       "l9_ref": "HELIXCONNECT-L9-004-F01",
       "l10_ref": "HELIXCONNECT-L10-004-F01"
+    },
+    {
+      "id": "C004-PROBE-F01-RECEIVER-CONTRACT-IDENTIFIER-EMPTY",
+      "function_ref": "FN-C004-01",
+      "base_case_id": "C004-F01-RESPONSE-LOSS-SAME-CONTENT-ONE-EFFECT",
+      "base_source_packet_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "sha256": "af086d8d333f2e8d72a9d7ea6938749a341ccc8ed719114f741977df9bd43a99"
+      },
+      "base_whole_canonical_sha256": "513cfbf15d07e4eb64b89e3c7db3bf1fcd407192420454088bfeefef7777e1ab",
+      "raw_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/original_receiver_contract/rule",
+          "value": ""
+        }
+      ],
+      "raw_packet": {
+        "claims": {
+          "same_content_double_effect": false,
+          "same_key_other_operation": false,
+          "unobserved_idempotent": false
+        },
+        "original_attempts": [
+          {
+            "identity": "ATTEMPT-P-1",
+            "ordinal": 1,
+            "state": "first_response_lost",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "digest": "content-P-digest",
+              "expiry": "expiry-P",
+              "idempotency": "KEY-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "identity": "ATTEMPT-P-2",
+            "ordinal": 2,
+            "state": "duplicate_receipt_in_fixture_only",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "digest": "content-P-digest",
+              "expiry": "expiry-P",
+              "idempotency": "KEY-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_compatibility_state": "compatible_in_fixture_only",
+        "original_effect_observation": {
+          "after_first": [
+            "EFFECT-P"
+          ],
+          "after_retry": [
+            "EFFECT-P"
+          ],
+          "before": [],
+          "revision": "effect-observation-r2",
+          "state": "observed_in_fixture_only",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "digest": "content-P-digest",
+            "expiry": "expiry-P",
+            "idempotency": "KEY-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          }
+        },
+        "original_expiry_state": "valid_in_fixture_only",
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "digest": "content-P-digest",
+          "expiry": "expiry-P",
+          "idempotency": "KEY-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_permission_state": "valid_in_fixture_only",
+        "original_receiver_contract": {
+          "identity": "RECEIVER-DEDUP-P",
+          "revision": "dedup-contract-r2",
+          "rule": "",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "digest": "content-P-digest",
+            "expiry": "expiry-P",
+            "idempotency": "KEY-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          }
+        },
+        "retry_selected": true,
+        "submitted_attempts": [
+          {
+            "identity": "ATTEMPT-P-1",
+            "ordinal": 1,
+            "state": "first_response_lost",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "digest": "content-P-digest",
+              "expiry": "expiry-P",
+              "idempotency": "KEY-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "identity": "ATTEMPT-P-2",
+            "ordinal": 2,
+            "state": "duplicate_receipt_in_fixture_only",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "digest": "content-P-digest",
+              "expiry": "expiry-P",
+              "idempotency": "KEY-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_effect_observation": {
+          "after_first": [
+            "EFFECT-P"
+          ],
+          "after_retry": [
+            "EFFECT-P"
+          ],
+          "before": [],
+          "revision": "effect-observation-r2",
+          "state": "observed_in_fixture_only",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P",
+            "digest": "content-P-digest",
+            "expiry": "expiry-P",
+            "idempotency": "KEY-P",
+            "operation_identity": "OPERATION-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "scope": "PRODUCT-P/query"
+          }
+        },
+        "submitted_retry": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "digest": "content-P-digest",
+          "expiry": "expiry-P",
+          "idempotency": "KEY-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        }
+      },
+      "raw_packet_canonical_sha256": "705623d85302bac7ec2dfd1f6181aa2f57ecafa8599563b425b3649cee04b6b3",
+      "expected_patch_from_base": [
+        {
+          "op": "replace",
+          "path": "/receiver_effect_result",
+          "value": "unknown_or_conflicting_effect_binding"
+        },
+        {
+          "op": "replace",
+          "path": "/failure_reasons",
+          "value": [
+            {
+              "area": "receiver_contract_target",
+              "field": "identity_revision_or_rule",
+              "result": "missing",
+              "return_owner": "receiver-contract-owner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/failure_return_owners",
+          "value": [
+            "receiver-contract-owner"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/candidate_retry_receipt",
+          "value": "held"
+        }
+      ],
+      "independent_basis": "L3/L4 F01の同operation identity/digestをattemptへ結ぶ義務を固定rawで点検する。原attempt 2と提出attempt 2を同じ異digestへ変え、pair同士の一致とoperation bindingを区別する。",
+      "source_qualification": "synthetic_fixture_only_no_actual_source_qualification",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "l3_ref": "HELIXCONNECT-L3-004-F01",
+      "l4_ref": "HELIXCONNECT-L4-004-F01",
+      "l9_ref": "HELIXCONNECT-L9-004-F01",
+      "l10_ref": "HELIXCONNECT-L10-004-F01",
+      "evidence_basis": [
+        {
+          "document": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
+          "pointer": "/contracts/0/content_comparison/0",
+          "meaning": "L4 F01の再送対象とattempt識別・効果照合"
+        },
+        {
+          "document": "docs/helix-connect/L9-integration-verification/retry-deduplication-conflict.json",
+          "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+          "sha256": "af086d8d333f2e8d72a9d7ea6938749a341ccc8ed719114f741977df9bd43a99"
+        }
+      ],
+      "basis": "L4 F01が求めるreceiver重複排除契約への結合について、固定packetのcontract ruleが空文字の場合に、再送側・receiver効果側へ誤って返さずcontract ownerへ不足を示す。",
+      "expected_whole": {
+        "retry_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "digest": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture"
+        },
+        "attempt_results": [
+          {
+            "identity": "ATTEMPT-P-1",
+            "ordinal": 1,
+            "state": "first_response_lost",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "state": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "digest": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture"
+            }
+          },
+          {
+            "identity": "ATTEMPT-P-2",
+            "ordinal": 2,
+            "state": "duplicate_receipt_in_fixture_only",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "state": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "digest": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture"
+            }
+          }
+        ],
+        "distinct_attempts": true,
+        "receiver_contract_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "digest": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture"
+        },
+        "effect_content_results": {
+          "revision": "content_corresponding_in_fixture",
+          "target": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture",
+          "before": "content_corresponding_in_fixture",
+          "after_first": "content_corresponding_in_fixture",
+          "after_retry": "content_corresponding_in_fixture"
+        },
+        "effect_target_results": {
+          "connection_identity": "content_corresponding_in_fixture",
+          "operation_identity": "content_corresponding_in_fixture",
+          "idempotency": "content_corresponding_in_fixture",
+          "digest": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "expiry": "content_corresponding_in_fixture",
+          "permission_ref": "content_corresponding_in_fixture",
+          "contract_revision": "content_corresponding_in_fixture",
+          "correlation": "content_corresponding_in_fixture"
+        },
+        "retained_effect_observation": {
+          "revision": "effect-observation-r2",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "OPERATION-P",
+            "idempotency": "KEY-P",
+            "digest": "content-P-digest",
+            "scope": "PRODUCT-P/query",
+            "expiry": "expiry-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P"
+          },
+          "state": "observed_in_fixture_only",
+          "before": [],
+          "after_first": [
+            "EFFECT-P"
+          ],
+          "after_retry": [
+            "EFFECT-P"
+          ]
+        },
+        "submitted_effect_observation": {
+          "revision": "effect-observation-r2",
+          "target": {
+            "connection_identity": "CONNECTION-P",
+            "operation_identity": "OPERATION-P",
+            "idempotency": "KEY-P",
+            "digest": "content-P-digest",
+            "scope": "PRODUCT-P/query",
+            "expiry": "expiry-P",
+            "permission_ref": "PERMIT-P@permit-r1",
+            "contract_revision": "contract-r2",
+            "correlation": "CORRELATION-P"
+          },
+          "state": "observed_in_fixture_only",
+          "before": [],
+          "after_first": [
+            "EFFECT-P"
+          ],
+          "after_retry": [
+            "EFFECT-P"
+          ]
+        },
+        "first_effect_delta_in_fixture": 1,
+        "retry_effect_delta_in_fixture": 0,
+        "raw_effect_set_result": "one_effect_retained_in_fixture_only",
+        "receiver_effect_result": "unknown_or_conflicting_effect_binding",
+        "failure_reasons": [
+          {
+            "area": "receiver_contract_target",
+            "field": "identity_revision_or_rule",
+            "result": "missing",
+            "return_owner": "receiver-contract-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "receiver-contract-owner"
+        ],
+        "candidate_retry_receipt": "held",
+        "claim_results": {
+          "same_content_double_effect": "none",
+          "same_key_other_operation": "none",
+          "unobserved_idempotent": "none"
+        },
+        "effects": {
+          "actual_retry": false,
+          "actual_receiver_effect": false,
+          "actual_permission": false,
+          "actual_policy_update": false,
+          "actual_business_approval": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "actual_attempt_count": 0
+      },
+      "expected_whole_canonical_sha256": "e7ae507149c329a66259a4f5b70350c0a97a77a0a7365f9f66e5168da18728aa"
     }
   ],
   "scope_preservation_baseline": {
@@ -7322,18 +7824,18 @@
   "l5_candidate_bytes_pin": {
     "path": "docs/helix-connect/L5-detail-design/retry-deduplication-conflict.json",
     "scope": "同じ候補checkoutに保存されたL5全bytes",
-    "sha256": "63a2439b208a82d43733e130ebb5eea1f6548d2a8d42d4b72af6912c8e8b32a4"
+    "sha256": "1ec44d03b8f2d9d654f52b13e5b0042e5c47727de4159ea06939e7600a9bb30d"
   },
   "unidentified_mutation_limits": [
     {
       "area": "F01",
       "mutation": "distinct_attemptsの原側/提出側選択を入れ替える",
-      "result": "未識別。現規則はsubmitted_attemptsのidentity一意性を返し、別probeで原側基準との差を区別していない。"
+      "result": "未識別。現規則はsubmitted_attemptsのidentityとordinalをfieldごとに独立して一意検査する。原側基準との差を識別するprobeはない。"
     },
     {
       "area": "F01",
       "mutation": "effect_targetをoriginal_operation以外の側と比較する、またはattempt比較を常に対応とする",
-      "result": "未識別。全rawにこの実装変異を識別する手固定whole probeがない。"
+      "result": "未識別。全rawにこの実装変異を識別する独立の完全返却probeがない。"
     },
     {
       "area": "F01",
@@ -7358,7 +7860,7 @@
     {
       "area": "F03",
       "mutation": "budget算定の左右またはcounting_scope意味を入れ替える",
-      "result": "未識別。L3/L4/L9は未見counting_scope語義を定めず、固定case数値だけからは一般変異を判定できない。"
+      "result": "未識別。L3/L4/L9は未見counting_scope語義を定めず、固定case数値だけからは一般変異を判定できない。 F03 distinct_attemptsを提出側のhistoryへ差し替える変異と、複数failure reasonの順序を相互に入れ替える変異は独立probeで評価していない。固定source群の一致から一般順序・原側/提出側の代替を推定しない。"
     }
   ]
 }

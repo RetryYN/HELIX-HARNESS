@@ -2307,7 +2307,8 @@
               "rule": {
                 "kind": "string",
                 "observed_values": [
-                  "same_operation_key_digest_effect_once"
+                  "same_operation_key_digest_effect_once",
+                  ""
                 ]
               },
               "target": {
@@ -3721,7 +3722,10 @@
         "scope",
         "state",
         "target",
-        "value"
+        "value",
+        "attempt_binding",
+        "identity_or_ordinal",
+        "identity_revision_or_rule"
       ],
       "source_rule": "failure_rulesがemitする固定fieldとcomparison fields_refから導く表示field集合。観測済み返却だけで域を閉じず、declared comparisonの各fieldを表す。"
     },
@@ -3747,7 +3751,8 @@
         "unknown_or_conflicting_effect_binding",
         "unknown_or_conflicting_history",
         "unknown_original_information",
-        "unknown_unobserved"
+        "unknown_unobserved",
+        "duplicate_attempt_ordinal"
       ]
     }
   ],
@@ -3850,7 +3855,7 @@
         "retry_selected",
         "claims"
       ],
-      "pure_rule": "target_fields_order順にoriginal_operationとsubmitted_retryを比較する。attemptは両配列の最大長まで元配列のindex順にidentity・ordinal・state・targetを比較し、片側欠落をmissingとして保持する。retry_selected時はattempt配列が等長かつ非空で、各原/提出targetの全fieldがoriginal_operationに一致することをraw binding checkで要求する。distinct_attemptsはsubmitted_attempts内のidentityとordinalをそれぞれ独立に一意検査する。原側arrayの一意性は現在の判定対象外。effect observationの全fieldを比較し、deltaは観測済みかつ両配列がある場合にlen(after_first)-len(before)、len(after_retry)-len(after_first)として符号付きintegerで返す。effect_set_ruleのone_effect_conditionを満たす場合だけone_effect_retained_in_fixture_only、観測済みでそれ以外ならduplicate_or_conflicting_effect、必要観測不足ならunknown_unobservedとする。receiver_effect_resultは指定された全比較recordが対応し、両attempt配列の同index targetがoriginal_operationの全target fieldに対応し、retry_selected時にattemptが一つ以上あり、配列長が等しく、contract identity/revision/ruleの文字列が非空の場合だけraw分類を引き継ぐ。receiver contract targetの全field比較は別診断として返すが、L9の既存ケースでtarget差分とone_effect_retained_in_fixture_onlyが共存するため分類gateにはしない。これらは固定fixture上の結合検査であり、実receiverのrule意味やsource資格は証明しない。失敗理由はreason_order_rule_ids順、recordのfield順に組み立て、ownerはowner_by_areaから取得する。 one_effect_conditionは初回後と再送後のJSON内容の同値も要求し、件数不変の別内容置換を同一効果保持へ丸めない。",
+      "pure_rule": "target_fields_order順にoriginal_operationとsubmitted_retryを比較する。attemptは両配列の最大長まで元配列のindex順にidentity・ordinal・state・targetを比較し、片側欠落をmissingとして保持する。retry_selected時はattempt配列が等長かつ非空で、各原/提出targetの全fieldがoriginal_operationに一致することをraw binding checkで要求する。distinct_attemptsはbranch_tables.F01.attempt_distinctness_keysの各fieldをsubmitted_attempts内でそれぞれ独立に一意検査する。原側arrayの一意性は現在の判定対象外。effect observationの全fieldを比較し、deltaは観測済みかつ両配列がある場合にlen(after_first)-len(before)、len(after_retry)-len(after_first)として符号付きintegerで返す。effect_set_ruleのone_effect_conditionを満たす場合だけone_effect_retained_in_fixture_only、観測済みでそれ以外ならduplicate_or_conflicting_effect、必要観測不足ならunknown_unobservedとする。receiver_effect_resultは指定された全比較recordが対応し、両attempt配列の同index targetがoriginal_operationの全target fieldに対応し、retry_selected時にattemptが一つ以上あり、配列長が等しく、contract identity/revision/ruleの文字列が非空の場合だけraw分類を引き継ぐ。receiver contract targetの全field比較は別診断として返すが、L9の既存ケースでtarget差分とone_effect_retained_in_fixture_onlyが共存するため分類gateにはしない。これらは固定fixture上の結合検査であり、実receiverのrule意味やsource資格は証明しない。失敗理由はreason_order_rule_ids順、recordのfield順に組み立て、ownerはowner_by_areaから取得する。 one_effect_conditionは初回後と再送後のJSON内容の同値も要求し、件数不変の別内容置換を同一効果保持へ丸めない。",
       "case_id_oracle_lookup": "forbidden",
       "qualification_boundary": "合成fixture上の比較のみ。実source資格、receiver契約、実retry、実効果、authority、accepted、製品実装Readyを作らない。",
       "output_shape": {
@@ -5693,7 +5698,8 @@
         "C004-PROBE-F01-ATTEMPT-TARGET-UNBOUND",
         "C004-PROBE-F01-EMPTY-ATTEMPTS",
         "C004-PROBE-F01-EXTRA-SUBMITTED-ATTEMPT",
-        "C004-PROBE-F01-DUPLICATE-ORDINAL"
+        "C004-PROBE-F01-DUPLICATE-ORDINAL",
+        "C004-PROBE-F01-RECEIVER-CONTRACT-IDENTIFIER-EMPTY"
       ]
     },
     {
@@ -5775,14 +5781,14 @@
   "unresolved": [
     "正式schema/codec、producer・receiver資格、実owner資格、実transport、実permission/authority、実retry/実効果、全域意味、L6関数設計/L7関数検証、L11 acceptanceは未成立。",
     "fixture外のunknown raw shape、複数revisionのpolicy意味、複数receiver/parallel retryの一般域は未評価。",
-    "F01のoriginal_compatibility_state/expiry_state/permission_stateは固定入力型でvalid値だけを許す保持素材で、現programは判定に読まない。scope/expiry/permission_ref/contract_revisionの参照値対応は比較するが、状態失効の照合はF03の責務であり、F01単独で状態失効を検査済みとはしない。正式な関数連鎖/資格bindingは未閉包。",
-    "F01のattempt_resultsは原/提出の項目別診断を返すが、一般のattempt内容差をfailure_reasons/候補抑止へ結ぶ規則は未具体化（既存distinct_attemptsの重複診断は別）。F03のdistinct_attemptsも診断値の返却のみで、stop_reasonsへの分岐を持たない。元L4義務の全履歴/receipt意味閉包をこれらの値だけで成立扱いせず、未見・複合の状態意味と正式連鎖は未閉包。元oracleから新しい一律停止policyを生成しない。",
-    "F01のattempt targetをoriginal_operationへ同indexで結ぶ固定素材上の比較を追加した。receiver contractのidentity/revision/ruleは存在と文字列形を照合するが、実sourceのissuer/qualificationやrule文字列の実意味を判定する独立sourceは無い。L9のRECEIVER-CONTRACT-OTHER-REVISIONはtarget差分をfailure_reasonsへ返しつつreceiver_effect_resultをone_effect_retained_in_fixture_onlyとするため、その原oracle値は保持し、実receiver資格へ一般化しない。",
+    "F01のoriginal_compatibility_state/expiry_state/permission_stateは固定入力型で列挙状態値を保持する素材で、現programは判定に読まない。scope/expiry/permission_ref/contract_revisionの参照値対応は比較するが、状態失効の照合はF03の責務であり、F01単独で状態失効を検査済みとはしない。正式な関数連鎖/資格bindingは未閉包。",
+    "F01のattempt_resultsは原/提出の項目別診断を返すが、一般のattempt内容差をfailure_reasons/候補抑止へ結ぶ規則は未具体化（既存distinct_attemptsの重複診断は別）。F03のdistinct_attemptsも診断値の返却のみで、stop_reasonsへの分岐を持たない。元L4義務の全履歴/receipt意味閉包をこれらの値だけで成立扱いせず、未見・複合の状態意味と正式連鎖は未閉包。元oracleから新しい一律停止policyを生成しない。 F03 distinct_attemptsの提出側重複、複数failure reasonの順序を入れ替えた入力は独立probeで評価していない。",
+    "F01のattempt targetをoriginal_operationへ同indexで結ぶ固定素材上の比較を定義する。receiver contractのidentity/revision/ruleは存在と文字列形を照合するが、実sourceのissuer/qualificationやrule文字列の実意味を判定する独立sourceは無い。L9のRECEIVER-CONTRACT-OTHER-REVISIONはtarget差分をfailure_reasonsへ返しつつreceiver_effect_resultをone_effect_retained_in_fixture_onlyとするため、その原oracle値は保持し、実receiver資格へ一般化しない。",
     "F03のcounting_scopeは元policyとして保持・比較するが、approved L3/L4/L9は値から上限計算への一般変換を定めない。計算は固定fixtureのoriginal_cumulative_attemptsとmax_total_attemptsを直接比較する範囲に限り、counting_scopeの未見語義は未評価。",
     "F03のACK入力がobserved_values外の値である場合のcandidate semanticsは未評価。既存L9はunknown/received_terminalだけを含み、negative-list conditionを新しいACK停止policyに置き換えていない。",
     "distinct_attemptsはsubmitted_attempts内のidentityとordinalをそれぞれ独立して一意検査する。原側arrayの一意性とattempt内容の全差分をfailureへ結ぶ一般規則はL4/L9固定素材だけでは閉じず、raw_binding_checksによる同index target→original_operation結合の外へ一般化しない。",
     "receiver contractのidentity/revision/ruleについては値のpresence/typeだけを読む。L3/L4は実receiver owner/source qualificationの供給元を固定しておらず、L9にも独立なrule authority sourceがないため、これらの文字列を実契約の資格証拠と扱わない。L9のreceiver target revision不一致とone_effect_retained_in_fixture_onlyは両方保持する。",
-    "attempt identity/ordinal uniquenessの基準側を原/提出どちらに置くか、F01のtarget field以外のattempt差分をどのfailure conditionへ結ぶかは未閉包。現在の追加binding検査はF01固定素材から導ける同index target→original_operationだけに限る。"
+    "F01のdistinct_attemptsはsubmitted_attempts側だけを検査する。原側配列の一意性、identity/ordinal以外のattempt差分をfailure conditionへ結ぶ一般規則はL4/L9固定素材だけでは閉じない。target→original_operation比較は同indexの固定素材に限り、他memberのfailure結線へ一般化しない。"
   ],
   "result_domain_contract": {
     "comparison": {
@@ -6345,10 +6351,12 @@
       ],
       "reason_order": [
         "再送対象field差分",
+        "attemptのoperation結合不足",
+        "receiver contractの識別情報不足",
         "effect content差分",
         "effect target差分",
         "retry選択時のreceiver effect差分",
-        "attempt identity重複",
+        "attempt identity/ordinal重複",
         "receiver contract target差分"
       ],
       "owner_by_area": {
@@ -6360,7 +6368,6 @@
         "receiver_contract_target": "receiver-contract-owner"
       },
       "selected_false": "retry_selectedがfalseならcandidate_retry_receipt=not_selected_unobservedとし、attemptやeffectの発生を主張しない。",
-      "attempt_identity_key": "重複判定keyはidentityのみ。ordinalはattemptごとの比較には残すが、重複identityを別物にはしない。",
       "effect_set_rule": {
         "state_path": "input.original_effect_observation.state",
         "observed_state": "observed_in_fixture_only",
@@ -6432,6 +6439,55 @@
           "when_ja": "このfailure ruleは隣接するwhen_exprの機械可読条件が真の場合に適用する。"
         },
         {
+          "owner_ref": "owner_by_area.retry_target",
+          "when_expr": {
+            "op": "all",
+            "items": [
+              {
+                "op": "eq",
+                "left": "input.retry_selected",
+                "value": true
+              },
+              {
+                "op": "ne",
+                "left": "attempt_binding_status",
+                "value": "bound"
+              }
+            ]
+          },
+          "emit_one": {
+            "area": "retry_target",
+            "field": "attempt_binding",
+            "result_expr": {
+              "op": "map_enum",
+              "path": "attempt_binding_status",
+              "mapping": {
+                "empty": "missing",
+                "length_mismatch": "missing",
+                "target_mismatch": "content_conflict"
+              },
+              "otherwise": "unknown"
+            },
+            "owner": "operation-owner"
+          },
+          "when_ja": "再送が選択され、attemptの配列長・存在・operation対象結合が規定条件を満たさない場合、再送側の不足としてoperation ownerへ返す。"
+        },
+        {
+          "owner_ref": "owner_by_area.receiver_contract_target",
+          "when_expr": {
+            "op": "eq",
+            "left": "receiver_contract_strings_present",
+            "value": "missing_or_empty"
+          },
+          "emit_one": {
+            "area": "receiver_contract_target",
+            "field": "identity_revision_or_rule",
+            "result": "missing",
+            "owner": "receiver-contract-owner"
+          },
+          "when_ja": "receiver contractの識別子・revision・ruleのいずれかが空または欠落なら、contract側の不足としてreceiver contract ownerへ返す。"
+        },
+        {
           "owner_ref": "owner_by_area.effect_content",
           "when_expr": {
             "op": "any_field_ne",
@@ -6475,6 +6531,16 @@
                 "op": "ne",
                 "left": "receiver_effect_result",
                 "value": "one_effect_retained_in_fixture_only"
+              },
+              {
+                "op": "eq",
+                "left": "attempt_binding_status",
+                "value": "bound"
+              },
+              {
+                "op": "eq",
+                "left": "receiver_contract_strings_present",
+                "value": "present"
               }
             ]
           },
@@ -6496,7 +6562,7 @@
           "emit_one": {
             "area": "attempt_distinction",
             "field": "identity_and_ordinal",
-            "result": "duplicate_attempt_identity",
+            "result_path": "duplicate_attempt_key_result",
             "owner": "operation-owner"
           },
           "when_ja": "このfailure ruleは隣接するwhen_exprの機械可読条件が真の場合に適用する。"
@@ -6523,9 +6589,55 @@
         2,
         3,
         4,
-        5
+        5,
+        6,
+        7
       ],
-      "reason_order_explanation_ja": "reason_order_rule_idsの昇順で評価し、fieldは対応するfield順、配列は元index順で追加する。"
+      "reason_order_explanation_ja": "reason_order_rule_idsの昇順で規則を評価し、各規則内では宣言field順、配列は元index順で理由を追加する。",
+      "attempt_distinctness_keys": [
+        "identity",
+        "ordinal"
+      ],
+      "attempt_distinctness_rule": "submitted_attemptsの各identity値と各ordinal値を、それぞれ独立に比較する。同じ値が同一field内で再出現したときdistinctionはfalse。異なるfield同士の値は比較しない。",
+      "attempt_binding_check": {
+        "left_array": "original_attempts",
+        "right_array": "submitted_attempts",
+        "target_member": "target",
+        "against": "original_operation",
+        "fields_ref": "branch_tables.F01.target_fields_order",
+        "require_equal_lengths": true,
+        "require_nonempty_when": {
+          "path": "retry_selected",
+          "value": true
+        },
+        "status_by_condition_order": [
+          {
+            "condition": "selected_and_either_empty",
+            "result": "empty"
+          },
+          {
+            "condition": "lengths_differ",
+            "result": "length_mismatch"
+          },
+          {
+            "condition": "any_target_field_differs",
+            "result": "target_mismatch"
+          },
+          {
+            "condition": "all_targets_match",
+            "result": "bound"
+          }
+        ]
+      },
+      "receiver_contract_strings_check": {
+        "paths": [
+          "original_receiver_contract.identity",
+          "original_receiver_contract.revision",
+          "original_receiver_contract.rule"
+        ],
+        "result_when_all_nonempty": "present",
+        "otherwise": "missing_or_empty"
+      }
     },
     "F02": {
       "incoming_fields_order": [
@@ -6632,7 +6744,7 @@
         }
       ],
       "effect_content_rule": {
-        "effect_content_result": "原側stateがnot_observedならunknown_original_information。それ以外はoriginal_effect_afterとsubmitted_effect_afterをJSON型保持で比較する。",
+        "effect_content_result": "原側stateがobserved_in_fixture_onlyの場合にだけ原/提出effect_afterを比較し、それ以外はunknown_original_informationとする。",
         "before_unknown_reason": "原側stateが観測済みでoriginal_effect_beforeがAbsent・null・非arrayなら、beforeの情報不足理由を別に返す。"
       },
       "failure_rules": [
@@ -7141,11 +7253,11 @@
     },
     "unique": {
       "reads": [
-        "source array",
-        "key_fieldsで列挙した各field",
+        "sourceに指定された配列",
+        "key_fields_refが指すfield順の各値",
         "uniqueness_mode"
       ],
-      "return": "key_fieldsの全fieldについて、それぞれ同一JSON値が再出現しない場合だけtrue。each_key_field_uniqueではfieldごとに独立して重複を検査する。"
+      "return": "each_key_field_uniqueではkey_fields_refの各field内でJSON型を区別して重複を検査し、すべてのfieldで重複がないときだけtrue。異なるfield間の値は比較しない。"
     },
     "copy_raw": {
       "reads": [
@@ -7170,15 +7282,12 @@
     },
     "bind_effect_classification": {
       "reads": [
-        "all_fields_correspondingで指定された比較record全member",
+        "all_fields_correspondingで列挙された比較recordの全member",
         "classification_source",
-        "raw_binding_checksの記述子とその各pointerのpresence/value"
+        "binding_status_refとclassification_requires",
+        "required_contract_strings_refとclassification_requires"
       ],
-      "return": "指定された比較record全memberが対応し、raw_binding_checksの全条件も満たす場合だけclassification_sourceを返す。それ以外はotherwiseを返す。ここでのfixture bindingは実source資格・実receiver authorityを示さない。",
-      "raw_binding_check_semantics": {
-        "paired_array_targets_equal": "両pointerがarrayか確認し、require_equal_lengths=trueなら長さ一致を要求する。require_nonempty_whenのpath/valueが一致するときはleft配列非空を要求する。同indexのleft/right各recordからtarget_memberを取り出し、against recordとfields_refに列挙した全fieldをpresence_compareし、全結果がComparisonResult.equalであることを要求する。",
-        "required_nonempty_string_paths": "paths各pointerをinputから読み、各値が空でないstringであることを要求する。これは合成packet memberのshape検査であって実source資格ではない。"
-      }
+      "return": "列挙された各比較recordがすべてcontent_corresponding_in_fixtureであり、attempt_binding_statusとreceiver_contract_strings_presentがclassification_requiresの値に一致する場合だけclassification_sourceを返す。それ以外はotherwiseを返す。合成fixture上の結合確認であり実source資格や実receiver authorityを示さない。"
     },
     "ordered_condition_pipeline": {
       "reads": [
@@ -7194,12 +7303,12 @@
       "reads": [
         "reason arrayのreturn_owner値"
       ],
-      "return": "重複を除いたowner stringを辞書順にしたarray",
-      "semantics": "各FailureReasonのreturn_ownerを集め、failure_owner_order.remove_duplicatesがtrueなら重複を除き、sortがlexicographic_unicode_codepointならUnicode code point順に並べる。実owner資格を示すものではない。",
+      "return": "重複を除いたowner文字列を宣言されたUnicode code point順にした配列。",
+      "semantics": "FailureReasonのreturn_ownerを集め、failure_owner_order.remove_duplicatesがtrueなら重複を除く。sortがlexicographic_unicode_codepointならUnicode code point順に並べる。実owner資格を示すものではない。",
       "order": [
-        "理由配列のreturn_ownerを走査",
+        "FailureReason配列のreturn_ownerを走査",
         "重複を除く",
-        "lexicographic_unicode_codepoint順にsort"
+        "Unicode code point順に並べる"
       ]
     },
     "claim_map": {
@@ -7235,15 +7344,15 @@
     },
     "compare_effect_after": {
       "reads": [
-        "original effectのstate",
+        "原effectのstate",
         "left/right raw値",
         "mode"
       ],
-      "return": "original effect stateが指定観測stateでなければunknown、それ以外は指定comparison modeで比較した結果。"
+      "return": "原effect stateが指定された観測stateでなければunknown。それ以外は指定比較modeでleft/rightを比較する。"
     },
     "compare_effect_set_before_after": {
       "reads": [
-        "original effectのstate",
+        "原effectのstate",
         "before/after raw値"
       ],
       "return": "観測stateでない場合または両値がarrayでない場合はunknown、両arrayがJSON型保持で等しければsame、それ以外はdifferent。"
@@ -7283,6 +7392,27 @@
         "candidate_literal"
       ],
       "return": "等しい時candidate_value、その他other_value"
+    },
+    "paired_array_binding_status": {
+      "reads": [
+        "check_refに定める原/提出attempt配列、各target、original operation、retry_selected",
+        "check_refのtarget_fields_refにあるfield順"
+      ],
+      "return": "selectedかつ片側でも空ならempty、次に長さ不一致ならlength_mismatch、次に全attempt targetのいずれかfieldがoperationと異なればtarget_mismatch、すべて対応ならbound。retry_selected=falseでは空配列条件を適用せず、length/targetの結果だけを返す。"
+    },
+    "required_nonempty_strings": {
+      "reads": [
+        "check_refに列挙したinput pointerの各値"
+      ],
+      "return": "すべて非空stringならpresent、それ以外（Absent、null、別型、空文字）はmissing_or_empty。"
+    },
+    "first_duplicate_key_result": {
+      "reads": [
+        "submitted_attemptsの各row",
+        "key_fields_refのfieldを配列順に検査",
+        "result_by_field"
+      ],
+      "return": "key_fields_ref順に、同fieldで既出JSON値が現れた最初のfieldに対応するresult_by_field値。重複がなければotherwise。"
     }
   },
   "calculation_programs": {
@@ -7323,7 +7453,7 @@
             "state",
             "target"
           ],
-          "array_alignment": "index-wise over max(left.length,right.length); a missing item stays Absent and returns missing; no submitted tail is truncated",
+          "array_alignment": "left/right配列を同じindexで対応させ、最大長まで比較する。片側にitemが無いindexはAbsentとしてmissingを返し、提出側末尾も保持する。",
           "array_alignment_rule": {
             "extent": "max_length",
             "pairing": "same_index",
@@ -7336,11 +7466,8 @@
           "output": "distinct_attempts",
           "op": "unique",
           "source": "submitted_attempts",
-          "key_fields": [
-            "identity",
-            "ordinal"
-          ],
-          "uniqueness_mode": "each_key_field_unique"
+          "uniqueness_mode": "each_key_field_unique",
+          "key_fields_ref": "branch_tables.F01.attempt_distinctness_keys"
         },
         {
           "output": "receiver_contract_target_results",
@@ -7409,40 +7536,44 @@
           "observation": "original_effect_observation"
         },
         {
+          "output": "attempt_binding_status",
+          "op": "paired_array_binding_status",
+          "check_ref": "branch_tables.F01.attempt_binding_check",
+          "intermediate_only": true
+        },
+        {
+          "output": "receiver_contract_strings_present",
+          "op": "required_nonempty_strings",
+          "check_ref": "branch_tables.F01.receiver_contract_strings_check",
+          "intermediate_only": true
+        },
+        {
+          "output": "duplicate_attempt_key_result",
+          "op": "first_duplicate_key_result",
+          "source": "submitted_attempts",
+          "key_fields_ref": "branch_tables.F01.attempt_distinctness_keys",
+          "result_by_field": {
+            "identity": "duplicate_attempt_identity",
+            "ordinal": "duplicate_attempt_ordinal"
+          },
+          "otherwise": "unknown",
+          "intermediate_only": true
+        },
+        {
           "output": "receiver_effect_result",
           "op": "bind_effect_classification",
           "otherwise": "unknown_or_conflicting_effect_binding",
-          "target_results": "effect_target_results",
-          "content_results": "effect_content_results",
-          "content_field": "after_retry",
           "classification_source": "raw_effect_set_result",
           "all_fields_corresponding": [
             "effect_target_results",
             "effect_content_results"
           ],
-          "raw_binding_checks": [
-            {
-              "check": "paired_array_targets_equal",
-              "left_array": "original_attempts",
-              "right_array": "submitted_attempts",
-              "target_member": "target",
-              "against": "original_operation",
-              "fields_ref": "branch_tables.F01.target_fields_order",
-              "require_equal_lengths": true,
-              "require_nonempty_when": {
-                "path": "retry_selected",
-                "value": true
-              }
-            },
-            {
-              "check": "required_nonempty_string_paths",
-              "paths": [
-                "original_receiver_contract.identity",
-                "original_receiver_contract.revision",
-                "original_receiver_contract.rule"
-              ]
-            }
-          ]
+          "binding_status_ref": "attempt_binding_status",
+          "required_contract_strings_ref": "receiver_contract_strings_present",
+          "classification_requires": {
+            "attempt_binding_status": "bound",
+            "receiver_contract_strings_present": "present"
+          }
         },
         {
           "output": "failure_reasons",
