@@ -1,0 +1,1480 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-004",
+  "source_main": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+  "status": "limited_logical_detail_candidate_not_implementation_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approval_record": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+  "approved_whole_files": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 12759,
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11258,
+      "sha256": "15fef5f815966fc21a2645aac5428206cb2fa8b5b6e998e4d63007fc790df13e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 24801,
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 21613,
+      "sha256": "e2963d1680e6a649136a6c00a10ea5d824dd0c50f7a08bbabd1c856912ad4095"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11473,
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10140,
+      "sha256": "168f6d5abf97c76ce8a3b9218c7a5d083da7d842c9e384490412e30a269fe1b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11648,
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10253,
+      "sha256": "c116499e028730f5078613f0df192eafcb53ee03063b83a5d90038c3e952c24b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 20531,
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 17981,
+      "sha256": "6dc799ffea4fd3cae4bb34ddd077292efa71909737686527bb7f19b8055a2481"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10825,
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 9535,
+      "sha256": "b56a6f0dae1c49d97a956a16c2ac652ed93555c61434331cdd6132610fb5c40e"
+    }
+  ],
+  "approved_objects": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/8",
+      "canonical_sha256": "5929b570d7547353eba75646f8da3cf4824d953f0b989729c5557dbcb232d808",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-004-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "runtime観測とincident",
+        "obligation": "health/metric/log/resource/dependency/queue/error/latency/deployment/recoveryをsource/revisionへ結び、正常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別する。incident meaning/severityは既存承認要求を参照する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/8",
+      "canonical_sha256": "0a6b5b878e08800990a06ee49b9c665e56a499aec8c9f528e9dc75e3c18ee88b",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-004-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "runtime観測とincident",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-F01",
+        "positive_input": "各状態とtelemetry欠測/collector failure/source不明を別caseにする。",
+        "expected_observation": "定義元と対象版、unknown/unobservedが辿れる。",
+        "negative_input": "観測不能healthy、独自severity、旧sourceをcurrent。",
+        "failure_observation": "source/collector/incident意味ownerへ未確認範囲を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/2",
+      "canonical_sha256": "9ed6a26e5d18637c28fdb99fff6f84a49c70784a39fb32aebe7dbff2fc6f8ba9",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-004-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "後続観測能力の非前倒し",
+        "obligation": "019の詳細freshness/collector-confidence stateは後続版のまま保持し、1.0の受入必須条件にしない。004のsource/revisionと欠測/古い値の非成功条件は保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/2",
+      "canonical_sha256": "0c3ae46e11544181e3de32ca6e83360b89ac2a1ddcb0bbbb732eee917810e009",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-004-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-004",
+        "title": "後続観測能力の非前倒し",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-B01",
+        "positive_input": "詳細confidenceのない対象で基本観測成立/欠測を比較する。",
+        "expected_observation": "基本成立と未観測、後続版不足が区別される。",
+        "negative_input": "019完成待ち、詳細欠如だけで失格、古い値の通過。",
+        "failure_observation": "基本観測不足だけsourceへ返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "94a936b753b2dc0e491076ea98340e4830ea5a8c94bfbf9c984136bc3c3c6f68"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/runtime-observation-incident.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "84aa960e5b389a309038c7637602b8403cddd42acb51741e853b0d2950a2bbaa"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    }
+  ],
+  "parent_basic_source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        104,
+        106
+      ],
+      "quote": "`OperationPolicy`はSLO、availability、latency、error rate、process／job／queue、API／DB／MCP接続、CPU／memory／storage／network、\nretry／timeout／circuit breaker、certificate／credential validity、post-deploy delta、cost、alert、Runbook、recovery authorityを保持する。\n`OperationalObservation`はpolicy version、environment、window、source、quality、correlation、payload digest、findingを保持する。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "cf49e2199024605fd8c7e00d81b2a69b3af90a949e4f576a8301d196189aacc9",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "policyとobservationの対象版/source/品質参照を分離する。",
+      "change": "旧SLO/Runbook/credential/control-planeの能力を移植せず、004採択の基本観測source/revisionへ再導出する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        110,
+        112
+      ],
+      "quote": "異常を関連Release、Deployment、Requirement、Contract、変更差分へ相関し、symptom、impact、start／detect／recover time、直前変更、\ncontainment、rollback、root-cause state、recurrence preventionを記録する。duplicate／out-of-order observationは冪等処理し、stale correlation、\nmissing provenance、insufficient qualityからroot causeを推測確定しない。自動復旧はversioned Runbookとbounded authority内だけとする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "221c124aaa9f5ca71fe954c30272623f9b05e3862300d1374e276f3d4095bc20",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "missing provenance/stale/品質不足から原因を推測確定しない。",
+      "change": "旧IncidentRecord全能力や自動復旧を追加せず、incident meaningを承認済み要求ownerへ返す。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        9,
+        9
+      ],
+      "quote": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "be8e79cf3b6169071eae8e99d3199e4476335108aec215096b4bd3fd7d2f5a8c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "未承認NIOのsource/scope/freshness観測意味を比較資料として保持する。",
+      "change": "未承認candidateを採択/必須化せず、004 source/revisionと欠測/staleを非成功にする既決意味だけを再導出する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        15,
+        15
+      ],
+      "quote": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "8ab66cd6f2752242c6548e1c96cb4db026f636cb0ecf4ba202b87ef445652ee0",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "collector停止/欠測/staleをhealthyへ変換しない。",
+      "change": "019詳細freshness/confidenceの後続版を1.0 gateへ前倒しせず、基本観測のunknown/unobservedを保持する。",
+      "reason": "10/12承認004とL2/L11の責務/1.0条件へ意味再導出。旧runtime/CI/testの実行や旧能力の自動採用をしない。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+    "whole_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "selected_lines": [
+      {
+        "id": "UTW-012",
+        "line": 78,
+        "quote": "| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |",
+        "utf8_sha256": "5fd5747e3ebf102324d0597493a1e43aeabf0467bb0813ac6bd1a3a4769f51c2"
+      },
+      {
+        "id": "UTW-014",
+        "line": 80,
+        "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |",
+        "utf8_sha256": "52ee08850bd54061dd5b2f3d9b9450abd286b7d0c9b2150ec733205426f0e287"
+      },
+      {
+        "id": "UTW-021",
+        "line": 87,
+        "quote": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+        "utf8_sha256": "3a6bddbe4c73e4a6d0f4e0d0c9db39c06d47691f3d2fd1ff0a11675bc7df5f44"
+      },
+      {
+        "id": "UTW-023",
+        "line": 89,
+        "quote": "| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |",
+        "utf8_sha256": "4d0730fbba82fabca31771a0e0b2d968bba6c9575ed673706ed698fb42c52312"
+      }
+    ],
+    "use": "runtime projectionと正本の混同、absence blindness、自己申告stateの同役failure比較。INFRA004への直接割当てを主張せず、新gate/scanを追加しない。",
+    "crosswalk_limit": "既存failure crosswalkはINFRAを見出し/keyword照合のみと明記。004直接割当ては検索0でありfailure不存在の証明ではない。"
+  },
+  "consumer_connections": [
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "61281cf88dea631fe299caac90b2ea308ed2f8b8f8e6e5b4bc07e20944d638cf",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "対象資源のtopology",
+          "obligation": "resource identity/role/environment/location/version/dependencies/lifecycle stateと観測source/revisionを選択scopeへ束縛する。欠落や部分観測はunknownに保ち、以前のobservationをcurrentにしない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F01"
+        },
+        "input_roles": [
+          "resource_identity",
+          "role",
+          "environment",
+          "location",
+          "version",
+          "dependencies",
+          "lifecycle",
+          "observation_source",
+          "observation_revision"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "resource_identity": "resource-source-owner",
+          "role": "resource-source-owner",
+          "environment": "resource-source-owner",
+          "location": "resource-source-owner",
+          "version": "resource-source-owner",
+          "dependencies": "resource-source-owner",
+          "lifecycle": "resource-source-owner",
+          "observation_source": "resource-source-owner",
+          "observation_revision": "resource-source-owner"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "3bf327e8fa7174c196a77a75f4e40ca52e672c877b336f99e392773be5c915dc",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "環境とnetworkの区別",
+          "obligation": "環境identityごとにresource/config/network/credential scope/data/version/authorityを分離する。CONNECT論理接続と物理runtime pathを分け、後者のsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを参照する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02"
+        },
+        "input_roles": [
+          "environment_identity",
+          "resource_ref",
+          "config_ref",
+          "network_scope",
+          "credential_scope_ref",
+          "data_scope",
+          "version",
+          "authority_ref"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "environment_identity": "network-resource-owner",
+          "resource_ref": "network-resource-owner",
+          "config_ref": "network-resource-owner",
+          "network_scope": "network-resource-owner",
+          "credential_scope_ref": "HELIX-SECURITY",
+          "data_scope": "network-resource-owner",
+          "version": "network-resource-owner",
+          "authority_ref": "HELIX-SECURITY"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "a786eb82100bd62270a5013f337facd7e78dad429a70af295f91f0799228c641",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-009-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-009-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-009",
+          "title": "work/changeと資源状態の対応",
+          "obligation": "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime revision/recovery stateをversioned viewで関連付け、別正本を維持する。target/runtime対応不明や部分更新は成立にせず未完を保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01"
+        },
+        "content_rules": [
+          "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime/recoveryの参照を同target/revision/scopeへ結ぶ。双方の原記録を保全し、versioned viewは正本を二重化しない。",
+          "OSは作業/変更を、INFRAは実資源/runtimeを所有する。ticketをactual正本へ、INFRAを作業承認者へ読み替えない。",
+          "target/runtime対応不明、部分更新、停止中operationは成立へ丸めず、該当OS/INFRA ownerへ返し、稼働版・適格rollback先・未完操作を保持する。"
+        ],
+        "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "289701ce0d219a91bec0e74a7ce9a9aa2fc4bdfb6bca8ae14755ff84a1c60468",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-009-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-009-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-009",
+          "title": "stage packの条件付き接続",
+          "obligation": "通常resource-state接続はstage release構成体を必須化しない。stage pack収載時だけOS014の構成/更新/復旧/同版証拠を照合しstage IDとruntime revisionを区別する。後続episode-to-LABOを必須化しない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02"
+        },
+        "content_rules": [
+          "通常resource-state接続にstage releaseを必須化しない。stage未選択は追加条件非対象、選択不明はunknownとして保持する。",
+          "stage pack収載時だけOS014の構成/更新/復旧/同版構成証拠を参照する。stage IDとINFRA pack/contract/artifact/dependency版/runtime revisionを別identityのまま対応させる。",
+          "選択stageの対象違い/構成・更新・復旧・同版証拠不足はOS/INFRAへ返す。全HELIX/全7製品/後続episode-to-LABO完成待ちを追加しない。"
+        ],
+        "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-010",
+          "title": "操作前authorityとWorker",
+          "obligation": "全operationでresource/actual stateと有効SEC authorityのtarget/project/action/revision/environment/scope/expiryおよびcredential/network/isolation/egress条件を照合し、全実操作をSEC制約下のWorker契約へ結ぶ。通常経路ではOS assignment/ticketと009を用いる。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+        },
+        "content_rules": [
+          "開始前にresource actualとSEC authorityのtarget/project/action/revision/environment/scope/expiry、credential/network/isolation/egress参照を照合する。未確認/不一致/期限切れ/失効はSEC/OSへ返し実行前に停止する。",
+          "全操作をSEC制約下のWorker契約へ結ぶ。通常操作はOS assignment/ticket/009接続を用いる。結果receiptは後段で受け取り、開始前に成功receiptを要求しない。INFRAが自己許可を出さない。"
+        ],
+        "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-010",
+          "title": "更新時の追加admission",
+          "obligation": "更新/変更を適用するactionに限り同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatchでは変更前に止める。read-onlyではupdate admissionを要求せず通常authorityを保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+        },
+        "content_rules": [
+          "更新/変更actionだけ同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatch/期限外/失効は変更前に止める。acceptedでも通常authorityを省かない。",
+          "read-onlyにupdate gateを追加せず、通常authorityを保持する。F05のwrite禁止/対象前後は別義務でありread-only宣言だけで通過させない。"
+        ],
+        "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "94a936b753b2dc0e491076ea98340e4830ea5a8c94bfbf9c984136bc3c3c6f68",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "4e63080877b7f6d4dcbaaa6ff212c83047e08b5ce161d21b2a7c90ae85d43f99",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-005-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-005-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-005-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-005",
+          "title": "backupの実状態",
+          "obligation": "backup target/source revision/time/completeness/location/integrity/expiryと実行stateを記録し、設定/成功/存在/restore可能を別判定にする。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F01"
+        },
+        "content_rules": [
+          "backup設定、backup実行state、backup存在、restore可能性を独立に持つ。設定やjob応答だけから成功を推測せず、存在だけでrestoreを通過させない。",
+          "target/source revision/time/completeness/location/integrity/expiryを対象state owner/retention/recovery要求へ結ぶ。対象外revision/期限外/不完全/原情報不足は成功へしない。",
+          "原backup記録と提出内容を対照し、失敗理由/変更前適格state/復旧未完をstate/recovery ownerとOSへ返す。"
+        ],
+        "representation_limit": "合成値/合格markerは実互換/実復旧/実evidence資格/schema採用ではない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+      "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+      "whole_sha256": "94a936b753b2dc0e491076ea98340e4830ea5a8c94bfbf9c984136bc3c3c6f68",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "1d119ceaf0ea94608b085d4e380a7ef2e6685ed53c6a6341ae6c6893fa3ffd59",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-005-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-005-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-005-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-005",
+          "title": "restoreの検証",
+          "obligation": "独立restore environmentで実restoreのintegrity/dependency reconnection/startup/verification evidenceを同対象へ結び、全必要条件成立まで成功としない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F02"
+        },
+        "content_rules": [
+          "backup参照、独立restore environment、実restore結果を同対象/source revisionへ結び、integrity/dependency reconnection/startup/verificationの各証拠とownerを別々に照合する。",
+          "必要条件はすべて成立して初めて当該restoreの成功情報を返す。backup job greenや他検査の成功で欠落/失敗を相殺しない。",
+          "対象外証拠/環境非独立/互換不明/実restore結果不足は成功へしない。変更前適格stateと失敗記録と未完復旧/検証義務をrecovery設計owner/OSへ返す。"
+        ],
+        "representation_limit": "合成値/合格markerは実互換/実復旧/実evidence資格/schema採用ではない。"
+      },
+      "boundary": "001の観測source供給と004観測、009OS work接続、010SEC/Workerの既存責務を参照。004が許可/実配置/正式consumer bindingを生成しない。"
+    }
+  ],
+  "unclosed_source_supply": [
+    {
+      "subject": "resource and observation",
+      "responsible_owner": "INFRA/collector/source owner",
+      "qualification_state": "not_established",
+      "remaining": "001snapshot、実collector/元source/各field source-target-value、基本新旧判定/実観測の資格root/custodyは未成立。"
+    },
+    {
+      "subject": "incident meaning",
+      "responsible_owner": "approved requirement/incident meaning owner",
+      "qualification_state": "not_established",
+      "remaining": "incident state/severity参照の正式owner資格/意味resolver/適用対象は未成立。原本文/marker/参照一致から意味資格を生成しない。"
+    },
+    {
+      "subject": "downstream and later019",
+      "responsible_owner": "OS/SEC/Worker/INFRA019 owner",
+      "qualification_state": "not_established",
+      "remaining": "正式consumer binding/実保存/incident close/復旧/実権限は未成立。019詳細を基本不足の代替や1.0 gateへ前倒ししない。"
+    }
+  ],
+  "remaining": [
+    "原52/2契約の有限比較以外の任意shape、未知claim、複合欠陥・診断優先の全組合せ、部分field null/field source不一致/未比較の提出観測target-fieldsや意味map相反/並行観測/基本新旧判定は未閉包。",
+    "正式001snapshot/collector/各観測field/incident意味-severityのowner資格/root/custody、意味resolver/基本新旧判定/実保存/復旧/consumer binding/正式schema/codecは未成立。",
+    "L6は関数設計、L7は対検証。実装は層外。test/oracle凍結→実装前Red→Green→Refactorの素材であり、実TDD/CI/L11/全92親430意味閉包/Readyは未成立。"
+  ],
+  "baseline_snapshot": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "revision": "6b1492ed3d4a00a6cf1f7f761ee44ba9734e5099",
+    "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "audited_source_revision": "7c553c5c2a4f16e55bdf8e0851409afbd35d3870",
+    "json_pointer": "/rows/45",
+    "selected_row_canonical_sha256": "19122e8a157a0408fe0968abccbc13a1ac2d86f1c412d32f13fe0681d8fe67c4",
+    "boundary": "10/14は59基本14詳細の歴史presence。現在の配置/意味閉包へ読み替えず全430要求/oracle対を保全する。"
+  },
+  "document_id": "HELIXINFRASTRUCTURE-L5-004",
+  "pair": "HELIXINFRASTRUCTURE-L5/L8-004",
+  "logical_types": [
+    {
+      "name": "Presence<T>",
+      "kind": "generic",
+      "representation": "親keyの不在/null/供給値を分離し、wireへtagを追加しない。空map/list/stringを原値保持。"
+    },
+    {
+      "name": "FalseEffect",
+      "kind": "literal",
+      "value": false
+    },
+    {
+      "name": "NotEstablished",
+      "kind": "literal",
+      "value": "not_established"
+    },
+    {
+      "name": "NullableString",
+      "kind": "nullable",
+      "inner": "string"
+    },
+    {
+      "name": "RuntimeState",
+      "kind": "enum",
+      "values": [
+        "normal",
+        "degraded",
+        "unavailable",
+        "capacity_exhausted",
+        "dependency_failed",
+        "data_unavailable",
+        "network_unavailable",
+        "security_isolated",
+        "unknown"
+      ]
+    },
+    {
+      "name": "RuntimeCandidate",
+      "kind": "enum",
+      "values": [
+        "normal",
+        "degraded",
+        "unavailable",
+        "capacity_exhausted",
+        "dependency_failed",
+        "data_unavailable",
+        "network_unavailable",
+        "security_isolated",
+        "unknown",
+        "unobserved"
+      ]
+    },
+    {
+      "name": "ObservationName",
+      "kind": "enum",
+      "values": [
+        "health",
+        "metric",
+        "log",
+        "resource",
+        "dependency",
+        "queue",
+        "error",
+        "latency",
+        "deployment",
+        "recovery"
+      ]
+    },
+    {
+      "name": "CollectorState",
+      "kind": "enum",
+      "values": [
+        "available_in_fixture_only",
+        "failed"
+      ]
+    },
+    {
+      "name": "Currentness",
+      "kind": "enum",
+      "values": [
+        "current_in_fixture_only",
+        "stale"
+      ]
+    },
+    {
+      "name": "AuthorityMarker",
+      "kind": "enum",
+      "values": [
+        "approved_in_fixture_only",
+        "unapproved"
+      ]
+    },
+    {
+      "name": "ReturnOwner",
+      "kind": "enum",
+      "values": [
+        "resource-observation-source",
+        "incident-meaning-owner",
+        "collector-owner"
+      ]
+    },
+    {
+      "name": "InformationState",
+      "kind": "enum",
+      "values": [
+        "state_content_referenced_requires_actual_qualification",
+        "unknown",
+        "unobserved",
+        "basic_content_referenced_without_019_gate"
+      ]
+    },
+    {
+      "name": "Claim",
+      "kind": "enum",
+      "values": [
+        "unobserved_is_healthy",
+        "own_severity",
+        "old_source_is_current",
+        "root_cause_from_missing_source",
+        "wait_for_019_completion",
+        "missing_detail_disqualifies_basic",
+        "old_value_pass_with_confidence"
+      ]
+    },
+    {
+      "name": "FindingResult",
+      "kind": "enum",
+      "values": [
+        "unsupported_inference",
+        "submitted_content_conflict",
+        "collector-failed",
+        "source-unknown",
+        "stale",
+        "revision-missing",
+        "target-foreign",
+        "missing_original_observation",
+        "meaning-missing",
+        "meaning-unapproved",
+        "meaning-target-foreign",
+        "meaning-revision-missing",
+        "meaning-owner-missing",
+        "missing_meaning_reference",
+        "missing-telemetry",
+        "source-missing"
+      ]
+    },
+    {
+      "name": "Target",
+      "kind": "record",
+      "fields": {
+        "resource": "Presence<string>",
+        "resource_revision": "Presence<string>",
+        "environment": "Presence<string>",
+        "scope": "Presence<string>"
+      },
+      "meaning": "foreign反例の部分recordも保持。原raw.targetは全4member供給する固定素材scope。"
+    },
+    {
+      "name": "ObservationField",
+      "kind": "record",
+      "fields": {
+        "source_ref": "string",
+        "value_ref": "string",
+        "target": "Target"
+      },
+      "meaning": "原field参照のcarrier。実source/値/target資格や個別fieldの正式対応を型から生成しない。"
+    },
+    {
+      "name": "ObservationFields",
+      "kind": "record",
+      "fields": {
+        "health": "Presence<ObservationField>",
+        "metric": "Presence<ObservationField>",
+        "log": "Presence<ObservationField>",
+        "resource": "Presence<ObservationField>",
+        "dependency": "Presence<ObservationField>",
+        "queue": "Presence<ObservationField>",
+        "error": "Presence<ObservationField>",
+        "latency": "Presence<ObservationField>",
+        "deployment": "Presence<ObservationField>",
+        "recovery": "Presence<ObservationField>"
+      }
+    },
+    {
+      "name": "Observation",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "NullableString",
+        "source_ref": "NullableString",
+        "collector_owner": "string",
+        "collector_state": "CollectorState",
+        "target": "Target",
+        "currentness": "Currentness",
+        "fields": "ObservationFields",
+        "reported_state": "string"
+      }
+    },
+    {
+      "name": "Meaning",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "NullableString",
+        "owner": "NullableString",
+        "authority_state": "AuthorityMarker",
+        "target": "Target",
+        "state_refs": "map<RuntimeState,string>",
+        "severity_refs": "map<RuntimeState,string>"
+      }
+    },
+    {
+      "name": "NullableMeaning",
+      "kind": "nullable",
+      "inner": "Meaning"
+    },
+    {
+      "name": "MeaningReference",
+      "kind": "record",
+      "fields": {
+        "identity": "Presence<string>",
+        "revision": "Presence<string>",
+        "owner": "Presence<string>"
+      }
+    },
+    {
+      "name": "NullableMeaningReference",
+      "kind": "nullable",
+      "inner": "MeaningReference"
+    },
+    {
+      "name": "Detailed019",
+      "kind": "record",
+      "fields": {
+        "confidence": "string",
+        "later_version": "string"
+      }
+    },
+    {
+      "name": "Nullable019",
+      "kind": "nullable",
+      "inner": "Detailed019"
+    },
+    {
+      "name": "ComparisonInput",
+      "kind": "record",
+      "fields": {
+        "target": "Target",
+        "resource_snapshot_ref": "string",
+        "original_observation": "Observation",
+        "submitted_observation": "Observation",
+        "original_meaning": "NullableMeaning",
+        "submitted_meaning": "NullableMeaning",
+        "original_unfinished": "list<string>",
+        "detailed_019": "Nullable019",
+        "claims": "list<Claim>"
+      },
+      "meaning": "原52packetの全raw carrier。正式wire/qualification/未知key方針は未成立。"
+    },
+    {
+      "name": "Effects",
+      "kind": "record",
+      "fields": {
+        "observation": "FalseEffect",
+        "incident_meaning_change": "FalseEffect",
+        "severity_adoption": "FalseEffect",
+        "healthy_inference": "FalseEffect",
+        "source_overwrite": "FalseEffect",
+        "incident_close": "FalseEffect",
+        "recovery": "FalseEffect",
+        "permission": "FalseEffect",
+        "deployment": "FalseEffect",
+        "acceptance": "FalseEffect",
+        "implementation_ready": "FalseEffect"
+      }
+    },
+    {
+      "name": "Finding",
+      "kind": "record",
+      "fields": {
+        "field": "string",
+        "result": "FindingResult",
+        "return_owner": "ReturnOwner"
+      }
+    },
+    {
+      "name": "RetainedMaterial",
+      "kind": "record",
+      "fields": {
+        "meaning_ref": "NullableMeaningReference",
+        "retained_original_observation": "Observation",
+        "retained_original_meaning": "NullableMeaning",
+        "retained_019": "Nullable019",
+        "retained_unfinished": "list<string>",
+        "retained_unconfirmed_resource": "Target",
+        "rejected_claims": "list<Claim>",
+        "detailed_019_required_for_004": "FalseEffect",
+        "root_cause_state": "NotEstablished",
+        "actual_effects": "Effects"
+      }
+    },
+    {
+      "name": "Assessment",
+      "kind": "record",
+      "fields": {
+        "meaning_ref": "NullableMeaningReference",
+        "retained_original_observation": "Observation",
+        "retained_original_meaning": "NullableMeaning",
+        "retained_019": "Nullable019",
+        "retained_unfinished": "list<string>",
+        "retained_unconfirmed_resource": "Target",
+        "rejected_claims": "list<Claim>",
+        "detailed_019_required_for_004": "FalseEffect",
+        "root_cause_state": "NotEstablished",
+        "actual_effects": "Effects",
+        "information_state": "InformationState",
+        "runtime_state_candidate": "RuntimeCandidate",
+        "state_ref": "NullableString",
+        "severity_ref": "NullableString",
+        "failure_reasons": "list<Finding>",
+        "return_owners": "list<ReturnOwner>"
+      }
+    },
+    {
+      "name": "SourceSupplyGap",
+      "kind": "record",
+      "fields": {
+        "subject": "string",
+        "responsible_owner": "string",
+        "qualification_state": "NotEstablished",
+        "qualification_root": "Presence<string>",
+        "source_custody": "Presence<string>",
+        "remaining": "string"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "id": "INFRA004-RETAIN",
+      "name": "retain",
+      "parameters": {
+        "raw": "ComparisonInput"
+      },
+      "signature": "retain(raw: ComparisonInput) -> RetainedMaterial",
+      "return_type": "RetainedMaterial",
+      "reads": {
+        "raw": [
+          "original_meaning",
+          "original_observation",
+          "detailed_019",
+          "original_unfinished",
+          "target",
+          "claims"
+        ]
+      },
+      "pass_through_context": [
+        "resource_snapshot_ref",
+        "submitted_meaning",
+        "submitted_observation"
+      ],
+      "returns": [
+        "meaning_ref",
+        "retained_original_observation",
+        "retained_original_meaning",
+        "retained_019",
+        "retained_unfinished",
+        "retained_unconfirmed_resource",
+        "rejected_claims",
+        "detailed_019_required_for_004",
+        "root_cause_state",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "preconditions": [
+        "原52固定素材のshape/claim集合を対象にする。raw.targetは全4member、存在する観測fieldは原3member record、original reported_stateはRuntimeStateの9値。未見の部分field null/source-target相反等は未閉包。",
+        "F01のoriginal_meaning非null時はsubmitted_meaningも同shape recordとして供給。owner/revision nullや対象相反はそのまま診断し、本文/fixture approval markerを正式資格とは仮定しない。",
+        "claimは原根の既知集合で原52は0/1件。F01のclaim優先は有限診断選択だけで実permission/安全性/資格を免除しない。B01はclaimがあっても基本不足を診断し、後続詳細を必須化しない。",
+        "全引数を明示しcase ID/完成期待表/外部clock/registry/暗黙policyを用いない。"
+      ],
+      "postconditions": [
+        "原観測/意味/019/未完/未確認target/claim列を全値保持。全11実作用false、root cause未成立。",
+        "所見は発生順・重複保持、owner列のみscalar順unique。state_ref/severity_refは原Meaningのstate別参照であり実意味資格ではない。"
+      ]
+    },
+    {
+      "id": "INFRA004-F01",
+      "name": "assess_incident",
+      "parameters": {
+        "raw": "ComparisonInput"
+      },
+      "signature": "assess_incident(raw: ComparisonInput) -> Assessment",
+      "return_type": "Assessment",
+      "reads": {
+        "raw": [
+          "original_meaning",
+          "original_observation",
+          "detailed_019",
+          "original_unfinished",
+          "target",
+          "claims",
+          "submitted_observation",
+          "submitted_meaning"
+        ]
+      },
+      "pass_through_context": [
+        "resource_snapshot_ref"
+      ],
+      "returns": [
+        "meaning_ref",
+        "retained_original_observation",
+        "retained_original_meaning",
+        "retained_019",
+        "retained_unfinished",
+        "retained_unconfirmed_resource",
+        "rejected_claims",
+        "detailed_019_required_for_004",
+        "root_cause_state",
+        "actual_effects",
+        "information_state",
+        "runtime_state_candidate",
+        "state_ref",
+        "severity_ref",
+        "failure_reasons",
+        "return_owners"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "preconditions": [
+        "原52固定素材のshape/claim集合を対象にする。raw.targetは全4member、存在する観測fieldは原3member record、original reported_stateはRuntimeStateの9値。未見の部分field null/source-target相反等は未閉包。",
+        "F01のoriginal_meaning非null時はsubmitted_meaningも同shape recordとして供給。owner/revision nullや対象相反はそのまま診断し、本文/fixture approval markerを正式資格とは仮定しない。",
+        "claimは原根の既知集合で原52は0/1件。F01のclaim優先は有限診断選択だけで実permission/安全性/資格を免除しない。B01はclaimがあっても基本不足を診断し、後続詳細を必須化しない。",
+        "全引数を明示しcase ID/完成期待表/外部clock/registry/暗黙policyを用いない。"
+      ],
+      "postconditions": [
+        "原観測/意味/019/未完/未確認target/claim列を全値保持。全11実作用false、root cause未成立。",
+        "所見は発生順・重複保持、owner列のみscalar順unique。state_ref/severity_refは原Meaningのstate別参照であり実意味資格ではない。"
+      ]
+    },
+    {
+      "id": "INFRA004-B01",
+      "name": "assess_basic_boundary",
+      "parameters": {
+        "raw": "ComparisonInput"
+      },
+      "signature": "assess_basic_boundary(raw: ComparisonInput) -> Assessment",
+      "return_type": "Assessment",
+      "reads": {
+        "raw": [
+          "original_meaning",
+          "original_observation",
+          "detailed_019",
+          "original_unfinished",
+          "target",
+          "claims"
+        ]
+      },
+      "pass_through_context": [
+        "resource_snapshot_ref",
+        "submitted_meaning",
+        "submitted_observation"
+      ],
+      "returns": [
+        "meaning_ref",
+        "retained_original_observation",
+        "retained_original_meaning",
+        "retained_019",
+        "retained_unfinished",
+        "retained_unconfirmed_resource",
+        "rejected_claims",
+        "detailed_019_required_for_004",
+        "root_cause_state",
+        "actual_effects",
+        "information_state",
+        "runtime_state_candidate",
+        "state_ref",
+        "severity_ref",
+        "failure_reasons",
+        "return_owners"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "preconditions": [
+        "原52固定素材のshape/claim集合を対象にする。raw.targetは全4member、存在する観測fieldは原3member record、original reported_stateはRuntimeStateの9値。未見の部分field null/source-target相反等は未閉包。",
+        "F01のoriginal_meaning非null時はsubmitted_meaningも同shape recordとして供給。owner/revision nullや対象相反はそのまま診断し、本文/fixture approval markerを正式資格とは仮定しない。",
+        "claimは原根の既知集合で原52は0/1件。F01のclaim優先は有限診断選択だけで実permission/安全性/資格を免除しない。B01はclaimがあっても基本不足を診断し、後続詳細を必須化しない。",
+        "全引数を明示しcase ID/完成期待表/外部clock/registry/暗黙policyを用いない。"
+      ],
+      "postconditions": [
+        "原観測/意味/019/未完/未確認target/claim列を全値保持。全11実作用false、root cause未成立。",
+        "所見は発生順・重複保持、owner列のみscalar順unique。state_ref/severity_refは原Meaningのstate別参照であり実意味資格ではない。"
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-004-F01",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-004-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-004-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-004",
+          "title": "runtime観測とincident",
+          "obligation": "health/metric/log/resource/dependency/queue/error/latency/deployment/recoveryをsource/revisionへ結び、正常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別する。incident meaning/severityは既存承認要求を参照する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01"
+        },
+        "content_rules": [
+          "001資源の対象identity/revision/environment/scopeと、health/metric/log/resource/dependency/queue/error/latency/deployment/recovery各観測のsource/revision/観測範囲を結ぶ。観測元入力と提出値を区別して保全する。",
+          "正常/劣化/利用不能/容量枯渇/依存失敗/data unavailable/network unavailable/security isolation/unknownを区別する。分類の意味・severityは承認済み要求owner由来の参照と対象条件を辿り、INFRAが独自の閾値やseverityを作らない。",
+          "telemetry欠測/collector failure/source不明/古い値ではunknownまたはunobservedへ戻し、healthy/current/原因確定へ変換しない。未確認resourceとincident評価待ちを保持する。",
+          "観測不足はsource/collector owner、意味・severityの参照不足や対象不一致は上流incident-meaning ownerへ返す。source一致や合成分類は実incident成立/解決/復旧許可を意味しない。"
+        ],
+        "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+      },
+      "source_contract_sha256": "2da8e430d94a5a68855280cc3c1ef9e58c40fb456bbc831121d1917fa011e341",
+      "function_ref": "INFRA004-F01"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-004-B01",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-004-B01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-B01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-004-B01",
+          "parent": "HELIXINFRASTRUCTURE-L2-004",
+          "title": "後続観測能力の非前倒し",
+          "obligation": "019の詳細freshness/collector-confidence stateは後続版のまま保持し、1.0の受入必須条件にしない。004のsource/revisionと欠測/古い値の非成功条件は保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01"
+        },
+        "content_rules": [
+          "019の詳細freshness/collector-confidenceを後続版に保持し、詳細値の不存在だけで004の基本成立を失格にしない。019完成待ちを初回1.0 gateにしない。",
+          "004のsource/revision、対象版、欠測/staleの非成功条件は残す。詳細confidenceがある場合でも基本観測不足や古い値の通過を認めない。",
+          "基本成立、unknown/unobserved、後続版能力の未完を分離し、基本不足だけを観測source/collectorへ返す。詳細知識を採用済みと宣言しない。"
+        ],
+        "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+      },
+      "source_contract_sha256": "61bc74e7c0a5bd793e33c5fcc4b75f45d3487d271e2008e3d37332680bb709b5",
+      "function_ref": "INFRA004-B01"
+    }
+  ],
+  "trace": [
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-004-F01",
+      "l4": "HELIXINFRASTRUCTURE-L4-004-F01",
+      "l5": "HELIXINFRASTRUCTURE-L5-004-F01",
+      "l8": "HELIXINFRASTRUCTURE-L8-004-F01",
+      "l9": "HELIXINFRASTRUCTURE-L9-004-F01",
+      "l10": "HELIXINFRASTRUCTURE-L10-004-F01",
+      "source_case_ids": [
+        "I004-F01-STATE-normal",
+        "I004-F01-STATE-degraded",
+        "I004-F01-STATE-unavailable",
+        "I004-F01-STATE-capacity_exhausted",
+        "I004-F01-STATE-dependency_failed",
+        "I004-F01-STATE-data_unavailable",
+        "I004-F01-STATE-network_unavailable",
+        "I004-F01-STATE-security_isolated",
+        "I004-F01-STATE-unknown",
+        "I004-F01-MISSING-health",
+        "I004-F01-MISSING-metric",
+        "I004-F01-MISSING-log",
+        "I004-F01-MISSING-resource",
+        "I004-F01-MISSING-dependency",
+        "I004-F01-MISSING-queue",
+        "I004-F01-MISSING-error",
+        "I004-F01-MISSING-latency",
+        "I004-F01-MISSING-deployment",
+        "I004-F01-MISSING-recovery",
+        "I004-F01-COLLECTOR-FAILED",
+        "I004-F01-SOURCE-UNKNOWN",
+        "I004-F01-STALE",
+        "I004-F01-REVISION-MISSING",
+        "I004-F01-TARGET-FOREIGN",
+        "I004-F01-SUBMITTED-source_ref",
+        "I004-F01-SUBMITTED-revision",
+        "I004-F01-SUBMITTED-reported_state",
+        "I004-F01-MEANING-MISSING",
+        "I004-F01-MEANING-UNAPPROVED",
+        "I004-F01-MEANING-TARGET-FOREIGN",
+        "I004-F01-MEANING-REVISION-MISSING",
+        "I004-F01-MEANING-OWNER-MISSING",
+        "I004-F01-MISSING-state_refs",
+        "I004-F01-MISSING-severity_refs",
+        "I004-F01-REJECT-unobserved_is_healthy",
+        "I004-F01-REJECT-own_severity",
+        "I004-F01-REJECT-old_source_is_current",
+        "I004-F01-REJECT-root_cause_from_missing_source",
+        "I004-F01-SUBMITTED-MEANING-identity",
+        "I004-F01-SUBMITTED-MEANING-revision",
+        "I004-F01-SUBMITTED-MEANING-owner"
+      ]
+    },
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-004-B01",
+      "l4": "HELIXINFRASTRUCTURE-L4-004-B01",
+      "l5": "HELIXINFRASTRUCTURE-L5-004-B01",
+      "l8": "HELIXINFRASTRUCTURE-L8-004-B01",
+      "l9": "HELIXINFRASTRUCTURE-L9-004-B01",
+      "l10": "HELIXINFRASTRUCTURE-L10-004-B01",
+      "source_case_ids": [
+        "I004-B01-BASIC-WITH-NO-DETAIL",
+        "I004-B01-BASIC-WITH-unknown_in_fixture_only",
+        "I004-B01-BASIC-WITH-high_in_fixture_only",
+        "I004-B01-MISSING-TELEMETRY",
+        "I004-B01-STALE",
+        "I004-B01-SOURCE-MISSING",
+        "I004-B01-COLLECTOR-FAILED",
+        "I004-B01-REJECT-wait_for_019_completion",
+        "I004-B01-REJECT-missing_detail_disqualifies_basic",
+        "I004-B01-REJECT-old_value_pass_with_confidence",
+        "I004-B01-NO-DETAIL-MISSING-TELEMETRY"
+      ]
+    }
+  ],
+  "comparison_constants": {
+    "FIELDS": [
+      "health",
+      "metric",
+      "log",
+      "resource",
+      "dependency",
+      "queue",
+      "error",
+      "latency",
+      "deployment",
+      "recovery"
+    ],
+    "STATES": [
+      "normal",
+      "degraded",
+      "unavailable",
+      "capacity_exhausted",
+      "dependency_failed",
+      "data_unavailable",
+      "network_unavailable",
+      "security_isolated",
+      "unknown"
+    ],
+    "EFFECTS": [
+      "observation",
+      "incident_meaning_change",
+      "severity_adoption",
+      "healthy_inference",
+      "source_overwrite",
+      "incident_close",
+      "recovery",
+      "permission",
+      "deployment",
+      "acceptance",
+      "implementation_ready"
+    ],
+    "OBS": "resource-observation-source",
+    "MEANING": "incident-meaning-owner"
+  },
+  "raw_comparison_reference": {
+    "scope": "原2契約/52packetの純粋参照記法。実装言語/library/正式codec/collector/incident方式を採択しない。",
+    "constant_binding": "同candidate comparison_constantsのfield順/状態集合/owner marker/全false effects。source資格/意味/閾値を暗黙に補わない。",
+    "primitive_operators": {
+      "CLONE": "JSON deep copy。不在/null/空/値を維持。",
+      "==/!=": "JSON型を保持する完全値比較。bool/numberを混同しない。",
+      "get/in": "参照をcopyする時は原member presenceをinで保持。不在をnullへ変換しない。",
+      "sorted(set(owners))": "所見owner label列だけscalar順unique。",
+      "is None/is not None": "JSON nullだけを判定する。key不在はinで別に保持し、nullと不在を同一化しない。",
+      "not x / if x": "原有限JSON値のtruthiness。null/false/0/空文字/空list/空mapはfalse、それ以外はtrue。原52のsource/revision/ownerはstringまたはnull、fieldsはmap、claimsはlist。未知shapeを資格へ変換しない。",
+      "in / not in": "record/mapではkeyの存在、固定listでは要素membershipを比較。存在だけでsource資格を生成しない。",
+      "any(generator)": "有限所見列に条件を満たす要素が1件でもある時だけtrue。B01はfieldがfields以外の所見の有無からunknown優先を決める。",
+      "string + string": "所見field locatorの固定prefix/field/state文字列を順に連結するだけでsource identityや資格を新設しない。",
+      "dict comprehension": "固定identity/revision/owner順のうち原Meaningに存在するkeyだけをCLONEして参照recordを作る。不在をnullとして挿入しない。",
+      "dict.fromkeys / append / update": "固定EFFECTS列をすべてfalseへ対応付ける。所見appendは順序/重複保持、out.updateは宣言済み返却rootへ計算値を束縛するだけ。実保存/状態変更ではない。"
+    },
+    "decisions": [
+      "retentionは10rootを原値から構成。meaning_refは原意味nullならnull、recordならidentity/revision/ownerの存在memberだけを原値copyする。実root causeはnot_established、全11実作用false、detailed019 required=false。",
+      "F01 claim優先で原claim順にunsupported_inferenceを返す。own_severityだけincident meaning owner、他は観測sourceへ。通常不足の追加診断をこの有限素材では抑止するがrawは保持し、実資格/安全性の免除へ一般化しない。",
+      "F01 claim無しでは提出source_ref/revision/reported_state→原collector state→原source→currentness→revision→targetの順で所見。これらが無い時だけFIELDS順に欠測を列挙しinformation/runtime stateをunobservedへ。通常不足はunknown、state_ref/severity_refはnullを保つ。",
+      "F01 基本観測所見無しならmeaning record欠落、authority marker、target、revision、owner、提出identity/revision/ownerを順に比較。これらが無い時だけ原reported_stateのstate_refs/severity_refs供給を別確認。すべて対応する時だけ原reported_stateとその2参照を返す。これは原Meaning参照mapの意味比較でありcase/oracle IDから完成答えを選ぶlookupではない。",
+      "B01は基本観測が原field空mapならmissing-telemetry/unobserved。次にcurrentness/source_ref/collector stateを別診断し、それら不足があればunknownを優先。B01の基本内容対応はruntime candidate=unknownのまま、意味分類のF01を暗黙実行しない。",
+      "B01で019 confidenceの不在/高値/unknownを基本成立のgateにせず原値保持。後続待ち/詳細欠如claimはrejected_claimsに保持するが基本不足を置き換えない。実incident/復旧/Acceptedは生成しない。",
+      "所見は参照記法順・重複保持。return_ownersだけscalar順unique。未見多重欠陥/partial field source/target/custody/全claim組合せの全域閉包は未成立。"
+    ],
+    "steps": [
+      "def retain(raw):",
+      " meaning=raw['original_meaning'];ref=None if meaning is None else {k:CLONE(meaning[k]) for k in ['identity','revision','owner'] if k in meaning}",
+      " return {'meaning_ref':ref,'retained_original_observation':CLONE(raw['original_observation']),'retained_original_meaning':CLONE(meaning),'retained_019':CLONE(raw['detailed_019']),'retained_unfinished':CLONE(raw['original_unfinished']),'retained_unconfirmed_resource':CLONE(raw['target']),'rejected_claims':CLONE(raw['claims']),'detailed_019_required_for_004':False,'root_cause_state':'not_established','actual_effects':dict.fromkeys(EFFECTS,False)}",
+      "",
+      "def assess_incident(raw):",
+      " out=retain(raw);obs=raw['original_observation'];submitted=raw['submitted_observation'];meaning=raw['original_meaning'];failures=[];state='unknown';candidate='unknown';state_ref=None;severity_ref=None",
+      " if raw['claims']:",
+      "  for claim in raw['claims']:failures.append({'field':claim,'result':'unsupported_inference','return_owner':MEANING if claim=='own_severity' else OBS})",
+      " else:",
+      "  for field in ['source_ref','revision','reported_state']:",
+      "   if submitted[field]!=obs[field]:failures.append({'field':field,'result':'submitted_content_conflict','return_owner':OBS})",
+      "  if obs['collector_state']!='available_in_fixture_only':failures.append({'field':'collector_state','result':'collector-failed','return_owner':obs['collector_owner']})",
+      "  if not obs['source_ref']:failures.append({'field':'source_ref','result':'source-unknown','return_owner':OBS})",
+      "  if obs['currentness']!='current_in_fixture_only':failures.append({'field':'currentness','result':'stale','return_owner':OBS})",
+      "  if not obs['revision']:failures.append({'field':'revision','result':'revision-missing','return_owner':OBS})",
+      "  if obs['target']!=raw['target']:failures.append({'field':'target','result':'target-foreign','return_owner':OBS})",
+      "  if not failures:",
+      "   for field in FIELDS:",
+      "    if field not in obs['fields']:failures.append({'field':field,'result':'missing_original_observation','return_owner':OBS})",
+      "   if failures:state='unobserved';candidate='unobserved'",
+      "  if not failures:",
+      "   if meaning is None:failures.append({'field':'meaning.record','result':'meaning-missing','return_owner':MEANING})",
+      "   else:",
+      "    if meaning['authority_state']!='approved_in_fixture_only':failures.append({'field':'meaning.authority_state','result':'meaning-unapproved','return_owner':MEANING})",
+      "    if meaning['target']!=raw['target']:failures.append({'field':'meaning.target','result':'meaning-target-foreign','return_owner':MEANING})",
+      "    if not meaning['revision']:failures.append({'field':'meaning.revision','result':'meaning-revision-missing','return_owner':MEANING})",
+      "    if not meaning['owner']:failures.append({'field':'meaning.owner','result':'meaning-owner-missing','return_owner':MEANING})",
+      "    for field in ['identity','revision','owner']:",
+      "     if raw['submitted_meaning'][field]!=meaning[field]:failures.append({'field':'meaning.'+field,'result':'submitted_content_conflict','return_owner':MEANING})",
+      "    if not failures:",
+      "     reported=obs['reported_state']",
+      "     for field in ['state_refs','severity_refs']:",
+      "      if reported not in meaning[field]:failures.append({'field':field+'.'+reported,'result':'missing_meaning_reference','return_owner':MEANING})",
+      "     if not failures:state='state_content_referenced_requires_actual_qualification';candidate=reported;state_ref=meaning['state_refs'][reported];severity_ref=meaning['severity_refs'][reported]",
+      " out.update({'information_state':state,'runtime_state_candidate':candidate,'state_ref':state_ref,'severity_ref':severity_ref,'failure_reasons':failures,'return_owners':sorted(set(f['return_owner'] for f in failures))});return out",
+      "",
+      "def assess_basic_boundary(raw):",
+      " out=retain(raw);obs=raw['original_observation'];failures=[];state='basic_content_referenced_without_019_gate';candidate='unknown'",
+      " if not obs['fields']:",
+      "  state='unobserved';candidate='unobserved';failures.append({'field':'fields','result':'missing-telemetry','return_owner':OBS})",
+      " if obs['currentness']!='current_in_fixture_only':failures.append({'field':'currentness','result':'stale','return_owner':OBS})",
+      " if not obs['source_ref']:failures.append({'field':'source_ref','result':'source-missing','return_owner':OBS})",
+      " if obs['collector_state']!='available_in_fixture_only':failures.append({'field':'collector_state','result':'collector-failed','return_owner':obs['collector_owner']})",
+      " if any(f['field']!='fields' for f in failures):state='unknown';candidate='unknown'",
+      " out.update({'information_state':state,'runtime_state_candidate':candidate,'state_ref':None,'severity_ref':None,'failure_reasons':failures,'return_owners':sorted(set(f['return_owner'] for f in failures))});return out",
+      ""
+    ],
+    "limits": [
+      "原52/2契約の有限比較以外の任意shape、未知claim、複合欠陥・診断優先の全組合せ、部分field null/field source不一致/未比較の提出観測target-fieldsや意味map相反/並行観測/基本新旧判定は未閉包。",
+      "正式001snapshot/collector/各観測field/incident意味-severityのowner資格/root/custody、意味resolver/基本新旧判定/実保存/復旧/consumer binding/正式schema/codecは未成立。",
+      "L6は関数設計、L7は対検証。実装は層外。test/oracle凍結→実装前Red→Green→Refactorの素材であり、実TDD/CI/L11/全92親430意味閉包/Readyは未成立。"
+    ]
+  },
+  "unknown_key_boundary": "原bytes/全decoded packetはL8で値まで解決可能。宣言carrierの検証から正式wire unknown-key受理/拒否policyやsource資格を生成しない。"
+}
