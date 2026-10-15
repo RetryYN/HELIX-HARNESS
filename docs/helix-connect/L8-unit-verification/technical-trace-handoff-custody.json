@@ -45582,7 +45582,7 @@
     "candidate_bytes_sha256": "2d3740e4226efa6c2888a008cf4950e0d1267a1bb9bfdeb54e8b8a95c7033a53",
     "meaning": "base_revisionは入力元を示す。candidate_bytes_sha256は編集後L5実bytesのcontent pinであり、base revisionに同一候補bytesが存在するとは主張しない。"
   },
-  "additional_probe_count": 130,
+  "additional_probe_count": 129,
   "local_domain_probes": {
     "kind": "independent_fixed_source_domain_probes",
     "source": "このignored local証拠を正式なsource pinとして参照しない。",
@@ -78255,374 +78255,6 @@
       "execution_state": "not_executed"
     },
     {
-      "probe_id": "C005-R3-STOP-CAUSE-ack_absent",
-      "requirement_ref": "HELIXCONNECT-L3-005-F02",
-      "l4_ref": "HELIXCONNECT-L4-005-F02",
-      "l9_ref": "HELIXCONNECT-L9-005-F02",
-      "function_ref": "FN-CONNECT005-F02",
-      "input_base_ref": {
-        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
-        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-        "pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8"
-      },
-      "input_base_sha256": "6e4b6278271bafc3f9858b557421603d16640c1c8b69667184ea543391fc1982",
-      "input_patch": [
-        {
-          "op": "replace",
-          "path": "/original_stop/current_state",
-          "value": "success"
-        },
-        {
-          "op": "replace",
-          "path": "/submitted_stop/current_state",
-          "value": "success"
-        }
-      ],
-      "input": {
-        "claims": {
-          "ack_absent_pass": false,
-          "erase_unfinished": false,
-          "partial_end_to_end_success": false,
-          "receipt_is_resolution": false
-        },
-        "original_handoff": {
-          "identity": "HANDOFF-P",
-          "owner": "connection-operation-owner",
-          "recovery_ref": "COMMON-RECOVERY-P@r1",
-          "revision": "h-r1",
-          "stop": {
-            "ack_state": "not_observed",
-            "cause": "ack_absent",
-            "current_state": "unknown",
-            "result_state": "not_collected",
-            "stop_event_ref": "EVENT-P-3"
-          },
-          "target": {
-            "connection_identity": "CONNECTION-P",
-            "contract_revision": "contract-r2",
-            "correlation": "CORRELATION-P",
-            "dependency_ref": "COMMON-PACK@r1",
-            "expiry": "expiry-P",
-            "operation_identity": "OPERATION-P",
-            "permission_ref": "PERMIT-P@permit-r1",
-            "scope": "PRODUCT-P/query"
-          },
-          "unfinished": [
-            {
-              "identity": "UNFINISHED-P-1",
-              "obligation_ref": "RECEIVE-OBSERVATION@r1",
-              "owner": "consumer-endpoint-owner",
-              "recovery_ref": "RECOVERY-P@r1",
-              "revision": "u-r1",
-              "target": {
-                "connection_identity": "CONNECTION-P",
-                "contract_revision": "contract-r2",
-                "correlation": "CORRELATION-P",
-                "dependency_ref": "COMMON-PACK@r1",
-                "expiry": "expiry-P",
-                "operation_identity": "OPERATION-P",
-                "permission_ref": "PERMIT-P@permit-r1",
-                "scope": "PRODUCT-P/query"
-              }
-            }
-          ]
-        },
-        "original_handoff_receipt": {
-          "owner": "consumer-endpoint-owner",
-          "state": "received_in_fixture_only",
-          "target": "HANDOFF-P@h-r1"
-        },
-        "original_operation": {
-          "connection_identity": "CONNECTION-P",
-          "contract_revision": "contract-r2",
-          "correlation": "CORRELATION-P",
-          "dependency_ref": "COMMON-PACK@r1",
-          "expiry": "expiry-P",
-          "operation_identity": "OPERATION-P",
-          "permission_ref": "PERMIT-P@permit-r1",
-          "scope": "PRODUCT-P/query"
-        },
-        "original_prior_successes": [
-          "EVENT-P-1",
-          "EVENT-P-2",
-          "EVENT-P-3"
-        ],
-        "original_resolution": {
-          "owner": "consumer-endpoint-owner",
-          "state": "not_resolved",
-          "target": "HANDOFF-P@h-r1"
-        },
-        "original_stop": {
-          "ack_state": "not_observed",
-          "cause": "ack_absent",
-          "current_state": "success",
-          "result_state": "not_collected",
-          "stop_event_ref": "EVENT-P-3"
-        },
-        "original_unfinished": [
-          {
-            "identity": "UNFINISHED-P-1",
-            "obligation_ref": "RECEIVE-OBSERVATION@r1",
-            "owner": "consumer-endpoint-owner",
-            "recovery_ref": "RECOVERY-P@r1",
-            "revision": "u-r1",
-            "target": {
-              "connection_identity": "CONNECTION-P",
-              "contract_revision": "contract-r2",
-              "correlation": "CORRELATION-P",
-              "dependency_ref": "COMMON-PACK@r1",
-              "expiry": "expiry-P",
-              "operation_identity": "OPERATION-P",
-              "permission_ref": "PERMIT-P@permit-r1",
-              "scope": "PRODUCT-P/query"
-            }
-          }
-        ],
-        "submitted_handoff": {
-          "identity": "HANDOFF-P",
-          "owner": "connection-operation-owner",
-          "recovery_ref": "COMMON-RECOVERY-P@r1",
-          "revision": "h-r1",
-          "stop": {
-            "ack_state": "not_observed",
-            "cause": "ack_absent",
-            "current_state": "unknown",
-            "result_state": "not_collected",
-            "stop_event_ref": "EVENT-P-3"
-          },
-          "target": {
-            "connection_identity": "CONNECTION-P",
-            "contract_revision": "contract-r2",
-            "correlation": "CORRELATION-P",
-            "dependency_ref": "COMMON-PACK@r1",
-            "expiry": "expiry-P",
-            "operation_identity": "OPERATION-P",
-            "permission_ref": "PERMIT-P@permit-r1",
-            "scope": "PRODUCT-P/query"
-          },
-          "unfinished": [
-            {
-              "identity": "UNFINISHED-P-1",
-              "obligation_ref": "RECEIVE-OBSERVATION@r1",
-              "owner": "consumer-endpoint-owner",
-              "recovery_ref": "RECOVERY-P@r1",
-              "revision": "u-r1",
-              "target": {
-                "connection_identity": "CONNECTION-P",
-                "contract_revision": "contract-r2",
-                "correlation": "CORRELATION-P",
-                "dependency_ref": "COMMON-PACK@r1",
-                "expiry": "expiry-P",
-                "operation_identity": "OPERATION-P",
-                "permission_ref": "PERMIT-P@permit-r1",
-                "scope": "PRODUCT-P/query"
-              }
-            }
-          ]
-        },
-        "submitted_handoff_receipt": {
-          "owner": "consumer-endpoint-owner",
-          "state": "received_in_fixture_only",
-          "target": "HANDOFF-P@h-r1"
-        },
-        "submitted_prior_successes": [
-          "EVENT-P-1",
-          "EVENT-P-2",
-          "EVENT-P-3"
-        ],
-        "submitted_resolution": {
-          "owner": "consumer-endpoint-owner",
-          "state": "not_resolved",
-          "target": "HANDOFF-P@h-r1"
-        },
-        "submitted_stop": {
-          "ack_state": "not_observed",
-          "cause": "ack_absent",
-          "current_state": "success",
-          "result_state": "not_collected",
-          "stop_event_ref": "EVENT-P-3"
-        },
-        "submitted_unfinished": [
-          {
-            "identity": "UNFINISHED-P-1",
-            "obligation_ref": "RECEIVE-OBSERVATION@r1",
-            "owner": "consumer-endpoint-owner",
-            "recovery_ref": "RECOVERY-P@r1",
-            "revision": "u-r1",
-            "target": {
-              "connection_identity": "CONNECTION-P",
-              "contract_revision": "contract-r2",
-              "correlation": "CORRELATION-P",
-              "dependency_ref": "COMMON-PACK@r1",
-              "expiry": "expiry-P",
-              "operation_identity": "OPERATION-P",
-              "permission_ref": "PERMIT-P@permit-r1",
-              "scope": "PRODUCT-P/query"
-            }
-          }
-        ]
-      },
-      "input_canonical_sha256": "47577049262876d39b306c4e92d1e221cabe5a13542f11082e02cd777db6f158",
-      "expected_base_ref": {
-        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
-        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
-        "pointer": "/verification_obligations/1/concrete_cases/0/expected_material"
-      },
-      "expected_base_canonical_sha256": "f7b8875d66a409873d73997ded198753f8dbaabf0341ebdde80d001abf43b942",
-      "expected_whole": {
-        "content_results": {
-          "stop": "content_corresponding_in_fixture",
-          "prior_successes": "content_corresponding_in_fixture",
-          "unfinished": "content_corresponding_in_fixture",
-          "handoff": "content_corresponding_in_fixture",
-          "handoff_receipt": "content_corresponding_in_fixture",
-          "resolution": "content_corresponding_in_fixture"
-        },
-        "handoff_target_results": {
-          "connection_identity": "content_corresponding_in_fixture",
-          "operation_identity": "content_corresponding_in_fixture",
-          "contract_revision": "content_corresponding_in_fixture",
-          "correlation": "content_corresponding_in_fixture",
-          "scope": "content_corresponding_in_fixture",
-          "expiry": "content_corresponding_in_fixture",
-          "permission_ref": "content_corresponding_in_fixture",
-          "dependency_ref": "content_corresponding_in_fixture"
-        },
-        "unfinished_target_results": [
-          {
-            "connection_identity": "content_corresponding_in_fixture",
-            "operation_identity": "content_corresponding_in_fixture",
-            "contract_revision": "content_corresponding_in_fixture",
-            "correlation": "content_corresponding_in_fixture",
-            "scope": "content_corresponding_in_fixture",
-            "expiry": "content_corresponding_in_fixture",
-            "permission_ref": "content_corresponding_in_fixture",
-            "dependency_ref": "content_corresponding_in_fixture"
-          }
-        ],
-        "unfinished_link_result": "content_corresponding_in_fixture",
-        "stop_link_result": "content_corresponding_in_fixture",
-        "receipt_link_result": "content_corresponding_in_fixture",
-        "resolution_link_result": "content_corresponding_in_fixture",
-        "retained_stop": {
-          "ack_state": "not_observed",
-          "cause": "ack_absent",
-          "current_state": "success",
-          "result_state": "not_collected",
-          "stop_event_ref": "EVENT-P-3"
-        },
-        "retained_prior_successes": [
-          "EVENT-P-1",
-          "EVENT-P-2",
-          "EVENT-P-3"
-        ],
-        "retained_unfinished": [
-          {
-            "identity": "UNFINISHED-P-1",
-            "revision": "u-r1",
-            "target": {
-              "connection_identity": "CONNECTION-P",
-              "operation_identity": "OPERATION-P",
-              "contract_revision": "contract-r2",
-              "correlation": "CORRELATION-P",
-              "scope": "PRODUCT-P/query",
-              "expiry": "expiry-P",
-              "permission_ref": "PERMIT-P@permit-r1",
-              "dependency_ref": "COMMON-PACK@r1"
-            },
-            "obligation_ref": "RECEIVE-OBSERVATION@r1",
-            "owner": "consumer-endpoint-owner",
-            "recovery_ref": "RECOVERY-P@r1"
-          }
-        ],
-        "retained_handoff": {
-          "identity": "HANDOFF-P",
-          "revision": "h-r1",
-          "target": {
-            "connection_identity": "CONNECTION-P",
-            "operation_identity": "OPERATION-P",
-            "contract_revision": "contract-r2",
-            "correlation": "CORRELATION-P",
-            "scope": "PRODUCT-P/query",
-            "expiry": "expiry-P",
-            "permission_ref": "PERMIT-P@permit-r1",
-            "dependency_ref": "COMMON-PACK@r1"
-          },
-          "unfinished": [
-            {
-              "identity": "UNFINISHED-P-1",
-              "revision": "u-r1",
-              "target": {
-                "connection_identity": "CONNECTION-P",
-                "operation_identity": "OPERATION-P",
-                "contract_revision": "contract-r2",
-                "correlation": "CORRELATION-P",
-                "scope": "PRODUCT-P/query",
-                "expiry": "expiry-P",
-                "permission_ref": "PERMIT-P@permit-r1",
-                "dependency_ref": "COMMON-PACK@r1"
-              },
-              "obligation_ref": "RECEIVE-OBSERVATION@r1",
-              "owner": "consumer-endpoint-owner",
-              "recovery_ref": "RECOVERY-P@r1"
-            }
-          ],
-          "stop": {
-            "cause": "ack_absent",
-            "current_state": "unknown",
-            "stop_event_ref": "EVENT-P-3",
-            "ack_state": "not_observed",
-            "result_state": "not_collected"
-          },
-          "owner": "connection-operation-owner",
-          "recovery_ref": "COMMON-RECOVERY-P@r1"
-        },
-        "retained_handoff_receipt": {
-          "target": "HANDOFF-P@h-r1",
-          "state": "received_in_fixture_only",
-          "owner": "consumer-endpoint-owner"
-        },
-        "retained_resolution": {
-          "target": "HANDOFF-P@h-r1",
-          "state": "not_resolved",
-          "owner": "consumer-endpoint-owner"
-        },
-        "handoff_receipt_generates_resolution": false,
-        "business_completion": "not_generated_by_trace_or_handoff",
-        "candidate_handoff_state": "held_with_original_unfinished",
-        "failure_reasons": [
-          {
-            "area": "stop_state",
-            "field": "current_state",
-            "result": "unsupported_completion_for_stop",
-            "return_owner": "connection-operation-owner"
-          }
-        ],
-        "failure_return_owners": [
-          "connection-operation-owner"
-        ],
-        "effects": {
-          "actual_append": false,
-          "actual_transmission": false,
-          "actual_storage": false,
-          "actual_deletion": false,
-          "actual_business_completion": false,
-          "actual_authority": false,
-          "actual_implementation_ready": false,
-          "actual_acceptance": false
-        },
-        "claim_results": {
-          "ack_absent_pass": "none",
-          "partial_end_to_end_success": "none",
-          "erase_unfinished": "none",
-          "receipt_is_resolution": "none"
-        }
-      },
-      "expected_whole_canonical_sha256": "b3626a042074826aa1699d42542d05ea27fe4a2586d7cfd137d3e2a7fde3bca6",
-      "expectation_basis": "原L4-F02の各中断causeとsuccessの相反を、対応する原/提出stopの全体保持と独立に診断する。既知causeの列挙を一つずつ省略する弱体化を識別する。",
-      "execution_state": "not_executed"
-    },
-    {
       "probe_id": "C005-R3-STOP-CAUSE-sent_result_uncollected",
       "requirement_ref": "HELIXCONNECT-L3-005-F02",
       "l4_ref": "HELIXCONNECT-L4-005-F02",
@@ -86513,7 +86145,7 @@
           "path": "/original_prior_events",
           "value": [
             {
-              "identity": "EVENT-PREDECESSOR-R2",
+              "identity": "EVENT-P-1",
               "ordinal": 0
             }
           ]
@@ -86527,11 +86159,6 @@
           "op": "replace",
           "path": "/submitted_events/0/previous_event_ref",
           "value": "EVENT-PREDECESSOR-R2"
-        },
-        {
-          "op": "replace",
-          "path": "/original_prior_events/0/identity",
-          "value": "EVENT-P-1"
         }
       ],
       "input": {
@@ -87226,7 +86853,7 @@
           "value": [
             {
               "identity": "EVENT-PREDECESSOR-R2",
-              "ordinal": 0
+              "ordinal": 100
             }
           ]
         },
@@ -87239,11 +86866,6 @@
           "op": "replace",
           "path": "/submitted_events/0/previous_event_ref",
           "value": "EVENT-PREDECESSOR-R2"
-        },
-        {
-          "op": "replace",
-          "path": "/original_prior_events/0/ordinal",
-          "value": 100
         }
       ],
       "input": {
@@ -90998,7 +90620,7 @@
     "meaning": "source_mainはこの詳細候補の入力file bytesを固定する実在snapshot。元L4/L9内のsource_mainは基本設計起草時の上流contextであり、L4/L9 file自体の所在revisionとして使わない。実file locatorはsource_pair_pinsのpath/revision/sha256へ結ぶ。"
   },
   "source_oracle_discrepancies": [],
-  "independent_semantic_probe_count": 69,
+  "independent_semantic_probe_count": 68,
   "cross_field_type_constraints": {
     "scope": "型内の2field組合せに対する独立5制約。184wholeとの照合とは別に数える。",
     "probes": [
