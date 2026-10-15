@@ -187,7 +187,132 @@
         "range meaning scopeと各側required verification_scopeを別々に照合し、不一致なら当該range軸をHARNESSへ返す。"
       ],
       "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "meaning_binding_contract": {
+        "source_obligations": [
+          "HELIXBRAIN-L3-028-F02",
+          "HELIXBRAIN-L10-028-F02"
+        ],
+        "axis_order": [
+          "range",
+          "state"
+        ],
+        "per_axis": {
+          "range": {
+            "input_records": [
+              "original_range_meaning",
+              "submitted_range_meaning"
+            ],
+            "owner_literal": "HARNESS",
+            "return_owner": "HARNESS"
+          },
+          "state": {
+            "input_records": [
+              "original_state_applicability",
+              "submitted_state_applicability"
+            ],
+            "owner_literal": "BRAIN008",
+            "return_owner": "BRAIN008"
+          }
+        },
+        "presence_fields": [
+          "identity",
+          "revision",
+          "scope",
+          "owner"
+        ],
+        "presence_only_fields": [
+          "identity",
+          "revision",
+          "scope"
+        ],
+        "types": {
+          "MeaningBindingResults": {
+            "kind": "record",
+            "required": [
+              "range",
+              "state"
+            ],
+            "fields": {
+              "range": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "unknown",
+                  "content_conflict"
+                ]
+              },
+              "state": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "unknown",
+                  "content_conflict"
+                ]
+              }
+            },
+            "additional_members": false
+          },
+          "MeaningReturnOwner": {
+            "kind": "record",
+            "required": [
+              "axis",
+              "return_owner"
+            ],
+            "fields": {
+              "axis": {
+                "enum": [
+                  "range",
+                  "state"
+                ]
+              },
+              "return_owner": {
+                "enum": [
+                  "HARNESS",
+                  "BRAIN008"
+                ]
+              }
+            },
+            "additional_members": false,
+            "axis_owner_pairs": [
+              [
+                "range",
+                "HARNESS"
+              ],
+              [
+                "state",
+                "BRAIN008"
+              ]
+            ]
+          }
+        },
+        "markers": [
+          "",
+          "TBD",
+          "unknown"
+        ],
+        "marker_comparison": "JSON文字列の完全一致。大小文字/空白を補正せず、配列要素とrecord値を再帰走査する。",
+        "binding_status_priority": [
+          "missing",
+          "unknown",
+          "content_conflict",
+          "content_corresponding_in_fixture"
+        ],
+        "binding_rules": [
+          "各sideの必要memberがAbsent/nullならmissing、再帰markerならunknown。ownerが供給済みで非markerかつ当該軸literalと異なるならcontent_conflict。identity/revision/scopeの供給はpresenceだけを観測し、独立targetとの一致・真正性は主張しない。",
+          "軸内の不足をbinding_status_priorityの先行値へ合成し、同順位は既存値を保持する。供給済みpresence-only memberは既存値を上書きしない。"
+        ],
+        "return_composition": {
+          "when": "当該range/stateのmeaning_resultまたはbinding_resultがcontent_corresponding_in_fixture以外なら当該axis/return_owner候補を返す。rangeでは、各sideのrange scopeと同側required_reference.verification_scopeが供給済み・非null・非markerで異なる場合もHARNESSへ返す。",
+          "order": [
+            "range",
+            "state"
+          ],
+          "duplicates": "同じaxis/return_ownerの完全一致recordは一件。binding不足・meaning不一致・scope不一致が重なっても同じ候補を増やさない。",
+          "empty": "両軸に返却条件が無ければ[]。",
+          "qualification": "論理上の責務候補であり実owner資格・認可・呼出し成立ではない。"
+        }
+      }
     },
     {
       "id": "HELIXBRAIN-L4-028-N01",
