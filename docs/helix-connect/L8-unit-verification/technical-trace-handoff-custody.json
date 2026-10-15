@@ -45579,10 +45579,10 @@
   "l5_candidate_bytes_pin": {
     "base_revision": "0f20f0d6b9675d3e8aec87aabec57eaa97aaec03",
     "base_bytes_sha256": "466709fd585906b81eede525d31c4ec8e9d8373a3fb91475529f1d4ff17c1afc",
-    "candidate_bytes_sha256": "56fc45f6e0d70ed221e0fb6e50c27f009dbbb219719f4dcbc84c244f86292c32",
+    "candidate_bytes_sha256": "2d3740e4226efa6c2888a008cf4950e0d1267a1bb9bfdeb54e8b8a95c7033a53",
     "meaning": "base_revisionは入力元を示す。candidate_bytes_sha256は編集後L5実bytesのcontent pinであり、base revisionに同一候補bytesが存在するとは主張しない。"
   },
-  "additional_probe_count": 124,
+  "additional_probe_count": 130,
   "local_domain_probes": {
     "kind": "independent_fixed_source_domain_probes",
     "source": "このignored local証拠を正式なsource pinとして参照しない。",
@@ -78276,16 +78276,6 @@
           "op": "replace",
           "path": "/submitted_stop/current_state",
           "value": "success"
-        },
-        {
-          "op": "replace",
-          "path": "/original_stop/cause",
-          "value": "ack_absent"
-        },
-        {
-          "op": "replace",
-          "path": "/submitted_stop/cause",
-          "value": "ack_absent"
         }
       ],
       "input": {
@@ -86504,6 +86494,4502 @@
       "expected_whole_canonical_sha256": "09c3edc13529bbf10a8aac791718eaabd1e3323549f64c68dcbf898caa41e4f4",
       "expectation_basis": "原L4-F02の当該操作scope照合を未完targetへ適用する。原/提出およびhandoff未完が同じ改変値でも、原操作と異なる未完scopeは返却対象。内容・link対応は独立に保持する。",
       "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-HISTORY-ORDINAL-BEFORE-IDENTITY-OVERLAP",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_prior_events",
+          "value": [
+            {
+              "identity": "EVENT-PREDECESSOR-R2",
+              "ordinal": 0
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/original_events/0/previous_event_ref",
+          "value": "EVENT-PREDECESSOR-R2"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_events/0/previous_event_ref",
+          "value": "EVENT-PREDECESSOR-R2"
+        },
+        {
+          "op": "replace",
+          "path": "/original_prior_events/0/identity",
+          "value": "EVENT-P-1"
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 0
+          }
+        ],
+        "original_result_state": "success",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "121edcd4c5f4039ee9603d0015f054631212eb6c85ec151ad3d09f523db624ec",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 0
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_conflict",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "success",
+        "result_content_result": "content_corresponding_in_fixture",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "history_prefix",
+            "field": "events",
+            "result": "content_conflict",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "8236430f845fe9c5d0ed1a37068eef7ff42f042e8bbcea1dec195986d0cd56da",
+      "expectation_basis": "L4-F01の原履歴全体保持と選択範囲の区別。先行ordinalと範囲外identityの片方だけではwindow外の先行履歴にせず原prefixを比較する。入力形と期待を計算前に固定し、片条件の削除を識別する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-HISTORY-IDENTITY-OUTSIDE-ORDINAL-AFTER",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_prior_events",
+          "value": [
+            {
+              "identity": "EVENT-PREDECESSOR-R2",
+              "ordinal": 0
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/original_events/0/previous_event_ref",
+          "value": "EVENT-PREDECESSOR-R2"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_events/0/previous_event_ref",
+          "value": "EVENT-PREDECESSOR-R2"
+        },
+        {
+          "op": "replace",
+          "path": "/original_prior_events/0/ordinal",
+          "value": 100
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "identity": "EVENT-PREDECESSOR-R2",
+            "ordinal": 100
+          }
+        ],
+        "original_result_state": "success",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "8e8e29572840654422fe9d390d7277c592489141f81581c268cd13f3b4b70f1e",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-PREDECESSOR-R2",
+            "ordinal": 100
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "EVENT-PREDECESSOR-R2",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_conflict",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "success",
+        "result_content_result": "content_corresponding_in_fixture",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "history_prefix",
+            "field": "events",
+            "result": "content_conflict",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "3f23b9e18ce6a1c12c0ad5446bf2ff9c1ad69230b077dbdd0bf1faefd2078b75",
+      "expectation_basis": "L4-F01の原履歴全体保持と選択範囲の区別。先行ordinalと範囲外identityの片方だけではwindow外の先行履歴にせず原prefixを比較する。入力形と期待を計算前に固定し、片条件の削除を識別する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-RESULT-ONE-SIDE-original-0",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_result_state",
+          "value": 0
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_result_state": 0,
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "02b7602a03f483bfb3f8cf398b4c1c1c2060c4c78bb124fcfcab35741a454962",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": 0,
+        "result_content_result": "unknown_original_information",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "result_state",
+            "field": "result_state",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "26e6477d2fac4c0e626877bd13b7eecff1a79e46ce71040526f3704f8811aa31",
+      "expectation_basis": "L3/L4-F01の結果状態の観測条件を左右別に照合する。一方が既知successでも、他方が非文字列またはfixture markerならunknownを保持し、通常の内容相反へ読み替えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-RESULT-ONE-SIDE-original-TBD",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/original_result_state",
+          "value": "TBD"
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_result_state": "TBD",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "success"
+      },
+      "input_canonical_sha256": "b2222ee9a0834ea06e7be6c1049cb69941090ce636de6bf73db01f7236a0e5e8",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "TBD",
+        "result_content_result": "unknown_original_information",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "result_state",
+            "field": "result_state",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "93bf1eef9b3759ad1a39d0d0d5d9b0d698981d30797d61f4722692104c221854",
+      "expectation_basis": "L3/L4-F01の結果状態の観測条件を左右別に照合する。一方が既知successでも、他方が非文字列またはfixture markerならunknownを保持し、通常の内容相反へ読み替えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-RESULT-ONE-SIDE-submitted-0",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/submitted_result_state",
+          "value": 0
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_result_state": "success",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": 0
+      },
+      "input_canonical_sha256": "ce08d15c93816f5cb991ef45907efc8221f7b8de6fcb0c00ad39bf0b03e33667",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "success",
+        "result_content_result": "unknown_original_information",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "result_state",
+            "field": "result_state",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "92aa87801488675b355def846b498ef4e96cf5f0e6573d7e534eae9568c7ab1e",
+      "expectation_basis": "L3/L4-F01の結果状態の観測条件を左右別に照合する。一方が既知successでも、他方が非文字列またはfixture markerならunknownを保持し、通常の内容相反へ読み替えない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "probe_id": "C005-R4-RESULT-ONE-SIDE-submitted-TBD",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "l4_ref": "HELIXCONNECT-L4-005-F01",
+      "l9_ref": "HELIXCONNECT-L9-005-F01",
+      "function_ref": "FN-CONNECT005-F01",
+      "input_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8"
+      },
+      "input_base_sha256": "23182de3fec4a8ad436bde8fba1c98c484320948e91046777814dea821326e13",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/submitted_result_state",
+          "value": "TBD"
+        }
+      ],
+      "input": {
+        "claims": {
+          "foreign_revision_continuation": false,
+          "missing_trace_success": false,
+          "rewrite_past": false,
+          "technical_success_business_complete": false
+        },
+        "original_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "original_operation": {
+          "connection_identity": "CONNECTION-P",
+          "contract_revision": "contract-r2",
+          "correlation": "CORRELATION-P",
+          "dependency_ref": "COMMON-PACK@r1",
+          "expiry": "expiry-P",
+          "operation_identity": "OPERATION-P",
+          "permission_ref": "PERMIT-P@permit-r1",
+          "scope": "PRODUCT-P/query"
+        },
+        "original_prior_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "original_result_state": "success",
+        "submitted_events": [
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "identity": "EVENT-P-1",
+            "kind": "registered",
+            "observed_endpoint": "source",
+            "ordinal": 1,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "identity": "EVENT-P-2",
+            "kind": "compatibility_checked",
+            "observed_endpoint": "both",
+            "ordinal": 2,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-1",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "identity": "EVENT-P-3",
+            "kind": "sent",
+            "observed_endpoint": "source",
+            "ordinal": 3,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-2",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "identity": "EVENT-P-4",
+            "kind": "received",
+            "observed_endpoint": "consumer",
+            "ordinal": 4,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-3",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          },
+          {
+            "attempt_identity": "ATTEMPT-P-1",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "identity": "EVENT-P-5",
+            "kind": "terminal",
+            "observed_endpoint": "consumer",
+            "ordinal": 5,
+            "permission_result_ref": "SEC-RESULT-P@r1",
+            "previous_event_ref": "EVENT-P-4",
+            "result_state": "success",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "dependency_ref": "COMMON-PACK@r1",
+              "expiry": "expiry-P",
+              "operation_identity": "OPERATION-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "scope": "PRODUCT-P/query"
+            }
+          }
+        ],
+        "submitted_result_state": "TBD"
+      },
+      "input_canonical_sha256": "32bc64e6bdba01062ecc5b7b0dce9de4ea2bde3e288e2f91c4e9a9a7350dbb17",
+      "expected_base_ref": {
+        "document": "docs/helix-connect/L9-integration-verification/technical-trace-handoff-custody.json",
+        "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+      },
+      "expected_base_canonical_sha256": "e6fed123706678250653f65486b94dab293b8255f7260abc7f96d784d56d5752",
+      "expected_whole": {
+        "event_results": [
+          {
+            "identity": "EVENT-P-1",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "content_results": {
+              "identity": "content_corresponding_in_fixture",
+              "ordinal": "content_corresponding_in_fixture",
+              "previous_event_ref": "content_corresponding_in_fixture",
+              "kind": "content_corresponding_in_fixture",
+              "target": "content_corresponding_in_fixture",
+              "attempt_identity": "content_corresponding_in_fixture",
+              "observed_endpoint": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "evidence_ref": "content_corresponding_in_fixture",
+              "permission_result_ref": "content_corresponding_in_fixture"
+            },
+            "target_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "operation_identity": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "expiry": "content_corresponding_in_fixture",
+              "permission_ref": "content_corresponding_in_fixture",
+              "dependency_ref": "content_corresponding_in_fixture"
+            },
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "attempt_identity": "ATTEMPT-P-1"
+          }
+        ],
+        "retained_original_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "retained_prior_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "submitted_events": [
+          {
+            "identity": "EVENT-P-1",
+            "ordinal": 1,
+            "previous_event_ref": "fixture-root-no-predecessor",
+            "kind": "registered",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-1@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-2",
+            "ordinal": 2,
+            "previous_event_ref": "EVENT-P-1",
+            "kind": "compatibility_checked",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "both",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-2@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-3",
+            "ordinal": 3,
+            "previous_event_ref": "EVENT-P-2",
+            "kind": "sent",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "source",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-3@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-4",
+            "ordinal": 4,
+            "previous_event_ref": "EVENT-P-3",
+            "kind": "received",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-4@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          },
+          {
+            "identity": "EVENT-P-5",
+            "ordinal": 5,
+            "previous_event_ref": "EVENT-P-4",
+            "kind": "terminal",
+            "target": {
+              "connection_identity": "CONNECTION-P",
+              "operation_identity": "OPERATION-P",
+              "contract_revision": "contract-r2",
+              "correlation": "CORRELATION-P",
+              "scope": "PRODUCT-P/query",
+              "expiry": "expiry-P",
+              "permission_ref": "PERMIT-P@permit-r1",
+              "dependency_ref": "COMMON-PACK@r1"
+            },
+            "attempt_identity": "ATTEMPT-P-1",
+            "observed_endpoint": "consumer",
+            "result_state": "success",
+            "evidence_ref": "EVIDENCE-P-5@r1",
+            "permission_result_ref": "SEC-RESULT-P@r1"
+          }
+        ],
+        "history_prefix_result": "content_corresponding_in_fixture",
+        "submitted_sequence_result": "content_corresponding_in_fixture",
+        "original_needed_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "missing_original_event_ids": [],
+        "original_identities_distinct": true,
+        "original_order_known_in_fixture": true,
+        "original_predecessor_chain_corresponds": true,
+        "submitted_event_ids": [
+          "EVENT-P-1",
+          "EVENT-P-2",
+          "EVENT-P-3",
+          "EVENT-P-4",
+          "EVENT-P-5"
+        ],
+        "retained_original_result_state": "success",
+        "result_content_result": "unknown_original_information",
+        "candidate_trace_state": "unknown_due_to_trace_gap_or_conflict",
+        "business_completion": "not_generated_by_technical_trace",
+        "failure_reasons": [
+          {
+            "area": "result_state",
+            "field": "result_state",
+            "result": "unknown_original_information",
+            "return_owner": "connection-operation-owner"
+          }
+        ],
+        "failure_return_owners": [
+          "connection-operation-owner"
+        ],
+        "effects": {
+          "actual_append": false,
+          "actual_transmission": false,
+          "actual_storage": false,
+          "actual_deletion": false,
+          "actual_business_completion": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "claim_results": {
+          "rewrite_past": "none",
+          "missing_trace_success": "none",
+          "foreign_revision_continuation": "none",
+          "technical_success_business_complete": "none"
+        }
+      },
+      "expected_whole_canonical_sha256": "92aa87801488675b355def846b498ef4e96cf5f0e6573d7e534eae9568c7ab1e",
+      "expectation_basis": "L3/L4-F01の結果状態の観測条件を左右別に照合する。一方が既知successでも、他方が非文字列またはfixture markerならunknownを保持し、通常の内容相反へ読み替えない。",
+      "execution_state": "not_executed"
     }
   ],
   "source_revision_roles": {
@@ -86512,7 +90998,7 @@
     "meaning": "source_mainはこの詳細候補の入力file bytesを固定する実在snapshot。元L4/L9内のsource_mainは基本設計起草時の上流contextであり、L4/L9 file自体の所在revisionとして使わない。実file locatorはsource_pair_pinsのpath/revision/sha256へ結ぶ。"
   },
   "source_oracle_discrepancies": [],
-  "independent_semantic_probe_count": 63,
+  "independent_semantic_probe_count": 69,
   "cross_field_type_constraints": {
     "scope": "型内の2field組合せに対する独立5制約。184wholeとの照合とは別に数える。",
     "probes": [

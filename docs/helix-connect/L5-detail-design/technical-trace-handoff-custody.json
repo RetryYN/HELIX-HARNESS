@@ -1196,6 +1196,7 @@
       "align_by_field",
       "and",
       "array",
+      "array_at",
       "compare",
       "compare_fields",
       "concat",
@@ -1216,6 +1217,7 @@
       "length",
       "let",
       "literal",
+      "lt",
       "map",
       "map_values",
       "not",
@@ -1276,7 +1278,7 @@
         },
         {
           "output": "history_prefix_result",
-          "rule": "original_prior_eventsとoriginal_eventsの先頭prefixをJSON全体で比較する。"
+          "rule": "original_prior_eventsを原配列のまま保持する。priorが選択列より前で、最終ordinalが選択列先頭より小さく最終identityが選択列内にない場合は、window外の先行履歴としてprefix比較対象外とする。それ以外はoriginal_eventsの先頭len(prior)件とJSON型付きで全体比較する。"
         },
         {
           "output": "submitted_sequence_result",
