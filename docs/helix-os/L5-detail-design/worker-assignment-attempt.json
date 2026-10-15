@@ -8346,7 +8346,7 @@
                   },
                   "right": {
                     "op": "get",
-                    "path": "/context/expected_steps"
+                    "path": "/quality/actual_steps"
                   },
                   "required_fields": {
                     "step": "nonempty_string",
@@ -9130,6 +9130,62 @@
             "handoff"
           ],
           "purpose_ja": "選択済みsource orderのstep keyが重複すると一意の順序sourceを特定できない。実stepとの比較へ進めず、order source自体をunknownとして返す。"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "get",
+                  "path": "/quality/event_selected"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": true
+                }
+              },
+              {
+                "op": "not",
+                "value": {
+                  "op": "arrays_match_record_domain",
+                  "left": {
+                    "op": "get",
+                    "path": "/context/expected_steps"
+                  },
+                  "right": {
+                    "op": "get",
+                    "path": "/context/expected_steps"
+                  },
+                  "required_fields": {
+                    "step": "nonempty_string",
+                    "state": {
+                      "enum": [
+                        "executed",
+                        "failed",
+                        "stopped"
+                      ]
+                    },
+                    "result_ref": "nonempty_string"
+                  }
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "quality_step_unresolved",
+            "pointer": "/context/expected_steps",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "quality"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "quality eventが選択され、独立expected_stepsの配列または各recordが必要domainを満たさない場合、その供給元pointerへunknownを返す。actual_stepsのshape診断とは独立に扱う。"
         }
       ],
       "code_classes": {
@@ -10144,7 +10200,7 @@
             "continuity_ref"
           ]
         },
-        "semantics_ja": "各派生facetの比較適用条件を満たす入力で、対応するcore binding sourceがdomain不適合なら該当facetへunknownを追加する。行単位findingのfacetとは独立し、source不足をfacet markとして保持する。全比較rowのsource不足との重複を防ぐため、同一facet内のmarkは同じunknown値として集約する。"
+        "semantics_ja": "宣言phase内では、field_groupsに列挙した参照元fieldがknown_nonempty_stringでない場合、対応facetへunknownを追加する。この伝播は個別比較rowの適用可否から独立し、同一facet内のsource不足は一つのunknown markへ集約する。"
       },
       "comparison_row_deduplication_ja": "evaluation.task と evaluation.total_cost は既知値比較をcomparison_rowsが所有する。これらと同一path・domain・phaseのrule_rowsは二重findingを作るため置かない。evaluation.riskはevaluation_scope_conflictを返す専用比較rowだけを残し、一般source_conflictとの重複を避ける。"
     }
@@ -10222,7 +10278,7 @@
       "first_index_where_order_violation": "元配列を先頭から走査し、stepがorderに存在しない、またはorder indexが前の有効step以下となる最初の元indexを返す。"
     },
     "operators": {
-      "json_equal": "JSON nullはnull同士のみ一致、Absentは一致しない。booleanとnumberは異種。JSON number同士は数値として比較し1と1.0は同値。object key順は無視し、array順は保持する。",
+      "json_equal": "JSON nullはnull同士のみ一致する。内部のAbsent sentinelはAbsent sentinel同士だけ内部一致とするがJSON値ではなく、業務比較ではdomain-knownness guardを通過しない。booleanとnumberは異種。JSON number同士は数値として比較し1と1.0は同値。object key順は無視し、array順は保持する。",
       "max_by_priority": "valuesからpriority順位を比較し、rightmost_highest方向で最大順位の値を返す。priority外値はdomain外。",
       "comparison_row": "actual_path/expected_pathを個別に読み、両値がrow.domainを満たす場合だけJSON equality比較する。requires_known_pathがあればそのpointerも同domainを満たす場合のみrowを評価する。known mismatchはconflict_code、domain不適合はunknown_code。unknown_pointer_policyはactual/expected双方の検査順と出力個数を決める。",
       "applicability_when": "式がboolean trueのときだけ比較rowを評価する。falseなら当該rowは非適用。非booleanは比較不能で該当入力位置にunknownを返す。",
@@ -10238,15 +10294,15 @@
       "route_findings_by_pointer_prefix": "Findingの入力順を保持し、各pointerに一致するsource-bound routeの最長prefix一意一致を選ぶ。同率または一致なしは未解決role candidateを返す。",
       "is_not_null": "Absent sentinelとJSON nullの双方をfalse、それ以外のpresent valueをtrueとする。kind適合は別domain判定。",
       "not_subset": "左右がarrayで、左のすべての値がJSON equalityで右に含まれる場合false、そうでなければtrue。片側がAbsent/null/非arrayならfalseとし、別のdomain findingが不足を示す。",
-      "eq / in": "Absent同士は内部JSON equalityとして一致し、nullはnullとだけ一致する。booleanはnumberと異なるkind、JSON number同士は数値等値、object key順は無視しarray順は保持する。業務上の比較はcomparison rowのdomain-knownness guardを先に適用するため、Absent/ nullをknownの業務値へ昇格させない。in/not_inは同じJSON equalityをset memberごとに使う。",
+      "eq / in": "Absent sentinel同士は内部比較で一致し、JSON nullはnullとだけ一致する。booleanはnumberと異なるkind、JSON number同士は数値等値、object key順は無視しarray順は保持する。業務上の比較はcomparison rowのdomain-knownness guardを先に適用するため、Absent/nullをknownの業務値へ昇格させない。in/not_inは同じ内部比較をset memberごとに使う。",
       "number_*": "number_gt/gte/lt/neは両operandがJSON number（booleanを除く）の場合のみ演算する。誤kindに対してfalseを返すが、それ自体は適合の証拠でない。not_numberによるunknown findingが同じfieldを分類する。",
       "unknown_pointer_policy": "first_invalid_operand_actual_then_expectedはactualを先にdomain評価し、不正ならactual pointerだけを返す。actualがknownでexpectedだけが不正ならexpected pointerを返す。all_invalid_operands_actual_then_expectedは不正なoperand双方をactual, expectedの順に返す。",
       "duplicate_array_field": "arrayの全item objectに指定fieldがnonempty stringとしてある場合だけ、field重複があるとtrue。不正shapeはfalseで、別domain rowが扱う。",
       "get": "pathで指定したJSON Pointerを入力から読み、存在しないmember/indexはAbsent sentinelを返す。",
       "literal": "ASTに記録されたJSON値をそのまま返す。",
-      "eq": "左辺右辺を内部JSON equalityで比較する。Absent同士はtrueだが業務比較のknown判定には使わず、domain guardが先行する。",
+      "eq": "両operandを同じ内部等値規則で比較する。Absent sentinel同士は一致するが、domain-knownness guardを迂回した業務値として扱わない。",
       "not_eq": "eqの否定。",
-      "json_eq": "JSON kindを保持する等値判定。Absent同士の内部一致を許すが、業務上の意味比較はdomain-known guardで限定する。",
+      "json_eq": "JSON値はJSON kindを保って比較する。Absent sentinel同士は内部一致とするが、AbsentはJSON値ではなく、業務上の意味比較はdomain-known guardで限定する。",
       "json_ne": "json_eqの否定。",
       "and": "itemsを左から評価し、すべてboolean trueならtrue。",
       "or": "itemsを左から評価し、少なくとも一つboolean trueならtrue。",

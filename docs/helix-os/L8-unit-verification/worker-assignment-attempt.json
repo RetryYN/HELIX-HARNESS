@@ -302,7 +302,7 @@
       "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
     }
   ],
-  "paired_l5_sha256": "2ae040ef3fc28dd3787c1d706bc30a92fec4c035877d1600421ce7b40dca3006",
+  "paired_l5_sha256": "b0a60ba7e9eb3e73b7b6bbf57c50dc128afbabaede45a18f32db6a36f50c6516",
   "source_oracle": {
     "path": "docs/helix-os/L9-integration-verification/worker-assignment-attempt.json",
     "source_revision": "b0e784dc7891755de29bc901b82542105e726779",
@@ -18941,6 +18941,50 @@
         "basis": "L9 fixture_contract.algorithmの累積比較はpriorが存在する場合に適用し、before_executionを除外しない。L3-F02の未完義務を不明なまま保持し、消失と断定しない。",
         "normative_pointers": [
           "/formal_programs/0/rule_rows/90/finding/code"
+        ]
+      },
+      {
+        "id": "EXPECTED-QUALITY-STEPS-INVALID-POINTER",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/quality/actual_steps",
+            "value": [
+              {
+                "step": "STEP-B",
+                "state": "executed",
+                "result_ref": "RESULT-B"
+              },
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/expected_steps",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "quality_step_unresolved",
+            "pointer": "/context/expected_steps",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/quality_path_status": "unknown",
+          "/facet_correspondence/quality": "unknown",
+          "return_type_must_validate": true
+        },
+        "basis": "L9の選択済quality event規則はactual_stepsと独立expected_stepsを比較し、各source不足を保持してquality_path_statusをunknownにする。expected_steps=nullはexpected側の不備なので診断pointerは供給元/context/expected_steps。L4の診断契約に従って入力位置を保つ。実owner資格は示さない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/61/purpose_ja",
+          "/formal_programs/0/rule_rows/92/finding/pointer"
         ]
       }
     ],
