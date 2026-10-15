@@ -1,0 +1,2491 @@
+{
+  "parent": "HELIXBRAIN-L2-028",
+  "document_id": "HELIXBRAIN-L5-028",
+  "layer": "L5",
+  "pair": "L8",
+  "status": "draft_limited_pure_logic_not_implementation_ready",
+  "source_main": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "boundary": "知識と共通descriptorの各版軸、互換と未観測限界の局所照合。実呼出し/lifecycle成立を生成しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "approval_binding": {
+    "record_id": "HDEC-BRAIN-PROVENANCE-VERSION-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "actual_main_admission": "967bc8f9adc44e40757c0d25238366a87157be89",
+    "authority": "本detailは承認L3/L10の意味を具体化する候補であり、当該記録の承認/実資格/利用許可を拡張しない。",
+    "approved_object_count": 8,
+    "approved_objects": [
+      {
+        "id": "HELIXBRAIN-L3-028-F01",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L3-028-F01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "知識版とpack版の別照合",
+          "obligation": "HARNESS010/011のdescriptor identity/kind/contract version/artifact version/dependency identity-version/compatibility range/verification scopeへ、BRAIN固有のknowledge identity/revision/version/stateを別に結ぶ。version_targetは能力目標で実版ではない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-F01"
+        },
+        "approved_canonical_sha256": "78a741a471e825f212ec1a9afc27fa1a10b10dad9d3b8acb59941bab7fc84765",
+        "current_whole": {
+          "id": "HELIXBRAIN-L3-028-F01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "知識版とpack版の別照合",
+          "obligation": "HARNESS010/011のdescriptor identity/kind/contract version/artifact version/dependency identity-version/compatibility range/verification scopeへ、BRAIN固有のknowledge identity/revision/version/stateを別に結ぶ。version_targetは能力目標で実版ではない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-F01"
+        },
+        "current_canonical_sha256": "78a741a471e825f212ec1a9afc27fa1a10b10dad9d3b8acb59941bab7fc84765",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L3-028-F02",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L3-028-F02",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "互換範囲とunknownの返却",
+          "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-F02"
+        },
+        "approved_canonical_sha256": "9942ca9eebe2bee32c3c6c92ce6d0467a1bda213dba576427379a8a018cbef58",
+        "current_whole": {
+          "id": "HELIXBRAIN-L3-028-F02",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "互換範囲とunknownの返却",
+          "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-F02"
+        },
+        "current_canonical_sha256": "9942ca9eebe2bee32c3c6c92ce6d0467a1bda213dba576427379a8a018cbef58",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L3-028-N01",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L3-028-N01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "未見版と照合証拠の限界",
+          "obligation": "同scopeの未見knowledge/descriptor候補にも同じ版軸/互換/state契約を適用し、別revisionの成功結果や未観測を利用可能へ補完しない。根拠のあるscopeと未評価/未完を保持し、限定照合から全知識/全案件の安全や成熟を保証しない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-N01"
+        },
+        "approved_canonical_sha256": "3e5513ec8f2a8f20e7e7e1ecc0312a48784024d10c47672e2a1c8453807a5e3b",
+        "current_whole": {
+          "id": "HELIXBRAIN-L3-028-N01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "未見版と照合証拠の限界",
+          "obligation": "同scopeの未見knowledge/descriptor候補にも同じ版軸/互換/state契約を適用し、別revisionの成功結果や未観測を利用可能へ補完しない。根拠のあるscopeと未評価/未完を保持し、限定照合から全知識/全案件の安全や成熟を保証しない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-N01"
+        },
+        "current_canonical_sha256": "3e5513ec8f2a8f20e7e7e1ecc0312a48784024d10c47672e2a1c8453807a5e3b",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L3-028-B01",
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L3-028-B01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "共通pack lifecycleへの参照",
+          "obligation": "共通交換/更新/rollback/未完義務の引継ぎはHARNESS010/011を参照し、BRAINが別lifecycleを再定義しない。BRAINは知識revision/stateとdescriptorへの適用を提供し、実呼出し/登録/配布/rollbackの成功を生成しない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-B01"
+        },
+        "approved_canonical_sha256": "2ed2e96f8ff2a5a0175f355cc0767ebb1eb4f9249b561fa34acf8c3a020eb159",
+        "current_whole": {
+          "id": "HELIXBRAIN-L3-028-B01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "共通pack lifecycleへの参照",
+          "obligation": "共通交換/更新/rollback/未完義務の引継ぎはHARNESS010/011を参照し、BRAINが別lifecycleを再定義しない。BRAINは知識revision/stateとdescriptorへの適用を提供し、実呼出し/登録/配布/rollbackの成功を生成しない。",
+          "oracle_ref": "HELIXBRAIN-L10-028-B01"
+        },
+        "current_canonical_sha256": "2ed2e96f8ff2a5a0175f355cc0767ebb1eb4f9249b561fa34acf8c3a020eb159",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L10-028-F01",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L10-028-F01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "知識版とpack版の別照合",
+          "requirement_ref": "HELIXBRAIN-L3-028-F01",
+          "positive_input": "descriptor各版と知識版が違う候補、実版unknown、1.0目標のみの候補を照合する。",
+          "expected_observation": "各版軸と対象scope、知識状態を別々に辿れる。",
+          "negative_input": "knowledge版をartifact版へ転写、1.0目標を実contract版、descriptor欠落を知識存在で補完。",
+          "failure_observation": "知識revisionは008、descriptor boundary不足はHARNESS ownerへ返す。",
+          "execution_state": "not_executed"
+        },
+        "approved_canonical_sha256": "9499910da4d43cc1036b6b5388c0b6eacc2bf0d9fc6c39529bd18c1b7a4641af",
+        "current_whole": {
+          "id": "HELIXBRAIN-L10-028-F01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "知識版とpack版の別照合",
+          "requirement_ref": "HELIXBRAIN-L3-028-F01",
+          "positive_input": "descriptor各版と知識版が違う候補、実版unknown、1.0目標のみの候補を照合する。",
+          "expected_observation": "各版軸と対象scope、知識状態を別々に辿れる。",
+          "negative_input": "knowledge版をartifact版へ転写、1.0目標を実contract版、descriptor欠落を知識存在で補完。",
+          "failure_observation": "知識revisionは008、descriptor boundary不足はHARNESS ownerへ返す。",
+          "execution_state": "not_executed"
+        },
+        "current_canonical_sha256": "9499910da4d43cc1036b6b5388c0b6eacc2bf0d9fc6c39529bd18c1b7a4641af",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L10-028-F02",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L10-028-F02",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "互換範囲とunknownの返却",
+          "requirement_ref": "HELIXBRAIN-L3-028-F02",
+          "positive_input": "range内/外、identity mismatch、依存版不明、知識state不明を個別に与える。",
+          "expected_observation": "適用可能/不適用/unknownと根拠、該当版軸と返却ownerを識別する。",
+          "negative_input": "unknownで呼出し、range外を黙って読み替え、古いcurrent候補へfallback、知識状態を無視。",
+          "failure_observation": "当該呼出しの未成立を保持し、無関係な有効参照を一律失効させない。",
+          "execution_state": "not_executed"
+        },
+        "approved_canonical_sha256": "92379230849836f211774303961364f1d0f2fbe82ed62eb9817dc201345b091b",
+        "current_whole": {
+          "id": "HELIXBRAIN-L10-028-F02",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "互換範囲とunknownの返却",
+          "requirement_ref": "HELIXBRAIN-L3-028-F02",
+          "positive_input": "range内/外、identity mismatch、依存版不明、知識state不明を個別に与える。",
+          "expected_observation": "適用可能/不適用/unknownと根拠、該当版軸と返却ownerを識別する。",
+          "negative_input": "unknownで呼出し、range外を黙って読み替え、古いcurrent候補へfallback、知識状態を無視。",
+          "failure_observation": "当該呼出しの未成立を保持し、無関係な有効参照を一律失効させない。",
+          "execution_state": "not_executed"
+        },
+        "current_canonical_sha256": "92379230849836f211774303961364f1d0f2fbe82ed62eb9817dc201345b091b",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L10-028-N01",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L10-028-N01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "未見版と照合証拠の限界",
+          "requirement_ref": "HELIXBRAIN-L3-028-N01",
+          "positive_input": "未見版、別scope検証結果、旧成功のみ、未評価条件を与える。",
+          "expected_observation": "不明/不一致と証拠の適用scopeが辿れる。",
+          "negative_input": "別revision成功で互換、未見未評価をcurrent/accepted、全pack互換を外挿。",
+          "failure_observation": "該当候補/consumerの不足だけを保持し、実利用/昇格/受入を生成しない。",
+          "execution_state": "not_executed"
+        },
+        "approved_canonical_sha256": "db65ca10621d7201212f7b5ebe0fc805f182790d939e892e6211b12248960975",
+        "current_whole": {
+          "id": "HELIXBRAIN-L10-028-N01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "未見版と照合証拠の限界",
+          "requirement_ref": "HELIXBRAIN-L3-028-N01",
+          "positive_input": "未見版、別scope検証結果、旧成功のみ、未評価条件を与える。",
+          "expected_observation": "不明/不一致と証拠の適用scopeが辿れる。",
+          "negative_input": "別revision成功で互換、未見未評価をcurrent/accepted、全pack互換を外挿。",
+          "failure_observation": "該当候補/consumerの不足だけを保持し、実利用/昇格/受入を生成しない。",
+          "execution_state": "not_executed"
+        },
+        "current_canonical_sha256": "db65ca10621d7201212f7b5ebe0fc805f182790d939e892e6211b12248960975",
+        "equal_approved_to_current": true
+      },
+      {
+        "id": "HELIXBRAIN-L10-028-B01",
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "approved_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+        "current_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+        "approved_whole": {
+          "id": "HELIXBRAIN-L10-028-B01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "共通pack lifecycleへの参照",
+          "requirement_ref": "HELIXBRAIN-L3-028-B01",
+          "positive_input": "知識更新候補と未完の共通pack義務を同対象へ結ぶ条件を比較する。",
+          "expected_observation": "知識の変更と共通契約/実operationの成立を別に追う。",
+          "negative_input": "BRAIN独自exchange規則、descriptor一致で実rollback成功、共通義務を知識currentで消す。",
+          "failure_observation": "共通条件はHARNESS、実operationは該当ownerへ返す。",
+          "execution_state": "not_executed"
+        },
+        "approved_canonical_sha256": "a8502c48e1de3764e957c2b509096c5f8c4e538072e2b440b5f1d5e9b06f1cc4",
+        "current_whole": {
+          "id": "HELIXBRAIN-L10-028-B01",
+          "parent": "HELIXBRAIN-L2-028",
+          "title": "共通pack lifecycleへの参照",
+          "requirement_ref": "HELIXBRAIN-L3-028-B01",
+          "positive_input": "知識更新候補と未完の共通pack義務を同対象へ結ぶ条件を比較する。",
+          "expected_observation": "知識の変更と共通契約/実operationの成立を別に追う。",
+          "negative_input": "BRAIN独自exchange規則、descriptor一致で実rollback成功、共通義務を知識currentで消す。",
+          "failure_observation": "共通条件はHARNESS、実operationは該当ownerへ返す。",
+          "execution_state": "not_executed"
+        },
+        "current_canonical_sha256": "a8502c48e1de3764e957c2b509096c5f8c4e538072e2b440b5f1d5e9b06f1cc4",
+        "equal_approved_to_current": true
+      }
+    ],
+    "approved_content_admission_commit": "967bc8f9adc44e40757c0d25238366a87157be89",
+    "admission_audit_head": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "admission_audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+    "record_path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+    "record_sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/knowledge-descriptor-compatibility.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "08b7f93899d3b5aeeb335b8445901d451cdac55a07616f83d9651c77bb8391ea"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "8be2d54ea8bd0404ee2e96913a4a1a150d74629d35fe676f177fc15ed1f7c4fb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "legacy_source_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "disposition": "unresolved",
+    "source_revision": "a451a40d013df12872a3d4f5f837a2ec5f0998a8",
+    "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "selected_lines": [
+      19,
+      60
+    ],
+    "selected_lines_sha256": "5242e784fdab4ce2aa46b5fdac10f937ed1050496c58ea701f16d62b6212927e",
+    "preserve": "ID/版/schema束縛、unknown版とdigest drift、適用条件不明とpair revision束縛を保持する。",
+    "change": "旧registry/runtime/predicate実装を移植せず、knowledge軸とHARNESS descriptor軸を分けて再導出する。",
+    "reason": "承認F01/F02/B01が版混同・黙ったfallback・共通lifecycle再定義を拒否する。"
+  },
+  "failure_consumer_basis": {
+    "l2_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+    "l2_lines": [
+      494,
+      502
+    ],
+    "failure_returns": {
+      "knowledge_identity_revision_version_state": "BRAIN L2-008（知識identity/revision/version/stateの戻し先）",
+      "descriptor_contract_artifact_dependency_compatibility_verification_scope": "HARNESS L2-010/011（共通descriptor境界の戻し先）",
+      "common_exchange_update_rollback_unfinished_obligation": "HARNESS L2-010/011へ戻す。実operation ownerは別に保つ。"
+    },
+    "consumers": [
+      "BRAIN L2-028の知識descriptor利用側",
+      "HARNESS L2-010/011の共通capability descriptor利用側"
+    ],
+    "qualification_limit": "合成recordのowner fieldは自己申告であり、owner資格やexact bindingを成立させない。",
+    "source_refs": [
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "lines": [
+          161,
+          169
+        ],
+        "meaning": "L2-008はknowledge identity/version/stateをBRAINに保持し、状態不明は候補利用を停止、project状態をOSへ戻す。"
+      },
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "lines": [
+          494,
+          502
+        ],
+        "meaning": "L2-028はL2-008の知識revision/stateとHARNESS-L2-010/011の共通descriptorを別にし、知識差分をBRAIN、共通pack境界/compatibilityをHARNESSへ返す。"
+      },
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          343,
+          364
+        ],
+        "meaning": "HARNESS-L2-010/011はpackの入力/出力/依存/verification scope/版と、呼出しの能力名/契約版/依存版を持つ。共通交換/更新/停止・再開等はBRAIN側で再定義しない。"
+      }
+    ],
+    "consumer_refs": [
+      {
+        "id": "HELIXBRAIN-L2-008",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "lines": [
+          165,
+          169
+        ]
+      },
+      {
+        "id": "HELIXBRAIN-L2-028",
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "lines": [
+          497,
+          502
+        ]
+      },
+      {
+        "id": "HARNESS-L2-010/011",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          343,
+          364
+        ]
+      }
+    ]
+  },
+  "logical_types": {
+    "JsonValue": {
+      "kind": "recursive_union",
+      "members": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "list<JsonValue>",
+        "map<string,JsonValue>"
+      ],
+      "json_equality": "JSON number同士は数値比較（1と1.0は等しい）。booleanはnumberと区別する。オブジェクトkey順は無視しkey/valueを再帰比較、配列順は保持する。"
+    },
+    "JsonField": {
+      "kind": "presence_union",
+      "carrier": "JsonValue",
+      "states": [
+        "Absent",
+        "Null",
+        "Value"
+      ],
+      "raw_encoding": "Absentはobject memberがない状態、Nullは明示JSON null、Valueはnull以外のJSON値。"
+    },
+    "KnowledgeRecord": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "revision": "JsonField",
+        "version": "JsonField",
+        "state": "JsonField"
+      },
+      "required_container": true
+    },
+    "DescriptorRecord": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "kind": "JsonField",
+        "contract_version": "JsonField",
+        "artifact_version": "JsonField",
+        "dependency_identity_versions": "DependencyIdentityVersionsOrNull",
+        "compatibility_range_ref": "JsonField",
+        "verification_scope": "JsonField"
+      },
+      "required_container": true
+    },
+    "ReferenceRecord": {
+      "kind": "record",
+      "fields": "文字列keyからJsonValueへの開いたrecord",
+      "required_container": true,
+      "open_members_allowed": true
+    },
+    "RangeMeaning": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "members_by_axis": "RangeMembersByAxisOrNull",
+        "owner": "JsonField",
+        "revision": "JsonField",
+        "scope": "JsonField"
+      },
+      "required_container": true,
+      "field_rules": {
+        "members_by_axis": "存在する場合は有限map<string,list<JsonValue>>。SemVer文法や集合完全性は推定しない。"
+      },
+      "required": [
+        "identity",
+        "members_by_axis",
+        "owner",
+        "revision",
+        "scope"
+      ]
+    },
+    "RequiredReference": {
+      "kind": "record",
+      "fields": {
+        "knowledge_identity": "JsonField",
+        "knowledge_revision": "JsonField",
+        "knowledge_version": "JsonField",
+        "knowledge_state": "JsonField",
+        "descriptor_identity": "JsonField",
+        "descriptor_kind": "JsonField",
+        "contract_version": "JsonField",
+        "artifact_version": "JsonField",
+        "dependency_identity": "JsonField",
+        "dependency_version": "JsonField",
+        "verification_scope": "JsonField"
+      },
+      "required_container": true
+    },
+    "StateApplicability": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "knowledge_identity": "JsonField",
+        "knowledge_revision": "JsonField",
+        "observed_state": "JsonField",
+        "owner": "JsonField",
+        "revision": "JsonField",
+        "scope": "JsonField",
+        "eligible_in_fixture": "BooleanOrNull"
+      },
+      "required_container": true
+    },
+    "CandidateTarget": {
+      "kind": "record",
+      "fields": {
+        "descriptor_identity": "JsonField",
+        "descriptor_revision": "JsonField",
+        "knowledge_identity": "JsonField",
+        "knowledge_revision": "JsonField",
+        "scope": "JsonField"
+      },
+      "required_container": true
+    },
+    "EvaluationRecordOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "EvaluationRecord"
+      ]
+    },
+    "EvaluationRecord": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "owner": "JsonField",
+        "result": "JsonField",
+        "revision": "JsonField",
+        "state": "JsonField",
+        "target": "JsonField"
+      },
+      "required_container": true
+    },
+    "CandidateState": {
+      "kind": "enum",
+      "values": [
+        "unseen_unevaluated_in_fixture"
+      ]
+    },
+    "CommonReferences": {
+      "kind": "record",
+      "fields": {
+        "exchange_update": "JsonField",
+        "calling_contract": "JsonField"
+      },
+      "required_container": true
+    },
+    "OwnerMap": {
+      "kind": "record",
+      "fields": {
+        "knowledge_revision_state": "JsonField",
+        "common_contract": "JsonField",
+        "actual_operation": "JsonField"
+      },
+      "required_container": true
+    },
+    "UnfinishedObligation": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "revision": "JsonField",
+        "descriptor_identity": "JsonField",
+        "knowledge_revision": "JsonField",
+        "scope": "JsonField",
+        "state": "JsonField",
+        "owner": "JsonField"
+      },
+      "required_container": true
+    },
+    "ClaimMapF01": {
+      "kind": "map",
+      "key": "string",
+      "value": "boolean",
+      "key_domain": "この入力群で宣言したclaim field名",
+      "unknown_key": "この有限vectorでは未知keyを評価しない"
+    },
+    "ClaimMapF02": {
+      "kind": "map",
+      "key": "string",
+      "value": "boolean",
+      "key_domain": "この入力群で宣言したclaim field名",
+      "unknown_key": "この有限vectorでは未知keyを評価しない"
+    },
+    "ClaimMapN01": {
+      "kind": "map",
+      "key": "string",
+      "value": "boolean",
+      "key_domain": "この入力群で宣言したclaim field名",
+      "unknown_key": "この有限vectorでは未知keyを評価しない"
+    },
+    "ClaimMapB01": {
+      "kind": "map",
+      "key": "string",
+      "value": "boolean",
+      "key_domain": "この入力群で宣言したclaim field名",
+      "unknown_key": "この有限vectorでは未知keyを評価しない"
+    },
+    "Relation": {
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unknown",
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "mismatch",
+        "in_declared_fixture_range",
+        "out_of_declared_fixture_range",
+        "state_eligible_in_fixture",
+        "state_not_eligible_in_fixture",
+        "same_target_in_fixture",
+        "different_target",
+        "evidence_corresponding_in_fixture_only"
+      ]
+    },
+    "NoEffectFlags": {
+      "kind": "record",
+      "fields": {
+        "actual_call": false,
+        "actual_registration": false,
+        "actual_distribution": false,
+        "actual_rollback": false,
+        "actual_knowledge_adoption": false,
+        "actual_obligation_discharge": false,
+        "actual_authority": false,
+        "actual_implementation_ready": false,
+        "actual_acceptance": false
+      },
+      "required": [
+        "actual_call",
+        "actual_registration",
+        "actual_distribution",
+        "actual_rollback",
+        "actual_knowledge_adoption",
+        "actual_obligation_discharge",
+        "actual_authority",
+        "actual_implementation_ready",
+        "actual_acceptance"
+      ]
+    },
+    "OwnerRoutingF01": {
+      "kind": "record",
+      "fields": {
+        "knowledge_axes": {
+          "enum": [
+            "BRAIN008"
+          ]
+        },
+        "descriptor_axes": {
+          "enum": [
+            "HARNESS"
+          ]
+        }
+      },
+      "required": [
+        "knowledge_axes",
+        "descriptor_axes"
+      ]
+    },
+    "OwnerRoutingB01": {
+      "kind": "record",
+      "fields": {
+        "knowledge_revision_state": {
+          "enum": [
+            "BRAIN008"
+          ]
+        },
+        "common_conditions": {
+          "enum": [
+            "HARNESS"
+          ]
+        },
+        "actual_operation": "JsonValue"
+      },
+      "required": [
+        "knowledge_revision_state",
+        "common_conditions",
+        "actual_operation"
+      ],
+      "meaning": "knowledge_revision_state と common_conditions は固定された戻し先候補。actual_operation は original_owners.actual_operation の元JSON値を保持し、Absentだけnullで表現する。いずれも実owner資格や権限を示さない。"
+    },
+    "ActualReferenceState": {
+      "kind": "enum",
+      "values": [
+        "not_established"
+      ]
+    },
+    "ActualCallState": {
+      "kind": "enum",
+      "values": [
+        "not_established"
+      ]
+    },
+    "ActualOperationState": {
+      "kind": "enum",
+      "values": [
+        "not_established"
+      ]
+    },
+    "EvidenceLimit": {
+      "kind": "enum",
+      "values": [
+        "same exact candidate revisions and scope only; no actual held-out evaluation"
+      ]
+    },
+    "CandidateEvidenceResult": {
+      "kind": "enum",
+      "values": [
+        "unknown",
+        "evidence_corresponding_in_fixture_only"
+      ]
+    },
+    "ContentRelation": {
+      "kind": "enum",
+      "values": [
+        "missing",
+        "content_corresponding_in_fixture",
+        "content_conflict"
+      ]
+    },
+    "TargetRelation": {
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unknown",
+        "same_target_in_fixture",
+        "different_target"
+      ]
+    },
+    "ClaimResult": {
+      "kind": "enum",
+      "values": [
+        "unknown",
+        "none",
+        "rejected"
+      ]
+    },
+    "KnowledgeFieldResults": {
+      "kind": "record",
+      "fields": {
+        "identity": "Relation",
+        "revision": "Relation",
+        "version": "Relation",
+        "state": "Relation"
+      },
+      "order": [
+        "identity",
+        "revision",
+        "version",
+        "state"
+      ],
+      "required": [
+        "identity",
+        "revision",
+        "version",
+        "state"
+      ]
+    },
+    "DescriptorFieldResults": {
+      "kind": "record",
+      "fields": {
+        "identity": "Relation",
+        "kind": "Relation",
+        "contract_version": "Relation",
+        "artifact_version": "Relation",
+        "dependency_identity_versions": "Relation",
+        "compatibility_range_ref": "Relation",
+        "verification_scope": "Relation"
+      },
+      "order": [
+        "identity",
+        "kind",
+        "contract_version",
+        "artifact_version",
+        "dependency_identity_versions",
+        "compatibility_range_ref",
+        "verification_scope"
+      ],
+      "required": [
+        "identity",
+        "kind",
+        "contract_version",
+        "artifact_version",
+        "dependency_identity_versions",
+        "compatibility_range_ref",
+        "verification_scope"
+      ]
+    },
+    "ClaimResultMapF01": {
+      "kind": "record",
+      "fields": {
+        "knowledge_as_artifact": "ClaimResult",
+        "target_as_contract": "ClaimResult",
+        "knowledge_replaces_descriptor": "ClaimResult"
+      },
+      "input_source": "この入力群に固定したclaim keyを持つclaims map",
+      "required": [
+        "knowledge_as_artifact",
+        "target_as_contract",
+        "knowledge_replaces_descriptor"
+      ]
+    },
+    "ClaimResultMapF02": {
+      "kind": "record",
+      "fields": {
+        "unknown_call": "ClaimResult",
+        "range_out_reinterpret": "ClaimResult",
+        "silent_old_current_fallback": "ClaimResult",
+        "ignore_knowledge_state": "ClaimResult",
+        "revoke_Q": "ClaimResult"
+      },
+      "input_source": "この入力群に固定したclaim keyを持つclaims map",
+      "required": [
+        "unknown_call",
+        "range_out_reinterpret",
+        "silent_old_current_fallback",
+        "ignore_knowledge_state",
+        "revoke_Q"
+      ]
+    },
+    "ClaimResultMapN01": {
+      "kind": "record",
+      "fields": {
+        "other_revision_success_compatible": "ClaimResult",
+        "unseen_unevaluated_current": "ClaimResult",
+        "unseen_unevaluated_accepted": "ClaimResult",
+        "all_packs_compatible": "ClaimResult"
+      },
+      "input_source": "この入力群に固定したclaim keyを持つclaims map",
+      "required": [
+        "other_revision_success_compatible",
+        "unseen_unevaluated_current",
+        "unseen_unevaluated_accepted",
+        "all_packs_compatible"
+      ]
+    },
+    "ClaimResultMapB01": {
+      "kind": "record",
+      "fields": {
+        "BRAIN_exchange_redefinition": "ClaimResult",
+        "descriptor_match_rollback_success": "ClaimResult",
+        "current_discharges_common_obligation": "ClaimResult",
+        "descriptor_match_call_success": "ClaimResult",
+        "descriptor_match_registration_success": "ClaimResult",
+        "descriptor_match_distribution_success": "ClaimResult"
+      },
+      "input_source": "この入力群に固定したclaim keyを持つclaims map",
+      "required": [
+        "BRAIN_exchange_redefinition",
+        "descriptor_match_rollback_success",
+        "current_discharges_common_obligation",
+        "descriptor_match_call_success",
+        "descriptor_match_registration_success",
+        "descriptor_match_distribution_success"
+      ]
+    },
+    "CommonReferenceResults": {
+      "kind": "record",
+      "fields": {
+        "exchange_update": "Relation",
+        "calling_contract": "Relation"
+      },
+      "order": [
+        "exchange_update",
+        "calling_contract"
+      ],
+      "required": [
+        "exchange_update",
+        "calling_contract"
+      ]
+    },
+    "OwnerResults": {
+      "kind": "record",
+      "fields": {
+        "knowledge_revision_state": "Relation",
+        "common_contract": "Relation",
+        "actual_operation": "Relation"
+      },
+      "order": [
+        "knowledge_revision_state",
+        "common_contract",
+        "actual_operation"
+      ],
+      "required": [
+        "knowledge_revision_state",
+        "common_contract",
+        "actual_operation"
+      ]
+    },
+    "AxisApplicabilityResult": {
+      "kind": "record",
+      "fields": {
+        "axis": {
+          "enum": [
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "knowledge_state",
+            "descriptor_identity",
+            "descriptor_kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity",
+            "dependency_version",
+            "verification_scope"
+          ]
+        },
+        "required_original": "JsonValue",
+        "result": "AxisRelation",
+        "return_owner": {
+          "enum": [
+            "BRAIN008",
+            "HARNESS"
+          ]
+        },
+        "submitted": "JsonValueOrNull"
+      },
+      "order": [
+        "axis",
+        "required_original",
+        "result",
+        "return_owner",
+        "submitted"
+      ],
+      "required": [
+        "axis",
+        "required_original",
+        "result",
+        "return_owner",
+        "submitted"
+      ]
+    },
+    "AxisRelation": {
+      "kind": "enum",
+      "values": [
+        "unknown",
+        "mismatch",
+        "content_corresponding_in_fixture",
+        "in_declared_fixture_range",
+        "out_of_declared_fixture_range",
+        "state_eligible_in_fixture",
+        "state_not_eligible_in_fixture"
+      ]
+    },
+    "ReferenceApplicabilityResult": {
+      "kind": "enum",
+      "values": [
+        "unknown",
+        "not_applicable_in_fixture",
+        "applicable_candidate_in_fixture_only"
+      ]
+    },
+    "KnowledgeState": {
+      "kind": "JsonValue",
+      "source_path": "input.knowledge.state",
+      "open_domain": true
+    },
+    "CommonObligationState": {
+      "kind": "JsonValue",
+      "source_path": "input.original_unfinished_obligation.state",
+      "open_domain": true
+    },
+    "UnknownAxis": {
+      "kind": "record",
+      "fields": {
+        "axis": "string",
+        "owner": {
+          "enum": [
+            "BRAIN008",
+            "HARNESS"
+          ]
+        }
+      },
+      "order": [
+        "axis",
+        "owner"
+      ],
+      "required": [
+        "axis",
+        "owner"
+      ]
+    },
+    "RangeMeaningOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "RangeMeaning"
+      ]
+    },
+    "StateApplicabilityOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "StateApplicability"
+      ]
+    },
+    "UnfinishedObligationOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "UnfinishedObligation"
+      ]
+    },
+    "DependencyIdentityVersionsOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "DependencyIdentityVersions"
+      ]
+    },
+    "DependencyIdentityVersions": {
+      "kind": "list",
+      "items": "DependencyIdentityVersion"
+    },
+    "DependencyIdentityVersion": {
+      "kind": "record",
+      "fields": {
+        "identity": "JsonField",
+        "version": "JsonField"
+      },
+      "required_container": true
+    },
+    "RangeMembersByAxis": {
+      "kind": "map",
+      "key": "string",
+      "value": {
+        "kind": "list",
+        "items": "JsonValue"
+      }
+    },
+    "RangeMembersByAxisOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "RangeMembersByAxis"
+      ]
+    },
+    "BooleanOrNull": {
+      "kind": "union",
+      "members": [
+        "null",
+        "boolean"
+      ]
+    }
+  },
+  "functions": [
+    {
+      "id": "HELIXBRAIN-L5-028-F01",
+      "requirement_ref": "HELIXBRAIN-L3-028-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F01",
+      "l4_ref": "HELIXBRAIN-L4-028-F01",
+      "l9_ref": "HELIXBRAIN-L9-028-F01",
+      "input_type": {
+        "kind": "record",
+        "required": [
+          "original_descriptor",
+          "original_knowledge",
+          "submitted_descriptor",
+          "submitted_knowledge",
+          "unaffected_reference_Q",
+          "claims",
+          "version_target"
+        ],
+        "fields": {
+          "original_descriptor": "DescriptorRecord",
+          "original_knowledge": "KnowledgeRecord",
+          "submitted_descriptor": "DescriptorRecord",
+          "submitted_knowledge": "KnowledgeRecord",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claims": "ClaimMapF01",
+          "version_target": "JsonValue"
+        }
+      },
+      "output_type": {
+        "kind": "record",
+        "required": [
+          "knowledge_results",
+          "descriptor_results",
+          "retained_knowledge",
+          "submitted_knowledge",
+          "retained_descriptor",
+          "submitted_descriptor",
+          "unknown_original_axes",
+          "return_owners",
+          "unaffected_reference_Q",
+          "claim_results",
+          "actual_reference_state",
+          "effects"
+        ],
+        "fields": {
+          "knowledge_results": "KnowledgeFieldResults",
+          "descriptor_results": "DescriptorFieldResults",
+          "retained_knowledge": "KnowledgeRecord",
+          "submitted_knowledge": "KnowledgeRecord",
+          "retained_descriptor": "DescriptorRecord",
+          "submitted_descriptor": "DescriptorRecord",
+          "unknown_original_axes": "list<UnknownAxis>",
+          "return_owners": "OwnerRoutingF01",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claim_results": "ClaimResultMapF01",
+          "actual_reference_state": "ActualReferenceState",
+          "effects": "NoEffectFlags"
+        }
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_fields",
+          "left": "input.original_knowledge",
+          "right": "input.submitted_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state"
+          ],
+          "absent": "missing",
+          "present_equal": "content_corresponding_in_fixture",
+          "present_different": "content_conflict",
+          "equality": "json_value_equality",
+          "to": "knowledge_results"
+        },
+        {
+          "step": 2,
+          "op": "compare_fields",
+          "left": "input.original_descriptor",
+          "right": "input.submitted_descriptor",
+          "fields": [
+            "identity",
+            "kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity_versions",
+            "compatibility_range_ref",
+            "verification_scope"
+          ],
+          "absent": "missing",
+          "present_equal": "content_corresponding_in_fixture",
+          "present_different": "content_conflict",
+          "equality": "json_value_equality",
+          "to": "descriptor_results"
+        },
+        {
+          "step": 3,
+          "op": "collect_null_members",
+          "observations": [
+            {
+              "source": "input.original_knowledge",
+              "fields": [
+                "identity",
+                "revision",
+                "version",
+                "state"
+              ],
+              "axis_field": "axis",
+              "owner": "BRAIN008",
+              "owner_field": "owner"
+            },
+            {
+              "source": "input.original_descriptor",
+              "fields": [
+                "identity",
+                "kind",
+                "contract_version",
+                "artifact_version",
+                "compatibility_range_ref",
+                "verification_scope"
+              ],
+              "axis_field": "axis",
+              "owner": "HARNESS",
+              "owner_field": "owner"
+            },
+            {
+              "source": "input.original_descriptor.dependency_identity_versions[*]",
+              "fields": [
+                "identity",
+                "version"
+              ],
+              "axis_constant": "dependency_identity_versions",
+              "owner": "HARNESS",
+              "axis_field": "axis",
+              "owner_field": "owner"
+            }
+          ],
+          "include": "明示Nullのみ。Absentはfield比較のmissingで表されるためこの配列に含めない。",
+          "to": "unknown_original_axes"
+        },
+        {
+          "step": 4,
+          "op": "project_record",
+          "from": "input.original_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state"
+          ],
+          "preserve_absent": "omit",
+          "to": "retained_knowledge"
+        },
+        {
+          "step": 5,
+          "op": "project_record",
+          "from": "input.submitted_knowledge",
+          "fields": [
+            "identity",
+            "revision",
+            "version",
+            "state"
+          ],
+          "preserve_absent": "omit",
+          "to": "submitted_knowledge"
+        },
+        {
+          "step": 6,
+          "op": "project_record",
+          "from": "input.original_descriptor",
+          "fields": [
+            "identity",
+            "kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity_versions",
+            "compatibility_range_ref",
+            "verification_scope"
+          ],
+          "preserve_absent": "omit",
+          "to": "retained_descriptor"
+        },
+        {
+          "step": 7,
+          "op": "project_record",
+          "from": "input.submitted_descriptor",
+          "fields": [
+            "identity",
+            "kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity_versions",
+            "compatibility_range_ref",
+            "verification_scope"
+          ],
+          "preserve_absent": "omit",
+          "to": "submitted_descriptor"
+        },
+        {
+          "step": 8,
+          "op": "fixed_record",
+          "value": {
+            "knowledge_axes": "BRAIN008",
+            "descriptor_axes": "HARNESS"
+          },
+          "to": "return_owners",
+          "meaning": "L4/F01に基づく戻し先候補。owner資格の証明ではない。"
+        },
+        {
+          "step": 9,
+          "op": "copy_value",
+          "from": "input.unaffected_reference_Q",
+          "to": "unaffected_reference_Q",
+          "absent_value": null
+        },
+        {
+          "step": 10,
+          "op": "claims_true_rejected",
+          "from": "input.claims",
+          "true": "rejected",
+          "false": "none",
+          "to": "claim_results",
+          "truth_value": true,
+          "fields": [
+            "knowledge_as_artifact",
+            "target_as_contract",
+            "knowledge_replaces_descriptor"
+          ],
+          "absent_or_null": "unknown",
+          "non_boolean": "unknown",
+          "branch_order": [
+            "missing_or_null",
+            "boolean_true",
+            "boolean_false",
+            "other_value"
+          ],
+          "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
+        },
+        {
+          "step": 11,
+          "op": "fixed_record",
+          "value": {
+            "actual_call": false,
+            "actual_registration": false,
+            "actual_distribution": false,
+            "actual_rollback": false,
+            "actual_knowledge_adoption": false,
+            "actual_obligation_discharge": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "to": "effects"
+        },
+        {
+          "step": 12,
+          "op": "fixed_value",
+          "value": "not_established",
+          "to": "actual_reference_state"
+        }
+      ],
+      "purpose": "知識版軸と共通descriptor版軸を別々に比較・保持し、知識値をpack軸へ転写しない。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-028-F02",
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
+      "l4_ref": "HELIXBRAIN-L4-028-F02",
+      "l9_ref": "HELIXBRAIN-L9-028-F02",
+      "input_type": {
+        "kind": "record",
+        "required": [
+          "original_range_meaning",
+          "submitted_range_meaning",
+          "original_required_reference",
+          "submitted_required_reference",
+          "original_state_applicability",
+          "submitted_state_applicability",
+          "unaffected_reference_Q",
+          "claims"
+        ],
+        "fields": {
+          "original_range_meaning": "RangeMeaningOrNull",
+          "submitted_range_meaning": "RangeMeaningOrNull",
+          "original_required_reference": "RequiredReference",
+          "submitted_required_reference": "RequiredReference",
+          "original_state_applicability": "StateApplicabilityOrNull",
+          "submitted_state_applicability": "StateApplicabilityOrNull",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claims": "ClaimMapF02"
+        }
+      },
+      "output_type": {
+        "kind": "record",
+        "required": [
+          "axis_results",
+          "range_meaning_result",
+          "state_meaning_result",
+          "retained_required_reference",
+          "retained_range_meaning",
+          "retained_state_applicability",
+          "reference_P_result",
+          "reference_P_actual_call",
+          "unaffected_reference_Q",
+          "claim_results",
+          "effects"
+        ],
+        "fields": {
+          "axis_results": "list<AxisApplicabilityResult>",
+          "range_meaning_result": "ContentRelation",
+          "state_meaning_result": "ContentRelation",
+          "retained_required_reference": "RequiredReference",
+          "retained_range_meaning": "RangeMeaningOrNull",
+          "retained_state_applicability": "StateApplicabilityOrNull",
+          "reference_P_result": "ReferenceApplicabilityResult",
+          "reference_P_actual_call": "ActualCallState",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claim_results": "ClaimResultMapF02",
+          "effects": "NoEffectFlags"
+        },
+        "meaning": "元入力のoptional recordはNullならNullのまま保持する。"
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_records",
+          "left": "input.original_required_reference",
+          "right": "input.submitted_required_reference",
+          "fields": [
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "knowledge_state",
+            "descriptor_identity",
+            "descriptor_kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity",
+            "dependency_version",
+            "verification_scope"
+          ],
+          "missing": "unknown",
+          "equal": "content_corresponding_in_fixture",
+          "different": "mismatch",
+          "json_equality": "json_value_equality",
+          "to": "axis_input_relations",
+          "null_is_missing": true
+        },
+        {
+          "step": 2,
+          "op": "membership_by_axis",
+          "value_record": "input.submitted_required_reference",
+          "version_axes": [
+            "knowledge_version",
+            "contract_version",
+            "artifact_version",
+            "dependency_version"
+          ],
+          "range_record": "input.submitted_range_meaning",
+          "member_path": "members_by_axis",
+          "required_target_record": "input.original_required_reference",
+          "missing_range_or_member": "unknown",
+          "present_member": "in_declared_fixture_range",
+          "absent_member": "out_of_declared_fixture_range",
+          "json_equality": "json_value_equality",
+          "to": "range_axis_relations",
+          "baseline_range_record": "input.original_range_meaning",
+          "required_relation": "whole_record_equal_before_membership",
+          "original_value_required": true,
+          "target_equality_before_membership": true,
+          "declared_meaning_source": "有限members_by_axisを調べる前にoriginal/submittedのrange意味record全体を厳密比較する。",
+          "finite_member_type": "fixture内のmembers_by_axisは有限map<string,list<JsonValue>>。JSON値の厳密な包含だけを調べ、SemVer構文や集合完全性を推定しない。",
+          "result_literals": {
+            "unknown": "unknown",
+            "mismatch": "mismatch",
+            "member": "in_declared_fixture_range",
+            "nonmember": "out_of_declared_fixture_range"
+          },
+          "branch_conditions": {
+            "unknown": {
+              "op": "or",
+              "values": [
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "json_equal",
+                    "left": "input.original_range_meaning",
+                    "right": "input.submitted_range_meaning"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "present_nonnull",
+                    "path": "input.original_required_reference.$axis"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "present_nonnull",
+                    "path": "input.submitted_required_reference.$axis"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "is_list",
+                    "path": "input.submitted_range_meaning.members_by_axis.$axis"
+                  }
+                }
+              ]
+            },
+            "mismatch": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "present_nonnull",
+                  "path": "input.original_required_reference.$axis"
+                },
+                {
+                  "op": "present_nonnull",
+                  "path": "input.submitted_required_reference.$axis"
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "json_equal",
+                    "left": "input.original_required_reference.$axis",
+                    "right": "input.submitted_required_reference.$axis"
+                  }
+                }
+              ]
+            },
+            "member": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "json_equal",
+                  "left": "input.original_required_reference.$axis",
+                  "right": "input.submitted_required_reference.$axis"
+                },
+                {
+                  "op": "list_contains_equal",
+                  "list_path": "input.submitted_range_meaning.members_by_axis.$axis",
+                  "value_path": "input.submitted_required_reference.$axis"
+                }
+              ]
+            },
+            "nonmember": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "json_equal",
+                  "left": "input.original_required_reference.$axis",
+                  "right": "input.submitted_required_reference.$axis"
+                },
+                {
+                  "op": "is_list",
+                  "path": "input.submitted_range_meaning.members_by_axis.$axis"
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "list_contains_equal",
+                    "list_path": "input.submitted_range_meaning.members_by_axis.$axis",
+                    "value_path": "input.submitted_required_reference.$axis"
+                  }
+                }
+              ]
+            }
+          },
+          "branch_result_order": [
+            "unknown",
+            "mismatch",
+            "member",
+            "nonmember"
+          ]
+        },
+        {
+          "step": 3,
+          "op": "state_eligibility",
+          "original_target_record": "input.original_required_reference",
+          "applicability_record": "input.submitted_state_applicability",
+          "target_fields": [
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_state",
+            "verification_scope"
+          ],
+          "eligible_true": "state_eligible_in_fixture",
+          "eligible_false": "state_not_eligible_in_fixture",
+          "any_required_absent_or_null": "unknown",
+          "record_not_corresponding": "unknown",
+          "to": "state_axis_relation",
+          "eligible_field": "eligible_in_fixture",
+          "applicability_target_fields": {
+            "knowledge_identity": "knowledge_identity",
+            "knowledge_revision": "knowledge_revision",
+            "knowledge_state": "observed_state",
+            "verification_scope": "scope"
+          },
+          "baseline_applicability_record": "input.original_state_applicability",
+          "required_relation": "original/submitted applicability record全体が一致し、そのtupleはoriginal required tupleに一致する。state軸の結果は他軸と独立させ、submitted knowledge_stateがAbsent/Nullならunknownとする。",
+          "original_value_required": true,
+          "submitted_knowledge_state_source": "input.submitted_required_reference.knowledge_state",
+          "unknown": "unknown",
+          "branch_conditions": {
+            "unknown": {
+              "op": "or",
+              "values": [
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "json_equal",
+                    "left": "input.original_state_applicability",
+                    "right": "input.submitted_state_applicability"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "all_record_field_pairs_equal_nonnull",
+                    "left_record": "input.original_required_reference",
+                    "right_record": "input.submitted_state_applicability",
+                    "field_pairs": [
+                      [
+                        "knowledge_identity",
+                        "knowledge_identity"
+                      ],
+                      [
+                        "knowledge_revision",
+                        "knowledge_revision"
+                      ],
+                      [
+                        "knowledge_state",
+                        "observed_state"
+                      ],
+                      [
+                        "verification_scope",
+                        "scope"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "present_nonnull",
+                    "path": "input.submitted_required_reference.knowledge_state"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "present_nonnull",
+                    "path": "input.submitted_state_applicability.eligible_in_fixture"
+                  }
+                }
+              ]
+            },
+            "eligible_true": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "json_equal",
+                  "left": "input.original_state_applicability",
+                  "right": "input.submitted_state_applicability"
+                },
+                {
+                  "op": "all_record_field_pairs_equal_nonnull",
+                  "left_record": "input.original_required_reference",
+                  "right_record": "input.submitted_state_applicability",
+                  "field_pairs": [
+                    [
+                      "knowledge_identity",
+                      "knowledge_identity"
+                    ],
+                    [
+                      "knowledge_revision",
+                      "knowledge_revision"
+                    ],
+                    [
+                      "knowledge_state",
+                      "observed_state"
+                    ],
+                    [
+                      "verification_scope",
+                      "scope"
+                    ]
+                  ]
+                },
+                {
+                  "op": "present_nonnull",
+                  "path": "input.submitted_required_reference.knowledge_state"
+                },
+                {
+                  "op": "literal_equal",
+                  "path": "input.submitted_state_applicability.eligible_in_fixture",
+                  "value": true
+                }
+              ]
+            },
+            "eligible_false": {
+              "op": "and",
+              "values": [
+                {
+                  "op": "json_equal",
+                  "left": "input.original_state_applicability",
+                  "right": "input.submitted_state_applicability"
+                },
+                {
+                  "op": "all_record_field_pairs_equal_nonnull",
+                  "left_record": "input.original_required_reference",
+                  "right_record": "input.submitted_state_applicability",
+                  "field_pairs": [
+                    [
+                      "knowledge_identity",
+                      "knowledge_identity"
+                    ],
+                    [
+                      "knowledge_revision",
+                      "knowledge_revision"
+                    ],
+                    [
+                      "knowledge_state",
+                      "observed_state"
+                    ],
+                    [
+                      "verification_scope",
+                      "scope"
+                    ]
+                  ]
+                },
+                {
+                  "op": "present_nonnull",
+                  "path": "input.submitted_required_reference.knowledge_state"
+                },
+                {
+                  "op": "literal_equal",
+                  "path": "input.submitted_state_applicability.eligible_in_fixture",
+                  "value": false
+                }
+              ]
+            }
+          },
+          "branch_result_order": [
+            "unknown",
+            "eligible_true",
+            "eligible_false"
+          ]
+        },
+        {
+          "step": 4,
+          "op": "ordered_axis_results",
+          "axis_order": [
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "knowledge_state",
+            "descriptor_identity",
+            "descriptor_kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity",
+            "dependency_version",
+            "verification_scope"
+          ],
+          "axis_sources": {
+            "knowledge_identity": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "knowledge_identity",
+              "target_record": "input.original_required_reference",
+              "target_field": "knowledge_identity",
+              "owner": "BRAIN008",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            },
+            "knowledge_revision": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "knowledge_revision",
+              "target_record": "input.original_required_reference",
+              "target_field": "knowledge_revision",
+              "owner": "BRAIN008",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            },
+            "knowledge_version": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "knowledge_version",
+              "target_record": "input.original_required_reference",
+              "target_field": "knowledge_version",
+              "owner": "BRAIN008",
+              "comparison": "range",
+              "relation_source": "output.range_axis_relations"
+            },
+            "knowledge_state": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "knowledge_state",
+              "target_record": "input.original_required_reference",
+              "target_field": "knowledge_state",
+              "owner": "BRAIN008",
+              "comparison": "state",
+              "relation_source": "output.state_axis_relation"
+            },
+            "descriptor_identity": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "descriptor_identity",
+              "target_record": "input.original_required_reference",
+              "target_field": "descriptor_identity",
+              "owner": "HARNESS",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            },
+            "descriptor_kind": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "descriptor_kind",
+              "target_record": "input.original_required_reference",
+              "target_field": "descriptor_kind",
+              "owner": "HARNESS",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            },
+            "contract_version": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "contract_version",
+              "target_record": "input.original_required_reference",
+              "target_field": "contract_version",
+              "owner": "HARNESS",
+              "comparison": "range",
+              "relation_source": "output.range_axis_relations"
+            },
+            "artifact_version": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "artifact_version",
+              "target_record": "input.original_required_reference",
+              "target_field": "artifact_version",
+              "owner": "HARNESS",
+              "comparison": "range",
+              "relation_source": "output.range_axis_relations"
+            },
+            "dependency_identity": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "dependency_identity",
+              "target_record": "input.original_required_reference",
+              "target_field": "dependency_identity",
+              "owner": "HARNESS",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            },
+            "dependency_version": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "dependency_version",
+              "target_record": "input.original_required_reference",
+              "target_field": "dependency_version",
+              "owner": "HARNESS",
+              "comparison": "range",
+              "relation_source": "output.range_axis_relations"
+            },
+            "verification_scope": {
+              "value_record": "input.submitted_required_reference",
+              "value_field": "verification_scope",
+              "target_record": "input.original_required_reference",
+              "target_field": "verification_scope",
+              "owner": "HARNESS",
+              "comparison": "exact",
+              "relation_source": "output.axis_input_relations"
+            }
+          },
+          "merge_relations_from": [
+            "axis_input_relations",
+            "range_axis_relations",
+            "state_axis_relation"
+          ],
+          "axis_precedence": {
+            "missing_or_null": "unknown",
+            "exact_difference": "mismatch",
+            "range_out": "out_of_declared_fixture_range",
+            "range_in": "in_declared_fixture_range",
+            "eligible": "state_eligible_in_fixture",
+            "ineligible": "state_not_eligible_in_fixture",
+            "exact_equal": "content_corresponding_in_fixture"
+          },
+          "to": "axis_results",
+          "array_order_source": "配列順はaxis_orderで固定し、axis_sourcesは項目定義のlookupにのみ使う。",
+          "original_record": "input.original_required_reference",
+          "submitted_record": "input.submitted_required_reference",
+          "axis_output_field": "axis",
+          "required_output_field": "required_original",
+          "result_output_field": "result",
+          "owner_output_field": "return_owner",
+          "submitted_output_field": "submitted",
+          "absent_output_value": null
+        },
+        {
+          "step": 5,
+          "op": "compare_whole",
+          "left": "input.original_range_meaning",
+          "right": "input.submitted_range_meaning",
+          "absent": "missing",
+          "equal": "content_corresponding_in_fixture",
+          "different": "content_conflict",
+          "to": "range_meaning_result",
+          "basis_note": "このwhole比較で供給された宣言の同一性だけを観測し、range意味の実資格を成立させない。",
+          "null_is_absent": true
+        },
+        {
+          "step": 6,
+          "op": "compare_whole",
+          "left": "input.original_state_applicability",
+          "right": "input.submitted_state_applicability",
+          "absent": "missing",
+          "equal": "content_corresponding_in_fixture",
+          "different": "content_conflict",
+          "to": "state_meaning_result",
+          "null_is_absent": true
+        },
+        {
+          "step": 7,
+          "op": "project_record",
+          "from": "input.original_required_reference",
+          "fields": [
+            "knowledge_identity",
+            "knowledge_revision",
+            "knowledge_version",
+            "knowledge_state",
+            "descriptor_identity",
+            "descriptor_kind",
+            "contract_version",
+            "artifact_version",
+            "dependency_identity",
+            "dependency_version",
+            "verification_scope"
+          ],
+          "preserve_absent": "omit",
+          "to": "retained_required_reference"
+        },
+        {
+          "step": 8,
+          "op": "copy_value",
+          "from": "input.original_range_meaning",
+          "to": "retained_range_meaning",
+          "absent_value": null
+        },
+        {
+          "step": 9,
+          "op": "copy_value",
+          "from": "input.original_state_applicability",
+          "to": "retained_state_applicability",
+          "absent_value": null
+        },
+        {
+          "step": 10,
+          "op": "aggregate_reference_applicability",
+          "axes": "output.axis_results",
+          "meaning_relations": [
+            "range_meaning_result",
+            "state_meaning_result"
+          ],
+          "unknown_if": {
+            "any_relation_in": [
+              "unknown"
+            ],
+            "or_meaning_not_equal": {
+              "fields": [
+                "range_meaning_result",
+                "state_meaning_result"
+              ],
+              "value": "content_corresponding_in_fixture"
+            }
+          },
+          "not_applicable_if": {
+            "any_axis_relation_in": [
+              "mismatch",
+              "out_of_declared_fixture_range",
+              "state_not_eligible_in_fixture"
+            ]
+          },
+          "to": "reference_P_result",
+          "priority_order": [
+            "unknown",
+            "not_applicable",
+            "applicable"
+          ],
+          "result_literals": {
+            "unknown": "unknown",
+            "not_applicable": "not_applicable_in_fixture",
+            "applicable": "applicable_candidate_in_fixture_only"
+          },
+          "otherwise": "applicable",
+          "axis_result_field": "result",
+          "branch_evaluation": {
+            "unknown": "unknown_ifのいずれか",
+            "not_applicable": "unknownがfalseかつnot_applicable_ifのいずれか",
+            "applicable": "上記以外",
+            "priority_order": [
+              "unknown",
+              "not_applicable",
+              "applicable"
+            ]
+          }
+        },
+        {
+          "step": 11,
+          "op": "fixed_value",
+          "value": "not_established",
+          "to": "reference_P_actual_call"
+        },
+        {
+          "step": 12,
+          "op": "copy_value",
+          "from": "input.unaffected_reference_Q",
+          "to": "unaffected_reference_Q",
+          "absent_value": null
+        },
+        {
+          "step": 13,
+          "op": "claims_true_rejected",
+          "from": "input.claims",
+          "true": "rejected",
+          "false": "none",
+          "to": "claim_results",
+          "truth_value": true,
+          "fields": [
+            "unknown_call",
+            "range_out_reinterpret",
+            "silent_old_current_fallback",
+            "ignore_knowledge_state",
+            "revoke_Q"
+          ],
+          "absent_or_null": "unknown",
+          "non_boolean": "unknown",
+          "branch_order": [
+            "missing_or_null",
+            "boolean_true",
+            "boolean_false",
+            "other_value"
+          ],
+          "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
+        },
+        {
+          "step": 14,
+          "op": "fixed_record",
+          "value": {
+            "actual_call": false,
+            "actual_registration": false,
+            "actual_distribution": false,
+            "actual_rollback": false,
+            "actual_knowledge_adoption": false,
+            "actual_obligation_discharge": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "to": "effects"
+        }
+      ],
+      "purpose": "宣言range/state意味と必要参照の有限packet比較を行い、unknown/mismatch/range外を実呼出しに変えず、Qを保全する。L9に独立した改ざん不能targetが無いため、originalとsubmittedの両方が同じ誤recordへ置換された場合の真正性判定は未実現。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-028-N01",
+      "requirement_ref": "HELIXBRAIN-L3-028-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
+      "l4_ref": "HELIXBRAIN-L4-028-N01",
+      "l9_ref": "HELIXBRAIN-L9-028-N01",
+      "input_type": {
+        "kind": "record",
+        "required": [
+          "candidate_target",
+          "original_evaluation",
+          "submitted_evaluation",
+          "retained_candidate_state",
+          "unaffected_reference_Q",
+          "claims"
+        ],
+        "fields": {
+          "candidate_target": "CandidateTarget",
+          "original_evaluation": "EvaluationRecordOrNull",
+          "submitted_evaluation": "EvaluationRecordOrNull",
+          "retained_candidate_state": "CandidateState",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claims": "ClaimMapN01"
+        }
+      },
+      "output_type": {
+        "kind": "record",
+        "required": [
+          "evaluation_result",
+          "submitted_target_result",
+          "retained_evaluation",
+          "submitted_evaluation",
+          "retained_candidate_target",
+          "retained_candidate_state",
+          "candidate_reference_result",
+          "evidence_limit",
+          "unaffected_reference_Q",
+          "claim_results",
+          "effects"
+        ],
+        "fields": {
+          "evaluation_result": "ContentRelation",
+          "submitted_target_result": "TargetRelation",
+          "retained_evaluation": "EvaluationRecordOrNull",
+          "submitted_evaluation": "EvaluationRecordOrNull",
+          "retained_candidate_target": "CandidateTarget",
+          "retained_candidate_state": "CandidateState",
+          "candidate_reference_result": "CandidateEvidenceResult",
+          "evidence_limit": "EvidenceLimit",
+          "unaffected_reference_Q": "ReferenceRecord",
+          "claim_results": "ClaimResultMapN01",
+          "effects": "NoEffectFlags"
+        }
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_whole",
+          "left": "input.original_evaluation",
+          "right": "input.submitted_evaluation",
+          "equal": "content_corresponding_in_fixture",
+          "different": "content_conflict",
+          "to": "evaluation_result",
+          "absent": "missing",
+          "null_is_absent": true
+        },
+        {
+          "step": 2,
+          "op": "compare_target",
+          "left": "input.candidate_target",
+          "right": "input.submitted_evaluation.target",
+          "absent": "missing",
+          "equal": "same_target_in_fixture",
+          "different": "different_target",
+          "json_equality": "json_value_equality",
+          "fields": [
+            "descriptor_identity",
+            "descriptor_revision",
+            "knowledge_identity",
+            "knowledge_revision",
+            "scope"
+          ],
+          "to": "submitted_target_result",
+          "null_is_absent": true,
+          "non_record": "unknown",
+          "branch_order": [
+            "root_absent_or_null",
+            "root_not_record",
+            "required_field_absent_or_null",
+            "all_required_fields_equal",
+            "present_value_different"
+          ],
+          "meaning": "非recordのtarget JSON値は比較対象recordを表せずunknown。record内の必要field absent/nullはexisting absent literalを返す。"
+        },
+        {
+          "step": 3,
+          "op": "copy_value",
+          "from": "input.original_evaluation",
+          "to": "retained_evaluation",
+          "absent_value": null
+        },
+        {
+          "step": 4,
+          "op": "copy_value",
+          "from": "input.submitted_evaluation",
+          "to": "submitted_evaluation",
+          "absent_value": null
+        },
+        {
+          "step": 5,
+          "op": "copy_value",
+          "from": "input.candidate_target",
+          "to": "retained_candidate_target",
+          "absent_value": null
+        },
+        {
+          "step": 6,
+          "op": "copy_value",
+          "from": "input.retained_candidate_state",
+          "to": "retained_candidate_state",
+          "absent_value": null
+        },
+        {
+          "step": 7,
+          "op": "candidate_evidence_relation",
+          "target_relation": "output.submitted_target_result",
+          "evaluation": "input.submitted_evaluation",
+          "evaluation_result_field": "result",
+          "state_field": "state",
+          "observed_state": "observed_in_fixture",
+          "compatible_value": "compatible_in_fixture",
+          "same_target_result": "same_target_in_fixture",
+          "result": "evidence_corresponding_in_fixture_only",
+          "otherwise": "unknown",
+          "to": "candidate_reference_result",
+          "requires_evaluation_result_correspondence": true,
+          "rule": "fixture証拠の対応にはoriginal/submitted評価recordの一致、candidate targetとsubmitted evaluation.targetの一致、submitted評価のobserved_in_fixture/compatible_in_fixtureが必要。",
+          "evidence_limit_value": "same exact candidate revisions and scope only; no actual held-out evaluation",
+          "evaluation_relation": "output.evaluation_result",
+          "evaluation_corresponding_result": "content_corresponding_in_fixture"
+        },
+        {
+          "step": 8,
+          "op": "fixed_value",
+          "value": "same exact candidate revisions and scope only; no actual held-out evaluation",
+          "to": "evidence_limit",
+          "explanation": "同一候補revision/scopeのfixture観測に限り、実held-out評価ではない。"
+        },
+        {
+          "step": 9,
+          "op": "copy_value",
+          "from": "input.unaffected_reference_Q",
+          "to": "unaffected_reference_Q",
+          "absent_value": null
+        },
+        {
+          "step": 10,
+          "op": "claims_true_rejected",
+          "from": "input.claims",
+          "true": "rejected",
+          "false": "none",
+          "to": "claim_results",
+          "truth_value": true,
+          "fields": [
+            "other_revision_success_compatible",
+            "unseen_unevaluated_current",
+            "unseen_unevaluated_accepted",
+            "all_packs_compatible"
+          ],
+          "absent_or_null": "unknown",
+          "non_boolean": "unknown",
+          "branch_order": [
+            "missing_or_null",
+            "boolean_true",
+            "boolean_false",
+            "other_value"
+          ],
+          "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
+        },
+        {
+          "step": 11,
+          "op": "fixed_record",
+          "value": {
+            "actual_call": false,
+            "actual_registration": false,
+            "actual_distribution": false,
+            "actual_rollback": false,
+            "actual_knowledge_adoption": false,
+            "actual_obligation_discharge": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "to": "effects"
+        }
+      ],
+      "purpose": "対象revision/scopeが一致する証拠と他revision/別scopeを分け、未評価や未見を使える参照へ補完しない。"
+    },
+    {
+      "id": "HELIXBRAIN-L5-028-B01",
+      "requirement_ref": "HELIXBRAIN-L3-028-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-B01",
+      "l4_ref": "HELIXBRAIN-L4-028-B01",
+      "l9_ref": "HELIXBRAIN-L9-028-B01",
+      "input_type": {
+        "kind": "record",
+        "required": [
+          "descriptor",
+          "knowledge",
+          "original_common_references",
+          "submitted_common_references",
+          "original_owners",
+          "submitted_owners",
+          "original_unfinished_obligation",
+          "submitted_unfinished_obligation",
+          "claims"
+        ],
+        "fields": {
+          "descriptor": "DescriptorRecord",
+          "knowledge": "KnowledgeRecord",
+          "original_common_references": "CommonReferences",
+          "submitted_common_references": "CommonReferences",
+          "original_owners": "OwnerMap",
+          "submitted_owners": "OwnerMap",
+          "original_unfinished_obligation": "UnfinishedObligationOrNull",
+          "submitted_unfinished_obligation": "UnfinishedObligationOrNull",
+          "claims": "ClaimMapB01"
+        }
+      },
+      "output_type": {
+        "kind": "record",
+        "required": [
+          "common_reference_results",
+          "owner_results",
+          "obligation_result",
+          "retained_common_references",
+          "retained_owners",
+          "retained_unfinished_obligation",
+          "submitted_unfinished_obligation",
+          "knowledge_state",
+          "common_obligation_state",
+          "actual_operation_state",
+          "return_owners",
+          "claim_results",
+          "effects"
+        ],
+        "fields": {
+          "common_reference_results": "CommonReferenceResults",
+          "owner_results": "OwnerResults",
+          "obligation_result": "ContentRelation",
+          "retained_common_references": "CommonReferences",
+          "retained_owners": "OwnerMap",
+          "retained_unfinished_obligation": "UnfinishedObligationOrNull",
+          "submitted_unfinished_obligation": "UnfinishedObligationOrNull",
+          "knowledge_state": "KnowledgeState",
+          "common_obligation_state": "CommonObligationState",
+          "actual_operation_state": "ActualOperationState",
+          "return_owners": "OwnerRoutingB01",
+          "claim_results": "ClaimResultMapB01",
+          "effects": "NoEffectFlags"
+        }
+      },
+      "algorithm": [
+        {
+          "step": 1,
+          "op": "compare_fields",
+          "left": "input.original_common_references",
+          "right": "input.submitted_common_references",
+          "fields": [
+            "exchange_update",
+            "calling_contract"
+          ],
+          "absent": "missing",
+          "present_equal": "content_corresponding_in_fixture",
+          "present_different": "content_conflict",
+          "equality": "json_value_equality",
+          "to": "common_reference_results"
+        },
+        {
+          "step": 2,
+          "op": "compare_fields",
+          "left": "input.original_owners",
+          "right": "input.submitted_owners",
+          "fields": [
+            "knowledge_revision_state",
+            "common_contract",
+            "actual_operation"
+          ],
+          "absent": "missing",
+          "present_equal": "content_corresponding_in_fixture",
+          "present_different": "content_conflict",
+          "equality": "json_value_equality",
+          "to": "owner_results"
+        },
+        {
+          "step": 3,
+          "op": "compare_record_projection",
+          "left": "input.original_unfinished_obligation",
+          "right": "input.submitted_unfinished_obligation",
+          "fields": [
+            "identity",
+            "revision",
+            "descriptor_identity",
+            "knowledge_revision",
+            "scope",
+            "state"
+          ],
+          "absent": "missing",
+          "present_equal": "content_corresponding_in_fixture",
+          "present_different": "content_conflict",
+          "equality": "json_value_equality",
+          "to": "obligation_result",
+          "projection_fields": [
+            "identity",
+            "revision",
+            "descriptor_identity",
+            "knowledge_revision",
+            "scope",
+            "state"
+          ],
+          "equal": "content_corresponding_in_fixture",
+          "different": "content_conflict",
+          "missing_precedence": "missing",
+          "different_precedence": "content_conflict",
+          "equal_result": "content_corresponding_in_fixture"
+        },
+        {
+          "step": 4,
+          "op": "copy_value",
+          "from": "input.original_common_references",
+          "to": "retained_common_references",
+          "absent_value": null
+        },
+        {
+          "step": 5,
+          "op": "copy_value",
+          "from": "input.original_owners",
+          "to": "retained_owners",
+          "absent_value": null
+        },
+        {
+          "step": 6,
+          "op": "copy_value",
+          "from": "input.original_unfinished_obligation",
+          "to": "retained_unfinished_obligation",
+          "absent_value": null
+        },
+        {
+          "step": 7,
+          "op": "copy_value",
+          "from": "input.submitted_unfinished_obligation",
+          "to": "submitted_unfinished_obligation",
+          "absent_value": null
+        },
+        {
+          "step": 8,
+          "op": "copy_field",
+          "from": "input.knowledge.state",
+          "to": "knowledge_state",
+          "absent_value": null
+        },
+        {
+          "step": 9,
+          "op": "copy_field",
+          "from": "input.original_unfinished_obligation.state",
+          "to": "common_obligation_state",
+          "absent_value": null
+        },
+        {
+          "step": 10,
+          "op": "fixed_value",
+          "value": "not_established",
+          "to": "actual_operation_state"
+        },
+        {
+          "step": 11,
+          "op": "owner_routes",
+          "fixed_routes": {
+            "knowledge_revision_state": "BRAIN008",
+            "common_conditions": "HARNESS",
+            "actual_operation": "input.original_owners.actual_operation"
+          },
+          "to": "return_owners",
+          "qualification": "戻し先候補に限り、実owner authorityの証拠ではない。",
+          "meaning": "knowledge_revision_state と common_conditions は固定候補を返し、actual_operation は original_owners.actual_operation を元JSON値のまま返す。Absentのみnullへ写す。候補文字列や値は実owner資格・権限の証拠ではない。"
+        },
+        {
+          "step": 12,
+          "op": "claims_true_rejected",
+          "from": "input.claims",
+          "true": "rejected",
+          "false": "none",
+          "to": "claim_results",
+          "truth_value": true,
+          "fields": [
+            "BRAIN_exchange_redefinition",
+            "descriptor_match_rollback_success",
+            "current_discharges_common_obligation",
+            "descriptor_match_call_success",
+            "descriptor_match_registration_success",
+            "descriptor_match_distribution_success"
+          ],
+          "absent_or_null": "unknown",
+          "non_boolean": "unknown",
+          "branch_order": [
+            "missing_or_null",
+            "boolean_true",
+            "boolean_false",
+            "other_value"
+          ],
+          "meaning": "宣言fieldをこの順に評価し、全fieldを出力する。"
+        },
+        {
+          "step": 13,
+          "op": "fixed_record",
+          "value": {
+            "actual_call": false,
+            "actual_registration": false,
+            "actual_distribution": false,
+            "actual_rollback": false,
+            "actual_knowledge_adoption": false,
+            "actual_obligation_discharge": false,
+            "actual_authority": false,
+            "actual_implementation_ready": false,
+            "actual_acceptance": false
+          },
+          "to": "effects"
+        }
+      ],
+      "purpose": "共通参照/未完義務/知識状態/各ownerを分離して保持し、descriptor一致だけから実operation成功や共通義務の解消を生成しない。"
+    }
+  ],
+  "semantics": {
+    "presence": "Absent/Null/Valueは別状態とする。object member省略はAbsent、明示JSON nullはNull。NullをAbsentへ読み替えない。",
+    "json_equality": "JSON型と値を比較し、真偽値と数値は別型とする。object key順は無視し、array順は保持する。",
+    "unknown": "required source memberがAbsent/Null、またはsource relationを解決できない場合にunknownを返す。新しいwire typeは追加しない。",
+    "claim_results": "各関数が列挙した出力keyを固定順で全て返す。入力claim key absent/null/non-booleanはunknown、明示falseはnone、明示trueはrejected。未知keyは当該有限field群で評価しない。claimは入力値を変更せず、資格を成立させない。",
+    "effect_boundary": "全actual effect flagはfalse、actual operation/reference状態はnot_establishedのままとする。",
+    "range_limit": "members_by_axisは独立に供給された合成fixture内の有限集合としてのみ比較する。この文書はSemVer、caret、比較演算子、集合完全性、実compatibility codecを定義しない。",
+    "owner_limit": "BRAIN008/HARNESSはL4/L10で指定された戻し先候補であり、合成owner値からowner資格や権限を成立させない。"
+  },
+  "owner_output_boundary": {
+    "implemented_owner_return_roots": [
+      "F01.knowledge_axes",
+      "F01.descriptor_axes",
+      "B01.knowledge_revision_state",
+      "B01.common_conditions",
+      "B01.actual_operation"
+    ],
+    "source_obligations": [
+      "F02 各axisのreturn_owner",
+      "F01 欠落axisの戻し先",
+      "N01 evidenceの戻し先",
+      "B01 未完義務のfailure別戻し先"
+    ],
+    "status": "partial",
+    "handling": "L9 expectedにはB01の固定routeとF02のaxis別ownerがあるため保持する。owner-qualified exact binding、およびL4の全failure routeごとの資格確認は未閉包として残す。"
+  },
+  "not_established": [
+    "正式schema/codec/range resolver/実identityのauthority",
+    "owner資格付きのexact binding",
+    "実descriptor/knowledge source qualification",
+    "runtime動作、実call/registration/distribution/rollback/adoption",
+    "L6関数設計/L7関数対検証/L11実受入",
+    "全92親/430対の詳細設計閉包"
+  ],
+  "json_equality_semantics": {
+    "operator": "json_value_equality",
+    "numbers": "JSON number同士は数値として比較し、1と1.0は等しい。",
+    "booleans": "booleanはnumberと区別し、trueは1と等しくない。",
+    "arrays": "要素数と順序を保って再帰比較する。",
+    "objects": "key集合を比較し、対応するvalueを再帰比較する。",
+    "null_and_absent": "nullは明示値。Absentは未供給として区別する。"
+  }
+}
