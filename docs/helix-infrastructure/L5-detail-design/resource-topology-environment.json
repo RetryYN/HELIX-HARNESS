@@ -2500,7 +2500,8 @@
       "F03はforbidden_value_field_namesが非空ならSECへの所見だけを追加し秘密値を取得/保存しない。state/storageの永続/一時/backup等は原属性比較へ残す。",
       "B01は原role record内ownerがroleと違う時、提出同値でもwrong_canonical_ownerを原role ownerへ返す。型/内容一致から本物のowner資格を生成しない。",
       "F04はscope membership Noneに原source不足を併記。能力評価capacityは元資源値を保持してINTELLIGENCE/LABOへ別返却する。scope falseはprofile結果/原値を保持したまま所見列を空にしてnot_selected_unobserved。これは原固定素材の非対象診断選択であり安全性/資格の一般免除ではない。None優先、次に能力評価のheld状態を保持する。",
-      "claim_resultsは固定claim順でraw trueだけrejected、他none。claimの拒否だけから追加raw不足や実作用を捏造しない。failure_reasonsはprofile→target→観測→kind固有の順、owner列だけscalar順unique。"
+      "claim_resultsは固定claim順でraw trueだけrejected、他none。claimの拒否だけから追加raw不足や実作用を捏造しない。failure_reasonsはprofile→target→観測→kind固有の順、owner列だけscalar順unique。",
+      "returned_evaluation_reference.refはcapacity_ref内evaluation_refが提供された場合だけ同じJSON値を複写する。元key absentなら返却keyもabsent、明示nullならnull。getのnull観測でpresenceを潰さない。原212には当該欠落例がなく、一般域の証明へ拡大しない。"
     ],
     "steps": [
       "def compare(raw,contract):",
@@ -2538,7 +2539,8 @@
       "  cap=submitted.get('capacity_ref');ability=isinstance(cap,dict) and cap.get('kind')=='ability_evaluation'",
       "  if ability:",
       "   emit('runtime_attribute_kind','capacity_ref','ability_evaluation_not_resource_attribute','INTELLIGENCE/LABO')",
-      "   details['returned_evaluation_reference']={'ref':cap.get('evaluation_ref'),'return_owner':'INTELLIGENCE/LABO','state':'not_applied_to_resource_attribute'}",
+      "   details['returned_evaluation_reference']={'return_owner':'INTELLIGENCE/LABO','state':'not_applied_to_resource_attribute'}",
+      "   if 'evaluation_ref' in cap:details['returned_evaluation_reference']['ref']=CLONE(cap['evaluation_ref'])",
       "  if raw['runtime_selected_in_original_scope'] is False:failures=[]",
       " state='held_with_original_unknown' if failures else 'content_corresponding_requires_actual_source_qualification'",
       " if kind=='F04':",
