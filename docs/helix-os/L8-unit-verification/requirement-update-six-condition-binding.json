@@ -103915,7 +103915,7 @@
         }
       ],
       "expected_whole_sha256": "b6b96619d8628f578f83deef8c3a04e79c29cba7ff0741160d4ed62e7eaf33a6",
-      "expected_whole_basis": "HELIXOS-L3-001-F01 + HELIXOS-L4-001-F01 + P23 input/output projection after repairing only its context source fact to match the selected B binding. Duplicate unselected A must not be a gate.",
+      "expected_whole_basis": "HELIXOS-L3-001-F01とHELIXOS-L4-001-F01を根拠とし、P23のcontext source値だけを選択Bのbindingに一致させて入出力を導く。選択外Aの重複を拒否条件にしない。",
       "independent_derivation": "P23の明示したproject_b選択・全binding joinsを保ち、context project_b IDをoperation selector project_bへ一致させる。そのうえ選択外project_aのactual/reference IDをproject_bへ複製する。選択joinは対応し、slot間duplicateだけのfindingは無い。",
       "candidate_program_used_for_expectation": false,
       "scope": "合成source内の未選択slot重複と選択slot joinを分離する。実identity一意性は認定しない。",
@@ -103927,7 +103927,7 @@
         "selected_project_b_base_revision"
       ],
       "historical_derivation_ref": "OS001-P23-SELECT-B-PROJECT-ID-JOIN",
-      "expected_output_basis": "HELIXOS-L3-001-F01 + HELIXOS-L4-001-F01 + L9 meaning_change_observe baseline projection. Selected project_b member equals its selected binding; project_a duplicate is unselected."
+      "expected_output_basis": "HELIXOS-L3-001-F01とHELIXOS-L4-001-F01、およびL9 meaning_change_observeの基底射影。選択project_bのmemberは選択bindingと一致し、重複project_aは選択外である。"
     },
     {
       "id": "OS001-P29-SELECTED-B-RETAINS-JOIN-WHEN-UNSELECTED-A-DIFFERS",
@@ -106248,7 +106248,7 @@
         }
       ],
       "expected_whole_sha256": "d436cf819120ce2512651037a8acc34802f83c71610b87ad9fd6d6237103abe4",
-      "expected_whole_basis": "HELIXOS-L3-001-F01 + HELIXOS-L4-001-F01 + B01. Selected project B remains individually corresponding while unselected project A mismatch is retained as its own source finding.",
+      "expected_whole_basis": "HELIXOS-L3-001-F01とHELIXOS-L4-001-F01およびB01。選択Bは個別に対応を保持し、選択外Aの不一致はA自身のsource findingとして残す。",
       "independent_derivation": "meaning_change_observeを基底とし、選択Bのoperation binding/全joinsをB値へそろえ、選択外Aのactual project_idだけをFOREIGN-A-project_idへ変える。context Aは元のproject_aを保持するため、Aの通常field比較が不一致を返す。Bのmemberとbindingはproject_bでjoinし、B01により選択外Aのfindingを選択Bの根拠不一致へ転嫁しない。",
       "candidate_program_used_for_expectation": false,
       "scope": "選択外source不一致と選択Bの有効joinを区別する有限fixture probe。資格を認定しない。",
@@ -106259,7 +106259,7 @@
         "selected_project_b_requirement_revision",
         "selected_project_b_base_revision"
       ],
-      "expected_output_basis": "HELIXOS-L3-001-F01 + HELIXOS-L4-001-F01 + B01; selected B full join plus only the unselected A actual source-field mismatch."
+      "expected_output_basis": "HELIXOS-L3-001-F01とHELIXOS-L4-001-F01およびB01。選択Bの全joinと、選択外Aのactual source fieldの不一致だけから導く。"
     }
   ],
   "execution_state": "not_executed",
@@ -106269,7 +106269,7 @@
     "879件と独立境界probeは有限synthetic sourceだけを扱う。実source資格・発行者・owner資格・保存/適用/受入を主張しない。",
     "L5規範の固定fixture向け比較は定義した。任意JSON/可変graphのschema/codecや実OS053/HELIX052接続は未設計。",
     "全92親/430対の設計閉包、実TDD/CI/L9/L10/PO L11及び実装Readyを主張しない。",
-    "source_project_a/source_project_b/operation_binding/product_stateのcontainer不足診断、proposal target joinの参照、visible_current_revisionのcommitted条件、policy directiveの適用条件、selected-project joinのobject前提について、規則/operand差替えの全識別性は未証明。有限probe一致を全mutation・全意味domainの網羅coverageとしない。"
+    "source_project_a/source_project_b/operation_binding/product_stateのcontainer不足診断、proposal target joinの参照、visible_current_revisionのcommitted条件、policy directiveの適用条件、selected-project joinのobject前提について、規則/operand差替えの全識別性は未証明。有限probe一致を全mutation・全意味domainの網羅coverageとしない。 R06/R07のspecial_rulesにおける両側observationのrequired_object_pathsとkind/phaseのactivationを除く変更も、固定probeから識別できるとは未証明である。"
   ],
   "basic_pair_pins": [
     {
