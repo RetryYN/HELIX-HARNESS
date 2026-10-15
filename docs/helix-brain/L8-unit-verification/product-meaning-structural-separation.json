@@ -30540,6 +30540,22 @@
     {
       "branch": "F02の各条件の比較はfieldwiseであり結果全体の優先集約は行わない",
       "state": "content_conflict/missingの優先入替というmutationはF02候補判定の全field対応条件を変えない。各結果fieldをwholeで検証する。"
+    },
+    {
+      "branch": "original側source binding複数結合の全field conflict",
+      "state": "source/revision/meaning/binding全fieldをcontent_conflictにする規則と、sourceだけconflictにする変異を、保存済み全wholeは識別しない。"
+    },
+    {
+      "branch": "finite_content_presentのlist要素不足",
+      "state": "list要素の空文字/TBDをfalseにする規則の削除は保存済み全wholeで識別しない。空list反例はlist要素検査の証拠ではない。"
+    },
+    {
+      "branch": "候補参照ID重複および非参照原atom重複",
+      "state": "候補対応となり得る。source bindingの複数結合とは異なり一意性診断は未実現。"
+    },
+    {
+      "branch": "atom.contentの空文字/TBD",
+      "state": "原/提出の等値だけを比較し、内容不足を候補保留へ結ばない。候補meaning/independent_reasonの有限検査とは別の未実現範囲。"
     }
   ],
   "additional_finite_probes": [
@@ -31595,7 +31611,7 @@
       "raw_utf8": "{\"claims\":{\"generalization_as_observed_fact\":false,\"new_every_time_human_approval\":false,\"one_success_universal\":false,\"unseparated_adoptable\":false},\"original_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"original_reuse_conditions\":{\"counterexample\":\"TBD\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"original_separation_state\":\"separated_candidate_in_fixture\",\"submitted_observations\":[{\"product\":\"PRODUCT-P\",\"result\":\"success_in_fixture_only\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\",\"source\":\"SOURCE-P@source-p-r1\"},{\"product\":\"PRODUCT-R\",\"result\":\"original_conditions_not_met_in_fixture\",\"scope\":\"COMPACT-SINGLE-TASK\",\"source\":\"SOURCE-R@source-r-r1\"}],\"submitted_reuse_conditions\":{\"counterexample\":\"TBD\",\"identity\":\"REUSE-CONDITION-P\",\"limit\":\"構造候補のみ。固定左menu/請求role/他UIへの一般化を含まない\",\"required_context\":[\"dense administrative navigation\",\"stable primary sections\"],\"revision\":\"condition-r1\",\"scope\":\"DENSE-ADMIN-PRIMARY-SECTIONS\"},\"submitted_separation_state\":\"separated_candidate_in_fixture\",\"upstream_shared_meaning_change_required\":false}",
       "raw_sha256": "3013db90f2a6d8fde57e6c856e223fd72e6e342411172cd0a26b9368e41d9bae",
       "expectation_status": "空反例/反例未観測の原義務に対応する有限不足表示TBDの独立whole。任意文字列全般へ一般化しない。",
-      "basis": "TBDのunknown marker意味はこの型で未宣言。既存L4反例未観測との接続が必要だが、自由文字列すべてへの拒否policyは本監査から追加しない。",
+      "basis": "L4の反例未観測を補完しない義務に対応し、TBDをこの有限不足表示として候補保留へ結ぶ。自由文字列全体を不足と推定する規則は定義しない。",
       "case_id": "F02-BOTH-TBD-COUNTEREXAMPLE",
       "function_ref": "HELIXBRAIN-L5-011-F02",
       "typed_arguments": {
@@ -34247,7 +34263,7 @@
   "candidate_l5_pin": {
     "binding": "same_candidate_document_bytes",
     "path": "docs/helix-brain/L5-detail-design/product-meaning-structural-separation.json",
-    "sha256": "69a23189370e66ae5df0c95c60bb37d727dbd08d4726f7ce056d068d0cfd22d6",
+    "sha256": "391ce733a82078b4c058d9a73d76e09a59f196ef446914f32d3ac6a764662d8a",
     "revision_note": "同一候補文書のbytes。存在しないbase revisionや上流source revisionを指定しない。"
   },
   "readiness_note": "全意味閉包/正式codec/実資格/実装/TDD/CI/L11/実装Readyをこの静的素材から生成しない。"

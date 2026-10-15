@@ -3658,9 +3658,10 @@
       "l9_connection_scope": "CORE原意味/sourceと独立分離/再利用条件→pure比較→構造候補/未分離/元原本保全/責務別未完返却。正式resolver未binding。",
       "unclosed": [
         "宣言型外の一般source resolver、owner/scope qualification、正式な必要集合/外部参照の解決は未確定。",
-        "非空/TBD以外の本文から意味充足・真実性を判定しない。合成の対応や候補状態を実source資格、CORE原meaning変更、LABO評価、OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceへ昇格しない。",
+        "有限内容不足検査を適用するのは候補meaningと各independent_reasonであり、atom.contentの空文字/TBDは検査しない。atom.contentが原/提出で一致していても本文の十分性・真実性は未証明。合成の対応や候補状態を実source資格、CORE原meaning変更、LABO評価、OS登録、BRAIN独立検証・採否、operation permission、L11 acceptanceへ昇格しない。",
         "原atomの必要母集合を独立authorityから供給する引数はない。原/提出atomを両側同時に削除した場合、供給された残余atomだけで対応となり得る。原baselineの六atomを一般に必須と推測せず、必要集合との照合は未実現。",
-        "meaning.source_revisionは宣言型ではsource-p-r1に限定される。規則はatom.revisionと比較するが、型外の別revisionをこの有限検証で受理したとは主張しない。reuse_condition_refの外部内容/資格は未解決。"
+        "meaning.source_revisionは宣言型ではsource-p-r1に限定される。規則はatom.revisionと比較するが、型外の別revisionをこの有限検証で受理したとは主張しない。reuse_condition_refの外部内容/資格は未解決。",
+        "重複identityの一般処理は未確定。source_atom_idsに含まれないoriginal atomの同ID重複、および候補source_atom_ids自体の重複は、source結合複数の検査では排除しない。両側が同じ重複集合なら候補対応となり得る。必要集合と一意性を検証済みとはしない。"
       ],
       "signature": {
         "arguments": [
@@ -7190,7 +7191,7 @@
     }
   },
   "completeness_and_unclosed": {
-    "source_atom_coverage": "候補source_atom_ids空/結合0件はmissing、結合複数は全row状態conflict。供給原atom全体の必要母集合は別途未供給。",
+    "source_atom_coverage": "候補source_atom_ids空/結合0件はmissing、結合複数は全row状態conflict。供給原atom全体の必要母集合は別途未供給。 source_atom_ids自体の重複と、参照されない原atomの重複は検出しない。対応候補でも必要集合・一意性の成立を示さない。",
     "submitted_atom_ambiguity": "submitted_atomsの同一ID複数はconflict/selected=null。先頭を選ばない。",
     "candidate_trace": "候補source_revision↔atom.revision、meaning.source_revision↔atom.revision、meaning.dispositionを照合する。independent_reasonの空/TBDは候補保留。外部reuse_condition_ref内容は未解決。",
     "not_closed": "実source資格、独立必要集合、自由本文の意味充足、失敗ごとowner返却、実分離/評価/登録/採否/許可は未成立。候補状態/全effects=falseからそれらの完了を生成しない。"
