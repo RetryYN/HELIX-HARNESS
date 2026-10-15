@@ -9,7 +9,8 @@
     "admission_merge": "75ab7c2e764e00565521050dd51978e0459e1d8a",
     "admission_pr": "2953",
     "independent_review_ref": "PR2951 comment 6113731152",
-    "record_status_as_written": "記録本文のstatus表記はpending_final_review_and_main_admissionのまま保持。decision record commit d7652cはPR2953のmerge 75ab7cを通じ現行baseの祖先であることを別途照合。"
+    "record_status_as_written": "recorded_pending_final_review_and_main_admission",
+    "current_admission_evidence": "判断記録commit d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3eはadmission merge 75ab7c2e764e00565521050dd51978e0459e1d8a（PR2953）経由で現行baseの祖先。これは判断記録本文のstatusを改変しない。"
   },
   "approved_whole_objects": [
     {
@@ -102,13 +103,13 @@
       "path": "docs/helix-os/L4-basic-design/portfolio-state-trace.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "5b36f8068624b526eba319f8258f561a7f2e242a2e72b5247758567b3e130439",
-      "role": "source basic design"
+      "role": "現行source L4基本設計"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "7c1a1398c18a7dcf2743e566dfda7fb8d6df9c1fc5888a6a05345f68d372f9b4",
-      "role": "source integration oracle"
+      "role": "現行source L9 integration oracle"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
@@ -187,13 +188,13 @@
           "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
       ],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
       "line_quotes": [
         {
           "line": 51,
@@ -216,13 +217,13 @@
           "utf8_sha256": "40dc812647d71110d6f19f84aacd0e1e78cc7ebb5f829ac8429dd1b6cf621e97"
         }
       ],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
       "line_quotes": [
         {
           "line": 124,
@@ -375,7 +376,7 @@
           "utf8_sha256": "29bc840754b7be75cb5b527520946ca19a7fa5113da907c0d984363c658e5aa0"
         }
       ],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -383,7 +384,7 @@
       "sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行委任decision record"
     },
     {
       "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
@@ -391,7 +392,7 @@
       "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行共通層source"
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
@@ -399,7 +400,7 @@
       "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行の承認済みL10 oracle source"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -407,7 +408,7 @@
       "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行L11 acceptance source"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -415,7 +416,7 @@
       "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行L2要求source"
     },
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
@@ -423,71 +424,73 @@
       "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
       "asset_id": null,
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "現行の承認済みL3要求source"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
       "line_quotes": [],
-      "role": "legacy source/failure/consumer basis"
+      "role": "旧source・failure・consumer履歴"
     },
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "sha256": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
-      "role": "approved requirements whole source"
+      "role": "現行の承認済みL3要求source"
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "sha256": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec",
-      "role": "approved oracle whole source"
+      "role": "現行の承認済みL10 oracle source"
     },
     {
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3e",
       "sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
-      "role": "recorded delegated approval; admitted through PR2953"
+      "role": "現行委任decision record"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "section_header": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
       "section_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
-      "section_bytes": 1386
+      "section_bytes": 1386,
+      "role": "現行L2要求source"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "section_header": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
       "section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
-      "section_bytes": 923
+      "section_bytes": 923,
+      "role": "現行L11 acceptance source"
     }
   ],
   "parent_basic_source_pins": [
@@ -503,11 +506,35 @@
     }
   ],
   "legacy_comparison": {
-    "reuse_class": "semantic_rederivation",
-    "preserve": "Portfolio多軸projection、Release owner別責務、ticket close/scoreだけでqualifiedにしない、原ticket意味を上書きしない。",
-    "change": "採択済OS016の複数project・七状態・三kind・独立受入・局所stale/unknown・release kanbanを基本設計へ再導出。旧READY語彙を七状態へ黙って同一視しない。",
-    "reason": "限定承認の対象scope内でtraceを具体化。実release許可・実行能力・全共有consumerを自動採用しない。",
-    "shared_consumer_boundary": "六条件による意味更新/atomic Canonical化はOS001/053などへ残す。OS016はsource/状態/局所staleをtraceし、単独でCanonical化しない。HR19/HAC/HATのshared全意味は無損失に別consumerへ保持。HATはdesigned_not_implementedのまま。"
+    "reuse_class": "semantic_rederive",
+    "preserve": "Portfolioをproject横断の複数軸で投影すること、Release側がTicket完全性・system acceptance・compatibility・artifact・rollbackを評価すること、Ticket close/Bench scoreだけでqualifiedにしないこと、Ticketの意味を管理側が直接上書きしないこと。",
+    "change": "新世代OS016の承認範囲で、複数project・三kind・七状態・独立受入・局所stale/unknown・release kanbanの記述をL4からL5/L8へ有限fixtureの比較設計として再導出する。旧READY語彙を七状態へ同一視しない。",
+    "reason": "委任承認の対象scopeで下流関数と対検証を具体化する。実release許可、実行能力、全共有consumerの成立は導かない。",
+    "shared_consumer_boundary": "六条件による意味更新とatomic Canonical化はOS001/053などの責務として残す。OS016はsource・状態・局所staleを記録比較し、単独でCanonical化しない。HR-FR-HIL-19/HAC/HATの共有意味は他consumerへ保持する。HAT-HIL-19は未実装のまま。",
+    "basis": {
+      "execution_ticket_requirements": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "source": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "lines": [
+          "§6.1（125–137）",
+          "§6.2（139–143）",
+          "§6.3（145–150）",
+          "HXT-FR-023（276–278）",
+          "HXT-FR-024（280–282）"
+        ],
+        "use": "ticket/assignment/attempt/measurementの項目分離、Release qualificationの責務、portfolio多軸projectionを保持する根拠。"
+      },
+      "hxt_fr_025": {
+        "lines": [
+          "284–286"
+        ],
+        "use": "互換・廃止履歴を読む範囲。L5の保持/変更主張の主根拠には用いない。"
+      },
+      "excluded_non_basis": {
+        "asset": "legacy pillar requirements lines 51/56/58/65",
+        "reason": "これらの行は今回のTicket・Release・Portfolio意味の採否を支えない。source pinは読取履歴として残す。"
+      }
+    }
   },
   "legacy_normative_objects": [
     {
@@ -693,7 +720,7 @@
     "OS015原記録・OS019episode・OS002案件trace・HARNESS001/056結果意味・release ownerへexact bindingを定義する。共通recordの全consumer閉包は未証明。",
     "実writer・実state再評価/消込・提供receipt・実受入は未成立。old DB/runtime/state語彙を移植しない。",
     "独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10・PO実物L11/実装Readyは未成立。全92親430対の設計完遂を継続する。",
-    "R04 relation endpointとcontext target_id/revisionが同時にunknownとなる実caseはL9にない。sourceが足りない場合はunknownとして保持し、存在しないendpointのconflictへ推定しない。"
+    "R04のcontext target_id/revisionが同時に未知となる実caseはL9にない。有限規則では、照合可能なcontext候補が無ければ既知endpointをrelation_endpoint_conflictとして返し、@を含むtarget componentはendpoint文字列から一意に分離できないためrelation_unknownとする。一般のsource解決・escape grammar・任意graph上での分類は未閉包であり、このfixture外へ外挿しない。"
   ],
   "id": "HELIXOS-L5-016-PORTFOLIO-STATE-TRACE",
   "pair": "HELIXOS-L8-016-PORTFOLIO-STATE-TRACE",
@@ -1539,7 +1566,7 @@
   ],
   "functions": [
     {
-      "id": "expand_l9_case",
+      "id": "expand_case",
       "signature": "expand_case(fixture_inputs: FixtureInputs, case_input: CaseInput) -> PortfolioInput",
       "reads": [
         "fixture_inputs.portfolio",
@@ -1580,12 +1607,11 @@
       ],
       "algorithm": [
         "evaluate_portfolio内のpure closure。入力NodeRecordと固定L4診断domainからfacet_resultsと局所findingsを返し、node間共有のfinding accumulatorを直接変更しない。",
-        "R01 source_fields・七state source_ref/revisionを既知非空stringとして比較。kindはR02のfield comparisonに加えclosed setとfixture declared kindを判定。",
-        "R03 owner: absent/null/empty/non-string/duplicateはowner_unknown、2件以上の一意ownerはowner_ambiguous、双方一意なら集合差をowner_conflict。",
-        "R04 relation: absent/null/不正/duplicate、connection/composite emptyはrelation_unknown。known set差をrelation_conflict。各sideのrelation endpointはcontext-side project target_id@target_revision集合で確認し、対象が無ければ当該side pointerへrelation_endpoint_conflict。",
-        "R05 state closed domain、R06 result/receipt fieldとcontext source binding、R07 contradictory pair、R08 retained history/loss/stale reason、R09 boundary claimを診断contractの固定順で評価する。"
+        "R01はsource_fieldsと七stateのsource_ref/source_revisionを既知の非空stringとして比較する。kindはR02に従い、closed setとfixtureで宣言したkindの双方を判定する。",
+        "R04はrelationの欠落/null/不正/重複とconnection/compositeの空集合をrelation_unknownにする。known setの差はrelation_conflict。各sideのknown endpointを同projectのcontext側target_id@target_revision集合と照合し、候補が無ければそのsideのrelation pointerへrelation_endpoint_conflictを返す。target_idまたはtarget_revisionに@が含まれる候補はこの表記から一意に復元できないためrelation_unknownとし、対応済みとしない。",
+        "R05はstate closed domain、R06はresult/receipt fieldとcontext sourceの結合、R07は矛盾する組、R08は保持history/loss/stale reason、R09はboundary claimを診断contractに宣言した順に評価する。R01でcontext sourceのjoin対象値がunknownなら、そのsource pointerへfield_unknownを追加し、R06は該当facetをunknownに保つ。receipt自身のactual/context値がunknownの場合も各receipt pointerへfield_unknownを追加する。"
       ],
-      "source_rule": "HELIXOS-L4-016 diagnostic_contract R01-R08.",
+      "source_rule": "HELIXOS-L4-016 diagnostic_contract R01–R09。",
       "branch_table": [
         {
           "input_condition": "ownerの欠落/null/非配列/空/非string/空要素/重複要素",
@@ -1617,7 +1643,7 @@
         },
         {
           "input_condition": "unitのrelation集合が空",
-          "result": "known empty set; compare normally",
+          "result": "既知の空集合は正常値として比較する。",
           "facet": "relation"
         },
         {
@@ -1659,6 +1685,15 @@
           "source_basis": [
             "L4 diagnostic_contract R01/R02 unknown rule"
           ]
+        },
+        {
+          "input_condition": "known relation endpointの照合候補に、target_idまたはtarget_revisionが@を含むcontext componentがある",
+          "result": "relation_unknown。連結表記からendpoint identityを一意に分離できないため、対応済みとしない。",
+          "facet": "relation",
+          "source_basis": [
+            "L4 R04はtarget_id@target_revision表記との照合を定めるが、@のescape grammarは定めていない。",
+            "L5有限規則は曖昧候補をknown matchと扱わない。"
+          ]
         }
       ],
       "formal_entrypoint": "evaluate_portfolio.compare_node (local pure closure)"
@@ -1676,7 +1711,6 @@
         "diagnostic_contract.source_fields",
         "diagnostic_contract.receipt_fields",
         "diagnostic_contract.facet_order",
-        "diagnostic_contract.codes",
         "diagnostic_contract.result_states",
         "diagnostic_contract.provision_additional_comparison_fields"
       ],
@@ -1702,7 +1736,7 @@
         "actual側の源・状態・検証・受入・提供・edge/historyを原値で保持する。",
         "未完/conflict/staleから完了やauthorityを推論しない。"
       ],
-      "source_rule": "HELIXOS-L4-016 diagnostic_contract R01–R11; L3/L10 3義務を保持する有限fixture関数設計。",
+      "source_rule": "HELIXOS-L4-016 diagnostic_contract R01–R11。",
       "formal_entrypoint": "evaluate_portfolio"
     },
     {
@@ -1724,12 +1758,8 @@
     }
   ],
   "diagnostic_policy": {
-    "source_of_truth": "L4 diagnostic_contract; L5 reuses its exact rule IDs/closed values and pins the bytes.",
-    "facet_priority": [
-      "violation",
-      "unknown",
-      "corresponding"
-    ],
+    "source_of_truth": "normative_program.source_codeが有限fixture計算の唯一の規範である。ここに記したdomainや順序は同programの入力と処理を説明し、別規則として上書きしない。",
+    "facet_priority": "各facetと全体conditionはsource_codeの診断蓄積・rank規則に従う（violation > unknown > corresponding）。",
     "whole_condition_values": [
       "trace_material_violation",
       "trace_material_unknown",
@@ -1759,9 +1789,9 @@
       "pointer",
       "return_owner"
     ],
-    "unknown_policy": "Absent/null/empty/invalid type is not a success. Apply the specific R01-R11 disposition; preserve original values in the retained records.",
-    "producer_join_policy": "Receipt binds to its own project/requirement revision/scope/target id and revision/kind and to the context node source; endpoints bind to same-project context target identity@revision. Missing endpoint stays relation finding, not irrelevant.",
-    "decision_authority_boundary": "No L5 function updates actual state, creates acceptance, authorizes release, or asserts portfolio completion.",
+    "unknown_policy": "absent/null/empty/不正型を成功へ丸めず、L4 R01–R11に基づくunknown/violation所見と原値保持を行う。",
+    "producer_join_policy": "receiptは自身のproject/requirement revision/scope/target id・revision/kindをcontext node sourceへ結び付ける。relation endpointは同project内のcontext target_id@target_revision表記と照合し、一意に読めない値を対応済みにしない。",
+    "decision_authority_boundary": "関数はactual状態を更新せず、acceptanceを生成せず、releaseを許可せず、portfolio完了を断定しない。",
     "source_field_order": [
       "project_id",
       "requirement_id",
@@ -1837,12 +1867,13 @@
         "not_provided",
         "unpresented"
       ]
-    }
+    },
+    "identity_alias_scope": "actual/context各sideで両projectの全nodeを横断してtarget_id重複を調べ、同sideの全衝突nodeへidentity_aliasedを返す。actual/context間の同一IDは正常照合でありaliasではない。"
   },
   "source_fixture_contract": {
     "storage": "base_refのdeepcopyにreplacementsを記載順で適用。既存pathのみ。展開後canonical JSON SHA256を照合。正式codec/runtimeではない。",
     "canonical_hash": "JSON UTF-8 ensure_ascii=False,sort_keys=True,separators=(comma,colon),allow_nan=False; SHA-256",
-    "expected_limit": "作者scratchで著述した期待値。独立reviewではL4散文ruleから再導出し、作者コードを実行/流用しない。独立oracle凍結・実TDDの証拠ではない。",
+    "expected_limit": "L9の期待wholeは上流oracleとして保持し、有限関数の計算後に比較する。L8の独立境界期待はL4の文章規則と固定rawから候補計算前に別途定めた。いずれも実観測・独立qualification・実TDDの証拠ではない。",
     "actual_execution_state": "not_executed",
     "disposition_sensitivity": {
       "field_unknown": "HELIXOS-L9-016-C0002",
@@ -1872,8 +1903,7 @@
       "identity_aliased": "HELIXOS-L9-016-C0351",
       "relation_endpoint_conflict": "HELIXOS-L9-016-C0161"
     },
-    "case_correction_note": {
-      "review_comment": 6171858721,
+    "source_case_selection_note": {
       "corrected_unknown_cases": [
         "HELIXOS-L9-016-C0136",
         "HELIXOS-L9-016-C0140",
@@ -1893,7 +1923,7 @@
         "HELIXOS-L9-016-C0319",
         "HELIXOS-L9-016-C0321"
       ],
-      "reason": "11件は基準と完全同入力で個別反例にならず除去。代わりにknown owner/relation・state2軸・result2種のactual/context12例を追加。上流要求/対L10の変更や縮退ではない。"
+      "reason": "列挙した4件はL4規則の範囲でunknownとして扱う観測例である。列挙した11件は比較基準と入力が完全一致し、独立差分を示さないためL9 source wholeから除いた。残る感度例は既知owner/relation、state、resultのactual/context差を含む。上流要求とL10 obligationは変更していない。"
     }
   },
   "design_limits": [
@@ -1981,12 +2011,8 @@
       "meaning": "provided state referenceのみ記録し、release permit/actual actionを生成しない。"
     }
   ],
-  "logical_schema_boundary": "Recordはrequired membersを必須、optional membersのみ省略可、未宣言memberは拒否する。Presence<JSONValue>のfieldが省略された状態はabsent、明示nullはpresent nullとして区別する。JSONValueはobject/listを含む全JSON値。source.kindは文字列かつclosed kind setの値だけ既知、その他のpresent値とabsentはkind_unknown/unknownとし、raw source recordへ保持する。",
+  "logical_schema_boundary": "純関数の入力は宣言済みPortfolioInput型を満たす有限fixture recordである。recordの未宣言memberはL8型検査で対象外として拒否し、関数の計算域へ渡さない。Presence<JSONValue>はabsentとpresent nullを区別し、宣言されたJSONValue memberはobject/listを含む任意JSON値を型内で保持する。source.kind、owner、relation、stateのfield-level規則はnormative_program.source_codeだけに従う。R11の保持対象である定義済みsource/state/history/memberはdeep copyし、入力とのobject identityを共有しない。",
   "typed_function_contract": {
-    "expand_l9_case": {
-      "input": "FixtureInputs + CaseInput",
-      "output": "PortfolioInput"
-    },
     "compare_node": {
       "input": "project_id:ProjectId + node_id:NodeId + actual:NodeRecord + context:NodeRecord; evaluate_portfolio scope provides DiagnosticContract and local findings accumulator",
       "output": "NodeComparison{facet_results:NodeDisposition, findings:array<Finding>}"
@@ -1999,7 +2025,11 @@
       "input": "array<Finding> + return_owner literal portfolio-trace-owner",
       "output": "array<Finding>"
     },
-    "return_field_completeness": "TraceResultのrequired fieldsはL4 output_fields全件と一致し、いずれも返却する。"
+    "return_field_completeness": "TraceResultのrequired fieldsはL4 output_fields全件と一致し、いずれも返却する。",
+    "expand_case": {
+      "input": "FixtureInputs + CaseInput",
+      "output": "PortfolioInput"
+    }
   },
   "normative_program": {
     "language": "Python 3 pure expression/function subset",
@@ -2008,12 +2038,12 @@
       "evaluate_portfolio": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: JSONValue) -> TraceResult",
       "route_failure": "route_failure(findings: array<Finding>, return_owner: 'portfolio-trace-owner') -> array<Finding>"
     },
-    "source_rule": "このsource string自体がL4 R01–R11の有限純関数定義である。検証器はcase IDに基づく分岐を持たず、L9 rawの展開後にこのentrypointを呼び、期待wholeは返却後の比較だけに使う。",
+    "source_rule": "このsource stringがL4 R01–R11を固定fixture領域で評価する唯一の関数規則である。検証器はcase IDによる分岐をせず、L9 rawを展開してentrypointを呼び、L9 expected wholeは返却後に比較する。",
     "purity": "入力を変更しない。I/O、import、時計、乱数、外部状態変更を含まない。expand_caseはcopy後のローカル値のみ変更する。",
-    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef evaluate_portfolio(input, diagnostic_contract):\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    projects = rules['projects']\n    nodes = rules['node_kinds']\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    codes = {row['code']: row['disposition'] for row in rules['codes']}\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    dispositions = {}\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        result={f:'corresponding' for f in facets}\n        local_findings=[]\n        def add(code, ptr):\n            local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n        def compare_string(a,b,pa,pb,facet):\n            if not known(a):\n                add('field_unknown',pa); return 'unknown'\n            if not known(b):\n                add('field_unknown',pb); return 'unknown'\n            if a != b:\n                add('field_conflict',pa); return 'violation'\n            return 'corresponding'\n        def mark(f, disp):\n            rank={'corresponding':0,'unknown':1,'violation':2}\n            if rank[disp]>rank[result[f]]: result[f]=disp\n        ap=pointer('actual',project,node); cp=pointer('context',project,node)\n        for field in source_fields:\n            if field == 'kind':\n                d=compare_string(actual.get('source',{}).get(field),context.get('source',{}).get(field),ap+'/source/'+field,cp+'/source/'+field,'source')\n                mark('source',d)\n                continue\n            d=compare_string(actual.get('source',{}).get(field),context.get('source',{}).get(field),ap+'/source/'+field,cp+'/source/'+field,'source')\n            mark('source',d)\n        ak=actual.get('source',{}).get('kind'); ck=context.get('source',{}).get('kind'); declared=nodes[node]\n        for value,side in [(ak,'actual'),(ck,'context')]:\n            if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n                add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n            elif value != declared:\n                add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n        # R03 one owner per side; duplicate entries are malformed unknowns.\n        owners=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('owners'); p=pointer(side,project,node,'owners')\n            s=classify_set(val,p,False)\n            if s is None:\n                add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n            elif len(s)>1:\n                add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n            else: owners.append(s)\n        if owners[0] is not None and owners[1] is not None and len(owners[0])==len(owners[1])==1 and owners[0]!=owners[1]:\n            add('owner_conflict',ap+'/owners');mark('owner','violation')\n        # R04 relation sets and context-side endpoint existence.\n        relations=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('relations'); p=pointer(side,project,node,'relations')\n            s=classify_set(val,p,declared=='unit')\n            if s is None:\n                add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n            else: relations.append(s)\n        if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n            add('relation_conflict',ap+'/relations');mark('relation','violation')\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            rel=obj.get('relations')\n            if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n                available=set()\n                # Endpoint identity is target_id@target_revision for this side's same-project portfolio.\n                portfolio=data['context']['projects'][project]\n                for other in portfolio.values():\n                    src=other.get('source',{}); tid=src.get('target_id'); rev=src.get('target_revision')\n                    if known(tid) and known(rev): available.add(tid+'@'+rev)\n                bad=[x for x in rel if x not in available]\n                if bad:\n                    add('relation_endpoint_conflict',pointer(side,project,node,'relations'));mark('relation','violation')\n        # R05 states and state source references.\n        for axis,allowed in axes.items():\n            aa=actual.get('states',{}).get(axis,{}); cc=context.get('states',{}).get(axis,{})\n            av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n            if av not in allowed:\n                add('state_unknown',pa);mark('state','unknown')\n            if cv not in allowed:\n                add('state_unknown',pc);mark('state','unknown')\n            if av in allowed and cv in allowed and av!=cv:\n                add('state_conflict',pa);mark('state','violation')\n            for key in ['source_ref','source_revision']:\n                d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key,'state');mark('state',d)\n        av=actual.get('states',{}).get('knowledge',{}).get('state')\n        if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n        av=actual.get('states',{}).get('freshness',{}).get('state')\n        if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n        # R06 receipt/result states and field joins.\n        for facet in ['verification','acceptance','provision']:\n            ar=actual.get(facet,{}); cr=context.get(facet,{})\n            allowed=rules['result_states'][facet]\n            ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n            if ast not in allowed:\n                add('result_unknown',p);mark(facet,'unknown')\n            if cst not in allowed:\n                add('result_unknown',q);mark(facet,'unknown')\n            if ast in allowed and cst in allowed and ast!=cst:\n                add('result_conflict',p);mark(facet,'violation')\n            # Receipt identity fields bind against context receipt and node source.\n            for field in receipt_fields:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field,facet);mark(facet,d)\n                if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                    expected=context.get('source',{}).get(field)\n                    if not known(expected):\n                        mark(facet,'unknown')\n                    elif known(ar.get(field)) and ar.get(field)!=expected:\n                        add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n            if facet=='provision':\n                for field in rules['provision_additional_comparison_fields']:\n                    d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field,facet);mark(facet,d)\n                if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                    expected=context.get('source',{}).get(field)\n                    if not known(expected):\n                        mark(facet,'unknown')\n                    elif known(ar.get(field)) and ar.get(field)!=expected:\n                        add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n        if actual.get('verification',{}).get('state')=='pass_material' and actual.get('states',{}).get('verification',{}).get('state')=='not_verified':\n            add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n        if actual.get('provision',{}).get('state')=='provided_material' and actual.get('states',{}).get('provision',{}).get('state')=='not_provided':\n            add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n        # R08 history sets; context entries may not be erased.\n        for field in ['unresolved_edges','stale_reasons']:\n            av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n            aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n            if aset is None: add('history_unknown',pa);mark('history','unknown')\n            if cset is None: add('history_unknown',pc);mark('history','unknown')\n            if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n        if actual.get('states',{}).get('freshness',{}).get('state')=='stale' and actual.get('stale_reasons')==[]:\n            add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n        # R09 boundary claims are checked on actual source only.\n        for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n            value=actual.get('claims',{}).get(field);p=ap+'/claims/'+field\n            if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n            elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n        return {'facet_results':result,'findings':local_findings}\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=a['source']\n            retained_state[project][node]={k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']}\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=a['source']['kind']\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a['states'][axis]['state']!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        for project in projects:\n            buckets={}\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append(node)\n            for colliding in buckets.values():\n                if len(colliding)>1:\n                    for node in colliding:\n                        add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                        node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n"
+    "source_code": "def deep_copy(value):\n    if isinstance(value, dict):\n        return {key: deep_copy(item) for key, item in value.items()}\n    if isinstance(value, list):\n        return [deep_copy(item) for item in value]\n    return value\n\ndef expand_case(fixture_inputs, case_input):\n    if case_input.get(\"base_ref\") != \"portfolio\":\n        raise ValueError(\"未定義base_ref\")\n    expanded = deep_copy(fixture_inputs[\"portfolio\"])\n    for replacement in case_input[\"replacements\"]:\n        path = replacement[\"path\"]\n        if not path:\n            raise ValueError(\"空path\")\n        cursor = expanded\n        for member in path[:-1]:\n            if not isinstance(cursor, dict) or member not in cursor:\n                raise ValueError(\"未定義path\")\n            cursor = cursor[member]\n        if not isinstance(cursor, dict) or path[-1] not in cursor:\n            raise ValueError(\"未定義終端\")\n        cursor[path[-1]] = deep_copy(replacement[\"value\"])\n    return expanded\n\ndef route_failure(findings, return_owner):\n    unique = {(item['code'], item['pointer'], return_owner) for item in findings}\n    ordered = sorted(unique)\n    return [{'code': code, 'pointer': pointer, 'return_owner': owner} for code, pointer, owner in ordered]\n\ndef evaluate_portfolio(input, diagnostic_contract):\n    data = input\n    rules = diagnostic_contract\n    return_owner = 'portfolio-trace-owner'\n    projects = rules['projects']\n    nodes = rules['node_kinds']\n    axes = rules['state_axes']\n    facets = rules['facet_order']\n    source_fields = rules['source_fields']\n    receipt_fields = rules['receipt_fields']\n    node_corr = {}\n    retained_source = {}\n    retained_state = {}\n    gaps = {}\n    findings = []\n    def pointer(side, project, node, *parts):\n        prefix = '/projects/' if side == 'actual' else '/context/projects/'\n        return prefix + project + '/' + node + ''.join('/' + str(p).replace('~','~0').replace('/','~1') for p in parts)\n    def add(code, ptr):\n        findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n    def known(v):\n        return isinstance(v,str) and len(v)>0\n    def classify_set(value, ptr, allow_empty):\n        if not isinstance(value,list) or any(not known(x) for x in value) or len(set(value)) != len(value):\n            return None\n        if not value and not allow_empty:\n            return None\n        return set(value)\n    def compare_node(project, node, actual, context):\n        result={f:'corresponding' for f in facets}\n        local_findings=[]\n        def add(code, ptr):\n            local_findings.append({'code':code,'pointer':ptr,'return_owner':return_owner})\n        def compare_string(a,b,pa,pb):\n            a_known=known(a); b_known=known(b)\n            if not a_known: add('field_unknown',pa)\n            if not b_known: add('field_unknown',pb)\n            if not a_known or not b_known: return 'unknown'\n            if a != b:\n                add('field_conflict',pa); return 'violation'\n            return 'corresponding'\n        def mark(f, disp):\n            rank={'corresponding':0,'unknown':1,'violation':2}\n            if rank[disp]>rank[result[f]]: result[f]=disp\n        ap=pointer('actual',project,node); cp=pointer('context',project,node)\n        for field in source_fields:\n            d=compare_string(actual.get('source',{}).get(field),context.get('source',{}).get(field),ap+'/source/'+field,cp+'/source/'+field)\n            mark('source',d)\n        ak=actual.get('source',{}).get('kind'); ck=context.get('source',{}).get('kind'); declared=nodes[node]\n        for value,side in [(ak,'actual'),(ck,'context')]:\n            if not isinstance(value,str) or value not in {'unit','connection','composite'}:\n                add('kind_unknown',pointer(side,project,node,'source','kind')); mark('source','unknown')\n            elif value != declared:\n                add('kind_conflict',pointer(side,project,node,'source','kind')); mark('source','violation')\n        # R03: 各sideのowner集合を分類し、既知集合同士は件数に関わらず集合差を比較する。\n        owners=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('owners'); p=pointer(side,project,node,'owners')\n            s=classify_set(val,p,False)\n            if s is None:\n                add('owner_unknown',p); mark('owner','unknown'); owners.append(None)\n            elif len(s)>1:\n                add('owner_ambiguous',p); mark('owner','violation'); owners.append(s)\n            else: owners.append(s)\n        if owners[0] is not None and owners[1] is not None and owners[0]!=owners[1]:\n            add('owner_conflict',ap+'/owners');mark('owner','violation')\n        # R04 relation sets and context-side endpoint existence.\n        relations=[]\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            val=obj.get('relations'); p=pointer(side,project,node,'relations')\n            s=classify_set(val,p,declared=='unit')\n            if s is None:\n                add('relation_unknown',p);mark('relation','unknown');relations.append(None)\n            else: relations.append(s)\n        if relations[0] is not None and relations[1] is not None and relations[0]!=relations[1]:\n            add('relation_conflict',ap+'/relations');mark('relation','violation')\n        for obj,side in [(actual,'actual'),(context,'context')]:\n            rel=obj.get('relations')\n            rel_ptr=pointer(side,project,node,'relations')\n            if isinstance(rel,list) and all(known(x) for x in rel) and len(set(rel))==len(rel):\n                rendered={}\n                # L4のtarget_id@target_revision表記が一意に解ける文脈nodeだけをendpoint候補にする。\n                portfolio=data['context']['projects'][project]\n                for other in portfolio.values():\n                    src=other.get('source',{}); tid=src.get('target_id'); rev=src.get('target_revision')\n                    if not known(tid) or not known(rev):\n                        continue\n                    elif '@' in tid or '@' in rev:\n                        rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'ambiguous_encoding'))\n                    else:\n                        rendered.setdefault(tid+'@'+rev,[]).append((tid,rev,'unique'))\n                unresolved=False; missing=False\n                for endpoint in rel:\n                    candidates=rendered.get(endpoint,[])\n                    identities={(row[0],row[1]) for row in candidates}\n                    if len(identities)>1 or any(row[2]=='ambiguous_encoding' for row in candidates):\n                        unresolved=True\n                    elif not candidates:\n                        missing=True\n                if unresolved:\n                    add('relation_unknown',rel_ptr);mark('relation','unknown')\n                if missing:\n                    add('relation_endpoint_conflict',rel_ptr);mark('relation','violation')\n        # R05 states and state source references.\n        for axis,allowed in axes.items():\n            aa=actual.get('states',{}).get(axis,{}); cc=context.get('states',{}).get(axis,{})\n            av=aa.get('state'); cv=cc.get('state'); pa=ap+'/states/'+axis+'/state'; pc=cp+'/states/'+axis+'/state'\n            if av not in allowed:\n                add('state_unknown',pa);mark('state','unknown')\n            if cv not in allowed:\n                add('state_unknown',pc);mark('state','unknown')\n            if av in allowed and cv in allowed and av!=cv:\n                add('state_conflict',pa);mark('state','violation')\n            for key in ['source_ref','source_revision']:\n                d=compare_string(aa.get(key),cc.get(key),ap+'/states/'+axis+'/'+key,cp+'/states/'+axis+'/'+key);mark('state',d)\n        av=actual.get('states',{}).get('knowledge',{}).get('state')\n        if av=='unknown': add('knowledge_unknown',ap+'/states/knowledge/state');mark('state','unknown')\n        av=actual.get('states',{}).get('freshness',{}).get('state')\n        if av=='stale': add('state_stale',ap+'/states/freshness/state');mark('state','unknown')\n        # R06 receipt/result states and field joins.\n        for facet in ['verification','acceptance','provision']:\n            ar=actual.get(facet,{}); cr=context.get(facet,{})\n            allowed=rules['result_states'][facet]\n            ast=ar.get('state'); cst=cr.get('state'); p=ap+'/'+facet+'/state'; q=cp+'/'+facet+'/state'\n            if ast not in allowed:\n                add('result_unknown',p);mark(facet,'unknown')\n            if cst not in allowed:\n                add('result_unknown',q);mark(facet,'unknown')\n            if ast in allowed and cst in allowed and ast!=cst:\n                add('result_conflict',p);mark(facet,'violation')\n            # Receipt identity fields bind against context receipt and node source.\n            for field in receipt_fields:\n                d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field);mark(facet,d)\n                if field in ['project_id','requirement_revision','scope','target_id','target_revision','kind']:\n                    expected=context.get('source',{}).get(field)\n                    if not known(expected):\n                        mark(facet,'unknown')\n                    elif known(ar.get(field)) and ar.get(field)!=expected:\n                        add('field_conflict',ap+'/'+facet+'/'+field);mark(facet,'violation')\n            if facet=='provision':\n                for field in rules['provision_additional_comparison_fields']:\n                    d=compare_string(ar.get(field),cr.get(field),ap+'/'+facet+'/'+field,cp+'/'+facet+'/'+field)\n                    mark(facet,d)\n        if actual.get('verification',{}).get('state')=='pass_material' and actual.get('states',{}).get('verification',{}).get('state')=='not_verified':\n            add('verification_state_conflict',ap+'/verification/state');mark('verification','violation')\n        if actual.get('provision',{}).get('state')=='provided_material' and actual.get('states',{}).get('provision',{}).get('state')=='not_provided':\n            add('provision_state_conflict',ap+'/provision/state');mark('provision','violation')\n        # R08 history sets; context entries may not be erased.\n        for field in ['unresolved_edges','stale_reasons']:\n            av=actual.get(field);cv=context.get(field);pa=ap+'/'+field;pc=cp+'/'+field\n            aset=classify_set(av,pa,True);cset=classify_set(cv,pc,True)\n            if aset is None: add('history_unknown',pa);mark('history','unknown')\n            if cset is None: add('history_unknown',pc);mark('history','unknown')\n            if aset is not None and cset is not None and not cset.issubset(aset): add('history_lost',pa);mark('history','violation')\n        if actual.get('states',{}).get('freshness',{}).get('state')=='stale' and actual.get('stale_reasons')==[]:\n            add('stale_reason_missing',ap+'/stale_reasons');mark('history','unknown')\n        # R09 boundary claims are checked on actual source only.\n        for field in ['from_unit_success','from_pr_ci_plan','whole_node_complete']:\n            value=actual.get('claims',{}).get(field);p=ap+'/claims/'+field\n            if value is True: add('inferred_completion_forbidden',p);mark('boundary','violation')\n            elif value is not False: add('claim_unknown',p);mark('boundary','unknown')\n        return {'facet_results':result,'findings':local_findings}\n    for project in projects:\n        node_corr[project]={};retained_source[project]={};retained_state[project]={};gaps[project]={}\n        for node in nodes:\n            a=data['projects'][project][node];c=data['context']['projects'][project][node]\n            compared=compare_node(project,node,a,c)\n            node_corr[project][node]=compared['facet_results']\n            for finding in compared['findings']: findings.append(finding)\n            retained_source[project][node]=deep_copy(a['source'])\n            retained_state[project][node]=deep_copy({k:a[k] for k in ['states','verification','acceptance','provision','unresolved_edges','stale_reasons','relations','owners']})\n            if 'kind' in a['source']:\n                retained_state[project][node]['kind']=deep_copy(a['source']['kind'])\n            gaps[project][node]=[axis for axis,allowed in axes.items() if a.get('states',{}).get(axis,{}).get('state')!=allowed[0]]\n    # Same-side target ID collisions are alias violations on both nodes.\n    for side,root in [('actual',data['projects']),('context',data['context']['projects'])]:\n        buckets={}\n        for project in projects:\n            for node in nodes:\n                tid=root[project][node].get('source',{}).get('target_id')\n                if known(tid): buckets.setdefault(tid,[]).append((project,node))\n        for colliding in buckets.values():\n            if len(colliding)>1:\n                for project,node in colliding:\n                    add('identity_aliased',pointer(side,project,node,'source','target_id'))\n                    node_corr[project][node]['source']='violation'\n    claim=data.get('whole_completion_claim')\n    if claim is True:add('whole_completion_forbidden','/whole_completion_claim')\n    elif claim is not False:add('whole_claim_unknown','/whole_completion_claim')\n    rank={'corresponding':0,'unknown':1,'violation':2}\n    values=[x for p in projects for n in nodes for x in node_corr[p][n].values()]\n    if claim is True: values.append('violation')\n    elif claim is not False: values.append('unknown')\n    highest=values[0]\n    for value in values[1:]:\n        if rank[value]>rank[highest]: highest=value\n    condition={'corresponding':'trace_material_corresponding','unknown':'trace_material_unknown','violation':'trace_material_violation'}[highest]\n    findings=route_failure(findings, return_owner)\n    return {'condition':condition,'node_correspondence':node_corr,'retained_source_records':retained_source,'retained_state_trace':retained_state,'observed_gap_axes':gaps,'findings':findings,'actual_state_updated':False,'actual_acceptance_created':False,'actual_release_authorized':False,'whole_portfolio_complete':False,'operation_effect':'none'}\n"
   },
   "formal_calculation_contract": {
-    "authority": "normative_program.source_code",
+    "authority": "normative_program.source_codeがL5有限fixture計算の唯一の規範である。branch_table、diagnostic_policy、logical_schema_boundary等は型・入力・説明であり、計算結果を別に定義しない。コードと説明の不一致は解消し、期待wholeは計算後にだけ比較する。",
     "calculation_order": [
       "L9 given.inputをnormative_program.expand_caseで展開",
       "展開rawとdiagnostic_contractをnormative_program.evaluate_portfolioへ渡す",
@@ -2047,6 +2077,28 @@
       "diagnostic": "source.kindのJSON Pointerへkind_unknownを出し、より優先する既知違反が無ければsource facetをunknownにする。",
       "retention": "retained_source_recordsは入力source objectをそのまま複写する。retained_state_traceはsource.kindが存在するときだけkindを含め、明示nullはnullとして複写し、欠落は欠落のままにする。",
       "basis": "L4 F01/F02およびdiagnostic_contractのkind_unknown/kind_conflict。資格またはruntime source状態を推定しない。"
+    }
+  },
+  "pr_metadata": {
+    "pr_class": "design_verification",
+    "template_path": ".github/PULL_REQUEST_TEMPLATE.md",
+    "template_sha256": "0c9f42d1099d6d8d12979cbc86f21ce256b706f465d4e87ef71d591643fb8ab3",
+    "basis_path": "docs/governance/github-upstream-operating-model.md",
+    "basis_section": "PRの原子性・design_verification PR class",
+    "purpose": "対象pairのfreeze可能な設計・検証契約を扱う。template本文は入力面であり上流意味や承認を生成しない。"
+  },
+  "reproducible_scope_counts": {
+    "l3_l10_json_files": {
+      "count": 48,
+      "definition": "source-checkpoint verifierがfixed baseとcurrent worktreeでJSON全体bytesを比較したL3/L10 filesの数。"
+    },
+    "l3_requirement_ids": {
+      "count": 430,
+      "definition": "current baselineのL3 JSONから一意に計数したrequirement IDs。設計完了を意味しない。"
+    },
+    "independent_boundary_projections": {
+      "count": 6,
+      "definition": "independent-boundary-expectations.jsonの手固定全体期待6件。domain_probesは別集合で、現時点の総数を含めない。"
     }
   }
 }
