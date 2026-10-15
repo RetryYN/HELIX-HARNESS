@@ -1,0 +1,5346 @@
+{
+  "document_id": "HELIXBRAIN-L5-022",
+  "parent": "HELIXBRAIN-L2-022",
+  "layer": "L5",
+  "pair": "L8",
+  "status": "draft_limited_pure_logic_not_implementation_ready",
+  "source_main": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+  "scope": {
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "historical_stage": "Stage 4",
+    "version_target": "1.0",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "approval_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+    "limit": "承認済み5要件/5oracleと固定L4/L9素材の有限な純粋比較設計。実受領、owner/source資格、CORE適用、製品値決定、OS記録、承認、完了、正式schema/codec/実装/CI/L11を成立させない。",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13"
+    }
+  },
+  "approved_wholes": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-022-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-022-F01",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "設計inputとdependencyの受渡し",
+        "obligation": "Patternの設計input/前提/constraint/関連Pattern/根拠とUnit/Partのdependency relationを、元knowledge identity/versionを保ってHARNESS009の設計義務入力へ渡す。必要inputや関係を途中で落とさない。",
+        "oracle_ref": "HELIXBRAIN-L10-022-F01",
+        "failure_return": "意味関係はBRAIN003/005、受領方法はHARNESSへ返す。"
+      },
+      "canonical_sha256": "b733d9700c411a6696fc66df2213146fe1af92ab0735f15e6399b0bef2afa5b3"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-022-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L3-022-F02",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "inputから義務への双方向trace",
+        "obligation": "Pattern required inputとUnit/Part dependencyから受領側HARNESS009義務へ、元knowledge identity/version・対象scopeを保って双方向traceする。製品値未定と入力未充足/参照欠落を区別し、欠落を完了にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-022-F02",
+        "failure_return": "知識意味はBRAIN、義務受領/製品値はHARNESS-COREへ返す。"
+      },
+      "canonical_sha256": "4b533c58a6c8d2d13bf850236b388ee616f27b980da12941d4adcdbd116b2deb"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-022-F03",
+      "whole": {
+        "id": "HELIXBRAIN-L3-022-F03",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "構造材料と製品導出の分離",
+        "obligation": "受渡す構造材料を、HARNESS-CORE/HARNESSが自らの要求/設計契約に従って工程表/遷移図/実装優先順位を導く入力として対応付ける。BRAINは製品要求値/設計選択/三つの導出物を単独で決めない。",
+        "oracle_ref": "HELIXBRAIN-L10-022-F03",
+        "failure_return": "製品導出はCORE/HARNESS、材料意味はBRAINへ返す。"
+      },
+      "canonical_sha256": "cc2177ceeaac92366019da62c1555bb5cfbc7b456d5a88bff3f7e4e0c57ba072"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-022-F04",
+      "whole": {
+        "id": "HELIXBRAIN-L3-022-F04",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "意味不明と受領方法不足の差戻し",
+        "obligation": "003/005/008とHARNESS009の選択contractを照合し、意味関係不明はBRAIN L1-003/005へ、設計義務の受領方法不足はHARNESSへ返す。必要参照missing/unknownを接続/義務完了にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-022-F04",
+        "failure_return": "BRAIN知識meaningまたはHARNESS受領contract ownerへ返す。"
+      },
+      "canonical_sha256": "a253ba2465230a49be4ad0390036bef6aeb4ae10613c105b6f68b70705d51bc3"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "id": "HELIXBRAIN-L3-022-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-022-B01",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "義務導出の責務保持",
+        "obligation": "BRAINは入力構造、HARNESS-CORE/HARNESSは製品の要求/設計義務と導出、OSは案件記録/運転を所有する。knowledge返却・CORE適用・OS記録を相互の承認/完了/実装許可へ変換しない。JSON管理/Python要求導出の既決方針を保持し正式schema/方式は対設計へ引き継ぐ。",
+        "oracle_ref": "HELIXBRAIN-L10-022-B01",
+        "failure_return": "BRAIN/CORE/HARNESS/OSの当該ownerへ返す。"
+      },
+      "canonical_sha256": "cb7745b9eae8c5c6365e678c654194fb0151b08a08be033431cc2f0328be8299"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-022-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-022-F01",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "設計inputとdependencyの受渡し",
+        "requirement_ref": "HELIXBRAIN-L3-022-F01",
+        "positive_input": "同knowledgeのinput/relationと一項目欠落/未知endpointを比較する。",
+        "expected_observation": "各input/前提/constraint/relation/根拠が受渡し対象へ辿れる。",
+        "negative_input": "input脱落、dependency消去、名前類似で関係捏造。",
+        "failure_observation": "意味関係はBRAIN003/005、受領方法はHARNESSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "fb060f43d108691133ce1f257d12f513e045a50baebfb53d3b78e9ff3f90ee30"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-022-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L10-022-F02",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "inputから義務への双方向trace",
+        "requirement_ref": "HELIXBRAIN-L3-022-F02",
+        "positive_input": "input→義務と逆trace、別knowledge version/scope、値未定/未充足を比較する。",
+        "expected_observation": "同対象の双方向対応と不足種別/ownerが再構成できる。",
+        "negative_input": "逆trace欠落、別版義務join、値未定をN/Aや完了。",
+        "failure_observation": "知識意味はBRAIN、義務受領/製品値はHARNESS-COREへ返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "90016367aa64360e5b1e0adf592b6d32ba3e3789e793c2c69e3a095167f0957a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-022-F03",
+      "whole": {
+        "id": "HELIXBRAIN-L10-022-F03",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "構造材料と製品導出の分離",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03",
+        "positive_input": "同構造材料から三導出物を扱う接続先と未決製品値を比較する。",
+        "expected_observation": "材料と導出先/元根拠/未決が区別される。",
+        "negative_input": "BRAINが工程/遷移/優先順位を確定、材料到着で導出完了、製品値捏造。",
+        "failure_observation": "製品導出はCORE/HARNESS、材料意味はBRAINへ返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "839e8382335591184f86d2cdc9cd4fed4e0b014c74092cd58103df5aedcb73e5"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-022-F04",
+      "whole": {
+        "id": "HELIXBRAIN-L10-022-F04",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "意味不明と受領方法不足の差戻し",
+        "requirement_ref": "HELIXBRAIN-L3-022-F04",
+        "positive_input": "relation意味不明、知識版不明、受領方法欠落と正常対応を比較する。",
+        "expected_observation": "不足種別/元参照/戻し先と未完義務が対応する。",
+        "negative_input": "意味不明edgeを確定、受領方法をBRAINが勝手に補完、missing完了。",
+        "failure_observation": "BRAIN知識meaningまたはHARNESS受領contract ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "5ba3a00132f16d5a85fcd61eabb03ebcf27d6fbaf2ba91179af135d44c93f85b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "id": "HELIXBRAIN-L10-022-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-022-B01",
+        "parent": "HELIXBRAIN-L2-022",
+        "title": "義務導出の責務保持",
+        "requirement_ref": "HELIXBRAIN-L3-022-B01",
+        "positive_input": "候補材料/設計義務/案件記録、生成viewとJSON意味を別にする。",
+        "expected_observation": "各ownerと状態/対設計への未完が分離される。",
+        "negative_input": "BRAINが製品設計、OSが知識正本、本文存在で実Python/schema/実装成立。",
+        "failure_observation": "BRAIN/CORE/HARNESS/OSの当該ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "9ca7be0a522f3a8900560e53a6cfbd930d86d9a00c4e7485771247e92712311f"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+      "revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "bytes": 17484,
+      "sha256": "345b6f97bb9371c3b4e013a7926d9bc0f6c1819110d6f2a91a19e1695ba2e6c5"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "bytes": 163197,
+      "sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 48699,
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 28431,
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 55987,
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 31508,
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    }
+  ],
+  "legacy_and_consumer_basis": {
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "lines": "19-60",
+    "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "retained": "JSON意味/identity/version/applicability/required inputs/owner/trace/oracle、JSONを正本とし表示viewを派生とする意図。",
+    "changed_or_unclosed": "旧実装・registry/planner/pair graph binderは再利用/実行しない。実resolver、実owner資格、正式codec/schemaは未成立。旧failure例は意味の再導出に限り、実行根拠にしない。"
+  },
+  "type_system": {
+    "json_value": "null | boolean | number | string | array<JsonValue> | object<string,JsonValue>",
+    "absence": "object member absentはAbsent sentinelとして値nullと区別する。JSON source stringからparseし、未供給memberをnullへ補わない。",
+    "deep_equal": "JSON kindを区別し、number同士はJSON数値として比較、booleanはnumberと異なる。objectはkey集合と各value、arrayは順序と重複を比較。",
+    "output_domain": "各関数の返却wholeはL8にある全memberで、unknown/missingは文字列状態として明示。効果booleanはfixture calculation上false。",
+    "record_schemas": {
+      "F01Input": {
+        "kind": "object",
+        "required_members": [
+          "claims_name_similarity_relation",
+          "original_material",
+          "provided_material"
+        ],
+        "properties": {
+          "claims_name_similarity_relation": "boolean",
+          "original_material": "Material",
+          "provided_material": "Material"
+        },
+        "additional_members": "reject"
+      },
+      "F01Result": {
+        "kind": "object",
+        "required_members": [
+          "material_results",
+          "endpoint_results",
+          "name_similarity_claim",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "material_results": "map<string,string>",
+          "endpoint_results": "map<string,string>",
+          "name_similarity_claim": "string",
+          "effects": "Effects",
+          "unaffected_Q": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F02Input": {
+        "kind": "object",
+        "required_members": [
+          "claims_complete",
+          "claims_value_na",
+          "input_state",
+          "original_binding",
+          "original_forward",
+          "original_reverse",
+          "product_value_state",
+          "provided_binding",
+          "provided_forward",
+          "provided_reverse"
+        ],
+        "properties": {
+          "claims_complete": "boolean",
+          "claims_value_na": "boolean",
+          "input_state": "string",
+          "original_binding": "TraceBinding",
+          "original_forward": "map<string,list<string>>",
+          "original_reverse": "map<string,list<string>>",
+          "product_value_state": "string",
+          "provided_binding": "TraceBinding",
+          "provided_forward": "map<string,list<string>>",
+          "provided_reverse": "map<string,list<string>>"
+        },
+        "additional_members": "reject"
+      },
+      "F02Result": {
+        "kind": "object",
+        "required_members": [
+          "forward_results",
+          "reverse_results",
+          "binding_result",
+          "input_state",
+          "product_value_state",
+          "obligation_state",
+          "value_na_claim",
+          "complete_claim",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "forward_results": "map<string,string>",
+          "reverse_results": "map<string,string>",
+          "binding_result": "string",
+          "input_state": "string",
+          "product_value_state": "string",
+          "obligation_state": "string",
+          "value_na_claim": "string",
+          "complete_claim": "string",
+          "effects": "Effects",
+          "unaffected_Q": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F03Input": {
+        "kind": "object",
+        "required_members": [
+          "claims_BRAIN_decided",
+          "claims_arrival_complete",
+          "claims_product_value_invented",
+          "derivation_inputs",
+          "material_ref",
+          "product_value_state"
+        ],
+        "properties": {
+          "claims_BRAIN_decided": "BRAINDecisionClaims",
+          "claims_arrival_complete": "boolean",
+          "claims_product_value_invented": "boolean",
+          "derivation_inputs": "map<string,DerivationInput>",
+          "material_ref": "MaterialRef",
+          "product_value_state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F03Result": {
+        "kind": "object",
+        "required_members": [
+          "derivation_inputs",
+          "product_value_state",
+          "derivation_state",
+          "claim_results",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "derivation_inputs": "map<string,DerivationInput>",
+          "product_value_state": "JSONValue",
+          "derivation_state": "string",
+          "claim_results": "map<string,string>",
+          "effects": "Effects",
+          "unaffected_Q": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F04Input": {
+        "kind": "object",
+        "required_members": [
+          "claims_missing_complete",
+          "claims_receiver_method_invented",
+          "claims_unknown_edge_confirmed",
+          "provided_contracts",
+          "receiver_method_state",
+          "relation_meaning_state",
+          "required_contracts"
+        ],
+        "properties": {
+          "claims_missing_complete": "boolean",
+          "claims_receiver_method_invented": "boolean",
+          "claims_unknown_edge_confirmed": "boolean",
+          "provided_contracts": "map<string,SelectedContract>",
+          "receiver_method_state": "string",
+          "relation_meaning_state": "string",
+          "required_contracts": "map<string,SelectedContract>"
+        },
+        "additional_members": "reject"
+      },
+      "F04Result": {
+        "kind": "object",
+        "required_members": [
+          "contract_results",
+          "relation_meaning_state",
+          "receiver_method_state",
+          "obligation_state",
+          "claim_results",
+          "owner_return_candidates",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "contract_results": "map<string,string>",
+          "relation_meaning_state": "string",
+          "receiver_method_state": "string",
+          "obligation_state": "string",
+          "claim_results": "map<string,string>",
+          "owner_return_candidates": "list<string>",
+          "effects": "Effects",
+          "unaffected_Q": "string"
+        },
+        "additional_members": "reject"
+      },
+      "B01Input": {
+        "kind": "object",
+        "required_members": [
+          "claims_actual_Python",
+          "claims_formal_schema",
+          "claims_implementation",
+          "claims_supply_authorizes_implementation",
+          "generated_view_meaning",
+          "json_original_meaning",
+          "json_provided_meaning",
+          "original_owners",
+          "provided_owners"
+        ],
+        "properties": {
+          "claims_actual_Python": "boolean",
+          "claims_formal_schema": "boolean",
+          "claims_implementation": "boolean",
+          "claims_supply_authorizes_implementation": "boolean",
+          "generated_view_meaning": "string",
+          "json_original_meaning": "string",
+          "json_provided_meaning": "string",
+          "original_owners": "OwnerMap",
+          "provided_owners": "OwnerMap"
+        },
+        "additional_members": "reject"
+      },
+      "B01Result": {
+        "kind": "object",
+        "required_members": [
+          "owner_results",
+          "json_meaning_result",
+          "generated_view_role",
+          "claim_results",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "owner_results": {
+            "kind": "object",
+            "required_members": [
+              "structure",
+              "product_requirements_design_derivation",
+              "project_record_runtime"
+            ],
+            "properties": {
+              "structure": "string",
+              "product_requirements_design_derivation": "string",
+              "project_record_runtime": "string"
+            },
+            "additional_members": "reject"
+          },
+          "json_meaning_result": "string",
+          "generated_view_role": "string",
+          "claim_results": "map<string,string>",
+          "effects": "Effects",
+          "unaffected_Q": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F01OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F02OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "F03OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state",
+          "material_binding_results"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string",
+          "material_binding_results": "map<string,string>"
+        },
+        "additional_members": "reject"
+      },
+      "F04OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "B01OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "Effects": {
+        "kind": "object",
+        "required_members": [
+          "actual_knowledge_adopted",
+          "actual_product_selected",
+          "actual_product_derivation",
+          "actual_CORE_applied",
+          "actual_OS_record_saved",
+          "actual_connection",
+          "actual_authority",
+          "actual_design_complete",
+          "actual_acceptance"
+        ],
+        "properties": {
+          "actual_knowledge_adopted": "boolean",
+          "actual_product_selected": "boolean",
+          "actual_product_derivation": "boolean",
+          "actual_CORE_applied": "boolean",
+          "actual_OS_record_saved": "boolean",
+          "actual_connection": "boolean",
+          "actual_authority": "boolean",
+          "actual_design_complete": "boolean",
+          "actual_acceptance": "boolean"
+        },
+        "additional_members": "reject"
+      },
+      "KnowledgeRef": {
+        "kind": "object",
+        "required_members": [
+          "identity",
+          "revision",
+          "scope"
+        ],
+        "properties": {
+          "identity": "string",
+          "revision": "string",
+          "scope": "string"
+        },
+        "additional_members": "reject"
+      },
+      "Dependency": {
+        "kind": "object",
+        "required_members": [
+          "id",
+          "from",
+          "to",
+          "kind",
+          "meaning",
+          "knowledge_ref"
+        ],
+        "properties": {
+          "id": "string",
+          "from": "string",
+          "to": "string",
+          "kind": "string",
+          "meaning": "string",
+          "knowledge_ref": "KnowledgeRef"
+        },
+        "additional_members": "reject"
+      },
+      "Material": {
+        "kind": "object",
+        "required_members": [],
+        "properties": {
+          "design_input": "list<string>",
+          "premise": "list<string>",
+          "constraint": "list<string>",
+          "related_pattern": "list<string>",
+          "evidence": "list<string>",
+          "knowledge_ref": "KnowledgeRef",
+          "dependencies": "list<Dependency>",
+          "endpoints": "list<string>"
+        },
+        "additional_members": "reject"
+      },
+      "TraceBinding": {
+        "kind": "object",
+        "required_members": [
+          "knowledge_ref",
+          "target_scope"
+        ],
+        "properties": {
+          "knowledge_ref": "KnowledgeRef",
+          "target_scope": "string"
+        },
+        "additional_members": "reject"
+      },
+      "BRAINDecisionClaims": {
+        "kind": "object",
+        "required_members": [
+          "schedule",
+          "state_transition",
+          "implementation_priority"
+        ],
+        "properties": {
+          "schedule": "boolean",
+          "state_transition": "boolean",
+          "implementation_priority": "boolean"
+        },
+        "additional_members": "reject"
+      },
+      "DerivationInput": {
+        "kind": "object",
+        "required_members": [
+          "material",
+          "owner",
+          "state"
+        ],
+        "properties": {
+          "material": "string",
+          "owner": "string",
+          "state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "MaterialRef": {
+        "kind": "object",
+        "required_members": [
+          "identity",
+          "knowledge_ref"
+        ],
+        "properties": {
+          "identity": "string",
+          "knowledge_ref": "KnowledgeRef"
+        },
+        "additional_members": "reject"
+      },
+      "SelectedContract": {
+        "kind": "object",
+        "required_members": [
+          "identity",
+          "knowledge_ref",
+          "revision",
+          "state"
+        ],
+        "properties": {
+          "identity": "string",
+          "knowledge_ref": "KnowledgeRef",
+          "revision": "string",
+          "state": "string"
+        },
+        "additional_members": "reject"
+      },
+      "OwnerMap": {
+        "kind": "object",
+        "required_members": [
+          "product_requirements_design_derivation",
+          "project_record_runtime",
+          "structure"
+        ],
+        "properties": {
+          "product_requirements_design_derivation": "string",
+          "project_record_runtime": "string",
+          "structure": "string"
+        },
+        "additional_members": "reject"
+      }
+    },
+    "record_shape_rule": "Raw top-level argument records require all declared outer members. Nested source records use listed required members; all other declared members may be Absent where L9 negative cases omit them. Additional members reject within this finite logical projection. Values remain fixture strings/records, not credentials or actual qualified records."
+  },
+  "functions": [
+    {
+      "id": "HELIXBRAIN-L5-022-F01",
+      "l4_ref": "HELIXBRAIN-L4-022-F01",
+      "input_type": "F01Input",
+      "output_type": "F01Result",
+      "reads": [
+        "original_material.*",
+        "provided_material.*",
+        "claims_name_similarity_relation"
+      ],
+      "algorithm_ja": [
+        "各material field（design_input,premise,constraint,related_pattern,evidence,knowledge_ref,dependencies,endpoints）を存在確認後、JSON kind/値/配列順/重複を含むdeep-equalで照合する。片側欠落はmissing、双方提供で異なる場合はcontent_conflict、等しければcontent_corresponding_in_fixture。",
+        "dependencyごとに元側のidをキーに、両endpointがoriginal_material.endpointsとprovided_material.endpointsの双方に含まれる場合both_endpoints_known_in_fixture、それ以外endpoint_unknown_held。 provided側だけのidもendpoint_unknown_held。元dependency自体が無い場合はdependency_missing_held。",
+        "claims_name_similarity_relation=trueならrejected、falseならnone。名前類似を関係の証拠にしない。",
+        "effectsの9項目をfalse、unaffected_Qをoriginal_Qとする。これは固定fixtureでの非作用所見であり実機状態の主張ではない。"
+      ],
+      "owner_candidates": [
+        "BRAIN003/005 for meaning relation; HARNESS for receipt method"
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "F01Input",
+            "required": true
+          }
+        ],
+        "returns": "F01Result"
+      }
+    },
+    {
+      "id": "HELIXBRAIN-L5-022-F02",
+      "l4_ref": "HELIXBRAIN-L4-022-F02",
+      "input_type": "F02Input",
+      "output_type": "F02Result",
+      "reads": [
+        "original_forward",
+        "provided_forward",
+        "original_reverse",
+        "provided_reverse",
+        "original_binding",
+        "provided_binding",
+        "input_state",
+        "product_value_state",
+        "claims_value_na",
+        "claims_complete"
+      ],
+      "algorithm_ja": [
+        "forwardとreverseを個別に、各側のkey集合和集合を辞書順に走査し、両側keyありdeep-equalならcontent_corresponding_in_fixture、両側あり不一致ならcontent_conflict、片側のみならmissing。",
+        "bindingはoriginal_bindingとprovided_bindingをdeep-equal比較し、content_corresponding_in_fixture/content_conflictを返す。",
+        "obligation_stateの優先順はtraceのmissing→binding不一致→input_stateがfulfilled_fixture_only以外→product_value_stateがunset→それ以外candidate_input_not_complete。対応する出力語彙はtrace_missing_not_complete,binding_conflict_not_complete,input_unfulfilled_not_complete,value_unset_not_complete,candidate_input_not_complete。",
+        "claims_value_na/claims_completeがtrueならrejected、falseならnone。product value unsetを入力不足/完了へ変換しない。effectsは全false、unaffected_Qはoriginal_Q。"
+      ],
+      "owner_candidates": [
+        "BRAIN for knowledge meaning; HARNESS-CORE for obligation receipt/product value"
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "F02Input",
+            "required": true
+          }
+        ],
+        "returns": "F02Result"
+      }
+    },
+    {
+      "id": "HELIXBRAIN-L5-022-F03",
+      "l4_ref": "HELIXBRAIN-L4-022-F03",
+      "input_type": "F03Input",
+      "output_type": "F03Result",
+      "reads": [
+        "derivation_inputs",
+        "product_value_state",
+        "claims_BRAIN_decided.*",
+        "claims_arrival_complete",
+        "claims_product_value_invented",
+        "material_ref.*"
+      ],
+      "algorithm_ja": [
+        "derivation_inputsとproduct_value_stateを入力からdeep copyする。実際の製品導出はしないためderivation_state=not_derived。",
+        "schedule/state_transition/implementation_priorityの各claims_BRAIN_decided、claims_arrival_complete、claims_product_value_inventedがtrueなら対応claim result=rejected、falseならnone。",
+        "effectsは全false、unaffected_Qはoriginal_Q。"
+      ],
+      "owner_candidates": [
+        "CORE/HARNESS for product derivation; BRAIN for material meaning"
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "F03Input",
+            "required": true
+          }
+        ],
+        "returns": "F03Result"
+      }
+    },
+    {
+      "id": "HELIXBRAIN-L5-022-F04",
+      "l4_ref": "HELIXBRAIN-L4-022-F04",
+      "input_type": "F04Input",
+      "output_type": "F04Result",
+      "reads": [
+        "required_contracts",
+        "provided_contracts",
+        "relation_meaning_state",
+        "receiver_method_state",
+        "claims_unknown_edge_confirmed",
+        "claims_receiver_method_invented",
+        "claims_missing_complete"
+      ],
+      "algorithm_ja": [
+        "required_contracts/provided_contractsのkey和集合を辞書順に走査。片側欠落はmissing_held。providedのstate=unknownはunknown_held。双方存在しその他の値がdeep-equalならcontent_corresponding_candidate_only、異なればcontent_conflict。",
+        "obligation_stateの優先順はcontractのmissing/unknown→contract_missing_or_unknown_held、relation_meaning_state=unknown→meaning_unknown_held、receiver_method_state=missing→receiver_method_missing_held、それ以外candidate_input_not_complete。content_conflictはcontract_resultsに残りowner候補になるが成功/完了とはしない。",
+        "owner_return_candidatesはmissing/unknown/content_conflictとなった全contract keyを辞書順で走査し各key + \"-owner\"を返す。該当なしならrelation unknownのBRAIN-L1-003005-owner、receiver method missingのHARNESS009-receiver-ownerの順に一候補。これらはfixture候補文字列で実owner資格ではない。",
+        "各claim boolean trueならrejected、falseならnone。effects全false、unaffected_Q=original_Q。"
+      ],
+      "owner_candidates": [
+        "BRAIN L1-003/005 for meaning; HARNESS009 receiver owner for receipt method"
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "F04Input",
+            "required": true
+          }
+        ],
+        "returns": "F04Result"
+      }
+    },
+    {
+      "id": "HELIXBRAIN-L5-022-B01",
+      "l4_ref": "HELIXBRAIN-L4-022-B01",
+      "input_type": "B01Input",
+      "output_type": "B01Result",
+      "reads": [
+        "original_owners.*",
+        "provided_owners.*",
+        "json_original_meaning",
+        "json_provided_meaning",
+        "generated_view_meaning",
+        "claims_actual_Python",
+        "claims_formal_schema",
+        "claims_implementation",
+        "claims_supply_authorizes_implementation"
+      ],
+      "algorithm_ja": [
+        "structure/product_requirements_design_derivation/project_record_runtimeごとにoriginalとprovidedをdeep-equal比較しowner_preservedまたはowner_change_rejected。",
+        "json_original_meaningとjson_provided_meaningがequalならoriginal_meaning_held、違えばgenerated_view_meaning_change_rejected。生成viewはderived_only。",
+        "各claimsがtrueならrejected、falseならnone。effects全false、unaffected_Q=original_Q。"
+      ],
+      "owner_candidates": [
+        "BRAIN for structure; CORE/HARNESS for product design and derivation; OS for project record/runtime"
+      ],
+      "signature": {
+        "arguments": [
+          {
+            "name": "input",
+            "type": "B01Input",
+            "required": true
+          }
+        ],
+        "returns": "B01Result"
+      }
+    }
+  ],
+  "pipeline": [
+    "source raw UTF-8をJSON parseし型を検査",
+    "L5関数をcase contract bindingに従い実行",
+    "返却wholeをL8 expected_wholeとdeep-equalし、実資格成立とは解釈しない"
+  ],
+  "trace_contract": {
+    "pairs": [
+      {
+        "requirement": "HELIXBRAIN-L3-022-F01",
+        "oracle": "HELIXBRAIN-L10-022-F01",
+        "detail": "HELIXBRAIN-L4-022-F01",
+        "cases": 10
+      },
+      {
+        "requirement": "HELIXBRAIN-L3-022-F02",
+        "oracle": "HELIXBRAIN-L10-022-F02",
+        "detail": "HELIXBRAIN-L4-022-F02",
+        "cases": 10
+      },
+      {
+        "requirement": "HELIXBRAIN-L3-022-F03",
+        "oracle": "HELIXBRAIN-L10-022-F03",
+        "detail": "HELIXBRAIN-L4-022-F03",
+        "cases": 6
+      },
+      {
+        "requirement": "HELIXBRAIN-L3-022-F04",
+        "oracle": "HELIXBRAIN-L10-022-F04",
+        "detail": "HELIXBRAIN-L4-022-F04",
+        "cases": 11
+      },
+      {
+        "requirement": "HELIXBRAIN-L3-022-B01",
+        "oracle": "HELIXBRAIN-L10-022-B01",
+        "detail": "HELIXBRAIN-L4-022-B01",
+        "cases": 8
+      }
+    ]
+  },
+  "scope_limitations": [
+    "fixtureのscope/owner stringsはfixture label。source資格やrecipientの実権限を意味しない。",
+    "CORE/HARNESS製品義務の受領・導出、OS案件記録は接続先責務であり、この比較で行わない。",
+    "全92親/430対はscope marker。ここで実測するのは当該5 approved pair/45 original cases/追加3 local probeのみ。"
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_established",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "execution_state": "not_executed",
+  "l4_contract_bindings": [
+    {
+      "id": "HELIXBRAIN-L4-022-F01",
+      "requirement_ref": "HELIXBRAIN-L3-022-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-022-F01",
+      "l9_ref": "HELIXBRAIN-L9-022-F01",
+      "approved_requirement_sha256": "b733d9700c411a6696fc66df2213146fe1af92ab0735f15e6399b0bef2afa5b3"
+    },
+    {
+      "id": "HELIXBRAIN-L4-022-F02",
+      "requirement_ref": "HELIXBRAIN-L3-022-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-022-F02",
+      "l9_ref": "HELIXBRAIN-L9-022-F02",
+      "approved_requirement_sha256": "4b533c58a6c8d2d13bf850236b388ee616f27b980da12941d4adcdbd116b2deb"
+    },
+    {
+      "id": "HELIXBRAIN-L4-022-F03",
+      "requirement_ref": "HELIXBRAIN-L3-022-F03",
+      "system_oracle_ref": "HELIXBRAIN-L10-022-F03",
+      "l9_ref": "HELIXBRAIN-L9-022-F03",
+      "approved_requirement_sha256": "cc2177ceeaac92366019da62c1555bb5cfbc7b456d5a88bff3f7e4e0c57ba072"
+    },
+    {
+      "id": "HELIXBRAIN-L4-022-F04",
+      "requirement_ref": "HELIXBRAIN-L3-022-F04",
+      "system_oracle_ref": "HELIXBRAIN-L10-022-F04",
+      "l9_ref": "HELIXBRAIN-L9-022-F04",
+      "approved_requirement_sha256": "a253ba2465230a49be4ad0390036bef6aeb4ae10613c105b6f68b70705d51bc3"
+    },
+    {
+      "id": "HELIXBRAIN-L4-022-B01",
+      "requirement_ref": "HELIXBRAIN-L3-022-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-022-B01",
+      "l9_ref": "HELIXBRAIN-L9-022-B01",
+      "approved_requirement_sha256": "cb7745b9eae8c5c6365e678c654194fb0151b08a08be033431cc2f0328be8299"
+    }
+  ],
+  "fixture_literal_sources": {
+    "source": "L9 independent_source_packet.raw_utf8 and expected_material; raw_hashes are packet sha256; expected hashes are canonical JSON over full expected_material.",
+    "approved_literals": "L3/L10 exact approved whole failure_return, positive/negative/failure observations; labels in fixture outputs are observations, not system-wide enum or qualification.",
+    "case_status_values": "L9 expected_material exact values; finite fixture vocabulary only.",
+    "output_literal_domain_scope": "output_literal_domainsは45原case・3独立probeの有限観測値と、L3/L4が導くlocal held/conflict projectionの値を列挙する。全製品・全source・全実装域の閉じたenumではなく、列挙外を自動成功へ一般化しない。"
+  },
+  "output_literal_domains": {
+    "HELIXBRAIN-L5-022-F01": [
+      "both_endpoints_known_in_fixture",
+      "content_conflict",
+      "content_corresponding_in_fixture",
+      "dependency_missing_held",
+      "endpoint_unknown_held",
+      "missing",
+      "none",
+      "original_Q",
+      "rejected"
+    ],
+    "HELIXBRAIN-L5-022-F02": [
+      "binding_conflict_not_complete",
+      "content_conflict",
+      "content_corresponding_in_fixture",
+      "fulfilled_fixture_only",
+      "input_unfulfilled_not_complete",
+      "missing",
+      "none",
+      "original_Q",
+      "rejected",
+      "trace_missing_not_complete",
+      "unfulfilled",
+      "unset",
+      "value_unset_not_complete"
+    ],
+    "HELIXBRAIN-L5-022-F03": [
+      "CORE-HARNESS",
+      "STRUCTURE-P",
+      "candidate_input_only",
+      "none",
+      "not_derived",
+      "original_Q",
+      "rejected",
+      "unset"
+    ],
+    "HELIXBRAIN-L5-022-F04": [
+      "BRAIN-L1-003005-owner",
+      "BRAIN003-owner",
+      "BRAIN005-owner",
+      "BRAIN008-owner",
+      "HARNESS009-owner",
+      "HARNESS009-receiver-owner",
+      "candidate_input_not_complete",
+      "content_conflict",
+      "content_corresponding_candidate_only",
+      "contract_content_conflict_held",
+      "contract_missing_or_unknown_held",
+      "known_fixture_only",
+      "meaning_unknown_held",
+      "missing",
+      "missing_held",
+      "none",
+      "original_Q",
+      "receiver_method_missing_held",
+      "rejected",
+      "unknown",
+      "unknown_held"
+    ],
+    "HELIXBRAIN-L5-022-B01": [
+      "derived_only",
+      "generated_view_meaning_change_rejected",
+      "none",
+      "original_Q",
+      "original_meaning_held",
+      "owner_change_rejected",
+      "owner_preserved",
+      "rejected"
+    ]
+  },
+  "l4_obligation_coverage": [
+    {
+      "contract_id": "HELIXBRAIN-L4-022-F01",
+      "requirement_ref": "HELIXBRAIN-L3-022-F01",
+      "source_outputs": [
+        "項目/関係/端点の局所対応と不足",
+        "BRAIN003005/HARNESS受領不足返却候補"
+      ],
+      "l5_projection": "primary L9 wholeにある固定fixture所見に加え、owner_return_candidatesは別supplemental projectionへrawから導出する。",
+      "unclosed_or_boundary": "owner候補はL3/L4に沿うfixture候補文字列。実source/authority qualification、宛先への送信、receiptは未供給であり成立を主張しない。"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-022-F02",
+      "requirement_ref": "HELIXBRAIN-L3-022-F02",
+      "source_outputs": [
+        "入力↔義務の個別対応と不足種別",
+        "知識meaning/CORE製品値と受領owner返却候補"
+      ],
+      "l5_projection": "primary L9 wholeにある固定fixture所見に加え、owner_return_candidatesは別supplemental projectionへrawから導出する。",
+      "unclosed_or_boundary": "owner候補はL3/L4に沿うfixture候補文字列。実source/authority qualification、宛先への送信、receiptは未供給であり成立を主張しない。"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-022-F03",
+      "requirement_ref": "HELIXBRAIN-L3-022-F03",
+      "source_outputs": [
+        "三導出先と根拠/未決の候補対応",
+        "製品導出owner返却候補"
+      ],
+      "l5_projection": "primary L9 wholeにある固定fixture所見に加え、owner_return_candidatesは別supplemental projectionへrawから導出する。",
+      "unclosed_or_boundary": "owner候補はL3/L4に沿うfixture候補文字列。実source/authority qualification、宛先への送信、receiptは未供給であり成立を主張しない。"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-022-F04",
+      "requirement_ref": "HELIXBRAIN-L3-022-F04",
+      "source_outputs": [
+        "当該不足/unknown/未完義務",
+        "BRAIN知識meaningとHARNESS受領ownerの別返却"
+      ],
+      "l5_projection": "primary L9 wholeにある固定fixture所見に加え、owner_return_candidatesは別supplemental projectionへrawから導出する。",
+      "unclosed_or_boundary": "owner候補はL3/L4に沿うfixture候補文字列。実source/authority qualification、宛先への送信、receiptは未供給であり成立を主張しない。"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-022-B01",
+      "requirement_ref": "HELIXBRAIN-L3-022-B01",
+      "source_outputs": [
+        "責務/原状態/JSON意味とviewの分離",
+        "未完owner返却候補と正式設計の引継ぎ"
+      ],
+      "l5_projection": "primary L9 wholeにある固定fixture所見に加え、owner_return_candidatesは別supplemental projectionへrawから導出する。",
+      "unclosed_or_boundary": "owner候補はL3/L4に沿うfixture候補文字列。実source/authority qualification、宛先への送信、receiptは未供給であり成立を主張しない。"
+    }
+  ],
+  "unclosed_contract_obligations": [
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F01",
+      "unclosed": "L4が求める独立source資格（identity/revision/scope/ownerの実resolver）と実HARNESS009受領証拠。rawはsynthetic fixture valueのみ。",
+      "preserved_return": "L3 failure_returnの意味relationはBRAIN003/005、receiptはHARNESSへ戻す。実owner資格/返却記録は未成立。",
+      "supplemental_candidate_projection": "L4 owner候補の範囲でrawから候補を導出し、L8 expectedと照合。候補文字列は資格・通知・receiptではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F02",
+      "unclosed": "実際の受領側義務record/source資格とscope/owner binding。固定forward/reverse fixture map比較だけで実trace成立とはしない。",
+      "preserved_return": "知識meaningはBRAIN、義務受領/製品値不足はHARNESS-COREへ戻す。",
+      "supplemental_candidate_projection": "L4 owner候補の範囲でrawから候補を導出し、L8 expectedと照合。候補文字列は資格・通知・receiptではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F03",
+      "unclosed": "CORE/HARNESSの工程表・遷移図・実装優先順位の実導出と契約根拠。fixtureはcandidate inputとして接続先を表示するのみ。",
+      "preserved_return": "製品導出はCORE/HARNESS、材料意味はBRAINへ。",
+      "supplemental_candidate_projection": "L4 owner候補の範囲でrawから候補を導出し、L8 expectedと照合。候補文字列は資格・通知・receiptではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F04",
+      "unclosed": "実選択contractのsource/authority qualification、実際のownerへの返却receipt。candidate owner stringはfixture値。",
+      "preserved_return": "意味不明はBRAIN L1-003/005、受領方法不足はHARNESSへ。",
+      "supplemental_candidate_projection": "L4 owner候補の範囲でrawから候補を導出し、L8 expectedと照合。候補文字列は資格・通知・receiptではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-B01",
+      "unclosed": "L4が求める未完owner return / formal design handoffの実記録。L9は固定の比較結果とfalse effectのみを持つ。",
+      "preserved_return": "BRAIN structure、CORE/HARNESS product design/derivation、OS case record/runtimeの分担を維持し、相互に承認/完了/許可へ変換しない。",
+      "supplemental_candidate_projection": "L4 owner候補の範囲でrawから候補を導出し、L8 expectedと照合。候補文字列は資格・通知・receiptではない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F01",
+      "unclosed": "複数dependency recordが同じidを持つ場合、L3/L4/L9に重複IDの採用規則は無い。L5はどれかを選ばずambiguousを未知endpoint扱いで保持する有限projectionとし、実resolverでの重複の意味決定は未閉包。",
+      "supplemental_candidate_projection": "一意source-qualified relationの証明や重複解消は行わない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F04",
+      "unclosed": "required/provided契約のknowledge_refは二者の内容等値だけを比較する。F04 rawには独立target_knowledge_refがなく、両側で同じ別knowledge identity/revision/scopeを渡す場合の原targetへの論理結合は未実現。slotとidentityの結合修正および実source資格とは別の不足として保持する。",
+      "preserved_return": "現在の相互一致候補だけで選択した原knowledge版との対応や正式受領を認定しない。"
+    }
+  ],
+  "reference_program": {
+    "language": "HELIX-PURE-EXPR-1",
+    "programs": [
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F01",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "material_results": {
+              "op": "object",
+              "fields": {
+                "design_input": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "design_input"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "design_input"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "premise": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "premise"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "premise"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "constraint": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "constraint"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "constraint"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "related_pattern": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "related_pattern"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "related_pattern"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "evidence": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "evidence"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "evidence"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "knowledge_ref": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "knowledge_ref"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "knowledge_ref"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "dependencies": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "dependencies"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "dependencies"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                },
+                "endpoints": {
+                  "op": "compare_content",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "original_material",
+                      "endpoints"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": [
+                      "provided_material",
+                      "endpoints"
+                    ]
+                  },
+                  "missing_result": "missing",
+                  "equal_result": "content_corresponding_in_fixture",
+                  "different_result": "content_conflict"
+                }
+              }
+            },
+            "endpoint_results": {
+              "op": "map_record_ids",
+              "arrays": [
+                {
+                  "op": "path",
+                  "path": [
+                    "original_material",
+                    "dependencies"
+                  ]
+                },
+                {
+                  "op": "path",
+                  "path": [
+                    "provided_material",
+                    "dependencies"
+                  ]
+                }
+              ],
+              "key_field": "id",
+              "value": {
+                "op": "if",
+                "condition": {
+                  "op": "is_absent",
+                  "value": {
+                    "op": "find_record",
+                    "array": {
+                      "op": "path",
+                      "path": [
+                        "provided_material",
+                        "dependencies"
+                      ]
+                    },
+                    "field": "id",
+                    "value": {
+                      "op": "path",
+                      "path": [
+                        "$key"
+                      ]
+                    }
+                  }
+                },
+                "then": {
+                  "op": "if",
+                  "condition": {
+                    "op": "is_absent",
+                    "value": {
+                      "op": "find_record",
+                      "array": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "dependencies"
+                        ]
+                      },
+                      "field": "id",
+                      "value": {
+                        "op": "path",
+                        "path": [
+                          "$key"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "endpoint_unknown_held"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "dependency_missing_held"
+                  }
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "is_absent",
+                    "value": {
+                      "op": "find_record",
+                      "array": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "dependencies"
+                        ]
+                      },
+                      "field": "id",
+                      "value": {
+                        "op": "path",
+                        "path": [
+                          "$key"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "endpoint_unknown_held"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "and",
+                      "items": [
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "original_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "original_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "from"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "provided_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "original_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "from"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "original_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "original_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "to"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "provided_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "original_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "to"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "original_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "provided_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "from"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "provided_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "provided_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "from"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "original_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "provided_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "to"
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "path",
+                            "path": [
+                              "provided_material",
+                              "endpoints"
+                            ]
+                          },
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "find_record",
+                              "array": {
+                                "op": "path",
+                                "path": [
+                                  "provided_material",
+                                  "dependencies"
+                                ]
+                              },
+                              "field": "id",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "to"
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "const",
+                      "value": "both_endpoints_known_in_fixture"
+                    },
+                    "else": {
+                      "op": "const",
+                      "value": "endpoint_unknown_held"
+                    }
+                  }
+                }
+              }
+            },
+            "name_similarity_claim": {
+              "op": "if",
+              "condition": {
+                "op": "path",
+                "path": [
+                  "claims_name_similarity_relation"
+                ]
+              },
+              "then": {
+                "op": "const",
+                "value": "rejected"
+              },
+              "else": {
+                "op": "const",
+                "value": "none"
+              }
+            },
+            "effects": {
+              "op": "object",
+              "fields": {
+                "actual_knowledge_adopted": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_selected": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_derivation": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_CORE_applied": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_OS_record_saved": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_connection": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_authority": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_design_complete": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_acceptance": {
+                  "op": "const",
+                  "value": false
+                }
+              }
+            },
+            "unaffected_Q": {
+              "op": "const",
+              "value": "original_Q"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F02",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "forward_results": {
+              "op": "map_union_keys",
+              "left": {
+                "op": "path",
+                "path": [
+                  "original_forward"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "path": [
+                  "provided_forward"
+                ]
+              },
+              "value": {
+                "op": "compare_content",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "original_forward"
+                    ]
+                  },
+                  "key": {
+                    "op": "path",
+                    "path": [
+                      "$key"
+                    ]
+                  }
+                },
+                "right": {
+                  "op": "get",
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "provided_forward"
+                    ]
+                  },
+                  "key": {
+                    "op": "path",
+                    "path": [
+                      "$key"
+                    ]
+                  }
+                },
+                "missing_result": "missing",
+                "equal_result": "content_corresponding_in_fixture",
+                "different_result": "content_conflict"
+              }
+            },
+            "reverse_results": {
+              "op": "map_union_keys",
+              "left": {
+                "op": "path",
+                "path": [
+                  "original_reverse"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "path": [
+                  "provided_reverse"
+                ]
+              },
+              "value": {
+                "op": "compare_content",
+                "left": {
+                  "op": "get",
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "original_reverse"
+                    ]
+                  },
+                  "key": {
+                    "op": "path",
+                    "path": [
+                      "$key"
+                    ]
+                  }
+                },
+                "right": {
+                  "op": "get",
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "provided_reverse"
+                    ]
+                  },
+                  "key": {
+                    "op": "path",
+                    "path": [
+                      "$key"
+                    ]
+                  }
+                },
+                "missing_result": "missing",
+                "equal_result": "content_corresponding_in_fixture",
+                "different_result": "content_conflict"
+              }
+            },
+            "binding_result": {
+              "op": "compare_content",
+              "left": {
+                "op": "path",
+                "path": [
+                  "original_binding"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "path": [
+                  "provided_binding"
+                ]
+              },
+              "missing_result": "missing",
+              "equal_result": "content_corresponding_in_fixture",
+              "different_result": "content_conflict"
+            },
+            "input_state": {
+              "op": "path",
+              "path": [
+                "input_state"
+              ]
+            },
+            "product_value_state": {
+              "op": "path",
+              "path": [
+                "product_value_state"
+              ]
+            },
+            "obligation_state": {
+              "op": "if",
+              "condition": {
+                "op": "or",
+                "items": [
+                  {
+                    "op": "map_has_any_value",
+                    "map": {
+                      "op": "map_union_keys",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_forward"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_forward"
+                        ]
+                      },
+                      "value": {
+                        "op": "compare_content",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "original_forward"
+                            ]
+                          },
+                          "key": {
+                            "op": "path",
+                            "path": [
+                              "$key"
+                            ]
+                          }
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "provided_forward"
+                            ]
+                          },
+                          "key": {
+                            "op": "path",
+                            "path": [
+                              "$key"
+                            ]
+                          }
+                        },
+                        "missing_result": "missing",
+                        "equal_result": "content_corresponding_in_fixture",
+                        "different_result": "content_conflict"
+                      }
+                    },
+                    "values": [
+                      "missing"
+                    ]
+                  },
+                  {
+                    "op": "map_has_any_value",
+                    "map": {
+                      "op": "map_union_keys",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_reverse"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_reverse"
+                        ]
+                      },
+                      "value": {
+                        "op": "compare_content",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "original_reverse"
+                            ]
+                          },
+                          "key": {
+                            "op": "path",
+                            "path": [
+                              "$key"
+                            ]
+                          }
+                        },
+                        "right": {
+                          "op": "get",
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "provided_reverse"
+                            ]
+                          },
+                          "key": {
+                            "op": "path",
+                            "path": [
+                              "$key"
+                            ]
+                          }
+                        },
+                        "missing_result": "missing",
+                        "equal_result": "content_corresponding_in_fixture",
+                        "different_result": "content_conflict"
+                      }
+                    },
+                    "values": [
+                      "missing"
+                    ]
+                  }
+                ]
+              },
+              "then": {
+                "op": "const",
+                "value": "trace_missing_not_complete"
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_binding"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_binding"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "content_corresponding_in_fixture"
+                    }
+                  }
+                },
+                "then": {
+                  "op": "const",
+                  "value": "binding_conflict_not_complete"
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "not",
+                    "value": {
+                      "op": "json_equal",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "input_state"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "fulfilled_fixture_only"
+                      }
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "input_unfulfilled_not_complete"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "json_equal",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "product_value_state"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "unset"
+                      }
+                    },
+                    "then": {
+                      "op": "const",
+                      "value": "value_unset_not_complete"
+                    },
+                    "else": {
+                      "op": "const",
+                      "value": "candidate_input_not_complete"
+                    }
+                  }
+                }
+              }
+            },
+            "value_na_claim": {
+              "op": "if",
+              "condition": {
+                "op": "path",
+                "path": [
+                  "claims_value_na"
+                ]
+              },
+              "then": {
+                "op": "const",
+                "value": "rejected"
+              },
+              "else": {
+                "op": "const",
+                "value": "none"
+              }
+            },
+            "complete_claim": {
+              "op": "if",
+              "condition": {
+                "op": "path",
+                "path": [
+                  "claims_complete"
+                ]
+              },
+              "then": {
+                "op": "const",
+                "value": "rejected"
+              },
+              "else": {
+                "op": "const",
+                "value": "none"
+              }
+            },
+            "effects": {
+              "op": "object",
+              "fields": {
+                "actual_knowledge_adopted": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_selected": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_derivation": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_CORE_applied": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_OS_record_saved": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_connection": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_authority": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_design_complete": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_acceptance": {
+                  "op": "const",
+                  "value": false
+                }
+              }
+            },
+            "unaffected_Q": {
+              "op": "const",
+              "value": "original_Q"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F03",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "derivation_inputs": {
+              "op": "path",
+              "path": [
+                "derivation_inputs"
+              ]
+            },
+            "product_value_state": {
+              "op": "path",
+              "path": [
+                "product_value_state"
+              ]
+            },
+            "derivation_state": {
+              "op": "const",
+              "value": "not_derived"
+            },
+            "claim_results": {
+              "op": "object",
+              "fields": {
+                "schedule": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_BRAIN_decided",
+                      "schedule"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "state_transition": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_BRAIN_decided",
+                      "state_transition"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "implementation_priority": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_BRAIN_decided",
+                      "implementation_priority"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "arrival_complete": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_arrival_complete"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "product_value_invented": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_product_value_invented"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                }
+              }
+            },
+            "effects": {
+              "op": "object",
+              "fields": {
+                "actual_knowledge_adopted": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_selected": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_derivation": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_CORE_applied": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_OS_record_saved": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_connection": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_authority": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_design_complete": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_acceptance": {
+                  "op": "const",
+                  "value": false
+                }
+              }
+            },
+            "unaffected_Q": {
+              "op": "const",
+              "value": "original_Q"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F04",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "contract_results": {
+              "op": "map_union_keys",
+              "left": {
+                "op": "path",
+                "path": [
+                  "required_contracts"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "path": [
+                  "provided_contracts"
+                ]
+              },
+              "value": {
+                "op": "if",
+                "condition": {
+                  "op": "or",
+                  "items": [
+                    {
+                      "op": "is_absent",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "required_contracts"
+                          ]
+                        },
+                        "key": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "op": "is_absent",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "provided_contracts"
+                          ]
+                        },
+                        "key": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                "then": {
+                  "op": "const",
+                  "value": "missing_held"
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "provided_contracts"
+                          ]
+                        },
+                        "key": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
+                        }
+                      },
+                      "key": "state"
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "unknown"
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "unknown_held"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "or",
+                      "items": [
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "key": "identity"
+                            },
+                            "right": {
+                              "op": "path",
+                              "path": [
+                                "$key"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "key": "identity"
+                            },
+                            "right": {
+                              "op": "path",
+                              "path": [
+                                "$key"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "const",
+                      "value": "content_conflict"
+                    },
+                    "else": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "required_contracts"
+                          ]
+                        },
+                        "key": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
+                        }
+                      },
+                      "right": {
+                        "op": "get",
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "provided_contracts"
+                          ]
+                        },
+                        "key": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
+                        }
+                      },
+                      "equal_result": "content_corresponding_candidate_only",
+                      "different_result": "content_conflict",
+                      "missing_result": "missing_held"
+                    }
+                  }
+                }
+              }
+            },
+            "relation_meaning_state": {
+              "op": "path",
+              "path": [
+                "relation_meaning_state"
+              ]
+            },
+            "receiver_method_state": {
+              "op": "path",
+              "path": [
+                "receiver_method_state"
+              ]
+            },
+            "obligation_state": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "map_keys_with_values",
+                    "map": {
+                      "op": "map_union_keys",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "required_contracts"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_contracts"
+                        ]
+                      },
+                      "value": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "missing_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "key": "state"
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": "unknown"
+                            }
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "unknown_held"
+                          },
+                          "else": {
+                            "op": "if",
+                            "condition": {
+                              "op": "or",
+                              "items": [
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "required_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "provided_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "then": {
+                              "op": "const",
+                              "value": "content_conflict"
+                            },
+                            "else": {
+                              "op": "compare_content",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "equal_result": "content_corresponding_candidate_only",
+                              "different_result": "content_conflict",
+                              "missing_result": "missing_held"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "values": [
+                      "missing_held",
+                      "unknown_held"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": []
+                  }
+                }
+              },
+              "then": {
+                "op": "const",
+                "value": "contract_missing_or_unknown_held"
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "map_has_any_value",
+                  "map": {
+                    "op": "map_union_keys",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "required_contracts"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_contracts"
+                      ]
+                    },
+                    "value": {
+                      "op": "if",
+                      "condition": {
+                        "op": "or",
+                        "items": [
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "then": {
+                        "op": "const",
+                        "value": "missing_held"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "state"
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": "unknown"
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "unknown_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "or",
+                            "items": [
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "required_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "provided_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "content_conflict"
+                          },
+                          "else": {
+                            "op": "compare_content",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "equal_result": "content_corresponding_candidate_only",
+                            "different_result": "content_conflict",
+                            "missing_result": "missing_held"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "values": [
+                    "content_conflict"
+                  ]
+                },
+                "then": {
+                  "op": "const",
+                  "value": "contract_content_conflict_held"
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "relation_meaning_state"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "unknown"
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "meaning_unknown_held"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "json_equal",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "receiver_method_state"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "missing"
+                      }
+                    },
+                    "then": {
+                      "op": "const",
+                      "value": "receiver_method_missing_held"
+                    },
+                    "else": {
+                      "op": "const",
+                      "value": "candidate_input_not_complete"
+                    }
+                  }
+                }
+              }
+            },
+            "claim_results": {
+              "op": "object",
+              "fields": {
+                "unknown_edge_confirmed": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_unknown_edge_confirmed"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "receiver_method_invented": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_receiver_method_invented"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "missing_complete": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_missing_complete"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                }
+              }
+            },
+            "owner_return_candidates": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "map_keys_with_values",
+                    "map": {
+                      "op": "map_union_keys",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "required_contracts"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_contracts"
+                        ]
+                      },
+                      "value": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "missing_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "key": "state"
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": "unknown"
+                            }
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "unknown_held"
+                          },
+                          "else": {
+                            "op": "if",
+                            "condition": {
+                              "op": "or",
+                              "items": [
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "required_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "provided_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "then": {
+                              "op": "const",
+                              "value": "content_conflict"
+                            },
+                            "else": {
+                              "op": "compare_content",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "equal_result": "content_corresponding_candidate_only",
+                              "different_result": "content_conflict",
+                              "missing_result": "missing_held"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "values": [
+                      "missing_held",
+                      "unknown_held",
+                      "content_conflict"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": []
+                  }
+                }
+              },
+              "then": {
+                "op": "map_array",
+                "array": {
+                  "op": "map_keys_with_values",
+                  "map": {
+                    "op": "map_union_keys",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "required_contracts"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_contracts"
+                      ]
+                    },
+                    "value": {
+                      "op": "if",
+                      "condition": {
+                        "op": "or",
+                        "items": [
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "then": {
+                        "op": "const",
+                        "value": "missing_held"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "state"
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": "unknown"
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "unknown_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "or",
+                            "items": [
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "required_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "provided_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "content_conflict"
+                          },
+                          "else": {
+                            "op": "compare_content",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "equal_result": "content_corresponding_candidate_only",
+                            "different_result": "content_conflict",
+                            "missing_result": "missing_held"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "values": [
+                    "missing_held",
+                    "unknown_held",
+                    "content_conflict"
+                  ]
+                },
+                "value": {
+                  "op": "concat",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "$item"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "-owner"
+                  }
+                }
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "relation_meaning_state"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "unknown"
+                  }
+                },
+                "then": {
+                  "op": "array",
+                  "items": [
+                    {
+                      "op": "const",
+                      "value": "BRAIN-L1-003005-owner"
+                    }
+                  ]
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "receiver_method_state"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "missing"
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "HARNESS009-receiver-owner"
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                }
+              }
+            },
+            "effects": {
+              "op": "object",
+              "fields": {
+                "actual_knowledge_adopted": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_selected": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_derivation": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_CORE_applied": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_OS_record_saved": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_connection": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_authority": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_design_complete": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_acceptance": {
+                  "op": "const",
+                  "value": false
+                }
+              }
+            },
+            "unaffected_Q": {
+              "op": "const",
+              "value": "original_Q"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-B01",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "owner_results": {
+              "op": "object",
+              "fields": {
+                "structure": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "original_owners",
+                        "structure"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_owners",
+                        "structure"
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "owner_preserved"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "owner_change_rejected"
+                  }
+                },
+                "product_requirements_design_derivation": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "original_owners",
+                        "product_requirements_design_derivation"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_owners",
+                        "product_requirements_design_derivation"
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "owner_preserved"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "owner_change_rejected"
+                  }
+                },
+                "project_record_runtime": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "original_owners",
+                        "project_record_runtime"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_owners",
+                        "project_record_runtime"
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "owner_preserved"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "owner_change_rejected"
+                  }
+                }
+              }
+            },
+            "json_meaning_result": {
+              "op": "if",
+              "condition": {
+                "op": "json_equal",
+                "left": {
+                  "op": "path",
+                  "path": [
+                    "json_original_meaning"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "path": [
+                    "json_provided_meaning"
+                  ]
+                }
+              },
+              "then": {
+                "op": "const",
+                "value": "original_meaning_held"
+              },
+              "else": {
+                "op": "const",
+                "value": "generated_view_meaning_change_rejected"
+              }
+            },
+            "generated_view_role": {
+              "op": "const",
+              "value": "derived_only"
+            },
+            "claim_results": {
+              "op": "object",
+              "fields": {
+                "actual_Python": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_actual_Python"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "formal_schema": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_formal_schema"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "implementation": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_implementation"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                },
+                "supply_authorizes_implementation": {
+                  "op": "if",
+                  "condition": {
+                    "op": "path",
+                    "path": [
+                      "claims_supply_authorizes_implementation"
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "rejected"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "none"
+                  }
+                }
+              }
+            },
+            "effects": {
+              "op": "object",
+              "fields": {
+                "actual_knowledge_adopted": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_selected": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_product_derivation": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_CORE_applied": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_OS_record_saved": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_connection": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_authority": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_design_complete": {
+                  "op": "const",
+                  "value": false
+                },
+                "actual_acceptance": {
+                  "op": "const",
+                  "value": false
+                }
+              }
+            },
+            "unaffected_Q": {
+              "op": "const",
+              "value": "original_Q"
+            }
+          }
+        }
+      }
+    ],
+    "evaluation": "ASTは入力raw、ABSENT sentinel、宣言演算子のみから評価する。case idやexpected値は入力にしない。objectは子がABSENTならmemberを出さず、JSON nullは通常値として保持。map_union_keysは両mapのkey和集合をJSON string codepoint昇順に走査し、$keyを束縛してvalue式を評価。map_record_idsは配列sourceのrecord key_field和集合を昇順に走査し$record_keyを束縛。",
+    "owner_candidate_programs": [
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F01",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "candidate_owner_returns": {
+              "op": "if",
+              "condition": {
+                "op": "map_has_any_value",
+                "map": {
+                  "op": "object",
+                  "fields": {
+                    "design_input": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "design_input"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "design_input"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "premise": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "premise"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "premise"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "constraint": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "constraint"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "constraint"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "related_pattern": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "related_pattern"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "related_pattern"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "evidence": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "evidence"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "evidence"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "knowledge_ref": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "knowledge_ref"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "knowledge_ref"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "dependencies": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "dependencies"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "dependencies"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "endpoints": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_material",
+                          "endpoints"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_material",
+                          "endpoints"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    }
+                  }
+                },
+                "values": [
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "then": {
+                "op": "array",
+                "items": [
+                  {
+                    "op": "const",
+                    "value": "BRAIN003/005"
+                  }
+                ]
+              },
+              "else": {
+                "op": "array",
+                "items": []
+              }
+            },
+            "qualification_state": {
+              "op": "const",
+              "value": "candidate_only_not_actual_owner_qualification"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F02",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "candidate_owner_returns": {
+              "op": "unique_array",
+              "arrays": [
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "compare_content",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "original_binding"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_binding"
+                        ]
+                      },
+                      "missing_result": "missing",
+                      "equal_result": "content_corresponding_in_fixture",
+                      "different_result": "content_conflict"
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "content_corresponding_in_fixture"
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "BRAIN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "map_has_any_value",
+                        "map": {
+                          "op": "map_union_keys",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_forward"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_forward"
+                            ]
+                          },
+                          "value": {
+                            "op": "compare_content",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "original_forward"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_forward"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "missing_result": "missing",
+                            "equal_result": "content_corresponding_in_fixture",
+                            "different_result": "content_conflict"
+                          }
+                        },
+                        "values": [
+                          "missing"
+                        ]
+                      },
+                      {
+                        "op": "map_has_any_value",
+                        "map": {
+                          "op": "map_union_keys",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_reverse"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_reverse"
+                            ]
+                          },
+                          "value": {
+                            "op": "compare_content",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "original_reverse"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_reverse"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "missing_result": "missing",
+                            "equal_result": "content_corresponding_in_fixture",
+                            "different_result": "content_conflict"
+                          }
+                        },
+                        "values": [
+                          "missing"
+                        ]
+                      }
+                    ]
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "HARNESS-CORE"
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                }
+              ]
+            },
+            "qualification_state": {
+              "op": "const",
+              "value": "candidate_only_not_actual_owner_qualification"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F03",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "candidate_owner_returns": {
+              "op": "array",
+              "items": [
+                {
+                  "op": "const",
+                  "value": "CORE/HARNESS"
+                }
+              ]
+            },
+            "qualification_state": {
+              "op": "const",
+              "value": "candidate_only_not_actual_owner_qualification"
+            },
+            "material_binding_results": {
+              "op": "map_union_keys",
+              "left": {
+                "op": "path",
+                "path": [
+                  "derivation_inputs"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "path": [
+                  "derivation_inputs"
+                ]
+              },
+              "value": {
+                "op": "compare_content",
+                "left": {
+                  "op": "path",
+                  "path": [
+                    "material_ref",
+                    "identity"
+                  ]
+                },
+                "right": {
+                  "op": "get",
+                  "value": {
+                    "op": "get",
+                    "value": {
+                      "op": "path",
+                      "path": [
+                        "derivation_inputs"
+                      ]
+                    },
+                    "key": {
+                      "op": "path",
+                      "path": [
+                        "$key"
+                      ]
+                    }
+                  },
+                  "key": "material"
+                },
+                "equal_result": "content_corresponding_in_fixture",
+                "different_result": "content_conflict",
+                "missing_result": "missing"
+              }
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-F04",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "candidate_owner_returns": {
+              "op": "if",
+              "condition": {
+                "op": "not",
+                "value": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "map_keys_with_values",
+                    "map": {
+                      "op": "map_union_keys",
+                      "left": {
+                        "op": "path",
+                        "path": [
+                          "required_contracts"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "path": [
+                          "provided_contracts"
+                        ]
+                      },
+                      "value": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "op": "is_absent",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "missing_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "key": "state"
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": "unknown"
+                            }
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "unknown_held"
+                          },
+                          "else": {
+                            "op": "if",
+                            "condition": {
+                              "op": "or",
+                              "items": [
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "required_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "op": "not",
+                                  "value": {
+                                    "op": "json_equal",
+                                    "left": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "get",
+                                        "value": {
+                                          "op": "path",
+                                          "path": [
+                                            "provided_contracts"
+                                          ]
+                                        },
+                                        "key": {
+                                          "op": "path",
+                                          "path": [
+                                            "$key"
+                                          ]
+                                        }
+                                      },
+                                      "key": "identity"
+                                    },
+                                    "right": {
+                                      "op": "path",
+                                      "path": [
+                                        "$key"
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "then": {
+                              "op": "const",
+                              "value": "content_conflict"
+                            },
+                            "else": {
+                              "op": "compare_content",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "required_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": [
+                                    "provided_contracts"
+                                  ]
+                                },
+                                "key": {
+                                  "op": "path",
+                                  "path": [
+                                    "$key"
+                                  ]
+                                }
+                              },
+                              "equal_result": "content_corresponding_candidate_only",
+                              "different_result": "content_conflict",
+                              "missing_result": "missing_held"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "values": [
+                      "missing_held",
+                      "unknown_held",
+                      "content_conflict"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": []
+                  }
+                }
+              },
+              "then": {
+                "op": "map_array",
+                "array": {
+                  "op": "map_keys_with_values",
+                  "map": {
+                    "op": "map_union_keys",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "required_contracts"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "provided_contracts"
+                      ]
+                    },
+                    "value": {
+                      "op": "if",
+                      "condition": {
+                        "op": "or",
+                        "items": [
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          },
+                          {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "then": {
+                        "op": "const",
+                        "value": "missing_held"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "get",
+                            "value": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "key": "state"
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": "unknown"
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "unknown_held"
+                        },
+                        "else": {
+                          "op": "if",
+                          "condition": {
+                            "op": "or",
+                            "items": [
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "required_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "op": "not",
+                                "value": {
+                                  "op": "json_equal",
+                                  "left": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "get",
+                                      "value": {
+                                        "op": "path",
+                                        "path": [
+                                          "provided_contracts"
+                                        ]
+                                      },
+                                      "key": {
+                                        "op": "path",
+                                        "path": [
+                                          "$key"
+                                        ]
+                                      }
+                                    },
+                                    "key": "identity"
+                                  },
+                                  "right": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "then": {
+                            "op": "const",
+                            "value": "content_conflict"
+                          },
+                          "else": {
+                            "op": "compare_content",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "required_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": [
+                                  "provided_contracts"
+                                ]
+                              },
+                              "key": {
+                                "op": "path",
+                                "path": [
+                                  "$key"
+                                ]
+                              }
+                            },
+                            "equal_result": "content_corresponding_candidate_only",
+                            "different_result": "content_conflict",
+                            "missing_result": "missing_held"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "values": [
+                    "missing_held",
+                    "unknown_held",
+                    "content_conflict"
+                  ]
+                },
+                "value": {
+                  "op": "concat",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "$item"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "-owner"
+                  }
+                }
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": [
+                      "relation_meaning_state"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "unknown"
+                  }
+                },
+                "then": {
+                  "op": "array",
+                  "items": [
+                    {
+                      "op": "const",
+                      "value": "BRAIN-L1-003005-owner"
+                    }
+                  ]
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "receiver_method_state"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "missing"
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "HARNESS009-receiver-owner"
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                }
+              }
+            },
+            "qualification_state": {
+              "op": "const",
+              "value": "candidate_only_not_actual_owner_qualification"
+            }
+          }
+        }
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-022-B01",
+        "expression": {
+          "op": "object",
+          "fields": {
+            "candidate_owner_returns": {
+              "op": "unique_array",
+              "arrays": [
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "get",
+                    "value": {
+                      "op": "object",
+                      "fields": {
+                        "structure": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "structure"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "structure"
+                            ]
+                          }
+                        },
+                        "product_requirements_design_derivation": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          }
+                        },
+                        "project_record_runtime": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "project_record_runtime"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "project_record_runtime"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "key": "structure"
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "BRAIN"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "get",
+                    "value": {
+                      "op": "object",
+                      "fields": {
+                        "structure": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "structure"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "structure"
+                            ]
+                          }
+                        },
+                        "product_requirements_design_derivation": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          }
+                        },
+                        "project_record_runtime": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "project_record_runtime"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "project_record_runtime"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "key": "product_requirements_design_derivation"
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "CORE/HARNESS"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "get",
+                    "value": {
+                      "op": "object",
+                      "fields": {
+                        "structure": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "structure"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "structure"
+                            ]
+                          }
+                        },
+                        "product_requirements_design_derivation": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "product_requirements_design_derivation"
+                            ]
+                          }
+                        },
+                        "project_record_runtime": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "original_owners",
+                              "project_record_runtime"
+                            ]
+                          },
+                          "right": {
+                            "op": "path",
+                            "path": [
+                              "provided_owners",
+                              "project_record_runtime"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "key": "project_record_runtime"
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "OS"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "json_original_meaning"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "path": [
+                        "json_provided_meaning"
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": []
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "BRAIN"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "qualification_state": {
+              "op": "const",
+              "value": "candidate_only_not_actual_owner_qualification"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "expression_language": {
+    "operators": [
+      "const",
+      "path",
+      "object",
+      "array",
+      "if",
+      "json_equal",
+      "not",
+      "and",
+      "or",
+      "is_absent",
+      "get",
+      "compare_content",
+      "map_union_keys",
+      "map_record_ids",
+      "find_record",
+      "contains",
+      "map_has_any_value",
+      "first_map_key_with_value",
+      "concat",
+      "unique_array",
+      "map_keys_with_values",
+      "map_array"
+    ],
+    "semantics": {
+      "path": "path segment listをroot objectから辿る。欠落はABSENT。$keyはmap iteratorのkey。",
+      "json_equal": "JSON値の再帰等値。boolはnumberと異なり、number同士は数値等値、arrayは順序/重複を保持、objectはkey集合と各値を比較。ABSENT同士だけtrue。",
+      "compare_content": "片側でもABSENTならmissing_result。両方提供でjson_equalならequal_result、そうでなければdifferent_result。nullは提供値。",
+      "if": "conditionはboolean。trueならthen、falseならelse。",
+      "map_union_keys": "2 objectのkey集合和を辞書順反復し、value式を各$keyへ束縛してrecord化。F04ではrequired/provided双方のrecord.identityが$keyと一致しない場合、全体内容一致より前にcontent_conflictを返す。",
+      "map_record_ids": "arrays中recordからkey_fieldのstring値を集め重複を除き辞書順反復し、各$idを$keyへ束縛してvalueを評価。",
+      "find_record": "arrayをfield=valueで照合する。該当0件なら内部ABSENT、1件ならそのrecord、2件以上なら内部AMBIGUOUSを返す。AMBIGUOUSは任意の先頭recordへ縮退しない。後続getはobject以外（ABSENT/AMBIGUOUSを含む）からABSENTを返し、その分岐では成立扱いにしない。",
+      "contains": "collection arrayにjson_equal一致のvalueがあればtrue。",
+      "map_has_any_value": "map valueのいずれかがvaluesのliteralに一致。",
+      "first_map_key_with_value": "mapの辞書順keyを走査して最初にvalueがvaluesのliteralと一致するkey。無ければABSENT。",
+      "concat": "両引数がstringのとき文字列連結。",
+      "unique_array": "arraysを引数順に連結し、JSON深い等値で最初の値だけを保持する。空arrayは要素を追加しない。",
+      "map_keys_with_values": "object keyを辞書順で走査し、valueがvalues array内のどれかとJSON深い等値ならkeyを結果arrayへ追加する。",
+      "map_array": "array順に各itemを$itemへ束縛してvalue式を評価し、評価結果を同順のarrayとして返す。"
+    }
+  },
+  "owner_candidate_output": {
+    "role": "L4 output_meaningsで求める候補返却の独立supplemental projection。original L9 expected_materialは不変のprimary projection。",
+    "qualification_state": "candidate_only_not_actual_owner_qualification",
+    "strings": "L3 failure_return/L4 output_meanings由来。実owner資格、宛先、receiptではない。",
+    "output_types": {
+      "F01OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": {
+            "type": "list<string>"
+          },
+          "qualification_state": {
+            "type": "string"
+          }
+        },
+        "additional_members": "reject"
+      },
+      "F02OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": {
+            "type": "list<string>"
+          },
+          "qualification_state": {
+            "type": "string"
+          }
+        },
+        "additional_members": "reject"
+      },
+      "F03OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state",
+          "material_binding_results"
+        ],
+        "properties": {
+          "candidate_owner_returns": "list<string>",
+          "qualification_state": "string",
+          "material_binding_results": "map<string,string>"
+        },
+        "additional_members": "reject"
+      },
+      "F04OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": {
+            "type": "list<string>"
+          },
+          "qualification_state": {
+            "type": "string"
+          }
+        },
+        "additional_members": "reject"
+      },
+      "B01OwnerProjection": {
+        "kind": "object",
+        "required_members": [
+          "candidate_owner_returns",
+          "qualification_state"
+        ],
+        "properties": {
+          "candidate_owner_returns": {
+            "type": "list<string>"
+          },
+          "qualification_state": {
+            "type": "string"
+          }
+        },
+        "additional_members": "reject"
+      }
+    },
+    "literal_domains": {
+      "candidate_owner_returns": [
+        "BRAIN",
+        "BRAIN-L1-003005-owner",
+        "BRAIN003-owner",
+        "BRAIN003/005",
+        "BRAIN005-owner",
+        "BRAIN008-owner",
+        "CORE/HARNESS",
+        "HARNESS-CORE",
+        "HARNESS009-owner",
+        "HARNESS009-receiver-owner"
+      ],
+      "qualification_state": [
+        "candidate_only_not_actual_owner_qualification"
+      ],
+      "material_binding_results": [
+        "content_conflict",
+        "content_corresponding_in_fixture"
+      ],
+      "source": "L3 failure_return/L4 output_meaningsおよび事前固定supplemental-whole-before-formal.json。資格/receiptのenumではなく候補表示。"
+    }
+  },
+  "local_probe_inventory": [
+    {
+      "id": "B022-F01-FOREIGN-DEPENDENCY-ENDPOINT",
+      "function_ref": "HELIXBRAIN-L5-022-F01",
+      "baseline_case": "B022-F01-INPUT-DEPENDENCY-MATERIAL",
+      "source_refs": [
+        "HELIXBRAIN-L3-022-F01",
+        "HELIXBRAIN-L4-022-F01",
+        "HELIXBRAIN-L9-022-F01"
+      ],
+      "raw_sha256": "06c910d8bd637293c5d96c76022973b13eecefb489e5ffc5d0dfa8afb7be57e5",
+      "primary_expected_sha256": "eb90769f85567a5f5ccd695fcd6396bad80f3c4774dd28cf4fe54cb3cf81ea52",
+      "supplemental_expected_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/provided_material/dependencies/0/to",
+          "value": "PART-FOREIGN@r1"
+        }
+      ]
+    },
+    {
+      "id": "B022-F03-FOREIGN-MATERIAL-REFERENCE",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "baseline_case": "B022-F03-THREE-DERIVATION-INPUTS-OWNER",
+      "source_refs": [
+        "HELIXBRAIN-L3-022-F03",
+        "HELIXBRAIN-L4-022-F03",
+        "HELIXBRAIN-L9-022-F03"
+      ],
+      "raw_sha256": "505829af7d4d934c37a0ce110ebd80ffea7d6f4692011080810fedb3b13fee83",
+      "primary_expected_sha256": "03ca05f77e6c68fe2def4d22066f802ef8d2da6454f3fb02f7e3b543d19377b6",
+      "supplemental_expected_sha256": "23def3638298201e11750f8b7f343ac6447f36cf7161130bc5de197b58586c03",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/material_ref/identity",
+          "value": "STRUCTURE-FOREIGN"
+        }
+      ]
+    },
+    {
+      "id": "B022-F04-KEY-IDENTITY-COHERENT-FOREIGN",
+      "function_ref": "HELIXBRAIN-L5-022-F04",
+      "baseline_case": "B022-F04-SELECTED-MEANING-RECEIVER-CONTRACTS",
+      "source_refs": [
+        "HELIXBRAIN-L3-022-F04",
+        "HELIXBRAIN-L4-022-F04",
+        "HELIXBRAIN-L9-022-F04"
+      ],
+      "raw_sha256": "b48e492af4df09d1bb15df68c7e87e30e69ab896813f58fcb3fba11141b2c72c",
+      "primary_expected_sha256": "dee5a8d2fd2fcd2bcc51c01774c2014fbfef21caba12569192e25ec55f4867f0",
+      "supplemental_expected_sha256": "25150a3543c0f7e891a8fae232c6fbd8f50092f4e5387cd6f4a9577c0efb59f4",
+      "frozen_independent_whole": "scaffold/review-handoff/local/brain022-authoring/f04-key-identity-independent-before-formal.json"
+    }
+  ]
+}
