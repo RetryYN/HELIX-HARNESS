@@ -633,7 +633,8 @@
         "end_line": 66,
         "file_bytes_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
         "quote_utf8": "### 要求の参照範囲と最新化\n\n利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。\n物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。\n[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。\nConcept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。\n[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、\nその追加条件に既存revisionの承認を転用しない。\n\nGitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。\nIssueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。\nDBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。\n\n### 層と対\n\n| L | 工程 | V字の対 | 完了条件の核 |\n|---|---|---|---|\n| L1 | 企画 | L12 運用テスト | 価値、目的、対象、非対象、route判断が確定 |\n| L2 | 要求＋画面プロト | L11 受入テスト | 要求とプロトを往復し、合意receiptまたは非UI N/A receiptが存在 |\n| L3 | 要件定義・凍結 | L10 総合テスト | FR/NFR/AC、出所、優先度、非目標、test oracleが凍結 |\n| L4 | 基本設計 | L9 結合テスト | 外部設計、architecture、境界、依存、接続が確定 |\n| L5 | 詳細設計＋先行テスト設計 | L8 単体テスト | 内部設計、契約、edge case、test designが対で凍結 |\n| L6 | 実装 | L7 TDD closure | L5契約内のproduct code。scope外機能を追加しない |\n| L7 | テスト実装・TDD closure | L6 実装 | Red→Green→Refactor、実装とtestの双方向traceを閉じる |\n| L8 | 単体テスト | L5 詳細設計 | 合成/局所データで内部設計を検証 |\n| L9 | 結合テスト | L4 基本設計 | 接続、依存、transaction、adapter境界を検証 |\n| L10 | 総合テスト | L3 要件 | system全体でFR/NFR/ACを検証 |\n| L11 | 受入テスト | L2 要求＋画面プロト | 実利用・実データで要求とUXを検証 |\n| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |\n\n本番releaseはL11受入とL12運用テストの間のmilestoneであり、独立layerを増設しない。\n\n正規V-pairは `L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7` の6組だけである。\n\n## 3. L2画面工程\n\n1. UIが存在する案件は、要求⇔画面プロトの反復と合意receiptなしにL3を凍結してはならない。\n2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。\n",
-        "quote_utf8_sha256": "235215ee2a59c4cf941dbb00891407b6419eda7bc8b8dc3a11d05f794bc5f954"
+        "quote_utf8_sha256": "235215ee2a59c4cf941dbb00891407b6419eda7bc8b8dc3a11d05f794bc5f954",
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5"
       },
       {
         "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
@@ -642,7 +643,8 @@
         "end_line": 78,
         "file_bytes_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
         "quote_utf8": "本契約は既存Requirement Engineを置換せず、次のrefinementとして追加する。\n\n| 既存owner | 再利用する責務 |\n|---|---|\n| `HR-FR-HIL-15` | surface適用判定、prototype、walkthrough、人間agreement |\n| `HR-FR-HIL-17` | 要求翻訳、原子化、異議、設計義務、定義revision |\n| `HR-FR-HIL-19` | Proposal → Candidate → Canonical、意味差分、原子的admission、rollback |\n| `HR-FR-HIL-20` | 必要十分なdesign portfolio、選択済みstyleへのbinding、発見deltaのback-propagation |\n| AI Vision Design HARNESS | Experience／UI／Frontend契約、prototype、反応、UX証拠 |\n\nL1は人間向けMarkdownを正本とする。L2はappend-only discovery eventとcandidate projectionを持つが\ncanonical requirementではない。L3で初めてstrict JSON IRを機械正本とし、G1/G3人間承認後だけfreezeする。\n別Requirement Engine、別台帳、別layer、別authoring DBを追加しない。\n\n## §1 refinement要件\n\n| ID | refinement要件 | 既存owner | AC |\n|---|---|---|---|\n| `RDJ-FR-001` | L1 initiative intakeは目的、価値、actor、context、scope/non-goal、制約、仮説、3軸候補を保持し、未確定値をAIが補完せずL2質問へ送る | `HR-FR-HIL-17` | `RDJ-AC-001` |\n| `RDJ-FR-002` | L2は質問、回答、prototype、reaction、candidate split/merge/reject/accept、contradiction、defer、agreement、compile/backflowをappend-only eventとして保持し、current candidateを決定論再構築する | `HR-FR-HIL-17` | `RDJ-AC-002` |\n| `RDJ-FR-003` | 次質問は影響度×不確実性×下流変更cost×人間専決度で選び、重複質問と理由なしの回答矛盾を拒否する | `HR-FR-HIL-17` | `RDJ-AC-003` |\n| `RDJ-FR-004` | `screen/cli/api/event/batch/notification/external_service/none`を共通surfaceとし、requirement→action→state transition→success/cancel/failure/timeout/recovery→AC→oracleを結ぶ。`none`は理由と再評価条件を要求する | `HR-FR-HIL-15` | `RDJ-AC-004` |\n| `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |\n| `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |\n| `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |\n| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を将来のDesign Template JSON接続口として出力し、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |\n| `RDJ-FR-009` | JSON IRはstable ID単位に分割し、revision、semantic digest、owner、statusを必須化し、unknown enum、extra property、range-only identityを拒否する | `HR-FR-HIL-19` | `RDJ-AC-009` |\n| `RDJ-FR-010` | Markdown・matrix・HTML等はJSONからのgenerated viewとし、直接編集をproposal eventへ戻す。cutoverはJSON canonical、generated view、DB projection、全consumerを一つのtransactionで切り替えdual authorityを作らない | `HR-FR-HIL-19` | `RDJ-AC-010` |\n| `RDJ-FR-011` | 現行153/24/72/24をshadow移行しsemantic parityを検査する。既知12要求は`HR-FR-HIL-23`／`HR-FR-HIL-24`へexact配線し、GitHub 5責務へ配線しない | `HR-FR-HIL-17` | `RDJ-AC-011` |\n| `RDJ-FR-012` | 3 production styleはL1〜L3 discovery/compile/freezeを共通必須とし、Discovery／PoCはS4前canonical化しないcase軸、Design HARNESSはprototypeを支援するspecialist軸として維持する | `HR-FR-HIL-20` | `RDJ-AC-012` |\n\n## §2 lifecycleと承認\n\nL2 candidate lifecycleは\n`hypothesis → elicited → prototyped → observed → accepted → specified → frozen`とし、\n`rejected/deferred/challenged/superseded/stale`をside/terminal状態とする。`accepted`は要求意図の人間受入、\n`specified`はL3 compile完了、`frozen`はG1/G3人間承認後だけ許可する。AIの沈黙承認は禁止する。\n\nPR-1は契約だけを定義し、schema/runtime/migration/cutoverを実装済みと主張しない。\n\n## §2.1 Design Template JSON successor境界\n\nRequirement JSONは`design_template_ids`、`design_obligation_ids`、\n`required_design_artifact_kinds`を型付き出力として持つ。未解決templateは\n`pending_template_resolution`として残し、存在しないtemplate IDをAIが捏造しない。\n\n設計templateの構造、適用条件、必須section／field、V-pair、negative oracle、measurement、\ncompletion conditionをJSON正本へ移す作業は#290の独立episodeとする。設計意図、代替案、\ntrade-off、背景はJSON IDへ束縛したMarkdownに残し、Markdown／HTML／Mermaid／画像を\ntemplateやdesign instanceの正本にしない。#290はPR-6／#288のG1/G3再束縛後だけactivationする。\n\n",
-        "quote_utf8_sha256": "0b2398ee0d44d26d906a260bd136ab504d690cea9d6357b84340b73ae29fe693"
+        "quote_utf8_sha256": "0b2398ee0d44d26d906a260bd136ab504d690cea9d6357b84340b73ae29fe693",
+        "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991"
       },
       {
         "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
@@ -651,7 +653,8 @@
         "end_line": 49,
         "file_bytes_sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
         "quote_utf8": "\n## 背景\n\nREBASELINE v0.4.0/v0.5.0 のフルチェック監査で、ADR-009 の「Python = proposal-only worker、\n分類不能な機能は reject して TS/Node 再実装」という条項と、ハイブリッド設計ドキュメント v1\n（実証済み Python コアエンジン、715 ファイル・122 文書カタログ・検出・trace）の温存方針が\n正面衝突した。両案の技術比較を行った結果は次のとおり。\n\n1. Python への DB 直接 write 開放（全面 supersede 案）は劣位。Claude↔Codex が同一\n   `harness.db`/Git を並行運用する本ハーネスでは、書き込み口が 2 つになると lease/fence/\n   監査証跡を Python 側へ二重実装する必要が生じ、競合破損リスクだけが増える。\n2. ADR-009 現状維持も劣位。「分類不能 → TS/Node 再実装」既定は、実証済みエンジンに対して\n   退行リスクのみでメリットがない。実測でも hybrid の全 29 ツールが既存 capability class に\n   分類され、この条項は一度も発火していない（死文の書き直し圧力）。\n3. ADR-009 で技術的価値が実証されているのは「commit の一手を Node の単一境界に通す」こと\n   のみ。従属的な呼称・再実装既定は本質ではない。\n\n## 決定\n\n1. **Python = 恒久意味コア（semantic core）**。ハイブリッド設計ドキュメント v1 由来の\n   Python 実装は、要件抽出・typed spec・trace・検出・impact・review・文書生成という\n   意味判断・生成能力の**正本**であり、書き換え対象ではない。TS/Node への再実装義務\n   （reject-for-TS-reimplementation 既定）は**廃止**する。capability class に分類できない\n   新規機能は、ADR 改定による class 追加で扱う（書き直しを既定姿勢にしない）。\n   逆方向の bulk port（動作している Python エンジンの TS 一括書き直し）は高リスク行為として\n   原則禁止し、実施には PO の個別承認を要する。\n2. **Node = 実行境界（transactional boundary）**。`harness.db` および Git/GitHub への\n   commit・副作用は従来どおり Node の単一境界のみが実行する（lease/fence/audit は既存\n   Node 機構）。Python へ DB path・credential・repository・`.helix/` を渡さない実装手段も\n   維持する。これは Python の従属ではなく、multi-runtime 並行運用の直列化点である。\n3. **呼称の改定**。「proposal-only worker」という従属的呼称を廃止し、\n   Python = 「意味コア（semantic core）」、Node = 「実行境界（transactional boundary）」とする。\n   両者は層別権威（layered authority）であり、意味判断の正本 = Python、\n   トランザクション・外部副作用の正本 = Node、として**同格**に扱う。\n4. **権威順序**。人が承認した要求・判断記録・確定 ADR を最上位とし、その直下に\n   「意味判断の正本 = Python semantic contract」と「実行の正本 = Node runtime contract」を\n   同格併記する。一方を他方の全面上位とする記述を禁止する。\n",
-        "quote_utf8_sha256": "67db7653f04e959777828ca18df4870b6f88cc40b462200259a062aba1f3c3ee"
+        "quote_utf8_sha256": "67db7653f04e959777828ca18df4870b6f88cc40b462200259a062aba1f3c3ee",
+        "asset_id": "LEGACY-ASSET-5D4AF9B5877D5CAD7089"
       },
       {
         "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
@@ -692,14 +695,15 @@
       "consumerごとにbasis_refs/content_check_refsを集合のcanonical順へ正規化してから同値行を同原因としてまとめる。異なる複数候補を先頭選択せずreference_conflict。順序だけの差は候補を失わせない。新registryのID重複許可規則ではない。",
       "subject identity/owner/scopeの相反はreference_conflict。これら同値でrevisionが違えばdigestも変わり得る古い根拠としてreference_stale。同じrevisionでdigestが違う場合はreference_conflict。state不足とtarget nullは同原因を重ねずstateのreference_*を保持する。異consumerの不足/相反は別Finding。",
       "入力型不正のinvalidはvalue=nullでそのResultを返す。それ以外は前段所見を003/008および明示Context subject ownerの論理候補へ返す。L2 Ref欠落はその事実を保持しtarget比較を重ねないが、独立prototype/poc/l25を捨てない。閉じた5fieldが得られるならagreement_state=missing、backflow_refs=[]を不足所見と併存する。前段の値自体を構成不能な場合のnullは保持する。",
-      "既知targetが0件でも、前段の5fieldが閉じていればbackflow_refs=[]と不足Finding/outcomeを併存して返す。これは既知の論理consumer契約Refが0件という表示であり、完全な返却先集合の解決又は成功ではない。1件なら既知Refと他consumerのFindingを併存する。全件knownでも実配送/合意/採用/完了へ昇格しない。value=nullは前段invalid又は前段value=nullの早期返却に限る。"
+      "既知targetが0件でも、前段の5fieldが閉じていればbackflow_refs=[]と不足Finding/outcomeを併存して返す。これは既知の論理consumer契約Refが0件という表示であり、完全な返却先集合の解決又は成功ではない。1件なら既知Refと他consumerのFindingを併存する。全件knownでも実配送/合意/採用/完了へ昇格しない。invalidは前段Resultをそのまま返す。前段value=nullでもinvalidでなければ、target比較を行わず前段所見を003/008/Context subject ownerへ展開・整序した後、value=nullを保持する。前段5fieldが構成できる場合にnullへ落とさない。"
     ],
     "prior_stage": {
       "name": "prior",
       "public_argument": false,
-      "type": "{outcome: Result.outcome, value: F02の既存5field（backflow_refs除外）|null, findings: Finding tuple}",
+      "type": "{outcome: Result.outcome, value: F02の既存5field（backflow_refs除外）|null, findings: Finding tuple}。Findingのfield形は共通だが内部原因素材であり、最終返却先の展開済み一覧ではない。",
       "producer": "#/functions/1/steps/0〜3と既存型/field検査。追加target比較より前の内部Result。",
-      "null_rule": "invalidは既存Result契約に従いvalue=null。L2要求Ref欠落だけでは独立した画面/技術適用をnullへ落とさない。適用値/合意不足/missing_na_fieldsを閉じた5fieldに構成できる範囲で返し、L2欠落時のagreement_stateは同対象合意を束縛できないmissingとする。前段5field自体が未構成の場合に限りvalue=null。"
+      "null_rule": "invalidは既存Result契約に従いvalue=null。L2要求Ref欠落だけでは独立した画面/技術適用をnullへ落とさない。適用値/合意不足/missing_na_fieldsを閉じた5fieldに構成できる範囲で返し、後段はL2欠落時のagreement_stateを同対象合意を束縛できないmissingへ確定する。前段が独立合意currentを保持していても、この後段の対象束縛判定を省略しない。前段5field自体が未構成の場合に限りvalue=null。",
+      "finding_owner_rule": "内部前段素材の非invalid所見は、明示Context subjectの論理ownerをこの段階の原因所在として表せる。これは欠落L2 ownerの推定でも003/008への展開済み配送結果でもない。finishは元code/pointer/subject/requirement/evidenceを保持して、003/008とContext subject ownerの各論理候補へ展開する。invalidだけは001への既存返却をそのまま保持する。前段owner fieldの値から最終返却先を選ばない。"
     },
     "finding_constructor": {
       "fields": {
@@ -711,7 +715,7 @@
         "evidence_refs": "target所見は比較対象の有効L2 Refとcontext.source_check_refsの集合。L2欠落は明示Contextのsource_check_refsだけで、無いL2 Refを作らない。前段所見はその比較が読んだ供給済みRef集合を保持する。最後にRefSetをcanonical順へ正規化し同値重複だけ除く。原row/値は不変Contextとinputから辿り、根拠の無いRefを追加しない。"
       },
       "sort": "既存code/pointer/subject identity/revision順。tieはbackflow_owner、evidence_refsのcanonical順。evidence_refsもRefSetとして先に正規化してから、同じ全6fieldの所見だけ重複除去する。異owner/異根拠は消さない。",
-      "limits": "F01/B01の既存契約は不変。この追補でその全Finding 返却構成を固定したとはしない。既存型付き値にはContext locator baseが無いため任意同owner同Refの複数原因を全て識別する拡張は未具体化。"
+      "limits": "F01/B01の既存契約は不変。この追補でその全Finding返却構成を固定したとはしない。既存型付き値にはContext locator baseが無いため任意同owner同Refの複数原因を全て識別する拡張は未具体化。"
     },
     "expression_language": {
       "domain": "型検査済みF02Contextと内部prior。priorは公開引数ではなく既存F02比較から得る。invalidのprior.valueはnullという既存Result不変条件を保持する。JSON式は返却後段の唯一の値規範であり、case ID/期待値を読まない。",
@@ -1986,7 +1990,7 @@
     },
     "limits": [
       "実source本文の解決と資格を供給する主体、および003/008の完全入力recordを構成する接続は未成立。",
-      "元8件と追加22件は、内部比較結果を明示して返却後段を源泉へ照合する素材。全3関数の完全結果再計算、全未見域、全AST・全変異の閉包や新しい完了条件を意味しない。",
+      "元8件と追加26件は、内部比較結果を明示して返却後段を源泉へ照合する素材。整序の単独対照は公開call数に加算しない。全3関数の完全結果再計算、全未見域、全AST・全変異の閉包や新しい完了条件を意味しない。",
       "元L8の27否定と1つの独立variantの投影を保持し、完全引数/全所見が元資料で揃っていたとはしない。",
       "実source資格/実操作/受入と実装準備の成立は、この局所返却の設計や照合から生成しない。"
     ]
