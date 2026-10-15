@@ -20152,7 +20152,7 @@
             "candidate_atoms[]"
           ],
           "required_presence": "原atom identity/source/raw_text/semanticと候補source_ids/semanticを、提供状態のまま保持。",
-          "comparison": "候補source_idsが指す原atomを照合し、target/scope/actor/task/action/object/polarity/constraintをmemberごとに比較する。raw_text文字列一致はidentity一致の十分条件にしない。欠落source、未提供condition、矛盾、duplicate、過剰解釈、target mismatch、scope/non_goal逸脱を別findingにする。 本有限scopeの具体code/優先/列順/全返却は /finite_raw_derivation/functions/F03 に従う。",
+          "comparison": "候補source_idsが指す原atomを照合し、target/scope/actor/action/object/polarity/constraintの原提供memberをそれぞれ比較する。taskは本固定素材に存在せず暗黙に要求せず、追加供給時の比較はdecisionsに従う。raw_text文字列一致はidentity一致の十分条件にしない。欠落source、未提供condition、矛盾、duplicate、過剰解釈、target mismatch、scope/non_goal逸脱を別findingにする。 本有限scopeの具体code/優先/列順/全返却は /finite_raw_derivation/functions/F03 に従う。",
           "priority": "source不足はmissing/unknown、提供値の矛盾はcontradiction、適用scope違いはscope violation。曖昧な同義候補はhuman_decision_pendingに保持。",
           "outputs": [
             "identity_candidates",
@@ -21929,7 +21929,7 @@
               "candidate_atoms[]"
             ],
             "required_presence": "原atom identity/source/raw_text/semanticと候補source_ids/semanticを、提供状態のまま保持。",
-            "comparison": "候補source_idsが指す原atomを照合し、target/scope/actor/task/action/object/polarity/constraintをmemberごとに比較する。raw_text文字列一致はidentity一致の十分条件にしない。欠落source、未提供condition、矛盾、duplicate、過剰解釈、target mismatch、scope/non_goal逸脱を別findingにする。 本有限scopeの具体code/優先/列順/全返却は /finite_raw_derivation/functions/F03 に従う。",
+            "comparison": "候補source_idsが指す原atomを照合し、target/scope/actor/action/object/polarity/constraintの原提供memberをそれぞれ比較する。taskは本固定素材に存在せず暗黙に要求せず、追加供給時の比較はdecisionsに従う。raw_text文字列一致はidentity一致の十分条件にしない。欠落source、未提供condition、矛盾、duplicate、過剰解釈、target mismatch、scope/non_goal逸脱を別findingにする。 本有限scopeの具体code/優先/列順/全返却は /finite_raw_derivation/functions/F03 に従う。",
             "priority": "source不足はmissing/unknown、提供値の矛盾はcontradiction、適用scope違いはscope violation。曖昧な同義候補はhuman_decision_pendingに保持。",
             "outputs": [
               "identity_candidates",
