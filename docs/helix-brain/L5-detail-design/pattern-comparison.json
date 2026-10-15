@@ -1113,7 +1113,12 @@
           "applicability_results": {
             "type": "object",
             "additionalProperties": {
-              "type": "string"
+              "enum": [
+                "applicable",
+                "not_applicable",
+                "unknown",
+                "unknown_candidate_held"
+              ]
             }
           },
           "required_value_state": {
@@ -1499,8 +1504,8 @@
         "L2-021の契約と実consumer endpointは未結合。"
       ],
       "postconditions": [
-        "BRAIN comparison owner and CORE product decision owner remain distinct; original CORE/OS states are copied.",
-        "Each unsupported claim is separately rejected. INT query is merely selected/candidate-only or held; no query is executed."
+        "BRAINの比較ownerとCOREの製品判断ownerは別々に保ち、元のCORE/OS状態をそのまま返す。",
+        "各未対応claimを個別に拒否する。INT queryは選択済み候補として扱うか保留するだけで、query自体を実行しない。"
       ],
       "algorithm": [
         "規範計算は `#/rule_catalog/BRAIN004-B01` と `#/rule_catalog/shared` に従う。",
@@ -1524,7 +1529,7 @@
   },
   "owner_candidate_literals": {
     "CORE-product-decision-owner": {
-      "source_requirement": "HELIXBRAIN-L3-004-B01; HELIXBRAIN-L4-004-B01.content_comparison[0]",
+      "source_requirement": "HELIXBRAIN-L3-004-B01とHELIXBRAIN-L4-004-B01.content_comparison[0]が定める、COREの製品判断owner候補。値はL9 expected由来の合成route tokenであり、実ownerの資格を示さない。",
       "source_expected": "L9 B004-B01-CLAIMS_BRAIN_ADOPTED.expected_material.owner_return_candidates[0]",
       "meaning": "CORE等の接続先が製品判断を持つという役割の合成token。実owner identityではない。",
       "value": "CORE-product-decision-owner",
@@ -1538,7 +1543,7 @@
       }
     },
     "execution-authority-owner": {
-      "source_requirement": "HELIXBRAIN-L3-004-B01 forbids BRAIN product/execution permission claim; L4 B01.content_comparison[0]",
+      "source_requirement": "HELIXBRAIN-L3-004-B01の実行許可claim拒否とHELIXBRAIN-L4-004-B01.content_comparison[0]が示す、実行権限に関する返送先候補。値はL9 expected由来の合成route tokenである。",
       "source_expected": "L9 B004-B01-CLAIMS_EXECUTION_PERMITTED.expected_material.owner_return_candidates[0]",
       "meaning": "実authority ownerを同定するsource fieldなし。合成fixture返却候補の意味だけを保持し、実authorityへ接続しない。",
       "value": "execution-authority-owner",
@@ -1552,7 +1557,7 @@
       }
     },
     "INT021-connection-owner": {
-      "source_requirement": "HELIXBRAIN-L4-004-B01.content_comparison[1] and L2-021 conditional connection boundary",
+      "source_requirement": "HELIXBRAIN-L4-004-B01.content_comparison[1]とHELIXBRAIN-L2-021の条件付き接続境界に対応する返送先候補。値はL9 expected由来の合成route tokenである。",
       "source_expected": "L9 B004-B01-CLAIMS_INT_EXECUTED / B004-B01-INT-SELECTED-021-MISSING expected_material.owner_return_candidates[0]",
       "meaning": "選択したINT queryの接続条件不足を返す合成token。実connection/owner資格ではない。",
       "value": "INT021-connection-owner",
@@ -1566,7 +1571,7 @@
       }
     },
     "BRAIN-comparison-owner": {
-      "source_requirement": "HELIXBRAIN-L3-004-B01 and HELIXBRAIN-L4-004-B01 comparison owner boundary",
+      "source_requirement": "HELIXBRAIN-L3-004-B01およびHELIXBRAIN-L4-004-B01の比較owner境界に対応する返送先候補。値はL9 expected由来の合成route tokenである。",
       "source_expected": "L9 B004-B01-REQUIRES_ALL_INT_CAPABILITIES.expected_material.owner_return_candidates[0]",
       "meaning": "比較scopeの過大化を比較ownerへ返す合成token。実owner identityではない。",
       "value": "BRAIN-comparison-owner",
@@ -1797,8 +1802,8 @@
   "rule_catalog": {
     "shared": {
       "member_presence": {
-        "absent_when": "object key not present",
-        "present_when": "object key present",
+        "absent_when": "objectにそのkeyがない場合",
+        "present_when": "objectにそのkeyがある場合（値がnullでもPresent(null)）",
         "states": [
           "Absent",
           "Present(value)"
@@ -2199,19 +2204,25 @@
   "local_probe_inventory": {
     "compound_count": 3,
     "complete_claim_count": 1,
-    "total": 4,
+    "r1_independent_whole_count": 6,
+    "total": 10,
     "case_ids": [
       "LOCAL-B004-F01-COMPOUND-MISSING-AND-CONFLICT",
       "LOCAL-B004-F02-COMPOUND-UNKNOWN-AND-UNDECIDED",
       "LOCAL-B004-B01-COMPOUND-CLAIMS-AND-SELECTED-INT-MISSING",
-      "LOCAL-B004-F01-COMPLETE-CLAIM-ALL-CORRESPONDING"
+      "LOCAL-B004-F01-COMPLETE-CLAIM-ALL-CORRESPONDING",
+      "LOCAL-B004-F02-RANK-FALSE-WITH-RANK-PAYLOAD",
+      "LOCAL-B004-F02-RANK-TRUE-WITHOUT-RANK-PAYLOAD",
+      "LOCAL-B004-F02-UNKNOWN-PROVIDED-APPLICABLE",
+      "LOCAL-B004-B01-COPY-FOUR-INPUT-FIELDS",
+      "LOCAL-B004-B01-INT-NOT-SELECTED-CONDITIONS-PRESENT",
+      "LOCAL-B004-F01-REQUIRED-AXIS-MISSING"
     ]
   },
   "ra01_resolution": {
     "finding": "B004-RA-01",
     "kind": "pre_PR_independent_self_check_correction",
     "change": "既存none_unobservedセルを有限未観測表示として責務説明し、専用返却型へ到達値を整合。原L9 baselineのraw flag/whole表示だけを変えた独立1例を追加。",
-    "scope_preserved": "元34全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。",
-    "status": "saved_pending_parent_review"
+    "scope_preserved": "元L9 31全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。"
   }
 }

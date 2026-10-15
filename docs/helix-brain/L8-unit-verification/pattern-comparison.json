@@ -139,13 +139,26 @@
   "case_scope": {
     "original_l9_cases": 31,
     "local_compound_probes": 3,
-    "total": 35,
+    "total": 41,
     "original_case_counts": {
       "F01": 14,
       "F02": 10,
       "B01": 7
     },
-    "local_complete_claim_probes": 1
+    "local_complete_claim_probes": 1,
+    "local_probe_count": 10,
+    "local_probe_ids": [
+      "LOCAL-B004-F01-COMPOUND-MISSING-AND-CONFLICT",
+      "LOCAL-B004-F02-COMPOUND-UNKNOWN-AND-UNDECIDED",
+      "LOCAL-B004-B01-COMPOUND-CLAIMS-AND-SELECTED-INT-MISSING",
+      "LOCAL-B004-F01-COMPLETE-CLAIM-ALL-CORRESPONDING",
+      "LOCAL-B004-F02-RANK-FALSE-WITH-RANK-PAYLOAD",
+      "LOCAL-B004-F02-RANK-TRUE-WITHOUT-RANK-PAYLOAD",
+      "LOCAL-B004-F02-UNKNOWN-PROVIDED-APPLICABLE",
+      "LOCAL-B004-B01-COPY-FOUR-INPUT-FIELDS",
+      "LOCAL-B004-B01-INT-NOT-SELECTED-CONDITIONS-PRESENT",
+      "LOCAL-B004-F01-REQUIRED-AXIS-MISSING"
+    ]
   },
   "cases": [
     {
@@ -4870,7 +4883,28 @@
         "unaffected_Q": "original_Q"
       },
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/0/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/candidate_results/EVENTUAL/axes/applicability",
+            "value": "missing"
+          },
+          {
+            "op": "replace",
+            "path": "/candidate_results/EVENTUAL/axes/failure",
+            "value": "content_conflict"
+          },
+          {
+            "op": "replace",
+            "path": "/comparison_complete_claim",
+            "value": "rejected"
+          }
+        ],
+        "independence": "L9の原expected wholeを起点に、ここに列挙した入力変更で変わる返却fieldだけを独立に固定した。正式計算器から期待値を生成していない。"
+      }
     },
     {
       "case_id": "LOCAL-B004-F02-COMPOUND-UNKNOWN-AND-UNDECIDED",
@@ -4989,7 +5023,33 @@
         "unaffected_Q": "original_Q"
       },
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/applicability_results/COMPENSATION",
+            "value": "unknown_candidate_held"
+          },
+          {
+            "op": "replace",
+            "path": "/input_claims/invented_requirement_values",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/input_claims/default_weights",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/input_claims/rank_adopted",
+            "value": "rejected"
+          }
+        ],
+        "independence": "L9の原expected wholeを起点に、ここに列挙した入力変更で変わる返却fieldだけを独立に固定した。正式計算器から期待値を生成していない。"
+      }
     },
     {
       "case_id": "LOCAL-B004-B01-COMPOUND-CLAIMS-AND-SELECTED-INT-MISSING",
@@ -5092,7 +5152,48 @@
         "unaffected_Q": "original_Q"
       },
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/2/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/INT_route",
+            "value": "selected_conditions_missing_held"
+          },
+          {
+            "op": "replace",
+            "path": "/owner_return_candidates",
+            "value": [
+              "CORE-product-decision-owner",
+              "execution-authority-owner",
+              "INT021-connection-owner",
+              "BRAIN-comparison-owner"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/BRAIN_adopted",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/execution_permitted",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/INT_executed",
+            "value": "rejected"
+          },
+          {
+            "op": "replace",
+            "path": "/claim_results/all_INT_capabilities_required",
+            "value": "rejected"
+          }
+        ],
+        "independence": "L9の原expected wholeを起点に、ここに列挙した入力変更で変わる返却fieldだけを独立に固定した。正式計算器から期待値を生成していない。"
+      }
     },
     {
       "case_id": "LOCAL-B004-F01-COMPLETE-CLAIM-ALL-CORRESPONDING",
@@ -5350,6 +5451,756 @@
       },
       "execution_state": "not_executed",
       "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-F02-RANK-FALSE-WITH-RANK-PAYLOAD",
+      "function_ref": "BRAIN004-F02",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/1/concrete_cases/0",
+        "base_case_id": "B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+        "base_case_canonical_sha256": "7cef04a7b9a6f4bf1bbbfee3322c4754762c2331bf84ad568e0c9a92e190a5ed",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+          "revision": "fixture-content-2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+        "patch_operations": [
+          {
+            "op": "replace",
+            "path": "/comparison_rank",
+            "value": [
+              "COMPENSATION",
+              "STRONG",
+              "EVENTUAL"
+            ]
+          }
+        ],
+        "derived_raw_json_sha256": "42ad715296f314a146cdc32188887978da90e30db6384aa8615fee9ff587db37",
+        "derivation_from_approved_meaning": "rank_adopted=falseのままrank payloadを与えても順位claimは出力されない。"
+      },
+      "typed_arguments": {
+        "input": {
+          "applicability_original": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "applicability_provided": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "claims_rank_adopted": false,
+          "comparison_rank": [
+            "COMPENSATION",
+            "STRONG",
+            "EVENTUAL"
+          ],
+          "decision_weights": null,
+          "default_weights": null,
+          "invented_requirement_values": null,
+          "requirement_values": null
+        }
+      },
+      "expected_return": {
+        "applicability_results": {
+          "STRONG": "applicable",
+          "EVENTUAL": "applicable",
+          "COMPENSATION": "unknown"
+        },
+        "required_value_state": "missing",
+        "weight_state": "missing",
+        "unresolved_inputs": [
+          "requirement_values",
+          "decision_weights"
+        ],
+        "selection_state": "held_for_connected_owner",
+        "input_claims": {
+          "invented_requirement_values": "none",
+          "default_weights": "none",
+          "rank_adopted": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_delta": [],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-F02-RANK-TRUE-WITHOUT-RANK-PAYLOAD",
+      "function_ref": "BRAIN004-F02",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/1/concrete_cases/0",
+        "base_case_id": "B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+        "base_case_canonical_sha256": "7cef04a7b9a6f4bf1bbbfee3322c4754762c2331bf84ad568e0c9a92e190a5ed",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+          "revision": "fixture-content-2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+        "patch_operations": [
+          {
+            "op": "replace",
+            "path": "/claims_rank_adopted",
+            "value": true
+          }
+        ],
+        "derived_raw_json_sha256": "94ad67283814ea7344899b361c3132df421ae1f4f232828c8ba769b75f660ff8",
+        "derivation_from_approved_meaning": "rank_adopted=trueをcomparison_rank=nullと組み合わせ、payloadでなくflagを独立に反映する。"
+      },
+      "typed_arguments": {
+        "input": {
+          "applicability_original": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "applicability_provided": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "claims_rank_adopted": true,
+          "comparison_rank": null,
+          "decision_weights": null,
+          "default_weights": null,
+          "invented_requirement_values": null,
+          "requirement_values": null
+        }
+      },
+      "expected_return": {
+        "applicability_results": {
+          "STRONG": "applicable",
+          "EVENTUAL": "applicable",
+          "COMPENSATION": "unknown"
+        },
+        "required_value_state": "missing",
+        "weight_state": "missing",
+        "unresolved_inputs": [
+          "requirement_values",
+          "decision_weights"
+        ],
+        "selection_state": "held_for_connected_owner",
+        "input_claims": {
+          "invented_requirement_values": "none",
+          "default_weights": "none",
+          "rank_adopted": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/input_claims/rank_adopted",
+            "value": "rejected"
+          }
+        ],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-F02-UNKNOWN-PROVIDED-APPLICABLE",
+      "function_ref": "BRAIN004-F02",
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/1/concrete_cases/0",
+        "base_case_id": "B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+        "base_case_canonical_sha256": "7cef04a7b9a6f4bf1bbbfee3322c4754762c2331bf84ad568e0c9a92e190a5ed",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-F02-APPLICABLE-UNKNOWN-VALUES-WEIGHTS-MISSING",
+          "revision": "fixture-content-2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "2e39e53be23a82ae29a187b5abfd35c1791e61e760bf010512875aae827c0072",
+        "patch_operations": [
+          {
+            "op": "replace",
+            "path": "/applicability_provided/COMPENSATION",
+            "value": "applicable"
+          }
+        ],
+        "derived_raw_json_sha256": "768f711dfc0a3bc0114a0c68a778b5c9eaf663c0f27a476f1353a4b72418269c",
+        "derivation_from_approved_meaning": "original unknownをprovided applicableで上書きせず、unknown候補として保持する。"
+      },
+      "typed_arguments": {
+        "input": {
+          "applicability_original": {
+            "COMPENSATION": "unknown",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "applicability_provided": {
+            "COMPENSATION": "applicable",
+            "EVENTUAL": "applicable",
+            "STRONG": "applicable"
+          },
+          "claims_rank_adopted": false,
+          "comparison_rank": null,
+          "decision_weights": null,
+          "default_weights": null,
+          "invented_requirement_values": null,
+          "requirement_values": null
+        }
+      },
+      "expected_return": {
+        "applicability_results": {
+          "STRONG": "applicable",
+          "EVENTUAL": "applicable",
+          "COMPENSATION": "unknown_candidate_held"
+        },
+        "required_value_state": "missing",
+        "weight_state": "missing",
+        "unresolved_inputs": [
+          "requirement_values",
+          "decision_weights"
+        ],
+        "selection_state": "held_for_connected_owner",
+        "input_claims": {
+          "invented_requirement_values": "none",
+          "default_weights": "none",
+          "rank_adopted": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/1/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/applicability_results/COMPENSATION",
+            "value": "unknown_candidate_held"
+          }
+        ],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-B01-COPY-FOUR-INPUT-FIELDS",
+      "function_ref": "BRAIN004-B01",
+      "requirement_ref": "HELIXBRAIN-L3-004-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-B01",
+      "l4_ref": "HELIXBRAIN-L4-004-B01",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/2/concrete_cases/0",
+        "base_case_id": "B004-B01-CORE-RETURN-INT-NOT-SELECTED",
+        "base_case_canonical_sha256": "dfec069a05fd352bee29988b833b01256cdfba0630869db5788981dc378ebf3c",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-B01-CORE-RETURN-INT-NOT-SELECTED",
+          "revision": "fixture-content-65b453e3ab72df9eea0cc6cd333996a7839e61cf7e6e30ec3b59845b95572ccc",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "65b453e3ab72df9eea0cc6cd333996a7839e61cf7e6e30ec3b59845b95572ccc",
+        "patch_operations": [
+          {
+            "op": "replace",
+            "path": "/comparison_owner",
+            "value": "BRAIN-probe-owner"
+          },
+          {
+            "op": "replace",
+            "path": "/product_decision_owner",
+            "value": "CORE-probe-owner"
+          },
+          {
+            "op": "replace",
+            "path": "/original_CORE_state",
+            "value": {
+              "product_meaning": "probe_P",
+              "selection": "probe_selection"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/original_OS_state",
+            "value": "probe_saved_state"
+          }
+        ],
+        "derived_raw_json_sha256": "d846e5c02704557ccaa4a0276ca659b8e27d5aa61f80f0998065cec153a0860f",
+        "derivation_from_approved_meaning": "4つのコピー入力を互いに識別可能な合成値へ変更し、各対応返却fieldを独立に照合する。"
+      },
+      "typed_arguments": {
+        "input": {
+          "claims_BRAIN_adopted": false,
+          "claims_INT_executed": false,
+          "claims_execution_permitted": false,
+          "comparison_owner": "BRAIN-probe-owner",
+          "int021_connection_conditions": null,
+          "int_query_selected": false,
+          "original_CORE_state": {
+            "product_meaning": "probe_P",
+            "selection": "probe_selection"
+          },
+          "original_OS_state": "probe_saved_state",
+          "product_decision_owner": "CORE-probe-owner",
+          "requires_all_INT_capabilities": false
+        }
+      },
+      "expected_return": {
+        "comparison_owner": "BRAIN-probe-owner",
+        "product_decision_owner": "CORE-probe-owner",
+        "CORE_state": {
+          "product_meaning": "probe_P",
+          "selection": "probe_selection"
+        },
+        "OS_state": "probe_saved_state",
+        "INT_route": "not_selected",
+        "owner_return_candidates": [],
+        "claim_results": {
+          "BRAIN_adopted": "none",
+          "execution_permitted": "none",
+          "INT_executed": "none",
+          "all_INT_capabilities_required": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/2/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/comparison_owner",
+            "value": "BRAIN-probe-owner"
+          },
+          {
+            "op": "replace",
+            "path": "/product_decision_owner",
+            "value": "CORE-probe-owner"
+          },
+          {
+            "op": "replace",
+            "path": "/CORE_state",
+            "value": {
+              "product_meaning": "probe_P",
+              "selection": "probe_selection"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/OS_state",
+            "value": "probe_saved_state"
+          }
+        ],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-B01-INT-NOT-SELECTED-CONDITIONS-PRESENT",
+      "function_ref": "BRAIN004-B01",
+      "requirement_ref": "HELIXBRAIN-L3-004-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-B01",
+      "l4_ref": "HELIXBRAIN-L4-004-B01",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/2/concrete_cases/0",
+        "base_case_id": "B004-B01-CORE-RETURN-INT-NOT-SELECTED",
+        "base_case_canonical_sha256": "dfec069a05fd352bee29988b833b01256cdfba0630869db5788981dc378ebf3c",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-B01-CORE-RETURN-INT-NOT-SELECTED",
+          "revision": "fixture-content-65b453e3ab72df9eea0cc6cd333996a7839e61cf7e6e30ec3b59845b95572ccc",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "65b453e3ab72df9eea0cc6cd333996a7839e61cf7e6e30ec3b59845b95572ccc",
+        "patch_operations": [
+          {
+            "op": "replace",
+            "path": "/int021_connection_conditions",
+            "value": {
+              "synthetic_condition": "probe_nonnull"
+            }
+          }
+        ],
+        "derived_raw_json_sha256": "983ee1f8c5d026daa25db8d9fb8af28ee4d2579a5ce9be7f7a4cb9df693e8404",
+        "derivation_from_approved_meaning": "INT query非選択のまま条件だけをnon-nullにし、routeが非選択から変わらない境界を照合する。"
+      },
+      "typed_arguments": {
+        "input": {
+          "claims_BRAIN_adopted": false,
+          "claims_INT_executed": false,
+          "claims_execution_permitted": false,
+          "comparison_owner": "BRAIN",
+          "int021_connection_conditions": {
+            "synthetic_condition": "probe_nonnull"
+          },
+          "int_query_selected": false,
+          "original_CORE_state": {
+            "product_meaning": "original_P",
+            "selection": "not_selected"
+          },
+          "original_OS_state": "not_saved",
+          "product_decision_owner": "CORE",
+          "requires_all_INT_capabilities": false
+        }
+      },
+      "expected_return": {
+        "comparison_owner": "BRAIN",
+        "product_decision_owner": "CORE",
+        "CORE_state": {
+          "selection": "not_selected",
+          "product_meaning": "original_P"
+        },
+        "OS_state": "not_saved",
+        "INT_route": "not_selected",
+        "owner_return_candidates": [],
+        "claim_results": {
+          "BRAIN_adopted": "none",
+          "execution_permitted": "none",
+          "INT_executed": "none",
+          "all_INT_capabilities_required": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/2/concrete_cases/0/expected_material",
+        "expected_delta": [],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "LOCAL-B004-F01-REQUIRED-AXIS-MISSING",
+      "function_ref": "BRAIN004-F01",
+      "requirement_ref": "HELIXBRAIN-L3-004-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-004-F01",
+      "l4_ref": "HELIXBRAIN-L4-004-F01",
+      "source_binding": {
+        "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "base_case_json_pointer": "/verification_obligations/0/concrete_cases/0",
+        "base_case_id": "B004-F01-THREE-CANDIDATES-SIX-AXES",
+        "base_case_canonical_sha256": "9164faa7600f0f48ff65bd1bad3f96263b7410a3daa0e6f554dde530e8b572db",
+        "base_packet_ref": {
+          "identity": "SOURCE-B004-F01-THREE-CANDIDATES-SIX-AXES",
+          "revision": "fixture-content-920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+          "scope": "KNOWLEDGE-SCOPE-P",
+          "owner": "synthetic-fixture-owner"
+        },
+        "base_raw_sha256": "920cc940afaf218b7f6c701c838ddf520d0e7a90d7e2ca123a6f56574b9f39aa",
+        "patch_operations": [
+          {
+            "op": "remove",
+            "path": "/required_candidates/EVENTUAL/axes/applicability"
+          }
+        ],
+        "derived_raw_json_sha256": "495fa317aaa767296b6d14a21fb34fa0ebcec13b24ae6d064d9f2197d954182f",
+        "derivation_from_approved_meaning": "required側の軸memberを欠落させ、provided側だけでなく比較の右側欠落もmissingとなることを照合する。"
+      },
+      "typed_arguments": {
+        "input": {
+          "claims_absolute_solution": null,
+          "claims_comparison_complete": false,
+          "provided_candidates": {
+            "COMPENSATION": {
+              "axes": {
+                "advantages": "合成原内容 COMPENSATION advantages の比較根拠。実方式の性質評価ではない。",
+                "applicability": "合成原内容 COMPENSATION applicability の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 COMPENSATION constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 COMPENSATION cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 COMPENSATION disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 COMPENSATION failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "COMPENSATION",
+              "knowledge_ref": {
+                "identity": "PATTERN-COMPENSATION",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Compensating Transaction Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-COMPENSATION",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            },
+            "EVENTUAL": {
+              "axes": {
+                "advantages": "合成原内容 EVENTUAL advantages の比較根拠。実方式の性質評価ではない。",
+                "applicability": "合成原内容 EVENTUAL applicability の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 EVENTUAL constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 EVENTUAL cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 EVENTUAL disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 EVENTUAL failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "EVENTUAL",
+              "knowledge_ref": {
+                "identity": "PATTERN-EVENTUAL",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Eventual Consistency Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-EVENTUAL",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            },
+            "STRONG": {
+              "axes": {
+                "advantages": "合成原内容 STRONG advantages の比較根拠。実方式の性質評価ではない。",
+                "applicability": "合成原内容 STRONG applicability の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 STRONG constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 STRONG cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 STRONG disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 STRONG failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "STRONG",
+              "knowledge_ref": {
+                "identity": "PATTERN-STRONG",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Strong Consistency Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-STRONG",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            }
+          },
+          "required_candidates": {
+            "COMPENSATION": {
+              "axes": {
+                "advantages": "合成原内容 COMPENSATION advantages の比較根拠。実方式の性質評価ではない。",
+                "applicability": "合成原内容 COMPENSATION applicability の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 COMPENSATION constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 COMPENSATION cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 COMPENSATION disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 COMPENSATION failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "COMPENSATION",
+              "knowledge_ref": {
+                "identity": "PATTERN-COMPENSATION",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Compensating Transaction Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-COMPENSATION",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            },
+            "EVENTUAL": {
+              "axes": {
+                "advantages": "合成原内容 EVENTUAL advantages の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 EVENTUAL constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 EVENTUAL cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 EVENTUAL disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 EVENTUAL failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "EVENTUAL",
+              "knowledge_ref": {
+                "identity": "PATTERN-EVENTUAL",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Eventual Consistency Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-EVENTUAL",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            },
+            "STRONG": {
+              "axes": {
+                "advantages": "合成原内容 STRONG advantages の比較根拠。実方式の性質評価ではない。",
+                "applicability": "合成原内容 STRONG applicability の比較根拠。実方式の性質評価ではない。",
+                "constraint": "合成原内容 STRONG constraint の比較根拠。実方式の性質評価ではない。",
+                "cost": "合成原内容 STRONG cost の比較根拠。実方式の性質評価ではない。",
+                "disadvantages": "合成原内容 STRONG disadvantages の比較根拠。実方式の性質評価ではない。",
+                "failure": "合成原内容 STRONG failure の比較根拠。実方式の性質評価ではない。"
+              },
+              "identity": "STRONG",
+              "knowledge_ref": {
+                "identity": "PATTERN-STRONG",
+                "revision": "knowledge-r1",
+                "scope": "Data-Consistency-fixture"
+              },
+              "name": "Strong Consistency Pattern",
+              "problem": "Data Consistency fixture problem",
+              "source_ref": {
+                "identity": "SOURCE-STRONG",
+                "revision": "source-r1",
+                "scope": "same-problem-fixture"
+              }
+            }
+          }
+        }
+      },
+      "expected_return": {
+        "candidate_results": {
+          "STRONG": {
+            "identity": "content_corresponding_in_fixture",
+            "problem": "content_corresponding_in_fixture",
+            "source_ref": "content_corresponding_in_fixture",
+            "knowledge_ref": "content_corresponding_in_fixture",
+            "axes": {
+              "applicability": "content_corresponding_in_fixture",
+              "advantages": "content_corresponding_in_fixture",
+              "disadvantages": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "failure": "content_corresponding_in_fixture",
+              "cost": "content_corresponding_in_fixture"
+            }
+          },
+          "EVENTUAL": {
+            "identity": "content_corresponding_in_fixture",
+            "problem": "content_corresponding_in_fixture",
+            "source_ref": "content_corresponding_in_fixture",
+            "knowledge_ref": "content_corresponding_in_fixture",
+            "axes": {
+              "applicability": "missing",
+              "advantages": "content_corresponding_in_fixture",
+              "disadvantages": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "failure": "content_corresponding_in_fixture",
+              "cost": "content_corresponding_in_fixture"
+            }
+          },
+          "COMPENSATION": {
+            "identity": "content_corresponding_in_fixture",
+            "problem": "content_corresponding_in_fixture",
+            "source_ref": "content_corresponding_in_fixture",
+            "knowledge_ref": "content_corresponding_in_fixture",
+            "axes": {
+              "applicability": "content_corresponding_in_fixture",
+              "advantages": "content_corresponding_in_fixture",
+              "disadvantages": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "failure": "content_corresponding_in_fixture",
+              "cost": "content_corresponding_in_fixture"
+            }
+          }
+        },
+        "retained_candidate_ids": [
+          "STRONG",
+          "EVENTUAL",
+          "COMPENSATION"
+        ],
+        "absolute_solution_claim": "none",
+        "comparison_complete_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_meaning_updated": false,
+          "actual_OS_record_saved": false,
+          "actual_INT_query": false,
+          "actual_execution_permitted": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "independent_whole_oracle_basis": {
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/0/concrete_cases/0/expected_material",
+        "expected_delta": [
+          {
+            "op": "replace",
+            "path": "/candidate_results/EVENTUAL/axes/applicability",
+            "value": "missing"
+          }
+        ],
+        "independence": "L9の原expected wholeから独立に固定した明示deltaを適用する。期待をL5計算器やcase ID lookupから生成しない。"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
     }
   ],
   "full_goal_scope_preserved": {
@@ -5368,7 +6219,6 @@
     "finding": "B004-RA-01",
     "kind": "pre_PR_independent_self_check_correction",
     "change": "既存none_unobservedセルを有限未観測表示として責務説明し、専用返却型へ到達値を整合。原L9 baselineのraw flag/whole表示だけを変えた独立1例を追加。",
-    "scope_preserved": "元34全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。",
-    "status": "saved_pending_parent_review"
+    "scope_preserved": "元34全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。"
   }
 }
