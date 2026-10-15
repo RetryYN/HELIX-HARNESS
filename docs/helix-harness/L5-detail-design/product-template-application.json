@@ -715,53 +715,17 @@
         },
         "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
       },
-      "ProjectionFieldPresence": {
-        "fields": {
-          "field": "CompareField",
-          "presence": "FieldPresence",
-          "value": "JSONValue; only when presence=value"
-        },
-        "meaning": "比較対象field一つの原presenceと供給値を保持する。Absent/nullにvalueを作らない。",
-        "field_types": {
-          "field": "CompareField",
-          "presence": "FieldPresence",
-          "value": "JSONValue"
-        },
-        "optional_fields": [
-          "value"
-        ],
-        "required_fields": [
-          "field",
-          "presence"
-        ]
-      },
-      "ProjectionFieldValue": {
-        "fields": {
-          "field": "CompareField",
-          "value": "JSONValue"
-        },
-        "meaning": "双方が供給済みでnullでない比較fieldの元JSON値。",
-        "field_types": {
-          "field": "CompareField",
-          "value": "JSONValue"
-        },
-        "optional_fields": [],
-        "required_fields": [
-          "field",
-          "value"
-        ]
-      },
       "FieldPresenceByCompareField": {
         "fields": {
           "field": "CompareField",
           "presence": "FieldPresence",
-          "value": "JSONValue; only when presence=value"
+          "value": "RawValue"
         },
         "meaning": "候補Refまたは対象Refの比較field一つ。",
         "field_types": {
           "field": "CompareField",
           "presence": "FieldPresence",
-          "value": "JSONValue"
+          "value": "RawValue"
         },
         "optional_fields": [
           "value"
@@ -771,15 +735,15 @@
           "presence"
         ]
       },
-      "JSONValueByKnownField": {
+      "RawValueByKnownField": {
         "fields": {
           "field": "CompareField",
-          "value": "JSONValue"
+          "value": "RawValue"
         },
         "meaning": "供給された比較field値。numberとbooleanは別kind、object key順を無視しarray順を保持する。",
         "field_types": {
           "field": "CompareField",
-          "value": "JSONValue"
+          "value": "RawValue"
         },
         "optional_fields": [],
         "required_fields": [
@@ -798,8 +762,8 @@
           "target_field_presence": "FieldPresenceByCompareField[]",
           "different_fields": "CompareField[]",
           "unresolved_fields": "CompareField[]",
-          "candidate_values": "JSONValueByKnownField[]",
-          "target_values": "JSONValueByKnownField[]",
+          "candidate_values": "RawValueByKnownField[]",
+          "target_values": "RawValueByKnownField[]",
           "return_owner_candidates": "ReturnOwnerCandidate[]"
         },
         "meaning": "一つの元配列occurrenceとの比較。元index/重複を保持し、known differenceとmissing/nullを分離する。",
@@ -813,8 +777,8 @@
           "target_field_presence": "FieldPresenceByCompareField[]",
           "different_fields": "CompareField[]",
           "unresolved_fields": "CompareField[]",
-          "candidate_values": "JSONValueByKnownField[]",
-          "target_values": "JSONValueByKnownField[]",
+          "candidate_values": "RawValueByKnownField[]",
+          "target_values": "RawValueByKnownField[]",
           "return_owner_candidates": "ReturnOwnerCandidate[]"
         },
         "optional_fields": [],
@@ -836,8 +800,8 @@
       "UniverseProjection": {
         "fields": {
           "universe_index": "integer",
-          "universe_ref_presence": "absent|null|value|invalid_type",
-          "universe_ref": "JSONValue; presence=null/value/invalid_typeのとき原値、absent時だけmember省略",
+          "universe_ref_presence": "RefPresence",
+          "universe_ref": "RawValue",
           "universe_members_presence": "CollectionPresence",
           "universe_members_sha256": "string|null",
           "matching_universe_member_indices": "integer[]",
@@ -856,7 +820,7 @@
         "field_types": {
           "universe_index": "integer",
           "universe_ref_presence": "RefPresence",
-          "universe_ref": "JSONValue",
+          "universe_ref": "RawValue",
           "universe_members_presence": "CollectionPresence",
           "universe_members_sha256": "string|null",
           "matching_universe_member_indices": "integer[]",
@@ -895,7 +859,7 @@
       "CandidateRefProjectionLink": {
         "fields": {
           "candidate_index": "integer",
-          "candidate_ref": "JSONValue",
+          "candidate_ref": "RawValue",
           "universe_results": "UniverseProjection[]",
           "different_fields": "CompareField[]",
           "unresolved_fields": "CompareField[]",
@@ -906,7 +870,7 @@
         "meaning": "候補配列の一occurrenceを全Universeと照合した結果。candidate_index順。",
         "field_types": {
           "candidate_index": "integer",
-          "candidate_ref": "JSONValue",
+          "candidate_ref": "RawValue",
           "universe_results": "UniverseProjection[]",
           "different_fields": "CompareField[]",
           "unresolved_fields": "CompareField[]",
@@ -930,7 +894,7 @@
         "fields": {
           "responsibility_source": "OwnerResponsibility",
           "recipient": "OwnerRecipient",
-          "qualification": "string"
+          "qualification": "ProjectionQualification"
         },
         "meaning": "L4の失敗分類から投影する責務候補。実owner資格/通知/割当を表さない。",
         "field_types": {
@@ -948,22 +912,22 @@
       "CandidateRefProjectionOutput": {
         "fields": {
           "candidate_refs_presence": "CollectionPresence",
-          "candidate_refs": "JSONValue; absent時は出力member absent、他はraw値",
+          "candidate_refs": "RawValue",
           "links": "CandidateRefProjectionLink[]",
           "universes_presence": "CollectionPresence",
           "universe_count": "integer|null",
           "universes_sha256": "string|null",
           "templates_presence": "CollectionPresence",
           "template_non_ref_sha256": "string[]|null",
-          "qualification": "string",
-          "selection": "string",
+          "qualification": "ProjectionDecision",
+          "selection": "ProjectionDecision",
           "return_owner_candidates": "ReturnOwnerCandidate[]",
           "side_effect_count": "integer"
         },
         "meaning": "L4 cross-design projectionの12公開root。raw入力保持と内容対応だけを表し、BRAIN/CORE実source・資格・selection・application成立を意味しない。",
         "field_types": {
           "candidate_refs_presence": "CollectionPresence",
-          "candidate_refs": "JSONValue",
+          "candidate_refs": "RawValue",
           "links": "CandidateRefProjectionLink[]",
           "universes_presence": "CollectionPresence",
           "universe_count": "integer|null",
@@ -1124,7 +1088,6 @@
           "BRAIN",
           "HARNESS008",
           "HARNESS",
-          "unresolved",
           "unresolved"
         ],
         "meaning": "L4 owner candidate catalogの候補recipient。資格や実配布を意味しない。",
@@ -6786,12 +6749,12 @@
       "design_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
       "oracle_file": "docs/helix-harness/L9-integration-verification/product-template-application.json",
       "oracle_sha256": "962736f575a3da880e5a02c675095324ccdbdafaf62755cd0bba2298609476b2",
-      "approved_requirement_whole_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
-      "approved_system_oracle_whole_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad",
       "decision_commit": "bd56f07b91d6777b1c549d0db9bc35318b3f52d3",
       "actual_approved_object_admission_revision": "6ccc5d57dded942bb269e0cf83fcb9a0e47f2ab7",
       "actual_approved_object_admission_parent": "4a66eab95c6309140bf9b56505f6520d81f82e8a",
-      "actual_approved_object_admission_second_parent": "bd56f07b91d6777b1c549d0db9bc35318b3f52d3"
+      "actual_approved_object_admission_second_parent": "bd56f07b91d6777b1c549d0db9bc35318b3f52d3",
+      "approved_requirement_object_canonical_sha256": "0955af985adf56ca021309bfb52a65ea171a2f93d3d4c5aa575c837f8e3612c7",
+      "approved_system_oracle_object_canonical_sha256": "15a2f858c81c6bd7d592723e5c0670fdcb263e5f952e1e01955ba034b15b0fad"
     },
     "logical_scope": "BRAIN候補RefとCORE候補母集合/TemplateSnapshotの内容対応を、有限raw入力から投影する。COREの他の適用判定・関数や19 axisを置換しない。",
     "input_type": "RawValue",
@@ -6812,6 +6775,13 @@
           "revision": "fb3734e1bc05564319d73a4aee10ceb1b779727f",
           "sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
           "pointer": "/cross_design_candidate_ref_projection/input_projection"
+        },
+        {
+          "file": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/cross_design_candidate_ref_projection",
+          "revision": "local-detail-pair",
+          "sha256": "computed_after_write",
+          "role": "対L8 oracleとケース結線"
         }
       ],
       "input": {
@@ -6909,6 +6879,7 @@
           ],
           "returns": "UniverseProjection",
           "steps": [
+            "universe_rawがobjectでない場合はuniverse_ref_presence=invalid_type、universe_refにuniverse_rawそのものを保持し、members_presence=invalid_typeとして元universe_indexで返す。objectの場合だけref/members各memberのpresenceを別々に読む。",
             "universe.refとmembersのpresenceを保持して読む。",
             "members=empty/valueではcandidateと各raw member occurrenceを入力順に比較し、exact indexをすべて集め、全比較を保持する。absent/null/invalid_typeでは比較結果とexact indexを空にする。",
             "exact memberがあればtemplates slotを調べる。absent/null/invalid_typeは区別したnot_compared state、emptyはsnapshot不一致、valueは各snapshot.refを順に比較して全比較/indexを保持する。",
@@ -6932,9 +6903,9 @@
             "aggregate_resolutionを適用する。外側container presenceを先に判定し、それ以外ではcorresponding、unknown、known_noncorrespondingの順でclassを選ぶ。",
             "result_by_conditionに対応するprojection_stateとclassを返す。",
             "different/unresolved診断fieldは全Universe occurrenceの同名fieldをcompare_fields順で重複除去して集約する。全Universe occurrence resultは保持する。",
-            "corresponding Universeがあればreturn_owner_candidatesは空配列にする。",
-            "それ以外ではrelation comparison occurrence由来候補をUniverse順・member/snapshot順・各元index順に先に列挙する。unknown_ref_fieldsでは続けてUniverse state候補をUniverse順に加え、それ以外ではprojection-state候補を加える。L4 return_owner_candidate_orderの完全な(responsibility_source,recipient,qualification)一致だけを初出保持し、順序を確定する。",
-            "aggregateがcorresponding_in_fixtureならlink unresolved_fieldsを空にする。"
+            "全Universe occurrenceのunresolved_fieldsは元Universe順に統合する。いずれかのUniverseにcorrespondingがあっても、別Universeのunknown fieldをlinkのunresolved_fieldsから消さない。各Universe内でexact matchがある場合のoccurrence非干渉は、そのUniverseの個別規則に従う。",
+            "link.return_owner_candidatesは、各UniverseProjection.return_owner_candidatesを元Universe順に連結する。各Universe内ではL4 return_owner_candidate_orderに従い、当該Universeのoccurrence候補→そのUniverse state候補の順とする。同一(responsibility_source,recipient,qualification)だけを全linkで初出保持する。これにより一Universeのstate候補を後続Universeのoccurrence候補より後へ移さず、別Universeの所見を消さない。",
+            "aggregate projection_state=corresponding_in_fixtureの場合、return_owner_candidatesはL4 return_owner_candidate_orderに従い常に空配列にする。別Universeのunresolved_fields診断は保持し、対応stateや戻し先へ昇格させない。"
           ]
         },
         {
@@ -7036,7 +7007,7 @@
           "CandidateRefProjectionLink": {
             "fields": {
               "candidate_index": "integer",
-              "candidate_ref": "JSONValue; object RefならRef、null/non-objectはrawで保持",
+              "candidate_ref": "RawValue; object RefならRef、null/non-objectはrawで保持",
               "universe_results": "UniverseProjection[] in universes input order",
               "different_fields": "string[] in compare_fields order",
               "unresolved_fields": "string[] in compare_fields order",
@@ -7101,8 +7072,8 @@
               "target_field_presence": "FieldPresenceByCompareField[]; absent Refでは全field absent",
               "different_fields": "string[] compare_fields順",
               "unresolved_fields": "string[] compare_fields順",
-              "candidate_values": "JSONValueByKnownField[]",
-              "target_values": "JSONValueByKnownField[]; absent/null/non-objectはrecord_presenceで区別",
+              "candidate_values": "RawValueByKnownField[]",
+              "target_values": "RawValueByKnownField[]; absent/null/non-objectはrecord_presenceで区別",
               "return_owner_candidates": "ReturnOwnerCandidate[]",
               "candidate_record_presence": "object|null|non_object",
               "target_record_presence": "absent|null|object|non_object"
@@ -7112,10 +7083,10 @@
             "fields": {
               "field": "identity|revision|scope|owner",
               "presence": "absent|null|value",
-              "value": "JSONValue; absent/nullなら省略"
+              "value": "RawValue; absent/nullなら省略"
             }
           },
-          "JSONValueByKnownField": {
+          "RawValueByKnownField": {
             "fields": {
               "field": "identity|revision|scope|owner",
               "value": "finite JSON value"
@@ -7352,7 +7323,7 @@
         },
         "input_domain_rule": {
           "normal_fixture": "通常の合成projection fixtureはcandidate_refs/universes/templatesの外側collectionをarrayとして供給する。nested CandidateUniverse/TemplateSnapshot bindingやprovenance fieldが全て供給済みとは扱わず、個別にAbsent/null/valueを保持する。",
-          "boundary_fixture": "Absent/nullはpresenceとして扱う。array memberがnull/non-object、array自体の異型、Ref fieldの異型もJSONValueとして保持しinvalid_type/target_field_unresolvedへ出す。例外や暗黙emptyへ変換しない。",
+          "boundary_fixture": "Absent/nullはpresenceとして扱う。array memberがnull/non-object、array自体の異型、Ref fieldの異型もRawValueとして保持しinvalid_type/target_field_unresolvedへ出す。例外や暗黙emptyへ変換しない。",
           "all_null_or_absent": "candidate/universe/member/template/refの全要素null/Absentでは該当sideの未解決fieldを出力し、既知差分・exact indexは作らない。",
           "number_boolean": "booleanとnumberを別JSON kindとして扱い、trueと1を等値にしない。",
           "invalid_type_behavior": "containerがarrayを期待される場面でobject/scalar、Ref位置でnull/scalar/arrayを受けても例外にせず、invalid_typeまたはtarget_field_unresolvedとしてraw valueとindexを保持する。",
@@ -7566,7 +7537,35 @@
           ],
           "presence_rule": "presence=absentのときvalue memberを省略。nullはvalue=null、empty/value/invalid_typeは元JSON値を保持する。"
         }
-      }
+      },
+      "bounded_derivation_choices": [
+        {
+          "id": "link_unresolved_diagnostics",
+          "source": {
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "revision": "fb3734e1bc05564319d73a4aee10ceb1b779727f",
+            "file_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
+            "pointer": "/cross_design_candidate_ref_projection/projection_rule/unresolved_field_rule",
+            "object_canonical_sha256": "4016b342b167ad421df54cbd369f11d251a1e7ac071324f596fc0724a58f5377"
+          },
+          "source_text": "candidateまたは到達targetの比較fieldがAbsent/nullの場合だけ、そのfieldをunresolved_fieldsへ入れる。既知の異値はunresolvedへ複写せずdifferent_fieldsへ記録する。完全一致member/snapshotが一つもない場合は、Absent/nullのtarget occurrenceから得た不足だけを候補stateへ反映する。別occurrenceにexact matchがある場合、その他の不一致/Absent/nullは個別occurrence診断に残し、correspondenceと戻し先候補を覆さない。",
+          "choice": "同Universe内exactはそのUniverseの集約stateを維持し、別Universeで得た不足fieldはlinkの診断にも保持する。診断の保持はprojection_stateとownerの成立判定とは別で、対応成立時の戻し先空配列を変更しない。",
+          "limit": "L4はlink診断配列への転記を一意に記載していないため、この詳細では原診断を失わない表現を選ぶ。CE-Aがこの表現を固定し、L9全41元wholeは保持する。"
+        },
+        {
+          "id": "link_owner_order",
+          "source": {
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "revision": "fb3734e1bc05564319d73a4aee10ceb1b779727f",
+            "file_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
+            "pointer": "/cross_design_candidate_ref_projection/projection_rule/return_owner_candidate_order",
+            "object_canonical_sha256": "43bead4232d5a0b6caed04886ec0587f23d15e1a54c2038ac424195777404637"
+          },
+          "source_text": "当該失敗stateに関係するoccurrenceを元side/member/templateの順、各arrayは元index順に走査する。occurrence候補を先に列挙しstate候補を後に加え、同じ(responsibility_source,recipient,qualification)は最初の出現だけ残す。aggregateがcorresponding_in_fixtureなら、無関係なoccurrence候補を含めず空配列にする。",
+          "choice": "非対応/unknown時は各Universe内のoccurrence→state順を単位に、元Universe順で連結し完全catalog recordの初出を残す。対応成立時は空配列。",
+          "limit": "L4のoccurrence→stateは複数Universeをまたぐ交互順を明示していない。この詳細では外側配列順を優先する有限表現を選びCE-B/Cで固定する。実source資格や要求意味の採否を追加しない。"
+        }
+      ]
     },
     "source_expectation_binding": {
       "l9_file": "docs/helix-harness/L9-integration-verification/product-template-application.json",
@@ -7575,6 +7574,23 @@
       "case_order": "L9 cases array order",
       "expectation_source": "L9の各independent_expected_projectionを上流oracleとして保持する。projection function/programの入力にはしない。"
     },
-    "function_ref": "HARNESS-L5-009-project_cross_design_candidate_refs"
+    "function_ref": "HARNESS-L5-009-project_cross_design_candidate_refs",
+    "oracle_ref": "HARNESS-L8-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+    "legacy_comparison": {
+      "source_l4_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+      "source_l4_revision": "fb3734e1bc05564319d73a4aee10ceb1b779727f",
+      "source_l4_file_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
+      "source_l4_pointer": "/cross_design_candidate_ref_projection/legacy_comparison",
+      "legacy_asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "legacy_revision": "7b209d91cdf2c0e6114fd41bf1467df82deedc42",
+      "legacy_file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_line_range": "16–91",
+      "preserved": "旧templateのidentity/version/source/usabilityと候補母集合の意味を読み、identity/revision/scope/ownerを別々に比較する。",
+      "changed": "旧Registryのduplicateをfailureとする処理は再利用せず、このRef projectionでは全occurrence/orderを保持して重複自体を拒否しない。適用・Registry成立は別設計責務。",
+      "reason": "L3/L4/L10が要求する参照内容/版/範囲の対応を純投影で明示し、selection/qualification/Registry実成立へ越境しないため。",
+      "old_failure_consumer": "旧Registryの重複failureは旧sourceのRegistry適用処理に属する。現L4 F01のbackflowへは候補入力値と設計oracle不足を戻す。",
+      "meaning": "この投影専用の旧資産対応。旧Registryの重複failureを本projectionへ移さず、L4の純投影と別責務の境界を保つ。"
+    }
   }
 }
