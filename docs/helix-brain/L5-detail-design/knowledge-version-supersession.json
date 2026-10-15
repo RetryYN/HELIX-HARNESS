@@ -2018,7 +2018,7 @@
       "id": "B008-UO-02",
       "function_ref": "HELIXBRAIN-L5-008-F01",
       "witness_or_mutation": "provided_CORE_reference.identity/core/knowledge_identity/knowledge_revision/knowledge_version/scope各memberを個別Absentまたはnullにする。",
-      "status": "原26 wholeでは左右同null、CORE fieldごとのnull、全fieldの無視変異を区別しない。",
+      "status": "原26 wholeはCORE各member両側nullの差を識別しない。別枠B008-F01-CORE-IDENTITY-BOTH-NULLでcore両側nullの保留を観測済み。他memberの同null/比較省略の独立識別は未観測。",
       "disposition": "L9原whole/probeで検証済みとは主張しない。"
     },
     {
