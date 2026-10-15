@@ -207,8 +207,9 @@
   "design_ref": "docs/helix-connect/L4-basic-design/retry-deduplication-conflict.json",
   "approval_record_pin": {
     "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-    "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
-    "record_id": "HDEC-CONNECT-PREREQUISITE-L3L10-2026-10-12"
+    "revision": "fb3ed11de764556f00f3f923e2f97ec4467bb406",
+    "record_id": "HDEC-CONNECT-PREREQUISITE-L3L10-2026-10-12",
+    "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
   },
   "source_pair_pins": [
     {
@@ -530,21 +531,13 @@
             "kind": "record_shape",
             "fields": {
               "identity": {
-                "kind": "string",
-                "observed_values": [
-                  "ATTEMPT-P-1",
-                  "ATTEMPT-P-2"
-                ]
+                "kind": "string"
               },
               "ordinal": {
                 "kind": "integer"
               },
               "state": {
-                "kind": "string",
-                "observed_values": [
-                  "first_response_lost",
-                  "duplicate_receipt_in_fixture_only"
-                ]
+                "kind": "string"
               },
               "content_results": {
                 "kind": "record_shape",
@@ -611,7 +604,11 @@
                 "optional_in_fixed_cases": []
               }
             },
-            "optional_in_fixed_cases": []
+            "optional_in_fixed_cases": [
+              "identity",
+              "ordinal",
+              "state"
+            ]
           }
         },
         "distinct_attempts": {
@@ -763,10 +760,7 @@
                   ]
                 },
                 "digest": {
-                  "kind": "string",
-                  "observed_values": [
-                    "content-P-digest"
-                  ]
+                  "kind": "string"
                 },
                 "scope": {
                   "kind": "string",
@@ -869,10 +863,7 @@
                   ]
                 },
                 "digest": {
-                  "kind": "string",
-                  "observed_values": [
-                    "content-P-digest"
-                  ]
+                  "kind": "string"
                 },
                 "scope": {
                   "kind": "string",
@@ -2051,21 +2042,13 @@
               "kind": "record_shape",
               "fields": {
                 "identity": {
-                  "kind": "string",
-                  "observed_values": [
-                    "ATTEMPT-P-1",
-                    "ATTEMPT-P-2"
-                  ]
+                  "kind": "string"
                 },
                 "ordinal": {
                   "kind": "integer"
                 },
                 "state": {
-                  "kind": "string",
-                  "observed_values": [
-                    "first_response_lost",
-                    "duplicate_receipt_in_fixture_only"
-                  ]
+                  "kind": "string"
                 },
                 "target": {
                   "kind": "record_shape",
@@ -2089,10 +2072,7 @@
                       ]
                     },
                     "digest": {
-                      "kind": "string",
-                      "observed_values": [
-                        "content-P-digest"
-                      ]
+                      "kind": "string"
                     },
                     "expiry": {
                       "kind": "string",
@@ -2201,10 +2181,7 @@
                     ]
                   },
                   "digest": {
-                    "kind": "string",
-                    "observed_values": [
-                      "content-P-digest"
-                    ]
+                    "kind": "string"
                   },
                   "expiry": {
                     "kind": "string",
@@ -2271,10 +2248,7 @@
                 ]
               },
               "digest": {
-                "kind": "string",
-                "observed_values": [
-                  "content-P-digest"
-                ]
+                "kind": "string"
               },
               "expiry": {
                 "kind": "string",
@@ -2359,10 +2333,7 @@
                     ]
                   },
                   "digest": {
-                    "kind": "string",
-                    "observed_values": [
-                      "content-P-digest"
-                    ]
+                    "kind": "string"
                   },
                   "expiry": {
                     "kind": "string",
@@ -2409,21 +2380,13 @@
               "kind": "record_shape",
               "fields": {
                 "identity": {
-                  "kind": "string",
-                  "observed_values": [
-                    "ATTEMPT-P-1",
-                    "ATTEMPT-P-2"
-                  ]
+                  "kind": "string"
                 },
                 "ordinal": {
                   "kind": "integer"
                 },
                 "state": {
-                  "kind": "string",
-                  "observed_values": [
-                    "first_response_lost",
-                    "duplicate_receipt_in_fixture_only"
-                  ]
+                  "kind": "string"
                 },
                 "target": {
                   "kind": "record_shape",
@@ -2447,10 +2410,7 @@
                       ]
                     },
                     "digest": {
-                      "kind": "string",
-                      "observed_values": [
-                        "content-P-digest"
-                      ]
+                      "kind": "string"
                     },
                     "expiry": {
                       "kind": "string",
@@ -2553,10 +2513,7 @@
                     ]
                   },
                   "digest": {
-                    "kind": "string",
-                    "observed_values": [
-                      "content-P-digest"
-                    ]
+                    "kind": "string"
                   },
                   "expiry": {
                     "kind": "string",
@@ -2618,11 +2575,7 @@
                 ]
               },
               "digest": {
-                "kind": "string",
-                "observed_values": [
-                  "content-P-digest",
-                  "OTHER-digest"
-                ]
+                "kind": "string"
               },
               "expiry": {
                 "kind": "string",
@@ -3170,12 +3123,7 @@
             ]
           },
           "original_compatibility_state": {
-            "kind": "string",
-            "observed_values": [
-              "compatible_in_fixture_only",
-              "stale",
-              "incompatible"
-            ]
+            "kind": "string"
           },
           "original_cumulative_attempts": {
             "kind": "json_union",
@@ -3185,11 +3133,7 @@
             ]
           },
           "original_expiry_state": {
-            "kind": "string",
-            "observed_values": [
-              "valid_in_fixture_only",
-              "expired"
-            ]
+            "kind": "string"
           },
           "original_history": {
             "kind": "ordered_array",
@@ -3339,12 +3283,7 @@
             "optional_in_fixed_cases": []
           },
           "original_permission_state": {
-            "kind": "string",
-            "observed_values": [
-              "valid_in_fixture_only",
-              "revoked",
-              "unknown"
-            ]
+            "kind": "string"
           },
           "original_policy": {
             "kind": "record_shape",
@@ -3911,7 +3850,7 @@
         "retry_selected",
         "claims"
       ],
-      "pure_rule": "target_fields_order順にoriginal_operationとsubmitted_retryを比較する。attemptはsource index順にidentity・ordinal・stateを比較し、target fieldも別recordで比較する。distinct_attemptsはsubmitted_attemptsのidentityが一意かで判定する。effect observationの全fieldを比較し、deltaは観測済みかつ両配列がある場合にlen(after_first)-len(before)、len(after_retry)-len(after_first)として符号付きintegerで返す。effect_set_ruleのone_effect_conditionを満たす場合だけone_effect_retained_in_fixture_only、観測済みでそれ以外ならduplicate_or_conflicting_effect、必要観測不足ならunknown_unobservedとする。receiver_effect_resultはtarget比較recordとafter_retry比較fieldがすべて対応する時だけraw分類を引き継ぐ。失敗理由はreason_order_rule_ids順、recordのfield順に組み立て、ownerはowner_by_areaから取得する。 one_effect_conditionは初回後と再送後のJSON内容の同値も要求し、件数不変の別内容置換を同一効果保持へ丸めない。",
+      "pure_rule": "target_fields_order順にoriginal_operationとsubmitted_retryを比較する。attemptは両配列の最大長まで元配列のindex順にidentity・ordinal・state・targetを比較し、片側欠落をmissingとして保持する。retry_selected時はattempt配列が等長かつ非空で、各原/提出targetの全fieldがoriginal_operationに一致することをraw binding checkで要求する。distinct_attemptsはsubmitted_attempts内のidentityとordinalをそれぞれ独立に一意検査する。原側arrayの一意性は現在の判定対象外。effect observationの全fieldを比較し、deltaは観測済みかつ両配列がある場合にlen(after_first)-len(before)、len(after_retry)-len(after_first)として符号付きintegerで返す。effect_set_ruleのone_effect_conditionを満たす場合だけone_effect_retained_in_fixture_only、観測済みでそれ以外ならduplicate_or_conflicting_effect、必要観測不足ならunknown_unobservedとする。receiver_effect_resultは指定された全比較recordが対応し、両attempt配列の同index targetがoriginal_operationの全target fieldに対応し、retry_selected時にattemptが一つ以上あり、配列長が等しく、contract identity/revision/ruleの文字列が非空の場合だけraw分類を引き継ぐ。receiver contract targetの全field比較は別診断として返すが、L9の既存ケースでtarget差分とone_effect_retained_in_fixture_onlyが共存するため分類gateにはしない。これらは固定fixture上の結合検査であり、実receiverのrule意味やsource資格は証明しない。失敗理由はreason_order_rule_ids順、recordのfield順に組み立て、ownerはowner_by_areaから取得する。 one_effect_conditionは初回後と再送後のJSON内容の同値も要求し、件数不変の別内容置換を同一効果保持へ丸めない。",
       "case_id_oracle_lookup": "forbidden",
       "qualification_boundary": "合成fixture上の比較のみ。実source資格、receiver契約、実retry、実効果、authority、accepted、製品実装Readyを作らない。",
       "output_shape": {
@@ -3965,21 +3904,13 @@
               "kind": "record_shape",
               "fields": {
                 "identity": {
-                  "kind": "string",
-                  "observed_values": [
-                    "ATTEMPT-P-1",
-                    "ATTEMPT-P-2"
-                  ]
+                  "kind": "string"
                 },
                 "ordinal": {
                   "kind": "integer"
                 },
                 "state": {
-                  "kind": "string",
-                  "observed_values": [
-                    "first_response_lost",
-                    "duplicate_receipt_in_fixture_only"
-                  ]
+                  "kind": "string"
                 },
                 "content_results": {
                   "kind": "record_shape",
@@ -4046,7 +3977,11 @@
                   "optional_in_fixed_cases": []
                 }
               },
-              "optional_in_fixed_cases": []
+              "optional_in_fixed_cases": [
+                "identity",
+                "ordinal",
+                "state"
+              ]
             }
           },
           "distinct_attempts": {
@@ -4198,10 +4133,7 @@
                     ]
                   },
                   "digest": {
-                    "kind": "string",
-                    "observed_values": [
-                      "content-P-digest"
-                    ]
+                    "kind": "string"
                   },
                   "scope": {
                     "kind": "string",
@@ -4304,10 +4236,7 @@
                     ]
                   },
                   "digest": {
-                    "kind": "string",
-                    "observed_values": [
-                      "content-P-digest"
-                    ]
+                    "kind": "string"
                   },
                   "scope": {
                     "kind": "string",
@@ -4509,12 +4438,12 @@
           "presence": "Absent・null・値を区別する。どちらかがAbsentならmissing。nullは通常の明示値だが、comparison_modesでunknown対象に指定したfieldの原側nullだけはunknown_original_information。",
           "json_equality": "object key順を無視し、array順とJSON型を保持する。booleanとnumberは別値。",
           "unknown_precedence": [
-            "どちらかAbsentならmissing",
+            "どちらかの値がAbsentならmissing",
             "unknown対象fieldの原側値がnullならunknown_original_information",
-            "その他はJSON型を保持した再帰比較を行い一致ならcontent_corresponding_in_fixture、不一致ならcontent_conflict"
+            "その他はJSON型を保つ再帰同値ならcontent_corresponding_in_fixture、異なればcontent_conflict"
           ]
         },
-        "case_selection": "case IDもexpected wholeも計算入力にしない。分岐はraw入力と本書のmachine-readable規則からのみ導く。",
+        "case_selection": "case IDやexpected wholeを計算入力にしない。raw入力と本書の機械可読規則だけから分岐する。",
         "output_whole": "calculation_programsのordered_stepsを順に評価し、output_shapeとresult_field_ordersに従って返却object全体を構成する。",
         "structured_coverage": "result_field_ordersは返却rootのfield順を固定する。array順は各operatorの規則に従い、mapのfield集合はoutput_shapeが定める。"
       }
@@ -4538,7 +4467,7 @@
         "original_unfinished",
         "claims"
       ],
-      "pure_rule": "incoming_content_resultsは9 field、operation_binding_resultsは8 fieldを各宣言順で比較する。digest_relationは原operationと原incomingのdigestを比較し、Absent/nullならunknown、それ以外は型を含むJSON等値でsame/differentを決める。candidate_conflict_actionはbranch_tables.F02.candidate_action_rulesを上から評価する。effect target、提出effect target、effect afterを独立に比較し、effect before/afterが観測済みarrayなら型保持JSON等値で増分の有無を分類する。failure ruleを宣言順に適用し、理由配列、owner、claim、effect marker、attempt countを全field構成する。",
+      "pure_rule": "incoming_content_resultsは9項目、operation_binding_resultsは8項目を各宣言順で比較する。digest_relationは原operationと原incomingのdigestを比較し、Absent/nullならunknown、それ以外は型を含むJSON等値でsame/differentを決める。candidate_conflict_actionはbranch_tables.F02.candidate_action_rulesを上から評価する。effect target、提出effect target、effect afterを独立に比較し、effect before/afterが観測済み配列なら型保持JSON等値で増分の有無を分類する。failure ruleを宣言順に適用し、理由配列、owner、claim、effect marker、attempt数を全field構成する。",
       "case_id_oracle_lookup": "forbidden",
       "qualification_boundary": "合成fixture上の比較のみ。実source資格、receiver契約、実retry、実効果、authority、accepted、製品実装Readyを作らない。",
       "output_shape": {
@@ -5014,12 +4943,12 @@
           "presence": "Absent・null・値を区別する。どちらかがAbsentならmissing。nullは通常の明示値だが、comparison_modesでunknown対象に指定したfieldの原側nullだけはunknown_original_information。",
           "json_equality": "object key順を無視し、array順とJSON型を保持する。booleanとnumberは別値。",
           "unknown_precedence": [
-            "どちらかAbsentならmissing",
+            "どちらかの値がAbsentならmissing",
             "unknown対象fieldの原側値がnullならunknown_original_information",
-            "その他はJSON型を保持した再帰比較を行い一致ならcontent_corresponding_in_fixture、不一致ならcontent_conflict"
+            "その他はJSON型を保つ再帰同値ならcontent_corresponding_in_fixture、異なればcontent_conflict"
           ]
         },
-        "case_selection": "case IDもexpected wholeも計算入力にしない。分岐はraw入力と本書のmachine-readable規則からのみ導く。",
+        "case_selection": "case IDやexpected wholeを計算入力にしない。raw入力と本書の機械可読規則だけから分岐する。",
         "output_whole": "calculation_programsのordered_stepsを順に評価し、output_shapeとresult_field_ordersに従って返却object全体を構成する。",
         "structured_coverage": "result_field_ordersは返却rootのfield順を固定する。array順は各operatorの規則に従い、mapのfield集合はoutput_shapeが定める。"
       }
@@ -5049,7 +4978,7 @@
         "retry_selected",
         "claims"
       ],
-      "pure_rule": "retry targetとpolicyを宣言順に比較する。historyはraw value全体を比較し、各entry.targetを原operationとtarget_fields_order順に比較する。累積attemptはunknown対象fieldとして比較し、budgetはintegerの原limit-countでremainingの正負を判定する。history lengthと累積count、一意identity、unfinished、ACK/result、expiry/permission/compatibilityをrawから読む。failure ruleを宣言順に評価し、candidate actionはretry選択・stop理由・budget・retryable state・expiry/permission・compatibility・ACKの各条件から導く。",
+      "pure_rule": "retry targetとpolicyを宣言順に比較する。historyはraw value全体を比較し、各entry.targetを原operationとtarget_fields_order順に比較する。累積attemptはunknown対象fieldとして比較し、budgetはintegerの原limit-countでremainingの正負を判定する。履歴長と累積count、一意identity、unfinished、ACK/result、expiry/permission/compatibilityをrawから読む。failure ruleを宣言順に評価し、candidate actionはretry選択・stop理由・budget・再送可能state・expiry/permission・compatibility・ACKの各条件から導く。",
       "case_id_oracle_lookup": "forbidden",
       "qualification_boundary": "合成fixture上の比較のみ。実source資格、receiver契約、実retry、実効果、authority、accepted、製品実装Readyを作らない。",
       "output_shape": {
@@ -5564,12 +5493,12 @@
           "presence": "Absent・null・値を区別する。どちらかがAbsentならmissing。nullは通常の明示値だが、comparison_modesでunknown対象に指定したfieldの原側nullだけはunknown_original_information。",
           "json_equality": "object key順を無視し、array順とJSON型を保持する。booleanとnumberは別値。",
           "unknown_precedence": [
-            "どちらかAbsentならmissing",
+            "どちらかの値がAbsentならmissing",
             "unknown対象fieldの原側値がnullならunknown_original_information",
-            "その他はJSON型を保持した再帰比較を行い一致ならcontent_corresponding_in_fixture、不一致ならcontent_conflict"
+            "その他はJSON型を保つ再帰同値ならcontent_corresponding_in_fixture、異なればcontent_conflict"
           ]
         },
-        "case_selection": "case IDもexpected wholeも計算入力にしない。分岐はraw入力と本書のmachine-readable規則からのみ導く。",
+        "case_selection": "case IDやexpected wholeを計算入力にしない。raw入力と本書の機械可読規則だけから分岐する。",
         "output_whole": "calculation_programsのordered_stepsを順に評価し、output_shapeとresult_field_ordersに従って返却object全体を構成する。",
         "structured_coverage": "result_field_ordersは返却rootのfield順を固定する。array順は各operatorの規則に従い、mapのfield集合はoutput_shapeが定める。"
       }
@@ -5652,10 +5581,9 @@
     "presence": "Absent、null、値を区別する。いずれかがAbsentならmissing。双方に値がある場合はJSON型を区別した再帰比較を行い、一致なら対応、不一致なら競合とする。nullは通常の明示値として扱う。",
     "json_equality": "オブジェクトのキー順は無視し、配列順とJSON型は保持する。booleanとnumberは別の型として比較する。",
     "unknown_precedence": [
-      "either absent => missing",
-      "original-owned null => unknown_original_information",
-      "otherwise typed JSON equality => content_corresponding_in_fixture",
-      "else content_conflict"
+      "どちらかの値がAbsentならmissing",
+      "unknown対象fieldの原側値がnullならunknown_original_information",
+      "それ以外はJSON型を保った再帰同値ならcontent_corresponding_in_fixture、不一致ならcontent_conflict"
     ],
     "unknown_precedence_ja": [
       "いずれかがAbsentならmissing",
@@ -5760,8 +5688,12 @@
       "oracle_pointer": "/verification_obligations/0/concrete_cases/*/expected_material",
       "additional_probe_ids": [
         "C004-PROBE-F01-RETRY-EFFECT-DECREMENT",
-        "C004-PARENT-EFFECT-VALUE-REPLACED-WITH-SAME-COUNT",
-        "C004-PARENT-RETURN-FIELD-AFTER-FIRST"
+        "C004-PROBE-F01-EFFECT-VALUE-REPLACED-SAME-COUNT",
+        "C004-PROBE-F01-AFTER-FIRST-CONTENT-CHANGED",
+        "C004-PROBE-F01-ATTEMPT-TARGET-UNBOUND",
+        "C004-PROBE-F01-EMPTY-ATTEMPTS",
+        "C004-PROBE-F01-EXTRA-SUBMITTED-ATTEMPT",
+        "C004-PROBE-F01-DUPLICATE-ORDINAL"
       ]
     },
     {
@@ -5792,7 +5724,8 @@
       "source_packet_pointer": "/verification_obligations/1/concrete_cases/*/independent_source_packet/raw_utf8",
       "oracle_pointer": "/verification_obligations/1/concrete_cases/*/expected_material",
       "additional_probe_ids": [
-        "C004-PROBE-F02-JSON-BOOLEAN-NUMBER-DISTINCTION"
+        "C004-PROBE-F02-JSON-BOOLEAN-NUMBER-DISTINCTION",
+        "C004-PROBE-F02-EFFECT-VALUE-REPLACED-SAME-COUNT"
       ]
     },
     {
@@ -5833,8 +5766,9 @@
       "source_packet_pointer": "/verification_obligations/2/concrete_cases/*/independent_source_packet/raw_utf8",
       "oracle_pointer": "/verification_obligations/2/concrete_cases/*/expected_material",
       "additional_probe_ids": [
-        "C004-PARENT-RETURN-FIELD-RETRYABLE-RESULT-STATES",
-        "C004-PARENT-RETURN-AREA-HISTORY-INDEX-ZERO"
+        "C004-PROBE-F03-RETRYABLE-STATES-REMOVED",
+        "C004-PROBE-F03-HISTORY-TARGET-INDEX-ZERO",
+        "C004-PROBE-F03-UNKNOWN-EXPIRY-STRING"
       ]
     }
   ],
@@ -5842,7 +5776,13 @@
     "正式schema/codec、producer・receiver資格、実owner資格、実transport、実permission/authority、実retry/実効果、全域意味、L6関数設計/L7関数検証、L11 acceptanceは未成立。",
     "fixture外のunknown raw shape、複数revisionのpolicy意味、複数receiver/parallel retryの一般域は未評価。",
     "F01のoriginal_compatibility_state/expiry_state/permission_stateは固定入力型でvalid値だけを許す保持素材で、現programは判定に読まない。scope/expiry/permission_ref/contract_revisionの参照値対応は比較するが、状態失効の照合はF03の責務であり、F01単独で状態失効を検査済みとはしない。正式な関数連鎖/資格bindingは未閉包。",
-    "F01のattempt_resultsは原/提出の項目別診断を返すが、一般のattempt内容差をfailure_reasons/候補抑止へ結ぶ規則は未具体化（既存distinct_attemptsの重複診断は別）。F03のdistinct_attemptsも診断値の返却のみで、stop_reasonsへの分岐を持たない。元L4義務の全履歴/receipt意味閉包をこれらの値だけで成立扱いせず、未見・複合の状態意味と正式連鎖は未閉包。元oracleから新しい一律停止policyを生成しない。"
+    "F01のattempt_resultsは原/提出の項目別診断を返すが、一般のattempt内容差をfailure_reasons/候補抑止へ結ぶ規則は未具体化（既存distinct_attemptsの重複診断は別）。F03のdistinct_attemptsも診断値の返却のみで、stop_reasonsへの分岐を持たない。元L4義務の全履歴/receipt意味閉包をこれらの値だけで成立扱いせず、未見・複合の状態意味と正式連鎖は未閉包。元oracleから新しい一律停止policyを生成しない。",
+    "F01のattempt targetをoriginal_operationへ同indexで結ぶ固定素材上の比較を追加した。receiver contractのidentity/revision/ruleは存在と文字列形を照合するが、実sourceのissuer/qualificationやrule文字列の実意味を判定する独立sourceは無い。L9のRECEIVER-CONTRACT-OTHER-REVISIONはtarget差分をfailure_reasonsへ返しつつreceiver_effect_resultをone_effect_retained_in_fixture_onlyとするため、その原oracle値は保持し、実receiver資格へ一般化しない。",
+    "F03のcounting_scopeは元policyとして保持・比較するが、approved L3/L4/L9は値から上限計算への一般変換を定めない。計算は固定fixtureのoriginal_cumulative_attemptsとmax_total_attemptsを直接比較する範囲に限り、counting_scopeの未見語義は未評価。",
+    "F03のACK入力がobserved_values外の値である場合のcandidate semanticsは未評価。既存L9はunknown/received_terminalだけを含み、negative-list conditionを新しいACK停止policyに置き換えていない。",
+    "distinct_attemptsはsubmitted_attempts内のidentityとordinalをそれぞれ独立して一意検査する。原側arrayの一意性とattempt内容の全差分をfailureへ結ぶ一般規則はL4/L9固定素材だけでは閉じず、raw_binding_checksによる同index target→original_operation結合の外へ一般化しない。",
+    "receiver contractのidentity/revision/ruleについては値のpresence/typeだけを読む。L3/L4は実receiver owner/source qualificationの供給元を固定しておらず、L9にも独立なrule authority sourceがないため、これらの文字列を実契約の資格証拠と扱わない。L9のreceiver target revision不一致とone_effect_retained_in_fixture_onlyは両方保持する。",
+    "attempt identity/ordinal uniquenessの基準側を原/提出どちらに置くか、F01のtarget field以外のattempt差分をどのfailure conditionへ結ぶかは未閉包。現在の追加binding検査はF01固定素材から導ける同index target→original_operationだけに限る。"
   ],
   "result_domain_contract": {
     "comparison": {
@@ -5853,10 +5793,10 @@
       "presence": "Absent・null・値を区別する。どちらかがAbsentならmissing。nullは通常の明示値だが、unknown対象fieldの原側nullはunknown_original_information。",
       "json_equality": "object key順を無視し、array順とJSON型を保持する。booleanとnumberは別値。",
       "unknown_precedence": [
-        "either absent => missing",
-        "original-owned null => unknown_original_information",
-        "otherwise typed JSON equality => content_corresponding_in_fixture",
-        "else content_conflict"
+        "どちらかがAbsentならmissing",
+        "unknown対象fieldの原側nullならunknown_original_information",
+        "その他はJSON型を保つ再帰同値ならcontent_corresponding_in_fixture",
+        "不一致ならcontent_conflict"
       ],
       "unknown_precedence_ja": [
         "いずれかがAbsentならmissing",
@@ -6634,7 +6574,7 @@
       "digest_relation": {
         "left": "original_operation.digest",
         "right": "original_incoming.digest",
-        "unknown_if": "either absent or null",
+        "unknown_if": "original_operation.digestまたはoriginal_incoming.digestのどちらかがAbsentまたはnull",
         "same": "JSON values equal",
         "different": "JSON values differ"
       },
@@ -7038,8 +6978,17 @@
           "emit_one": {
             "area": "original_expiry_state",
             "field": "state",
-            "result_path": "input.original_expiry_state",
-            "owner": "HELIX-SECURITY"
+            "owner": "HELIX-SECURITY",
+            "result_expr": {
+              "op": "map_enum",
+              "path": "input.original_expiry_state",
+              "mapping": {
+                "expired": "expired",
+                "unknown": "unknown"
+              },
+              "otherwise": "unknown",
+              "source_values_only": true
+            }
           },
           "when_ja": "このfailure ruleは隣接するwhen_exprの機械可読条件が真の場合に適用する。"
         },
@@ -7053,8 +7002,17 @@
           "emit_one": {
             "area": "original_permission_state",
             "field": "state",
-            "result_path": "input.original_permission_state",
-            "owner": "HELIX-SECURITY"
+            "owner": "HELIX-SECURITY",
+            "result_expr": {
+              "op": "map_enum",
+              "path": "input.original_permission_state",
+              "mapping": {
+                "revoked": "revoked",
+                "unknown": "unknown"
+              },
+              "otherwise": "unknown",
+              "source_values_only": true
+            }
           },
           "when_ja": "このfailure ruleは隣接するwhen_exprの機械可読条件が真の場合に適用する。"
         },
@@ -7068,8 +7026,18 @@
           "emit_one": {
             "area": "original_compatibility_state",
             "field": "state",
-            "result_path": "input.original_compatibility_state",
-            "owner": "endpoint-contract-owner"
+            "owner": "endpoint-contract-owner",
+            "result_expr": {
+              "op": "map_enum",
+              "path": "input.original_compatibility_state",
+              "mapping": {
+                "stale": "stale",
+                "incompatible": "incompatible",
+                "unknown": "unknown"
+              },
+              "otherwise": "unknown",
+              "source_values_only": true
+            }
           },
           "when_ja": "このfailure ruleは隣接するwhen_exprの機械可読条件が真の場合に適用する。"
         },
@@ -7124,7 +7092,7 @@
       "null": "通常の明示JSON値"
     },
     "unknown_compare": {
-      "applies_when": "calculation_programsのcomparison_modesで当該memberを指定した場合だけ",
+      "applies_when": "stepがunknown比較modeを指定したfieldだけに適用する。mode名はcomparison_modesの各field値、またはstep.modeである。",
       "order": [
         "いずれかAbsent→missing",
         "unknown対象に指定した原側値がnull→unknown_original_information",
@@ -7140,32 +7108,44 @@
     },
     "compare_array_pairs": {
       "reads": [
-        "left/right配列をindex順に比較",
-        "outer_fieldsのscalarはpresence_compare",
-        "targetは全target fieldをindex順比較"
+        "left/right配列をindex順に対応づけて比較",
+        "outer_fieldsの各fieldをpresence_compareで比較",
+        "targetは宣言した全target fieldをindex順で比較",
+        "両配列の長さ",
+        "left/right各indexのitem有無",
+        "raw_binding_checksに記述したtarget/operation pointer"
       ],
-      "return": "元attempt identity/ordinal/stateを保持する。content_results_fieldにはouter_fieldsをstep順で比較した結果を置き、target_results_fieldにはtarget_memberのrecordをtarget field順で比較した結果を置く。attemptとtargetのarray index順を保持する。"
+      "return": "各indexでidentity/ordinal/stateの比較とtarget全field比較を返す。反復数はleft/rightの長さの最大値。片側item欠落はAbsentとしてmissing診断にし、存在しない側の保持fieldは省略する。既存equal-length例は従来どおりの順序と値を保つ。",
+      "alignment_rule": {
+        "extent": "max_length(left.length,right.length)",
+        "pairing": "同じindex",
+        "absent_item": "Absent",
+        "missing_comparison_value": "missing",
+        "projected_original_members": "original itemに存在するmemberだけを保持",
+        "array_order": "source index昇順"
+      }
     },
     "compare_array_targets": {
       "reads": [
-        "source arrayをindex順",
+        "source arrayの各itemをindex順に読む",
         "各entry.targetとagainst recordをtarget_fields_ref順"
       ],
-      "return": "index順のtarget field ComparisonResult record"
+      "return": "index順に並ぶtarget fieldのComparisonResult record配列"
     },
     "compare_value": {
       "reads": [
-        "step left/right pointer",
-        "step mode"
+        "stepが指定するleft/right pointer",
+        "stepが指定する比較mode"
       ],
       "return": "ComparisonResult"
     },
     "unique": {
       "reads": [
         "source array",
-        "key_fieldsの順"
+        "key_fieldsで列挙した各field",
+        "uniqueness_mode"
       ],
-      "return": "すべてのkey tupleが異なるとtrue、同一tupleが再出現すればfalse"
+      "return": "key_fieldsの全fieldについて、それぞれ同一JSON値が再出現しない場合だけtrue。each_key_field_uniqueではfieldごとに独立して重複を検査する。"
     },
     "copy_raw": {
       "reads": [
@@ -7175,8 +7155,8 @@
     },
     "array_length_delta": {
       "reads": [
-        "observation state",
-        "left/right members"
+        "observation内state",
+        "left/rightのmember"
       ],
       "return": "stateが観測済みで両memberがarrayならlen(right)-len(left)の符号付きinteger、それ以外null"
     },
@@ -7191,20 +7171,28 @@
     "bind_effect_classification": {
       "reads": [
         "all_fields_correspondingで指定された比較record全member",
-        "classification_source"
+        "classification_source",
+        "raw_binding_checksの記述子とその各pointerのpresence/value"
       ],
-      "return": "全memberが対応ならclassification_source、1件でも他のComparisonResultならotherwise"
+      "return": "指定された比較record全memberが対応し、raw_binding_checksの全条件も満たす場合だけclassification_sourceを返す。それ以外はotherwiseを返す。ここでのfixture bindingは実source資格・実receiver authorityを示さない。",
+      "raw_binding_check_semantics": {
+        "paired_array_targets_equal": "両pointerがarrayか確認し、require_equal_lengths=trueなら長さ一致を要求する。require_nonempty_whenのpath/valueが一致するときはleft配列非空を要求する。同indexのleft/right各recordからtarget_memberを取り出し、against recordとfields_refに列挙した全fieldをpresence_compareし、全結果がComparisonResult.equalであることを要求する。",
+        "required_nonempty_string_paths": "paths各pointerをinputから読み、各値が空でないstringであることを要求する。これは合成packet memberのshape検査であって実source資格ではない。"
+      }
     },
     "ordered_condition_pipeline": {
       "reads": [
         "reason_order_rule_ids順のfailure_rules.when_expr",
         "emit_fields/emit_nested_fields/emit_one"
       ],
-      "return": "条件真のruleだけをrule順、field順、source array index順に展開したFailureReason array"
+      "return": "条件が真となったruleだけを、rule順・field順・source array index順に展開したFailureReason配列",
+      "emit_one_result_expr": {
+        "map_enum": "pathの値がmappingに厳密一致すれば対応するdomain値、その他はotherwiseを返す。mappingの出力は宣言済みenum domainへ属する。"
+      }
     },
     "owner_deduplicate": {
       "reads": [
-        "reason array return_owner values"
+        "reason arrayのreturn_owner値"
       ],
       "return": "重複を除いたowner stringを辞書順にしたarray",
       "semantics": "各FailureReasonのreturn_ownerを集め、failure_owner_order.remove_duplicatesがtrueなら重複を除き、sortがlexicographic_unicode_codepointならUnicode code point順に並べる。実owner資格を示すものではない。",
@@ -7216,7 +7204,7 @@
     },
     "claim_map": {
       "reads": [
-        "claims object valueのJSON型"
+        "claims objectの各valueとJSON型"
       ],
       "return": "各claim true→rejected、false→none、その他→unknown_in_fixture"
     },
@@ -7235,7 +7223,7 @@
     },
     "digest_relation": {
       "reads": [
-        "step left/right Presence"
+        "stepが指定するleft/right Presence値"
       ],
       "return": "Absent/nullならunknown、型保持JSON等値ならsame、他はdifferent"
     },
@@ -7247,30 +7235,30 @@
     },
     "compare_effect_after": {
       "reads": [
-        "original effect state",
-        "left/right raw values",
+        "original effectのstate",
+        "left/right raw値",
         "mode"
       ],
-      "return": "指定stateが未観測ならunknown、その他は指定comparison modeの結果"
+      "return": "original effect stateが指定観測stateでなければunknown、それ以外は指定comparison modeで比較した結果。"
     },
     "compare_effect_set_before_after": {
       "reads": [
-        "original effect state",
-        "before/after raw values"
+        "original effectのstate",
+        "before/after raw値"
       ],
-      "return": "未観測またはnon-arrayならunknown、arrayが型保持等値ならsame、それ以外different"
+      "return": "観測stateでない場合または両値がarrayでない場合はunknown、両arrayがJSON型保持で等しければsame、それ以外はdifferent。"
     },
     "calculate_remaining_budget": {
       "reads": [
-        "policy limit member",
-        "cumulative attempts"
+        "policyの上限member",
+        "累積attempt数"
       ],
       "return": "いずれかintegerでなければunknown、limit-count<=0ならexhausted、その他within"
     },
     "equal_count": {
       "reads": [
-        "left_source array",
-        "right_source integer"
+        "left_sourceのarray",
+        "right_sourceのinteger"
       ],
       "return": "rightがintegerかつarray lengthと等しい場合true、その他false"
     },
@@ -7291,7 +7279,7 @@
     },
     "candidate_action_count": {
       "reads": [
-        "candidate action result",
+        "candidate actionの結果",
         "candidate_literal"
       ],
       "return": "等しい時candidate_value、その他other_value"
@@ -7328,15 +7316,31 @@
           ],
           "target_member": "target",
           "content_results_field": "content_results",
-          "target_results_field": "target_results"
+          "target_results_field": "target_results",
+          "content_results_field_order": [
+            "identity",
+            "ordinal",
+            "state",
+            "target"
+          ],
+          "array_alignment": "index-wise over max(left.length,right.length); a missing item stays Absent and returns missing; no submitted tail is truncated",
+          "array_alignment_rule": {
+            "extent": "max_length",
+            "pairing": "same_index",
+            "absent_item": "Absent",
+            "missing_comparison_value": "missing",
+            "project_original_fields": "only when the original item is present"
+          }
         },
         {
           "output": "distinct_attempts",
           "op": "unique",
           "source": "submitted_attempts",
           "key_fields": [
-            "identity"
-          ]
+            "identity",
+            "ordinal"
+          ],
+          "uniqueness_mode": "each_key_field_unique"
         },
         {
           "output": "receiver_contract_target_results",
@@ -7407,10 +7411,6 @@
         {
           "output": "receiver_effect_result",
           "op": "bind_effect_classification",
-          "requires_all": [
-            "effect_target_results corresponding",
-            "effect_content_results.after_retry corresponding"
-          ],
           "otherwise": "unknown_or_conflicting_effect_binding",
           "target_results": "effect_target_results",
           "content_results": "effect_content_results",
@@ -7419,6 +7419,29 @@
           "all_fields_corresponding": [
             "effect_target_results",
             "effect_content_results"
+          ],
+          "raw_binding_checks": [
+            {
+              "check": "paired_array_targets_equal",
+              "left_array": "original_attempts",
+              "right_array": "submitted_attempts",
+              "target_member": "target",
+              "against": "original_operation",
+              "fields_ref": "branch_tables.F01.target_fields_order",
+              "require_equal_lengths": true,
+              "require_nonempty_when": {
+                "path": "retry_selected",
+                "value": true
+              }
+            },
+            {
+              "check": "required_nonempty_string_paths",
+              "paths": [
+                "original_receiver_contract.identity",
+                "original_receiver_contract.revision",
+                "original_receiver_contract.rule"
+              ]
+            }
           ]
         },
         {
