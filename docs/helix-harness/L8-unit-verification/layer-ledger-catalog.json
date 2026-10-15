@@ -248,15 +248,15 @@
   "layer": "L8-unit-verification",
   "paired_document": "docs/helix-harness/L5-detail-design/layer-ledger-catalog.json",
   "scope_preservation": {
-    "full_goal": "12 layer records / 6 pair contracts / independent L0 anchor; whole 92 parent / 430 pair scope retained.",
-    "this_pair": "HARNESS-L2-040 only; 6 approved contract roots.",
+    "full_goal": "全92親/430要求-oracle対の監査母集団は、承認済み10/15監査の92行・430組を再照合して保持する。この1親の詳細設計は母集団の意味閉包・実行・完了を宣言しない。",
+    "this_pair": "HARNESS-L2-040だけを対象に、承認済み6契約rootを扱う。",
     "actual_execution": "not_executed",
     "actual_authority": "not_established",
     "actual_registration": "not_established",
     "actual_snapshot_or_coverage": "not_established",
     "codec": "not_established",
     "TDD_CI_L11": "not_established",
-    "unclosed": "822固定原wholeの有限比較を全fieldで扱う。未見一般域・正式資格・codec・実作用・TDD/CI/L11・全92/430の意味閉包は未成立。"
+    "unclosed": "原822whole、L4由来の追加6局所反例、projection欠落17例を全返却で比較する。型のstate域は正式関数の返却可能値へ合わせるが、未見一般域・正式資格・codec・実作用・TDD/CI/L11・全92親430対の意味閉包は未成立。"
   },
   "trace": {
     "requirement_ids": [

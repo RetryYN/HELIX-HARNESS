@@ -318,25 +318,25 @@
   },
   "scope_preservation": {
     "full_goal": "全92親/430要求-oracle対の監査母集団は、承認済み10/15監査の92行・430組を再照合して保持する。この1親の詳細設計は母集団の意味閉包・実行・完了を宣言しない。",
-    "this_pair": "HARNESS-L2-040 only; 6 approved contract roots.",
+    "this_pair": "HARNESS-L2-040だけを対象に、承認済み6契約rootを扱う。",
     "actual_execution": "not_executed",
     "actual_authority": "not_established",
     "actual_registration": "not_established",
     "actual_snapshot_or_coverage": "not_established",
     "codec": "not_established",
     "TDD_CI_L11": "not_established",
-    "unclosed": "822固定原wholeの有限比較を全fieldで扱う。未見一般域・正式資格・codec・実作用・TDD/CI/L11・全92/430の意味閉包は未成立。"
+    "unclosed": "原822whole、L4由来の追加6局所反例、projection欠落17例を全返却で比較する。型のstate域は正式関数の返却可能値へ合わせるが、未見一般域・正式資格・codec・実作用・TDD/CI/L11・全92親430対の意味閉包は未成立。"
   },
   "responsibility_boundary": {
-    "HARNESS": "meaning comparison and conditional dependency semantics",
-    "OS": "actual registration, snapshot persistence, coverage issue, ticket operation; no OS receipt is converted into HARNESS meaning or approval",
-    "L0": "independent external authority anchor; not a thirteenth layer or seventh pair",
-    "owners": "defects return to the existing contract/authority owner or OS operation owner specified by L4/L9; no new owner or approval gate"
+    "HARNESS": "意味比較と条件付き依存の意味を定義する。",
+    "OS": "実登録・snapshot保存・coverage発行・ticket運転を担う。OS receiptをHARNESSの意味成立や承認へ読み替えない。",
+    "L0": "独立した外部authority anchor。第13層や第7対にはしない。",
+    "owners": "不備はL4/L9で定めた既存の契約/authority ownerまたはOS運転ownerへ返す。新ownerや承認gateを作らない。"
   },
   "architecture": {
-    "model": "closed JSON algebra for source fixture values plus explicit member presence",
-    "source_vs_fixture": "packet hash proves only fixture bytes; embedded refs/qualification do not establish source authority or actual qualification",
-    "mutation": "F04 mutant inputs are reconstructed only by applying listed source mutations to referenced baseline bytes; original L9 remains untouched"
+    "model": "原fixtureのJSON値と明示member presenceを扱う閉じた論理型。",
+    "source_vs_fixture": "packet hashは合成bytesだけを照合する。内部refやqualificationから実source authority/資格を生成しない。",
+    "mutation": "F04変異入力は参照baseline bytesへ列挙済み差分だけを適用して復元し、元L9は変更しない。"
   },
   "type_contract": {
     "JsonValue": {
@@ -6820,7 +6820,8 @@
                       "known",
                       "missing",
                       "conflict",
-                      "unknown"
+                      "unknown",
+                      "stale"
                     ]
                   }
                 },
@@ -6912,7 +6913,9 @@
                     "domain": [
                       "known",
                       "conflict",
-                      "unknown"
+                      "unknown",
+                      "missing",
+                      "stale"
                     ]
                   }
                 },
@@ -6962,7 +6965,9 @@
                       "domain": [
                         "known",
                         "conflict",
-                        "unknown"
+                        "unknown",
+                        "missing",
+                        "stale"
                       ]
                     }
                   },
@@ -8123,7 +8128,8 @@
                         "supported_synthetic_condition",
                         "missing",
                         "stale",
-                        "conflict"
+                        "conflict",
+                        "unknown"
                       ]
                     }
                   },
@@ -8445,7 +8451,8 @@
                               "supported_synthetic_binding",
                               "missing",
                               "unknown",
-                              "stale"
+                              "stale",
+                              "conflict"
                             ]
                           }
                         },
@@ -9313,7 +9320,8 @@
                             "supported_synthetic_condition",
                             "conflict",
                             "missing",
-                            "stale"
+                            "stale",
+                            "unknown"
                           ]
                         }
                       },
@@ -9702,7 +9710,8 @@
                           "domain": [
                             "supported_synthetic_condition",
                             "missing",
-                            "unknown"
+                            "unknown",
+                            "conflict"
                           ]
                         }
                       },
@@ -9743,7 +9752,8 @@
                           "domain": [
                             "supported_synthetic_condition",
                             "missing",
-                            "unknown"
+                            "unknown",
+                            "conflict"
                           ]
                         }
                       },
@@ -9790,7 +9800,8 @@
                           "domain": [
                             "supported_synthetic_condition",
                             "missing",
-                            "unknown"
+                            "unknown",
+                            "conflict"
                           ]
                         }
                       },
@@ -9843,7 +9854,8 @@
                           "domain": [
                             "supported_synthetic_condition",
                             "missing",
-                            "unknown"
+                            "unknown",
+                            "conflict"
                           ]
                         }
                       },
@@ -9886,7 +9898,8 @@
                             "supported_synthetic_condition",
                             "missing",
                             "unknown",
-                            "stale"
+                            "stale",
+                            "conflict"
                           ]
                         }
                       },
@@ -9928,7 +9941,8 @@
                           "domain": [
                             "supported_synthetic_condition",
                             "missing",
-                            "unknown"
+                            "unknown",
+                            "conflict"
                           ]
                         }
                       },
@@ -10020,7 +10034,10 @@
                                 "kind": "string",
                                 "domain": [
                                   "supported_synthetic_condition",
-                                  "missing"
+                                  "missing",
+                                  "unknown",
+                                  "conflict",
+                                  "stale"
                                 ]
                               }
                             },
@@ -10060,7 +10077,9 @@
                                 "kind": "string",
                                 "domain": [
                                   "supported_synthetic_condition",
-                                  "missing"
+                                  "missing",
+                                  "unknown",
+                                  "conflict"
                                 ]
                               }
                             },
@@ -10100,7 +10119,9 @@
                                 "kind": "string",
                                 "domain": [
                                   "supported_synthetic_condition",
-                                  "missing"
+                                  "missing",
+                                  "unknown",
+                                  "conflict"
                                 ]
                               }
                             },
@@ -10260,7 +10281,8 @@
                       "supported_synthetic_condition",
                       "missing",
                       "unknown",
-                      "stale"
+                      "stale",
+                      "conflict"
                     ]
                   }
                 },
@@ -10442,7 +10464,8 @@
                     "domain": [
                       "supported_synthetic_condition",
                       "unknown",
-                      "missing"
+                      "missing",
+                      "conflict"
                     ]
                   }
                 },
@@ -10654,7 +10677,7 @@
         "additional_properties": "closed_declared_carrier"
       }
     },
-    "shape_scope": "822固定source入力と原whole返却の論理型。declared carrierとopaque ID mapを区別。製品wire codec/unknown一般域の受理規則ではない。absent/nullはpresence_statesで分離し、比較時のmissing診断へ写像してもrawを変更しない。",
+    "shape_scope": "原822固定source入力と、追加23局所反例を含む全whole返却の論理型。state域は正式関数で到達可能な返却値を含め、観測済み値だけへ狭めない。declared carrierとopaque ID mapを区別する。製品wire codecや未見一般域の受理規則ではない。absent/nullはpresence_statesで分離し、missing診断へ写像してもrawを変更しない。",
     "ReturnValue": {
       "fields": [
         "root-specific whole result"
@@ -11011,6 +11034,34 @@
         "value": "JsonValue|null"
       },
       "meaning": "共通形。root別payload/nullable/state domainはroot_return_shapesでさらに全fieldを制約する。"
+    },
+    "return_state_domain_basis": {
+      "basis": "finite_raw_derivation.definitionsのreturn分岐と共通compared/inspect_edges/binding集約から到達可能stateを列挙する。原822で観測した値だけに制限しない。payloadとpresenceは各recordの別型で保持し、新stateや成功意味は追加しない。",
+      "corrected_paths": [
+        "F01/layer_membership",
+        "F01/pair_membership",
+        "F01/pair_results/*",
+        "F03/bidirectional_edge_results/*",
+        "helper/inspect_edges/*/result",
+        "F04/target_results/*/snapshot_binding",
+        "F04/receipt_claim_results/all_targets",
+        "F04/receipt_claim_results/evaluated_targets",
+        "F04/receipt_claim_results/incomplete_targets",
+        "F04/receipt_claim_results/stale_targets",
+        "F04/receipt_claim_results/unobserved_targets",
+        "F04/receipt_claim_results/supported_exclusions",
+        "B01/always_required_inputs/L1_revision",
+        "B01/always_required_inputs/canonical_pair_map",
+        "B01/always_required_inputs/authority_source_identity",
+        "B01/operation_required_inputs/scope",
+        "B01/operation_required_inputs/revision",
+        "B01/operation_required_inputs/compatibility",
+        "B01/selection_required_inputs/*/revision",
+        "B01/selection_required_inputs/*/scope",
+        "B01/selection_required_inputs/*/authority",
+        "B01/meaning_contract_result",
+        "N01/comparison_state"
+      ]
     }
   },
   "pure_function_signatures": [
@@ -11658,6 +11709,11 @@
     "full_results": "原114+708=822全whole不変、追加6局所反例はL4から独立に手固定した全whole期待。",
     "pending": "原qualificationの実供給元、合成group source custody、未見一般域等はL5 finite_raw_derivation.limitsへ明示。",
     "additional_local_cases": 6,
-    "projection_parent_followup": "source-state優先とcontent/6map missing/nullの17局所wholeを追加。原822+既存6は不変。"
+    "projection_parent_followup": "source-state優先とcontent/6map missing/nullの17局所wholeを追加。原822+既存6は不変。",
+    "round2_minor": {
+      "official_comment_id": 6182214948,
+      "language": "人間向けの責務/構造/scopeを日本語化し、L5/L8共有scopeを統一。",
+      "state_domains": "正式計算の到達stateへ論理型domainを訂正。関数定義/全845typedIO/原sourceは不変。"
+    }
   }
 }
