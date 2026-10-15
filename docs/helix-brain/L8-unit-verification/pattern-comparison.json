@@ -5438,16 +5438,15 @@
         "unaffected_Q": "original_Q"
       },
       "independent_whole_oracle_basis": {
-        "baseline": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/0/concrete_cases/0/expected_material",
         "expected_delta": [
           {
             "op": "replace",
             "path": "/comparison_complete_claim",
-            "before": "none",
-            "after": "none_unobserved"
+            "value": "none_unobserved"
           }
         ],
-        "independence": "補助calc/正式導出関数を呼んで期待を作らず、元wholeと既存catalogのclaimセルから局所表示を手固定。全candidate結果/retained/Q/9effectsは原wholeのまま。"
+        "independence": "補助calc/正式導出関数を呼んで期待を作らず、元wholeと既存catalogのclaimセルから局所表示を手固定。全candidate結果/retained/Q/9effectsは原wholeのまま。",
+        "baseline_expected_pointer": "docs/helix-brain/L9-integration-verification/pattern-comparison.json#/verification_obligations/0/concrete_cases/0/expected_material"
       },
       "execution_state": "not_executed",
       "effect": "none"
@@ -6212,13 +6211,8 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "scope_limitations": [
-    "L9の固定31raw/whole expectedと、L3/L4から独立導出したcompound probe3件・全内容一致complete claim probe1件を対象とする。実知識、資格、正式schema/codec、実CORE選択、INT query/実行は評価しない。",
-    "原expected wholeはpinしたL9から変更せず複写。probeは出力wholeを備え、部分projectionではなくrawから計算する。"
-  ],
-  "ra01_resolution": {
-    "finding": "B004-RA-01",
-    "kind": "pre_PR_independent_self_check_correction",
-    "change": "既存none_unobservedセルを有限未観測表示として責務説明し、専用返却型へ到達値を整合。原L9 baselineのraw flag/whole表示だけを変えた独立1例を追加。",
-    "scope_preserved": "元34全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。"
-  }
+    "L9固定31raw/wholeと、独立した10局所whole（複合3・全内容一致claim1・分岐識別6）を対象とする。実知識/資格/codec/実CORE選択/INT実行は評価しない。",
+    "原expected wholeはpinしたL9から変更せず複写。probeは出力wholeを備え、部分projectionではなくrawから計算する。",
+    "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
+  ]
 }

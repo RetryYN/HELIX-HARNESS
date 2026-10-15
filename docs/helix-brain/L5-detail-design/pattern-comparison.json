@@ -1419,7 +1419,8 @@
       "unclosed": [
         "複数候補数/順序が固定三候補以外の場合",
         "任意JSON型や明示null/absentの全組合せとsource identityの実資格",
-        "全内容一致＋complete=trueのnone_unobservedは原31では未観測だったが追加局所1例で型と全返却を確認する。任意候補集合/実source資格/実比較完了/採用/許可の一般化は未成立。"
+        "全内容一致＋complete=trueのnone_unobservedは原31では未観測だったが追加局所1例で型と全返却を確認する。任意候補集合/実source資格/実比較完了/採用/許可の一般化は未成立。",
+        "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
       ]
     },
     {
@@ -1465,7 +1466,8 @@
         "applicability candidate集合が固定三候補以外の場合",
         "known applicabilityとprovidedの矛盾値、unknown enum、欠如/nullの一般組合せ",
         "requirements/decision_weightsの正式schema・意味・consumer owner資格",
-        "要求値と重みの両方提示済みでも選択保留となることは原B004-F02-VALUES-WEIGHTS-PRESENT-STILL-OWNERで観測済み。全候補の実適用条件/要求値/重みの資格済み供給と、接続先による実選択は未閉包であり本関数のselectionは保留のまま。"
+        "要求値と重みの両方提示済みでも選択保留となることは原B004-F02-VALUES-WEIGHTS-PRESENT-STILL-OWNERで観測済み。全候補の実適用条件/要求値/重みの資格済み供給と、接続先による実選択は未閉包であり本関数のselectionは保留のまま。",
+        "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
       ]
     },
     {
@@ -1525,7 +1527,7 @@
       "BRAIN004-B01"
     ],
     "interaction": "各L9 rawは各関数の独立fixture。F01の出力をF02/B01の入力として暗黙合成しない。",
-    "failure_return": "F01比較不足はBRAIN知識owner候補、CORE要求値/重み不足はCORE/INTELLIGENCE/人の該当判断先候補。route tokensはfixture candidateのみ。"
+    "failure_return": "上流義務はF01比較不足をBRAIN知識owner、要求値/重み不足をCORE/INTELLIGENCE/人の該当判断先へ返すこと。現在の独立F01/F02有限関数は診断結果まででowner候補fieldを持たず、この戻し先の導出/受渡しは未具体化。B01 owner tokenはclaim/選択INT条件の候補であり、F01/F02不足のroutingを代替しない。"
   },
   "owner_candidate_literals": {
     "CORE-product-decision-owner": {
@@ -1647,7 +1649,8 @@
   "scope_limitations": [
     "実sourceの来歴、owner資格、CORE/INT接続先、正式schema/codecは未成立。",
     "L9にない一般のcandidate数、任意enum/JSON/null/absent組合せ、実source資格/必要集合、実routing優先/全L4分岐は未閉包。全内容一致時complete=trueは追加局所例でnone_unobservedを返すが実比較完了/採用/許可を生成しない。要求値/重み提示済みで保留する原F02例と、実消費先による選択の成立を分離する。",
-    "合成fixtureの出力とfalse-effect定数は、実動作・権限・受入の証明ではない。"
+    "合成fixtureの出力とfalse-effect定数は、実動作・権限・受入の証明ではない。",
+    "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -2204,7 +2207,6 @@
   "local_probe_inventory": {
     "compound_count": 3,
     "complete_claim_count": 1,
-    "r1_independent_whole_count": 6,
     "total": 10,
     "case_ids": [
       "LOCAL-B004-F01-COMPOUND-MISSING-AND-CONFLICT",
@@ -2217,12 +2219,23 @@
       "LOCAL-B004-B01-COPY-FOUR-INPUT-FIELDS",
       "LOCAL-B004-B01-INT-NOT-SELECTED-CONDITIONS-PRESENT",
       "LOCAL-B004-F01-REQUIRED-AXIS-MISSING"
-    ]
+    ],
+    "branch_separation_whole_count": 6
   },
-  "ra01_resolution": {
-    "finding": "B004-RA-01",
-    "kind": "pre_PR_independent_self_check_correction",
-    "change": "既存none_unobservedセルを有限未観測表示として責務説明し、専用返却型へ到達値を整合。原L9 baselineのraw flag/whole表示だけを変えた独立1例を追加。",
-    "scope_preserved": "元L9 31全case/raw/期待不変、上流L3/L4/L9/L10/批准430不変。実比較完了/採用/資格/新gateは生成しない。"
-  }
+  "unclosed_contract_obligations": [
+    {
+      "requirement_ref": "HELIXBRAIN-L3-004-F01",
+      "l4_ref": "HELIXBRAIN-L4-004-F01",
+      "required_return": "比較不足/必要要求値または重み不足のowner返却候補",
+      "current_projection": "F01Return/F02Returnは診断と無作用を返すだけでowner候補fieldを持たない。",
+      "missing_design": "診断から該当判断先への対応と返却material/consumer binding。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-004-F02",
+      "l4_ref": "HELIXBRAIN-L4-004-F02",
+      "required_return": "比較不足/必要要求値または重み不足のowner返却候補",
+      "current_projection": "F01Return/F02Returnは診断と無作用を返すだけでowner候補fieldを持たない。",
+      "missing_design": "診断から該当判断先への対応と返却material/consumer binding。"
+    }
+  ]
 }
