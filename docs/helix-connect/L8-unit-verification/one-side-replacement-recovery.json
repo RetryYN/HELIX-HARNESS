@@ -310,7 +310,7 @@
   "candidate_document_bindings": [
     {
       "path": "docs/helix-connect/L5-detail-design/one-side-replacement-recovery.json",
-      "sha256": "72d6e3789643fee61cdcc777c39009a24c6280f48150c274b1e22549f7cd1d8d"
+      "sha256": "fc0b8aec43a79b6f6d9a86f88f731f1cb5f5f82475475d4dfe116c43c24281e2"
     }
   ],
   "cases": [
@@ -37135,7 +37135,8 @@
   "unclosed": [
     "99件の原wholeと追加wholeは合成fixtureの比較であり、実交換/通信/許可/ACK/rollback/recovery/resumeの成功を示さない。",
     "scope probeは選択済packetの列挙scope pathと有限scope marker値だけを対象にする。F01 profile revision/digest、F02 operation_identity等の非scope field marker・自由語・別wire表現は未評価。",
-    "同一markerを持つ未選択packetはfailure判定に使わず、非選択状態のまま保持する。対象外fieldのplaceholder資格は未実現。"
+    "同一markerを持つ未選択packetはfailure判定に使わず、非選択状態のまま保持する。対象外fieldのplaceholder資格は未実現。",
+    "failure判定はASTに列挙した順に行う。F01のfailure_reasonsは同値recordを最初の一件にまとめる元L9互換の投影であり、原receiptと提出receiptのtargetが同じ診断になる場合の発生元は区別できない。F02は同値recordも列挙順に保持するが、unfinished_content/recordの原対提出とhandoff対原の二比較は同じfield表示になる。全失敗へ一意のsource locatorを付ける設計は未成立であり、発生元別の識別力を原whole一致から主張しない。"
   ],
   "scope_resolution_probes": [
     {

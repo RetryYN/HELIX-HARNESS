@@ -780,7 +780,7 @@
     "is_unique": "評価済みJSON arrayにJSON等値の重複要素がない場合true。object順は無視、array順は保持。",
     "relation_at_paths": "left/rightは同じpacket root上のJSON Pointer文字列、fieldはJSON objectの単一member名である。各base pointerへRFC 6901のescapeを適用したfield segmentを連結して左右の値を解決しrelationを返す。fieldがAbsent、対象memberがAbsent、または値がnullならunknown。",
     "filter_present": "配列からAbsent/null要素を除き、残りの順序を保つ。",
-    "unique_json": "配列からJSON値が再帰的に完全一致する重複を除き、最初の出現順を保つ。F01/F02のfailure_reasonsには適用せず、独立したfailure occurrenceを保持する。",
+    "unique_json": "配列からJSON値が再帰的に完全一致する重複を除き、最初の出現順を保つ。F01のfailure_reasonsはこの演算を適用し、元L9の有限返却shapeに合わせ同じarea/field/result/return_ownerを一件にする。F02のfailure_reasonsには適用せず、列挙順の発生記録を保持する。失敗発生元を一意に同定する機能や実owner資格を、この投影から生成しない。",
     "less_than": "両operandがintegerであることを確認し、左値が右値より小さい場合true。"
   },
   "comparison_semantics": {
@@ -788,7 +788,8 @@
     "JSON array order": "保持する",
     "boolean versus number": "別型として扱う",
     "null versus missing": "path解決時に区別する。選択されたoperandのどちらかがnullまたはAbsentならrelationはunknown_original_informationを返す",
-    "canonical fixture digest": "object keyを再帰整列したcompact UTF-8 JSONのSHA-256。合成projectionに限る"
+    "canonical fixture digest": "object keyを再帰整列したcompact UTF-8 JSONのSHA-256。合成projectionに限る",
+    "failure_role_projection": "F02の同じ接続identityは、handoff_exchange_target/resume_exchange_targetで交換契約への対応をconnection-contract-ownerへ、handoff_lineageで未完operationの由来保持をoperation-ownerへ返す別の論理所見として使う。根拠はHELIXCONNECT-L3-006-F02の未完と明示recovery先保持、およびL4-006-F02の局所owner返却。二つのroleが別の実主体であることや二重の実処置は認定しない。"
   },
   "function_contracts": [
     {
@@ -10577,7 +10578,7 @@
       },
       "meaning": "選択時に元unfinished・handoff・resumeと提出値を独立比較し、target/operation bindingと単一contract revision、互換/meaning/permission/expiry/recovery/resume条件を順序付けて照合する。未完の消去やattempt実行を行わない。",
       "postconditions": [
-        "交換非選択なら診断なし・not_selected_unobserved。選択時は原側・提出側それぞれのfield locatorを保持し、同じresult/ownerでもfailure occurrenceを順序どおり別に返す。",
+        "交換非選択なら診断なし・not_selected_unobserved。選択時はfailure判定ASTの列挙順で発生記録を返し、同じresult/ownerでも値だけで重複除去しない。明示したfield表示は保持するが、unfinished_content/recordの二比較は表示が共通で、全発生元を一意に識別するlocatorではない。",
         "条件不成立ではheld_with_original_unfinishedを返し、candidate追加attemptは0。",
         "全条件がfixture内で対応しても実resume資格を要する状態を返す。candidate追加attempt値は提案射影でactual_attempt_countは0。",
         "effectsは常にfalse。rollback・retry・permission・authorityを生成しない。",
@@ -10586,7 +10587,8 @@
       "unclosed": [
         "recovery destination、権限、時計/expiry、actual ACK、実送受信receiptの資格は入力fixtureだけでは成立しない。",
         "handoff/recoveryの実owner/source qualificationとHARNESS010/011実bindingは別契約で未成立。",
-        "ASTのtargeted placeholder対象外fieldと列挙外marker/自由語の未確定性同定、identity/revision/recovery_refの実source資格は未実現。有限marker検出と等値比較だけから意味充足を認定しない。"
+        "ASTのtargeted placeholder対象外fieldと列挙外marker/自由語の未確定性同定、identity/revision/recovery_refの実source資格は未実現。有限marker検出と等値比較だけから意味充足を認定しない。",
+        "unfinished_content/recordの原対提出とhandoff対原の発生元一意locator、F01の同値receipt target所見の発生元別投影は未成立。元L9互換返却の保持と独立発生元の識別力を区別する。"
       ]
     }
   ],
@@ -10734,7 +10736,7 @@
     "JSON PointerはL5 ASTに固定されたpathだけを読む。存在しないmemberまたはnullを通過できないpathはAbsentとしてrelationへ渡る。malformed external pointerの一般処理はこの関数入力契約に含めない。",
     "scopeはfinite_rule_catalog.scope_marker_valuesをscope_resolution.pathsで列挙したfieldに適用する。その他の識別子/reference marker検出はfinite_rule_catalog.identifier_placeholder_valuesをASTで列挙したfieldに限る。自由語全般のgrammar・実ID資格は定義しない。",
     "unresolved_scopeはsourceにあるscope不足を説明する局所failure-area labelであり、L2/L3/L4の新しいstate、承認gate、許可拒否語彙ではない。",
-    "failure_reasonsはfailure判定ASTの列挙順を保持し、同一内容を値だけで重複除去しない。同じpathの同じrule nodeの重複はASTから除き、原/提出など別pathの所見はfield locatorで区別する。",
+    "failure判定はASTに列挙した順に行う。F01のfailure_reasonsは同値recordを最初の一件にまとめる元L9互換の投影であり、原receiptと提出receiptのtargetが同じ診断になる場合の発生元は区別できない。F02は同値recordも列挙順に保持するが、unfinished_content/recordの原対提出とhandoff対原の二比較は同じfield表示になる。全失敗へ一意のsource locatorを付ける設計は未成立であり、発生元別の識別力を原whole一致から主張しない。",
     "F01のprofile revision/digestとF02のoperation_identityなど、identifier_placeholder_valuesのAST対象外fieldに対するmarker値の資格判定は未実現。単純な値一致からscope/identityの意味を推測しない。"
   ],
   "diagnostic_vocabulary": {
@@ -10743,7 +10745,14 @@
     "handoff_lineage": "L4/L10で要求されるhandoffと未完義務の対応を有限fixture上で示す局所診断分類。原sourceのenum名や資格を意味せず、field locatorと併せて読む。",
     "missing_or_empty_obligations": "必須として照合するobligations配列のAbsent/空を示す局所診断値。原wire値や新しい状態語彙ではない。",
     "negative_attempt_count": "要求されたattempt数が非負条件に合わない場合の局所診断値。「負の累積attempt」ではなくrequest countの比較結果を表す。",
-    "rolled_back_done": "合成packetに存在するrollback_state値。独立receiptなしでこの値が主張されても実rollback事実へ昇格しない。"
+    "rolled_back_done": "合成packetに存在するrollback_state値。独立receiptなしでこの値が主張されても実rollback事実へ昇格しない。",
+    "duplicate_obligation_identity": "批准HELIXCONNECT-L3-006-F02の未完義務引継ぎとL4-006-F02の原未完保持を、同じ合成packet内のobligation identity重複として表示する局所診断値。新しいwire stateや外部identity資格ではない。",
+    "obligation_binding_incomplete_or_mismatched": "HELIXCONNECT-L3-006-F02とL4-006-F02の明示recovery先/未完由来保持を、packet内owner/recovery_refの不足・不一致として表示する局所診断値。",
+    "unconfirmed_rollback_state_without_receipt": "HELIXCONNECT-L10-006-F02の未確認rollback済み負例とL4-006-F02の未観測を完了へ推測しない条件を表す局所診断値。",
+    "unconfirmed_rollback_done_claim": "HELIXCONNECT-L10-006-F02の未確認rollback済み負例をclaim欄から観測した局所診断値。claimを実rollback事実へ変換しない。",
+    "no_selected_component_change": "HELIXCONNECT-L3-006-F01の選択交換とL4-006-F01の許容変更scopeを、選択済みなのに対応する変更が無い合成packetとして表示する局所診断値。実交換義務を全operationへ追加しない。",
+    "registration_target": "HELIXCONNECT-L4-006-F01の新版登録とtarget materialの対応を表す局所failure-area。入力にない登録対象の資格を推定しない。",
+    "permission_target": "HELIXCONNECT-L4-006-F01/F02の許可と操作対象の対応を表す局所failure-area。実authorityの証明ではない。"
   },
   "fixture_consistency_boundary": [
     "登録・許可・提出receiptの全target比較と固定bytes/profile比較をfailure_reasonsへ結ぶ。",
