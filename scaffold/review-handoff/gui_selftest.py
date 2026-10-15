@@ -251,6 +251,50 @@ class GuiChecks(unittest.TestCase):
             self.assertIsNone(g.receive("claude","claude-gui",1,store,watcher="superseded"))
             self.assertIsNotNone(g.receive("claude","claude-gui",0,store,watcher="new-generation"))
 
+    def test_idle_poll_budget_and_short_remaining_timeout(self):
+        # 無変更の3.2秒待受でhot stateを14回読まず、残り0.2秒を越えてsleepしない。
+        clock = [0.0]
+        sleeps = []
+        def sleep(seconds):
+            sleeps.append(seconds)
+            clock[0] += seconds
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data: data.update(copy.deepcopy(self.data))
+            before = (store / "state.json").read_bytes()
+            original_state = g.state
+            with patch.object(g.time, "monotonic", side_effect=lambda: clock[0]), \
+                 patch.object(g.time, "time", return_value=self.now), \
+                 patch.object(g.time, "sleep", side_effect=sleep), \
+                 patch.object(g, "state", wraps=original_state) as reads:
+                self.assertIsNone(g.receive("claude", "claude-gui", 3.2, store))
+                self.assertLessEqual(reads.call_count, 5)
+            self.assertAlmostEqual(clock[0], 3.2)
+            self.assertAlmostEqual(sleeps[-1], 0.2)
+            self.assertEqual((store / "state.json").read_bytes(), before)
+
+    def test_message_arriving_during_sleep_is_claimed_once(self):
+        clock = [0.0]
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            store = Path(directory)
+            with g.state(store) as data: data.update(copy.deepcopy(self.data))
+            def sleep(seconds):
+                clock[0] += seconds
+                with g.state(store) as data:
+                    g.send(data, "codex", "codex-gui", "delayed-event", "review_request",
+                           self.request, None, 60, self.now + clock[0])
+            with patch.object(g.time, "monotonic", side_effect=lambda: clock[0]), \
+                 patch.object(g.time, "time", side_effect=lambda: self.now + clock[0]), \
+                 patch.object(g.time, "sleep", side_effect=sleep):
+                message = g.receive("claude", "claude-gui", 3, store)
+            self.assertLessEqual(clock[0], 1.0)
+            self.assertEqual(message["payload"]["event_id"], "delayed-event")
+            with g.state(store) as data:
+                self.assertIsNone(g.claim(data, "claude", "claude-gui", self.now + clock[0]))
+                g.ack(data, "delayed-event", "claude", "claude-gui", message["digest"],
+                      message["claim"]["nonce"], self.now + clock[0])
+                self.assertEqual(data["messages"]["delayed-event"]["status"], "acked")
+
     def test_hook_missing_script_and_argument_error_do_not_rewake(self):
         command = config.entries("claude")["Stop"][0]["hooks"][0]["command"]
         missing = command.replace(str(g.HERE / "gui_mailbox.py"), str(g.HERE / "local/missing-script.py"))
