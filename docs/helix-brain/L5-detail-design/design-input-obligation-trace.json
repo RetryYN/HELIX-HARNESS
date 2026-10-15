@@ -20,7 +20,7 @@
       "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
       "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13"
     },
-    "public_return_contract": "FullOutput.primaryは原L9全wholeを保持し、同shapeに表せる未見域のcontent conflict/逆trace不足も直接判定する。assessmentは追加軸とowner候補をconsumerへ結ぶ。原L9にforward/reverse content_conflictの原caseは無く、旧Draftの縮約は下流設計内で是正した。上流oracle矛盾ではない。"
+    "public_return_contract": "FullOutput.primaryは原L9全whole shapeと主所見を保持し、assessmentは追加軸とowner候補をconsumerへ結ぶ。実source資格・完了・製品採用はこの局所比較から生成しない。"
   },
   "approved_wholes": [
     {
@@ -232,11 +232,14 @@
     "asset_ledger_pin": {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "line": 508,
-      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
       "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
       "archive_disposition": "unresolved",
       "authority_status": "historical",
-      "reuse": "参照のみ。採用済みauthorityへ昇格しない。"
+      "reuse": "参照のみ。採用済みauthorityへ昇格しない。",
+      "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
+      "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "line_sha256": "143dd47cfe8ebda8cd2b661f61287e3d519b7b4aa558432ff11605e364d8e4c3",
+      "line_hash_basis": "改行を除くUTF-8一行"
     }
   },
   "type_system": {
@@ -365,7 +368,7 @@
         ],
         "properties": {
           "derivation_inputs": "map<string,DerivationInput>",
-          "product_value_state": "JSONValue",
+          "product_value_state": "string",
           "derivation_state": "string",
           "claim_results": "map<string,string>",
           "effects": "Effects",
@@ -831,7 +834,7 @@
       ],
       "algorithm_ja": [
         "forward/reverse各key和集合の欠落/空/未確定leaf/内容差を個別所見へ。bindingも元版/scopeを同規則で比較する。",
-        "primary.obligation_stateはtrace missing→content conflict→両側それぞれのforward/reverseが空でなく全edgeが相互に逆か→binding→input→value unset→未解釈product_value_stateの順で唯一算出する。原10wholeは不変。旧Draftの未見域縮約は是正済みで、互換の名で保持しない。",
+        "primary.obligation_stateはtrace missing→content conflict→両側それぞれのforward/reverseが空でなく全edgeが相互に逆か→binding→input→value unset→未解釈product_value_stateの順で唯一算出する。",
         "assessmentにはprimary shapeに無いtrace_integrity_stateと候補owner/候補資格表示だけを追加する。knowledge binding不足はBRAIN、義務/製品値未完はHARNESS-COREへ。product_value_stateはunset以外の完成契約がなく未解釈不足とし、新成功値を創作しない。",
         "claimによる完了/N-Aを受理しない。全effect=false/unaffected_Q=original_Qは局所fixtureの無作用表示で実機観測ではない。"
       ],
@@ -875,10 +878,10 @@
         "material_ref.identity"
       ],
       "algorithm_ja": [
-        "primaryは原材料/製品値を保持しnot_derived、各claimはreject/none。assessmentは全derivation materialとmaterial_ref.identityの内容を照合する。",
-        "名指しschedule/state_transition/implementation_priorityの各input欠落をmissing_held、owner=BRAINかつstate=derived_completeを単独製品導出拒否、CORE-HARNESS/candidate_input_only以外をowner_or_state_uninterpreted_heldとする。一般の採用/停止policyは追加しない。",
-        "製品導出候補はCORE/HARNESS、材料identity不足はBRAIN。knowledge_refの独立元targetが未供給なのでknowledge_binding_stateに不足を出し、実資格と分ける。",
-        "全effect=falseとunaffected_Q=original_Qは有限fixtureの無作用表示。全返却はFullOutputのprimaryと追加assessmentを含む。"
+        "primaryは原材料/製品stateを保存しnot_derived。product_value_invented claimがtrueならrejected、falseでstate=unsetならnone、それ以外はuninterpreted_product_value_held。未供給の状態意味を製品値確定へ補完せず、42という代表文字列だけで分岐しない。",
+        "assessmentは全derivation materialとmaterial_ref.identityを照合。derivation_data_resultsは名指し三keyと全供給keyの和集合。欠落→missing_held、全keyにowner=BRAIN/state=derived_complete→BRAIN_product_derivation_rejected、名指し三種外→unsupported_derivation_kind_held、残るowner/state未解釈→owner_or_state_uninterpreted_held、既知候補→candidate_input_only。",
+        "製品導出候補はCORE/HARNESS、材料identity不足はBRAIN。knowledge_ref独立target未供給はknowledge_binding_stateに保持し実資格と分ける。",
+        "effect=false/unaffected_Q=original_Qは有限fixture無作用表示。実製品導出/採用は行わない。"
       ],
       "owner_candidates": [
         "実返却ではなくassessment.candidate_owner_returnsに全不足の候補を原順序で保持する。qualification_stateは候補限定。"
@@ -923,9 +926,9 @@
         "claims_missing_complete"
       ],
       "algorithm_ja": [
-        "選択scopeの必要名指しBRAIN003/005/008/HARNESS009と両map key和集合を辞書順走査。片側欠落→missing_held、片側でもstate!=qualified_fixture_onlyまたは空/未確定leaf→unknown_held、双方keyとidentityの不一致→content_conflict、残りwhole等値→候補対応、差→content_conflict。",
+        "選択scopeの必要名指しBRAIN003/005/008/HARNESS009と両map key和集合を辞書順走査。片側欠落→missing_held、片側でもstate!=qualified_fixture_onlyまたは空/未確定leaf→unknown_held、片側でもkeyとidentityが不一致→content_conflict、残りwhole等値→候補対応、差→content_conflict。",
         "代表obligation_stateはmissing/unknown→content_conflict→relation_meaning_stateがknown_fixture_only以外→receiver_method_stateがknown_fixture_only以外→candidateの順。原値をcopied returnに保持し未知文字列を成功へしない。",
-        "owner候補は全contract不足の辞書順key+-owner、続いて全meaning不足、全receiver不足を連結し初出unique。代表stateの優先は別不足ownerを消さない。keyはopaque契約表示、接尾辞-ownerは構造的候補表示で実identityを生成しない。",
+        "owner候補は全contract不足の辞書順key+-owner、意味不足/unknown edge確定claimのBRAIN-L1-003005-owner、受領不足/受領補完claimのHARNESS009-receiver-ownerを初出順uniqueで保持。missing完了claimは具体不足ownerがある場合その全候補を保持し、具体不足が無い場合は原因を推測せず意味/受領の両責務候補を保持する。代表stateは他ownerを消さない。実owner/資格/通知ではない。",
         "全effect=falseとunaffected_Q=original_Qは有限fixtureの無作用表示。全返却はFullOutputのprimaryと追加assessmentを含む。"
       ],
       "owner_candidates": [
@@ -971,7 +974,7 @@
       ],
       "algorithm_ja": [
         "structure=BRAIN、product_requirements_design_derivation=CORE-HARNESS、project_record_runtime=OSをL3責務として両側へ個別比較。双方同じ誤ownerでもowner_change_rejectedとし当該候補へ返す。",
-        "JSON元意味と提出意味は等値保持/変更拒否。generated_view_meaningは別表現の意味変換契約がないため未比較と明示し、文字列差をそのまま不許可にしない。",
+        "JSON元意味/提出意味の片側でも空/TBD/unknown/unresolvedならmeaning_unknown_held、その他の等値はoriginal_meaning_held、差はgenerated_view_meaning_change_rejected。意味不足/差はBRAIN候補へ。生成viewの意味変換contractは未供給のまま。",
         "各実Python/schema/実装/実装許可claimをrejected、assessmentはBRAINとCORE/HARNESSの正式設計へ返す。候補/JSON/viewから実資格/承認/完了を生成しない。",
         "全effect=falseとunaffected_Q=original_Qは有限fixtureの無作用表示。全返却はFullOutputのprimaryと追加assessmentを含む。"
       ],
@@ -1044,7 +1047,7 @@
     ]
   },
   "scope_limitations": [
-    "原45primary＋既存3local＋追加29局所full wholeの有限比較。未見組合せ/全域の意味閉包ではない。",
+    "原45primary＋既存3local＋追加49局所full wholeの有限比較。2件は不足witness。未見組合せ/全域の意味閉包ではない。",
     "primary/assessmentは一つの有限判定契約。追加assessment候補を実資格/宛先/receipt/製品導出へ変換しない。",
     "全92親430対は不変inventoryでありこの局所設計の完成数ではない。",
     "known_fixture_only/qualified_fixture_onlyはfixture内表示。実source/authority qualificationを生成しない。"
@@ -1096,8 +1099,8 @@
   ],
   "fixture_literal_sources": {
     "source": "原L9 raw/expectedのrepo内pointer/hashはliteral_provenanceへ。追加所見は同節new_literal_basisとL8 source+patch+全wholeへ。",
-    "approved_literals": "L3/L10 exact approved whole failure_return, positive/negative/failure observations; labels in fixture outputs are observations, not system-wide enum or qualification.",
-    "case_status_values": "L9 expected_material exact values; finite fixture vocabulary only.",
+    "approved_literals": "L3/L10のexact批准wholeのfailure_return/正負例/失敗所見。fixture表示語は全systemのenum/資格ではない。",
+    "case_status_values": "原L9 expected_materialの有限表示値。",
     "output_literal_domain_scope": "有限観測値の目録でありcopied stringを閉じる型enumではない。全返却はrecord_schemasと公開full_output_programsで定義する。"
   },
   "output_literal_domains": {
@@ -1125,7 +1128,10 @@
       "trace_missing_not_complete",
       "unfulfilled",
       "unset",
-      "value_unset_not_complete"
+      "value_unset_not_complete",
+      "trace_content_conflict_not_complete",
+      "trace_incoherent_not_complete",
+      "product_value_state_uninterpreted_not_complete"
     ],
     "HELIXBRAIN-L5-022-F03": [
       "CORE-HARNESS",
@@ -1135,7 +1141,9 @@
       "not_derived",
       "original_Q",
       "rejected",
-      "unset"
+      "unset",
+      "uninterpreted_product_value_held",
+      "unsupported_derivation_kind_held"
     ],
     "HELIXBRAIN-L5-022-F04": [
       "BRAIN-L1-003005-owner",
@@ -1168,7 +1176,8 @@
       "original_meaning_held",
       "owner_change_rejected",
       "owner_preserved",
-      "rejected"
+      "rejected",
+      "meaning_unknown_held"
     ],
     "scope": "原whole観測値目録。copied stringは自由域。規範literalの所在はreference_program const/optionとliteral_provenance。"
   },
@@ -1292,6 +1301,19 @@
     {
       "requirement_ref": "HELIXBRAIN-L3-022-B01",
       "unclosed": "view_meaning_binding_stateは意味投影contract未供給を表示するのみ。この意味変換不足に基づくowner診断の決定規則は未実現。既存候補は固定責務差/JSON意味差/禁止claimの範囲。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F03",
+      "unclosed": "product_value_stateは自由stringの原値。unset以外の意味変換/製品schemaは未供給なので主所見で未解釈保留する。保留を実捏造の確定/製品採用へ変換しない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-B01",
+      "unclosed": "JSON意味の空/TBD/unknown/unresolvedは有限不足表示として識別する。N/A/pending/Unknown等の他文字列の一般意味同定は未実現。等値tokenは実source資格/意味十分性を証明しない。"
+    },
+    {
+      "requirement_ref": "HELIXBRAIN-L3-022-F01",
+      "unclosed": "両側のmaterial本文が等値で未知endpointだけが残る場合、現候補出力は受領方法/端点照合areaのHARNESSへ返す。L10の意味関係BRAIN003/005への別返却は、この入力だけで意味不足と受領不足を分離するcause sourceがなく未具体化。material差/名前claimはBRAIN003/005へ返す。未知端点のmeaningが解決した主張ではない。",
+      "reason": "有限area分担を保ち、欠落causeを推測しない。実source/資格未供給と意味返却未実現を別に保持する。"
     }
   ],
   "reference_program": {
@@ -5646,8 +5668,28 @@
                   "value": "rejected"
                 },
                 "else": {
-                  "op": "const",
-                  "value": "none"
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": [
+                        "product_value_state"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "unset"
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "none"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "uninterpreted_product_value_held"
+                  }
                 }
               }
             }
@@ -5996,316 +6038,134 @@
               ]
             },
             "derivation_data_results": {
-              "op": "object",
-              "fields": {
-                "schedule": {
-                  "op": "if",
-                  "condition": {
-                    "op": "is_absent",
+              "op": "map_union_keys",
+              "left": {
+                "op": "path",
+                "path": [
+                  "derivation_inputs"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": {}
+              },
+              "required_keys": [
+                "schedule",
+                "state_transition",
+                "implementation_priority"
+              ],
+              "value": {
+                "op": "if",
+                "condition": {
+                  "op": "is_absent",
+                  "value": {
+                    "op": "get",
                     "value": {
                       "op": "path",
                       "path": [
-                        "derivation_inputs",
-                        "schedule"
-                      ]
-                    }
-                  },
-                  "then": {
-                    "op": "const",
-                    "value": "missing_held"
-                  },
-                  "else": {
-                    "op": "if",
-                    "condition": {
-                      "op": "and",
-                      "items": [
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "schedule"
-                              ]
-                            },
-                            "key": "owner"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "BRAIN"
-                          }
-                        },
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "schedule"
-                              ]
-                            },
-                            "key": "state"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "derived_complete"
-                          }
-                        }
+                        "derivation_inputs"
                       ]
                     },
-                    "then": {
-                      "op": "const",
-                      "value": "BRAIN_product_derivation_rejected"
-                    },
-                    "else": {
-                      "op": "if",
-                      "condition": {
-                        "op": "or",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "schedule"
-                                  ]
-                                },
-                                "key": "owner"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "CORE-HARNESS"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "schedule"
-                                  ]
-                                },
-                                "key": "state"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "candidate_input_only"
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      "then": {
-                        "op": "const",
-                        "value": "owner_or_state_uninterpreted_held"
-                      },
-                      "else": {
-                        "op": "const",
-                        "value": "candidate_input_only"
-                      }
+                    "key": {
+                      "op": "path",
+                      "path": [
+                        "$key"
+                      ]
                     }
                   }
                 },
-                "state_transition": {
-                  "op": "if",
-                  "condition": {
-                    "op": "is_absent",
-                    "value": {
-                      "op": "path",
-                      "path": [
-                        "derivation_inputs",
-                        "state_transition"
-                      ]
-                    }
-                  },
-                  "then": {
-                    "op": "const",
-                    "value": "missing_held"
-                  },
-                  "else": {
-                    "op": "if",
-                    "condition": {
-                      "op": "and",
-                      "items": [
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "state_transition"
-                              ]
-                            },
-                            "key": "owner"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "BRAIN"
-                          }
-                        },
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "state_transition"
-                              ]
-                            },
-                            "key": "state"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "derived_complete"
-                          }
-                        }
-                      ]
-                    },
-                    "then": {
-                      "op": "const",
-                      "value": "BRAIN_product_derivation_rejected"
-                    },
-                    "else": {
-                      "op": "if",
-                      "condition": {
-                        "op": "or",
-                        "items": [
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "state_transition"
-                                  ]
-                                },
-                                "key": "owner"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "CORE-HARNESS"
-                              }
-                            }
-                          },
-                          {
-                            "op": "not",
-                            "value": {
-                              "op": "json_equal",
-                              "left": {
-                                "op": "get",
-                                "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "state_transition"
-                                  ]
-                                },
-                                "key": "state"
-                              },
-                              "right": {
-                                "op": "const",
-                                "value": "candidate_input_only"
-                              }
-                            }
-                          }
-                        ]
-                      },
-                      "then": {
-                        "op": "const",
-                        "value": "owner_or_state_uninterpreted_held"
-                      },
-                      "else": {
-                        "op": "const",
-                        "value": "candidate_input_only"
-                      }
-                    }
-                  }
+                "then": {
+                  "op": "const",
+                  "value": "missing_held"
                 },
-                "implementation_priority": {
+                "else": {
                   "op": "if",
                   "condition": {
-                    "op": "is_absent",
-                    "value": {
-                      "op": "path",
-                      "path": [
-                        "derivation_inputs",
-                        "implementation_priority"
-                      ]
-                    }
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "path",
+                              "path": [
+                                "derivation_inputs"
+                              ]
+                            },
+                            "key": {
+                              "op": "path",
+                              "path": [
+                                "$key"
+                              ]
+                            }
+                          },
+                          "key": "owner"
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "BRAIN"
+                        }
+                      },
+                      {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "get",
+                          "value": {
+                            "op": "get",
+                            "value": {
+                              "op": "path",
+                              "path": [
+                                "derivation_inputs"
+                              ]
+                            },
+                            "key": {
+                              "op": "path",
+                              "path": [
+                                "$key"
+                              ]
+                            }
+                          },
+                          "key": "state"
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "derived_complete"
+                        }
+                      }
+                    ]
                   },
                   "then": {
                     "op": "const",
-                    "value": "missing_held"
+                    "value": "BRAIN_product_derivation_rejected"
                   },
                   "else": {
                     "op": "if",
                     "condition": {
-                      "op": "and",
-                      "items": [
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "implementation_priority"
-                              ]
-                            },
-                            "key": "owner"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "BRAIN"
-                          }
+                      "op": "not",
+                      "value": {
+                        "op": "contains",
+                        "collection": {
+                          "op": "const",
+                          "value": [
+                            "schedule",
+                            "state_transition",
+                            "implementation_priority"
+                          ]
                         },
-                        {
-                          "op": "json_equal",
-                          "left": {
-                            "op": "get",
-                            "value": {
-                              "op": "path",
-                              "path": [
-                                "derivation_inputs",
-                                "implementation_priority"
-                              ]
-                            },
-                            "key": "state"
-                          },
-                          "right": {
-                            "op": "const",
-                            "value": "derived_complete"
-                          }
+                        "value": {
+                          "op": "path",
+                          "path": [
+                            "$key"
+                          ]
                         }
-                      ]
+                      }
                     },
                     "then": {
                       "op": "const",
-                      "value": "BRAIN_product_derivation_rejected"
+                      "value": "unsupported_derivation_kind_held"
                     },
                     "else": {
                       "op": "if",
@@ -6319,11 +6179,19 @@
                               "left": {
                                 "op": "get",
                                 "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "implementation_priority"
-                                  ]
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": [
+                                      "derivation_inputs"
+                                    ]
+                                  },
+                                  "key": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
                                 },
                                 "key": "owner"
                               },
@@ -6340,11 +6208,19 @@
                               "left": {
                                 "op": "get",
                                 "value": {
-                                  "op": "path",
-                                  "path": [
-                                    "derivation_inputs",
-                                    "implementation_priority"
-                                  ]
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": [
+                                      "derivation_inputs"
+                                    ]
+                                  },
+                                  "key": {
+                                    "op": "path",
+                                    "path": [
+                                      "$key"
+                                    ]
+                                  }
                                 },
                                 "key": "state"
                               },
@@ -6980,20 +6856,143 @@
                 {
                   "op": "if",
                   "condition": {
-                    "op": "not",
-                    "value": {
-                      "op": "json_equal",
-                      "left": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "not",
+                        "value": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "relation_meaning_state"
+                            ]
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": "known_fixture_only"
+                          }
+                        }
+                      },
+                      {
                         "op": "path",
                         "path": [
-                          "relation_meaning_state"
+                          "claims_unknown_edge_confirmed"
                         ]
                       },
-                      "right": {
-                        "op": "const",
-                        "value": "known_fixture_only"
+                      {
+                        "op": "and",
+                        "items": [
+                          {
+                            "op": "path",
+                            "path": [
+                              "claims_missing_complete"
+                            ]
+                          },
+                          {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "unique_array",
+                              "arrays": [
+                                {
+                                  "op": "map_array",
+                                  "array": {
+                                    "op": "map_keys_with_values",
+                                    "map": {
+                                      "op": "path",
+                                      "path": [
+                                        "$contracts"
+                                      ]
+                                    },
+                                    "values": [
+                                      "missing_held",
+                                      "unknown_held",
+                                      "content_conflict"
+                                    ]
+                                  },
+                                  "binding": "$item",
+                                  "value": {
+                                    "op": "concat",
+                                    "left": {
+                                      "op": "path",
+                                      "path": [
+                                        "$item"
+                                      ]
+                                    },
+                                    "right": {
+                                      "op": "const",
+                                      "value": "-owner"
+                                    }
+                                  }
+                                },
+                                {
+                                  "op": "if",
+                                  "condition": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": [
+                                          "relation_meaning_state"
+                                        ]
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "known_fixture_only"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "op": "const",
+                                    "value": [
+                                      "BRAIN-L1-003005-owner"
+                                    ]
+                                  },
+                                  "else": {
+                                    "op": "const",
+                                    "value": []
+                                  }
+                                },
+                                {
+                                  "op": "if",
+                                  "condition": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": [
+                                          "receiver_method_state"
+                                        ]
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "known_fixture_only"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "op": "const",
+                                    "value": [
+                                      "HARNESS009-receiver-owner"
+                                    ]
+                                  },
+                                  "else": {
+                                    "op": "const",
+                                    "value": []
+                                  }
+                                }
+                              ]
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": []
+                            }
+                          }
+                        ]
                       }
-                    }
+                    ]
                   },
                   "then": {
                     "op": "const",
@@ -7009,20 +7008,143 @@
                 {
                   "op": "if",
                   "condition": {
-                    "op": "not",
-                    "value": {
-                      "op": "json_equal",
-                      "left": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "not",
+                        "value": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": [
+                              "receiver_method_state"
+                            ]
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": "known_fixture_only"
+                          }
+                        }
+                      },
+                      {
                         "op": "path",
                         "path": [
-                          "receiver_method_state"
+                          "claims_receiver_method_invented"
                         ]
                       },
-                      "right": {
-                        "op": "const",
-                        "value": "known_fixture_only"
+                      {
+                        "op": "and",
+                        "items": [
+                          {
+                            "op": "path",
+                            "path": [
+                              "claims_missing_complete"
+                            ]
+                          },
+                          {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "unique_array",
+                              "arrays": [
+                                {
+                                  "op": "map_array",
+                                  "array": {
+                                    "op": "map_keys_with_values",
+                                    "map": {
+                                      "op": "path",
+                                      "path": [
+                                        "$contracts"
+                                      ]
+                                    },
+                                    "values": [
+                                      "missing_held",
+                                      "unknown_held",
+                                      "content_conflict"
+                                    ]
+                                  },
+                                  "binding": "$item",
+                                  "value": {
+                                    "op": "concat",
+                                    "left": {
+                                      "op": "path",
+                                      "path": [
+                                        "$item"
+                                      ]
+                                    },
+                                    "right": {
+                                      "op": "const",
+                                      "value": "-owner"
+                                    }
+                                  }
+                                },
+                                {
+                                  "op": "if",
+                                  "condition": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": [
+                                          "relation_meaning_state"
+                                        ]
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "known_fixture_only"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "op": "const",
+                                    "value": [
+                                      "BRAIN-L1-003005-owner"
+                                    ]
+                                  },
+                                  "else": {
+                                    "op": "const",
+                                    "value": []
+                                  }
+                                },
+                                {
+                                  "op": "if",
+                                  "condition": {
+                                    "op": "not",
+                                    "value": {
+                                      "op": "json_equal",
+                                      "left": {
+                                        "op": "path",
+                                        "path": [
+                                          "receiver_method_state"
+                                        ]
+                                      },
+                                      "right": {
+                                        "op": "const",
+                                        "value": "known_fixture_only"
+                                      }
+                                    }
+                                  },
+                                  "then": {
+                                    "op": "const",
+                                    "value": [
+                                      "HARNESS009-receiver-owner"
+                                    ]
+                                  },
+                                  "else": {
+                                    "op": "const",
+                                    "value": []
+                                  }
+                                }
+                              ]
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": []
+                            }
+                          }
+                        ]
                       }
-                    }
+                    ]
                   },
                   "then": {
                     "op": "const",
@@ -7274,27 +7396,75 @@
           "json_meaning_result": {
             "op": "if",
             "condition": {
-              "op": "json_equal",
-              "left": {
-                "op": "path",
-                "path": [
-                  "json_original_meaning"
-                ]
-              },
-              "right": {
-                "op": "path",
-                "path": [
-                  "json_provided_meaning"
-                ]
-              }
+              "op": "or",
+              "items": [
+                {
+                  "op": "contains",
+                  "collection": {
+                    "op": "const",
+                    "value": [
+                      "",
+                      "TBD",
+                      "unknown",
+                      "unresolved"
+                    ]
+                  },
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "json_original_meaning"
+                    ]
+                  }
+                },
+                {
+                  "op": "contains",
+                  "collection": {
+                    "op": "const",
+                    "value": [
+                      "",
+                      "TBD",
+                      "unknown",
+                      "unresolved"
+                    ]
+                  },
+                  "value": {
+                    "op": "path",
+                    "path": [
+                      "json_provided_meaning"
+                    ]
+                  }
+                }
+              ]
             },
             "then": {
               "op": "const",
-              "value": "original_meaning_held"
+              "value": "meaning_unknown_held"
             },
             "else": {
-              "op": "const",
-              "value": "generated_view_meaning_change_rejected"
+              "op": "if",
+              "condition": {
+                "op": "json_equal",
+                "left": {
+                  "op": "path",
+                  "path": [
+                    "json_original_meaning"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "path": [
+                    "json_provided_meaning"
+                  ]
+                }
+              },
+              "then": {
+                "op": "const",
+                "value": "original_meaning_held"
+              },
+              "else": {
+                "op": "const",
+                "value": "generated_view_meaning_change_rejected"
+              }
             }
           },
           "generated_view_role": {
@@ -7586,22 +7756,68 @@
               {
                 "op": "if",
                 "condition": {
-                  "op": "not",
-                  "value": {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path",
-                      "path": [
-                        "json_original_meaning"
+                  "op": "or",
+                  "items": [
+                    {
+                      "op": "or",
+                      "items": [
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "const",
+                            "value": [
+                              "",
+                              "TBD",
+                              "unknown",
+                              "unresolved"
+                            ]
+                          },
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "json_original_meaning"
+                            ]
+                          }
+                        },
+                        {
+                          "op": "contains",
+                          "collection": {
+                            "op": "const",
+                            "value": [
+                              "",
+                              "TBD",
+                              "unknown",
+                              "unresolved"
+                            ]
+                          },
+                          "value": {
+                            "op": "path",
+                            "path": [
+                              "json_provided_meaning"
+                            ]
+                          }
+                        }
                       ]
                     },
-                    "right": {
-                      "op": "path",
-                      "path": [
-                        "json_provided_meaning"
-                      ]
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "path",
+                          "path": [
+                            "json_original_meaning"
+                          ]
+                        },
+                        "right": {
+                          "op": "path",
+                          "path": [
+                            "json_provided_meaning"
+                          ]
+                        }
+                      }
                     }
-                  }
+                  ]
                 },
                 "then": {
                   "op": "const",
@@ -7677,7 +7893,6 @@
       "const",
       "path",
       "object",
-      "array",
       "if",
       "json_equal",
       "not",
@@ -7685,7 +7900,6 @@
       "or",
       "is_absent",
       "get",
-      "compare_content",
       "map_union_keys",
       "map_record_ids",
       "find_record",
@@ -7705,12 +7919,11 @@
     "semantics": {
       "path": "通常pathはroot object memberを順に辿り、欠落はABSENT。最初が$ならenv束縛を読む（本規範は単一segmentのenv参照のみ）。",
       "json_equal": "JSON値の再帰等値。boolはnumberと異なり、number同士は数値等値、arrayは順序/重複を保持、objectはkey集合と各値を比較。ABSENT同士だけtrue。",
-      "compare_content": "片側でもABSENTならmissing_result。両方提供でjson_equalならequal_result、そうでなければdifferent_result。nullは提供値。",
       "if": "conditionはboolean。trueならthen、falseならelse。",
       "map_union_keys": "左右object keyと任意required_keys arrayの和集合をcodepoint昇順に反復し、各$keyを束縛してvalue ASTを評価。業務上の必要集合はASTのrequired_keys literalで明示する。",
       "map_record_ids": "arrays中objectのkey_field string値の和集合を昇順に反復。$keyへ束縛。重複keyはfind_recordでAMBIGUOUSを保持し選択しない。",
       "find_record": "arrayをfield=valueで照合する。該当0件なら内部ABSENT、1件ならそのrecord、2件以上なら内部AMBIGUOUSを返す。AMBIGUOUSは任意の先頭recordへ縮退しない。後続getはobject以外（ABSENT/AMBIGUOUSを含む）からABSENTを返し、その分岐では成立扱いにしない。",
-      "contains": "collection arrayにjson_equal一致のvalueがあればtrue。",
+      "contains": "collectionがarrayならjson_equal一致する要素の有無を返す。ABSENT/null/非arrayはfalse。source欠落の証明とは別で、上位式がmissing/unknownへ保持する。",
       "map_has_any_value": "map valueのいずれかがvaluesのliteralに一致。",
       "concat": "両引数がstringのとき文字列連結。",
       "unique_array": "arraysを引数順に連結し、JSON深い等値で最初の値だけを保持する。空arrayは要素を追加しない。",
@@ -7718,7 +7931,6 @@
       "map_array": "array各itemをbinding（省略時$item）へ束縛してvalue ASTを同順評価。外側の別名束縛を保持。",
       "const": "valueをそのまま返す。業務literalはAST内で明示する。",
       "object": "fieldsを宣言順評価し、ABSENTのmemberだけ省略。null/空map/空arrayは保持。",
-      "array": "itemsを順評価する。",
       "and": "左からbooleanを短絡AND。非booleanは型外。",
       "or": "左からbooleanを短絡OR。非booleanは型外。",
       "not": "boolean反転。",
@@ -7841,7 +8053,8 @@
         "missing_held",
         "BRAIN_product_derivation_rejected",
         "owner_or_state_uninterpreted_held",
-        "candidate_input_only"
+        "candidate_input_only",
+        "unsupported_derivation_kind_held"
       ],
       "knowledge_binding_state": [
         "independent_target_not_supplied"
@@ -8282,6 +8495,246 @@
         "pointer": "/additional_probes/28",
         "revision_binding": "same_candidate_document"
       }
+    },
+    {
+      "id": "B022-CLAIM-ONLY-unknown_edge_confirmed",
+      "function_ref": "HELIXBRAIN-L5-022-F04",
+      "raw_sha256": "1f4763e5ad80075c4eedc8d16c01985036af90636eedcd8d941e0f83eca28e90",
+      "expected_full_sha256": "98ca8b08657134036938c0e8032d5ac0a2ae15d5af1e84ddf688582059c75087",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/29",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-CLAIM-ONLY-receiver_method_invented",
+      "function_ref": "HELIXBRAIN-L5-022-F04",
+      "raw_sha256": "1e38ca54d6be3722f882a318aff827cff280a929f54534de9ffa7d96675b2185",
+      "expected_full_sha256": "a26005476fe535ee64a0462347bd9a1e7829d7e9a71802cc7ea36508625b1173",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/30",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-CLAIM-ONLY-missing_complete",
+      "function_ref": "HELIXBRAIN-L5-022-F04",
+      "raw_sha256": "61c32e10f3918e29e34b2fd59bd777ea0c0c62cbb6c5b4a6abeb4c609da4a2be",
+      "expected_full_sha256": "490613732f86d5bddaed61e526c54c8a3b40408c8efdebe1baf09ea53e39b828",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/31",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-BOTH-TBD",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "494c50df4dee5ebaa510a4267f19179a9f7799d9de11216897f7f473dcd8494b",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/32",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-BOTH-EMPTY",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "d2ddbae14f26f391ae931b52e22b73c62911bc660c2efce34ef2701f20c61217",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/33",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-BOTH-unknown",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "be5c68ada825a10384419a0476626ee5635921757604609c803bb21ef6ce4e40",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/34",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-BOTH-unresolved",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "322d173e6df12a34994d993f28d5d0d814dd28f9dd25e4a0533ceeadb18c2f65",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/35",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-original-UNRESOLVED",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "af1c1030362fee80599b5d1c5c6451777475670f5a44de2827c04e76c4eb6aa7",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/36",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-JSON-MEANING-provided-UNRESOLVED",
+      "function_ref": "HELIXBRAIN-L5-022-B01",
+      "raw_sha256": "8bdb3e47d4621bee2881b195dd8ad58f19fd460a3ca71367b861aed85b6ed9c5",
+      "expected_full_sha256": "a0d5c041340dc7b180b6bd52a1b22269a0c1c18ff24f7e2aa48be3389ff43f9f",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/37",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-42",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "41fa786458886094270776798059f0bc5d7e2ab91a9bd6488b4a7496d24ebba7",
+      "expected_full_sha256": "194072eedff35dfee6d0988e2c800922e19a928350fcb426ee32701bf288df1b",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/38",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-known",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "c389043a962ed572ba8543383cf87f530ce5c6d57b84d3683743f3b588c2e478",
+      "expected_full_sha256": "d771121b412551af41d9ebbbce988e9941b341d0c193b8183ce055573aba36dd",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/39",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-unknown",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "1c73e7461fdfeefbd3f9744d3eda41df71a035e14266946b25f3f1e31eaa465a",
+      "expected_full_sha256": "1521c47b77ff25b04e207b453927111f3fd55d5d2765bdeff742a966a5ed2310",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/40",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-EMPTY",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "68f2aab946b44eaeb2fca0cf7e0ac2e7a98e86baf79d7ef154a85cde3eb171c3",
+      "expected_full_sha256": "c1aebbb33e0e5ecc33942dcca077e4043bd0a603024b46284d5133102a3b52cb",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/41",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-pending",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "2726a70ab9a130f632d84cccbd2d8d3c4612542063cc60a3ddc7d0835942da5d",
+      "expected_full_sha256": "f80c5af084bc3c8dead0a298ae1b608f4821e1b8adf676252c12d83317ba28e3",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/42",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-EXTRA-DERIVATION-extra",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "47806471c4f3aeaf90e0f5f3d58d97116f44834de35b8a6e0e549ddac03543d4",
+      "expected_full_sha256": "1e62d5727a4ef21a9c74b6ba181430c4f694471c24d65ea6a9ee01b85322ff6d",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/43",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-EXTRA-DERIVATION-screen_layout",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "cd11848abc2ee34486fa2c1e48383014ed7d9463685ccc055b2088a68b87055b",
+      "expected_full_sha256": "0057b9560c3475606db0cd7b0bd1abd01aabf110ab17b1fcc1d80a1bd7c6acc4",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/44",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-EXTRA-DERIVATION-state_transition_extra",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "6f0dfb2fc6a265619482be909dc5670061f07736e6b5bb4c8b4850f076bb5afe",
+      "expected_full_sha256": "0301ce558ecc3a5a0ef3c748cdc61ffc4ee5097ba44b104403f1a23c8cd772d5",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/45",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-EXTRA-UNINTERPRETED-KIND",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "6c66c555d54b0b2152ce7ec35066cf32acf30754679f14fcbaa9b0c9b8f86b6b",
+      "expected_full_sha256": "51f220014096ba220b1aa8c62138c3ab612b1344c02124700d16b76662711bc6",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/46",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-NAMED-DERIVATION-state_transition",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "81ee46a20686e9b95ee10fc3794df031d23009329cd9cde521546358974ffced",
+      "expected_full_sha256": "bcdd3cdf0abd8934268dc45b0dc389e0f12ce4b7b50c5db8773aef45e4d0fd40",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/47",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-NAMED-DERIVATION-implementation_priority",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "79a81becd7a226c0ed57f763e5724fa49b5d5fa4bd8c54904a12ab3823393521",
+      "expected_full_sha256": "b11dbac4c0e3a3c868ce81a8fe219eb438cc0d98a33ebbde8cbc88b14a8e9102",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/48",
+        "revision_binding": "same_candidate_document"
+      }
     }
   ],
   "literal_provenance": {
@@ -8489,11 +8942,12 @@
         "product_requirements_design_derivation": "CORE-HARNESS",
         "project_record_runtime": "OS"
       },
-      "assessment_literals": "trace_content_conflict_not_complete/trace_incoherent_not_complete/product_value_state_uninterpreted_not_complete/missing_held/owner_or_state_uninterpreted_held/BRAIN_product_derivation_rejected/independent_target_not_supplied/semantic_projection_not_suppliedはL3/L4の当該不足の局所表示。実qualification/許可enumではない。",
       "source_pointer": "/contracts（L4の5責務契約）",
       "candidate_suffix": "任意contract keyの構造表示key+-owner。固定owner identityや資格へ変換しない。",
       "source_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
-      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519"
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "claim_returns": "L3/L10-F04の意味edge確定/受領補完/missing完了の責務候補。原因未提示の完了claimは意味/受領両候補を保持し実不足を創作しない。",
+      "local_result_literals": "trace_content_conflict_not_complete/trace_incoherent_not_complete/product_value_state_uninterpreted_not_complete/missing_held/owner_or_state_uninterpreted_held/BRAIN_product_derivation_rejected/independent_target_not_supplied/semantic_projection_not_suppliedはL3/L4の当該不足の局所表示。実qualification/許可enumではない。 uninterpreted_product_value_held/unsupported_derivation_kind_held/meaning_unknown_heldはL3/L10-F03/B01の未解釈/未確定不足を示す有限表示。"
     },
     "ast_constant_locations": [
       {
@@ -9490,9 +9944,19 @@
         "canonical_sha256": "d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/condition/right/value",
+        "value": "unset",
+        "canonical_sha256": "ac66e3bc9621458d8b98a8ca6e320ef8828d5f8af56bdc50b2983f7bd0017e4a"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/then/value",
         "value": "none",
         "canonical_sha256": "30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/else/value",
+        "value": "uninterpreted_product_value_held",
+        "canonical_sha256": "21f18a5f646467499f4c1d0ed14ad2d09f8b27fb23e1bb60426e735d3e99e0d8"
       },
       {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/effects/fields/actual_knowledge_adopted/value",
@@ -9624,122 +10088,61 @@
         "canonical_sha256": "21f41191c9b21c154f0aa3a06649728086b9fe35ac16bf6987a01dc0beaf2888"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/then/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/right/value",
+        "value": {},
+        "canonical_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/then/value",
         "value": "missing_held",
         "canonical_sha256": "7c4bd00caef2a9a67ac2c826cc75cbeadc88a1e0a6259c663011d12d7966aed1"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/condition/items/0/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/condition/items/0/right/value",
         "value": "BRAIN",
         "canonical_sha256": "0600439d268b2baaf026c1dadbdc26c93907460dfeb434743c0809582285bc6e"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/condition/items/1/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/condition/items/1/right/value",
         "value": "derived_complete",
         "canonical_sha256": "413b00ae3a6f0d9a5f976ac8a6218638f6061fe17fd78a20596566a88af887f3"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/then/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/then/value",
         "value": "BRAIN_product_derivation_rejected",
         "canonical_sha256": "861eba68e5fb54433ee3ed6aec3fdb26a9ffe440db28e4320029f9d603ad50db"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/else/condition/items/0/value/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/condition/value/collection/value",
+        "value": [
+          "schedule",
+          "state_transition",
+          "implementation_priority"
+        ],
+        "canonical_sha256": "334264f74718c30cdc4bca65f84ff53b3b027e79916cfd1344b4ca6f684eadeb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/then/value",
+        "value": "unsupported_derivation_kind_held",
+        "canonical_sha256": "8991d4d40a1ae4eea0fd8ce1d25b5c8a3a15d508f771ebd04098279864915a59"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/else/condition/items/0/value/right/value",
         "value": "CORE-HARNESS",
         "canonical_sha256": "c2229a3349982518e7f25de8bf9ff5cce1e9ffd23ba3b7b1e21057c5bd784125"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/else/condition/items/1/value/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/else/condition/items/1/value/right/value",
         "value": "candidate_input_only",
         "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/else/then/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/else/then/value",
         "value": "owner_or_state_uninterpreted_held",
         "canonical_sha256": "05ba6d7dee19da16facc7d3b10219157364151f0b35c4e9481e412f6d31351af"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/schedule/else/else/else/value",
-        "value": "candidate_input_only",
-        "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/then/value",
-        "value": "missing_held",
-        "canonical_sha256": "7c4bd00caef2a9a67ac2c826cc75cbeadc88a1e0a6259c663011d12d7966aed1"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/condition/items/0/right/value",
-        "value": "BRAIN",
-        "canonical_sha256": "0600439d268b2baaf026c1dadbdc26c93907460dfeb434743c0809582285bc6e"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/condition/items/1/right/value",
-        "value": "derived_complete",
-        "canonical_sha256": "413b00ae3a6f0d9a5f976ac8a6218638f6061fe17fd78a20596566a88af887f3"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/then/value",
-        "value": "BRAIN_product_derivation_rejected",
-        "canonical_sha256": "861eba68e5fb54433ee3ed6aec3fdb26a9ffe440db28e4320029f9d603ad50db"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/else/condition/items/0/value/right/value",
-        "value": "CORE-HARNESS",
-        "canonical_sha256": "c2229a3349982518e7f25de8bf9ff5cce1e9ffd23ba3b7b1e21057c5bd784125"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/else/condition/items/1/value/right/value",
-        "value": "candidate_input_only",
-        "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/else/then/value",
-        "value": "owner_or_state_uninterpreted_held",
-        "canonical_sha256": "05ba6d7dee19da16facc7d3b10219157364151f0b35c4e9481e412f6d31351af"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/state_transition/else/else/else/value",
-        "value": "candidate_input_only",
-        "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/then/value",
-        "value": "missing_held",
-        "canonical_sha256": "7c4bd00caef2a9a67ac2c826cc75cbeadc88a1e0a6259c663011d12d7966aed1"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/condition/items/0/right/value",
-        "value": "BRAIN",
-        "canonical_sha256": "0600439d268b2baaf026c1dadbdc26c93907460dfeb434743c0809582285bc6e"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/condition/items/1/right/value",
-        "value": "derived_complete",
-        "canonical_sha256": "413b00ae3a6f0d9a5f976ac8a6218638f6061fe17fd78a20596566a88af887f3"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/then/value",
-        "value": "BRAIN_product_derivation_rejected",
-        "canonical_sha256": "861eba68e5fb54433ee3ed6aec3fdb26a9ffe440db28e4320029f9d603ad50db"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/else/condition/items/0/value/right/value",
-        "value": "CORE-HARNESS",
-        "canonical_sha256": "c2229a3349982518e7f25de8bf9ff5cce1e9ffd23ba3b7b1e21057c5bd784125"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/else/condition/items/1/value/right/value",
-        "value": "candidate_input_only",
-        "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/else/then/value",
-        "value": "owner_or_state_uninterpreted_held",
-        "canonical_sha256": "05ba6d7dee19da16facc7d3b10219157364151f0b35c4e9481e412f6d31351af"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/fields/implementation_priority/else/else/else/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/derivation_data_results/value/else/else/else/else/value",
         "value": "candidate_input_only",
         "canonical_sha256": "b76d8e538f7d31892bf2d01c153a8c3dec190193b619a1cef291ed4f47e0f337"
       },
@@ -9884,9 +10287,53 @@
         "canonical_sha256": "0cf2db955f7d84be40fab36ff37b6fc2706628659ec69779c55dea04801b3552"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/value/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/0/value/right/value",
         "value": "known_fixture_only",
         "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/0/value/right/value",
+        "value": "-owner",
+        "canonical_sha256": "0cf2db955f7d84be40fab36ff37b6fc2706628659ec69779c55dea04801b3552"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/1/condition/value/right/value",
+        "value": "known_fixture_only",
+        "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/1/then/value",
+        "value": [
+          "BRAIN-L1-003005-owner"
+        ],
+        "canonical_sha256": "9e26e225143aa60a5ed93b6b4a1ae22bf53db1c206c11c7444668876fd311984"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/1/else/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/2/condition/value/right/value",
+        "value": "known_fixture_only",
+        "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/2/then/value",
+        "value": [
+          "HARNESS009-receiver-owner"
+        ],
+        "canonical_sha256": "a773c5e188d765832b95c6274d68122d19de449255c32dffee83d858aee47c51"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/left/arrays/2/else/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/condition/items/2/items/1/right/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/1/then/value",
@@ -9901,9 +10348,53 @@
         "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/value/right/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/0/value/right/value",
         "value": "known_fixture_only",
         "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/0/value/right/value",
+        "value": "-owner",
+        "canonical_sha256": "0cf2db955f7d84be40fab36ff37b6fc2706628659ec69779c55dea04801b3552"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/1/condition/value/right/value",
+        "value": "known_fixture_only",
+        "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/1/then/value",
+        "value": [
+          "BRAIN-L1-003005-owner"
+        ],
+        "canonical_sha256": "9e26e225143aa60a5ed93b6b4a1ae22bf53db1c206c11c7444668876fd311984"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/1/else/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/2/condition/value/right/value",
+        "value": "known_fixture_only",
+        "canonical_sha256": "b0a640b3a2b102a962d37d0372f24ffcd44077b834c2e38b2c46ffa9b0bf0ebb"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/2/then/value",
+        "value": [
+          "HARNESS009-receiver-owner"
+        ],
+        "canonical_sha256": "a773c5e188d765832b95c6274d68122d19de449255c32dffee83d858aee47c51"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/left/arrays/2/else/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/condition/items/2/items/1/right/value",
+        "value": [],
+        "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/value/fields/owner_return_candidates/arrays/2/then/value",
@@ -10033,12 +10524,37 @@
         "canonical_sha256": "a47cba240aaa683a382cec52364fd11f3f2c0b18c8091afa349b7ee2f9d276c8"
       },
       {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/condition/items/0/collection/value",
+        "value": [
+          "",
+          "TBD",
+          "unknown",
+          "unresolved"
+        ],
+        "canonical_sha256": "5bff266d7d58fa5f18377c9b5f2236bfc852a0aa5c7efe45c01754bc1f08ac2f"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/condition/items/1/collection/value",
+        "value": [
+          "",
+          "TBD",
+          "unknown",
+          "unresolved"
+        ],
+        "canonical_sha256": "5bff266d7d58fa5f18377c9b5f2236bfc852a0aa5c7efe45c01754bc1f08ac2f"
+      },
+      {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/then/value",
+        "value": "meaning_unknown_held",
+        "canonical_sha256": "15a67a2b7dfd4fb8e72785069cd1a203126ec635fcc4e8774fdeb22a39f74f6c"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/else/then/value",
         "value": "original_meaning_held",
         "canonical_sha256": "2859d611a3cc07de5514ab85b5b84ba5c0d82622f8520fbe953c9c3c18266b80"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/else/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.primary/fields/json_meaning_result/else/else/value",
         "value": "generated_view_meaning_change_rejected",
         "canonical_sha256": "7ce4c22445775e19ed0b7dcba59b5898f04b71bffc0e5e2fb49206dcc83d9c45"
       },
@@ -10204,6 +10720,26 @@
         "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.assessment/fields/candidate_owner_returns/arrays/3/condition/items/0/items/0/collection/value",
+        "value": [
+          "",
+          "TBD",
+          "unknown",
+          "unresolved"
+        ],
+        "canonical_sha256": "5bff266d7d58fa5f18377c9b5f2236bfc852a0aa5c7efe45c01754bc1f08ac2f"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.assessment/fields/candidate_owner_returns/arrays/3/condition/items/0/items/1/collection/value",
+        "value": [
+          "",
+          "TBD",
+          "unknown",
+          "unresolved"
+        ],
+        "canonical_sha256": "5bff266d7d58fa5f18377c9b5f2236bfc852a0aa5c7efe45c01754bc1f08ac2f"
+      },
+      {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-B01.assessment/fields/candidate_owner_returns/arrays/3/then/value",
         "value": [
           "BRAIN"
@@ -10241,9 +10777,13 @@
     ]
   },
   "mutation_observation_boundary": {
-    "observed": "原45＋既存3＋追加24 wholeだけ。",
-    "prior_observation": "337候補のうち104は旧実測で未識別だった。全337を合格/識別済みとしない。",
-    "still_unclosed": "両側同じ独立target誤り、供給されない必要集合、F03 knowledge target、B01意味変換、未見複合と実consumer資格は未閉包。"
+    "observed": "原45＋既存local3＋追加49の全whole。2件は不足witness。",
+    "unclosed": "規則mutationの検出率/未見複合の網羅は未証明。型域摂動とwhole一致を代替にしない。",
+    "historical_review_observation": {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3171#issuecomment-6185179366",
+      "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
+      "role": "旧headのreview観測。現要求/規範/新gateではない。"
+    }
   },
   "consumer_member_bindings": [
     {
@@ -10333,5 +10873,20 @@
       "binding_state": "logical_fixture_projection_not_actual_consumer_receipt",
       "unclosed": "実consumer source/資格/custody/受領receiptは未供給。候補表示から生成しない。"
     }
-  ]
+  ],
+  "finite_marker_boundary": {
+    "recognized": [
+      "",
+      "TBD",
+      "unknown",
+      "unresolved"
+    ],
+    "use": "F01 material/F02 trace-binding/F03 material binding/B01 JSON意味の有限未確定表示。F04 state/relation/receiverは別途明示known集合を用いる。",
+    "uninterpreted_labels": [
+      "N/A",
+      "pending",
+      "Unknown"
+    ],
+    "limit": "これら未列挙labelの自然言語意味を全fieldで同定する機構は未実現。二者内容等値を実source資格/元意味十分性へ昇格しない。F03 product_value_stateはunset以外をlabelに依らず未解釈保留する。"
+  }
 }
