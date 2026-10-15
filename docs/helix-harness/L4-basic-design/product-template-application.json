@@ -2014,7 +2014,7 @@
         "scope",
         "owner"
       ],
-      "compare_value_semantics": "各比較fieldはAbsent/null/valueを区別する。いずれか片側がAbsent/nullなら等しいと扱わず関係をunknownとする。既知値はJSON値として比較し、objectのkey順は無視、array順は保持する。source_locatorとsha256は原Refの保持値で、identity対応のkeyではない。",
+      "compare_value_semantics": "比較はRFC8259 JSON値の構造等値。object key順は無視、array順を保持、booleanはnumberと異なる型として比較する。JSON numberは数学的数値として比較する。有限合成fixture範囲のみであり、重複object key・任意精度codecの規範ではない。Absent/nullは等値にしない。",
       "known_field_condition": "identity/revision/scope/ownerがcandidateと対象Refの双方に存在しnullでない場合だけ四fieldの完全な一致判定を行う。空文字や空objectは供給されたJSON値として比較し、資格・意味を補わない。",
       "context_condition": "一致したmember/snapshot occurrenceを含むUniverseごとに、CandidateUniverse.ref.scope、CandidateUniverse.binding.product_scope、candidate.scope、各一致TemplateSnapshot.ref.scope、TemplateSnapshot.binding.product_scopeを照合する。全て供給され既知で同一JSON値の場合だけcoherent。scope keyの改名やproduct/projectの読み替えは禁止。",
       "relation_condition": "candidate occurrenceと各Universe occurrenceについて、candidate RefがそのUniverse.membersの元occurrence、およびApplicationInput.templates中のTemplateSnapshot.refの元occurrenceと四比較field全て一致し、さらにそのUniverseのcontextがcoherentの場合に限り当該Universe内corresponding_in_fixtureを返す。Universeごとの一致やunknownを他Universeで消さず、外側は全Universe結果から対応状態を集約する。",
@@ -2051,18 +2051,27 @@
         "outer_universes_empty": "no_universe_entries",
         "aggregate_any_corresponding": "corresponding_in_fixture",
         "aggregate_no_correspondence_with_unknown": "unknown_ref_fields",
-        "aggregate_no_correspondence_all_known": "not_corresponding"
+        "aggregate_no_correspondence_all_known": "not_corresponding",
+        "no_exact_member_same_identity_revision_or_scope_mismatch": "same_identity_revision_or_scope_mismatch",
+        "no_exact_snapshot_same_identity_revision_or_scope_mismatch": "same_identity_revision_or_scope_mismatch",
+        "members_invalid_type": "unresolved_universe_members_invalid_type",
+        "templates_invalid_type_after_member_match": "not_compared_snapshots_invalid_type",
+        "outer_universes_invalid_type": "not_compared_universes_invalid_type"
       },
       "state_precedence": [
         "candidate_ref_field_absent_or_null",
         "members_absent",
         "members_null",
+        "members_invalid_type",
         "members_empty",
         "no_exact_member_but_target_member_field_absent_or_null",
+        "no_exact_member_same_identity_revision_or_scope_mismatch",
         "no_exact_member_all_target_fields_known",
+        "templates_invalid_type_after_member_match",
         "templates_absent_after_member_match",
         "templates_null_after_member_match",
         "no_exact_snapshot_but_relevant_snapshot_field_absent_or_null",
+        "no_exact_snapshot_same_identity_revision_or_scope_mismatch",
         "no_exact_snapshot_all_relevant_fields_known",
         "context_field_absent_or_null",
         "context_values_differ",
@@ -2077,41 +2086,55 @@
         "aggregate_no_correspondence_all_known"
       ],
       "output_record_fields": {
-        "candidate_refs_presence": "absent|null|value",
+        "candidate_refs_presence": "absent|null|empty|value|invalid_type",
         "candidate_refs": "Absent|null|Ref[]; absent時省略、null保持",
         "links": "CandidateRefProjectionLink[] candidate occurrence順",
-        "universes_presence": "absent|null|value",
+        "universes_presence": "absent|null|empty|value|invalid_type",
         "universe_count": "integer|null; absent/nullではnull",
         "universes_sha256": "string|null; outer arrayの順/重複を含むcanonical digest",
-        "templates_presence": "absent|null|value",
+        "templates_presence": "absent|null|empty|value|invalid_type",
         "template_non_ref_sha256": "string[]|null; 元snapshot順",
         "qualification": "固定値 not_established_by_this_ref_projection",
         "selection": "固定値 not_established_by_this_ref_projection",
-        "side_effect_count": "integer; 0"
+        "side_effect_count": "0",
+        "aggregate_classification": "corresponding|known_noncorresponding|unknown|not_compared",
+        "member_comparison_occurrences": "TargetOccurrenceComparison[] 元members index順",
+        "snapshot_comparison_occurrences": "TargetOccurrenceComparison[] 元templates index順。member exactが無ければ[]",
+        "return_owner_candidates": "ReturnOwnerCandidate[]; candidate absent/null/invalidはBRAIN候補、linkはprojection stateと各Universe evidence routeから導出",
+        "universe_members_presence": "absent|null|empty|value|invalid_type",
+        "context_return_owner_candidates": "context unknown/incoherentの戻し先責務候補; 実recipient資格ではない"
       },
       "logical_result_shapes": {
         "CandidateRefProjectionLink": {
           "fields": {
             "candidate_index": "integer",
-            "candidate_ref": "Ref",
+            "candidate_ref": "JSONValue; object RefならRef、null/non-objectはrawで保持",
             "universe_results": "UniverseProjection[] in universes input order",
             "different_fields": "string[] in compare_fields order",
             "unresolved_fields": "string[] in compare_fields order",
-            "projection_state": "ProjectionState"
+            "projection_state": "ProjectionState",
+            "aggregate_classification": "corresponding|known_noncorresponding|unknown|not_compared",
+            "return_owner_candidates": "ReturnOwnerCandidate[] state/evidence mapping順"
           }
         },
         "UniverseProjection": {
           "fields": {
             "universe_index": "integer",
-            "universe_ref": "Ref",
-            "universe_members_presence": "absent|null|empty|value",
+            "universe_ref": "Absent|null|Ref|invalid raw value; absent時省略しpresenceは維持",
+            "universe_members_presence": "absent|null|empty|value|invalid_type",
             "universe_members_sha256": "string|null",
-            "matching_universe_member_indices": "integer[] in original member order",
-            "matching_template_snapshot_indices": "integer[] in original templates order",
-            "different_fields": "string[] in compare_fields order",
-            "unresolved_fields": "string[] in compare_fields order",
+            "matching_universe_member_indices": "integer[]元index順",
+            "matching_template_snapshot_indices": "integer[]元index順",
+            "different_fields": "compare_fields順",
+            "unresolved_fields": "compare_fields順",
             "context_state": "not_evaluated|unknown|incoherent|coherent",
-            "projection_state": "UniverseProjectionState"
+            "projection_state": "UniverseProjectionState",
+            "member_comparison_occurrences": "TargetOccurrenceComparison[] 元members順",
+            "snapshot_comparison_occurrences": "TargetOccurrenceComparison[] 元templates順、member exactが無ければ[]",
+            "aggregate_classification": "corresponding|known_noncorresponding|unknown",
+            "return_owner_candidates": "ReturnOwnerCandidate[] state/evidence mapping順",
+            "universe_ref_presence": "absent|null|value|invalid_type",
+            "context_return_owner_candidates": "ReturnOwnerCandidate[]; context unknown/incoherentならcontext_bindingの未解決候補を保持"
           }
         },
         "ProjectionState": {
@@ -2121,7 +2144,8 @@
             "unknown_ref_fields",
             "not_compared_universes_absent",
             "not_compared_universes_null",
-            "no_universe_entries"
+            "no_universe_entries",
+            "not_compared_universes_invalid_type"
           ]
         },
         "UniverseProjectionState": {
@@ -2134,10 +2158,65 @@
             "no_universe_member",
             "unresolved_universe_members_absent",
             "unresolved_universe_members_null",
-            "universe_scope_unresolved"
+            "universe_scope_unresolved",
+            "same_identity_revision_or_scope_mismatch",
+            "unresolved_universe_members_invalid_type",
+            "not_compared_snapshots_invalid_type"
           ]
         },
-        "shape_status": "logical L4/L9 fixture contract only。formal wire schema、codec、実source資格、runtime behaviorは未定義。"
+        "shape_status": "logical L4/L9 fixture contract only。formal wire schema、codec、実source資格、runtime behaviorは未定義。",
+        "TargetOccurrenceComparison": {
+          "fields": {
+            "side": "candidate_ref|universe_member_ref|template_snapshot_ref",
+            "target_index": "integer",
+            "relation": "exact_ref|same_identity_revision_or_scope_mismatch|unrelated_known_ref|target_field_unresolved|candidate_field_unresolved",
+            "candidate_field_presence": "FieldPresenceByCompareField[]",
+            "target_field_presence": "FieldPresenceByCompareField[]; absent Refでは全field absent",
+            "different_fields": "string[] compare_fields順",
+            "unresolved_fields": "string[] compare_fields順",
+            "candidate_values": "JSONValueByKnownField[]",
+            "target_values": "JSONValueByKnownField[]; absent/null/non-objectはrecord_presenceで区別",
+            "return_owner_candidates": "ReturnOwnerCandidate[]",
+            "candidate_record_presence": "object|null|non_object",
+            "target_record_presence": "absent|null|object|non_object"
+          }
+        },
+        "FieldPresenceByCompareField": {
+          "fields": {
+            "field": "identity|revision|scope|owner",
+            "presence": "absent|null|value",
+            "value": "JSONValue; absent/nullなら省略"
+          }
+        },
+        "JSONValueByKnownField": {
+          "fields": {
+            "field": "identity|revision|scope|owner",
+            "value": "finite JSON value"
+          }
+        },
+        "ReturnOwnerCandidate": {
+          "fields": {
+            "responsibility_source": "knowledge_definition_or_version|product_requirement_value|application_contract|product_requirement_or_application_contract_unresolved|relevant_design_or_oracle_owner",
+            "recipient": "BRAIN|HARNESS008|HARNESS|unresolved",
+            "qualification": "not_established_by_projection"
+          }
+        },
+        "CandidateRefProjectionOutput": {
+          "fields": {
+            "candidate_refs_presence": "absent|null|empty|value|invalid_type",
+            "candidate_refs": "Absent|null|array|invalid raw JSON; absent時省略",
+            "links": "CandidateRefProjectionLink[] candidate occurrence順",
+            "universes_presence": "absent|null|empty|value|invalid_type",
+            "universe_count": "integer|null",
+            "universes_sha256": "string|null",
+            "templates_presence": "absent|null|empty|value|invalid_type",
+            "template_non_ref_sha256": "string[]|null",
+            "qualification": "not_established_by_this_ref_projection",
+            "selection": "not_established_by_this_ref_projection",
+            "return_owner_candidates": "ReturnOwnerCandidate[]",
+            "side_effect_count": "0"
+          }
+        }
       },
       "algorithm": [
         {
@@ -2214,6 +2293,18 @@
           "step": 9,
           "operation": "preserve_input",
           "output": "原candidate_refs、universes、members、templatesの値と順序を変更しない。 qualification/selectionはnot_established_by_this_ref_projection、side_effect_count=0。"
+        },
+        {
+          "step": 10,
+          "operation": "aggregate_class_from_declared_state_classes",
+          "rule_ref": "state_class_by_universe_state + aggregate_class_rule",
+          "output": "全Universeの正式stateからのみ候補aggregate_classification/projection_stateを導出する。case IDまたはoracleを判定入力にしない。"
+        },
+        {
+          "step": 11,
+          "operation": "emit_target_occurrence_comparisons",
+          "rule_ref": "target_occurrence_rule + return_owner_candidates_by_evidence_side",
+          "output": "元target occurrenceごとにside/index/field presence/differences/relation/戻し先候補を出力。元配列を変更しない。"
         }
       ],
       "unresolved_field_rule": "candidate自身の比較fieldにAbsent/nullがあればunknown。candidateが全て既知の場合、完全一致memberが一つも無いときに限り、members内の比較field不足/nullをunknown根拠としてunresolved_fieldsへ返す。完全一致memberがあれば、その集合の他の不一致/不明memberは候補対応を覆さない。完全一致memberがあり、templates内に完全一致snapshotが一つも無いときに限り、snapshot Refの比較field不足/nullをunknown根拠としてunresolved_fieldsへ返す。完全一致snapshotがあれば他の不一致/不明snapshotは候補対応を覆さない。既知の他targetとの差はdifferent_fieldsへ残す。",
@@ -2228,9 +2319,192 @@
         "string_number_serialization": "文字列escapeと有限ECMAScript Numberの表記はJSON.stringifyに従う。booleanはnumberと区別する。",
         "digest_purpose": "固定fixtureの入力保持の照合に限る。digestはRef対応の判定条件にしない。",
         "finite_fixture_limit": "固定合成packetでhash化するRef/materialはstring・null・array・objectのみ。指数幅/精度を持つ任意JSON numberや重複object keyの一般canonical codecを定義せず、このhashはwire-format/producer互換の証明ではない。"
-      }
+      },
+      "state_class_by_universe_state": {
+        "corresponding_in_fixture": "corresponding",
+        "not_corresponding": "known_noncorresponding",
+        "same_identity_revision_or_scope_mismatch": "unknown",
+        "unknown_ref_fields": "unknown",
+        "not_compared_snapshots_absent": "unknown",
+        "not_compared_snapshots_null": "unknown",
+        "no_universe_member": "known_noncorresponding",
+        "unresolved_universe_members_absent": "unknown",
+        "unresolved_universe_members_null": "unknown",
+        "universe_scope_unresolved": "unknown",
+        "unresolved_universe_members_invalid_type": "unknown",
+        "not_compared_snapshots_invalid_type": "unknown"
+      },
+      "aggregate_class_precedence": [
+        "corresponding",
+        "unknown",
+        "known_noncorresponding"
+      ],
+      "aggregate_class_rule": {
+        "aggregate_any_corresponding": "一つ以上correspondingがあれば全candidateをcorresponding_in_fixtureとする。無関係なunknown/differenceはoccurrence診断へ残し、exact matchを覆さない。",
+        "aggregate_no_correspondence_with_unknown": "correspondingがなく、一つ以上unknown classならunknown_ref_fieldsとする。",
+        "aggregate_no_correspondence_all_known": "correspondingもunknownも無い場合、known_noncorrespondingとしてnot_correspondingとする。",
+        "outer_container": "universesのAbsent/null/emptyはaggregateより優先しnot_compared_universes_absent/null/no_universe_entriesを返す。"
+      },
+      "target_occurrence_rule": {
+        "enumeration": "membersとtemplates全元occurrenceを元index順で比較・保持し、重複を削除せず、Registry重複違反も推論しない。",
+        "relation_values": [
+          "exact_ref",
+          "same_identity_revision_or_scope_mismatch",
+          "unrelated_known_ref",
+          "target_field_unresolved",
+          "candidate_field_unresolved"
+        ],
+        "same_identity_rule": "全field既知でidentityが一致しrevision/scopeが異なる関係はunrelatedではなくunknown conflictとし、known differenceとunresolved revision/scopeを両方残す。",
+        "unknown_rule": "candidateまたは到達targetの比較fieldがAbsent/nullならsideとfield presenceを保持する。known difference併存時は両方を出力する。",
+        "exact_noninterference": "少なくとも一つexact targetがあれば同じsideのcorrespondenceは維持する。無関係targetのunknown/differenceは別occurrence診断として残す。",
+        "unrelated_rule": "全field既知でidentityが異なるtargetはunrelated_known_ref。これだけでは同identity version/scope conflictとしない。"
+      },
+      "return_owner_candidates_by_evidence_side": {
+        "candidate_ref": {
+          "responsibility_source": "knowledge_definition_or_version",
+          "recipient": "BRAIN",
+          "qualification": "not_established_by_projection"
+        },
+        "universe_member_ref": {
+          "responsibility_source": "product_requirement_value",
+          "recipient": "HARNESS008",
+          "qualification": "not_established_by_projection"
+        },
+        "template_snapshot_ref": {
+          "responsibility_source": "application_contract",
+          "recipient": "HARNESS",
+          "qualification": "not_established_by_projection"
+        },
+        "context_binding": {
+          "responsibility_source": "product_requirement_or_application_contract_unresolved",
+          "recipient": "unresolved",
+          "qualification": "not_established_by_projection"
+        },
+        "candidate_pair_gap": {
+          "responsibility_source": "relevant_design_or_oracle_owner",
+          "recipient": "unresolved",
+          "qualification": "not_established_by_projection"
+        }
+      },
+      "condition_semantics": {
+        "no_exact_member_same_identity_revision_or_scope_mismatch": "全比較fieldが既知のmember occurrenceでidentityがcandidateと等しく、revisionまたはscopeが異なり、完全一致memberが無い。unknownとして扱い、元値とrevision/scope差分を保持する。",
+        "no_exact_snapshot_same_identity_revision_or_scope_mismatch": "完全一致memberがあり、全比較fieldが既知のsnapshot occurrenceでidentityがcandidateと等しく、revisionまたはscopeが異なり、完全一致snapshotが無い。unknownとして扱い、元値とrevision/scope差分を保持する。",
+        "no_exact_member_all_target_fields_known": "完全一致memberも到達RefのAbsent/nullもsame-identity revision/scope conflictも無いときだけknown noncorrespondence。",
+        "no_exact_snapshot_all_relevant_fields_known": "完全一致snapshotも到達RefのAbsent/nullもsame-identity revision/scope conflictも無いときだけknown noncorrespondence."
+      },
+      "return_owner_candidates_by_relation": {
+        "exact_ref": [],
+        "candidate_field_unresolved": [
+          "candidate_ref"
+        ],
+        "target_field_unresolved": [
+          "side_specific_target"
+        ],
+        "same_identity_revision_or_scope_mismatch": [
+          "candidate_ref",
+          "side_specific_target"
+        ],
+        "unrelated_known_ref": [
+          "candidate_pair_gap"
+        ]
+      },
+      "aggregate_input_by_class": {
+        "corresponding": "aggregate_any_corresponding",
+        "unknown": "aggregate_no_correspondence_with_unknown",
+        "known_noncorresponding": "aggregate_no_correspondence_all_known",
+        "not_compared": "outer_container_not_compared"
+      },
+      "input_domain_rule": {
+        "normal_fixture": "candidate_refsはRef[]、universesはCandidateUniverse[]|null、templatesはTemplateSnapshot[]。全比較fieldを供給した完全形と、既存L5でnullableとされたcontainerを区別する。",
+        "boundary_fixture": "Absent/nullはpresenceとして扱う。array memberがnull/non-object、array自体の異型、Ref fieldの異型もJSONValueとして保持しinvalid_type/target_field_unresolvedへ出す。例外や暗黙emptyへ変換しない。",
+        "all_null_or_absent": "candidate/universe/member/template/refの全要素null/Absentでは該当sideの未解決fieldを出力し、既知差分・exact indexは作らない。",
+        "number_boolean": "booleanとnumberを別JSON kindとして扱い、trueと1を等値にしない。",
+        "invalid_type_behavior": "containerがarrayを期待される場面でobject/scalar、Ref位置でnull/scalar/arrayを受けても例外にせず、invalid_typeまたはtarget_field_unresolvedとしてraw valueとindexを保持する。",
+        "snapshot_ref": "TemplateSnapshot.refがAbsent/null/non-objectの場合はその区別を出力し、空objectやcandidate Refへ置換しない。universe.refも同様にAbsent/nullをcontext unresolvedとして保持。"
+      },
+      "aggregate_container_state_by_presence": {
+        "absent": "outer_universes_absent",
+        "null": "outer_universes_null",
+        "empty": "outer_universes_empty",
+        "invalid_type": "outer_universes_invalid_type"
+      },
+      "aggregate_output_class_by_input": {
+        "aggregate_any_corresponding": "corresponding",
+        "aggregate_no_correspondence_with_unknown": "unknown",
+        "aggregate_no_correspondence_all_known": "known_noncorresponding",
+        "outer_universes_absent": "not_compared",
+        "outer_universes_null": "not_compared",
+        "outer_universes_empty": "not_compared",
+        "outer_universes_invalid_type": "not_compared"
+      },
+      "logic_limits_ja": "比較範囲は合成fixture上のRef内容対応とpresence診断まで。L3/L10にある他axisのmeaning/qualification/source qualification/selection/use/実責務ownerの最終認可はこの投影だけでは成立しない。",
+      "return_owner_candidates_by_universe_state": {
+        "corresponding_in_fixture": [],
+        "not_corresponding": [
+          "candidate_pair_gap"
+        ],
+        "same_identity_revision_or_scope_mismatch": [],
+        "unknown_ref_fields": [],
+        "not_compared_snapshots_absent": [
+          "template_snapshot_ref"
+        ],
+        "not_compared_snapshots_null": [
+          "template_snapshot_ref"
+        ],
+        "not_compared_snapshots_invalid_type": [
+          "template_snapshot_ref"
+        ],
+        "no_universe_member": [
+          "candidate_pair_gap"
+        ],
+        "unresolved_universe_members_absent": [
+          "universe_member_ref"
+        ],
+        "unresolved_universe_members_null": [
+          "universe_member_ref"
+        ],
+        "unresolved_universe_members_invalid_type": [
+          "universe_member_ref"
+        ],
+        "universe_scope_unresolved": [
+          "context_binding"
+        ]
+      },
+      "return_owner_candidates_by_projection_state": {
+        "not_compared_universes_absent": [
+          "candidate_pair_gap"
+        ],
+        "not_compared_universes_null": [
+          "candidate_pair_gap"
+        ],
+        "not_compared_universes_invalid_type": [
+          "candidate_pair_gap"
+        ],
+        "no_universe_entries": [
+          "candidate_pair_gap"
+        ],
+        "corresponding_in_fixture": [],
+        "not_corresponding": [
+          "candidate_pair_gap"
+        ],
+        "unknown_ref_fields": []
+      },
+      "canonical_value_equality": "JSON object key order ignored, arrays ordered, booleans distinct from numbers; number comparison only for finite values in fixed packet domain. No arbitrary precision/wire canonical codec is asserted.",
+      "output_presence_rule": "各collectionのoutput presenceはAbsent/null/invalid_typeを区別し、array valueが[]ならempty、非空arrayならvalue。raw slotのinput-preservation側はproperty presenceを別記する。"
     },
-    "source_relation_limit": "現行BRAIN normal fixtureのcandidate scope objectはproject key、CORE product-scope fixtureはproduct keyであり、両者を改名せず直接対応とはしない。exact controlは合成Refを別々に供給した比較用fixtureである。TRACE-02全体、正式schema/codec、外部producerの資格/互換/receiptは未閉包のまま。",
-    "independent_fixture_expectation_count": 29
+    "source_relation_limit": "現行BRAIN normal fixtureのcandidate scope objectはproject key、CORE product-scope fixtureはproduct keyであり、両者を改名せず直接対応とはしない。exact controlは合成Refを別々に供給した比較用fixtureである。TRACE-02全体、正式schema/codec、外部producerの資格/互換/receiptは未閉包のまま。 実owner資格、source資格、外部通知・許可は本projectionから成立しない。",
+    "independent_fixture_expectation_count": 41,
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "revision": "7b209d91cdf2c0e6114fd41bf1467df82deedc42",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "line_range": "16–91",
+      "preserved": "旧templateのidentity/version/source/usabilityと候補母集合の意味を読み、identity/revision/scope/ownerを別々に比較する。",
+      "changed": "旧Registryのduplicateをfailureとする処理は再利用せず、このRef projectionでは全occurrence/orderを保持して重複自体を拒否しない。適用・Registry成立は別設計責務。",
+      "reason": "L3/L4/L10が要求する参照内容/版/範囲の対応を純投影で明示し、selection/qualification/Registry実成立へ越境しないため。",
+      "old_failure_consumer": "旧Registryの重複failureは旧sourceのRegistry適用処理に属する。現L4 F01のbackflowへは候補入力値と設計oracle不足を戻す。"
+    },
+    "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION"
   }
 }
