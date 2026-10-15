@@ -1,0 +1,2516 @@
+{
+  "document_id": "HELIXBRAIN-L5-005",
+  "parent": "HELIXBRAIN-L2-005",
+  "layer": "L5",
+  "pair": "L8",
+  "source_main": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+  "status": "draft_limited_pure_logic_not_implementation_ready",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "implementation_readiness": "not_ready",
+    "boundary": "合成fixture内のrelation内容と領域横断chainを照合する。実知識資格、relationの実採用、因果の実証、製品architectureの選択、接続や権限を成立させない。"
+  },
+  "approval": {
+    "record_id": "HDEC-BRAIN-PATTERN-CONNECTION-PREREQUISITE-L3L10-2026-10-12",
+    "record_path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+    "record_sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33",
+    "approved_content_head": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+    "approval_pr": 2950,
+    "approval_comment": 6113444040,
+    "main_admission_commit": "990ffad297804dd39d4da1474545e90ddc060c7f",
+    "admission_source": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+    "admission_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+    "decision_sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33",
+    "approved_wholes": [
+      {
+        "id": "HELIXBRAIN-L3-005-F01",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "whole": {
+          "id": "HELIXBRAIN-L3-005-F01",
+          "parent": "HELIXBRAIN-L2-005",
+          "title": "意味relationの種類・向き・端点",
+          "obligation": "Pattern/Unit/Partの領域内外relationをrequires/depends_on/compatible_with/conflicts_with/affects/alternative_to/composed_of等の種類、向き、両端identityと知識revisionへ結ぶ。名称類似だけでedgeを確定せず、端点不明/向きや意味未定/未確認の因果はunknownとして返す。",
+          "oracle_ref": "HELIXBRAIN-L10-005-F01"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L3-005-F02",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "whole": {
+          "id": "HELIXBRAIN-L3-005-F02",
+          "parent": "HELIXBRAIN-L2-005",
+          "title": "領域横断の関係保持",
+          "obligation": "Authentication→Session→Frontend State→UX、およびDatabase→Performance→Infrastructureのような領域横断の意味relationを知識の提供範囲で辿れるようにする。各関係の根拠を保持し、例の領域名やgraphを製品固有設計の固定形にしない。",
+          "oracle_ref": "HELIXBRAIN-L10-005-F02"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L10-005-F01",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "whole": {
+          "id": "HELIXBRAIN-L10-005-F01",
+          "parent": "HELIXBRAIN-L2-005",
+          "title": "意味relationの種類・向き・端点",
+          "requirement_ref": "HELIXBRAIN-L3-005-F01",
+          "positive_input": "各relationと方向を持つgraph、名前類似だけのedge、未知endpoint、未確認因果を比較する。",
+          "expected_observation": "種類/向き/両端と根拠が辿れ、未知を確定relationにしない。",
+          "negative_input": "relation名だけ、未知端点成功、名称類似を意味関係、相関を因果、向きを反転して同意味。",
+          "failure_observation": "未決edgeを確定せずBRAIN該当L1/知識ownerへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L10-005-F02",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "whole": {
+          "id": "HELIXBRAIN-L10-005-F02",
+          "parent": "HELIXBRAIN-L2-005",
+          "title": "領域横断の関係保持",
+          "requirement_ref": "HELIXBRAIN-L3-005-F02",
+          "positive_input": "例の領域横断chainと端点一つ未確定の同scope chainを比較する。",
+          "expected_observation": "横断関係と途切れた箇所、各relation根拠を追える。",
+          "negative_input": "領域ごとにgraph切断、endpoint不明を自動補完、例を全製品のarchitectureとして選択。",
+          "failure_observation": "未知関係はBRAINへ戻し、製品適用はCOREの判断へ残す。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "approved_whole_hashes": [
+      {
+        "id": "HELIXBRAIN-L3-005-F01",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "canonical_sha256": "ed0bd93060730f6d17c15ddffcf87b85c1cd1176cb058a3305106e1700fee589"
+      },
+      {
+        "id": "HELIXBRAIN-L3-005-F02",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "canonical_sha256": "19e45ad994c0aeb1ea6cfa17e8b277a6c90cb558ec31107ef6c7b5476bcc469a"
+      },
+      {
+        "id": "HELIXBRAIN-L10-005-F01",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "canonical_sha256": "8c29a728fe22dc87909b0f866b4caff59469ad67c387d6de00b884fa69371ef7"
+      },
+      {
+        "id": "HELIXBRAIN-L10-005-F02",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "source_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+        "canonical_sha256": "cf7d0eeb717d90b428948831b455a76ffa33e4cddd8c705f010199008eda4576"
+      }
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 9051,
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 78839,
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 27596,
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 48699,
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 55987,
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/structure-relation-trace.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 13081,
+      "sha256": "220b173400a5a38d4968ecf71b33a0f5cf89d23c63676fad78112e4b7f4ea673"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 492312,
+      "sha256": "e61f6d194c0db5783c6601550061e37a4277659f423939ae25ef1e284bb139bc"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 5470,
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 1130244,
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 18373797,
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-catalog-relation-projection.md",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 2305,
+      "sha256": "165b2bd3b1871034423f2542c5612a04ec2e2d6a714638bb7df281180646b1fd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 73565,
+      "sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+      "byte_length": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+      "byte_length": 27707,
+      "sha256": "687171c155fc520bdd7ecada325efd3435c5e66de4edb678fb5a5e7bd717da27"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+      "byte_length": 32035,
+      "sha256": "c92baa143afd6bf9a2e8a8531bcfecbebeaf8c70aff593930db9e9bf328c9dae"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "scope_audit": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+    "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+    "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430,
+      "main_basic_pair_document_presence": 92,
+      "main_detail_pair_document_presence": 19,
+      "missing_detail_pair_document_presence": 73,
+      "unproven_design_completion_parents": 92
+    },
+    "source_pin_count": 48
+  },
+  "legacy_and_consumer_basis": {
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-1D471065A4A8B6927ED7",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-catalog-relation-projection.md",
+        "line_start": 17,
+        "line_end": 36,
+        "whole_sha256": "165b2bd3b1871034423f2542c5612a04ec2e2d6a714638bb7df281180646b1fd",
+        "quote": "\n`docs/design/design-catalog.yaml`を別graphへ複製せず、既存relation graphのcatalog rootとして読み込む。\nloaderはcatalog item、登録artifact、review済みdigest authority、design-coverage source/test、governing PLANを\n同じ`RelationGraphSourceSet`へ供給し、projectorは既存node・edge・finding vocabularyへ投影する。\n\n## 2. 型付き関係\n\n- catalog rootからitemへ`catalogs`を張り、itemから登録artifactへ`catalog-artifact`を張る。\n- rootからreview済みdigest authorityへ`reviewed-by`、coverage source/testへ`validated-by`を張る。\n- governing PLANは履歴上の所有元として`governed-by` edgeにだけ保持し、current PLANの依存正本にはしない。\n- artifact変更からitemとrootへ逆引きでき、catalog変更から全authority consumerへimpactを辿れるようにする。\n\n## 3. fail-close境界\n\n`done` itemのartifact欠落、catalog外のcurrent design文書、review済みdigestのmissing/staleを、それぞれ\n`catalog-artifact-missing`、`catalog-unregistered-artifact`、`reviewed-digest-missing`／\n`reviewed-digest-stale`として分離する。semantic digestは自動更新せず、再検収要求だけを返す。\noptional sourceが存在しないconsumer checkoutでは既存loader方針どおりfail-openとするが、catalogを読めた後の\nnode／必須edge欠落やintegrity違反をsilent fallbackしてはならない。\n",
+        "quote_sha256": "af52824eb52f2215c9538a48cca25d5227558e8ed39e96caa7bc052cb6a69c8f",
+        "ledger_row": {
+          "asset_id": "LEGACY-ASSET-1D471065A4A8B6927ED7",
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L6-function-design/design-catalog-relation-projection.md",
+          "source_sha256": "165b2bd3b1871034423f2542c5612a04ec2e2d6a714638bb7df281180646b1fd",
+          "source_surface": "docs",
+          "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "approval_revision": null,
+          "target_path": null,
+          "target_sha256": null,
+          "meaning_interface_invariance_reason": null,
+          "consumer_refs": [],
+          "rights_status": "unreviewed",
+          "executability_status": "unreviewed",
+          "secret_status": "unreviewed",
+          "external_effect_status": "unreviewed",
+          "decided_by": null,
+          "decided_at": null,
+          "copy_performed_by": null,
+          "copy_performed_at": null,
+          "read_after_record_ref": null,
+          "migration_preconditions": [
+            "semantic_atom_inventory",
+            "product_owner_decision",
+            "parent_requirement_binding",
+            "consumer_check",
+            "rights_check",
+            "executability_check",
+            "secret_check",
+            "external_effect_check"
+          ]
+        },
+        "preserve": "typed relation、根拠と両端の参照、欠落/staleの区別、意味digestを自動更新しない。",
+        "change": "catalog artifact/PLANの運用edgeをBRAINの意味relationへ読み替えず、旧loader/DB/runtimeを移植しない。",
+        "reason": "9/26 PO原文L1-005/9/28採択005/10/12委任承認が知識構造間の意味relationと横断chainを要求する。",
+        "reuse": "参照のみ。採択BRAIN005に従い意味relationを再導出する。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+        "line_start": 10,
+        "line_end": 52,
+        "whole_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+        "quote": "categories:\n  - id: plan\n    name: 企画・要求\n  - id: req\n    name: 要件定義\n  - id: basic\n    name: 基本設計\n  - id: detail\n    name: 詳細設計\n  - id: data\n    name: データ設計\n  - id: std\n    name: 標準・方式\n  - id: sec\n    name: セキュリティ\n  - id: ops\n    name: 運用・可観測性\n  - id: infra\n    name: インフラ・基盤\n  - id: saas\n    name: SaaS事業・課金\n  - id: web\n    name: Webクライアント\n  - id: mobile\n    name: モバイルアプリ\n  - id: desktop\n    name: デスクトップアプリ\n  - id: cli\n    name: CLI・管理ツール\n  - id: apisvc\n    name: API・ヘッドレスサービス\n  - id: domain\n    name: ドメイン(DDD)\n  - id: common\n    name: 共通・拡張・規約\n  - id: agent\n    name: AIエージェント\n  - id: test\n    name: テスト・検証\n  - id: mgmt\n    name: 管理\n  - id: sprint\n    name: スクラム運営(ハイブリッド層)",
+        "quote_sha256": "b1954dcf307723e2bf08b030dcc25fed251145710051ef811621ee34f2299333",
+        "ledger_row": {
+          "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/design-catalog.yaml",
+          "source_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+          "source_surface": "docs",
+          "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "approval_revision": null,
+          "target_path": null,
+          "target_sha256": null,
+          "meaning_interface_invariance_reason": null,
+          "consumer_refs": [],
+          "rights_status": "unreviewed",
+          "executability_status": "unreviewed",
+          "secret_status": "unreviewed",
+          "external_effect_status": "unreviewed",
+          "decided_by": null,
+          "decided_at": null,
+          "copy_performed_by": null,
+          "copy_performed_at": null,
+          "read_after_record_ref": null,
+          "migration_preconditions": [
+            "semantic_atom_inventory",
+            "product_owner_decision",
+            "parent_requirement_binding",
+            "consumer_check",
+            "rights_check",
+            "executability_check",
+            "secret_check",
+            "external_effect_check"
+          ]
+        },
+        "preserve": "既存分類を知識領域検討のinventoryとして参照。",
+        "change": "旧catalog分類は七relationや領域chainの直接根拠ではない。",
+        "reason": "9/26 PO原文L1-005/9/28採択005/10/12委任承認が知識構造間の意味relationと横断chainを要求する。",
+        "reuse": "参照のみ。採択BRAIN005に従い意味relationを再導出する。"
+      }
+    ],
+    "consumers": [
+      {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "line_start": 128,
+        "line_end": 138,
+        "whole_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+        "quote": "### HELIXBRAIN-L2-005 構造間relation\n\n- **親L1**：`HELIXBRAIN-L1-005`。\n\n- **受け取るもの**：Pattern、Unit、Partと、領域内外の意味relation。\n- **提供するもの**：requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_of等を参照可能なrelation graph。\n- **保証すること**：領域をまたぐ関係を失わず、名称が似ているだけのedgeを意味関係と断定しない。relationの種類と両端identityを保持する。\n- **依存・検証／版**：L1-005、L2-001/002。Authentication→Session→Frontend State→UX、Database→Performance→Infrastructure例のrelationを辿り、未知endpointを成功扱いしない。1.0。\n- **失敗時の戻し先**：関係の向きや意味が決まらない場合はedgeを確定せず、L1-005へ戻す。\n- **束ねる条件**：PO原文§BRAIN-L1-005。\n",
+        "quote_sha256": "120d16b39c985bd7f62efe6974a71849cad4cb0f234c395a509dc6793ddd9ff0"
+      },
+      {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "line_start": 33,
+        "line_end": 33,
+        "whole_sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+        "quote": "| HELIXBRAIN-L2-005 | 1.0 | Pattern/Unit/Part間でrequires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_ofを方向・意味付きで辿れる。relation名だけ、端点不明、未確認の因果を確定relationにしたら不合格。 |",
+        "quote_sha256": "c0a1f88f62a1b9fbb742a0c274fe0cb5cbe3b27ad79efd600cce44f0ba3b0d27"
+      },
+      {
+        "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+        "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "line_start": 147,
+        "line_end": 190,
+        "whole_sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0",
+        "quote": "\n## BRAIN-L1-005：領域をまたぐ設計関係を保持する\n\n設計知識は領域ごとに分離しつつ、領域間の関係を失わない。\n\n例：\n\n```text\nAuthentication Pattern\n        ↓ affects\nSession Design\n        ↓ affects\nFrontend State\n        ↓ affects\nUX Flow\n```\n\nまたは、\n\n```text\nDatabase Pattern\n        ↓\nPerformance Pattern\n        ↓\nInfrastructure Pattern\n```\n\nBRAINはPattern、Unit、Part間の、\n\n* requires\n* depends_on\n* compatible_with\n* conflicts_with\n* affects\n* alternative_to\n* composed_of\n\nなどの意味relationを扱える。\n\n---\n\n## BRAIN-L1-006：ビジュアルデザインを独立した設計知識領域として持つ\n\nBRAINはビジュアルデザインを単なる装飾情報として扱わず、再利用可能な設計知識として保持する。",
+        "quote_sha256": "80b0c70ebeeae7a4d5fb386bd9f1cbfa6d38086a9a9b46cdd2a5e9bff95ac263"
+      }
+    ],
+    "failure_return_sources": {
+      "L2": {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "line_start": 136,
+        "line_end": 136,
+        "quote": "- **失敗時の戻し先**：関係の向きや意味が決まらない場合はedgeを確定せず、L1-005へ戻す。",
+        "scope": "関係の意味/向きが未決の場合の戻し先。"
+      },
+      "approved_L10": [
+        {
+          "id": "HELIXBRAIN-L10-005-F01",
+          "failure_observation": "未決edgeを確定せずBRAIN該当L1/知識ownerへ返す。"
+        },
+        {
+          "id": "HELIXBRAIN-L10-005-F02",
+          "failure_observation": "未知関係はBRAINへ戻し、製品適用はCOREの判断へ残す。"
+        }
+      ],
+      "L11_acceptance": {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6",
+        "line_start": 33,
+        "line_end": 33,
+        "quote": "| HELIXBRAIN-L2-005 | 1.0 | Pattern/Unit/Part間でrequires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_ofを方向・意味付きで辿れる。relation名だけ、端点不明、未確認の因果を確定relationにしたら不合格。 |",
+        "scope": "L11の受入条件であり、戻し先を定義するsourceではない。"
+      }
+    }
+  },
+  "approved_l3_l10_trace": [
+    {
+      "l3": "HELIXBRAIN-L3-005-F01",
+      "l4": "HELIXBRAIN-L4-005-F01",
+      "l9": "HELIXBRAIN-L9-005-F01",
+      "l10": "HELIXBRAIN-L10-005-F01"
+    },
+    {
+      "l3": "HELIXBRAIN-L3-005-F02",
+      "l4": "HELIXBRAIN-L4-005-F02",
+      "l9": "HELIXBRAIN-L9-005-F02",
+      "l10": "HELIXBRAIN-L10-005-F02"
+    }
+  ],
+  "l4_contracts": [
+    {
+      "id": "HELIXBRAIN-L4-005-F01",
+      "requirement_ref": "HELIXBRAIN-L3-005-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-005-F01",
+      "oracle_ref": "HELIXBRAIN-L9-005-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-005-F01",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "意味relationの種類・向き・端点",
+        "obligation": "Pattern/Unit/Partの領域内外relationをrequires/depends_on/compatible_with/conflicts_with/affects/alternative_to/composed_of等の種類、向き、両端identityと知識revisionへ結ぶ。名称類似だけでedgeを確定せず、端点不明/向きや意味未定/未確認の因果はunknownとして返す。",
+        "oracle_ref": "HELIXBRAIN-L10-005-F01"
+      },
+      "component": "relation_content_reader",
+      "input_meanings": [
+        "独立知識node集合と型/Domain/identity/revision",
+        "原relation種類/意味/向き/両端/根拠と提出edge",
+        "名称類似/未確認因果/unknownのclaim"
+      ],
+      "output_meanings": [
+        "項目別内容対応、端点解決/未決と未確認因果",
+        "BRAIN意味ownerへの返却候補"
+      ],
+      "content_comparison": [
+        "七relationはPO原文の例。閉じた全世界enumやedgeの対称性を新設しない。",
+        "提出edgeのtype/meaning/direction/source/target/knowledge revision/evidenceを独立原内容と比較する。",
+        "両端はidentityだけでなく知識revisionとDomain/構造kindで照合する。未決/名称類似/相関を確定意味relationや因果へ昇格しない。"
+      ],
+      "qualification_rule": "fixture内容の独立比較は実source資格/全必要集合/未見Domain/正式schema/実resolverを代替しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-005-F02",
+      "requirement_ref": "HELIXBRAIN-L3-005-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-005-F02",
+      "oracle_ref": "HELIXBRAIN-L9-005-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-005-F02",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "領域横断の関係保持",
+        "obligation": "Authentication→Session→Frontend State→UX、およびDatabase→Performance→Infrastructureのような領域横断の意味relationを知識の提供範囲で辿れるようにする。各関係の根拠を保持し、例の領域名やgraphを製品固有設計の固定形にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-005-F02"
+      },
+      "component": "cross_domain_relation_trace_reader",
+      "input_meanings": [
+        "同一knowledge revision/scopeの独立node/edgeとchain request",
+        "横断chainの提出node/edgeと根拠",
+        "製品適用/未知補完のclaim"
+      ],
+      "output_meanings": [
+        "chainごとの段階/両端/根拠/途切れと未決",
+        "未知関係はBRAIN、製品判断はCOREへの返却候補"
+      ],
+      "content_comparison": [
+        "Authentication→Session→Frontend State→UXとDatabase→Performance→Infrastructureの例を別々に辿る。",
+        "途中端点/edge/根拠が欠ければその箇所を保持し、別chainと元Qを保つ。Domain境界でedgeを捨てない。",
+        "PO例を全製品の固定architectureへ変えない。到達できた合成chainは採用/義務完了/実接続の証拠ではない。"
+      ],
+      "qualification_rule": "fixture内容の独立比較は実source資格/全必要集合/未見Domain/正式schema/実resolverを代替しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "logical_type_system": {
+    "json_equality": {
+      "json_type_must_match": true,
+      "object_key_order": "ignored",
+      "array_order": "preserved",
+      "member_absent_distinct_from_null": true,
+      "absent_or_null_in_f01_comparison": "列挙した比較pathに限ってmissingへ対応付ける。"
+    },
+    "types": {
+      "RelationInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "basis_state",
+          "original_nodes",
+          "provided_nodes",
+          "original_edge",
+          "provided_edge",
+          "claims_name_similarity_relation",
+          "claims_correlation_causal",
+          "claims_unknown_endpoint_success",
+          "claims_reverse_same_meaning"
+        ],
+        "properties": {
+          "basis_state": {
+            "type": "string"
+          },
+          "original_nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "domain",
+                "kind",
+                "knowledge_revision"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "domain": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "provided_nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "domain",
+                "kind",
+                "knowledge_revision"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "domain": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "original_edge": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+            "properties": {
+              "identity": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "meaning": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string"
+              },
+              "source": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "domain",
+                      "kind",
+                      "knowledge_revision"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "domain": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "knowledge_revision": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "domain",
+                      "kind",
+                      "knowledge_revision"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "domain": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "knowledge_revision": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "knowledge_revision": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "revision",
+                      "content"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "revision": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "provided_edge": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [],
+            "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+            "properties": {
+              "identity": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "meaning": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string"
+              },
+              "source": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "domain",
+                      "kind",
+                      "knowledge_revision"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "domain": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "knowledge_revision": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "domain",
+                      "kind",
+                      "knowledge_revision"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "domain": {
+                        "type": "string"
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "knowledge_revision": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "knowledge_revision": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "union",
+                "variants": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "revision",
+                      "content"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "revision": {
+                        "type": "string"
+                      },
+                      "content": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "claims_name_similarity_relation": {
+            "type": "boolean"
+          },
+          "claims_correlation_causal": {
+            "type": "boolean"
+          },
+          "claims_unknown_endpoint_success": {
+            "type": "boolean"
+          },
+          "claims_reverse_same_meaning": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ChainInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "chain_requests",
+          "original_nodes",
+          "provided_nodes",
+          "original_edges",
+          "provided_edges",
+          "provided_knowledge_revision",
+          "provided_scope",
+          "claims_unknown_endpoint_auto_complete",
+          "claims_example_product_architecture",
+          "claims_reached_adopted"
+        ],
+        "properties": {
+          "chain_requests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "node_ids",
+                "edge_ids",
+                "knowledge_revision",
+                "scope"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "node_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "edge_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "original_nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "domain",
+                "kind",
+                "knowledge_revision"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "domain": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "provided_nodes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "domain",
+                "kind",
+                "knowledge_revision"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "domain": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "original_edges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity"
+              ],
+              "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "meaning": {
+                  "type": "string"
+                },
+                "direction": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "domain",
+                        "kind",
+                        "knowledge_revision"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "knowledge_revision": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "target": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "domain",
+                        "kind",
+                        "knowledge_revision"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "knowledge_revision": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                },
+                "evidence": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "revision",
+                        "content"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "revision": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "provided_edges": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity"
+              ],
+              "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "meaning": {
+                  "type": "string"
+                },
+                "direction": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "domain",
+                        "kind",
+                        "knowledge_revision"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "knowledge_revision": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "target": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "domain",
+                        "kind",
+                        "knowledge_revision"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        },
+                        "knowledge_revision": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "knowledge_revision": {
+                  "type": "string"
+                },
+                "evidence": {
+                  "type": "union",
+                  "variants": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "identity",
+                        "revision",
+                        "content"
+                      ],
+                      "properties": {
+                        "identity": {
+                          "type": "string"
+                        },
+                        "revision": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "provided_knowledge_revision": {
+            "type": "string"
+          },
+          "provided_scope": {
+            "type": "string"
+          },
+          "claims_unknown_endpoint_auto_complete": {
+            "type": "boolean"
+          },
+          "claims_example_product_architecture": {
+            "type": "boolean"
+          },
+          "claims_reached_adopted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RelationReturn": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field_results",
+          "source_endpoint",
+          "target_endpoint",
+          "relation_state",
+          "claim_results",
+          "owner_return_candidates",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "field_results": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "meaning",
+              "direction",
+              "source",
+              "target",
+              "knowledge_revision",
+              "evidence"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "meaning": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "direction": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "source": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "target": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "knowledge_revision": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              },
+              "evidence": {
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict",
+                  "missing"
+                ]
+              }
+            }
+          },
+          "source_endpoint": {
+            "enum": [
+              "resolved_in_fixture",
+              "unresolved",
+              "missing"
+            ]
+          },
+          "target_endpoint": {
+            "enum": [
+              "resolved_in_fixture",
+              "unresolved",
+              "missing"
+            ]
+          },
+          "relation_state": {
+            "enum": [
+              "candidate_relation_in_fixture_only",
+              "held"
+            ]
+          },
+          "claim_results": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name_similarity_relation",
+              "correlation_causal",
+              "unknown_endpoint_success",
+              "reverse_same_meaning"
+            ],
+            "properties": {
+              "name_similarity_relation": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "correlation_causal": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "unknown_endpoint_success": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "reverse_same_meaning": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            }
+          },
+          "owner_return_candidates": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "BRAIN-relation-meaning-owner"
+              ]
+            }
+          },
+          "effects": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "actual_knowledge_adopted",
+              "actual_knowledge_mature",
+              "actual_causality_verified",
+              "actual_product_selected",
+              "actual_CORE_applied",
+              "actual_obligation_completed",
+              "actual_connection",
+              "actual_authority",
+              "actual_design_complete",
+              "actual_acceptance"
+            ],
+            "properties": {
+              "actual_knowledge_adopted": {
+                "const": false
+              },
+              "actual_knowledge_mature": {
+                "const": false
+              },
+              "actual_causality_verified": {
+                "const": false
+              },
+              "actual_product_selected": {
+                "const": false
+              },
+              "actual_CORE_applied": {
+                "const": false
+              },
+              "actual_obligation_completed": {
+                "const": false
+              },
+              "actual_connection": {
+                "const": false
+              },
+              "actual_authority": {
+                "const": false
+              },
+              "actual_design_complete": {
+                "const": false
+              },
+              "actual_acceptance": {
+                "const": false
+              }
+            }
+          },
+          "unaffected_Q": {
+            "const": "original_Q"
+          }
+        }
+      },
+      "ChainReturn": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "chain_results",
+          "claim_results",
+          "owner_return_candidates",
+          "product_application_state",
+          "effects",
+          "unaffected_Q"
+        ],
+        "properties": {
+          "chain_results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "node_results",
+                "edge_results",
+                "knowledge_result",
+                "scope_result",
+                "trace_state"
+              ],
+              "properties": {
+                "identity": {
+                  "type": "string"
+                },
+                "node_results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "state"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "enum": [
+                          "content_corresponding_in_fixture",
+                          "content_conflict",
+                          "missing"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "edge_results": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "identity",
+                      "state",
+                      "original_evidence"
+                    ],
+                    "properties": {
+                      "identity": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "enum": [
+                          "content_corresponding_in_fixture",
+                          "content_conflict",
+                          "missing"
+                        ]
+                      },
+                      "original_evidence": {
+                        "type": "union",
+                        "variants": [
+                          {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "identity",
+                              "revision",
+                              "content"
+                            ],
+                            "properties": {
+                              "identity": {
+                                "type": "string"
+                              },
+                              "revision": {
+                                "type": "string"
+                              },
+                              "content": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "knowledge_result": {
+                  "enum": [
+                    "content_corresponding_in_fixture",
+                    "content_conflict",
+                    "missing"
+                  ]
+                },
+                "scope_result": {
+                  "enum": [
+                    "content_corresponding_in_fixture",
+                    "content_conflict",
+                    "missing"
+                  ]
+                },
+                "trace_state": {
+                  "enum": [
+                    "candidate_trace_in_fixture_only",
+                    "held"
+                  ]
+                }
+              }
+            }
+          },
+          "claim_results": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "unknown_endpoint_auto_complete",
+              "example_product_architecture",
+              "reached_adopted"
+            ],
+            "properties": {
+              "unknown_endpoint_auto_complete": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "example_product_architecture": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "reached_adopted": {
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            }
+          },
+          "owner_return_candidates": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "BRAIN-relation-meaning-owner",
+                "CORE-product-application-owner"
+              ]
+            }
+          },
+          "product_application_state": {
+            "const": "not_selected"
+          },
+          "effects": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "actual_knowledge_adopted",
+              "actual_knowledge_mature",
+              "actual_causality_verified",
+              "actual_product_selected",
+              "actual_CORE_applied",
+              "actual_obligation_completed",
+              "actual_connection",
+              "actual_authority",
+              "actual_design_complete",
+              "actual_acceptance"
+            ],
+            "properties": {
+              "actual_knowledge_adopted": {
+                "const": false
+              },
+              "actual_knowledge_mature": {
+                "const": false
+              },
+              "actual_causality_verified": {
+                "const": false
+              },
+              "actual_product_selected": {
+                "const": false
+              },
+              "actual_CORE_applied": {
+                "const": false
+              },
+              "actual_obligation_completed": {
+                "const": false
+              },
+              "actual_connection": {
+                "const": false
+              },
+              "actual_authority": {
+                "const": false
+              },
+              "actual_design_complete": {
+                "const": false
+              },
+              "actual_acceptance": {
+                "const": false
+              }
+            }
+          },
+          "unaffected_Q": {
+            "const": "original_Q"
+          }
+        }
+      },
+      "RelationEdge": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "source": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "domain",
+                  "kind",
+                  "knowledge_revision"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "knowledge_revision": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "domain",
+                  "kind",
+                  "knowledge_revision"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "knowledge_revision": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "knowledge_revision": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "revision",
+                  "content"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "ChainRelationEdge": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "identity"
+        ],
+        "optional_presence": "省略されたmemberはAbsent、明示nullはPresent(null)。固定規則が指定した比較欄に限りAbsent/nullをmissingへ写す。",
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "meaning": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string"
+          },
+          "source": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "domain",
+                  "kind",
+                  "knowledge_revision"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "knowledge_revision": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "domain",
+                  "kind",
+                  "knowledge_revision"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "knowledge_revision": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "knowledge_revision": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "union",
+            "variants": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "identity",
+                  "revision",
+                  "content"
+                ],
+                "properties": {
+                  "identity": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "StructureNode": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "identity",
+          "domain",
+          "kind",
+          "knowledge_revision"
+        ],
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "knowledge_revision": {
+            "type": "string"
+          }
+        }
+      },
+      "RelationEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "identity",
+          "revision",
+          "content"
+        ],
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "ChainRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "identity",
+          "node_ids",
+          "edge_ids",
+          "knowledge_revision",
+          "scope"
+        ],
+        "properties": {
+          "identity": {
+            "type": "string"
+          },
+          "node_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "edge_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "knowledge_revision": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "pure_calculation_program": {
+    "comparison": {
+      "absent_or_null": "missing",
+      "same_json_value": "content_corresponding_in_fixture",
+      "different_json_value": "content_conflict",
+      "json_equality": "JSON型も区別し、objectはkey順を無視、arrayは順序を保持して再帰比較する。object memberのAbsentとPresent(null)を区別する。"
+    },
+    "functions": {
+      "BRAIN005-F01": {
+        "input_type": "RelationInput",
+        "return_type": "RelationReturn",
+        "signature": {
+          "arguments": [
+            {
+              "name": "input",
+              "type": "RelationInput"
+            }
+          ],
+          "returns": "RelationReturn"
+        },
+        "reads": [
+          "/original_nodes/*/identity",
+          "/original_nodes/*/domain",
+          "/original_nodes/*/kind",
+          "/original_nodes/*/knowledge_revision",
+          "/provided_nodes/*/identity",
+          "/provided_nodes/*/domain",
+          "/provided_nodes/*/kind",
+          "/provided_nodes/*/knowledge_revision",
+          "/original_edge/type",
+          "/provided_edge/type",
+          "/original_edge/meaning",
+          "/provided_edge/meaning",
+          "/original_edge/direction",
+          "/provided_edge/direction",
+          "/original_edge/source",
+          "/provided_edge/source",
+          "/original_edge/target",
+          "/provided_edge/target",
+          "/original_edge/knowledge_revision",
+          "/provided_edge/knowledge_revision",
+          "/original_edge/evidence",
+          "/provided_edge/evidence",
+          "/original_edge/source",
+          "/original_edge/target",
+          "/provided_edge/source",
+          "/provided_edge/target",
+          "/claims_name_similarity_relation",
+          "/claims_correlation_causal",
+          "/claims_unknown_endpoint_success",
+          "/claims_reverse_same_meaning"
+        ],
+        "declared_but_unused_fields": [
+          "/basis_state"
+        ],
+        "field_comparisons": [
+          {
+            "output": "type",
+            "left": "/original_edge/type",
+            "right": "/provided_edge/type"
+          },
+          {
+            "output": "meaning",
+            "left": "/original_edge/meaning",
+            "right": "/provided_edge/meaning"
+          },
+          {
+            "output": "direction",
+            "left": "/original_edge/direction",
+            "right": "/provided_edge/direction"
+          },
+          {
+            "output": "source",
+            "left": "/original_edge/source",
+            "right": "/provided_edge/source"
+          },
+          {
+            "output": "target",
+            "left": "/original_edge/target",
+            "right": "/provided_edge/target"
+          },
+          {
+            "output": "knowledge_revision",
+            "left": "/original_edge/knowledge_revision",
+            "right": "/provided_edge/knowledge_revision"
+          },
+          {
+            "output": "evidence",
+            "left": "/original_edge/evidence",
+            "right": "/provided_edge/evidence"
+          }
+        ],
+        "endpoint_resolution": {
+          "side_order": [
+            "original",
+            "provided"
+          ],
+          "for_each_side": {
+            "edge": "/{side}_edge",
+            "nodes": "/{side}_nodes",
+            "endpoint_order": [
+              "source",
+              "target"
+            ],
+            "resolution_rule": {
+              "missing_precedence": "各側のedge endpoint memberがAbsentまたはnullならmissing。",
+              "resolved": "endpoint objectのidentityと完全一致するnodeが、同じ側のnode配列内にちょうど1件ある場合。",
+              "unresolved": "endpoint objectがnode配列の一意な完全一致nodeを持たない場合。"
+            },
+            "per_endpoint_output": "endpoint_states/{side}/{endpoint}",
+            "match_key": "identity",
+            "required_match_count": 1,
+            "match_value_comparison": "recursive_whole_record_json_equality",
+            "states": {
+              "resolved": "resolved_in_fixture",
+              "unresolved": "unresolved",
+              "missing": "missing"
+            }
+          },
+          "public_return_binding": {
+            "source_endpoint": "endpoint_states/provided/source",
+            "target_endpoint": "endpoint_states/provided/target",
+            "relation_state_reads_all": [
+              "original/source",
+              "original/target",
+              "provided/source",
+              "provided/target"
+            ],
+            "meaning": "返却endpointは提出edgeの端点解決状態。原edge端点の未解決もrelation_stateをheldにするが、提出端点の返却値と混ぜない。"
+          },
+          "states": {
+            "resolved": "resolved_in_fixture",
+            "unresolved": "unresolved",
+            "missing": "missing"
+          }
+        },
+        "claim_projection": [
+          {
+            "input": "/claims_name_similarity_relation",
+            "output": "name_similarity_relation",
+            "true": "rejected",
+            "false": "none"
+          },
+          {
+            "input": "/claims_correlation_causal",
+            "output": "correlation_causal",
+            "true": "rejected",
+            "false": "none"
+          },
+          {
+            "input": "/claims_unknown_endpoint_success",
+            "output": "unknown_endpoint_success",
+            "true": "rejected",
+            "false": "none"
+          },
+          {
+            "input": "/claims_reverse_same_meaning",
+            "output": "reverse_same_meaning",
+            "true": "rejected",
+            "false": "none"
+          }
+        ],
+        "relation_state_rule": {
+          "held_if_any": [
+            "field_result_not_equal_content_corresponding",
+            "endpoint_state_not_resolved",
+            "claim_result_not_none"
+          ],
+          "predicate_rules": {
+            "field_result_not_equal_content_corresponding": {
+              "source": "field_results/*",
+              "operator": "any_value_not_equal",
+              "value": "content_corresponding_in_fixture"
+            },
+            "endpoint_state_not_resolved": {
+              "source": "endpoint_states/*/*",
+              "operator": "any_value_not_equal",
+              "value": "resolved_in_fixture"
+            },
+            "claim_result_not_none": {
+              "source": "claims/*",
+              "operator": "any_value_not_equal",
+              "value": "none"
+            }
+          },
+          "otherwise": "candidate_relation_in_fixture_only",
+          "held": "held",
+          "endpoint_state_source": "すべてのendpoint_states/{original,provided}/{source,target}"
+        },
+        "owner_routes": [
+          {
+            "when": {
+              "operator": "equals",
+              "source": "context/relation_state",
+              "value": "held"
+            },
+            "append": "BRAIN-relation-meaning-owner"
+          }
+        ],
+        "fixed_return_projection": {
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_knowledge_mature": false,
+            "actual_causality_verified": false,
+            "actual_product_selected": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "return_bindings": {
+          "field_results": {
+            "source": "context/field_results"
+          },
+          "source_endpoint": {
+            "source": "endpoint_states/provided/source"
+          },
+          "target_endpoint": {
+            "source": "endpoint_states/provided/target"
+          },
+          "relation_state": {
+            "source": "context/relation_state"
+          },
+          "claim_results": {
+            "source": "context/claims"
+          },
+          "owner_return_candidates": {
+            "source": "context/owners"
+          },
+          "effects": {
+            "source": "fixed_return_projection/effects"
+          },
+          "unaffected_Q": {
+            "source": "fixed_return_projection/unaffected_Q"
+          }
+        }
+      },
+      "BRAIN005-F02": {
+        "input_type": "ChainInput",
+        "return_type": "ChainReturn",
+        "signature": {
+          "arguments": [
+            {
+              "name": "input",
+              "type": "ChainInput"
+            }
+          ],
+          "returns": "ChainReturn"
+        },
+        "reads": [
+          "/chain_requests/*/identity",
+          "/chain_requests/*/node_ids/*",
+          "/chain_requests/*/edge_ids/*",
+          "/chain_requests/*/knowledge_revision",
+          "/chain_requests/*/scope",
+          "/original_nodes/*",
+          "/provided_nodes/*",
+          "/original_edges/*",
+          "/provided_edges/*",
+          "/provided_knowledge_revision",
+          "/provided_scope",
+          "/claims_unknown_endpoint_auto_complete",
+          "/claims_example_product_architecture",
+          "/claims_reached_adopted"
+        ],
+        "ordered_iteration": "chain_requests配列、各requestのnode_ids配列とedge_ids配列の入力順を保つ。",
+        "node_comparison": {
+          "request_ids": "node_ids",
+          "left_array": "/original_nodes",
+          "right_array": "/provided_nodes",
+          "match_key": "identity",
+          "compare_mode": "recursive_whole_record_json_equality",
+          "states": {
+            "same": "content_corresponding_in_fixture",
+            "different": "content_conflict",
+            "missing": "missing"
+          },
+          "required_match_count": 1,
+          "non_unique_match_state": "missing",
+          "field_state_precedence": [
+            "missing",
+            "content_conflict",
+            "content_corresponding_in_fixture"
+          ]
+        },
+        "edge_comparison": {
+          "request_ids": "edge_ids",
+          "left_array": "/original_edges",
+          "right_array": "/provided_edges",
+          "match_key": "identity",
+          "compare_fields": [
+            "identity",
+            "type",
+            "meaning",
+            "direction",
+            "source",
+            "target",
+            "knowledge_revision",
+            "evidence"
+          ],
+          "original_evidence_projection": {
+            "output": "original_evidence",
+            "source": "一意に一致する原edgeのevidenceを返す。一意な原edgeがなければnullを返す。",
+            "presence_rule": "evidenceがAbsentまたはnullなら返却はnullとなり、対応するevidenceの比較結果はmissingとなる。存在するobjectは全fieldを変えずコピーする。",
+            "reason": "ChainEdgeResultは各要求edgeに返却値を持つ。nullable出力で明示nullを保持し、stateで比較不足を示す。",
+            "absent_or_null_output": null
+          },
+          "states": {
+            "same": "content_corresponding_in_fixture",
+            "different": "content_conflict",
+            "missing": "missing"
+          },
+          "required_match_count": 1,
+          "non_unique_match_state": "missing",
+          "field_state_precedence": [
+            "missing",
+            "content_conflict",
+            "content_corresponding_in_fixture"
+          ]
+        },
+        "revision_comparison": {
+          "left": "/chain_request/knowledge_revision",
+          "right": "/provided_knowledge_revision"
+        },
+        "scope_comparison": {
+          "left": "/chain_request/scope",
+          "right": "/provided_scope"
+        },
+        "chain_state_rule": {
+          "held_if_any": [
+            "node_result_not_equal_content_corresponding",
+            "edge_result_not_equal_content_corresponding",
+            "knowledge_result_not_equal_content_corresponding",
+            "scope_result_not_equal_content_corresponding",
+            "chain_endpoint_discontinuity"
+          ],
+          "predicate_rules": {
+            "node_result_not_equal_content_corresponding": {
+              "source": "node_results/*/state",
+              "operator": "any_value_not_equal",
+              "value": "content_corresponding_in_fixture"
+            },
+            "edge_result_not_equal_content_corresponding": {
+              "source": "edge_results/*/state",
+              "operator": "any_value_not_equal",
+              "value": "content_corresponding_in_fixture"
+            },
+            "knowledge_result_not_equal_content_corresponding": {
+              "source": "knowledge_result",
+              "operator": "not_equal",
+              "value": "content_corresponding_in_fixture"
+            },
+            "scope_result_not_equal_content_corresponding": {
+              "source": "scope_result",
+              "operator": "not_equal",
+              "value": "content_corresponding_in_fixture"
+            },
+            "chain_endpoint_discontinuity": {
+              "source": "topology_continuous",
+              "operator": "equals",
+              "value": false
+            }
+          },
+          "otherwise": "candidate_trace_in_fixture_only",
+          "held": "held"
+        },
+        "chain_continuity": {
+          "purpose": "L4 F02のchainを入力順で辿り、隣接する端点の不連続をchain結果へ反映する。",
+          "precondition": "各requestはnode_ids, edge_ids配列を持つ。要素数やidentityの重複はschemaでは禁止しない。",
+          "algorithm": [
+            "requestごとに、node_idsの長さがedge_idsの長さ+1でなければtopology_continuous=false。",
+            "そうでなければ各index iについてedge_ids[i]のidentityに対応する原edgeと提出edgeをそれぞれ一意に探す。一意でなければfalse。",
+            "両edgeのdirectionがfixture markerと一致しない、source/targetがobjectでない、source.identity != node_ids[i]、またはtarget.identity != node_ids[i+1]のいずれかならfalse。",
+            "全indexが上記条件を満たした場合だけtrue。edge_idsが空でnode_idsが1件ならtrue。"
+          ],
+          "node_count_rule": {
+            "operator": "left_length_equals_right_length_plus",
+            "left": "node_ids",
+            "right": "edge_ids",
+            "plus": 1
+          },
+          "edge_lookup": {
+            "left": "/original_edges",
+            "right": "/provided_edges",
+            "match_key": "identity",
+            "required_match_count": 1
+          },
+          "direction_marker": {
+            "value": "source_to_target_in_fixture",
+            "source": "L9 B005-F02-TWO-CROSS-DOMAIN-CHAINS raw_utf8 original_edges[*].direction",
+            "scope": "固定された合成fixtureの値。relation directionの一般enumではない。"
+          },
+          "endpoint_fields": {
+            "source": "source.identity",
+            "target": "target.identity"
+          },
+          "result": "全条件成立時のみtrue。chain_state_ruleはfalseをchain_endpoint_discontinuityとしてheldへ送る。",
+          "coverage": "原L9の55ケースには、他の欠落/不一致原因から独立した連続性だけの違反例がない。LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYは親点検用のscratch-only完全例。"
+        },
+        "claim_projection": [
+          {
+            "input": "/claims_unknown_endpoint_auto_complete",
+            "output": "unknown_endpoint_auto_complete",
+            "true": "rejected",
+            "false": "none"
+          },
+          {
+            "input": "/claims_example_product_architecture",
+            "output": "example_product_architecture",
+            "true": "rejected",
+            "false": "none"
+          },
+          {
+            "input": "/claims_reached_adopted",
+            "output": "reached_adopted",
+            "true": "rejected",
+            "false": "none"
+          }
+        ],
+        "owner_routes": [
+          {
+            "when": {
+              "operator": "any",
+              "conditions": [
+                {
+                  "operator": "any_item_equals",
+                  "source": "context/chain_results/*/trace_state",
+                  "value": "held"
+                },
+                {
+                  "operator": "equals",
+                  "source": "context/claims/unknown_endpoint_auto_complete",
+                  "value": "rejected"
+                }
+              ]
+            },
+            "append": "BRAIN-relation-meaning-owner"
+          },
+          {
+            "when": {
+              "operator": "any",
+              "conditions": [
+                {
+                  "operator": "equals",
+                  "source": "context/claims/example_product_architecture",
+                  "value": "rejected"
+                },
+                {
+                  "operator": "equals",
+                  "source": "context/claims/reached_adopted",
+                  "value": "rejected"
+                }
+              ]
+            },
+            "append": "CORE-product-application-owner"
+          }
+        ],
+        "owner_order": [
+          "BRAIN-relation-meaning-owner",
+          "CORE-product-application-owner"
+        ],
+        "product_application_state": "not_selected",
+        "fixed_return_projection": {
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_knowledge_mature": false,
+            "actual_causality_verified": false,
+            "actual_product_selected": false,
+            "actual_CORE_applied": false,
+            "actual_obligation_completed": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "node_result_projection": {
+          "identity": {
+            "source": "context/identity"
+          },
+          "state": {
+            "source": "context/status"
+          }
+        },
+        "edge_result_projection": {
+          "identity": {
+            "source": "context/identity"
+          },
+          "state": {
+            "source": "context/status"
+          },
+          "original_evidence": {
+            "source": "context/original_edge/evidence",
+            "absent_or_null": "null",
+            "meaning": "元edge/evidenceが一意にない、またはevidenceがAbsent/nullならJSON null。objectなら全memberを再帰的にそのまま返す。"
+          }
+        },
+        "chain_result_projection": {
+          "identity": {
+            "source": "context/request/identity"
+          },
+          "node_results": {
+            "source": "context/node_results"
+          },
+          "edge_results": {
+            "source": "context/edge_results"
+          },
+          "knowledge_result": {
+            "source": "context/knowledge_result"
+          },
+          "scope_result": {
+            "source": "context/scope_result"
+          },
+          "trace_state": {
+            "source": "context/trace_state"
+          }
+        },
+        "return_bindings": {
+          "chain_results": {
+            "source": "context/chain_results"
+          },
+          "claim_results": {
+            "source": "context/claims"
+          },
+          "owner_return_candidates": {
+            "source": "context/owners"
+          },
+          "product_application_state": {
+            "source": "context/product_application_state"
+          },
+          "effects": {
+            "source": "fixed_return_projection/effects"
+          },
+          "unaffected_Q": {
+            "source": "fixed_return_projection/unaffected_Q"
+          }
+        }
+      }
+    }
+  },
+  "finite_fixture_literals": {
+    "owner_routes": {
+      "BRAIN-relation-meaning-owner": {
+        "role": "BRAIN意味relationの返却候補",
+        "origin": "L4 F01/F02 output_meanings。",
+        "source_pointer": {
+          "case_id": "B005-F01-TYPE-MISSING",
+          "path": "/expected_material/owner_return_candidates/0",
+          "case_raw_sha256": "f278708a668e8aeb6881240893b88e85659a54b24113963f232a978f39aaa391",
+          "value_canonical_sha256": "ca264dec40e9292d3d806bd434e852493fdf9363afdcaf7797640a3f8ff27526",
+          "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6"
+        },
+        "corroborating_source_pointer": {
+          "case_id": "B005-F02-NODE-AUTHENTICATION-PATTERN-MISSING",
+          "path": "/expected_material/owner_return_candidates/0",
+          "case_raw_sha256": "3cf5757bd062c86f6a159c094a53a122bbf69e56472a5c927d8f0b90a5dc1d1e",
+          "value_canonical_sha256": "ca264dec40e9292d3d806bd434e852493fdf9363afdcaf7797640a3f8ff27526",
+          "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6"
+        },
+        "qualification": "実owner identity/資格ではない。L4の返却責務を表すfixture candidate literalであり、綴りの直接の値出典は原L9 expected_material pointerのみ。"
+      },
+      "CORE-product-application-owner": {
+        "role": "製品適用判断の返却候補",
+        "origin": "L4 F02 output_meanings。",
+        "source_pointer": {
+          "case_id": "B005-F02-EXAMPLE_PRODUCT_ARCHITECTURE",
+          "path": "/expected_material/owner_return_candidates/0",
+          "case_raw_sha256": "837532e6470bbf5f79ba51d7b827dc473c94cc2c51963fea30cc5e14aedeff94",
+          "value_canonical_sha256": "7b99fe8ca338fb31044827453a6bfb9a0a0b91c2071d56a0d210bd861beb6ae0",
+          "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6"
+        },
+        "qualification": "実CORE owner identity/資格ではない。L4の製品判断の返却責務を表すfixture candidate literalであり、綴りの直接の値出典は原L9 expected_material pointerのみ。"
+      }
+    },
+    "effects": {
+      "actual_knowledge_adopted": false,
+      "actual_knowledge_mature": false,
+      "actual_causality_verified": false,
+      "actual_product_selected": false,
+      "actual_CORE_applied": false,
+      "actual_obligation_completed": false,
+      "actual_connection": false,
+      "actual_authority": false,
+      "actual_design_complete": false,
+      "actual_acceptance": false
+    },
+    "unaffected_Q": {
+      "value": "original_Q",
+      "source_pointer": {
+        "case_id": "B005-F01-REQUIRES-MEANING",
+        "path": "/expected_material/unaffected_Q",
+        "case_raw_sha256": "3a75648d56392e599f0c8634e157bc60f8d4ecc027b560fa3a7ffe54383cb8c8",
+        "value_canonical_sha256": "329f9d0760ca0125bc78ff1bb2dad6fe506e9367e92280f77d939a7f0cda0a4c",
+        "source_revision": "a27dea5df601f52ab158dc167f47405c0b5c5dd6"
+      },
+      "qualification": "案件状態、証拠、実際の未変更を証明しない。綴りの直接の値出典は原L9 expected_material pointerのみ。"
+    }
+  },
+  "source_case_counts": {
+    "F01": 32,
+    "F02": 23,
+    "total": 55
+  },
+  "scope_limitations": [
+    "正式graph schema/codec、resolver、実sourceとownerの資格、全relation種別とdomainの全域は未成立。",
+    "合成fixtureの一致は知識採用、maturity、因果実証、製品選択、実接続、義務完了、権限、設計完了、受入の証拠ではない。",
+    "L9の55件には、連続性だけを違反させるcaseがない。LOCAL-B005-F02-REQUEST-EDGE-ORDER-DISCONTINUITYで原L9 baselineからedge_ids順のみ変更し、他fieldがcorrespondingのまま連続性分岐がtrace_stateをheldへ変える全返却をscratchに固定する。",
+    "ChainInputのedge evidenceはAbsent/null/objectを許し、返却original_evidenceはnull/object。元edge不在またはevidence Absent/nullは返却null、objectは完全コピーし、edge stateと比較fieldで不足を示す。独立null probeはL8の別枠local_probesへ固定。",
+    "F01は原/提出両側のsource/target endpointを解決し、4状態すべてでrelation_stateを判定する。公開source_endpoint/target_endpointは提出側の状態に束縛し、原側だけが未解決のprobeでこの区別を示す。端点の実resolver/資格ではない。"
+  ],
+  "readiness": {
+    "implementation": "not_ready",
+    "formal_schema_codec": "not_established",
+    "actual_source_qualification": "not_established",
+    "actual_owner_authority": "not_established",
+    "TDD_CI": "not_run",
+    "L11_acceptance": "not_established",
+    "design_closure": "not_established"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "execution_state": "not_executed"
+}
