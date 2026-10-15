@@ -3519,8 +3519,7 @@
         "claims"
       ],
       "unread_subfields": [
-        "field_material.claims.*（field_coreにclaim判定なし）",
-        "trace_material.claims_one_side_fulfilled（trace_coreは比較のみ）"
+        "field_material.claims.*（field_coreにclaim判定なし）"
       ],
       "argument_reads_binding": "同文書reference_program.definitionsのcall parameter型と明示get/at/map/比較が読み元。helperへの暗黙raw/期待供給はない。"
     },
@@ -4792,37 +4791,122 @@
             "rows": {
               "op": "map",
               "items": {
-                "op": "if",
-                "condition": {
-                  "op": "kind_is",
-                  "value": {
-                    "op": "get",
-                    "base": {
-                      "op": "var",
-                      "name": "input"
+                "op": "concat",
+                "items": [
+                  {
+                    "op": "if",
+                    "condition": {
+                      "op": "kind_is",
+                      "value": {
+                        "op": "get",
+                        "base": {
+                          "op": "var",
+                          "name": "input"
+                        },
+                        "key": {
+                          "op": "literal",
+                          "value": "original_required_fields"
+                        }
+                      },
+                      "kind": "array"
                     },
-                    "key": {
+                    "then": {
+                      "op": "get",
+                      "base": {
+                        "op": "var",
+                        "name": "input"
+                      },
+                      "key": {
+                        "op": "literal",
+                        "value": "original_required_fields"
+                      }
+                    },
+                    "else": {
                       "op": "literal",
-                      "value": "original_required_fields"
+                      "value": []
                     }
                   },
-                  "kind": "array"
-                },
-                "then": {
-                  "op": "get",
-                  "base": {
-                    "op": "var",
-                    "name": "input"
-                  },
-                  "key": {
-                    "op": "literal",
-                    "value": "original_required_fields"
+                  {
+                    "op": "filter",
+                    "items": {
+                      "op": "if",
+                      "condition": {
+                        "op": "kind_is",
+                        "value": {
+                          "op": "get",
+                          "base": {
+                            "op": "var",
+                            "name": "input"
+                          },
+                          "key": {
+                            "op": "literal",
+                            "value": "provided_required_fields"
+                          }
+                        },
+                        "kind": "array"
+                      },
+                      "then": {
+                        "op": "get",
+                        "base": {
+                          "op": "var",
+                          "name": "input"
+                        },
+                        "key": {
+                          "op": "literal",
+                          "value": "provided_required_fields"
+                        }
+                      },
+                      "else": {
+                        "op": "literal",
+                        "value": []
+                      }
+                    },
+                    "binding": "field",
+                    "predicate": {
+                      "op": "not",
+                      "value": {
+                        "op": "contains",
+                        "items": {
+                          "op": "if",
+                          "condition": {
+                            "op": "kind_is",
+                            "value": {
+                              "op": "get",
+                              "base": {
+                                "op": "var",
+                                "name": "input"
+                              },
+                              "key": {
+                                "op": "literal",
+                                "value": "original_required_fields"
+                              }
+                            },
+                            "kind": "array"
+                          },
+                          "then": {
+                            "op": "get",
+                            "base": {
+                              "op": "var",
+                              "name": "input"
+                            },
+                            "key": {
+                              "op": "literal",
+                              "value": "original_required_fields"
+                            }
+                          },
+                          "else": {
+                            "op": "literal",
+                            "value": []
+                          }
+                        },
+                        "value": {
+                          "op": "var",
+                          "name": "field"
+                        }
+                      }
+                    }
                   }
-                },
-                "else": {
-                  "op": "literal",
-                  "value": []
-                }
+                ]
               },
               "binding": "field",
               "index_binding": "index",
@@ -12000,17 +12084,16 @@
   },
   "derivation_coverage": {
     "original_wholes": 99,
-    "independent_wholes": 33,
-    "total_public_wholes": 132,
-    "witnesses": 2,
-    "limit": "固定wholeと局所型域摂動の検査。任意JSON意味/未見一般域/実source資格/実consumerの全閉包ではない。",
+    "independent_wholes": 75,
+    "total_public_wholes": 174,
+    "limit": "L9由来99件とL8独立whole 75件の全返却を確認する。有限wholeと型域摂動は未見一般域・実source資格・実consumerの全閉包を証明しない。",
     "meaning": "各定義のASTと汎用operatorだけが返却を導出する。有限例の一致は未供給source/必要集合/recipient資格の閉包を証明しない。"
   },
   "domain_verification": {
     "current_L9_cases": 99,
-    "independent_probes": 65,
-    "current_full_materials": 164,
-    "meaning": "L9の99件と局所65件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
+    "independent_probes": 75,
+    "current_full_materials": 174,
+    "meaning": "L9の99件と局所75件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
     "mutation_scope": {
       "observed_rule_families": [
         "有限marker12語の削除",
@@ -12020,10 +12103,18 @@
         "B01の責務別候補返却3分岐",
         "F04の意味/案件値候補返却2分岐",
         "未宣言relation typeの受理",
-        "F01未選択source利用判定の選択flag依存化"
+        "F01未選択source利用判定の選択flag依存化",
+        "N01 original_relations空・提供側非空の保持",
+        "provided_version nullをunknownとして保持",
+        "required identity位置の有限marker分岐",
+        "F02 definition meaning差とBRAIN戻し",
+        "F03 forward row nullとHARNESS戻し",
+        "Relation meaningのmarker",
+        "F04 value_unset/null reasonの有効値判定",
+        "N01 result scope nullとunknown"
       ],
-      "finite_mutations": 22,
-      "limit": "この有限変異は局所wholeで識別する。旧reviewで観測された2027件/生存254件全体を再実行・解消したという主張ではない。N01 fallbackのtrue側は局所wholeでは未観測で、全入力域の到達性も未証明。実source/qualification/未見複合の全閉包は保持課題。"
+      "finite_mutations": 30,
+      "limit": "旧22件とR3追加8件の有限AST変異だけを独立wholeで識別する。reviewerの2051変異集合や未見全scope/全branchの網羅は主張しない。N01 fallback true側の他条件、実source/qualification/未見複合は保持課題。"
     }
   },
   "candidate_design_bindings": [
