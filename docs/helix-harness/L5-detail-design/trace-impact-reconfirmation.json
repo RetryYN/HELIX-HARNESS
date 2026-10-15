@@ -10864,7 +10864,7 @@
         "assertion_stage_pointer": "/schema_adapter_contract/assertion_evaluation_contract"
       },
       "binding_and_diagnostics": {
-        "priority": "A1の固定selector/schema/numeric/profile対応が先行。不整合があれば既存snapshot binding不足を保持し、keyword評価を成功させない。固定source/API/version/外部flags0の対応未確認を文字列不正へ縮約しない。",
+        "priority": "A1の公開selector/global schema/numeric/profile対応が先行。内部assertion-stageではassertion_evaluation_contract/pattern_binding_evidenceの資料protocol→元leaf→pattern対応をこの順で照合。schema closureのbinding不足をtype差で消さず、独立constraint findingsと併存してwhole_finding_contractへ結ぶ。実source/API/version/外部flags0未確認を文字列不正へ縮約しない。",
         "supported_pattern_failure": {
           "condition": "shape_invalid",
           "code": "shape_constraint_failed",
@@ -11523,13 +11523,13 @@
       "operands": {
         "selected_schema": "schema_raw_utf8を論理JSONとして読んだschema断片（試験素材）",
         "instance": "instance_raw_utf8を先行wire/materializer規則で読んだ論理値",
-        "binding_evidence": "固定schema/profile資料の整合とkeyword対応資料。既存binding対照のmutationで不足を明示する。資料一致は実資格ではない。"
+        "binding_evidence": "patternを含む内部assertion-stageでは下記pattern_binding_evidenceの閉recordを明示供給する。他keywordの合成対照にはこのpattern専用recordを新たな必須条件として加えない。固定32leafのschema_sourceからの投影及びcase22の別入力bindingはL8に明示する。"
       },
       "evaluation_order": [
-        "公開entryは固定7selectorとschema/numeric/profile snapshotを先に照合。不整合はkeyword null/pointer nullのbinding_unresolvedであり、任意合成schemaを公開snapshotとして受理しない。",
-        "内部assertion-stageの合成素材はselected_schemaとinstanceを明示供給し、keyword対応不足をwhole_finding_contractへ渡す。patternの実装対応はfixed_pattern_implementation_bindingの2式に限る。b等の別patternはkeyword pattern/pointer nullのbinding_unresolved。",
-        "string以外にpattern assertionを適用しない。schemaのtype=stringに対する数値instanceはtypeのconstraint findingのみでありpattern失敗を追加しない。",
-        "対応済みassertionの真偽をwhole_finding_contractのfinding/aggregationへ結ぶ。非anchor検索の数学意味はimplementation bindingの成立と別命題である。"
+        "公開entryは固定7selectorとschema/numeric/profile snapshotを先に照合。不整合はkeyword null/pointer nullのbinding_unresolved。合成leaf schemaやそのhashを公開global snapshotとして受理しない。",
+        "内部assertion-stageの合成素材はselected_schema/instanceを明示供給。pattern-bearingではpattern_binding_evidenceの閉record・比較順を使い、元leaf資料drift（keyword null）と未対応pattern（keyword pattern）を分ける。",
+        "schema closureでpattern資料不足を先に保持し、その後にinstanceのtype等を独立評価する。b+123/type=stringはpattern binding不足とtype constraintの2finding、condition=binding_unresolved。非stringにpattern assertion失敗は加えない。対応済みDigest+123はtype constraintのみ。",
+        "全findingはwhole_finding_contractのsort/重複除去/aggregationへ結ぶ。数学的な非anchor検索trueだけで実装対応を生成しない。"
       ],
       "synthetic_oracle_binding": {
         "partial_group": "/schema_adapter_oracles/cases",
@@ -11550,7 +11550,28 @@
         "rule": "ECMA/JSON Schemaの非anchor検索の数学的真偽のみ。ShapeProposalを返す実装bindingや公開entryの成功ではない。第三patternのAPI対応証明として加算しない。",
         "standard_source": "json-schema-validation.xml:355-365"
       },
-      "actual_effects": "none"
+      "actual_effects": "none",
+      "pattern_binding_evidence": {
+        "closed_fields": {
+          "selected_leaf_pointer": "RFC6901文字列。固定2patternの元leafを指す /logical_structure_schema/schema/$defs/Digest 又は /logical_structure_schema/schema/$defs/JsonPointer。公開selectorを増設しない。",
+          "selected_leaf_canonical_sha256": "64桁lowercase hex。selected_leaf_pointerで同L5内の元leaf schema objectへ解決し、固定key順・余白なし・ensure_ascii=falseのcanonical JSON UTF8（末尾LFなし）をSHA-256した値と比較。evaluated schemaのhashではない。",
+          "pattern_source_confirmed": "Boolean。指定公開source/API/version/flags0との対応資料の有無を明示する。falseは不足。trueやdigest一致は実owner/installed artifactの資格を生成しない。"
+        },
+        "hash_scopes": {
+          "global": "公開entryのfixed_schema_sha256/旧binding_cases.schema_sha256はlogical_structure_schema/schema全体の固定hash。内部selected_leafのhashと比較しない。",
+          "selected_leaf": "上記2式を含む元leaf object。評価対象の合成schemaを差し替えてもこの出典資料のhashを再定義しない。",
+          "evaluated_schema": "schema_raw_utf8のJSON schema断片。L8のevaluated_schema_canonical_sha256はその内容追跡metadataで、selected_leaf/global hashとの等値条件ではない。pattern対応は次の独立照合で決める。"
+        },
+        "comparison_order": [
+          "pattern-bearing内部評価でrecord未供給/宣言fieldの欠落・余剰・型不適合なら資料のprotocol不成立としてbinding_unresolved、code shape_binding_unresolved、keyword null、pointer null。instanceの型不正へ縮約しない。",
+          "selected_leaf_pointerの未解決/固定2leaf外、又はselected_leaf_canonical_sha256が指す元leaf objectと不一致ならsource資料driftとして同じkeyword null/pointer nullのbinding finding。公開global schema hashとの比較はしない。",
+          "出典leafが解決できてもpattern_source_confirmed=false、又はevaluated schemaのpattern字面が選択した元leaf.patternと一致しない場合は未対応pattern資料不足。binding_unresolved/shape_binding_unresolved、keyword pattern、pointer null。例:元Digest leafのhashは整合、評価schemaのpattern=bは対応対象外なのでdriftでなくこのfinding。",
+          "上記schema側の対応検査はinstance string判定より先行する。非stringにpattern assertionは適用しないがschema側のbinding不足を消さず、独立type assertion失敗を併存する。binding不足の優先/全finding統合は既存whole_finding_contractに従う。",
+          "元leaf対応とpattern資料が揃いinstanceがstringの時だけ指定re.search APIの対応対象である。対応済み2式の非string instanceでtype=stringならtype constraintのみ。"
+        ],
+        "diagnostics": "元AST保持/schema_handoff=false/actual_effects=none。snapshot/protocol driftはkeyword null、pattern対応資料不足はkeyword pattern。いずれもinstance_pointer null。独立したtype constraintはkeyword type、leaf root pointer空文字。",
+        "scope": "内部試験資料のsource対応規則であり新しいsource資格手続/認可gateではない。root/consumer/実環境の未供給は既存限界のまま。"
+      }
     }
   },
   "assembly_contract": {
@@ -11561,7 +11582,7 @@
       "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
       "canonical_emit_contract": "563f9701a5e4155da373d356169e3c0ef5332fa7c28dd42826d7e00b6619bce2",
-      "schema_adapter_contract": "72f77be5b226aef17026a22a75c34aa5f1b2503dcbe46ffd26fb5a428a0e3289",
+      "schema_adapter_contract": "645f36c6811b935eb419523cbfabf42739564595c960a3c094881e23bf72b099",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
     "bindings": [
