@@ -763,7 +763,17 @@
               "source_relation": "unresolved",
               "reason": "candidate_relation_unresolved",
               "priority": "既知selectorで一致するcandidateがあっても、同じ選択集合に一致可能性を排除できないunknown selectorが残ればunknown_selectorを優先する。既知不一致のselector軸が一つ以上あればそのenvelopeは候補外とし、無関係なunknown軸で選択を阻害しない。",
-              "missing_paths": "unknownなselectorのsource/computed pointerを宣言順に返す。Ref parent slotが明示Absent/null/非objectならslot pointer、object中のselector axisがAbsent/null/非stringならaxis pointerを記録する。"
+              "missing_paths": "unknownなselectorのsource/computed pointerを宣言順に返す。Ref parent slotが明示Absent/null/非objectならslot pointer、object中のselector axisがAbsent/null/非stringならaxis pointerを記録する。",
+              "candidate_envelope_result": {
+                "include": "known_matching_occurrences_only",
+                "exclude": "any_occurrence_with_unresolved_selector_axis",
+                "order": "source_envelopes_input_order",
+                "duplicates": "preserve_each_input_occurrence",
+                "candidate_count": "length(source_candidate_envelopes)",
+                "original_input": "source_envelopes_input_presence_and_value_unchanged",
+                "classification": "unresolved_unknown_selector_has_precedence"
+              },
+              "candidate_envelope_result_ja": "unknown selectorが残っても、source_candidate_envelopesにはsource_envelopesの元順で全selector軸が既知一致したoccurrenceだけを保持する。unknown軸を含むenvelopeは候補から除外し、元入力はsource_envelopes_inputへpresence/valueをそのまま保持する。候補は重複を含む各入力occurrenceであり、candidate_countは候補配列の長さ。statusは既知一致候補があってもunresolvedを優先する。"
             },
             "one": "compare_source_envelope",
             "more_than_one": {
@@ -791,7 +801,20 @@
             "all_values_equal": {
               "source_relation": "content_corresponding",
               "reason": "all_declared_fields_equal"
-            }
+            },
+            "resolution_precedence": [
+              "any_value_difference",
+              "missing_required_member",
+              "all_values_equal"
+            ],
+            "simultaneous_difference_and_missing": {
+              "primary_outcome": "any_value_difference",
+              "preserve_difference_paths": true,
+              "preserve_missing_paths": true,
+              "path_order": "各listは宣言したcomparison pair順と入れ子のsource/path規則に従う。owner routingへはdifference_paths、missing_pathsの順で渡す。",
+              "meaning_ja": "全ての宣言comparison pairを走査して差とmissingを独立収集する。同じrowに双方がある場合は差を主outcomeとしてcontent_conflictを返し、difference_pathsとmissing_pathsをともに保持する。差が無くmissingがあればunresolved、どちらもなければcontent_corresponding。主state選択で不足pointerや戻し先診断を捨てない。"
+            },
+            "resolution_order_ja": "resolution_precedenceの順でoutcomeを選ぶ。any_value_differenceはdifference_pathsが非空、missing_required_memberはdifference_pathsが空でmissing_pathsが非空、all_values_equalは両listが空のとき成立する。"
           },
           "fixed_outputs": {
             "actual_source_qualification": "not_established",
