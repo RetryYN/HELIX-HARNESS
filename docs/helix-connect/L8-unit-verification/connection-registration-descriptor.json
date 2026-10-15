@@ -3172,11 +3172,11 @@
       "双方が値あり → JSON型と内容が一致するときのみcontent_corresponding_in_fixture、他はcontent_conflict"
     ],
     "declaration_absence_projection": "declaration keyが存在しない側のretained/submitted_declarationは比較用表示{}。入力packetとtyped argumentのkey有無は保持し、実declarationの存在へ昇格しない。",
-    "unfinished_input_domain": "原arrayは既知collectionとして全体保持。原absent/null/非arrayはprojection null、field comparison unknown_original_information、候補held。原raw/member有無はretained_descriptorに残す。提出値から原collectionを生成しない。原array＋提出不正は既存ordinary comparisonと原array保持。",
+    "unfinished_input_domain": "原arrayは既知collectionとして全体保持。原absent/null/非arrayは投影null、fieldの比較結果unknown_original_information、候補held。原raw/member有無はretained_descriptorに残す。提出値から原collectionを生成しない。原array＋提出不正は既存の通常比較と原array保持。",
     "unfinished_information_precedence": [
       "原memberのarray形を先に判定する。",
       "原array以外は双方同値でもunknown_original_informationとheld。",
-      "原arrayは既存ordinary field比較で提出presence/型/内容を見る。",
+      "原arrayは既存の通常field比較で提出presence/型/内容を見る。",
       "他field/適用/理由/claim/無作用境界は独立に保持する。"
     ]
   },
