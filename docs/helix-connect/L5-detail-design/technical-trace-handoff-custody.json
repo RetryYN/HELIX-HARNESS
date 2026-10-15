@@ -964,7 +964,7 @@
           },
           "forbidden_value_field_names": {
             "kind": "nullable_string_array",
-            "meaning": "original_allowed_trace_fieldsとrequested_trace_fieldsの両方がJSON配列の場合、requested順を保った禁止名との交差を返す。いずれかがAbsent/null/非配列ならnullとして不明を示す。両方が空配列なら空配列であり、禁止値項目が無いことを示す。"
+            "meaning": "requested_trace_fieldsがJSON配列なら、その順を保持して禁止名との交差を返す。original_allowed_trace_fieldsの型や内容はこの交差を免除しない。requestedが空配列なら空配列、requested自体がAbsent/null/非配列ならnullを返す。allowlistの不足は別のinput_domain findingに保持する。"
           },
           "outside_reference_fields": {
             "kind": "json_value",
@@ -1669,26 +1669,108 @@
                 }
               },
               "then": {
-                "op": "compare",
-                "left": {
-                  "op": "path",
-                  "path": "input.original_prior_events"
-                },
-                "right": {
-                  "op": "slice_prefix",
-                  "array": {
-                    "op": "path",
-                    "path": "input.original_events"
-                  },
-                  "length": {
-                    "op": "length",
-                    "value": {
-                      "op": "path",
-                      "path": "input.original_prior_events"
+                "op": "if",
+                "condition": {
+                  "op": "and",
+                  "values": [
+                    {
+                      "op": "lt",
+                      "left": {
+                        "op": "get",
+                        "value": {
+                          "op": "array_at",
+                          "array": {
+                            "op": "path",
+                            "path": "input.original_prior_events"
+                          },
+                          "index": {
+                            "op": "literal",
+                            "value": -1
+                          }
+                        },
+                        "key": "ordinal"
+                      },
+                      "right": {
+                        "op": "get",
+                        "value": {
+                          "op": "array_at",
+                          "array": {
+                            "op": "path",
+                            "path": "input.original_events"
+                          },
+                          "index": {
+                            "op": "literal",
+                            "value": 0
+                          }
+                        },
+                        "key": "ordinal"
+                      }
+                    },
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "in",
+                        "value": {
+                          "op": "get",
+                          "value": {
+                            "op": "array_at",
+                            "array": {
+                              "op": "path",
+                              "path": "input.original_prior_events"
+                            },
+                            "index": {
+                              "op": "literal",
+                              "value": -1
+                            }
+                          },
+                          "key": "identity"
+                        },
+                        "array": {
+                          "op": "map",
+                          "array": {
+                            "op": "path",
+                            "path": "input.original_events"
+                          },
+                          "as": "candidate_event",
+                          "body": {
+                            "op": "get",
+                            "value": {
+                              "op": "variable",
+                              "name": "candidate_event"
+                            },
+                            "key": "identity"
+                          }
+                        }
+                      }
                     }
-                  }
+                  ]
                 },
-                "mode": "ordinary"
+                "then": {
+                  "op": "literal",
+                  "value": "content_corresponding_in_fixture"
+                },
+                "else": {
+                  "op": "compare",
+                  "left": {
+                    "op": "path",
+                    "path": "input.original_prior_events"
+                  },
+                  "right": {
+                    "op": "slice_prefix",
+                    "array": {
+                      "op": "path",
+                      "path": "input.original_events"
+                    },
+                    "length": {
+                      "op": "length",
+                      "value": {
+                        "op": "path",
+                        "path": "input.original_prior_events"
+                      }
+                    }
+                  },
+                  "mode": "ordinary"
+                }
               },
               "else": {
                 "op": "literal",
@@ -2744,7 +2826,8 @@
         }
       },
       "formal_ast_status": "汎用ASTで対象fixtureの全返却rootを導出する。追加一般域の実source資格は含めない。",
-      "steps_status": "人向け説明のみ。実計算の唯一の根拠はformal_ast。"
+      "steps_status": "人向け説明のみ。実計算の唯一の根拠はformal_ast。",
+      "history_window_scope": "original_prior_eventsは既観測原履歴。最終ordinalが選択original_events先頭ordinalより小さく、最終identityが選択列に含まれない場合、その履歴は選択window外なので原prefix比較の対象外。history_prefix_resultの対応表示は選択範囲内の保存義務に限る。先頭previous_event_refと最終prior identityの結線はpredecessor_chainで別に検査する。それ以外はoriginal_events先頭とprior全値を比較する。原priorは常に保持し、未観測全履歴の実保存を証明しない。"
     },
     "FN-CONNECT005-F02": {
       "input": "F02Input",
@@ -6785,7 +6868,7 @@
         "outside_reference_field_names",
         "forbidden_value_field_names",
         "payload_persistence_requirement",
-        "claim_results"
+        "input_domain"
       ],
       "failure_owner_order": "重複を除いたUnicode code point昇順",
       "output_root_order": [
@@ -6846,8 +6929,8 @@
       "missing_needed_test": "original_needed_event_idsとoriginal_eventsの双方が配列なら、原identityとのJSON型付きmembershipで不足identityをneeded順に返す。片方がAbsentならmissing_original_event_ids=nullと不足source別missing診断、明示null/他shapeならnullとunknown_original_information診断を返す。",
       "order_test": "original ordinal全件がintegerで厳密昇順かを確認する。未観測/不正shapeはfalseとしfailure rowでunknown_or_conflicting_orderへ写す。",
       "predecessor_test": "original_eventsのindex 1以降のprevious_event_refを直前selected record.identityへ照合する。original_prior_eventsの最終identityがselected列内に含まれる場合、priorはselected prefixと重複するためselected列先頭のwindow外edgeは未観測として照合しない。含まれない場合に限り、先頭previous_event_refをprior最終identityと照合する。priorが空/非配列/identity absentなら先頭edgeは未観測で、root markerを要求しない。",
-      "history_prefix_left": "original_prior_eventsを原配列として保持し、submitted_eventsの先頭len(original_prior_events)件とJSON型付きで全体比較する。",
-      "history_prefix_right": "original_prior_eventsと同じ長さのsubmitted_events先頭部分。",
+      "history_prefix_left": "original_prior_eventsを原配列のまま保持する。priorが選択列より前で、最終ordinalが選択列先頭より小さく最終identityが選択列内にない場合は、window外の先行履歴としてprefix比較対象外とする。それ以外はoriginal_eventsの先頭len(prior)件とJSON型付きで全体比較する。",
+      "history_prefix_right": "prefix比較が適用されるときのoriginal_events先頭部分。window外の先行履歴は保持し、先頭previous_event_refをpredecessor_testで照合する。局所対応から全履歴の実保存資格を生成しない。",
       "submitted_sequence_left": "original_eventsを使う。",
       "submitted_sequence_right": "submitted_eventsを使う。",
       "claim_source": "claims",
@@ -7043,10 +7126,6 @@
           "emit": "個別linkのfailure rowを追加する。receiptはresolutionを成立させない。"
         },
         {
-          "when": "original_stopがobjectでcurrent_state=successかつcauseがsourceにある未完/未観測/中断cause。",
-          "emit": "unsupported_completion_for_stopとしてconnection-operation-owner候補へ返す。"
-        },
-        {
           "when": "入力recordが必要shapeでない、またはresult_state/causeが有限型比較に入らない。",
           "emit": "field別のmissingまたはunknown_original_informationをinput_domainへ返し、rawをretained outputに保持する。"
         },
@@ -7196,7 +7275,9 @@
       "is_absent": {
         "signature": "Presence<JsonValue> -> Boolean",
         "meaning": "memberがAbsentならtrue。明示nullとは区別する。"
-      }
+      },
+      "array_at": "arrayと整数indexを受け、負のindexは末尾から数える。非array、整数以外または範囲外ならAbsent。入力値を変更しない。",
+      "lt": "両operandがJSON number（booleanを除く）の場合だけ数値の左<右を返す。Absent/null/非numberならfalse。"
     },
     "unknown_operator": "禁止。未宣言operatorは検証失敗。",
     "literal_domains": {
