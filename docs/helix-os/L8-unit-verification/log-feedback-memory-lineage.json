@@ -111,61 +111,61 @@
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3e",
       "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
-      "role": "approval decision record; reviewed_content_head is 7f1719fb6a89837c1bb9775faa9a634a066df4a3; its YAML status is preserved as recorded"
+      "role": "承認判断の固定本文。reviewed_content_headとYAML上のpending状態を区別して保持する。"
     },
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
-      "role": "approved requirement source"
+      "role": "承認対象の要件本文。"
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec",
-      "role": "approved verification source"
+      "role": "承認対象の対検証本文。"
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
-      "role": "basic design source; parent pair bytes"
+      "role": "親pairの基本設計の固定本文。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "7eecd8271c19881b84a2b4c7e72117283fdab7ff88cb2f6674cbbd570222ad62",
-      "role": "integration verification source; fixed raw and expected material"
+      "role": "親pairの統合検証。rawと期待値を別々に保持する。"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
-      "role": "current parent requirement text"
+      "role": "親要求の本文。"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
-      "role": "current acceptance text"
+      "role": "対受入条件の本文。"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
-      "role": "historical feedback lifecycle design; reference only, never execute"
+      "role": "旧feedback lifecycle設計。読取参照に限り実行しない。"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
-      "role": "legacy asset ledger"
+      "role": "旧資産明細台帳。"
     },
     {
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
       "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
-      "role": "actual-main-admission-merge-record-blob"
+      "role": "実main取込み時点の判断記録blob。"
     }
   ],
   "source_fixture": {
@@ -21932,7 +21932,7 @@
       "HELIXOS-L10-007-F03"
     ],
     "design_rules": "L4 /diagnostic_contract/rules/R01-R12 and contracts F01-F03",
-    "expected_material": "L9 complete whole expected outputs are comparison-only; formal_program input is only the fixed raw packet plus ordered case input replacements. Six boundary assertions are authored independently from L4 R01-R12 and do not use L9 expected or reader results."
+    "expected_material": "原L9全945 wholeは比較専用。計算はraw packetと置換列のみを読む。追加の4境界projectionと3 whole・各3 component期待はL4規則から固定し、修正前の候補と照合した。"
   },
   "validation_plan": {
     "static_only": [
@@ -21942,21 +21942,16 @@
       "L9全945caseのbase＋ordered replacementsからactual inputとexpected comparison oracleを別々に展開し、値/hash/pointer/traceを照合する",
       "L5 formal_programだけを評価するgeneric readerで全945件の全返却wholeを導出し、展開したL9 expected wholeと比較する。L9 expectedを計算入力にしない",
       "fixed input shapeの全945 actual/context引数、各関数の全return root、組立後EvidenceAssessmentをformal recursive type shapeへ照合する",
-      "L4 R01-R12から独立に先固定した6境界probeについて、leaf type・closed value・stage nonrecorded・順序・whole claimのdiagnostic projectionを照合する"
+      "L4から固定した4境界projectionと3 whole・各3 component期待を比較し、either-recorded joinの修正前Redも保持する。"
     ],
     "not_performed": [
-      "old runtime/test/CI",
-      "author generator",
-      "formal codec/schema validation",
-      "real authority/source qualification",
-      "real storage/feedback/memory operations",
-      "execution/PO L11 acceptance",
-      "一般任意JSON root/欠落containerのbusiness validation（L4 input_domain外）",
-      "実source custody/qualification、正式schema/codec、実ログ保存・feedback解決・memory操作、実認証/authorization",
-      "旧runtime/test/CI、author generator、実TDD/新世代CI、L11/PO受入"
+      "旧runtime/test/CI・author generator",
+      "正式schema/codec・一般任意JSON root/欠落containerのbusiness validation",
+      "実source/owner資格・custody・実保存・feedback解決・memory操作",
+      "製品TDD・新世代CI・L11/PO実物受入"
     ]
   },
-  "status_note": "formal_programの汎用readerで945全caseの全返却wholeを再計算し、L9 expectedは最終比較だけに使う。6独立境界projectionもL4から先固定して照合した。固定入力shape内での有限照合であり、任意JSON域のvalidation、正式schema/codec、実source資格、実操作、L11受入や一般意味閉包を示さない。",
+  "status_note": "原945 whole、4境界projection、3追加wholeと局所componentの有限比較を行う。一般意味閉包・実source資格・製品実装Readyを示さない。",
   "invocation_template": {
     "input_root_pointer": "/fixture_inputs/records",
     "actual_input_pointer": "/fixture_inputs/records",
@@ -22000,12 +21995,9 @@
         "source_input_pointer": "/fixture_inputs/records",
         "patches": [
           {
-            "path": [
-              "logs",
-              "worker",
-              "project_id"
-            ],
-            "value": true
+            "path": "/logs/worker/project_id",
+            "value": true,
+            "op": "replace"
           }
         ],
         "assert": {
@@ -22026,94 +22018,18 @@
         }
       },
       {
-        "id": "OS007-BOUNDARY-02",
-        "source_input_pointer": "/fixture_inputs/records",
-        "patches": [
-          {
-            "path": [
-              "logs",
-              "worker",
-              "kind"
-            ],
-            "value": "decision"
-          },
-          {
-            "path": [
-              "context",
-              "logs",
-              "worker",
-              "kind"
-            ],
-            "value": "decision"
-          }
-        ],
-        "assert": {
-          "condition": "record_material_violation",
-          "facet_correspondence": {
-            "logs": "violation",
-            "feedback": "corresponding",
-            "memory": "corresponding",
-            "boundary": "corresponding"
-          },
-          "findings": [
-            {
-              "code": "log_kind_conflict",
-              "pointer": "/context/logs/worker/kind",
-              "return_owner": "common-log-owner"
-            },
-            {
-              "code": "log_kind_conflict",
-              "pointer": "/logs/worker/kind",
-              "return_owner": "common-log-owner"
-            }
-          ]
-        }
-      },
-      {
         "id": "OS007-BOUNDARY-03",
         "source_input_pointer": "/fixture_inputs/records",
         "patches": [
           {
-            "path": [
-              "feedback",
-              "unacked",
-              "stages",
-              "intake",
-              "recorded"
-            ],
-            "value": false
+            "path": "/feedback/unacked/stages/intake/recorded",
+            "value": false,
+            "op": "replace"
           },
           {
-            "path": [
-              "context",
-              "feedback",
-              "unacked",
-              "stages",
-              "intake",
-              "recorded"
-            ],
-            "value": false
-          },
-          {
-            "path": [
-              "feedback",
-              "unacked",
-              "stages",
-              "intake",
-              "record_ref"
-            ],
-            "value": "SYN-INDEPENDENT-REF"
-          },
-          {
-            "path": [
-              "context",
-              "feedback",
-              "unacked",
-              "stages",
-              "intake",
-              "record_ref"
-            ],
-            "value": "SYN-INDEPENDENT-REF"
+            "path": "/context/feedback/unacked/stages/intake/recorded",
+            "value": false,
+            "op": "replace"
           }
         ],
         "assert": {
@@ -22143,11 +22059,7 @@
         "source_input_pointer": "/fixture_inputs/records",
         "patches": [
           {
-            "path": [
-              "memory",
-              "pending_reflection",
-              "reflection"
-            ],
+            "path": "/memory/pending_reflection/reflection",
             "value": {
               "recorded": true,
               "order": true,
@@ -22160,15 +22072,11 @@
               "target_content_digest": "SYN-TARGET-DIGEST",
               "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
               "episode_ref": "EPISODE-a"
-            }
+            },
+            "op": "replace"
           },
           {
-            "path": [
-              "context",
-              "memory",
-              "pending_reflection",
-              "reflection"
-            ],
+            "path": "/context/memory/pending_reflection/reflection",
             "value": {
               "recorded": true,
               "order": true,
@@ -22181,7 +22089,8 @@
               "target_content_digest": "SYN-TARGET-DIGEST",
               "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
               "episode_ref": "EPISODE-a"
-            }
+            },
+            "op": "replace"
           }
         ],
         "assert": {
@@ -22207,53 +22116,13 @@
         }
       },
       {
-        "id": "OS007-BOUNDARY-05",
-        "source_input_pointer": "/fixture_inputs/records",
-        "patches": [
-          {
-            "path": [
-              "memory",
-              "pending_reflection",
-              "deliver_success_count"
-            ],
-            "value": true
-          },
-          {
-            "path": [
-              "context",
-              "memory",
-              "pending_reflection",
-              "deliver_success_count"
-            ],
-            "value": 1
-          }
-        ],
-        "assert": {
-          "condition": "record_material_unknown",
-          "facet_correspondence": {
-            "logs": "corresponding",
-            "feedback": "corresponding",
-            "memory": "unknown",
-            "boundary": "corresponding"
-          },
-          "findings": [
-            {
-              "code": "use_count_unknown",
-              "pointer": "/memory/pending_reflection/deliver_success_count",
-              "return_owner": "memory-canonical-owner"
-            }
-          ]
-        }
-      },
-      {
         "id": "OS007-BOUNDARY-06",
         "source_input_pointer": "/fixture_inputs/records",
         "patches": [
           {
-            "path": [
-              "whole_completion_claim"
-            ],
-            "value": 1
+            "path": "/whole_completion_claim",
+            "value": 1,
+            "op": "replace"
           }
         ],
         "assert": {
@@ -22274,7 +22143,20 @@
         }
       }
     ],
-    "scope_note": "各assertはcondition/facet/findingsのprojectionで、独立なwhole return oracleではない。leaf値の型・値・保存状態に対する局所規則を識別する。固定root/container shape外はL4が検証を規定していないため未閉包。"
+    "scope_note": "各assertはcondition/facet/findingsのprojectionで、独立なwhole return oracleではない。leaf値の型・値・保存状態に対する局所規則を識別する。固定root/container shape外はL4が検証を規定していないため未閉包。",
+    "removed_redundant_probes": [
+      {
+        "id": "OS007-BOUNDARY-02",
+        "covered_by": "L9 C0937",
+        "reason": "原L9と同じraw/診断で独立反例として再計数しない。"
+      },
+      {
+        "id": "OS007-BOUNDARY-05",
+        "covered_by": "L9 C0610",
+        "reason": "同じcount型規則を識別するため原検証へ戻す。"
+      }
+    ],
+    "patch_format": "RFC6902 replace; pathはRFC6901、source_packet_canonical_sha256の一致を確認してから適用する。"
   },
   "approval_admission_evidence": {
     "admission_merge_commit": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
@@ -22286,12 +22168,3205 @@
     "source_main_at_pair_authoring": "21ba1562bd907e19d49274839d0bd2d736c060d5",
     "observed_origin_main_at_handoff": "ae33e1c8655d44965f5392122da72a7aefd89377",
     "admission_is_ancestor_of_pair_source_main": true,
-    "authority_note": "decision recordの記録状態を転記する。pending metadataのみから最終承認・操作権限を生成しない。"
+    "authority_note": "decision recordの記録状態を転記する。pending metadataのみから最終承認・操作権限を生成しない。",
+    "evidence_boundary": "このobjectは著述時の取込み履歴・source bytesの照合用metadataであり、製品の計算規範や資格判定ではない。"
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
     "document_id": "HELIXOS-L5-007",
-    "sha256": "3fb6cc83a53f4f09715b2b75af512306303c337831a02f67bbbeb628409c9983",
-    "binding_role": "exact candidate L5 bytes interpreted by the read-only formal-program verifier"
+    "sha256": "eba9a3c483203322d70d5766052431c5e967cead0f33dd71c8d7fcf999090a24",
+    "binding_role": "独立照合する正式候補L5のexact bytes。検証器の成功を製品の証拠にしない。"
+  },
+  "independent_whole_probes": {
+    "status": "source_derived_wholes_fixed_before_candidate_change",
+    "source_l9_sha256": "7eecd8271c19881b84a2b4c7e72117283fdab7ff88cb2f6674cbbd570222ad62",
+    "cases": [
+      {
+        "id": "OS007-MEMORY-EITHER-RECORDED-JOIN",
+        "source_input_pointer": "/fixture_inputs/records",
+        "patches": [
+          {
+            "op": "replace",
+            "path": "/memory/retired/reflection/recorded",
+            "value": false
+          },
+          {
+            "op": "replace",
+            "path": "/memory/retired/reflection/source_entry_id",
+            "value": "X-ENTRY"
+          },
+          {
+            "op": "replace",
+            "path": "/context/memory/retired/reflection/source_entry_id",
+            "value": "X-ENTRY"
+          }
+        ],
+        "expected_whole": {
+          "condition": "record_material_violation",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "violation",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "retained_actual_records": {
+            "logs": {
+              "worker": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-unacked-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-unacked-source_head",
+                  "source_ref": "SYN-FINDING-unacked-source_ref",
+                  "source_digest": "SYN-FINDING-unacked-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "X-ENTRY",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "retained_reference_records": {
+            "logs": {
+              "worker": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-unacked-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-unacked-source_head",
+                  "source_ref": "SYN-FINDING-unacked-source_ref",
+                  "source_digest": "SYN-FINDING-unacked-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": true,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "X-ENTRY",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "findings": [
+            {
+              "code": "boolean_conflict",
+              "pointer": "/memory/retired/reflection/recorded",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "field_conflict",
+              "pointer": "/memory/retired/reflection/source_entry_id",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "reflection_unrecorded_ref_present",
+              "pointer": "/memory/retired/reflection",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "retire_before_reflection",
+              "pointer": "/memory/retired/state",
+              "return_owner": "memory-canonical-owner"
+            }
+          ],
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "basis": "L4 R08は片側recorded=trueでsource joinし、R09はactual retired/recorded falseを識別する。context反映記録だけがある側でもactual reflectionとcontext sourceの相反を保持する。",
+        "expected_components": {
+          "assess_log_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "worker": {
+                "usable": true
+              },
+              "decision": {
+                "usable": true
+              },
+              "operation": {
+                "usable": true
+              },
+              "verification": {
+                "usable": true
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "worker": [],
+              "decision": [],
+              "operation": [],
+              "verification": []
+            }
+          },
+          "assess_feedback_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "unacked": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": false,
+                  "ack": false,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "acked_pending": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "resolved": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": false,
+                  "resolution": true
+                },
+                "resolution_material_corresponding": true,
+                "actual_resolved": false
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "unacked": [],
+              "acked_pending": [],
+              "resolved": []
+            }
+          },
+          "assess_memory_material": {
+            "facet_status": "violation",
+            "items": {
+              "pending_reflection": {
+                "state": "active",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": true,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "retired": {
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "expired": {
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "consumed": {
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              }
+            },
+            "findings": [
+              {
+                "code": "boolean_conflict",
+                "pointer": "/memory/retired/reflection/recorded",
+                "return_owner": "memory-canonical-owner"
+              },
+              {
+                "code": "field_conflict",
+                "pointer": "/memory/retired/reflection/source_entry_id",
+                "return_owner": "memory-canonical-owner"
+              },
+              {
+                "code": "reflection_unrecorded_ref_present",
+                "pointer": "/memory/retired/reflection",
+                "return_owner": "memory-canonical-owner"
+              },
+              {
+                "code": "retire_before_reflection",
+                "pointer": "/memory/retired/state",
+                "return_owner": "memory-canonical-owner"
+              }
+            ],
+            "findings_by_item": {
+              "pending_reflection": [],
+              "retired": [
+                {
+                  "code": "boolean_conflict",
+                  "pointer": "/memory/retired/reflection/recorded",
+                  "return_owner": "memory-canonical-owner"
+                },
+                {
+                  "code": "field_conflict",
+                  "pointer": "/memory/retired/reflection/source_entry_id",
+                  "return_owner": "memory-canonical-owner"
+                },
+                {
+                  "code": "reflection_unrecorded_ref_present",
+                  "pointer": "/memory/retired/reflection",
+                  "return_owner": "memory-canonical-owner"
+                },
+                {
+                  "code": "retire_before_reflection",
+                  "pointer": "/memory/retired/state",
+                  "return_owner": "memory-canonical-owner"
+                }
+              ],
+              "expired": [],
+              "consumed": []
+            }
+          }
+        }
+      },
+      {
+        "id": "OS007-SAME-PLACEHOLDER-DISCLOSURE",
+        "source_input_pointer": "/fixture_inputs/records",
+        "patches": [
+          {
+            "op": "replace",
+            "path": "/logs/worker/project_id",
+            "value": "UNKNOWN"
+          },
+          {
+            "op": "replace",
+            "path": "/context/logs/worker/project_id",
+            "value": "UNKNOWN"
+          }
+        ],
+        "expected_whole": {
+          "condition": "record_material_corresponding",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": true,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "retained_actual_records": {
+            "logs": {
+              "worker": {
+                "project_id": "UNKNOWN",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-unacked-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-unacked-source_head",
+                  "source_ref": "SYN-FINDING-unacked-source_ref",
+                  "source_digest": "SYN-FINDING-unacked-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": true,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "SYN-MEMORY-retired-entry_id",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "retained_reference_records": {
+            "logs": {
+              "worker": {
+                "project_id": "UNKNOWN",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-unacked-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-unacked-source_head",
+                  "source_ref": "SYN-FINDING-unacked-source_ref",
+                  "source_digest": "SYN-FINDING-unacked-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": true,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "SYN-MEMORY-retired-entry_id",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "findings": [],
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "basis": "L4 R01は非空string比較のみ。両側同値UNKNOWNは文字列材料として対応し、実source資格とは区別する。規則を黙ってmarker判定へ置換せず、この反例を未閉包の具体例として保持する。",
+        "expected_components": {
+          "assess_log_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "worker": {
+                "usable": true
+              },
+              "decision": {
+                "usable": true
+              },
+              "operation": {
+                "usable": true
+              },
+              "verification": {
+                "usable": true
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "worker": [],
+              "decision": [],
+              "operation": [],
+              "verification": []
+            }
+          },
+          "assess_feedback_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "unacked": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": false,
+                  "ack": false,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "acked_pending": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "resolved": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": false,
+                  "resolution": true
+                },
+                "resolution_material_corresponding": true,
+                "actual_resolved": false
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "unacked": [],
+              "acked_pending": [],
+              "resolved": []
+            }
+          },
+          "assess_memory_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "pending_reflection": {
+                "state": "active",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": true,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "retired": {
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection_recorded": true,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "expired": {
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "consumed": {
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "pending_reflection": [],
+              "retired": [],
+              "expired": [],
+              "consumed": []
+            }
+          }
+        }
+      },
+      {
+        "id": "OS007-FEEDBACK-JOIN-UNKNOWN-RIGHT",
+        "source_input_pointer": "/fixture_inputs/records",
+        "patches": [
+          {
+            "op": "replace",
+            "path": "/feedback/unacked/original_finding",
+            "value": null
+          },
+          {
+            "op": "replace",
+            "path": "/context/feedback/unacked/original_finding/source_head",
+            "value": ""
+          }
+        ],
+        "expected_whole": {
+          "condition": "record_material_unknown",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "unknown",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": true,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "retained_actual_records": {
+            "logs": {
+              "worker": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": null,
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": true,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "SYN-MEMORY-retired-entry_id",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "retained_reference_records": {
+            "logs": {
+              "worker": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-worker-record_id",
+                "source_ref": "SYN-LOG-worker-source_ref",
+                "source_revision": "SYN-LOG-worker-source_revision",
+                "source_digest": "SYN-LOG-worker-source_digest",
+                "actor_ref": "SYN-LOG-worker-actor_ref",
+                "observed_at_ref": "SYN-LOG-worker-observed_at_ref",
+                "configuration_revision": "SYN-LOG-worker-configuration_revision",
+                "capability_revision": "SYN-LOG-worker-capability_revision",
+                "model_revision": "SYN-LOG-worker-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-worker-schema_revision",
+                "action_ref": "SYN-LOG-worker-action_ref",
+                "result_ref": "SYN-LOG-worker-result_ref",
+                "kind": "worker",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "decision": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-decision-record_id",
+                "source_ref": "SYN-LOG-decision-source_ref",
+                "source_revision": "SYN-LOG-decision-source_revision",
+                "source_digest": "SYN-LOG-decision-source_digest",
+                "actor_ref": "SYN-LOG-decision-actor_ref",
+                "observed_at_ref": "SYN-LOG-decision-observed_at_ref",
+                "configuration_revision": "SYN-LOG-decision-configuration_revision",
+                "capability_revision": "SYN-LOG-decision-capability_revision",
+                "model_revision": "SYN-LOG-decision-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-decision-schema_revision",
+                "action_ref": "SYN-LOG-decision-action_ref",
+                "result_ref": "SYN-LOG-decision-result_ref",
+                "kind": "decision",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "operation": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-operation-record_id",
+                "source_ref": "SYN-LOG-operation-source_ref",
+                "source_revision": "SYN-LOG-operation-source_revision",
+                "source_digest": "SYN-LOG-operation-source_digest",
+                "actor_ref": "SYN-LOG-operation-actor_ref",
+                "observed_at_ref": "SYN-LOG-operation-observed_at_ref",
+                "configuration_revision": "SYN-LOG-operation-configuration_revision",
+                "capability_revision": "SYN-LOG-operation-capability_revision",
+                "model_revision": "SYN-LOG-operation-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-operation-schema_revision",
+                "action_ref": "SYN-LOG-operation-action_ref",
+                "result_ref": "SYN-LOG-operation-result_ref",
+                "kind": "operation",
+                "state": "current_material",
+                "success_evidence_claim": false
+              },
+              "verification": {
+                "project_id": "project_a",
+                "requirement_id": "REQ-a",
+                "requirement_revision": "REQ-r1",
+                "scope": "SCOPE-a",
+                "record_id": "SYN-LOG-verification-record_id",
+                "source_ref": "SYN-LOG-verification-source_ref",
+                "source_revision": "SYN-LOG-verification-source_revision",
+                "source_digest": "SYN-LOG-verification-source_digest",
+                "actor_ref": "SYN-LOG-verification-actor_ref",
+                "observed_at_ref": "SYN-LOG-verification-observed_at_ref",
+                "configuration_revision": "SYN-LOG-verification-configuration_revision",
+                "capability_revision": "SYN-LOG-verification-capability_revision",
+                "model_revision": "SYN-LOG-verification-model_revision",
+                "causal_id": "CAUSAL-a",
+                "episode_ref": "EPISODE-a",
+                "schema_revision": "SYN-LOG-verification-schema_revision",
+                "action_ref": "SYN-LOG-verification-action_ref",
+                "result_ref": "SYN-LOG-verification-result_ref",
+                "kind": "verification",
+                "state": "current_material",
+                "success_evidence_claim": false
+              }
+            },
+            "feedback": {
+              "unacked": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-unacked-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "",
+                  "source_ref": "SYN-FINDING-unacked-source_ref",
+                  "source_digest": "SYN-FINDING-unacked-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-intake-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "ack": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-unacked-pending-record_ref",
+                    "source_head": "SYN-FINDING-unacked-source_head",
+                    "actor_ref": "SYN-STAGE-unacked-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-unacked-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "acked_pending": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-acked_pending-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-acked_pending-source_head",
+                  "source_ref": "SYN-FINDING-acked_pending-source_ref",
+                  "source_digest": "SYN-FINDING-acked_pending-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-intake-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-classify-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-ack-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-acked_pending-pending-record_ref",
+                    "source_head": "SYN-FINDING-acked_pending-source_head",
+                    "actor_ref": "SYN-STAGE-acked_pending-pending-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-acked_pending-pending-observed_at_ref"
+                  },
+                  "resolution": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  }
+                },
+                "resolution_origin": null,
+                "resolved_claim": false,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              },
+              "resolved": {
+                "original_finding": {
+                  "finding_id": "SYN-FINDING-resolved-finding_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_head": "SYN-FINDING-resolved-source_head",
+                  "source_ref": "SYN-FINDING-resolved-source_ref",
+                  "source_digest": "SYN-FINDING-resolved-source_digest"
+                },
+                "stages": {
+                  "intake": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-intake-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-intake-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-intake-observed_at_ref"
+                  },
+                  "classify": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-classify-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-classify-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-classify-observed_at_ref"
+                  },
+                  "ack": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-ack-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-ack-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-ack-observed_at_ref"
+                  },
+                  "pending": {
+                    "recorded": false,
+                    "record_ref": null,
+                    "source_head": null,
+                    "actor_ref": null,
+                    "observed_at_ref": null
+                  },
+                  "resolution": {
+                    "recorded": true,
+                    "record_ref": "SYN-STAGE-resolved-resolution-record_ref",
+                    "source_head": "SYN-FINDING-resolved-source_head",
+                    "actor_ref": "SYN-STAGE-resolved-resolution-actor_ref",
+                    "observed_at_ref": "SYN-STAGE-resolved-resolution-observed_at_ref"
+                  }
+                },
+                "resolution_origin": "canonical_resolution_source",
+                "resolved_claim": true,
+                "discard_original_claim": false,
+                "projection": {
+                  "notification_consumed": false,
+                  "display_hidden": false
+                }
+              }
+            },
+            "memory": {
+              "pending_reflection": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-pending_reflection-source_ref",
+                  "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                  "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-pending_reflection-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "active",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": true,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "retired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-retired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-retired-source_ref",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-retired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": true,
+                  "order": 1,
+                  "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                  "source_entry_id": "SYN-MEMORY-retired-entry_id",
+                  "source_revision": "SYN-MEMORY-retired-source_revision",
+                  "source_digest": "SYN-MEMORY-retired-source_digest",
+                  "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                  "target_revision": "SYN-REFLECTION-retired-target_revision",
+                  "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                  "responsibility_ref": "SYN-MEMORY-retired-responsibility_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "retire_order": 2,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "expired": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-expired-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-expired-source_ref",
+                  "source_revision": "SYN-MEMORY-expired-source_revision",
+                  "source_digest": "SYN-MEMORY-expired-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-expired-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-expired-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 0,
+                "consume_success_count": 0,
+                "provider_authority_claim": false
+              },
+              "consumed": {
+                "source": {
+                  "entry_id": "SYN-MEMORY-consumed-entry_id",
+                  "project_id": "project_a",
+                  "requirement_revision": "REQ-r1",
+                  "scope": "SCOPE-a",
+                  "source_ref": "SYN-MEMORY-consumed-source_ref",
+                  "source_revision": "SYN-MEMORY-consumed-source_revision",
+                  "source_digest": "SYN-MEMORY-consumed-source_digest",
+                  "responsibility_ref": "SYN-MEMORY-consumed-responsibility_ref",
+                  "original_content_ref": "SYN-MEMORY-consumed-original_content_ref",
+                  "episode_ref": "EPISODE-a"
+                },
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection": {
+                  "recorded": false,
+                  "order": null,
+                  "reflection_ref": null,
+                  "source_entry_id": null,
+                  "source_revision": null,
+                  "source_digest": null,
+                  "target_canonical_ref": null,
+                  "target_revision": null,
+                  "target_content_digest": null,
+                  "responsibility_ref": null,
+                  "episode_ref": null
+                },
+                "retire_order": null,
+                "active_instruction_present": false,
+                "deliver_success_count": 1,
+                "consume_success_count": 1,
+                "provider_authority_claim": false
+              }
+            }
+          },
+          "findings": [
+            {
+              "code": "field_unknown",
+              "pointer": "/context/feedback/unacked/original_finding/source_head",
+              "return_owner": "feedback-source-owner"
+            },
+            {
+              "code": "finding_missing",
+              "pointer": "/feedback/unacked/original_finding",
+              "return_owner": "feedback-source-owner"
+            }
+          ],
+          "actual_log_written": false,
+          "actual_feedback_resolved": false,
+          "actual_memory_retired": false,
+          "whole_management_complete": false,
+          "operation_effect": "none"
+        },
+        "basis": "L4 R04はactual原finding不足、R05は記録済intake/pendingのsource_headをcontext原findingへjoinする。context head不足をactual不足で抑止しない。同じpointer診断は重複除去する。",
+        "expected_components": {
+          "assess_log_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "worker": {
+                "usable": true
+              },
+              "decision": {
+                "usable": true
+              },
+              "operation": {
+                "usable": true
+              },
+              "verification": {
+                "usable": true
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "worker": [],
+              "decision": [],
+              "operation": [],
+              "verification": []
+            }
+          },
+          "assess_feedback_material": {
+            "facet_status": "unknown",
+            "items": {
+              "unacked": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": false,
+                  "ack": false,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "acked_pending": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": true,
+                  "resolution": false
+                },
+                "resolution_material_corresponding": false,
+                "actual_resolved": false
+              },
+              "resolved": {
+                "stage_recorded": {
+                  "intake": true,
+                  "classify": true,
+                  "ack": true,
+                  "pending": false,
+                  "resolution": true
+                },
+                "resolution_material_corresponding": true,
+                "actual_resolved": false
+              }
+            },
+            "findings": [
+              {
+                "code": "field_unknown",
+                "pointer": "/context/feedback/unacked/original_finding/source_head",
+                "return_owner": "feedback-source-owner"
+              },
+              {
+                "code": "finding_missing",
+                "pointer": "/feedback/unacked/original_finding",
+                "return_owner": "feedback-source-owner"
+              }
+            ],
+            "findings_by_item": {
+              "unacked": [
+                {
+                  "code": "field_unknown",
+                  "pointer": "/context/feedback/unacked/original_finding/source_head",
+                  "return_owner": "feedback-source-owner"
+                },
+                {
+                  "code": "finding_missing",
+                  "pointer": "/feedback/unacked/original_finding",
+                  "return_owner": "feedback-source-owner"
+                }
+              ],
+              "acked_pending": [],
+              "resolved": []
+            }
+          },
+          "assess_memory_material": {
+            "facet_status": "corresponding",
+            "items": {
+              "pending_reflection": {
+                "state": "active",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": true,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "retired": {
+                "state": "retired",
+                "freshness": "current_material",
+                "reflection_recorded": true,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "expired": {
+                "state": "expired",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              },
+              "consumed": {
+                "state": "consumed",
+                "freshness": "current_material",
+                "reflection_recorded": false,
+                "active_material_eligible": false,
+                "actual_retired": false,
+                "actual_delivered": false,
+                "actual_consumed": false
+              }
+            },
+            "findings": [],
+            "findings_by_item": {
+              "pending_reflection": [],
+              "retired": [],
+              "expired": [],
+              "consumed": []
+            }
+          }
+        }
+      }
+    ]
   }
 }

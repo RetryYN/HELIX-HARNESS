@@ -125,66 +125,72 @@
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "d7652c53faf9c7cba6c13faa9a50e24f3e0b2b3e",
       "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
-      "role": "approval decision record; reviewed_content_head is 7f1719fb6a89837c1bb9775faa9a634a066df4a3; its YAML status is preserved as recorded"
+      "role": "承認判断の固定本文。reviewed_content_headとYAML上のpending状態を区別して保持する。"
     },
     {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "b62571c3e939f8bb79b46b5612e78d461ab406ffb51c161c51e9ef7bbcfc27df",
-      "role": "approved requirement source"
+      "role": "承認対象の要件本文。"
     },
     {
       "path": "docs/helix-os/L10-verification/functional-verification.json",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "f006230a825139211be6277abaa5731f3c9f4a17198a4d20b370469f8a5c46ec",
-      "role": "approved verification source"
+      "role": "承認対象の対検証本文。"
     },
     {
       "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
-      "role": "basic design source; parent pair bytes"
+      "role": "親pairの基本設計の固定本文。"
     },
     {
       "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "7eecd8271c19881b84a2b4c7e72117283fdab7ff88cb2f6674cbbd570222ad62",
-      "role": "integration verification source; fixed raw and expected material"
+      "role": "親pairの統合検証。rawと期待値を別々に保持する。"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
-      "role": "current parent requirement text"
+      "role": "親要求の本文。"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
-      "role": "current acceptance text"
+      "role": "対受入条件の本文。"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
       "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
       "whole_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
-      "role": "historical feedback lifecycle design; reference only, never execute"
+      "role": "旧feedback lifecycle設計。読取参照に限り実行しない。"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
-      "role": "legacy asset ledger"
+      "role": "旧資産明細台帳。"
     },
     {
       "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "revision": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
       "whole_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
-      "role": "actual-main-admission-merge-record-blob"
+      "role": "実main取込み時点の判断記録blob。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/harness-memory-structure.md",
+      "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+      "whole_sha256": "9350248eb45dfaf2e03401d1f6df36f193d7f6090d64c83936f6c01940b8118d",
+      "role": "memoryのdelivery/consume/retireの読取根拠。固定TTL・JSONL/DB/fence/runtimeを現行へ移植しない。"
     }
   ],
   "legacy_comparison": {
     "reuse_class": "semantic_rederive",
-    "preserve": "原feedback/source HEAD、未ack finding、intake/classify/ack/pending/resolutionの区別、正本反映後retire、expired/consumedの非再提示と一回利用の論理区別。",
+    "preserve": "旧feedbackの原source・未解決finding・同世代終端の非復活を保持する。現行のintake/classify/ack/pending/resolutionの5段階は承認OS007由来であり、旧feedbackの状態数から導出しない。memoryの正本反映後retireとdelivery/consumeの区別は別のmemory sourceから再導出する。",
     "change": "旧provider memory DB、schema、runtime、固定TTLや旧CLIを採用せず、承認OS007の共通ログと責務正本参照へ再導出する。",
     "reason": "旧assetはHistorical/unresolvedであり、現承認は記録/照合の限定意味を定める。旧実装・テストを現行動作の根拠にしない。",
     "assets": [
@@ -197,6 +203,11 @@
         "asset_id": "LEGACY-ASSET-2AA90DD2EF4E6B48184E",
         "path": "archive/legacy-generation-2026-09-14/root/src/policy/feedback-lifecycle.ts",
         "evidence": "旧asset台帳のsource参照。コードは読取資料に限り実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6679DDF56AC1EA499A42",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/harness-memory-structure.md",
+        "evidence": "§4のdelivery/consumeと正本反映後retireを別根拠として読む。旧runtimeは移植しない。"
       }
     ],
     "consumer_boundary": "旧feedbackのgeneration/alias/終端保持、JSONL/DB projection、delivery/consume/expiry/compaction/recoveryはこの論理比較の外に残す。旧24h/7day TTL、人間ACK、provider runtimeの条件を採用しない。",
@@ -305,6 +316,84 @@
         "use": "参照に限る。旧runtimeは実行せず、このpairの現在動作根拠として再利用しない。",
         "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
         "source_sha256": "21f6e629a628229d67318888894628ab4bf8d8f97f2cfb4dd80c41219794e6a2"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6679DDF56AC1EA499A42",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/harness-memory-structure.md",
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_sha256": "9350248eb45dfaf2e03401d1f6df36f193d7f6090d64c83936f6c01940b8118d",
+        "selected_line_quotes": [
+          {
+            "line": 140,
+            "text": "  `state=consumed` entry を append し、次回 surface から除く。",
+            "utf8_sha256": "e1cdd81ba1b775f50f05058466c0d01545f4a6863c8dc9cb458ecb57c6c99620"
+          },
+          {
+            "line": 141,
+            "text": "- JSONL append と stdout を単一 transaction にできないため delivery は **at-least-once** とする。",
+            "utf8_sha256": "1279940e3b8ab5c35b02c747df3d00a0e05aecc2f1d4526541b4d8052256eaae"
+          },
+          {
+            "line": 142,
+            "text": "  append 失敗時は consumed と主張せず、次回再表示する。各表示に immutable `id` を含め、consumer は",
+            "utf8_sha256": "bd87455206fea258a8be15793e9de9d054cabaf14f9ca171bb816d85cc374a0d"
+          },
+          {
+            "line": 143,
+            "text": "  重複排除できる。情報消失を避けるため at-most-once を偽装しない。",
+            "utf8_sha256": "839aa5018e004a0833c32b6d06bbf5cd5f17723b94426414ef9e35fc605b81c3"
+          },
+          {
+            "line": 144,
+            "text": "- `consumeTakeover(ids, consumerId)` は active takeover だけを遷移できる。同じ id の再 consume は",
+            "utf8_sha256": "b4addc91d16aff20f6596179a7660b0944f04998377051e69cfa7081ca2340b6"
+          },
+          {
+            "line": 145,
+            "text": "  idempotent success、未知 id / takeover 外 / expired は結果理由付き no-op とし別 entry を壊さない。",
+            "utf8_sha256": "38bb1aa2eb3bfe6a0d7e272b3b90a69240a7868c3910b520cc808909ef31c4c1"
+          },
+          {
+            "line": 146,
+            "text": "- consumed tombstone id は `takeover-consumed:<target-id>` のstable idとし、`supersedes=target-id`を持つ。",
+            "utf8_sha256": "40f16f737f23a636ade9f525c64a60e182ea7fb021b230da95b8faf485252287"
+          },
+          {
+            "line": 147,
+            "text": "  SQLite coordination transaction内で「再read→既存tombstone確認→append」を行い、別processの同時consumeでも",
+            "utf8_sha256": "624e2cbeaaf0364a4752b3155b8ca39291b77a7c6456a875abc74ab53de50db7"
+          },
+          {
+            "line": 148,
+            "text": "  targetあたり1件だけ残す。lock取得/append失敗は`persist_failed`で、consume済みと主張しない。再consumeは",
+            "utf8_sha256": "0e65e662f51ba502a57ff29b62eee399d7bfecf543907785a2bba373fc51c1d3"
+          },
+          {
+            "line": 149,
+            "text": "  `already_consumed`かつ追記ゼロ。transaction外または旧fencing tokenのappend/replaceは拒否する。",
+            "utf8_sha256": "43468230aa5b60503dfc01cb77d7d61e2533a84697cccfcfb2c85bc8ab77c831"
+          },
+          {
+            "line": 150,
+            "text": "- `retireMemory({layer,ids,consumerId,authorityId})`はharness/projectだけを遷移できる。正本targetと追突台帳が成立し、tracked authority manifestのsource revision／全target digest／authority digestとrepo内realpathが全IDについて機械検証できた後に",
+            "utf8_sha256": "243a019fac6ecf06b2a8380fd13249ea545945e4f684782f06c36477f8a460b3"
+          },
+          {
+            "line": 151,
+            "text": "  callerが明示実行し、`memory-consumed:<target-id>`、body空、`consumedBy`付きreceiptをappendする。",
+            "utf8_sha256": "2d2ce5f7797549a5f8be19d2a2b3680910d06e296c26db4e868c88e56a2b687d"
+          },
+          {
+            "line": 152,
+            "text": "  legacy readerも同receiptをactive entryとして再表示しない。takeover、未反映entry、未知id、別layer、期限切れ、",
+            "utf8_sha256": "11cdc5eb804cab52b54827f159a472de9984d6e598cfc0f6725570bf77ef52a5"
+          },
+          {
+            "line": 153,
+            "text": "  stale fencing tokenは理由付きで拒否し、同じtargetの再retireは`already_consumed`かつ追記ゼロとする。batch途中のappend失敗は先行成功を`consumed`のまま保持し、失敗ID以降だけを`persist_failed`とする。",
+            "utf8_sha256": "e34233d7f25d061d997fbeba43b32e015d4ffdc62b683361d60794bfdc8e5ba7"
+          }
+        ]
       }
     ],
     "parent_requirement": "HELIXOS-L2-007",
@@ -320,22 +409,22 @@
   },
   "logical_types": {
     "JsonValue": "null | boolean | number | string | array<JsonValue> | object<string,JsonValue>",
-    "StringValue": "JSON string, including empty string; rules that require non-empty string state that predicate explicitly",
-    "BooleanValue": "JSON boolean only; number 0/1 is not boolean",
-    "PositiveInteger": "JSON integer > 0 and not boolean",
-    "NonNegativeInteger": "JSON integer >= 0 and not boolean",
-    "LogRecord": "ObjectValue with exactly common_fields plus kind, state, success_evidence_claim; field values are JsonValue and checked by the rule predicates.",
-    "LogSet": "ObjectValue with exactly finite_domains.log_names; every member has the LogRecord shape.",
-    "FindingRecord": "JsonValue retained exactly; feedback_fields are read only when the value is an object.",
-    "StageRecord": "ObjectValue with exactly recorded plus stage_fields; values remain JsonValue and are checked under R01/R05.",
+    "StringValue": "空文字を含むJSON string。非空が必要な箇所はpredicateで明示する。",
+    "BooleanValue": "JSON booleanのみ。数値0/1をbooleanへ変換しない。",
+    "PositiveInteger": "boolを除く正のJSON integer。",
+    "NonNegativeInteger": "boolを除く0以上のJSON integer。",
+    "LogRecord": "common_fieldsとkind/state/success_evidence_claimだけをkeyに持つObjectValue。各値はJsonValueとして規則で検査する。",
+    "LogSet": "finite_domains.log_namesを正確なkey集合とし、各値がLogRecordであるObjectValue。",
+    "FindingRecord": "原値を保持するJsonValue。objectの場合だけfeedback_fieldsを読む。",
+    "StageRecord": "recordedとstage_fieldsだけをkeyに持つObjectValue。値はJsonValueのままR01/R05で検査する。",
     "FeedbackRecord": "object with original_finding, stages, resolution_origin, resolved_claim, discard_original_claim, projection values retained as JsonValue",
     "MemorySourceRecord": "object with source and associated state/reflection/count values retained as JsonValue",
     "EvidenceInput": "EvidencePacket {logs:LogSet, feedback:FeedbackSet, memory:MemorySet, whole_completion_claim:JsonValue, context:ContextPacket}.",
-    "ObjectValue": "JSON object with string keys; member values remain JsonValue and are never coerced.",
+    "ObjectValue": "文字列keyを持つJSON object。値は型変換しないJsonValue。",
     "FeedbackItem": "ObjectValue {original_finding:JsonValue, stages:StageSet, resolution_origin:JsonValue, resolved_claim:JsonValue, discard_original_claim:JsonValue, projection:JsonValue}.",
-    "FeedbackSet": "ObjectValue with exactly finite_domains.feedback_names; every member has the FeedbackItem shape.",
-    "MemorySource": "ObjectValue with exactly memory_fields; values remain JsonValue.",
-    "Reflection": "ObjectValue with exactly recorded, order, and reflection_fields; values remain JsonValue and are checked under R08/R09.",
+    "FeedbackSet": "finite_domains.feedback_namesを正確なkey集合とし、各値がFeedbackItemであるObjectValue。",
+    "MemorySource": "memory_fieldsを正確なkey集合とし、値をJsonValueで保持するObjectValue。",
+    "Reflection": "recorded/order/reflection_fieldsを正確なkey集合とし、値をR08/R09で検査するObjectValue。",
     "MemoryItem": "ObjectValue with exactly source, state, freshness, reflection, retire_order, active_instruction_present, deliver_success_count, consume_success_count, provider_authority_claim.",
     "MemorySet": "ObjectValue with exactly pending_reflection, retired, expired, consumed; each value MemoryItem.",
     "FacetStatus": "enum corresponding | unknown | violation.",
@@ -343,7 +432,7 @@
     "LogAssessment": "ObjectValue {facet_status:FacetStatus, items:LogMaterialMap, findings:array<Finding>, findings_by_item:FindingMap}.",
     "FeedbackAssessment": "ObjectValue {facet_status:FacetStatus, items:FeedbackMaterialMap, findings:array<Finding>, findings_by_item:Object<FeedbackName,array<Finding>>}.",
     "MemoryAssessment": "ObjectValue {facet_status:FacetStatus, items:MemoryMaterialMap, findings:array<Finding>, findings_by_item:Object<MemoryName,array<Finding>>}.",
-    "EvidenceAssessment": "ObjectValue whose exact keys are algorithm.output_contract; each producer map and finding array is checked through formal_program.shape_definitions."
+    "EvidenceAssessment": "formal_program.shape_definitions.EvidenceAssessmentでkey集合と各値の型を定義する。"
   },
   "finite_domains": {
     "log_names": [
@@ -867,7 +956,7 @@
               "pending",
               "resolution"
             ],
-            "value_type": "boolean"
+            "value_type": "JsonValue"
           },
           "resolution_material_corresponding": "boolean",
           "actual_resolved": {
@@ -887,7 +976,7 @@
         "fields": {
           "state": "JsonValue copied from actual state",
           "freshness": "JsonValue copied from actual freshness",
-          "reflection_recorded": "boolean",
+          "reflection_recorded": "JsonValue",
           "active_material_eligible": "boolean",
           "actual_retired": {
             "type": "boolean",
@@ -929,7 +1018,7 @@
             "return_owner": "owner_by_facet value"
           }
         },
-        "order": "R12: 重複排除後、(code,pointer,return_owner) のJSON文字列昇順。個々のrule生成順を成功扱いへ反映しない。"
+        "order": "重複排除後、(code,pointer,return_owner) の文字列tuple辞書順。"
       },
       "whole_management_complete": {
         "type": "boolean",
@@ -971,7 +1060,7 @@
         "ordinal": 1,
         "function": "assess_log_material",
         "inputs": [
-          "EvidenceInput.actual.logs",
+          "EvidenceInput.logs",
           "EvidenceInput.context.logs"
         ],
         "result": "LogAssessment"
@@ -980,7 +1069,7 @@
         "ordinal": 2,
         "function": "assess_feedback_material",
         "inputs": [
-          "EvidenceInput.actual.feedback",
+          "EvidenceInput.feedback",
           "EvidenceInput.context.feedback"
         ],
         "result": "FeedbackAssessment"
@@ -989,7 +1078,7 @@
         "ordinal": 3,
         "function": "assess_memory_material",
         "inputs": [
-          "EvidenceInput.actual.memory",
+          "EvidenceInput.memory",
           "EvidenceInput.context.memory"
         ],
         "result": "MemoryAssessment"
@@ -1001,7 +1090,7 @@
           "LogAssessment",
           "FeedbackAssessment",
           "MemoryAssessment",
-          "EvidenceInput.actual.whole_completion_claim"
+          "EvidenceInput.whole_completion_claim"
         ],
         "result": "EvidenceAssessment"
       }
@@ -1036,23 +1125,23 @@
       },
       {
         "output_pointer": "/log_material_usable",
-        "from": "LogAssessment.usable_by_kind"
+        "from": "LogAssessment.itemsの各item.usable"
       },
       {
         "output_pointer": "/feedback_material",
-        "from": "FeedbackAssessment.feedback_material"
+        "from": "FeedbackAssessment.items"
       },
       {
         "output_pointer": "/memory_material",
-        "from": "MemoryAssessment.memory_material"
+        "from": "MemoryAssessment.items"
       },
       {
         "output_pointer": "/retained_actual_records",
-        "rule": "各評価結果の retained_actual を logs/feedback/memory のキーで保持する。"
+        "rule": "EvidenceInput.logs/feedback/memoryを各keyへdeepcopyする。"
       },
       {
         "output_pointer": "/retained_reference_records",
-        "rule": "各評価結果の retained_reference を logs/feedback/memory のキーで保持する。"
+        "rule": "EvidenceInput.context.logs/feedback/memoryを各keyへdeepcopyする。"
       },
       {
         "output_pointer": "/findings",
@@ -1090,7 +1179,15 @@
     "実actor/capability/model/time/source資格、source custody、実記録保存。",
     "feedback resolutionの十分条件・正式finding型・独立meaning/verification ownerによる判定。",
     "memory target実体同一性・耐久成功・実順序証拠・expiry/fence/takeover/compaction/recovery・data-use/secret取扱い。",
-    "OS015/016/019/053とHARNESS共通意味へのowner-qualified exact binding、実証、L10/L11。"
+    "OS015/016/019/053とHARNESS共通意味へのowner-qualified exact binding、実証、L10/L11。",
+    {
+      "id": "OS007-SAME-PLACEHOLDER",
+      "counterexample": "actual/context双方のlogs.worker.project_idが文字列UNKNOWNでもR01の非空string比較は対応とする。素材の相互一致は実project/sourceの資格を証明しない。",
+      "requirement_ref": "HELIXOS-L3-007-F01",
+      "oracle_ref": "HELIXOS-L10-007-F01",
+      "return_owner": "common-log-owner",
+      "disposition": "根拠と反例を保持し、必要な資格判定は設計リファクタリング時に上流還流する。新しいmarker拒否規則を本pairへ追加しない。"
+    }
   ],
   "limitations": "有限fixtureで定義した文書比較論理のみ。実資格・正式codec/schema・authority・実処理・実検証成立は未達。",
   "formal_program": {
@@ -1166,20 +1263,20 @@
         "meaning": "path値がJSON型を区別したequals値と一致するときstepsを順に実行する。"
       },
       {
-        "op": "compare_field_when_left_recorded",
-        "meaning": "左recordedが厳密trueなら、field変数をdeclared join mapで右fieldへ写しpredicate_definitionsに従って比較する。"
+        "op": "compare_field_when_either_recorded",
+        "meaning": "recorded_left/rightのどちらかが厳密trueなら、field_varの値をjoin_field_refで右keyへ写す。right.pathへそのkeyを付加してpredicate付き比較を行う。"
       },
       {
         "op": "order_checks",
-        "meaning": "operandで指定されたpredicate_definitions/code/state/recorded literal/comparison_definitionsだけを使う。reflection recordedがどちらかtrigger値ならreflection order双方を検査し、一致時はactual orderを基準に比較する。actual stateがretired literalのときだけretire flag/order規則を適用する。"
+        "meaning": "operandで指定されたpredicate_definitions/code/state/recorded literal/comparison_definitionsだけを使う。reflection recordedがどちらかtrigger値ならreflection order双方を検査し、一致時はactual orderを基準に比較する。actual stateがretired literalのときだけretire flag/order規則を適用する。 retire_reflection_false_code・retirement_basis_unknown_code・reflection_not_before_retire_codeには同名の明示pointer operandを用いる。"
       },
       {
         "op": "emit_count_relation",
-        "meaning": "両値がpredicate_definitions.nonnegative_integerを満たし、comparison_definitionsのrelationで比較条件を満たす場合にleft pointerへ診断を追加する。"
+        "meaning": "left_predicate/right_predicate成立時だけrelationを比較し、成立時leftのpointerへcodeを追加する。right_valueがある場合はその式、なければright pathを読む。"
       },
       {
         "op": "emit_use_state_conflict",
-        "meaning": "operandで指定されたstate literalとconsume条件が一致するときstate pointerへ診断を追加する。"
+        "meaning": "consume_predicate成立時だけ、active_state/consumed_stateとそれぞれのconsume_operator・zeroを用いて比較し、成立時にpointerへcodeを追加する。"
       },
       {
         "op": "literal",
@@ -1219,7 +1316,8 @@
       },
       {
         "op": "project_items",
-        "meaning": "宣言domain順にsource objectから各itemの指定fieldを抽出したobjectを構築する。"
+        "meaning": "domain_refの各値をasへlexical束縛しsource_rootのpathを解決して返すobjectの当該keyへ入れる。外側の同名変数は変更しない。",
+        "as": "item"
       },
       {
         "op": "status_from_values",
@@ -1268,7 +1366,8 @@
     "comparison_definitions": {
       "greater_than": "left_numeric_value_greater_than_right_numeric_value",
       "greater_than_or_equal": "left_numeric_value_greater_than_or_equal_right_numeric_value",
-      "not_equal": "json_whole_values_not_equal"
+      "not_equal": "json_whole_values_not_equal",
+      "equal": "json_whole_values_equal"
     },
     "constants": {
       "log_duplicate_state": [
@@ -1698,7 +1797,7 @@
             "predicate": "nonempty_string",
             "unknown_code": "field_unknown",
             "conflict_code": "field_conflict",
-            "conflict_side": "invalid_or_left",
+            "conflict_side": "left",
             "owner_facet": "feedback"
           },
           {
@@ -1787,7 +1886,6 @@
               },
               {
                 "op": "unrecorded_nonnull_fields",
-                "side": "left",
                 "recorded_path": {
                   "root": "actual_item",
                   "path": [
@@ -1813,7 +1911,6 @@
               },
               {
                 "op": "unrecorded_nonnull_fields",
-                "side": "right",
                 "recorded_path": {
                   "root": "context_item",
                   "path": [
@@ -1881,7 +1978,7 @@
                 "predicate": "nonempty_string",
                 "unknown_code": "field_unknown",
                 "conflict_code": "field_conflict",
-                "conflict_side": "invalid_or_left",
+                "conflict_side": "left",
                 "owner_facet": "feedback"
               },
               {
@@ -2168,7 +2265,8 @@
                 "var": "item"
               },
               "recorded"
-            ]
+            ],
+            "as": "item"
           },
           "resolution_material_corresponding": {
             "op": "all",
@@ -2375,7 +2473,6 @@
           },
           {
             "op": "unrecorded_nonnull_fields",
-            "side": "left",
             "recorded_path": {
               "root": "actual_item",
               "path": [
@@ -2395,7 +2492,6 @@
           },
           {
             "op": "unrecorded_nonnull_fields",
-            "side": "right",
             "recorded_path": {
               "root": "context_item",
               "path": [
@@ -2445,9 +2541,8 @@
             "predicate": "nonempty_string",
             "unknown_code": "field_unknown",
             "conflict_code": "field_conflict",
-            "conflict_side": "invalid_or_left",
-            "owner_facet": "memory",
-            "trigger_value": true
+            "conflict_side": "left",
+            "owner_facet": "memory"
           },
           {
             "op": "for_each",
@@ -2455,7 +2550,7 @@
             "as": "field",
             "steps": [
               {
-                "op": "compare_field_when_left_recorded",
+                "op": "compare_field_when_either_recorded",
                 "left": {
                   "root": "actual_item",
                   "path": [
@@ -2468,17 +2563,7 @@
                 "right": {
                   "root": "context_item",
                   "path": [
-                    "source",
-                    {
-                      "var": "join_field"
-                    }
-                  ]
-                },
-                "recorded": {
-                  "root": "actual_item",
-                  "path": [
-                    "reflection",
-                    "recorded"
+                    "source"
                   ]
                 },
                 "join_field_ref": "/formal_program/finite_domains/reflection_join_field_map",
@@ -2487,7 +2572,22 @@
                 "unknown_code": "field_unknown",
                 "conflict_code": "field_conflict",
                 "conflict_side": "left",
-                "owner_facet": "memory"
+                "owner_facet": "memory",
+                "recorded_left": {
+                  "root": "actual_item",
+                  "path": [
+                    "reflection",
+                    "recorded"
+                  ]
+                },
+                "recorded_right": {
+                  "root": "context_item",
+                  "path": [
+                    "reflection",
+                    "recorded"
+                  ]
+                },
+                "right_path_rule": "right.pathへjoin_field_ref[field_var]の文字列keyを1つ付加する。"
               }
             ]
           },
@@ -2527,12 +2627,6 @@
                 "state"
               ]
             },
-            "context_state": {
-              "root": "context_item",
-              "path": [
-                "state"
-              ]
-            },
             "actual_retire_order": {
               "root": "actual_item",
               "path": [
@@ -2558,10 +2652,28 @@
             "retired_state": "retired",
             "recorded_true": true,
             "recorded_false": false,
-            "comparison_operator": "greater_than_or_equal",
             "reflection_order_conflict_operator": "not_equal",
             "retire_order_conflict_operator": "not_equal",
-            "reflection_not_before_operator": "greater_than_or_equal"
+            "reflection_not_before_operator": "greater_than_or_equal",
+            "retire_reflection_false_pointer": {
+              "root": "actual_item",
+              "path": [
+                "state"
+              ]
+            },
+            "retirement_basis_unknown_pointer": {
+              "root": "actual_item",
+              "path": [
+                "reflection",
+                "recorded"
+              ]
+            },
+            "reflection_not_before_retire_pointer": {
+              "root": "actual_item",
+              "path": [
+                "retire_order"
+              ]
+            }
           },
           {
             "op": "emit_if",
@@ -2697,10 +2809,6 @@
                     }
                   ]
                 },
-                "right": {
-                  "root": "literal",
-                  "path": []
-                },
                 "relation": "greater_than",
                 "code": "duplicate_successful_use",
                 "owner_facet": "memory",
@@ -2729,12 +2837,6 @@
             },
             "relation": "greater_than",
             "code": "consume_without_delivery",
-            "pointer": {
-              "root": "actual_item",
-              "path": [
-                "consume_success_count"
-              ]
-            },
             "owner_facet": "memory",
             "left_predicate": "nonnegative_integer",
             "right_predicate": "nonnegative_integer"
@@ -2763,8 +2865,10 @@
             "owner_facet": "memory",
             "active_state": "active",
             "consumed_state": "consumed",
-            "active_consume_condition": "greater_than_zero",
-            "consumed_consume_condition": "equals_zero"
+            "consume_predicate": "nonnegative_integer",
+            "zero": 0,
+            "active_consume_operator": "greater_than",
+            "consumed_consume_operator": "equal"
           },
           {
             "op": "emit_if",
@@ -3005,33 +3109,10 @@
         "assess_memory_material",
         "assemble_evidence_record"
       ],
-      "condition_priority": [
-        "violation",
-        "unknown",
-        "corresponding"
-      ],
       "condition_by_status": {
         "violation": "record_material_violation",
         "unknown": "record_material_unknown",
         "corresponding": "record_material_corresponding"
-      },
-      "facet_status_fields": {
-        "logs": [
-          "assess_log_material",
-          "facet_status"
-        ],
-        "feedback": [
-          "assess_feedback_material",
-          "facet_status"
-        ],
-        "memory": [
-          "assess_memory_material",
-          "facet_status"
-        ],
-        "boundary": [
-          "assess_boundary",
-          "facet_status"
-        ]
       },
       "output_expression": {
         "op": "object",
@@ -3241,7 +3322,9 @@
       ],
       "boundary_result_name": "boundary_rule",
       "aggregate_function": "assemble_evidence_record",
-      "boundary_steps_ref": "/formal_program/functions/assemble_evidence_record/boundary_steps"
+      "boundary_steps_ref": "/formal_program/functions/assemble_evidence_record/boundary_steps",
+      "facet_status_rule": "finding.codeを/finite_domains/diagnostic_codesのdispositionへ写しdiagnostic_disposition_priority順で最初の存在値を返す。空はempty_diagnostic_disposition。",
+      "collection_result_rule": "collectionの各itemを独立に評価し、findings_by_item[item]へそのitemの重複除去・整列済み診断を置く。items[item]は同じitemの診断を束縛してreturn_projectionを評価。facet findingsは全item診断の和集合を同じ規則で正規化する。"
     },
     "shape_definitions": {
       "LogRecord": {
@@ -3807,7 +3890,20 @@
         "shape": "JsonValue"
       }
     ],
-    "input_packet_shape": "EvidencePacket"
+    "input_packet_shape": "EvidencePacket",
+    "normative_scope": {
+      "source_of_calculation": [
+        "/formal_program",
+        "/finite_domains"
+      ],
+      "other_sections": "algorithm・functions・logical_typesは根拠と人間向け索引であり、別の計算規則を追加しない。不一致は修正対象とし実装や検証器で補完しない。"
+    },
+    "pointer_contract": {
+      "format": "RFC6901",
+      "root_prefix": "collection関数のactual_item/context_itemにはactual_path/context_pathをitem束縛後に用い、組立actualは空path。",
+      "path_tokens": "各tokenの変数を現在のlexical環境で解決し、~を~0、/を~1に置換して/で連結し先頭/を付ける。",
+      "conflict_side": "left/rightのみ。predicate不成立は該当側pointer、両側成立かつ不一致は指定side pointer。"
+    }
   },
   "approval_admission_evidence": {
     "admission_merge_commit": "ddb7420f9d72a8c421cf8e073c368d24ba923030",
@@ -3819,6 +3915,7 @@
     "source_main_at_pair_authoring": "21ba1562bd907e19d49274839d0bd2d736c060d5",
     "observed_origin_main_at_handoff": "ae33e1c8655d44965f5392122da72a7aefd89377",
     "admission_is_ancestor_of_pair_source_main": true,
-    "authority_note": "decision recordの記録状態を転記する。pending metadataのみから最終承認・操作権限を生成しない。"
+    "authority_note": "decision recordの記録状態を転記する。pending metadataのみから最終承認・操作権限を生成しない。",
+    "evidence_boundary": "このobjectは著述時の取込み履歴・source bytesの照合用metadataであり、製品の計算規範や資格判定ではない。"
   }
 }
