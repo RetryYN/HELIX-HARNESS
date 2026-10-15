@@ -15,7 +15,7 @@
   "formal_source": {
     "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
     "paired_document_id": "HELIXINFRASTRUCTURE-L5-025",
-    "sha256": "94fce25ade1f266cf1492fa405dbcc6585eb6f728ec9fff909b68b7ee908f9af"
+    "sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294"
   },
   "source_pins": [
     {

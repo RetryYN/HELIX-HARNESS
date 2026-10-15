@@ -2677,7 +2677,7 @@
     "cascade_priority": "root欠落ならそのrootの不足を優先し、依存child検査を抑制。identityがWorkerへ混同されている場合、そのidentityから派生するresources集合差分を重複生成しない。主heldと直接原因を保持。参照元source_refが不足の場合、既知evidence sourceとの二者不一致を捏造しない。 Workを比較する関数で元Workerとscope.workerが共に不足する場合、既存work.workerの不足を直接原因としてscope.worker重複診断を省く。scope.workerだけ不足で元Workerが供給されていれば独立に診断する。 compare_scopeは親record欠落とscope member欠落を区別し、後者はprefixのscope pathへ返す。F02 work_ownerの不足はpair側が帰属を保持し、literal_groupは不足memberを重複報告せず供給済みの誤roleだけを追加する。",
     "finding_order": "checks配列順→scope必要field順→Worker/各resourceのsource,destination順→exact集合→SEC→観測→未知claim。完全同一findingのみ先頭を保持。",
     "projection_boundary": "F01の隔離/観測bodyは保存投影で、SEC/観測状態の解釈はF02/N01が担う。F01だけの結果を接続全体の合格にしない。",
-    "overlapping_checks": "compare_if_both(source_ref等)とrequire_members、scope_required_fieldsとcompare_scope/reference側検査には同一不足を観測する重複がある。同一field/result/owner findingはunique_findingsで先頭一件にする。個々の重複check削除が全出力を変えない場合も、独立した意味枝が観測されたとは数えない。"
+    "overlapping_checks": "compare_if_both(source_ref等)とrequire_members、scope_required_fieldsとcompare_scope/reference側検査には同一不足を観測する重複がある。同一field/result/owner findingはunique_findingsで先頭一件にする。個々の重複check削除が全出力を変えない場合も、独立した意味枝が観測されたとは数えない。 個別には、F01 checks[4] identity_separationとbindのWorker/資源identity混同検出、F01 checks[1] compare_if_both(original_work_before.worker, original_scope.worker)とbindのWorker不一致検出、bindの親record欠落findingとcompare_scopeの同じ不足findingが重なる。これらの単独check削除がfixture全返却を変えない場合、unique_findingsによる同一finding統合も含め、独立識別できた変異へ数えない。"
   },
   "work_reference_consumer_binding": {
     "source_projection": "work_reference_preservationは原L9の内容等値保存表示。両側nullやN01未比較でも原labelを不変保持するが、意味上の参照保持を主張しない。",
