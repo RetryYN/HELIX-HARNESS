@@ -323,11 +323,14 @@
     }
   ],
   "legacy_read_basis": {
-    "reuse_class": "semantic_rederivation",
-    "preserve": "意味変更の六条件を同operation/base/revision/scopeへ束縛し、初期write/receipt fault・stale base・混在revisionを別oracleで判定。policy適用と既決許可を保持し、部分成功やGitHub状態から上流意味を生成しない。",
-    "change": "採択001の元案・判断出所・適用根拠・六条件と053保存/052意味ownerへ再導出。旧Markdown/DB正本・shadowから最新JSON巻戻し・旧runtime/test合格を移植しない。",
-    "reason": "10/12限定承認とJSONAUTH/既決自律境界に沿い、必要判断だけを既存authorityへ返す。人間再承認や読取り六条件一律gateを足さない。",
-    "consumer_boundary": "HR19/HAC19/HAT19の全shared能力・FR53履歴変換は残す。旧testはdesigned_not_implementedのまま実行せず、旧gate/CLI/DB/schema/PLAN transactionを現行成立証拠へしない。六条件の意味/impact/pair/oracleはHARNESS等の原ownerから受け、OS053が保存/CAS/receiptを担う。"
+    "source_pin_refs": [
+      "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json"
+    ],
+    "interpretation_ref": "legacy_comparison",
+    "note": "旧wholeの意味保持/変更理由はlegacy_comparisonに一度だけ記載し、この欄は旧sourceの所在を列挙する。"
   },
   "contracts": [
     {
@@ -532,10 +535,10 @@
     }
   ],
   "legacy_comparison": {
-    "reuse_class": "semantic_rederivation",
+    "reuse_class": "semantic_rederive",
     "preserve": "意味変更の六条件を同operation/base/revision/scopeへ束縛し、初期write/receipt fault・stale base・混在revisionを別oracleで判定。policy適用と既決許可を保持し、部分成功やGitHub状態から上流意味を生成しない。",
     "change": "採択001の元案・判断出所・適用根拠・六条件と053保存/052意味ownerへ再導出。旧Markdown/DB正本・shadowから最新JSON巻戻し・旧runtime/test合格を移植しない。",
-    "reason": "10/12限定承認とJSONAUTH/既決自律境界に沿い、必要判断だけを既存authorityへ返す。人間再承認や読取り六条件一律gateを足さない。",
+    "reason": "10/12限定承認と「JSONを正本とする方針」、既決の自律境界に沿い、必要な判断だけを既存authorityへ返す。人間再承認や読取り六条件一律gateを追加しない。",
     "consumer_boundary": "HR19/HAC19/HAT19の全shared能力・FR53履歴変換は残す。旧testはdesigned_not_implementedのまま実行せず、旧gate/CLI/DB/schema/PLAN transactionを現行成立証拠へしない。六条件の意味/impact/pair/oracleはHARNESS等の原ownerから受け、OS053が保存/CAS/receiptを担う。"
   },
   "finite_input_profile": {
@@ -859,43 +862,43 @@
     "rules": [
       {
         "id": "R01",
-        "rule": "各projectのproject_fieldsをactual/contextへstring比較。非空stringでない側ごとfield_unknown、両側known相違はactual field_conflict、project_correspondenceへも記録する。op binding_fieldsも同じ比較。selected_projectはactual binding.project_idがprojects内のときだけ採用、不明はselected_project_unknown。選択projectのproject_id/scope/requirement_revision/canonical_json_refをcontextへjoinし、base_revisionもcontext project.requirement_revisionへjoinする。"
+        "rule": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project key identityとjoinの全path/domainはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
       },
       {
         "id": "R02",
-        "rule": "actual/context kind/phaseは各closed集合。不明側にkind_unknown/phase_unknown。known同士相違はactual kind_conflict/phase_conflict。以降の適用はactualのknown kind/phaseだけから決め、unknownをinspectなどのdefaultへしない。"
+        "rule": "kindとphaseをclosed domainで比較し、known mismatchをboundary violation、欠落やdomain外をunknownとして保持する。unknownを既定kindへ置換しない。"
       },
       {
         "id": "R03",
-        "rule": "actual kind=view_change/meaning_changeのときproposal/policy dictを両側に要求。不明側はproposal_missing/policy_missing。両側dictなら各fieldをR01 string比較。proposal scope/before_revisionをcontext op scope/base_revisionへ、target_requirement_idを選択projectのcontext requirement_idへjoin。policy scope/base_revision/operation_idをcontext op bindingへjoin。directiveは5closed値、不明側directive_unknown、known差はactual directive_conflict。policy_directiveはactual known値かnull。inspectにはこれらをgateにしない。 directive評価とpolicy_directive採用はpolicy自体がactual/context両側dictの場合に限る。proposalのdict可否とは独立。片側非dictならpolicy_directive=null、両側dictならcontext directive未知/相違でもactual known値を採用する。"
+        "rule": "view_change/meaning_changeだけでproposalとpolicyのobject、fields、joins、directiveを評価する。inspectへpolicy gateを広げない。"
       },
       {
         "id": "R04",
-        "rule": "meaning_changeのときだけconditionを各々評価。不明dict側はcondition_missing。stateはcondition_statesのclosed、不明側condition_state_unknown、known差はactual condition_state_conflict。actual missing/unknownはcondition_unresolved、actual conflictはcondition_conflict。各binding fieldをcontext conditionへ比較しcontext opへもjoin。witness_fieldsと当該condition_fieldsを比較。当該condition内だけでviolation>unknown>correspondingを返し、他条件で相殺しない。適用外はnot_applicableとして保持し内容を評価しない。"
+        "rule": "meaning_changeだけで6条件を独立評価し、各conditionのfield/witnessとoperation bindingを照合する。不足や不一致を別conditionで相殺しない。"
       },
       {
         "id": "R05",
-        "rule": "actual phase=observeかつkind=view_change/meaning_changeのときobservation dictを両側に要求。不明は各側observation_missing。stateはobservation_states、不明側observation_state_unknown、known差はactual observation_state_conflict、actual unobservedはobservation_unobserved。update_observed_stateはactual known stateかnull。prepare/inspectの未来observationは評価しない。 state評価/update_observed_state採用とR06/R07の全評価は、observationがactual/context両側dictの場合に限る。片側非dictならupdate_observed_state=null。両側dictならcontext state未知/相違でもactual known値を採用する。"
+        "rule": "view_change/meaning_changeかつobserveのときだけ両observation objectを評価する。prepare/inspectでは将来receiptを要求しない。"
       },
       {
         "id": "R06",
-        "rule": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。 noncoherentはcoherent_material以外の全値（未知/null/未観測を含む）を指す。ただしknown mixed_materialは前段mixed_current_forbiddenで扱い、publication_coherence_unprovenと併記しない。"
+        "rule": "source originとrevision coherenceをclosed domainで比較し、legacy origin、committed mixed、その他noncoherent状態を別規則で診断する。"
       },
       {
         "id": "R07",
-        "rule": "R05適用内でactual partial_current_claim=trueはpartial_current_forbidden、非boolはboolean_unknown。observation.bindingをcontext observationとcontext opへdouble joinし、witness_fields/update_links/visible_current_revisionを比較。actual committedならvisible_current_revisionはmeaning_changeではcontext target_revision、view_changeではcontext base_revisionへjoin。faultの状態をcommitで補完しない。"
+        "rule": "observationのpartial-current claim、binding、visible revisionとsource linksを評価する。fault stateをcommit成功へ読み替えない。"
       },
       {
         "id": "R08",
-        "rule": "core_validは選択projectがknownで当該project sourceのfinding=0、op binding/joins自身のsource finding=0、proposal/policy finding=0。選択外projectのsource findingをcore_validのgateにしない。six_validはactual meaning_changeで全6conditionがcorrespondingのみ。material_successはmeaning_change/observe/committed/core_valid/six_validかつupdate_observation/boundary finding=0、directive=auto_apply。prepare/inspect/viewから意味正本化成功を生成しない。"
+        "rule": "selected source、proposal/policy、6条件、observationから前段material_success_baseを規範式で導く。project外の通常不足で選択根拠を消さない。"
       },
       {
         "id": "R09",
-        "rule": "actual canonicalization_success_claim=trueでmaterial_successでなければunproven_success_claim。非boolはboolean_unknown(boundary)。operation.claimsのtrueはforbidden_boundary_claim、false以外はboolean_unknown(boundary)。claimsはこの更新を根拠に生成する主張で、別ownerの既存factを禁止する意味ではない。製品stateは別のproduct_state/contextへ保持し、各product_fieldsをR01 string比較(product_state facet)。製品stateの未知/不一致を更新根拠のgateにしない。"
+        "rule": "claim flagsをmaterial_successと別に検査し、material対応からactual effectや上流成立を生成しない。product stateは別sourceとして保持する。"
       },
       {
         "id": "R10",
-        "rule": "facetと全体はviolation>unknown>corresponding。conditionはupdate_material_*、project_correspondenceは各projectのsourceだけ。canonicalization_material_correspondingはmaterial_successかつboundary finding=0のみtrue（正式成立ではない）。actual/referenceとproduct_state原値をdeepcopyして保全。findingはcode/pointer/return_ownerで重複除去・同3field辞書順、owner_by_facetを使用。actual_canonicalized/requirement_adopted/implementation_completed/test_executed/L11_acceptedは全false、operation_effect none（この文書照合がそれらを生成しない）。"
+        "rule": "status priorityでfacet/overallと全output rootsを構成し、findingsは宣言tupleで重複除去・順序づけする。"
       }
     ],
     "output_fields": [
@@ -921,72 +924,58 @@
       "operation_effect"
     ],
     "material_limit": "material_correspondingは合成sourceの文書対応。六条件実充足/owner資格/保存成功/上流承認を生成しない。全体source reportと選択operation根拠の適格性を別に返す。",
-    "finite_boundary": "固定2project/1operation、kindは3値、phaseは2値。六条件はmeaning_change選択時のみ判定し、observationはobserveかつview_change/meaning_changeのときだけ判定。",
-    "normalization_order": [
-      "入力template deep-copy",
-      "given replacementを列順適用",
-      "R01 source/project/binding",
-      "R02 kind/phase",
-      "R03 proposal/policy",
-      "R04 六条件",
-      "R05 observe条件",
-      "R06 source/coherence",
-      "R07 observation binding/claims",
-      "R08 選択project core_validと六条件/material_success",
-      "R09 成立claim境界とproduct状態",
-      "R10 facet/overall集約と出力構築"
-    ]
+    "finite_boundary": "固定2project/1operation、kindは3値、phaseは2値。六条件はmeaning_change選択時のみ判定し、observationはobserveかつview_change/meaning_changeのときだけ判定。"
   },
   "rule_trace": [
     {
       "rule_ref": "R01",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R01",
-      "text": "各projectのproject_fieldsをactual/contextへstring比較。非空stringでない側ごとfield_unknown、両側known相違はactual field_conflict、project_correspondenceへも記録する。op binding_fieldsも同じ比較。selected_projectはactual binding.project_idがprojects内のときだけ採用、不明はselected_project_unknown。選択projectのproject_id/scope/requirement_revision/canonical_json_refをcontextへjoinし、base_revisionもcontext project.requirement_revisionへjoinする。"
+      "text": "actual/context双方のproject_fieldsとoperation binding_fieldsを比較し、selected projectのsource joinを行う。project key identityとjoinの全path/domainはnormative_programのfield groups/project_identity_rules/join_rulesに従う。"
     },
     {
       "rule_ref": "R02",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R02",
-      "text": "actual/context kind/phaseは各closed集合。不明側にkind_unknown/phase_unknown。known同士相違はactual kind_conflict/phase_conflict。以降の適用はactualのknown kind/phaseだけから決め、unknownをinspectなどのdefaultへしない。"
+      "text": "kindとphaseをclosed domainで比較し、known mismatchをboundary violation、欠落やdomain外をunknownとして保持する。unknownを既定kindへ置換しない。"
     },
     {
       "rule_ref": "R03",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R03",
-      "text": "actual kind=view_change/meaning_changeのときproposal/policy dictを両側に要求。不明側はproposal_missing/policy_missing。両側dictなら各fieldをR01 string比較。proposal scope/before_revisionをcontext op scope/base_revisionへ、target_requirement_idを選択projectのcontext requirement_idへjoin。policy scope/base_revision/operation_idをcontext op bindingへjoin。directiveは5closed値、不明側directive_unknown、known差はactual directive_conflict。policy_directiveはactual known値かnull。inspectにはこれらをgateにしない。 directive評価とpolicy_directive採用はpolicy自体がactual/context両側dictの場合に限る。proposalのdict可否とは独立。片側非dictならpolicy_directive=null、両側dictならcontext directive未知/相違でもactual known値を採用する。"
+      "text": "view_change/meaning_changeだけでproposalとpolicyのobject、fields、joins、directiveを評価する。inspectへpolicy gateを広げない。"
     },
     {
       "rule_ref": "R04",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R04",
-      "text": "meaning_changeのときだけconditionを各々評価。不明dict側はcondition_missing。stateはcondition_statesのclosed、不明側condition_state_unknown、known差はactual condition_state_conflict。actual missing/unknownはcondition_unresolved、actual conflictはcondition_conflict。各binding fieldをcontext conditionへ比較しcontext opへもjoin。witness_fieldsと当該condition_fieldsを比較。当該condition内だけでviolation>unknown>correspondingを返し、他条件で相殺しない。適用外はnot_applicableとして保持し内容を評価しない。"
+      "text": "meaning_changeだけで6条件を独立評価し、各conditionのfield/witnessとoperation bindingを照合する。不足や不一致を別conditionで相殺しない。"
     },
     {
       "rule_ref": "R05",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R05",
-      "text": "actual phase=observeかつkind=view_change/meaning_changeのときobservation dictを両側に要求。不明は各側observation_missing。stateはobservation_states、不明側observation_state_unknown、known差はactual observation_state_conflict、actual unobservedはobservation_unobserved。update_observed_stateはactual known stateかnull。prepare/inspectの未来observationは評価しない。 state評価/update_observed_state採用とR06/R07の全評価は、observationがactual/context両側dictの場合に限る。片側非dictならupdate_observed_state=null。両側dictならcontext state未知/相違でもactual known値を採用する。"
+      "text": "view_change/meaning_changeかつobserveのときだけ両observation objectを評価する。prepare/inspectでは将来receiptを要求しない。"
     },
     {
       "rule_ref": "R06",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R06",
-      "text": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。 noncoherentはcoherent_material以外の全値（未知/null/未観測を含む）を指す。ただしknown mixed_materialは前段mixed_current_forbiddenで扱い、publication_coherence_unprovenと併記しない。"
+      "text": "source originとrevision coherenceをclosed domainで比較し、legacy origin、committed mixed、その他noncoherent状態を別規則で診断する。"
     },
     {
       "rule_ref": "R07",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R07",
-      "text": "R05適用内でactual partial_current_claim=trueはpartial_current_forbidden、非boolはboolean_unknown。observation.bindingをcontext observationとcontext opへdouble joinし、witness_fields/update_links/visible_current_revisionを比較。actual committedならvisible_current_revisionはmeaning_changeではcontext target_revision、view_changeではcontext base_revisionへjoin。faultの状態をcommitで補完しない。"
+      "text": "observationのpartial-current claim、binding、visible revisionとsource linksを評価する。fault stateをcommit成功へ読み替えない。"
     },
     {
       "rule_ref": "R08",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R08",
-      "text": "core_validは選択projectがknownで当該project sourceのfinding=0、op binding/joins自身のsource finding=0、proposal/policy finding=0。選択外projectのsource findingをcore_validのgateにしない。six_validはactual meaning_changeで全6conditionがcorrespondingのみ。material_successはmeaning_change/observe/committed/core_valid/six_validかつupdate_observation/boundary finding=0、directive=auto_apply。prepare/inspect/viewから意味正本化成功を生成しない。"
+      "text": "selected source、proposal/policy、6条件、observationから前段material_success_baseを規範式で導く。project外の通常不足で選択根拠を消さない。"
     },
     {
       "rule_ref": "R09",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R09",
-      "text": "actual canonicalization_success_claim=trueでmaterial_successでなければunproven_success_claim。非boolはboolean_unknown(boundary)。operation.claimsのtrueはforbidden_boundary_claim、false以外はboolean_unknown(boundary)。claimsはこの更新を根拠に生成する主張で、別ownerの既存factを禁止する意味ではない。製品stateは別のproduct_state/contextへ保持し、各product_fieldsをR01 string比較(product_state facet)。製品stateの未知/不一致を更新根拠のgateにしない。"
+      "text": "claim flagsをmaterial_successと別に検査し、material対応からactual effectや上流成立を生成しない。product stateは別sourceとして保持する。"
     },
     {
       "rule_ref": "R10",
       "source": "HELIXOS-L4-001 diagnostic_contract.rules/R10",
-      "text": "facetと全体はviolation>unknown>corresponding。conditionはupdate_material_*、project_correspondenceは各projectのsourceだけ。canonicalization_material_correspondingはmaterial_successかつboundary finding=0のみtrue（正式成立ではない）。actual/referenceとproduct_state原値をdeepcopyして保全。findingはcode/pointer/return_ownerで重複除去・同3field辞書順、owner_by_facetを使用。actual_canonicalized/requirement_adopted/implementation_completed/test_executed/L11_acceptedは全false、operation_effect none（この文書照合がそれらを生成しない）。"
+      "text": "status priorityでfacet/overallと全output rootsを構成し、findingsは宣言tupleで重複除去・順序づけする。"
     }
   ],
   "normative_program": {
@@ -1365,7 +1354,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/project_id",
             "pointer_reference": "/context/projects/project_a/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1391,7 +1380,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/scope",
             "pointer_reference": "/context/projects/project_a/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1417,7 +1406,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/concept_ref",
             "pointer_reference": "/context/projects/project_a/concept_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1443,7 +1432,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/concept_revision",
             "pointer_reference": "/context/projects/project_a/concept_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1469,7 +1458,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/l1_ref",
             "pointer_reference": "/context/projects/project_a/l1_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1495,7 +1484,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/l1_revision",
             "pointer_reference": "/context/projects/project_a/l1_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1521,7 +1510,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/requirement_id",
             "pointer_reference": "/context/projects/project_a/requirement_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1547,7 +1536,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/requirement_revision",
             "pointer_reference": "/context/projects/project_a/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1573,7 +1562,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/disposition_ref",
             "pointer_reference": "/context/projects/project_a/disposition_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1599,7 +1588,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/disposition_revision",
             "pointer_reference": "/context/projects/project_a/disposition_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1625,7 +1614,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/agreement_ref",
             "pointer_reference": "/context/projects/project_a/agreement_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1651,7 +1640,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/agreement_revision",
             "pointer_reference": "/context/projects/project_a/agreement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1677,7 +1666,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/decision_ref",
             "pointer_reference": "/context/projects/project_a/decision_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1703,7 +1692,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/responsibility_ref",
             "pointer_reference": "/context/projects/project_a/responsibility_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1729,7 +1718,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/canonical_json_ref",
             "pointer_reference": "/context/projects/project_a/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1755,7 +1744,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/source_revision",
             "pointer_reference": "/context/projects/project_a/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1781,10 +1770,22 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_a/source_digest",
             "pointer_reference": "/context/projects/project_a/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "source_project_b",
@@ -1826,7 +1827,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/project_id",
             "pointer_reference": "/context/projects/project_b/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1852,7 +1853,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/scope",
             "pointer_reference": "/context/projects/project_b/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1878,7 +1879,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/concept_ref",
             "pointer_reference": "/context/projects/project_b/concept_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1904,7 +1905,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/concept_revision",
             "pointer_reference": "/context/projects/project_b/concept_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1930,7 +1931,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/l1_ref",
             "pointer_reference": "/context/projects/project_b/l1_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1956,7 +1957,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/l1_revision",
             "pointer_reference": "/context/projects/project_b/l1_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -1982,7 +1983,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/requirement_id",
             "pointer_reference": "/context/projects/project_b/requirement_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2008,7 +2009,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/requirement_revision",
             "pointer_reference": "/context/projects/project_b/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2034,7 +2035,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/disposition_ref",
             "pointer_reference": "/context/projects/project_b/disposition_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2060,7 +2061,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/disposition_revision",
             "pointer_reference": "/context/projects/project_b/disposition_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2086,7 +2087,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/agreement_ref",
             "pointer_reference": "/context/projects/project_b/agreement_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2112,7 +2113,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/agreement_revision",
             "pointer_reference": "/context/projects/project_b/agreement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2138,7 +2139,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/decision_ref",
             "pointer_reference": "/context/projects/project_b/decision_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2164,7 +2165,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/responsibility_ref",
             "pointer_reference": "/context/projects/project_b/responsibility_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2190,7 +2191,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/canonical_json_ref",
             "pointer_reference": "/context/projects/project_b/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2216,7 +2217,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/source_revision",
             "pointer_reference": "/context/projects/project_b/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2242,10 +2243,22 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/projects/project_b/source_digest",
             "pointer_reference": "/context/projects/project_b/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "operation_binding",
@@ -2287,7 +2300,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/operation_id",
             "pointer_reference": "/context/operation/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2313,7 +2326,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/command_id",
             "pointer_reference": "/context/operation/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2339,7 +2352,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/project_id",
             "pointer_reference": "/context/operation/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2365,7 +2378,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/scope",
             "pointer_reference": "/context/operation/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2391,7 +2404,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/base_revision",
             "pointer_reference": "/context/operation/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2417,7 +2430,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/requirement_revision",
             "pointer_reference": "/context/operation/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2443,7 +2456,7 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/target_revision",
             "pointer_reference": "/context/operation/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2469,10 +2482,22 @@
             "owner": "requirement-source-owner",
             "pointer_actual": "/operation/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "binding"
+          ],
+          [
+            "context",
+            "operation",
+            "binding"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "proposal",
@@ -2523,7 +2548,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/proposal_ref",
             "pointer_reference": "/context/operation/proposal/proposal_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2549,7 +2574,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/original_text_ref",
             "pointer_reference": "/context/operation/proposal/original_text_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2575,7 +2600,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/reason_ref",
             "pointer_reference": "/context/operation/proposal/reason_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2601,7 +2626,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/target_requirement_id",
             "pointer_reference": "/context/operation/proposal/target_requirement_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2627,7 +2652,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/scope",
             "pointer_reference": "/context/operation/proposal/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2653,7 +2678,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/before_revision",
             "pointer_reference": "/context/operation/proposal/before_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2679,7 +2704,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/requirement_delta_ref",
             "pointer_reference": "/context/operation/proposal/requirement_delta_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2705,7 +2730,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/contract_delta_ref",
             "pointer_reference": "/context/operation/proposal/contract_delta_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2731,7 +2756,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/acceptance_delta_ref",
             "pointer_reference": "/context/operation/proposal/acceptance_delta_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2757,7 +2782,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/verification_delta_ref",
             "pointer_reference": "/context/operation/proposal/verification_delta_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2783,7 +2808,7 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/impact_ref",
             "pointer_reference": "/context/operation/proposal/impact_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2809,10 +2834,22 @@
             "owner": "proposal-source-owner",
             "pointer_actual": "/operation/proposal/projection_followup_ref",
             "pointer_reference": "/context/operation/proposal/projection_followup_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "proposal"
+          ],
+          [
+            "context",
+            "operation",
+            "proposal"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "policy",
@@ -2863,7 +2900,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/policy_ref",
             "pointer_reference": "/context/operation/policy/policy_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2889,7 +2926,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/policy_revision",
             "pointer_reference": "/context/operation/policy/policy_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2915,7 +2952,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/basis_ref",
             "pointer_reference": "/context/operation/policy/basis_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2941,7 +2978,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/authorization_ref",
             "pointer_reference": "/context/operation/policy/authorization_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2967,7 +3004,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/operation_id",
             "pointer_reference": "/context/operation/policy/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -2993,7 +3030,7 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/base_revision",
             "pointer_reference": "/context/operation/policy/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3019,10 +3056,22 @@
             "owner": "existing-policy-owner",
             "pointer_actual": "/operation/policy/scope",
             "pointer_reference": "/context/operation/policy/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "policy"
+          ],
+          [
+            "context",
+            "operation",
+            "policy"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_authority",
@@ -3092,7 +3141,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/authority/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3122,7 +3171,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/command_id",
             "pointer_reference": "/context/operation/conditions/authority/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3152,7 +3201,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/project_id",
             "pointer_reference": "/context/operation/conditions/authority/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3182,7 +3231,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/scope",
             "pointer_reference": "/context/operation/conditions/authority/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3212,7 +3261,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/authority/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3242,7 +3291,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/authority/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3272,7 +3321,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/authority/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3302,7 +3351,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/authority/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3330,7 +3379,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/source_ref",
             "pointer_reference": "/context/operation/conditions/authority/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3358,7 +3407,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/source_revision",
             "pointer_reference": "/context/operation/conditions/authority/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3386,7 +3435,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/source_digest",
             "pointer_reference": "/context/operation/conditions/authority/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3414,7 +3463,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/owner_ref",
             "pointer_reference": "/context/operation/conditions/authority/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3442,7 +3491,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/authority_ref",
             "pointer_reference": "/context/operation/conditions/authority/authority_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3470,10 +3519,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/authority/policy_revision",
             "pointer_reference": "/context/operation/conditions/authority/policy_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "authority"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "authority"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_impact",
@@ -3543,7 +3606,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/impact/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3573,7 +3636,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/command_id",
             "pointer_reference": "/context/operation/conditions/impact/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3603,7 +3666,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/project_id",
             "pointer_reference": "/context/operation/conditions/impact/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3633,7 +3696,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/scope",
             "pointer_reference": "/context/operation/conditions/impact/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3663,7 +3726,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/impact/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3693,7 +3756,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/impact/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3723,7 +3786,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/impact/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3753,7 +3816,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/impact/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3781,7 +3844,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/source_ref",
             "pointer_reference": "/context/operation/conditions/impact/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3809,7 +3872,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/source_revision",
             "pointer_reference": "/context/operation/conditions/impact/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3837,7 +3900,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/source_digest",
             "pointer_reference": "/context/operation/conditions/impact/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3865,7 +3928,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/owner_ref",
             "pointer_reference": "/context/operation/conditions/impact/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3893,7 +3956,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/impact_relation_ref",
             "pointer_reference": "/context/operation/conditions/impact/impact_relation_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -3921,10 +3984,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/impact/change_ref",
             "pointer_reference": "/context/operation/conditions/impact/change_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "impact"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "impact"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_pair",
@@ -3994,7 +4071,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/pair/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4024,7 +4101,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/command_id",
             "pointer_reference": "/context/operation/conditions/pair/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4054,7 +4131,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/project_id",
             "pointer_reference": "/context/operation/conditions/pair/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4084,7 +4161,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/scope",
             "pointer_reference": "/context/operation/conditions/pair/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4114,7 +4191,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/pair/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4144,7 +4221,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/pair/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4174,7 +4251,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/pair/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4204,7 +4281,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/pair/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4232,7 +4309,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/source_ref",
             "pointer_reference": "/context/operation/conditions/pair/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4260,7 +4337,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/source_revision",
             "pointer_reference": "/context/operation/conditions/pair/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4288,7 +4365,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/source_digest",
             "pointer_reference": "/context/operation/conditions/pair/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4316,7 +4393,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/owner_ref",
             "pointer_reference": "/context/operation/conditions/pair/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4344,7 +4421,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/pair_ref",
             "pointer_reference": "/context/operation/conditions/pair/pair_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4372,10 +4449,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/pair/compatible_revision",
             "pointer_reference": "/context/operation/conditions/pair/compatible_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "pair"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "pair"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_oracle",
@@ -4445,7 +4536,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/oracle/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4475,7 +4566,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/command_id",
             "pointer_reference": "/context/operation/conditions/oracle/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4505,7 +4596,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/project_id",
             "pointer_reference": "/context/operation/conditions/oracle/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4535,7 +4626,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/scope",
             "pointer_reference": "/context/operation/conditions/oracle/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4565,7 +4656,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/oracle/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4595,7 +4686,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/oracle/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4625,7 +4716,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/oracle/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4655,7 +4746,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/oracle/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4683,7 +4774,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/source_ref",
             "pointer_reference": "/context/operation/conditions/oracle/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4711,7 +4802,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/source_revision",
             "pointer_reference": "/context/operation/conditions/oracle/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4739,7 +4830,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/source_digest",
             "pointer_reference": "/context/operation/conditions/oracle/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4767,7 +4858,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/owner_ref",
             "pointer_reference": "/context/operation/conditions/oracle/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4795,7 +4886,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/oracle_ref",
             "pointer_reference": "/context/operation/conditions/oracle/oracle_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4823,10 +4914,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/oracle/expected_failure_ref",
             "pointer_reference": "/context/operation/conditions/oracle/expected_failure_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "oracle"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "oracle"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_rollback",
@@ -4896,7 +5001,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/rollback/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4926,7 +5031,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/command_id",
             "pointer_reference": "/context/operation/conditions/rollback/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4956,7 +5061,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/project_id",
             "pointer_reference": "/context/operation/conditions/rollback/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -4986,7 +5091,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/scope",
             "pointer_reference": "/context/operation/conditions/rollback/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5016,7 +5121,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/rollback/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5046,7 +5151,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/rollback/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5076,7 +5181,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/rollback/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5106,7 +5211,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/rollback/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5134,7 +5239,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/source_ref",
             "pointer_reference": "/context/operation/conditions/rollback/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5162,7 +5267,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/source_revision",
             "pointer_reference": "/context/operation/conditions/rollback/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5190,7 +5295,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/source_digest",
             "pointer_reference": "/context/operation/conditions/rollback/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5218,7 +5323,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/owner_ref",
             "pointer_reference": "/context/operation/conditions/rollback/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5246,7 +5351,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/rollback_ref",
             "pointer_reference": "/context/operation/conditions/rollback/rollback_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5274,10 +5379,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/rollback/recovery_ref",
             "pointer_reference": "/context/operation/conditions/rollback/recovery_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "rollback"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "rollback"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "condition_downstream_stale",
@@ -5347,7 +5466,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/operation_id",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5377,7 +5496,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/command_id",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5407,7 +5526,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/project_id",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5437,7 +5556,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/scope",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5467,7 +5586,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/base_revision",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5497,7 +5616,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/requirement_revision",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5527,7 +5646,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/target_revision",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5557,7 +5676,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/conditions/downstream_stale/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5585,7 +5704,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/source_ref",
             "pointer_reference": "/context/operation/conditions/downstream_stale/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5613,7 +5732,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/source_revision",
             "pointer_reference": "/context/operation/conditions/downstream_stale/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5641,7 +5760,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/source_digest",
             "pointer_reference": "/context/operation/conditions/downstream_stale/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5669,7 +5788,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/owner_ref",
             "pointer_reference": "/context/operation/conditions/downstream_stale/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5697,7 +5816,7 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/downstream_relation_ref",
             "pointer_reference": "/context/operation/conditions/downstream_stale/downstream_relation_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5725,10 +5844,24 @@
             "owner": "condition-source-owner",
             "pointer_actual": "/operation/conditions/downstream_stale/stale_update_ref",
             "pointer_reference": "/context/operation/conditions/downstream_stale/stale_update_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "conditions",
+            "downstream_stale"
+          ],
+          [
+            "context",
+            "operation",
+            "conditions",
+            "downstream_stale"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "observation",
@@ -5805,7 +5938,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/operation_id",
             "pointer_reference": "/context/operation/observation/binding/operation_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5833,7 +5966,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/command_id",
             "pointer_reference": "/context/operation/observation/binding/command_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5861,7 +5994,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/project_id",
             "pointer_reference": "/context/operation/observation/binding/project_id",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5889,7 +6022,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/scope",
             "pointer_reference": "/context/operation/observation/binding/scope",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5917,7 +6050,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/base_revision",
             "pointer_reference": "/context/operation/observation/binding/base_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5945,7 +6078,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/requirement_revision",
             "pointer_reference": "/context/operation/observation/binding/requirement_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -5973,7 +6106,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/target_revision",
             "pointer_reference": "/context/operation/observation/binding/target_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6001,7 +6134,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/binding/canonical_json_ref",
             "pointer_reference": "/context/operation/observation/binding/canonical_json_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6027,7 +6160,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/source_ref",
             "pointer_reference": "/context/operation/observation/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6053,7 +6186,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/source_revision",
             "pointer_reference": "/context/operation/observation/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6079,7 +6212,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/source_digest",
             "pointer_reference": "/context/operation/observation/source_digest",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6105,7 +6238,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/owner_ref",
             "pointer_reference": "/context/operation/observation/owner_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6131,7 +6264,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/requirement_ref",
             "pointer_reference": "/context/operation/observation/requirement_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6157,7 +6290,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/contract_ref",
             "pointer_reference": "/context/operation/observation/contract_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6183,7 +6316,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/acceptance_ref",
             "pointer_reference": "/context/operation/observation/acceptance_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6209,7 +6342,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/verification_ref",
             "pointer_reference": "/context/operation/observation/verification_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6235,7 +6368,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/stale_update_ref",
             "pointer_reference": "/context/operation/observation/stale_update_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6261,7 +6394,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/view_ref",
             "pointer_reference": "/context/operation/observation/view_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6287,7 +6420,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/db_ref",
             "pointer_reference": "/context/operation/observation/db_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6313,7 +6446,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/receipt_ref",
             "pointer_reference": "/context/operation/observation/receipt_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6339,7 +6472,7 @@
             "owner": "OS053-store-owner",
             "pointer_actual": "/operation/observation/visible_current_revision",
             "pointer_reference": "/context/operation/observation/visible_current_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
         ],
@@ -6414,7 +6547,19 @@
             "facet": "update_observation",
             "owner": "OS053-store-owner"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "operation",
+            "observation"
+          ],
+          [
+            "context",
+            "operation",
+            "observation"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       },
       {
         "id": "product_state",
@@ -6452,7 +6597,7 @@
             "owner": "product-state-owner",
             "pointer_actual": "/product_state/implementation",
             "pointer_reference": "/context/product_state/implementation",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6476,7 +6621,7 @@
             "owner": "product-state-owner",
             "pointer_actual": "/product_state/verification",
             "pointer_reference": "/context/product_state/verification",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6500,7 +6645,7 @@
             "owner": "product-state-owner",
             "pointer_actual": "/product_state/L11",
             "pointer_reference": "/context/product_state/L11",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6524,7 +6669,7 @@
             "owner": "product-state-owner",
             "pointer_actual": "/product_state/source_ref",
             "pointer_reference": "/context/product_state/source_ref",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           },
           {
@@ -6548,10 +6693,20 @@
             "owner": "product-state-owner",
             "pointer_actual": "/product_state/source_revision",
             "pointer_reference": "/context/product_state/source_revision",
-            "unknown_pointer_rule": "emit one finding for each invalid side; absent and null remain distinct in retained values",
+            "unknown_pointer_rule": "片側ごとに該当pathのunknown findingを一件返す。Absentと明示nullは保持値で区別し、どちらもJSON値や互いの代替とは扱わない。",
             "conflict_pointer_rule": "actual_path"
           }
-        ]
+        ],
+        "required_object_paths": [
+          [
+            "product_state"
+          ],
+          [
+            "context",
+            "product_state"
+          ]
+        ],
+        "non_object_behavior": "片側でも親containerがobjectでなければfield/state/extraの子比較を行わず、親欠落findingとunknown statusを記録する。"
       }
     ],
     "join_rules": [
@@ -6582,7 +6737,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_a_scope",
@@ -6611,7 +6778,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_a_requirement_revision",
@@ -6640,7 +6819,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_a_canonical_json_ref",
@@ -6669,7 +6860,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_b_project_id",
@@ -6698,7 +6901,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_b_scope",
@@ -6727,7 +6942,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_b_requirement_revision",
@@ -6756,7 +6983,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_b_canonical_json_ref",
@@ -6785,7 +7024,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "proposal_scope",
@@ -6826,7 +7077,8 @@
             "operation",
             "proposal"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "proposal_before_revision",
@@ -6867,7 +7119,8 @@
             "operation",
             "proposal"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "policy_scope",
@@ -6908,7 +7161,8 @@
             "operation",
             "policy"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "policy_base_revision",
@@ -6949,7 +7203,8 @@
             "operation",
             "policy"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "policy_operation_id",
@@ -6990,7 +7245,8 @@
             "operation",
             "policy"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "visible_current_revision",
@@ -7047,7 +7303,19 @@
         "owner": "OS053-store-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "operation",
+            "observation"
+          ],
+          [
+            "context",
+            "operation",
+            "observation"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_operation_id",
@@ -7089,7 +7357,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_command_id",
@@ -7131,7 +7400,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_project_id",
@@ -7173,7 +7443,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_scope",
@@ -7215,7 +7486,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_base_revision",
@@ -7257,7 +7529,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_requirement_revision",
@@ -7299,7 +7572,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_target_revision",
@@ -7341,7 +7615,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_authority_binding_canonical_json_ref",
@@ -7383,7 +7658,8 @@
             "conditions",
             "authority"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_operation_id",
@@ -7425,7 +7701,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_command_id",
@@ -7467,7 +7744,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_project_id",
@@ -7509,7 +7787,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_scope",
@@ -7551,7 +7830,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_base_revision",
@@ -7593,7 +7873,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_requirement_revision",
@@ -7635,7 +7916,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_target_revision",
@@ -7677,7 +7959,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_impact_binding_canonical_json_ref",
@@ -7719,7 +8002,8 @@
             "conditions",
             "impact"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_operation_id",
@@ -7761,7 +8045,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_command_id",
@@ -7803,7 +8088,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_project_id",
@@ -7845,7 +8131,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_scope",
@@ -7887,7 +8174,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_base_revision",
@@ -7929,7 +8217,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_requirement_revision",
@@ -7971,7 +8260,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_target_revision",
@@ -8013,7 +8303,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_pair_binding_canonical_json_ref",
@@ -8055,7 +8346,8 @@
             "conditions",
             "pair"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_operation_id",
@@ -8097,7 +8389,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_command_id",
@@ -8139,7 +8432,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_project_id",
@@ -8181,7 +8475,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_scope",
@@ -8223,7 +8518,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_base_revision",
@@ -8265,7 +8561,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_requirement_revision",
@@ -8307,7 +8604,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_target_revision",
@@ -8349,7 +8647,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_oracle_binding_canonical_json_ref",
@@ -8391,7 +8690,8 @@
             "conditions",
             "oracle"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_operation_id",
@@ -8433,7 +8733,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_command_id",
@@ -8475,7 +8776,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_project_id",
@@ -8517,7 +8819,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_scope",
@@ -8559,7 +8862,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_base_revision",
@@ -8601,7 +8905,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_requirement_revision",
@@ -8643,7 +8948,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_target_revision",
@@ -8685,7 +8991,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_rollback_binding_canonical_json_ref",
@@ -8727,7 +9034,8 @@
             "conditions",
             "rollback"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_operation_id",
@@ -8769,7 +9077,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_command_id",
@@ -8811,7 +9120,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_project_id",
@@ -8853,7 +9163,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_scope",
@@ -8895,7 +9206,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_base_revision",
@@ -8937,7 +9249,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_requirement_revision",
@@ -8979,7 +9292,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_target_revision",
@@ -9021,7 +9335,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "condition_downstream_stale_binding_canonical_json_ref",
@@ -9063,7 +9378,8 @@
             "conditions",
             "downstream_stale"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_a_base_revision",
@@ -9092,7 +9408,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_a"
+          ],
+          [
+            "context",
+            "projects",
+            "project_a"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "proposal_target_requirement_id_project_a",
@@ -9142,7 +9470,8 @@
             "operation",
             "proposal"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "selected_project_b_base_revision",
@@ -9171,7 +9500,19 @@
         "owner": "requirement-source-owner",
         "value_kind": "nonempty_string",
         "unknown_code": "field_unknown",
-        "conflict_code": "field_conflict"
+        "conflict_code": "field_conflict",
+        "required_object_paths": [
+          [
+            "projects",
+            "project_b"
+          ],
+          [
+            "context",
+            "projects",
+            "project_b"
+          ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "proposal_target_requirement_id_project_b",
@@ -9221,7 +9562,8 @@
             "operation",
             "proposal"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_operation_id",
@@ -9274,7 +9616,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_command_id",
@@ -9327,7 +9670,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_project_id",
@@ -9380,7 +9724,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_scope",
@@ -9433,7 +9778,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_base_revision",
@@ -9486,7 +9832,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_requirement_revision",
@@ -9539,7 +9886,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_target_revision",
@@ -9592,7 +9940,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       },
       {
         "id": "observation_binding_to_operation_canonical_json_ref",
@@ -9645,7 +9994,8 @@
             "operation",
             "observation"
           ]
-        ]
+        ],
+        "non_object_behavior": "必要な親objectが欠ける場合はjoinを評価しない。親field groupがmissing/unknownを返す。"
       }
     ],
     "status_order": [
@@ -9668,15 +10018,16 @@
     "derived_rules": [
       {
         "id": "R08-core-valid",
-        "rule": "選択project known、選択projectとoperation binding/joins自身にsource findingなし。選択外projectのsource findingはcore_validを妨げない。適用対象proposal/policyの全field groupとpolicy_directive enum ruleがcorrespondingの場合だけproposal_policy_valid。"
+        "rule": "selected projectがknownで、そのsource group、operation binding/selected-project joins、identity uniquenessにfindingがなく、適用対象proposal/policyの全field groupとpolicy_directiveがcorrespondingの場合だけcore_valid。選択外projectの独立source findingはcore_validを妨げない。ただしproject identity collisionはidentity uniqueness failureとして全体source validityへ入る。"
       },
       {
         "id": "R08-six-valid",
-        "rule": "kind=meaning_changeの場合だけ六group全てcorresponding。"
+        "rule": "kind=meaning_changeの場合だけ、六条件それぞれのfield groupとoperation binding joinを合わせたstatusがすべてcorrespondingならsix_valid。"
       },
       {
-        "id": "R08-material-success",
-        "rule": "kind=meaning_change AND phase=observe AND actual observation state=committed AND core_valid AND six_valid AND update_observation/boundary findingなし AND policy directive=auto_apply。これは合成素材の対応状態だけで実更新成功ではない。"
+        "id": "R08-material-success-base",
+        "rule": "staged_material_evaluation.definitions.material_success_baseを唯一の式とする。通常所見とoperation.claims境界を前段へ含め、canonicalization_success_claim自身の診断だけを除外して確定する。後段R09所見をこの値へ逆流させない。材料比較であり実更新成功ではない。",
+        "expression_ref": "#/normative_program/staged_material_evaluation/definitions/material_success_base"
       },
       {
         "id": "R10-overall",
@@ -9684,31 +10035,32 @@
       },
       {
         "id": "R10-canonicalization-material",
-        "rule": "material_successかつboundary findingなしの場合だけtrue。inspect/view_change/prepareではfalse。"
+        "rule": "staged_material_evaluation.definitions.canonicalization_material_correspondingを唯一の式とする。確定済みmaterial_success_baseとR09後の最終boundary対応の積。材料対応であって実作用ではない。",
+        "expression_ref": "#/normative_program/staged_material_evaluation/definitions/canonicalization_material_corresponding"
       }
     ],
     "output_projection": {
-      "condition": "overall aggregate, mapped corresponding→update_material_corresponding, unknown→update_material_unknown, violation→update_material_violation",
-      "facet_correspondence": "aggregate_check_groups_by_facet",
-      "project_correspondence": "aggregate_source_group_per_project",
-      "selected_project": "actual binding.project_id only when it is one of project_ids, else null",
-      "selected_kind": "actual kind only when in kinds, else null",
-      "selected_phase": "actual phase only when in phases, else null",
-      "policy_directive": "actual known directive only when actual kind is known and both policy paths are objects; otherwise null",
-      "six_condition_material": "for each condition in condition_names order, aggregate that condition group and its binding-join statuses with status_order; use not_applicable outside meaning_change",
-      "update_observed_state": "actual known observation state only when actual kind is known, phase=observe, and both observation paths are objects; otherwise null",
-      "canonicalization_material_corresponding": "aggregation_rules.canonicalization_material_corresponding",
-      "retained_actual": "deep copy input.projects and input.operation",
-      "retained_reference": "deep copy input.context.projects, input.context.operation, and input.context.product_state",
-      "retained_product_state_actual": "deep copy input.product_state",
-      "findings": "findings_rule",
+      "condition": "七facet全体のpriority集約をupdate_material_corresponding / update_material_unknown / update_material_violationへ写す。",
+      "facet_correspondence": "有効なcheck rowsをfacetごとにpriority集約する。",
+      "project_correspondence": "project_idsの順でsource groupとidentity statusを個別集約する。",
+      "selected_project": "operation.binding.project_idがproject_idsの要素ならその値、それ以外はnull。",
+      "selected_kind": "operation.kindがkindsの要素ならその値、それ以外はnull。",
+      "selected_phase": "operation.phaseがphasesの要素ならその値、それ以外はnull。",
+      "policy_directive": "実kindがview_changeまたはmeaning_changeで、actual/reference policyがともにobject、actual directiveがpolicy_directives内の場合だけactual値。それ以外null。",
+      "six_condition_material": "meaning_changeのときcondition_namesの宣言順で各field groupと同conditionのbinding joinをstatus_orderで集約。適用外は各条件not_applicable。",
+      "update_observed_state": "kindがview_changeまたはmeaning_change、phase=observe、両observationがobject、actual stateがobservation_states内の場合だけactual値。それ以外null。",
+      "canonicalization_material_corresponding": "staged_material_evaluation.output_bindingsに従う。material_success_baseと最終boundary対応からだけ導く。",
+      "retained_actual": "input.projectsとinput.operationのJSON値を複製して返す。",
+      "retained_reference": "input.context.projects、input.context.operation、input.context.product_stateを複製して返す。",
+      "retained_product_state_actual": "input.product_stateを複製して返す。",
+      "findings": "findings_ruleで定める診断を返す。",
       "actual_canonicalized": false,
       "actual_requirement_adopted": false,
       "actual_implementation_completed": false,
       "actual_test_executed": false,
       "actual_L11_accepted": false,
-      "operation_effect": "none",
-      "actual_*": "all false constants declared by L4 R10; the current-document comparison does not cause actual effects"
+      "operation_effect": "none。",
+      "actual_*": "L4 R10の境界に従い、すべてfalse。文書比較は実際の効果を生まない。"
     },
     "enum_rules": [
       {
@@ -9802,7 +10154,8 @@
         "owner": "existing-policy-owner",
         "unknown_code": "directive_unknown",
         "conflict_code": "directive_conflict",
-        "adopt_actual_when_known_and_both_objects": true
+        "adopt_actual_when_known_and_both_objects": true,
+        "selection_rule": "実kindがview_changeまたはmeaning_changeで、actual/reference policy双方がobjectの場合だけ、actual directiveがclosed domain内なら返す。それ以外はnull。"
       }
     ],
     "state_rules": [
@@ -9894,115 +10247,6 @@
         "unknown_pointer": "/operation/binding/project_id"
       },
       {
-        "id": "condition-containers",
-        "rule_ref": "R04",
-        "activation": {
-          "path": [
-            "operation",
-            "kind"
-          ],
-          "eq": "meaning_change"
-        },
-        "actual_and_reference_paths": [
-          [
-            "operation",
-            "conditions",
-            {
-              "foreach": "condition_names"
-            }
-          ],
-          [
-            "context",
-            "operation",
-            "conditions",
-            {
-              "foreach": "condition_names"
-            }
-          ]
-        ],
-        "non_object_code": "condition_missing",
-        "facet": "six_conditions",
-        "owner": "condition-source-owner"
-      },
-      {
-        "id": "proposal-policy-containers",
-        "rule_ref": "R03",
-        "activation": {
-          "path": [
-            "operation",
-            "kind"
-          ],
-          "in": [
-            "view_change",
-            "meaning_change"
-          ]
-        },
-        "actual_and_reference_paths": [
-          [
-            "operation",
-            "proposal"
-          ],
-          [
-            "context",
-            "operation",
-            "proposal"
-          ],
-          [
-            "operation",
-            "policy"
-          ],
-          [
-            "context",
-            "operation",
-            "policy"
-          ]
-        ],
-        "non_object_codes": {
-          "proposal": "proposal_missing",
-          "policy": "policy_missing"
-        },
-        "facet_from_group": true
-      },
-      {
-        "id": "observation-containers",
-        "rule_ref": "R05",
-        "activation": {
-          "all": [
-            {
-              "path": [
-                "operation",
-                "kind"
-              ],
-              "in": [
-                "view_change",
-                "meaning_change"
-              ]
-            },
-            {
-              "path": [
-                "operation",
-                "phase"
-              ],
-              "eq": "observe"
-            }
-          ]
-        },
-        "actual_and_reference_paths": [
-          [
-            "operation",
-            "observation"
-          ],
-          [
-            "context",
-            "operation",
-            "observation"
-          ]
-        ],
-        "non_object_code": "observation_missing",
-        "facet": "update_observation",
-        "owner": "OS053-store-owner"
-      },
-      {
         "id": "observation-forbidden-origin",
         "rule_ref": "R06",
         "activation": {
@@ -10039,7 +10283,13 @@
         ],
         "code": "legacy_source_forbidden",
         "facet": "boundary",
-        "owner": "management-authority-owner"
+        "owner": "management-authority-owner",
+        "required_object_paths": [
+          [
+            "operation",
+            "observation"
+          ]
+        ]
       },
       {
         "id": "observation-noncoherent",
@@ -10078,12 +10328,23 @@
         ],
         "mixed_value": "mixed_material",
         "mixed_code": "mixed_current_forbidden",
-        "other_noncoherent_values": [
-          "unobserved"
-        ],
         "other_code": "publication_coherence_unproven",
         "facet": "update_observation",
-        "owner": "OS053-store-owner"
+        "owner": "OS053-store-owner",
+        "required_object_paths": [
+          [
+            "operation",
+            "observation"
+          ]
+        ],
+        "state_rule": "stateとrevision_coherenceがそれぞれclosed domain内の場合だけ評価する。",
+        "coherence_partition": {
+          "coherent_value": "coherent_material",
+          "known_mixed_value": "mixed_material",
+          "noncoherent": "coherent_material以外のdomain値",
+          "committed_mixed_result": "mixed_current_forbiddenを1件返しpublication_coherence_unprovenを併記しない",
+          "all_other_noncoherent_result": "publication_coherence_unprovenを返す。したがって非committedかつknown mixedも未確認としてunknown。"
+        }
       },
       {
         "id": "canonicalization-claim",
@@ -10093,10 +10354,19 @@
           "canonicalization_success_claim"
         ],
         "value_kind": "boolean",
-        "true_when_not_material_success_code": "unproven_success_claim",
         "invalid_code": "boolean_unknown",
         "facet": "boundary",
-        "owner": "management-authority-owner"
+        "owner": "management-authority-owner",
+        "required_object_paths": [
+          [
+            "operation"
+          ]
+        ],
+        "true_code": "unproven_success_claim",
+        "true_rule": "L4 R09に従い、claimがboolean trueかつ確定済みmaterial_success_base=falseの場合だけunproven_success_claim。material_success_base=trueのtrue claimは保持し、実作用はR10により全false/none。非booleanは後段でboolean_unknownとし、最終boundaryへunknownを加える。",
+        "evaluation_stage": "material_success_base確定後、R10最終集約前。",
+        "invalid_when_ref": "#/normative_program/staged_material_evaluation/definitions/canonicalization_claim_invalid",
+        "true_when_ref": "#/normative_program/staged_material_evaluation/definitions/canonicalization_claim_unproven"
       },
       {
         "id": "operation-claims",
@@ -10110,7 +10380,25 @@
         "invalid_code": "boolean_unknown",
         "facet": "boundary",
         "owner": "management-authority-owner",
-        "true_only_means": "この更新素材から上流採択/実装/実test/L11受入を主張した場合"
+        "true_only_means": "この更新素材から上流採択/実装/実test/L11受入を主張した場合",
+        "known_claim_keys": [
+          "proposal_discarded",
+          "policy_self_extended",
+          "reask_existing_authorization",
+          "require_all_consumers",
+          "new_requirement_adopted",
+          "implementation_complete",
+          "test_executed",
+          "L11_accepted",
+          "legacy_restore_requested"
+        ],
+        "unknown_key_rule": "既知外keyもbooleanとして検査し、値trueならforbidden_boundary_claim、boolean以外ならboolean_unknown。key自体の未知を無視しない。",
+        "required_object_paths": [
+          [
+            "operation"
+          ]
+        ],
+        "key_set_rule": "known_claim_keysの全keyを必須とし、欠落keyは各 /operation/claims/{key} にboolean_unknown。未知keyも /operation/claims/{key} にboolean_unknown。各存在値はbooleanでなければboolean_unknown、trueならforbidden_boundary_claim。"
       },
       {
         "id": "partial-current-claim",
@@ -10124,7 +10412,13 @@
         "true_code": "partial_current_forbidden",
         "invalid_code": "boolean_unknown",
         "facet": "update_observation",
-        "owner": "OS053-store-owner"
+        "owner": "OS053-store-owner",
+        "required_object_paths": [
+          [
+            "operation",
+            "observation"
+          ]
+        ]
       }
     ],
     "findings_rule": {
@@ -10138,7 +10432,7 @@
         "pointer",
         "return_owner"
       ],
-      "collection_operator": "all failed configured comparisons and special rules; values never sourced from case_id or expected oracle"
+      "collection_operator": "L5の有効なfield比較・project identity規則・join・special ruleが返す診断だけを集める。case IDやexpected oracleから値を作らない。"
     },
     "aggregation_rules": {
       "priority": [
@@ -10146,14 +10440,14 @@
         "unknown",
         "corresponding"
       ],
-      "group_result": "highest-priority status among enabled member checks; empty/non-applicable group returns not_applicable only where rule says so, otherwise corresponding",
-      "overall": "aggregate all seven facet results; violation > unknown > corresponding",
-      "source_facet": "includes both project source groups, selected project/binding joins and project-selection result",
-      "project_correspondence": "aggregate each project source group separately",
-      "core_valid": "selected project is known and no source finding from selected project, operation binding, selected-project joins, proposal/policy checks applicable to this kind; unselected project findings remain reported but do not invalidate core_valid",
-      "six_valid": "only for meaning_change; all six condition groups are corresponding",
-      "material_success": "kind=meaning_change AND phase=observe AND actual state=committed AND core_valid AND six_valid AND policy directive=auto_apply AND no update_observation or boundary findings",
-      "canonicalization_material_corresponding": "true only when material_success; this is fixture material correspondence, not actual canonicalization"
+      "group_result": "有効な全member check、container、joinのうち最優先の結果を返す。適用外groupはnot_applicableとして保持し、空の適用対象groupはcorrespondingとする。",
+      "overall": "七facetをすべて集約する。優先順はviolation > unknown > corresponding。",
+      "source_facet": "二projectのsource group、project identity規則、selected project/operation binding/selected-project joins/selection resultを含む。",
+      "project_correspondence": "各projectのsource groupと、そのproject key/project_id一致結果を個別集約する。",
+      "core_valid": "derived_rules.R08-core-validを唯一の定義とする。",
+      "six_valid": "derived_rules.R08-six-validを唯一の定義とする。",
+      "canonicalization_material_corresponding": "derived_rules.R10-canonicalization-materialを唯一の定義とする。",
+      "material_success_base": "derived_rules.R08-material-success-baseとそのexpression_refだけを用いる。R09自己claimの診断はこの前段値を変更しない。"
     },
     "copy_outputs": {
       "retained_actual": {
@@ -10183,14 +10477,295 @@
           "product_state"
         ]
       }
+    },
+    "evaluation_order": [
+      "入力templateを複製し、given replacementsを記載順に適用する。expected sourceは計算operandにしない。",
+      "R01で両project sourceとoperation bindingのfieldを比較し、project keyとproject_idの一致および二projectのidentity一意性を確認し、selected projectとsource joinを行う。",
+      "R02でkind/phaseをclosed domainで比較する。",
+      "R03でview_change/meaning_change時だけproposal/policyのobject・field・join・directiveを評価する。",
+      "R04でmeaning_change時だけ六条件のobject・state・field・witness・operation binding joinを評価し、条件ごとにstatusを集約する。",
+      "R05でview_change/meaning_changeかつobserve時だけ両observation objectを確認し、state/domain/fieldを評価する。親object非objectなら子field比較を省略する。",
+      "R06/R07でobservation source origin・coherence・partial-current claim・binding・visible revisionを評価し、noncoherent diagnosticsを追加する。",
+      "R09のoperation.claims全keyを検査し、通常比較の所見と合わせて前段boundaryを確定する。canonicalization_success_claim自身の型/true診断はまだ行わない。",
+      "R08 core_valid/six_validを求め、前段facetをpreclaim_facetsとして複製する。staged_material_evaluation.preclaim_definition_orderの順に式を評価し、material_success_baseとR09診断条件を確定する。",
+      "staged_material_evaluation.finding_effectsの順に、条件がtrueの診断だけをspecial_rule_refのcode/path/facet/ownerへ接続する。最終boundaryを更新し、確定済みmaterial_success_baseは再評価しない。",
+      "最終facetをfinal_facetsへ結び、postclaim_definition_orderの式を評価する。R10でfindingを(code,pointer,return_owner)重複除去・同tuple昇順、facet/project/condition/overallをpriority集約し、output_bindingsを返す。実作用返却は常にfalse/none。"
+    ],
+    "project_identity_rules": {
+      "rule_ref": "R01",
+      "keys_parameter": "project_ids",
+      "field": "project_id",
+      "actual_container": [
+        "projects"
+      ],
+      "reference_container": [
+        "context",
+        "projects"
+      ],
+      "require_member_object": true,
+      "require_project_id_equal_to_container_key": true,
+      "require_unique_project_id_across_configured_keys": true,
+      "comparison_domain": "nonempty_string",
+      "failure_code": "field_conflict",
+      "facet": "source",
+      "owner": "requirement-source-owner",
+      "diagnostic_pointer": "/projects/{key}/project_id",
+      "effect": "同じ誤identityが両側に重複する場合だけ、別projectの根拠を区別できないためmaterial_successを妨げる。選択外projectの一側欠落/不一致はL4 B01に従い選択sourceを消さず、既存比較findingを個別保持する。これは合成identity比較であり実source資格を認定しない。",
+      "comparison": "各project keyについてactual/referenceのproject_idが同じ非空stringであり、両側の二projectで同一identityが重複する場合だけ、後順位projectへfield_conflictを一件返す。片側不一致/欠落/null/nonstringは既存field comparisonのviolation/unknownへ委ね、重複を二重診断しない。",
+      "duplicate_condition": "同じproject_idがactual/referenceのproject_aとproject_bの双方で一致し、かつproject_a/project_bのどちらかのkeyと違う。"
+    },
+    "json_comparison": {
+      "object": "文字列key集合で比較しobject key順は無視する。",
+      "array": "要素数とindex順を保持して再帰比較する。",
+      "number": "JSON numberの数値等値を用いる。booleanはnumberと区別する。",
+      "presence": "Absentと明示nullを区別する。"
+    },
+    "normative_basis": "このnormative_programがL5の一意な計算規範である。人間向けrule summaryはこのASTの意味説明で、独立した代替定義ではない。評価順はevaluation_orderの一つだけを用いる。",
+    "staged_material_evaluation": {
+      "source_basis": [
+        "L4 /diagnostic_contract/rules/7 (R08)",
+        "L4 /diagnostic_contract/rules/8 (R09)",
+        "L4 /diagnostic_contract/rules/9 (R10)",
+        "L4 /contracts/4 (B01)"
+      ],
+      "primitive_operators": {
+        "read": "environmentからpathのobject member列を順に読む。存在しないmember/非object ancestorはAbsent sentinel。nullとAbsentを区別する。",
+        "literal": "valueに記載したJSON値。",
+        "equal": "json_comparisonの再帰等値。booleanとnumberを区別し、AbsentはAbsentとのみ等しい。",
+        "all": "argumentsの全項をbooleanとして評価し、全trueのときだけtrue。boolean以外の項は規範式の不備であり、truthiness補完しない。空列の値はtrue。",
+        "not": "argumentのbooleanを反転する。boolean以外をtruthinessへ変換しない。",
+        "is_boolean": "argumentの値がJSON boolean型の場合だけtrue。Absent/null/number/string/object/arrayはfalse。"
+      },
+      "environment": {
+        "actual": "展開済み実入力。expected oracleは含めない。",
+        "derived.core_valid": "derived_rulesのR08-core-validから得たboolean。",
+        "derived.six_valid": "derived_rulesのR08-six-validから得たboolean。",
+        "preclaim_facets": "通常の全比較所見・operation.claims所見を集約したfacet statusの複製。canonicalization_success_claim自身の型/true診断はまだ含まない。後段で上書きしない。",
+        "derived.material_success_base": "preclaim_definition_orderの先頭で確定し、R09自己claim診断後にも再評価/書換えしないboolean。L4 R08 material_successの前段値をこの名前で区別する。",
+        "final_facets": "R09 canonicalization_success_claimの型/条件付きtrue診断を反映した最終facet status。"
+      },
+      "definitions": {
+        "material_success_base": {
+          "op": "all",
+          "arguments": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "actual",
+                  "operation",
+                  "kind"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "meaning_change"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "actual",
+                  "operation",
+                  "phase"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "observe"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "actual",
+                  "operation",
+                  "observation",
+                  "state"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "committed"
+              }
+            },
+            {
+              "op": "read",
+              "path": [
+                "derived",
+                "core_valid"
+              ]
+            },
+            {
+              "op": "read",
+              "path": [
+                "derived",
+                "six_valid"
+              ]
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "actual",
+                  "operation",
+                  "policy",
+                  "directive"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "auto_apply"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "preclaim_facets",
+                  "update_observation"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "corresponding"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "preclaim_facets",
+                  "boundary"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "corresponding"
+              }
+            }
+          ]
+        },
+        "canonicalization_claim_invalid": {
+          "op": "not",
+          "argument": {
+            "op": "is_boolean",
+            "argument": {
+              "op": "read",
+              "path": [
+                "actual",
+                "operation",
+                "canonicalization_success_claim"
+              ]
+            }
+          }
+        },
+        "canonicalization_claim_unproven": {
+          "op": "all",
+          "arguments": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "actual",
+                  "operation",
+                  "canonicalization_success_claim"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            {
+              "op": "not",
+              "argument": {
+                "op": "read",
+                "path": [
+                  "derived",
+                  "material_success_base"
+                ]
+              }
+            }
+          ]
+        },
+        "canonicalization_material_corresponding": {
+          "op": "all",
+          "arguments": [
+            {
+              "op": "read",
+              "path": [
+                "derived",
+                "material_success_base"
+              ]
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "read",
+                "path": [
+                  "final_facets",
+                  "boundary"
+                ]
+              },
+              "right": {
+                "op": "literal",
+                "value": "corresponding"
+              }
+            }
+          ]
+        }
+      },
+      "preclaim_definition_order": [
+        "material_success_base",
+        "canonicalization_claim_invalid",
+        "canonicalization_claim_unproven"
+      ],
+      "postclaim_definition_order": [
+        "canonicalization_material_corresponding"
+      ],
+      "finding_effects": [
+        {
+          "when_definition": "canonicalization_claim_invalid",
+          "special_rule_ref": "#/normative_program/special_rules/3",
+          "code_member": "invalid_code",
+          "status": "unknown",
+          "pointer_from": "path",
+          "facet_from": "facet",
+          "owner_from": "owner"
+        },
+        {
+          "when_definition": "canonicalization_claim_unproven",
+          "special_rule_ref": "#/normative_program/special_rules/3",
+          "code_member": "true_code",
+          "status": "violation",
+          "pointer_from": "path",
+          "facet_from": "facet",
+          "owner_from": "owner"
+        }
+      ],
+      "output_bindings": {
+        "canonicalization_material_corresponding": "canonicalization_material_corresponding"
+      },
+      "boundary": "これらは材料対応の式だけを定める。true claimが材料と対応しても、実更新/資格/新採択/実装/test/L11は生成しない。実作用の全返却はoutput_projectionのfalse/noneを保つ。"
     }
   },
   "unclosed": [
-    "正式source/proposal/policy/condition/observation/product-state型と資格・任意対象集合/graph、HARNESS052意味結果・OS053全write/CAS/3read/receipt/rollbackへexact bindingをL5/L8で閉じる。",
-    "policy.directiveは独立原policyの材料値。どのpolicyが実操作を許可するか、既決許可の資格・人判断のsourceは未成立。素材対応から新しい権限や人判断を作らない。",
-    "六条件sourceの全meaning/変更内容/互換性/expected failure/影響downstream/復旧先の閉包と実実証拠、実writer/partial-current防止/replay/復旧は未成立。",
-    "文書stateを報告することと実操作成功は別。更新とは独立の製品状態を保持し、製品全体の実装/実test/L11受入を更新から導かない。",
-    "全92親430対の設計閉包・L6設計/対L7と実装前oracle凍結・実Red→Green→Refactor・実CI/L9/L10/PO L11・実装Readyは未成立。"
+    "任意JSON/graph、可変project数、正式wire/schema/codec validationは未設計。現規則はL4 diagnostic_contractの固定2project/1operation/3kind/2phase synthetic profileに限る。",
+    "source_ref/source_revision/source_digest/owner_refの一致は素材間の束縛を示すだけで、正本性、発行主体、owner責務資格や実資格を認定しない。L4 F01/F03のsource ownerが資格・実根拠を供給する必要がある。",
+    "六条件の意味、変更内容、互換性、expected failure、影響下流、復旧先の実sourceと証拠は未成立。各不足を対応conditionの原source ownerへ返す。",
+    "OS053の実write/CAS/独立read/receipt/rollback、partial-current防止/replayは未実証。保存観測はOS053-store-owner、command意味はHELIX-HARNESS052 ownerの責務。",
+    "比較材料は実canonicalization、新要求採択、実装完了、test実行、L11受入を成立させない。更新とは独立のproduct stateを別sourceとして保持する。",
+    "全92親/430対の設計閉包、L6関数設計/L7対関数検証、実装前oracle凍結、実TDD/CI/L9/L10/PO L11、implementation Readyは未成立。"
   ],
   "basic_pair_pins": [
     {
@@ -10203,5 +10778,20 @@
       "revision": "9457119823fefbd2ae0ec7805eb917d300d08f20",
       "sha256": "41d8959476eeedd2bcfaae0fb7d11f11323912653f568a4e6096e81f437b4cb0"
     }
-  ]
+  ],
+  "closed_from_basic_design": [
+    {
+      "source": "HELIXOS-L4-001-F01/F03/F04",
+      "closed_scope": "固定fixtureでの二project identity、operation/scope/revision、六条件とそのbinding、stale/write/receipt/mixed observationの比較、20返却rootの構築。"
+    },
+    {
+      "source": "HELIXOS-L4-001-F02",
+      "closed_scope": "固定fixture proposal/policyのfield、scope/base/operation joinとclosed directive比較。実適用権限は生成しない。"
+    },
+    {
+      "source": "HELIXOS-L4-001-B01",
+      "closed_scope": "文書素材の対応を実canonicalization/採択/実装/test/L11受入から分離し、actual effectはfalse/noneで保持。"
+    }
+  ],
+  "qualification": "not_established"
 }
