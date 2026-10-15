@@ -1392,7 +1392,11 @@
           "json_kinds": [
             "string"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            "bounded_operation_content_requires_actual_qualification",
+            "stopped_with_unconfirmed_recovery_scope"
+          ]
         },
         "retained_path": {
           "json_kinds": [
@@ -1780,19 +1784,46 @@
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "path",
+                  "authority.kind",
+                  "authority.state",
+                  "authority.credential_ref",
+                  "authority.policy_ref",
+                  "authority.target",
+                  "authority.operation",
+                  "authority.ref",
+                  "last_eligible_revision",
+                  "authority"
+                ]
               },
               "result": {
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "os-response-required",
+                  "resource-os-dependent",
+                  "dependency-unknown",
+                  "resource-unavailable",
+                  "path-target-foreign",
+                  "not_qualified_for_bounded_operation",
+                  "submitted_content_conflict",
+                  "missing"
+                ]
               },
               "return_owner": {
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "independent-path-owner",
+                  "HELIX-SECURITY",
+                  "recovery-owner"
+                ]
               }
             },
             "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
@@ -1807,7 +1838,12 @@
             "json_kinds": [
               "string"
             ],
-            "presence": "required"
+            "presence": "required",
+            "enum": [
+              "independent-path-owner",
+              "HELIX-SECURITY",
+              "recovery-owner"
+            ]
           }
         },
         "rejected_claims": {
@@ -1819,20 +1855,29 @@
             "json_kinds": [
               "string"
             ],
-            "presence": "required"
+            "presence": "required",
+            "enum": [
+              "complete_auto_failover_required"
+            ]
           }
         },
         "automatic_failover_required": {
           "json_kinds": [
             "boolean"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            false
+          ]
         },
         "ordinary_authority_exemption": {
           "json_kinds": [
             "boolean"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            false
+          ]
         },
         "actual_effects": {
           "json_kinds": [
@@ -1844,61 +1889,91 @@
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "authority_bypass": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "operation": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "recovery": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "source_overwrite": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "os_sync": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "incident_close": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "deployment": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "acceptance": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "implementation_ready": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             }
           },
           "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
@@ -1916,7 +1991,14 @@
           "json_kinds": [
             "string"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            "held_claim_rejected",
+            "return_to_ordinary_ticket_authority_no_independent_execution",
+            "held_bounded_operation_unqualified",
+            "held_with_os_sync_pending",
+            "sync_content_referenced_requires_actual_qualification"
+          ]
         },
         "retained_path": {
           "json_kinds": [
@@ -2381,19 +2463,47 @@
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "independent_path_arbitrary_operation",
+                  "ordinary_ticket_exemption",
+                  "missing_sync_is_complete",
+                  "worker_contract.state",
+                  "worker_contract.authority_ref",
+                  "os_return_state",
+                  "sync",
+                  "sync.operation_ref",
+                  "sync.result_ref",
+                  "sync.target",
+                  "sync.receipt_ref",
+                  "sync.work_ref",
+                  "sync.change_ref",
+                  "sync.state"
+                ]
               },
               "result": {
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "wrong_scope_or_unfinished",
+                  "not_qualified",
+                  "not_restored",
+                  "missing",
+                  "not_received_for_same_operation_result"
+                ]
               },
               "return_owner": {
                 "json_kinds": [
                   "string"
                 ],
-                "presence": "required"
+                "presence": "required",
+                "enum": [
+                  "OS/HELIX-SECURITY/recovery-owner",
+                  "OS/recovery-owner",
+                  "OS-Work-Change-owner"
+                ]
               }
             },
             "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
@@ -2408,7 +2518,12 @@
             "json_kinds": [
               "string"
             ],
-            "presence": "required"
+            "presence": "required",
+            "enum": [
+              "OS/HELIX-SECURITY/recovery-owner",
+              "OS/recovery-owner",
+              "OS-Work-Change-owner"
+            ]
           }
         },
         "rejected_claims": {
@@ -2420,20 +2535,31 @@
             "json_kinds": [
               "string"
             ],
-            "presence": "required"
+            "presence": "required",
+            "enum": [
+              "independent_path_arbitrary_operation",
+              "ordinary_ticket_exemption",
+              "missing_sync_is_complete"
+            ]
           }
         },
         "automatic_failover_required": {
           "json_kinds": [
             "boolean"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            false
+          ]
         },
         "ordinary_authority_exemption": {
           "json_kinds": [
             "boolean"
           ],
-          "presence": "required"
+          "presence": "required",
+          "enum": [
+            false
+          ]
         },
         "actual_effects": {
           "json_kinds": [
@@ -2445,61 +2571,91 @@
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "authority_bypass": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "operation": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "recovery": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "source_overwrite": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "os_sync": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "incident_close": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "deployment": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "acceptance": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             },
             "implementation_ready": {
               "json_kinds": [
                 "boolean"
               ],
-              "presence": "required"
+              "presence": "required",
+              "enum": [
+                false
+              ]
             }
           },
           "additional_members": "未観測memberを補わず保持対象として扱い、有限fixtureの解釈対象外とする。"
@@ -2556,12 +2712,8 @@
         "F01の有限caseはoperation.kindがbootstrap/inspection/health_check/service_stop/rollback/recoveryのいずれかである。その他kindの処理は未評価。"
       ],
       "algorithm": [
-        "1. 入力がF01Inputの有限形を満たす場合、original_path、original_operation、original_authority、original_worker_contract、original_result、original_last_eligible_revision、original_recovery_verification_ref、original_sync、original_unfinishedをretained_*へ値投影する。original_authorityの明示nullはnull、欠落は欠落のまま扱う。",
-        "2. pathを先に検査する。requires_os_response=trueならpath/os-response-required。次にpath.target≠original_targetならpath/path-target-foreign。dependenciesが明示nullまたは空ならpath/dependency-unknown。要素にrequires_stopped_control_plane=trueがあればpath/resource-os-dependent。各dependency.availableがunavailableならpath/resource-unavailable、それ以外でqualified_in_fixture_only以外/欠落/nullならpath/dependency-unknown。最初の該当1件をinformation_state=stopped_with_unconfirmed_recovery_scope、owner=independent-path-ownerで返す。",
-        "3. pathが通った後、original_authorityがnullならauthority/missing。次にsubmitted_authority≠original_authorityならauthority.ref/submitted_content_conflict。続いてkind, state, credential_ref, policy_ref, target, operationの固定順に検査し、kind=separate_recovery_authority、state=qualified_in_fixture_only、credential_ref/policy_refが非空文字列、target=original_target、operation=original_operation.kindを要求する。最初の不一致をauthority.<field>/not_qualified_for_bounded_operationとしてHELIX-SECURITYへ返す。これらはfixture整合であり、実資格確認ではない。",
-        "4. authorityが通りoriginal_last_eligible_revisionが明示nullならlast_eligible_revision/missingをrecovery-ownerへ返す。欠落memberはnullと同じ枝へ入れず、有限入力shape外とする。",
-        "5. claimsにcomplete_auto_failover_requiredが含まれる場合はrejected_claimsへ同tokenを保持するが、failure_reasons・automatic_failover_required・information_stateは変えない。",
-        "6. 失敗がない場合はinformation_state=bounded_operation_content_requires_actual_qualification。全枝でactual_effectsの10fieldをfalse、automatic_failover_required=false、ordinary_authority_exemption=falseとする。"
+        "判定の順序・条件・全出力投影・failure result/ownerは同candidateの /pure_reference_programs/0 を唯一の機械可読定義とし、pure_reference_semanticsに従って評価する。",
+        "preconditionsとbranchesは適用域と責務の説明であり、programと異なる判定規則を追加しない。原入力・未完を保持し、fixture markerから実資格/実効果を生成しない。"
       ],
       "postconditions": [
         "出力はF01Resultの全memberを持つ。retained値は入力値の投影であり、operation/recovery/authority発行等の実行を意味しない。",
@@ -2573,7 +2725,13 @@
         "authority不足/不整合: stopped_with_unconfirmed_recovery_scope、該当authority理由とHELIX-SECURITY。",
         "最終適格revision欠落: stopped_with_unconfirmed_recovery_scope、last_eligible_revision/missing/recovery-owner。",
         "有限fixtureでfailureなし: bounded_operation_content_requires_actual_qualification。"
-      ]
+      ],
+      "formal_program_ref": {
+        "kind": "candidate_document",
+        "path": "docs/helix-infrastructure/L5-detail-design/independent-bootstrap-recovery.json",
+        "json_pointer": "/pure_reference_programs/0",
+        "id": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE"
+      }
     },
     {
       "id": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
@@ -2622,13 +2780,8 @@
         "原L9の全caseは0または1個の対象claimを持つ。複数claim同時入力の返却順は未評価。"
       ],
       "algorithm": [
-        "1. 入力がB01Inputの有限形を満たす場合、全original_*記録をretained_*へ値投影する。",
-        "2. claimsのうち原L9にあるindependent_path_arbitrary_operation、ordinary_ticket_exemption、missing_sync_is_completeをこの固定順で走査する。見つかったtokenをfailure_reasons/rejected_claimsへこの固定順で列挙し、held_claim_rejectedとしてOS/HELIX-SECURITY/recovery-ownerへ返す。",
-        "3. claim不成立でoriginal_operation.profile=ordinaryかつordinary_authority_ref/ordinary_ticket_refが提供される場合はreturn_to_ordinary_ticket_authority_no_independent_executionを返す。raw refsの存在は保持条件であり、実行/通常authority免除は生成しない。",
-        "4. original_worker_contract.state≠qualified_in_fixture_onlyまたはoriginal_authorityがnull/欠落、もしくはworker.authority_ref≠authority.refなら、worker_contract.stateまたはworker_contract.authority_refをheld_bounded_operation_unqualifiedとしてOS/HELIX-SECURITY/recovery-ownerへ返す。state条件を先、authority_ref条件を後に評価する。",
-        "5. original_os_return_state≠restored_in_fixture_onlyならos_return_state/not_restoredをheld_with_os_sync_pendingとしてOS/recovery-ownerへ返す。",
-        "6. original_sync=nullならsync/missingをOS-Work-Change-ownerへ返す。存在時はoperation_ref=original_operation.ref、result_ref=original_result.ref、target=original_targetを順に比較し、次にreceipt_ref/work_ref/change_refが非空、owner=OS-Work-Change-owner、state=received_in_fixture_onlyを順に検査する。最初の不一致fieldをsync.<field>/not_received_for_same_operation_resultとして同ownerへ返す。",
-        "7. すべて一致する有限fixtureはsync_content_referenced_requires_actual_qualificationとする。これは実同期/実受領の資格ではない。"
+        "判定の順序・条件・全出力投影・failure result/ownerは同candidateの /pure_reference_programs/1 を唯一の機械可読定義とし、pure_reference_semanticsに従って評価する。",
+        "preconditionsとbranchesは適用域と責務の説明であり、programと異なる判定規則を追加しない。原入力・未完を保持し、fixture markerから実資格/実効果を生成しない。"
       ],
       "postconditions": [
         "出力はB01Resultの全memberを持つ。同期判定は原operation/result/targetへの参照一致のみを述べ、operation実行やincident closeを主張しない。",
@@ -2636,13 +2789,21 @@
         "全返却memberは明示したreturn_type_refのfieldに限る。余分なfieldや暗黙のowner/資格は返さない。"
       ],
       "branches": [
-        "ordinary profile (通常profile): 通常ticket/authorityへ戻す。",
-        "不許容claim: held_claim_rejected。",
-        "Worker契約状態/authority参照不一致: held_bounded_operation_unqualified。",
-        "OS復帰未成立: held_with_os_sync_pending/os_return_state/not_restored。",
-        "sync欠落または内容不一致: held_with_os_sync_pending。",
-        "受領参照一致: sync_content_referenced_requires_actual_qualification。"
-      ]
+        "ordinary profile: claimが無くoriginal_operation.profile=ordinaryかつordinary_authority_ref/ordinary_ticket_refが提供される場合、return_to_ordinary_ticket_authority_no_independent_execution。refの存在は実行/通常authority免除を意味しない。",
+        "不許容claim: held_claim_rejected。failure resultはwrong_scope_or_unfinished。",
+        "Worker契約状態不一致: held_bounded_operation_unqualified。failure resultはnot_qualified。",
+        "Worker authority_refとoriginal_authority.refの不一致: held_bounded_operation_unqualified。failure resultはnot_qualified。",
+        "OS復帰未成立: held_with_os_sync_pending。failure resultはnot_restored。",
+        "sync欠落: held_with_os_sync_pending。failure resultはmissing。",
+        "sync内容不一致: held_with_os_sync_pending。failure resultはnot_received_for_same_operation_result。",
+        "sync参照一致の有限fixture: sync_content_referenced_requires_actual_qualification。"
+      ],
+      "formal_program_ref": {
+        "kind": "candidate_document",
+        "path": "docs/helix-infrastructure/L5-detail-design/independent-bootstrap-recovery.json",
+        "json_pointer": "/pure_reference_programs/1",
+        "id": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE"
+      }
     }
   ],
   "source_to_case_trace": [
@@ -2702,7 +2863,7 @@
     "有限L9 fixtureから論理値を計算する設計候補。fixture markerは実resource/SEC/Worker資格、実operation/recovery/同期の証拠ではない。",
     "正式codec/schema、source resolver、独立経路、権限・資格、OS Work/Change実接続、Red→Green→Refactor、L9/L10実評価、L11 acceptance、実装Ready、全92/430 pair閉包は未成立。",
     "L6は関数設計、L7は関数検証の層。製品実装・実行・CIはこの草稿の対象外。",
-    "原L9は37件を保持。局所複合probeは現L4既存順序の有限入力確認であり原L9 oracleを改変せず、未評価部分を追加期待として扱わない。"
+    "原L9は37件を保持。局所複合probeはL5関数契約に明記した順序の有限入力確認であり原L9 oracleを改変せず、未評価部分を追加期待として扱わない。"
   ],
   "presence_and_scope_rules": [
     {
@@ -2873,5 +3034,1135 @@
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
     }
-  ]
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L5-006",
+  "pair": "HELIXINFRASTRUCTURE-L5/L8-006",
+  "failure_basis": {
+    "approved_l3_l10_refs": [
+      "HELIXINFRASTRUCTURE-L3-006-F01",
+      "HELIXINFRASTRUCTURE-L10-006-F01",
+      "HELIXINFRASTRUCTURE-L3-006-B01",
+      "HELIXINFRASTRUCTURE-L10-006-B01"
+    ],
+    "basic_contract_refs": [
+      "HELIXINFRASTRUCTURE-L4-006-F01",
+      "HELIXINFRASTRUCTURE-L4-006-B01"
+    ],
+    "observed_failures": "L9 37 raw/expectedの失敗語と戻し先を保持し、claim/Worker/OS復帰/syncのfailureを独立に表す。fixtureはnot_executed。",
+    "legacy_basis": [
+      "LEGACY-ASSET-17C4BF78919578FEBB18: product-lifecycle-operations-requirements.md:112",
+      "LEGACY-ASSET-3A15E5645D2D2A59DFF5: execution-ticket-requirements.md:99"
+    ]
+  },
+  "consumer_connections": [
+    {
+      "consumer": "OS Work/Change",
+      "responsibility": "通常ticket/authorityへの返却、OS復帰状態と復旧後同期の原値保持。OS authority免除は生成しない。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L4-006-F01",
+        "HELIXINFRASTRUCTURE-L4-006-B01"
+      ]
+    },
+    {
+      "consumer": "HELIX-SECURITY",
+      "responsibility": "bounded operation authority/Worker契約の不足・不一致を既存owner tokenで返す。実資格は発行しない。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L4-006-B01"
+      ]
+    },
+    {
+      "consumer": "INFRA recovery",
+      "responsibility": "独立経路・回復対象・最後のeligible revisionと未完務を保持する。",
+      "source_refs": [
+        "HELIXINFRASTRUCTURE-L4-006-F01",
+        "HELIXINFRASTRUCTURE-L4-006-B01"
+      ]
+    },
+    {
+      "consumer": "L11 acceptance",
+      "responsibility": "原L11確認は未実施であり、L5/L8 fixture結果から受入を生成しない。",
+      "source_refs": [
+        "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+      ]
+    }
+  ],
+  "unclosed_source_supply": [
+    "Worker/SEC authorityの実source資格、operation許可、actual recoveryは未供給。fixtureのqualified_in_fixture_onlyを実資格と解釈しない。",
+    "OS復帰receiptとsyncの真正性・atomicity・idempotenceおよびsource revision bindingは未評価。",
+    "B01Inputではoriginal_authority objectとdeclared membersはrequired。authorityがnull/欠落した入力は型外であり、本稿はその振舞いを未評価として残す。",
+    "L9有限case外の複数claim同時、依存配列の空/available異常、追加operation kind/state、未観測shapeの一般域は閉じていない."
+  ],
+  "raw_comparison_reference": {
+    "primitive_operators": {
+      "string_exact_equal": "両辺がJSON stringで、Unicode code point列を変換・trimせず完全一致するときtrue。",
+      "json_deep_equal": "JSON kindが同じで、integerとnumberはlogical_typesで別kindとして宣言される限り区別する。scalarは値一致、arrayは長さとindex順を含め各要素一致、objectはキー集合と対応値が再帰一致するときtrue。MISSINGはJSON値ではなく、同じMISSING sentinel同士だけを等しいとし、nullとは異なる。",
+      "json_deep_not_equal": "json_deep_equalの論理否定。MISSINGは同じsentinelだけ同値、JSON nullとは別。",
+      "non_empty_string": "値がstringかつ長さ1以上。空白trim等の追加規則は置かない。",
+      "member_of": "JSON値が列挙した有限文字列literalのいずれかとstring_exact_equal。",
+      "any": "配列要素をindex昇順で検査し、条件trueが一つ以上ならtrue。空配列はfalse。"
+    },
+    "presence": "required/optional/nullはlogical_typesの各member宣言どおり区別。型外欠落/nullを相互変換しない。",
+    "priority": "pure_reference_programsのordered_rules/actions配列順を唯一の具体的順序とする。B01はclaim→ordinary経路→Worker→OS復帰→sync。sync内はoperation_ref,result_ref,target,receipt_ref,work_ref,change_ref,owner,state。F01の依存間複合優先はprogramの条件群順であり、全未見組合せの意味oracle成立は主張しない。"
+  },
+  "comparison_constants": {
+    "B01_claims_in_priority_order": [
+      "independent_path_arbitrary_operation",
+      "ordinary_ticket_exemption",
+      "missing_sync_is_complete"
+    ],
+    "worker_qualified_fixture_state": "qualified_in_fixture_only",
+    "ordinary_profile": "ordinary",
+    "os_return_restored_fixture_state": "restored_in_fixture_only",
+    "sync_received_fixture_state": "received_in_fixture_only",
+    "owner_candidates_as_atomic_strings": [
+      "OS/HELIX-SECURITY/recovery-owner",
+      "OS/recovery-owner",
+      "OS-Work-Change-owner"
+    ],
+    "ordinary_route_state": "return_to_ordinary_ticket_authority_no_independent_execution"
+  },
+  "output_literal_domains": {
+    "F01Result.information_state": [
+      "bounded_operation_content_requires_actual_qualification",
+      "stopped_with_unconfirmed_recovery_scope"
+    ],
+    "F01Result.failure_reasons.result": [
+      "os-response-required",
+      "resource-os-dependent",
+      "dependency-unknown",
+      "resource-unavailable",
+      "path-target-foreign",
+      "not_qualified_for_bounded_operation",
+      "submitted_content_conflict",
+      "missing"
+    ],
+    "F01Result.failure_reasons.field": [
+      "path",
+      "authority.kind",
+      "authority.state",
+      "authority.credential_ref",
+      "authority.policy_ref",
+      "authority.target",
+      "authority.operation",
+      "authority.ref",
+      "last_eligible_revision",
+      "authority"
+    ],
+    "F01Result.failure_reasons.return_owner": [
+      "independent-path-owner",
+      "HELIX-SECURITY",
+      "recovery-owner"
+    ],
+    "F01Result.return_owners.item": [
+      "independent-path-owner",
+      "HELIX-SECURITY",
+      "recovery-owner"
+    ],
+    "F01Result.rejected_claims.item": [
+      "complete_auto_failover_required"
+    ],
+    "F01Result.automatic_failover_required": [
+      false
+    ],
+    "F01Result.ordinary_authority_exemption": [
+      false
+    ],
+    "F01Result.actual_effects.*": [
+      false
+    ],
+    "B01Result.information_state": [
+      "held_claim_rejected",
+      "return_to_ordinary_ticket_authority_no_independent_execution",
+      "held_bounded_operation_unqualified",
+      "held_with_os_sync_pending",
+      "sync_content_referenced_requires_actual_qualification"
+    ],
+    "B01Result.failure_reasons.result": [
+      "wrong_scope_or_unfinished",
+      "not_qualified",
+      "not_restored",
+      "missing",
+      "not_received_for_same_operation_result"
+    ],
+    "B01Result.failure_reasons.field": [
+      "independent_path_arbitrary_operation",
+      "ordinary_ticket_exemption",
+      "missing_sync_is_complete",
+      "worker_contract.state",
+      "worker_contract.authority_ref",
+      "os_return_state",
+      "sync",
+      "sync.operation_ref",
+      "sync.result_ref",
+      "sync.target",
+      "sync.receipt_ref",
+      "sync.work_ref",
+      "sync.change_ref",
+      "sync.state"
+    ],
+    "B01Result.failure_reasons.return_owner": [
+      "OS/HELIX-SECURITY/recovery-owner",
+      "OS/recovery-owner",
+      "OS-Work-Change-owner"
+    ],
+    "B01Result.return_owners.item": [
+      "OS/HELIX-SECURITY/recovery-owner",
+      "OS/recovery-owner",
+      "OS-Work-Change-owner"
+    ],
+    "B01Result.rejected_claims.item": [
+      "independent_path_arbitrary_operation",
+      "ordinary_ticket_exemption",
+      "missing_sync_is_complete"
+    ],
+    "B01Result.automatic_failover_required": [
+      false
+    ],
+    "B01Result.ordinary_authority_exemption": [
+      false
+    ],
+    "B01Result.actual_effects.*": [
+      false
+    ],
+    "owner_token_semantics": "return_ownerとreturn_owners itemは文字列literal。OS/HELIX-SECURITY/recovery-ownerは区切り文字を含む単一opaque candidate labelであり、3 ownerへの展開ではない。",
+    "domain_limit": "文字列は原L9の有限fixtureとL5の明示branch語彙だけ。実owner資格や一般enum/codecを定義しない。",
+    "F01_literal_source": "HELIXINFRASTRUCTURE-L9-006-F01 expected_material 21件の固有出力literalを値保持。",
+    "B01_literal_source": "HELIXINFRASTRUCTURE-L9-006-B01 expected_material 16件とL3/L4で明示されたfailure/authority保持義務。"
+  },
+  "pure_reference_programs": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE",
+      "input": "F01Input",
+      "return": "F01Result",
+      "initial": {
+        "information_state": "bounded_operation_content_requires_actual_qualification",
+        "retained_projection": {
+          "retained_path": "/original_path",
+          "retained_operation": "/original_operation",
+          "retained_authority": "/original_authority",
+          "retained_worker_contract": "/original_worker_contract",
+          "retained_result": "/original_result",
+          "retained_last_eligible_revision": "/original_last_eligible_revision",
+          "retained_recovery_verification_ref": "/original_recovery_verification_ref",
+          "retained_sync": "/original_sync",
+          "retained_unfinished": "/original_unfinished"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": [],
+        "automatic_failover_required": false,
+        "ordinary_authority_exemption": false,
+        "actual_effects": {
+          "authority_issue": false,
+          "authority_bypass": false,
+          "operation": false,
+          "recovery": false,
+          "source_overwrite": false,
+          "os_sync": false,
+          "incident_close": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "ordered_rules": [
+        {
+          "when": {
+            "op": "nullish",
+            "value": {
+              "op": "get",
+              "path": "original_path"
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "missing",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "eq",
+            "left": {
+              "op": "get",
+              "path": "original_path.requires_os_response"
+            },
+            "right": true
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "os-response-required",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_path.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "path-target-foreign",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "or",
+            "values": [
+              {
+                "op": "nullish",
+                "value": {
+                  "op": "get",
+                  "path": "original_path.dependencies"
+                }
+              },
+              {
+                "op": "empty_array",
+                "value": {
+                  "op": "get",
+                  "path": "original_path.dependencies"
+                }
+              }
+            ]
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "dependency-unknown",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "any_eq",
+            "array": {
+              "op": "get",
+              "path": "original_path.dependencies"
+            },
+            "field": "requires_stopped_control_plane",
+            "value": true
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "resource-os-dependent",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "any_nullish",
+            "array": {
+              "op": "get",
+              "path": "original_path.dependencies"
+            },
+            "field": "available"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "dependency-unknown",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "any_eq",
+            "array": {
+              "op": "get",
+              "path": "original_path.dependencies"
+            },
+            "field": "available",
+            "value": "unavailable"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "resource-unavailable",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "any_ne",
+            "array": {
+              "op": "get",
+              "path": "original_path.dependencies"
+            },
+            "field": "available",
+            "value": "qualified_in_fixture_only"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "path",
+              "result": "dependency-unknown",
+              "return_owner": "independent-path-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "nullish",
+            "value": {
+              "op": "get",
+              "path": "original_authority"
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority",
+              "result": "missing",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "submitted_authority"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_authority"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.ref",
+              "result": "submitted_content_conflict",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_authority.kind"
+            },
+            "right": "separate_recovery_authority"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.kind",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_authority.state"
+            },
+            "right": "qualified_in_fixture_only"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.state",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "non_empty_string",
+              "value": {
+                "op": "get",
+                "path": "original_authority.credential_ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.credential_ref",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "non_empty_string",
+              "value": {
+                "op": "get",
+                "path": "original_authority.policy_ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.policy_ref",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_authority.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.target",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_authority.operation"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_operation.kind"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "authority.operation",
+              "result": "not_qualified_for_bounded_operation",
+              "return_owner": "HELIX-SECURITY"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "nullish",
+            "value": {
+              "op": "get",
+              "path": "original_last_eligible_revision"
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "stopped_with_unconfirmed_recovery_scope",
+              "field": "last_eligible_revision",
+              "result": "missing",
+              "return_owner": "recovery-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "contains",
+            "array": {
+              "op": "get",
+              "path": "claims"
+            },
+            "value": "complete_auto_failover_required"
+          },
+          "actions": [
+            {
+              "op": "set",
+              "field": "rejected_claims",
+              "value": [
+                "complete_auto_failover_required"
+              ]
+            }
+          ]
+        }
+      ],
+      "semantics": "initial projection/value定数を設定し、ordered_rulesを上から評価する。when式がtrueのruleのactionsを配列順に実行し、return actionで直ちに現在のoutを返す。全ruleを終えてreturnしない場合も現在のoutを返す。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "input": "B01Input",
+      "return": "B01Result",
+      "initial": {
+        "information_state": "sync_content_referenced_requires_actual_qualification",
+        "retained_projection": {
+          "retained_path": "/original_path",
+          "retained_operation": "/original_operation",
+          "retained_authority": "/original_authority",
+          "retained_worker_contract": "/original_worker_contract",
+          "retained_result": "/original_result",
+          "retained_last_eligible_revision": "/original_last_eligible_revision",
+          "retained_recovery_verification_ref": "/original_recovery_verification_ref",
+          "retained_sync": "/original_sync",
+          "retained_unfinished": "/original_unfinished"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": [],
+        "automatic_failover_required": false,
+        "ordinary_authority_exemption": false,
+        "actual_effects": {
+          "authority_issue": false,
+          "authority_bypass": false,
+          "operation": false,
+          "recovery": false,
+          "source_overwrite": false,
+          "os_sync": false,
+          "incident_close": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "ordered_rules": [
+        {
+          "when": {
+            "op": "intersects",
+            "array": {
+              "op": "get",
+              "path": "claims"
+            },
+            "values": [
+              "independent_path_arbitrary_operation",
+              "ordinary_ticket_exemption",
+              "missing_sync_is_complete"
+            ]
+          },
+          "actions": [
+            {
+              "op": "claim_failures",
+              "array": {
+                "op": "get",
+                "path": "claims"
+              },
+              "values": [
+                "independent_path_arbitrary_operation",
+                "ordinary_ticket_exemption",
+                "missing_sync_is_complete"
+              ],
+              "result": "wrong_scope_or_unfinished",
+              "return_owner": "OS/HELIX-SECURITY/recovery-owner"
+            },
+            {
+              "op": "set",
+              "field": "information_state",
+              "value": "held_claim_rejected"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "and",
+            "values": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "get",
+                  "path": "original_operation.profile"
+                },
+                "right": "ordinary"
+              },
+              {
+                "op": "non_empty_string",
+                "value": {
+                  "op": "get",
+                  "path": "ordinary_authority_ref"
+                }
+              },
+              {
+                "op": "non_empty_string",
+                "value": {
+                  "op": "get",
+                  "path": "ordinary_ticket_ref"
+                }
+              }
+            ]
+          },
+          "actions": [
+            {
+              "op": "set",
+              "field": "information_state",
+              "value": "return_to_ordinary_ticket_authority_no_independent_execution"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_worker_contract.state"
+            },
+            "right": "qualified_in_fixture_only"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_bounded_operation_unqualified",
+              "field": "worker_contract.state",
+              "result": "not_qualified",
+              "return_owner": "OS/HELIX-SECURITY/recovery-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "string_exact_equal",
+              "left": {
+                "op": "get",
+                "path": "original_worker_contract.authority_ref"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_authority.ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_bounded_operation_unqualified",
+              "field": "worker_contract.authority_ref",
+              "result": "not_qualified",
+              "return_owner": "OS/HELIX-SECURITY/recovery-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_os_return_state"
+            },
+            "right": "restored_in_fixture_only"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "os_return_state",
+              "result": "not_restored",
+              "return_owner": "OS/recovery-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "nullish",
+            "value": {
+              "op": "get",
+              "path": "original_sync"
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync",
+              "result": "missing",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "string_exact_equal",
+              "left": {
+                "op": "get",
+                "path": "original_sync.operation_ref"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_operation.ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.operation_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "string_exact_equal",
+              "left": {
+                "op": "get",
+                "path": "original_sync.result_ref"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_result.ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.result_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_sync.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.target",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "non_empty_string",
+              "value": {
+                "op": "get",
+                "path": "original_sync.receipt_ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.receipt_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "non_empty_string",
+              "value": {
+                "op": "get",
+                "path": "original_sync.work_ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.work_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "non_empty_string",
+              "value": {
+                "op": "get",
+                "path": "original_sync.change_ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.change_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_sync.owner"
+            },
+            "right": "OS-Work-Change-owner"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.owner",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "ne",
+            "left": {
+              "op": "get",
+              "path": "original_sync.state"
+            },
+            "right": "received_in_fixture_only"
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "sync.state",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "always"
+          },
+          "actions": [
+            {
+              "op": "set",
+              "field": "information_state",
+              "value": "sync_content_referenced_requires_actual_qualification"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        }
+      ],
+      "semantics": "initial projection/value定数を設定し、ordered_rulesを上から評価する。when式がtrueのruleのactionsを配列順に実行し、return actionで直ちに現在のoutを返す。全ruleを終えてreturnしない場合も現在のoutを返す。"
+    }
+  ],
+  "pure_reference_semantics": {
+    "evaluation_order": "program.initialで出力rootを初期化しretained_projectionの全mappingをrawから値コピー。ordered_rulesを配列順に評価し、whenがtrueならactionsを記載順に実行。return actionで現在の出力を返す。すべてのruleを終えてもreturnしない場合は現在の出力を返す。",
+    "expression_operators": {
+      "get": "pathは`.`区切りmember列。途中memberが無い場合はMISSING sentinelを返しnullとは区別。",
+      "always": "常にtrue。",
+      "eq": "左右が同じJSON kindかつjson_deep_equal。integer/numberはlogical_typesで区別する。MISSINGは同じsentinel同士のみ一致し、JSON値とは一致しない。",
+      "ne": "eqの論理否定。",
+      "string_exact_equal": "両辺stringのcodepoint完全一致。違うkind/欠落はfalse。",
+      "json_deep_equal": "JSON kindを含む再帰的一致。objectsはkey集合一致、arraysは長さと順序一致。integer/numberはlogical_typesの宣言に従い区別し、MISSING同士だけ同値でnullとは別。",
+      "nullish": "値がMISSINGまたはJSON null。",
+      "empty_array": "値が空array。null/missingとは別。",
+      "non_empty_string": "値がstringかつ長さ1以上。trimしない。",
+      "and": "valuesの全てtrue。",
+      "or": "valuesのいずれかtrue。",
+      "not": "valueの否定。",
+      "contains": "array内にvalueとJSON等値の要素がある。",
+      "intersects": "arrayの要素とvaluesのいずれかがJSON等値。",
+      "any_eq": "arrayをindex順で走査し、object member fieldがvalueとJSON等値の要素が一つ以上。",
+      "any_ne": "arrayをindex順で走査し、fieldが存在し、valueとJSON等値でない要素が一つ以上。",
+      "any_nullish": "arrayをindex順で走査し、fieldが無いかnullの要素が一つ以上。"
+    },
+    "action_operators": {
+      "set": "out[field]へvalueをJSON値として設定する。値が式objectならrawに対して評価する。",
+      "failure": "information_stateを設定しfailure_reasons末尾にfield/result/return_ownerを追加。return_ownersへ同owner tokenがまだ無ければ一度追加。",
+      "claim_failures": "valuesをpriority順に走査し、raw claims内にある各distinct literalをrejected_claimsへ並べ、同順のfailureを追加。owner tokenは一個のstring。",
+      "return": "現在のout全体を返して後続ruleを評価しない。"
+    },
+    "type_validation": "各値のJSON kind、宣言member/presence、array itemを再帰検査する。schemaのenumまたはallowed_valuesがある値は同じstrict JSON deep equalityでdomain内か検査する。MISSINGはJSON kindではなく、必須member欠落は失敗。"
+  },
+  "r1_resolution": {
+    "official_comment": 6182648853,
+    "reviewed_head": "846185e8c5dc18a09b59b6e64afa675a84fd5107",
+    "findings": [
+      "INFRA06D-01",
+      "INFRA06D-02",
+      "INFRA06D-03"
+    ],
+    "scope": "全結果語・形式定義/型・責務/source記録を是正。原39raw/whole期待と上流は不変。"
+  }
 }

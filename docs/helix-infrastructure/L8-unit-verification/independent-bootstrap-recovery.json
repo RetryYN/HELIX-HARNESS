@@ -8362,7 +8362,7 @@
       },
       "function_ref": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE",
       "expected_boundary": "当該有限枝のfailureであり、information_stateが正常情報stateでない。",
-      "basis": "L4の検査順とL9の独立する単一条件負例を組み合わせた局所probe。原L9 raw/oracleは変更せず、資格・実行の証拠として扱わない。",
+      "basis": "L5のアルゴリズム順とL9の独立する単一条件負例を組み合わせた局所probe。原L9 raw/oracleは変更せず、資格・実行の証拠として扱わない。",
       "execution_state": "not_executed",
       "effect": "none",
       "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
@@ -8370,7 +8370,7 @@
       "expected_source_pointer": "/verification_obligations/0/cases/0/expected_material",
       "expected_source_sha256": "2b0ac48f917fd3f8940a2299cfa2316cc020a02e725d5cef228eb226395f65da",
       "expected_derivation": {
-        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL4順序に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
+        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
         "baseline_changes": [
           "information_stateは経路failureへ変更",
           "retained_authorityは入力の明示nullを保持",
@@ -8600,7 +8600,7 @@
       },
       "function_ref": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
       "expected_boundary": "当該有限枝のfailureであり、information_stateが正常情報stateでない。",
-      "basis": "L4の検査順とL9の独立する単一条件負例を組み合わせた局所probe。原L9 raw/oracleは変更せず、資格・実行の証拠として扱わない。",
+      "basis": "L5のアルゴリズム順とL9の独立する単一条件負例を組み合わせた局所probe。原L9 raw/oracleは変更せず、資格・実行の証拠として扱わない。",
       "execution_state": "not_executed",
       "effect": "none",
       "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
@@ -8608,7 +8608,7 @@
       "expected_source_pointer": "/verification_obligations/1/cases/0/expected_material",
       "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
       "expected_derivation": {
-        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL4順序に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
+        "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
         "baseline_changes": [
           "information_stateはWorker未成立へ変更",
           "retained_worker_contract.stateはrawのunknownを保持",
@@ -8751,5 +8751,119 @@
     "original_l9_cases": 37,
     "local_compound_probes": 2,
     "total": 39
+  },
+  "document_id": "HELIXINFRASTRUCTURE-L8-006",
+  "pair": "HELIXINFRASTRUCTURE-L5/L8-006",
+  "trace": [
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-F01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-006-F01",
+      "case_ids": [
+        "I006-F01-OP-bootstrap",
+        "I006-F01-OP-inspection",
+        "I006-F01-OP-health_check",
+        "I006-F01-OP-service_stop",
+        "I006-F01-OP-rollback",
+        "I006-F01-OP-recovery",
+        "I006-F01-OS-RESPONSE-REQUIRED",
+        "I006-F01-RESOURCE-OS-DEPENDENT",
+        "I006-F01-DEPENDENCY-UNKNOWN",
+        "I006-F01-RESOURCE-UNAVAILABLE",
+        "I006-F01-PATH-TARGET-FOREIGN",
+        "I006-F01-AUTHORITY-kind",
+        "I006-F01-AUTHORITY-state",
+        "I006-F01-AUTHORITY-credential_ref",
+        "I006-F01-AUTHORITY-policy_ref",
+        "I006-F01-AUTHORITY-target",
+        "I006-F01-AUTHORITY-operation",
+        "I006-F01-AUTHORITY-SUBMITTED-FOREIGN",
+        "I006-F01-ELIGIBLE-REVISION-MISSING",
+        "I006-F01-REJECT-AUTO-FAILOVER-GATE",
+        "I006-F01-AUTHORITY-MISSING"
+      ]
+    },
+    {
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-006-B01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-006-B01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-006-B01",
+      "case_ids": [
+        "I006-B01-RETURN-SYNC-REFERENCED",
+        "I006-B01-SYNC-MISSING",
+        "I006-B01-OS-NOT-RESTORED",
+        "I006-B01-SYNC-operation_ref",
+        "I006-B01-SYNC-result_ref",
+        "I006-B01-SYNC-target",
+        "I006-B01-SYNC-receipt_ref",
+        "I006-B01-SYNC-work_ref",
+        "I006-B01-SYNC-change_ref",
+        "I006-B01-SYNC-state",
+        "I006-B01-WORKER-state",
+        "I006-B01-WORKER-authority_ref",
+        "I006-B01-REJECT-independent_path_arbitrary_operation",
+        "I006-B01-REJECT-ordinary_ticket_exemption",
+        "I006-B01-REJECT-missing_sync_is_complete",
+        "I006-B01-ORDINARY-ROUTE"
+      ]
+    }
+  ],
+  "function_refs": [
+    {
+      "function_ref": "HELIXINFRASTRUCTURE-L5-006-F01-CALCULATE",
+      "case_ids": [
+        "I006-F01-OP-bootstrap",
+        "I006-F01-OP-inspection",
+        "I006-F01-OP-health_check",
+        "I006-F01-OP-service_stop",
+        "I006-F01-OP-rollback",
+        "I006-F01-OP-recovery",
+        "I006-F01-OS-RESPONSE-REQUIRED",
+        "I006-F01-RESOURCE-OS-DEPENDENT",
+        "I006-F01-DEPENDENCY-UNKNOWN",
+        "I006-F01-RESOURCE-UNAVAILABLE",
+        "I006-F01-PATH-TARGET-FOREIGN",
+        "I006-F01-AUTHORITY-kind",
+        "I006-F01-AUTHORITY-state",
+        "I006-F01-AUTHORITY-credential_ref",
+        "I006-F01-AUTHORITY-policy_ref",
+        "I006-F01-AUTHORITY-target",
+        "I006-F01-AUTHORITY-operation",
+        "I006-F01-AUTHORITY-SUBMITTED-FOREIGN",
+        "I006-F01-ELIGIBLE-REVISION-MISSING",
+        "I006-F01-REJECT-AUTO-FAILOVER-GATE",
+        "I006-F01-AUTHORITY-MISSING"
+      ]
+    },
+    {
+      "function_ref": "HELIXINFRASTRUCTURE-L5-006-B01-CALCULATE",
+      "case_ids": [
+        "I006-B01-RETURN-SYNC-REFERENCED",
+        "I006-B01-SYNC-MISSING",
+        "I006-B01-OS-NOT-RESTORED",
+        "I006-B01-SYNC-operation_ref",
+        "I006-B01-SYNC-result_ref",
+        "I006-B01-SYNC-target",
+        "I006-B01-SYNC-receipt_ref",
+        "I006-B01-SYNC-work_ref",
+        "I006-B01-SYNC-change_ref",
+        "I006-B01-SYNC-state",
+        "I006-B01-WORKER-state",
+        "I006-B01-WORKER-authority_ref",
+        "I006-B01-REJECT-independent_path_arbitrary_operation",
+        "I006-B01-REJECT-ordinary_ticket_exemption",
+        "I006-B01-REJECT-missing_sync_is_complete",
+        "I006-B01-ORDINARY-ROUTE"
+      ]
+    }
+  ],
+  "r1_resolution": {
+    "official_comment": 6182648853,
+    "reviewed_head": "846185e8c5dc18a09b59b6e64afa675a84fd5107",
+    "findings": [
+      "INFRA06D-01",
+      "INFRA06D-02",
+      "INFRA06D-03"
+    ],
+    "scope": "全結果語・形式定義/型・責務/source記録を是正。原39raw/whole期待と上流は不変。"
   }
 }
