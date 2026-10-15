@@ -1,0 +1,4341 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-010",
+  "source_main": "ae33e1c8655d44965f5392122da72a7aefd89377",
+  "status": "draft_detail_pending_formal_source_qualification",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approval_record": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approval_record_sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1",
+  "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+  "admission": {
+    "pr": 2956,
+    "merge_commit": "5267fcccfc90b3da4988c3f2d35066a98cd31521",
+    "record_commit": "a136bc7be661e8c5e70bca504879c886e06d6d15",
+    "reviewed_content_head": "4deb16ca8a4f490ace2c97296805ab2dd347baba"
+  },
+  "approved_objects": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F01",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "5c52c9b4618268c58362aa88a9f492d7bd1daa22c54b656a7cac0340c0618a51",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "操作前authorityとWorker",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "positive_input": "有効tupleと各条件欠落/不一致/期限外/失効を比較する。",
+        "expected_observation": "操作前拒否とWorker経路、理由が辿れる。",
+        "negative_input": "結果receiptを開始前提、範囲外操作、INFRA自己許可。",
+        "failure_observation": "実行前にSEC/OSへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F02",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "a64e28c4c1d1c36c23e59653a438d597244156f9b6fbd99271cff5c88d38886f",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "更新時の追加admission",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "positive_input": "updateの各stateと有効authorityのread-onlyを比較する。",
+        "expected_observation": "通常authorityと更新追加条件、無変更読取りが分かれる。",
+        "negative_input": "acceptedだけで通常authority不要、read-onlyにupdate gate。",
+        "failure_observation": "適用する不足だけSECへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F03",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "c88a639d0726a869a919bdd09ffed9f05f14c73f16e961e8439eb8b3019ad895",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "action固有の復旧義務",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "positive_input": "該当義務あり/欠落と無関係義務欠落を比較する。",
+        "expected_observation": "actionの適用集合と保留理由が辿れる。",
+        "negative_input": "該当義務省略、全backup完成待ち。",
+        "failure_observation": "recovery/SEC/OSの該当ownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F04",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "ca7a45ee3f1f41e359f451a727841bafa5fe868857c77b9a586530d0c577d5c3",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "実状態と部分操作",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "positive_input": "成功返答かつ実状態不明、部分実行、全証拠一致を比較する。",
+        "expected_observation": "receiptと実状態の別証拠、停止地点が辿れる。",
+        "negative_input": "返答だけpass、部分成功closure、実状態推定。",
+        "failure_observation": "実資源/復旧ownerへ未完を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F05",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "296711f427e168612403ccd741c349e1a0d8044fa6d7b99a475e16779d002320",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F05",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "read-onlyの実制約",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "positive_input": "宣言だけ/実write禁止、対象内変更、無関係な並行変化を比較する。",
+        "expected_observation": "操作起因変更なしと対象前後、無関係変化が区別される。",
+        "negative_input": "宣言だけpass、write可能、全体digest変化だけで失格。",
+        "failure_observation": "対象resource/SEC ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-F06",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "315d33d6f372f1f3989f652f7a1671bd748c3853f8d2552fa4473282d70b75da",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-F06",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "OS停止中の操作経路",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "positive_input": "OS不能かつ独立条件成立とauthority不明、同期未完を比較する。",
+        "expected_observation": "限定点検/停止/recoveryと未同期結果が辿れる。",
+        "negative_input": "OS ticket必須循環、Worker bypass、通常操作へ免除外挿。",
+        "failure_observation": "独立経路/SEC/OS ownerへ該当不足を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-010-N01",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "fba7cfea35087d3776e595d5649c050ae28c98d9cc8062be0d10fea52dc83976",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-010-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "secretと権限の責務",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "positive_input": "値を含まない参照と範囲外保存/実行要求を比較する。",
+        "expected_observation": "制限対象・credential参照・停止/回収義務が辿れる。",
+        "negative_input": "secret複製、任意Shell、自己許可。",
+        "failure_observation": "SEC/Worker契約ownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "操作前authorityとWorker",
+        "obligation": "全operationでresource/actual stateと有効SEC authorityのtarget/project/action/revision/environment/scope/expiryおよびcredential/network/isolation/egress条件を照合し、全実操作をSEC制約下のWorker契約へ結ぶ。通常経路ではOS assignment/ticketと009を用いる。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "更新時の追加admission",
+        "obligation": "更新/変更を適用するactionに限り同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatchでは変更前に止める。read-onlyではupdate admissionを要求せず通常authorityを保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F03",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "action固有の復旧義務",
+        "obligation": "state-changing actionには005の該当before/after・backup/restore/rollback/recovery義務を照合し未充足/unknownなら保留する。無関係な復旧義務を全操作へ一律要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F04",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "dcaf9fa67609a7224baa06aafbd768e677e91e46dac9eba3e2563caed601b375",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "実状態と部分操作",
+        "obligation": "Worker result receiptとINFRA before/after実状態を同operation/対象版/scopeへ結び、Worker成功だけで実変更を受入れない。停止/部分実行は実状態・未完操作・該当復旧義務を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F05",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "read-onlyの実制約",
+        "obligation": "read-onlyはread target/scopeと空write-setを宣言しwrite禁止を実適用する。当該操作がそのscope/write-setで変更しないことと許可対象resource前後を確認する。無関係な並行状態変化まで全resource digest不変を要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-F06",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "b29e759d0701203642dae01b09538f63100399b510f1944f15cd51ead3fbe9ba",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "OS停止中の操作経路",
+        "obligation": "独立bootstrap/recoveryでは006の独立resource/pathと別SEC authority、SEC制約下のWorkerを開始条件にし、停止中OS ticket/assignment/通常009応答を必須にしない。復旧後の同期義務を残す。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-010-N01",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "canonical_sha256": "2fb1822a4d0fd469e3c127707a1b3b9c2228a55bed08105f21fbe57a3cbd61ac",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "secretと権限の責務",
+        "obligation": "INFRAはpolicyや自身のauthorityを発行せずcredential値を通常resource/backup/snapshotへ無条件保存しない。Workerを無制限Shell主体にせず停止/回収可能な契約を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    }
+  ],
+  "basic_pair_pins": [
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+      "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+      "sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        96,
+        98
+      ],
+      "quote": "同一artifact digestを`staging／equivalent → canary → bounded exposure → production`へ昇格する。blue-green等のstrategyはrisk、\nblast radius、health model、rollback latencyから決定する。stage skip、OS別rebuild、review前artifact差替え、observation window省略を拒否する。\nproduction apply、cloud destructive operation、credential sinkは既存action-binding approvalとsecurity broker authorityへ従う。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "2858b833eb300aaf73a41220934c941e96c1f121238cbcd3d230a274c57edd87",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider adapterのbounded既存security authorityを保持する。",
+      "change": "旧provider/security broker/approvalを移植せず、採択010のSEC authority/Workerとaction別update admission/適用復旧義務へ再導出する。",
+      "reason": "10/12承認010の通常/read-only/独立復旧の境界へ再導出。新authorityや毎回の人間承認を追加しない。",
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "line_quote_sha256": "2858b833eb300aaf73a41220934c941e96c1f121238cbcd3d230a274c57edd87"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "read_lines": [
+        99,
+        99
+      ],
+      "quote": "1. 切替済みの通常開発経路では、admitted Ticket・有効Assignment・必要なlease/fenceなしに変更実行しない。bootstrap、read-only診断、formal/shadowは別の明示的実行profileで扱い、抜け道にしない。",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧候補のbootstrap別profileを万能な抜け道にしない境界を参照する。",
+      "change": "旧Ticket/lease/fence/runtimeを移植せず、採択006の限定復旧と別SEC authority/Worker契約/復旧後OS同期へ再導出する。",
+      "reason": "旧candidateの自動採用や通常authority免除を作らない。10/12承認006を起点にする。",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "line_quote_sha256": "a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef"
+    }
+  ],
+  "full_goal_scope_note": "上流92親430対の全体scopeを保つ。010の7契約の有限設計は他親の責務を置換しない。",
+  "qualification_boundary": "固定packetの合成値はsource値として比較する。実SEC authority、資格、Worker、OS、資源、codec/schema、実認可や実操作は成立させない。",
+  "document_id": "HELIXINFRASTRUCTURE-L5-010",
+  "pair": "HELIXINFRASTRUCTURE-L8-010",
+  "logical_types": {
+    "JsonValue": {
+      "json_kinds": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array",
+        "object"
+      ],
+      "presence": "value",
+      "description": "原JSON値を型変換せず保持するcarrier。正式codec/schemaではない。"
+    },
+    "OperationPacket": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "value",
+      "members": {
+        "after": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "authority": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "before": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "claims": {
+          "type": "Array<JsonValue>",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "independent": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "operation_ref": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "operation_tuple": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "os": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "profile": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "read_constraint": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "recovery": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "result": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "sync_state": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "unfinished": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "update_admission": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "worker": {
+          "type": "JsonValue",
+          "presence": "required",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "global_digest_changed": {
+          "type": "JsonValue",
+          "presence": "optional",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        },
+        "proposed_credential_storage": {
+          "type": "JsonValue",
+          "presence": "optional",
+          "source": "原L9の固定source packetからJSON型・値を保全する。"
+        }
+      },
+      "additional_members": "追加keyは原rawとして保持し、有限比較外のものを失敗条件にも資格にも使わない。"
+    },
+    "FailureReason": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "value",
+      "members": {
+        "field": {
+          "type": "String",
+          "presence": "required"
+        },
+        "result": {
+          "type": "FailureResult",
+          "presence": "required"
+        },
+        "return_owner": {
+          "type": "OwnerCandidate",
+          "presence": "required"
+        }
+      }
+    },
+    "InformationState": {
+      "json_kinds": [
+        "string"
+      ],
+      "presence": "value",
+      "finite_values": [
+        "content_requires_actual_qualification",
+        "held_before_operation",
+        "held_claim_rejected",
+        "held_before_change",
+        "held_with_actual_unfinished",
+        "held_readonly_unqualified",
+        "held_recovery_unqualified",
+        "recovery_result_with_sync_pending",
+        "held_security_boundary"
+      ]
+    },
+    "ActualEffects": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "value",
+      "members": {
+        "authority_issue": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "operation": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "write": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "write_prohibition": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "secret_copy": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "recovery": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "os_sync": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "acceptance": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        },
+        "implementation_ready": {
+          "type": "Boolean",
+          "presence": "required",
+          "finite_values": [
+            false
+          ]
+        }
+      }
+    },
+    "LocalMaterialAssessment": {
+      "json_kinds": [
+        "object"
+      ],
+      "presence": "value",
+      "members": {
+        "information_state": {
+          "type": "InformationState",
+          "presence": "required"
+        },
+        "retained_operation_tuple": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/operation_tuple"
+        },
+        "retained_authority": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/authority"
+        },
+        "retained_worker": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/worker"
+        },
+        "retained_recovery": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/recovery"
+        },
+        "retained_before": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/before"
+        },
+        "retained_after": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/after"
+        },
+        "retained_result": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/result"
+        },
+        "retained_read_constraint": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/read_constraint"
+        },
+        "retained_independent": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/independent"
+        },
+        "retained_unfinished": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/unfinished"
+        },
+        "retained_sync_state": {
+          "type": "JsonValue",
+          "presence": "required",
+          "from": "/sync_state"
+        },
+        "failure_reasons": {
+          "type": "Array<FailureReason>",
+          "presence": "required"
+        },
+        "return_owners": {
+          "type": "Array<String>",
+          "presence": "required"
+        },
+        "rejected_claims": {
+          "type": "Array<JsonValue>",
+          "presence": "required",
+          "from": "/claims"
+        },
+        "actual_effects": {
+          "type": "ActualEffects",
+          "presence": "required"
+        }
+      }
+    },
+    "String": {
+      "json_kinds": [
+        "string"
+      ],
+      "presence": "value"
+    },
+    "Boolean": {
+      "json_kinds": [
+        "boolean"
+      ],
+      "presence": "value"
+    },
+    "Array<FailureReason>": {
+      "json_kinds": [
+        "array"
+      ],
+      "presence": "value",
+      "items": {
+        "type": "FailureReason"
+      }
+    },
+    "Array<String>": {
+      "json_kinds": [
+        "array"
+      ],
+      "presence": "value",
+      "items": {
+        "type": "String"
+      }
+    },
+    "Array<JsonValue>": {
+      "json_kinds": [
+        "array"
+      ],
+      "presence": "value",
+      "items": {
+        "type": "JsonValue"
+      }
+    },
+    "FailureResult": {
+      "json_kinds": [
+        "string"
+      ],
+      "presence": "value",
+      "finite_values": [
+        "missing",
+        "foreign",
+        "not_qualified",
+        "admission-missing",
+        "denied",
+        "unknown",
+        "mismatch",
+        "expired",
+        "revoked",
+        "admission-target-foreign",
+        "unsatisfied",
+        "partial",
+        "stopped",
+        "unobserved",
+        "not_readonly",
+        "not_enforced",
+        "requires_stopped_os",
+        "forbidden_boundary",
+        "missing_ticket",
+        "wrong_authority_or_sequence",
+        "readonly-authority-missing"
+      ]
+    },
+    "OwnerCandidate": {
+      "json_kinds": [
+        "string"
+      ],
+      "presence": "value",
+      "finite_values": [
+        "SEC/OS",
+        "HELIX-SECURITY",
+        "recovery/SEC/OS",
+        "INFRA-resource-source",
+        "recovery-owner",
+        "resource/recovery-owner",
+        "resource/SEC-owner",
+        "independent-path-owner",
+        "OS-Worker-contract-owner",
+        "OS",
+        "SEC/Worker-contract-owner"
+      ]
+    }
+  },
+  "functions": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+      "signature": "assess_f01(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/0",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+      "signature": "assess_f02(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/1",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03",
+      "signature": "assess_f03(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/2",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04",
+      "signature": "assess_f04(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/3",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05",
+      "signature": "assess_f05(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished",
+        "/global_digest_changed"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/4",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F06-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06",
+      "signature": "assess_f06(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/5",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01",
+      "signature": "assess_n01(packet: OperationPacket) -> LocalMaterialAssessment",
+      "input_type_ref": "OperationPacket",
+      "return_type_ref": "LocalMaterialAssessment",
+      "reads": [
+        "/claims",
+        "/operation_tuple",
+        "/authority",
+        "/worker",
+        "/os",
+        "/profile",
+        "/update_admission",
+        "/recovery",
+        "/before",
+        "/after",
+        "/result",
+        "/read_constraint",
+        "/independent",
+        "/sync_state",
+        "/unfinished",
+        "/proposed_credential_storage"
+      ],
+      "returns": [
+        "information_state",
+        "retained_operation_tuple",
+        "retained_authority",
+        "retained_worker",
+        "retained_recovery",
+        "retained_before",
+        "retained_after",
+        "retained_result",
+        "retained_read_constraint",
+        "retained_independent",
+        "retained_unfinished",
+        "retained_sync_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "algorithm_ref": "/pure_reference_programs/6",
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+    }
+  ],
+  "pure_reference_programs": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/authority"
+              }
+            },
+            "emit": {
+              "field": "authority",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "target"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "project"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "action"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "revision"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "environment"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "scope"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "SEC/OS"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "SEC/OS"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/expiry"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "valid_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.expiry",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "valid_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.state",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/credential_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.credential_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/network_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.network_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/isolation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.isolation_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/egress_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.egress_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "ticket_ref",
+                "assignment_ref",
+                "relation_ref"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/os/$key"
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.$key",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/worker"
+              }
+            },
+            "emit": {
+              "field": "worker",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/worker/bounded"
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/worker/authority_ref"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/authority/ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.authority_ref",
+              "result": "foreign",
+              "return_owner": "SEC/OS"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "result_receipt_required_before_start",
+            "emit": {
+              "field": "result_receipt_required_before_start",
+              "result": "wrong_authority_or_sequence",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "claim": "out_of_scope_operation",
+            "emit": {
+              "field": "out_of_scope_operation",
+              "result": "wrong_authority_or_sequence",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "claim": "infra_self_permission",
+            "emit": {
+              "field": "infra_self_permission",
+              "result": "wrong_authority_or_sequence",
+              "return_owner": "SEC/OS"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "has_any_failure"
+                },
+                {
+                  "op": "has_claim"
+                }
+              ]
+            },
+            "value": "held_claim_rejected"
+          },
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_before_operation"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "read"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority",
+              "result": "missing",
+              "return_owner": "HELIX-SECURITY"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "target"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "project"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "action"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "revision"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "environment"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "for_each": {
+              "values": [
+                "scope"
+              ],
+              "bind": "key"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit_by_result": {
+              "missing": {
+                "field": "authority.$key",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
+              },
+              "different": {
+                "field": "authority.$key",
+                "result": "foreign",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "comparison": {
+              "left_path": "/authority/tuple/$key",
+              "right_path": "/operation_tuple/$key",
+              "kind": "strict_json"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/expiry"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "valid_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.expiry",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "valid_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.state",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/credential_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.credential_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/network_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.network_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/isolation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.isolation_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/egress_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.egress_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "when": {
+              "op": "in",
+              "value": {
+                "op": "path",
+                "path": "/operation_tuple/action"
+              },
+              "values": [
+                "update",
+                "change"
+              ]
+            },
+            "if_object_missing": {
+              "path": "/update_admission",
+              "emit": {
+                "field": "update_admission",
+                "result": "admission-missing",
+                "return_owner": "HELIX-SECURITY"
+              }
+            },
+            "else_checks": [
+              {
+                "when": {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/update_admission/state"
+                  },
+                  "values": [
+                    "denied",
+                    "unknown",
+                    "mismatch",
+                    "expired",
+                    "revoked"
+                  ]
+                },
+                "emit": {
+                  "field": "update_admission",
+                  "result_from": "/update_admission/state",
+                  "return_owner": "HELIX-SECURITY"
+                }
+              },
+              {
+                "when": {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/update_admission/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "accepted_in_fixture_only"
+                  }
+                },
+                "compare_paths": [
+                  "/update_admission/tuple/target",
+                  "/operation_tuple/target"
+                ],
+                "emit_if_different": {
+                  "field": "update_admission",
+                  "result": "admission-target-foreign",
+                  "return_owner": "HELIX-SECURITY"
+                }
+              },
+              {
+                "when": {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/update_admission/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "accepted_in_fixture_only"
+                  }
+                },
+                "compare_paths": [
+                  "/update_admission/tuple/revision",
+                  "/operation_tuple/revision"
+                ],
+                "emit_if_different": {
+                  "field": "update_admission.revision",
+                  "result": "mismatch",
+                  "return_owner": "HELIX-SECURITY"
+                }
+              },
+              {
+                "when": {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/update_admission/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "accepted_in_fixture_only"
+                  }
+                },
+                "compare_paths": [
+                  "/update_admission/tuple/scope",
+                  "/operation_tuple/scope"
+                ],
+                "emit_if_different": {
+                  "field": "update_admission.scope",
+                  "result": "mismatch",
+                  "return_owner": "HELIX-SECURITY"
+                }
+              }
+            ]
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "read"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority",
+              "result": "readonly-authority-missing",
+              "return_owner": "HELIX-SECURITY"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "accepted_removes_normal_authority",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/authority"
+              }
+            },
+            "emit": {
+              "field": "authority",
+              "result": "missing",
+              "return_owner": "HELIX-SECURITY"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "has_any_failure"
+                },
+                {
+                  "op": "has_claim"
+                }
+              ]
+            },
+            "value": "held_claim_rejected"
+          },
+          {
+            "when": {
+              "op": "failure_result_in",
+              "values": [
+                "denied",
+                "unknown",
+                "mismatch",
+                "expired",
+                "revoked"
+              ]
+            },
+            "value": "held_before_change"
+          },
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_before_operation"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "update"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/applicable"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.applicable",
+              "result": "unknown",
+              "return_owner": "recovery/SEC/OS"
+            }
+          },
+          {
+            "for_each_object_member": {
+              "path": "/recovery/applicable",
+              "bind_key": "key",
+              "bind_value": "value"
+            },
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "update"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "bound",
+                    "name": "value"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "satisfied_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit_by_claim": {
+              "claim": "skip_applicable_recovery",
+              "true": {
+                "field": "$key",
+                "result": "unsatisfied",
+                "return_owner": "recovery/SEC/OS"
+              },
+              "false": {
+                "field": "recovery.$key",
+                "result": "unsatisfied",
+                "return_owner": "recovery/SEC/OS"
+              }
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "update"
+                  }
+                },
+                {
+                  "op": "empty_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/applicable"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.applicable",
+              "result": "unknown",
+              "return_owner": "recovery/SEC/OS"
+            }
+          }
+        ],
+        "claim_rules": [],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_before_change"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "ordered_checks_source_basis": "L4-F04 requires receipt and actual before/after as distinct evidence and says receipt success alone is insufficient; actual-state observation therefore precedes receipt interpretation. This is a finite diagnostic order, not a qualification rule.",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/after"
+                },
+                {
+                  "op": "not_claim_in",
+                  "values": [
+                    "reply_only_pass",
+                    "partial_is_closed",
+                    "infer_actual_state"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "in",
+              "value": {
+                "op": "path",
+                "path": "/result/state"
+              },
+              "values": [
+                "partial",
+                "stopped"
+              ]
+            },
+            "emit": {
+              "field": "result.state",
+              "result_from": "/result/state",
+              "return_owner": "recovery-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "eq",
+              "left": {
+                "op": "path",
+                "path": "/result/state"
+              },
+              "right": {
+                "op": "literal",
+                "value": "succeeded_in_fixture_only"
+              }
+            },
+            "compare_paths": [
+              "/result/operation_ref",
+              "/operation_ref"
+            ],
+            "emit_if_different": {
+              "field": "result.operation_ref",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "present_nonnull",
+              "value": {
+                "op": "path",
+                "path": "/result"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.target",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/result/tuple"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/project",
+              "/operation_tuple/project"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.project",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/result/tuple"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/action",
+              "/operation_tuple/action"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.action",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/result/tuple"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/revision",
+              "/operation_tuple/revision"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.revision",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/result/tuple"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/environment",
+              "/operation_tuple/environment"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.environment",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/result/tuple"
+              }
+            },
+            "compare_paths": [
+              "/result/tuple/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "result.tuple.scope",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before"
+              }
+            },
+            "compare_paths": [
+              "/before/operation_ref",
+              "/operation_ref"
+            ],
+            "emit_if_different": {
+              "field": "before.operation_ref",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.target",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/project",
+              "/operation_tuple/project"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.project",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/action",
+              "/operation_tuple/action"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.action",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/revision",
+              "/operation_tuple/revision"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.revision",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/environment",
+              "/operation_tuple/environment"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.environment",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.scope",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after"
+              }
+            },
+            "compare_paths": [
+              "/after/operation_ref",
+              "/operation_ref"
+            ],
+            "emit_if_different": {
+              "field": "after.operation_ref",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.target",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/project",
+              "/operation_tuple/project"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.project",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/action",
+              "/operation_tuple/action"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.action",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/revision",
+              "/operation_tuple/revision"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.revision",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/environment",
+              "/operation_tuple/environment"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.environment",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.scope",
+              "result": "foreign",
+              "return_owner": "INFRA-resource-source"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "reply_only_pass",
+            "when": {
+              "op": "path_is_absent_or_null",
+              "path": "/after"
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "resource/recovery-owner"
+            }
+          },
+          {
+            "claim": "partial_is_closed",
+            "when": {
+              "op": "path_is_absent_or_null",
+              "path": "/after"
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "resource/recovery-owner"
+            }
+          },
+          {
+            "claim": "infer_actual_state",
+            "when": {
+              "op": "path_is_absent_or_null",
+              "path": "/after"
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "resource/recovery-owner"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_with_actual_unfinished"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/read_constraint/write_prohibition"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "enforced_in_fixture_only"
+                  }
+                },
+                {
+                  "op": "not_claim_in",
+                  "values": [
+                    "declaration_only_pass",
+                    "write_allowed"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "write_prohibition",
+              "result": "not_readonly",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "not_empty_array",
+              "value": {
+                "op": "path",
+                "path": "/read_constraint/write_set"
+              }
+            },
+            "emit": {
+              "field": "write_set",
+              "result": "not_readonly",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "not_empty_array",
+              "value": {
+                "op": "path",
+                "path": "/read_constraint/operation_caused_changes"
+              }
+            },
+            "emit": {
+              "field": "operation_caused_changes",
+              "result": "not_readonly",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "path_is_absent_or_null",
+              "path": "/after"
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/read_constraint"
+              }
+            },
+            "compare_paths": [
+              "/read_constraint/read_target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "read_target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/read_constraint"
+              }
+            },
+            "compare_paths": [
+              "/read_constraint/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before"
+              }
+            },
+            "compare_paths": [
+              "/before/operation_ref",
+              "/operation_ref"
+            ],
+            "emit_if_different": {
+              "field": "before.operation_ref",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/before/tuple"
+              }
+            },
+            "compare_paths": [
+              "/before/tuple/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "before.tuple.scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after"
+              }
+            },
+            "compare_paths": [
+              "/after/operation_ref",
+              "/operation_ref"
+            ],
+            "emit_if_different": {
+              "field": "after.operation_ref",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/target",
+              "/operation_tuple/target"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "is_object",
+              "value": {
+                "op": "path",
+                "path": "/after/tuple"
+              }
+            },
+            "compare_paths": [
+              "/after/tuple/scope",
+              "/operation_tuple/scope"
+            ],
+            "emit_if_different": {
+              "field": "after.tuple.scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/values"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/values"
+                  }
+                }
+              ]
+            },
+            "compare_paths": [
+              "/before/values",
+              "/after/values"
+            ],
+            "emit_if_different": {
+              "field": "operation_caused_changes",
+              "result": "not_readonly",
+              "return_owner": "resource/SEC-owner"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "declaration_only_pass",
+            "when": {
+              "op": "not_eq",
+              "left": {
+                "op": "path",
+                "path": "/read_constraint/write_prohibition"
+              },
+              "right": {
+                "op": "literal",
+                "value": "enforced_in_fixture_only"
+              }
+            },
+            "emit": {
+              "field": "write_prohibition",
+              "result": "not_enforced",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "claim": "write_allowed",
+            "when": {
+              "op": "not_eq",
+              "left": {
+                "op": "path",
+                "path": "/read_constraint/write_prohibition"
+              },
+              "right": {
+                "op": "literal",
+                "value": "enforced_in_fixture_only"
+              }
+            },
+            "emit": {
+              "field": "write_prohibition",
+              "result": "not_enforced",
+              "return_owner": "resource/SEC-owner"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_readonly_unqualified"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-F06-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/independent"
+              }
+            },
+            "emit": {
+              "field": "independent",
+              "result": "missing",
+              "return_owner": "independent-path-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "eq",
+              "left": {
+                "op": "path",
+                "path": "/independent/requires_stopped_os"
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "emit": {
+              "field": "independent.requires_stopped_os",
+              "result": "requires_stopped_os",
+              "return_owner": "independent-path-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/authority"
+              }
+            },
+            "emit": {
+              "field": "authority",
+              "result": "missing",
+              "return_owner": "HELIX-SECURITY"
+            }
+          },
+          {
+            "when": {
+              "op": "not_bounded_worker",
+              "value": {
+                "op": "path",
+                "path": "/worker"
+              }
+            },
+            "emit": {
+              "field": "worker",
+              "result": "missing",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/authority/kind"
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.kind",
+              "result": "missing",
+              "return_owner": "HELIX-SECURITY"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/kind"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/kind"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "separate_recovery_authority"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.kind",
+              "result": "not_qualified",
+              "return_owner": "HELIX-SECURITY"
+            }
+          },
+          {
+            "when": {
+              "op": "not_nonempty_string",
+              "value": {
+                "op": "path",
+                "path": "/independent/source_ref"
+              }
+            },
+            "emit": {
+              "field": "independent.source_ref",
+              "result": "missing",
+              "return_owner": "independent-path-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "not_nonempty_string",
+              "value": {
+                "op": "path",
+                "path": "/independent/resource_ref"
+              }
+            },
+            "emit": {
+              "field": "independent.resource_ref",
+              "result": "missing",
+              "return_owner": "independent-path-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "not_nonempty_string",
+              "value": {
+                "op": "path",
+                "path": "/independent/state"
+              }
+            },
+            "emit": {
+              "field": "independent.state",
+              "result": "missing",
+              "return_owner": "independent-path-owner"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "ordinary_operation_exemption",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/os/ticket_ref"
+                }
+              ]
+            },
+            "emit": {
+              "field": "ordinary.os",
+              "result": "missing_ticket",
+              "return_owner": "OS"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "has_any_failure"
+                },
+                {
+                  "op": "has_claim"
+                }
+              ]
+            },
+            "value": "held_claim_rejected"
+          },
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_recovery_unqualified"
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/sync_state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "pending_after_recovery"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                }
+              ]
+            },
+            "value": "recovery_result_with_sync_pending"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
+      "input": "OperationPacket",
+      "return": "LocalMaterialAssessment",
+      "initial_projection": {
+        "information_state": "content_requires_actual_qualification",
+        "retained_fields": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "failure_reasons": [],
+        "return_owners": [],
+        "rejected_claims": "/claims",
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "claim_projection": {
+        "source_path": "/claims",
+        "always_retain": true,
+        "claim_rejection_does_not_skip_input_validation": true
+      },
+      "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
+      "decision_rules": {
+        "checks": [
+          {
+            "when": {
+              "op": "eq",
+              "left": {
+                "op": "path",
+                "path": "/proposed_credential_storage/copy_secret_value"
+              },
+              "right": {
+                "op": "literal",
+                "value": true
+              }
+            },
+            "emit": {
+              "field": "secret_copy_to_snapshot",
+              "result": "forbidden_boundary",
+              "return_owner": "SEC/Worker-contract-owner"
+            }
+          }
+        ],
+        "claim_rules": [
+          {
+            "claim": "secret_copy_to_snapshot",
+            "emit": {
+              "field": "secret_copy_to_snapshot",
+              "result": "forbidden_boundary",
+              "return_owner": "SEC/Worker-contract-owner"
+            }
+          },
+          {
+            "claim": "unbounded_shell",
+            "emit": {
+              "field": "unbounded_shell",
+              "result": "forbidden_boundary",
+              "return_owner": "SEC/Worker-contract-owner"
+            }
+          },
+          {
+            "claim": "infra_self_authority",
+            "emit": {
+              "field": "infra_self_authority",
+              "result": "forbidden_boundary",
+              "return_owner": "SEC/Worker-contract-owner"
+            }
+          }
+        ],
+        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "retained_projection": {
+          "retained_operation_tuple": "/operation_tuple",
+          "retained_authority": "/authority",
+          "retained_worker": "/worker",
+          "retained_recovery": "/recovery",
+          "retained_before": "/before",
+          "retained_after": "/after",
+          "retained_result": "/result",
+          "retained_read_constraint": "/read_constraint",
+          "retained_independent": "/independent",
+          "retained_unfinished": "/unfinished",
+          "retained_sync_state": "/sync_state",
+          "rejected_claims": "/claims"
+        },
+        "output_field_names": {
+          "failure_reasons": "failure_reasons",
+          "return_owners": "return_owners",
+          "rejected_claims": "rejected_claims",
+          "information_state": "information_state",
+          "actual_effects": "actual_effects"
+        },
+        "state_rules": [
+          {
+            "when": {
+              "op": "has_any_failure"
+            },
+            "value": "held_security_boundary"
+          }
+        ],
+        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+      }
+    }
+  ],
+  "pure_reference_semantics": {
+    "operator_domain": "JSON pointer読取、JSON kind/presence照合、有限predicate、順序付きfinding構成、root projectionだけを使う。",
+    "missing_null": "Absentとnullを区別する。必須rootが欠ける/型外の場合、このL9有限入力domainでは出力を主張しない。入力値のprojectionでは欠落の代わりにnullを合成せず、有限carrierで供給された値をそのまま返す。",
+    "json_equality": "JSON値のkindを区別して比較する。booleanとnumberは別kind、integer/decimal表現を含むJSON numberは数値同値で比較する。object member順は無視し、array順を保持する。AbsentはJSON値ではない。",
+    "claim_rule": "claim内容はfailureを消さない。F03のskip_applicable_recovery等claimではfailure.fieldをsource oracleがprefixなしで記録する既知表現差をcase_refで明示。F04/F05のclaim由来表示もデータ評価結果と分ける。",
+    "operator_definitions": {
+      "path": "slash-separated pointerでobjectを辿り、member欠落ではAbsent sentinelを返す。",
+      "literal": "指定JSON値をそのまま返す。",
+      "bound": "for_eachで束縛した値を返す。",
+      "eq": "JSON値の再帰同値。object member順は無視しarray順を保持する。booleanはnumberと異なるkindで、JSON number同士は数値として比較し、1と1.0は同値。Absent sentinelはJSON値ではなく、他のinternal operatorがpresenceを判定する。",
+      "not_eq": "eqの否定。",
+      "present_nonnull": "Absentでもnullでもない時true。",
+      "not_object": "JSON object以外でtrue。",
+      "is_object": "JSON objectの場合true。",
+      "empty_object": "objectかつmember数0の場合true。",
+      "path_is_absent_or_null": "指定pointerがAbsentか明示nullの時true。",
+      "not_nonempty_string": "string以外、空string、Absent、nullの時true。",
+      "not_empty_array": "array以外または要素数1以上の時true。",
+      "not_bounded_worker": "workerがobjectでない、またはboundedがboolean trueでない時true。",
+      "in": "左辺が有限候補の一つとstrict JSON同値。",
+      "all": "values arrayを左から短絡論理積。",
+      "any": "values arrayを左から短絡論理和。",
+      "object_path_compare": "左右pathをstrict JSON同値比較し、Absent/nullを含む場合missing、それ以外equal/differentを返す。",
+      "for_each": "values配列の宣言順にbindを束縛して本文を評価。",
+      "for_each_object_member": "object keysをUnicode codepoint昇順で評価しkey/valueを束縛。非objectは0回。",
+      "emit": "template解決したfailure recordを追加。同一field/result/ownerの重複recordは一度だけ保持。",
+      "emit_by_result": "比較結果が同名keyを持つ有限表entryに一致した時のみ対応failureを追加。",
+      "emit_by_claim": "claims arrayに宣言したclaim値があるかを読んでtrue/false側diagnosticを選択。",
+      "if_object_missing": "when成立時、pathがobjectでないならemit、objectならelse_checksを宣言順に実行。",
+      "compare_paths": "when成立時に2pathをstrict JSON同値比較し、異なればemit_if_differentを追加。",
+      "result_from": "指定pathの原値をdiagnostic resultへ投影。",
+      "not_claim_in": "claimsにvaluesのどれもなければtrue。",
+      "has_any_failure": "現在までに追加したfailure_reasonsが1件以上あればtrue。",
+      "has_claim": "raw claims arrayが1件以上ならtrue。",
+      "failure_field_in": "現failure_reasonsのfieldのいずれかが有限valuesに含まれればtrue。",
+      "failure_result_in": "現failure_reasonsのresultのいずれかが有限valuesに含まれればtrue。"
+    },
+    "generic_reader_contract": "readerはoperator定義を実装するだけで、contract/function IDによる分岐や固定Python業務判定を持たない。個別path・条件・failure literal・順序・返却projectは各pure_reference_programs[].decision_rulesが唯一の根拠。",
+    "state_rule_order": "decision_rules.state_rulesを宣言順に評価し、最初にtrueとなるvalueをinformation_stateに設定。該当なしならinitial_projection.information_stateを保持。",
+    "claim_rule_order": "全ordered checksを実行した後、claim_rulesを配列順に評価する。claimがデータ検査を無効化することはない。"
+  },
+  "responsibility_boundary": {
+    "logical_candidates": "failure_reason.return_ownerはL4/L9 finite diagnostic routing candidateであり、実在owner資格/assignmentを証明しない。",
+    "readonly": "F05のread-only義務は宣言と操作起因effectを区別する。global digestだけでは失格にしない。",
+    "recovery": "F03は005のaction適用義務の有限入力を保持し、無関係義務をgateにしない。F06はOS停止中に通常ticketを要求しない。",
+    "operation_paths": "F01は全実操作のSEC制約下Workerと通常OS/009経路を確認する。F02は更新操作に追加されるadmissionを確認し、F01の通常authority/Worker条件を代替しない。F06は独立recovery経路の別SEC authorityとWorkerを確認し、停止中OS ticket/assignmentを要求しない。これらの論理的な診断先は実在owner資格を証明しない。"
+  },
+  "unclosed_domains": [
+    "正式codec/schema、expiry/revocationの実resolver、SEC authority/admission/credential/network/isolation/egress資格、Worker/OS/INFRA実source資格。",
+    "005 action→recovery適用集合の完全版と全action、実write prohibition・operation causality・並行状態比較。",
+    "複合/任意型外入力、全組合せ、実L10/L11/CI/TDDおよび実認可・実操作。"
+  ],
+  "source_to_function_trace": [
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F03"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F04"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F05"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-F06-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-F06"
+    },
+    {
+      "function": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
+      "l4_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+      "l9_ref": "HELIXINFRASTRUCTURE-L10-010-N01"
+    }
+  ],
+  "consumer_connections": [
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "line_range": [
+        128,
+        138
+      ],
+      "role": "L2-010受入consumer",
+      "quote": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使い、通常OS/Worker operationと独立bootstrap/recovery operationを別fixtureにする。update/change actionは同じtarget/revision/scopeでSECURITY update-admission accepted/denied/unknown/mismatchを比較し、OS assignment/ticket、Worker result、Infrastructure before/after evidenceを対応づける。read-only fixtureは対象scope、read target、空のwrite-setと許可対象resourceのoperation前後値を定義する。\n- **成功条件**：Worker操作はSECURITYが認めたtarget/action/revision/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。更新・変更はupdate admission acceptedかつ通常authorityが有効な場合だけ許可範囲内で適用し、denied/unknown/mismatch/期限切れ/失効なら変更前に停止しSECURITYへ戻す。read-onlyではwrite禁止の適用と、宣言したscope/write-set内で当該操作が変更を起こしていないこと、許可対象resourceの前後状態を確認する。実行中の無関係な状態変化まで不変と要求しない。OS/通常Control Plane停止中の独立bootstrap/recoveryもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityが有効な場合に限り、通常OS ticket/assignmentやL2-009応答なしで限定された点検/停止/recoveryを開始できる。OS復旧後は結果を通常のWork/Change traceへ同期する。credential値は通常resource stateへ漏らさず、停止時・部分実行では実状態・未完操作と該当する復旧/rollback義務を引き継ぐ。\n- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。read-onlyの宣言だけでwrite禁止・対象scopeのbefore/after確認を省く、writeが許される、または全resource状態digestが不変でないことだけを理由に失敗とする場合も不合格。update admission欠如だけを理由にread-onlyを拒否しないが、read-onlyにも対象・action・scope・authority条件は適用する。\n- **失敗戻し先**：実行前のauthority不一致はSECURITY/OSへ戻す。部分実行はInfrastructure実状態と復旧責務のownerへ返す。\n- **最低範囲対応**：14 SECURITY connection、16 Worker execution。\n\n## 1.0構成体受入候補",
+      "connection": "F01通常authority/Worker/OS assignment-ticket; F02 update/changeの追加admission; F03 action適用復旧; F04 receiptとactual before/after; F05実write禁止・scope内前後; F06 OS停止中の独立path/別authority/復旧後同期。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "role": "親L2 consumer",
+      "connection": "L2-010はSEC authorityとWorker operationを構成する前提。個別承認・実操作をこのL5/L8から生成しない。"
+    }
+  ],
+  "failure_basis": [
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+      "approved_whole_sha256": "5c52c9b4618268c58362aa88a9f492d7bd1daa22c54b656a7cac0340c0618a51",
+      "failure_observation": "実行前にSEC/OSへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+      "approved_whole_sha256": "a64e28c4c1d1c36c23e59653a438d597244156f9b6fbd99271cff5c88d38886f",
+      "failure_observation": "適用する不足だけSECへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F03",
+      "approved_whole_sha256": "c88a639d0726a869a919bdd09ffed9f05f14c73f16e961e8439eb8b3019ad895",
+      "failure_observation": "recovery/SEC/OSの該当ownerへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F04",
+      "approved_whole_sha256": "ca7a45ee3f1f41e359f451a727841bafa5fe868857c77b9a586530d0c577d5c3",
+      "failure_observation": "実資源/復旧ownerへ未完を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F05",
+      "approved_whole_sha256": "296711f427e168612403ccd741c349e1a0d8044fa6d7b99a475e16779d002320",
+      "failure_observation": "対象resource/SEC ownerへ不足を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-F06",
+      "approved_whole_sha256": "315d33d6f372f1f3989f652f7a1671bd748c3853f8d2552fa4473282d70b75da",
+      "failure_observation": "独立経路/SEC/OS ownerへ該当不足を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "l10_ref": "HELIXINFRASTRUCTURE-L10-010-N01",
+      "approved_whole_sha256": "fba7cfea35087d3776e595d5649c050ae28c98d9cc8062be0d10fea52dc83976",
+      "failure_observation": "SEC/Worker契約ownerへ返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "legacy_asset_ledger": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+    "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "rows": [
+      {
+        "line": 474,
+        "object": {
+          "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+          "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+          "source_surface": "docs",
+          "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "approval_revision": null,
+          "target_path": null,
+          "target_sha256": null,
+          "meaning_interface_invariance_reason": null,
+          "consumer_refs": [],
+          "rights_status": "unreviewed",
+          "executability_status": "unreviewed",
+          "secret_status": "unreviewed",
+          "external_effect_status": "unreviewed",
+          "decided_by": null,
+          "decided_at": null,
+          "copy_performed_by": null,
+          "copy_performed_at": null,
+          "read_after_record_ref": null,
+          "migration_preconditions": [
+            "semantic_atom_inventory",
+            "product_owner_decision",
+            "parent_requirement_binding",
+            "consumer_check",
+            "rights_check",
+            "executability_check",
+            "secret_check",
+            "external_effect_check"
+          ]
+        }
+      },
+      {
+        "line": 814,
+        "object": {
+          "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
+          "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_surface": "docs",
+          "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "approval_revision": null,
+          "target_path": null,
+          "target_sha256": null,
+          "meaning_interface_invariance_reason": null,
+          "consumer_refs": [],
+          "rights_status": "unreviewed",
+          "executability_status": "unreviewed",
+          "secret_status": "unreviewed",
+          "external_effect_status": "unreviewed",
+          "decided_by": null,
+          "decided_at": null,
+          "copy_performed_by": null,
+          "copy_performed_at": null,
+          "read_after_record_ref": null,
+          "migration_preconditions": [
+            "semantic_atom_inventory",
+            "product_owner_decision",
+            "parent_requirement_binding",
+            "consumer_check",
+            "rights_check",
+            "executability_check",
+            "secret_check",
+            "external_effect_check"
+          ]
+        }
+      }
+    ]
+  },
+  "remaining": [
+    "正式schema/codec、実SEC authority・update admission・credential/network/isolation/egress資格、Worker/OS/INFRA実source owner資格は未成立。fixture markerは資格を証明しない。",
+    "expiry/revocationの実resolver、005 actionごとの完全な適用集合、実write禁止・operation起因比較・並行状態の実観測は未閉包。",
+    "実TDD/CI/L11受入・全actionの意味閉包、実認可・実操作・復旧・OS同期は未成立。通常経路に新ticket/gateは追加せず、独立復旧に通常OS ticketを要求しない。"
+  ],
+  "requirement_clause_trace": [
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F01",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/0"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "操作前authorityとWorker",
+        "obligation": "全operationでresource/actual stateと有効SEC authorityのtarget/project/action/revision/environment/scope/expiryおよびcredential/network/isolation/egress条件を照合し、全実操作をSEC制約下のWorker契約へ結ぶ。通常経路ではOS assignment/ticketと009を用いる。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+      },
+      "content_rules": [
+        "開始前にresource actualとSEC authorityのtarget/project/action/revision/environment/scope/expiry、credential/network/isolation/egress参照を照合する。未確認/不一致/期限切れ/失効はSEC/OSへ返し実行前に停止する。",
+        "全操作をSEC制約下のWorker契約へ結ぶ。通常操作はOS assignment/ticket/009接続を用いる。結果receiptは後段で受け取り、開始前に成功receiptを要求しない。INFRAが自己許可を出さない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/0"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F02",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/1"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "更新時の追加admission",
+        "obligation": "更新/変更を適用するactionに限り同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatchでは変更前に止める。read-onlyではupdate admissionを要求せず通常authorityを保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+      },
+      "content_rules": [
+        "更新/変更actionだけ同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatch/期限外/失効は変更前に止める。acceptedでも通常authorityを省かない。",
+        "read-onlyにupdate gateを追加せず、通常authorityを保持する。F05のwrite禁止/対象前後は別義務でありread-only宣言だけで通過させない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/1"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F03",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/2"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "action固有の復旧義務",
+        "obligation": "state-changing actionには005の該当before/after・backup/restore/rollback/recovery義務を照合し未充足/unknownなら保留する。無関係な復旧義務を全操作へ一律要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03"
+      },
+      "content_rules": [
+        "state-changing actionは005の適用before/after・backup/restore/rollback/recovery義務集合と根拠を照合する。適用集合unknown/該当義務未充足は保留。",
+        "対象外の復旧義務や全backup完成を一律gateにしない。適用/非適用の理由とowner/sourceを保持してrecovery/SEC/OSへ返す。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/2"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F04",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/3"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "実状態と部分操作",
+        "obligation": "Worker result receiptとINFRA before/after実状態を同operation/対象版/scopeへ結び、Worker成功だけで実変更を受入れない。停止/部分実行は実状態・未完操作・該当復旧義務を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04"
+      },
+      "content_rules": [
+        "Worker receiptとINFRA before/after実状態を別sourceで同operation/対象版/scopeへ結び付ける。receipt成功だけで実状態変更を受入れない。",
+        "部分/停止では実状態・停止地点・未完操作と該当復旧義務を保全し、実資源/復旧ownerへ戻す。実状態を推定補完しない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/3"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F05",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/4"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "read-onlyの実制約",
+        "obligation": "read-onlyはread target/scopeと空write-setを宣言しwrite禁止を実適用する。当該操作がそのscope/write-setで変更しないことと許可対象resource前後を確認する。無関係な並行状態変化まで全resource digest不変を要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05"
+      },
+      "content_rules": [
+        "read target/scopeと空write-setを宣言し、write禁止を実適用する。操作がscope/write-setへ変更を起こさないことと許可対象resourceの前後を確認する。",
+        "宣言のみ/write可能/対象前後未確認では通過させない。無関係な並行変化による全resource digest変化だけで失格にせず、操作起因変化と未確認を区別する。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/4"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-F06",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/5"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "OS停止中の操作経路",
+        "obligation": "独立bootstrap/recoveryでは006の独立resource/pathと別SEC authority、SEC制約下のWorkerを開始条件にし、停止中OS ticket/assignment/通常009応答を必須にしない。復旧後の同期義務を残す。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06"
+      },
+      "content_rules": [
+        "独立復旧は006の独立resource/pathと別SEC authority、SEC制約下Workerを開始条件にする。停止中OS ticket/assignment/009応答を要求しない。",
+        "復旧後operation/resultをOS Work/Changeへ同期する未完義務を保ち、通常操作へ一般免除を外挿しない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-F06-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/5"
+    },
+    {
+      "l4_contract_id": "HELIXINFRASTRUCTURE-L4-010-N01",
+      "l4_source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "ae33e1c8655d44965f5392122da72a7aefd89377",
+        "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "json_pointer": "/contracts/6"
+      },
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01",
+      "approved_requirement_whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "secretと権限の責務",
+        "obligation": "INFRAはpolicyや自身のauthorityを発行せずcredential値を通常resource/backup/snapshotへ無条件保存しない。Workerを無制限Shell主体にせず停止/回収可能な契約を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01"
+      },
+      "content_rules": [
+        "INFRAはpolicy/自身のauthorityを発行しない。credentialは値を複製せずSEC管理参照と保存先制約へ結ぶ。",
+        "Workerは無制限Shell主体にならず、停止/回収可能な契約を保持する。secret複製要求/任意Shell/自己許可はSEC/Worker契約ownerへ返す。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。",
+      "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
+      "l5_program_pointer": "/pure_reference_programs/6"
+    }
+  ]
+}
