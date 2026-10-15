@@ -933,13 +933,29 @@
         "identity": "string",
         "revision": "NullableString",
         "source_ref": "NullableString",
+        "collector_owner": "ReturnOwner",
+        "collector_state": "CollectorState",
+        "target": "Target",
+        "currentness": "Currentness",
+        "fields": "ObservationFields",
+        "reported_state": "RuntimeState"
+      }
+    },
+    {
+      "name": "SubmittedObservation",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "NullableString",
+        "source_ref": "NullableString",
         "collector_owner": "string",
         "collector_state": "CollectorState",
         "target": "Target",
         "currentness": "Currentness",
         "fields": "ObservationFields",
         "reported_state": "string"
-      }
+      },
+      "meaning": "提出観測carrierはFOREIGN等の不適合文字列を保持し原観測との比較へ渡す。原観測enum/実資格へ昇格しない。"
     },
     {
       "name": "Meaning",
@@ -993,7 +1009,7 @@
         "target": "Target",
         "resource_snapshot_ref": "string",
         "original_observation": "Observation",
-        "submitted_observation": "Observation",
+        "submitted_observation": "SubmittedObservation",
         "original_meaning": "NullableMeaning",
         "submitted_meaning": "NullableMeaning",
         "original_unfinished": "list<string>",
