@@ -7,13 +7,15 @@
   "source_main": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
   "approval_admission_evidence": {
     "audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
-    "audit_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "audit_revision": "193852a7069ab8c79c49b4766d680c70466e0e55",
     "admission_source_main": "888c6208353929a65e51ba6407994e10b3b81f13",
     "target_record": {
       "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
       "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
       "pr": 2961
-    }
+    },
+    "audit_sha256": "ac8f352745e8adb6be8e4e9089c92fd6e69a3da3945d673f5ace46f36183062e",
+    "audit_snapshot_meaning": "audit_revisionはauditファイルが実在する固定snapshot。admission_source_main/target_record.admission_revisionは承認decisionが入ったmergeであり、auditファイルの所在revisionと区別する。"
   },
   "scope": {
     "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -4201,7 +4203,6 @@
               "problem": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4209,7 +4210,6 @@
               "required_input": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4217,7 +4217,6 @@
               "constraint": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4225,7 +4224,6 @@
               "negative_example": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4233,7 +4231,6 @@
               "alternative": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4241,7 +4238,6 @@
               "scope": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4249,7 +4245,6 @@
               "knowledge_revision": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -4257,7 +4252,6 @@
               "state": {
                 "type": "string",
                 "enum": [
-                  "missing",
                   "content_corresponding_in_fixture",
                   "content_conflict"
                 ]
@@ -5759,7 +5753,7 @@
       "claim_boolean": "raw Boolean true/falseを明示tokenへ写す。non-Booleanは型違反。",
       "boolean_to_enum": "Booleanをtrue/false tokenへ写す。",
       "array_membership_record": "original arrayを識別子集合として読む。各 distinct original stringをkeyにし、provided membershipでpresent/absent tokenを返す。重複はfirst occurrenceのみを一つのobject keyへ写す。",
-      "priority_enum": "ordered casesをfirst matching enum equalityで評価し、then_path casesを次に評価、該当なしはotherwise。",
+      "priority_enum": "rawのpath値をcases宣言順でwhen_in配列への値一致として検査し、最初の一致valueを返す。どれも一致しなければthen_path値をthen_cases宣言順のwhen_equalと比較し最初のvalue、最後にotherwiseを返す。自由stringの意味解釈/推論はしない。",
       "route_unique_candidates": "record内の先行結果のうちcontract_source/claim_sourceで指定されたmapを読む。contract_order順にtrigger_contract_statesの結果だけ対応ownerを加え、claim_routes順にclaim_triggerへ一致するownerを加える。文字列の初出順を保持して重複除去。実owner資格・配送を生成しない。",
       "local": "local environmentをpath配列のmember順で読む。不存在はAbsent。selected_key_map内のkeyと宣言binding、recordの先行result以外の暗黙値はない。",
       "lookup": "map式とkey式を評価し、objectにそのstring keyがあれば値を返す。無ければAbsent。",
@@ -5768,12 +5762,14 @@
       "not": "boolean operandを反転する。",
       "or": "itemsを宣言順に評価し、最初のtrueでshort-circuit。全てfalseならfalse。",
       "first_match": "casesを宣言順に走査し、conditionがtrueの最初のvalueだけを評価して返す。全てfalseならotherwise。field名/優先/結果tokenは各ASTに記載し、演算子内へ隠さない。",
-      "selected_key_map": "keysを宣言順で走査し、alwaysにあるkeyまたはselected[key]が厳密trueのkeyだけを返す。各keyをlocal.keyへ束縛し、bindingsを記載順に評価、body結果をそのkeyの値にする。空走査は空object。key/field/contract/targetの意味はASTの引数に限る。"
+      "selected_key_map": "keysを宣言順で走査し、alwaysにあるkeyまたはselected[key]が厳密trueのkeyだけを返す。各keyをlocal.keyへ束縛し、bindingsを記載順に評価、body結果をそのkeyの値にする。空走査は空object。key/field/contract/targetの意味はASTの引数に限る。",
+      "any_array": "items式は配列。元順に各要素を指定bindingの局所値へ束縛し、boolean predicateがtrueなら短絡してtrue。空配列はfalse、非配列/非booleanは型違反。member名/marker/業務規則は各ASTへ明示する。",
+      "with_fields": "base式はobject。複写してfieldsに宣言したmember式を宣言順に評価して上書きし、全objectを返す。元入力を変更しない。比較軸や結果語はASTで指定する。"
     },
     "read_declarations": "read_pathsはraw/resultをnamespaceで分け、pathはmember名の配列で保持する。readsの人間向け表記は同じpathをJSON Pointer escape（~→~0、/→~1）して連結する。条件付き分岐で読む可能性のあるpathを含み、全pathの存在や全分岐同時評価を要求しない。contract.stateはmap内に保存されるが個別比較しない。"
   },
   "fixture_literal_sources": {
-    "effects_false": "L4 operation_effect=none plus L9 expected fixture; these are pure-output representation fields, not observed runtime actions.",
+    "effects_false": "L4 operation_effect=noneと原L9 expectedに基づく純粋な表示値。runtimeで副作用が無かったという観測ではない。",
     "unaffected_Q": {
       "path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
       "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
@@ -5820,6 +5816,15 @@
         "B019-F01-INPUT-INFERRED-SUCCESS"
       ],
       "limit": "原L9はmissingとconflictを同じcontent_conflictへ表すcaseを含む。"
+    },
+    "input_placeholder_markers": {
+      "values": [
+        "",
+        "TBD",
+        "unknown"
+      ],
+      "source": "L3/L4 F01の不足input非成功補完、N01同内容oracle、およびL8の空/TBD/unknown入力要素の独立反例",
+      "representation": "本pairの不足表示語を明示的な入力比較として定義。未確定語を実資格/承認へ変えず、新たな作用停止gateを設けない。"
     }
   },
   "calculation_programs": {
@@ -5827,25 +5832,178 @@
       "op": "record",
       "fields": {
         "query_results": {
-          "op": "compare_fields",
-          "left": [
-            "original_query"
-          ],
-          "right": [
-            "provided_query"
-          ],
-          "fields": [
-            "identity",
-            "revision",
-            "scope",
-            "problem",
-            "required_input",
-            "constraint",
-            "knowledge_ref"
-          ],
-          "when_absent": "content_conflict",
-          "when_equal": "content_corresponding_in_fixture",
-          "when_unequal": "content_conflict"
+          "op": "with_fields",
+          "base": {
+            "op": "compare_fields",
+            "left": [
+              "original_query"
+            ],
+            "right": [
+              "provided_query"
+            ],
+            "fields": [
+              "identity",
+              "revision",
+              "scope",
+              "problem",
+              "required_input",
+              "constraint",
+              "knowledge_ref"
+            ],
+            "when_absent": "content_conflict",
+            "when_equal": "content_corresponding_in_fixture",
+            "when_unequal": "content_conflict"
+          },
+          "fields": {
+            "required_input": {
+              "op": "first_match",
+              "cases": [
+                {
+                  "condition": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "any_array",
+                        "items": {
+                          "op": "read",
+                          "path": [
+                            "original_query",
+                            "required_input"
+                          ]
+                        },
+                        "binding": "input_element",
+                        "predicate": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": ""
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "TBD"
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "unknown"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "op": "any_array",
+                        "items": {
+                          "op": "read",
+                          "path": [
+                            "provided_query",
+                            "required_input"
+                          ]
+                        },
+                        "binding": "input_element",
+                        "predicate": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": ""
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "TBD"
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "unknown"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "value": {
+                    "op": "literal",
+                    "value": "content_conflict"
+                  }
+                }
+              ],
+              "otherwise": {
+                "op": "lookup",
+                "map": {
+                  "op": "compare_fields",
+                  "left": [
+                    "original_query"
+                  ],
+                  "right": [
+                    "provided_query"
+                  ],
+                  "fields": [
+                    "required_input"
+                  ],
+                  "when_absent": "content_conflict",
+                  "when_equal": "content_corresponding_in_fixture",
+                  "when_unequal": "content_conflict"
+                },
+                "key": {
+                  "op": "literal",
+                  "value": "required_input"
+                }
+              }
+            }
+          }
         },
         "answer_ref_results": {
           "op": "selected_key_map",
@@ -6227,26 +6385,179 @@
       "op": "record",
       "fields": {
         "content_results": {
-          "op": "compare_fields",
-          "left": [
-            "held_out_original"
-          ],
-          "right": [
-            "held_out_provided"
-          ],
-          "fields": [
-            "problem",
-            "required_input",
-            "constraint",
-            "negative_example",
-            "alternative",
-            "scope",
-            "knowledge_revision",
-            "state"
-          ],
-          "when_absent": "missing",
-          "when_equal": "content_corresponding_in_fixture",
-          "when_unequal": "content_conflict"
+          "op": "with_fields",
+          "base": {
+            "op": "compare_fields",
+            "left": [
+              "held_out_original"
+            ],
+            "right": [
+              "held_out_provided"
+            ],
+            "fields": [
+              "problem",
+              "required_input",
+              "constraint",
+              "negative_example",
+              "alternative",
+              "scope",
+              "knowledge_revision",
+              "state"
+            ],
+            "when_absent": "content_conflict",
+            "when_equal": "content_corresponding_in_fixture",
+            "when_unequal": "content_conflict"
+          },
+          "fields": {
+            "required_input": {
+              "op": "first_match",
+              "cases": [
+                {
+                  "condition": {
+                    "op": "or",
+                    "items": [
+                      {
+                        "op": "any_array",
+                        "items": {
+                          "op": "read",
+                          "path": [
+                            "held_out_original",
+                            "required_input"
+                          ]
+                        },
+                        "binding": "input_element",
+                        "predicate": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": ""
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "TBD"
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "unknown"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "op": "any_array",
+                        "items": {
+                          "op": "read",
+                          "path": [
+                            "held_out_provided",
+                            "required_input"
+                          ]
+                        },
+                        "binding": "input_element",
+                        "predicate": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": ""
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "TBD"
+                              }
+                            },
+                            {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "local",
+                                "path": [
+                                  "input_element"
+                                ]
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "unknown"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "value": {
+                    "op": "literal",
+                    "value": "content_conflict"
+                  }
+                }
+              ],
+              "otherwise": {
+                "op": "lookup",
+                "map": {
+                  "op": "compare_fields",
+                  "left": [
+                    "held_out_original"
+                  ],
+                  "right": [
+                    "held_out_provided"
+                  ],
+                  "fields": [
+                    "required_input"
+                  ],
+                  "when_absent": "content_conflict",
+                  "when_equal": "content_corresponding_in_fixture",
+                  "when_unequal": "content_conflict"
+                },
+                "key": {
+                  "op": "literal",
+                  "value": "required_input"
+                }
+              }
+            }
+          }
         },
         "coverage": {
           "op": "literal",
@@ -6932,7 +7243,7 @@
   "limitations": [
     "source/ownerの実資格、identity resolver、限定採用scope source、query producer/consumerの実契約は未成立。",
     "固定fixtureにない任意JSON/source、null/Absentを含む全分岐、複数同時のowner route、未知・重複候補・未見queryの一般域は未評価。",
-    "F01原L9のidentity/required_input欠落fixtureはcontent_conflictへ縮約され、missingと相違の区別をoracleが保持しない。元期待は変更しない。",
+    "F01原L9のIDENTITY caseはQUERY-Rという別値、REQUIRED_INPUT caseは元二要素からINPUT-Aだけへの部分欠落、CONSTRAINT caseは空配列である。いずれも原値との差をcontent_conflictへ縮約する。RawF01の全memberは必須なので型内Absentはなく、missing返却は定義しない。原期待は保持する。",
     "F03候補配列の重複はdistinct key projectionに畳まれるが原75には重複がない。重複inputの一般意味は未評価。",
     "F02 required-field mapsのorderはJSON object順不問。required-field setの完全性は固定L4 field listを比較対象とし、未知fieldやschema evolutionは未評価。",
     "B01 status/owner literalsはL9 synthetic expected/sample fixture出所。実qualified owner routeではない。",
@@ -6940,6 +7251,15 @@
     "F01/F02/F03/N01の不足別owner返却出力は未実現。F01対象inputはCORE・knowledge版意味はBRAIN003/008、F02汎用知識はBRAIN・製品input値はCORE、F03不足inputはCORE・意味版矛盾はBRAIN003/008または親L1、N01内容/契約ownerという原L3/L4責務を保持し、比較結果だけでowner返却完了としない。",
     "F02 provided_knowledge_stateとadopted_limited_knowledge_scopeは原rawを保持するが、この式では個別比較しない。原knowledge_stateの複写を提出state/採用scopeの検証としない。",
     "F03自由state stringは原値を返す。priority_enumの既存meaning_conflict/version_conflict/unknown以外の本文が何を意味するかは未解決。新state停止policyを足さず、recommendation=noneを意味十分性/採用許可と扱わない。",
-    "B01の原/提出契約identityは選択map keyとも比較し、両側同じ別契約を対応へしない。有限key bindingの比較であり、実契約資格は別に未成立。"
+    "B01の原/提出契約identityは選択map keyとも比較し、両側同じ別契約を対応へしない。有限key bindingの比較であり、実契約資格は別に未成立。",
+    "F02 maturityを含む返却各項目のstateはobject深層等値の一部として比較するだけで、原/提出両側がnot_evaluatedでもevaluated_matureでも、同値なら同じ対応tokenとなる。項目ごとの未評価/評価済み/未採用stateを別返却へ投影する責務は未実現。原knowledge_state複写だけではこの責務を満たさない。",
+    "F02の003/004/008/012への項目別対応は未出力。原rawのgeneric knowledge_refには各責務へ結ぶ独立owner-qualified参照/consumer memberがなく、この関連を正しく解決する規則は未具体化。F01の独立query targetに相当するF02 target参照も未供給で、両側同じ別knowledge参照を比較成功にできてもtarget binding成立ではない。",
+    "B01 original_statesは原値をそのまま返す。CORE_receive=not_receivedとOS002_record=saved等、四状態の組合せ意味/時点/当該query provenanceを診断する出力/判定は未実現であり、claim falseの矛盾にowner候補を追加しない。原stateがsavedであることは実OS記録成立の証拠ではない。",
+    "B01 requires_future_completion_receipt_before_supplyはboolean claimだけを棄却する。実receipt内容/依存graphから未来完了receiptが左起草gateになったかを判定する原入力/規則は未供給・未実現。一般的な状態順序や新gateを推測しない。",
+    "F03 candidate_resultsはoriginal必要候補のdistinct membershipだけを返し、provided側の余剰候補の出所/妥当性/矛盾やその別返却は未実現。原候補集合が全候補の完全必要集合である証拠もない。複数成立候補保持を求めるL3/L4から任意の余剰を一律禁止する規則は生成しない。",
+    "N01 Raw型の全fieldは必須。型内missing tokenには到達しないため返却enum/when_absent説明をcontent_conflictへ整合。空配列/要素不足等の内容差はcontent_conflictへ縮約し、missingと不一致の別語を返さない。入力member Absent/nullは型外で補完しない。",
+    "N01 content_results.stateは両stateの等値tokenだけで、unknown/not_evaluated/verified等の原stateを個別返却へ投影する責務は未実現。同値verifiedを実評価の成功へ昇格しない。",
+    "F01/N01 required_inputの空文字/TBD/unknown要素は片側/両側とも内容不整合として比較前に局所検出する。これは不足入力の有限表示語で、任意の自然言語や別markerを完全に同定する仕組みではない。両側同じ空配列の必要集合完全性は未具体化。",
+    "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。"
   ]
 }
