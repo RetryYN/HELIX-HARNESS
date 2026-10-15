@@ -6213,6 +6213,6 @@
   "scope_limitations": [
     "L9固定31raw/wholeと、独立した10局所whole（複合3・全内容一致claim1・分岐識別6）を対象とする。実知識/資格/codec/実CORE選択/INT実行は評価しない。",
     "原expected wholeはpinしたL9から変更せず複写。probeは出力wholeを備え、部分projectionではなくrawから計算する。",
-    "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
+    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
   ]
 }

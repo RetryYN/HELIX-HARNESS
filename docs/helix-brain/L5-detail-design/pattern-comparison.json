@@ -1420,7 +1420,7 @@
         "複数候補数/順序が固定三候補以外の場合",
         "任意JSON型や明示null/absentの全組合せとsource identityの実資格",
         "全内容一致＋complete=trueのnone_unobservedは原31では未観測だったが追加局所1例で型と全返却を確認する。任意候補集合/実source資格/実比較完了/採用/許可の一般化は未成立。",
-        "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
+        "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。"
       ]
     },
     {
@@ -1467,7 +1467,7 @@
         "known applicabilityとprovidedの矛盾値、unknown enum、欠如/nullの一般組合せ",
         "requirements/decision_weightsの正式schema・意味・consumer owner資格",
         "要求値と重みの両方提示済みでも選択保留となることは原B004-F02-VALUES-WEIGHTS-PRESENT-STILL-OWNERで観測済み。全候補の実適用条件/要求値/重みの資格済み供給と、接続先による実選択は未閉包であり本関数のselectionは保留のまま。",
-        "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
+        "F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。"
       ]
     },
     {
@@ -1527,7 +1527,7 @@
       "BRAIN004-B01"
     ],
     "interaction": "各L9 rawは各関数の独立fixture。F01の出力をF02/B01の入力として暗黙合成しない。",
-    "failure_return": "上流義務はF01比較不足をBRAIN知識owner、要求値/重み不足をCORE/INTELLIGENCE/人の該当判断先へ返すこと。現在の独立F01/F02有限関数は診断結果まででowner候補fieldを持たず、この戻し先の導出/受渡しは未具体化。B01 owner tokenはclaim/選択INT条件の候補であり、F01/F02不足のroutingを代替しない。"
+    "failure_return": "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。 F01/F02/B01は独立fixtureであり、診断/返却を暗黙に合成しない。"
   },
   "owner_candidate_literals": {
     "CORE-product-decision-owner": {
@@ -1650,7 +1650,7 @@
     "実sourceの来歴、owner資格、CORE/INT接続先、正式schema/codecは未成立。",
     "L9にない一般のcandidate数、任意enum/JSON/null/absent組合せ、実source資格/必要集合、実routing優先/全L4分岐は未閉包。全内容一致時complete=trueは追加局所例でnone_unobservedを返すが実比較完了/採用/許可を生成しない。要求値/重み提示済みで保留する原F02例と、実消費先による選択の成立を分離する。",
     "合成fixtureの出力とfalse-effect定数は、実動作・権限・受入の証明ではない。",
-    "L3 failure_returnとL4 output_meaningsが求める失敗時のowner返却候補は、原L9 expected/現在F01Return・F02Returnにfieldがなく、この有限投影では出力しない。F01の比較不足とF02の要求値/重み不足は診断するが、戻し先との正式対応・consumerへ渡す返却materialは未具体化。B01のclaim/INT接続用owner候補でこの欠落を代用しない。上流義務は保持し、当該L4出力義務の完了を主張しない。"
+    "F01は候補内容/各軸の不足診断を返すが、BRAIN知識owner返却候補fieldは原L9/現在F01Returnの範囲外で出力しない。加えてL3 F01 failure_returnの「COREへ要求値不足」は、F01に要求値入力がないため不足の診断自体も未実現であり、返却先/material/consumer bindingも未具体化。F02の別fixtureの診断をF01の実現としない。 F02は要求値/重み不足をrequired_value_state/weight_state/unresolved_inputsで診断し選択を保留するが、CORE/INTELLIGENCE/人の該当判断先候補fieldは原L9/現在F02Returnにない。診断から判断先への対応/返却material/consumer bindingは未具体化。 B01のclaim/INT接続owner候補で両者の不足を代用しない。上流義務を保持し該当L4義務の完了を主張しない。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -2226,16 +2226,16 @@
     {
       "requirement_ref": "HELIXBRAIN-L3-004-F01",
       "l4_ref": "HELIXBRAIN-L4-004-F01",
-      "required_return": "比較不足/必要要求値または重み不足のowner返却候補",
-      "current_projection": "F01Return/F02Returnは診断と無作用を返すだけでowner候補fieldを持たない。",
-      "missing_design": "診断から該当判断先への対応と返却material/consumer binding。"
+      "required_return": "L3 F01: BRAIN知識ownerへ比較不足、COREへ要求値不足。",
+      "current_projection": "候補内容/比較軸の診断だけ。要求値入力がなくCORE要求値不足の診断自体を行わず、いずれのowner候補fieldも出力しない。",
+      "missing_design": "CORE要求値不足の入力/診断と、BRAIN比較不足/CORE要求値不足の返却先対応・material/consumer binding。"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-004-F02",
       "l4_ref": "HELIXBRAIN-L4-004-F02",
-      "required_return": "比較不足/必要要求値または重み不足のowner返却候補",
-      "current_projection": "F01Return/F02Returnは診断と無作用を返すだけでowner候補fieldを持たない。",
-      "missing_design": "診断から該当判断先への対応と返却material/consumer binding。"
+      "required_return": "L3 F02: 要求値/重み不足をCORE/INTELLIGENCE/人の該当判断先へ返す。",
+      "current_projection": "要求値/重み不足を診断して保留。判断先owner候補fieldなし。",
+      "missing_design": "F02の不足診断から該当判断先への対応と返却material/consumer binding。"
     }
   ]
 }
