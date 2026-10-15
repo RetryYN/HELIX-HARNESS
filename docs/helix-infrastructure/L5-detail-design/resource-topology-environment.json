@@ -1,0 +1,2557 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-001",
+  "source_main": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+  "status": "limited_logical_detail_candidate_not_implementation_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approval_record": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+  "approved_whole_files": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 12759,
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11258,
+      "sha256": "15fef5f815966fc21a2645aac5428206cb2fa8b5b6e998e4d63007fc790df13e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 24801,
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 21613,
+      "sha256": "e2963d1680e6a649136a6c00a10ea5d824dd0c50f7a08bbabd1c856912ad4095"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11473,
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10140,
+      "sha256": "168f6d5abf97c76ce8a3b9218c7a5d083da7d842c9e384490412e30a269fe1b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 11648,
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10253,
+      "sha256": "c116499e028730f5078613f0df192eafcb53ee03063b83a5d90038c3e952c24b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 20531,
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 17981,
+      "sha256": "6dc799ffea4fd3cae4bb34ddd077292efa71909737686527bb7f19b8055a2481"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 10825,
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "bytes": 9535,
+      "sha256": "b56a6f0dae1c49d97a956a16c2ac652ed93555c61434331cdd6132610fb5c40e"
+    }
+  ],
+  "approved_objects": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/0",
+      "canonical_sha256": "736b481468dc6a76765db48118ee53577d4bd7db6fca8fa7416b694b12685edd",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-001-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "対象資源のtopology",
+        "obligation": "resource identity/role/environment/location/version/dependencies/lifecycle stateと観測source/revisionを選択scopeへ束縛する。欠落や部分観測はunknownに保ち、以前のobservationをcurrentにしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/0",
+      "canonical_sha256": "4d36a506a7179e057a0aa9f1f5135f45fd85827ce6b91d7e0f0d1a8258c5f929",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-001-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "対象資源のtopology",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F01",
+        "positive_input": "異なるenvironmentの資源と各必須属性欠落を比較する。",
+        "expected_observation": "対象版・環境・観測元と未観測範囲が辿れる。",
+        "negative_input": "欠落version推測、別環境の証拠流用、旧観測をcurrent。",
+        "failure_observation": "不足source/resource/CORE設計ownerへ返し未完観測を保持する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/1",
+      "canonical_sha256": "4d2af39bee91c54c9b9f150d9bcf6475605a188aba65e55af2f676b2e0715d48",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-001-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "環境とnetworkの区別",
+        "obligation": "環境identityごとにresource/config/network/credential scope/data/version/authorityを分離する。CONNECT論理接続と物理runtime pathを分け、後者のsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを参照する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/1",
+      "canonical_sha256": "301c868adcf9341a8f268dc6fd7a0f5332d626819cc0aa7d44fb34d7fd1c83dc",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-001-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "環境とnetworkの区別",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F02",
+        "positive_input": "staging/production/recoveryと論理接続・実経路を別入力にする。",
+        "expected_observation": "同端点でも環境と論理/物理経路が区別できる。",
+        "negative_input": "stagingをproduction成立、logicalをphysical、authority共有推測。",
+        "failure_observation": "該当資源/経路ownerとSECへ不足を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/2",
+      "canonical_sha256": "6e9dc17bb06c769ae7b345a0c62085ec07b4ad3dddfcef728a7eb72ad844ae46",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-001-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "state/storage属性",
+        "obligation": "永続/一時stateを分けowner/durability/backup/retention/environment/confidentiality/recovery要求へ結ぶ。秘密値を通常stateの属性値にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F03"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/2",
+      "canonical_sha256": "c698c190568c828669e37a6e1575feb10d95570865bfc14f5b0feb6f33cfa428",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-001-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "state/storage属性",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F03",
+        "positive_input": "database/queue/artifact/evidence/cache/log/metric/model storeの対象集合と属性欠落を比較する。",
+        "expected_observation": "各storage種別・owner・復旧要求が辿れる。",
+        "negative_input": "一時を永続とする、retention不明を推測、credential値複製。",
+        "failure_observation": "元state owner/SECへ返し該当未観測を保持する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/3",
+      "canonical_sha256": "325be5e8f7aca22a448301bf46e12d34fa351ea2cd92f1e52f64d6a1f1871dde",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-001-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "scope内Model Runtime",
+        "obligation": "対象scopeに存在するModel Runtimeのmodel/version/server/GPU-memory needs/concurrency/latency/capacity/health/endpointをsource/revision付きで記録し未観測を埋めない。scope外runtimeを存在と仮定しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F04"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/3",
+      "canonical_sha256": "d811304b2361013764835973f9740489f6819e3016eb929d366fbb4be3fae547",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-001-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "scope内Model Runtime",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F04",
+        "positive_input": "runtimeを含むscopeと含まないscope、属性一件欠落を別caseにする。",
+        "expected_observation": "実資源属性とunknown、非対象が区別できる。",
+        "negative_input": "scope外Model必須化、能力評価を資源値、属性推定。",
+        "failure_observation": "資源sourceへ不足を返し能力評価はINTELLIGENCE/LABOへ保持する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/requirements/0",
+      "canonical_sha256": "0e7937359b1abfdcaacc6ade35ad29e90eca21e976209d5622c5996f766547ea",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L3-001-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "正本ownerの分離",
+        "obligation": "COREは設計意味、INFRAはtarget/actual、OSはticket/work/change、SECはpolicy/authority、INTは配置案、LABOは評価を持つ。同状態を二重正本にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-B01"
+      }
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+      "json_pointer": "/cases/0",
+      "canonical_sha256": "c933f187f118e3ffacb5cb47cc23e59dfef26f1d26a514a62f6d6e387313b878",
+      "object": {
+        "id": "HELIXINFRASTRUCTURE-L10-001-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-001",
+        "title": "正本ownerの分離",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-B01",
+        "positive_input": "同resourceとticket/design/authority/evaluationの別参照を照合する。",
+        "expected_observation": "各ownerと証拠の適用範囲が分かれる。",
+        "negative_input": "resource healthyで許可、INFRAがticket/能力評価を所有。",
+        "failure_observation": "該当ownerへ返し正本の代筆をしない。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/design-target-actual-drift.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "5e7560309f0cc9c8fecc4e3495d14123bb5c91c45232baefde70e7ec315f6856"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/resource-topology-environment.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "2d3240a945570ec4a3b26e85f5924d0548caeb3049fd15366266401203dee0ae"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    }
+  ],
+  "parent_basic_source_pins": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "意味authorityとruntime observation/projectionを分離する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定001の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        68,
+        73
+      ],
+      "quote": "### OPS-R-01 環境contract（EnvironmentContract）\n\n環境ごとにenvironment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、\ncredential reference、network sink、data classification、dependency resource、owner、expiryを保持する。secret値は保持しない。\ntargetを一意に物理同定できない場合、logical targetとphysical targetが不一致の場合、credentialが期限切れの場合はfail-closeする。\n",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "08299f3ced19585f47b6061b32c27a64d0f497b46f0896a1ea243c4f6f79ccdf",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "環境identity/adapter版/target/資源条件/権限とcredential参照を区別し秘密値を保持しない。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定001の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        9,
+        9
+      ],
+      "quote": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "be8e79cf3b6169071eae8e99d3199e4476335108aec215096b4bd3fd7d2f5a8c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補のscope/source/revision/freshness観測意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定001の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        15,
+        15
+      ],
+      "quote": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "8ab66cd6f2752242c6548e1c96cb4db026f636cb0ecf4ba202b87ef445652ee0",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補の欠測/staleをhealthyへ変換しない意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定001の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+      "read_lines": [
+        69,
+        91
+      ],
+      "quote": "HELIX本体は、全体統制の下に共通基盤・開発統制・成長統制を置く。この骨格は生物用語へ置換するために作り直さず、既存の整理を維持する。[V01][C03]\n\n```text\nHELIX本体\n└─ 全体統制\n   ├─ 共通基盤\n   │  └─ 識別・正本／権限・証拠・履歴・共通契約・実行接続\n   ├─ 開発統制\n   │  ├─ 進行・配車・停止再開\n   │  ├─ 要求形成・設計・実装・変更統合\n   │  ├─ 品質保証\n   │  ├─ 安全保証\n   │  └─ 製品リリース・配備・運用保守・診断回復\n   └─ 成長統制\n      ├─ 自己観測・評価\n      ├─ 改善・構造再編の候補化\n      ├─ 経験・知識の継承と適用\n      └─ HELIX自身の提供・更新・成長評価\n```\n\n**開発統制**は対象システムを作り、確かめ、届け、維持する。**成長統制**は、その開発能力が実践でどう働いたかを観測し、改善と継承を扱う。成長側がHELIXの変更を必要としたら、同じ正規の開発経路へ戻す。自己成長専用の無検収な書換え経路を作らない。\n\n全体統制は全身の整合を保つ役割として捉えるが、全ての権限を独占する巨大な中枢にはしない。要求の採否、作業の認可、品質の検収、公開・配備の許可は、それぞれの責務が持つ。共通基盤を使うことも、データや権限の無条件共有を意味しない。",
+      "file_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+      "selected_lines_sha256": "480bbbc9888526be573eb8b62b61051445f7010332df0bb91328ff7046453fdd",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-235F57A4DC453383E6C7",
+        "disposition": "unresolved",
+        "source_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475"
+      },
+      "reuse": "reference_only",
+      "preserve": "骨格・正規経路・責務別権限を保ち、共通基盤利用をデータ/権限の無条件共有にしない。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定001の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+    "whole_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "selected_lines": [
+      {
+        "id": "UTW-007",
+        "line": 73,
+        "quote": "| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |",
+        "utf8_sha256": "45964d646e362422fbddae7d41f5681221f6ddcd29f8c10787922b869c988f06"
+      },
+      {
+        "id": "UTW-012",
+        "line": 78,
+        "quote": "| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |",
+        "utf8_sha256": "5fd5747e3ebf102324d0597493a1e43aeabf0467bb0813ac6bd1a3a4769f51c2"
+      },
+      {
+        "id": "UTW-014",
+        "line": 80,
+        "quote": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |",
+        "utf8_sha256": "52ee08850bd54061dd5b2f3d9b9450abd286b7d0c9b2150ec733205426f0e287"
+      },
+      {
+        "id": "UTW-021",
+        "line": 87,
+        "quote": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+        "utf8_sha256": "3a6bddbe4c73e4a6d0f4e0d0c9db39c06d47691f3d2fd1ff0a11675bc7df5f44"
+      },
+      {
+        "id": "UTW-023",
+        "line": 89,
+        "quote": "| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |",
+        "utf8_sha256": "4d0730fbba82fabca31771a0e0b2d968bba6c9575ed673706ed698fb42c52312"
+      }
+    ],
+    "use": "同役の秘密値境界/absence blindness/観測projection/自己申告stateの失敗参照。INFRA001へ直接割当て済みとはせず、批准scopeを照らす間接資料。新scan/gate/閾値を追加しない。",
+    "crosswalk_limit": "failure-requirement-crosswalk-2026-10-09はINFRAをkeyword照合のみと明記し、001直接割当て無し。failure不存在の根拠にしない。"
+  },
+  "consumer_connections": [
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/design-target-actual-drift.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "5e7560309f0cc9c8fecc4e3495d14123bb5c91c45232baefde70e7ec315f6856",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "2e458ad7e9270bd464fbaf2816aa06f8dd73bd3ed933f4b8180f24a1158fb62a",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-002-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-002-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-002-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-002",
+          "title": "設計・target・actualの分離",
+          "obligation": "approved CORE design revision、そこから導くdeployment target、source-qualified actual observationを別stateとして相互参照する。actualから設計/要求を上書きしない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F01"
+        },
+        "content_rules": [
+          "CORE design/owner-derived target/actual観測をkind/identity/revision/owner/scopeとsourceで分離し、当該targetへ相互参照する。",
+          "原比較入力と他scopeを不変に保つ。actualから要求/設計承認を生成せず、欠落/stale/互換不明を一致へ丸めない。",
+          "原ownerの必要資源集合と観測範囲から差異を分類。known差異とunknown依存/未確認を分け、部分観測だけで資源不在を確定しない。",
+          "差異は実修正許可ではない。修正は既存OS ticket/SECURITY authority/Worker経路へ残す。",
+          "提出のdesign_ref/target_ref/source_refも原参照と対照し、原unknown dependencyは差異候補と未確認範囲を残して判定保留する。"
+        ],
+        "representation_limit": "合成field/比較値/資源集合はfixtureのみ。source資格やsemantics comparator/正式schema/実閉包は未成立。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/design-target-actual-drift.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "5e7560309f0cc9c8fecc4e3495d14123bb5c91c45232baefde70e7ec315f6856",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "67a1511cf9aad9d31d8129b288d90e0f7f9be85e201b2f831b7617841b9471e1",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-002-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-002-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-002-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-002",
+          "title": "driftの種類と未観測",
+          "obligation": "missing/unexpected resource、version/config/network/permission/capacity drift、runtime replacement、unknown dependencyを個別比較し、自動で正しい変更としない。欠落/stale/互換不明では確定せず未確認範囲を保つ。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F02"
+        },
+        "content_rules": [
+          "CORE design/owner-derived target/actual観測をkind/identity/revision/owner/scopeとsourceで分離し、当該targetへ相互参照する。",
+          "原比較入力と他scopeを不変に保つ。actualから要求/設計承認を生成せず、欠落/stale/互換不明を一致へ丸めない。",
+          "原ownerの必要資源集合と観測範囲から差異を分類。known差異とunknown依存/未確認を分け、部分観測だけで資源不在を確定しない。",
+          "差異は実修正許可ではない。修正は既存OS ticket/SECURITY authority/Worker経路へ残す。",
+          "提出のdesign_ref/target_ref/source_refも原参照と対照し、原unknown dependencyは差異候補と未確認範囲を残して判定保留する。"
+        ],
+        "representation_limit": "合成field/比較値/資源集合はfixtureのみ。source資格やsemantics comparator/正式schema/実閉包は未成立。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "2da8e430d94a5a68855280cc3c1ef9e58c40fb456bbc831121d1917fa011e341",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-004-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-004-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-004",
+          "title": "runtime観測とincident",
+          "obligation": "health/metric/log/resource/dependency/queue/error/latency/deployment/recoveryをsource/revisionへ結び、正常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別する。incident meaning/severityは既存承認要求を参照する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-F01"
+        },
+        "content_rules": [
+          "001資源の対象identity/revision/environment/scopeと、health/metric/log/resource/dependency/queue/error/latency/deployment/recovery各観測のsource/revision/観測範囲を結ぶ。観測元入力と提出値を区別して保全する。",
+          "正常/劣化/利用不能/容量枯渇/依存失敗/data unavailable/network unavailable/security isolation/unknownを区別する。分類の意味・severityは承認済み要求owner由来の参照と対象条件を辿り、INFRAが独自の閾値やseverityを作らない。",
+          "telemetry欠測/collector failure/source不明/古い値ではunknownまたはunobservedへ戻し、healthy/current/原因確定へ変換しない。未確認resourceとincident評価待ちを保持する。",
+          "観測不足はsource/collector owner、意味・severityの参照不足や対象不一致は上流incident-meaning ownerへ返す。source一致や合成分類は実incident成立/解決/復旧許可を意味しない。"
+        ],
+        "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "61bc74e7c0a5bd793e33c5fcc4b75f45d3487d271e2008e3d37332680bb709b5",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-004-B01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-004-B01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-004-B01",
+          "parent": "HELIXINFRASTRUCTURE-L2-004",
+          "title": "後続観測能力の非前倒し",
+          "obligation": "019の詳細freshness/collector-confidence stateは後続版のまま保持し、1.0の受入必須条件にしない。004のsource/revisionと欠測/古い値の非成功条件は保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-004-B01"
+        },
+        "content_rules": [
+          "019の詳細freshness/collector-confidenceを後続版に保持し、詳細値の不存在だけで004の基本成立を失格にしない。019完成待ちを初回1.0 gateにしない。",
+          "004のsource/revision、対象版、欠測/staleの非成功条件は残す。詳細confidenceがある場合でも基本観測不足や古い値の通過を認めない。",
+          "基本成立、unknown/unobserved、後続版能力の未完を分離し、基本不足だけを観測source/collectorへ返す。詳細知識を採用済みと宣言しない。"
+        ],
+        "representation_limit": "合成参照/分類/新旧markerは正式schema/閾値/実資格/製品severityを採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "a786eb82100bd62270a5013f337facd7e78dad429a70af295f91f0799228c641",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-009-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-009-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-009",
+          "title": "work/changeと資源状態の対応",
+          "obligation": "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime revision/recovery stateをversioned viewで関連付け、別正本を維持する。target/runtime対応不明や部分更新は成立にせず未完を保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01"
+        },
+        "content_rules": [
+          "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime/recoveryの参照を同target/revision/scopeへ結ぶ。双方の原記録を保全し、versioned viewは正本を二重化しない。",
+          "OSは作業/変更を、INFRAは実資源/runtimeを所有する。ticketをactual正本へ、INFRAを作業承認者へ読み替えない。",
+          "target/runtime対応不明、部分更新、停止中operationは成立へ丸めず、該当OS/INFRA ownerへ返し、稼働版・適格rollback先・未完操作を保持する。"
+        ],
+        "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "289701ce0d219a91bec0e74a7ce9a9aa2fc4bdfb6bca8ae14755ff84a1c60468",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-009-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-009-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-009",
+          "title": "stage packの条件付き接続",
+          "obligation": "通常resource-state接続はstage release構成体を必須化しない。stage pack収載時だけOS014の構成/更新/復旧/同版証拠を照合しstage IDとruntime revisionを区別する。後続episode-to-LABOを必須化しない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02"
+        },
+        "content_rules": [
+          "通常resource-state接続にstage releaseを必須化しない。stage未選択は追加条件非対象、選択不明はunknownとして保持する。",
+          "stage pack収載時だけOS014の構成/更新/復旧/同版構成証拠を参照する。stage IDとINFRA pack/contract/artifact/dependency版/runtime revisionを別identityのまま対応させる。",
+          "選択stageの対象違い/構成・更新・復旧・同版証拠不足はOS/INFRAへ返す。全HELIX/全7製品/後続episode-to-LABO完成待ちを追加しない。"
+        ],
+        "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+      "json_pointer": "/contracts/0",
+      "canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-010",
+          "title": "操作前authorityとWorker",
+          "obligation": "全operationでresource/actual stateと有効SEC authorityのtarget/project/action/revision/environment/scope/expiryおよびcredential/network/isolation/egress条件を照合し、全実操作をSEC制約下のWorker契約へ結ぶ。通常経路ではOS assignment/ticketと009を用いる。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+        },
+        "content_rules": [
+          "開始前にresource actualとSEC authorityのtarget/project/action/revision/environment/scope/expiry、credential/network/isolation/egress参照を照合する。未確認/不一致/期限切れ/失効はSEC/OSへ返し実行前に停止する。",
+          "全操作をSEC制約下のWorker契約へ結ぶ。通常操作はOS assignment/ticket/009接続を用いる。結果receiptは後段で受け取り、開始前に成功receiptを要求しない。INFRAが自己許可を出さない。"
+        ],
+        "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "641d54bdd5c66c4b3e951c84ce9bd30589dc16b5",
+      "whole_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+      "json_pointer": "/contracts/1",
+      "canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+      "contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-010",
+          "title": "更新時の追加admission",
+          "obligation": "更新/変更を適用するactionに限り同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatchでは変更前に止める。read-onlyではupdate admissionを要求せず通常authorityを保持する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+        },
+        "content_rules": [
+          "更新/変更actionだけ同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatch/期限外/失効は変更前に止める。acceptedでも通常authorityを省かない。",
+          "read-onlyにupdate gateを追加せず、通常authorityを保持する。F05のwrite禁止/対象前後は別義務でありread-only宣言だけで通過させない。"
+        ],
+        "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+      },
+      "boundary": "001の観測/targetを参照する既存責務。正式binding/観測資格や操作許可を本素材から生成しない。"
+    }
+  ],
+  "unclosed_source_supply": [
+    {
+      "subject": "required resource/environment/observation set",
+      "responsible_owner": "CORE/INFRA resource source",
+      "qualification_state": "not_established",
+      "remaining": "元必要集合/対象identity/環境/版/観測source/custodyの正式供給とowner資格が未成立。"
+    },
+    {
+      "subject": "physical/logical paths and storage",
+      "responsible_owner": "CONNECT/INFRA/SEC",
+      "qualification_state": "not_established",
+      "remaining": "論理接続と物理path、永続/一時、秘密参照を原資料比較しただけ。実collector/adapter/保存/経路/credential制約は未成立。"
+    },
+    {
+      "subject": "runtime scope/capacity and evaluation",
+      "responsible_owner": "INFRA/INTELLIGENCE/LABO",
+      "qualification_state": "not_established",
+      "remaining": "scope選択元、実runtime/容量/観測と能力評価は別。参照の型や合成値から資源値/実評価を生成しない。"
+    },
+    {
+      "subject": "consumer and authority",
+      "responsible_owner": "OS/SEC/HARNESS-CORE/INFRA",
+      "qualification_state": "not_established",
+      "remaining": "設計意味/target-actual/work-change/policy/配置案/評価の正本を分離。formal owner-qualified consumer member binding・実作用未成立。"
+    }
+  ],
+  "remaining": [
+    "原必要集合/owner資格/root/custody/正式binding/実観測/実configuration/collector/adapter/freshness clock/保持秘密制約/全一般域は未成立。",
+    "正式wire/schema/codec/parser/float/resource/encode/未知key方針は未選定。原212の論理値/全返却の具体化を実装/CI/実資格の成立にしない。",
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの素材であり、実TDD/CI/L11/全92親430意味閉包/Ready未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L5-001",
+  "pair": "HELIXINFRASTRUCTURE-L5/L8-001",
+  "logical_types": [
+    {
+      "name": "RawValue",
+      "kind": "json",
+      "meaning": "原sourceの未宣言/opaque JSON値を保持する。資格/意味完成へ昇格しない。"
+    },
+    {
+      "name": "Presence<T>",
+      "kind": "generic",
+      "representation": "親record key不在はabsent、JSON nullはexplicit null、他はT。rawへ新wire tagを入れない。空string/list/objectは原値として保持。"
+    },
+    {
+      "name": "RootKind",
+      "kind": "enum",
+      "values": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "B01"
+      ]
+    },
+    {
+      "name": "ClaimKey",
+      "kind": "enum",
+      "values": [
+        "missing_attributes_inferred",
+        "other_environment_success",
+        "old_observation_current",
+        "logical_is_physical",
+        "temporary_is_persistent",
+        "raw_credential_copied",
+        "scope_outside_model_required",
+        "resource_health_is_permission",
+        "infra_owns_ticket",
+        "infra_owns_ability_evaluation"
+      ]
+    },
+    {
+      "name": "ObservationState",
+      "kind": "enum",
+      "values": [
+        "current_in_fixture_only",
+        "not_observed",
+        "partial",
+        "stale",
+        "source_unreadable"
+      ]
+    },
+    {
+      "name": "FieldResult",
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "missing_original_information",
+        "unknown_original_information",
+        "submitted_content_conflict"
+      ]
+    },
+    {
+      "name": "TargetResult",
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "foreign_observation_target"
+      ]
+    },
+    {
+      "name": "CandidateState",
+      "kind": "enum",
+      "values": [
+        "content_corresponding_requires_actual_source_qualification",
+        "held_with_original_unknown",
+        "not_selected_unobserved",
+        "unknown_original_scope_membership",
+        "held_with_original_resource_values"
+      ]
+    },
+    {
+      "name": "ClaimResult",
+      "kind": "enum",
+      "values": [
+        "rejected",
+        "none"
+      ]
+    },
+    {
+      "name": "LogicalOwner",
+      "kind": "enum",
+      "values": [
+        "CORE",
+        "INFRA",
+        "OS",
+        "SEC",
+        "INT",
+        "LABO"
+      ]
+    },
+    {
+      "name": "ReturnOwner",
+      "kind": "enum",
+      "values": [
+        "resource-source-owner",
+        "network-resource-owner",
+        "HELIX-SECURITY",
+        "CONNECT-owner",
+        "INTELLIGENCE/LABO",
+        "CORE-owner",
+        "INFRA-owner",
+        "OS-owner",
+        "SEC-owner",
+        "INT-owner",
+        "LABO-owner",
+        "state-owner"
+      ]
+    },
+    {
+      "name": "FindingArea",
+      "kind": "enum",
+      "values": [
+        "profile",
+        "observation_target",
+        "observation_state",
+        "unobserved_fields",
+        "physical_path",
+        "physical_kind",
+        "logical_connection",
+        "storage_value_boundary",
+        "runtime_attribute_kind",
+        "original_scope",
+        "meaning_owner"
+      ]
+    },
+    {
+      "name": "FindingResult",
+      "kind": "enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "missing_original_information",
+        "unknown_original_information",
+        "submitted_content_conflict",
+        "foreign_observation_target",
+        "not_observed",
+        "partial",
+        "stale",
+        "source_unreadable",
+        "logical_or_unknown_not_physical",
+        "wrong_canonical_owner",
+        "forbidden_secret_value_fields",
+        "ability_evaluation_not_resource_attribute",
+        "unknown_original_scope_membership"
+      ]
+    },
+    {
+      "name": "ProfileField",
+      "kind": "enum",
+      "values": [
+        "resource_identity",
+        "role",
+        "environment",
+        "location",
+        "version",
+        "dependencies",
+        "lifecycle",
+        "observation_source",
+        "observation_revision",
+        "environment_identity",
+        "resource_ref",
+        "config_ref",
+        "network_scope",
+        "credential_scope_ref",
+        "data_scope",
+        "authority_ref",
+        "storage_identity",
+        "storage_kind",
+        "state_class",
+        "owner",
+        "durability_ref",
+        "backup_ref",
+        "retention_ref",
+        "confidentiality_ref",
+        "recovery_ref",
+        "runtime_identity",
+        "model",
+        "model_version",
+        "server",
+        "gpu_memory_needs_ref",
+        "concurrency",
+        "latency_ref",
+        "capacity_ref",
+        "health",
+        "endpoint_ref",
+        "source",
+        "CORE",
+        "INFRA",
+        "OS",
+        "SEC",
+        "INT",
+        "LABO"
+      ]
+    },
+    {
+      "name": "PhysicalField",
+      "kind": "enum",
+      "values": [
+        "kind",
+        "environment",
+        "source",
+        "destination",
+        "protocol_ref",
+        "endpoint_ref",
+        "direction",
+        "purpose",
+        "security_boundary_ref",
+        "dependency_ref"
+      ]
+    },
+    {
+      "name": "FalseEffect",
+      "kind": "literal",
+      "value": false
+    },
+    {
+      "name": "RootF01",
+      "kind": "literal",
+      "value": "F01"
+    },
+    {
+      "name": "RootF02",
+      "kind": "literal",
+      "value": "F02"
+    },
+    {
+      "name": "RootF03",
+      "kind": "literal",
+      "value": "F03"
+    },
+    {
+      "name": "RootF04",
+      "kind": "literal",
+      "value": "F04"
+    },
+    {
+      "name": "RootB01",
+      "kind": "literal",
+      "value": "B01"
+    },
+    {
+      "name": "NotAppliedToResourceAttribute",
+      "kind": "literal",
+      "value": "not_applied_to_resource_attribute"
+    },
+    {
+      "name": "NotEstablished",
+      "kind": "literal",
+      "value": "not_established"
+    },
+    {
+      "name": "NullableBoolean",
+      "kind": "nullable",
+      "inner": "boolean"
+    },
+    {
+      "name": "DependencyCarrier",
+      "kind": "union",
+      "variants": [
+        "list<string>",
+        "string"
+      ]
+    },
+    {
+      "name": "QuantityCarrier",
+      "kind": "union",
+      "variants": [
+        "integer",
+        "string"
+      ]
+    },
+    {
+      "name": "AbilityEvaluationReference",
+      "kind": "record",
+      "fields": {
+        "kind": "string",
+        "evaluation_ref": "Presence<string>",
+        "model": "string",
+        "owner": "string",
+        "scope": "string"
+      },
+      "meaning": "型が読めても資源capacity/実評価/資格には採用しない。"
+    },
+    {
+      "name": "CapacityCarrier",
+      "kind": "union",
+      "variants": [
+        "string",
+        "AbilityEvaluationReference"
+      ]
+    },
+    {
+      "name": "MeaningOwnerReference",
+      "kind": "record",
+      "fields": {
+        "owner": "string",
+        "reference": "string",
+        "resource": "string",
+        "scope": "string"
+      }
+    },
+    {
+      "name": "OwnerReferenceCarrier",
+      "kind": "union",
+      "variants": [
+        "MeaningOwnerReference",
+        "string"
+      ]
+    },
+    {
+      "name": "ObservationTarget",
+      "kind": "record",
+      "fields": {
+        "resource": "string",
+        "environment": "string",
+        "runtime_revision": "string",
+        "scope": "string",
+        "observation_revision": "string"
+      },
+      "meaning": "原212で提供された固定target tuple。任意欠落/shape/正式bindingは未閉包。"
+    },
+    {
+      "name": "PreviousObservation",
+      "kind": "record",
+      "fields": {
+        "revision": "string",
+        "environment": "string",
+        "version": "string",
+        "state": "string"
+      }
+    },
+    {
+      "name": "LogicalConnection",
+      "kind": "record",
+      "fields": {
+        "kind": "Presence<string>",
+        "identity": "Presence<string>",
+        "contract_revision": "Presence<string>",
+        "source": "Presence<string>",
+        "consumer": "Presence<string>",
+        "direction": "Presence<string>"
+      }
+    },
+    {
+      "name": "PhysicalSource",
+      "kind": "record",
+      "fields": {
+        "kind": "Presence<string>",
+        "environment": "Presence<string>",
+        "source": "Presence<string>",
+        "destination": "Presence<string>",
+        "protocol_ref": "Presence<string>",
+        "endpoint_ref": "Presence<string>",
+        "direction": "Presence<string>",
+        "purpose": "Presence<string>",
+        "security_boundary_ref": "Presence<string>",
+        "dependency_ref": "Presence<string>",
+        "identity": "Presence<string>",
+        "contract_revision": "Presence<string>",
+        "consumer": "Presence<string>"
+      },
+      "meaning": "logical-as-physicalの原反例を欠落memberと共に保持するcarrier。kindがphysicalである資格ではない。"
+    },
+    {
+      "name": "Failure",
+      "kind": "record",
+      "fields": {
+        "area": "FindingArea",
+        "field": "string",
+        "result": "FindingResult",
+        "return_owner": "ReturnOwner"
+      }
+    },
+    {
+      "name": "ProfileComparisonContract",
+      "kind": "record",
+      "fields": {
+        "input_roles": "list<ProfileField>",
+        "owner_by_role": "map<ProfileField,ReturnOwner>"
+      },
+      "meaning": "原L4対応contractの同2member投影。正式owner資格/registry/authorityを供給しない。"
+    },
+    {
+      "name": "Effects",
+      "kind": "record",
+      "fields": {
+        "actual_observation": "FalseEffect",
+        "actual_resource_change": "FalseEffect",
+        "actual_network": "FalseEffect",
+        "actual_persistence": "FalseEffect",
+        "actual_permission": "FalseEffect",
+        "actual_deployment": "FalseEffect",
+        "actual_evaluation": "FalseEffect",
+        "actual_acceptance": "FalseEffect",
+        "actual_implementation_ready": "FalseEffect"
+      }
+    },
+    {
+      "name": "EmptyDetails",
+      "kind": "record",
+      "fields": {}
+    },
+    {
+      "name": "PhysicalResults",
+      "kind": "record",
+      "fields": {
+        "kind": "FieldResult",
+        "environment": "FieldResult",
+        "source": "FieldResult",
+        "destination": "FieldResult",
+        "protocol_ref": "FieldResult",
+        "endpoint_ref": "FieldResult",
+        "direction": "FieldResult",
+        "purpose": "FieldResult",
+        "security_boundary_ref": "FieldResult",
+        "dependency_ref": "FieldResult"
+      }
+    },
+    {
+      "name": "PathDetails",
+      "kind": "record",
+      "fields": {
+        "physical_field_results": "PhysicalResults",
+        "logical_content_result": "FieldResult",
+        "retained_logical_connection": "LogicalConnection",
+        "retained_physical_path": "PhysicalSource"
+      }
+    },
+    {
+      "name": "ReturnedEvaluationReference",
+      "kind": "record",
+      "fields": {
+        "ref": "Presence<string>",
+        "return_owner": "ReturnOwner",
+        "state": "NotAppliedToResourceAttribute"
+      }
+    },
+    {
+      "name": "TargetResults",
+      "kind": "record",
+      "fields": {
+        "resource": "TargetResult",
+        "environment": "TargetResult",
+        "runtime_revision": "TargetResult",
+        "scope": "TargetResult",
+        "observation_revision": "TargetResult"
+      }
+    },
+    {
+      "name": "Profile_F01",
+      "kind": "record",
+      "fields": {
+        "resource_identity": "Presence<string>",
+        "role": "Presence<string>",
+        "environment": "Presence<string>",
+        "location": "Presence<string>",
+        "version": "Presence<string>",
+        "dependencies": "Presence<DependencyCarrier>",
+        "lifecycle": "Presence<string>",
+        "observation_source": "Presence<string>",
+        "observation_revision": "Presence<string>"
+      }
+    },
+    {
+      "name": "Profile_F02",
+      "kind": "record",
+      "fields": {
+        "environment_identity": "Presence<string>",
+        "resource_ref": "Presence<string>",
+        "config_ref": "Presence<string>",
+        "network_scope": "Presence<string>",
+        "credential_scope_ref": "Presence<string>",
+        "data_scope": "Presence<string>",
+        "version": "Presence<string>",
+        "authority_ref": "Presence<string>"
+      }
+    },
+    {
+      "name": "Profile_F03",
+      "kind": "record",
+      "fields": {
+        "storage_identity": "Presence<string>",
+        "storage_kind": "Presence<string>",
+        "state_class": "Presence<string>",
+        "owner": "Presence<string>",
+        "durability_ref": "Presence<string>",
+        "backup_ref": "Presence<string>",
+        "retention_ref": "Presence<string>",
+        "environment": "Presence<string>",
+        "confidentiality_ref": "Presence<string>",
+        "recovery_ref": "Presence<string>"
+      }
+    },
+    {
+      "name": "Profile_F04",
+      "kind": "record",
+      "fields": {
+        "runtime_identity": "Presence<string>",
+        "model": "Presence<string>",
+        "model_version": "Presence<string>",
+        "server": "Presence<string>",
+        "gpu_memory_needs_ref": "Presence<string>",
+        "concurrency": "Presence<QuantityCarrier>",
+        "latency_ref": "Presence<string>",
+        "capacity_ref": "Presence<CapacityCarrier>",
+        "health": "Presence<string>",
+        "endpoint_ref": "Presence<string>",
+        "environment": "Presence<string>",
+        "source": "Presence<string>",
+        "observation_revision": "Presence<string>"
+      }
+    },
+    {
+      "name": "Profile_B01",
+      "kind": "record",
+      "fields": {
+        "CORE": "Presence<OwnerReferenceCarrier>",
+        "INFRA": "Presence<OwnerReferenceCarrier>",
+        "OS": "Presence<OwnerReferenceCarrier>",
+        "SEC": "Presence<OwnerReferenceCarrier>",
+        "INT": "Presence<OwnerReferenceCarrier>",
+        "LABO": "Presence<OwnerReferenceCarrier>"
+      }
+    },
+    {
+      "name": "RuntimeDetails",
+      "kind": "record",
+      "fields": {
+        "original_scope_membership": "NullableBoolean",
+        "retained_runtime_profile": "Profile_F04",
+        "ability_evaluation_owner": "list<LogicalOwner>",
+        "returned_evaluation_reference": "Presence<ReturnedEvaluationReference>"
+      }
+    },
+    {
+      "name": "ProfileResults_F01",
+      "kind": "record",
+      "fields": {
+        "resource_identity": "FieldResult",
+        "role": "FieldResult",
+        "environment": "FieldResult",
+        "location": "FieldResult",
+        "version": "FieldResult",
+        "dependencies": "FieldResult",
+        "lifecycle": "FieldResult",
+        "observation_source": "FieldResult",
+        "observation_revision": "FieldResult"
+      }
+    },
+    {
+      "name": "Input_F01",
+      "kind": "record",
+      "fields": {
+        "kind": "RootF01",
+        "original_profile": "Profile_F01",
+        "submitted_profile": "Profile_F01",
+        "original_target": "ObservationTarget",
+        "observation_target": "ObservationTarget",
+        "original_observation_state": "ObservationState",
+        "original_previous_observation": "PreviousObservation",
+        "original_unobserved_fields": "list<string>",
+        "original_logical_connection": "LogicalConnection",
+        "submitted_logical_connection": "LogicalConnection",
+        "original_physical_path": "PhysicalSource",
+        "submitted_physical_path": "PhysicalSource",
+        "runtime_selected_in_original_scope": "NullableBoolean",
+        "forbidden_value_field_names": "list<string>",
+        "claims": "map<ClaimKey,boolean>"
+      }
+    },
+    {
+      "name": "Assessment_F01",
+      "kind": "record",
+      "fields": {
+        "profile_field_results": "ProfileResults_F01",
+        "observation_target_results": "TargetResults",
+        "retained_original_profile": "Profile_F01",
+        "retained_observation_state": "ObservationState",
+        "retained_previous_observation": "PreviousObservation",
+        "retained_unobserved_fields": "list<string>",
+        "candidate_state": "CandidateState",
+        "failure_reasons": "list<Failure>",
+        "failure_return_owners": "list<ReturnOwner>",
+        "details": "EmptyDetails",
+        "claim_results": "map<ClaimKey,ClaimResult>",
+        "effects": "Effects"
+      }
+    },
+    {
+      "name": "ProfileResults_F02",
+      "kind": "record",
+      "fields": {
+        "environment_identity": "FieldResult",
+        "resource_ref": "FieldResult",
+        "config_ref": "FieldResult",
+        "network_scope": "FieldResult",
+        "credential_scope_ref": "FieldResult",
+        "data_scope": "FieldResult",
+        "version": "FieldResult",
+        "authority_ref": "FieldResult"
+      }
+    },
+    {
+      "name": "Input_F02",
+      "kind": "record",
+      "fields": {
+        "kind": "RootF02",
+        "original_profile": "Profile_F02",
+        "submitted_profile": "Profile_F02",
+        "original_target": "ObservationTarget",
+        "observation_target": "ObservationTarget",
+        "original_observation_state": "ObservationState",
+        "original_previous_observation": "PreviousObservation",
+        "original_unobserved_fields": "list<string>",
+        "original_logical_connection": "LogicalConnection",
+        "submitted_logical_connection": "LogicalConnection",
+        "original_physical_path": "PhysicalSource",
+        "submitted_physical_path": "PhysicalSource",
+        "runtime_selected_in_original_scope": "NullableBoolean",
+        "forbidden_value_field_names": "list<string>",
+        "claims": "map<ClaimKey,boolean>"
+      }
+    },
+    {
+      "name": "Assessment_F02",
+      "kind": "record",
+      "fields": {
+        "profile_field_results": "ProfileResults_F02",
+        "observation_target_results": "TargetResults",
+        "retained_original_profile": "Profile_F02",
+        "retained_observation_state": "ObservationState",
+        "retained_previous_observation": "PreviousObservation",
+        "retained_unobserved_fields": "list<string>",
+        "candidate_state": "CandidateState",
+        "failure_reasons": "list<Failure>",
+        "failure_return_owners": "list<ReturnOwner>",
+        "details": "PathDetails",
+        "claim_results": "map<ClaimKey,ClaimResult>",
+        "effects": "Effects"
+      }
+    },
+    {
+      "name": "ProfileResults_F03",
+      "kind": "record",
+      "fields": {
+        "storage_identity": "FieldResult",
+        "storage_kind": "FieldResult",
+        "state_class": "FieldResult",
+        "owner": "FieldResult",
+        "durability_ref": "FieldResult",
+        "backup_ref": "FieldResult",
+        "retention_ref": "FieldResult",
+        "environment": "FieldResult",
+        "confidentiality_ref": "FieldResult",
+        "recovery_ref": "FieldResult"
+      }
+    },
+    {
+      "name": "Input_F03",
+      "kind": "record",
+      "fields": {
+        "kind": "RootF03",
+        "original_profile": "Profile_F03",
+        "submitted_profile": "Profile_F03",
+        "original_target": "ObservationTarget",
+        "observation_target": "ObservationTarget",
+        "original_observation_state": "ObservationState",
+        "original_previous_observation": "PreviousObservation",
+        "original_unobserved_fields": "list<string>",
+        "original_logical_connection": "LogicalConnection",
+        "submitted_logical_connection": "LogicalConnection",
+        "original_physical_path": "PhysicalSource",
+        "submitted_physical_path": "PhysicalSource",
+        "runtime_selected_in_original_scope": "NullableBoolean",
+        "forbidden_value_field_names": "list<string>",
+        "claims": "map<ClaimKey,boolean>"
+      }
+    },
+    {
+      "name": "Assessment_F03",
+      "kind": "record",
+      "fields": {
+        "profile_field_results": "ProfileResults_F03",
+        "observation_target_results": "TargetResults",
+        "retained_original_profile": "Profile_F03",
+        "retained_observation_state": "ObservationState",
+        "retained_previous_observation": "PreviousObservation",
+        "retained_unobserved_fields": "list<string>",
+        "candidate_state": "CandidateState",
+        "failure_reasons": "list<Failure>",
+        "failure_return_owners": "list<ReturnOwner>",
+        "details": "EmptyDetails",
+        "claim_results": "map<ClaimKey,ClaimResult>",
+        "effects": "Effects"
+      }
+    },
+    {
+      "name": "ProfileResults_F04",
+      "kind": "record",
+      "fields": {
+        "runtime_identity": "FieldResult",
+        "model": "FieldResult",
+        "model_version": "FieldResult",
+        "server": "FieldResult",
+        "gpu_memory_needs_ref": "FieldResult",
+        "concurrency": "FieldResult",
+        "latency_ref": "FieldResult",
+        "capacity_ref": "FieldResult",
+        "health": "FieldResult",
+        "endpoint_ref": "FieldResult",
+        "environment": "FieldResult",
+        "source": "FieldResult",
+        "observation_revision": "FieldResult"
+      }
+    },
+    {
+      "name": "Input_F04",
+      "kind": "record",
+      "fields": {
+        "kind": "RootF04",
+        "original_profile": "Profile_F04",
+        "submitted_profile": "Profile_F04",
+        "original_target": "ObservationTarget",
+        "observation_target": "ObservationTarget",
+        "original_observation_state": "ObservationState",
+        "original_previous_observation": "PreviousObservation",
+        "original_unobserved_fields": "list<string>",
+        "original_logical_connection": "LogicalConnection",
+        "submitted_logical_connection": "LogicalConnection",
+        "original_physical_path": "PhysicalSource",
+        "submitted_physical_path": "PhysicalSource",
+        "runtime_selected_in_original_scope": "NullableBoolean",
+        "forbidden_value_field_names": "list<string>",
+        "claims": "map<ClaimKey,boolean>"
+      }
+    },
+    {
+      "name": "Assessment_F04",
+      "kind": "record",
+      "fields": {
+        "profile_field_results": "ProfileResults_F04",
+        "observation_target_results": "TargetResults",
+        "retained_original_profile": "Profile_F04",
+        "retained_observation_state": "ObservationState",
+        "retained_previous_observation": "PreviousObservation",
+        "retained_unobserved_fields": "list<string>",
+        "candidate_state": "CandidateState",
+        "failure_reasons": "list<Failure>",
+        "failure_return_owners": "list<ReturnOwner>",
+        "details": "RuntimeDetails",
+        "claim_results": "map<ClaimKey,ClaimResult>",
+        "effects": "Effects"
+      }
+    },
+    {
+      "name": "ProfileResults_B01",
+      "kind": "record",
+      "fields": {
+        "CORE": "FieldResult",
+        "INFRA": "FieldResult",
+        "OS": "FieldResult",
+        "SEC": "FieldResult",
+        "INT": "FieldResult",
+        "LABO": "FieldResult"
+      }
+    },
+    {
+      "name": "Input_B01",
+      "kind": "record",
+      "fields": {
+        "kind": "RootB01",
+        "original_profile": "Profile_B01",
+        "submitted_profile": "Profile_B01",
+        "original_target": "ObservationTarget",
+        "observation_target": "ObservationTarget",
+        "original_observation_state": "ObservationState",
+        "original_previous_observation": "PreviousObservation",
+        "original_unobserved_fields": "list<string>",
+        "original_logical_connection": "LogicalConnection",
+        "submitted_logical_connection": "LogicalConnection",
+        "original_physical_path": "PhysicalSource",
+        "submitted_physical_path": "PhysicalSource",
+        "runtime_selected_in_original_scope": "NullableBoolean",
+        "forbidden_value_field_names": "list<string>",
+        "claims": "map<ClaimKey,boolean>"
+      }
+    },
+    {
+      "name": "Assessment_B01",
+      "kind": "record",
+      "fields": {
+        "profile_field_results": "ProfileResults_B01",
+        "observation_target_results": "TargetResults",
+        "retained_original_profile": "Profile_B01",
+        "retained_observation_state": "ObservationState",
+        "retained_previous_observation": "PreviousObservation",
+        "retained_unobserved_fields": "list<string>",
+        "candidate_state": "CandidateState",
+        "failure_reasons": "list<Failure>",
+        "failure_return_owners": "list<ReturnOwner>",
+        "details": "EmptyDetails",
+        "claim_results": "map<ClaimKey,ClaimResult>",
+        "effects": "Effects"
+      }
+    },
+    {
+      "name": "SourceSupplyGap",
+      "kind": "record",
+      "fields": {
+        "subject": "string",
+        "responsible_owner": "string",
+        "qualification_state": "NotEstablished",
+        "qualification_root": "Presence<string>",
+        "source_custody": "Presence<string>",
+        "remaining": "string"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "id": "INFRA001-F01",
+      "name": "assess_resource_topology",
+      "parameters": {
+        "input": "Input_F01",
+        "contract": "ProfileComparisonContract"
+      },
+      "signature": "assess_resource_topology(input: Input_F01, contract: ProfileComparisonContract) -> Assessment_F01",
+      "return_type": "Assessment_F01",
+      "reads": {
+        "input": [
+          "kind",
+          "original_profile",
+          "submitted_profile",
+          "original_target",
+          "observation_target",
+          "original_observation_state",
+          "original_previous_observation",
+          "original_unobserved_fields",
+          "original_logical_connection",
+          "submitted_logical_connection",
+          "original_physical_path",
+          "submitted_physical_path",
+          "runtime_selected_in_original_scope",
+          "forbidden_value_field_names",
+          "claims"
+        ],
+        "contract": [
+          "input_roles",
+          "owner_by_role"
+        ]
+      },
+      "returns": [
+        "profile_field_results",
+        "observation_target_results",
+        "retained_original_profile",
+        "retained_observation_state",
+        "retained_previous_observation",
+        "retained_unobserved_fields",
+        "candidate_state",
+        "failure_reasons",
+        "failure_return_owners",
+        "details",
+        "claim_results",
+        "effects"
+      ],
+      "preconditions": [
+        "input.kind=F01。contractは対応する原L4のinput_roles/owner_by_roleを同値投影した独立値。fixture内の対応を正式owner/source資格と仮定しない。",
+        "原212の宣言member/list/map/値域を対象とする。Presenceはraw key不在/null/空/値を保持。観測targetは原固定5tupleが提供される素材scope。",
+        "共通reference compareの当該kind分岐を型付きで具体化する。固定case/完成期待/外部registry/clock/APIは引数にしない。"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "postconditions": [
+        "原入力/過去観測/未観測field/非対象を不変保持。全12返却rootを値まで生成する。",
+        "failure_reasonsは発生順・重複保持。failure_return_ownersだけscalar順unique。claim単独拒否を実source資格/安全性の免除へ変換しない。",
+        "effectsの全9memberはfalse。"
+      ]
+    },
+    {
+      "id": "INFRA001-F02",
+      "name": "assess_environment_paths",
+      "parameters": {
+        "input": "Input_F02",
+        "contract": "ProfileComparisonContract"
+      },
+      "signature": "assess_environment_paths(input: Input_F02, contract: ProfileComparisonContract) -> Assessment_F02",
+      "return_type": "Assessment_F02",
+      "reads": {
+        "input": [
+          "kind",
+          "original_profile",
+          "submitted_profile",
+          "original_target",
+          "observation_target",
+          "original_observation_state",
+          "original_previous_observation",
+          "original_unobserved_fields",
+          "original_logical_connection",
+          "submitted_logical_connection",
+          "original_physical_path",
+          "submitted_physical_path",
+          "runtime_selected_in_original_scope",
+          "forbidden_value_field_names",
+          "claims"
+        ],
+        "contract": [
+          "input_roles",
+          "owner_by_role"
+        ]
+      },
+      "returns": [
+        "profile_field_results",
+        "observation_target_results",
+        "retained_original_profile",
+        "retained_observation_state",
+        "retained_previous_observation",
+        "retained_unobserved_fields",
+        "candidate_state",
+        "failure_reasons",
+        "failure_return_owners",
+        "details",
+        "claim_results",
+        "effects"
+      ],
+      "preconditions": [
+        "input.kind=F02。contractは対応する原L4のinput_roles/owner_by_roleを同値投影した独立値。fixture内の対応を正式owner/source資格と仮定しない。",
+        "原212の宣言member/list/map/値域を対象とする。Presenceはraw key不在/null/空/値を保持。観測targetは原固定5tupleが提供される素材scope。",
+        "共通reference compareの当該kind分岐を型付きで具体化する。固定case/完成期待/外部registry/clock/APIは引数にしない。"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "postconditions": [
+        "原入力/過去観測/未観測field/非対象を不変保持。全12返却rootを値まで生成する。",
+        "failure_reasonsは発生順・重複保持。failure_return_ownersだけscalar順unique。claim単独拒否を実source資格/安全性の免除へ変換しない。",
+        "effectsの全9memberはfalse。"
+      ]
+    },
+    {
+      "id": "INFRA001-F03",
+      "name": "assess_storage_attributes",
+      "parameters": {
+        "input": "Input_F03",
+        "contract": "ProfileComparisonContract"
+      },
+      "signature": "assess_storage_attributes(input: Input_F03, contract: ProfileComparisonContract) -> Assessment_F03",
+      "return_type": "Assessment_F03",
+      "reads": {
+        "input": [
+          "kind",
+          "original_profile",
+          "submitted_profile",
+          "original_target",
+          "observation_target",
+          "original_observation_state",
+          "original_previous_observation",
+          "original_unobserved_fields",
+          "original_logical_connection",
+          "submitted_logical_connection",
+          "original_physical_path",
+          "submitted_physical_path",
+          "runtime_selected_in_original_scope",
+          "forbidden_value_field_names",
+          "claims"
+        ],
+        "contract": [
+          "input_roles",
+          "owner_by_role"
+        ]
+      },
+      "returns": [
+        "profile_field_results",
+        "observation_target_results",
+        "retained_original_profile",
+        "retained_observation_state",
+        "retained_previous_observation",
+        "retained_unobserved_fields",
+        "candidate_state",
+        "failure_reasons",
+        "failure_return_owners",
+        "details",
+        "claim_results",
+        "effects"
+      ],
+      "preconditions": [
+        "input.kind=F03。contractは対応する原L4のinput_roles/owner_by_roleを同値投影した独立値。fixture内の対応を正式owner/source資格と仮定しない。",
+        "原212の宣言member/list/map/値域を対象とする。Presenceはraw key不在/null/空/値を保持。観測targetは原固定5tupleが提供される素材scope。",
+        "共通reference compareの当該kind分岐を型付きで具体化する。固定case/完成期待/外部registry/clock/APIは引数にしない。"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "postconditions": [
+        "原入力/過去観測/未観測field/非対象を不変保持。全12返却rootを値まで生成する。",
+        "failure_reasonsは発生順・重複保持。failure_return_ownersだけscalar順unique。claim単独拒否を実source資格/安全性の免除へ変換しない。",
+        "effectsの全9memberはfalse。"
+      ]
+    },
+    {
+      "id": "INFRA001-F04",
+      "name": "assess_scoped_model_runtime",
+      "parameters": {
+        "input": "Input_F04",
+        "contract": "ProfileComparisonContract"
+      },
+      "signature": "assess_scoped_model_runtime(input: Input_F04, contract: ProfileComparisonContract) -> Assessment_F04",
+      "return_type": "Assessment_F04",
+      "reads": {
+        "input": [
+          "kind",
+          "original_profile",
+          "submitted_profile",
+          "original_target",
+          "observation_target",
+          "original_observation_state",
+          "original_previous_observation",
+          "original_unobserved_fields",
+          "original_logical_connection",
+          "submitted_logical_connection",
+          "original_physical_path",
+          "submitted_physical_path",
+          "runtime_selected_in_original_scope",
+          "forbidden_value_field_names",
+          "claims"
+        ],
+        "contract": [
+          "input_roles",
+          "owner_by_role"
+        ]
+      },
+      "returns": [
+        "profile_field_results",
+        "observation_target_results",
+        "retained_original_profile",
+        "retained_observation_state",
+        "retained_previous_observation",
+        "retained_unobserved_fields",
+        "candidate_state",
+        "failure_reasons",
+        "failure_return_owners",
+        "details",
+        "claim_results",
+        "effects"
+      ],
+      "preconditions": [
+        "input.kind=F04。contractは対応する原L4のinput_roles/owner_by_roleを同値投影した独立値。fixture内の対応を正式owner/source資格と仮定しない。",
+        "原212の宣言member/list/map/値域を対象とする。Presenceはraw key不在/null/空/値を保持。観測targetは原固定5tupleが提供される素材scope。",
+        "共通reference compareの当該kind分岐を型付きで具体化する。固定case/完成期待/外部registry/clock/APIは引数にしない。"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "postconditions": [
+        "原入力/過去観測/未観測field/非対象を不変保持。全12返却rootを値まで生成する。",
+        "failure_reasonsは発生順・重複保持。failure_return_ownersだけscalar順unique。claim単独拒否を実source資格/安全性の免除へ変換しない。",
+        "effectsの全9memberはfalse。"
+      ]
+    },
+    {
+      "id": "INFRA001-B01",
+      "name": "assess_canonical_owner_boundary",
+      "parameters": {
+        "input": "Input_B01",
+        "contract": "ProfileComparisonContract"
+      },
+      "signature": "assess_canonical_owner_boundary(input: Input_B01, contract: ProfileComparisonContract) -> Assessment_B01",
+      "return_type": "Assessment_B01",
+      "reads": {
+        "input": [
+          "kind",
+          "original_profile",
+          "submitted_profile",
+          "original_target",
+          "observation_target",
+          "original_observation_state",
+          "original_previous_observation",
+          "original_unobserved_fields",
+          "original_logical_connection",
+          "submitted_logical_connection",
+          "original_physical_path",
+          "submitted_physical_path",
+          "runtime_selected_in_original_scope",
+          "forbidden_value_field_names",
+          "claims"
+        ],
+        "contract": [
+          "input_roles",
+          "owner_by_role"
+        ]
+      },
+      "returns": [
+        "profile_field_results",
+        "observation_target_results",
+        "retained_original_profile",
+        "retained_observation_state",
+        "retained_previous_observation",
+        "retained_unobserved_fields",
+        "candidate_state",
+        "failure_reasons",
+        "failure_return_owners",
+        "details",
+        "claim_results",
+        "effects"
+      ],
+      "preconditions": [
+        "input.kind=B01。contractは対応する原L4のinput_roles/owner_by_roleを同値投影した独立値。fixture内の対応を正式owner/source資格と仮定しない。",
+        "原212の宣言member/list/map/値域を対象とする。Presenceはraw key不在/null/空/値を保持。観測targetは原固定5tupleが提供される素材scope。",
+        "共通reference compareの当該kind分岐を型付きで具体化する。固定case/完成期待/外部registry/clock/APIは引数にしない。"
+      ],
+      "algorithm_ref": "/raw_comparison_reference",
+      "postconditions": [
+        "原入力/過去観測/未観測field/非対象を不変保持。全12返却rootを値まで生成する。",
+        "failure_reasonsは発生順・重複保持。failure_return_ownersだけscalar順unique。claim単独拒否を実source資格/安全性の免除へ変換しない。",
+        "effectsの全9memberはfalse。"
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-001-F01",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F01",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "対象資源のtopology",
+          "obligation": "resource identity/role/environment/location/version/dependencies/lifecycle stateと観測source/revisionを選択scopeへ束縛する。欠落や部分観測はunknownに保ち、以前のobservationをcurrentにしない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F01"
+        },
+        "input_roles": [
+          "resource_identity",
+          "role",
+          "environment",
+          "location",
+          "version",
+          "dependencies",
+          "lifecycle",
+          "observation_source",
+          "observation_revision"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "resource_identity": "resource-source-owner",
+          "role": "resource-source-owner",
+          "environment": "resource-source-owner",
+          "location": "resource-source-owner",
+          "version": "resource-source-owner",
+          "dependencies": "resource-source-owner",
+          "lifecycle": "resource-source-owner",
+          "observation_source": "resource-source-owner",
+          "observation_revision": "resource-source-owner"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "source_contract_sha256": "61281cf88dea631fe299caac90b2ea308ed2f8b8f8e6e5b4bc07e20944d638cf",
+      "function_ref": "INFRA001-F01"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-001-F02",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "環境とnetworkの区別",
+          "obligation": "環境identityごとにresource/config/network/credential scope/data/version/authorityを分離する。CONNECT論理接続と物理runtime pathを分け、後者のsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを参照する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02"
+        },
+        "input_roles": [
+          "environment_identity",
+          "resource_ref",
+          "config_ref",
+          "network_scope",
+          "credential_scope_ref",
+          "data_scope",
+          "version",
+          "authority_ref"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "environment_identity": "network-resource-owner",
+          "resource_ref": "network-resource-owner",
+          "config_ref": "network-resource-owner",
+          "network_scope": "network-resource-owner",
+          "credential_scope_ref": "HELIX-SECURITY",
+          "data_scope": "network-resource-owner",
+          "version": "network-resource-owner",
+          "authority_ref": "HELIX-SECURITY"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "source_contract_sha256": "3bf327e8fa7174c196a77a75f4e40ca52e672c877b336f99e392773be5c915dc",
+      "function_ref": "INFRA001-F02"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-001-F03",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F03",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F03",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F03",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F03",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "state/storage属性",
+          "obligation": "永続/一時stateを分けowner/durability/backup/retention/environment/confidentiality/recovery要求へ結ぶ。秘密値を通常stateの属性値にしない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F03"
+        },
+        "input_roles": [
+          "storage_identity",
+          "storage_kind",
+          "state_class",
+          "owner",
+          "durability_ref",
+          "backup_ref",
+          "retention_ref",
+          "environment",
+          "confidentiality_ref",
+          "recovery_ref"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "storage_identity": "state-owner",
+          "storage_kind": "state-owner",
+          "state_class": "state-owner",
+          "owner": "state-owner",
+          "durability_ref": "state-owner",
+          "backup_ref": "state-owner",
+          "retention_ref": "state-owner",
+          "environment": "state-owner",
+          "confidentiality_ref": "HELIX-SECURITY",
+          "recovery_ref": "state-owner"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "source_contract_sha256": "d80d5fafdc80315f619aa1f447a3843bc9be73c6390db1d6eea8ef203ddf82fb",
+      "function_ref": "INFRA001-F03"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-001-F04",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F04",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F04",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F04",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F04",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "scope内Model Runtime",
+          "obligation": "対象scopeに存在するModel Runtimeのmodel/version/server/GPU-memory needs/concurrency/latency/capacity/health/endpointをsource/revision付きで記録し未観測を埋めない。scope外runtimeを存在と仮定しない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F04"
+        },
+        "input_roles": [
+          "runtime_identity",
+          "model",
+          "model_version",
+          "server",
+          "gpu_memory_needs_ref",
+          "concurrency",
+          "latency_ref",
+          "capacity_ref",
+          "health",
+          "endpoint_ref",
+          "environment",
+          "source",
+          "observation_revision"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。",
+          "Model Runtimeのcapacity/latency等に能力評価を提出しても資源値へ採らず、原資源観測を保持する。資源内容差はresource source、能力評価の内容はINTELLIGENCE/LABOへ返し、評価から資源/権限/実成立を生成しない。"
+        ],
+        "owner_by_role": {
+          "runtime_identity": "resource-source-owner",
+          "model": "resource-source-owner",
+          "model_version": "resource-source-owner",
+          "server": "resource-source-owner",
+          "gpu_memory_needs_ref": "resource-source-owner",
+          "concurrency": "resource-source-owner",
+          "latency_ref": "resource-source-owner",
+          "capacity_ref": "resource-source-owner",
+          "health": "resource-source-owner",
+          "endpoint_ref": "resource-source-owner",
+          "environment": "resource-source-owner",
+          "source": "resource-source-owner",
+          "observation_revision": "resource-source-owner"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "source_contract_sha256": "fed9da847832993e85a1e8d09b9671ec97a2de6487d8323505bd98a4daf769ab",
+      "function_ref": "INFRA001-F04"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L5-001-B01",
+      "source_contract": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-B01",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-B01",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-B01",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-B01",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "正本ownerの分離",
+          "obligation": "COREは設計意味、INFRAはtarget/actual、OSはticket/work/change、SECはpolicy/authority、INTは配置案、LABOは評価を持つ。同状態を二重正本にしない。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-B01"
+        },
+        "input_roles": [
+          "CORE",
+          "INFRA",
+          "OS",
+          "SEC",
+          "INT",
+          "LABO"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "CORE": "CORE-owner",
+          "INFRA": "INFRA-owner",
+          "OS": "OS-owner",
+          "SEC": "SEC-owner",
+          "INT": "INT-owner",
+          "LABO": "LABO-owner"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "source_contract_sha256": "2b7525d73fb8cbed1fbb9d43948782786704431a33e6b13788ab49467411585e",
+      "function_ref": "INFRA001-B01"
+    }
+  ],
+  "trace": [
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-001-F01",
+      "l4": "HELIXINFRASTRUCTURE-L4-001-F01",
+      "l5": "HELIXINFRASTRUCTURE-L5-001-F01",
+      "l8": "HELIXINFRASTRUCTURE-L8-001-F01",
+      "l9": "HELIXINFRASTRUCTURE-L9-001-F01",
+      "l10": "HELIXINFRASTRUCTURE-L10-001-F01",
+      "source_case_ids": [
+        "I001-F01-CORRESPONDING",
+        "I001-F01-RESOURCE_IDENTITY-MISSING",
+        "I001-F01-RESOURCE_IDENTITY-UNKNOWN",
+        "I001-F01-RESOURCE_IDENTITY-SUBMITTED-FOREIGN",
+        "I001-F01-ROLE-MISSING",
+        "I001-F01-ROLE-UNKNOWN",
+        "I001-F01-ROLE-SUBMITTED-FOREIGN",
+        "I001-F01-ENVIRONMENT-MISSING",
+        "I001-F01-ENVIRONMENT-UNKNOWN",
+        "I001-F01-ENVIRONMENT-SUBMITTED-FOREIGN",
+        "I001-F01-LOCATION-MISSING",
+        "I001-F01-LOCATION-UNKNOWN",
+        "I001-F01-LOCATION-SUBMITTED-FOREIGN",
+        "I001-F01-VERSION-MISSING",
+        "I001-F01-VERSION-UNKNOWN",
+        "I001-F01-VERSION-SUBMITTED-FOREIGN",
+        "I001-F01-DEPENDENCIES-MISSING",
+        "I001-F01-DEPENDENCIES-UNKNOWN",
+        "I001-F01-DEPENDENCIES-SUBMITTED-FOREIGN",
+        "I001-F01-LIFECYCLE-MISSING",
+        "I001-F01-LIFECYCLE-UNKNOWN",
+        "I001-F01-LIFECYCLE-SUBMITTED-FOREIGN",
+        "I001-F01-OBSERVATION_SOURCE-MISSING",
+        "I001-F01-OBSERVATION_SOURCE-UNKNOWN",
+        "I001-F01-OBSERVATION_SOURCE-SUBMITTED-FOREIGN",
+        "I001-F01-OBSERVATION_REVISION-MISSING",
+        "I001-F01-OBSERVATION_REVISION-UNKNOWN",
+        "I001-F01-OBSERVATION_REVISION-SUBMITTED-FOREIGN",
+        "I001-F01-OBSERVATION-TARGET-RESOURCE-FOREIGN",
+        "I001-F01-OBSERVATION-TARGET-ENVIRONMENT-FOREIGN",
+        "I001-F01-OBSERVATION-TARGET-RUNTIME_REVISION-FOREIGN",
+        "I001-F01-OBSERVATION-TARGET-SCOPE-FOREIGN",
+        "I001-F01-OBSERVATION-TARGET-OBSERVATION_REVISION-FOREIGN",
+        "I001-F01-ENV-PRODUCTION",
+        "I001-F01-ENV-RECOVERY",
+        "I001-F01-OBSERVATION-NOT_OBSERVED",
+        "I001-F01-OBSERVATION-PARTIAL",
+        "I001-F01-OBSERVATION-STALE",
+        "I001-F01-OBSERVATION-SOURCE_UNREADABLE",
+        "I001-F01-CLAIM-OLD_OBSERVATION_CURRENT",
+        "I001-F01-CLAIM-MISSING_ATTRIBUTES_INFERRED"
+      ]
+    },
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-001-F02",
+      "l4": "HELIXINFRASTRUCTURE-L4-001-F02",
+      "l5": "HELIXINFRASTRUCTURE-L5-001-F02",
+      "l8": "HELIXINFRASTRUCTURE-L8-001-F02",
+      "l9": "HELIXINFRASTRUCTURE-L9-001-F02",
+      "l10": "HELIXINFRASTRUCTURE-L10-001-F02",
+      "source_case_ids": [
+        "I001-F02-CORRESPONDING",
+        "I001-F02-ENVIRONMENT_IDENTITY-MISSING",
+        "I001-F02-ENVIRONMENT_IDENTITY-UNKNOWN",
+        "I001-F02-ENVIRONMENT_IDENTITY-SUBMITTED-FOREIGN",
+        "I001-F02-RESOURCE_REF-MISSING",
+        "I001-F02-RESOURCE_REF-UNKNOWN",
+        "I001-F02-RESOURCE_REF-SUBMITTED-FOREIGN",
+        "I001-F02-CONFIG_REF-MISSING",
+        "I001-F02-CONFIG_REF-UNKNOWN",
+        "I001-F02-CONFIG_REF-SUBMITTED-FOREIGN",
+        "I001-F02-NETWORK_SCOPE-MISSING",
+        "I001-F02-NETWORK_SCOPE-UNKNOWN",
+        "I001-F02-NETWORK_SCOPE-SUBMITTED-FOREIGN",
+        "I001-F02-CREDENTIAL_SCOPE_REF-MISSING",
+        "I001-F02-CREDENTIAL_SCOPE_REF-UNKNOWN",
+        "I001-F02-CREDENTIAL_SCOPE_REF-SUBMITTED-FOREIGN",
+        "I001-F02-DATA_SCOPE-MISSING",
+        "I001-F02-DATA_SCOPE-UNKNOWN",
+        "I001-F02-DATA_SCOPE-SUBMITTED-FOREIGN",
+        "I001-F02-VERSION-MISSING",
+        "I001-F02-VERSION-UNKNOWN",
+        "I001-F02-VERSION-SUBMITTED-FOREIGN",
+        "I001-F02-AUTHORITY_REF-MISSING",
+        "I001-F02-AUTHORITY_REF-UNKNOWN",
+        "I001-F02-AUTHORITY_REF-SUBMITTED-FOREIGN",
+        "I001-F02-OBSERVATION-TARGET-RESOURCE-FOREIGN",
+        "I001-F02-OBSERVATION-TARGET-ENVIRONMENT-FOREIGN",
+        "I001-F02-OBSERVATION-TARGET-RUNTIME_REVISION-FOREIGN",
+        "I001-F02-OBSERVATION-TARGET-SCOPE-FOREIGN",
+        "I001-F02-OBSERVATION-TARGET-OBSERVATION_REVISION-FOREIGN",
+        "I001-F02-ENV-PRODUCTION",
+        "I001-F02-ENV-RECOVERY",
+        "I001-F02-PHYSICAL-KIND-MISSING",
+        "I001-F02-PHYSICAL-ENVIRONMENT-MISSING",
+        "I001-F02-PHYSICAL-SOURCE-MISSING",
+        "I001-F02-PHYSICAL-DESTINATION-MISSING",
+        "I001-F02-PHYSICAL-PROTOCOL_REF-MISSING",
+        "I001-F02-PHYSICAL-ENDPOINT_REF-MISSING",
+        "I001-F02-PHYSICAL-DIRECTION-MISSING",
+        "I001-F02-PHYSICAL-PURPOSE-MISSING",
+        "I001-F02-PHYSICAL-SECURITY_BOUNDARY_REF-MISSING",
+        "I001-F02-PHYSICAL-DEPENDENCY_REF-MISSING",
+        "I001-F02-LOGICAL-AS-PHYSICAL",
+        "I001-F02-CLAIM-OTHER_ENVIRONMENT_SUCCESS",
+        "I001-F02-CLAIM-LOGICAL_IS_PHYSICAL"
+      ]
+    },
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-001-F03",
+      "l4": "HELIXINFRASTRUCTURE-L4-001-F03",
+      "l5": "HELIXINFRASTRUCTURE-L5-001-F03",
+      "l8": "HELIXINFRASTRUCTURE-L8-001-F03",
+      "l9": "HELIXINFRASTRUCTURE-L9-001-F03",
+      "l10": "HELIXINFRASTRUCTURE-L10-001-F03",
+      "source_case_ids": [
+        "I001-F03-CORRESPONDING",
+        "I001-F03-STORAGE_IDENTITY-MISSING",
+        "I001-F03-STORAGE_IDENTITY-UNKNOWN",
+        "I001-F03-STORAGE_IDENTITY-SUBMITTED-FOREIGN",
+        "I001-F03-STORAGE_KIND-MISSING",
+        "I001-F03-STORAGE_KIND-UNKNOWN",
+        "I001-F03-STORAGE_KIND-SUBMITTED-FOREIGN",
+        "I001-F03-STATE_CLASS-MISSING",
+        "I001-F03-STATE_CLASS-UNKNOWN",
+        "I001-F03-STATE_CLASS-SUBMITTED-FOREIGN",
+        "I001-F03-OWNER-MISSING",
+        "I001-F03-OWNER-UNKNOWN",
+        "I001-F03-OWNER-SUBMITTED-FOREIGN",
+        "I001-F03-DURABILITY_REF-MISSING",
+        "I001-F03-DURABILITY_REF-UNKNOWN",
+        "I001-F03-DURABILITY_REF-SUBMITTED-FOREIGN",
+        "I001-F03-BACKUP_REF-MISSING",
+        "I001-F03-BACKUP_REF-UNKNOWN",
+        "I001-F03-BACKUP_REF-SUBMITTED-FOREIGN",
+        "I001-F03-RETENTION_REF-MISSING",
+        "I001-F03-RETENTION_REF-UNKNOWN",
+        "I001-F03-RETENTION_REF-SUBMITTED-FOREIGN",
+        "I001-F03-ENVIRONMENT-MISSING",
+        "I001-F03-ENVIRONMENT-UNKNOWN",
+        "I001-F03-ENVIRONMENT-SUBMITTED-FOREIGN",
+        "I001-F03-CONFIDENTIALITY_REF-MISSING",
+        "I001-F03-CONFIDENTIALITY_REF-UNKNOWN",
+        "I001-F03-CONFIDENTIALITY_REF-SUBMITTED-FOREIGN",
+        "I001-F03-RECOVERY_REF-MISSING",
+        "I001-F03-RECOVERY_REF-UNKNOWN",
+        "I001-F03-RECOVERY_REF-SUBMITTED-FOREIGN",
+        "I001-F03-OBSERVATION-TARGET-RESOURCE-FOREIGN",
+        "I001-F03-OBSERVATION-TARGET-ENVIRONMENT-FOREIGN",
+        "I001-F03-OBSERVATION-TARGET-RUNTIME_REVISION-FOREIGN",
+        "I001-F03-OBSERVATION-TARGET-SCOPE-FOREIGN",
+        "I001-F03-OBSERVATION-TARGET-OBSERVATION_REVISION-FOREIGN",
+        "I001-F03-STORAGE-QUEUE",
+        "I001-F03-STORAGE-ARTIFACT",
+        "I001-F03-STORAGE-EVIDENCE",
+        "I001-F03-STORAGE-CACHE",
+        "I001-F03-STORAGE-LOG",
+        "I001-F03-STORAGE-METRIC",
+        "I001-F03-STORAGE-MODEL-STORE",
+        "I001-F03-TEMPORARY-AS-PERSISTENT",
+        "I001-F03-FORBIDDEN-VALUE-FIELD-NAMES"
+      ]
+    },
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-001-F04",
+      "l4": "HELIXINFRASTRUCTURE-L4-001-F04",
+      "l5": "HELIXINFRASTRUCTURE-L5-001-F04",
+      "l8": "HELIXINFRASTRUCTURE-L8-001-F04",
+      "l9": "HELIXINFRASTRUCTURE-L9-001-F04",
+      "l10": "HELIXINFRASTRUCTURE-L10-001-F04",
+      "source_case_ids": [
+        "I001-F04-CORRESPONDING",
+        "I001-F04-RUNTIME_IDENTITY-MISSING",
+        "I001-F04-RUNTIME_IDENTITY-UNKNOWN",
+        "I001-F04-RUNTIME_IDENTITY-SUBMITTED-FOREIGN",
+        "I001-F04-MODEL-MISSING",
+        "I001-F04-MODEL-UNKNOWN",
+        "I001-F04-MODEL-SUBMITTED-FOREIGN",
+        "I001-F04-MODEL_VERSION-MISSING",
+        "I001-F04-MODEL_VERSION-UNKNOWN",
+        "I001-F04-MODEL_VERSION-SUBMITTED-FOREIGN",
+        "I001-F04-SERVER-MISSING",
+        "I001-F04-SERVER-UNKNOWN",
+        "I001-F04-SERVER-SUBMITTED-FOREIGN",
+        "I001-F04-GPU_MEMORY_NEEDS_REF-MISSING",
+        "I001-F04-GPU_MEMORY_NEEDS_REF-UNKNOWN",
+        "I001-F04-GPU_MEMORY_NEEDS_REF-SUBMITTED-FOREIGN",
+        "I001-F04-CONCURRENCY-MISSING",
+        "I001-F04-CONCURRENCY-UNKNOWN",
+        "I001-F04-CONCURRENCY-SUBMITTED-FOREIGN",
+        "I001-F04-LATENCY_REF-MISSING",
+        "I001-F04-LATENCY_REF-UNKNOWN",
+        "I001-F04-LATENCY_REF-SUBMITTED-FOREIGN",
+        "I001-F04-CAPACITY_REF-MISSING",
+        "I001-F04-CAPACITY_REF-UNKNOWN",
+        "I001-F04-CAPACITY_REF-SUBMITTED-FOREIGN",
+        "I001-F04-HEALTH-MISSING",
+        "I001-F04-HEALTH-UNKNOWN",
+        "I001-F04-HEALTH-SUBMITTED-FOREIGN",
+        "I001-F04-ENDPOINT_REF-MISSING",
+        "I001-F04-ENDPOINT_REF-UNKNOWN",
+        "I001-F04-ENDPOINT_REF-SUBMITTED-FOREIGN",
+        "I001-F04-ENVIRONMENT-MISSING",
+        "I001-F04-ENVIRONMENT-UNKNOWN",
+        "I001-F04-ENVIRONMENT-SUBMITTED-FOREIGN",
+        "I001-F04-SOURCE-MISSING",
+        "I001-F04-SOURCE-UNKNOWN",
+        "I001-F04-SOURCE-SUBMITTED-FOREIGN",
+        "I001-F04-OBSERVATION_REVISION-MISSING",
+        "I001-F04-OBSERVATION_REVISION-UNKNOWN",
+        "I001-F04-OBSERVATION_REVISION-SUBMITTED-FOREIGN",
+        "I001-F04-OBSERVATION-TARGET-RESOURCE-FOREIGN",
+        "I001-F04-OBSERVATION-TARGET-ENVIRONMENT-FOREIGN",
+        "I001-F04-OBSERVATION-TARGET-RUNTIME_REVISION-FOREIGN",
+        "I001-F04-OBSERVATION-TARGET-SCOPE-FOREIGN",
+        "I001-F04-OBSERVATION-TARGET-OBSERVATION_REVISION-FOREIGN",
+        "I001-F04-SCOPE-NOT-SELECTED",
+        "I001-F04-SCOPE-UNKNOWN",
+        "I001-F04-CLAIM-SCOPE_OUTSIDE_MODEL_REQUIRED",
+        "I001-F04-ABILITY-EVALUATION-AS-CAPACITY"
+      ]
+    },
+    {
+      "l3": "HELIXINFRASTRUCTURE-L3-001-B01",
+      "l4": "HELIXINFRASTRUCTURE-L4-001-B01",
+      "l5": "HELIXINFRASTRUCTURE-L5-001-B01",
+      "l8": "HELIXINFRASTRUCTURE-L8-001-B01",
+      "l9": "HELIXINFRASTRUCTURE-L9-001-B01",
+      "l10": "HELIXINFRASTRUCTURE-L10-001-B01",
+      "source_case_ids": [
+        "I001-B01-CORRESPONDING",
+        "I001-B01-CORE-MISSING",
+        "I001-B01-CORE-UNKNOWN",
+        "I001-B01-CORE-SUBMITTED-FOREIGN",
+        "I001-B01-INFRA-MISSING",
+        "I001-B01-INFRA-UNKNOWN",
+        "I001-B01-INFRA-SUBMITTED-FOREIGN",
+        "I001-B01-OS-MISSING",
+        "I001-B01-OS-UNKNOWN",
+        "I001-B01-OS-SUBMITTED-FOREIGN",
+        "I001-B01-SEC-MISSING",
+        "I001-B01-SEC-UNKNOWN",
+        "I001-B01-SEC-SUBMITTED-FOREIGN",
+        "I001-B01-INT-MISSING",
+        "I001-B01-INT-UNKNOWN",
+        "I001-B01-INT-SUBMITTED-FOREIGN",
+        "I001-B01-LABO-MISSING",
+        "I001-B01-LABO-UNKNOWN",
+        "I001-B01-LABO-SUBMITTED-FOREIGN",
+        "I001-B01-OBSERVATION-TARGET-RESOURCE-FOREIGN",
+        "I001-B01-OBSERVATION-TARGET-ENVIRONMENT-FOREIGN",
+        "I001-B01-OBSERVATION-TARGET-RUNTIME_REVISION-FOREIGN",
+        "I001-B01-OBSERVATION-TARGET-SCOPE-FOREIGN",
+        "I001-B01-OBSERVATION-TARGET-OBSERVATION_REVISION-FOREIGN",
+        "I001-B01-CORE-OWNED-BY-INFRA",
+        "I001-B01-OS-OWNED-BY-INFRA",
+        "I001-B01-SEC-OWNED-BY-INFRA",
+        "I001-B01-INT-OWNED-BY-INFRA",
+        "I001-B01-LABO-OWNED-BY-INFRA",
+        "I001-B01-CLAIM-RESOURCE_HEALTH_IS_PERMISSION",
+        "I001-B01-CLAIM-INFRA_OWNS_TICKET",
+        "I001-B01-CLAIM-INFRA_OWNS_ABILITY_EVALUATION"
+      ]
+    }
+  ],
+  "comparison_constants": {
+    "TARGET": [
+      "resource",
+      "environment",
+      "runtime_revision",
+      "scope",
+      "observation_revision"
+    ],
+    "PHYSICAL": [
+      "kind",
+      "environment",
+      "source",
+      "destination",
+      "protocol_ref",
+      "endpoint_ref",
+      "direction",
+      "purpose",
+      "security_boundary_ref",
+      "dependency_ref"
+    ],
+    "CLAIMS": [
+      "missing_attributes_inferred",
+      "other_environment_success",
+      "old_observation_current",
+      "logical_is_physical",
+      "temporary_is_persistent",
+      "raw_credential_copied",
+      "scope_outside_model_required",
+      "resource_health_is_permission",
+      "infra_owns_ticket",
+      "infra_owns_ability_evaluation"
+    ],
+    "EFFECTS": [
+      "actual_observation",
+      "actual_resource_change",
+      "actual_network",
+      "actual_persistence",
+      "actual_permission",
+      "actual_deployment",
+      "actual_evaluation",
+      "actual_acceptance",
+      "actual_implementation_ready"
+    ],
+    "OK": "content_corresponding_in_fixture"
+  },
+  "raw_comparison_reference": {
+    "scope": "5原契約/212固定素材の論理比較。Python様の純粋参照記法は全値導出を明示する数学的表現で、実装言語/ライブラリ/正式parserを採用しない。",
+    "constant_binding": "同candidate /comparison_constantsの閉じた比較定数。外部operation policy/registry/資格を暗黙供給しない。",
+    "primitive_operators": {
+      "CLONE": "JSON値のdeep copy。原member不在/null/空/値を維持。",
+      "==/!=": "JSON型を保持する完全値比較。boolとnumberを混同しない。",
+      "get": "欠落を比較用nullで観測するだけ。原値を書き換えず、missingはin判定で別判定。",
+      "sorted(set(owners))": "所見owner labelだけscalar順unique。資格を生成しない。"
+    },
+    "decisions": [
+      "profileはcontract.input_roles順に原key欠落→missing、原null→unknown、submitted不在/相反→conflict、同値→fixture対応。原情報不足を提出値で埋めない。",
+      "targetは固定5memberを別比較し相反をresource sourceへ返す。original_observation_stateがcurrent_in_fixture_only以外ならその原stateを所見へ、続いて原unobserved_fields順にnot_observedを出す。過去観測をcurrentへ上げない。",
+      "F02は物理10memberを別比較しsecurity_boundary_refだけSEC、他はnetwork ownerへ。physical kindが不明/logicalなら追加所見を保持。論理connectionはwhole比較でCONNECTへ別返却する。",
+      "F03はforbidden_value_field_namesが非空ならSECへの所見だけを追加し秘密値を取得/保存しない。state/storageの永続/一時/backup等は原属性比較へ残す。",
+      "B01は原role record内ownerがroleと違う時、提出同値でもwrong_canonical_ownerを原role ownerへ返す。型/内容一致から本物のowner資格を生成しない。",
+      "F04はscope membership Noneに原source不足を併記。能力評価capacityは元資源値を保持してINTELLIGENCE/LABOへ別返却する。scope falseはprofile結果/原値を保持したまま所見列を空にしてnot_selected_unobserved。これは原固定素材の非対象診断選択であり安全性/資格の一般免除ではない。None優先、次に能力評価のheld状態を保持する。",
+      "claim_resultsは固定claim順でraw trueだけrejected、他none。claimの拒否だけから追加raw不足や実作用を捏造しない。failure_reasonsはprofile→target→観測→kind固有の順、owner列だけscalar順unique。",
+      "returned_evaluation_reference.refはcapacity_ref内evaluation_refが提供された場合だけ同じJSON値を複写する。元key absentなら返却keyもabsent、明示nullならnull。getのnull観測でpresenceを潰さない。原212には当該欠落例がなく、一般域の証明へ拡大しない。"
+    ],
+    "steps": [
+      "def compare(raw,contract):",
+      " kind=raw['kind'];original=raw['original_profile'];submitted=raw['submitted_profile'];failures=[]",
+      " def emit(area,field,result,owner):failures.append({'area':area,'field':field,'result':result,'return_owner':owner})",
+      " def fields(left,right,names,area,owners):",
+      "  out={}",
+      "  for name in names:",
+      "   result='missing_original_information' if name not in left else 'unknown_original_information' if left[name] is None else 'submitted_content_conflict' if name not in right or right[name]!=left[name] else OK",
+      "   out[name]=result",
+      "   if result!=OK:emit(area,name,result,owners[name] if isinstance(owners,dict) else owners)",
+      "  return out",
+      " profile=fields(original,submitted,contract['input_roles'],'profile',contract['owner_by_role'])",
+      " target={}",
+      " for field in TARGET:",
+      "  target[field]=OK if raw['observation_target'].get(field)==raw['original_target'].get(field) else 'foreign_observation_target'",
+      "  if target[field]!=OK:emit('observation_target',field,target[field],'resource-source-owner')",
+      " if raw['original_observation_state']!='current_in_fixture_only':emit('observation_state','state',raw['original_observation_state'],'resource-source-owner')",
+      " for name in raw['original_unobserved_fields']:emit('unobserved_fields',name,'not_observed','resource-source-owner')",
+      " details={}",
+      " if kind=='F02':",
+      "  physical=fields(raw['original_physical_path'],raw['submitted_physical_path'],PHYSICAL,'physical_path',{name:'HELIX-SECURITY' if name=='security_boundary_ref' else 'network-resource-owner' for name in PHYSICAL})",
+      "  if raw['original_physical_path'].get('kind')!='physical_runtime_path':emit('physical_kind','kind','logical_or_unknown_not_physical','network-resource-owner')",
+      "  logical=OK if raw['original_logical_connection']==raw['submitted_logical_connection'] else 'submitted_content_conflict'",
+      "  if logical!=OK:emit('logical_connection','content',logical,'CONNECT-owner')",
+      "  details={'physical_field_results':physical,'logical_content_result':logical,'retained_logical_connection':CLONE(raw['original_logical_connection']),'retained_physical_path':CLONE(raw['original_physical_path'])}",
+      " if kind=='B01':",
+      "  for role in contract['input_roles']:",
+      "   record=original.get(role)",
+      "   if isinstance(record,dict) and record.get('owner')!=role:emit('meaning_owner',role,'wrong_canonical_owner',contract['owner_by_role'][role])",
+      " if kind=='F03' and raw['forbidden_value_field_names']:emit('storage_value_boundary','field_names','forbidden_secret_value_fields','HELIX-SECURITY')",
+      " if kind=='F04':",
+      "  details={'original_scope_membership':raw['runtime_selected_in_original_scope'],'retained_runtime_profile':CLONE(original),'ability_evaluation_owner':['INT','LABO']}",
+      "  if raw['runtime_selected_in_original_scope'] is None:emit('original_scope','runtime_membership','unknown_original_scope_membership','resource-source-owner')",
+      "  cap=submitted.get('capacity_ref');ability=isinstance(cap,dict) and cap.get('kind')=='ability_evaluation'",
+      "  if ability:",
+      "   emit('runtime_attribute_kind','capacity_ref','ability_evaluation_not_resource_attribute','INTELLIGENCE/LABO')",
+      "   details['returned_evaluation_reference']={'return_owner':'INTELLIGENCE/LABO','state':'not_applied_to_resource_attribute'}",
+      "   if 'evaluation_ref' in cap:details['returned_evaluation_reference']['ref']=CLONE(cap['evaluation_ref'])",
+      "  if raw['runtime_selected_in_original_scope'] is False:failures=[]",
+      " state='held_with_original_unknown' if failures else 'content_corresponding_requires_actual_source_qualification'",
+      " if kind=='F04':",
+      "  if raw['runtime_selected_in_original_scope'] is False:state='not_selected_unobserved'",
+      "  elif raw['runtime_selected_in_original_scope'] is None:state='unknown_original_scope_membership'",
+      "  elif ability:state='held_with_original_resource_values'",
+      " return {'profile_field_results':profile,'observation_target_results':target,'retained_original_profile':CLONE(original),'retained_observation_state':raw['original_observation_state'],'retained_previous_observation':CLONE(raw['original_previous_observation']),'retained_unobserved_fields':CLONE(raw['original_unobserved_fields']),'candidate_state':state,'failure_reasons':failures,'failure_return_owners':sorted(set(f['return_owner'] for f in failures)),'details':details,'claim_results':{k:'rejected' if raw['claims'].get(k) is True else 'none' for k in CLAIMS},'effects':dict.fromkeys(EFFECTS,False)}"
+    ],
+    "limits": [
+      "未見の複合欠陥/非対象と安全trigger併存/任意shape/未知claim/target欠落の一般返却は原212で未実証。既存上流義務は別に保持し、実資格/観測/権限/全域閉包へ上げない。"
+    ]
+  },
+  "unknown_key_boundary": "本型は原212で読んだ宣言memberの論理carrier。wire schemaのunknown-key受理/拒否を採択しない。原packet bytes/全decoded値をL8で保持し、型からsource資格を生成しない。"
+}
