@@ -10011,12 +10011,12 @@
               "empty"
             ],
             "type": {
-              "kind": "map",
-              "key_type": "opaque_string",
-              "values": {
-                "kind": "union",
-                "variants": [
-                  {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "map",
+                  "key_type": "opaque_string",
+                  "values": {
                     "kind": "record",
                     "fields": {
                       "revision": {
@@ -10149,15 +10149,36 @@
                     },
                     "additional_properties": "closed_declared_carrier"
                   },
-                  {
-                    "kind": "string"
+                  "meaning": "各opaque selection IDをrevision/scope/authority結果recordへ写す。state/valueも通常のopaque IDとして使える。"
+                },
+                {
+                  "kind": "record",
+                  "fields": {
+                    "state": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string",
+                        "domain": [
+                          "unknown"
+                        ]
+                      }
+                    },
+                    "value": {
+                      "presence_states": [
+                        "null"
+                      ],
+                      "type": {
+                        "kind": "null"
+                      }
+                    }
                   },
-                  {
-                    "kind": "null"
-                  }
-                ]
-              },
-              "meaning": "keyはopaque subject/node/owner/selection ID。固定fixture名をfield宣言にしない。"
+                  "additional_properties": "closed_declared_carrier",
+                  "meaning": "selection宣言資格が不明な場合だけのunknown封筒。ID名でvariantを選ばず、値のrecord形とstate domainで区別する。"
+                }
+              ],
+              "variant_boundary": "mapの全値はselection結果record。unknown封筒の値はstate文字列とnullなので、両variantは重ならない。"
             }
           },
           "selection_set_result": {
@@ -11714,6 +11735,10 @@
       "official_comment_id": 6182214948,
       "language": "人間向けの責務/構造/scopeを日本語化し、L5/L8共有scopeを統一。",
       "state_domains": "正式計算の到達stateへ論理型domainを訂正。関数定義/全845typedIO/原sourceは不変。"
+    },
+    "round3_minor": {
+      "official_comment_id": 6182317039,
+      "change": "B01 selection_required_inputsをopaque-ID→閉じた結果record mapと、state=unknown/value=nullの閉じた封筒のdisjoint unionへ分ける。元関数/845入出力と上流は不変。"
     }
   }
 }
