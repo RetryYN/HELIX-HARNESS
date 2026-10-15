@@ -3753,7 +3753,7 @@
   "design_admission": {
     "revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
     "pr": 3179,
-    "meaning": "candidate-local L4/L9 bytesはこの統合revisionと完全一致。source_main/source_pinsは固定した原資料の証拠として保持する。"
+    "meaning": "PR3179で統合されたmain正本のL4/L9 bytesに一致する。source_main/source_pinsは固定した原資料の証拠として保持する。"
   },
   "admitted_pair_source_binding": {
     "admitted_source_revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
@@ -3761,6 +3761,6 @@
     "l4_sha256": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
     "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
     "l9_sha256": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
-    "classification": "admitted main 405 のL4/L9 bytes。source_main/a451の歴史pinおよびL3/L10承認wholeとは別の役割。"
+    "classification": "main統合revision 40517c80ec55dcaf5564d7628c9c48c38669d7cd のL4/L9 bytes。source_main/a451a40d013df12872a3d4f5f837a2ec5f0998a8の歴史pinおよびL3/L10承認wholeとは別の役割。"
   }
 }

@@ -27780,7 +27780,7 @@
         }
       },
       "independent_expected_sha256": "5e3715d2d3ec2c7514529345067be404d770faae7c9624dccee80ebf71e1f6d6",
-      "expected_basis": "L3/L10-B01の別lifecycle再定義禁止義務と当該原L9 packet raw/expected whole。",
+      "expected_basis": "L3/L10-B01の別lifecycle再定義禁止義務と基準caseの原L9 packet raw/expected whole。",
       "input_value_paths": [
         "/original_common_references/calling_contract",
         "/submitted_common_references/calling_contract"
@@ -30028,7 +30028,7 @@
         ]
       },
       "independent_expected_sha256": "ba31e2380306000291673649dc6eedbf7194dbd37a4252eb70e46bba8c7d21d4",
-      "expected_basis": "L3/L4/L10-F02の宣言range binding義務と当該原L9 packet raw/expected whole。",
+      "expected_basis": "L3/L4/L10-F02の宣言range binding義務と基準caseの原L9 packet raw/expected whole。",
       "input_value_paths": [
         "/original_range_meaning/scope",
         "/submitted_range_meaning/scope"
@@ -30271,7 +30271,7 @@
         ]
       },
       "independent_expected_sha256": "0fd4876cb9ae5a707e6d1e93b4e4b440c9708f6a500b5308f5f766d0dda7babf",
-      "expected_basis": "L3/L4/L10-F02の宣言range binding義務と当該原L9 packet raw/expected whole。",
+      "expected_basis": "L3/L4/L10-F02の宣言range binding義務と基準caseの原L9 packet raw/expected whole。",
       "input_value_paths": [
         "/original_range_meaning/owner",
         "/submitted_range_meaning/owner"
@@ -35798,14 +35798,538 @@
       "execution_state": "not_executed",
       "effect": "none",
       "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+    },
+    {
+      "probe_id": "B028-R5-B01-ORIGINAL-FORBIDDEN-SUBMITTED-MARKER",
+      "function_ref": "HELIXBRAIN-L5-028-B01",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-028-B01",
+        "l4": "HELIXBRAIN-L4-028-B01",
+        "l9": "HELIXBRAIN-L9-028-B01",
+        "l10": "HELIXBRAIN-L10-028-B01",
+        "l9_case_id": "B028-B01-CURRENT-WITH-UNFINISHED-COMMON-OBLIGATION",
+        "l9_case_sha256": "a7d176b84971fa3d63b5d074777c5b4367a1577573b18a21e0714a290968be7a"
+      },
+      "source_packet_ref": {
+        "identity": "SOURCE-B028-R5-B01-ORIGINAL-FORBIDDEN-SUBMITTED-MARKER",
+        "revision": "fixture-content-86eb1c1082884d6737bf06ac59b5e672637555a0192f80da0179edc09ee8a060",
+        "scope": "KNOWLEDGE-SCOPE-V",
+        "owner": "synthetic-fixture-owner",
+        "raw_sha256": "86eb1c1082884d6737bf06ac59b5e672637555a0192f80da0179edc09ee8a060",
+        "derived_from_case": "B028-B01-CURRENT-WITH-UNFINISHED-COMMON-OBLIGATION"
+      },
+      "baseline_case_id": "B028-B01-CURRENT-WITH-UNFINISHED-COMMON-OBLIGATION",
+      "baseline_source_packet_sha256": "d4be6eb636c2f2a06aef98a5e4a694473937ebd7b850e4d179b340ef07eefba2",
+      "baseline_expected_sha256": "248929ad946ce53a67073fa8fb640bbf38d2408c30651964ca5b4de610597b71",
+      "raw_utf8": "{\"claims\":{\"BRAIN_exchange_redefinition\":false,\"current_discharges_common_obligation\":false,\"descriptor_match_call_success\":false,\"descriptor_match_distribution_success\":false,\"descriptor_match_registration_success\":false,\"descriptor_match_rollback_success\":false},\"descriptor\":{\"artifact_version\":\"artifact-A7\",\"compatibility_range_ref\":{\"identity\":\"RANGE-P\",\"revision\":\"range-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"contract_version\":\"contract-C3\",\"dependency_identity_versions\":[{\"identity\":\"DEPENDENCY-D\",\"version\":\"dependency-D4\"}],\"identity\":\"PACK-P\",\"kind\":\"knowledge-capability\",\"verification_scope\":\"KNOWLEDGE-SCOPE-V\"},\"knowledge\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"knowledge-r2\",\"state\":\"current\",\"version\":\"knowledge-K2\"},\"original_common_references\":{\"calling_contract\":\"HARNESS-L2-011@common-contract-r2\",\"exchange_update\":\"BRAIN-LOCAL-EXCHANGE\"},\"original_owners\":{\"actual_operation\":\"synthetic-operation-owner\",\"common_contract\":\"HARNESS\",\"knowledge_revision_state\":\"BRAIN008\"},\"original_unfinished_obligation\":{\"descriptor_identity\":\"PACK-P\",\"identity\":\"UNFINISHED-COMMON-OBLIGATION-P\",\"knowledge_revision\":\"knowledge-r2\",\"owner\":\"HARNESS\",\"revision\":\"obligation-r3\",\"scope\":\"KNOWLEDGE-SCOPE-V\",\"state\":\"unfinished_in_fixture\"},\"submitted_common_references\":{\"calling_contract\":\"HARNESS-L2-011@common-contract-r2\",\"exchange_update\":\"TBD\"},\"submitted_owners\":{\"actual_operation\":\"synthetic-operation-owner\",\"common_contract\":\"HARNESS\",\"knowledge_revision_state\":\"BRAIN008\"},\"submitted_unfinished_obligation\":{\"descriptor_identity\":\"PACK-P\",\"identity\":\"UNFINISHED-COMMON-OBLIGATION-P\",\"knowledge_revision\":\"knowledge-r2\",\"owner\":\"HARNESS\",\"revision\":\"obligation-r3\",\"scope\":\"KNOWLEDGE-SCOPE-V\",\"state\":\"unfinished_in_fixture\"}}",
+      "raw_sha256": "86eb1c1082884d6737bf06ac59b5e672637555a0192f80da0179edc09ee8a060",
+      "raw_patch": [
+        {
+          "op": "replace",
+          "path": "/original_common_references/exchange_update",
+          "value": "BRAIN-LOCAL-EXCHANGE"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_common_references/exchange_update",
+          "value": "TBD"
+        }
+      ],
+      "mutation": "版・契約・scopeの独立境界反例",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/common_reference_results/exchange_update",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_common_references/exchange_update",
+          "value": "BRAIN-LOCAL-EXCHANGE"
+        }
+      ],
+      "independent_expected_sha256": "da97a850d3187677f05ecb9420de367b372f0bf497f82d0006df337dfa58344c",
+      "independent_expected": {
+        "common_reference_results": {
+          "exchange_update": "content_conflict",
+          "calling_contract": "content_corresponding_in_fixture"
+        },
+        "owner_results": {
+          "knowledge_revision_state": "content_corresponding_in_fixture",
+          "common_contract": "content_corresponding_in_fixture",
+          "actual_operation": "content_corresponding_in_fixture"
+        },
+        "obligation_result": "content_corresponding_in_fixture",
+        "retained_common_references": {
+          "exchange_update": "BRAIN-LOCAL-EXCHANGE",
+          "calling_contract": "HARNESS-L2-011@common-contract-r2"
+        },
+        "retained_owners": {
+          "knowledge_revision_state": "BRAIN008",
+          "common_contract": "HARNESS",
+          "actual_operation": "synthetic-operation-owner"
+        },
+        "retained_unfinished_obligation": {
+          "identity": "UNFINISHED-COMMON-OBLIGATION-P",
+          "revision": "obligation-r3",
+          "descriptor_identity": "PACK-P",
+          "knowledge_revision": "knowledge-r2",
+          "scope": "KNOWLEDGE-SCOPE-V",
+          "owner": "HARNESS",
+          "state": "unfinished_in_fixture"
+        },
+        "submitted_unfinished_obligation": {
+          "identity": "UNFINISHED-COMMON-OBLIGATION-P",
+          "revision": "obligation-r3",
+          "descriptor_identity": "PACK-P",
+          "knowledge_revision": "knowledge-r2",
+          "scope": "KNOWLEDGE-SCOPE-V",
+          "owner": "HARNESS",
+          "state": "unfinished_in_fixture"
+        },
+        "knowledge_state": "current",
+        "common_obligation_state": "unfinished_in_fixture",
+        "actual_operation_state": "not_established",
+        "return_owners": {
+          "common_conditions": "HARNESS",
+          "knowledge_revision_state": "BRAIN008",
+          "actual_operation": "synthetic-operation-owner"
+        },
+        "claim_results": {
+          "BRAIN_exchange_redefinition": "none",
+          "descriptor_match_rollback_success": "none",
+          "current_discharges_common_obligation": "none",
+          "descriptor_match_call_success": "none",
+          "descriptor_match_registration_success": "none",
+          "descriptor_match_distribution_success": "none"
+        },
+        "effects": {
+          "actual_call": false,
+          "actual_registration": false,
+          "actual_distribution": false,
+          "actual_rollback": false,
+          "actual_knowledge_adoption": false,
+          "actual_obligation_discharge": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_basis": "元共通契約の禁止再定義と提出markerは別条件。提出markerによるunknownを元側の既知禁止literalがconflictへ上げる。両側対称rawのみで判定の観測不能を一般化しない。",
+      "input_value_paths": [
+        "/original_common_references/exchange_update",
+        "/submitted_common_references/exchange_update"
+      ],
+      "output_value_paths": [
+        "/common_reference_results/exchange_update",
+        "/retained_common_references/exchange_update"
+      ],
+      "execution_state": "not_executed",
+      "effect": "none",
+      "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+    },
+    {
+      "probe_id": "B028-R5-F01-ORIGINAL-VERSION-TARGET-CONFLICT",
+      "function_ref": "HELIXBRAIN-L5-028-F01",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-028-F01",
+        "l4": "HELIXBRAIN-L4-028-F01",
+        "l9": "HELIXBRAIN-L9-028-F01",
+        "l10": "HELIXBRAIN-L10-028-F01",
+        "l9_case_id": "B028-F01-DISTINCT-ALL-VERSION-AXES",
+        "l9_case_sha256": "8487bb1897a635384515c23cf336a9dd746d1217fea6f40000fd76e503b722bd"
+      },
+      "source_packet_ref": {
+        "identity": "SOURCE-B028-R5-F01-ORIGINAL-VERSION-TARGET-CONFLICT",
+        "revision": "fixture-content-d104ab2963560bb8ab9a796c2fe72428795e9ffdb4c5b331bcc44bd392850528",
+        "scope": "KNOWLEDGE-SCOPE-V",
+        "owner": "synthetic-fixture-owner",
+        "raw_sha256": "d104ab2963560bb8ab9a796c2fe72428795e9ffdb4c5b331bcc44bd392850528",
+        "derived_from_case": "B028-F01-DISTINCT-ALL-VERSION-AXES"
+      },
+      "baseline_case_id": "B028-F01-DISTINCT-ALL-VERSION-AXES",
+      "baseline_source_packet_sha256": "8f33e687c532b1ffdda0438c32b026c444d0f09eccb921610691ceae368edb14",
+      "baseline_expected_sha256": "aa6362a98f9ed498645237b4b37fd7a0b5684461d754b08560bd8e8a07b25004",
+      "raw_utf8": "{\"claims\":{\"knowledge_as_artifact\":false,\"knowledge_replaces_descriptor\":false,\"target_as_contract\":false},\"original_descriptor\":{\"artifact_version\":\"artifact-A7\",\"compatibility_range_ref\":{\"identity\":\"RANGE-P\",\"revision\":\"range-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"contract_version\":\"contract-C3\",\"dependency_identity_versions\":[{\"identity\":\"DEPENDENCY-D\",\"version\":\"dependency-D4\"}],\"identity\":\"PACK-P\",\"kind\":\"knowledge-capability\",\"verification_scope\":\"KNOWLEDGE-SCOPE-V\"},\"original_knowledge\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"knowledge-r2\",\"state\":\"current\",\"version\":\"1.0\"},\"submitted_descriptor\":{\"artifact_version\":\"artifact-A7\",\"compatibility_range_ref\":{\"identity\":\"RANGE-P\",\"revision\":\"range-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"contract_version\":\"contract-C3\",\"dependency_identity_versions\":[{\"identity\":\"DEPENDENCY-D\",\"version\":\"dependency-D4\"}],\"identity\":\"PACK-P\",\"kind\":\"knowledge-capability\",\"verification_scope\":\"KNOWLEDGE-SCOPE-V\"},\"submitted_knowledge\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"knowledge-r2\",\"state\":\"current\",\"version\":\"knowledge-K2\"},\"unaffected_reference_Q\":{\"identity\":\"UNRELATED-REFERENCE-Q\",\"revision\":\"reference-q1\",\"scope\":\"OTHER-REFERENCE-SCOPE\",\"state\":\"valid_reference_in_fixture\"},\"version_target\":\"1.0\"}",
+      "raw_sha256": "d104ab2963560bb8ab9a796c2fe72428795e9ffdb4c5b331bcc44bd392850528",
+      "raw_patch": [
+        {
+          "op": "replace",
+          "path": "/original_knowledge/version",
+          "value": "1.0"
+        }
+      ],
+      "mutation": "版・契約・scopeの独立境界反例",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/knowledge_results/version",
+          "value": "content_conflict"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_knowledge/version",
+          "value": "1.0"
+        }
+      ],
+      "independent_expected_sha256": "f3cca875a903cfcf59aaf8f06da1513c0e0c752bc2a8b1f3c841c880ba32d794",
+      "independent_expected": {
+        "knowledge_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "version": "content_conflict",
+          "state": "content_corresponding_in_fixture"
+        },
+        "descriptor_results": {
+          "identity": "content_corresponding_in_fixture",
+          "kind": "content_corresponding_in_fixture",
+          "contract_version": "content_corresponding_in_fixture",
+          "artifact_version": "content_corresponding_in_fixture",
+          "dependency_identity_versions": "content_corresponding_in_fixture",
+          "compatibility_range_ref": "content_corresponding_in_fixture",
+          "verification_scope": "content_corresponding_in_fixture"
+        },
+        "retained_knowledge": {
+          "identity": "KNOWLEDGE-P",
+          "revision": "knowledge-r2",
+          "version": "1.0",
+          "state": "current"
+        },
+        "submitted_knowledge": {
+          "identity": "KNOWLEDGE-P",
+          "revision": "knowledge-r2",
+          "version": "knowledge-K2",
+          "state": "current"
+        },
+        "retained_descriptor": {
+          "identity": "PACK-P",
+          "kind": "knowledge-capability",
+          "contract_version": "contract-C3",
+          "artifact_version": "artifact-A7",
+          "dependency_identity_versions": [
+            {
+              "identity": "DEPENDENCY-D",
+              "version": "dependency-D4"
+            }
+          ],
+          "compatibility_range_ref": {
+            "identity": "RANGE-P",
+            "revision": "range-r1",
+            "scope": "KNOWLEDGE-SCOPE-V"
+          },
+          "verification_scope": "KNOWLEDGE-SCOPE-V"
+        },
+        "submitted_descriptor": {
+          "identity": "PACK-P",
+          "kind": "knowledge-capability",
+          "contract_version": "contract-C3",
+          "artifact_version": "artifact-A7",
+          "dependency_identity_versions": [
+            {
+              "identity": "DEPENDENCY-D",
+              "version": "dependency-D4"
+            }
+          ],
+          "compatibility_range_ref": {
+            "identity": "RANGE-P",
+            "revision": "range-r1",
+            "scope": "KNOWLEDGE-SCOPE-V"
+          },
+          "verification_scope": "KNOWLEDGE-SCOPE-V"
+        },
+        "unknown_original_axes": [],
+        "return_owners": {
+          "knowledge_axes": "BRAIN008",
+          "descriptor_axes": "HARNESS"
+        },
+        "unaffected_reference_Q": {
+          "identity": "UNRELATED-REFERENCE-Q",
+          "revision": "reference-q1",
+          "scope": "OTHER-REFERENCE-SCOPE",
+          "state": "valid_reference_in_fixture"
+        },
+        "claim_results": {
+          "knowledge_as_artifact": "none",
+          "target_as_contract": "none",
+          "knowledge_replaces_descriptor": "none"
+        },
+        "actual_reference_state": "not_established",
+        "effects": {
+          "actual_call": false,
+          "actual_registration": false,
+          "actual_distribution": false,
+          "actual_rollback": false,
+          "actual_knowledge_adoption": false,
+          "actual_obligation_discharge": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        }
+      },
+      "expected_basis": "版対象1.0を原knowledge.versionへ転写しても、原/提出knowledge版の不一致が優先する。既存conflictを転写unknownで上書きしない。",
+      "input_value_paths": [
+        "/original_knowledge/version"
+      ],
+      "output_value_paths": [
+        "/knowledge_results/version",
+        "/retained_knowledge/version"
+      ],
+      "execution_state": "not_executed",
+      "effect": "none",
+      "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+    },
+    {
+      "probe_id": "B028-R5-F02-TARGET-SCOPE-MARKER-NO-ROUTE",
+      "function_ref": "HELIXBRAIN-L5-028-F02",
+      "trace_refs": {
+        "l3": "HELIXBRAIN-L3-028-F02",
+        "l4": "HELIXBRAIN-L4-028-F02",
+        "l9": "HELIXBRAIN-L9-028-F02",
+        "l10": "HELIXBRAIN-L10-028-F02",
+        "l9_case_id": "B028-F02-RANGE-IN-STATE-KNOWN",
+        "l9_case_sha256": "484b7bd1dd662982e6ad263afed53b7efc760c4834a5c14b987ba67c9f0004f1"
+      },
+      "source_packet_ref": {
+        "identity": "SOURCE-B028-R5-F02-TARGET-SCOPE-MARKER-NO-ROUTE",
+        "revision": "fixture-content-f8963bfcc446b37d086b61330603d799afeda2a9fb3a23b6397276fec4a5fc84",
+        "scope": "KNOWLEDGE-SCOPE-V",
+        "owner": "synthetic-fixture-owner",
+        "raw_sha256": "f8963bfcc446b37d086b61330603d799afeda2a9fb3a23b6397276fec4a5fc84",
+        "derived_from_case": "B028-F02-RANGE-IN-STATE-KNOWN"
+      },
+      "baseline_case_id": "B028-F02-RANGE-IN-STATE-KNOWN",
+      "baseline_source_packet_sha256": "55eb001516e5a5838152307e0ed7aa0abec7a8a3e4a85e9f78d581599dff4575",
+      "baseline_expected_sha256": "6b264339f97d760d9a9935261a30e0eae8d219c66c02813725faebb7a0a2a413",
+      "raw_utf8": "{\"claims\":{\"ignore_knowledge_state\":false,\"range_out_reinterpret\":false,\"revoke_Q\":false,\"silent_old_current_fallback\":false,\"unknown_call\":false},\"original_range_meaning\":{\"identity\":\"RANGE-P\",\"members_by_axis\":{\"artifact_version\":[\"artifact-A7\"],\"contract_version\":[\"contract-C3\"],\"dependency_version\":[\"dependency-D4\"],\"knowledge_version\":[\"knowledge-K2\",\"knowledge-K3\"]},\"owner\":\"HARNESS\",\"revision\":\"range-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"original_required_reference\":{\"artifact_version\":\"artifact-A7\",\"contract_version\":\"contract-C3\",\"dependency_identity\":\"DEPENDENCY-D\",\"dependency_version\":\"dependency-D4\",\"descriptor_identity\":\"PACK-P\",\"descriptor_kind\":\"knowledge-capability\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"knowledge_version\":\"knowledge-K2\",\"verification_scope\":\"TBD\"},\"original_state_applicability\":{\"eligible_in_fixture\":true,\"identity\":\"STATE-APPLICABILITY-P\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r2\",\"observed_state\":\"current\",\"owner\":\"BRAIN008\",\"revision\":\"state-meaning-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"submitted_range_meaning\":{\"identity\":\"RANGE-P\",\"members_by_axis\":{\"artifact_version\":[\"artifact-A7\"],\"contract_version\":[\"contract-C3\"],\"dependency_version\":[\"dependency-D4\"],\"knowledge_version\":[\"knowledge-K2\",\"knowledge-K3\"]},\"owner\":\"HARNESS\",\"revision\":\"range-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"submitted_required_reference\":{\"artifact_version\":\"artifact-A7\",\"contract_version\":\"contract-C3\",\"dependency_identity\":\"DEPENDENCY-D\",\"dependency_version\":\"dependency-D4\",\"descriptor_identity\":\"PACK-P\",\"descriptor_kind\":\"knowledge-capability\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r2\",\"knowledge_state\":\"current\",\"knowledge_version\":\"knowledge-K2\",\"verification_scope\":\"TBD\"},\"submitted_state_applicability\":{\"eligible_in_fixture\":true,\"identity\":\"STATE-APPLICABILITY-P\",\"knowledge_identity\":\"KNOWLEDGE-P\",\"knowledge_revision\":\"knowledge-r2\",\"observed_state\":\"current\",\"owner\":\"BRAIN008\",\"revision\":\"state-meaning-r1\",\"scope\":\"KNOWLEDGE-SCOPE-V\"},\"unaffected_reference_Q\":{\"identity\":\"UNRELATED-REFERENCE-Q\",\"revision\":\"reference-q1\",\"scope\":\"OTHER-REFERENCE-SCOPE\",\"state\":\"valid_reference_in_fixture\"}}",
+      "raw_sha256": "f8963bfcc446b37d086b61330603d799afeda2a9fb3a23b6397276fec4a5fc84",
+      "raw_patch": [
+        {
+          "op": "replace",
+          "path": "/original_required_reference/verification_scope",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/submitted_required_reference/verification_scope",
+          "value": "TBD"
+        }
+      ],
+      "mutation": "版・契約・scopeの独立境界反例",
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/axis_results/3/result",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/axis_results/10/required_original",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/axis_results/10/result",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/axis_results/10/submitted",
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": "/reference_P_result",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/retained_required_reference/verification_scope",
+          "value": "TBD"
+        }
+      ],
+      "independent_expected_sha256": "6fd5947199b2c0255b719d92842be97ba9fd9a481ca80917dae1e2c03aafe28f",
+      "independent_expected": {
+        "axis_results": [
+          {
+            "axis": "knowledge_identity",
+            "required_original": "KNOWLEDGE-P",
+            "submitted": "KNOWLEDGE-P",
+            "result": "content_corresponding_in_fixture",
+            "return_owner": "BRAIN008"
+          },
+          {
+            "axis": "knowledge_revision",
+            "required_original": "knowledge-r2",
+            "submitted": "knowledge-r2",
+            "result": "content_corresponding_in_fixture",
+            "return_owner": "BRAIN008"
+          },
+          {
+            "axis": "knowledge_version",
+            "required_original": "knowledge-K2",
+            "submitted": "knowledge-K2",
+            "result": "in_declared_fixture_range",
+            "return_owner": "BRAIN008"
+          },
+          {
+            "axis": "knowledge_state",
+            "required_original": "current",
+            "submitted": "current",
+            "result": "unknown",
+            "return_owner": "BRAIN008"
+          },
+          {
+            "axis": "descriptor_identity",
+            "required_original": "PACK-P",
+            "submitted": "PACK-P",
+            "result": "content_corresponding_in_fixture",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "descriptor_kind",
+            "required_original": "knowledge-capability",
+            "submitted": "knowledge-capability",
+            "result": "content_corresponding_in_fixture",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "contract_version",
+            "required_original": "contract-C3",
+            "submitted": "contract-C3",
+            "result": "in_declared_fixture_range",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "artifact_version",
+            "required_original": "artifact-A7",
+            "submitted": "artifact-A7",
+            "result": "in_declared_fixture_range",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "dependency_identity",
+            "required_original": "DEPENDENCY-D",
+            "submitted": "DEPENDENCY-D",
+            "result": "content_corresponding_in_fixture",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "dependency_version",
+            "required_original": "dependency-D4",
+            "submitted": "dependency-D4",
+            "result": "in_declared_fixture_range",
+            "return_owner": "HARNESS"
+          },
+          {
+            "axis": "verification_scope",
+            "required_original": "TBD",
+            "submitted": "TBD",
+            "result": "unknown",
+            "return_owner": "HARNESS"
+          }
+        ],
+        "range_meaning_result": "content_corresponding_in_fixture",
+        "state_meaning_result": "content_corresponding_in_fixture",
+        "retained_required_reference": {
+          "knowledge_identity": "KNOWLEDGE-P",
+          "knowledge_revision": "knowledge-r2",
+          "knowledge_version": "knowledge-K2",
+          "knowledge_state": "current",
+          "descriptor_identity": "PACK-P",
+          "descriptor_kind": "knowledge-capability",
+          "contract_version": "contract-C3",
+          "artifact_version": "artifact-A7",
+          "dependency_identity": "DEPENDENCY-D",
+          "dependency_version": "dependency-D4",
+          "verification_scope": "TBD"
+        },
+        "retained_range_meaning": {
+          "identity": "RANGE-P",
+          "revision": "range-r1",
+          "scope": "KNOWLEDGE-SCOPE-V",
+          "owner": "HARNESS",
+          "members_by_axis": {
+            "knowledge_version": [
+              "knowledge-K2",
+              "knowledge-K3"
+            ],
+            "contract_version": [
+              "contract-C3"
+            ],
+            "artifact_version": [
+              "artifact-A7"
+            ],
+            "dependency_version": [
+              "dependency-D4"
+            ]
+          }
+        },
+        "retained_state_applicability": {
+          "identity": "STATE-APPLICABILITY-P",
+          "revision": "state-meaning-r1",
+          "knowledge_identity": "KNOWLEDGE-P",
+          "knowledge_revision": "knowledge-r2",
+          "scope": "KNOWLEDGE-SCOPE-V",
+          "owner": "BRAIN008",
+          "observed_state": "current",
+          "eligible_in_fixture": true
+        },
+        "reference_P_result": "unknown",
+        "reference_P_actual_call": "not_established",
+        "unaffected_reference_Q": {
+          "identity": "UNRELATED-REFERENCE-Q",
+          "revision": "reference-q1",
+          "scope": "OTHER-REFERENCE-SCOPE",
+          "state": "valid_reference_in_fixture"
+        },
+        "claim_results": {
+          "unknown_call": "none",
+          "range_out_reinterpret": "none",
+          "silent_old_current_fallback": "none",
+          "ignore_knowledge_state": "none",
+          "revoke_Q": "none"
+        },
+        "effects": {
+          "actual_call": false,
+          "actual_registration": false,
+          "actual_distribution": false,
+          "actual_rollback": false,
+          "actual_knowledge_adoption": false,
+          "actual_obligation_discharge": false,
+          "actual_authority": false,
+          "actual_implementation_ready": false,
+          "actual_acceptance": false
+        },
+        "meaning_binding_results": {
+          "range": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "meaning_return_owners": []
+      },
+      "expected_basis": "要求scope両側がmarkerなので軸はunknown。range/state原資料同士は対応を保ち、scope不一致のowner返却は既知の異なるscopeにだけ適用する。 状態適用の対象tupleはverification_scopeも含むため、原required scope=TBDとstate-applicability.scope=KNOWLEDGE-SCOPE-Vは一致せずknowledge_state軸もunknown。",
+      "input_value_paths": [
+        "/original_required_reference/verification_scope",
+        "/submitted_required_reference/verification_scope"
+      ],
+      "output_value_paths": [
+        "/axis_results/3/result",
+        "/axis_results/10/required_original",
+        "/axis_results/10/result",
+        "/axis_results/10/submitted",
+        "/reference_P_result",
+        "/retained_required_reference/verification_scope"
+      ],
+      "execution_state": "not_executed",
+      "effect": "none",
+      "qualification": "synthetic_fixture_only_no_actual_source_qualification"
     }
   ],
   "unclosed_owner_returns": "F02のrange/state意味不足はmeaning_return_ownersへ具体化する。独立state/range参照の真正性と実owner資格、N01の実評価issuer/custodyは未成立。",
-  "local_probe_count": 91,
+  "local_probe_count": 94,
   "candidate_document_binding": {
     "paired_document_id": "HELIXBRAIN-L5-028",
     "path": "docs/helix-brain/L5-detail-design/knowledge-descriptor-compatibility.json",
-    "same_candidate_head_sha256": "ef9e0080f4b6466176e303293e55ff4f849cba96702d8be2870419bf2a126d0b",
+    "same_candidate_head_sha256": "eef86c3225381880f97d0c751adf75e3671209f9157e7142cc5095b8dadbc3a5",
     "meaning": "同一候補pair L5の保存bytes pin。source_mainの固定source pinや承認wholeと混同しない。"
   },
   "unclosed_obligations": [
@@ -36101,19 +36625,12 @@
         "expected_observation": "変異演算をこの入力へ適用したときの全返却と独立期待の差分で照合する。"
       }
     ],
-    "observability_limitations": [
-      {
-        "mutation_id": "R4-B01-ORIGINAL-SIDE-CHECK-REMOVED-WHILE-SUBMITTED-CHECK-REMAINS",
-        "probe_id": "B028-R4-B01-BOTH-SIDES-LOCAL-EXCHANGE",
-        "formal_l5_pointer": "/functions/3/algorithm/1",
-        "observation": "両側同一BRAIN-LOCAL-EXCHANGE rawではsubmitted-side-only変異もcontent_conflictとなり、正規wholeと同じ。原側only rawもcompare_fieldsの既存content_conflictと同値。side attributionは現在の公開return rootにないため、submitted側のcheckだけを除く変異もこの固定wholeでは識別できない。全check削除は別probeで検出対象とする。"
-      }
-    ]
+    "measurement_boundary": "対称な両側同値rawで差が出ないことを入力域全体の観測不能へ一般化しない。原側禁止値と提出markerの組合せでも全返却を照合する。有限の指定変異測定を全域証明としない。"
   },
   "design_admission": {
     "revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
     "pr": 3179,
-    "meaning": "candidate-local L4/L9 bytesはこの統合revisionと完全一致。source_main/source_pinsは固定した原資料の証拠として保持する。"
+    "meaning": "PR3179で統合されたmain正本のL4/L9 bytesに一致する。source_main/source_pinsは固定した原資料の証拠として保持する。"
   },
   "admitted_pair_source_binding": {
     "admitted_source_revision": "40517c80ec55dcaf5564d7628c9c48c38669d7cd",
@@ -36121,6 +36638,6 @@
     "l4_sha256": "ede1a6fd37fb3e849a9b6a33fc059e3a1771be31b2d183f263bcf4abe73d6d99",
     "l9_path": "docs/helix-brain/L9-integration-verification/knowledge-descriptor-compatibility.json",
     "l9_sha256": "5711ef92e478f6ee8dfe7469a0dec52899dde6ecba0fccb403e099285fea29b1",
-    "classification": "admitted main 405 のL4/L9 bytes。source_main/a451の歴史pinおよびL3/L10承認wholeとは別の役割。"
+    "classification": "main統合revision 40517c80ec55dcaf5564d7628c9c48c38669d7cd のL4/L9 bytes。source_main/a451a40d013df12872a3d4f5f837a2ec5f0998a8の歴史pinおよびL3/L10承認wholeとは別の役割。"
   }
 }
