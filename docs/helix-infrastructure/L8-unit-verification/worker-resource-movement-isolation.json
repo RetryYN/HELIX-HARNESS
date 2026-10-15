@@ -1,0 +1,2684 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-025",
+  "source_main": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+  "status": "draft_static_verification_only",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "document_id": "HELIXINFRASTRUCTURE-L8-025",
+  "layer": "L8",
+  "pair": "L5",
+  "formal_source": {
+    "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+    "paired_document_id": "HELIXINFRASTRUCTURE-L5-025",
+    "sha256": "9b03fae61fbd9fce960b0ef82051f471fe58d2daae2d9ffda29fed769f89f246"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
+      "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
+      "sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
+      "sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463"
+    }
+  ],
+  "approved_objects": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "obligation": "Worker identity、ticket/要求/責務参照とCPU/memory/GPU/storage/network/process/containerの実資源/容量/状態を別identityで対応付ける。ticket/work正本をINFRAへ移さない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01"
+      },
+      "canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "obligation": "対象資源で利用可能な方式でSEC隔離条件を実適用する。必要な資源移動後もticket/要求/Worker責務/未完義務を保持し、元と移動先の観測状態を残す。資源不足/隔離不能/参照不明では接続成立にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02"
+      },
+      "canonical_sha256": "51339a1ef5f37be68df6a5519c66bca1e2e6242fe7c01cbc13acfb41cdbabd33"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "obligation": "要求revision・資源exact set/environment・Worker/operation・制約・観測元と証拠を結び、未見版/別scope/一境界故障を比較する。fixtureや一資源greenを全環境へ外挿しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01"
+      },
+      "canonical_sha256": "26cc1f0e61167d93b2d180aaab38f6da071c80961a7b17daa034b0d28daac436"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "positive_input": "同Workerの二資源とticket参照欠落を比較する。",
+        "expected_observation": "主体と資源、要求と容量の参照が分かれる。",
+        "negative_input": "計算機をWorker、ticket状態をINFRA所有。",
+        "failure_observation": "OS/資源ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "positive_input": "同Worker移動、隔離不能、容量不足、責務参照欠落を比較する。",
+        "expected_observation": "隔離実適用と作業参照保持、未完が辿れる。",
+        "negative_input": "移動で責務消失、隔離不能pass、自動最適化必須。",
+        "failure_observation": "資源/OS/SECの該当ownerへ戻す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "779792c91608248d9964a2413bec3d0c65fc3a6f6251367c8525fbe6e21c164c"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "positive_input": "既知正常と伏せた版/別環境、隔離または実状態証拠一件欠落を比較する。",
+        "expected_observation": "適用範囲・未観測・not_executed/未完が保持される。",
+        "negative_input": "件数だけ完成、別環境へgreen継承。",
+        "failure_observation": "当該ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "4be78d4259cd1295682de594e7281ae6283a7b469fa1441d29e1f6bdc1701264"
+    }
+  ],
+  "case_count": 51,
+  "cases": [
+    {
+      "case_id": "I025-F01-WORKER-TWO-RESOURCES",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/0/expected_material",
+        "canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-WORKER-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/1/independent_source_packet/raw_utf8",
+        "raw_sha256": "fc340577c4c4bad9c8708b5f1c96998a5a3dd5a6c6e9062850ac683914863f7d"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/1/expected_material",
+        "canonical_sha256": "13ecf1c699e8b7843845f637b2669653533852bb2f74976d883795efc5806eaa"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-TICKET_REF-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/2/independent_source_packet/raw_utf8",
+        "raw_sha256": "6cc47e6b5ebb9da8bdb2ad6cdff18e9161e8cf8861726c551eb98567b9083686"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/2/expected_material",
+        "canonical_sha256": "9661cd2fe999c6c1f9480e33620b7b12a943f914adff0c6dea27b6a0f85a1e3c"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-REQUIREMENT_REF-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/3/independent_source_packet/raw_utf8",
+        "raw_sha256": "eda09a7b4b2b6fbc40642c1a91c6b2c94403bc767bbd9525d63ffd25ec3646ea"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/3/expected_material",
+        "canonical_sha256": "2ef73e9393069b3bb4d44b52f518e96be7690242eff6907b9fa0c67fd7302765"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-RESPONSIBILITY_REF-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/4/independent_source_packet/raw_utf8",
+        "raw_sha256": "9f9ac1cc369ba61beea5f18f82bad6d59886ff865935d212208983e208434084"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/4/expected_material",
+        "canonical_sha256": "68b9f78033bac7db56d931b995eca8dfd1b146cafcb8c6cc4692c928980d82fb"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-CPU-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/5/independent_source_packet/raw_utf8",
+        "raw_sha256": "439934c663560afdbe2092e20ece2f868a7c0a8e59f8b019ec34ca47be1f1ec3"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/5/expected_material",
+        "canonical_sha256": "b033e480d9ec04892af6113d5c19bf385cb77f3eaccf1faf3d075b45e0dade86"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-MEMORY-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/6/independent_source_packet/raw_utf8",
+        "raw_sha256": "8a7806a63ea58b5955f5e8d7e1383af57a1ec339222032cfa65b116e0e1ac509"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/6/expected_material",
+        "canonical_sha256": "4db24a838c7613cb5c70fa08ed3ac157c04391fddc04aadd79aed9b83c7fb55c"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-GPU-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/7/independent_source_packet/raw_utf8",
+        "raw_sha256": "8c9a5686736bc8350948b4b5f2f4db094a155315f90eba0dcee8744d914a683c"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/7/expected_material",
+        "canonical_sha256": "ffc0f42feca019ecdeaa8c593e9e4d37edeae39118aa54918347cbddf754be55"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-STORAGE-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/8/independent_source_packet/raw_utf8",
+        "raw_sha256": "9cd827f79a52e2420192d1acced4b6cb13c192c90d30358a0caa8aa8b4ba5be6"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/8/expected_material",
+        "canonical_sha256": "7ba9682aa7906c7dc954665096e9975426239e903c66a5664064066802b01bfb"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-NETWORK-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/9/independent_source_packet/raw_utf8",
+        "raw_sha256": "0ff40dbe918382e49b6378f20a3509cf6558893bdefda40593ffe06fb5ba68d5"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/9/expected_material",
+        "canonical_sha256": "56c5a6c4b3ca344c7dbd771ce39195e2024629e162ece20c6616641552f899c0"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-PROCESS-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/10/independent_source_packet/raw_utf8",
+        "raw_sha256": "be0ebe76b719289bbbe80786ac96789729dd06c042cf61732993a979ea03b544"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/10/expected_material",
+        "canonical_sha256": "c857a409ce7ead3827868c282431ca0269fcc604a32deb1cc16065603f9fb387"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-CONTAINER-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/11/independent_source_packet/raw_utf8",
+        "raw_sha256": "77f671ba78e78708942a09075b65314811d59ecf798164f4e31f2d50c22ba817"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/11/expected_material",
+        "canonical_sha256": "9abd7ba4d13f64dd651a6f5459873717144e9d9297404eb6a6571b22aed7f2d7"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-REJECT-resource_is_worker",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/12/independent_source_packet/raw_utf8",
+        "raw_sha256": "1c6a5ce74d598ba83ce7504b0f119d09d99fc4cc9667deae5991a45eed71dcd7"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/12/expected_material",
+        "canonical_sha256": "54b86ff72d2e505ffc05b3cd39e517628b485f7ea9e54977cf70f591cd68cd46"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-REJECT-infra_owns_ticket",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/13/independent_source_packet/raw_utf8",
+        "raw_sha256": "eda5621e70e1d65f04d26732a56c746c9f8209fe473a9f435701cb7a6ff921cd"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/13/expected_material",
+        "canonical_sha256": "1edf93c963cd504a5f6580aacb083ade30e3253550320ec107599f603e5a0cf1"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F01-WORKER-RESOURCE-IDENTITY-CONFLATED",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function_ref": "INFRA025-F01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/0/cases/14/independent_source_packet/raw_utf8",
+        "raw_sha256": "921f72d3e9c34b290fca017cfac6405824f7226d559c336021aa4c25660fa6f1"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/0/cases/14/expected_material",
+        "canonical_sha256": "e1919202772f00b218c3602a8ca63b9d012cf7a155b2d61f94f2967ecfae7420"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-MOVE-PRESERVES-WORK",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/0/expected_material",
+        "canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-WORKER-LOST",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/1/independent_source_packet/raw_utf8",
+        "raw_sha256": "ff8b6e027c60214251170343c39fb32135b7ccb57bb2f489cfaf33a214ef3ac9"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/1/expected_material",
+        "canonical_sha256": "a8740479f6555b1e1a5945076737b000e9f789dacfdf2ada3c88cf0b9c40f3d0"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-TICKET_REF-LOST",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/2/independent_source_packet/raw_utf8",
+        "raw_sha256": "7bd28e4a6b900c0237484206382b9f7d0ea6e01f72d511c48a1b0c8332dd6e5d"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/2/expected_material",
+        "canonical_sha256": "66f5781e7c1d707c20a73ceb10170a67cd792e16d0966b82ee028fa21f9c0cc3"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-REQUIREMENT_REF-LOST",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/3/independent_source_packet/raw_utf8",
+        "raw_sha256": "71c9af67700641a094a0b1d8c09733f1b26a5511ee6320a5fe1c60c144cbd384"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/3/expected_material",
+        "canonical_sha256": "702b60ed73ab9af0da2a9cc3af315937d29c2e5b0cbd9a71440e57460721748b"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-RESPONSIBILITY_REF-LOST",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/4/independent_source_packet/raw_utf8",
+        "raw_sha256": "84cbefe73aa168253657975063e2d8a43996732734fa748360a4b071b4dcfb48"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/4/expected_material",
+        "canonical_sha256": "cc7d9d7ec59a0cf8ad1de15ad95c6de9dbe33b2501fee14d7032b78f222dd08a"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-UNFINISHED-LOST",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/5/independent_source_packet/raw_utf8",
+        "raw_sha256": "1d3fcee0672e24cafe7e0e29d8a14c208a2439750b6d92ea9e9744818787a5cc"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/5/expected_material",
+        "canonical_sha256": "296a66838561e21ea4bdf3ea6033dc392642e790117a95433af8681267e1443a"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-ISOLATION-state",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/6/independent_source_packet/raw_utf8",
+        "raw_sha256": "7bcc905adec7032d83f8b1929c7afd321c456ca635b1f2f73b5529b9875cbcd2"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/6/expected_material",
+        "canonical_sha256": "c7976b78c5cae2319aec4937aa6e0edfd7385d5a3dc49d1c08dc6cdb8d0eb1f4"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-ISOLATION-method_ref",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/7/independent_source_packet/raw_utf8",
+        "raw_sha256": "80a490caebe1fc756f252d0b104fd0c9f01795adf8da32b31d014223aac029ce"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/7/expected_material",
+        "canonical_sha256": "555e150f2ee7f9a55f77b846b68e87a1618125f449ae22e63f9ef0a6ffd0bb62"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-ISOLATION-evidence_ref",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/8/independent_source_packet/raw_utf8",
+        "raw_sha256": "76e946cdb2aba08c59f8d458d0146d9225af78001f3c11ebf414168af12c8e16"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/8/expected_material",
+        "canonical_sha256": "69faaa340f19ec447245b20b684b3ea83ad8323f32fc2fc1c7f6534c54b4c784"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-CAPACITY-INSUFFICIENT",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/9/independent_source_packet/raw_utf8",
+        "raw_sha256": "a61af0bc6f65b79c1e231e322948b8a57fae0c621cdd36fe62563751db5d1e63"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/9/expected_material",
+        "canonical_sha256": "95f44eff3a77ac868c5469af746d187cd73d593f7ee5830347d1eebf3ca45c86"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-SOURCE-OBSERVATION-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/10/independent_source_packet/raw_utf8",
+        "raw_sha256": "b87255752029d526136897128386e7532be3ab0ef78d542f011eb91010b565c3"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/10/expected_material",
+        "canonical_sha256": "303d34bb71965f19b36113624a99d5776ccc04872a4536dae8d612845214105d"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-REJECT-movement_erases_responsibility",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/11/independent_source_packet/raw_utf8",
+        "raw_sha256": "972a4c0e27c55ce876f5584998b70545babc6dafd58962b00f049b95b5dd0325"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/11/expected_material",
+        "canonical_sha256": "2b52f5e24bc1df91a715bc993850bb2d1603e290285b64faed13bc7cc80c1f04"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-REJECT-isolation_impossible_pass",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/12/independent_source_packet/raw_utf8",
+        "raw_sha256": "c9a0bba5c11856bd8308658355b7c505504103a7424278f0e79a9ab2224d5967"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/12/expected_material",
+        "canonical_sha256": "87cfedf040368c993d572b0b5d4463ba5b7cce89ad0835b1f5e54b496703c5fc"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-REJECT-automatic_placement_required",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/13/independent_source_packet/raw_utf8",
+        "raw_sha256": "66c6f7499954fa03199c309687e0f1a4ff735d6896e327effbb164aad01bb40e"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/13/expected_material",
+        "canonical_sha256": "4fa9ce702f51575c770d1859052acc552d195c32c752af3df1351d3e2036b817"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-DESTINATION-OBSERVATION-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/14/independent_source_packet/raw_utf8",
+        "raw_sha256": "46eb960e111f00a4553abe0012d61bc786641866f306210fbdd01602b61ebff3"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/14/expected_material",
+        "canonical_sha256": "78eaa289c92116485ce7ca39cc60419a1188197564c830cce8ac9878d24470ef"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-F02-ISOLATION-METHOD-UNAVAILABLE",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function_ref": "INFRA025-F02",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/1/cases/15/independent_source_packet/raw_utf8",
+        "raw_sha256": "a65653e394c6341bfb56b61d02be511f5fdf126b3dda289c7b4c645c73d1c312"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/1/cases/15/expected_material",
+        "canonical_sha256": "77b01c50268a875728005091fbb4108dd1acf35b5ec29cc4108f522319b1a2a6"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-EXACT-SCOPE-EVIDENCE",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/0/expected_material",
+        "canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-REQUIREMENT_REVISION-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/1/independent_source_packet/raw_utf8",
+        "raw_sha256": "f3691d088a7b119c01fa8a7935d4d83dac11c69b6ee47c326f9dbe38c9be9e2f"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/1/expected_material",
+        "canonical_sha256": "2384c1237d90b49456202a4b19ee02c8c79be2af8930af109bf511a73808ea98"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-RESOURCES-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/2/independent_source_packet/raw_utf8",
+        "raw_sha256": "c76715d4147201201903079c0093d81b5bea143e49c677be397f1df697925a35"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/2/expected_material",
+        "canonical_sha256": "5d29c1cfd235710ee8884d359754605b3b36d5faf2f824e33d1cf66f02e43b06"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ENVIRONMENT-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/3/independent_source_packet/raw_utf8",
+        "raw_sha256": "bbc644829f8717947e5618d1f435cd02b50e22c73bce050bb1354a5f8d0dd1c6"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/3/expected_material",
+        "canonical_sha256": "fb7ae2e1454a564d23313303b481b4579ac9340a6e6345909c77757699d82e31"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-WORKER-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/4/independent_source_packet/raw_utf8",
+        "raw_sha256": "ff62b73539fef44e5b9cafa3bec4ad00028cd0e019b9716b66c9a5c370a8f563"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/4/expected_material",
+        "canonical_sha256": "bbb17068ee7b01ac1e248a515d9ef4435db6d270acc6dae4e9ad9fe184e5d140"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-OPERATION_REF-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/5/independent_source_packet/raw_utf8",
+        "raw_sha256": "a865f0f180e993b3501d8ae1e4e247412e2bf83d3cd382758cea9d36292296a9"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/5/expected_material",
+        "canonical_sha256": "f748f3fac4ad47ab4e6a1e9945d7d343a3f154ca581a31740a33942d0a2d4092"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-SCOPE-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/6/independent_source_packet/raw_utf8",
+        "raw_sha256": "841a5658c90a77dc7d3848a46966ca410f2a90999e8172a543454d7beef11e66"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/6/expected_material",
+        "canonical_sha256": "1e186b99bdeb851874b4c4fd9dd69fa8652dea647fb24117ad6e42c83a9b389b"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-CONSTRAINT_REF-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/7/independent_source_packet/raw_utf8",
+        "raw_sha256": "0b46b381c11c068241d5dc4a1f3deb9f13cd00def0277edb58199ac2f3e9a6a1"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/7/expected_material",
+        "canonical_sha256": "3e793c3474ba1d4e8dfe03121578c0ea70b8524431e488bc3c487bc70ef20a41"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ORIGINAL_ISOLATION-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/8/independent_source_packet/raw_utf8",
+        "raw_sha256": "a975516c05d177505279277cdd1cdbb4b7fc53b883e54bf6f8a086775c66f864"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/8/expected_material",
+        "canonical_sha256": "7e3a8766a5e1bcb17c9e8821f27447a85771da3b093473327d49d692cae71dc7"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ORIGINAL_STATE_EVIDENCE-MISSING",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/9/independent_source_packet/raw_utf8",
+        "raw_sha256": "c5c95de39aa468a3bf308da71a3a454faee548fbc7f307993dbffe2d49b407b7"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/9/expected_material",
+        "canonical_sha256": "3e76ef0c1ed17ce9abf6bdcb0612019f8cc9dea64b124a6e0e393f4fcf6780a5"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-REJECT-count_is_completion",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/10/independent_source_packet/raw_utf8",
+        "raw_sha256": "33d96b955cba9fb4cdf9567fedf07cd494e1e0994f89b872cd0c70f43f14141a"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/10/expected_material",
+        "canonical_sha256": "17386c7de8ea8752a5ea65df43cc42ed4d10aee8263f0d342a04efe39206aa4b"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-REJECT-green_transfers_environment",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/11/independent_source_packet/raw_utf8",
+        "raw_sha256": "f2204517ed29c9d1b13e16854feee9ce62aff18d19fe9e5de17b0724f476fadd"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/11/expected_material",
+        "canonical_sha256": "e9e0c07ece756e54ad4b205e872a086e9250ad4ea5b48e23e9aeac349f3b73c4"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-CONSTRAINT_REF-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/12/independent_source_packet/raw_utf8",
+        "raw_sha256": "d29f7d7f24985e9fface112a1c5abf7e510d59bd32f438793becca3f73e1ec83"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/12/expected_material",
+        "canonical_sha256": "32cdb578ed0e0b665c0c4eb0006e31dbf6c4425f75068611a4e32e56ff814a7b"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-ENVIRONMENT-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/13/independent_source_packet/raw_utf8",
+        "raw_sha256": "095bc835228045e3d88bfac3fd558579e50997e060ac08edec28f8052508a266"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/13/expected_material",
+        "canonical_sha256": "9c87b05616ef71ee96497497669a10e9096024419952c5f1399b93a1648b9f2c"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-OPERATION_REF-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/14/independent_source_packet/raw_utf8",
+        "raw_sha256": "60aa7a46ed1b7110964248861685a4fbc871a3ec48ebc0f37673fb8bcfae5bc8"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/14/expected_material",
+        "canonical_sha256": "1c062eb7f6ed5cf439614bc26b78ff7f02fe7cc8e78963703385b4baed425dd9"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-REQUIREMENT_REVISION-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/15/independent_source_packet/raw_utf8",
+        "raw_sha256": "43921f570110aa8c4082ffd879c232a2b212ab1f7457a6952fbc99fa540ff00e"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/15/expected_material",
+        "canonical_sha256": "40ba402ad920012fa7959618a93cd2fcb4e5287e6eda4502b56a39417df03053"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-RESOURCES-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/16/independent_source_packet/raw_utf8",
+        "raw_sha256": "6504202315c065b618b6d9a19337a745a1a573458c1fd36941d52da955dbdb86"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/16/expected_material",
+        "canonical_sha256": "14a6a608a79fd0c4bfc312ed1c526d7d9d1c7b7119c4d7b316967ccf06379384"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-SCOPE-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/17/independent_source_packet/raw_utf8",
+        "raw_sha256": "31130c410522a9ce08e88ed7e8adca32ef9ddcece50a8f0172e3651e985d5d8c"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/17/expected_material",
+        "canonical_sha256": "70494c5e1abde5de4aa771cdc9cb0541f83dc5e6296e18031c965c0c00a15c49"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-ISOLATION-WORKER-FOREIGN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/18/independent_source_packet/raw_utf8",
+        "raw_sha256": "c2fe6a0846b92f3ccb84093c3b6845e21df13dc7408cf44ca1e6781582b97ed2"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/18/expected_material",
+        "canonical_sha256": "4ace959921f9f48bd6b93cf2ddbae8f07f50b286d5ef765864c0f891776f5cf4"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "case_id": "I025-N01-REQUIREMENT-REVISION-UNSEEN",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function_ref": "INFRA025-N01",
+      "input_packet": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "raw_pointer": "/verification_obligations/2/cases/19/independent_source_packet/raw_utf8",
+        "raw_sha256": "187b335668219e6775b2418d09474726e9a38f948c9cda763c722e95c7854757"
+      },
+      "expected_whole": {
+        "source_path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "source_revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+        "pointer": "/verification_obligations/2/cases/19/expected_material",
+        "canonical_sha256": "7c9d4ed1eb8e01f66ba90d118037608bdbb3578bd7539b2a30c71cb6878a8d26"
+      },
+      "execution_state": "not_executed",
+      "effect": "none"
+    }
+  ],
+  "independent_probes": [
+    {
+      "probe_id": "P01-isolation-not-enforced",
+      "function_ref": "INFRA025-F02",
+      "basis": "L4 F02:隔離不能を接続成立へしない",
+      "baseline_source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "case_id": "I025-F02-MOVE-PRESERVES-WORK",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e",
+        "expected_canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "not_enforced"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "WORKER-P"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_movement_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "WORKER-P",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "WORKER-P",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "OS",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "not_enforced",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "corresponding_in_fixture_only",
+        "failure_reasons": [
+          {
+            "field": "isolation.state",
+            "result": "not_enforced",
+            "return_owner": "HELIX-SECURITY"
+          }
+        ],
+        "return_owners": [
+          "HELIX-SECURITY"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "c7976b78c5cae2319aec4937aa6e0edfd7385d5a3dc49d1c08dc6cdb8d0eb1f4"
+    },
+    {
+      "probe_id": "P02-unfinished-dropped",
+      "function_ref": "INFRA025-F02",
+      "basis": "L4 F02:未完義務とOS責務参照を保持する",
+      "baseline_source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "case_id": "I025-F02-MOVE-PRESERVES-WORK",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e",
+        "expected_canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "enforced_in_fixture_only"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "WORKER-P"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_movement_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "WORKER-P",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "WORKER-P",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "OS",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "enforced_in_fixture_only",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "submitted_content_conflict",
+        "failure_reasons": [
+          {
+            "field": "submitted_work_after.unfinished",
+            "result": "lost_work_reference",
+            "return_owner": "OS-work-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-work-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "296a66838561e21ea4bdf3ea6033dc392642e790117a95433af8681267e1443a"
+    },
+    {
+      "probe_id": "P03-same-TBD-worker",
+      "function_ref": "INFRA025-F01",
+      "basis": "L4 F01:identity/referenceの不明値は等値だけで対応成立にならない",
+      "baseline_source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "case_id": "I025-F01-WORKER-TWO-RESOURCES",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e",
+        "expected_canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "enforced_in_fixture_only"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "TBD"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "TBD"
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "TBD"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_identity_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "TBD",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "TBD",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "OS",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "enforced_in_fixture_only",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "corresponding_in_fixture_only",
+        "failure_reasons": [
+          {
+            "field": "work.worker",
+            "result": "missing",
+            "return_owner": "OS-work-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-work-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "3d4f51bf2067653396bd640adec09298213f26865746e8b4001ef0c45df17608"
+    },
+    {
+      "probe_id": "P04-same-empty-ticket",
+      "function_ref": "INFRA025-F01",
+      "basis": "L4 F01:identity/referenceの不明値は等値だけで対応成立にならない",
+      "baseline_source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "case_id": "I025-F01-WORKER-TWO-RESOURCES",
+        "raw_sha256": "bfccf8796486edf8df5f8b09d25435484df67979e8df3b370291a626d5b3804e",
+        "expected_canonical_sha256": "b08462c5d38abd39b0ad27f8193b3eabf752c13ef9ae1b4decfef04d656aa1c9"
+      },
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "enforced_in_fixture_only"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "WORKER-P"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_identity_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "WORKER-P",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "WORKER-P",
+          "ticket_ref": "",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "OS",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "enforced_in_fixture_only",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "corresponding_in_fixture_only",
+        "failure_reasons": [
+          {
+            "field": "work.ticket_ref",
+            "result": "missing",
+            "return_owner": "OS-work-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-work-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "826a3005881ea20c380a389ea43ee311763b3ff94f698d86c5efaddcaf42fe53"
+    }
+  ],
+  "independent_source_scope": {
+    "L4": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
+    "L9": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+    "original_case_count": 51,
+    "case_counts": {
+      "F01": 15,
+      "F02": 16,
+      "N01": 20
+    }
+  },
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        90,
+        92
+      ],
+      "quote": "Requirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "80393db809870dfae52a59ff4c4c221b3f62eb528908c26c999b9f5f0b666a68",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider中立/unknown capability・対象不明・互換不明・権限不足のfail-closeを参照する。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        83,
+        84
+      ],
+      "quote": "`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "d09107d99273eaf5b2133c2bdde95742721a9a3886287dd6ec7f885f54d3e4e7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧rollbackをincident closureへ変換せず未確認を成功としない。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    }
+  ],
+  "remaining": [
+    "実資格・実移動/隔離、正式codec/schema、実source資格、実L10/L11、全430対の意味閉包は未成立。"
+  ],
+  "parent_independent_probes": [
+    {
+      "probe_id": "I025-PARENT-F02-BOTH-FOREIGN-WORK-OWNER",
+      "kind": "both_work_owner",
+      "function_ref": "INFRA025-F02",
+      "source_case_ref": "I025-F02-MOVE-PRESERVES-WORK",
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "enforced_in_fixture_only"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "WORKER-P"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "BRAIN",
+          "worker": "WORKER-P"
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "BRAIN",
+          "worker": "WORKER-P"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_movement_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "WORKER-P",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "WORKER-P",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "BRAIN",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "enforced_in_fixture_only",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "corresponding_in_fixture_only",
+        "failure_reasons": [
+          {
+            "field": "work.work_owner",
+            "result": "wrong_identity_or_owner",
+            "return_owner": "OS-work-owner"
+          }
+        ],
+        "return_owners": [
+          "OS-work-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "2bdd0ae7e38fed35365f83703fca9183df567f1286e517db0355067a316c1cd3",
+      "basis": "L3-F01のwork正本をINFRAへ移さない、L3-F02のWorker責務保持と原work_owner=OSを同値誤ownerにも適用。実OS資格ではなく役割値の違反として返す。"
+    },
+    {
+      "probe_id": "I025-PARENT-N01-COUNT-WITHOUT-CLAIM",
+      "kind": "count_without_claim",
+      "function_ref": "INFRA025-N01",
+      "source_case_ref": "I025-N01-REJECT-count_is_completion",
+      "raw_input": {
+        "claims": [],
+        "original_destination_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2"
+          },
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "source_ref": "RESOURCE-B-OBS@r2"
+        },
+        "original_isolation": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "owner": "HELIX-SECURITY",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "state": "enforced_in_fixture_only"
+        },
+        "original_scope": {
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "environment": "ENV-STAGING",
+          "operation_ref": "MOVE-P@r2",
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "scope": "PRODUCT-P",
+          "worker": "WORKER-P"
+        },
+        "original_source_resource": {
+          "capacity_state": "qualified_in_fixture_only",
+          "environment": "ENV-STAGING",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2"
+          },
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "source_ref": "RESOURCE-A-OBS@r2"
+        },
+        "original_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "constraint_ref": "SEC-ISOLATION-P@r2",
+            "environment": "ENV-STAGING",
+            "operation_ref": "MOVE-P@r2",
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "scope": "PRODUCT-P",
+            "worker": "WORKER-P"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "original_work_before": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        },
+        "proposed_completion_basis": {
+          "qualification": "fixture_only",
+          "synthetic_count": 1
+        },
+        "submitted_work_after": {
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "unfinished": [
+            "verification_pending"
+          ],
+          "work_owner": "OS",
+          "worker": "WORKER-P"
+        }
+      },
+      "expected_whole": {
+        "information_state": "held_evidence_scope_unqualified",
+        "retained_original_scope": {
+          "requirement_revision": "REQ-P-r2",
+          "resources": [
+            "RESOURCE-A",
+            "RESOURCE-B"
+          ],
+          "environment": "ENV-STAGING",
+          "worker": "WORKER-P",
+          "operation_ref": "MOVE-P@r2",
+          "scope": "PRODUCT-P",
+          "constraint_ref": "SEC-ISOLATION-P@r2"
+        },
+        "retained_work_before": {
+          "worker": "WORKER-P",
+          "ticket_ref": "OS-TICKET-P@r2",
+          "requirement_ref": "REQ-P@r2",
+          "responsibility_ref": "WORKER-RESP-P@r2",
+          "work_owner": "OS",
+          "unfinished": [
+            "verification_pending"
+          ]
+        },
+        "retained_source_resource": {
+          "identity": "RESOURCE-A",
+          "owner": "INFRA",
+          "revision": "RESOURCE-A-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-A-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-A@r2",
+            "memory": "MEMORY-RESOURCE-A@r2",
+            "GPU": "GPU-RESOURCE-A@r2",
+            "storage": "STORAGE-RESOURCE-A@r2",
+            "network": "NETWORK-RESOURCE-A@r2",
+            "process": "PROCESS-RESOURCE-A@r2",
+            "container": "CONTAINER-RESOURCE-A@r2"
+          }
+        },
+        "retained_destination_resource": {
+          "identity": "RESOURCE-B",
+          "owner": "INFRA",
+          "revision": "RESOURCE-B-r2",
+          "environment": "ENV-STAGING",
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "capacity_state": "qualified_in_fixture_only",
+          "fields": {
+            "CPU": "CPU-RESOURCE-B@r2",
+            "memory": "MEMORY-RESOURCE-B@r2",
+            "GPU": "GPU-RESOURCE-B@r2",
+            "storage": "STORAGE-RESOURCE-B@r2",
+            "network": "NETWORK-RESOURCE-B@r2",
+            "process": "PROCESS-RESOURCE-B@r2",
+            "container": "CONTAINER-RESOURCE-B@r2"
+          }
+        },
+        "retained_isolation": {
+          "owner": "HELIX-SECURITY",
+          "constraint_ref": "SEC-ISOLATION-P@r2",
+          "method_ref": "RESOURCE-B-AVAILABLE-METHOD@r2",
+          "state": "enforced_in_fixture_only",
+          "evidence_ref": "ISOLATION-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          }
+        },
+        "retained_state_evidence": {
+          "ref": "RESOURCE-MOVE-EVIDENCE-P@r2",
+          "scope": {
+            "requirement_revision": "REQ-P-r2",
+            "resources": [
+              "RESOURCE-A",
+              "RESOURCE-B"
+            ],
+            "environment": "ENV-STAGING",
+            "worker": "WORKER-P",
+            "operation_ref": "MOVE-P@r2",
+            "scope": "PRODUCT-P",
+            "constraint_ref": "SEC-ISOLATION-P@r2"
+          },
+          "source_ref": "RESOURCE-B-OBS@r2",
+          "state": "observed_in_fixture_only"
+        },
+        "retained_unfinished": [
+          "verification_pending"
+        ],
+        "work_reference_preservation": "corresponding_in_fixture_only",
+        "failure_reasons": [
+          {
+            "field": "completion_basis",
+            "result": "unsupported_extrapolation",
+            "return_owner": "INFRA-resource-source"
+          }
+        ],
+        "return_owners": [
+          "INFRA-resource-source"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "movement": false,
+          "isolation": false,
+          "ticket_ownership_change": false,
+          "work_overwrite": false,
+          "permission": false,
+          "deployment": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "expected_canonical_sha256": "6c0040d447cd02c79b0921faf32844d499d774c62bec54ba854f7b50f04bf9e5",
+      "basis": "L10-N01負例の件数だけ完成は、claim申告の有無によらずcompletion_basisのsynthetic_countを正式完成証拠にしない。原失敗返却を保持しclaim投影だけ空へ。"
+    }
+  ]
+}

@@ -1,0 +1,2059 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-025",
+  "source_main": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+  "status": "draft_detail_pending_qualification_and_implementation",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_head": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "actual_admission": "5267fcccfc90b3da4988c3f2d35066a98cd31521",
+    "record_sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+  },
+  "approved_objects": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "obligation": "Worker identity、ticket/要求/責務参照とCPU/memory/GPU/storage/network/process/containerの実資源/容量/状態を別identityで対応付ける。ticket/work正本をINFRAへ移さない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01"
+      },
+      "canonical_sha256": "9a90655e2bb9fe4f0094bfe6f07c7f30a942614da8ec4b74be73d6477d1916c3"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "obligation": "対象資源で利用可能な方式でSEC隔離条件を実適用する。必要な資源移動後もticket/要求/Worker責務/未完義務を保持し、元と移動先の観測状態を残す。資源不足/隔離不能/参照不明では接続成立にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02"
+      },
+      "canonical_sha256": "51339a1ef5f37be68df6a5519c66bca1e2e6242fe7c01cbc13acfb41cdbabd33"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "obligation": "要求revision・資源exact set/environment・Worker/operation・制約・観測元と証拠を結び、未見版/別scope/一境界故障を比較する。fixtureや一資源greenを全環境へ外挿しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01"
+      },
+      "canonical_sha256": "26cc1f0e61167d93b2d180aaab38f6da071c80961a7b17daa034b0d28daac436"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "positive_input": "同Workerの二資源とticket参照欠落を比較する。",
+        "expected_observation": "主体と資源、要求と容量の参照が分かれる。",
+        "negative_input": "計算機をWorker、ticket状態をINFRA所有。",
+        "failure_observation": "OS/資源ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "4dad93c834079e44de5e7e8f87894aed432d19df60889a93ed356f54995a0f6f"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "positive_input": "同Worker移動、隔離不能、容量不足、責務参照欠落を比較する。",
+        "expected_observation": "隔離実適用と作業参照保持、未完が辿れる。",
+        "negative_input": "移動で責務消失、隔離不能pass、自動最適化必須。",
+        "failure_observation": "資源/OS/SECの該当ownerへ戻す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "779792c91608248d9964a2413bec3d0c65fc3a6f6251367c8525fbe6e21c164c"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "whole": {
+        "id": "HELIXINFRASTRUCTURE-L10-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "positive_input": "既知正常と伏せた版/別環境、隔離または実状態証拠一件欠落を比較する。",
+        "expected_observation": "適用範囲・未観測・not_executed/未完が保持される。",
+        "negative_input": "件数だけ完成、別環境へgreen継承。",
+        "failure_observation": "当該ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "canonical_sha256": "4be78d4259cd1295682de594e7281ae6283a7b469fa1441d29e1f6bdc1701264"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "revision": "977eb43dd597f0e483960221d2ee3d72d0c88619",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
+      "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
+      "sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+      "revision": "6e5b45b85ada0b85b8f26a1bddf1e8292ac6b604",
+      "sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463"
+    }
+  ],
+  "unresolved_fixture_markers": {
+    "string_values": [
+      "",
+      "TBD",
+      "unknown",
+      "UNKNOWN"
+    ],
+    "meaning": "この詳細の固定合成probeで明示する未解決表示例。実sourceでこれらが正式wire sentinelであるとの主張ではない。空配列は一般に値として保持し、exact resources fieldでのみ空集合を未解決と扱う。"
+  },
+  "source_revision_note": "L4/L9の自己記載source_main d5afd6fは対象path導入前で不在。path初出commit 6e5b45bのファイルbytesと現baseのbytesを照合する。旧source pinのd5afdは承認内容HEADではない。L4/L9は変更しない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        90,
+        92
+      ],
+      "quote": "Requirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "80393db809870dfae52a59ff4c4c221b3f62eb528908c26c999b9f5f0b666a68",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider中立/unknown capability・対象不明・互換不明・権限不足のfail-closeを参照する。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        83,
+        84
+      ],
+      "quote": "`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "d09107d99273eaf5b2133c2bdde95742721a9a3886287dd6ec7f885f54d3e4e7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧rollbackをincident closureへ変換せず未確認を成功としない。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    }
+  ],
+  "source_basis": [
+    {
+      "source": "L2-025",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        287,
+        295
+      ],
+      "meaning": "Worker/resource identity、OS責務保持、INFRA実資源とSEC隔離、失敗返却の出所。"
+    },
+    {
+      "source": "L2-010",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        126,
+        135
+      ],
+      "meaning": "実operationはSEC authority/Worker構成体を通り、L5/L8 fixtureから実認可・実作用を作らない。"
+    },
+    {
+      "source": "HELIXOS-L2-004/009/010",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "meaning": "OSの割当/作業主体・中断後未完義務・ticket owner境界。"
+    },
+    {
+      "source": "2026-09-26 Worker decision",
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "lines": [
+        59,
+        79
+      ],
+      "meaning": "Workerと資源/レーン/OS責務を混同しない境界。"
+    },
+    {
+      "source": "L4/L9 L2-010 pair",
+      "paths": [
+        "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json"
+      ],
+      "meaning": "認可・実作用を操作構成体に留める確認資料。"
+    },
+    {
+      "source": "approved L3/L10",
+      "objects": [
+        "HELIXINFRASTRUCTURE-L3-025-F01",
+        "HELIXINFRASTRUCTURE-L3-025-F02",
+        "HELIXINFRASTRUCTURE-L3-025-N01",
+        "HELIXINFRASTRUCTURE-L10-025-F01",
+        "HELIXINFRASTRUCTURE-L10-025-F02",
+        "HELIXINFRASTRUCTURE-L10-025-N01"
+      ],
+      "binding": "approved_objectsに全wholeとcanonical hashを収録し、approved revisionと現baseで一致を照合。"
+    }
+  ],
+  "failure_basis": [
+    {
+      "source": "L4 F01",
+      "rule": "Worker identity、ticket/要求/責務、実資源identity/容量/状態を分ける。不足参照はOSまたはINFRAの該当責務へ返す。"
+    },
+    {
+      "source": "L4 F02",
+      "rule": "隔離適用、元/先観測、移動後の作業参照・未完保持を個別に照合する。不足/隔離不能/容量不足を接続成立にしない。"
+    },
+    {
+      "source": "L4 N01",
+      "rule": "要求revision/exact resource set/environment/Worker-operation/制約を証拠scopeへ照合し、未見・別scopeを未観測/不一致として保持する。"
+    }
+  ],
+  "consumer_connections": [
+    {
+      "consumer": "HELIXINFRASTRUCTURE-L2-010",
+      "boundary": "実操作のSEC authorityとWorker実行構成体を本pairが代替しない。受理/fixture結果から実移動や認可を生成しない。"
+    },
+    {
+      "consumer": "HELIXOS-L2-009",
+      "boundary": "ticket・要求・Worker責務・unfinishedの正本と返却先はOS側で保持する。"
+    },
+    {
+      "consumer": "HELIXINFRASTRUCTURE-L2-001/003",
+      "boundary": "resource identity/capacity/stateの正本と不足返却先はINFRA側で保持する。"
+    },
+    {
+      "consumer": "HELIXSECURITY isolation contract",
+      "boundary": "隔離条件/適用方式/証拠の責務はSECURITY側に残し、このfixtureから実資格を生成しない。"
+    }
+  ],
+  "unclosed_source_supply": [
+    "実Worker/OS/INFRA/SECURITY各ownerの資格済みidentityとsource資格",
+    "正式schema/codec、能力・隔離方式resolver、実観測scope、移動handoffの原子性と並行作業",
+    "実L6関数設計、L7対関数検証、実移動/隔離、L10実検証、L11受入、全92親/430対の設計閉包"
+  ],
+  "remaining": [
+    "実資格、実資源変更、実隔離、実認可はいずれも未成立。",
+    "有限fixtureがカバーしない任意scope・unknown token・複合failure優先は未閉包。",
+    "work ownerは論理役割OSとして照合するが実OS資格を証明しない。件数だけ完成の検出はcompletion_basis.synthetic_countという明示fixture fieldとclaimに限り、任意自然言語の完成主張の同定は未実現。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L5-025",
+  "layer": "L5",
+  "pair": "L8",
+  "logical_types": [
+    {
+      "name": "Presence<T>",
+      "meaning": "JSON memberの不在/null/valueを区別する。空文字・空配列・空objectはvalue。",
+      "type_parameter": "T",
+      "states": [
+        "absent",
+        "null",
+        "value"
+      ]
+    },
+    {
+      "name": "Input_F01",
+      "type": "record",
+      "fields": {
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "original_scope": {
+          "type": "record",
+          "fields": {
+            "requirement_revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "worker": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "operation_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "constraint_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "resources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "original_work_before": {
+          "type": "record",
+          "fields": {
+            "worker": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "ticket_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "requirement_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "responsibility_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "work_owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "unfinished": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "submitted_work_after": {
+          "type": "record",
+          "fields": {
+            "worker": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "ticket_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "requirement_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "responsibility_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "work_owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "unfinished": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "original_source_resource": {
+          "type": "record",
+          "fields": {
+            "identity": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "capacity_state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "fields": {
+              "type": "record",
+              "fields": {
+                "CPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "memory": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "GPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "storage": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "network": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "process": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "container": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "original_destination_resource": {
+          "type": "record",
+          "fields": {
+            "identity": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "capacity_state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "fields": {
+              "type": "record",
+              "fields": {
+                "CPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "memory": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "GPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "storage": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "network": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "process": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "container": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "original_isolation": {
+          "type": "record",
+          "fields": {
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "constraint_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "method_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "evidence_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "record",
+              "fields": {
+                "requirement_revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "environment": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "worker": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "operation_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "scope": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "constraint_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          },
+          "nullable": true
+        },
+        "original_state_evidence": {
+          "type": "record",
+          "fields": {
+            "ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "record",
+              "fields": {
+                "requirement_revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "environment": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "worker": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "operation_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "scope": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "constraint_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          },
+          "nullable": true
+        },
+        "proposed_completion_basis": {
+          "type": "record",
+          "fields": {
+            "qualification": {
+              "type": "string"
+            },
+            "synthetic_count": {
+              "type": "integer"
+            }
+          },
+          "optional": true
+        }
+      },
+      "meaning": "F01の固定source packetを構造化した論理入力。optionalとnullableは各member宣言に従う。"
+    },
+    {
+      "name": "Input_F02",
+      "same_as": "Input_F01"
+    },
+    {
+      "name": "Input_N01",
+      "same_as": "Input_F01"
+    },
+    {
+      "name": "Assessment",
+      "type": "record",
+      "fields": {
+        "information_state": {
+          "type": "enum",
+          "values": [
+            "content_requires_actual_qualification",
+            "held_identity_unqualified",
+            "held_movement_unqualified",
+            "held_evidence_scope_unqualified"
+          ]
+        },
+        "retained_original_scope": {
+          "type": "record",
+          "fields": {
+            "requirement_revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "worker": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "operation_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "constraint_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "resources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_work_before": {
+          "type": "record",
+          "fields": {
+            "worker": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "ticket_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "requirement_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "responsibility_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "work_owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "unfinished": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_source_resource": {
+          "type": "record",
+          "fields": {
+            "identity": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "capacity_state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "fields": {
+              "type": "record",
+              "fields": {
+                "CPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "memory": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "GPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "storage": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "network": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "process": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "container": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_destination_resource": {
+          "type": "record",
+          "fields": {
+            "identity": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "revision": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "environment": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "capacity_state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "fields": {
+              "type": "record",
+              "fields": {
+                "CPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "memory": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "GPU": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "storage": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "network": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "process": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "container": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_isolation": {
+          "type": "nullable-record",
+          "fields": {
+            "owner": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "constraint_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "method_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "evidence_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "record",
+              "fields": {
+                "requirement_revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "environment": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "worker": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "operation_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "scope": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "constraint_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_state_evidence": {
+          "type": "nullable-record",
+          "fields": {
+            "ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "source_ref": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "state": {
+              "type": "string",
+              "optional": true,
+              "nullable": true
+            },
+            "scope": {
+              "type": "record",
+              "fields": {
+                "requirement_revision": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "environment": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "worker": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "operation_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "scope": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "constraint_ref": {
+                  "type": "string",
+                  "optional": true,
+                  "nullable": true
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "optional": true,
+                  "nullable": true
+                }
+              },
+              "optional": true,
+              "nullable": true
+            }
+          }
+        },
+        "retained_unfinished": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "optional": true,
+          "nullable": true
+        },
+        "work_reference_preservation": {
+          "type": "enum",
+          "values": [
+            "corresponding_in_fixture_only",
+            "submitted_content_conflict"
+          ]
+        },
+        "failure_reasons": {
+          "type": "array",
+          "items": {
+            "type": "record",
+            "fields": {
+              "field": {
+                "type": "string"
+              },
+              "result": {
+                "type": "string"
+              },
+              "return_owner": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "return_owners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rejected_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "actual_effects": {
+          "type": "record",
+          "fields": {
+            "movement": {
+              "type": "boolean"
+            },
+            "isolation": {
+              "type": "boolean"
+            },
+            "ticket_ownership_change": {
+              "type": "boolean"
+            },
+            "work_overwrite": {
+              "type": "boolean"
+            },
+            "permission": {
+              "type": "boolean"
+            },
+            "deployment": {
+              "type": "boolean"
+            },
+            "acceptance": {
+              "type": "boolean"
+            },
+            "implementation_ready": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "functions": [
+    {
+      "id": "INFRA025-F01",
+      "name": "assess_worker_resource_identity",
+      "parameters": {
+        "input": "Input_F01"
+      },
+      "signature": "assess_worker_resource_identity(input: Input_F01) -> Assessment",
+      "reads": [
+        "original_scope",
+        "original_work_before",
+        "submitted_work_after",
+        "original_source_resource",
+        "original_destination_resource",
+        "claims",
+        "original_isolation",
+        "original_state_evidence"
+      ],
+      "returns": [
+        "information_state",
+        "retained_original_scope",
+        "retained_work_before",
+        "retained_source_resource",
+        "retained_destination_resource",
+        "retained_isolation",
+        "retained_state_evidence",
+        "retained_unfinished",
+        "work_reference_preservation",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
+        "未見schema、実owner資格、実観測/実操作を推測しない。"
+      ],
+      "postconditions": [
+        "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
+        "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
+      ],
+      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
+      "reference_program_ref": "INFRA025-F01"
+    },
+    {
+      "id": "INFRA025-F02",
+      "name": "assess_movement_and_isolation",
+      "parameters": {
+        "input": "Input_F02"
+      },
+      "signature": "assess_movement_and_isolation(input: Input_F02) -> Assessment",
+      "reads": [
+        "original_scope",
+        "original_work_before",
+        "submitted_work_after",
+        "original_source_resource",
+        "original_destination_resource",
+        "original_isolation",
+        "original_state_evidence",
+        "claims"
+      ],
+      "returns": [
+        "information_state",
+        "retained_original_scope",
+        "retained_work_before",
+        "retained_source_resource",
+        "retained_destination_resource",
+        "retained_isolation",
+        "retained_state_evidence",
+        "retained_unfinished",
+        "work_reference_preservation",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
+        "未見schema、実owner資格、実観測/実操作を推測しない。"
+      ],
+      "postconditions": [
+        "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
+        "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
+      ],
+      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
+      "reference_program_ref": "INFRA025-F02"
+    },
+    {
+      "id": "INFRA025-N01",
+      "name": "assess_evidence_scope",
+      "parameters": {
+        "input": "Input_N01"
+      },
+      "signature": "assess_evidence_scope(input: Input_N01) -> Assessment",
+      "reads": [
+        "original_scope",
+        "original_isolation",
+        "original_state_evidence",
+        "proposed_completion_basis",
+        "claims",
+        "original_work_before",
+        "original_source_resource",
+        "original_destination_resource"
+      ],
+      "returns": [
+        "information_state",
+        "retained_original_scope",
+        "retained_work_before",
+        "retained_source_resource",
+        "retained_destination_resource",
+        "retained_isolation",
+        "retained_state_evidence",
+        "retained_unfinished",
+        "work_reference_preservation",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "固定fixture内のJSON値をPresenceにより不在/null/valueとして保つ。合成値は実資格を示さない。",
+        "未見schema、実owner資格、実観測/実操作を推測しない。"
+      ],
+      "postconditions": [
+        "original_scope、元/先資源、元作業、隔離/状態証拠、未完義務を出力に保つ。",
+        "この関数は実移動・実隔離・権限・作業正本変更を行わない。"
+      ],
+      "algorithm_role": "pure_reference_programsの機械可読規則のみが判定を定義する。",
+      "reference_program_ref": "INFRA025-N01"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "obligation": "Worker identity、ticket/要求/責務参照とCPU/memory/GPU/storage/network/process/containerの実資源/容量/状態を別identityで対応付ける。ticket/work正本をINFRAへ移さない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01"
+      },
+      "content_rules": [
+        "Worker identityとOS ticket/要求/作業責務参照を、CPU/memory/GPU/storage/network/process/containerの実資源identity/容量/状態へ別に対応付ける。Workerを計算機identityへ置換しない。",
+        "ticket/workはOS、実資源はINFRAを正本ownerとして保持する。Worker同一性と資源同一性を混同せず、参照欠落は該当OS/資源ownerへ戻す。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "obligation": "対象資源で利用可能な方式でSEC隔離条件を実適用する。必要な資源移動後もticket/要求/Worker責務/未完義務を保持し、元と移動先の観測状態を残す。資源不足/隔離不能/参照不明では接続成立にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02"
+      },
+      "content_rules": [
+        "SEC隔離条件を対象資源で利用可能な方式へ対応させ実適用する。宣言/要求受付/手順名だけで実隔離を成立にしない。容量不足/隔離不能/未観測は接続成立へしない。",
+        "移動前と移動後で同Worker/ticket/要求/責務/未完を保持する。元資源と移動先の観測状態は別記録とし、作業の正本をINFRAへ移さない。",
+        "不足は資源/OS/SECの該当ownerへ返す。自動配置最適化や高度増減は依存gateにせず、移動操作の認可/実行は010の別構成体へ保持する。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-N01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "obligation": "要求revision・資源exact set/environment・Worker/operation・制約・観測元と証拠を結び、未見版/別scope/一境界故障を比較する。fixtureや一資源greenを全環境へ外挿しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01"
+      },
+      "content_rules": [
+        "要求revision・資源exact set/environment・Worker/operation・SEC制約・観測元と証拠を同対象へ結ぶ。未見版/別scope/一境界の故障では未確認を保持する。",
+        "fixture/一資源green/件数だけで全環境や完成へ外挿しない。適用範囲、未観測、not_executedと未完を該当ownerへ返す。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    }
+  ],
+  "trace": [
+    {
+      "requirement": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "oracle": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "function": "INFRA025-F01"
+    },
+    {
+      "requirement": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "oracle": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "function": "INFRA025-F02"
+    },
+    {
+      "requirement": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "oracle": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "function": "INFRA025-N01"
+    }
+  ],
+  "pure_reference_programs": [
+    {
+      "id": "INFRA025-F01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-025-F01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "input_type": "Input_F01",
+      "return_type": "Assessment",
+      "projection": {
+        "retained_original_scope": "original_scope",
+        "retained_work_before": "original_work_before",
+        "retained_source_resource": "original_source_resource",
+        "retained_destination_resource": "original_destination_resource",
+        "retained_isolation": "original_isolation",
+        "retained_state_evidence": "original_state_evidence",
+        "retained_unfinished": "original_work_before.unfinished"
+      },
+      "checks": [
+        {
+          "op": "compare_member_pairs",
+          "pairs": [
+            {
+              "left": "original_work_before.worker",
+              "right": "submitted_work_after.worker",
+              "field": "work.worker",
+              "missing": "missing",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.ticket_ref",
+              "right": "submitted_work_after.ticket_ref",
+              "field": "work.ticket_ref",
+              "missing": "missing",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.requirement_ref",
+              "right": "submitted_work_after.requirement_ref",
+              "field": "work.requirement_ref",
+              "missing": "missing",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.responsibility_ref",
+              "right": "submitted_work_after.responsibility_ref",
+              "field": "work.responsibility_ref",
+              "missing": "missing",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.unfinished",
+              "right": "submitted_work_after.unfinished",
+              "field": "work.unfinished",
+              "missing": "missing",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            }
+          ]
+        },
+        {
+          "op": "compare_if_both",
+          "pairs": [
+            {
+              "left": "original_work_before.worker",
+              "right": "original_scope.worker",
+              "field": "work.worker",
+              "different": "wrong_identity_or_owner",
+              "owner": "OS-work-owner"
+            }
+          ]
+        },
+        {
+          "op": "literal_group",
+          "members": [
+            {
+              "path": "original_work_before.work_owner",
+              "literal": "OS"
+            },
+            {
+              "path": "submitted_work_after.work_owner",
+              "literal": "OS"
+            }
+          ],
+          "field": "work.work_owner",
+          "missing": "missing",
+          "different": "wrong_identity_or_owner",
+          "owner": "OS-work-owner"
+        },
+        {
+          "op": "require_members",
+          "members": [
+            {
+              "path": "original_source_resource.identity",
+              "field": "source.identity",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "path": "original_destination_resource.identity",
+              "field": "destination.identity",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "path": "original_source_resource.capacity_state",
+              "field": "source.capacity_state",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "path": "original_destination_resource.capacity_state",
+              "field": "destination.capacity_state",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            }
+          ]
+        },
+        {
+          "op": "identity_separation",
+          "resources": [
+            {
+              "path": "original_source_resource.identity",
+              "field": "source.identity"
+            },
+            {
+              "path": "original_destination_resource.identity",
+              "field": "destination.identity"
+            }
+          ],
+          "worker_path": "original_scope.worker",
+          "result": "worker_resource_conflated",
+          "missing": "unobserved",
+          "owner": "INFRA-resource-source"
+        },
+        {
+          "op": "literal_group",
+          "members": [
+            {
+              "path": "original_source_resource.owner",
+              "literal": "INFRA"
+            },
+            {
+              "path": "original_destination_resource.owner",
+              "literal": "INFRA"
+            }
+          ],
+          "field": "resource.owner",
+          "missing": "unobserved",
+          "different": "wrong_identity_or_owner",
+          "owner": "INFRA-resource-source"
+        },
+        {
+          "op": "require_both_members",
+          "pairs": [
+            {
+              "left": "original_source_resource.fields.CPU",
+              "right": "original_destination_resource.fields.CPU",
+              "field": "resource.CPU",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.memory",
+              "right": "original_destination_resource.fields.memory",
+              "field": "resource.memory",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.GPU",
+              "right": "original_destination_resource.fields.GPU",
+              "field": "resource.GPU",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.storage",
+              "right": "original_destination_resource.fields.storage",
+              "field": "resource.storage",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.network",
+              "right": "original_destination_resource.fields.network",
+              "field": "resource.network",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.process",
+              "right": "original_destination_resource.fields.process",
+              "field": "resource.process",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "left": "original_source_resource.fields.container",
+              "right": "original_destination_resource.fields.container",
+              "field": "resource.container",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            }
+          ]
+        }
+      ],
+      "claim_domain": [
+        "resource_is_worker",
+        "infra_owns_ticket"
+      ],
+      "state_rule": {
+        "when_failures": "held_identity_unqualified",
+        "otherwise": "content_requires_actual_qualification"
+      },
+      "work_relation": true,
+      "effects": {
+        "movement": false,
+        "isolation": false,
+        "ticket_ownership_change": false,
+        "work_overwrite": false,
+        "permission": false,
+        "deployment": false,
+        "acceptance": false,
+        "implementation_ready": false
+      }
+    },
+    {
+      "id": "INFRA025-F02",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-025-F02",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "input_type": "Input_F02",
+      "return_type": "Assessment",
+      "projection": {
+        "retained_original_scope": "original_scope",
+        "retained_work_before": "original_work_before",
+        "retained_source_resource": "original_source_resource",
+        "retained_destination_resource": "original_destination_resource",
+        "retained_isolation": "original_isolation",
+        "retained_state_evidence": "original_state_evidence",
+        "retained_unfinished": "original_work_before.unfinished"
+      },
+      "checks": [
+        {
+          "op": "compare_member_pairs",
+          "pairs": [
+            {
+              "left": "original_work_before.worker",
+              "right": "submitted_work_after.worker",
+              "field": "submitted_work_after.worker",
+              "missing_field": "submitted_work_after.worker",
+              "missing": "lost_work_reference",
+              "different": "lost_work_reference",
+              "claim_override": null,
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.ticket_ref",
+              "right": "submitted_work_after.ticket_ref",
+              "field": "submitted_work_after.ticket_ref",
+              "missing_field": "submitted_work_after.ticket_ref",
+              "missing": "lost_work_reference",
+              "different": "lost_work_reference",
+              "claim_override": null,
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.requirement_ref",
+              "right": "submitted_work_after.requirement_ref",
+              "field": "submitted_work_after.requirement_ref",
+              "missing_field": "submitted_work_after.requirement_ref",
+              "missing": "lost_work_reference",
+              "different": "lost_work_reference",
+              "claim_override": null,
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.responsibility_ref",
+              "right": "submitted_work_after.responsibility_ref",
+              "field": "work.responsibility_ref",
+              "missing_field": "submitted_work_after.responsibility_ref",
+              "missing": "lost_work_reference",
+              "different": "lost",
+              "claim_override": {
+                "claim": "movement_erases_responsibility",
+                "field": "work.responsibility_ref",
+                "result": "lost"
+              },
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.work_owner",
+              "right": "submitted_work_after.work_owner",
+              "field": "submitted_work_after.work_owner",
+              "missing_field": "submitted_work_after.work_owner",
+              "missing": "lost_work_reference",
+              "different": "lost_work_reference",
+              "claim_override": null,
+              "owner": "OS-work-owner"
+            },
+            {
+              "left": "original_work_before.unfinished",
+              "right": "submitted_work_after.unfinished",
+              "field": "submitted_work_after.unfinished",
+              "missing_field": "submitted_work_after.unfinished",
+              "missing": "lost_work_reference",
+              "different": "lost_work_reference",
+              "claim_override": null,
+              "owner": "OS-work-owner"
+            }
+          ]
+        },
+        {
+          "op": "literal_group",
+          "members": [
+            {
+              "path": "original_work_before.work_owner",
+              "literal": "OS"
+            },
+            {
+              "path": "submitted_work_after.work_owner",
+              "literal": "OS"
+            }
+          ],
+          "field": "work.work_owner",
+          "missing": "lost_work_reference",
+          "different": "wrong_identity_or_owner",
+          "owner": "OS-work-owner"
+        },
+        {
+          "op": "isolation_state",
+          "path": "original_isolation.state",
+          "method_path": "original_isolation.method_ref",
+          "enforced": "enforced_in_fixture_only",
+          "unavailable_marker": "UNAVAILABLE",
+          "field": "isolation.state",
+          "method_field": "isolation.method_ref",
+          "not_enforced": "not_enforced",
+          "unavailable": "unavailable_on_target",
+          "missing": "missing",
+          "unknown": "unobserved",
+          "owner": "HELIX-SECURITY",
+          "not_enforced_input": "not_enforced"
+        },
+        {
+          "op": "require_members",
+          "members": [
+            {
+              "path": "original_isolation.method_ref",
+              "field": "isolation.method_ref",
+              "missing": "missing",
+              "owner": "HELIX-SECURITY"
+            },
+            {
+              "path": "original_isolation.evidence_ref",
+              "field": "isolation.evidence_ref",
+              "missing": "missing",
+              "owner": "HELIX-SECURITY"
+            }
+          ]
+        },
+        {
+          "op": "enum_member",
+          "path": "original_destination_resource.capacity_state",
+          "known_values": {
+            "qualified_in_fixture_only": null,
+            "insufficient": "insufficient"
+          },
+          "missing": "unobserved",
+          "unknown": "unobserved",
+          "field": "destination.capacity_state",
+          "owner": "INFRA-resource-source"
+        },
+        {
+          "op": "compare_if_both",
+          "pairs": [
+            {
+              "left": "original_state_evidence.source_ref",
+              "right": "original_destination_resource.source_ref",
+              "field": "state_evidence.source_ref",
+              "different": "foreign_or_unseen",
+              "owner": "INFRA-resource-source"
+            }
+          ]
+        },
+        {
+          "op": "compare_scope",
+          "evidence_path": "original_isolation.scope",
+          "reference_path": "original_scope",
+          "fields": [
+            "constraint_ref",
+            "environment",
+            "operation_ref",
+            "requirement_revision",
+            "resources",
+            "scope",
+            "worker"
+          ],
+          "prefix": "isolation.scope.",
+          "missing": "unobserved",
+          "different": "foreign_or_unseen",
+          "owner": "HELIX-SECURITY",
+          "empty_parent_field": "original_isolation",
+          "nonempty_fields": [
+            "resources"
+          ]
+        },
+        {
+          "op": "require_members",
+          "members": [
+            {
+              "path": "original_source_resource.source_ref",
+              "field": "source.source_ref",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            },
+            {
+              "path": "original_destination_resource.source_ref",
+              "field": "destination.source_ref",
+              "missing": "unobserved",
+              "owner": "INFRA-resource-source"
+            }
+          ]
+        }
+      ],
+      "claim_domain": [
+        "movement_erases_responsibility",
+        "isolation_impossible_pass",
+        "automatic_placement_required"
+      ],
+      "state_rule": {
+        "when_failures": "held_movement_unqualified",
+        "otherwise": "content_requires_actual_qualification"
+      },
+      "work_relation": true,
+      "effects": {
+        "movement": false,
+        "isolation": false,
+        "ticket_ownership_change": false,
+        "work_overwrite": false,
+        "permission": false,
+        "deployment": false,
+        "acceptance": false,
+        "implementation_ready": false
+      }
+    },
+    {
+      "id": "INFRA025-N01",
+      "contract_ref": "HELIXINFRASTRUCTURE-L4-025-N01",
+      "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "input_type": "Input_N01",
+      "return_type": "Assessment",
+      "projection": {
+        "retained_original_scope": "original_scope",
+        "retained_work_before": "original_work_before",
+        "retained_source_resource": "original_source_resource",
+        "retained_destination_resource": "original_destination_resource",
+        "retained_isolation": "original_isolation",
+        "retained_state_evidence": "original_state_evidence",
+        "retained_unfinished": "original_work_before.unfinished"
+      },
+      "checks": [
+        {
+          "op": "compare_scope",
+          "evidence_path": "original_state_evidence.scope",
+          "reference_path": "original_scope",
+          "fields": [
+            "requirement_revision",
+            "resources",
+            "environment",
+            "worker",
+            "operation_ref",
+            "scope",
+            "constraint_ref"
+          ],
+          "prefix": "state_evidence.scope.",
+          "missing": "unobserved",
+          "different": "foreign_or_unseen",
+          "owner": "INFRA-resource-source",
+          "empty_parent_field": "original_state_evidence",
+          "nonempty_fields": [
+            "resources"
+          ],
+          "conditional_result": [
+            {
+              "claims_path": "claims",
+              "claim": "green_transfers_environment",
+              "field": "environment",
+              "result": "unsupported_extrapolation"
+            }
+          ]
+        },
+        {
+          "op": "compare_scope",
+          "evidence_path": "original_isolation.scope",
+          "reference_path": "original_scope",
+          "fields": [
+            "constraint_ref",
+            "environment",
+            "operation_ref",
+            "requirement_revision",
+            "resources",
+            "scope",
+            "worker"
+          ],
+          "prefix": "isolation.scope.",
+          "missing": "unobserved",
+          "different": "foreign_or_unseen",
+          "owner": "HELIX-SECURITY",
+          "empty_parent_field": "original_isolation",
+          "nonempty_fields": [
+            "resources"
+          ]
+        },
+        {
+          "op": "claim_or_member_finding",
+          "claims_path": "claims",
+          "claim": "count_is_completion",
+          "field": "completion_basis",
+          "result": "unsupported_extrapolation",
+          "owner": "INFRA-resource-source",
+          "condition_path": "proposed_completion_basis",
+          "independent_member": "synthetic_count"
+        }
+      ],
+      "claim_domain": [
+        "count_is_completion",
+        "green_transfers_environment"
+      ],
+      "state_rule": {
+        "when_failures": "held_evidence_scope_unqualified",
+        "otherwise": "content_requires_actual_qualification"
+      },
+      "work_relation": false,
+      "effects": {
+        "movement": false,
+        "isolation": false,
+        "ticket_ownership_change": false,
+        "work_overwrite": false,
+        "permission": false,
+        "deployment": false,
+        "acceptance": false,
+        "implementation_ready": false
+      }
+    }
+  ],
+  "pure_reference_semantics": {
+    "model": "pure_reference_programsのJSON規則を汎用演算子として実行する。case ID・期待whole・L9出力を計算へ入力しない。",
+    "presence": "型memberはoptional=trueで不在、nullable=trueでnull、通常値でvalueを表す。pathに不在/null/valueを区別し、nullと不在をmissingの扱いで統合するのは個別ruleに明記した時だけ。有限合成probeでは空文字/TBD/unknown/UNKNOWNを未解決表示例とし、同一marker同士の等値を実identity資格と扱わない。resources配列の空値はexact set不明として扱い、unfinished空配列等はそのまま値として保持する。",
+    "comparison": "JSON種別を区別し、objectはkey/value再帰一致、arrayは長さ・順序・各値一致。booleanとnumberを同一視しない。",
+    "operators": {
+      "compare_member_pairs": "指定順にleft/right pathを取得。不在またはnullならmissing結果、両方valueで異なる場合different結果を追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "compare_if_both": "両側がvalueの場合だけ比較し、異なる時にfindingを追加。不在/nullの診断は別のrequire_membersへ委ねる。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "compare_literal_members": "pathの不在/nullならmissing、値がliteralと異なればdifferentを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "literal_group": "members順に各pathとliteralを比較し、最初の不在/nullまたは異値で一件を追加する。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "identity_separation": "worker pathが不在/null/有限未解決markerならこの規則を実行しない（worker側の参照検査が返却を担う）。resources順に各identityの不在/nullはmissing、workerとの等値は指定result。",
+      "enum_member": "known_valuesのキーなら対応するfinding（nullはfindingなし）、未収載値はunknown結果、不在/nullはmissing結果。",
+      "require_both_members": "pairsのいずれかのpathが不在/nullなら指定missing findingを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "equal_path_finding": "左右両方valueかつJSON等値なら指定findingを追加。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "isolation_state": "methodが有限未解決値ならfindingを追加せずrequire_membersが担う。method stringがunavailable_markerを含めばmethod_field/unavailable、methodが解決済みでstate未解決ならfield/missing、stateがenforcedならfindingなし、not_enforced_inputと等値ならfield/not_enforced、他のstateはfield/unknownを1件返す。ownerは明示operand。",
+      "require_members": "members順に不在/nullのmemberごとにfinding。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "literal_member": "path不在/nullはmissing、非literalはdifferent。 本段落の不在/nullまたはvalueの判定はpresenceの共通定義を使い、有限unresolved_fixture_markersも未解決に含める。",
+      "compare_scope": "evidence parentが不在/nullならparent fieldへunobserved。存在時は指定fields順にreferenceと比較し、不在/null/宣言nonempty_fields中の空配列/有限unresolved markerはmissing、異なればdifferentを追加。ただしconditional_resultのclaimがraw claimsにありfieldが一致する時はそのresultを使う。",
+      "claim_literal_finding": "claimsに指定claimがありcondition pathが存在すればfinding追加。",
+      "claim_scope_override": "claimsに指定claimがあればscope pathがreferenceと異なる場合finding追加。",
+      "claim_or_member_finding": "condition_pathの値が未解決でない場合に限り、claims_path arrayにclaimがある、またはcondition_pathのobjectにindependent_memberというkeyが存在する場合、field/result/ownerで1件返す。両条件が成立しても1件。keyの値・件数から完成を生成しない。"
+    },
+    "output": "projectionしたraw値を保持し、failure_reasons順のownerを重複なく抽出。失敗があればstate_rule.when_failures、なければotherwise。work_reference_preservationはwork_before/afterの指定全fieldのJSON等値で決める。effect mapは定義されたfalse値で固定。"
+  },
+  "return_owner_mapping": {
+    "OS-work-owner": {
+      "authority_owner": "HELIXOS",
+      "meaning": "作業参照の不足返却ラベル。実OS owner資格ではない。"
+    },
+    "INFRA-resource-source": {
+      "authority_owner": "HELIXINFRASTRUCTURE",
+      "meaning": "資源/観測source不足の返却ラベル。実資源owner資格ではない。"
+    },
+    "HELIX-SECURITY": {
+      "authority_owner": "HELIXSECURITY",
+      "meaning": "隔離条件/証拠の返却ラベル。実SECURITY資格ではない。"
+    }
+  },
+  "output_literal_domains": {
+    "work_reference_preservation": [
+      "corresponding_in_fixture_only",
+      "submitted_content_conflict"
+    ],
+    "information_state": [
+      "content_requires_actual_qualification",
+      "held_identity_unqualified",
+      "held_movement_unqualified",
+      "held_evidence_scope_unqualified"
+    ],
+    "source_qualification": "すべてsynthetic fixture内の比較結果。実資格/実観測/実操作の成功domainではない。"
+  },
+  "coverage_limit": "51固定原caseの有限素材に対する論理比較。全source/authority/schema/資格・全一般域を閉じない。"
+}
