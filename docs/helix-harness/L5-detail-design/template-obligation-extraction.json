@@ -321,7 +321,8 @@
       "reuse": "semantic_rederivation",
       "preserve": "要素別の原子的機械抽出、span/版/digest、候補行と個別gap、自由補完拒否を保持。",
       "change": "旧writer/台帳登録/runtimeを移さずCORE候補とOS実登録を分離。",
-      "reason": "9/29の041-003と10/12委任承認の原子性・二結果比較・owner境界へ導出する。"
+      "reason": "9/29の041-003と10/12委任承認の原子性・二結果比較・owner境界へ導出する。",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158"
     },
     {
       "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
@@ -337,7 +338,8 @@
       "reuse": "reference_only_semantic_context",
       "preserve": "Pythonが解析候補を返し、正本更新と抽出結果を分離する文脈を参照。",
       "change": "旧AST/YAML/Markdown実装、Node commit/table/schema/故障codeは採用しない。実登録は認められたOS別契約へ戻す。",
-      "reason": "現行009のpure Python境界と041の候補/正本分離を旧sourceへ照合する読み取り参照。unresolved資産の再利用実行/採択ではない。"
+      "reason": "現行009のpure Python境界と041の候補/正本分離を旧sourceへ照合する読み取り参照。unresolved資産の再利用実行/採択ではない。",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
@@ -353,7 +355,8 @@
       "reuse": "reference_only_semantic_context",
       "preserve": "適用unknownをN/Aへ丸めず、非適用理由とsource参照を分離する。旧predicate schema/registry/gate/承認方式を採用しない。",
       "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
-      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。"
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
@@ -365,11 +368,12 @@
       ],
       "quote": "| HIL-FR-47 | HIA-FR-047 | active templateの章、field、table、done-when、pair contract fixtureがある | Template Obligation Extractorを実行する | 全要素をprovenance付きobligation proposalまたはgap findingへ分岐する | `HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY` | HOT-HIL-44; HST-HIL-030 | TemplateObligationExtractor | draft-defined | not-implemented |",
       "line_sha256": "53abdcad175a6bb1a4b14ec5f081556b2ce05732c5230bd4da6763d884e810a4",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-A52AD67A5575E2B4ACFE",
       "reuse": "reference_only_semantic_context",
       "preserve": "全要素proposal/gap、draft-defined/not-implementedの未成立を保持。実行証拠として継承しない。",
       "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
-      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。"
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
@@ -381,11 +385,12 @@
       ],
       "quote": "| HST-CASE-030-14 | HST-HIL-030 | HIL-FR-47 | active templateの章、field、table、done-when、pair contract fixtureがある | Template Obligation Extractorを実行する | assertion_input_ready | assertion_pass | 全要素をprovenance付きobligation proposalまたはgap findingへ分岐する | HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY | FX-HST-030-14 | design-defined | not-implemented |",
       "line_sha256": "a7dab626b1ad888c1a97896a0bbc61e61a54be018d8bdc02e6654628bb6cd03d",
-      "asset_id": null,
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
       "reuse": "reference_only_semantic_context",
       "preserve": "HST-CASE-030-14のdesign-defined/not-implementedを保持。旧assertion/testを実行しない。",
       "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
-      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。"
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
     }
   ],
   "failure_basis": {
@@ -1203,40 +1208,8 @@
             "provided"
           ],
           "type": {
-            "kind": "record",
-            "fields": {
-              "unaffected_Q": {
-                "presence_states": [
-                  "provided"
-                ],
-                "type": {
-                  "kind": "record",
-                  "fields": {
-                    "state": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string",
-                        "domain": [
-                          "known"
-                        ]
-                      }
-                    },
-                    "value": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string"
-                      }
-                    }
-                  },
-                  "additional_properties": "closed_declared_carrier"
-                }
-              }
-            },
-            "additional_properties": "closed_declared_carrier"
+            "kind": "ref",
+            "target": "RetainedContext"
           }
         }
       },
@@ -1969,7 +1942,9 @@
                     }
                   },
                   "additional_properties": "closed_declared_carrier"
-                }
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
               },
               "reasoned_NA": {
                 "presence_states": [
@@ -2027,40 +2002,8 @@
             "provided"
           ],
           "type": {
-            "kind": "record",
-            "fields": {
-              "unaffected_Q": {
-                "presence_states": [
-                  "provided"
-                ],
-                "type": {
-                  "kind": "record",
-                  "fields": {
-                    "state": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string",
-                        "domain": [
-                          "known"
-                        ]
-                      }
-                    },
-                    "value": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string"
-                      }
-                    }
-                  },
-                  "additional_properties": "closed_declared_carrier"
-                }
-              }
-            },
-            "additional_properties": "closed_declared_carrier"
+            "kind": "ref",
+            "target": "RetainedContext"
           }
         }
       },
@@ -2089,7 +2032,8 @@
                       "supported_synthetic_condition",
                       "conflict",
                       "missing",
-                      "stale"
+                      "stale",
+                      "unknown"
                     ]
                   }
                 },
@@ -2135,7 +2079,8 @@
                       "supported_synthetic_condition",
                       "conflict",
                       "missing",
-                      "stale"
+                      "stale",
+                      "unknown"
                     ]
                   }
                 },
@@ -2525,7 +2470,9 @@
                       "kind": "null"
                     }
                   ]
-                }
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
               },
               "reasoned_NA": {
                 "presence_states": [
@@ -2583,40 +2530,8 @@
             "provided"
           ],
           "type": {
-            "kind": "record",
-            "fields": {
-              "unaffected_Q": {
-                "presence_states": [
-                  "provided"
-                ],
-                "type": {
-                  "kind": "record",
-                  "fields": {
-                    "state": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string",
-                        "domain": [
-                          "known"
-                        ]
-                      }
-                    },
-                    "value": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string"
-                      }
-                    }
-                  },
-                  "additional_properties": "closed_declared_carrier"
-                }
-              }
-            },
-            "additional_properties": "closed_declared_carrier"
+            "kind": "ref",
+            "target": "RetainedContext"
           }
         }
       },
@@ -2677,7 +2592,8 @@
                       "applicability_unknown",
                       "content_conflict",
                       "candidate_metadata_conflict",
-                      "non_applicability_unqualified"
+                      "non_applicability_unqualified",
+                      "unsupported_element"
                     ]
                   }
                 }
@@ -2956,7 +2872,9 @@
                       "additional_properties": "closed_declared_carrier"
                     }
                   ]
-                }
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
               },
               "independence_qualification": {
                 "presence_states": [
@@ -3152,7 +3070,9 @@
                     }
                   },
                   "additional_properties": "closed_declared_carrier"
-                }
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
               },
               "result_sources": {
                 "presence_states": [
@@ -3441,40 +3361,8 @@
             "provided"
           ],
           "type": {
-            "kind": "record",
-            "fields": {
-              "unaffected_Q": {
-                "presence_states": [
-                  "provided"
-                ],
-                "type": {
-                  "kind": "record",
-                  "fields": {
-                    "state": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string",
-                        "domain": [
-                          "known"
-                        ]
-                      }
-                    },
-                    "value": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string"
-                      }
-                    }
-                  },
-                  "additional_properties": "closed_declared_carrier"
-                }
-              }
-            },
-            "additional_properties": "closed_declared_carrier"
+            "kind": "ref",
+            "target": "RetainedContext"
           }
         }
       },
@@ -3918,40 +3806,8 @@
             "provided"
           ],
           "type": {
-            "kind": "record",
-            "fields": {
-              "unaffected_Q": {
-                "presence_states": [
-                  "provided"
-                ],
-                "type": {
-                  "kind": "record",
-                  "fields": {
-                    "state": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string",
-                        "domain": [
-                          "known"
-                        ]
-                      }
-                    },
-                    "value": {
-                      "presence_states": [
-                        "provided"
-                      ],
-                      "type": {
-                        "kind": "string"
-                      }
-                    }
-                  },
-                  "additional_properties": "closed_declared_carrier"
-                }
-              }
-            },
-            "additional_properties": "closed_declared_carrier"
+            "kind": "ref",
+            "target": "RetainedContext"
           }
         }
       },
@@ -4101,6 +3957,155 @@
         }
       },
       "additional_properties": "closed_declared_carrier"
+    },
+    "TemplateDomainArguments": {
+      "kind": "record",
+      "fields": {
+        "template": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "TemplateDomainReturn": {
+      "kind": "record",
+      "fields": {
+        "domain_valid": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean"
+          }
+        },
+        "violations": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "source_span": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "start_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          },
+                          "end_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    ]
+                  }
+                },
+                "raw_line": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                },
+                "parsed_value": {
+                  "presence_states": [
+                    "provided",
+                    "null",
+                    "empty"
+                  ],
+                  "type": {
+                    "kind": "json"
+                  }
+                },
+                "id_presence": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "not_an_object",
+                      "absent",
+                      "explicit_null",
+                      "supplied"
+                    ]
+                  }
+                },
+                "reason": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "template_not_object",
+                      "raw_not_string",
+                      "line_not_json",
+                      "element_not_object",
+                      "element_id_missing",
+                      "element_id_not_nonempty_string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "actual_validation_effect": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
     }
   },
   "functions": [
@@ -4167,7 +4172,8 @@
       "preconditions": [
         "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
         "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
-        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。"
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
       ],
       "steps": [
         "原NDJSON各行の要素と適用条件から対象を選び、理由/判断者/再評価/対象版を満たすNAだけ除外。一要素一atomを比較し、二義務compound/重複をconflictにする。",
@@ -4206,7 +4212,8 @@
       "preconditions": [
         "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
         "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
-        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。"
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
       ],
       "steps": [
         "全原要素をNDJSON原行順にatom/reasoned NA/gapへ一つずつ対応。unsupported→empty→placeholder→applicability unknown→NA不足→uncovered→duplicate→compound→content/metadata conflictを比較。",
@@ -4246,7 +4253,8 @@
       "preconditions": [
         "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
         "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
-        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。"
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
       ],
       "steps": [
         "二結果の独立性条件/件数/run identity→元template/frame版/bytes→各input digestとcontent digest→二semantic digestの内容一致を比較。文字列一致だけで独立性/原入力を生成しない。",
@@ -4313,7 +4321,24 @@
       "scope",
       "owner"
     ],
-    "meaning": "独立expectedを明示引数として各属性を比較する。全一致でもqualification_providerはunknown、actual_qualification_established=false。provider/root/custodyの供給は未成立。BRAIN Ref/CORE SourceEnvelope/OS Fieldをこの型へ共通化しない。"
+    "meaning": "独立expectedを明示引数として各属性を比較する。全一致でもqualification_providerはunknown、actual_qualification_established=false。provider/root/custodyの供給は未成立。BRAIN Ref/CORE SourceEnvelope/OS Fieldをこの型へ共通化しない。",
+    "qualification_scope_difference": {
+      "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/0/qualification_rule",
+      "implemented_subset": [
+        "identity",
+        "revision",
+        "scope",
+        "owner"
+      ],
+      "not_implemented_by_helper": [
+        "meaning",
+        "required_set"
+      ],
+      "preserve": "原L4の意味と必要集合の独立比較義務は保持。4属性helperは部分材料であり全qualificationではない。",
+      "change": "この補助関数はRef属性の比較だけを具体化し、意味と必要集合の完成を返さない。",
+      "reason": "実meaning source/必要集合/owner root/providerのexact bindingは未供給。metadataから意味/必要集合を推測する実装を作らない。",
+      "responsibility": "meaningは各原HARNESS template/CORE009 applicability/source契約、必要集合は同scopeのowner-qualified原母集合を供給し別内容比較へ結ぶ。実provider/qualificationは未成立。"
+    }
   },
   "finite_reference": {
     "notation": "Python風の純粋有限参照記法。定義だけを静的解釈する。製品実装/採用library/正式codecではない。",
@@ -4339,14 +4364,16 @@
       "def compare_f03(packet,context):\n template=packet.get('original_template') or {};inputs=packet.get('applicability_input') or {};dispositions={};gaps=[];atoms=packet.get('candidate_atoms') or []\n for entry in elements(template):\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs);matches=[atom for atom in atoms if atom_matches(atom,identity)];kind=None\n  if original.get('kind') not in KINDS:kind='unsupported_element'\n  elif original.get('meaning') in [None,'']:kind='empty'\n  elif original.get('meaning')=='TBD':kind='placeholder'\n  elif applies=='unknown':kind='applicability_unknown'\n  elif applies=='no':\n   na=(packet.get('reasoned_NA') or {}).get(identity)\n   if na_valid(na,template.get('revision')):dispositions[identity]={'kind':'reasoned_not_applicable','reason':na['reason']};continue\n   kind='non_applicability_unqualified'\n  elif len(matches)==0:kind='uncovered'\n  elif len(matches)>1:kind='duplicate'\n  elif len(matches[0].get('source_element_ids',[identity]))!=1:kind='compound'\n  elif (matches[0].get('content') or {}).get('meaning')!=original.get('meaning'):kind='content_conflict'\n  else:\n   atom=matches[0];content=atom.get('content') or {};checks={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'kind':original.get('kind')}\n   if original.get('requires_screen') is True:checks['applicability']=inputs\n   if any(not same(content.get(k),v) for k,v in checks.items()) or atom.get('semantic_digest')!=value_digest(content):kind='candidate_metadata_conflict'\n  if kind:\n   dispositions[identity]={'kind':'gap','gap_kind':kind};gaps.append({'element_id':identity,'kind':kind,'source_span':entry['span'],'occurrence_count':len(matches) if kind=='duplicate' else 1})\n  else:dispositions[identity]={'kind':'atom','atom_id':matches[0]['atom_id']}\n if not isinstance(template.get('raw_utf8'),str) or template.get('raw_utf8')=='':gaps.append({'element_id':None,'kind':'template_source_missing','source_span':None,'occurrence_count':1})\n elif text_digest(template['raw_utf8'])!=template.get('sha256'):gaps.append({'element_id':None,'kind':'source_digest_conflict','source_span':None,'occurrence_count':1})\n return {'element_dispositions':dispositions,'gaps':gaps,'fixture_content_complete':len(gaps)==0,**common(context)}",
       "def compare_n01(packet,context):\n sources=packet.get('result_sources') or [];frame=packet.get('input_frame') or {};template=packet.get('original_template') or {};state='supported_synthetic_condition'\n if packet.get('independence_qualification')!='known_in_synthetic_fixture':state='unknown'\n elif len(sources)!=2:state='missing'\n elif sources[0].get('run_id') in [None,'','TBD'] or sources[0].get('run_id')==sources[1].get('run_id'):state='unknown'\n elif frame.get('template_revision')!=template.get('revision'):state='stale'\n elif text_digest(template.get('raw_utf8',''))!=template.get('sha256'):state='conflict'\n else:\n  input_digest=value_digest({'template':template,'input':frame});states=[]\n  for source in sources:\n   states.extend([state_of(source.get('input_sha256'),input_digest),state_of(source.get('semantic_digest'),value_digest(source.get('content')))])\n  states.append(state_of(sources[0].get('semantic_digest'),sources[1].get('semantic_digest')));state=aggregate(states)\n held=packet.get('held_out_source');gap=None;held_gaps=[]\n if held is not None:\n  if not isinstance(held.get('raw_utf8'),str) or held.get('raw_utf8')=='':held_gaps.append({'element_id':None,'kind':'template_source_missing','template_revision':held.get('revision'),'source_span':None})\n  for entry in elements(held):\n   kind=None;scope_state=state_of(held.get('scope'),frame.get('scope'))\n   if scope_state!='supported_synthetic_condition':kind='scope_'+scope_state\n   elif held.get('revision') in [None,'','TBD']:kind='source_revision_unknown' if held.get('revision')=='TBD' else 'source_revision_missing'\n   elif text_digest(held.get('raw_utf8',''))!=held.get('sha256'):kind='source_digest_conflict'\n   elif entry['element'].get('kind') not in KINDS:kind='unsupported_element'\n   if kind:held_gaps.append({'element_id':entry['element']['id'],'kind':kind,'template_revision':held.get('revision'),'source_span':entry['span']})\n  gap=held_gaps[0] if len(held_gaps)==1 else held_gaps if held_gaps else None\n return {'comparison_result':result(state,'equal_for_this_fixture_input_only' if state=='supported_synthetic_condition' else None),'general_determinism_guaranteed':False,'all_templates_supported':False,'held_out_gap':gap,**common(context)}",
       "def compare_b01(packet,context):\n returns=[]\n for field,owner in [('template_meaning','CORE009/template-owner'),('ledger_pair_contract','040-compatible-contract-owner'),('OS_observation','OS-operation-owner')]:\n  value=packet.get(field);value='missing' if value is None else value\n  if value!='known':returns.append({'owner':owner,'reason':field+':'+value})\n return {'owner_return_candidates':returns,'requires_025_026_completion_to_author':False,**common(context)}",
-      "def compare_source_attributes(actual,required):\n actual=actual or {};required=required or {};fields={}\n for key in ['identity','revision','scope','owner']:\n  state=state_of(actual.get(key),required.get(key),key=='revision');fields[key]=result(state,actual.get(key) if state=='supported_synthetic_condition' else None)\n state=aggregate([v['state'] for v in fields.values()])\n return {'attribute_results':fields,'attribute_comparison':result(state,'attributes_compared_only' if state=='supported_synthetic_condition' else None),'actual_qualification_established':False,'qualification_provider':result('unknown')}"
+      "def compare_source_attributes(actual,required):\n actual=actual or {};required=required or {};fields={}\n for key in ['identity','revision','scope','owner']:\n  state=state_of(actual.get(key),required.get(key),key=='revision');fields[key]=result(state,actual.get(key) if state=='supported_synthetic_condition' else None)\n state=aggregate([v['state'] for v in fields.values()])\n return {'attribute_results':fields,'attribute_comparison':result(state,'attributes_compared_only' if state=='supported_synthetic_condition' else None),'actual_qualification_established':False,'qualification_provider':result('unknown')}",
+      "def check_template_domain(template):\n violations=[]\n if template is None:return {'domain_valid':True,'violations':violations,'actual_validation_effect':False}\n if not isinstance(template,dict):\n  violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(template),'id_presence':'not_an_object','reason':'template_not_object'})\n else:\n  raw=template.get('raw_utf8')\n  if raw is not None and not isinstance(raw,str):violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(raw),'id_presence':'not_an_object','reason':'raw_not_string'})\n  elif isinstance(raw,str):\n   for line,text in enumerate(raw.splitlines(),1):\n    span={'start_line':line,'end_line':line};reason=None;presence='not_an_object'\n    try:value=json.loads(text)\n    except (ValueError,TypeError):value=None;reason='line_not_json'\n    if reason is None:\n     if not isinstance(value,dict):reason='element_not_object'\n     else:\n      presence='absent' if 'id' not in value else 'explicit_null' if value['id'] is None else 'supplied'\n      if 'id' not in value or value['id'] is None:reason='element_id_missing'\n      elif not isinstance(value['id'],str) or value['id']=='':reason='element_id_not_nonempty_string'\n    if reason is not None:violations.append({'source_span':span,'raw_line':text,'parsed_value':clone(value),'id_presence':presence,'reason':reason})\n return {'domain_valid':len(violations)==0,'violations':violations,'actual_validation_effect':False}"
     ],
     "primitive_operators": [
       "copy.deepcopyは値保持、json.loadsは合成NDJSON/bodyから中間JSON値、json.dumpsはsort_keys/compact/ensure_ascii=false/allow_nan=falseの比較専用表現。UTF8 SHA256はbytes追跡で資格を生成しない。",
       "if/elif/else、and/or/not、短絡、is True/None、==/!=、in/not in、len/数比較、dict/list comprehensions、for/enumerate、next generator(default)、get/items/values、index、append/extend、str連結、dict.fromkeys。入力保持とローカルworking list/map更新のみ。",
       "try/except ValueError/TypeErrorは合成parse限界をunparsed診断へ写像する。正式format/backend/非JSON一般域の採用ではない。",
       "null/empty/TBD診断、known/unobservedとmissing/unknown/conflict/staleはstate_of/aggregateで定義。戻し先literal/理由はcompare_b01のfield+state構文で全定義。",
-      "isinstance(str/dict)でlogical carrierを識別、truthinessはNone/空list/空map/空文字/Falseをfalseとする。get(... ) or {} / []はローカル探索だけで原presenceを書換えない。splitlines/1始点enumerateは合成source行span、encode(UTF8)/hexdigestはdigest。辞書**展開はcommonのeffects/Qとroot出力を結ぶ。"
+      "isinstance(str/dict)でlogical carrierを識別、truthinessはNone/空list/空map/空文字/Falseをfalseとする。get(... ) or {} / []はローカル探索だけで原presenceを書換えない。splitlines/1始点enumerateは合成source行span、encode(UTF8)/hexdigestはdigest。辞書**展開はcommonのeffects/Qとroot出力を結ぶ。",
+      "check_template_domainはisinstance(dict/str)、enumerate/splitlines、json.loads、try/exceptを用い、原行順の違反mapを返す。kind/meaningの解釈や代替IDを生成せず、有限引数域と元raw/parsed値/spanを明示する。"
     ],
     "ordering": "原template行順/原candidate順を保持。FIELDSは明示順。gapは原行順、duplicate occurrence_countは実候補数。owner候補はtemplate→ledger→OS。N01複数gapも原行順。",
     "context_boundary": "common(context)のQは明示入力。原fixtureのexpectedからQ制御値だけをテスト引数へ展開し、whole期待やcase IDを判定に使わない。実providerは未binding。 unaffected_Qはopaque JsonValueであり、他scopeのstate/原値を推測でknownへ変換しない。",
@@ -4356,7 +4383,8 @@
       "F01の原source供給/009 selected frame、F02実機械抽出record、F03元対象集合とowner理由、N01実独立再実行、B01原consumerへのprovider接続はowner-qualified exact binding未成立。",
       "F03のfixture_content_completeは原合成要素の内容対応のみ。B01 primitive stateの実供給元とF01/F02/F03 findingからのconsumer適用は未binding。意味不足のoriginを消して自動集約/権限化しない。",
       "全430意味/正式schema/実資格/TDD/CI/L11/実装Readyは未成立。",
-      "BRAIN以外の選択ownerの契約/互換性供給はこの原packetに無い。BRAIN非選択を未観測に保っても当該selected scopeの成立を生成しない。"
+      "BRAIN以外の選択ownerの契約/互換性供給はこの原packetに無い。BRAIN非選択を未観測に保っても当該selected scopeの成立を生成しない。",
+      "raw_utf8の型stringは任意内容全域の保証ではない。F02/F03/N01の各供給行はcheck_template_domainで固定したobject＋非空string id域。非object/id欠落/数値id等は原内容付きdomain診断を返しmaterialを評価しない。未見のformat/重複ID等の一般意味は未閉包。"
     ],
     "helper_signatures": {
       "clone": "(JsonValue)->JsonValue のdeep copy",
@@ -4391,5 +4419,38 @@
       "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/4",
       "meaning": "B01は原meaning/ledger/OS primitive所見を引数に受け各owner候補へ返す。source不明をこの草稿が実providerとして生成しない。"
     }
-  ]
+  ],
+  "template_domain_function": {
+    "name": "check_template_domain",
+    "signature": "(template:TemplateDomainArguments.template)->TemplateDomainReturn",
+    "preconditions": [
+      "任意JSON論理値を取り原値と行spanを保全。製品parser/schemaの採用/認可/実gateではない。"
+    ],
+    "steps": [
+      "母template nullまたはraw null/emptyはmaterial関数の既存missing-source診断域として許容。",
+      "raw string供給時の全行はJSON objectかつ非空string idを持つ有限NDJSON域に限る。非object/id absent/null/数値等は全違反を原行順で返す。",
+      "raw_line/parsed_value/source_span/id_presenceを保存し、代替object IDや役割/意味を発明しない。domain_valid=false入力へmaterial関数を実行しない。"
+    ],
+    "returns": [
+      "domain_valid",
+      "violations",
+      "actual_validation_effect"
+    ],
+    "postconditions": [
+      "診断だけ。原rawを保存しactual_validation_effect=false。kind/meaning/span/applicabilityが不足する読めるobjectはここで排除せずF03局所gapへ残す。"
+    ]
+  },
+  "r1_resolution": {
+    "comment_id": 6182504369,
+    "reviewed_head": "773f62ce5b4bf2ca8c478d6addb2fd47a78c1ee6",
+    "body_sha256": "8fd1c0485784401e685b55da273b232a26a1cc8bd66c19a44528cf9d2dcff9d4",
+    "findings": [
+      "H41D-01",
+      "H41D-02",
+      "H41D-03"
+    ],
+    "status": "corrected_pending_parent_and_independent_review",
+    "original_33_raw_expected": "unchanged",
+    "new_domain": "有限NDJSON域を明示し12局所診断whole、unknown/unsupported3whole、contextnull/empty3wholeを追加。原74wholeの期待は不変。"
+  }
 }
