@@ -14,7 +14,7 @@
       "HELIXOS-L10-016-F02",
       "HELIXOS-L10-016-F03"
     ],
-    "operation": "既存356 baseline fixtureを値不変で保全し、caller-selected domainではdistinctな既知project identity、有限なlocator/identity binding、partial/empty/invalid入力のunknown境界、三kind・七状態の素材照合を文書化する。実状態更新はしない。"
+    "operation": "既存356 baseline fixtureを値不変で保全し、caller-selected domainではdistinctな既知project identity、有限なlocator/identity binding、partial/empty/invalid入力のunknown境界（L9補足29例）、三kind・七状態の素材照合を文書化する。実状態更新はしない。"
   },
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -848,7 +848,7 @@
       },
       {
         "id": "R10",
-        "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。"
+        "rule": "facet/全体はviolation > unknown > corresponding。全体conditionはtrace_material_*。findingはcode/pointer/return_ownerで重複排除し同3field辞書順。owner名はportfolio-trace-owner、実解消先は出力の要求/source/ownersへ辿り、実資格を仮定しない。 選択domainに評価nodeが一件もなくnodes mapが既知空の場合、各空の/targets/projects/{project_key}/nodesへ既存result_unknownを返し、全体unknownの理由を示す。"
       },
       {
         "id": "R11",
@@ -954,7 +954,7 @@
         "connection_ab": "connection",
         "composite_all": "composite"
       },
-      "meaning": "既存L9 356 caseの原入力/原期待を再解釈せず保持するための固定fixture locator。caller-selected domainの既定値やfallbackではない。"
+      "meaning": "既存L9 356 caseの原入力/原期待を再解釈せず保持するための固定fixture locator。caller-selected domainの既定値やfallbackではない。 旧呼出元がprojects/node_kindsを読む場合は356 baseline互換profileに限る。caller-selected domainではそれらをDiagnosticContractから取り出してtarget代替にせず、第三引数PortfolioTargetsを渡す。"
     },
     "project_keys": "callerのtargets.projects objectのkey集合。keyはlocatorでありproject_idと別の値。JSON Pointerでは各keyをRFC 6901に従い~→~0、/→~1へescapeする。",
     "node_keys": "各targets.projects[project_key].nodes objectのkey集合。keyはlocatorでありtarget_idと別の値。JSON PointerではRFC 6901 escapeを行う。",
@@ -980,7 +980,7 @@
       },
       {
         "id": "R13",
-        "rule": "selected locatorがactualまたはcontextの一方に無いとき、そのlocatorの全facetをunknownにする。field_unknownのpointerはpointer_basis.PortfolioInputに従い、Absentなら実shape上の最初のmissing ancestor、present null/誤型なら実在するinvalid値の位置を指す。存在側のNodeRecordはselection bindingと既知軸を比較し、保持対象であるactual側recordは原値のまま返す。両側に無い選択locatorはactualとcontext双方のpointerをunknownとして示す。invalid/absent recordを通常NodeRecordや空recordとして作らない。",
+        "rule": "selected locatorがactualまたはcontextの一方に無いとき、そのlocatorの全facetをunknownにする。field_unknownのpointerはpointer_basis.PortfolioInputに従い、Absentなら実shape上の最初のmissing ancestor、present null/誤型なら実在するinvalid値の位置を指す。存在側のNodeRecordはselection bindingと既知軸を比較し、保持対象であるactual側recordは原値のまま返す。両側に無い選択locatorはactualとcontext双方のpointerをunknownとして示す。invalid/absent recordを通常NodeRecordや空recordとして作らない。 actual/context memberがpresent nullまたは型外なら、その実引数位置をunknown pointerにする。未選択actual locatorでもraw node値がnull/型外ならactual側input pointerを別途示し、NodeRecordへ変換せずretained source/stateを生成しない。",
         "source_basis": [
           "HELIXOS-L3-016-F01",
           "HELIXOS-L10-016-F01",
@@ -991,7 +991,7 @@
       },
       {
         "id": "R14",
-        "rule": "actual/contextのlocator unionにあり、targetsにproject/node binding構造が無いlocatorは、selection側binding不足をfield_unknownで返し、該当node facetsをunknownとする。Absent keyはpointer_basis.missing_ancestor_selectionの最初の不在ancestor keyを指し、present null/誤型はpointer_basis.present_invalid_selectionの既存値位置を指す。project_idなど個別identity fieldのAbsent/null/空/型外はR12のsource facetだけに適用し、この構造欠損規則へ広げない。kind/identityはinput map keyから推定しない。未選択actual nodeのsource/state/receipt/owner/relation/historyはretained_source_records/retained_state_traceへactual原値として保持し、選択外であることを理由に削除しない。",
+        "rule": "actual/contextのlocator unionにあり、targetsにproject/node binding構造が無いlocatorは、selection側binding不足をfield_unknownで返し、該当node facetsをunknownとする。Absent keyはpointer_basis.missing_ancestor_selectionの最初の不在ancestor keyを指し、present null/誤型はpointer_basis.present_invalid_selectionの既存値位置を指す。project_idなど個別identity fieldのAbsent/null/空/型外はR12のsource facetだけに適用し、この構造欠損規則へ広げない。kind/identityはinput map keyから推定しない。未選択actual nodeのsource/state/receipt/owner/relation/historyはretained_source_records/retained_state_traceへactual原値として保持し、選択外であることを理由に削除しない。 actual/context unionにある未選択actual nodeがpresent null/誤型なら、targets binding欠落pointerに加えてactual実引数の当該member pointerをfield_unknownで示す。invalid raw memberはretained_source_records/retained_state_traceにNodeRecordとして作らない。",
         "source_basis": [
           "HELIXOS-L3-016-F01",
           "HELIXOS-L10-016-F01",
@@ -1013,7 +1013,7 @@
       },
       {
         "id": "R16",
-        "rule": "project/node map keyはlocatorのまま保持し、project/node keyはRFC 6901 escape前のUnicode codepoint辞書順で走査する。全output pointerはRFC 6901でescapeし、finding最終順はR10のcode/pointer/return_owner辞書順による。重複identityの先行/後続locatorという順序依存findingを作らない。selection provenance不足はfield_unknownで該当targets fieldへ示すが、選択値を資格済みsourceや実ownerへ昇格させない。各node/facetは既存R10のviolation > unknown > correspondingで集約し、全体も既存R10を適用する。実state更新/受入/提供/authorizationは常に生成しない。全pointerはpointer_basisに従い実引数shapeへ結ぶ。",
+        "rule": "project/node map keyはlocatorのまま保持し、project/node keyの走査順はRFC 6901 escape前のUnicode codepoint辞書順とする。これは評価/finding生成の決定性のためで、JSON objectのmember表示順は意味契約に含めず、mapはkey/valueで比較する。全output pointerはRFC 6901でescapeし、finding最終順はR10のcode/pointer/return_owner辞書順による。重複identityの先行/後続locatorという順序依存findingを作らない。selection provenance不足はfield_unknownで該当targets fieldへ示すが、選択値を資格済みsourceや実ownerへ昇格させない。各node/facetは既存R10のviolation > unknown > correspondingで集約し、全体も既存R10を適用する。実state更新/受入/提供/authorizationは常に生成しない。全pointerはpointer_basisに従い実引数shapeへ結ぶ。",
         "source_basis": [
           "HELIXOS-L3-016-F01",
           "HELIXOS-L3-016-F03",
@@ -1023,7 +1023,7 @@
       },
       {
         "id": "R17",
-        "rule": "選択projectの複数project保証はL3 F01の「二つ以上」に従うが、locator key件数をproject identity件数として数えない。ProjectTarget.project_idが既知の値はdistinct identity数だけ数え、同じknown project_idを持つ複数locatorはdistinct数へ重複算入しない。distinct known identityが二つ未満なら、選択domain全体の複数project保証をfield_unknownとしてaggregate pointer /targets/projectsへ示し、局所の既知record/state照合は保持する。project_idが一つでもAbsent/null/空/型外ならR12のfield_unknownを維持し、未解決identityを既知の別projectとも同一projectとも断定しない。重複locatorの一つを“後続”として特定するfindingは作らず、各locatorとnodeの原記録は個別に保持する。distinct known identityが二つ以上でも、それだけで成功/coverage/accepted/completionを示さない。targets/projectsのAbsent/null/誤型はpointer_basisに従うfield_unknownとし、空へ変換しない。明示projects:{}も二project保証の根拠にならずfield_unknown /targets/projectsとする。project targetまたはnodes memberがAbsentなら最初の不在ancestor、present null/誤型ならその既存値位置をfield_unknownで示す。一方nodes:{}は既知の空node mapであり、そのproject selection pointerにfield_unknownを出さず、coverage/Accepted/corresponding/completionへ昇格しない。actual/contextに存在する未選択nodeはR14で処理し、評価nodeが一件もないdomainは空集合から成功を推論せずR10のunknownを維持する。",
+        "rule": "選択projectの複数project保証はL3 F01の「二つ以上」に従うが、locator key件数をproject identity件数として数えない。ProjectTarget.project_idが既知の値はdistinct identity数だけ数え、同じknown project_idを持つ複数locatorはdistinct数へ重複算入しない。distinct known identityが二つ未満なら、選択domain全体の複数project保証をfield_unknownとしてaggregate pointer /targets/projectsへ示し、局所の既知record/state照合は保持する。project_idが一つでもAbsent/null/空/型外ならR12のfield_unknownを維持し、未解決identityを既知の別projectとも同一projectとも断定しない。重複locatorの一つを“後続”として特定するfindingは作らず、各locatorとnodeの原記録は個別に保持する。distinct known identityが二つ以上でも、それだけで成功/coverage/accepted/completionを示さない。targets/projectsのAbsent/null/誤型はpointer_basisに従うfield_unknownとし、空へ変換しない。明示projects:{}も二project保証の根拠にならずfield_unknown /targets/projectsとする。project targetまたはnodes memberがAbsentなら最初の不在ancestor、present null/誤型ならその既存値位置をfield_unknownで示す。一方nodes:{}は既知の空node mapであり、そのproject selection pointerにfield_unknownを出さず、coverage/Accepted/corresponding/completionへ昇格しない。全selected node mapが既知空で評価nodeが0件なら、R10に従い各empty nodes mapへのresult_unknownでaggregate unknown理由を示す。actual/contextに存在する未選択nodeはR14で処理する。",
         "source_basis": [
           "HELIXOS-L3-016-F01",
           "HELIXOS-L10-016-F01",
@@ -1041,7 +1041,8 @@
       },
       "caller_selected_domain": {
         "signature": "evaluate_portfolio(input: PortfolioInput, diagnostic_contract: DiagnosticContract, targets: PortfolioTargets) -> TraceResult",
-        "scope": "L9 domain_extension_casesの明示targets入力を持つ選択domain。targetsのAbsent/nullはbaseline fixtureへfallbackしない。"
+        "scope": "L9 domain_extension_casesの明示targets入力を持つ選択domain。targetsのAbsent/nullはbaseline fixtureへfallbackしない。",
+        "caller_binding_effect": "旧diagnostic_contract.projects/node_kindsをselected-domain入力に使う呼出元はPortfolioTargetsを構築して第三引数へ渡す。baseline_fixture_compatibilityから自動補完/fallbackしない。"
       }
     }
   }
