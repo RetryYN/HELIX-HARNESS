@@ -1941,8 +1941,7 @@
                 "kind": "enum",
                 "values": [
                   "supported_synthetic_condition",
-                  "unknown",
-                  "conflict"
+                  "unknown"
                 ]
               },
               "pair_definition": {
@@ -2147,18 +2146,14 @@
               "kind": "enum",
               "values": [
                 "known",
-                "missing",
-                "unknown",
-                "conflict"
+                "missing"
               ]
             },
             "feedback_contract": {
               "kind": "enum",
               "values": [
                 "known",
-                "missing",
-                "unknown",
-                "conflict"
+                "unknown"
               ]
             }
           }
@@ -2169,10 +2164,6 @@
             "execution": {
               "kind": "enum",
               "values": [
-                "known",
-                "missing",
-                "unknown",
-                "conflict",
                 "unobserved"
               ]
             },
@@ -2180,20 +2171,14 @@
               "kind": "enum",
               "values": [
                 "known",
-                "missing",
-                "unknown",
-                "conflict",
-                "unobserved"
+                "missing"
               ]
             },
             "registration": {
               "kind": "enum",
               "values": [
                 "known",
-                "missing",
-                "unknown",
-                "conflict",
-                "unobserved"
+                "conflict"
               ]
             }
           }
@@ -2329,7 +2314,7 @@
       "input_type": "PairPacket",
       "return_type": "LocalConditionResult",
       "rule_id": "R056-F02-LOCAL-CONDITIONS",
-      "rule_summary": "F01と同じoracle単位joinを使い、design/verification/oracle_identity/execution/applicability/pair_definitionを独立状態で返す。六pairごとに欠落・conflict・not_executed・unknownの影響を局所化。",
+      "rule_summary": "機械判定の唯一の定義はprogram_ref=PROGRAM-F02のASTであり、以下はその読み方を補足する。F01と同じoracle単位joinを使い、result frameはrevision差をstale、同revisionでscope/snapshot差をconflictとして先に判定する。design/verification/oracle_identity/execution/applicability/pair_definitionを独立状態で返し、六pairごとに欠落・conflict・not_executed・unknown・staleを局所化する。",
       "constants": {
         "supported": "supported_synthetic_condition",
         "missing": "missing",
@@ -2356,7 +2341,7 @@
         "derive_oracle_identity_from_row_forward_reverse_and_required_tuple",
         "derive_execution_from_result_presence_then_revision_scope_snapshot_then_state",
         "derive_applicability_from_row_applicability",
-        "derive_pair_definition_from_top_and_row_pair_definition",
+        "derive_pair_definition_after_layer_meanings_priority_from_top_and_row_pair_definition",
         "preserve_each_condition_state_without_cross_condition_collapse",
         "aggregate_pair_supported_only_when_nonempty_required_entries_all_six_supported",
         "emit_complete_result_record"
@@ -2721,14 +2706,15 @@
         "pair_definition"
       ],
       "design": "row.design_obligationがrequired designと一致ならsupported_synthetic_condition。Absent/Nullはmissing。その他conflict。",
-      "verification": "row.verification_evidenceまたは両方向edgeがAbsent/nullならmissing。その他はverification値とrequired、および両edgeのdesign/oracle/verification全値・正確な三key集合が対応する場合だけsupported_synthetic_condition。不一致/形不足はconflict。",
-      "oracle_identity": "row.oracle/pairとrequired tupleが一致し、存在するresult.oracleとforward/reverse oracleも一致ならsupported_synthetic_condition。result Absent/Nullはidentityを壊さずexecutionをnot_executedにする。差はconflict。",
-      "execution": "result非object→not_executed。objectはrevision差→stale、revision一致後scope/snapshot差→conflict、その後stateがobserved_pass_in_fixture_only→supported_synthetic_condition、TBD/unknown→unknown、その他conflict。この順序で局所判定し他条件へ転用しない。",
+      "verification": "row.verification_evidenceがAbsent/Null、またはforward/reverseのいずれか一方でもAbsent/Nullならverification=missing（両方向が欠けた場合だけに限定しない）。全値が存在するときだけrequired値と両edgeのdesign/oracle/verificationおよび正確な三key集合を比較し、完全一致ならsupported_synthetic_condition、不一致/形不足ならconflict。",
+      "oracle_identity": "row.oracle/pairとrequired tupleを比較する。存在するresult.oracle、forward.oracle、reverse.oracleはいずれも比較対象とし、forward/reverseどちらか一方のedgeがAbsent/Nullならoracle_identity=conflict（そのedgeの欠落は別条件verification=missingにも出る）。result自体がAbsent/Nullならidentity条件を壊さずexecution=not_executedとする。値の不一致はconflict。",
+      "execution": "result非object→not_executed。objectはrevision差→stale、revision一致後scope/snapshot差→conflict、その後stateがobserved_pass_in_fixture_only→supported_synthetic_condition、TBD/unknown→unknown、その他conflict。この優先順はPROGRAM-F02 ASTのとおりで、execution以外の条件へ転用しない。",
       "applicability": "required_in_fixture→supported_synthetic_condition、TBD/unknown/Absent/Null→unknown、その他conflict。",
       "pair_definition": "L6-L7でlayer_meaningsが現行L6設計/L7検証と異なればconflictを優先。他はtop/rowのAbsent/null→unknown、両current_001_fixture→supported_synthetic_condition、TBD/unknown→unknown、その他conflict。",
       "pair_result": "canonical pairについて、raw input.required_oraclesから当該pairへ結び付く全entryの6条件がsupported_synthetic_conditionで、entryが1件以上ある場合にsupported_synthetic_condition。それ以外はincomplete。6 pairすべてsupportedの場合だけall_six_supported_in_fixture=true。L9 fixtureのpairごとの2件を一般必須件数としない。",
       "duplicate_join": "一致行が0件ならdesign/verification/oracle_identity=missing、execution=not_executed、applicability/pair_definition=unknown。一致行が複数なら行を選ばず、design/verification/oracle_identity=conflict、execution=not_executed、applicability/pair_definition=unknown。",
-      "pair_cardinality": "pairの判定対象はraw input.required_oraclesから当該pairへ結び付く全entry。空ならincomplete、1件以上なら全entryの6条件がsupported_synthetic_conditionの場合に限りsupported。L9固定fixtureの各pairが2件であることを一般必須件数へ転用しない。未見subset/supersetの必要集合同定は未評価。"
+      "pair_cardinality": "pairの判定対象はraw input.required_oraclesから当該pairへ結び付く全entry。空ならincomplete、1件以上なら全entryの6条件がsupported_synthetic_conditionの場合に限りsupported。L9固定fixtureの各pairが2件であることを一般必須件数へ転用しない。未見subset/supersetの必要集合同定は未評価。",
+      "prose_precedence": "機械判定の唯一の定義はfunctions.FN056-F02.program_refが指すPROGRAM-F02のASTである。以下のcondition説明はASTを置き換えない。"
     },
     "F03": {
       "source_frame_limit": "source.layerは宣言した有限入力型でL12だけに限定されるがASTは未読。edge.source_layer=L12のみ比較する。source.revision/scopeを結ぶ独立required frame/edge scopeは未供給でsource consistencyは未実現。",
@@ -6070,7 +6056,7 @@
     "F02/F03のowner返却は未出力であり返却consumer member接続も未具体化。",
     "B01 acceptance022/design025026の個別比較は未実現。入力値/無作用出力だけで受入や設計を成立扱いしない。",
     "F01 unknown/staleの個別返却は原L9有限診断では未実現。raw保持とconflictへの局所縮約の範囲を区別する。",
-    "R1独立mutation291件の元packetは未供給。追加局所wholeは列挙分だけで、全単独枝/複合枝を網羅したとしない。"
+    "独立mutation素材の全raw packetは未供給。追加局所wholeは列挙した有限分岐に限られ、全単独枝/複合枝を網羅したとはしない。"
   ],
   "unclosed_comparison_and_owner_obligations": {
     "N01": {
@@ -6116,8 +6102,7 @@
     }
   },
   "mutation_observation_limit": {
-    "historical_review": "PR3166 exact c80625428816f5b6ed86244028aa2c53851993ebの独立R1で291 mutation中81未識別との観測。元mutation全packetはこの文書には供給されず全291を再検証済みとしない。",
-    "new_material": "L8の22独立wholeでresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7を具体化。既存107+6+親追加1は保持。",
+    "new_material": "L8には原107 whole、局所7 whole、独立23 whole、未閉包witness 1件がある。独立wholeはresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7の有限比較を含む。",
     "remaining": "F03 source frame/owner、N01独立required tuple、F02owner、一般未知必要集合と複合欠陥全域、実資格/codec/TDD/CI/L11/Readyは未成立。L9原期待一致とこれら義務の達成を区別。",
     "unobserved_or_type_excluded_branches": [
       "edge_statusのobjectキー不足/余剰は宣言入力型が三key必須/余剰拒否のため型外。プログラムのconflict枝にあるが型内whole試験は未実施。",
@@ -6125,7 +6110,8 @@
       "F02 result.state unknown/その他のstringは現在の入力型では型外。unknown返却はTBDで観測し、自由string入力へ一般化しない。",
       "applicability/pair_definitionのunknown文字列は現入力型にはない。unknown返却はTBD/Absent/null（適用枝）から到達。",
       "原required集合以外の一般的必要集合の確定と、全原子source owner/資格bindingは未成立。"
-    ]
+    ],
+    "unprovided_mutation_observation": "独立mutation観測に使われた元packet群は本pair資料に含まれず、全variationをこの有限wholeから網羅済みとはしない。"
   },
   "literal_and_output_basis": {
     "source": {
@@ -6210,6 +6196,6 @@
         ]
       }
     ],
-    "new_rule_basis": "両edge内容はL4 F01/F02、結果frameはL3 N01/L4 qualification、layer意味は現行v12-layer-contract、duplicateは一意joinの不成立として局所conflict。新gate/一般禁止条件は追加しない。"
+    "new_rule_basis": "両方向edgeのdesign/oracle/verification内容比較はL4 F01のcontent comparisonを根拠とする。結果frameのrevision/scope/snapshotはL3 N01とL4 qualification、L6/L7 layer意味は現行v12-layer-contract、duplicateは一意joinの不成立として局所conflict。新gate/一般禁止条件は追加しない。"
   }
 }

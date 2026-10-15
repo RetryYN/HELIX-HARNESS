@@ -4182,7 +4182,7 @@
     "F02/F03のowner返却は未出力であり返却consumer member接続も未具体化。",
     "B01 acceptance022/design025026の個別比較は未実現。入力値/無作用出力だけで受入や設計を成立扱いしない。",
     "F01 unknown/staleの個別返却は原L9有限診断では未実現。raw保持とconflictへの局所縮約の範囲を区別する。",
-    "R1独立mutation291件の元packetは未供給。追加局所wholeは列挙分だけで、全単独枝/複合枝を網羅したとしない。"
+    "独立mutation素材の全raw packetは未供給。追加局所wholeは列挙した有限分岐に限られ、全単独枝/複合枝を網羅したとはしない。"
   ],
   "local_binding_probes": {
     "method": "各probeのsource_packet_ref.source_case_idで指定した原L9 rawを固定sourceとし、JSON Patchで完全packetを構成する。expected_wholeは対応する元L3/L4/L10義務から原normal wholeへ独立差分を固定し、L5計算から生成しない。",
@@ -6779,7 +6779,7 @@
           }
         },
         "resolved_raw_canonical_sha256": "f6d02a9f4d4e2992f1b6079b3f8f9b417ea61902a9c135975004deae22c2c48c",
-        "independent_expected_basis": "L3/L10 N01は旧assertionを新世代greenにしない。原L9のN01正常wholeを基底としoriginだけ旧assertion032へ変更。evidence_resultだけnot_executedへ手固定。",
+        "independent_expected_basis": "L3/L10 N01は旧assertionを新世代の実結果にしない。原L9正常wholeを基底としoriginだけ旧assertion032へ変更する。evidence_resultのみnot_executedとなり、他のwhole rootは原expected値を保持する。",
         "expected_whole": {
           "evidence_result": "not_executed",
           "NFR29_holding": "unmigrated",
@@ -6811,11 +6811,11 @@
   "l5_candidate_binding": {
     "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
     "document_id": "HARNESS-L5-056",
-    "candidate_file_sha256": "366795847310b620460aec3731396c1c6dc1aa4aed8f08e6976608f3dd13ba35",
+    "candidate_file_sha256": "e1f83e894839753cd39718548ba9918da9a456c6b9374d5fae83aa6ae3f4ce4e",
     "meaning": "本L8が照合するL5 candidate bytes。上流承認や実source資格のbindingではない。"
   },
   "independent_comparison_probes": {
-    "method": "正式変更前に原L9正常wholeと原L3/L4比較義務からraw差分と全返却を独立固定。期待の生成に正式AST/evaluatorを使わない。source+RFC6902 patchで全入力を解決可能。",
+    "method": "原L9正常wholeと原L3/L4比較義務からraw差分と全返却期待を独立に定義する。期待の生成に正式AST/evaluatorを使わない。source+RFC6902 patchで全入力を解決する。",
     "probes": [
       {
         "probe_id": "R1-F01-RESULT-ORACLE",
@@ -10137,6 +10137,51 @@
         "argument_binding": {
           "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
         }
+      },
+      {
+        "probe_id": "R2-N01-NEW-GENERATION-NONPASS",
+        "function_ref": "FN056-N01",
+        "requirement_ref": "HARNESS-L3-056-N01",
+        "oracle_ref": "HARNESS-L10-056-N01",
+        "l4_ref": "HARNESS-L4-056-N01",
+        "source_packet_ref": {
+          "source_case_id": "H056-N01-NORMAL",
+          "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+          "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+          "file_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+          "json_pointer": "/verification_obligations/3/concrete_cases/0/independent_source_packet/raw_utf8",
+          "source_identity": "SOURCE-H056-N01-NORMAL",
+          "source_revision": "fixture-content-0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+          "source_packet_sha256": "0afe0daedfd44e58dfda45aa64e159edb75ae0322852fb54eb8a3963309aa2ba",
+          "patches": [
+            {
+              "op": "replace",
+              "path": "/evidence/state",
+              "value": "design-defined/not-implemented"
+            }
+          ]
+        },
+        "resolved_raw_canonical_sha256": "53bb00f0e6e73173a51e3f9bc6596aa199f251c7269b6c92c1233777a4f45ae4",
+        "independent_expected_basis": "L3/L10 N01では、設計定義状態を実行passへ昇格させない。原L9のH056-N01-NORMAL wholeを基底に、origin=new_generation_fixtureを保持し、stateだけを既存raw domainのdesign-defined/not-implementedへ変える。evidence_resultのみnot_executedへ変更し、それ以外の全rootは原expected値を保持する。これはL5正式AST変更前にL3/L4/L10から独立に定めた局所whole期待で、実評価や資格を示さない。",
+        "expected_whole": {
+          "evidence_result": "not_executed",
+          "NFR29_holding": "unmigrated",
+          "NFR29_adoption_claim": "none",
+          "held_out_gap": null,
+          "effects": {
+            "actual_oracle_executed": false,
+            "actual_gate_complete": false,
+            "actual_feedback_written": false,
+            "actual_OS_execution": false,
+            "actual_authority": false,
+            "actual_requirement_stage_end": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "expected_whole_canonical_sha256": "1dd4e88afc825a94ddf8c01b095f3209e5ebdea6c84f36d294de0018f37a9fef",
+        "qualification_limit": "同じsnapshot/revision/scopeかつ新世代originでも、非pass stateは実結果を意味しないことの有限fixture probe。実source資格・実実行は成立しない。"
       }
     ]
   },
@@ -10256,8 +10301,7 @@
     }
   },
   "mutation_observation_limit": {
-    "historical_review": "PR3166 exact c80625428816f5b6ed86244028aa2c53851993ebの独立R1で291 mutation中81未識別との観測。元mutation全packetはこの文書には供給されず全291を再検証済みとしない。",
-    "new_material": "L8の22独立wholeでresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7を具体化。既存107+6+親追加1は保持。",
+    "new_material": "L8には原107 whole、局所7 whole、独立23 whole、未閉包witness 1件がある。独立wholeはresult oracle/state/frame、row値/edge内容、欠落/null/duplicate、L6/L7の有限比較を含む。",
     "remaining": "F03 source frame/owner、N01独立required tuple、F02owner、一般未知必要集合と複合欠陥全域、実資格/codec/TDD/CI/L11/Readyは未成立。L9原期待一致とこれら義務の達成を区別。",
     "unobserved_or_type_excluded_branches": [
       "edge_statusのobjectキー不足/余剰は宣言入力型が三key必須/余剰拒否のため型外。プログラムのconflict枝にあるが型内whole試験は未実施。",
@@ -10265,7 +10309,8 @@
       "F02 result.state unknown/その他のstringは現在の入力型では型外。unknown返却はTBDで観測し、自由string入力へ一般化しない。",
       "applicability/pair_definitionのunknown文字列は現入力型にはない。unknown返却はTBD/Absent/null（適用枝）から到達。",
       "原required集合以外の一般的必要集合の確定と、全原子source owner/資格bindingは未成立。"
-    ]
+    ],
+    "unprovided_mutation_observation": "独立mutation観測に使われた元packet群は本pair資料に含まれず、全variationをこの有限wholeから網羅済みとはしない。"
   },
-  "duplicate_material_limit": "LP02は原L9と同一rawの再構成確認であり新しい独立境界ではない。元107、元6、親追加1、新22whole、未閉包witness1を件数上区別する。"
+  "duplicate_material_limit": "LP02は原L9と同一rawの再構成確認であり新しい独立境界ではない。原107、局所7、独立23、未閉包witness1は、それぞれの素材区分として保持する。"
 }
