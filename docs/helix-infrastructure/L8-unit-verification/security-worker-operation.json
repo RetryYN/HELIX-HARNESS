@@ -304,7 +304,7 @@
         "disposition": "unresolved",
         "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
       },
-      "reuse": "reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "旧provider adapterのbounded既存security authorityを保持する。",
       "change": "旧provider/security broker/approvalを移植せず、採択010のSEC authority/Workerとaction別update admission/適用復旧義務へ再導出する。",
       "reason": "10/12承認010の通常/read-only/独立復旧の境界へ再導出。新authorityや毎回の人間承認を追加しない。",
@@ -325,7 +325,7 @@
         "disposition": "unresolved",
         "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
       },
-      "reuse": "reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "旧候補のbootstrap別profileを万能な抜け道にしない境界を参照する。",
       "change": "旧Ticket/lease/fence/runtimeを移植せず、採択006の限定復旧と別SEC authority/Worker契約/復旧後OS同期へ再導出する。",
       "reason": "旧candidateの自動採用や通常authority免除を作らない。10/12承認006を起点にする。",
@@ -16736,9 +16736,30 @@
         }
       },
       "independent_basis": "L3-F01とL4-F01は対象とscopeを独立に照合する。一方の相反で他方を隠さない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/0/input_patch",
+        "input_patch_canonical_sha256": "3af7abab77cfddda6d0ef56b6133ddc30d35695642524d2667da840074ac7467",
+        "post_patch_packet_pointer": "/independent_whole_probes/0/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "17b7198ca514298f5fc6c7bfdfd849b3f899b30e83af562101dea12442500301",
+        "expected_whole_pointer": "/independent_whole_probes/0/expected_output",
+        "expected_whole_canonical_sha256": "93b1e915c38f0a502e5d0162c34ea21870664a8e37e9c2f28550c8e251a19454",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "I010-INDEPENDENT-COMPOUND-F02",
@@ -16903,9 +16924,30 @@
         }
       },
       "independent_basis": "L3-F02とL4-F02の追加条件は通常authorityの代替ではない。双方不在を保持する。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
+        "l9_baseline_case_pointer": "/verification_obligations/1/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/1/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/1/input_patch",
+        "input_patch_canonical_sha256": "049993ad6dd23f703a316f4b83c57c9339ec47b17cbc0b4ae96752cc8c7da00b",
+        "post_patch_packet_pointer": "/independent_whole_probes/1/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "9282b2c525da90f01631d468408a7bc07ef06ac53429b4bea8ffb2f49f471a9d",
+        "expected_whole_pointer": "/independent_whole_probes/1/expected_output",
+        "expected_whole_canonical_sha256": "dde9337168b9bef52e0a52ac25f0d392d391c5b5503a6bf976d817519544eee8",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/16",
+        "requirement_canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "l4_contract_pointer": "/contracts/1",
+        "l4_contract_canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "I010-INDEPENDENT-COMPOUND-F03",
@@ -17108,9 +17150,30 @@
         }
       },
       "independent_basis": "L3-F03とL4-F03は適用集合unknownを保留し、無関係backupの一律待ちというclaimを拒否する。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/2/input_patch",
+        "input_patch_canonical_sha256": "fba739724c04b386dcffffd8866c58034eac13d5bd3d3aba760269dc0b08ef0e",
+        "post_patch_packet_pointer": "/independent_whole_probes/2/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "22b7cc718e8312df1abe3ffa26f1273d3eede6dec4fd6502429fd2714e5e1a2e",
+        "expected_whole_pointer": "/independent_whole_probes/2/expected_output",
+        "expected_whole_canonical_sha256": "69bf88a89cc3fd3d8bb8a1c39274d152c6e4657b170f359c989d72086673b1b1",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "I010-INDEPENDENT-COMPOUND-F04",
@@ -17347,9 +17410,30 @@
         }
       },
       "independent_basis": "L3-F04とL4-F04は実状態不明と部分操作を独立に保持し、実資源と復旧の両ownerへ戻す。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
+        "l9_baseline_case_pointer": "/verification_obligations/3/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/3/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/3/input_patch",
+        "input_patch_canonical_sha256": "878ec2140086e7911fef6613df76683cbea7e5d0d35a5e9ca1adda8fed1ad95c",
+        "post_patch_packet_pointer": "/independent_whole_probes/3/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "87ec5d6d96463041623ac9fdf5ddee4ec856eb18e9bf0f0614531209caad8e9a",
+        "expected_whole_pointer": "/independent_whole_probes/3/expected_output",
+        "expected_whole_canonical_sha256": "3aef36ce90dc23f48266371ca5e0513c5cdaacf76ef9c858efd3cfc44c7291b9",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/18",
+        "requirement_canonical_sha256": "dcaf9fa67609a7224baa06aafbd768e677e91e46dac9eba3e2563caed601b375",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+        "l4_contract_pointer": "/contracts/3",
+        "l4_contract_canonical_sha256": "fdf006d457c9ddb2bce23b85d0f6f60a73299ee2f5211f34792309c08f1ca3ca",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
+        "l9_baseline_expected_canonical_sha256": "fadbbe2d572549579d1a30458263e69f793d689dfc2bcc6397be210c602e3161"
+      }
     },
     {
       "probe_id": "I010-INDEPENDENT-COMPOUND-F05",
@@ -17630,9 +17714,30 @@
         }
       },
       "independent_basis": "L3-F05とL4-F05はwrite-setと操作起因変化を区別する。宣言をfalse/免除へ補完しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F05-ENFORCED",
+        "l9_baseline_case_pointer": "/verification_obligations/4/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/4/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/4/input_patch",
+        "input_patch_canonical_sha256": "3335d131c26ba94435d65a33bf4637a4ccb0a2863fb3f1fa4c42b74176086cd0",
+        "post_patch_packet_pointer": "/independent_whole_probes/4/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "99c408bd438384c059711ecf58beddba5c11777c8f4baba83b5b076a231011cb",
+        "expected_whole_pointer": "/independent_whole_probes/4/expected_output",
+        "expected_whole_canonical_sha256": "bb4be4709241b2d6677ac88cfc7efca9323258b8c2ba0e7de9ae5f3060696b1c",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/19",
+        "requirement_canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+        "l4_contract_pointer": "/contracts/4",
+        "l4_contract_canonical_sha256": "7a29e3c69bb96f17c497d90423571bc6c2239547a57302310717e0a3dff641d0",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
     },
     {
       "probe_id": "I010-INDEPENDENT-COMPOUND-F06",
@@ -17811,9 +17916,30 @@
         }
       },
       "independent_basis": "L3-F06とL4-F06は独立復旧でも別SEC authorityとWorkerを両方必要とし、停止中OSを待つ循環は加えない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F06-INDEPENDENT-OS-STOPPED",
+        "l9_baseline_case_pointer": "/verification_obligations/5/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/5/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/5/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/5/input_patch",
+        "input_patch_canonical_sha256": "3644dbb34f942f47e1b9be49657ede45cb32b338e98b6aec5eedc92b33fa1824",
+        "post_patch_packet_pointer": "/independent_whole_probes/5/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "9a45c9611d6e82eb2c8044123c9a4abc810ba4a8c53e510663b62548a8e9fec6",
+        "expected_whole_pointer": "/independent_whole_probes/5/expected_output",
+        "expected_whole_canonical_sha256": "fbacf13068973f1ae79c0194cec475de83c509f069b57bd774cfe8335f9dcd3c",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/20",
+        "requirement_canonical_sha256": "b29e759d0701203642dae01b09538f63100399b510f1944f15cd51ead3fbe9ba",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
+        "l4_contract_pointer": "/contracts/5",
+        "l4_contract_canonical_sha256": "5680154752e278b1818c9649b03ce0b6c098f1a1dfca3be562eb778cac97705d",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "101680d7bd6822868432ad78061c69b874d06f8e0d80e543411b666d92b5cf47",
+        "l9_baseline_expected_canonical_sha256": "3fcc7afc64685b7ad62fee304e064e95e079a0883f27d9be24bac8c931657f10"
+      }
     },
     {
       "probe_id": "F01-AUTHORITY-REQUIRED-MEMBER",
@@ -18024,9 +18150,30 @@
         }
       },
       "independent_basis": "原L4では操作前のSEC authority tuple全体が必要であり、accepted update admissionは通常authorityの代替にならず（F02）、独立recoveryには別のSEC authority kindが必要である（F06）。必須member欠落は該当fieldで診断し、sourceを保持して保留する。これは実authorityまたは実行の証明ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/6/input_patch",
+        "input_patch_canonical_sha256": "2c82e66e56c81a60b6a2ce4235f1e051306fbc6d45f65be84099d51af1164e52",
+        "post_patch_packet_pointer": "/independent_whole_probes/6/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "84113ab2cae3eaf7fcdf00d53f688d4edfed0f5d66c7046072dd6f594de31ada",
+        "expected_whole_pointer": "/independent_whole_probes/6/expected_output",
+        "expected_whole_canonical_sha256": "9cd2c6a991e9b33c95e528d927ead5acbb3f813d59cad39970fb4b11b6d95bbd",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "F02-AUTHORITY-REQUIRED-MEMBER",
@@ -18237,9 +18384,30 @@
         }
       },
       "independent_basis": "原L4では操作前のSEC authority tuple全体が必要であり、accepted update admissionは通常authorityの代替にならず（F02）、独立recoveryには別のSEC authority kindが必要である（F06）。必須member欠落は該当fieldで診断し、sourceを保持して保留する。これは実authorityまたは実行の証明ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
+        "l9_baseline_case_pointer": "/verification_obligations/1/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/1/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/7/input_patch",
+        "input_patch_canonical_sha256": "2c82e66e56c81a60b6a2ce4235f1e051306fbc6d45f65be84099d51af1164e52",
+        "post_patch_packet_pointer": "/independent_whole_probes/7/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "84113ab2cae3eaf7fcdf00d53f688d4edfed0f5d66c7046072dd6f594de31ada",
+        "expected_whole_pointer": "/independent_whole_probes/7/expected_output",
+        "expected_whole_canonical_sha256": "f4c17da2a288bd5a6e5c67658e962bcea960922814a4c0bbbc2132c9d3b1f154",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/16",
+        "requirement_canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "l4_contract_pointer": "/contracts/1",
+        "l4_contract_canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "F06-AUTHORITY-REQUIRED-MEMBER",
@@ -18450,9 +18618,30 @@
         }
       },
       "independent_basis": "原L4では操作前のSEC authority tuple全体が必要であり、accepted update admissionは通常authorityの代替にならず（F02）、独立recoveryには別のSEC authority kindが必要である（F06）。必須member欠落は該当fieldで診断し、sourceを保持して保留する。これは実authorityまたは実行の証明ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F06-INDEPENDENT-OS-STOPPED",
+        "l9_baseline_case_pointer": "/verification_obligations/5/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/5/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/5/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/8/input_patch",
+        "input_patch_canonical_sha256": "81ee1b125560f481922055e9cf1d60aafb29f73c4e5825272b2bfec697d02c43",
+        "post_patch_packet_pointer": "/independent_whole_probes/8/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "3c8b3982e820351207a353bb726a7254aa6b517673c678f8202d54262e94830f",
+        "expected_whole_pointer": "/independent_whole_probes/8/expected_output",
+        "expected_whole_canonical_sha256": "cd1c6a3408596631ed4b9848566fb9111984c734376d7f799ce7112eae34575a",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/20",
+        "requirement_canonical_sha256": "b29e759d0701203642dae01b09538f63100399b510f1944f15cd51ead3fbe9ba",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
+        "l4_contract_pointer": "/contracts/5",
+        "l4_contract_canonical_sha256": "5680154752e278b1818c9649b03ce0b6c098f1a1dfca3be562eb778cac97705d",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "101680d7bd6822868432ad78061c69b874d06f8e0d80e543411b666d92b5cf47",
+        "l9_baseline_expected_canonical_sha256": "3fcc7afc64685b7ad62fee304e064e95e079a0883f27d9be24bac8c931657f10"
+      }
     },
     {
       "probe_id": "F03-RECOVERY-MEMBER-UNICODE-ORDER",
@@ -18666,9 +18855,30 @@
         }
       },
       "independent_basis": "原L4のrecovery契約は適用される各memberを評価する。宣言した純粋演算はobject memberをUnicode codepoint順に評価し、挿入順は意味を持たない。このため、入力の挿入順を逆にしてもfailure配列はbackup_restore、before_after、rollbackの順になる。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/9/input_patch",
+        "input_patch_canonical_sha256": "d65b77ab206fa3c1bb0fbcc7ef25d85242e0fd4b8937921893c208d6c5185eae",
+        "post_patch_packet_pointer": "/independent_whole_probes/9/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "6fb89ba71cd10a47e2123a65ecdc1f781bc26d380d365b61f2506b1b3d29a521",
+        "expected_whole_pointer": "/independent_whole_probes/9/expected_output",
+        "expected_whole_canonical_sha256": "06f8ad72646e722f58a7562db2f54af4daa111f640cf4c407ff93eed6147c3c6",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "F01-WORKER-ABSENT",
@@ -18858,9 +19068,30 @@
         }
       },
       "independent_basis": "L3/L4 F01は全操作をSEC制約下のWorker契約へ結び、L10 F01は操作前の不足をSEC/OSへ戻す。sourceにWorker値がないためnullを保持し、Worker binding欠落を報告する。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/10/input_patch",
+        "input_patch_canonical_sha256": "62e327ab90f1c8bb8371b96941321e76bf2f34a0e70d8d22a1c2bdf66f535283",
+        "post_patch_packet_pointer": "/independent_whole_probes/10/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "bee117368958df8f1442aa86b3e5fcb66691ed93b6b5e4f30033b9cf774ac4e1",
+        "expected_whole_pointer": "/independent_whole_probes/10/expected_output",
+        "expected_whole_canonical_sha256": "c1ad06d934f7f4abb2dd77364dda5cb7b542f1ba052d0f6c45cf1367579e844a",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "F01-WORKER-UNBOUNDED",
@@ -19060,12 +19291,33 @@
         }
       },
       "independent_basis": "L3/L4 F01は全操作をSEC制約下のWorker契約へ結び、L10 F01は操作前の不足をSEC/OSへ戻す。sourceのWorker objectはあるがbounded=falseと明示されるため値を保持し、そのfieldを未適格と報告する。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/11/input_patch",
+        "input_patch_canonical_sha256": "cbe499604a7a6ef4cae9af1f062b4bf333d6b780c3169f0a44a7383f55587578",
+        "post_patch_packet_pointer": "/independent_whole_probes/11/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "540a06d26ccece3cb1ab9062e7d57e7eaefeaf6b67985a4c78250e06412e2aaa",
+        "expected_whole_pointer": "/independent_whole_probes/11/expected_output",
+        "expected_whole_canonical_sha256": "b5e3ca0e42784957ae4910c7e54c7d0b734e16c4caa61653fae593a934763c36",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F01-OPERATION-TUPLE-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-OPERATION-TUPLE-ABSENT",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
       "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
       "input_patch": [
@@ -19248,12 +19500,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/12/input_patch",
+        "input_patch_canonical_sha256": "db4320842e2545385c09f5243035c8353928aa4071d8c097db151b43d3c7a2a2",
+        "post_patch_packet_pointer": "/independent_whole_probes/12/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "6f9d2ff139cb656a61af013d07f31c3909e7a4ccd9e541e9beb29ac66502451e",
+        "expected_whole_pointer": "/independent_whole_probes/12/expected_output",
+        "expected_whole_canonical_sha256": "d3a8af9a78d42f0c519e0de9c51d06cc874ab5958a70e24f119f5c8e8246610d",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F01-PROFILE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-PROFILE-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
       "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
       "input_patch": [
@@ -19450,12 +19723,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/13/input_patch",
+        "input_patch_canonical_sha256": "9a063fca746e9a52cf4251171daf994043f96c0c2d336c4389e0e10ded2ef000",
+        "post_patch_packet_pointer": "/independent_whole_probes/13/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "4edf9cf193eec63d4841242076ec8bed6887b914c8eedd4d3778b64988686707",
+        "expected_whole_pointer": "/independent_whole_probes/13/expected_output",
+        "expected_whole_canonical_sha256": "98f4e56b59c6910652e5e18884a8a619aa0f5f3bf7b96e466ed96945cb89ea56",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F01-OS-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-OS-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
       "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
       "input_patch": [
@@ -19647,12 +19941,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/14/input_patch",
+        "input_patch_canonical_sha256": "b1177affb31d2084525b4919c4250b56480e004e79d81be7505638bac28517fa",
+        "post_patch_packet_pointer": "/independent_whole_probes/14/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "513589d8c2e57a0784c28b56af10e0da74c6509bc515121fb48af2078829de5b",
+        "expected_whole_pointer": "/independent_whole_probes/14/expected_output",
+        "expected_whole_canonical_sha256": "abd41fb5bb1ac71968490c86379ad3a094de09d1ec7214135b78b72898cbd6dc",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F01-EMPTY-TARGETS",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-EMPTY-TARGETS",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
       "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
       "input_patch": [
@@ -19870,12 +20185,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/15/input_patch",
+        "input_patch_canonical_sha256": "59abc63109441aafc461a90855241268f008ef6ae5171591950b1f24d42cb6e0",
+        "post_patch_packet_pointer": "/independent_whole_probes/15/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "1c2090ddc1c8eccfd4466f7b36b638adb1f4b24b2eaad17a39e5d04458a02a0c",
+        "expected_whole_pointer": "/independent_whole_probes/15/expected_output",
+        "expected_whole_canonical_sha256": "8ad23c0a5f3f85d219c1f8ba1b3c90a26228ee4c99d9853904b7e57ac5fb5740",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F02-ADMISSION-STATE-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F02-ADMISSION-STATE-ABSENT",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
       "baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
       "input_patch": [
@@ -20061,12 +20397,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
+        "l9_baseline_case_pointer": "/verification_obligations/1/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/1/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/16/input_patch",
+        "input_patch_canonical_sha256": "f2d6fc0e384cbd49d7ba428834f9ee2723fb7e45d800bdcae76f007ed68d50dd",
+        "post_patch_packet_pointer": "/independent_whole_probes/16/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "fad4128e37606a9205265dcaaaefd9457b5f0684ba7bee343766f7db5128b8b9",
+        "expected_whole_pointer": "/independent_whole_probes/16/expected_output",
+        "expected_whole_canonical_sha256": "ab8294bc1dc59798e81a92430774b864e199ab102c1b56e733137e9b393b9074",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/16",
+        "requirement_canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "l4_contract_pointer": "/contracts/1",
+        "l4_contract_canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F03-CHANGE-RECOVERY-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F03-CHANGE-RECOVERY-ABSENT",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
       "baseline_case_id": "I010-F03-APPLICABLE-ONLY",
       "input_patch": [
@@ -20224,12 +20581,18 @@
         "retained_sync_state": "not_applicable",
         "failure_reasons": [
           {
+            "field": "recovery.applicable",
+            "result": "unknown",
+            "return_owner": "recovery/SEC/OS"
+          },
+          {
             "field": "recovery",
             "result": "unknown",
             "return_owner": "recovery-design-owner"
           }
         ],
         "return_owners": [
+          "recovery/SEC/OS",
           "recovery-design-owner"
         ],
         "rejected_claims": [],
@@ -20246,12 +20609,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/17/input_patch",
+        "input_patch_canonical_sha256": "efc1219e67a6f1c60e04fd92a1af980a3a36ba9aeb5de2ed715830bf5c81a8de",
+        "post_patch_packet_pointer": "/independent_whole_probes/17/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "38c6ac3d07c2a8c6b647ce3092c9ddd2f639fdcb1e05524a9a5bf927d9da6785",
+        "expected_whole_pointer": "/independent_whole_probes/17/expected_output",
+        "expected_whole_canonical_sha256": "ce28eafc4d3926439aacf2b5db43a001ec77d6c187dc60b9b33467edce85de83",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-F04-RESULT-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F04-RESULT-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
       "baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
       "input_patch": [
@@ -20478,12 +20862,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
+        "l9_baseline_case_pointer": "/verification_obligations/3/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/3/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/18/input_patch",
+        "input_patch_canonical_sha256": "a84f22f36d0ed1c532d7797f5ef532a1686fb55d3ec7b3afed54dc481ebc33f0",
+        "post_patch_packet_pointer": "/independent_whole_probes/18/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "dc353a7f93b9c7748ebb9e184ea0862f1ea378cd8ecfd7c62b603595ed8eafc7",
+        "expected_whole_pointer": "/independent_whole_probes/18/expected_output",
+        "expected_whole_canonical_sha256": "a5b2d3e7a473672c246c1e8acb9aaf9dbe159619e5eca64f39af7d8f365a87de",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/18",
+        "requirement_canonical_sha256": "dcaf9fa67609a7224baa06aafbd768e677e91e46dac9eba3e2563caed601b375",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+        "l4_contract_pointer": "/contracts/3",
+        "l4_contract_canonical_sha256": "fdf006d457c9ddb2bce23b85d0f6f60a73299ee2f5211f34792309c08f1ca3ca",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
+        "l9_baseline_expected_canonical_sha256": "fadbbe2d572549579d1a30458263e69f793d689dfc2bcc6397be210c602e3161"
+      }
     },
     {
-      "probe_id": "I010-R1-F05-CHANGE-SET-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F05-CHANGE-SET-ABSENT",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
       "baseline_case_id": "I010-F05-ENFORCED",
       "input_patch": [
@@ -20736,12 +21141,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F05-ENFORCED",
+        "l9_baseline_case_pointer": "/verification_obligations/4/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/4/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/19/input_patch",
+        "input_patch_canonical_sha256": "02e10d53319362ea90c9b297a54f11496e0adec123b6a9856ae6dd30abfcfd13",
+        "post_patch_packet_pointer": "/independent_whole_probes/19/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "2a806cc0923f26394228b6eb2ee019934b17f56c5227e439c08778b9615e486f",
+        "expected_whole_pointer": "/independent_whole_probes/19/expected_output",
+        "expected_whole_canonical_sha256": "ab34b3c7eb953afc83bc91413ba806c5a5cb1833d9c65ad7899c2af57eff397e",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/19",
+        "requirement_canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+        "l4_contract_pointer": "/contracts/4",
+        "l4_contract_canonical_sha256": "7a29e3c69bb96f17c497d90423571bc6c2239547a57302310717e0a3dff641d0",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
     },
     {
-      "probe_id": "I010-R1-F06-SYNC-NOT-PENDING",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F06-SYNC-NOT-PENDING",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F06-ASSESS",
       "baseline_case_id": "I010-F06-SYNC-PENDING",
       "input_patch": [
@@ -20958,12 +21384,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F06-SYNC-PENDING",
+        "l9_baseline_case_pointer": "/verification_obligations/5/cases/4",
+        "l9_baseline_raw_pointer": "/verification_obligations/5/cases/4/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/5/cases/4/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/20/input_patch",
+        "input_patch_canonical_sha256": "99c427df1485fb9a868c9b7403b41a77409e818cb6a5d00a0eb3db3ad93f8361",
+        "post_patch_packet_pointer": "/independent_whole_probes/20/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "a2a5a4b2ea867d249d8c51d9e61d012a1ff55e287704edca7d04f12871f1ce06",
+        "expected_whole_pointer": "/independent_whole_probes/20/expected_output",
+        "expected_whole_canonical_sha256": "ae1f0507120b321471f7e64c39e749384795984da06d97c215527b9cfb999518",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/20",
+        "requirement_canonical_sha256": "b29e759d0701203642dae01b09538f63100399b510f1944f15cd51ead3fbe9ba",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
+        "l4_contract_pointer": "/contracts/5",
+        "l4_contract_canonical_sha256": "5680154752e278b1818c9649b03ce0b6c098f1a1dfca3be562eb778cac97705d",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "e2943c60db760ae5e73104555beaec7a228b73a879277ece00621f2b4649046a",
+        "l9_baseline_expected_canonical_sha256": "81629f33373531d52c737551e8fbdbeb733a7e30691a56a76a98df9a7a2e41f3"
+      }
     },
     {
-      "probe_id": "I010-R1-N01-DATA-BOUNDARY",
+      "probe_id": "I010-PRIOR-INDEPENDENT-N01-DATA-BOUNDARY",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
       "baseline_case_id": "I010-N01-REFERENCE-ONLY",
       "input_patch": [
@@ -21187,12 +21634,33 @@
         }
       },
       "independent_basis": "原L4の該当契約にある不一致/未観測/追加admission/復旧後同期を、元正常fixtureへ明示した一件だけの変異で観測する。expectedはL9 baseline wholeへ本記録の列挙済みfailure deltaを足して固定し、候補規則を参照しない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-N01-REFERENCE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/6/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/6/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/6/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/21/input_patch",
+        "input_patch_canonical_sha256": "3d549cf9bd964a684ea38b87dd64e0d55aa095937f0c04712b5fb6850e4e2184",
+        "post_patch_packet_pointer": "/independent_whole_probes/21/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "eeb110c605bd3a2f90da41e55d70355d81f5c658a387a8305b1045b8644bfc02",
+        "expected_whole_pointer": "/independent_whole_probes/21/expected_output",
+        "expected_whole_canonical_sha256": "1c571d039ddb0910b6006b3bd4205e703813154482d57c99f51bb279d25fa163",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+        "requirement_pointer": "/requirements/0",
+        "requirement_canonical_sha256": "2fb1822a4d0fd469e3c127707a1b3b9c2228a55bed08105f21fbe57a3cbd61ac",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-N01",
+        "l4_contract_pointer": "/contracts/6",
+        "l4_contract_canonical_sha256": "1d85cf1d693469d3b682da2eb888811fae0f9a3f3583b7953d65271bff1a6b6a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F04-BEFORE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F04-BEFORE-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
       "baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
       "input_patch": [
@@ -21415,12 +21883,33 @@
         }
       },
       "independent_basis": "原L4の必要観測/全操作scope/非書込み証拠責務。変異後のAbsent/null/誤型はqualification根拠にならず、具体的対象fieldの未観測をresource/SECまたはSEC/OSへ返す。fixture ownerは論理routeであり実資格ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
+        "l9_baseline_case_pointer": "/verification_obligations/3/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/3/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/22/input_patch",
+        "input_patch_canonical_sha256": "41567f785c745d0bd35893f11b219d07c894d862e151ab3cdb48fc4030d9c9d2",
+        "post_patch_packet_pointer": "/independent_whole_probes/22/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "809e911e5734cc1881ff1f746676632fe34922af96c5e4a8694fe2fe1e901d40",
+        "expected_whole_pointer": "/independent_whole_probes/22/expected_output",
+        "expected_whole_canonical_sha256": "37f54c8b0c8e1f1c8160c6a1372ea728f3b4b8db4c48a9ec43bcf3cb186c74e4",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/18",
+        "requirement_canonical_sha256": "dcaf9fa67609a7224baa06aafbd768e677e91e46dac9eba3e2563caed601b375",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+        "l4_contract_pointer": "/contracts/3",
+        "l4_contract_canonical_sha256": "fdf006d457c9ddb2bce23b85d0f6f60a73299ee2f5211f34792309c08f1ca3ca",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
+        "l9_baseline_expected_canonical_sha256": "fadbbe2d572549579d1a30458263e69f793d689dfc2bcc6397be210c602e3161"
+      }
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-WRITE-SET-WRONG-KIND",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-WRITE-SET-WRONG-KIND",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
       "baseline_case_id": "I010-F05-ENFORCED",
       "input_patch": [
@@ -21676,12 +22165,33 @@
         }
       },
       "independent_basis": "原L4の必要観測/全操作scope/非書込み証拠責務。変異後のAbsent/null/誤型はqualification根拠にならず、具体的対象fieldの未観測をresource/SECまたはSEC/OSへ返す。fixture ownerは論理routeであり実資格ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F05-ENFORCED",
+        "l9_baseline_case_pointer": "/verification_obligations/4/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/4/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/23/input_patch",
+        "input_patch_canonical_sha256": "03a0abb3d61045bee4f945980941e6d36bb9cb41b7fd233a7cdbf696d3cab2c7",
+        "post_patch_packet_pointer": "/independent_whole_probes/23/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "90a7ee14e06f949426ee9998241e8200125b9816fec6f8fd4b08e09f3dd59b38",
+        "expected_whole_pointer": "/independent_whole_probes/23/expected_output",
+        "expected_whole_canonical_sha256": "ff7bb489bd1b3c9da8e911f3a5475442dfdb121a10bd5092ddb151ad8679d37a",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/19",
+        "requirement_canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+        "l4_contract_pointer": "/contracts/4",
+        "l4_contract_canonical_sha256": "7a29e3c69bb96f17c497d90423571bc6c2239547a57302310717e0a3dff641d0",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-CAUSED-CHANGES-WRONG-KIND",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-CAUSED-CHANGES-WRONG-KIND",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
       "baseline_case_id": "I010-F05-ENFORCED",
       "input_patch": [
@@ -21937,12 +22447,33 @@
         }
       },
       "independent_basis": "原L4の必要観測/全操作scope/非書込み証拠責務。変異後のAbsent/null/誤型はqualification根拠にならず、具体的対象fieldの未観測をresource/SECまたはSEC/OSへ返す。fixture ownerは論理routeであり実資格ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F05-ENFORCED",
+        "l9_baseline_case_pointer": "/verification_obligations/4/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/4/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/24/input_patch",
+        "input_patch_canonical_sha256": "9f56c2abe047f4c3b683e40a5d45e72c2b37a0ce9015c3c8d6c74431d2da39c5",
+        "post_patch_packet_pointer": "/independent_whole_probes/24/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "c47a0bba31372dca2a7edd2ecd7cdb0f9f2a73d389cfd72e286c11f2d2f140d2",
+        "expected_whole_pointer": "/independent_whole_probes/24/expected_output",
+        "expected_whole_canonical_sha256": "3775c7c4a47799c538fc326dd41089a7e02d6e55b4bf412b75b2b8b1f5c8bf1c",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/19",
+        "requirement_canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+        "l4_contract_pointer": "/contracts/4",
+        "l4_contract_canonical_sha256": "7a29e3c69bb96f17c497d90423571bc6c2239547a57302310717e0a3dff641d0",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-BEFORE-TUPLE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-BEFORE-TUPLE-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
       "baseline_case_id": "I010-F05-ENFORCED",
       "input_patch": [
@@ -22184,12 +22715,33 @@
         }
       },
       "independent_basis": "原L4の必要観測/全操作scope/非書込み証拠責務。変異後のAbsent/null/誤型はqualification根拠にならず、具体的対象fieldの未観測をresource/SECまたはSEC/OSへ返す。fixture ownerは論理routeであり実資格ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F05-ENFORCED",
+        "l9_baseline_case_pointer": "/verification_obligations/4/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/4/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/25/input_patch",
+        "input_patch_canonical_sha256": "23ffc7609c5939804abe5c380e380c310f659c838013eb47c8c926684a6772d9",
+        "post_patch_packet_pointer": "/independent_whole_probes/25/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "886db754ccd48f7642ce5e80578e561695d31a4a62ff2628bca4152be5597a8a",
+        "expected_whole_pointer": "/independent_whole_probes/25/expected_output",
+        "expected_whole_canonical_sha256": "81c7092a5906d215a96416aa2f0e59d5b262e81b47f312e2609531d11b431103",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/19",
+        "requirement_canonical_sha256": "29128e5ab3bc5f947a852b15a32f3d392b1b13afabbf9ade703989f6980464bf",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+        "l4_contract_pointer": "/contracts/4",
+        "l4_contract_canonical_sha256": "7a29e3c69bb96f17c497d90423571bc6c2239547a57302310717e0a3dff641d0",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F01-AUTHORITY-OWNER-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F01-AUTHORITY-OWNER-NULL",
       "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
       "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
       "input_patch": [
@@ -22386,9 +22938,30 @@
         }
       },
       "independent_basis": "原L4の必要観測/全操作scope/非書込み証拠責務。変異後のAbsent/null/誤型はqualification根拠にならず、具体的対象fieldの未観測をresource/SECまたはSEC/OSへ返す。fixture ownerは論理routeであり実資格ではない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
-      "effect": "none"
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/26/input_patch",
+        "input_patch_canonical_sha256": "629a1626b8cbe665e0b24df76dbe5ae400ea301dbc6257d947d457970d65a59a",
+        "post_patch_packet_pointer": "/independent_whole_probes/26/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "e66f147c415e2c835be0f9e2049fe1092b2288a5a546ccd1eb2b5ed6c0c34011",
+        "expected_whole_pointer": "/independent_whole_probes/26/expected_output",
+        "expected_whole_canonical_sha256": "fbe42d90c3d75a95964c95938d1a8c9fc27272d59eb52afcd0c81f89a74d7045",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     },
     {
       "probe_id": "LOCAL-I010-READONLY-IGNORES-UPDATE-ADMISSION",
@@ -22639,10 +23212,1867 @@
         }
       },
       "independent_basis": "批准F02/L4 F02のread-onlyにupdate admission gateを追加しない義務。原read正常rawの追加admissionだけを空objectへ変更し、元の全期待をそのまま保持する非干渉反例。候補の計算結果は期待源にしない。",
-      "expected_fixed_before_candidate": true,
-      "execution_state": "synthetic_static_only",
+      "execution_state": "not_executed",
       "effect": "none",
-      "expectation_kind": "noninterference"
+      "expectation_kind": "noninterference",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F02-READONLY-NO-UPDATE-GATE",
+        "l9_baseline_case_pointer": "/verification_obligations/1/cases/1",
+        "l9_baseline_raw_pointer": "/verification_obligations/1/cases/1/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/1/cases/1/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/27/input_patch",
+        "input_patch_canonical_sha256": "f2d6fc0e384cbd49d7ba428834f9ee2723fb7e45d800bdcae76f007ed68d50dd",
+        "post_patch_packet_pointer": "/independent_whole_probes/27/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "42eefd671b26738a041779a484c3f866becce80a5d25c2b9d303b8b80958f825",
+        "expected_whole_pointer": "/independent_whole_probes/27/expected_output",
+        "expected_whole_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/16",
+        "requirement_canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "l4_contract_pointer": "/contracts/1",
+        "l4_contract_canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
+        "l9_baseline_expected_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-UNKNOWN-PROFILE-NO-OS",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/profile",
+          "value": "read_only"
+        },
+        {
+          "op": "replace",
+          "path": "/os",
+          "value": null
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": null,
+          "profile": "read_only",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "satisfied_in_fixture_only"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_operation",
+        "retained_operation_tuple": {
+          "action": "update",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": {
+            "backup_restore": "satisfied_in_fixture_only",
+            "before_after": "satisfied_in_fixture_only",
+            "rollback": "satisfied_in_fixture_only"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "profile",
+            "result": "not_qualified",
+            "return_owner": "SEC/OS"
+          }
+        ],
+        "return_owners": [
+          "SEC/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F01と旧execution-ticket要求99。未定義profileは通常経路のOS素材を免除する根拠にならない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/28/input_patch",
+        "input_patch_canonical_sha256": "44c27f21aacc0871eb978c763962107c032ecbc64259a1e1d4fa47b5a64070b2",
+        "post_patch_packet_pointer": "/independent_whole_probes/28/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "f0336f9a2656e7f19c3eb10fcf807e838ebdd6bb728800259197bb5aebb4741b",
+        "expected_whole_pointer": "/independent_whole_probes/28/expected_output",
+        "expected_whole_canonical_sha256": "98f4e56b59c6910652e5e18884a8a619aa0f5f3bf7b96e466ed96945cb89ea56",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-PROFILE-UPDATE-ACTION",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F01-ASSESS",
+      "baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/profile",
+          "value": "independent_recovery"
+        },
+        {
+          "op": "replace",
+          "path": "/os",
+          "value": null
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": null,
+          "profile": "independent_recovery",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "satisfied_in_fixture_only"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_operation",
+        "retained_operation_tuple": {
+          "action": "update",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": {
+            "backup_restore": "satisfied_in_fixture_only",
+            "before_after": "satisfied_in_fixture_only",
+            "rollback": "satisfied_in_fixture_only"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "profile.action",
+            "result": "mismatch",
+            "return_owner": "SEC/OS"
+          }
+        ],
+        "return_owners": [
+          "SEC/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F01/F06。独立復旧profileを通常updateの免除へ外挿しない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED",
+        "l9_baseline_case_pointer": "/verification_obligations/0/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/0/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/29/input_patch",
+        "input_patch_canonical_sha256": "629da1efc33d10ffac82f08871751725143c50b84753ef680c549b37537f388a",
+        "post_patch_packet_pointer": "/independent_whole_probes/29/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "852aac5bc4f4f8e006e5a045962a73d85b66b228d751991dea52e56a882faeab",
+        "expected_whole_pointer": "/independent_whole_probes/29/expected_output",
+        "expected_whole_canonical_sha256": "e44c93b9c653e5b7abdcfaff38abe188ea8e38898200896f6361a2dfc623d089",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/15",
+        "requirement_canonical_sha256": "a29c975fe106a40714974167320c3b17b4d0b67f240d6910b979518192514936",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+        "l4_contract_pointer": "/contracts/0",
+        "l4_contract_canonical_sha256": "54017c7c2e695d181808f8190bcb1dc905e0ef0cebf0abbd5b183681ff7d1f19",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-CHANGE-APPLICABILITY-NULL",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/operation_tuple/action",
+          "value": "change"
+        },
+        {
+          "op": "replace",
+          "path": "/recovery/applicable",
+          "value": null
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "change",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": null,
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_change",
+        "retained_operation_tuple": {
+          "action": "change",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": null,
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "recovery.applicable",
+            "result": "unknown",
+            "return_owner": "recovery/SEC/OS"
+          }
+        ],
+        "return_owners": [
+          "recovery/SEC/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F03はstate-changing actionへ適用集合を照合。changeもupdateと同じで、unknownは保留。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/30/input_patch",
+        "input_patch_canonical_sha256": "db05ebc80544fac9b8f9a009e900908fbe70ad825a9590378f8a1b31b238ca7f",
+        "post_patch_packet_pointer": "/independent_whole_probes/30/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "27504396ac6007523913f358b85c14259c2b878d984e4aed5a84bc2c2bf0d288",
+        "expected_whole_pointer": "/independent_whole_probes/30/expected_output",
+        "expected_whole_canonical_sha256": "ee1664f76c75c8d6d809c7263f2a0fd739b2071edc5838aef9bb6ce98733c45a",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-CHANGE-ROLLBACK-UNSATISFIED",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/operation_tuple/action",
+          "value": "change"
+        },
+        {
+          "op": "replace",
+          "path": "/recovery/applicable/rollback",
+          "value": "not_satisfied"
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "change",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "not_satisfied"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_change",
+        "retained_operation_tuple": {
+          "action": "change",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": {
+            "backup_restore": "satisfied_in_fixture_only",
+            "before_after": "satisfied_in_fixture_only",
+            "rollback": "not_satisfied"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "recovery.rollback",
+            "result": "unsatisfied",
+            "return_owner": "recovery/SEC/OS"
+          }
+        ],
+        "return_owners": [
+          "recovery/SEC/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F03。changeの該当rollback義務の未充足を隠さない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/31/input_patch",
+        "input_patch_canonical_sha256": "31fe38b0799622f614d63fdc63c69a58f3caa8aae2a4ceea372470620adaa56c",
+        "post_patch_packet_pointer": "/independent_whole_probes/31/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "cfed06fa3efbeede56af7629710f76d17324e5afca5146582777441a408d2984",
+        "expected_whole_pointer": "/independent_whole_probes/31/expected_output",
+        "expected_whole_canonical_sha256": "24710480e1700490a400c77460b1037f6317924cca2e8f819b8e4080846e64fa",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-APPLICATION-MISSING",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F03-ASSESS",
+      "baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/operation_tuple/action",
+          "value": "recovery"
+        },
+        {
+          "op": "replace",
+          "path": "/recovery",
+          "value": null
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "recovery",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": null,
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_change",
+        "retained_operation_tuple": {
+          "action": "recovery",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": null,
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "recovery.applicable",
+            "result": "unknown",
+            "return_owner": "recovery/SEC/OS"
+          },
+          {
+            "field": "recovery",
+            "result": "unknown",
+            "return_owner": "recovery-design-owner"
+          }
+        ],
+        "return_owners": [
+          "recovery/SEC/OS",
+          "recovery-design-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F03/F06。recoveryもstate-changingだが適用集合を推定補完せず、005の不足へ返す。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F03-APPLICABLE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/2/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/2/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/32/input_patch",
+        "input_patch_canonical_sha256": "7cedac6a5d88cebeaeda58255e8056d4786a82cb9bfd1d91e168aa4a599d4335",
+        "post_patch_packet_pointer": "/independent_whole_probes/32/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "230e1ddb64a3fd1c00ea84a70a88bc249686ccdf29132a66e691ad91479f8890",
+        "expected_whole_pointer": "/independent_whole_probes/32/expected_output",
+        "expected_whole_canonical_sha256": "4e44a8a1ff59d2ccc1bd812bdc3cbd7a1660a10f443d28e06db4248111d74759",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/17",
+        "requirement_canonical_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+        "l4_contract_pointer": "/contracts/2",
+        "l4_contract_canonical_sha256": "816db7175316a96be78e596b1856c45d92b584404e92ebed53768a100c2fdc8a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-ADMISSION-CLASSIFICATION-UNKNOWN",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F02-ASSESS",
+      "baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/operation_tuple/action",
+          "value": "recovery"
+        },
+        {
+          "op": "replace",
+          "path": "/update_admission",
+          "value": null
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "recovery",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "satisfied_in_fixture_only"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": null,
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_before_change",
+        "retained_operation_tuple": {
+          "action": "recovery",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": {
+            "backup_restore": "satisfied_in_fixture_only",
+            "before_after": "satisfied_in_fixture_only",
+            "rollback": "satisfied_in_fixture_only"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "authority.action",
+            "result": "foreign",
+            "return_owner": "HELIX-SECURITY"
+          },
+          {
+            "field": "operation_tuple.action",
+            "result": "unknown",
+            "return_owner": "recovery/SEC/OS"
+          }
+        ],
+        "return_owners": [
+          "HELIX-SECURITY",
+          "recovery/SEC/OS"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F02のupdate/change限定とF06別経路を保持する。recovery名だけで変更分類を免除せず、005/006から当該actionの更新分類を解決するまで未閉包。全復旧へ通常admissionを一律要求しない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F02-UPDATE-ACCEPTED",
+        "l9_baseline_case_pointer": "/verification_obligations/1/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/1/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/33/input_patch",
+        "input_patch_canonical_sha256": "29dc87db2b3a51fa3e2e27b5734ff3723798177203a90b146d2dc13b0409b10c",
+        "post_patch_packet_pointer": "/independent_whole_probes/33/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "584d49d5cbf9e39605504cb60e2af44b00e2a803930182dbefa6bf3fe4a4131b",
+        "expected_whole_pointer": "/independent_whole_probes/33/expected_output",
+        "expected_whole_canonical_sha256": "2402fcc6339796607286858e8e7ef54a625e34521b1cc60a1d223bbad0f10d41",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/16",
+        "requirement_canonical_sha256": "6d567126d4c5156a71b633969c1222de6dfd50fd2b74079e4ca3a94d70458444",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+        "l4_contract_pointer": "/contracts/1",
+        "l4_contract_canonical_sha256": "713610e464858108e68a6e41e467f80bd8cf3e8842282f8eb007eda112704708",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-FAILED-RESULT-UNFINISHED",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-F04-ASSESS",
+      "baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/result/state",
+          "value": "failed"
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "AFTER-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r2"
+            }
+          },
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "satisfied_in_fixture_only"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": {
+            "operation_ref": "OP-P@r2",
+            "owner": "Worker",
+            "receipt_ref": "RESULT-P@r2",
+            "state": "failed",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_with_actual_unfinished",
+        "retained_operation_tuple": {
+          "action": "update",
+          "environment": "ENV-STAGING",
+          "project": "PROJECT-P",
+          "revision": "RESOURCE-P-r2",
+          "scope": "PRODUCT-P",
+          "target": "RESOURCE-P"
+        },
+        "retained_authority": {
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2",
+          "expiry": "valid_in_fixture_only",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "state": "valid_in_fixture_only",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_worker": {
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "ref": "WORKER-CONTRACT-P@r2",
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "applicable": {
+            "backup_restore": "satisfied_in_fixture_only",
+            "before_after": "satisfied_in_fixture_only",
+            "rollback": "satisfied_in_fixture_only"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          },
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2"
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": {
+          "operation_ref": "OP-P@r2",
+          "owner": "INFRA-resource-source",
+          "source_ref": "AFTER-P@r2",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "values": {
+            "version": "runtime-r2"
+          }
+        },
+        "retained_result": {
+          "operation_ref": "OP-P@r2",
+          "owner": "Worker",
+          "receipt_ref": "RESULT-P@r2",
+          "state": "failed",
+          "tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          }
+        },
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "result.state",
+            "result": "failed",
+            "return_owner": "recovery-owner"
+          }
+        ],
+        "return_owners": [
+          "recovery-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 F04。失敗したreceiptは実状態・未完と復旧先を保持し、内容候補成功にしない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-F04-RESULT-AND-ACTUAL",
+        "l9_baseline_case_pointer": "/verification_obligations/3/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/3/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/34/input_patch",
+        "input_patch_canonical_sha256": "a02ea6f5892a98fe556bc960c3bc47c340aa09fccf136b7dbbe54260f9bf8dd3",
+        "post_patch_packet_pointer": "/independent_whole_probes/34/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "264bda2b8a0d5a056ed55822d5a81a2925836afa1a157b525037620e593962de",
+        "expected_whole_pointer": "/independent_whole_probes/34/expected_output",
+        "expected_whole_canonical_sha256": "27e103c29a52578e810428e6129bda8c5ddbdf3eae19a02f19ba51c0d9a7e071",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "requirement_pointer": "/requirements/18",
+        "requirement_canonical_sha256": "dcaf9fa67609a7224baa06aafbd768e677e91e46dac9eba3e2563caed601b375",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+        "l4_contract_pointer": "/contracts/3",
+        "l4_contract_canonical_sha256": "fdf006d457c9ddb2bce23b85d0f6f60a73299ee2f5211f34792309c08f1ca3ca",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
+        "l9_baseline_expected_canonical_sha256": "fadbbe2d572549579d1a30458263e69f793d689dfc2bcc6397be210c602e3161"
+      }
+    },
+    {
+      "probe_id": "LOCAL-I010-N01-SECRET-COPY-FIELD-WITHOUT-CLAIM",
+      "function_ref": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
+      "baseline_case_id": "I010-N01-REFERENCE-ONLY",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/proposed_credential_storage",
+          "value": {
+            "copy_secret_value": true
+          }
+        }
+      ],
+      "typed_arguments": {
+        "packet": {
+          "after": null,
+          "authority": {
+            "credential_ref": "SEC-CREDENTIAL-P@r2",
+            "egress_ref": "SEC-EGRESS-P@r2",
+            "expiry": "valid_in_fixture_only",
+            "isolation_ref": "SEC-ISOLATION-P@r2",
+            "network_ref": "SEC-NETWORK-P@r2",
+            "owner": "HELIX-SECURITY",
+            "ref": "SEC-AUTH-P@r2",
+            "state": "valid_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "before": {
+            "operation_ref": "OP-P@r2",
+            "owner": "INFRA-resource-source",
+            "source_ref": "BEFORE-P@r2",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            },
+            "values": {
+              "version": "runtime-r1"
+            }
+          },
+          "claims": [],
+          "independent": null,
+          "operation_ref": "OP-P@r2",
+          "operation_tuple": {
+            "action": "update",
+            "environment": "ENV-STAGING",
+            "project": "PROJECT-P",
+            "revision": "RESOURCE-P-r2",
+            "scope": "PRODUCT-P",
+            "target": "RESOURCE-P"
+          },
+          "os": {
+            "assignment_ref": "OS-ASSIGNMENT-P@r2",
+            "relation_ref": "I009-RELATION-P@r2",
+            "state": "available",
+            "ticket_ref": "OS-TICKET-P@r2"
+          },
+          "profile": "ordinary",
+          "read_constraint": null,
+          "recovery": {
+            "applicable": {
+              "backup_restore": "satisfied_in_fixture_only",
+              "before_after": "satisfied_in_fixture_only",
+              "rollback": "satisfied_in_fixture_only"
+            },
+            "not_applicable": {
+              "unrelated_backup": "owner_reason_not_in_scope"
+            },
+            "owner": "recovery-design-owner",
+            "source_ref": "I005-APPLICATION-P@r2"
+          },
+          "result": null,
+          "sync_state": "not_applicable",
+          "unfinished": [
+            "operation_verification_pending"
+          ],
+          "update_admission": {
+            "owner": "HELIX-SECURITY",
+            "state": "accepted_in_fixture_only",
+            "tuple": {
+              "action": "update",
+              "environment": "ENV-STAGING",
+              "project": "PROJECT-P",
+              "revision": "RESOURCE-P-r2",
+              "scope": "PRODUCT-P",
+              "target": "RESOURCE-P"
+            }
+          },
+          "worker": {
+            "authority_ref": "SEC-AUTH-P@r2",
+            "bounded": true,
+            "ref": "WORKER-CONTRACT-P@r2",
+            "stop_reclaim_ref": "WORKER-STOP-P@r2"
+          },
+          "proposed_credential_storage": {
+            "copy_secret_value": true
+          }
+        }
+      },
+      "expected_output": {
+        "information_state": "held_security_boundary",
+        "retained_operation_tuple": {
+          "target": "RESOURCE-P",
+          "project": "PROJECT-P",
+          "action": "update",
+          "revision": "RESOURCE-P-r2",
+          "environment": "ENV-STAGING",
+          "scope": "PRODUCT-P"
+        },
+        "retained_authority": {
+          "owner": "HELIX-SECURITY",
+          "ref": "SEC-AUTH-P@r2",
+          "tuple": {
+            "target": "RESOURCE-P",
+            "project": "PROJECT-P",
+            "action": "update",
+            "revision": "RESOURCE-P-r2",
+            "environment": "ENV-STAGING",
+            "scope": "PRODUCT-P"
+          },
+          "expiry": "valid_in_fixture_only",
+          "state": "valid_in_fixture_only",
+          "credential_ref": "SEC-CREDENTIAL-P@r2",
+          "network_ref": "SEC-NETWORK-P@r2",
+          "isolation_ref": "SEC-ISOLATION-P@r2",
+          "egress_ref": "SEC-EGRESS-P@r2"
+        },
+        "retained_worker": {
+          "ref": "WORKER-CONTRACT-P@r2",
+          "authority_ref": "SEC-AUTH-P@r2",
+          "bounded": true,
+          "stop_reclaim_ref": "WORKER-STOP-P@r2"
+        },
+        "retained_recovery": {
+          "owner": "recovery-design-owner",
+          "source_ref": "I005-APPLICATION-P@r2",
+          "applicable": {
+            "before_after": "satisfied_in_fixture_only",
+            "backup_restore": "satisfied_in_fixture_only",
+            "rollback": "satisfied_in_fixture_only"
+          },
+          "not_applicable": {
+            "unrelated_backup": "owner_reason_not_in_scope"
+          }
+        },
+        "retained_before": {
+          "operation_ref": "OP-P@r2",
+          "tuple": {
+            "target": "RESOURCE-P",
+            "project": "PROJECT-P",
+            "action": "update",
+            "revision": "RESOURCE-P-r2",
+            "environment": "ENV-STAGING",
+            "scope": "PRODUCT-P"
+          },
+          "owner": "INFRA-resource-source",
+          "source_ref": "BEFORE-P@r2",
+          "values": {
+            "version": "runtime-r1"
+          }
+        },
+        "retained_after": null,
+        "retained_result": null,
+        "retained_read_constraint": null,
+        "retained_independent": null,
+        "retained_unfinished": [
+          "operation_verification_pending"
+        ],
+        "retained_sync_state": "not_applicable",
+        "failure_reasons": [
+          {
+            "field": "secret_copy_to_snapshot",
+            "result": "forbidden_boundary",
+            "return_owner": "SEC/Worker-contract-owner"
+          }
+        ],
+        "return_owners": [
+          "SEC/Worker-contract-owner"
+        ],
+        "rejected_claims": [],
+        "actual_effects": {
+          "authority_issue": false,
+          "operation": false,
+          "write": false,
+          "write_prohibition": false,
+          "secret_copy": false,
+          "recovery": false,
+          "os_sync": false,
+          "acceptance": false,
+          "implementation_ready": false
+        }
+      },
+      "independent_basis": "L3/L4 N01はcredential値を通常resource/backup/snapshotへ無条件保存しない。claimに依存しない実入力fieldの判定を独立させる。copy_secret_value=trueは合成flagで、秘密値そのものを生成しない。",
+      "execution_state": "not_executed",
+      "effect": "none",
+      "public_verification_basis": {
+        "l9_baseline_case_id": "I010-N01-REFERENCE-ONLY",
+        "l9_baseline_case_pointer": "/verification_obligations/6/cases/0",
+        "l9_baseline_raw_pointer": "/verification_obligations/6/cases/0/independent_source_packet/raw_utf8",
+        "l9_baseline_expected_pointer": "/verification_obligations/6/cases/0/expected_material",
+        "input_patch_pointer": "/independent_whole_probes/35/input_patch",
+        "input_patch_canonical_sha256": "2beb7d4c598476b297035f8dc39af841e8b2ccb9889621f320769019faef69b4",
+        "post_patch_packet_pointer": "/independent_whole_probes/35/typed_arguments/packet",
+        "post_patch_packet_canonical_sha256": "802f614cb288c93610d1c580384d7c0a2e664479f2d2f1d1d37e055379c8a419",
+        "expected_whole_pointer": "/independent_whole_probes/35/expected_output",
+        "expected_whole_canonical_sha256": "558054caccdad62abf8fb3ec453a0b946acd8ea90c9c90299dd66b2dd105dafc",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "requirement_path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+        "requirement_pointer": "/requirements/0",
+        "requirement_canonical_sha256": "2fb1822a4d0fd469e3c127707a1b3b9c2228a55bed08105f21fbe57a3cbd61ac",
+        "l4_contract_ref": "HELIXINFRASTRUCTURE-L4-010-N01",
+        "l4_contract_pointer": "/contracts/6",
+        "l4_contract_canonical_sha256": "1d85cf1d693469d3b682da2eb888811fae0f9a3f3583b7953d65271bff1a6b6a",
+        "basis_limit": "L8の公開raw・patch・期待値と固定L3/L4/L9素材への再現可能な参照を示す。candidate前に固定された時系列を証明するものではない。時系列のローカル記録はignored historical-fixation-reference-inventory.jsonに分離する。",
+        "l9_baseline_raw_canonical_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+        "l9_baseline_expected_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787"
+      }
     }
   ],
   "case_counts": {
@@ -22654,7 +25084,7 @@
     "F06": 7,
     "N01": 4,
     "source_total": 72,
-    "independent_wholes": 28
+    "independent_wholes": 36
   },
   "verification_method": "このcandidateのpure_reference_programsだけを読み、raw packetから出力を独立導出し、expected_output_comparison_onlyと比較する。source expectedを計算入力にしない。",
   "execution_state": "not_executed",
@@ -22843,7 +25273,7 @@
       "source_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED"
     },
     {
-      "probe_id": "I010-R1-F01-OPERATION-TUPLE-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-OPERATION-TUPLE-ABSENT",
       "baseline_source_pointer": "/verification_obligations/0/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "6f9d2ff139cb656a61af013d07f31c3909e7a4ccd9e541e9beb29ac66502451e",
@@ -22854,7 +25284,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F01-PROFILE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-PROFILE-NULL",
       "baseline_source_pointer": "/verification_obligations/0/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "4edf9cf193eec63d4841242076ec8bed6887b914c8eedd4d3778b64988686707",
@@ -22865,7 +25295,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F01-OS-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-OS-NULL",
       "baseline_source_pointer": "/verification_obligations/0/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "513589d8c2e57a0784c28b56af10e0da74c6509bc515121fb48af2078829de5b",
@@ -22876,7 +25306,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F01-EMPTY-TARGETS",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F01-EMPTY-TARGETS",
       "baseline_source_pointer": "/verification_obligations/0/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "1c2090ddc1c8eccfd4466f7b36b638adb1f4b24b2eaad17a39e5d04458a02a0c",
@@ -22887,7 +25317,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F02-ADMISSION-STATE-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F02-ADMISSION-STATE-ABSENT",
       "baseline_source_pointer": "/verification_obligations/1/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "fad4128e37606a9205265dcaaaefd9457b5f0684ba7bee343766f7db5128b8b9",
@@ -22898,18 +25328,18 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F03-CHANGE-RECOVERY-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F03-CHANGE-RECOVERY-ABSENT",
       "baseline_source_pointer": "/verification_obligations/2/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "38c6ac3d07c2a8c6b647ce3092c9ddd2f639fdcb1e05524a9a5bf927d9da6785",
       "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
-      "independent_expected_whole_canonical_sha256": "3604de822afb97042018f030cb61530200748f79969d5838fd2fa2408d25cdc8",
+      "independent_expected_whole_canonical_sha256": "ce28eafc4d3926439aacf2b5db43a001ec77d6c187dc60b9b33467edce85de83",
       "source_case_id": "I010-F03-APPLICABLE-ONLY",
       "expectation_frozen_before_candidate_calculation": true,
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F04-RESULT-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F04-RESULT-NULL",
       "baseline_source_pointer": "/verification_obligations/3/cases/0",
       "baseline_raw_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
       "post_patch_raw_canonical_sha256": "dc353a7f93b9c7748ebb9e184ea0862f1ea378cd8ecfd7c62b603595ed8eafc7",
@@ -22920,7 +25350,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F05-CHANGE-SET-ABSENT",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F05-CHANGE-SET-ABSENT",
       "baseline_source_pointer": "/verification_obligations/4/cases/0",
       "baseline_raw_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
       "post_patch_raw_canonical_sha256": "2a806cc0923f26394228b6eb2ee019934b17f56c5227e439c08778b9615e486f",
@@ -22931,7 +25361,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-F06-SYNC-NOT-PENDING",
+      "probe_id": "I010-PRIOR-INDEPENDENT-F06-SYNC-NOT-PENDING",
       "baseline_source_pointer": "/verification_obligations/5/cases/4",
       "baseline_raw_sha256": "e2943c60db760ae5e73104555beaec7a228b73a879277ece00621f2b4649046a",
       "post_patch_raw_canonical_sha256": "a2a5a4b2ea867d249d8c51d9e61d012a1ff55e287704edca7d04f12871f1ce06",
@@ -22942,7 +25372,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-N01-DATA-BOUNDARY",
+      "probe_id": "I010-PRIOR-INDEPENDENT-N01-DATA-BOUNDARY",
       "baseline_source_pointer": "/verification_obligations/6/cases/0",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "eeb110c605bd3a2f90da41e55d70355d81f5c658a387a8305b1045b8644bfc02",
@@ -22953,7 +25383,7 @@
       "expectation_source": "r1-independent-expectations-before-calculation.json"
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F04-BEFORE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F04-BEFORE-NULL",
       "baseline_source_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
       "baseline_raw_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
       "post_patch_raw_canonical_sha256": "809e911e5734cc1881ff1f746676632fe34922af96c5e4a8694fe2fe1e901d40",
@@ -22962,7 +25392,7 @@
       "source_case_id": "I010-F04-RESULT-AND-ACTUAL"
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-WRITE-SET-WRONG-KIND",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-WRITE-SET-WRONG-KIND",
       "baseline_source_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
       "baseline_raw_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
       "post_patch_raw_canonical_sha256": "90a7ee14e06f949426ee9998241e8200125b9816fec6f8fd4b08e09f3dd59b38",
@@ -22971,7 +25401,7 @@
       "source_case_id": "I010-F05-ENFORCED"
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-CAUSED-CHANGES-WRONG-KIND",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-CAUSED-CHANGES-WRONG-KIND",
       "baseline_source_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
       "baseline_raw_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
       "post_patch_raw_canonical_sha256": "c47a0bba31372dca2a7edd2ecd7cdb0f9f2a73d389cfd72e286c11f2d2f140d2",
@@ -22980,7 +25410,7 @@
       "source_case_id": "I010-F05-ENFORCED"
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F05-BEFORE-TUPLE-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F05-BEFORE-TUPLE-NULL",
       "baseline_source_pointer": "/verification_obligations/4/cases/0/independent_source_packet/raw_utf8",
       "baseline_raw_sha256": "7c542841c27977be94e43c0ee17011a612b1cbbf1e857efb340ef7107553d535",
       "post_patch_raw_canonical_sha256": "886db754ccd48f7642ce5e80578e561695d31a4a62ff2628bca4152be5597a8a",
@@ -22989,7 +25419,7 @@
       "source_case_id": "I010-F05-ENFORCED"
     },
     {
-      "probe_id": "I010-R1-RESIDUAL-F01-AUTHORITY-OWNER-NULL",
+      "probe_id": "I010-PRIOR-INDEPENDENT-RESIDUAL-F01-AUTHORITY-OWNER-NULL",
       "baseline_source_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
       "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
       "post_patch_raw_canonical_sha256": "e66f147c415e2c835be0f9e2049fe1092b2288a5a546ccd1eb2b5ed6c0c34011",
@@ -23005,6 +25435,78 @@
       "baseline_expected_whole_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1",
       "independent_expected_whole_canonical_sha256": "1c08f7b9ce170f3141441ee3826035bc87d65de1e1718cd0bc5fdfc82b9c82c1",
       "source_case_id": "I010-F02-READONLY-NO-UPDATE-GATE"
+    },
+    {
+      "probe_id": "LOCAL-I010-UNKNOWN-PROFILE-NO-OS",
+      "baseline_source_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "f0336f9a2656e7f19c3eb10fcf807e838ebdd6bb728800259197bb5aebb4741b",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "98f4e56b59c6910652e5e18884a8a619aa0f5f3bf7b96e466ed96945cb89ea56",
+      "source_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED"
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-PROFILE-UPDATE-ACTION",
+      "baseline_source_pointer": "/verification_obligations/0/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "852aac5bc4f4f8e006e5a045962a73d85b66b228d751991dea52e56a882faeab",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "e44c93b9c653e5b7abdcfaff38abe188ea8e38898200896f6361a2dfc623d089",
+      "source_case_id": "I010-F01-PRE-RESULT-NOT-REQUIRED"
+    },
+    {
+      "probe_id": "LOCAL-I010-CHANGE-APPLICABILITY-NULL",
+      "baseline_source_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "27504396ac6007523913f358b85c14259c2b878d984e4aed5a84bc2c2bf0d288",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "ee1664f76c75c8d6d809c7263f2a0fd739b2071edc5838aef9bb6ce98733c45a",
+      "source_case_id": "I010-F03-APPLICABLE-ONLY"
+    },
+    {
+      "probe_id": "LOCAL-I010-CHANGE-ROLLBACK-UNSATISFIED",
+      "baseline_source_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "cfed06fa3efbeede56af7629710f76d17324e5afca5146582777441a408d2984",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "24710480e1700490a400c77460b1037f6317924cca2e8f819b8e4080846e64fa",
+      "source_case_id": "I010-F03-APPLICABLE-ONLY"
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-APPLICATION-MISSING",
+      "baseline_source_pointer": "/verification_obligations/2/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "230e1ddb64a3fd1c00ea84a70a88bc249686ccdf29132a66e691ad91479f8890",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "4e44a8a1ff59d2ccc1bd812bdc3cbd7a1660a10f443d28e06db4248111d74759",
+      "source_case_id": "I010-F03-APPLICABLE-ONLY"
+    },
+    {
+      "probe_id": "LOCAL-I010-RECOVERY-ADMISSION-CLASSIFICATION-UNKNOWN",
+      "baseline_source_pointer": "/verification_obligations/1/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "584d49d5cbf9e39605504cb60e2af44b00e2a803930182dbefa6bf3fe4a4131b",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "2402fcc6339796607286858e8e7ef54a625e34521b1cc60a1d223bbad0f10d41",
+      "source_case_id": "I010-F02-UPDATE-ACCEPTED"
+    },
+    {
+      "probe_id": "LOCAL-I010-FAILED-RESULT-UNFINISHED",
+      "baseline_source_pointer": "/verification_obligations/3/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "92db26161f210505c68077f024f23a1e602b23946f92165a6e8962e68fc630f9",
+      "post_patch_raw_canonical_sha256": "264bda2b8a0d5a056ed55822d5a81a2925836afa1a157b525037620e593962de",
+      "baseline_expected_whole_canonical_sha256": "fadbbe2d572549579d1a30458263e69f793d689dfc2bcc6397be210c602e3161",
+      "independent_expected_whole_canonical_sha256": "27e103c29a52578e810428e6129bda8c5ddbdf3eae19a02f19ba51c0d9a7e071",
+      "source_case_id": "I010-F04-RESULT-AND-ACTUAL"
+    },
+    {
+      "probe_id": "LOCAL-I010-N01-SECRET-COPY-FIELD-WITHOUT-CLAIM",
+      "baseline_source_pointer": "/verification_obligations/6/cases/0/independent_source_packet/raw_utf8",
+      "baseline_raw_sha256": "ce74dbb00b875f130f82679898e5da69376cf19bb0753328a016956ba4ba2da1",
+      "post_patch_raw_canonical_sha256": "802f614cb288c93610d1c580384d7c0a2e664479f2d2f1d1d37e055379c8a419",
+      "baseline_expected_whole_canonical_sha256": "f66cf1a39c5f74a473255ac24257cb027d27a5020bf5636a49ea20b20e7f5787",
+      "independent_expected_whole_canonical_sha256": "558054caccdad62abf8fb3ec453a0b946acd8ea90c9c90299dd66b2dd105dafc",
+      "source_case_id": "I010-N01-REFERENCE-ONLY"
     }
   ],
   "legacy_asset_ledger": {
@@ -23288,8 +25790,14 @@
   ],
   "candidate_l5_binding": {
     "path": "docs/helix-infrastructure/L5-detail-design/security-worker-operation.json",
-    "sha256": "2a7cca41a14e44ae961f72e4586dd9f6dfd38fdc7d5b01035ee295f8b72d1a5a",
+    "sha256": "379612eda998450dd8cb783cdcfd5d05d9ded157b4332b5eae6d1c4d03f378a8",
     "binding_kind": "exact_candidate_file_bytes",
     "meaning": "このL8候補は同一candidateのL5ファイル実bytesを参照する。F01全操作のWorker条件、F02追加admission、F06独立recovery条件の規則源を固定するが、承認済みL5や外部資格を意味しない。"
+  },
+  "public_probe_basis_policy": {
+    "hash_algorithm": "SHA-256(UTF-8(JSON(value, ensure_ascii=False, sort_keys=True, separators=(\",\", \":\"))))",
+    "purpose": "公開probeは追跡可能なL9基準raw→L8 patch→L8 post-patch packet→L8 expected wholeをpointerとcanonical hashで結び、対応L3 requirement/L4 contractへ結ぶ。",
+    "temporal_limit": "公開L8内の値とhashは再現・改変検出用であり、candidate計算より先に期待が固定された時系列の証明ではない。ローカル履歴は別記録であり、自己コピー/hash一致のみで時系列を証明しない。",
+    "source_scope": "本方針は独立probeのsource/expected provenance記録だけを定め、L5計算入力を増やさない。"
   }
 }

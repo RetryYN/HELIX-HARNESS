@@ -708,20 +708,16 @@
         "wrong_authority_or_sequence",
         "readonly-authority-missing",
         "self_authority",
-        "unresolved"
+        "unresolved",
+        "failed"
       ]
     },
     "OwnerCandidate": {
       "json_kinds": [
-        "null",
-        "boolean",
-        "number",
-        "string",
-        "array",
-        "object"
+        "string"
       ],
       "presence": "value",
-      "description": "L4/L9の責務候補を入力由来のJSON値として保持する。これは実owner資格ではない。"
+      "description": "L4/L9に由来する論理責務候補の文字列。実ownerの身元・資格・権限を証明しない。"
     },
     "Array<OwnerCandidate>": {
       "json_kinds": [
@@ -1693,7 +1689,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "not_object",
               "value": {
@@ -1708,7 +1704,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "not_nonempty_string",
               "value": {
@@ -1723,7 +1719,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "not_in",
               "value": {
@@ -1732,7 +1728,6 @@
               },
               "values": [
                 "ordinary",
-                "read_only",
                 "independent_recovery"
               ]
             },
@@ -1743,7 +1738,42 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "independent_recovery"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "recovery"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "profile.action",
+              "result": "mismatch",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1760,6 +1790,37 @@
                     "op": "path",
                     "path": "/operation_tuple/target"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/target"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/target"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/target"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/target"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1770,7 +1831,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/target"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.target",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1787,6 +1899,37 @@
                     "op": "path",
                     "path": "/operation_tuple/project"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/project"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/project"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/project"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/project"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1797,7 +1940,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/project"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.project",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1814,6 +2008,37 @@
                     "op": "path",
                     "path": "/operation_tuple/action"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/action"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/action"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/action"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/action"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1824,7 +2049,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/action"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.action",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1841,6 +2117,37 @@
                     "op": "path",
                     "path": "/operation_tuple/revision"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/revision"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/revision"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/revision"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/revision"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1851,7 +2158,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/revision"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.revision",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1868,6 +2226,37 @@
                     "op": "path",
                     "path": "/operation_tuple/environment"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/environment"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/environment"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/environment"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/environment"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1878,7 +2267,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/environment"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.environment",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1895,6 +2335,37 @@
                     "op": "path",
                     "path": "/operation_tuple/scope"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/operation_tuple/scope"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/operation_tuple/scope"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/operation_tuple/scope"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/operation_tuple/scope"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1905,7 +2376,58 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/operation_tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/operation_tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/operation_tuple/scope"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.scope",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1929,6 +2451,37 @@
                     "op": "path",
                     "path": "/authority/tuple/target"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/target"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/target"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/target"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/target"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1939,7 +2492,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/target"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/target"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.target",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1963,6 +2574,37 @@
                     "op": "path",
                     "path": "/authority/tuple/project"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/project"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/project"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/project"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/project"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1973,7 +2615,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/project"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/project"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/project"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.project",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -1997,6 +2697,37 @@
                     "op": "path",
                     "path": "/authority/tuple/action"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/action"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/action"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/action"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/action"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2007,7 +2738,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/action"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/action"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/action"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.action",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2031,6 +2820,37 @@
                     "op": "path",
                     "path": "/authority/tuple/revision"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/revision"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/revision"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/revision"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/revision"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2041,7 +2861,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/revision"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/revision"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/revision"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.revision",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2065,6 +2943,37 @@
                     "op": "path",
                     "path": "/authority/tuple/environment"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/environment"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/environment"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/environment"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/environment"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2075,7 +2984,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/environment"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/environment"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/environment"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.environment",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2099,6 +3066,37 @@
                     "op": "path",
                     "path": "/authority/tuple/scope"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/authority/tuple/scope"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/authority/tuple/scope"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/authority/tuple/scope"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/authority/tuple/scope"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2109,7 +3107,65 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/scope"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/authority/tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/authority/tuple/scope"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/authority/tuple/scope"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.scope",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2140,7 +3196,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2167,7 +3223,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "not_object",
               "value": {
@@ -2182,7 +3238,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2209,7 +3265,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2236,7 +3292,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2263,7 +3319,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2301,7 +3357,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2328,7 +3384,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2366,7 +3422,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2393,7 +3449,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2431,7 +3487,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2458,7 +3514,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2496,7 +3552,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2523,7 +3579,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2561,7 +3617,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2588,7 +3644,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2616,6 +3672,37 @@
                     "op": "path",
                     "path": "/os/ticket_ref"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/os/ticket_ref"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/os/ticket_ref"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/os/ticket_ref"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/os/ticket_ref"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2626,7 +3713,69 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/ticket_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/os/ticket_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/os/ticket_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/os/ticket_ref"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.ticket_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2654,6 +3803,37 @@
                     "op": "path",
                     "path": "/os/assignment_ref"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/os/assignment_ref"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/os/assignment_ref"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/os/assignment_ref"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/os/assignment_ref"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2664,7 +3844,69 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/assignment_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/os/assignment_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/os/assignment_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/os/assignment_ref"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.assignment_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2692,6 +3934,37 @@
                     "op": "path",
                     "path": "/os/relation_ref"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/os/relation_ref"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/os/relation_ref"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/os/relation_ref"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/os/relation_ref"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -2702,34 +3975,69 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
                 {
-                  "op": "is_object",
-                  "value": {
+                  "op": "eq",
+                  "left": {
                     "op": "path",
-                    "path": "/authority"
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
                   }
                 },
                 {
-                  "op": "not_nonempty_string",
+                  "op": "is_object",
                   "value": {
                     "op": "path",
-                    "path": "/authority/ref"
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/relation_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/os/relation_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/os/relation_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/os/relation_ref"
+                    }
                   }
                 }
               ]
             },
             "emit": {
-              "field": "authority/ref",
+              "field": "os.relation_ref",
               "result": "not_qualified",
               "return_owner": "SEC/OS"
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2756,7 +4064,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2787,121 +4095,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
-            "when": {
-              "op": "all",
-              "values": [
-                {
-                  "op": "eq",
-                  "left": {
-                    "op": "path",
-                    "path": "/profile"
-                  },
-                  "right": {
-                    "op": "literal",
-                    "value": "ordinary"
-                  }
-                },
-                {
-                  "op": "is_object",
-                  "value": {
-                    "op": "path",
-                    "path": "/os"
-                  }
-                },
-                {
-                  "op": "not_nonempty_string",
-                  "value": {
-                    "op": "path",
-                    "path": "/os/ticket_ref"
-                  }
-                }
-              ]
-            },
-            "emit": {
-              "field": "os.ticket_ref",
-              "result": "missing",
-              "return_owner": "SEC/OS"
-            }
-          },
-          {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
-            "when": {
-              "op": "all",
-              "values": [
-                {
-                  "op": "eq",
-                  "left": {
-                    "op": "path",
-                    "path": "/profile"
-                  },
-                  "right": {
-                    "op": "literal",
-                    "value": "ordinary"
-                  }
-                },
-                {
-                  "op": "is_object",
-                  "value": {
-                    "op": "path",
-                    "path": "/os"
-                  }
-                },
-                {
-                  "op": "not_nonempty_string",
-                  "value": {
-                    "op": "path",
-                    "path": "/os/assignment_ref"
-                  }
-                }
-              ]
-            },
-            "emit": {
-              "field": "os.assignment_ref",
-              "result": "missing",
-              "return_owner": "SEC/OS"
-            }
-          },
-          {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
-            "when": {
-              "op": "all",
-              "values": [
-                {
-                  "op": "eq",
-                  "left": {
-                    "op": "path",
-                    "path": "/profile"
-                  },
-                  "right": {
-                    "op": "literal",
-                    "value": "ordinary"
-                  }
-                },
-                {
-                  "op": "is_object",
-                  "value": {
-                    "op": "path",
-                    "path": "/os"
-                  }
-                },
-                {
-                  "op": "not_nonempty_string",
-                  "value": {
-                    "op": "path",
-                    "path": "/os/relation_ref"
-                  }
-                }
-              ]
-            },
-            "emit": {
-              "field": "os.relation_ref",
-              "result": "missing",
-              "return_owner": "SEC/OS"
-            }
-          },
-          {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2925,7 +4119,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -2949,7 +4143,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01",
             "when": {
               "op": "all",
               "values": [
@@ -3656,7 +4850,42 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "recovery"
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.action",
+              "result": "unknown",
+              "return_owner": "recovery/SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
             "when": {
               "op": "not_in",
               "value": {
@@ -3677,7 +4906,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02",
             "when": {
               "op": "all",
               "values": [
@@ -3848,15 +5077,16 @@
               "op": "all",
               "values": [
                 {
-                  "op": "eq",
-                  "left": {
+                  "op": "in",
+                  "value": {
                     "op": "path",
                     "path": "/operation_tuple/action"
                   },
-                  "right": {
-                    "op": "literal",
-                    "value": "update"
-                  }
+                  "values": [
+                    "update",
+                    "change",
+                    "recovery"
+                  ]
                 },
                 {
                   "op": "not_object",
@@ -3883,15 +5113,16 @@
               "op": "all",
               "values": [
                 {
-                  "op": "eq",
-                  "left": {
+                  "op": "in",
+                  "value": {
                     "op": "path",
                     "path": "/operation_tuple/action"
                   },
-                  "right": {
-                    "op": "literal",
-                    "value": "update"
-                  }
+                  "values": [
+                    "update",
+                    "change",
+                    "recovery"
+                  ]
                 },
                 {
                   "op": "not_eq",
@@ -3925,15 +5156,16 @@
               "op": "all",
               "values": [
                 {
-                  "op": "eq",
-                  "left": {
+                  "op": "in",
+                  "value": {
                     "op": "path",
                     "path": "/operation_tuple/action"
                   },
-                  "right": {
-                    "op": "literal",
-                    "value": "update"
-                  }
+                  "values": [
+                    "update",
+                    "change",
+                    "recovery"
+                  ]
                 },
                 {
                   "op": "empty_object",
@@ -3951,7 +5183,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
             "when": {
               "op": "all",
               "values": [
@@ -3963,7 +5195,8 @@
                   },
                   "values": [
                     "update",
-                    "change"
+                    "change",
+                    "recovery"
                   ]
                 },
                 {
@@ -3979,6 +5212,37 @@
                     "op": "path",
                     "path": "/recovery/source_ref"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/recovery/source_ref"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/recovery/source_ref"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/recovery/source_ref"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/recovery/source_ref"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -3989,7 +5253,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
             "when": {
               "op": "all",
               "values": [
@@ -4001,7 +5265,71 @@
                   },
                   "values": [
                     "update",
-                    "change"
+                    "change",
+                    "recovery"
+                  ]
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/source_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/recovery/source_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/recovery/source_ref"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/recovery/source_ref"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.source_ref",
+              "result": "not_qualified",
+              "return_owner": "recovery-design-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change",
+                    "recovery"
                   ]
                 },
                 {
@@ -4017,6 +5345,37 @@
                     "op": "path",
                     "path": "/recovery/owner"
                   }
+                },
+                {
+                  "op": "any",
+                  "values": [
+                    {
+                      "op": "path_is_absent",
+                      "path": "/recovery/owner"
+                    },
+                    {
+                      "op": "path_is_null",
+                      "path": "/recovery/owner"
+                    },
+                    {
+                      "op": "eq",
+                      "left": {
+                        "op": "path",
+                        "path": "/recovery/owner"
+                      },
+                      "right": {
+                        "op": "literal",
+                        "value": ""
+                      }
+                    },
+                    {
+                      "op": "empty_object",
+                      "value": {
+                        "op": "path",
+                        "path": "/recovery/owner"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -4027,7 +5386,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
             "when": {
               "op": "all",
               "values": [
@@ -4039,8 +5398,103 @@
                   },
                   "values": [
                     "update",
-                    "change"
+                    "change",
+                    "recovery"
                   ]
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                },
+                {
+                  "op": "not_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/owner"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/recovery/owner"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/recovery/owner"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "empty_object",
+                    "value": {
+                      "op": "path",
+                      "path": "/recovery/owner"
+                    }
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.owner",
+              "result": "not_qualified",
+              "return_owner": "recovery-design-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change",
+                    "recovery"
+                  ]
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery",
+              "result": "unknown",
+              "return_owner": "recovery-design-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "recovery"
+                  }
                 },
                 {
                   "op": "not_object",
@@ -4133,7 +5587,7 @@
         "claim_rejection_does_not_skip_input_validation": true
       },
       "source_limit": "この有限packetは実資格/実時刻/実provider/全action適用表を供給しない。未観測域を成功・拒否へ一般化しない。",
-      "ordered_checks_source_basis": "L4-F04 requires receipt and actual before/after as distinct evidence and says receipt success alone is insufficient; actual-state observation therefore precedes receipt interpretation. This is a finite diagnostic order, not a qualification rule.",
+      "ordered_checks_source_basis": "L4-F04はWorker receiptと実状態before/afterを別証拠として扱い、receipt成功だけでは受け入れない。実状態の観測をreceiptの判定より先に診断する順序は有限素材上の診断順であり、資格判定規則ではない。",
       "decision_rules": {
         "checks": [
           {
@@ -4158,6 +5612,25 @@
               "field": "after",
               "result": "unobserved",
               "return_owner": "INFRA-resource-source"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+            "when": {
+              "op": "eq",
+              "left": {
+                "op": "path",
+                "path": "/result/state"
+              },
+              "right": {
+                "op": "literal",
+                "value": "failed"
+              }
+            },
+            "emit": {
+              "field": "result.state",
+              "result": "failed",
+              "return_owner": "recovery-owner"
             }
           },
           {
@@ -4561,7 +6034,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "not_object",
               "value": {
@@ -4576,7 +6049,55 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "path_is_null",
+                  "path": "/result/state"
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.state",
+              "result": "unobserved",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "path_is_absent",
+                  "path": "/result/state"
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.state",
+              "result": "missing",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4593,17 +6114,31 @@
                     "op": "path",
                     "path": "/result/state"
                   }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/result/state"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/result/state"
+                  }
                 }
               ]
             },
             "emit": {
               "field": "result.state",
-              "result": "unobserved",
+              "result": "not_qualified",
               "return_owner": "OS-Worker-contract-owner"
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4612,6 +6147,13 @@
                   "value": {
                     "op": "path",
                     "path": "/result"
+                  }
+                },
+                {
+                  "op": "is_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/result/state"
                   }
                 },
                 {
@@ -4636,7 +6178,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4663,7 +6205,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4701,7 +6243,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4728,7 +6270,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4755,7 +6297,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4793,7 +6335,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4831,7 +6373,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4869,7 +6411,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4896,7 +6438,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4923,7 +6465,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4961,7 +6503,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -4999,7 +6541,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -5037,7 +6579,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -5064,7 +6606,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -5102,7 +6644,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -5129,7 +6671,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "all",
               "values": [
@@ -5167,7 +6709,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04",
             "when": {
               "op": "not_object",
               "value": {
@@ -5390,12 +6932,113 @@
             }
           },
           {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
-              "op": "is_object",
-              "value": {
-                "op": "path",
-                "path": "/read_constraint"
-              }
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "path_is_absent",
+                  "path": "/read_constraint/read_target"
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_target",
+              "result": "missing",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "path_is_null",
+                  "path": "/read_constraint/read_target"
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_target",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/read_target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_absent",
+                    "path": "/read_constraint/read_target"
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "path_is_null",
+                    "path": "/read_constraint/read_target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_target",
+              "result": "not_qualified",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "is_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/read_target"
+                  }
+                }
+              ]
             },
             "compare_paths": [
               "/read_constraint/read_target",
@@ -5564,7 +7207,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "not_object",
               "value": {
@@ -5579,7 +7222,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5603,7 +7246,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5627,7 +7270,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "not_object",
               "value": {
@@ -5642,7 +7285,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "not_object",
               "value": {
@@ -5657,7 +7300,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5684,7 +7327,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5711,7 +7354,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5745,7 +7388,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5779,7 +7422,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05",
             "when": {
               "op": "all",
               "values": [
@@ -5969,7 +7612,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
             "when": {
               "op": "not_object",
               "value": {
@@ -5984,7 +7627,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
             "when": {
               "op": "all",
               "values": [
@@ -6011,7 +7654,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
             "when": {
               "op": "all",
               "values": [
@@ -6144,7 +7787,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
             "when": {
               "op": "all",
               "values": [
@@ -6175,7 +7818,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
             "when": {
               "op": "all",
               "values": [
@@ -6371,7 +8014,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01",
             "when": {
               "op": "all",
               "values": [
@@ -6402,7 +8045,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01",
             "when": {
               "op": "all",
               "values": [
@@ -6433,7 +8076,7 @@
             }
           },
           {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01",
             "when": {
               "op": "all",
               "values": [
@@ -6529,9 +8172,9 @@
       "meaning": "JSON値同士の完全比較。booleanはnumberと別kind、numberは有限値で数値として比較、objectはmember集合と各値を比較しkey順を無視、arrayは要素順を保持する。AbsentはJSON値ではなく、eqはAbsentがoperandにあればfalseを返す。",
       "nonfinite": "JSON numberとして有限でない値は有効なJSONValueではない。比較はequalにしない。"
     },
-    "claim_rule": "claimsは観測済み入力上の診断表示を加える補助情報であり、必須観測・型・範囲・前後状態の検査を免除しない。診断はraw入力に対する宣言規則から算出する。claim文字列から実資格、実状態、実操作を生成しない。有限fixtureの表示fieldとsource期待との関係は規範条件へ取り込まず、判断記録で区別して保持する。",
+    "claim_rule": "claimsは観測済み入力上の診断表示を加える補助情報であり、必須観測・型・範囲・前後状態の検査を免除しない。診断はraw入力に対する宣言規則から算出する。claim文字列から実資格、実状態、実操作を生成しない。",
     "operator_definitions": {
-      "path": "slash-separated pointerでobjectを辿り、member欠落ではAbsent sentinelを返す。",
+      "path": "RFC 6901 JSON Pointerでobject memberまたはarray indexを辿り、member/index欠落・不正token・途中のscalarではAbsent sentinelを返す。",
       "literal": "指定JSON値をそのまま返す。",
       "bound": "for_eachで束縛した値を返す。",
       "eq": "JSON値の再帰同値。object member順は無視しarray順を保持する。booleanはnumberと異なるkindで、JSON number同士は数値として比較し、1と1.0は同値。Absent sentinelはJSON値ではなく、他のinternal operatorがpresenceを判定する。",
@@ -6540,10 +8183,10 @@
       "not_object": "JSON object以外でtrue。",
       "is_object": "JSON objectの場合true。",
       "empty_object": "objectかつmember数0の場合true。",
-      "path_is_absent_or_null": "指定pointerがAbsentか明示nullの時true。",
+      "path_is_absent_or_null": "指定pointerがAbsentまたは明示nullの場合true。",
       "not_nonempty_string": "string以外、空string、Absent、nullの時true。",
       "not_empty_array": {
-        "meaning": "valueがJSON arrayで、要素を1個以上持つ場合だけtrue。Absent/null/non-arrayはfalse。"
+        "meaning": "JSON arrayかつ要素数が1以上の場合にtrue。predicate名どおり空でない配列を識別する。"
       },
       "not_bounded_worker": "workerがobjectでない、またはboundedがboolean trueでない時true。",
       "in": "左辺が有限候補の一つとstrict JSON同値。",
@@ -6578,8 +8221,12 @@
       "not_array": {
         "meaning": "valueがJSON array kindでなければtrue。Absentとnullを含む。"
       },
-      "path_is_absent": "指定pointerにobject memberまたはarray indexが存在しない場合true。nullとの区別にだけ用いる。",
-      "path_is_null": "指定pointerが存在し、その値が明示nullの場合true。Absentとの区別にだけ用いる。"
+      "path_is_absent": "指定pointerがAbsentの場合true。",
+      "path_is_null": "指定pointerが明示nullの場合true。",
+      "is_nonempty_string": "valueが1文字以上のJSON stringならtrue。Absent/null/空string/他kindはfalse。",
+      "not": "valueの論理値を反転する。",
+      "is_string": "valueがJSON string kindならtrue。Absent/null/他kindはfalse。",
+      "not_string": "valueがJSON string kindでなければtrue。Absent/nullを含む。"
     },
     "generic_reader_contract": "readerはoperator定義を実装するだけで、contract/function IDによる分岐や固定Python業務判定を持たない。個別path・条件・failure literal・順序・返却projectは各pure_reference_programs[].decision_rulesが唯一の根拠。",
     "state_rule_order": "checksと該当claimを順に評価しfailure_reasons/return_ownersを組み立てた後、state_rulesを配列順に評価して最初のtrue valueを返す。",
@@ -6587,7 +8234,7 @@
     "owner_projection": {
       "source": "failure_reasons[*].return_owner",
       "order": "診断の出現順を保つ",
-      "duplicates": "最初の出現だけを残す",
+      "duplicates": "最初の出現だけを残す。failure recordは同じ(field,result,owner)の重複を追加前に除く。",
       "omitted_values": "空文字列およびAbsentは出力しない",
       "reader_effect": "各failureを追加した直後にreturn_ownersへ未出現ownerを追加する"
     },
@@ -6595,7 +8242,12 @@
       "syntax": "RFC 6901 JSON Pointer。rootは空文字列、各tokenは/で区切り、~1を/、~0を~へ順に復号する。配列tokenは0または先頭0のない正整数のみ。範囲外・不正token・途中nonobject/nonarrayはAbsent。",
       "template": "テンプレート内の$variableを置換してからpointer decodingを行う。bound member keyは~を~0、/を~1へescapeしてtokenへ挿入する。",
       "object_iteration": "object memberをUnicode code point昇順で走査する。"
-    }
+    },
+    "profile_action_rule": "許容profileはordinaryとindependent_recovery。ordinaryは通常経路としてaction別のOS条件を確認し、read-onlyはaction=readとF05証拠で表す。read_onlyというprofile値は不許容としてprofileのnot_qualifiedを返す。independent_recoveryはaction=recoveryの場合だけ整合し、不整合はprofile.actionのmismatchをSEC/OSへ返す。profile文字列は実資格を表さない。",
+    "recovery_action_classification": "action=recoveryかつprofile=ordinaryの場合、010だけではupdate/change分類と独立復旧pathの根拠を決められないためactionをunknownとしてrecovery/SEC/OSへ返す。F02のupdate-admissionを機械的に要求しない。profile=independent_recoveryはF06の別SEC authority/Worker/006 path条件で評価する。",
+    "number_domain": "JSON numberは任意精度の整数およびfinite decimal valueを有限値のまま比較する。binary64へ変換して範囲外整数をoverflow扱いしない。Infinity/NaNはJSON valueではなく入力境界で拒否する。",
+    "diagnostic_type_policy": "必須文字列はAbsent/null/空文字列を既存sourceのmissing所見へ、存在する非文字列kindをnot_qualifiedへ分ける。result.stateとread_targetは対応するAbsent/null/type/unknown規則を個別に持つ。各fieldは一つのfield表記で診断し、同じ欠陥の重複診断を避ける。",
+    "finite_fixture_display_note": "有限fixtureでclaimがある場合の診断field表記はL9固定期待の値を保持する。L4-F03はfield prefix規則を定めていないため、一般prefix規則の由来は未確定であり、本節の計算規則にはしない。"
   },
   "responsibility_boundary": {
     "logical_candidates": "failure_reason.return_ownerはL4/L9 finite diagnostic routing candidateであり、実在owner資格/assignmentを証明しない。",
@@ -6988,5 +8640,17 @@
       "l5_function_ref": "HELIXINFRASTRUCTURE-L5-010-N01-ASSESS",
       "l5_program_pointer": "/pure_reference_programs/6"
     }
-  ]
+  ],
+  "finite_fixture_display_note": {
+    "meaning": "有限fixtureのclaim時診断fieldは固定されたL9期待のまま保持する。L4-F03本文はprefix規則を定めていないため、一般prefix変換を計算規則にしない。",
+    "l4_source": {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "pointer": "/contracts/2/content_rules"
+    },
+    "l9_source": {
+      "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+      "pointer": "/verification_obligations/2/cases/5/expected_material/failure_reasons/0/field",
+      "case_id": "I010-F03-REJECT-skip_applicable_recovery"
+    }
+  }
 }
