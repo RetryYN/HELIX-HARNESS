@@ -1,6 +1,6 @@
 {
   "parent": "HELIXINTELLIGENCE-L2-010",
-  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "source_main": "ba76a8a5b5e45fe3202552a24cf622a2b12fed2d",
   "status": "draft_basic_content_pending_qualification_and_detail",
   "scope": {
     "version_target": "1.0",
@@ -82,9 +82,16 @@
         "source_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba"
       },
       "reuse": "semantic_rederivation_reference_only",
-      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
-      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
-      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+      "preserve": "作成/検収/統合を別capacityとして扱い、登録可能poolとactive WIPを混同せず、候補単独でruntime dispatch権限を変更しない境界を参照する。モデル世代の適性継承禁止をこの引用だけに帰属しない。",
+      "change": "固定provider/数値pool/8slot等を配置の閾値へ写さず、010のtask/実績を使う提案と実割当の責務分離を意味再導出する。",
+      "reason": "旧3L-BR-010はcapacityと候補による権限変更禁止の一部を支える。task-class/model世代の正確な意味は現010と下記RLO-FR-034へ別に結ぶ。",
+      "asset_reading": {
+        "ledger_revision": 1,
+        "ledger_disposition": "unresolved",
+        "ledger_decision_record_ref": null,
+        "use": "個別source行の読取と既批准意味の再導出。asset採用/移管/権利確認済みを生成しない。",
+        "consumer": "旧router/control-plane consumerは隔離。新consumerはINTの論理提案をOS/SECの既存責務へ渡す境界であり実dispatchではない。"
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
@@ -101,9 +108,16 @@
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
       "reuse": "semantic_rederivation_reference_only",
-      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
-      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
-      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+      "preserve": "AI routerは候補提案のみでdispatch authorityを直接持たない責務を保持する。",
+      "change": "旧control plane/runtimeの物理実装を再利用せず、INT提案→OS指定とSEC許可の境界へ再導出する。",
+      "reason": "RLO-FR-031の明示境界と採択010-B01を対応付ける。Bench適性/世代更新の根拠はこの2行へ混載しない。",
+      "asset_reading": {
+        "ledger_revision": 1,
+        "ledger_disposition": "unresolved",
+        "ledger_decision_record_ref": null,
+        "use": "個別source行の読取と既批准意味の再導出。asset採用/移管/権利確認済みを生成しない。",
+        "consumer": "旧router/control-plane consumerは隔離。新consumerはINTの論理提案をOS/SECの既存責務へ渡す境界であり実dispatchではない。"
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
@@ -120,9 +134,16 @@
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
       "reuse": "semantic_rederivation_reference_only",
-      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
-      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
-      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+      "preserve": "FE/BE/設計の適性軸を分け、provider名でなくモデル世代に結び、モデル更新時の旧適性の自動継承をしない意味を保持する。",
+      "change": "旧軸名を現Workerの固定enumへせず、010-F03のtask/model-class・scope/版の不足へ意味再導出する。",
+      "reason": "RLO-FR-034が軸混用と世代継承を具体的に支える。未供給の独立Bench generation targetや実資格は作らない。",
+      "asset_reading": {
+        "ledger_revision": 1,
+        "ledger_disposition": "unresolved",
+        "ledger_decision_record_ref": null,
+        "use": "個別source行の読取と既批准意味の再導出。asset採用/移管/権利確認済みを生成しない。",
+        "consumer": "旧router/control-plane consumerは隔離。新consumerはINTの論理提案をOS/SECの既存責務へ渡す境界であり実dispatchではない。"
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
@@ -139,9 +160,16 @@
         "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
       },
       "reuse": "semantic_rederivation_reference_only",
-      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
-      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
-      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+      "preserve": "task-class evidenceに基づくeffort policy、未評価表示、score単独によるscope/branch/assignment/merge authority変更禁止を保持する。",
+      "change": "旧provider_default_unbenchmarkedやeffort表を現行runtimeへ移植せず、010の未評価/根拠と提案/実権限分離へ結ぶ。",
+      "reason": "RLO-FR-040が未評価とscoreによる権限拡大禁止を支える。実Bench/採用/effort値を新たに決定しない。",
+      "asset_reading": {
+        "ledger_revision": 1,
+        "ledger_disposition": "unresolved",
+        "ledger_decision_record_ref": null,
+        "use": "個別source行の読取と既批准意味の再導出。asset採用/移管/権利確認済みを生成しない。",
+        "consumer": "旧router/control-plane consumerは隔離。新consumerはINTの論理提案をOS/SECの既存責務へ渡す境界であり実dispatchではない。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -205,7 +233,8 @@
       },
       "content_rules": [
         "task条件と候補Worker capability、同task-class/model-classの観測実績/Bench scopeを根拠に適合と除外を説明する。",
-        "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。"
+        "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。",
+        "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -240,7 +269,8 @@
       "content_rules": [
         "scope/revision有効な既決quality gate・priority/toleranceを再利用する。優先値/順位式を発明せず、未達/unknown品質を隠さない。",
         "比較入力を選んだ場合だけ067入力条件・034/LABO送受領の契約/receipt/scope/互換参照を別に照合する。未選択を不足扱いせず、選択不明は保留する。",
-        "総費用を主張するならhuman intervention欠測/負担を除外しない。既決が有効な範囲で毎run人確認を追加せず、未決/失効/範囲外のみ判断ownerへ戻す。"
+        "総費用を主張するならhuman intervention欠測/負担を除外しない。既決が有効な範囲で毎run人確認を追加せず、未決/失効/範囲外のみ判断ownerへ戻す。",
+        "品質未達/unknown、判断state/priority/tolerance不足、選択比較のscope/互換不足をfield別に診断し、claimを理由に別fieldや同じfieldの既知不足を隠さない。既知品質未達はclaimの有無によらずquality除外へ結ぶ。総費用を主張し介入材料が欠測なら、その欠測と不支持claimを別所見として保持する。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -278,5 +308,336 @@
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     }
-  ]
+  ],
+  "content_diagnostic_contract": {
+    "scope": "F02/F04の材料上のデータ所見とclaim拒否の独立性、および全契約のWorker所見位置を具体化する。同対象/欠測/未評価の既批准意味を保持し、実許可/実資格や数値閾値/順位式を作らない。",
+    "finding": {
+      "fields": {
+        "field": "論理入力field名または実rawへのRFC6901文字列",
+        "result": "比較結果の診断語",
+        "return_owner": "既存機構の論理責務候補"
+      },
+      "owner_limit": "recipient/custody/権限の資格を生成しない。"
+    },
+    "worker_locator": {
+      "input_array_pointer": "/original_workers",
+      "format": "/original_workers/{decimal_zero_based_index}/{member_path}",
+      "index_basis": "現在のraw配列を文書順に辿った実位置。identity文字列のWORKER-等のprefixをparseしてindexや略称を生成しない。",
+      "member_paths": {
+        "version": [
+          "version"
+        ],
+        "capability": [
+          "capability"
+        ],
+        "capability_domain": [
+          "capability",
+          "domain"
+        ],
+        "capability_tools": [
+          "capability",
+          "tools"
+        ],
+        "profile": [
+          "profile"
+        ]
+      },
+      "meaning": "入力値に対するWorkerデータ所見のfieldは、当該契約の必要Worker参照/推薦集合から選んだ要素の実位置へ結ぶ。複数対象は対象ごとの所見を保持する。claim拒否の論理主題field（worker.version等）は実位置の略称でなく、既存claim名の主題を示す。"
+    },
+    "logical_field_bindings": {
+      "task": "/original_task",
+      "performance": "/original_performance",
+      "bench": "/original_bench",
+      "decision": "/original_decision",
+      "comparison": "/original_comparison",
+      "proposal": "/submitted_proposal",
+      "handoff": "/handoff",
+      "performance_metrics_pointer": "/original_performance/observations",
+      "limit": "既存のdot表記はこの固定root/memberの表示。source identity中のdotをpathとして解釈しない。Worker所見は上記RFC6901へ統一する。"
+    },
+    "F02": {
+      "selected_worker_identities": "/submitted_proposal/recommended",
+      "worker_identity_member": "identity",
+      "task_domain": "/original_task/domain",
+      "task_tools": "/original_task/tool_requirement",
+      "worker_checks": [
+        {
+          "worker_members": [
+            "capability",
+            "domain"
+          ],
+          "comparison": "JSON意味等値によるarray membershipでtask_domainを含む",
+          "result": "incompatible",
+          "return_owner": "OS-task-fit-owner"
+        },
+        {
+          "worker_members": [
+            "capability",
+            "tools"
+          ],
+          "comparison": "task_toolsの各必要値をJSON意味等値で含む",
+          "result": "incompatible",
+          "return_owner": "OS-task-fit-owner"
+        }
+      ],
+      "ordering": "raw Worker配列順で選択対象を辿り各対象domain→tools。続いてBench class、理由対応、推薦/除外対応、claim宣言順。",
+      "bench_class": {
+        "left": "/original_bench/task_class",
+        "right": "/original_scope/task_class",
+        "field": "bench.task_class",
+        "mismatch_result": "foreign",
+        "return_owner": "LABO-evidence-owner"
+      },
+      "reasons": {
+        "source": "/original_proposal/reason_refs",
+        "submitted": "/submitted_proposal/reason_refs",
+        "field": "proposal.reason_refs",
+        "mismatch_result": "source_content_conflict",
+        "return_owner": "INTELLIGENCE-proposal-owner",
+        "scope": "原/提出のJSON意味等値だけで資格化せず、同scope根拠の照合義務を保持。task参照の独立locator未供給などは不足を具体化してdetailへ渡す。"
+      },
+      "recommendation_exclusion": {
+        "recommended": "/submitted_proposal/recommended",
+        "excluded": "/submitted_proposal/excluded",
+        "excluded_identity_member": "worker",
+        "comparison": "推薦集合にある同じWorker identityを除外recordが指すなら、推薦/除外の意味が矛盾。JSON意味等値で照合し、範囲外Worker全員の新たな分類を要求する規則ではない。",
+        "field": "proposal.excluded",
+        "result": "source_content_conflict",
+        "return_owner": "INTELLIGENCE-proposal-owner"
+      },
+      "claim_names": [
+        "price_only_rank",
+        "name_only_rank",
+        "field_presence_is_fit"
+      ],
+      "claim_finding": {
+        "field": "proposal.recommended",
+        "result": "unsupported_fit_basis",
+        "return_owner": "INTELLIGENCE-proposal-owner"
+      },
+      "state": "data所見またはclaim所見があればheld_input_unqualified。なければcandidate_requires_actual_qualification。",
+      "fit": "incompatibleまたはunsupported_fit_basis所見があればexcluded_by_condition。その他所見があればnot_evaluated。なければsource_condition_candidate。"
+    },
+    "F04": {
+      "ordering": "判断state→priority_ref→tolerance_ref→scope各軸→品質→比較選択/入力/scope/互換→介入欠測→claim宣言順→既存の判断scope.revision所見。各fieldの条件が成立すれば他fieldの欠落やclaimで抑止しない。",
+      "decision_state": {
+        "path": "/original_decision/state",
+        "known_value": "valid_in_fixture_only",
+        "other_result": "expired_or_missing",
+        "field": "decision.state",
+        "return_owner": "decision-owner"
+      },
+      "required_decision_refs": [
+        {
+          "path": "/original_decision/priority_ref",
+          "field": "decision.priority_ref",
+          "result": "expired_or_missing",
+          "return_owner": "decision-owner"
+        },
+        {
+          "path": "/original_decision/tolerance_ref",
+          "field": "decision.tolerance_ref",
+          "result": "expired_or_missing",
+          "return_owner": "decision-owner"
+        }
+      ],
+      "required_presence": "指定refの不在またはnullは不足。nullやfalseを別のrefへ推測変換しない。文字列/内部member全域のdomain、実issuer/custodyは別未成立。",
+      "quality": {
+        "path": "/original_decision/quality_result",
+        "field": "decision.quality_result",
+        "observed_satisfied": "satisfied_in_fixture_only",
+        "observed_unsatisfied": "not_satisfied",
+        "unsatisfied_result": "quality_not_satisfied",
+        "unknown_result": "unobserved",
+        "return_owner": "quality-oracle-owner",
+        "unknown_meaning": "不在/null/unknownおよびこの観測表示でない自由値は品質充足へ補完しない。"
+      },
+      "comparison": "比較選択時だけ既存content_rulesの必要閉包を評価。scope不足と互換不足は独立fieldとして保持し、互換nullを理由に供給済みscopeの不一致を消さない。未選択/unknown selectionは既存境界を保持。",
+      "intervention": {
+        "selected_claim": "total_cost_without_intervention",
+        "record": "/human_intervention",
+        "reference_member": "ref",
+        "state_member": "state",
+        "observed_state": "observed_in_fixture_only",
+        "field": "human_intervention",
+        "result": "unobserved",
+        "return_owner": "LABO-evidence-owner",
+        "comparison": "総費用を主張するclaimがあり、介入record/refが不在/nullまたはstateが観測表示でなければ欠測所見。総費用を計算したり値/順位を作らない。"
+      },
+      "claim_findings": [
+        {
+          "claim": "confirm_every_valid_run",
+          "field": "decision.reuse",
+          "result": "unsupported_cost_or_decision_claim",
+          "return_owner": "decision-owner"
+        },
+        {
+          "claim": "hide_quality_failure",
+          "field": "decision.quality_result",
+          "result": "unsupported_cost_or_decision_claim",
+          "return_owner": "quality-oracle-owner"
+        },
+        {
+          "claim": "total_cost_without_intervention",
+          "field": "human_intervention",
+          "result": "unsupported_cost_or_decision_claim",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "claim": "invent_priority_rank",
+          "field": "decision.priority_ref",
+          "result": "unsupported_cost_or_decision_claim",
+          "return_owner": "decision-owner"
+        }
+      ],
+      "state": "所見が1件以上あればheld_input_unqualified、なければcandidate_requires_actual_qualification。",
+      "fit": "quality_not_satisfiedのdata所見があればexcluded_by_quality。その他所見があればnot_evaluated。なければsource_condition_candidate。claimで既知品質未達のdata所見を抑止しない。",
+      "decision_scope_checks": [
+        {
+          "left": "/original_decision/scope/ticket",
+          "right": "/original_scope/ticket",
+          "field": "decision.scope.ticket",
+          "result": "foreign",
+          "return_owner": "decision-owner"
+        },
+        {
+          "left": "/original_decision/scope/task",
+          "right": "/original_scope/task",
+          "field": "decision.scope.task",
+          "result": "foreign",
+          "return_owner": "decision-owner"
+        },
+        {
+          "left": "/original_decision/scope/scope",
+          "right": "/original_scope/scope",
+          "field": "decision.scope.scope",
+          "result": "foreign",
+          "return_owner": "decision-owner"
+        },
+        {
+          "left": "/original_decision/scope/task_class",
+          "right": "/original_scope/task_class",
+          "field": "decision.scope.task_class",
+          "result": "foreign",
+          "return_owner": "decision-owner"
+        },
+        {
+          "left": "/original_decision/scope/contract_revision",
+          "right": "/original_scope/contract_revision",
+          "field": "decision.scope.contract_revision",
+          "result": "foreign",
+          "return_owner": "decision-owner"
+        }
+      ],
+      "decision_revision_check": {
+        "left": "/original_decision/scope/revision",
+        "right": "/original_scope/revision",
+        "field": "decision.scope.revision",
+        "result": "foreign_revision",
+        "return_owner": "decision-owner"
+      },
+      "comparison_scope_checks": [
+        {
+          "left": "/original_comparison/scope/ticket",
+          "right": "/original_scope/ticket",
+          "field": "comparison.scope.ticket",
+          "result": "foreign",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "left": "/original_comparison/scope/task",
+          "right": "/original_scope/task",
+          "field": "comparison.scope.task",
+          "result": "foreign",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "left": "/original_comparison/scope/revision",
+          "right": "/original_scope/revision",
+          "field": "comparison.scope.revision",
+          "result": "foreign_revision",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "left": "/original_comparison/scope/scope",
+          "right": "/original_scope/scope",
+          "field": "comparison.scope.scope",
+          "result": "foreign",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "left": "/original_comparison/scope/task_class",
+          "right": "/original_scope/task_class",
+          "field": "comparison.scope.task_class",
+          "result": "foreign",
+          "return_owner": "LABO-evidence-owner"
+        },
+        {
+          "left": "/original_comparison/scope/contract_revision",
+          "right": "/original_scope/contract_revision",
+          "field": "comparison.scope.contract_revision",
+          "result": "foreign",
+          "return_owner": "LABO-evidence-owner"
+        }
+      ],
+      "comparison_scope_precondition": "比較選択が明示true、receipt/input/sender/receiver refおよびscopeが供給された素材に適用する。compatibilityの供給有無をscope不一致の診断条件にしない。実provider資格と参照の正式解消は別。"
+    },
+    "ordering_and_multiplicity": "F02/F04のdata所見は宣言順、同じdata所見のfield/result/owner全一致だけ先出を保持する。claim所見は別に宣言順で保持し異なるclaimをfield一致だけで落とさない。return_ownersは返却所見の初出順で一意化する。rejected_claimsはclaims入力順・同値重複は初出だけ。",
+    "unclosed": "F01/F03/N01の同field診断選択の一般化、全入力型/未見組合せ、source/owner-qualified exact binding、正式codec、実OS受領/割当/SEC許可は未成立。この基本pairからdetail全体や実運転の完成を生成しない。",
+    "material_return_projection": {
+      "meaning": "原L9の11root材料表現を保持する。正式wire schema採用ではない。新規データ所見を追加rootへ逃がさずfailure_reasons/state/fit/ownerへ接続する。",
+      "root_names": [
+        "information_state",
+        "retained_inputs",
+        "candidate_fit",
+        "retained_submitted_proposal",
+        "retained_handoff",
+        "comparison_obligation",
+        "rejected_claims",
+        "failure_reasons",
+        "return_owners",
+        "actual_effects",
+        "retained_auxiliary_inputs"
+      ],
+      "retained_inputs": [
+        "original_scope",
+        "original_task",
+        "original_workers",
+        "original_performance",
+        "original_bench",
+        "original_decision",
+        "original_proposal",
+        "original_comparison"
+      ],
+      "retained_handoff": [
+        "labo_level_owner",
+        "proposal_owner",
+        "receipt_owner",
+        "receipt_state",
+        "assignment_owner",
+        "assignment_state",
+        "permission_owner",
+        "permission_state"
+      ],
+      "retained_auxiliary_inputs": [
+        "comparison_selected",
+        "content_oracle_ref",
+        "human_intervention"
+      ],
+      "retained_submitted_proposal": "同名入力memberの原値。不在なら返却memberを省略、nullならnullを保持。",
+      "presence": "原入力memberの不在だけを省略し、null/空/false/0を補完/削除しない。source object/listの内容をそのまま保持する。",
+      "actual_effects": {
+        "assignment": false,
+        "dispatch": false,
+        "permission": false,
+        "scope_change": false,
+        "branch_change": false,
+        "merge_authority_change": false,
+        "acceptance": false,
+        "implementation_ready": false
+      },
+      "comparison_obligation": "F04は明示falseならnot_applicable、明示trueならselected_requires_separate_closure、それ以外unknown_selection。F02のこの材料関数はnot_applicableを保持し比較受領を成立させない。",
+      "remaining_roots": "information_state/candidate_fit/failure_reasons/return_owners/rejected_claimsは各契約とordering_and_multiplicityによる。保持したsourceから実資格や実作用を生成しない。"
+    }
+  }
 }
