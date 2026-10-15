@@ -6,10 +6,21 @@
   "status": "draft_limited_logical_functions_pending_independent_review",
   "source_main": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
   "scope": {
-    "approved_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "historical_stage": "Stage 2b",
     "version_target": "1.0",
-    "limit": "L3/L10の001三wholeとL4/L9有限fixtureだけを型付き純比較へ下ろす。実領域操作、全領域充実、採否、実資格、実装、実受入を主張しない。"
+    "limit": "L3/L10の001三wholeとL4/L9有限fixtureだけを型付き純比較へ下ろす。実領域操作、全領域充実、採否、実資格、実装、実受入を主張しない。",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "approval_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approved_content_head_field": "reviewed_content_head",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision_is_file_admission_merge": "888c6208353929a65e51ba6407994e10b3b81f13"
+    }
   },
   "approved_wholes": [
     {
@@ -850,7 +861,7 @@
       },
       {
         "name": "DomainEvolutionPacket",
-        "definition": "{source_ref:SourceRef,payload:{claims_operation_executed:boolean,fixed_enum:boolean,operation:string,original_domain:{identity:string,meaning:string,revision:string},original_references:ReferenceSnapshot,preserved_reference_snapshot:ReferenceSnapshot,proposal:DomainProposal}}。",
+        "definition": "{source_ref:SourceRef,payload:{claims_operation_executed:boolean,fixed_enum:boolean,operation:add|split|merge|retire,original_domain:{identity:string,meaning:string,revision:string},original_references:ReferenceSnapshot,preserved_reference_snapshot:ReferenceSnapshot,proposal:DomainProposal}}。",
         "shape": {
           "kind": "record",
           "fields": {
@@ -888,7 +899,13 @@
                   },
                   "operation": {
                     "type": {
-                      "kind": "string"
+                      "kind": "string",
+                      "values": [
+                        "add",
+                        "split",
+                        "merge",
+                        "retire"
+                      ]
                     },
                     "presence": [
                       "provided",
@@ -1528,7 +1545,6 @@
       "id": "compare_domain_definitions",
       "signature": "compare_domain_definitions(packet: DomainDefinitionPacket) -> DomainComparisonOutput",
       "reads": [
-        "packet.source_ref.identity/revision/scope/owner（fixture由来。意味判定へ使用しない）",
         "packet.payload.required_definitions",
         "packet.payload.provided_definitions",
         "packet.payload.additional_candidates",
@@ -1539,13 +1555,14 @@
         "provided.kindがproduct_identityまたはproject_identityならproduct_domain_rejected。",
         "provided.meaningが欠落/nullならunknown。非nullでrequired.meaningと異なればconflict。",
         "meaning一致後、stateかpattern_relationsがrequiredと一致しなければmissing。両方一致ならcontent_corresponding_in_fixture。",
-        "additional candidateごとにrequire_all_candidate_content=trueならfull_content_obligation_rejected、それ以外はcandidate_only_no_full_content_obligation。",
+        "additional_candidates配列を原順で走査し、nameをmap keyとして、require_all_candidate_content=trueならfull_content_obligation_rejected、falseならcandidate_only_no_full_content_obligationを代入する。同名があれば後の代入が同じkeyを上書きする。各行に同じpacket-level booleanを使うため有限fixtureで値は同じだが、重複候補の個体識別・一意性は未評価。",
         "全Effectsはfalse、unaffected_Qはoriginal_Q。これは合成fixture境界値で実操作結果を意味しない。"
       ],
-      "priority": "各domainについて上記順。identity/name/kindの比較はkindが製品/project判定に使われる場合以外、原L9有限fixtureのoracle計算範囲外であり全出力適合を主張しない。",
+      "priority": "各domainについて、key有無→provided.kindのproduct/project判定→meaningの欠落/null→meaningの不一致→state/pattern_relations不一致→対応の順。additional_candidatesは配列順のmap代入。L9の有限raw以外のtaxonomy/同一ID重複/未知shapeは未評価。",
       "preconditions": [
-        "source_refのidentity/revision/scope/ownerがL9独立packetと完全一致していること。これはfixture locator一致であり実資格判定ではない。",
-        "L9の三種raw packet shapeを保持し、未記載fieldを補完しない。"
+        "L9の三種raw packet shapeを保持し、未記載fieldを補完しない。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "この有限比較のadditional_candidatesはraw配列要素とrequire_all_candidate_contentだけを使う。重複nameを個別候補として保持する契約は含まない。"
       ],
       "postconditions": [
         "有限raw case内の各required identityの結果map、candidate別結果、全9 Effects=false、unaffected_Q=original_Qを返す。",
@@ -1567,15 +1584,16 @@
       ],
       "algorithm": [
         "reference_resultsはrelation/consumerで共有する1つのmapとする。最初にsorted(original relation ID集合 ∪ relation_mapping_candidatesのkey集合)を昇順に処理し、次にsorted(original consumer ID集合 ∪ consumer_mapping_candidatesのkey集合)を昇順に処理する。各idについてpreserved_reference_snapshotの該当type側に同idがなければmissing_original_reference、snapshotに同idがありmapping keyが無いか空listならmissing_mapping、それ以外はpreserved_and_mapped_candidate。したがってraw fixtureの追加mapping keyもsnapshotに原idが無いものはmissing_original_referenceとなる。relation処理後にconsumer処理を同じmapへ代入するため、ID衝突があればconsumer結果が後勝ちになるが、このfixture群に衝突はなくその意味は未評価。original/snapshot間の内容差・同一id重複・追加mapping keyがsnapshot側だけにある場合の意味は未評価であり、候補保持を一般成功としない。",
-        "meaning_assessmentがknown_in_fixture_only/unknown/overlappingのいずれかなら原値を返す。それ以外/欠落/nullはunknown。unknown/overlappingはproposal_result held_candidateへ留める。",
-        "fixed_enum=trueならfixed_enum=rejected、proposal_result=held_candidate。falseはfalseを保つ。",
-        "claims_operation_executed=trueならoperation_claim=rejected、proposal_result={operation}_candidate_only（原L9固定期待）。falseで、meaningがknown_in_fixture_only、全reference resultがpreserved_and_mapped_candidate、fixed_enum=falseなら{operation}_candidate_only。それ以外はheld_candidate。",
+        "operationの対応範囲はrawに現れるadd/split/merge/retireの4 literal。意味評価はknown_in_fixture_only/unknown/overlappingの3 literalだけを保持し、それ以外・欠落/nullはunknown。unknown/overlappingはproposal_result=held_candidateへ留める。",
+        "fixed_enum=trueならfixed_enum=rejected、falseならfalseを保つ。proposal_resultの通常分岐にはこの値を次の優先規則で使う。",
+        "claims_operation_executed=trueなら他の意味/reference/fixed_enum分岐より無条件に先にoperation_claim=rejected、proposal_result={raw operation}_candidate_onlyを返す。claims_operation_executed=falseの場合のみ、meaning=known_in_fixture_onlyかつ全reference result=preserved_and_mapped_candidateかつfixed_enum=falseなら{raw operation}_candidate_only、それ以外はheld_candidate。candidate labelは有限fixtureの表示値であり実操作・権限・採用ではない。",
         "全Effects false/unaffected_Q original_Q。実操作/永続化はない。"
       ],
-      "priority": "reference欠落/意味unknown/overlap/fixed_enumのいずれかはproposalをheld_candidateへ落とす。ただし原L9がunselected operation claim=true時のcandidate labelを期待するcaseは、operation_claim=rejectedを並行出力しproposal labelをraw-operation-derived candidate_onlyとして保持する。",
+      "priority": "最優先はclaims_operation_executed=trueであり、全ての有限fixtureでoperation_claim=rejectedとraw operation由来candidate labelを並行返却する。false時にだけ固定enum、meaning、reference結果の通常分岐を使い、いずれか不成立ならheld_candidate。4 literal以外のoperationは入力域外で未評価とし、任意文字列からcandidate labelを作る一般規則を定めない。",
       "preconditions": [
-        "source_refの4 locator値がL9 packet.refと完全一致すること。",
-        "original_references/preserved_reference_snapshot/proposalは別recordのまま保持し、一方から他方を生成しない。"
+        "original_references/preserved_reference_snapshot/proposalは別recordのまま保持し、一方から他方を生成しない。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "operationは有限fixtureでadd/split/merge/retireのいずれかであること。これ以外のliteralの出力は未評価として定義せず、権限付与も行わない。"
       ],
       "postconditions": [
         "原relation/consumerごとの結果map、proposal/meaning/fixed enum/operation claim、全9 Effects=false、unaffected_Qを返す。",
@@ -1599,13 +1617,14 @@
       "algorithm": [
         "generic_domain.kindがgeneric_domainかつdomain_per_product=falseならgeneric_domain_identifiable_in_fixture。それ以外はproduct_domain_rejectedとBRAIN-domain-ownerを返す。",
         "classification_claims_knowledge_adopted=trueなら実際の採用ではなく主張への差戻し先BRAIN-knowledge-adoption-ownerを追加。knowledge stateはraw値をそのまま保持。",
-        "productごとにoriginalとproposalを構造値比較する。一致はmeaning_held、不一致はCORE_meaning_change_rejectedとCORE-{product suffix}-meaning-owner（この固定fixtureではPRODUCT-P→CORE-P）。",
+        "product_originalsのmap挿入順で各keyを走査し、同じkeyのproduct_proposals値とJSON構造値を比較する。一致ならmeaning_held、不一致ならCORE_meaning_change_rejected。有限rawで確認した変更caseはPRODUCT-Pだけで、対応するreturn候補文字列はL9独立期待に現れるCORE-P-meaning-owner。この文字列はfixtureから導いた候補ラベルで実owner ID/資格ではない。PRODUCT-Rは全fixtureで変更なし。任意keyのCORE名を生成する一般規則は定めず、追加proposal keyの走査/意味も未評価。",
         "Effects false/unaffected_Q original_Q。製品本文更新や知識採用を実施しない。"
       ],
-      "priority": "Domain分類と採用主張を評価後、製品ごとにCORE意味を比較。fixture alias PRODUCT-P→CORE-Pはsource原値の対応を保持し、任意の製品ID変換規則に一般化しない。owner_return_candidates順はdomain owner、knowledge adoption owner、product map挿入順のCORE owners。",
+      "priority": "generic_domain判定後にclassification_claims_knowledge_adoptedを確認し、その後product_originalsの挿入順で対応するproposalを比較する。B01の全4rawにはPRODUCT-PとPRODUCT-Rの両keyが存在し、PRODUCT-Pだけ変更するcaseはL9 expectedのCORE-P-meaning-ownerを返す。未変更keyはowner候補を追加しない。その他のkey/変更対応は有限根拠がなく未評価。",
       "preconditions": [
-        "source_refの4 locator値がL9 packet.refと完全一致すること。",
-        "product_originalsとproduct_proposalsを独立した入力として保持する。"
+        "product_originalsとproduct_proposalsを独立した入力として保持する。",
+        "L8の独立source-linkage照合がL9の固定raw bytes、ref、case pointerを結合済みであること。これは関数のpayload意味比較とは別の静的束縛で、実資格を示さない。",
+        "B01の有限fixtureはproduct_originals/product_proposalsにPRODUCT-PとPRODUCT-Rを持つ。product_originalsと同じ2 key以外の追加key、およびPRODUCT-Rの変更時の候補ownerは未評価で、CORE文字列を一般生成しない。"
       ],
       "postconditions": [
         "Domain分類/knowledge state/product別CORE意味差/owner return候補/全9 Effects=falseを返す。",
@@ -1620,7 +1639,7 @@
   ],
   "scope_limitations": [
     "実taxonomy/domain meanings、全領域充実、実参照利用者、実CORE/OS resolver、実資格、永続化、採否、実L10、POの実物L11は未成立。",
-    "有限fixtureに無い同一ID重複、複数product key、未知のfield型など一般域は未評価。",
+    "有限fixtureで未出現の同一ID重複、additional_candidatesの重複name、PRODUCT-P/PRODUCT-R以外の追加product keyと変更、未知のfield型など一般域は未評価。B01の4 fixtureではPRODUCT-PとPRODUCT-Rの2 keyを比較し、変更ありはPRODUCT-Pの1 caseだけ。",
     "この型モデルは論理fixture契約でありformal JSON schema、codec、runtime/APIは定めない。"
   ],
   "full_goal_scope_preserved": {
@@ -1638,7 +1657,7 @@
   "trace_contract": {
     "requirement_to_system_oracle": "各L8 caseのrequirement_refとsystem_oracle_refをL9同一caseから読み、L3/L10 approved_wholesの同IDと照合する。",
     "l4_to_l9": "l4_refはL9 concrete_case.l4_refとL4 contracts[].id/requirement_ref/system_oracle_ref/oracle_refを照合する。",
-    "return_to": "Domain meaning/initial scope/unknown/overlap/reference-preservation mismatch → BRAIN L1-001. Product/project meaning change → corresponding product HELIX-HARNESS-CORE owner. Product/project status record belongs OS; this limited pair only routes product meaning to CORE and does not invent a machine-readable owner ID."
+    "return_to": "Domainの意味・初期scope・unknown/overlap・reference保持の不一致はBRAIN L1-001へ返す。product/projectの意味変更は該当するHELIX-HARNESS-CORE owner候補文字列（この有限fixtureではCORE-P-meaning-owner）を返す。製品の状態記録はOS責務。出力のowner文字列はfixture由来の差戻し候補であり、実owner IDの発行・資格確認・権限付与ではない。"
   },
   "scope_evidence": {
     "kind": "audited_baseline_source_comparison",
@@ -1713,5 +1732,75 @@
     },
     "limit": "失敗/consumerの記述は元source/承認wholeへのtraceであり、実owner qualification、全consumer網羅、実failure観測を成立させない。"
   },
-  "paired_document": "HELIXBRAIN-L8-001"
+  "paired_document": "HELIXBRAIN-L8-001",
+  "approved_whole_bindings": [
+    {
+      "id": "HELIXBRAIN-L3-001-F01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/43",
+      "canonical_sha256": "1d6fdc9d1cfcbba96086f3d83443143d6095a83f73f4f17a7a80a9b77eab3f91"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-F02",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/44",
+      "canonical_sha256": "a483f352d030b7b2ab22ecdf5aa7f4da0f29c72df5865e62a06a8241c5082701"
+    },
+    {
+      "id": "HELIXBRAIN-L3-001-B01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/13",
+      "canonical_sha256": "a3212ba5ebd32db005714f91457bb35014929079b3127de4859bb90486ee3799"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/43",
+      "canonical_sha256": "3b59454653d0a742ee326d93c376061cefe34c3e819a81e6ce607150e1a0d6e9"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-F02",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/44",
+      "canonical_sha256": "63adb46ffdbab97c2c767d03a6695a2bdf6b15eacee19ddc573ee1b1f19bc22d"
+    },
+    {
+      "id": "HELIXBRAIN-L10-001-B01",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "pointer": "/cases/13",
+      "canonical_sha256": "83b19365e7840bdc85f823e41faa9a87b6e122d52ebf3368f98403952c35fc88"
+    }
+  ],
+  "l4_contract_bindings": [
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-F01",
+      "component": "domain_definition_reader",
+      "requirement_id": "HELIXBRAIN-L3-001-F01",
+      "oracle_id": "HELIXBRAIN-L10-001-F01",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-F01",
+      "function_id": "compare_domain_definitions"
+    },
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-F02",
+      "component": "domain_evolution_candidate_reader",
+      "requirement_id": "HELIXBRAIN-L3-001-F02",
+      "oracle_id": "HELIXBRAIN-L10-001-F02",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-F02",
+      "function_id": "compare_evolution_proposal"
+    },
+    {
+      "l4_contract_id": "HELIXBRAIN-L4-001-B01",
+      "component": "domain_owner_router",
+      "requirement_id": "HELIXBRAIN-L3-001-B01",
+      "oracle_id": "HELIXBRAIN-L10-001-B01",
+      "l9_obligation_id": "HELIXBRAIN-L9-001-B01",
+      "function_id": "separate_domain_and_product_owners"
+    }
+  ]
 }
