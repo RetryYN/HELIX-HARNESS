@@ -5843,7 +5843,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
+            "derivation_note": "L3/L4で固定した4段階の順序と照合し、全体の順序相反もBRAIN-changeへ返す。"
           }
         },
         {
@@ -6040,7 +6040,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
+            "derivation_note": "L3/L4で固定した4段階の順序と照合し、全体の順序相反もBRAIN-changeへ返す。"
           }
         },
         {
@@ -6237,7 +6237,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
+            "derivation_note": "L3/L4で固定した4段階の順序と照合し、全体の順序相反もBRAIN-changeへ返す。"
           }
         },
         {
@@ -6434,7 +6434,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
+            "derivation_note": "L3/L4で固定した4段階の順序と照合し、全体の順序相反もBRAIN-changeへ返す。"
           }
         },
         {
@@ -7769,7 +7769,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3/L4 fixed four-stage order; a whole-order mismatch also returns to BRAIN-change"
+            "derivation_note": "L3/L4で固定した4段階の順序と照合し、全体の順序相反もBRAIN-changeへ返す。"
           }
         },
         {
@@ -8864,7 +8864,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -9077,7 +9077,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -9290,7 +9290,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -9503,7 +9503,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -9716,7 +9716,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -10698,7 +10698,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L3-F01 five stage receipts + L3/L10-F03 no promotion from any listed standalone evidence"
+            "derivation_note": "L3-F01の5段階のreceiptを区別し、L3/L10-F03に列挙された単独証拠から採用へ昇格させない。"
           }
         },
         {
@@ -15858,7 +15858,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L2-025 source/evaluation responsibility and L3/L10-N01 candidate↔evaluation target revision binding"
+            "derivation_note": "L2-025の出典・評価の責務と、L3/L10-N01の候補revisionと評価対象revisionの束縛を照合する。"
           }
         },
         {
@@ -16074,7 +16074,7 @@
               "binding": "same_candidate"
             },
             "meaning": "元recordと内容比較を保持し、field/状態/証拠/参照ごとの機構責務とrecipient不足を分けた独立期待。実資格/配送/採否を生成しない。",
-            "r2": "R2独立導出: L2-025 source/evaluation responsibility and L3/L10-N01 candidate↔evaluation target revision binding"
+            "derivation_note": "L2-025の出典・評価の責務と、L3/L10-N01の候補revisionと評価対象revisionの束縛を照合する。"
           }
         },
         {
@@ -22212,10 +22212,10 @@
   ],
   "paired_l4_candidate_bytes": {
     "document": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json",
-    "sha256": "6cc327f6c1c2aa3c4dce6f4a856f2ca7ab692dcd9387d9735d62b390f3fa75a0",
+    "sha256": "aef8186c332e82f01293ac3b086a72160ef1982669eb3442f4b15ca5cc6781f3",
     "binding": "same_candidate",
     "meaning": "このL4候補のexact bytesとの同一性を示す。source_pinsは参照元bytesを識別する。承認/実資格を生成しない。",
-    "bytes": 89759
+    "bytes": 89793
   },
   "additional_fixture_progress": {
     "case_count": 22,

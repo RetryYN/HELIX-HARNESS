@@ -461,6 +461,7 @@
         "finding_content",
         "knowledge_hold",
         "single_evidence",
+        "missing_required_basis",
         "knowledge_state",
         "product_separation",
         "counterexample_claim"
