@@ -13490,7 +13490,8 @@
     "raw claimsの非配列はunknownとして保持する。scopeはRawPacketが供給するJSON値の存在/nullと元targetとの等値を判定するだけ。L3/L4はscopeをobjectに限定するschema、revision/scope/task/ticketの必須形、非空文字列を固定していない。全scopeが[]又は{}等で同値でも型付き実scope解決/資格を証明せず、構造の妥当性を判定したとは扱わない。",
     "proposal.identity/receipt.proposal_identityはRawPacketのJSON値として保持する。両側空文字・number・object等の同値はfixture内容等値に限る。正式010 schema/source identity解決は未供給なので、新しい文字列/非空gateは作らず、typed identity/source資格との結合は未成立として残す。",
     "人経路のproposal.input.labo.stateとreceipt.input.labo.stateのevaluated_high等、原fixture語彙以外の評価語は値を保持する。同値を実評価合格とせず、実LABOが供給する評価状態domain/根拠との意味照合は未具体化。入力間の欠落/不一致検査とは別責務。",
-    "claimには入力差の対象memberが無い。task.domain単独の原有限診断以外で同一原因と断定する規則は未供給であり、worker版や複合欠陥をclaimで抑止しない。"
+    "claimには入力差の対象memberが無い。task.domain単独の原有限診断以外で同一原因と断定する規則は未供給であり、worker版や複合欠陥をclaimで抑止しない。",
+    "original_contract・original_proposal.contract・original_receipt.contractのproposal_schema_ref/proposal_contract_ref/pack_contract_refは、Absent/nullと既知値差を照合する。各参照が3か所とも空文字、number、object等で同値ならcorresponding_in_fixture_onlyになり得る。これはraw内容の有限等値であり、010の同一schema/契約versionを実参照できたことを証明しない。正式010 schema/参照解決と資格は未供給で、文字列型/非空の新gateは追加しない。実契約参照としての未解決を保持し、対応成立・実受領・Readyへ昇格しない。"
   ],
   "source_binding_rule_purpose": "正式ASTが宣言する入力pathの欠落・相違を列挙する。claim列の診断は明示された有限の同一事実条件だけで統合し、別field・ownerのfailureを抑止しない。全意味domainや実source資格の閉包は宣言しない。",
   "canonical_hash_procedure": {
