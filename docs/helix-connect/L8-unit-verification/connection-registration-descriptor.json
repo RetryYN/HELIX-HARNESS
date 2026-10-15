@@ -1,0 +1,3177 @@
+{
+  "parent": "HELIXCONNECT-L2-001",
+  "source_main": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+  "source_basic_pair_revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "authoring_stage": "L5/L8詳細設計と単体検証設計",
+    "boundary": "登録宣言とdescriptorの固定内容を比較する純粋論理だけ。実登録、通信、authority、業務承認、source資格、正式codec/schemaを成立させない。全92親・430対を保持する。"
+  },
+  "upstream_adoption": {
+    "approval": {
+      "record_path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_commit": "7c2ef0c722b63b0ea2c7882ab26472e87381d538",
+      "main_admission_commit": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+      "decision_record_id": "HDEC-CONNECT-PREREQUISITE-L3L10-2026-10-12",
+      "approval_scope": "001/002/003/005/007/009と、選択再送/構成体の004、片側交換時の006を含む29組。全接続・全能力の成立を含まない。draft/not_executedを固定bytesとして保持する。",
+      "approved_object_ids": [
+        "HELIXCONNECT-L3-001-F01",
+        "HELIXCONNECT-L3-001-F02",
+        "HELIXCONNECT-L10-001-F01",
+        "HELIXCONNECT-L10-001-F02"
+      ],
+      "whole_files": [
+        {
+          "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+          "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+        },
+        {
+          "path": "docs/helix-connect/L10-verification/functional-verification.json",
+          "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+        }
+      ]
+    },
+    "parent_adoption": {
+      "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "selected_parent": "HELIXCONNECT-L2-001",
+      "L2_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "version_target": "1.0",
+      "historical_stage": "Stage 1"
+    }
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/connection-registration-descriptor.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "0ba016f3b159905a488bb732303a50a9ec056619ab7f4c9337f0e8ad6190f1fe"
+    },
+    {
+      "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "revision": "7dd84d91c10a4880b9cd1b0989a938fd415317ed",
+      "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+    }
+  ],
+  "basic_pair_hashes_at_source_main": {
+    "L4": "0ba016f3b159905a488bb732303a50a9ec056619ab7f4c9337f0e8ad6190f1fe",
+    "L9": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "qualification_boundary": {
+    "formal_schema": "not_defined",
+    "codec": "not_defined",
+    "actual_endpoint_owner_contract_qualification": "not_established",
+    "actual_authority_or_registration": "not_established",
+    "network_or_transport_execution": "not_executed",
+    "evidence": "synthetic fixtures only; a passing static comparison is not registration or receipt"
+  },
+  "pair": "HELIXCONNECT-L8-001 ↔ HELIXCONNECT-L5-001",
+  "status": "draft_static_unit_vectors_pending_independent_review",
+  "approved_requirements": [
+    {
+      "id": "HELIXCONNECT-L3-001-F01",
+      "parent": "HELIXCONNECT-L2-001",
+      "title": "接続identityと両端契約",
+      "obligation": "source/consumer・端点owner・目的/能力名・方向・scope・意味契約identity/revision・adapter/transport revision・成果物/依存版・互換範囲・運用状態を個別connectionへ結び、登録receiptを返す。同一端点の共有は別identity/意味契約/scopeで識別できれば許容する。同identityの異宣言、identity衝突、端点または契約の欠落・unknownでは登録や通信を利用可能にしない。",
+      "oracle_ref": "HELIXCONNECT-L10-001-F01"
+    },
+    {
+      "id": "HELIXCONNECT-L3-001-F02",
+      "parent": "HELIXCONNECT-L2-001",
+      "title": "共通descriptorと登録境界",
+      "obligation": "能力名、契約/成果物/依存版、scope、correlation、期限、idempotency、result state、適用SECURITY許可/data-use/classification参照を同接続へ保持する。HARNESS010/011の宣言・互換・検証・更新/切戻し/未完義務を参照し、登録を利用許可や業務承認へ変えない。",
+      "oracle_ref": "HELIXCONNECT-L10-001-F02"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXCONNECT-L10-001-F01",
+      "parent": "HELIXCONNECT-L2-001",
+      "title": "接続identityと両端契約",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "positive_input": "同端点を共有する識別可能な二接続と同identity異宣言を比較する。",
+      "expected_observation": "個別接続の登録結果と両端契約が辿れ、端点共有を一律拒否しない。",
+      "negative_input": "identity衝突、片側欠落、同identity異宣言、scope不明。",
+      "failure_observation": "利用可能とせず、不足宣言を該当endpoint/contract ownerへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXCONNECT-L10-001-F02",
+      "parent": "HELIXCONNECT-L2-001",
+      "title": "共通descriptorと登録境界",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "positive_input": "完全descriptorと必須値を一つずつ欠落させた入力を比較する。",
+      "expected_observation": "登録/未成立と不足fieldが辿れ、通信実行を登録成立の必須条件にしない。",
+      "negative_input": "登録から送信権/業務承認、依存版推測、必須値欠落。",
+      "failure_observation": "不足は宣言owner、適用許可/data-use意味はSEC/source ownerへ返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXCONNECT-L3-001-F01",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "492dc4782812f365ed77db8ad976db9e6008c5b414f1dc81e385a130a37c6aa4"
+    },
+    {
+      "id": "HELIXCONNECT-L3-001-F02",
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "8d5668c058b16e09832069ced9860f385776b7f0162db9257cc426b6022f20e1"
+    },
+    {
+      "id": "HELIXCONNECT-L10-001-F01",
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "canonical_sha256": "ab65938f6583341d69dc90ec321326dbe6eefa82dddb0bd65b15d396099e6ef0"
+    },
+    {
+      "id": "HELIXCONNECT-L10-001-F02",
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "canonical_sha256": "d67c68e2228a14cc276b4231856e7c6d93e18faa212fb6d18d16be3e90971954"
+    }
+  ],
+  "source_packet_resolution": {
+    "source_file": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+    "encoding": "independent_source_packet.raw_utf8のUTF-8 JSON bytesを解析したobject",
+    "source_pointer": "/verification_obligations/{j}/concrete_cases/{i}/independent_source_packet",
+    "source_revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+    "expected_oracle_pointer": "/verification_obligations/{j}/concrete_cases/{i}/expected_material",
+    "oracle_role": "独立期待の役割: L9 expected_materialは、rawから算出した結果と後から照合する独立oracleであり、計算器の出力値を供給しない。",
+    "calculation_role": "計算器の役割: 参照されたraw packetをparseし、L5関数規則を適用する。case IDとexpected pointerは計算入力にしない。",
+    "fixture_literal_role": "fixture literalの役割: L5 fixture_boundary_literalsが示す固定境界表示値だけをL5定数として使う。raw owner根拠または実owner資格として扱わない。"
+  },
+  "cases": [
+    {
+      "case_id": "C001-F01-TWO-DISTINCT-CONNECTIONS-SHARED-ENDPOINTS",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/0/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "21bbf184551bd4167ab9a696d6e755ef2c2305c8ea07dcf7f73496fe5e4688be",
+        "packet_identity": "SOURCE-C001-F01-TWO-DISTINCT-CONNECTIONS-SHARED-ENDPOINTS",
+        "packet_revision": "fixture-content-21bbf184551bd4167ab9a696d6e755ef2c2305c8ea07dcf7f73496fe5e4688be"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "canonical_sha256": "20edd38e1bddb169967a2725851f9fbab20ee7f051c7f6e4b7eef07853ce84a8"
+      },
+      "case_source_notes": {
+        "basis": "同端点のP/Qを個別identity/意味契約/scopeで識別。共有だけで一律拒否しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONNECTION_IDENTITY-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/1/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "a52d1e29ece951599781c6653692ba9e9759474034d1eba965688d07ec66652b",
+        "packet_identity": "SOURCE-C001-F01-CONNECTION_IDENTITY-MISSING",
+        "packet_revision": "fixture-content-a52d1e29ece951599781c6653692ba9e9759474034d1eba965688d07ec66652b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/1/expected_material",
+        "canonical_sha256": "64f480b15a93fec34cca266fc2b4f627db1277af9d599f2972c4aa4c2d96aa67"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-REGISTRATION_REVISION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/2/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "15fa8a35a6ad957f5335f2514b8d7de8c533a15a5bec9897ecbad30b705469e9",
+        "packet_identity": "SOURCE-C001-F01-REGISTRATION_REVISION-MISSING",
+        "packet_revision": "fixture-content-15fa8a35a6ad957f5335f2514b8d7de8c533a15a5bec9897ecbad30b705469e9"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/2/expected_material",
+        "canonical_sha256": "a988eaf7cff4b3d8b287216d2c2b6c3254dd0063552784fffaff6de85e72261a"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_ENDPOINT-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/3/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "6dd4ee3068bca1fd374d66588ab74b223b11ecd0be5f09bf55b97d2058eb508f",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_ENDPOINT-MISSING",
+        "packet_revision": "fixture-content-6dd4ee3068bca1fd374d66588ab74b223b11ecd0be5f09bf55b97d2058eb508f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
+        "canonical_sha256": "b0dbcf585b3b1bdfa7a64524e9a681dab47eba3ebcc11382221ef24ca807ad09"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_OWNER-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/4/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "38c75d619ea45eb8049bc647e2c7d1e70d7a586958c04fccb43286cdcc0bd52c",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_OWNER-MISSING",
+        "packet_revision": "fixture-content-38c75d619ea45eb8049bc647e2c7d1e70d7a586958c04fccb43286cdcc0bd52c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/4/expected_material",
+        "canonical_sha256": "7051692ec1231ec5509d10faf07eca5bc89be5b1780e784a414697fe35acab62"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_ENDPOINT-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/5/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "ee6e74580cca21e44e53ef60630792fba16a15c2c2109167f502540dbe4300f8",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_ENDPOINT-MISSING",
+        "packet_revision": "fixture-content-ee6e74580cca21e44e53ef60630792fba16a15c2c2109167f502540dbe4300f8"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/5/expected_material",
+        "canonical_sha256": "e76e1d37ae2c26303b9a322039df66ebf312f69620e92ee0a47e2f0dcebc3689"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_OWNER-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/6/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "5e7388a0ee5a76e10d949c8fb235aaa596436c8e783a3932ec6e10307d6330bb",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_OWNER-MISSING",
+        "packet_revision": "fixture-content-5e7388a0ee5a76e10d949c8fb235aaa596436c8e783a3932ec6e10307d6330bb"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/6/expected_material",
+        "canonical_sha256": "7ae2910aef9e9d3c4d342284e06a5d4a2ac83653fb44d7d0e9b3f4c630fc2fa9"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-PURPOSE-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/7/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "aabd30854ae6ddb3dec13a0e4fb9fdca6e57a4ddc100b22e2952b1adc928cb1c",
+        "packet_identity": "SOURCE-C001-F01-PURPOSE-MISSING",
+        "packet_revision": "fixture-content-aabd30854ae6ddb3dec13a0e4fb9fdca6e57a4ddc100b22e2952b1adc928cb1c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/7/expected_material",
+        "canonical_sha256": "5e19860a475c989ede15cd03113e548ed534cb20b2188d3da13065e1ba4a3096"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CAPABILITY-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/8/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "0b1adc008b2b493554004612854fed78bd5e51f8203ed388432a46a0cb4116a3",
+        "packet_identity": "SOURCE-C001-F01-CAPABILITY-MISSING",
+        "packet_revision": "fixture-content-0b1adc008b2b493554004612854fed78bd5e51f8203ed388432a46a0cb4116a3"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/8/expected_material",
+        "canonical_sha256": "7db8050b3f0e89f044ec133d136a809048636e3b41634067fef7efec8931a11f"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-DIRECTION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/9/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "92f687056c809b3d9fc2ceb7357ba72973b6f6188b75003f9d0bfbe7284c05ff",
+        "packet_identity": "SOURCE-C001-F01-DIRECTION-MISSING",
+        "packet_revision": "fixture-content-92f687056c809b3d9fc2ceb7357ba72973b6f6188b75003f9d0bfbe7284c05ff"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/9/expected_material",
+        "canonical_sha256": "988164e4831fb1e47414676e79da4f0070f00836ef21696acfdb23bca991ca61"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SCOPE-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/10/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "938894097b591e1ed3c56ea307fb1fe32ad9f3c9e2ca83c2dd0087fa0556b969",
+        "packet_identity": "SOURCE-C001-F01-SCOPE-MISSING",
+        "packet_revision": "fixture-content-938894097b591e1ed3c56ea307fb1fe32ad9f3c9e2ca83c2dd0087fa0556b969"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/10/expected_material",
+        "canonical_sha256": "b56e874230bdff9f01e3141bdf2ef53414e2b2382b0064f123561b22ac7a97a0"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_MEANING_CONTRACT-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/11/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "f6d192e71d42b20c468f393247245c45ee55941c24ed95732259c3111639a033",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_MEANING_CONTRACT-MISSING",
+        "packet_revision": "fixture-content-f6d192e71d42b20c468f393247245c45ee55941c24ed95732259c3111639a033"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/11/expected_material",
+        "canonical_sha256": "57c6440bd0dff26f5730515cee8f684d864cbe366151f8d7d2b4d95aa8fbda17"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_MEANING_CONTRACT-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/12/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "59fda8931d2eb98c12041ac17400b80344506f74681c88957b84e33b36a2cfd6",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_MEANING_CONTRACT-MISSING",
+        "packet_revision": "fixture-content-59fda8931d2eb98c12041ac17400b80344506f74681c88957b84e33b36a2cfd6"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/12/expected_material",
+        "canonical_sha256": "c20e30e58cc7a8e318ba839a66d7edf1da1c1a5eaa9254d1126b5a3d56d1b555"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-ADAPTER_REVISION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/13/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "e87055b600a4ab02efe01ef8f1fb205295603f1752875459ab8088c6ea958cc7",
+        "packet_identity": "SOURCE-C001-F01-ADAPTER_REVISION-MISSING",
+        "packet_revision": "fixture-content-e87055b600a4ab02efe01ef8f1fb205295603f1752875459ab8088c6ea958cc7"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/13/expected_material",
+        "canonical_sha256": "b3adabe9feb4ba33730613786b9dcd7e8a39856d385a626fac1236dc7fb597f7"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-TRANSPORT_REVISION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/14/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "c06347e56d53d6f2df3165b4ef4124b2ed791b9d8684acb60cecf355026e659b",
+        "packet_identity": "SOURCE-C001-F01-TRANSPORT_REVISION-MISSING",
+        "packet_revision": "fixture-content-c06347e56d53d6f2df3165b4ef4124b2ed791b9d8684acb60cecf355026e659b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/14/expected_material",
+        "canonical_sha256": "86e46ce6eb5892342559c7d5430c7608c1d4646990a7666ea6b6f54f9735fba9"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-ARTIFACT_REVISION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/15/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9fe62e8f76acc15360ac587426b540fe30b6b84240f827b3cde99c37299ec89f",
+        "packet_identity": "SOURCE-C001-F01-ARTIFACT_REVISION-MISSING",
+        "packet_revision": "fixture-content-9fe62e8f76acc15360ac587426b540fe30b6b84240f827b3cde99c37299ec89f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/15/expected_material",
+        "canonical_sha256": "ebea509e90157cfdffec8329a1ddb2f967b37df7c6bb63ea5b98d338fbf51146"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-DEPENDENCY_REVISION-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/16/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "751399e87cbccdff452ab08a8d2e4dd9ed9cf0f2d9684d3e7e50254ac38316ec",
+        "packet_identity": "SOURCE-C001-F01-DEPENDENCY_REVISION-MISSING",
+        "packet_revision": "fixture-content-751399e87cbccdff452ab08a8d2e4dd9ed9cf0f2d9684d3e7e50254ac38316ec"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/16/expected_material",
+        "canonical_sha256": "e6bc394937fadcde3f9e6a06639b8bb99b671b3943920eba61883f5478a79029"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-COMPATIBILITY_RANGE-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/17/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "bf5c7006b9c74eaebee2e94a53717f76a09be7edc3b13fea566111981ab31b4b",
+        "packet_identity": "SOURCE-C001-F01-COMPATIBILITY_RANGE-MISSING",
+        "packet_revision": "fixture-content-bf5c7006b9c74eaebee2e94a53717f76a09be7edc3b13fea566111981ab31b4b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/17/expected_material",
+        "canonical_sha256": "d6e09dcbdadf24fa57e3b0ad5cffd553ff6776e55907cd6ba67ab3e24609e3b1"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-OPERATIONAL_STATE-MISSING",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/18/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "3c6113c2ec548f247e3fd05b77a33e26fc6a947fa356e3e1a1e9fe7de55dd96c",
+        "packet_identity": "SOURCE-C001-F01-OPERATIONAL_STATE-MISSING",
+        "packet_revision": "fixture-content-3c6113c2ec548f247e3fd05b77a33e26fc6a947fa356e3e1a1e9fe7de55dd96c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/18/expected_material",
+        "canonical_sha256": "c96d1593d4f57cb40bc1097c2de8ef6159d5ff4c8cadc20030af3cc4da5fdc47"
+      },
+      "case_source_notes": {
+        "basis": "P宣言の一項目欠落をownerへ返し、独立Qを同じ理由で保留しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_ENDPOINT-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/19/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "f2040b38ed5813bf2acadc01c37bcd4c4793ae7b079cf050170e34b4960f0d2d",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_ENDPOINT-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-f2040b38ed5813bf2acadc01c37bcd4c4793ae7b079cf050170e34b4960f0d2d"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/19/expected_material",
+        "canonical_sha256": "5136845273d9006e8a38afe811473afe1d17c2bda59b07d4c0f209a427815d69"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_ENDPOINT-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/20/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "38acd480c0c37715ad8121eeb48326028f07f7da0b3d867ee8b4e85f4d21a309",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_ENDPOINT-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-38acd480c0c37715ad8121eeb48326028f07f7da0b3d867ee8b4e85f4d21a309"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/20/expected_material",
+        "canonical_sha256": "f4ccc0e235c721f8db5530f9e90534e4a9c24431695f35e70447721dd2180405"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_MEANING_CONTRACT-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/21/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "a44bce1de29629dd162889ba9f2a87f85a2239b750e449eb76e9b9f4cb3ffae7",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_MEANING_CONTRACT-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-a44bce1de29629dd162889ba9f2a87f85a2239b750e449eb76e9b9f4cb3ffae7"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/21/expected_material",
+        "canonical_sha256": "adb66c026789d1bd8b1d4f24b1f73b103ddbffb924d59ce1c36064792f246a8f"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_MEANING_CONTRACT-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/22/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "936da5d9ff75db477aaea7cfea9123490ff878e4b01615791fcd9db85cf49152",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_MEANING_CONTRACT-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-936da5d9ff75db477aaea7cfea9123490ff878e4b01615791fcd9db85cf49152"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/22/expected_material",
+        "canonical_sha256": "5e0dc028fab95520b6a7419823a832a82937bdfa11b425a4439f17c716e34537"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SCOPE-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/23/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "233ca8c8c19c0c22638040c6b0c2daf1aeb73e25cde81ac974003530d153cb37",
+        "packet_identity": "SOURCE-C001-F01-SCOPE-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-233ca8c8c19c0c22638040c6b0c2daf1aeb73e25cde81ac974003530d153cb37"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/23/expected_material",
+        "canonical_sha256": "f5c8764447847e7d2225d3e0fe689e954c0df1b606fa44ac8544022c3ad12c77"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-DEPENDENCY_REVISION-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/24/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "20a9997be90437c784888fc17f933aae0404c11b4386e83539a75d05f27bf921",
+        "packet_identity": "SOURCE-C001-F01-DEPENDENCY_REVISION-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-20a9997be90437c784888fc17f933aae0404c11b4386e83539a75d05f27bf921"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/24/expected_material",
+        "canonical_sha256": "77b0043d4169f19e9780ee64637bc1b9403618ca205510b74b9363f916078282"
+      },
+      "case_source_notes": {
+        "basis": "原unknownはnull提出一致で登録成立にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SOURCE_OWNER-FOREIGN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/25/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "eeec5e3f801fdb1776c82e0aa8164a453fe574d73f2c55e17f63b54f38b12926",
+        "packet_identity": "SOURCE-C001-F01-SOURCE_OWNER-FOREIGN",
+        "packet_revision": "fixture-content-eeec5e3f801fdb1776c82e0aa8164a453fe574d73f2c55e17f63b54f38b12926"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/25/expected_material",
+        "canonical_sha256": "b6a38dd5e5991046584f92b1ce0d1385b8bdd0db8126dfcc54186bcd296c6411"
+      },
+      "case_source_notes": {
+        "basis": "field存在だけでowner/版内容を一致させない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-CONSUMER_MEANING_CONTRACT-FOREIGN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/26/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9ff17667bd1039b8d9be87bcb7d830331d82e774908007a903ad56f72130ec38",
+        "packet_identity": "SOURCE-C001-F01-CONSUMER_MEANING_CONTRACT-FOREIGN",
+        "packet_revision": "fixture-content-9ff17667bd1039b8d9be87bcb7d830331d82e774908007a903ad56f72130ec38"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/26/expected_material",
+        "canonical_sha256": "095d79a0933ba586c08bb1079d38c1e83a3a57a3b1f0543380ac83447bd647ee"
+      },
+      "case_source_notes": {
+        "basis": "field存在だけでowner/版内容を一致させない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-TRANSPORT_REVISION-FOREIGN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/27/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "e10798ba1ff974c4c06cc2898c318fb91bc03794f4992723bfd3d7e4839629bb",
+        "packet_identity": "SOURCE-C001-F01-TRANSPORT_REVISION-FOREIGN",
+        "packet_revision": "fixture-content-e10798ba1ff974c4c06cc2898c318fb91bc03794f4992723bfd3d7e4839629bb"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/27/expected_material",
+        "canonical_sha256": "537ffd1f6796fd26d601ab4c8b7949c6f21e0f0b2730b4345308808fe6571fa4"
+      },
+      "case_source_notes": {
+        "basis": "field存在だけでowner/版内容を一致させない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SAME-IDENTITY-DIFFERENT-DECLARATION",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/28/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "a52f42f4dd446c3fe4a374ffb3714864407eab401b15224897c3c0f0410b4b04",
+        "packet_identity": "SOURCE-C001-F01-SAME-IDENTITY-DIFFERENT-DECLARATION",
+        "packet_revision": "fixture-content-a52f42f4dd446c3fe4a374ffb3714864407eab401b15224897c3c0f0410b4b04"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/28/expected_material",
+        "canonical_sha256": "4f0269274f3f42ce7667611d84946979fb923a4c21e06da00f7db9d84c237f1c"
+      },
+      "case_source_notes": {
+        "basis": "異なる原宣言が同identityを持つ衝突は両方を利用可能にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SUBMITTED-IDENTITY-COLLISION",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/29/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "a06d09ae9f7e1ff8abc3541c8ff1b7a3dd865d7f582e32a1a91bb168289190b1",
+        "packet_identity": "SOURCE-C001-F01-SUBMITTED-IDENTITY-COLLISION",
+        "packet_revision": "fixture-content-a06d09ae9f7e1ff8abc3541c8ff1b7a3dd865d7f582e32a1a91bb168289190b1"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/29/expected_material",
+        "canonical_sha256": "99d4a1dfd0f933b59a55f45fa0d3d15f256a5c78362711c178b11620651325d5"
+      },
+      "case_source_notes": {
+        "basis": "原Q identityをPへ置換する提出内容衝突を拒否。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-SHARED_ENDPOINT_FORBIDDEN",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/30/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "56020eba582f33ac8044cf6da111289f8b1efe4a1db9201a4fe1b098c0232726",
+        "packet_identity": "SOURCE-C001-F01-SHARED_ENDPOINT_FORBIDDEN",
+        "packet_revision": "fixture-content-56020eba582f33ac8044cf6da111289f8b1efe4a1db9201a4fe1b098c0232726"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/30/expected_material",
+        "canonical_sha256": "87cdd8657aecd2b8ed4e0e39ea92b355f9dddcae28fa4e26c8ac52ea7bc03005"
+      },
+      "case_source_notes": {
+        "basis": "登録/端点共有/衝突から利用可能を生成するshortcutを拒否。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-REGISTRATION_IS_COMMUNICATION",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/31/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9bdf8db94cda0a0ffb1db2ade073e9363d18f3cd0730bbce70008d7e6143079f",
+        "packet_identity": "SOURCE-C001-F01-REGISTRATION_IS_COMMUNICATION",
+        "packet_revision": "fixture-content-9bdf8db94cda0a0ffb1db2ade073e9363d18f3cd0730bbce70008d7e6143079f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/31/expected_material",
+        "canonical_sha256": "2a237edb47f877a46be90f57063ffbba7316096d901623f38ddda166656c5252"
+      },
+      "case_source_notes": {
+        "basis": "登録/端点共有/衝突から利用可能を生成するshortcutを拒否。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F01-COLLISION_IS_USABLE",
+      "function_ref": "FN-C001-01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "l4_ref": "HELIXCONNECT-L4-001-F01",
+      "l9_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F01",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/0/concrete_cases/32/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "8fba89bbc04896344e3aedd5b1c833327652fd54ad6ee824323b6dd4c03f8f53",
+        "packet_identity": "SOURCE-C001-F01-COLLISION_IS_USABLE",
+        "packet_revision": "fixture-content-8fba89bbc04896344e3aedd5b1c833327652fd54ad6ee824323b6dd4c03f8f53"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/0/concrete_cases/32/expected_material",
+        "canonical_sha256": "da0883fcbe22268410d860130da798e6749902f126145cd8afc340a189d4f334"
+      },
+      "case_source_notes": {
+        "basis": "登録/端点共有/衝突から利用可能を生成するshortcutを拒否。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMPLETE-DESCRIPTOR-NO-COMMUNICATION",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/0/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9f7960bb019a3e4697bdd475dd0b0f3e1da4fa1fd2da1929e012da705593eae9",
+        "packet_identity": "SOURCE-C001-F02-COMPLETE-DESCRIPTOR-NO-COMMUNICATION",
+        "packet_revision": "fixture-content-9f7960bb019a3e4697bdd475dd0b0f3e1da4fa1fd2da1929e012da705593eae9"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "canonical_sha256": "fd82d9547e39738fc2988cd12ec670b274486d825ff323b3962b4cf26ee989ee"
+      },
+      "case_source_notes": {
+        "basis": "全必須宣言がある原fixtureを実通信なしで内容対照。実登録/許可は成立しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CONNECTION_IDENTITY-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/1/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "fd29893c36aba28c96a371a13bf31c103ecbbbfd2cc8c321938bf56f609d995c",
+        "packet_identity": "SOURCE-C001-F02-CONNECTION_IDENTITY-MISSING",
+        "packet_revision": "fixture-content-fd29893c36aba28c96a371a13bf31c103ecbbbfd2cc8c321938bf56f609d995c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/1/expected_material",
+        "canonical_sha256": "a50505f15ed9d7dff111dcff6b59219d4f9e34e025e3960f970e28d706d9c079"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-REGISTRATION_REVISION-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/2/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "fcbe4daaf230094e42f2ead0484b4884d119d2d68f4f6e1c936ac1eb04a66be7",
+        "packet_identity": "SOURCE-C001-F02-REGISTRATION_REVISION-MISSING",
+        "packet_revision": "fixture-content-fcbe4daaf230094e42f2ead0484b4884d119d2d68f4f6e1c936ac1eb04a66be7"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/2/expected_material",
+        "canonical_sha256": "fe92233fe0aef347f6f3a57fec87d1867c0863bf67343796c0f91122e48512fd"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CAPABILITY-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/3/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "cddb314384f1fd812535b2a5c54585e1758b3aab99755b1b993ceb708072816b",
+        "packet_identity": "SOURCE-C001-F02-CAPABILITY-MISSING",
+        "packet_revision": "fixture-content-cddb314384f1fd812535b2a5c54585e1758b3aab99755b1b993ceb708072816b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
+        "canonical_sha256": "1e020df70cd6ae0ce69660589c3cb5c62f55e639087ec28acf06b565d635ac79"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CONTRACT_REVISION-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/4/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "8cc4c4bfc34caabfd60e73facece697e6b44f7519512fbc85ab5e2ae35f1667f",
+        "packet_identity": "SOURCE-C001-F02-CONTRACT_REVISION-MISSING",
+        "packet_revision": "fixture-content-8cc4c4bfc34caabfd60e73facece697e6b44f7519512fbc85ab5e2ae35f1667f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "canonical_sha256": "e1a86fce5b6bced10455d56a59dc9909d086a5f6915559101b11326ad88e0fc1"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-ARTIFACT_REVISION-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/5/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "41f77f19027c09e4612ec4cd11204eb6d6f7e859b88e409f0d9e9f207b304744",
+        "packet_identity": "SOURCE-C001-F02-ARTIFACT_REVISION-MISSING",
+        "packet_revision": "fixture-content-41f77f19027c09e4612ec4cd11204eb6d6f7e859b88e409f0d9e9f207b304744"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
+        "canonical_sha256": "622e120e43e4a720b190c6f910c2e6e6780d65512ae275941bb6f2df7dd1af85"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DEPENDENCY_REVISION-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/6/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "8fce2b644c921c296988b82ad47ef5ec4d909b3b4434509e00b0dca7906a322c",
+        "packet_identity": "SOURCE-C001-F02-DEPENDENCY_REVISION-MISSING",
+        "packet_revision": "fixture-content-8fce2b644c921c296988b82ad47ef5ec4d909b3b4434509e00b0dca7906a322c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/6/expected_material",
+        "canonical_sha256": "aabee039dd8033eda71886918d06416dd3f220d723eb100df955c08fd366394e"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SCOPE-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/7/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "38121415473839cf409d646cf22ba0afdacee53feebeae5ef679eaf33550690e",
+        "packet_identity": "SOURCE-C001-F02-SCOPE-MISSING",
+        "packet_revision": "fixture-content-38121415473839cf409d646cf22ba0afdacee53feebeae5ef679eaf33550690e"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/7/expected_material",
+        "canonical_sha256": "cfa3de9c7b5524100f68b5591168bb9f0413db1f08011392ec0f7c61852fbaf2"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CORRELATION-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/8/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9c2da651125fed5eb0505c927be99e62068be91d0dcebf028ff7ad2839ac687e",
+        "packet_identity": "SOURCE-C001-F02-CORRELATION-MISSING",
+        "packet_revision": "fixture-content-9c2da651125fed5eb0505c927be99e62068be91d0dcebf028ff7ad2839ac687e"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/8/expected_material",
+        "canonical_sha256": "545185a6ac754ae28d67c20f235f73ce55caa33ca7a0bb7bb0c916da7524ec0f"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DEADLINE-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/9/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "43fe45b0d7e3cc6a989fa6451fc0cea1bf5d96803044bd008a6038eaa4c96f8f",
+        "packet_identity": "SOURCE-C001-F02-DEADLINE-MISSING",
+        "packet_revision": "fixture-content-43fe45b0d7e3cc6a989fa6451fc0cea1bf5d96803044bd008a6038eaa4c96f8f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/9/expected_material",
+        "canonical_sha256": "e215a3f26a038575e6586ed2872d216e0fff661c76413eb9d7c0784575f40ba1"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-IDEMPOTENCY-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/10/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "e029c580062d55a452e42519aa6b0b2d74675cdf3ab046dec1bac7ea48d94c12",
+        "packet_identity": "SOURCE-C001-F02-IDEMPOTENCY-MISSING",
+        "packet_revision": "fixture-content-e029c580062d55a452e42519aa6b0b2d74675cdf3ab046dec1bac7ea48d94c12"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/10/expected_material",
+        "canonical_sha256": "8eda228343924fa8912303a5d4da159df0fa03ebe2e44856d7527a0df6565706"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-RESULT_STATE-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/11/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "037c4537d7da51c620a6450e66723c8bdcd36fe344e085b6dc408db007a32f26",
+        "packet_identity": "SOURCE-C001-F02-RESULT_STATE-MISSING",
+        "packet_revision": "fixture-content-037c4537d7da51c620a6450e66723c8bdcd36fe344e085b6dc408db007a32f26"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/11/expected_material",
+        "canonical_sha256": "c27d2c3746e2eaee0b98943b99664f4a2a180545c23989e59b6be6a8ed64430d"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/12/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "7691e51dd8c60f34a51d7979f7bf2d8620a3227bab7c8c7818435fe9ce1a2108",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-MISSING",
+        "packet_revision": "fixture-content-7691e51dd8c60f34a51d7979f7bf2d8620a3227bab7c8c7818435fe9ce1a2108"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/12/expected_material",
+        "canonical_sha256": "297cab2dc7511402ef0bd9e275f3c23b80069c63b45d02108bcc8fedb9106b3d"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/13/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "786183d89b8fd63edaf974a5a489d3e5cabe8b8baf6d72c4848bd5d293997193",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-MISSING",
+        "packet_revision": "fixture-content-786183d89b8fd63edaf974a5a489d3e5cabe8b8baf6d72c4848bd5d293997193"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/13/expected_material",
+        "canonical_sha256": "6ab762fa13947ebb3f9ce460b43ed4a50b7b23317318ad43d5cfee0b4b0b20a0"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/14/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "c127120f0788de2c1a847706697e61081d102afd17555d23ac0544e4261d7016",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-MISSING",
+        "packet_revision": "fixture-content-c127120f0788de2c1a847706697e61081d102afd17555d23ac0544e4261d7016"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/14/expected_material",
+        "canonical_sha256": "a87bc7b9939ba8d1163a674946b8d68988fb26572e2f05d9144657d35cf64bbf"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_DECLARATION_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/15/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "275c440e15299592625a7cd226c2996011ba8fa96275184df5715ad22292f0cd",
+        "packet_identity": "SOURCE-C001-F02-COMMON_DECLARATION_REF-MISSING",
+        "packet_revision": "fixture-content-275c440e15299592625a7cd226c2996011ba8fa96275184df5715ad22292f0cd"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/15/expected_material",
+        "canonical_sha256": "df19071cf661e7f94db51fe54299aa5d3a71c58af64c86f0a729f4c4b52240ca"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_COMPATIBILITY_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/16/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "cd0777bb6fcf3d22a42132eec94323b108af6f639565f13fd9adba512a939f3a",
+        "packet_identity": "SOURCE-C001-F02-COMMON_COMPATIBILITY_REF-MISSING",
+        "packet_revision": "fixture-content-cd0777bb6fcf3d22a42132eec94323b108af6f639565f13fd9adba512a939f3a"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/16/expected_material",
+        "canonical_sha256": "15b9d460c451b46321e023275a8e936dbd5adb7cedf3ffe7299a11ac3629bad0"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_VALIDATION_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/17/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "e8aaa57f66b84d7dbc9a2ac7bcbec0e860c9b59be8bfd80c22e8112db9568c20",
+        "packet_identity": "SOURCE-C001-F02-COMMON_VALIDATION_REF-MISSING",
+        "packet_revision": "fixture-content-e8aaa57f66b84d7dbc9a2ac7bcbec0e860c9b59be8bfd80c22e8112db9568c20"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/17/expected_material",
+        "canonical_sha256": "9efc64fef672de7904952317ddda14619aac737ea680c1466fc832b0fa518ffc"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_UPDATE_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/18/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "777baed9c1b5fc834bb19b1a92882f234d4da96b2b6e617cfa9231a011a6dd53",
+        "packet_identity": "SOURCE-C001-F02-COMMON_UPDATE_REF-MISSING",
+        "packet_revision": "fixture-content-777baed9c1b5fc834bb19b1a92882f234d4da96b2b6e617cfa9231a011a6dd53"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/18/expected_material",
+        "canonical_sha256": "3402e863c3caacb56a93de8c6724701d3ebb0bc517c4a0ca0a05c573c4d5173b"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_ROLLBACK_REF-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/19/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "ded96afe67e9df057edc2eeb30993d451b20c6e85053afd15a41323b1cd03a43",
+        "packet_identity": "SOURCE-C001-F02-COMMON_ROLLBACK_REF-MISSING",
+        "packet_revision": "fixture-content-ded96afe67e9df057edc2eeb30993d451b20c6e85053afd15a41323b1cd03a43"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/19/expected_material",
+        "canonical_sha256": "a1f7e96177d2a7bd7d4e2df4380ff8e06eb7e9e44d7d1e5b0ef4273cf0852dc3"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_UNFINISHED_OBLIGATIONS-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/20/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "75004396abc5e5f40f0a3c8b2a818fabd2b6f97c4d9472121373cadc84d536d4",
+        "packet_identity": "SOURCE-C001-F02-COMMON_UNFINISHED_OBLIGATIONS-MISSING",
+        "packet_revision": "fixture-content-75004396abc5e5f40f0a3c8b2a818fabd2b6f97c4d9472121373cadc84d536d4"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/20/expected_material",
+        "canonical_sha256": "791d582fc88b173c160ec12613802e8db29932f5da9a4eacf893e882ac33ed9e"
+      },
+      "case_source_notes": {
+        "basis": "必須値一項目欠落を宣言またはSEC/source/common契約ownerへ返す。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DEPENDENCY_REVISION-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/21/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "fc2d00fc604048da03a1273d4a590434f8e7328ff8c078511b3653201a233142",
+        "packet_identity": "SOURCE-C001-F02-DEPENDENCY_REVISION-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-fc2d00fc604048da03a1273d4a590434f8e7328ff8c078511b3653201a233142"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/21/expected_material",
+        "canonical_sha256": "c3d69d7f513d405b7abdd85f33d687f65d5a7e1c0d33b5726fc0079f7e6dca90"
+      },
+      "case_source_notes": {
+        "basis": "原参照版不明はnull一致で採用/許可にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/22/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "fa8b50a255860bcd10cc683d22b9c8bd40803f38a32d581c9c2d99a55b4e32d5",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-fa8b50a255860bcd10cc683d22b9c8bd40803f38a32d581c9c2d99a55b4e32d5"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/22/expected_material",
+        "canonical_sha256": "6304c633d5d91aee01a9eada6a16f0b04dd906e4bb3af1a2551ca225c924b099"
+      },
+      "case_source_notes": {
+        "basis": "原参照版不明はnull一致で採用/許可にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/23/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "e48e7172d907befce467760d1e18567de3c2a0357498484c7dbc49808de4c619",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-e48e7172d907befce467760d1e18567de3c2a0357498484c7dbc49808de4c619"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/23/expected_material",
+        "canonical_sha256": "5ce523a3d68207bbb90190254228b7fb6c3136609121db8c8bfd3137339a9b1a"
+      },
+      "case_source_notes": {
+        "basis": "原参照版不明はnull一致で採用/許可にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-ORIGINAL-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/24/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "20b49604d66e5751a2a1cb57bce448ba12e10c19b3e81f873b426600529d4f3b",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-ORIGINAL-UNKNOWN",
+        "packet_revision": "fixture-content-20b49604d66e5751a2a1cb57bce448ba12e10c19b3e81f873b426600529d4f3b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/24/expected_material",
+        "canonical_sha256": "ecaaff5cb1c26d8001d00bc83e7f67aca41c10283275abec158736db6808dfbd"
+      },
+      "case_source_notes": {
+        "basis": "原参照版不明はnull一致で採用/許可にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SCOPE-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/25/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "13d789e03eb165df0f80a707c313dede85c343b6f667a74a259544ce1ab3e5d9",
+        "packet_identity": "SOURCE-C001-F02-SCOPE-FOREIGN",
+        "packet_revision": "fixture-content-13d789e03eb165df0f80a707c313dede85c343b6f667a74a259544ce1ab3e5d9"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/25/expected_material",
+        "canonical_sha256": "53b4bcc0954a1721f35e95ad057ba2727e9fa77e4d473f3be93201dd057a4802"
+      },
+      "case_source_notes": {
+        "basis": "別scope/版/義務消去を単なるfield存在で同一視しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CORRELATION-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/26/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "1506dd0b46402174c46bf235703b4d528506dbf8b02d8e3f7af5c79f2a867879",
+        "packet_identity": "SOURCE-C001-F02-CORRELATION-FOREIGN",
+        "packet_revision": "fixture-content-1506dd0b46402174c46bf235703b4d528506dbf8b02d8e3f7af5c79f2a867879"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/26/expected_material",
+        "canonical_sha256": "0e4a3352cf8a62a35eaadf2494e2c74a9ecdc5b0da876a020549bf8c12ac254f"
+      },
+      "case_source_notes": {
+        "basis": "別scope/版/義務消去を単なるfield存在で同一視しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_ROLLBACK_REF-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/27/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "9ec1ea6e693274c1a900432616067a84b6ffa8f6e259fa653053f5e3e38d3fbf",
+        "packet_identity": "SOURCE-C001-F02-COMMON_ROLLBACK_REF-FOREIGN",
+        "packet_revision": "fixture-content-9ec1ea6e693274c1a900432616067a84b6ffa8f6e259fa653053f5e3e38d3fbf"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/27/expected_material",
+        "canonical_sha256": "17055487703334a5394e02e62431bded1c8ae1404d39bde87d7c03c04e4789a8"
+      },
+      "case_source_notes": {
+        "basis": "別scope/版/義務消去を単なるfield存在で同一視しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMON_UNFINISHED_OBLIGATIONS-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/28/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "12c4576e44769a32652d9458a061633ac18536598cdd04e6ddff4db43af97f87",
+        "packet_identity": "SOURCE-C001-F02-COMMON_UNFINISHED_OBLIGATIONS-FOREIGN",
+        "packet_revision": "fixture-content-12c4576e44769a32652d9458a061633ac18536598cdd04e6ddff4db43af97f87"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/28/expected_material",
+        "canonical_sha256": "69818bdb18212f70d4ffa422d5d9dee59b585f6404646a2c0f5956afbbcf3597"
+      },
+      "case_source_notes": {
+        "basis": "別scope/版/義務消去を単なるfield存在で同一視しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/29/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "bc4ed5013d072a7e988c7fad39e1f4c13c4feee9afd41b389fdf35e6438c12e6",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE",
+        "packet_revision": "fixture-content-bc4ed5013d072a7e988c7fad39e1f4c13c4feee9afd41b389fdf35e6438c12e6"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/29/expected_material",
+        "canonical_sha256": "c20a6b44394f178fa1faebec2a21947eed42649dec60ba58f828ffdcc6444571"
+      },
+      "case_source_notes": {
+        "basis": "原非適用理由を保持し、全操作一律許可gateにしない。実SEC裁定ではない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-APPLICABILITY-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/30/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "49ecd9cfcff798707742cc348a990abda16cd7b686407602d536fb2cad7ea1cc",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-APPLICABILITY-UNKNOWN",
+        "packet_revision": "fixture-content-49ecd9cfcff798707742cc348a990abda16cd7b686407602d536fb2cad7ea1cc"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/30/expected_material",
+        "canonical_sha256": "583953621de2f7391754415d34e9e15b3ce1f526b7fc45a6765ef523722de2f0"
+      },
+      "case_source_notes": {
+        "basis": "適用unknownをfalseに丸めて全不要にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/31/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "f3efa6036a7f5cf02a39380d317cf1ff31a94935f9b5ebddf934a961dcea0029",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-NON-APPLICABLE",
+        "packet_revision": "fixture-content-f3efa6036a7f5cf02a39380d317cf1ff31a94935f9b5ebddf934a961dcea0029"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/31/expected_material",
+        "canonical_sha256": "bedbd4aa4a5a953383faacf5df1b82d0d72db0bd84ca3cb929b0898ee713e81c"
+      },
+      "case_source_notes": {
+        "basis": "原非適用理由を保持し、全操作一律許可gateにしない。実SEC裁定ではない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-APPLICABILITY-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/32/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "bb547e4fc834d0374c7fbdb5312a4d750946e7c35a97423057ed19204f74feb2",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-APPLICABILITY-UNKNOWN",
+        "packet_revision": "fixture-content-bb547e4fc834d0374c7fbdb5312a4d750946e7c35a97423057ed19204f74feb2"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/32/expected_material",
+        "canonical_sha256": "bd3a488de1c2e27505c79b71636afd04065bee73a7edff42312e2cea22495d09"
+      },
+      "case_source_notes": {
+        "basis": "適用unknownをfalseに丸めて全不要にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/33/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "16f5b78cd6345f45418441cb119c6630e3e80f3df13ec382efaf5495f7466565",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-NON-APPLICABLE",
+        "packet_revision": "fixture-content-16f5b78cd6345f45418441cb119c6630e3e80f3df13ec382efaf5495f7466565"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/33/expected_material",
+        "canonical_sha256": "b5093cac8858910b26577a4e6c90e4ca950fcb794d16377d1b6dca88aa26a894"
+      },
+      "case_source_notes": {
+        "basis": "原非適用理由を保持し、全操作一律許可gateにしない。実SEC裁定ではない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-APPLICABILITY-UNKNOWN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/34/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "ecffc8a7cd3b629ce5c39428c19d06483df61a5acff74491d17f469495be4aad",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-APPLICABILITY-UNKNOWN",
+        "packet_revision": "fixture-content-ecffc8a7cd3b629ce5c39428c19d06483df61a5acff74491d17f469495be4aad"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/34/expected_material",
+        "canonical_sha256": "e27d984f0cd52373503ffcc7f8cced380a5e8e1f0383dafbe8607d41f04c5c3d"
+      },
+      "case_source_notes": {
+        "basis": "適用unknownをfalseに丸めて全不要にしない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-REGISTRATION_SEND_PERMISSION",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/35/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "8e1c08d4334c65ef03cf0c2700cb7e1f06a6805d09c7c35473acc308332b8756",
+        "packet_identity": "SOURCE-C001-F02-REGISTRATION_SEND_PERMISSION",
+        "packet_revision": "fixture-content-8e1c08d4334c65ef03cf0c2700cb7e1f06a6805d09c7c35473acc308332b8756"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/35/expected_material",
+        "canonical_sha256": "900d8f298d1c6d3571a61994c91f7af75202dbf0531c18af84c5e31a80a549d2"
+      },
+      "case_source_notes": {
+        "basis": "登録から送信権/業務承認/版推測や通信必須条件を生成しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-REGISTRATION_BUSINESS_APPROVAL",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/36/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "f608d94b44258c5c551b7139d30f526c28dc87a036796dea1a301f7d9248065c",
+        "packet_identity": "SOURCE-C001-F02-REGISTRATION_BUSINESS_APPROVAL",
+        "packet_revision": "fixture-content-f608d94b44258c5c551b7139d30f526c28dc87a036796dea1a301f7d9248065c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/36/expected_material",
+        "canonical_sha256": "ee61e1b4c6fa5c8f20b5d3e11251b1c151b12e63e52441dea746e71aa9a662e8"
+      },
+      "case_source_notes": {
+        "basis": "登録から送信権/業務承認/版推測や通信必須条件を生成しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DEPENDENCY_VERSION_GUESSED",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/37/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "1af705bb94a9217534320366a817de961e491b7102ac834eec5bbfb421067eb9",
+        "packet_identity": "SOURCE-C001-F02-DEPENDENCY_VERSION_GUESSED",
+        "packet_revision": "fixture-content-1af705bb94a9217534320366a817de961e491b7102ac834eec5bbfb421067eb9"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/37/expected_material",
+        "canonical_sha256": "eb46b4a53bd045bec3355296f4a8bc11be1ccb70b9071887b7c3afd65d0b523b"
+      },
+      "case_source_notes": {
+        "basis": "登録から送信権/業務承認/版推測や通信必須条件を生成しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-COMMUNICATION_REQUIRED_FOR_REGISTRATION",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/38/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "bfccf3dfd601b5d7d36400ad495fc24a8df13c8b6bb203ff88189db37e2e4f57",
+        "packet_identity": "SOURCE-C001-F02-COMMUNICATION_REQUIRED_FOR_REGISTRATION",
+        "packet_revision": "fixture-content-bfccf3dfd601b5d7d36400ad495fc24a8df13c8b6bb203ff88189db37e2e4f57"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/38/expected_material",
+        "canonical_sha256": "88e2176e4b09d9db9665fdd1906c76e8ddaef539a2ade8d71430af9e8db04d1c"
+      },
+      "case_source_notes": {
+        "basis": "登録から送信権/業務承認/版推測や通信必須条件を生成しない。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/39/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "3c73f00219a75db2aa8e4d7389777631adf5038004054bf6b5ca5ab2cacd3d20",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+        "packet_revision": "fixture-content-3c73f00219a75db2aa8e4d7389777631adf5038004054bf6b5ca5ab2cacd3d20"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/39/expected_material",
+        "canonical_sha256": "6728b757156b92be16cc362af5274f6865f1935c364cfeef046d3632d61d1cb2"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/40/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "ee4790a02a5053b1ad20ef13584a49202e4d3bdabfa10b5bb0bae142dc3c3787",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-MISSING",
+        "packet_revision": "fixture-content-ee4790a02a5053b1ad20ef13584a49202e4d3bdabfa10b5bb0bae142dc3c3787"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/40/expected_material",
+        "canonical_sha256": "aa26ac347e4c1d1c83b328653fd5df58e93b50c908a520c3a2cf86f23d1bfb23"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/41/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "4a35854db2a6ca34345006ddeff6b4afd42874fe62bea83d2d22fe8545d0a76c",
+        "packet_identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-FOREIGN",
+        "packet_revision": "fixture-content-4a35854db2a6ca34345006ddeff6b4afd42874fe62bea83d2d22fe8545d0a76c"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/41/expected_material",
+        "canonical_sha256": "890c96aa82dbff643130deb3b9d0b97399db2ca203c0045cbd3e5c663fa5a31c"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/42/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "37afa48e5061fe155c0160c1121f9dfa1a4a4943354bbb0264726ea6a753321f",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+        "packet_revision": "fixture-content-37afa48e5061fe155c0160c1121f9dfa1a4a4943354bbb0264726ea6a753321f"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/42/expected_material",
+        "canonical_sha256": "b01f0e8fcb0fe314527498b546aaa6ca55e265c60850a5e7738beb27813c0dff"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/43/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "3fab6c0552d41f0bfef68f98e245fc4ca47289dfb7a4a59091376e5cf4832104",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-MISSING",
+        "packet_revision": "fixture-content-3fab6c0552d41f0bfef68f98e245fc4ca47289dfb7a4a59091376e5cf4832104"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/43/expected_material",
+        "canonical_sha256": "fce51a6898229a494cd1710e983f5d6dc8d0f10c1450bf120ddd2b65e0ea8cbd"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/44/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "855d98681ad099ac8725004f58995fd8128499f22ad0eb3261f17cedc9690f3b",
+        "packet_identity": "SOURCE-C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-FOREIGN",
+        "packet_revision": "fixture-content-855d98681ad099ac8725004f58995fd8128499f22ad0eb3261f17cedc9690f3b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/44/expected_material",
+        "canonical_sha256": "8afa14eac7b2a5688725f942daca73463394c928c524546abfe3a6b91c1eee53"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/45/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "8ce7a1bccca0c42e3b8232692631f4b245a275397667c7d59bf167198f456774",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+        "packet_revision": "fixture-content-8ce7a1bccca0c42e3b8232692631f4b245a275397667c7d59bf167198f456774"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/45/expected_material",
+        "canonical_sha256": "0df0ea6a10e051d079ad25216e2c7964c007a33ff84442296f4eebd271795db3"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-MISSING",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/46/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "afc904795287edd76835bd4ddeefd6d6c5040e5b8c7da1fddda1679f7b671e57",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-MISSING",
+        "packet_revision": "fixture-content-afc904795287edd76835bd4ddeefd6d6c5040e5b8c7da1fddda1679f7b671e57"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/46/expected_material",
+        "canonical_sha256": "f921b57d4d76efef21f144eb4fa3f49186c714783a524d469ea06b00107f0e1d"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    },
+    {
+      "case_id": "C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-FOREIGN",
+      "function_ref": "FN-C001-02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "l4_ref": "HELIXCONNECT-L4-001-F02",
+      "l9_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_l10_ref": "HELIXCONNECT-L10-001-F02",
+      "input_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "sha256": "d802f2bd3937d0d183b2b1f91f2f281284618b77513e7687de76fb2f95264bb2",
+        "json_pointer": "/verification_obligations/1/concrete_cases/47/independent_source_packet/raw_utf8",
+        "encoding": "UTF-8 JSON text",
+        "raw_utf8_sha256": "cffa9f0fab69cf68f3582e402139695c9a64e523c0226bef840d9cfbad68b06b",
+        "packet_identity": "SOURCE-C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-FOREIGN",
+        "packet_revision": "fixture-content-cffa9f0fab69cf68f3582e402139695c9a64e523c0226bef840d9cfbad68b06b"
+      },
+      "typed_arguments": {
+        "packet": {
+          "source": "input_source.json_pointer",
+          "resolve": "JSON parse raw_utf8; no repair/default/coercion"
+        }
+      },
+      "oracle_source": {
+        "path": "docs/helix-connect/L9-integration-verification/connection-registration-descriptor.json",
+        "revision": "419770c07c3cf0d6d3eed1da0b04de974b4171fd",
+        "json_pointer": "/verification_obligations/1/concrete_cases/47/expected_material",
+        "canonical_sha256": "584b3c3ebc35237d18d246af1af57e06e7f7c4586de13ea5a28d99a504b8ebcf"
+      },
+      "case_source_notes": {
+        "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+        "execution_state": "not_executed",
+        "effect": "none"
+      }
+    }
+  ],
+  "unclosed": [
+    "実endpoint・両端owner・意味契約・adapter/transportの実資格とscope別の完全必要集合。",
+    "正式schema/codec/registry/実署名/authority/実登録/通信/receipt。",
+    "この有限synthetic packet外の値域、型不正値の正式入力時処理、運用時の資格評価。",
+    "実L9/L10成立、PO L11 Accepted、全92親/430対の設計閉包と実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L8-001",
+  "source_document_bindings": {
+    "requirement_document_id": "HELIXCONNECT-L3-PREREQUISITE-FUNCTIONAL",
+    "requirements": [
+      "HELIXCONNECT-L3-001-F01",
+      "HELIXCONNECT-L3-001-F02"
+    ],
+    "basic_design_document_id": "HELIXCONNECT-L4-001",
+    "basic_design_contracts": [
+      "HELIXCONNECT-L4-001-F01",
+      "HELIXCONNECT-L4-001-F02"
+    ],
+    "integration_verification_document_id": "HELIXCONNECT-L9-001",
+    "integration_obligations": [
+      "HELIXCONNECT-L9-001-F01",
+      "HELIXCONNECT-L9-001-F02"
+    ],
+    "oracle_document_id": "HELIXCONNECT-L10-PREREQUISITE-FUNCTIONAL",
+    "system_oracles": [
+      "HELIXCONNECT-L10-001-F01",
+      "HELIXCONNECT-L10-001-F02"
+    ]
+  },
+  "fixture_boundary_literals_ref": {
+    "l5_document_id": "HELIXCONNECT-L5-001",
+    "field": "fixture_boundary_literals",
+    "role": "rawから計算する関数は、adapter_transportとF02 return_ownersに限りL5の固定fixture表示literalを使う。これは照合用ラベルで、実ownerの証拠ではない。",
+    "oracle_role": "各L9 expected_materialはraw計算後に照合する独立oracleであり、実出力値やcase ID別lookupの供給元ではない。"
+  },
+  "comparison_semantics": {
+    "json_object": "比較時JSON object key順は無視する。",
+    "json_array": "array要素順を保持して比較する。",
+    "ordinary_field_precedence": [
+      "原member欠落/null → unknown_original_information",
+      "原値あり・提出member欠落 → missing",
+      "提出null → content_conflict",
+      "双方が値あり → JSON型と内容の一致を比較"
+    ],
+    "applicability_precedence": [
+      "原値欠落/null/boolean以外 → unknown_original_information",
+      "提出member欠落 → missing",
+      "提出null/boolean以外、またはboolean値が相違 → content_conflict",
+      "同じboolean値 → content_corresponding_in_fixture"
+    ],
+    "unobserved": "固定81 rawには元declaration全体null、unknown text marker、F02 unfinished member欠落は0件。これらの未観測一般枝を新しいqualification/permissionとして補わない。",
+    "f01_owner_projection": "return_owners.source/consumerはraw absent/nullをnullable outputのnullへ投影し、元のabsent/null distinctionはretained_declarationで保つ。adapter_transportはL5の固定fixture literalであり、実owner根拠ではない。",
+    "non_applicability_reason_precedence": [
+      "原理由member欠落 → missing",
+      "原理由null → unknown_original_information",
+      "提出理由member欠落 → missing",
+      "提出理由null → content_conflict",
+      "双方が値あり → JSON型と内容が一致するときのみcontent_corresponding_in_fixture、他はcontent_conflict"
+    ],
+    "declaration_absence_projection": "declaration keyが存在しない側のretained/submitted_declarationは比較用表示{}。入力packetとtyped argumentのkey有無は保持し、実declarationの存在へ昇格しない。",
+    "unfinished_input_domain": "原member存在時はarrayが有限入力条件。原48件は全件array。原null/非arrayの一般診断・返却は未評価で、[]へ変換しない。提出値は元のJsonValue carrierで通常比較する。"
+  }
+}
