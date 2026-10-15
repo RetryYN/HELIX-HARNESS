@@ -5148,7 +5148,8 @@
       "steps": [
         "observable5境界はRedesign_or_Retrofit_with_compatibility_migration、internalはproduct_author、不明境界unknown。reason/impact/ownerはrawのままassemble_f04_returnへ渡す。",
         "例外全体missing→reason→owner→expiry各不足/unknown→scope不足/不一致→評価時点/期限比較の順。expiry同日は元oracle未固定のためunknown。",
-        "例外は局所継続だけ。auto_rename rejected、global_stop falseを消さず他scope.Q保持。finding IDnullはnull保持。warningのglobal停止要求は効果を持たず実readしない。"
+        "例外は局所継続だけ。auto_rename rejected、global_stop falseを消さず他scope.Q保持。finding IDnullはnull保持。warningのglobal停止要求は効果を持たず実readしない。",
+        "finding.reason/impactはassembleで原値保存するが、欠落/null/TBD/unknownの不足診断は行わない。unclosed_obligationsの該当IDに原義務と未実現を保持する。"
       ],
       "returns": [
         "auto_rename",
@@ -5163,6 +5164,12 @@
       "postconditions": [
         "全返却memberを値として返す。入力を変更せず比較失敗は局所保存する。",
         "effectsは全false。内容上のsynthetic候補は採択/権限/実効果の成立ではない。"
+      ],
+      "unclosed_obligations": [
+        {
+          "id": "H048-F04-REASON-IMPACT-NOT-DIAGNOSED",
+          "canonical_ref": "#/unclosed_obligations/4"
+        }
       ]
     },
     {
@@ -5319,7 +5326,8 @@
       "declared packetのread対象memberはabsent/nullを保持し局所missing/unknownへ写像する。targetsのみ一意の非空string IDを持つobject配列として有限domainを明示する。非object/id欠落/null/数値/重複を空成功へ補完せずdomain外として値と診断を保持する。",
       "F02影響対象の具体ID/operation/oracle/consumerと破断edgeの対応を返すmember/producer接続は未実現。F03全条件の同対象revision/scope比較とcanonical name対照比較も未実現。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
       "F01の例外詳細状態は原L9 projectionに従いmissing_scoped_exceptionへ集約し、F04の詳細分類と同一schemaへ統合しない。symbol_change=candidate_onlyは原定数で変化量検出ではない。",
-      "F01とF03の対象作成側への理由付き返却は未実現。現在のtarget_results/condition_resultsは診断の部分返却であり、target identityと返却route/作成側consumerへ結ぶmemberを持たない。function.unclosed_obligationsに元L10/L4と不足責務を保持し、F04/B01を当該返却の実行済み代用にしない。"
+      "F01とF03の対象作成側への理由付き返却は未実現。現在のtarget_results/condition_resultsは診断の部分返却であり、target identityと返却route/作成側consumerへ結ぶmemberを持たない。function.unclosed_obligationsに元L10/L4と不足責務を保持し、F04/B01を当該返却の実行済み代用にしない。",
+      "F04 reason/impactは保存のみで、不足やmarkerを診断しない。H048-F04-REASON-IMPACT-NOT-DIAGNOSEDの正本と上流sourceを参照する。"
     ]
   },
   "consumer_connections": [
@@ -5349,7 +5357,7 @@
   },
   "domain_witness_basis": {
     "source": "原L4全5content_comparison/qualification_ruleと独立元L9 control",
-    "addition": "保存159wholeの個別raw範囲と追加30材料＋3後段wholeで、明示したmarker/複合条件だけを確認する。日付境界14件は型域検証で製品返却oracleではない。全missing/null/TBD組合せや全mutationを網羅したとはしない。",
+    "addition": "保存159wholeの個別raw範囲と追加50材料＋3後段wholeで、明示したmarker/複合条件だけを確認する。日付境界14件は型域検証で製品返却oracleではない。全missing/null/TBD組合せや全mutationを網羅したとはしない。",
     "limit": "未見一般域/実source必要集合/自然言語意味/実provider/codec/採用/作用は未閉包。新gateではない。"
   },
   "literal_and_output_basis": [
@@ -5870,6 +5878,33 @@
       ],
       "current_carrier_limit": "F03Returnに作成側route/target finding recordは存在しない。L10の返却先の役割は対象作成側と確定しているが、その返却を値へ組み立てて出力していない。F04やB01の別返却memberをこの関数が供給したとはしない。",
       "consequence": "原192全期待を保持した部分比較。作成側への返却義務の実現/実dispatch/全義務完了を表さず、この不足は資格供給だけの問題ではなく論理出力の未具体化を含む。"
+    },
+    {
+      "id": "H048-F04-REASON-IMPACT-NOT-DIAGNOSED",
+      "upstream_sources": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+          "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "json_pointer": "/contracts/3/output_meanings",
+          "value_canonical_sha256": "2594619117e8917e626622b02ecb858fb657cecacbce4054adad23bcc724fa28"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "oracle_ref": "HARNESS-L10-048-F04",
+          "member": "failure_observation",
+          "exact_quote": "対象の返却理由/例外不足を残し、他scopeの成立を失わせない。"
+        }
+      ],
+      "implemented_output": [
+        "assemble_f04_returnがreason/impactを含むfindingを原値のまま保持する。"
+      ],
+      "absent_output": [
+        "finding.reasonの欠落/null/未確定markerの診断",
+        "finding.impactの欠落/未確定要素の診断と返却理由不足への接続"
+      ],
+      "current_carrier_limit": "compare_f04はfinding IDを読むがreason/impactをassessment判定へ読まない。assemble_f04_returnはそれらをそのまま転送し、不足所見を追加しない。H048-F04-VALID-EXCEPTIONでreason=null又はimpact=[TBD]でもassessmentは不変。例外条件が有効なら局所継続表示は保持されるが、自動rename拒否は不変。",
+      "consequence": "理由/影響の原値保存と不足診断は別義務。前者は実現済み、後者の論理診断は未実現であり、source資格だけの不足ではない。全L3/L10成立を示さない。"
     }
   ],
   "mutation_coverage_limit": {

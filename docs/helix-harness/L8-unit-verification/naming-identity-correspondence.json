@@ -892,10 +892,10 @@
     "effect": "none",
     "additional_domain_whole_cases": 27,
     "original_local_expectations_preserved": 117,
-    "total_whole_cases": 192,
+    "total_whole_cases": 212,
     "date_type_boundaries": 14,
     "original_159_raw_and_expectations_preserved": true,
-    "additional_local_material_counterexamples": 30,
+    "additional_local_material_counterexamples": 50,
     "additional_local_return_counterexamples": 3
   },
   "cases": [
@@ -53770,7 +53770,9 @@
         "R1-H048-F04-EXPIRY-UNKNOWN",
         "R1-H048-F04-EVALUATION-NULL"
       ],
-      "unclosed_obligations": [],
+      "unclosed_obligations": [
+        "H048-F04-REASON-IMPACT-NOT-DIAGNOSED"
+      ],
       "l9_ref": "HARNESS-L9-048-F04"
     },
     {
