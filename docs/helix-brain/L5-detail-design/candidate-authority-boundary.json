@@ -1,0 +1,3094 @@
+{
+  "document_id": "HELIXBRAIN-L5-012",
+  "layer": "L5",
+  "pair": "L8",
+  "parent": "HELIXBRAIN-L2-012",
+  "source_main": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+  "status": "draft_limited_pure_comparison_not_implementation_ready",
+  "scope": {
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "historical_stage": "Stage 2b",
+    "version_target": "1.0",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "approval_admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e",
+      "approved_content_head_field": "reviewed_content_head",
+      "approved_content_head": "f16579bb15636398489804681c4f6c8de80625dd",
+      "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    },
+    "limit": "承認済みL3/L10の3 wholeと固定L4/L9の42 synthetic raw/wholeだけを限定比較する。候補比較・接続候補提示に限り、actual source/owner qualification、knowledge adoption、product/runtime decision、formal schema/codec、実評価を成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/candidate-authority-boundary.json",
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "bytes": 11296,
+      "sha256": "f1df27c6b6a5226ec0e9a6317329e23a1081386edc5f6c41155ba41ff7afad98"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/candidate-authority-boundary.json",
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "bytes": 183785,
+      "sha256": "acbfb993c4627b1bd9b2f868beb8d43cce2224830c5fc64924a96b10f6deb47d"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 48699,
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 28431,
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 55987,
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 31508,
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 13336,
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 78839,
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 27596,
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 5490,
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 6104,
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 11307,
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 48699,
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 28431,
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 55987,
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "bytes": 31508,
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "bytes": 1130244,
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "role": "L3/L10 delegated decision admission row"
+    }
+  ],
+  "approved_requirements": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-012-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-012-F01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "候補返却の意味集合",
+        "obligation": "利用要求/design contextと必要知識領域に対し、Pattern候補/required input/relation/alternative/constraint/evidenceと各版を返し、欠落/複数候補/判断不能を区別する。回答の存在や成熟度から今回案件の採用を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-F01",
+        "failure_return": "context不足はCORE等の問い合わせ元、知識不足はBRAINへ返す。"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-012-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L3-012-F02",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "選択接続ごとの契約",
+        "obligation": "CORE返却は019、HARNESS設計義務への入力は022と受領側009、INT queryは選択した場合だけ021へ対象knowledge revision/scopeを結ぶ。必要契約missing/unknownはその接続の未成立に保ち、未選択経路を初回一律gateにしない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-F02",
+        "failure_return": "各接続端の契約ownerへ当該不足を返す。"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "id": "HELIXBRAIN-L3-012-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L3-012-B01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "採用authorityの非拡張",
+        "obligation": "BRAINは製品固有の採用判断/runtime案件結論/要求値/実行許可を生成しない。要求意味または重みが不明なら採用提案を停止し、CORE/INTELLIGENCE/人の責任ある判断先へ戻す。知識不足を権限拡張で補わない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-B01",
+        "failure_return": "該当要求意味/製品判断/知識ownerへ返す。"
+      }
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-012-F01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-012-F01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "候補返却の意味集合",
+        "requirement_ref": "HELIXBRAIN-L3-012-F01",
+        "positive_input": "同context候補、必要input欠落、複数候補、判断不能を比較する。",
+        "expected_observation": "回答内容/参照版/不足/複数候補と未決理由が辿れる。",
+        "negative_input": "必要input落ち、候補回答を採用済み、判断不能を成功補完。",
+        "failure_observation": "context不足はCORE等の問い合わせ元、知識不足はBRAINへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-012-F02",
+      "whole": {
+        "id": "HELIXBRAIN-L10-012-F02",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "選択接続ごとの契約",
+        "requirement_ref": "HELIXBRAIN-L3-012-F02",
+        "positive_input": "CORE返却とINT非選択、受領側版/scope不一致と一致を比較する。",
+        "expected_observation": "選択経路/必要参照/不足と非選択範囲が区別される。",
+        "negative_input": "019/022を参考扱い、未知契約で接続成功、非選択INT完成を一律必須。",
+        "failure_observation": "各接続端の契約ownerへ当該不足を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "id": "HELIXBRAIN-L10-012-B01",
+      "whole": {
+        "id": "HELIXBRAIN-L10-012-B01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "採用authorityの非拡張",
+        "requirement_ref": "HELIXBRAIN-L3-012-B01",
+        "positive_input": "知識候補返却と製品採用、意味/重み未決、知識不足を別にする。",
+        "expected_observation": "候補/提案/採用/実行許可とownerが分離される。",
+        "negative_input": "BRAINが製品決定、知識不足でauthority拡張、毎返却新しい人承認。",
+        "failure_observation": "該当要求意味/製品判断/知識ownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-012-F01",
+      "canonical_sha256": "dfc9b80f3b85e6b5d8dd1ceebd97e72584817f6abda25f64e0a203d72e812b26"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "id": "HELIXBRAIN-L3-012-F02",
+      "canonical_sha256": "3d9d55a65df7117558666eb2587f6929913839f4212b801575c0e96cd4cdae15"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "id": "HELIXBRAIN-L3-012-B01",
+      "canonical_sha256": "7f23ce80b3fa3d386fd5d2d39dccbdc248a1c9bb4ed44cbaa30612fb21d4629d"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-012-F01",
+      "canonical_sha256": "5cba60a93b1da71726163274fc132c2389c4afe78a3e07ddcead597fc348b7cf"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "id": "HELIXBRAIN-L10-012-F02",
+      "canonical_sha256": "219971ec118097b70708a0fae4e6b8afa4d2cf6aed67bedda5211657a085d330"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "id": "HELIXBRAIN-L10-012-B01",
+      "canonical_sha256": "7e8f2fb5b735580a3114e6859fb5251b1153f51ca5e6606afb30b1e46f1ed503"
+    }
+  ],
+  "approval": {
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "admission_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+    "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+    "review_comment": "6114260474",
+    "review_state": "no_findings",
+    "approved_objects": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "id": "HELIXBRAIN-L3-012-F01",
+        "whole": {
+          "id": "HELIXBRAIN-L3-012-F01",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "候補返却の意味集合",
+          "obligation": "利用要求/design contextと必要知識領域に対し、Pattern候補/required input/relation/alternative/constraint/evidenceと各版を返し、欠落/複数候補/判断不能を区別する。回答の存在や成熟度から今回案件の採用を生成しない。",
+          "oracle_ref": "HELIXBRAIN-L10-012-F01",
+          "failure_return": "context不足はCORE等の問い合わせ元、知識不足はBRAINへ返す。"
+        }
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "id": "HELIXBRAIN-L3-012-F02",
+        "whole": {
+          "id": "HELIXBRAIN-L3-012-F02",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "選択接続ごとの契約",
+          "obligation": "CORE返却は019、HARNESS設計義務への入力は022と受領側009、INT queryは選択した場合だけ021へ対象knowledge revision/scopeを結ぶ。必要契約missing/unknownはその接続の未成立に保ち、未選択経路を初回一律gateにしない。",
+          "oracle_ref": "HELIXBRAIN-L10-012-F02",
+          "failure_return": "各接続端の契約ownerへ当該不足を返す。"
+        }
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "id": "HELIXBRAIN-L3-012-B01",
+        "whole": {
+          "id": "HELIXBRAIN-L3-012-B01",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "採用authorityの非拡張",
+          "obligation": "BRAINは製品固有の採用判断/runtime案件結論/要求値/実行許可を生成しない。要求意味または重みが不明なら採用提案を停止し、CORE/INTELLIGENCE/人の責任ある判断先へ戻す。知識不足を権限拡張で補わない。",
+          "oracle_ref": "HELIXBRAIN-L10-012-B01",
+          "failure_return": "該当要求意味/製品判断/知識ownerへ返す。"
+        }
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "id": "HELIXBRAIN-L10-012-F01",
+        "whole": {
+          "id": "HELIXBRAIN-L10-012-F01",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "候補返却の意味集合",
+          "requirement_ref": "HELIXBRAIN-L3-012-F01",
+          "positive_input": "同context候補、必要input欠落、複数候補、判断不能を比較する。",
+          "expected_observation": "回答内容/参照版/不足/複数候補と未決理由が辿れる。",
+          "negative_input": "必要input落ち、候補回答を採用済み、判断不能を成功補完。",
+          "failure_observation": "context不足はCORE等の問い合わせ元、知識不足はBRAINへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "id": "HELIXBRAIN-L10-012-F02",
+        "whole": {
+          "id": "HELIXBRAIN-L10-012-F02",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "選択接続ごとの契約",
+          "requirement_ref": "HELIXBRAIN-L3-012-F02",
+          "positive_input": "CORE返却とINT非選択、受領側版/scope不一致と一致を比較する。",
+          "expected_observation": "選択経路/必要参照/不足と非選択範囲が区別される。",
+          "negative_input": "019/022を参考扱い、未知契約で接続成功、非選択INT完成を一律必須。",
+          "failure_observation": "各接続端の契約ownerへ当該不足を返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "id": "HELIXBRAIN-L10-012-B01",
+        "whole": {
+          "id": "HELIXBRAIN-L10-012-B01",
+          "parent": "HELIXBRAIN-L2-012",
+          "title": "採用authorityの非拡張",
+          "requirement_ref": "HELIXBRAIN-L3-012-B01",
+          "positive_input": "知識候補返却と製品採用、意味/重み未決、知識不足を別にする。",
+          "expected_observation": "候補/提案/採用/実行許可とownerが分離される。",
+          "negative_input": "BRAINが製品決定、知識不足でauthority拡張、毎返却新しい人承認。",
+          "failure_observation": "該当要求意味/製品判断/知識ownerへ返す。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "approved_object_hashes": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "id": "HELIXBRAIN-L3-012-F01",
+        "canonical_sha256": "dfc9b80f3b85e6b5d8dd1ceebd97e72584817f6abda25f64e0a203d72e812b26"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "id": "HELIXBRAIN-L3-012-F02",
+        "canonical_sha256": "3d9d55a65df7117558666eb2587f6929913839f4212b801575c0e96cd4cdae15"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "id": "HELIXBRAIN-L3-012-B01",
+        "canonical_sha256": "7f23ce80b3fa3d386fd5d2d39dccbdc248a1c9bb4ed44cbaa30612fb21d4629d"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "id": "HELIXBRAIN-L10-012-F01",
+        "canonical_sha256": "5cba60a93b1da71726163274fc132c2389c4afe78a3e07ddcead597fc348b7cf"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "id": "HELIXBRAIN-L10-012-F02",
+        "canonical_sha256": "219971ec118097b70708a0fae4e6b8afa4d2cf6aed67bedda5211657a085d330"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "id": "HELIXBRAIN-L10-012-B01",
+        "canonical_sha256": "7e8f2fb5b735580a3114e6859fb5251b1153f51ca5e6606afb30b1e46f1ed503"
+      }
+    ],
+    "decision_record_api_body_utf8_bytes": 3686,
+    "decision_record_api_body_sha256": "ef9a9d8f4577f4e56edc662751b794be6f89d181b10be73d7d3d82227b9e6ba3",
+    "admission_audit": {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "decision_record_id": "HDEC-BRAIN-CORE-RETURN-PREREQUISITE-L3L10-2026-10-12",
+      "admitted_revision": "888c6208353929a65e51ba6407994e10b3b81f13",
+      "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+      "review_comment": "6114260474"
+    }
+  },
+  "legacy_inventory": {
+    "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+    "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+    "source_range": "§ 自律境界（charter §3）; keependsを含む引用抜粋",
+    "quote": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。\n\n",
+    "quote_sha256": "142c561a3e1df62dba23a1ade69f983156a3d02d2ce94a5f264f42cbf92b7be6",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "ledger_bytes": 4857919,
+    "ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "related_asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "related_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "related_bytes": 6317,
+    "related_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+    "scope_note": "旧L4/L5のregistry/applicability/runtime authorityはBRAIN012のsourceではない。読むだけの比較根拠。旧runtime/test/CIは未実行。",
+    "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+    "source_bytes": 23313,
+    "source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+    "related_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+    "related_source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+  },
+  "failure_consumer_basis": [
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "range": "§1-§4",
+      "finding": "構造JSONと生成view/補足文書を分ける考え方を参照。BRAINの候補応答へregistry/schema/CI gateを移植せず、L4が要求する候補内容と採用authority分離だけを再導出。",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_bytes": 6317,
+      "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "read_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/src/design/design-template-authority.ts",
+      "range": "1-280",
+      "finding": "旧consumer/runtimeの候補解決・registry処理をread-onlyで確認。旧layer/template authorityは今回のconsumer契約ではないため移植しない。",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_bytes": 16095,
+      "source_sha256": "3f7ce307e3335b82f61c4ab4d0e598f0113e51b43c003463d1c7b0ece8560ffb",
+      "read_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/tests/design-template-authority.test.ts",
+      "range": "1-223",
+      "finding": "旧failure例のunknown/missing/duplicate/stale分類を確認。今回raw/L4に明記のないregistry拒否条件は追加しない。testは未実行。",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_bytes": 8140,
+      "source_sha256": "0397d05a0cbf9501a33c6d93aebc9fb375695dae996365333c090da526f83073",
+      "read_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "source": "docs/governance/audits/seedfirst-knowledge-adoption-receipt-2026-10-10.json",
+      "finding": "adopted seed packetはsource snapshotのみ。authority/requirement変更を生成しない。",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_bytes": 1875,
+      "source_sha256": "6688dfa15606f18a26a93e0b59a46cb4f06b208dd8dbd97e2b3ba7dc29aee825",
+      "read_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "source": "docs/governance/audits/first-cycle-brain-dependency-expansion-2026-10-12.json",
+      "finding": "BRAIN側参照だけでcross-cutting closureは未成立。未選択consumerを常時必須にしない。",
+      "source_revision": "c0ab08572b85d7b97fd1ac030ac48353faa63882",
+      "source_bytes": 36233,
+      "source_sha256": "7d09f2ff9d0b7e923d6ca89b50a76a904acaa286300f92ffad72bb78e16337dc",
+      "read_only": true,
+      "execution_state": "not_executed"
+    }
+  ],
+  "full_pair_trace": [
+    {
+      "l5_id": "HELIXBRAIN-L5-012-F01",
+      "l8_id": "HELIXBRAIN-L8-012-F01",
+      "l4_id": "HELIXBRAIN-L4-012-F01",
+      "l9_id": "HELIXBRAIN-L9-012-F01",
+      "l3_id": "HELIXBRAIN-L3-012-F01",
+      "l10_id": "HELIXBRAIN-L10-012-F01",
+      "cases": [
+        "B012-F01-CONTEXT-TWO-CANDIDATES-SIX-CONTENTS",
+        "B012-F01-PATTERN_CANDIDATES-MISSING",
+        "B012-F01-REQUIRED_INPUT-MISSING",
+        "B012-F01-RELATION-MISSING",
+        "B012-F01-ALTERNATIVE-MISSING",
+        "B012-F01-CONSTRAINT-MISSING",
+        "B012-F01-EVIDENCE-MISSING",
+        "B012-F01-REQUIRED-INPUT-ELEMENT-MISSING",
+        "B012-F01-CONTEXT-MISSING",
+        "B012-F01-CONTEXT-FOREIGN",
+        "B012-F01-KNOWLEDGE-REVISION-FOREIGN",
+        "B012-F01-KNOWLEDGE-SCOPE-FOREIGN",
+        "B012-F01-UNDECIDABLE-AS-SUCCESS",
+        "B012-F01-MATURE-REPLY-AS-ADOPTED"
+      ]
+    },
+    {
+      "l5_id": "HELIXBRAIN-L5-012-F02",
+      "l8_id": "HELIXBRAIN-L8-012-F02",
+      "l4_id": "HELIXBRAIN-L4-012-F02",
+      "l9_id": "HELIXBRAIN-L9-012-F02",
+      "l3_id": "HELIXBRAIN-L3-012-F02",
+      "l10_id": "HELIXBRAIN-L10-012-F02",
+      "cases": [
+        "B012-F02-SELECTED-CORE-OBLIGATIONS-INT-NOT-SELECTED",
+        "B012-F02-BRAIN019-MISSING",
+        "B012-F02-BRAIN019-UNKNOWN",
+        "B012-F02-BRAIN019-REFERENCE_ONLY",
+        "B012-F02-BRAIN019-REVISION_FOREIGN",
+        "B012-F02-BRAIN019-SCOPE_FOREIGN",
+        "B012-F02-BRAIN022-MISSING",
+        "B012-F02-BRAIN022-UNKNOWN",
+        "B012-F02-BRAIN022-REFERENCE_ONLY",
+        "B012-F02-BRAIN022-REVISION_FOREIGN",
+        "B012-F02-BRAIN022-SCOPE_FOREIGN",
+        "B012-F02-HARNESS009-MISSING",
+        "B012-F02-HARNESS009-UNKNOWN",
+        "B012-F02-HARNESS009-REFERENCE_ONLY",
+        "B012-F02-HARNESS009-REVISION_FOREIGN",
+        "B012-F02-HARNESS009-SCOPE_FOREIGN",
+        "B012-F02-UNKNOWN-CONTRACT-AS-CONNECTION-SUCCESS",
+        "B012-F02-UNSELECTED-INT-COMPLETION-GATE",
+        "B012-F02-SELECTED-INT021-MISSING",
+        "B012-F02-SELECTED-INT021-CANDIDATE"
+      ]
+    },
+    {
+      "l5_id": "HELIXBRAIN-L5-012-B01",
+      "l8_id": "HELIXBRAIN-L8-012-B01",
+      "l4_id": "HELIXBRAIN-L4-012-B01",
+      "l9_id": "HELIXBRAIN-L9-012-B01",
+      "l3_id": "HELIXBRAIN-L3-012-B01",
+      "l10_id": "HELIXBRAIN-L10-012-B01",
+      "cases": [
+        "B012-B01-MEANING-WEIGHT-KNOWLEDGE-MISSING",
+        "B012-B01-CLAIMS_PRODUCT_DECIDED",
+        "B012-B01-CLAIMS_RUNTIME_DECIDED",
+        "B012-B01-CLAIMS_REQUIREMENT_GENERATED",
+        "B012-B01-CLAIMS_EXECUTION_PERMITTED",
+        "B012-B01-CLAIMS_AUTHORITY_EXPANDED",
+        "B012-B01-REQUIRES_NEW_HUMAN_APPROVAL_EVERY_REPLY",
+        "B012-B01-INPUTS-PRESENT-CANDIDATE-ONLY"
+      ]
+    }
+  ],
+  "type_definitions": [
+    {
+      "name": "JsonValue",
+      "form": "recursive_json_union",
+      "members": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "list<JsonValue>",
+        "map<string,JsonValue>"
+      ],
+      "meaning": "JSON型を保持する値。object memberのAbsentとは別。"
+    },
+    {
+      "name": "PacketField",
+      "form": "presence_wrapper",
+      "members": [
+        "Absent",
+        "Present<JsonValue>"
+      ],
+      "meaning": "論理型でmember欠落を明示する。原raw objectではAbsent memberはobjectに存在しない状態で保持し、nullを創作しない。"
+    },
+    {
+      "name": "KnowledgeRef",
+      "form": "record",
+      "fields": [
+        {
+          "name": "identity",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "revision",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "scope",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "合成参照。actual source qualificationを含まない。"
+    },
+    {
+      "name": "ReplyContent",
+      "form": "record",
+      "fields": [
+        {
+          "name": "pattern_candidates",
+          "type": "JsonValue",
+          "required": false
+        },
+        {
+          "name": "required_input",
+          "type": "JsonValue",
+          "required": false
+        },
+        {
+          "name": "relation",
+          "type": "JsonValue",
+          "required": false
+        },
+        {
+          "name": "alternative",
+          "type": "JsonValue",
+          "required": false
+        },
+        {
+          "name": "constraint",
+          "type": "JsonValue",
+          "required": false
+        },
+        {
+          "name": "evidence",
+          "type": "JsonValue",
+          "required": false
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "原L9の6意味fieldだけを受けるfinite record。各fieldのAbsent/nullは別値で保持し、追加memberはこの論理型domain外。"
+    },
+    {
+      "name": "ConnectionContract",
+      "form": "record",
+      "fields": [
+        {
+          "name": "identity",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "contract_revision",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "knowledge_ref",
+          "type": "KnowledgeRef",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "ConnectionState",
+          "required": true
+        },
+        {
+          "name": "usage",
+          "type": "ConnectionUsage",
+          "required": true
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "rawに存在する比較fieldのみ。owner/receipt/source qualificationを補わない。"
+    },
+    {
+      "name": "ContractMap",
+      "form": "map",
+      "key_type": "string",
+      "value_type": "ConnectionContract",
+      "meaning": "fixture contract keyに限定した値比較。key domainは全契約enumではない。"
+    },
+    {
+      "name": "EffectFlags",
+      "form": "record",
+      "fields": [
+        {
+          "name": "actual_knowledge_adopted",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_product_selected",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_runtime_decision",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_requirement_value_generated",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_connection",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_execution_permitted",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_authority_expanded",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_design_complete",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        },
+        {
+          "name": "actual_acceptance",
+          "type": "boolean",
+          "required": true,
+          "fixed_value": false
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "L9 expected内の効果欄。全て固定false。"
+    },
+    {
+      "name": "F01Input",
+      "form": "record",
+      "fields": [
+        {
+          "name": "claims_reply_adopted",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "claims_unknown_success",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "knowledge_maturity",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "knowledge_ref_original",
+          "type": "KnowledgeRef",
+          "required": true
+        },
+        {
+          "name": "knowledge_ref_provided",
+          "type": "KnowledgeRef",
+          "required": true
+        },
+        {
+          "name": "original_context",
+          "type": "JsonValue",
+          "required": true
+        },
+        {
+          "name": "original_judgement_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "original_reply_content",
+          "type": "ReplyContent",
+          "required": true
+        },
+        {
+          "name": "provided_context",
+          "type": "JsonValue",
+          "required": true
+        },
+        {
+          "name": "provided_judgement_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "provided_reply_content",
+          "type": "ReplyContent",
+          "required": true
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "入力は各ケースで全宣言fieldを持つ。nullは宣言型が許すJSON値の場合だけ保持し、Absentをnullへ置換しない。"
+    },
+    {
+      "name": "ConnectionState",
+      "form": "string_enum",
+      "values": [
+        "qualified_fixture_only",
+        "unknown"
+      ],
+      "meaning": "F02原L9で観測した限定state値。全domain語彙/資格を確立しない。"
+    },
+    {
+      "name": "ConnectionUsage",
+      "form": "string_enum",
+      "values": [
+        "normative_candidate_only",
+        "reference_only"
+      ],
+      "meaning": "F02原L9で観測した限定usage値。実利用区分ではない。"
+    },
+    {
+      "name": "RequirementMeaningState",
+      "form": "string_enum",
+      "values": [
+        "supplied_fixture_only",
+        "unknown"
+      ],
+      "meaning": "B01原L9の限定state値。意味成立資格を作らない。"
+    },
+    {
+      "name": "DecisionWeightState",
+      "form": "string_enum",
+      "values": [
+        "missing",
+        "supplied_fixture_only"
+      ],
+      "meaning": "B01原L9の限定state値。重み決定を作らない。"
+    },
+    {
+      "name": "KnowledgeState",
+      "form": "string_enum",
+      "values": [
+        "identified_fixture_only",
+        "missing"
+      ],
+      "meaning": "B01原L9の限定state値。source qualificationではない。"
+    },
+    {
+      "name": "F02Input",
+      "form": "record",
+      "fields": [
+        {
+          "name": "claims_connection_success",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "provided_contracts",
+          "type": "ContractMap",
+          "required": true
+        },
+        {
+          "name": "required_contracts",
+          "type": "ContractMap",
+          "required": true
+        },
+        {
+          "name": "requires_unselected_INT_completion",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "selected_routes",
+          "type": "map<string,boolean>",
+          "required": true
+        },
+        {
+          "name": "target_knowledge_ref",
+          "type": "KnowledgeRef",
+          "required": true
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "入力は各ケースで全宣言fieldを持つ。nullは宣言型が許すJSON値の場合だけ保持し、Absentをnullへ置換しない。"
+    },
+    {
+      "name": "B01Input",
+      "form": "record",
+      "fields": [
+        {
+          "name": "claims_authority_expanded",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "claims_execution_permitted",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "claims_product_decided",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "claims_requirement_generated",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "claims_runtime_decided",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "decision_weight_state",
+          "type": "DecisionWeightState",
+          "required": true
+        },
+        {
+          "name": "existing_authority",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "knowledge_state",
+          "type": "KnowledgeState",
+          "required": true
+        },
+        {
+          "name": "original_product_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "original_runtime_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "requirement_meaning_state",
+          "type": "RequirementMeaningState",
+          "required": true
+        },
+        {
+          "name": "requires_new_human_approval_every_reply",
+          "type": "boolean",
+          "required": true
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "入力は各ケースで全宣言fieldを持つ。nullは宣言型が許すJSON値の場合だけ保持し、Absentをnullへ置換しない。"
+    },
+    {
+      "name": "ReplyStatus",
+      "form": "string_enum",
+      "values": [
+        "missing",
+        "content_corresponding_in_fixture",
+        "content_conflict"
+      ],
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+    },
+    {
+      "name": "KnowledgeStatus",
+      "form": "string_enum",
+      "values": [
+        "content_corresponding_in_fixture",
+        "content_conflict"
+      ],
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+    },
+    {
+      "name": "ContractStatus",
+      "form": "string_enum",
+      "values": [
+        "missing_held",
+        "unknown_held",
+        "reference_only_held",
+        "revision_foreign_held",
+        "scope_foreign_held",
+        "contract_content_conflict_held",
+        "content_corresponding_candidate_only"
+      ],
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+    },
+    {
+      "name": "RouteStatus",
+      "form": "string_enum",
+      "values": [
+        "candidate_contracts_corresponding",
+        "selected_contract_missing_or_conflicting_held",
+        "not_selected"
+      ],
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+    },
+    {
+      "name": "ClaimStatus",
+      "form": "string_enum",
+      "values": [
+        "rejected",
+        "none"
+      ],
+      "meaning": "有限返却語彙。L5 finite_rule_catalog.literal_domainsが出所を指す。"
+    },
+    {
+      "name": "F01Result",
+      "form": "record",
+      "fields": [
+        {
+          "name": "context_result",
+          "type": "ReplyStatus",
+          "required": true
+        },
+        {
+          "name": "reply_results",
+          "type": "map<string,ReplyStatus>",
+          "required": true
+        },
+        {
+          "name": "knowledge_ref_result",
+          "type": "KnowledgeStatus",
+          "required": true
+        },
+        {
+          "name": "judgement_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "candidate_state",
+          "type": "string",
+          "required": true,
+          "allowed_values": [
+            "returned_candidates_only"
+          ]
+        },
+        {
+          "name": "reply_adoption_claim",
+          "type": "ClaimStatus",
+          "required": true
+        },
+        {
+          "name": "unknown_success_claim",
+          "type": "ClaimStatus",
+          "required": true
+        },
+        {
+          "name": "owner_return_candidates",
+          "type": "list<string>",
+          "required": true
+        },
+        {
+          "name": "effects",
+          "type": "EffectFlags",
+          "required": true
+        },
+        {
+          "name": "unaffected_Q",
+          "type": "string",
+          "required": true,
+          "allowed_values": [
+            "original_Q"
+          ]
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "全L9 F01 rootを返す。"
+    },
+    {
+      "name": "F02Result",
+      "form": "record",
+      "fields": [
+        {
+          "name": "contract_results",
+          "type": "map<string,ContractStatus>",
+          "required": true
+        },
+        {
+          "name": "route_results",
+          "type": "map<string,RouteStatus>",
+          "required": true
+        },
+        {
+          "name": "connection_claim",
+          "type": "ClaimStatus",
+          "required": true
+        },
+        {
+          "name": "unselected_INT_gate_claim",
+          "type": "ClaimStatus",
+          "required": true
+        },
+        {
+          "name": "owner_return_candidates",
+          "type": "list<string>",
+          "required": true
+        },
+        {
+          "name": "effects",
+          "type": "EffectFlags",
+          "required": true
+        },
+        {
+          "name": "unaffected_Q",
+          "type": "string",
+          "required": true,
+          "allowed_values": [
+            "original_Q"
+          ]
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "全L9 F02 rootを返す。"
+    },
+    {
+      "name": "B01Result",
+      "form": "record",
+      "fields": [
+        {
+          "name": "proposal_state",
+          "type": "string",
+          "required": true,
+          "allowed_values": [
+            "held",
+            "candidate_for_connected_owner_only"
+          ]
+        },
+        {
+          "name": "product_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "runtime_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "authority_state",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "missing_inputs",
+          "type": "list<string>",
+          "required": true
+        },
+        {
+          "name": "claim_results",
+          "type": "map<string,ClaimStatus>",
+          "required": true
+        },
+        {
+          "name": "owner_return_candidates",
+          "type": "list<string>",
+          "required": true
+        },
+        {
+          "name": "effects",
+          "type": "EffectFlags",
+          "required": true
+        },
+        {
+          "name": "unaffected_Q",
+          "type": "string",
+          "required": true,
+          "allowed_values": [
+            "original_Q"
+          ]
+        }
+      ],
+      "additional_properties": "forbidden",
+      "meaning": "全L9 B01 rootを返す。"
+    }
+  ],
+  "finite_rule_catalog": [
+    {
+      "id": "B012-F01-CONTEXT",
+      "inputs": [
+        "original_context",
+        "provided_context"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F01Result.context_result"
+      ],
+      "literals": [
+        "content_corresponding_in_fixture",
+        "missing",
+        "content_conflict"
+      ],
+      "basis": [
+        "HELIXBRAIN-L4-012-F01",
+        "HELIXBRAIN-L9-012-F01"
+      ],
+      "program_ref": "B012-PROGRAM-F01"
+    },
+    {
+      "id": "B012-F01-REPLY-FIELD",
+      "inputs": [
+        "original_reply_content",
+        "provided_reply_content"
+      ],
+      "field_order": [
+        "pattern_candidates",
+        "required_input",
+        "relation",
+        "alternative",
+        "constraint",
+        "evidence"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F01Result.reply_results",
+        "F01Result.owner_return_candidates"
+      ],
+      "literals": [
+        "missing",
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "BRAIN-knowledge-owner"
+      ],
+      "basis": [
+        "HELIXBRAIN-L4-012-F01",
+        "HELIXBRAIN-L9-012-F01"
+      ],
+      "program_ref": "B012-PROGRAM-F01"
+    },
+    {
+      "id": "B012-F01-KNOWLEDGE-REF",
+      "inputs": [
+        "knowledge_ref_original",
+        "knowledge_ref_provided"
+      ],
+      "field_order": [
+        "identity",
+        "revision",
+        "scope"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F01Result.knowledge_ref_result",
+        "F01Result.owner_return_candidates"
+      ],
+      "literals": [
+        "content_corresponding_in_fixture",
+        "content_conflict",
+        "BRAIN-knowledge-owner"
+      ],
+      "basis": [
+        "HELIXBRAIN-L4-012-F01",
+        "HELIXBRAIN-L9-012-F01"
+      ],
+      "program_ref": "B012-PROGRAM-F01"
+    },
+    {
+      "id": "B012-F01-CLAIMS-STATE",
+      "inputs": [
+        "original_judgement_state",
+        "claims_reply_adopted",
+        "claims_unknown_success"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F01Result.judgement_state",
+        "F01Result.candidate_state",
+        "F01Result.reply_adoption_claim",
+        "F01Result.unknown_success_claim",
+        "F01Result.owner_return_candidates"
+      ],
+      "literals": [
+        "returned_candidates_only",
+        "rejected",
+        "none",
+        "CORE-product-decision-owner"
+      ],
+      "basis": [
+        "HELIXBRAIN-L3-012-F01",
+        "HELIXBRAIN-L4-012-F01",
+        "HELIXBRAIN-L9-012-F01"
+      ],
+      "program_ref": "B012-PROGRAM-F01"
+    },
+    {
+      "id": "B012-F02-CONTRACT",
+      "inputs": [
+        "required_contracts",
+        "provided_contracts",
+        "target_knowledge_ref",
+        "selected_routes"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F02Result.contract_results"
+      ],
+      "literals": [
+        "missing_held",
+        "unknown_held",
+        "reference_only_held",
+        "revision_foreign_held",
+        "scope_foreign_held",
+        "contract_content_conflict_held",
+        "content_corresponding_candidate_only"
+      ],
+      "basis": [
+        "HELIXBRAIN-L4-012-F02",
+        "HELIXBRAIN-L9-012-F02"
+      ],
+      "program_ref": "B012-PROGRAM-F02"
+    },
+    {
+      "id": "B012-F02-ROUTE-OWNER",
+      "inputs": [
+        "selected_routes",
+        "contract_results",
+        "claims_connection_success",
+        "requires_unselected_INT_completion"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "F02Result.route_results",
+        "F02Result.connection_claim",
+        "F02Result.unselected_INT_gate_claim",
+        "F02Result.owner_return_candidates"
+      ],
+      "literals": [
+        "candidate_contracts_corresponding",
+        "selected_contract_missing_or_conflicting_held",
+        "not_selected",
+        "rejected",
+        "none"
+      ],
+      "basis": [
+        "HELIXBRAIN-L4-012-F02",
+        "HELIXBRAIN-L9-012-F02"
+      ],
+      "program_ref": "B012-PROGRAM-F02"
+    },
+    {
+      "id": "B012-B01-HOLD-AND-CLAIMS",
+      "inputs": [
+        "requirement_meaning_state",
+        "decision_weight_state",
+        "knowledge_state",
+        "existing_authority",
+        "original_product_state",
+        "original_runtime_state",
+        "five_claim_booleans",
+        "requires_new_human_approval_every_reply"
+      ],
+      "rule": "計算分岐・比較field・処理順・出力値はreference_programの該当programが定義する。本項はL3/L4/L9根拠と要求IDの対応を示す。",
+      "outputs": [
+        "B01Result.proposal_state",
+        "B01Result.product_state",
+        "B01Result.runtime_state",
+        "B01Result.authority_state",
+        "B01Result.missing_inputs",
+        "B01Result.claim_results",
+        "B01Result.owner_return_candidates"
+      ],
+      "literals": [
+        "unknown",
+        "missing",
+        "fixture-supplied",
+        "held",
+        "candidate_for_connected_owner_only",
+        "not_selected",
+        "undecided",
+        "original_authority_unchanged",
+        "responsible-CORE-INT-or-human-decision-owner",
+        "BRAIN-knowledge-owner",
+        "rejected",
+        "none"
+      ],
+      "basis": [
+        "HELIXBRAIN-L3-012-B01",
+        "HELIXBRAIN-L4-012-B01",
+        "HELIXBRAIN-L9-012-B01"
+      ],
+      "program_ref": "B012-PROGRAM-B01"
+    }
+  ],
+  "function_contracts": [
+    {
+      "id": "HELIXBRAIN-L5-012-F01",
+      "function": "compare_candidate_reply",
+      "signature": "compare_candidate_reply(input:F01Input)->F01Result",
+      "reads": [
+        "input.original_context",
+        "input.provided_context",
+        "input.original_reply_content",
+        "input.provided_reply_content",
+        "input.knowledge_ref_original",
+        "input.knowledge_ref_provided",
+        "input.original_judgement_state",
+        "input.claims_reply_adopted",
+        "input.claims_unknown_success"
+      ],
+      "returns": [
+        "F01Result.context_result",
+        "F01Result.reply_results",
+        "F01Result.knowledge_ref_result",
+        "F01Result.judgement_state",
+        "F01Result.candidate_state",
+        "F01Result.reply_adoption_claim",
+        "F01Result.unknown_success_claim",
+        "F01Result.owner_return_candidates",
+        "F01Result.effects",
+        "F01Result.unaffected_Q"
+      ],
+      "rule_refs": [
+        "B012-F01-CONTEXT",
+        "B012-F01-REPLY-FIELD",
+        "B012-F01-KNOWLEDGE-REF",
+        "B012-F01-CLAIMS-STATE"
+      ],
+      "branches": [
+        "reference_program B012-PROGRAM-F01が唯一の計算規則。raw値のnullとAbsent、ordered comparison、owner candidate list重複除去をその式とoperator semanticsに従い保持する。"
+      ],
+      "output_literal_domains": {
+        "context_result": [
+          "missing",
+          "content_corresponding_in_fixture",
+          "content_conflict"
+        ],
+        "reply_results": [
+          "missing",
+          "content_corresponding_in_fixture",
+          "content_conflict"
+        ],
+        "knowledge_ref_result": [
+          "content_corresponding_in_fixture",
+          "content_conflict"
+        ],
+        "candidate_state": [
+          "returned_candidates_only"
+        ],
+        "claims": [
+          "rejected",
+          "none"
+        ],
+        "owner_return_candidates": [
+          "CORE-query-owner",
+          "BRAIN-knowledge-owner",
+          "CORE-product-decision-owner"
+        ],
+        "effects": "EffectFlags固定false",
+        "unaffected_Q": "original_Q"
+      },
+      "program_ref": "B012-PROGRAM-F01",
+      "input_type": "F01Input",
+      "output_type": "F01Result",
+      "intentionally_unread_inputs": [
+        {
+          "path": "input.knowledge_maturity",
+          "reason": "候補出力から知識成熟を推論しない。実source qualificationは未成立。",
+          "basis": [
+            "HELIXBRAIN-L4-012-F01.qualification_rule",
+            "HELIXBRAIN-L9-012-F01"
+          ]
+        },
+        {
+          "path": "input.provided_judgement_state",
+          "reason": "判断状態は原値だけを返し、提出側から採択/判断変化を作らない。",
+          "basis": [
+            "HELIXBRAIN-L4-012-F01",
+            "HELIXBRAIN-L10-012-F01"
+          ]
+        }
+      ],
+      "l3_ref": "HELIXBRAIN-L3-012-F01",
+      "l4_ref": "HELIXBRAIN-L4-012-F01",
+      "l9_ref": "HELIXBRAIN-L9-012-F01",
+      "l10_ref": "HELIXBRAIN-L10-012-F01"
+    },
+    {
+      "id": "HELIXBRAIN-L5-012-F02",
+      "function": "compare_selected_connection_candidates",
+      "signature": "compare_selected_connection_candidates(input:F02Input)->F02Result",
+      "reads": [
+        "input.claims_connection_success",
+        "input.provided_contracts",
+        "input.required_contracts",
+        "input.requires_unselected_INT_completion",
+        "input.selected_routes",
+        "input.target_knowledge_ref"
+      ],
+      "returns": [
+        "F02Result.contract_results",
+        "F02Result.route_results",
+        "F02Result.connection_claim",
+        "F02Result.unselected_INT_gate_claim",
+        "F02Result.owner_return_candidates",
+        "F02Result.effects",
+        "F02Result.unaffected_Q"
+      ],
+      "rule_refs": [
+        "B012-F02-CONTRACT",
+        "B012-F02-ROUTE-OWNER"
+      ],
+      "branches": [
+        "reference_program B012-PROGRAM-F02が唯一の計算規則。選択routeはprogram内の明示route/contract table順に走査し、未選択INT021を比較結果へ含めない。fixture比較はowner qualification/receipt成立を意味しない。",
+        "classify_contractは必要/提出/対象knowledgeの3者でidentity/revision/scopeを照合する。優先とmember pathは同helper.bodyに明記し、供給されたrequired.knowledge_refを未読にしない。実qualified sourceの証明は別に未成立。"
+      ],
+      "output_literal_domains": {
+        "contract_results": [
+          "missing_held",
+          "unknown_held",
+          "reference_only_held",
+          "revision_foreign_held",
+          "scope_foreign_held",
+          "contract_content_conflict_held",
+          "content_corresponding_candidate_only"
+        ],
+        "route_results": [
+          "candidate_contracts_corresponding",
+          "selected_contract_missing_or_conflicting_held",
+          "not_selected"
+        ],
+        "claims": [
+          "rejected",
+          "none"
+        ],
+        "owner_return_candidates": "原L9に現れた契約key + -connection-owner、およびBRAIN012-connection-owner。候補文字列で実owner資格でない。",
+        "effects": "EffectFlags固定false",
+        "unaffected_Q": "original_Q"
+      },
+      "program_ref": "B012-PROGRAM-F02",
+      "input_type": "F02Input",
+      "output_type": "F02Result",
+      "intentionally_unread_inputs": [],
+      "l3_ref": "HELIXBRAIN-L3-012-F02",
+      "l4_ref": "HELIXBRAIN-L4-012-F02",
+      "l9_ref": "HELIXBRAIN-L9-012-F02",
+      "l10_ref": "HELIXBRAIN-L10-012-F02"
+    },
+    {
+      "id": "HELIXBRAIN-L5-012-B01",
+      "function": "separate_candidate_from_adoption_authority",
+      "signature": "separate_candidate_from_adoption_authority(input:B01Input)->B01Result",
+      "reads": [
+        "input.requirement_meaning_state",
+        "input.decision_weight_state",
+        "input.knowledge_state",
+        "input.existing_authority",
+        "input.original_product_state",
+        "input.original_runtime_state",
+        "input.claims_product_decided",
+        "input.claims_runtime_decided",
+        "input.claims_requirement_generated",
+        "input.claims_execution_permitted",
+        "input.claims_authority_expanded",
+        "input.requires_new_human_approval_every_reply"
+      ],
+      "returns": [
+        "B01Result.proposal_state",
+        "B01Result.product_state",
+        "B01Result.runtime_state",
+        "B01Result.authority_state",
+        "B01Result.missing_inputs",
+        "B01Result.claim_results",
+        "B01Result.owner_return_candidates",
+        "B01Result.effects",
+        "B01Result.unaffected_Q"
+      ],
+      "rule_refs": [
+        "B012-B01-HOLD-AND-CLAIMS"
+      ],
+      "branches": [
+        "reference_program B012-PROGRAM-B01が唯一の計算規則。要求意味/重み/知識stateをprogramの順序で扱い、product/runtime/authority原値を保持する。candidate labelは実権限や新承認を作らない。"
+      ],
+      "output_literal_domains": {
+        "proposal_state": [
+          "held",
+          "candidate_for_connected_owner_only"
+        ],
+        "product_state": "input.original_product_stateをそのまま写す",
+        "runtime_state": "input.original_runtime_stateをそのまま写す",
+        "authority_state": "input.existing_authorityをそのまま写す",
+        "missing_inputs": [
+          "requirement_meaning",
+          "decision_weight",
+          "knowledge"
+        ],
+        "claim_results": [
+          "rejected",
+          "none"
+        ],
+        "owner_return_candidates": [
+          "responsible-CORE-INT-or-human-decision-owner",
+          "BRAIN-knowledge-owner"
+        ],
+        "effects": "EffectFlags固定false",
+        "unaffected_Q": "original_Q"
+      },
+      "program_ref": "B012-PROGRAM-B01",
+      "input_type": "B01Input",
+      "output_type": "B01Result",
+      "intentionally_unread_inputs": [],
+      "l3_ref": "HELIXBRAIN-L3-012-B01",
+      "l4_ref": "HELIXBRAIN-L4-012-B01",
+      "l9_ref": "HELIXBRAIN-L9-012-B01",
+      "l10_ref": "HELIXBRAIN-L10-012-B01"
+    }
+  ],
+  "pure_result_conventions": {
+    "effects": "L9 wholeが要求する9個のeffect値をfalse固定で返す。比較はside effectを持たない。これは実システムの副作用不存在の証拠ではない。",
+    "unaffected_Q": "L9 expectedのoriginal_Q sentinelを返す。rawにはQ memberがなく、実外部状態が保存された証拠ではない。",
+    "source_qualification": "source packetはsynthetic_fixture_only_no_actual_source_qualification。hash/pin/shapeから実source/owner資格は成立しない。",
+    "json_equality": "reference_program json_equalに従いobject key集合/valueを再帰比較し、array順を保持する。JSON numberは単一domain、booleanは別型。nullとAbsentは異なる。"
+  },
+  "legacy_change_record": {
+    "retained": "候補内容と判断主体を分け、既存sourceを先に読み、failureを元責務へ返す。",
+    "changed": "旧HELIXのlayer numbering/runtime test/DesignTemplateRegistry/applicability schemaを本対の機械規則として再利用しない。現行V12と批准済みL3/L4へ再導出した。",
+    "reason": "このL5/L8はBRAIN012の限定L3/L10義務だけを受ける。旧template authorityのdomain/consumer/承認方式は対象が異なり、移植は新rule/gateとなる。"
+  },
+  "unclosed": [
+    {
+      "id": "B012-U01",
+      "source": "HELIXBRAIN-L4-012-F01 qualification_rule / remaining",
+      "gap": "実source resolverとPattern source/version/scope/ownerの解決bindingは入力にない。L5は合成reference/field equalityだけを計算し、L4の実qualifier bindingは未実現。",
+      "upstream_or_consumer": "BRAIN knowledge source owner / BRAIN query consumer",
+      "state": "not_supplied_not_qualified"
+    },
+    {
+      "id": "B012-U02",
+      "source": "HELIXBRAIN-L4-012-F02 qualification_rule / remaining",
+      "gap": "契約owner、actual source identity、receiver qualification/receiptは原L9 rawにない。L5のselected contract comparisonはreceiver receiptを作らず、fixture contract correspondenceは受領を意味しない。",
+      "upstream_or_consumer": "CORE受信側、HARNESS009受信側、INT021は選択時のみ対象",
+      "state": "not_supplied_not_qualified"
+    },
+    {
+      "id": "B012-U03",
+      "source": "HELIXBRAIN-L4-012-B01 / L10 not_executed",
+      "gap": "接続先が実際に採用・判断した結果、実authority state、実評価は存在しない。candidate_for_connected_owner_onlyはsynthetic fixture label。",
+      "upstream_or_consumer": "CORE/INTELLIGENCE/人の該当判断先、L10 evaluator",
+      "state": "not_observed_not_executed"
+    },
+    {
+      "id": "B012-U04",
+      "source": "L4 remaining; first-cycle dependency audit",
+      "gap": "全Domain、全consumer/契約の推移閉包、全返却内容・required input/dependencyとconsumer obligationの双方向traceは未完。L9 42 fixtureは母集団網羅ではない。",
+      "upstream_or_consumer": "BRAIN / HARNESS / CORE / OS / INT consumer owners",
+      "state": "unclosed"
+    },
+    {
+      "id": "B012-U05",
+      "source": "L4 remaining and L11 row HELIXBRAIN-L2-012",
+      "gap": "L5/L8は限定設計で、formal schema/codec、実source資格、実TDD、実L10 evaluation、L11 accepted、全92/430 closureは未成立。",
+      "upstream_or_consumer": "L6関数設計とL7関数検証は未形成。製品実装は本pairの層外。",
+      "state": "not_established"
+    },
+    {
+      "id": "B012-U06",
+      "source": "HELIXBRAIN-L4-012-F01/F02/B01.output_meanings",
+      "gap": "L4はcontext/knowledge、選択接続端、CORE/INT/人/BRAINの責務別返却候補を要求する。現L9/L5はcandidate label listだけで、個別の実owner identity、route binding、送信・受領receiptを供給しない。F02 <contract-key>-connection-owner等はfixture候補文字列であり、actual owner routingとしては未実現。",
+      "upstream_or_consumer": "L4の各責務別source owner、各接続受信側consumer/receipt producer",
+      "state": "実owner返却未成立。L9の合成候補文字列のみ。"
+    },
+    {
+      "id": "B012-U07",
+      "source": "HELIXBRAIN-L4-012-F01/F02/B01.content_comparison",
+      "gap": "固定rawは有限state/usage語彙を示す。異なる任意文字列・未知enum、追加contract identity、重複route設定のdomainは母集団として未観測。formal expressionは明示された有限分岐を計算するが、fixture coverageを全域適合へ一般化しない。",
+      "upstream_or_consumer": "各L3 obligationとL4 ownerによる必要domainの将来定義/検証",
+      "state": "unobserved_domain_not_qualified"
+    },
+    {
+      "id": "B012-U08",
+      "source": "HELIXBRAIN-L4-012-F01 input_meanings/content_comparison; HELIXBRAIN-L9-012-F01 raw",
+      "gap": "有限ReplyContentはL4に明示された六意味fieldだけを型として受ける。L4全域で将来加わる別fieldの意味/比較/ownerはこのpairでは定義せず、F02の追加contract keyと追加routeも現在のroute table外。未知の内容を既存六fieldへ折り畳まず、全Domain closureを主張しない。",
+      "upstream_or_consumer": "BRAIN/CORE/HARNESS/INT各L4 consumer契約",
+      "state": "finite_field_projection_only; additional meaning remains unclosed"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parent_count": 92,
+    "pair_count": 430,
+    "scope_changed": false
+  },
+  "implementation_readiness": {
+    "type": "not_ready",
+    "reasons": [
+      "実source資格が未成立",
+      "formal schema/codec未構築",
+      "実評価未実行",
+      "L11 acceptance未成立",
+      "92親/430対のscope全域未完了"
+    ]
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "audit_basis": {
+    "checkpoint_path": "scaffold/review-handoff/local/brain012-authoring/source-reading-checkpoint.json",
+    "checkpoint_sha256": "0456adf8bd335ab7184a4bc1e178d18a1888ae20a26b844c0453c3636d3eaffd",
+    "approved_whole_count": 6,
+    "case_count": 42,
+    "scope_count": {
+      "parents": 92,
+      "pairs": 430
+    }
+  },
+  "comparison_semantics": {
+    "json_equality": "reference_program json_equal: object key set/valueを再帰比較し、arrayの順序/長さを比較する。JSON integer/decimalは単一number domainで1と1.0を同値扱いし、booleanはnumberと区別する。AbsentはJSON値でなくnullと異なる。",
+    "iteration_order": "L5 ASTが明示するordered fields, routes, contracts, claim fields, and missing-state fieldsの列順を保持する。JSON map/objectの入力member順は意味に使用せず、明示list以外の辞書順走査を要求しない。",
+    "scope": "reference_programは42原packetで固定された有限projectionを定義する。fixture外state/contract/literalを採用済み全域enumまたは資格としない。"
+  },
+  "reference_program": {
+    "language": "HELIX-FINITE-EXPR-1",
+    "value_domain": "値域はJSON値。整数と小数表記は同一number domain、booleanは別型。Absentはobject member欠落を表す内部sentinelでJSON値ではない。",
+    "programs": [
+      {
+        "id": "B012-PROGRAM-F01",
+        "output_type": "F01Result",
+        "expression": {
+          "op": "let",
+          "bindings": {
+            "context_result": {
+              "op": "compare_values",
+              "left": {
+                "op": "path",
+                "path": "input.original_context"
+              },
+              "right": {
+                "op": "path",
+                "path": "input.provided_context"
+              },
+              "right_null_is_missing": true,
+              "missing_result": "missing",
+              "equal_result": "content_corresponding_in_fixture",
+              "different_result": "content_conflict"
+            },
+            "reply_results": {
+              "op": "compare_fields",
+              "left": {
+                "op": "path",
+                "path": "input.original_reply_content"
+              },
+              "right": {
+                "op": "path",
+                "path": "input.provided_reply_content"
+              },
+              "fields": [
+                "pattern_candidates",
+                "required_input",
+                "relation",
+                "alternative",
+                "constraint",
+                "evidence"
+              ],
+              "null_right_is_missing": false,
+              "missing_result": "missing",
+              "equal_result": "content_corresponding_in_fixture",
+              "different_result": "content_conflict"
+            },
+            "knowledge_ref_result": {
+              "op": "compare_records",
+              "left": {
+                "op": "path",
+                "path": "input.knowledge_ref_original"
+              },
+              "right": {
+                "op": "path",
+                "path": "input.knowledge_ref_provided"
+              },
+              "equal_result": "content_corresponding_in_fixture",
+              "different_result": "content_conflict"
+            }
+          },
+          "body": {
+            "op": "object",
+            "fields": {
+              "context_result": {
+                "op": "path",
+                "path": "context_result"
+              },
+              "reply_results": {
+                "op": "path",
+                "path": "reply_results"
+              },
+              "knowledge_ref_result": {
+                "op": "path",
+                "path": "knowledge_ref_result"
+              },
+              "judgement_state": {
+                "op": "path",
+                "path": "input.original_judgement_state"
+              },
+              "candidate_state": {
+                "op": "const",
+                "value": "returned_candidates_only"
+              },
+              "reply_adoption_claim": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "input.claims_reply_adopted"
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": true
+                  }
+                },
+                "then": {
+                  "op": "const",
+                  "value": "rejected"
+                },
+                "else": {
+                  "op": "const",
+                  "value": "none"
+                }
+              },
+              "unknown_success_claim": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "input.claims_unknown_success"
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": true
+                  }
+                },
+                "then": {
+                  "op": "const",
+                  "value": "rejected"
+                },
+                "else": {
+                  "op": "const",
+                  "value": "none"
+                }
+              },
+              "owner_return_candidates": {
+                "op": "unique_concat",
+                "parts": [
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "path",
+                              "path": "context_result"
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": "content_corresponding_in_fixture"
+                            }
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "CORE-query-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "owner_if_map_diff",
+                    "map": {
+                      "op": "path",
+                      "path": "reply_results"
+                    },
+                    "equal": {
+                      "op": "const",
+                      "value": "content_corresponding_in_fixture"
+                    },
+                    "owner": {
+                      "op": "const",
+                      "value": "BRAIN-knowledge-owner"
+                    }
+                  },
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "path",
+                              "path": "knowledge_ref_result"
+                            },
+                            "right": {
+                              "op": "const",
+                              "value": "content_corresponding_in_fixture"
+                            }
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "BRAIN-knowledge-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": "input.claims_reply_adopted"
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": true
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "CORE-product-decision-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "json_equal",
+                          "left": {
+                            "op": "path",
+                            "path": "input.claims_unknown_success"
+                          },
+                          "right": {
+                            "op": "const",
+                            "value": true
+                          }
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "BRAIN-knowledge-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "effects": {
+                "op": "const",
+                "value": {
+                  "actual_knowledge_adopted": false,
+                  "actual_product_selected": false,
+                  "actual_runtime_decision": false,
+                  "actual_requirement_value_generated": false,
+                  "actual_connection": false,
+                  "actual_execution_permitted": false,
+                  "actual_authority_expanded": false,
+                  "actual_design_complete": false,
+                  "actual_acceptance": false
+                }
+              },
+              "unaffected_Q": {
+                "op": "const",
+                "value": "original_Q"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "B012-PROGRAM-F02",
+        "output_type": "F02Result",
+        "helpers": [
+          {
+            "name": "classify_contract",
+            "parameters": [
+              "expected",
+              "actual",
+              "target"
+            ],
+            "body": {
+              "op": "if",
+              "condition": {
+                "op": "or",
+                "items": [
+                  {
+                    "op": "is_absent",
+                    "value": {
+                      "op": "path",
+                      "path": "expected"
+                    }
+                  },
+                  {
+                    "op": "is_absent",
+                    "value": {
+                      "op": "path",
+                      "path": "actual"
+                    }
+                  }
+                ]
+              },
+              "then": {
+                "op": "const",
+                "value": "missing_held"
+              },
+              "else": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "get",
+                    "value": {
+                      "op": "path",
+                      "path": "actual"
+                    },
+                    "key": "state"
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "unknown"
+                  }
+                },
+                "then": {
+                  "op": "const",
+                  "value": "unknown_held"
+                },
+                "else": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "get",
+                      "value": {
+                        "op": "path",
+                        "path": "actual"
+                      },
+                      "key": "usage"
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "reference_only"
+                    }
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "reference_only_held"
+                  },
+                  "else": {
+                    "op": "if",
+                    "condition": {
+                      "op": "or",
+                      "items": [
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": "actual"
+                                },
+                                "key": "knowledge_ref"
+                              },
+                              "key": "revision"
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": "target"
+                              },
+                              "key": "revision"
+                            }
+                          }
+                        },
+                        {
+                          "op": "not",
+                          "value": {
+                            "op": "json_equal",
+                            "left": {
+                              "op": "get",
+                              "value": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": "expected"
+                                },
+                                "key": "knowledge_ref"
+                              },
+                              "key": "revision"
+                            },
+                            "right": {
+                              "op": "get",
+                              "value": {
+                                "op": "path",
+                                "path": "target"
+                              },
+                              "key": "revision"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "const",
+                      "value": "revision_foreign_held"
+                    },
+                    "else": {
+                      "op": "if",
+                      "condition": {
+                        "op": "or",
+                        "items": [
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "actual"
+                                  },
+                                  "key": "knowledge_ref"
+                                },
+                                "key": "scope"
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": "target"
+                                },
+                                "key": "scope"
+                              }
+                            }
+                          },
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "json_equal",
+                              "left": {
+                                "op": "get",
+                                "value": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "expected"
+                                  },
+                                  "key": "knowledge_ref"
+                                },
+                                "key": "scope"
+                              },
+                              "right": {
+                                "op": "get",
+                                "value": {
+                                  "op": "path",
+                                  "path": "target"
+                                },
+                                "key": "scope"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "then": {
+                        "op": "const",
+                        "value": "scope_foreign_held"
+                      },
+                      "else": {
+                        "op": "if",
+                        "condition": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "actual"
+                                  },
+                                  "key": "identity"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "expected"
+                                  },
+                                  "key": "identity"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "actual"
+                                  },
+                                  "key": "contract_revision"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "expected"
+                                  },
+                                  "key": "contract_revision"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "actual"
+                                    },
+                                    "key": "knowledge_ref"
+                                  },
+                                  "key": "identity"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "target"
+                                  },
+                                  "key": "identity"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "actual"
+                                  },
+                                  "key": "state"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "expected"
+                                  },
+                                  "key": "state"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "actual"
+                                  },
+                                  "key": "usage"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "expected"
+                                  },
+                                  "key": "usage"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "json_equal",
+                                "left": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "get",
+                                    "value": {
+                                      "op": "path",
+                                      "path": "expected"
+                                    },
+                                    "key": "knowledge_ref"
+                                  },
+                                  "key": "identity"
+                                },
+                                "right": {
+                                  "op": "get",
+                                  "value": {
+                                    "op": "path",
+                                    "path": "target"
+                                  },
+                                  "key": "identity"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "contract_content_conflict_held"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": "content_corresponding_candidate_only"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameter_types": {
+              "expected": "ConnectionContract | Absent",
+              "actual": "ConnectionContract | Absent",
+              "target": "KnowledgeRef"
+            },
+            "return_type": "ContractStatus",
+            "binding_derivation": {
+              "source": "HELIXBRAIN-L3-012-F02、HELIXBRAIN-L4-012-F02.content_comparison/qualification_rule",
+              "three_way": "required(expected)とprovided(actual)の各knowledge_ref.identity/revision/scopeを、target_knowledge_refの同じmemberへ比較する。両者が同じtargetに一致する場合だけ対応候補へ進める。",
+              "priority": [
+                "required/actualのAbsent → missing_held",
+                "actual.state=unknown → unknown_held",
+                "actual.usage=reference_only → reference_only_held",
+                "requiredまたはactualのknowledge revisionとtarget不一致 → revision_foreign_held",
+                "requiredまたはactualのknowledge scopeとtarget不一致 → scope_foreign_held",
+                "required/actual contract identity・contract_revision・state・usage、またはいずれかのknowledge identityとtarget不一致 → contract_content_conflict_held",
+                "その他 → content_corresponding_candidate_only"
+              ],
+              "qualification_limit": "供給済み合成原値の比較。実source解決/owner資格/受領を生成しない。追加gate/新認可を定義しない。"
+            }
+          }
+        ],
+        "expression": {
+          "op": "let",
+          "bindings": {
+            "contract_results": {
+              "op": "selected_route_contract_map",
+              "routes": [
+                {
+                  "route": "CORE_reply",
+                  "contracts": [
+                    "BRAIN019"
+                  ]
+                },
+                {
+                  "route": "HARNESS_obligations",
+                  "contracts": [
+                    "BRAIN022",
+                    "HARNESS009"
+                  ]
+                },
+                {
+                  "route": "INT_query",
+                  "contracts": [
+                    "BRAIN021"
+                  ]
+                }
+              ],
+              "selected": {
+                "op": "path",
+                "path": "input.selected_routes"
+              },
+              "required": {
+                "op": "path",
+                "path": "input.required_contracts"
+              },
+              "provided": {
+                "op": "path",
+                "path": "input.provided_contracts"
+              },
+              "target": {
+                "op": "path",
+                "path": "input.target_knowledge_ref"
+              },
+              "status_function": "classify_contract"
+            },
+            "route_results": {
+              "op": "route_result_map",
+              "routes": [
+                {
+                  "route": "CORE_reply",
+                  "contracts": [
+                    "BRAIN019"
+                  ]
+                },
+                {
+                  "route": "HARNESS_obligations",
+                  "contracts": [
+                    "BRAIN022",
+                    "HARNESS009"
+                  ]
+                },
+                {
+                  "route": "INT_query",
+                  "contracts": [
+                    "BRAIN021"
+                  ]
+                }
+              ],
+              "selected": {
+                "op": "path",
+                "path": "input.selected_routes"
+              },
+              "contract_results": {
+                "op": "path",
+                "path": "contract_results"
+              },
+              "success_literal": "content_corresponding_candidate_only",
+              "not_selected_literal": "not_selected",
+              "held_literal": "selected_contract_missing_or_conflicting_held",
+              "candidate_literal": "candidate_contracts_corresponding"
+            }
+          },
+          "body": {
+            "op": "object",
+            "fields": {
+              "contract_results": {
+                "op": "path",
+                "path": "contract_results"
+              },
+              "route_results": {
+                "op": "path",
+                "path": "route_results"
+              },
+              "connection_claim": {
+                "op": "if",
+                "condition": {
+                  "op": "and",
+                  "items": [
+                    {
+                      "op": "json_equal",
+                      "left": {
+                        "op": "path",
+                        "path": "input.claims_connection_success"
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": true
+                      }
+                    },
+                    {
+                      "op": "map_has_value_other_than",
+                      "map": {
+                        "op": "path",
+                        "path": "contract_results"
+                      },
+                      "value": {
+                        "op": "const",
+                        "value": "content_corresponding_candidate_only"
+                      }
+                    }
+                  ]
+                },
+                "then": {
+                  "op": "const",
+                  "value": "rejected"
+                },
+                "else": {
+                  "op": "const",
+                  "value": "none"
+                }
+              },
+              "unselected_INT_gate_claim": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "input.requires_unselected_INT_completion"
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": true
+                  }
+                },
+                "then": {
+                  "op": "const",
+                  "value": "rejected"
+                },
+                "else": {
+                  "op": "const",
+                  "value": "none"
+                }
+              },
+              "owner_return_candidates": {
+                "op": "route_owner_candidates",
+                "routes": [
+                  {
+                    "route": "CORE_reply",
+                    "contracts": [
+                      "BRAIN019"
+                    ]
+                  },
+                  {
+                    "route": "HARNESS_obligations",
+                    "contracts": [
+                      "BRAIN022",
+                      "HARNESS009"
+                    ]
+                  },
+                  {
+                    "route": "INT_query",
+                    "contracts": [
+                      "BRAIN021"
+                    ]
+                  }
+                ],
+                "selected": {
+                  "op": "path",
+                  "path": "input.selected_routes"
+                },
+                "contract_results": {
+                  "op": "path",
+                  "path": "contract_results"
+                },
+                "suffix": {
+                  "op": "const",
+                  "value": "-connection-owner"
+                },
+                "extra": {
+                  "op": "if",
+                  "condition": {
+                    "op": "json_equal",
+                    "left": {
+                      "op": "path",
+                      "path": "input.requires_unselected_INT_completion"
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": true
+                    }
+                  },
+                  "then": {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "const",
+                        "value": "BRAIN012-connection-owner"
+                      }
+                    ]
+                  },
+                  "else": {
+                    "op": "array",
+                    "items": []
+                  }
+                },
+                "candidate_literal": "content_corresponding_candidate_only"
+              },
+              "effects": {
+                "op": "const",
+                "value": {
+                  "actual_knowledge_adopted": false,
+                  "actual_product_selected": false,
+                  "actual_runtime_decision": false,
+                  "actual_requirement_value_generated": false,
+                  "actual_connection": false,
+                  "actual_execution_permitted": false,
+                  "actual_authority_expanded": false,
+                  "actual_design_complete": false,
+                  "actual_acceptance": false
+                }
+              },
+              "unaffected_Q": {
+                "op": "const",
+                "value": "original_Q"
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "B012-PROGRAM-B01",
+        "output_type": "B01Result",
+        "expression": {
+          "op": "let",
+          "bindings": {
+            "missing_inputs": {
+              "op": "missing_state_inputs",
+              "fields": [
+                [
+                  "input.requirement_meaning_state",
+                  "requirement_meaning"
+                ],
+                [
+                  "input.decision_weight_state",
+                  "decision_weight"
+                ],
+                [
+                  "input.knowledge_state",
+                  "knowledge"
+                ]
+              ],
+              "missing_values": [
+                "unknown",
+                "missing"
+              ]
+            },
+            "claim_results": {
+              "op": "claim_map",
+              "fields": [
+                [
+                  "input.claims_product_decided",
+                  "product_decided"
+                ],
+                [
+                  "input.claims_runtime_decided",
+                  "runtime_decided"
+                ],
+                [
+                  "input.claims_requirement_generated",
+                  "requirement_generated"
+                ],
+                [
+                  "input.claims_execution_permitted",
+                  "execution_permitted"
+                ],
+                [
+                  "input.claims_authority_expanded",
+                  "authority_expanded"
+                ],
+                [
+                  "input.requires_new_human_approval_every_reply",
+                  "new_human_approval_every_reply"
+                ]
+              ],
+              "true_result": "rejected",
+              "false_result": "none"
+            }
+          },
+          "body": {
+            "op": "object",
+            "fields": {
+              "proposal_state": {
+                "op": "if",
+                "condition": {
+                  "op": "json_equal",
+                  "left": {
+                    "op": "path",
+                    "path": "input.requirement_meaning_state"
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "supplied_fixture_only"
+                  }
+                },
+                "then": {
+                  "op": "if",
+                  "condition": {
+                    "op": "and",
+                    "items": [
+                      {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "path",
+                          "path": "input.decision_weight_state"
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "supplied_fixture_only"
+                        }
+                      },
+                      {
+                        "op": "json_equal",
+                        "left": {
+                          "op": "path",
+                          "path": "input.knowledge_state"
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "identified_fixture_only"
+                        }
+                      }
+                    ]
+                  },
+                  "then": {
+                    "op": "const",
+                    "value": "candidate_for_connected_owner_only"
+                  },
+                  "else": {
+                    "op": "const",
+                    "value": "held"
+                  }
+                },
+                "else": {
+                  "op": "const",
+                  "value": "held"
+                }
+              },
+              "product_state": {
+                "op": "path",
+                "path": "input.original_product_state"
+              },
+              "runtime_state": {
+                "op": "path",
+                "path": "input.original_runtime_state"
+              },
+              "authority_state": {
+                "op": "path",
+                "path": "input.existing_authority"
+              },
+              "missing_inputs": {
+                "op": "path",
+                "path": "missing_inputs"
+              },
+              "claim_results": {
+                "op": "path",
+                "path": "claim_results"
+              },
+              "owner_return_candidates": {
+                "op": "unique_concat",
+                "parts": [
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "any_list_has",
+                          "list": {
+                            "op": "path",
+                            "path": "missing_inputs"
+                          },
+                          "values": [
+                            "requirement_meaning",
+                            "decision_weight"
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "responsible-CORE-INT-or-human-decision-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "op": "array",
+                    "items": [
+                      {
+                        "op": "if",
+                        "condition": {
+                          "op": "any_list_has",
+                          "list": {
+                            "op": "path",
+                            "path": "missing_inputs"
+                          },
+                          "values": [
+                            "knowledge"
+                          ]
+                        },
+                        "then": {
+                          "op": "const",
+                          "value": "BRAIN-knowledge-owner"
+                        },
+                        "else": {
+                          "op": "const",
+                          "value": ""
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "effects": {
+                "op": "const",
+                "value": {
+                  "actual_knowledge_adopted": false,
+                  "actual_product_selected": false,
+                  "actual_runtime_decision": false,
+                  "actual_requirement_value_generated": false,
+                  "actual_connection": false,
+                  "actual_execution_permitted": false,
+                  "actual_authority_expanded": false,
+                  "actual_design_complete": false,
+                  "actual_acceptance": false
+                }
+              },
+              "unaffected_Q": {
+                "op": "const",
+                "value": "original_Q"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "operator_semantics": [
+      {
+        "op": "path",
+        "meaning": "input.または局所環境からdot pathで参照する。object memberがない場合はnullでなくAbsentを返す。"
+      },
+      {
+        "op": "const",
+        "meaning": "宣言したJSON literalを返す。"
+      },
+      {
+        "op": "object",
+        "meaning": "fieldを宣言順に評価する。値がAbsentならそのmemberは出力objectから省く。"
+      },
+      {
+        "op": "array",
+        "meaning": "itemを宣言順に評価し、その順序の配列を返す。"
+      },
+      {
+        "op": "if",
+        "meaning": "conditionはbooleanでなければならず、選択された片側だけを評価する。"
+      },
+      {
+        "op": "json_equal",
+        "meaning": "JSON再帰等値。objectはkey集合と値、arrayは長さと順序、scalarはkind/valueを比較する。JSON numberは整数/小数を同じdomainで比較し、booleanはnumberと区別する。"
+      },
+      {
+        "op": "and",
+        "meaning": "boolean operandを左から評価し、falseでshort-circuitする。"
+      },
+      {
+        "op": "or",
+        "meaning": "boolean operandを左から評価し、trueでshort-circuitする。"
+      },
+      {
+        "op": "not",
+        "meaning": "boolean値を反転する。"
+      },
+      {
+        "op": "is_absent",
+        "meaning": "欠落member sentinelの場合のみtrue。"
+      },
+      {
+        "op": "is_null",
+        "meaning": "JSON nullの場合のみtrue。"
+      },
+      {
+        "op": "get",
+        "meaning": "object key lookup。object/key欠落時はAbsentを返す。"
+      },
+      {
+        "op": "call",
+        "meaning": "同じreference_programに宣言されたhelperのみ呼び出す。暗黙のtask-specific処理は持たない。"
+      },
+      {
+        "op": "compare_values",
+        "meaning": "左右どちらかがAbsentならmissing_result。rightがJSON nullかつright_null_is_missing=trueでもmissing_result。それ以外は再帰JSON等値によりequal_resultまたはdifferent_result。"
+      },
+      {
+        "op": "compare_records",
+        "meaning": "両operandは必須input record。object全体をJSON再帰等値比較し、宣言済みequal/different literalを返す。"
+      },
+      {
+        "op": "compare_fields",
+        "meaning": "宣言順fieldごとに比較。左右どちらかでmember Absentならmissing_result。Present値（null含む）は再帰JSON等値でequal/differentを返し、field mapを返す。"
+      },
+      {
+        "op": "owner_if_map_diff",
+        "meaning": "mapのいずれかの値が指定equal literalと異なる時は指定ownerの1要素list、すべて一致なら空list。"
+      },
+      {
+        "op": "unique_concat",
+        "meaning": "指定partを順番に連結し、空文字sentinelを除き、重複は最初の出現だけ残す。"
+      },
+      {
+        "op": "selected_route_contract_map",
+        "meaning": "宣言routes、各routeのcontractsの順で走査。selected[route]が厳密にtrueの時だけそのkeyを出力し、required/providedのkey欠落はAbsentのままhelperへ渡す。指定status helperを呼び出し、contract key mapを返す。"
+      },
+      {
+        "op": "route_result_map",
+        "meaning": "宣言route順に返す。未選択routeは指定not_selected literal、選択routeは各configured contract resultが全て指定success literalならcandidate literal、それ以外held literal。"
+      },
+      {
+        "op": "map_has_value_other_than",
+        "meaning": "mapの値に指定literalと異なるものが少なくとも一つある時true。"
+      },
+      {
+        "op": "route_owner_candidates",
+        "meaning": "route/contract宣言順に、選択済みroute内でresultがcandidate literalと異なるkeyへ指定suffixを付けて追加し、extra listを末尾へ加え、重複を初出順に除く。"
+      },
+      {
+        "op": "missing_state_inputs",
+        "meaning": "宣言field/label順に値を読み、configured missing_valuesのいずれかと等しい入力labelを返す。"
+      },
+      {
+        "op": "claim_map",
+        "meaning": "宣言field/label順に読み、厳密trueならtrue_result、型で許されるfalseならfalse_resultを返すmapを作る。"
+      },
+      {
+        "op": "any_list_has",
+        "meaning": "listがconfigured stringsのいずれかを含む時true。"
+      },
+      {
+        "op": "let",
+        "meaning": "bindingsを宣言順に評価し、先行bindingを参照可能な局所環境に追加する。bodyを最終結果とする。"
+      },
+      {
+        "op": "helper",
+        "meaning": "helper parametersは呼出時に全引数を束縛する。helper内pathは局所環境だけから評価し、宣言外の暗黙入力は持たない。"
+      },
+      {
+        "op": "status_domain",
+        "meaning": "固定返却literalはprogram内constまたはoperator引数に明記する。状態語彙の一般domainはL9 sourceで観測した範囲を越えて資格化しない。"
+      },
+      {
+        "op": "empty_iteration",
+        "meaning": "走査対象が空の場合、map/listは空で返る。route_result_mapの全条件は空契約で真だが本programの各route設定は非空。未設定routeの一般域は未評価。"
+      },
+      {
+        "op": "missing_contract",
+        "meaning": "選択routeのconfigured keyがrequired/provided mapにない場合Absentでhelperへ渡す。requiredまたはactualのAbsentはmissing_held。"
+      },
+      {
+        "op": "input_member_partition",
+        "meaning": "各function input fieldはreadsかintentionally_unread_inputsのどちらか一方に属する。必須field欠落はtype violationで、nullへ補完しない。"
+      }
+    ]
+  },
+  "program_precedence": "reference_programのprogram expression、helper、operator semanticsが限定計算の唯一の規範。function_contractsはsignature/read/outputとprogram参照、finite_rule_catalogはL3/L4/L9 obligation traceのみ。",
+  "type_domain_notes": [
+    {
+      "scope": "function inputs",
+      "rule": "F01Input/F02Input/B01Inputの宣言fieldは必須。record additional_properties=forbidden。required inputの欠落とnullは異なり、nullは当該宣言型がJSON nullを含む場合だけ許容。"
+    },
+    {
+      "scope": "nested raw records",
+      "rule": "ReplyContentのmemberはfixture input上Optional。Absentはmapから除外され、explicit nullはJsonValueとして比較される。ConnectionContract/KnowledgeRefはrequired memberを持つ。"
+    },
+    {
+      "scope": "collection identity",
+      "rule": "JSON object/map keyは一意。F02 contract resultは選択route/table順でkeyごと1回生成。配列の重複は一般に許すが、本限定programにjoin配列はなく一意化しない。"
+    },
+    {
+      "scope": "numeric equality",
+      "rule": "JSON integer/decimalは一つのnumber domainで比較し1と1.0は等値。booleanはnumberと異なる。raw projectionは元のJSON数値値を保持する。"
+    },
+    {
+      "scope": "nullable whole records",
+      "rule": "F01 outer context fields are JsonValue and may be explicit null. ReplyContent, KnowledgeRef, F02 ContractMap entries, and B01 outer inputs are non-nullable records under their declared types; a whole-record null is a type violation, not an implicit missing/empty record. Optional nested ReplyContent members may be Absent; present null remains a JSON value."
+    },
+    {
+      "scope": "empty and duplicate collections",
+      "rule": "F02 empty selected_routes/required_contracts/provided_contracts are valid typed maps and evaluate to empty contract results plus not_selected route results. JSON object duplicate keys are invalid and rejected during raw parsing. The finite F02 route table has distinct route and contract keys. No array join/deduplication is defined outside explicit owner candidate deduplication."
+    },
+    {
+      "scope": "finite state literal domains",
+      "rule": "ConnectionState/ConnectionUsage/RequirementMeaningState/DecisionWeightState/KnowledgeStateは原L9 42 rawで観測されたliteralを型検査する限定domain。未観測literalはこのfinite logical input domain外とし、適合/成功へ分類しない。これは全BRAIN domainの採択enumではなく、一般state意味はB012-U07に未閉包。"
+    }
+  ],
+  "owner_return_boundary": {
+    "candidate_outputs": [
+      "F01Result.owner_return_candidates",
+      "F02Result.owner_return_candidates",
+      "B01Result.owner_return_candidates"
+    ],
+    "l4_obligations": [
+      "HELIXBRAIN-L4-012-F01.output_meanings",
+      "HELIXBRAIN-L4-012-F02.output_meanings",
+      "HELIXBRAIN-L4-012-B01.output_meanings"
+    ],
+    "finite_fixture_status": "L9 expected contains candidate labels only; output preserves those values through a deterministic finite expression.",
+    "not_established": [
+      "actual owner identity resolution",
+      "sender/receiver binding",
+      "delivery or receipt",
+      "owner acceptance",
+      "authority to decide"
+    ],
+    "unclosed_ref": "B012-U06",
+    "boundary": "候補ラベルは純関数の合成返却値である。実ownerへの送信、受領、判断、資格を成立させない。"
+  },
+  "l4_obligation_trace": [
+    {
+      "l4_ref": "HELIXBRAIN-L4-012-F01",
+      "obligations": [
+        {
+          "source_field": "output_meanings[0]",
+          "meaning": "返却内容ごとの版対応と局所不足",
+          "formal_returns": [
+            "F01Result.reply_results",
+            "F01Result.knowledge_ref_result",
+            "F01Result.context_result"
+          ],
+          "status": "有限比較を実装。版/実source qualificationはB012-U01へ未閉包。"
+        },
+        {
+          "source_field": "output_meanings[1]",
+          "meaning": "問い合わせ元context不足/BRAIN知識不足の別候補",
+          "formal_returns": [
+            "F01Result.owner_return_candidates"
+          ],
+          "status": "fixture候補ラベルのみ。実owner解決/送信/受領はB012-U06へ未閉包."
+        },
+        {
+          "source_field": "content_comparison",
+          "meaning": "六返却意味、候補複数性、判断不能/unknownを成功補完しない",
+          "formal_returns": [
+            "F01Result.reply_results",
+            "F01Result.candidate_state",
+            "F01Result.unknown_success_claim"
+          ],
+          "status": "有限raw式。source qualification/成熟の実証を作らない。"
+        }
+      ]
+    },
+    {
+      "l4_ref": "HELIXBRAIN-L4-012-F02",
+      "obligations": [
+        {
+          "source_field": "output_meanings[0]",
+          "meaning": "必要契約ごとの対応/不足/不明",
+          "formal_returns": [
+            "F02Result.contract_results",
+            "F02Result.route_results"
+          ],
+          "status": "選択契約だけを有限比較。consumer受領/資格はB012-U02へ未閉包."
+        },
+        {
+          "source_field": "output_meanings[1]",
+          "meaning": "未選択経路と接続端owner返却候補",
+          "formal_returns": [
+            "F02Result.route_results",
+            "F02Result.owner_return_candidates"
+          ],
+          "status": "未選択INTはnot_selected、候補文字列のみ。実owner/receiptはB012-U06へ未閉包."
+        },
+        {
+          "source_field": "content_comparison",
+          "meaning": "CORE 019、設計義務022、HARNESS009、選択時INT021を対象版/scopeへ比較し、missing/unknownを保持",
+          "formal_returns": [
+            "F02Result.contract_results"
+          ],
+          "status": "必要/提出のknowledge参照をそれぞれ同じ対象identity/revision/scopeへ有限比較。source/owner/receiptの実bindingはB012-U02へ未閉包。"
+        }
+      ]
+    },
+    {
+      "l4_ref": "HELIXBRAIN-L4-012-B01",
+      "obligations": [
+        {
+          "source_field": "output_meanings[0]",
+          "meaning": "candidate/保留/product採用/runtime許可を区別",
+          "formal_returns": [
+            "B01Result.proposal_state",
+            "B01Result.product_state",
+            "B01Result.runtime_state",
+            "B01Result.effects"
+          ],
+          "status": "原product/runtime/authority保持。actual decision/execution remains false and unobserved."
+        },
+        {
+          "source_field": "output_meanings[1]",
+          "meaning": "CORE/INT/人/BRAINの責務別不足候補",
+          "formal_returns": [
+            "B01Result.missing_inputs",
+            "B01Result.owner_return_candidates"
+          ],
+          "status": "fixture owner candidate string only。実返却/受領/判断はB012-U06へ未閉包."
+        },
+        {
+          "source_field": "content_comparison",
+          "meaning": "unknown/missingで候補保留、権限拡張で不足を補わず、新たな毎返却承認を作らない",
+          "formal_returns": [
+            "B01Result.proposal_state",
+            "B01Result.claim_results",
+            "B01Result.effects"
+          ],
+          "status": "限定有限式; actual qualification/decision未成立."
+        }
+      ]
+    }
+  ]
+}
