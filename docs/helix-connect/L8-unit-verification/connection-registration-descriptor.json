@@ -3163,6 +3163,15 @@
       "同じboolean値 → content_corresponding_in_fixture"
     ],
     "unobserved": "固定81 rawには元declaration全体null、unknown text marker、F02 unfinished member欠落は0件。これらの未観測一般枝を新しいqualification/permissionとして補わない。",
-    "f01_owner_projection": "return_owners.source/consumerはraw absent/nullをnullable outputのnullへ投影し、元のabsent/null distinctionはretained_declarationで保つ。adapter_transportはL5の固定fixture literalであり、実owner根拠ではない。"
+    "f01_owner_projection": "return_owners.source/consumerはraw absent/nullをnullable outputのnullへ投影し、元のabsent/null distinctionはretained_declarationで保つ。adapter_transportはL5の固定fixture literalであり、実owner根拠ではない。",
+    "non_applicability_reason_precedence": [
+      "原理由member欠落 → missing",
+      "原理由null → unknown_original_information",
+      "提出理由member欠落 → missing",
+      "提出理由null → content_conflict",
+      "双方が値あり → JSON型と内容が一致するときのみcontent_corresponding_in_fixture、他はcontent_conflict"
+    ],
+    "declaration_absence_projection": "declaration keyが存在しない側のretained/submitted_declarationは比較用表示{}。入力packetとtyped argumentのkey有無は保持し、実declarationの存在へ昇格しない。",
+    "unfinished_input_domain": "原member存在時はarrayが有限入力条件。原48件は全件array。原null/非arrayの一般診断・返却は未評価で、[]へ変換しない。提出値は元のJsonValue carrierで通常比較する。"
   }
 }

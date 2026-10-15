@@ -503,7 +503,7 @@
         "1. 宣言keyの和集合は、original_declarationsのkey挿入順を先に保ち、その後にsubmitted_declarationsだけにあるkeyを提出側の挿入順で追加する。比較処理の走査順はこの順とする。declaration内のJSON object比較ではkey順を無視し、配列の順序は保持する。",
         "2. 原側と提出側を別々に評価する。各側でidentity memberがabsentまたはnullのdeclarationは衝突groupの対象外にする。値ありidentityごとにdeclaration全体をgroup化し、同じ値のgroup内に異なるdeclarationが複数あれば、その側のcollision=trueとする。個別connectionのidentity_collisionはoriginal_declaration_collision OR submitted_declaration_collisionである。",
         "3. 各connectionごとにL3-001-F01の18 fieldを規定順に走査する。片側にdeclaration keyがない場合、その側はfield比較に限り空object {} として投影する（元packet自体はそのまま保持する）。元fieldがnullまたは欠落ならunknown_original_information、元fieldが値ありで提出fieldが欠落ならmissing、提出fieldがnullならcontent_conflict、双方が値ならJSON構造等値でcontent_corresponding_in_fixture、異なればcontent_conflictとする。元declaration全体がnullのpacketは固定素材にないためその枝は未評価であり、nullを空objectへ読み替えない。",
-        "4. retained_declarationへ原JSON object全体、submitted_declarationへ提出JSON object全体を保持し、member削除・正規化・暗黙補完をしない。",
+        "4. declaration keyが存在する側ではretained_declaration/submitted_declarationへその原JSON object全体を保持する。keyが存在しない側の返却memberには比較用投影の空object {} を置く。元のkey欠落/null/値の区別は変更しない入力packetとL8 typed argumentに残し、返却用の{}を実declarationの存在証拠にしない。",
         "5. connectionごとに全fieldがcontent_corresponding_in_fixtureかつ原/提出identity collisionなしならregistration_receipt_candidate=requires_actual_qualification、それ以外はheld。",
         "6. 各connectionのreturn_owners.source/consumerは元declarationのraw owner値から作る。raw memberがabsentまたはnullならこのnullable出力fieldはnullとし、値ありならそのJSON値を返す。元declaration全体はretained_declarationへ保持するため、元packet上のabsentとnullはそこで区別できる。adapter_transportはL5 fixture_boundary_literals.connection_return_owners.adapter_transport.valueを返す。これはL9独立oracleの有限fixture表示literalでありraw/L4のowner根拠ではなく、実資格を示さない。communication_readinessは常にnot_proved_by_registration。",
         "7. shared_endpoints_are_not_a_collisionはL3-F01の規則命題としてtrueを返す。個別identity_collisionは原側衝突または提出側衝突の論理和としてconnectionごとに返し、identity absent/nullはその側の衝突groupに入れない。共有endpointだけを衝突理由にしない。",
@@ -533,11 +533,15 @@
         "4. 原applicabilityがfalseなら原・提出双方の非適用理由をPresence込みで次の順で比較する: 原理由の欠落はmissing、原理由がnullならunknown_original_information、提出理由の欠落はmissing、提出理由がnullならcontent_conflict、双方が値を持つ場合はJSON型と内容が一致するときだけcontent_corresponding_in_fixture、それ以外はcontent_conflict。",
         "5. 原applicabilityが欠落/null/nonbooleanならunknown_original_applicabilityへ列挙し、適用/非適用どちらにも確定しない。元の値はそのまま保持する。原で明示falseまたはunknownの参照memberはfield_resultsの対象外にする。",
         "6. not_selected_security_referencesは原の明示falseのみ列挙する。unknown/absentを非適用と扱わない。",
-        "7. retained_descriptorとsubmitted_descriptorは全objectをそのまま出力し、retained_unfinished_obligationsは原descriptorにcommon_unfinished_obligationsがあればその配列全体を順序保持で返し、member欠落時は[]を返す。固定48 packetでは当該member欠落は0件のため、欠落時の[]分岐は未観測である。transport_execution_stateはraw値を保持し、宣言比較はtransportを要求しない。",
+        "7. retained_descriptorとsubmitted_descriptorは全objectをそのまま出力し、retained_unfinished_obligationsは原descriptorにcommon_unfinished_obligationsがあればその配列全体を順序保持で返し、member欠落時は[]を返す。固定48 packetでは当該member欠落は0件のため、欠落時の[]分岐は未観測である。transport_execution_stateはraw値を保持し、宣言比較はtransportを要求しない。 本有限関数の入力条件として、原common_unfinished_obligationsはmember存在時にJSON arrayである。明示nullまたは配列以外はこの条件を満たさず、本関数の有限出力は定義しない（未評価）。空arrayへの変換や成功補完はしない。提出側の値はこの原値保持条件を狭めず、通常fieldの比較で評価する。",
         "8. 対象となる全field（非適用/unknown参照を除く）とapplicability/reason照合がcontent_corresponding_in_fixtureならrequires_actual_qualification、それ以外はheld。raw claimの拒否結果はこの内容候補値を変えず、claim_resultsとして独立に返す。",
         "9. return_ownersはL5 fixture_boundary_literals.descriptor_return_owners.valuesにある有限fixture表示literalを返す。各値のsourceは記載のL9 independent expected_material pointerであり、raw fixtureやL4のowner記載ではない。これらは実owner資格、権限、approval、routingの事実を表さない。",
         "10. claim boolean trueはrejected、falseはnone。effectは全てfalseで、登録/送信許可/transport/業務承認/authority/implementation readiness/acceptanceを生成しない。"
-      ]
+      ],
+      "finite_input_domain": {
+        "original_common_unfinished_obligations": "原member欠落は未観測の[]表示枝。member存在時はJSON arrayに限る。原48 packetは全件array。原null/非array時の一般的な診断・回復・返却は未評価。",
+        "submitted_common_unfinished_obligations": "提出側は元のJsonValue carrierを保持し、不一致/null/欠落を通常比較へ渡す。"
+      }
     }
   ],
   "legacy_rederivation": {
