@@ -52274,7 +52274,7 @@
         "observation_scope": "同constructor内部の参照join演算の有限分岐。source資格/公開関数の成立ではない。"
       },
       {
-        "id": "R3-REF-COLLECTION-LEFT-TO-RIGHT-MISMATCH",
+        "id": "REF-COLLECTION-LEFT-TO-RIGHT-MISMATCH",
         "symbol": "ref_collections_same",
         "arguments": [
           [
@@ -52308,7 +52308,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-REF-MEMBER-NULLS",
+        "id": "REF-MEMBER-NULLS",
         "symbol": "ref_same",
         "arguments": [
           {
@@ -52332,7 +52332,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-SHA256-ABSENT-LEFT",
+        "id": "SHA256-ABSENT-LEFT",
         "symbol": "ref_same",
         "arguments": [
           {
@@ -52363,7 +52363,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-SHA256-ABSENT-BOTH",
+        "id": "SHA256-ABSENT-BOTH",
         "symbol": "ref_same",
         "arguments": [
           {
@@ -52393,7 +52393,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-SHA256-ABSENT-RIGHT",
+        "id": "SHA256-ABSENT-RIGHT",
         "symbol": "ref_same",
         "arguments": [
           {
@@ -52424,7 +52424,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-FACT-BINDING-ONE-SIDE-DIFFERS",
+        "id": "FACT-BINDING-ONE-SIDE-DIFFERS",
         "symbol": "fact_usable",
         "arguments": [
           {
@@ -52628,7 +52628,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-MEANING-ONE-SIDE-BINDING-DIFFERS",
+        "id": "MEANING-ONE-SIDE-BINDING-DIFFERS",
         "symbol": "meaning_pair_axes",
         "arguments": [
           {
@@ -53255,7 +53255,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R3-IDENTICAL-KNOWLEDGE-RECORD-DUPLICATE",
+        "id": "IDENTICAL-KNOWLEDGE-RECORD-DUPLICATE",
         "symbol": "construction_issues",
         "arguments": [
           {
@@ -53406,7 +53406,7 @@
         "observation_scope": "R3有限内部演算対照。公開関数の成立、source資格、実認可、一般域の網羅を主張しない。"
       },
       {
-        "id": "R4-MEANING-LEFT-SIDE-BINDING-DIFFERS",
+        "id": "MEANING-LEFT-SIDE-BINDING-DIFFERS",
         "symbol": "meaning_pair_axes",
         "arguments": [
           {
@@ -54030,7 +54030,7 @@
         ],
         "basis": "factsはRefのcanonical順に並ぶ。binding不一致のfactをpair-fact-0として先頭へ置き、左factのbinding比較が独立にstateをunknownへ保つことを確認する。comparisonは同じ二つのfactを示すが、binding不一致のためknownへ進まない。",
         "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
-        "observation_scope": "R4の有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
+        "observation_scope": "有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
         "source_basis_refs": [
           0,
           15,
@@ -54038,7 +54038,7 @@
         ]
       },
       {
-        "id": "R4-FACT-USABLE-LEFT-ONLY",
+        "id": "FACT-USABLE-LEFT-ONLY",
         "symbol": "meaning_pair_axes",
         "arguments": [
           {
@@ -54660,9 +54660,9 @@
             "backflow_owner": "owner-synthetic"
           }
         ],
-        "basis": "両fact bindingとslot bindingは一致し、comparisonは同義を示す。LEFT側sourceの原fact本文だけを提出factと不一致にするため、その側だけfact_usableがfalseとなる。反対側のusable条件を外しても比較が採用されないことを固定する。",
+        "basis": "両fact bindingとslot bindingは一致し、comparisonは同義を示す。左側sourceの原fact本文だけを提出factと不一致にするため、その側だけfact_usableがfalseとなる。反対側のusable条件を外しても比較が採用されないことを固定する。",
         "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
-        "observation_scope": "R4の有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
+        "observation_scope": "有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
         "source_basis_refs": [
           0,
           15,
@@ -54670,7 +54670,7 @@
         ]
       },
       {
-        "id": "R4-FACT-USABLE-RIGHT-ONLY",
+        "id": "FACT-USABLE-RIGHT-ONLY",
         "symbol": "meaning_pair_axes",
         "arguments": [
           {
@@ -55292,9 +55292,9 @@
             "backflow_owner": "owner-synthetic"
           }
         ],
-        "basis": "両fact bindingとslot bindingは一致し、comparisonは同義を示す。RIGHT側sourceの原fact本文だけを提出factと不一致にするため、その側だけfact_usableがfalseとなる。反対側のusable条件を外しても比較が採用されないことを固定する。",
+        "basis": "両fact bindingとslot bindingは一致し、comparisonは同義を示す。右側sourceの原fact本文だけを提出factと不一致にするため、その側だけfact_usableがfalseとなる。反対側のusable条件を外しても比較が採用されないことを固定する。",
         "design_pointer": "/source_return_contract/pure_reference_notation/definitions",
-        "observation_scope": "R4の有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
+        "observation_scope": "有限な内部演算対照。実source資格、意味の実採択、一般域の網羅は主張しない。",
         "source_basis_refs": [
           0,
           15,
