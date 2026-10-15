@@ -12195,9 +12195,9 @@
   },
   "derivation_coverage": {
     "original_wholes": 99,
-    "independent_wholes": 82,
-    "total_public_wholes": 181,
-    "limit": "L9由来99件とL8独立whole 82件の全返却を照合する。有限wholeと型域摂動は未見一般域・実source資格・実consumerの全閉包を証明しない。",
+    "independent_wholes": 84,
+    "total_public_wholes": 183,
+    "limit": "L9由来99件とL8独立whole 84件の全返却を照合する。有限wholeと型域摂動は未見一般域・実source資格・実consumerの全閉包を証明しない。",
     "meaning": "各定義のASTと汎用operatorだけが返却を導出する。有限例の一致は未供給source/必要集合/recipient資格の閉包を証明しない。"
   },
   "domain_verification": {

@@ -106172,7 +106172,7 @@
       },
       "raw_canonical_sha256": "495ef55229654222f32d7ed86d6d2866efe8f98cb5eec5704fb55cdd8cbbda77",
       "expected_canonical_sha256": "8d23adb7672742fc0fbe149a5768514f354050b5f28cbda69cb2d81062654879",
-      "basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。原L9 baselineの既存全rootを保持し、Aのrow/未充足義務だけを手で導出。候補L5/reader出力は使用しない。",
+      "basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "source_qualification": "synthetic_only_not_qualified",
@@ -106422,7 +106422,7 @@
       "current_expected_public_sha256": "8d23adb7672742fc0fbe149a5768514f354050b5f28cbda69cb2d81062654879",
       "source_binding": "same_candidate_design",
       "supplemental_provenance": {
-        "independent_expectation_basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。原L9 baselineの既存全rootを保持し、Aのrow/未充足義務だけを手で導出。候補L5/reader出力は使用しない。"
+        "independent_expectation_basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。"
       },
       "source_packet": {
         "ref": {
@@ -106603,7 +106603,7 @@
       },
       "raw_canonical_sha256": "60dc057804221fb082ef0af86270461644e8c1569af29f25f0e95c36d97af1ef",
       "expected_canonical_sha256": "7bc3b5ab3035d2a4a6571f40767bce6963092652e8a329e696d3ded2fd83eacf",
-      "basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。原L9 baselineの既存全rootを保持し、Aのrow/未充足義務だけを手で導出。候補L5/reader出力は使用しない。",
+      "basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "source_qualification": "synthetic_only_not_qualified",
@@ -106853,7 +106853,7 @@
       "current_expected_public_sha256": "7bc3b5ab3035d2a4a6571f40767bce6963092652e8a329e696d3ded2fd83eacf",
       "source_binding": "same_candidate_design",
       "supplemental_provenance": {
-        "independent_expectation_basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。原L9 baselineの既存全rootを保持し、Aのrow/未充足義務だけを手で導出。候補L5/reader出力は使用しない。"
+        "independent_expectation_basis": "L3/L4-F02の定義と値状態の分離。原FIELD-Bの未決を保全し、定義済みFIELD-Aも独立の未決状態と理由を保持する。両方をCOREへ返すが知識受領候補と義務完了を混同しない。"
       },
       "source_packet": {
         "ref": {
@@ -106869,10 +106869,10 @@
   ],
   "case_scope": {
     "current_L9_cases": 99,
-    "independent_probes": 82,
-    "total_current_full_materials": 181,
+    "independent_probes": 84,
+    "total_current_full_materials": 183,
     "original_raw_cases_preserved": 99,
-    "meaning": "L9の99件と現在の独立probe 82件を、元L9 source caseへの参照と独立固定したexpected wholeでL5全返却へ照合する。有限probe/型域観測は未見全域・実資格・実consumerの全閉包を証明しない。"
+    "meaning": "L9の99件と現在の独立probe 84件を、元L9 source caseへの参照と独立固定したexpected wholeでL5全返却へ照合する。有限probe/型域観測は未見全域・実資格・実consumerの全閉包を証明しない。"
   },
   "expectation_boundary": {
     "source_expected_whole": "同一candidate L9 expected_materialの全値。固定旧revisionの読取証拠はsource_pinsへ分離する。",
@@ -106881,7 +106881,7 @@
   },
   "candidate_l5_pin": {
     "path": "docs/helix-brain/L5-detail-design/knowledge-query-receipt.json",
-    "sha256": "04cda24df2036b3092c05c5893782ce4696a3008bef4399a6ec8369397c335f2",
+    "sha256": "1381d1ea0e05599a335dc25fc6dcc23879c61cd2bf924986cd71b090149cbe49",
     "bytes": 425554
   },
   "functions_ref": {
