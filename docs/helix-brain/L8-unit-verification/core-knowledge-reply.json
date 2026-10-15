@@ -24393,7 +24393,7 @@
     "N01 content_results.stateは両stateの等値tokenだけで、unknown/not_evaluated/verified等の原stateを個別返却へ投影する責務は未実現。同値verifiedを実評価の成功へ昇格しない。",
     "F01/N01 required_inputの空文字/TBD/unknown要素は片側/両側とも内容不整合として比較前に局所検出する。これは不足入力の有限表示語で、任意の自然言語や別markerを完全に同定する仕組みではない。両側同じ空配列の必要集合完全性は未具体化。",
     "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。",
-    "unimplemented_content_qualificationは、required_input以外の各内容fieldに残る未確定語/不足の識別未実現を個別に示す。R2 witnessの対応/retainedは等値/所属という現式の再現であり、要求充足・内容資格・有効版を認定しない。既決の要求意味は保持し、要件への還流は設計リファクタリング時に整理する。",
+    "unimplemented_content_qualificationは、required_input以外の各内容fieldに残る未確定語/不足の識別未実現を個別に示す。未実現witnessの対応/retainedは等値/所属という現式の再現であり、要求充足・内容資格・有効版を認定しない。承認済みL3/L4/L10の内容比較義務は保持する。",
     "F01 answer_ref_resultsの片側Absent guardはRawF01の必須3key域から到達しない。欠落6素材は入力型拒否として分離し、型内whole一致や型内分岐網羅へ数えない。原/提出回答のidentity/revisionの別値6wholeは型内比較を識別する。"
   ],
   "local_probes": [
@@ -27659,7 +27659,7 @@
   ],
   "candidate_l5_pin": {
     "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
-    "sha256": "5a44c060fbd801a626433556b8b9b8ab5ba9a0e0a552c13bce095ab1ec644786",
+    "sha256": "94d7fe73d712e347bbb7e475139c3b98f8610d56ae42ef0362472d767283777c",
     "binding": "同一candidate文書のbytes。上流履歴pinや不存在のbase revisionとは区別。"
   },
   "r1_independent_probes": [
@@ -34895,7 +34895,7 @@
       "requirement_ref": "HELIXBRAIN-L3-019-F02",
       "fields": [
         "original_reply/provided_reply全13項目のmeaning・state・knowledge_ref各軸",
-        "original_template_contract/provided_template_contract全15項目のmeaning・state・knowledge_ref各軸",
+        "original_template_contract/provided_template_contract全15項目のmeaning・value_state・knowledge_ref各軸",
         "original_knowledge_state/provided_knowledge_state・adopted_limited_knowledge_scope"
       ],
       "status": "unimplemented",
