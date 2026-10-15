@@ -1,0 +1,6323 @@
+{
+  "document_id": "HELIXINTELLIGENCE-L5-066-HUMAN-PLACEMENT-RECEIPT",
+  "parent": "HELIXINTELLIGENCE-L2-066",
+  "layer": "L5",
+  "pair": "HELIXINTELLIGENCE-L8-066-HUMAN-PLACEMENT-RECEIPT",
+  "status": "design_candidate",
+  "source_main": "8f36ee7f68111eb1adb7e7b7bce761045b1dee93",
+  "approved_content_head": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+  "authority_basis": {
+    "decision_record_id": "HDEC-INTELLIGENCE-PLACEMENT-PREREQUISITE-L3L10-2026-10-12",
+    "record_commit": "937b5bcaf51e006463c55e8b42c62b63bb862937",
+    "actual_admission_commit": "d2f3f2cfe7d17382e5794316eda7f877afaffb5c",
+    "approved_whole_count": 10,
+    "approved_object_hashes": [
+      {
+        "id": "HELIXINTELLIGENCE-L10-066-B01",
+        "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "7b7793f797713ea353154cf313e2ad5b68231c0592d18a5b45289cf69be1e1f8"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-066-F01",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "ba8f1bba0492655d8208b79aa02ea569fc980cb0c9b8c4dc21e43e9f3ac240d0"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-066-F02",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "83b2f6d08f38737a53cc9fb07ff24655aa6be61ed3e6309b6ef2a61558a960c9"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-066-F03",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "32413fad696195f7845d4d7990ed9efe9f844a821a96a4093ec7edb245a25dd4"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L10-066-F04",
+        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "c8d77699398fd48f6903e4d0794555e54cbb38f60f143add092c17cc30649c9f"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-066-B01",
+        "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "a567f1715ceff31d2006912341b7a68dd5fdd620aebbae066fd77859340cbf3c"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-066-F01",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "a56c816b75269fd4a6624686625c09200beba8b75fc346485f7e93d30eaaa936"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-066-F02",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "d3cab8ad8f0153241d99cc5fb35a3703178252cfb07473769396efc351d60db1"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-066-F03",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "46d8687b795d79c8d93a697856b4674dd1019411c8616b5a3640d22072dc2537"
+      },
+      {
+        "id": "HELIXINTELLIGENCE-L3-066-F04",
+        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+        "revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+        "canonical_sha256": "a1841784592d95554b52a3fc012b3caeb521a6ec411200be23ccc3dc907701af"
+      }
+    ],
+    "no_new_approval_gate": true
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9d46472148d437c25b84c08a10cf53aae17817f233222bbcf2a69c4de0f16a9f",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78",
+      "role": "upstream source pin"
+    },
+    {
+      "path": "docs/helix-intelligence/L4-basic-design/human-placement-receipt.json",
+      "revision": "8f36ee7f68111eb1adb7e7b7bce761045b1dee93",
+      "sha256": "69966ec04c57b2c9441126043f30ee83c93b4f63590ed98c621f868b161a2cc7",
+      "role": "admitted L4/L9 source"
+    },
+    {
+      "path": "docs/helix-intelligence/L9-integration-verification/human-placement-receipt.json",
+      "revision": "8f36ee7f68111eb1adb7e7b7bce761045b1dee93",
+      "sha256": "4db18d2dacf63416c7aed3a0f7cfcf56e360d0cac0a74a7170e414cd9b10856e",
+      "role": "admitted L4/L9 source"
+    }
+  ],
+  "legacy_read_basis": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        615,
+        616
+      ],
+      "quote": "**RLO-FR-031**\nAI routerは候補提案のみとし、control planeのdispatch authorityを直接持ってはならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "c5b6772738eed1b61f46a7037e0f2f53a40b8ab410ad4fd2ad0ecfde487c159b",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "候補提案のみでdispatch authorityを持たないこと、task-class/model世代のscope外適性流用とscoreによる権限変更を認めないこと、未評価を未評価として保持すること。",
+      "change": "旧router/runtime/fixed providerの挙動は移植せず、採択066の人案origin・010同一schema/contract参照・source revision/scope・OS receiptとの識別子/版/入力結合へ意味を再導出する。",
+      "reason": "L3/L4 F01/F02はruntime不在時も同じ010契約を要求し、受領不一致をassignment材料にしない。候補作成とdispatch/assignmentを分離する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederive",
+      "preserve": "未評価時の未評価表示を保持し、score単独でscope/branch/assignment/merge authorityを変更しないこと。",
+      "change": "固定provider/effort算出を移植せず、proposal上のLABO未評価・source revision/scopeとOS受領、assignmentを別状態として記録する。",
+      "reason": "L3/L4 F01/F02/B01はLABO未評価を明示可能とし、人案・receiptから評価済性能や権限を生成しない。"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse": "semantic_rederive",
+    "preserve": "候補提案のみでdispatch authorityを持たないこと、未評価とscopeを保持し、score単独で権限を変えないこと。",
+    "change": "旧runtime/providerは移植せず、採択066の同010契約、人案provenance、OS receipt/assignmentの分離に意味を再導出する。",
+    "reason": "RLO-FR-031/040の保持点はL3/L4/B01へ対応させ、proposal・受領・assignment・SEC permission・OS attemptの人確認を別状態として扱うため。"
+  },
+  "scope": {
+    "source_cases": 56,
+    "case_counts": {
+      "HELIXINTELLIGENCE-L9-066-F01": 12,
+      "HELIXINTELLIGENCE-L9-066-F02": 20,
+      "HELIXINTELLIGENCE-L9-066-F03": 11,
+      "HELIXINTELLIGENCE-L9-066-F04": 9,
+      "HELIXINTELLIGENCE-L9-066-B01": 4
+    },
+    "case_scope": "L9の有限初期例。実source資格、実schema、実受領/assignmentは成立させない。"
+  },
+  "contracts": [
+    {
+      "l4_ref": "HELIXINTELLIGENCE-L4-066-F01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F01",
+      "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "content_rules": [
+        "人代行案は010と同じproposal schema/contract versionとpack契約参照を使う。INT runtime不在は案作成/内容記録を妨げず、契約意味の免除にもならない。",
+        "task必要属性、Worker capability/version、LABO evidenceまたは明示未評価とsource revision/scopeを保持する。人案をINT生成や評価済み性能と偽装しない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "l4_ref": "HELIXINTELLIGENCE-L4-066-F02",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F02",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F02",
+      "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "content_rules": [
+        "推奨Worker/根拠/未評価-unknown/除外理由とsource revision/task-scope/契約版/作成actor-timeをproposalへ結ぶ。",
+        "OS受領actor-timeと同入力のreceiptを照合し、入力/版/scope欠落や不一致ではassignment材料として受領しない。案内容は保全し欠落sourceのOS/INT/LABO ownerへ戻す。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "l4_ref": "HELIXINTELLIGENCE-L4-066-F03",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F03",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F03",
+      "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "content_rules": [
+        "同proposal identity/revision/contract/task-scopeの重複を新規根拠や実績にしない。原案・原receipt・現行対象を保持する。",
+        "遅着と未見版はsource revision/version/scopeと互換を再照合し、不明は未受領/保留へ。単なる遅延だけで同対象の内容を別内容にせず、遅着で現行を上書きしない。",
+        "receipt未成立でも案内容を記録できるがassignment成立にしない。重複/遅着/未見版の再照合はOS/接続/契約ownerへ返す。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "l4_ref": "HELIXINTELLIGENCE-L4-066-F04",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F04",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F04",
+      "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "content_rules": [
+        "人経路は010の契約と明示未評価を保持し、INT実装実行だけを依存にしない。通常INT経路を選んだときは同task/revision/scopeでLABO055/054→010案→OS受領/assignmentを別段階で確認する。",
+        "通常経路の固有connector/送受契約は選択時に別閉包へ。人経路へ通常全機構完成待ちを課さず、単体案を構成成功にしない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "l4_ref": "HELIXINTELLIGENCE-L4-066-B01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-B01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-B01",
+      "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "content_rules": [
+        "人案作成/OS受領/OS指定/SEC permission/OS attemptの人確認を別状態とする。人案はproposal状態で、INT出力や評価済み性能を捏造しない。",
+        "人案と受領からscope/branch/authority/assignment成功を生成しない。人案作成を通常操作ごとの人承認にしない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    }
+  ],
+  "type_system": {
+    "json_value_definition": {
+      "kind": "recursive_json",
+      "members": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array<JsonValue>",
+        "object<string,JsonValue>"
+      ],
+      "numbers": "JSON numberを数値として扱いbooleanと区別する"
+    },
+    "types": [
+      {
+        "name": "JsonValue",
+        "definition": "再帰JSON値。AbsentはJSON値ではなく、PathResult.absentの状態として表す。",
+        "kind": "alias",
+        "target": "recursive_json"
+      },
+      {
+        "name": "JsonObject",
+        "definition": "キーが文字列、値がJsonValueであるobject。",
+        "kind": "map",
+        "key_type": "string",
+        "value_type": "JsonValue"
+      },
+      {
+        "name": "RawPacket",
+        "kind": "record",
+        "required_fields": {
+          "assignment": "JsonValue",
+          "claims": "JsonValue",
+          "compatibility": "JsonValue",
+          "delivery": "JsonValue",
+          "human_confirmation": "JsonValue",
+          "original_contract": "JsonValue",
+          "original_current_target": "JsonValue",
+          "original_prior_proposal": "JsonValue",
+          "original_proposal": "JsonValue",
+          "original_receipt": "JsonValue",
+          "original_scope": "JsonValue",
+          "original_stages": "JsonValue",
+          "permission": "JsonValue",
+          "prior_proposal_identity": "JsonValue",
+          "route": "JsonValue",
+          "runtime_available": "JsonValue"
+        },
+        "additional_fields": {
+          "allowed": true,
+          "value_type": "JsonValue",
+          "retention": "retained_inputs"
+        },
+        "nested_presence": "ネストしたmemberの欠落はAbsent、明示nullはJSON nullとして区別する。"
+      },
+      {
+        "name": "Diagnostic",
+        "kind": "union",
+        "variants": [
+          "null",
+          "DiagnosticRecord"
+        ]
+      },
+      {
+        "name": "DiagnosticRecord",
+        "kind": "record",
+        "required_fields": {
+          "field": "string",
+          "result": "string",
+          "return_owner": "string",
+          "rejected_claim": "string|null"
+        }
+      },
+      {
+        "name": "FailureReason",
+        "kind": "record",
+        "required_fields": {
+          "field": "string",
+          "result": "string",
+          "return_owner": "string"
+        }
+      },
+      {
+        "name": "ActualEffects",
+        "kind": "record",
+        "required_fields": {
+          "receipt_write": "boolean",
+          "assignment": "boolean",
+          "dispatch": "boolean",
+          "permission": "boolean",
+          "scope_change": "boolean",
+          "branch_change": "boolean",
+          "acceptance": "boolean",
+          "implementation_ready": "boolean"
+        }
+      },
+      {
+        "name": "ExpectedMaterial",
+        "kind": "record",
+        "required_fields": {
+          "information_state": "string",
+          "retained_inputs": "JsonObject",
+          "receipt_correspondence": "string",
+          "route_obligation": "enum(human_same_contract_no_runtime_gate,normal_stages_require_separate_closure,route_or_origin_unresolved)",
+          "evidence_increment": "number",
+          "current_target_overwrite": "boolean",
+          "failure_reasons": "array<FailureReason>",
+          "return_owners": "array<string>",
+          "rejected_claims": "array<string>",
+          "actual_effects": "ActualEffects"
+        },
+        "optional_fields": {
+          "evaluation_state": "JsonValue",
+          "origin": "JsonValue"
+        }
+      }
+    ],
+    "presence_semantics": "pathのmember欠落はAbsent sentinelを返し、明示nullはJSON nullのまま保つ。RawPacketの必須top-level memberはrequired_fieldsに従い、追加top-level memberは許可し、すべて再帰JSON値として保持する。"
+  },
+  "function_contracts": [
+    {
+      "id": "HELIXINTELLIGENCE-L5-066-DERIVE",
+      "signature": {
+        "arguments": [
+          {
+            "name": "raw",
+            "type": "RawPacket"
+          }
+        ],
+        "returns": "ExpectedMaterial"
+      },
+      "pure": true,
+      "reads": "reference_program ASTにあるpath operandsとdecision tableだけを読む。",
+      "preconditions": [
+        "RawPacketのrequired memberが存在する。",
+        "route/originの未知値も入力域として保持し、未知選択はroute_or_origin_unresolvedとして返す。"
+      ],
+      "postconditions": [
+        "ExpectedMaterialのrequired fieldsをすべて返す。optional_fieldsのevaluation_state/originはraw pathが存在するときだけ返し、null値は保持、Absentはmemberを作らず、retained_inputsにも原rawをそのまま保持する。",
+        "source_binding_rulesの全一致を記載順に返し、既存diagnosticと結合する。claimや先行findingによって別義務のfailure/owner返却を抑止しない。",
+        "assignment/permission/evaluation/adoptionや外部作用を実行・生成しない。"
+      ]
+    }
+  ],
+  "decision_order": {
+    "source": "diagnosticは既存L9 claim/構造の順序を保持する。source_binding_rulesはL4の責務順で全一致を返し、その後にdiagnosticを連結する。",
+    "meaning": "claimまたは一つの先行findingが他のL4 source-binding不備を抑止しない。source-binding findingsを全件列挙した後、既存diagnosticを追加し、return_ownersは最初の出現順で重複を除く。"
+  },
+  "expression_language": {
+    "id": "INTELLIGENCE-PURE-EXPR-1",
+    "operators": [
+      "path",
+      "const",
+      "object",
+      "array",
+      "equal",
+      "is_null",
+      "is_missing_or_null",
+      "not",
+      "and",
+      "or",
+      "contains",
+      "first_match",
+      "if",
+      "collect_matches",
+      "array_concat",
+      "array_is_empty",
+      "project_array",
+      "stable_unique"
+    ],
+    "semantics": {
+      "path": "入力またはletで束縛した値からJSON Pointer形式のmemberを参照する。途中memberが無ければAbsentを返す。",
+      "equal": "再帰JSON等値。objectはkey集合、arrayは順序も比較する。booleanはnumberと区別し、number同士は数値として比較する。",
+      "is_missing_or_null": "値がAbsentまたはJSON nullの場合だけtrue。",
+      "contains": "array要素を再帰JSON等値で照合する。",
+      "first_match": "rowsを記載順に評価し、条件はbooleanでなければならない。最初のtrueのvalueを返し、該当行がなければdefaultを返す。",
+      "if": "conditionはbooleanでなければならず、true/falseの一方のbranchだけを評価する。",
+      "object/array": "評価結果からobject/arrayを構成する。欠落値は出力memberへ暗黙にnullとして変換しない。",
+      "collect_matches": "rowsを記載順に評価し、whenがtrueのvalue全件を同順で返す。booleanでない条件は検証失敗。",
+      "array_concat": "arraysの各配列を引数順に連結する。",
+      "array_is_empty": "配列要素数が0の場合だけtrue。",
+      "project_array": "配列の各objectから指定memberを同順で取り出す。欠落memberはAbsentとして評価失敗。",
+      "stable_unique": "再帰JSON等値で重複を除き、最初の出現順を保つ。"
+    }
+  },
+  "reference_program": {
+    "function_ref": "HELIXINTELLIGENCE-L5-066-DERIVE",
+    "expression": {
+      "op": "let",
+      "bindings": {
+        "diagnostic": {
+          "op": "first_match",
+          "rows": [
+            {
+              "label": "claim:human_alternate_schema_equivalent",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_alternate_schema_equivalent"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "human_alternate_schema_equivalent"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:no_runtime_no_contract",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "no_runtime_no_contract"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "no_runtime_no_contract"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:human_is_int_output",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_is_int_output"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.origin"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "human_is_int_output"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:human_is_performance_evidence",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_is_performance_evidence"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.evaluation_state"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_evidence_or_receipt"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "LABO-evidence-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "human_is_performance_evidence"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:missing_receipt_is_received",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "missing_receipt_is_received"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_evidence_or_receipt"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "missing_receipt_is_received"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:impute_foreign_input",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "impute_foreign_input"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_evidence_or_receipt"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "impute_foreign_input"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:duplicate_increases_evidence",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "duplicate_increases_evidence"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "delivery"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_overwrite_or_evidence"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "duplicate_increases_evidence"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:late_overwrites_current",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "late_overwrites_current"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "delivery"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_overwrite_or_evidence"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "late_overwrites_current"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:unknown_version_is_current",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "unknown_version_is_current"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "compatibility"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_overwrite_or_evidence"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "unknown_version_is_current"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:human_exempts_contract_level",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_exempts_contract_level"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "route"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_route_obligation"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-connection-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "human_exempts_contract_level"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:unit_proposal_is_composite_success",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "unit_proposal_is_composite_success"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "route"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_route_obligation"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-connection-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "unit_proposal_is_composite_success"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:runtime_wait_blocks_human",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "runtime_wait_blocks_human"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "route"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_route_obligation"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-connection-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "runtime_wait_blocks_human"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:human_expands_scope_branch",
+              "basis": "HELIXINTELLIGENCE-L4-066-B01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_expands_scope_branch"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "authority"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_authority_or_state_promotion"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "HELIX-SECURITY"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "human_expands_scope_branch"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:receipt_is_assignment_success",
+              "basis": "HELIXINTELLIGENCE-L4-066-B01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "receipt_is_assignment_success"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "assignment"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_authority_or_state_promotion"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-assignment-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "receipt_is_assignment_success"
+                  }
+                }
+              }
+            },
+            {
+              "label": "claim:every_operation_human_approval",
+              "basis": "HELIXINTELLIGENCE-L4-066-B01",
+              "when": {
+                "op": "contains",
+                "array": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "claims"
+                  ]
+                },
+                "value": {
+                  "op": "const",
+                  "value": "every_operation_human_approval"
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "human_confirmation"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unsupported_authority_or_state_promotion"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-assignment-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": "every_operation_human_approval"
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-contract-null",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "contract"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-contract-member-null:proposal_schema_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "contract",
+                    "proposal_schema_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract.proposal_schema_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-contract-member-null:proposal_contract_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "contract",
+                    "proposal_contract_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract.proposal_contract_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-contract-member-null:pack_contract_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "contract",
+                    "pack_contract_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract.pack_contract_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-origin-route-mismatch",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_proposal",
+                      "origin"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "route"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.origin"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-contract-differs-from-010-reference",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_proposal",
+                      "contract"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_contract"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.contract"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "contract_or_origin_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "required-input:proposal.input.task.context",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input",
+                    "task",
+                    "context"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.input.task.context"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-task-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "required-input:proposal.input.worker.version",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input",
+                    "worker",
+                    "version"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.input.worker.version"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "Worker-capability-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "required-input:proposal.input.labo.source_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input",
+                    "labo",
+                    "source_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.input.labo.source_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "LABO-evidence-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "labo-state-explicit",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input",
+                    "labo",
+                    "state"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.input.labo.state"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing_explicit_evaluation_state"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "LABO-evidence-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:recommended",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "recommended"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.recommended"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:reason_refs",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "reason_refs"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.reason_refs"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:unknown",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "unknown"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.unknown"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:excluded",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "excluded"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.excluded"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:revision",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.revision"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:creator_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "creator_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.creator_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-required:created_at_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "created_at_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.created_at_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-whole-null",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:receiver_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "receiver_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.receiver_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:received_at_ref",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "received_at_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.received_at_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:proposal_revision",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_revision"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.proposal_revision"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:input",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "input"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.input"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:contract",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "contract"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.contract"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-required:scope",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "scope"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.scope"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "unseen-contract-with-unknown-compatibility",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "is_null",
+                    "value": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "compatibility"
+                      ]
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_receipt",
+                          "contract",
+                          "proposal_contract_ref"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_contract",
+                          "proposal_contract_ref"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.contract.proposal_contract_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unseen_and_compatibility_unknown"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "duplicate-same-id-different-revision",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "delivery"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "duplicate"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "prior_proposal_identity"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "original_proposal",
+                        "identity"
+                      ]
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_prior_proposal"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_prior_proposal",
+                          "revision"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "revision"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "prior_proposal.revision"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "same_identity_different_revision"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "duplicate-same-id-different-input",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "delivery"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "duplicate"
+                    }
+                  },
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "prior_proposal_identity"
+                      ]
+                    },
+                    "right": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "original_proposal",
+                        "identity"
+                      ]
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_prior_proposal"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_prior_proposal",
+                          "input"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "input"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "prior_proposal.input.task.context"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "same_identity_different_input"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "late-foreign-current-revision",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "delivery"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "late"
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_current_target",
+                          "revision"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "scope",
+                          "revision"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "current_target.revision"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "late_foreign_revision"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "unknown-compatibility",
+              "basis": "HELIXINTELLIGENCE-L4-066-F03",
+              "when": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "compatibility"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "compatibility"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unknown"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-scope-conflict",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_receipt",
+                      "scope"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_proposal",
+                      "scope"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.scope.scope"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-contract-foreign-version",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_receipt",
+                      "contract"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_contract"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.contract.proposal_contract_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign_version"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-contract-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-input-conflict",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_receipt",
+                      "input"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_proposal",
+                      "input"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.input.task.domain"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "input_content_conflict"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "normal-stage-unobserved:labo",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "route"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "normal"
+                    }
+                  },
+                  {
+                    "op": "is_missing_or_null",
+                    "value": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "original_stages",
+                        "labo"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "stages.labo"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unobserved"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "LABO-evidence-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "normal-stage-unobserved:proposal",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "route"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "normal"
+                    }
+                  },
+                  {
+                    "op": "is_missing_or_null",
+                    "value": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "original_stages",
+                        "proposal"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "stages.proposal"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unobserved"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "normal-stage-unobserved:receipt",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "route"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "normal"
+                    }
+                  },
+                  {
+                    "op": "is_missing_or_null",
+                    "value": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "original_stages",
+                        "receipt"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "stages.receipt"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unobserved"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            },
+            {
+              "label": "normal-labo-scope-conflict",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "equal",
+                    "left": {
+                      "op": "path",
+                      "segments": [
+                        "$input",
+                        "route"
+                      ]
+                    },
+                    "right": {
+                      "op": "const",
+                      "value": "normal"
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_stages",
+                          "labo",
+                          "scope"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_scope"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "stages.labo.scope.scope"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "LABO-evidence-owner"
+                  },
+                  "rejected_claim": {
+                    "op": "const",
+                    "value": null
+                  }
+                }
+              }
+            }
+          ],
+          "default": {
+            "op": "const",
+            "value": null
+          },
+          "condition_key": "when",
+          "value_key": "value",
+          "priority": "array_order"
+        },
+        "source_findings": {
+          "op": "collect_matches",
+          "rows": [
+            {
+              "label": "proposal-worker-capability-missing",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input",
+                    "worker",
+                    "capability_ref"
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.input.worker.capability_ref"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "missing"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "Worker-capability-source-owner"
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-proposal-identity-foreign",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_missing_or_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "identity"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_missing_or_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_receipt",
+                          "proposal_identity"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_receipt",
+                          "proposal_identity"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "identity"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.proposal_identity"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  }
+                }
+              }
+            },
+            {
+              "label": "receipt-proposal-revision-foreign",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "and",
+                "values": [
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_missing_or_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "revision"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "is_missing_or_null",
+                      "value": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_receipt",
+                          "proposal_revision"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_receipt",
+                          "proposal_revision"
+                        ]
+                      },
+                      "right": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "revision"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "receipt.proposal_revision"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-receipt-owner"
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-scope-does-not-bind-current-scope",
+              "basis": "HELIXINTELLIGENCE-L4-066-F02",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_proposal",
+                      "scope"
+                    ]
+                  },
+                  "right": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "original_scope"
+                    ]
+                  }
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.scope"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "foreign_or_unresolved"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "OS-task-owner"
+                  }
+                }
+              }
+            },
+            {
+              "label": "proposal-origin-unknown",
+              "basis": "HELIXINTELLIGENCE-L4-066-F01",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "or",
+                  "values": [
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "human"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "original_proposal",
+                          "origin"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "normal"
+                      }
+                    }
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "proposal.origin"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unknown"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-proposal-source-owner"
+                  }
+                }
+              }
+            },
+            {
+              "label": "route-unknown",
+              "basis": "HELIXINTELLIGENCE-L4-066-F04",
+              "when": {
+                "op": "not",
+                "value": {
+                  "op": "or",
+                  "values": [
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "route"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "human"
+                      }
+                    },
+                    {
+                      "op": "equal",
+                      "left": {
+                        "op": "path",
+                        "segments": [
+                          "$input",
+                          "route"
+                        ]
+                      },
+                      "right": {
+                        "op": "const",
+                        "value": "normal"
+                      }
+                    }
+                  ]
+                }
+              },
+              "value": {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "const",
+                    "value": "route"
+                  },
+                  "result": {
+                    "op": "const",
+                    "value": "unknown"
+                  },
+                  "return_owner": {
+                    "op": "const",
+                    "value": "INTELLIGENCE-connection-owner"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "diagnostic_findings": {
+          "op": "if",
+          "condition": {
+            "op": "is_null",
+            "value": {
+              "op": "path",
+              "segments": [
+                "$diagnostic"
+              ]
+            }
+          },
+          "then": {
+            "op": "array",
+            "items": []
+          },
+          "else": {
+            "op": "array",
+            "items": [
+              {
+                "op": "object",
+                "fields": {
+                  "field": {
+                    "op": "path",
+                    "segments": [
+                      "$diagnostic",
+                      "field"
+                    ]
+                  },
+                  "result": {
+                    "op": "path",
+                    "segments": [
+                      "$diagnostic",
+                      "result"
+                    ]
+                  },
+                  "return_owner": {
+                    "op": "path",
+                    "segments": [
+                      "$diagnostic",
+                      "return_owner"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "all_findings": {
+          "op": "array_concat",
+          "arrays": [
+            {
+              "op": "path",
+              "segments": [
+                "$source_findings"
+              ]
+            },
+            {
+              "op": "path",
+              "segments": [
+                "$diagnostic_findings"
+              ]
+            }
+          ]
+        }
+      },
+      "body": {
+        "op": "object",
+        "fields": {
+          "information_state": {
+            "op": "if",
+            "condition": {
+              "op": "not",
+              "value": {
+                "op": "array_is_empty",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$all_findings"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "op": "const",
+              "value": "held_receipt_unqualified"
+            },
+            "else": {
+              "op": "if",
+              "condition": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "delivery"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "duplicate"
+                }
+              },
+              "then": {
+                "op": "const",
+                "value": "duplicate_content_retained"
+              },
+              "else": {
+                "op": "const",
+                "value": "receipt_content_requires_actual_qualification"
+              }
+            }
+          },
+          "retained_inputs": {
+            "op": "path",
+            "segments": [
+              "$input"
+            ]
+          },
+          "receipt_correspondence": {
+            "op": "if",
+            "condition": {
+              "op": "array_is_empty",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$all_findings"
+                ]
+              }
+            },
+            "then": {
+              "op": "const",
+              "value": "corresponding_in_fixture_only"
+            },
+            "else": {
+              "op": "const",
+              "value": "not_received_or_held"
+            }
+          },
+          "evaluation_state": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "evaluation_state"
+            ]
+          },
+          "origin": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "origin"
+            ]
+          },
+          "route_obligation": {
+            "op": "first_match",
+            "rows": [
+              {
+                "when": {
+                  "op": "not",
+                  "value": {
+                    "op": "or",
+                    "values": [
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "path",
+                          "segments": [
+                            "$input",
+                            "original_proposal",
+                            "origin"
+                          ]
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "human"
+                        }
+                      },
+                      {
+                        "op": "equal",
+                        "left": {
+                          "op": "path",
+                          "segments": [
+                            "$input",
+                            "original_proposal",
+                            "origin"
+                          ]
+                        },
+                        "right": {
+                          "op": "const",
+                          "value": "normal"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "value": {
+                  "op": "const",
+                  "value": "route_or_origin_unresolved"
+                }
+              },
+              {
+                "when": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "route"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "human"
+                  }
+                },
+                "value": {
+                  "op": "const",
+                  "value": "human_same_contract_no_runtime_gate"
+                }
+              },
+              {
+                "when": {
+                  "op": "equal",
+                  "left": {
+                    "op": "path",
+                    "segments": [
+                      "$input",
+                      "route"
+                    ]
+                  },
+                  "right": {
+                    "op": "const",
+                    "value": "normal"
+                  }
+                },
+                "value": {
+                  "op": "const",
+                  "value": "normal_stages_require_separate_closure"
+                }
+              }
+            ],
+            "default": {
+              "op": "const",
+              "value": "route_or_origin_unresolved"
+            }
+          },
+          "evidence_increment": {
+            "op": "const",
+            "value": 0
+          },
+          "current_target_overwrite": {
+            "op": "const",
+            "value": false
+          },
+          "failure_reasons": {
+            "op": "path",
+            "segments": [
+              "$all_findings"
+            ]
+          },
+          "return_owners": {
+            "op": "stable_unique",
+            "value": {
+              "op": "project_array",
+              "array": {
+                "op": "path",
+                "segments": [
+                  "$all_findings"
+                ]
+              },
+              "member": "return_owner"
+            }
+          },
+          "rejected_claims": {
+            "op": "if",
+            "condition": {
+              "op": "is_null",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$diagnostic"
+                ]
+              }
+            },
+            "then": {
+              "op": "array",
+              "items": []
+            },
+            "else": {
+              "op": "if",
+              "condition": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$diagnostic",
+                    "rejected_claim"
+                  ]
+                }
+              },
+              "then": {
+                "op": "array",
+                "items": []
+              },
+              "else": {
+                "op": "array",
+                "items": [
+                  {
+                    "op": "path",
+                    "segments": [
+                      "$diagnostic",
+                      "rejected_claim"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actual_effects": {
+            "op": "object",
+            "fields": {
+              "receipt_write": {
+                "op": "const",
+                "value": false
+              },
+              "assignment": {
+                "op": "const",
+                "value": false
+              },
+              "dispatch": {
+                "op": "const",
+                "value": false
+              },
+              "permission": {
+                "op": "const",
+                "value": false
+              },
+              "scope_change": {
+                "op": "const",
+                "value": false
+              },
+              "branch_change": {
+                "op": "const",
+                "value": false
+              },
+              "acceptance": {
+                "op": "const",
+                "value": false
+              },
+              "implementation_ready": {
+                "op": "const",
+                "value": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "failure_rule_table": [
+      {
+        "label": "claim:human_alternate_schema_equivalent",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "human_alternate_schema_equivalent"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "human_alternate_schema_equivalent"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:no_runtime_no_contract",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "no_runtime_no_contract"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "no_runtime_no_contract"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:human_is_int_output",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "human_is_int_output"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.origin"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "human_is_int_output"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:human_is_performance_evidence",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "human_is_performance_evidence"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.evaluation_state"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_evidence_or_receipt"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "LABO-evidence-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "human_is_performance_evidence"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:missing_receipt_is_received",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "missing_receipt_is_received"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_evidence_or_receipt"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "missing_receipt_is_received"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:impute_foreign_input",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "impute_foreign_input"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_evidence_or_receipt"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "impute_foreign_input"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:duplicate_increases_evidence",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "duplicate_increases_evidence"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "delivery"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_overwrite_or_evidence"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "duplicate_increases_evidence"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:late_overwrites_current",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "late_overwrites_current"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "delivery"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_overwrite_or_evidence"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "late_overwrites_current"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:unknown_version_is_current",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "unknown_version_is_current"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "compatibility"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_overwrite_or_evidence"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "unknown_version_is_current"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:human_exempts_contract_level",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "human_exempts_contract_level"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "route"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_route_obligation"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-connection-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "human_exempts_contract_level"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:unit_proposal_is_composite_success",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "unit_proposal_is_composite_success"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "route"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_route_obligation"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-connection-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "unit_proposal_is_composite_success"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:runtime_wait_blocks_human",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "runtime_wait_blocks_human"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "route"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_route_obligation"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-connection-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "runtime_wait_blocks_human"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:human_expands_scope_branch",
+        "basis": "HELIXINTELLIGENCE-L4-066-B01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "human_expands_scope_branch"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "authority"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_authority_or_state_promotion"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "HELIX-SECURITY"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "human_expands_scope_branch"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:receipt_is_assignment_success",
+        "basis": "HELIXINTELLIGENCE-L4-066-B01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "receipt_is_assignment_success"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "assignment"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_authority_or_state_promotion"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-assignment-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "receipt_is_assignment_success"
+            }
+          }
+        }
+      },
+      {
+        "label": "claim:every_operation_human_approval",
+        "basis": "HELIXINTELLIGENCE-L4-066-B01",
+        "when": {
+          "op": "contains",
+          "array": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "claims"
+            ]
+          },
+          "value": {
+            "op": "const",
+            "value": "every_operation_human_approval"
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "human_confirmation"
+            },
+            "result": {
+              "op": "const",
+              "value": "unsupported_authority_or_state_promotion"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-assignment-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": "every_operation_human_approval"
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-contract-null",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "contract"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-contract-member-null:proposal_schema_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "contract",
+              "proposal_schema_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract.proposal_schema_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-contract-member-null:proposal_contract_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "contract",
+              "proposal_contract_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract.proposal_contract_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-contract-member-null:pack_contract_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "contract",
+              "pack_contract_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract.pack_contract_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-origin-route-mismatch",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "origin"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "route"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.origin"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-contract-differs-from-010-reference",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "contract"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_contract"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.contract"
+            },
+            "result": {
+              "op": "const",
+              "value": "contract_or_origin_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "required-input:proposal.input.task.context",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "task",
+              "context"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.task.context"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-task-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "required-input:proposal.input.worker.version",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "worker",
+              "version"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.worker.version"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "Worker-capability-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "required-input:proposal.input.labo.source_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "labo",
+              "source_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.labo.source_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "LABO-evidence-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "labo-state-explicit",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "labo",
+              "state"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.labo.state"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing_explicit_evaluation_state"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "LABO-evidence-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:recommended",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "recommended"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.recommended"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:reason_refs",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "reason_refs"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.reason_refs"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:unknown",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "unknown"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.unknown"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:excluded",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "excluded"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.excluded"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:revision",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "revision"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:creator_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "creator_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.creator_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-required:created_at_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "created_at_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.created_at_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-whole-null",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:receiver_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "receiver_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.receiver_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:received_at_ref",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "received_at_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.received_at_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:proposal_revision",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "proposal_revision"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.proposal_revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:input",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "input"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.input"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:contract",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "contract"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.contract"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-required:scope",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_receipt",
+              "scope"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.scope"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "unseen-contract-with-unknown-compatibility",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "is_null",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "compatibility"
+                ]
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "contract",
+                    "proposal_contract_ref"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_contract",
+                    "proposal_contract_ref"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.contract.proposal_contract_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "unseen_and_compatibility_unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "duplicate-same-id-different-revision",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "delivery"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "duplicate"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "prior_proposal_identity"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "original_proposal",
+                  "identity"
+                ]
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_prior_proposal"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_prior_proposal",
+                    "revision"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "prior_proposal.revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "same_identity_different_revision"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "duplicate-same-id-different-input",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "delivery"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "duplicate"
+              }
+            },
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "prior_proposal_identity"
+                ]
+              },
+              "right": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "original_proposal",
+                  "identity"
+                ]
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_prior_proposal"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_prior_proposal",
+                    "input"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "input"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "prior_proposal.input.task.context"
+            },
+            "result": {
+              "op": "const",
+              "value": "same_identity_different_input"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "late-foreign-current-revision",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "delivery"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "late"
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_current_target",
+                    "revision"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "scope",
+                    "revision"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "current_target.revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "late_foreign_revision"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "unknown-compatibility",
+        "basis": "HELIXINTELLIGENCE-L4-066-F03",
+        "when": {
+          "op": "is_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "compatibility"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "compatibility"
+            },
+            "result": {
+              "op": "const",
+              "value": "unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-scope-conflict",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_receipt",
+                "scope"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "scope"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.scope.scope"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-contract-foreign-version",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_receipt",
+                "contract"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_contract"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.contract.proposal_contract_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign_version"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-contract-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-input-conflict",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_receipt",
+                "input"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "input"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.input.task.domain"
+            },
+            "result": {
+              "op": "const",
+              "value": "input_content_conflict"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "normal-stage-unobserved:labo",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "route"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "normal"
+              }
+            },
+            {
+              "op": "is_missing_or_null",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "original_stages",
+                  "labo"
+                ]
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "stages.labo"
+            },
+            "result": {
+              "op": "const",
+              "value": "unobserved"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "LABO-evidence-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "normal-stage-unobserved:proposal",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "route"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "normal"
+              }
+            },
+            {
+              "op": "is_missing_or_null",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "original_stages",
+                  "proposal"
+                ]
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "stages.proposal"
+            },
+            "result": {
+              "op": "const",
+              "value": "unobserved"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "normal-stage-unobserved:receipt",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "route"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "normal"
+              }
+            },
+            {
+              "op": "is_missing_or_null",
+              "value": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "original_stages",
+                  "receipt"
+                ]
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "stages.receipt"
+            },
+            "result": {
+              "op": "const",
+              "value": "unobserved"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      },
+      {
+        "label": "normal-labo-scope-conflict",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "equal",
+              "left": {
+                "op": "path",
+                "segments": [
+                  "$input",
+                  "route"
+                ]
+              },
+              "right": {
+                "op": "const",
+                "value": "normal"
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_stages",
+                    "labo",
+                    "scope"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_scope"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "stages.labo.scope.scope"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "LABO-evidence-owner"
+            },
+            "rejected_claim": {
+              "op": "const",
+              "value": null
+            }
+          }
+        }
+      }
+    ],
+    "input_bindings": {
+      "$input": "raw"
+    },
+    "source_binding_rules": [
+      {
+        "label": "proposal-worker-capability-missing",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "worker",
+              "capability_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.worker.capability_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "Worker-capability-source-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-proposal-identity-foreign",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "identity"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_identity"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_identity"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "identity"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.proposal_identity"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-proposal-revision-foreign",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_revision"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_revision"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.proposal_revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-scope-does-not-bind-current-scope",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "scope"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_scope"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.scope"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign_or_unresolved"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-task-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-origin-unknown",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "or",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "origin"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "human"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "origin"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "normal"
+                }
+              }
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.origin"
+            },
+            "result": {
+              "op": "const",
+              "value": "unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "route-unknown",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "or",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "route"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "human"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "route"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "normal"
+                }
+              }
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "route"
+            },
+            "result": {
+              "op": "const",
+              "value": "unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-connection-owner"
+            }
+          }
+        }
+      }
+    ],
+    "source_binding_rule_table": [
+      {
+        "label": "proposal-worker-capability-missing",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "is_missing_or_null",
+          "value": {
+            "op": "path",
+            "segments": [
+              "$input",
+              "original_proposal",
+              "input",
+              "worker",
+              "capability_ref"
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.input.worker.capability_ref"
+            },
+            "result": {
+              "op": "const",
+              "value": "missing"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "Worker-capability-source-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-proposal-identity-foreign",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "identity"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_identity"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_identity"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "identity"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.proposal_identity"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "receipt-proposal-revision-foreign",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "and",
+          "values": [
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "is_missing_or_null",
+                "value": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_revision"
+                  ]
+                }
+              }
+            },
+            {
+              "op": "not",
+              "value": {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_receipt",
+                    "proposal_revision"
+                  ]
+                },
+                "right": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "revision"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "receipt.proposal_revision"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-receipt-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-scope-does-not-bind-current-scope",
+        "basis": "HELIXINTELLIGENCE-L4-066-F02",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "equal",
+            "left": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_proposal",
+                "scope"
+              ]
+            },
+            "right": {
+              "op": "path",
+              "segments": [
+                "$input",
+                "original_scope"
+              ]
+            }
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.scope"
+            },
+            "result": {
+              "op": "const",
+              "value": "foreign_or_unresolved"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "OS-task-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "proposal-origin-unknown",
+        "basis": "HELIXINTELLIGENCE-L4-066-F01",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "or",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "origin"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "human"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "original_proposal",
+                    "origin"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "normal"
+                }
+              }
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "proposal.origin"
+            },
+            "result": {
+              "op": "const",
+              "value": "unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-proposal-source-owner"
+            }
+          }
+        }
+      },
+      {
+        "label": "route-unknown",
+        "basis": "HELIXINTELLIGENCE-L4-066-F04",
+        "when": {
+          "op": "not",
+          "value": {
+            "op": "or",
+            "values": [
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "route"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "human"
+                }
+              },
+              {
+                "op": "equal",
+                "left": {
+                  "op": "path",
+                  "segments": [
+                    "$input",
+                    "route"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "normal"
+                }
+              }
+            ]
+          }
+        },
+        "value": {
+          "op": "object",
+          "fields": {
+            "field": {
+              "op": "const",
+              "value": "route"
+            },
+            "result": {
+              "op": "const",
+              "value": "unknown"
+            },
+            "return_owner": {
+              "op": "const",
+              "value": "INTELLIGENCE-connection-owner"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "owner_boundary": {
+    "candidate_literals": [
+      "INTELLIGENCE-contract-owner",
+      "INTELLIGENCE-proposal-source-owner",
+      "INTELLIGENCE-connection-owner",
+      "OS-task-owner",
+      "OS-receipt-owner",
+      "OS-assignment-owner",
+      "LABO-evidence-owner",
+      "Worker-capability-source-owner",
+      "HELIX-SECURITY"
+    ],
+    "meaning": "設計上の責務候補。実owner identity、authorization、assignment、実receiptを発行しない。"
+  },
+  "authority_boundary": {
+    "human_proposal": "proposal案を表すだけ。",
+    "OS_receipt": "receipt stateだけを表し、OS実受領を意味しない。",
+    "OS_assignment": "別recordとして扱い、receiptから推論しない。",
+    "SEC_permission": "独立stateとして扱い、proposalやreceiptから推論しない。",
+    "human_confirmation": "OS attempt recordだけを表し、通常操作ごとの人間承認を追加しない。"
+  },
+  "unclosed": [
+    "L2-010正式proposal schema/契約の実source bindingは未供給。fixture内original_contractとの一致だけを計算する。",
+    "task/Worker/LABO provenanceの実source資格/owner identityは未供給。",
+    "OSの実receipt/assignmentとSEC permission、OS attemptの人確認は未実行。",
+    "遅着/重複/未見版は56有限source case範囲外全組合せを未閉包として保持。",
+    "通常接続選択時のconnector/送受契約closureは別要件で未閉包。",
+    "Worker capabilityの実source資格、receipt issuer/実受領、実owner identityは未供給。ここで検査するのはraw内の存在とproposal/receipt識別子・版・scopeの論理結合のみ。"
+  ],
+  "source_binding_rule_purpose": "Worker capabilityの存在、receipt proposal identity/revision、proposal scopeとcurrent scope、human/normalのorigin/route選択を個別に結ぶ。ここで検証するのはfixture内値の関係であり、実source資格・receipt発行・owner identityではない。"
+}
