@@ -884,7 +884,7 @@
   "paired_document": "HARNESS-L8-048",
   "purpose": "命名候補とidentity/oracle/canonical条件/局所例外/owner境界の内部純比較を具体化する。",
   "types": {
-    "presence_contract": "presence_statesはfieldの許容状態。absentはkey欠如、nullは明示null、emptyは空string/list/object、providedはそれ以外の非null値。emptyも基底型/enum/required/min_length/unique_byへ照合する。L8ではabsent/explicit_null/empty_array/empty_object/suppliedを別に保存し、診断missingへの写像と原値保持を分離する。",
+    "presence_contract": "presence_statesはfieldの許容状態。absentはkey欠如、nullは明示null、emptyは空string/list/object、providedはそれ以外の非null値。emptyも基底型/enum/required/min_length/unique_byへ照合する。L8ではabsent/explicit_null/empty_string/empty_array/empty_object/suppliedを別に保存し、診断missingへの写像と原値保持を分離する。",
     "scope": "原59と独立局所例/原契約の宣言carrier。未見一般域/正式codec/schemaは未成立。opaque object ID/consumer ID mapをrole型へ置換しない。 入力のpresence域は元の保存例の出現頻度ではなくreadと欠落/null分岐から定義。targets ID domainのみexplicit限定。正式codecは未成立。",
     "F01Arguments": {
       "kind": "record",
@@ -1838,8 +1838,7 @@
                     "bound",
                     "missing",
                     "unknown",
-                    "conflict",
-                    "private_only_rejected"
+                    "conflict"
                   ]
                 }
               },
@@ -1989,7 +1988,8 @@
           }
         }
       },
-      "additional_properties": "closed_declared_carrier"
+      "additional_properties": "closed_declared_carrier",
+      "meaning": "edge状態/候補定数の部分返却。影響対象memberは未具体化（functions.compare_f02.unclosed_obligations）。"
     },
     "F03Arguments": {
       "kind": "record",
@@ -2945,7 +2945,8 @@
           }
         }
       },
-      "additional_properties": "closed_declared_carrier"
+      "additional_properties": "closed_declared_carrier",
+      "meaning": "現在のsynthetic値比較の部分返却。同対象revision/scope/対照canonical name/実oracle bindingは未検査。"
     },
     "F04Arguments": {
       "kind": "record",
@@ -4893,7 +4894,7 @@
         "contextのQ/scope/独立owner版/oracle/rollback比較元は明示引数。テストcontrol由来をL8 context_sourcesへ固定。完成期待/fixture IDを判定へ渡さない。"
       ],
       "steps": [
-        "targets原順でtarget IDへ結果を保持。role未供給/unknown/語彙未供給または非該当→unknown_role、対象meaning不足→missing_target_meaning、basis不足→missing_basis、consumer無→missing_consumerの優先。文字列から役割を発明しない。",
+        "targets原順でtarget IDへ保持。role未供給/unknown/語彙不足または非該当→unknown_role、meaning不足/unknown→missing_target_meaning、basis不足/unknown→missing_basis、consumer母集合不足/空/空識別値→missing_consumer、未知marker要素→unknown_consumerの優先。文字列から役割やconsumerを発明しない。",
         "4曖昧語Manager/Helper/Util/Dataは原選択clauseの例。完全一致した語だけ例外reason/owner/expiry/scopeを照合。他grammar/名称全分類は未定義。candidate_only:宣言role、例外成立時だけ_with_scoped_exception。canonical_decided_here=false。"
       ],
       "returns": [
@@ -4932,8 +4933,8 @@
         "contextのQ/scope/独立owner版/oracle/rollback比較元は明示引数。テストcontrol由来をL8 context_sourcesへ固定。完成期待/fixture IDを判定へ渡さない。"
       ],
       "steps": [
-        "before/after/stableのobject/oracleを別々に比較。actual不足missing、required不足unknown、TBDunknown、差conflict、一致held。",
-        "symbol edgeはstable object＋operation＋after symbol、oracle edgeはstable object＋operation＋stable oracle。edge全体null/absentmissing、privateのみならprivate_only_rejected、各fieldmissing→unknown→conflictの優先、全一致bound。pair両objectもstableへ個別比較する。symbol変更は候補だけ。"
+        "stable/before/after identityは三値のいずれか欠落/null/空ならmissing、次に未知markerがあればunknown、全値一致held、差conflict。edge/pairのcompare_valueはactual不足missingを先に、required不足またはunknown markerをunknownとする。stable nullはidentityでmissing、既知actualを持つedge/pairでunknownとなり得る。",
+        "symbol edgeはstable object＋operation＋after symbol、oracle edgeはstable object＋operation＋stable oracle。edge全体null/absentはmissing。oracle edgeでprivate_symbol keyがあり必要keyが一つでも不存在なら先にprivate_only_rejected。必要keyが全て存在しnullならこの分岐ではなく値比較のmissingとなる。symbol edgeはclosed carrierにprivate_symbolを持たずprivate_only_rejectedへ到達しない。各値はmissing→unknown→conflict、全一致bound。pair両objectも同じstableへ個別比較。symbol_changeは原L9由来のcandidate_only定数で実変換/delta判定を表さない。"
       ],
       "returns": [
         "edge_results",
@@ -4944,6 +4945,38 @@
       "postconditions": [
         "全返却memberを値として返す。入力を変更せず比較失敗は局所保存する。",
         "effectsは全false。内容上のsynthetic候補は採択/権限/実効果の成立ではない。"
+      ],
+      "unclosed_obligations": [
+        {
+          "id": "H048-F02-IMPACTED-TARGET-NOT-MATERIALIZED",
+          "upstream_sources": [
+            {
+              "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+              "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+              "json_pointer": "/contracts/1/output_meanings",
+              "value_canonical_sha256": "7dcd7ae377568bd3b744879a04938756a16806bbb52dbbbd786a8a75ff458ac5"
+            },
+            {
+              "path": "docs/helix-harness/L10-verification/functional-verification.json",
+              "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+              "requirement_ref": "HARNESS-L3-048-F02",
+              "oracle_ref": "HARNESS-L10-048-F02",
+              "member": "failure_observation",
+              "exact_quote": "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+            }
+          ],
+          "implemented_output": [
+            "edge_resultsの各比較状態",
+            "原L9のsymbol_change定数",
+            "Q/無作用"
+          ],
+          "absent_output": [
+            "影響するobject/operation/oracleの具体ID集合と各破断edgeとの対応",
+            "影響consumer/返却先への値接続とそのsource資格"
+          ],
+          "current_carrier_limit": "F02Returnに影響対象memberは存在しない。packet内のstable/before/after/edge/pairに一部IDがあっても影響targetへ組み立てて返さず、consumer母集合/正式bindingも未供給。",
+          "consequence": "F02はedge状態の部分返却。L3/L4/L10の影響対象義務は未実現で、全義務完了/Readyではない。原159wholeを維持し未提供のimpact producer/consumerを作らない。"
+        }
       ]
     },
     {
@@ -4977,11 +5010,11 @@
         "contextのQ/scope/独立owner版/oracle/rollback比較元は明示引数。テストcontrol由来をL8 context_sourcesへ固定。完成期待/fixture IDを判定へ渡さない。"
       ],
       "steps": [
-        "canonicalのname/owner/revisionを個別必須値で比較し、owner/版は明示context.canonical_referenceと独立比較。scope/実資格の供給は未成立、形から生成しない。",
-        "consumerはrequired/observedのidentity集合差。observedにforeignならconflict、required不足のみmissing、空母集合やunknown値はunknown。件数の相殺不可。",
+        "canonical.name/owner/revisionは必須値の存在/markerを確認する。owner/revisionだけを明示canonical_referenceへ比較し、name対照値は供給されずnameの内容一致は未検査。同対象revision/scopeの全条件bindingも未実現であり、後記unclosed_obligationsへ条件別不足を開示する。",
+        "consumerはrequired/observedのidentity集合差。母集合nullはmissing、空必要集合/空識別値/未知marker要素はunknown、既知foreignがあればconflict、required不足のみmissing。件数だけでは充足させない。",
         "signature七field（原文六軸の入出力をinputs/outputsに分離）は原値の深い同値比較。before/after片側null/absentmissing、TBDunknown、差conflict。effectsの空配列は正当値。",
-        "invariantのoracle/expected、最小変換changes、rollbackのobject/oracle/symbolを確認。oracleとrollbackは明示contextの独立stable/control値へ比較。record存在のみを実behavior不変証明にしない。",
-        "visibility internalのみ、evidence contentのみ、requested_effect candidate_onlyのみ。missing/unknownを許可値へ補完しない。全conditionを保存し、全supported_synthetic_conditionの場合だけcandidate_presentable。実rename等全false。"
+        "invariantのoracle/expected、changes各要素、rollbackのobject/oracle/symbolを確認する。condition_recordは必須値/空要素のmissingをunknownより先に、次に各値/要素のTBD/unknownを検査する。changes空listも後段でmissingにする。oracleとrollbackは独立controlへ比較するが、実behavior不変/変換最小性/同revision-scopeの証明を生成しない。",
+        "visibility internal、evidence content、requested_effect candidate_onlyの局所値条件を比較する。candidate_presentableは現在実装したsynthetic部分条件のANDであり、未実現の同対象revision/scopeやcanonical name内容照合を含む全L3/L4義務の成立ではない。実rename等は全false。"
       ],
       "returns": [
         "condition_results",
@@ -4992,6 +5025,43 @@
       "postconditions": [
         "全返却memberを値として返す。入力を変更せず比較失敗は局所保存する。",
         "effectsは全false。内容上のsynthetic候補は採択/権限/実効果の成立ではない。"
+      ],
+      "unclosed_obligations": [
+        {
+          "id": "H048-F03-SAME-TARGET-REVISION-SCOPE-NOT-BOUND",
+          "upstream_source": {
+            "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+            "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+            "json_pointer": "/contracts/2/content_comparison/0",
+            "value_canonical_sha256": "7b6556a2c6a90ca152757c25547dd7a2dbab70e0ab8ce839de880f8f1311d1e9"
+          },
+          "current_reads": "canonical_referenceはowner/revisionのみ、stable_oracle/rollback_referenceは独立control値。F03Context.scopeは宣言保持素材だが現関数では未読。",
+          "missing_by_condition": [
+            {
+              "condition": "canonical",
+              "missing": [
+                "対照canonical name内容",
+                "canonical decisionの対象identity/scopeの独立binding"
+              ]
+            },
+            {
+              "condition": "internal/consumer/署名7field",
+              "missing": [
+                "各条件sourceの対象identity/revision/scope",
+                "必要consumer母集合と各observed consumerの同版scope資格"
+              ]
+            },
+            {
+              "condition": "invariant/minimum_transform/rollback",
+              "missing": [
+                "各原証拠sourceの対象identity/revision/scope",
+                "同じ対象版に対するbehavior/最小性/復旧の実oracle binding"
+              ]
+            }
+          ],
+          "consequence": "全条件が同対象revision/scopeで成立したことは未検査。candidate_presentable=trueは供給値の部分比較表示であり、未供給bindingを生成せず全L3/L4義務の成立/許可/実採用を表さない。",
+          "canonical_name_detail": "nameはmissing/unknownを確認するだけでcanonical_reference.nameと内容比較しない。対照nameは現在のcontextに存在せず、name変更で返却不変となる局所例を未実現範囲の証拠として保存する。"
+        }
       ]
     },
     {
@@ -5130,8 +5200,8 @@
     ],
     "postcondition": "理由/owner/impactと全assessmentを値で保全、actual_dispatch=false。",
     "reads": [
-      "finding whole value",
-      "assessment whole F04Return"
+      "findingの全値",
+      "assessmentのF04Return全値"
     ],
     "binding": "同一candidate文書のtypes.F04Return / types.FindingRecordを参照。base revisionに未存在のcandidate pathを固定しない。"
   },
@@ -5147,18 +5217,17 @@
       "def missing(v):\n return v is None or v==''",
       "def obj(v):\n return v if isinstance(v,dict) else {}",
       "def common(context):\n return {'unaffected_Q':copy.deepcopy(context['unaffected_Q']),'effects':{k:False for k in EFFECT_KEYS}}",
-      "def present_fields(value,keys):\n return isinstance(value,dict) and all(not missing(value.get(k)) and not unknown(value.get(k)) for k in keys)",
       "def compare_value(actual,required,success):\n if missing(actual):return 'missing'\n if missing(required) or unknown(actual) or unknown(required):return 'unknown'\n return success if json_equal(actual,required) else 'conflict'",
       "def iso_calendar_day(v):\n if not isinstance(v,str) or len(v)!=10 or v[4]!='-' or v[7]!='-':return False\n if not all(c in '0123456789' for i,c in enumerate(v) if i not in [4,7]):return False\n year=int(v[:4]);month=int(v[5:7]);day=int(v[8:10])\n if year<1 or month<1 or month>12:return False\n leap=year%4==0 and (year%100!=0 or year%400==0)\n days=[31,29 if leap else 28,31,30,31,30,31,31,30,31,30,31]\n return day>=1 and day<=days[month-1]",
       "def date_control_in_domain(v):\n return isinstance(v,str) and (v in ['','TBD','unknown'] or iso_calendar_day(v))",
-      "def exception_state(ex,scope,evaluation):\n if not isinstance(ex,dict):return 'missing_exception'\n for key in ['reason','owner','expiry']:\n  if missing(ex.get(key)):return 'missing_'+key\n  if unknown(ex.get(key)):return 'unknown'\n if missing(ex.get('scope')):return 'missing_scope'\n if missing(scope) or unknown(scope) or unknown(ex.get('scope')):return 'unknown'\n if ex.get('scope')!=scope:return 'scope_conflict'\n expiry=ex['expiry']\n if not iso_calendar_day(expiry) or not iso_calendar_day(evaluation) or unknown(evaluation):return 'unknown'\n if expiry==evaluation:return 'unknown'\n return 'expired' if expiry<evaluation else 'valid_for_fixture_scope'",
-      "def compare_f01(packet,context):\n results={};targets=packet.get('targets');vocab=packet.get('role_vocabulary');evaluation=packet.get('evaluation_date')\n if isinstance(targets,list):\n  for t in targets:\n   role=t.get('declared_role')\n   if missing(role) or unknown(role) or not isinstance(vocab,list) or role not in vocab:state='unknown_role'\n   elif missing(t.get('meaning')) or unknown(t.get('meaning')):state='missing_target_meaning'\n   elif missing(t.get('role_basis')) or unknown(t.get('role_basis')):state='missing_basis'\n   elif not isinstance(t.get('consumers'),list) or not t['consumers']:state='missing_consumer'\n   elif t.get('name') in ['Manager','Helper','Util','Data']:\n    es=exception_state(t.get('exception'),context['scope'],evaluation)\n    state='candidate_only:'+role+'_with_scoped_exception' if es=='valid_for_fixture_scope' else 'missing_scoped_exception'\n   else:state='candidate_only:'+role\n   results[t['id']]=state\n return {'target_results':results,'canonical_decided_here':False,**common(context)}",
+      "def exception_state(ex,scope,evaluation):\n if not isinstance(ex,dict):return 'missing_exception'\n for key in ['reason','owner','expiry']:\n  if missing(ex.get(key)):return 'missing_'+key\n  if unknown(ex.get(key)):return 'unknown'\n if missing(ex.get('scope')):return 'missing_scope'\n if missing(scope) or unknown(scope) or unknown(ex.get('scope')):return 'unknown'\n if ex.get('scope')!=scope:return 'scope_conflict'\n expiry=ex['expiry']\n if not iso_calendar_day(expiry) or not iso_calendar_day(evaluation):return 'unknown'\n if expiry==evaluation:return 'unknown'\n return 'expired' if expiry<evaluation else 'valid_for_fixture_scope'",
+      "def compare_f01(packet,context):\n results={};targets=packet.get('targets');vocab=packet.get('role_vocabulary');evaluation=packet.get('evaluation_date')\n if isinstance(targets,list):\n  for t in targets:\n   role=t.get('declared_role')\n   if missing(role) or unknown(role) or not isinstance(vocab,list) or role not in vocab:state='unknown_role'\n   elif missing(t.get('meaning')) or unknown(t.get('meaning')):state='missing_target_meaning'\n   elif missing(t.get('role_basis')) or unknown(t.get('role_basis')):state='missing_basis'\n   elif not isinstance(t.get('consumers'),list) or not t['consumers'] or any(missing(v) for v in t['consumers']):state='missing_consumer'\n   elif any(unknown(v) for v in t['consumers']):state='unknown_consumer'\n   elif t.get('name') in ['Manager','Helper','Util','Data']:\n    es=exception_state(t.get('exception'),context['scope'],evaluation)\n    state='candidate_only:'+role+'_with_scoped_exception' if es=='valid_for_fixture_scope' else 'missing_scoped_exception'\n   else:state='candidate_only:'+role\n   results[t['id']]=state\n return {'target_results':results,'canonical_decided_here':False,**common(context)}",
       "def identity_state(stable,before,after,key):\n vals=[stable,obj(before).get(key),obj(after).get(key)]\n if any(missing(v) for v in vals):return 'missing'\n if any(unknown(v) for v in vals):return 'unknown'\n return 'held' if json_equal(vals[0],vals[1]) and json_equal(vals[1],vals[2]) else 'conflict'",
       "def edge_state(edge,required):\n if edge is None:return 'missing'\n if not isinstance(edge,dict):return 'unknown'\n if 'private_symbol' in edge and not all(k in edge for k in required):return 'private_only_rejected'\n states=[compare_value(edge.get(k),v,'bound') for k,v in required.items()]\n for state in ['missing','unknown','conflict']:\n  if state in states:return state\n return 'bound'",
       "def compare_f02(packet,context):\n stable=packet.get('stable_object');oracle=packet.get('stable_oracle');operation=packet.get('operation');before=packet.get('before');after=packet.get('after')\n results={'object_identity':identity_state(stable,before,after,'object'),'oracle_identity':identity_state(oracle,before,after,'oracle')}\n results['symbol_edge']=edge_state(packet.get('symbol_edge'),{'object':stable,'operation':operation,'symbol':obj(after).get('symbol')})\n results['oracle_edge']=edge_state(packet.get('oracle_edge'),{'object':stable,'operation':operation,'oracle':oracle})\n p=packet.get('pair');pair_states=[compare_value(obj(p).get(k),stable,'same_object') for k in ['requirement_object','verification_object']]\n results['pair']=next((s for s in ['missing','unknown','conflict'] if s in pair_states),'same_object')\n return {'edge_results':results,'symbol_change':'candidate_only',**common(context)}",
-      "def condition_record(value,keys):\n if value is None:return 'missing'\n if not isinstance(value,dict):return 'unknown'\n if any(missing(value.get(k)) for k in keys):return 'missing'\n if any(unknown(value.get(k)) for k in keys):return 'unknown'\n return 'supported_synthetic_condition'",
+      "def condition_record(value,keys):\n if value is None:return 'missing'\n if not isinstance(value,dict):return 'unknown'\n if any(missing(value.get(k)) or (isinstance(value.get(k),list) and any(missing(item) for item in value[k])) for k in keys):return 'missing'\n if any(unknown(value.get(k)) or (isinstance(value.get(k),list) and any(unknown(item) for item in value[k])) for k in keys):return 'unknown'\n return 'supported_synthetic_condition'",
       "def origin_state(actual,required):\n states=[]\n for key in ['owner','revision']:\n  state=compare_value(obj(actual).get(key),obj(required).get(key),'known')\n  if state=='conflict' and key=='revision':state='stale'\n  states.append(state)\n return next((s for s in ['missing','unknown','stale','conflict'] if s in states),'known')",
-      "def compare_f03(packet,context):\n good='supported_synthetic_condition';d={}\n d['canonical']=condition_record(packet.get('canonical_decision'),['name','owner','revision'])\n if d['canonical']==good:\n  origin=origin_state(packet.get('canonical_decision'),context['canonical_reference'])\n  if origin!='known':d['canonical']=origin\n visibility=packet.get('visibility');d['internal']='missing' if missing(visibility) else 'unknown' if unknown(visibility) else good if visibility=='internal' else 'rejected'\n required=packet.get('required_consumers');observed=packet.get('observed_consumers')\n if required is None or observed is None:d['consumers']='missing'\n elif not isinstance(required,list) or not isinstance(observed,list) or not required or any(unknown(v) for v in required+observed):d['consumers']='unknown'\n elif any(c not in required for c in observed):d['consumers']='conflict'\n elif any(c not in observed for c in required):d['consumers']='missing'\n else:d['consumers']=good\n before=obj(packet.get('signature_before'));after=obj(packet.get('signature_after'))\n for axis in AXES:\n  a=before.get(axis);b=after.get(axis)\n  if missing(a) or missing(b):state='missing'\n  elif unknown(a) or unknown(b):state='unknown'\n  else:state=good if json_equal(a,b) else 'conflict'\n  d['signature:'+axis]=state\n d['behavior_invariant']=condition_record(packet.get('behavior_invariant'),['oracle','expected'])\n if d['behavior_invariant']==good and obj(packet.get('behavior_invariant'))['oracle']!=context['stable_oracle']:d['behavior_invariant']='conflict'\n d['minimum_transform']=condition_record(packet.get('minimum_transform'),['changes'])\n if d['minimum_transform']==good and not obj(packet.get('minimum_transform'))['changes']:d['minimum_transform']='missing'\n d['rollback']=condition_record(packet.get('rollback'),['preserve_object','preserve_oracle','restore_symbol'])\n if d['rollback']==good and not json_equal(packet['rollback'],context['rollback_reference']):d['rollback']='conflict'\n basis=packet.get('evidence_basis');d['semantic_basis']='missing' if missing(basis) else 'unknown' if unknown(basis) else good if basis=='content' else 'rejected'\n effect=packet.get('requested_effect');d['operation_boundary']='missing' if missing(effect) else 'unknown' if unknown(effect) else good if effect=='candidate_only' else 'rejected'\n return {'condition_results':d,'candidate_presentable':all(v==good for v in d.values()),**common(context)}",
+      "def compare_f03(packet,context):\n good='supported_synthetic_condition';d={}\n d['canonical']=condition_record(packet.get('canonical_decision'),['name','owner','revision'])\n if d['canonical']==good:\n  origin=origin_state(packet.get('canonical_decision'),context['canonical_reference'])\n  if origin!='known':d['canonical']=origin\n visibility=packet.get('visibility');d['internal']='missing' if missing(visibility) else 'unknown' if unknown(visibility) else good if visibility=='internal' else 'rejected'\n required=packet.get('required_consumers');observed=packet.get('observed_consumers')\n if required is None or observed is None:d['consumers']='missing'\n elif not isinstance(required,list) or not isinstance(observed,list) or not required or any(missing(v) or unknown(v) for v in required+observed):d['consumers']='unknown'\n elif any(c not in required for c in observed):d['consumers']='conflict'\n elif any(c not in observed for c in required):d['consumers']='missing'\n else:d['consumers']=good\n before=obj(packet.get('signature_before'));after=obj(packet.get('signature_after'))\n for axis in AXES:\n  a=before.get(axis);b=after.get(axis)\n  if missing(a) or missing(b):state='missing'\n  elif unknown(a) or unknown(b):state='unknown'\n  else:state=good if json_equal(a,b) else 'conflict'\n  d['signature:'+axis]=state\n d['behavior_invariant']=condition_record(packet.get('behavior_invariant'),['oracle','expected'])\n if d['behavior_invariant']==good and obj(packet.get('behavior_invariant'))['oracle']!=context['stable_oracle']:d['behavior_invariant']='conflict'\n d['minimum_transform']=condition_record(packet.get('minimum_transform'),['changes'])\n if d['minimum_transform']==good and not obj(packet.get('minimum_transform'))['changes']:d['minimum_transform']='missing'\n d['rollback']=condition_record(packet.get('rollback'),['preserve_object','preserve_oracle','restore_symbol'])\n if d['rollback']==good and not json_equal(packet['rollback'],context['rollback_reference']):d['rollback']='conflict'\n basis=packet.get('evidence_basis');d['semantic_basis']='missing' if missing(basis) else 'unknown' if unknown(basis) else good if basis=='content' else 'rejected'\n effect=packet.get('requested_effect');d['operation_boundary']='missing' if missing(effect) else 'unknown' if unknown(effect) else good if effect=='candidate_only' else 'rejected'\n return {'condition_results':d,'candidate_presentable':all(v==good for v in d.values()),**common(context)}",
       "def compare_f04(packet,context):\n finding=obj(packet.get('finding'));boundary=packet.get('boundary')\n route='Redesign_or_Retrofit_with_compatibility_migration' if boundary in OBSERVABLE else 'product_author' if boundary=='internal' else 'unknown'\n e=exception_state(packet.get('exception'),packet.get('scope'),packet.get('evaluation_date'))\n return {'auto_rename':'rejected','return_candidate':route,'finding_retained':finding.get('id'),'exception_result':e,'local_continuation':e=='valid_for_fixture_scope','global_stop':False,**common(context)}",
       "def compare_b01(packet,context):\n norm=obj(packet.get('norm_source'));product=obj(packet.get('product_decision'));proposal=obj(packet.get('proposal'));before=obj(packet.get('protected_before'));after=obj(packet.get('protected_after'))\n results={};owners=[]\n for key,actual,required,owner in [('norm',proposal.get('norm_content'),norm.get('content'),'HARNESS-norm-owner'),('product_decision',proposal.get('product_name'),product.get('content'),'product-design-owner')]:\n  state=compare_value(actual,required,'held');results[key]='rejected' if state=='conflict' else state\n  origin=origin_state(norm if key=='norm' else product,context['origin_requirements'][key])\n  if origin!='known':results[key]='rejected' if origin=='conflict' else origin\n  if results[key]!='held':owners.append(owner)\n ci=proposal.get('CI_effect');results['CI']='missing' if missing(ci) else 'unknown' if unknown(ci) else 'candidate_only' if ci=='finding_only' else 'rejected'\n if results['CI']!='candidate_only':owners.append('CI-boundary-owner')\n for key in ['requirement_id','mechanism_role','adopted_body']:\n  state=compare_value(after.get(key),before.get(key),'held');results[key]='out_of_scope_change_rejected' if state=='conflict' else state\n  if state!='held' and 'original-meaning-owner' not in owners:owners.append('original-meaning-owner')\n return {'boundary_results':results,'owner_return_candidates':owners,**common(context)}",
       "def compare_source_attributes(actual,required):\n result={}\n for key in ATTRS:\n  a=obj(actual).get(key);r=obj(required).get(key)\n  state=compare_value(a,r,'known')\n  if state=='conflict' and key=='revision':state='stale'\n  result[key]=state\n return {'attribute_results':result,'actual_qualification_established':False,'qualification_provider':{'state':'unknown','value':None}}",
@@ -5168,11 +5237,12 @@
       "if/elif/else、短絡and/or/not、is None/True/False、==/!=、in/not in、len、<、辞書get/items/values、list/dict comprehensions、for、all/any、next(generator,default)、append、string連結。",
       "isinstance(dict/list/str)は論理carrier形確認。objは非recordを空working mapとしてfield不足診断するが原rawは保存する。not list等のtruthinessは空consumer/changesを識別する。",
       "copy.deepcopyは値保存。dictionary **展開はcommonのQ/effectsを完全返却へ結ぶ。local map/listの更新のみ。",
-      "unknownはTBD/unknown文字列、missingはNone/空文字。absentのget結果nullは診断時だけ同分類、L8 expected_argument_presenceは別に保持。",
+      "unknownはTBD/unknown文字列、missingはNone/空文字。通常のget後の値診断ではabsent/nullをmissingへ写すが、edge_stateのprivate_only前段はkey存在自体を区別する。両raw状態はL8 presenceへ別保存。",
       "source/consumer IDのin比較はidentity同値でありstring類似度を使わない。nested equalityはJSON全値同値。consumer set包含ではforeign差を先にconflict、required不足をmissing。",
       "json_equalは再帰JSON型同値。boolはnumberと区別しtrue≠1/false≠0、数値同士はnumber値比較。type、tuple型指定isinstance、zip、dict.keys、list長さを使う。全numberはfiniteを論理型検査で要求する。",
       "refは同じ文書のtypesへの唯一型参照。logical packetはJSON recordで、任意raw文字列のparserを引数へ暗黙挿入しない。",
-      "dateの論理domain判定はstring index/slice、enumerate、十進int、剰余%、大小比較と既知月日数配列を用いる。ISO暦日の有効形/並びだけを確かめ、実評価時点の供給資格や期限認可を作らない。"
+      "dateの論理domain判定はstring index/slice、enumerate、十進int、剰余%、大小比較と既知月日数配列を用いる。ISO暦日の有効形/並びだけを確かめ、実評価時点の供給資格や期限認可を作らない。",
+      "condition_recordは必須memberの値と、その値がlistの場合の各要素までmissing/unknown markerを検査する。これは変換内容の意味的最小性検証ではない。"
     ],
     "ordering": "F01原target順。F02 object/oracle/symbol/oracleedge/pair順。F03 canonical/internal/consumer/AXES7/behavior/minimum/rollback/semantic/operation順。F04 reason→owner→expiry→scope→評価時点。B01 norm→product→CI→保護3field、original owner一回。",
     "limits": [
@@ -5184,7 +5254,9 @@
       "F01 targetsは一意で供給済みIDを持つ宣言list。母集合null/重複IDの統合policy、任意format/非JSONは本carrier未定義であり空成功へ一般化しない。",
       "全92/430意味/正式schema/codec/実資格/TDD/CI/L11/実装Readyは未成立。test/oracle凍結→実装前Red→Green→Refactorは将来の実作業であり今回実行していない。",
       "SourceAttributes helperはidentity/revision/scope/ownerの4属性だけの部分比較。L4 qualification_ruleの必要集合・source意味の独立比較/各packetへの正式bindingは未具体化。4属性全knownやcandidate_presentable=trueでも全L4義務の完了/実資格を表さない。",
-      "declared packetのread対象memberはabsent/nullを保持し局所missing/unknownへ写像する。targetsのみ一意の非空string IDを持つobject配列として有限domainを明示する。非object/id欠落/null/数値/重複を空成功へ補完せずdomain外として値と診断を保持する。"
+      "declared packetのread対象memberはabsent/nullを保持し局所missing/unknownへ写像する。targetsのみ一意の非空string IDを持つobject配列として有限domainを明示する。非object/id欠落/null/数値/重複を空成功へ補完せずdomain外として値と診断を保持する。",
+      "F02影響対象の具体ID/operation/oracle/consumerと破断edgeの対応を返すmember/producer接続は未実現。F03全条件の同対象revision/scope比較とcanonical name対照比較も未実現。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
+      "F01の例外詳細状態は原L9 projectionに従いmissing_scoped_exceptionへ集約し、F04の詳細分類と同一schemaへ統合しない。symbol_change=candidate_onlyは原定数で変化量検出ではない。"
     ]
   },
   "consumer_connections": [
@@ -5206,142 +5278,476 @@
     }
   ],
   "logical_domain_contract": {
-    "F01_targets": "list of object; unique nonempty string id required. nullable/absent remaining members are diagnostic input, not successful qualification.",
-    "raw_boundary": "L8 original raw_utf8 is parsed JSON to packet; parsing/codec errors are outside these logical signatures. raw original bytes are preserved.",
-    "context_boundary": "RetainedContext/F03Context/B01Context refs are the sole context type source; Q is an explicit retained input, not freshly generated qualification.",
-    "return_domain": "enum lists include branches reachable from declared missing/null/TBD strings, not only observed rows; dynamic F01 candidate string remains string because supplied role vocabulary is not closed to 13 canonical names."
+    "F01_targets": "対象は一意の非空string IDを持つobject配列。その他nullable/absent memberは診断入力であり実資格ではない。",
+    "raw_boundary": "原raw_utf8をJSON packetへ対応させる素材。任意raw文字列のparser/codecは論理signature外で、原bytesを保全する。",
+    "context_boundary": "RetainedContext/F03Context/B01Contextが唯一の型参照。Qは明示供給された保持値。各条件source/資格/同版scopeをcontextの形から生成しない。",
+    "return_domain": "enumは宣言入力から返し得る値を受ける型域で、列挙全値の意味閉包を主張しない。symbol_edgeの到達不能値を除去し、minimum_transform unknownはchanges要素markerの独立例で確認。F01の動的candidate文字列は供給語彙から連結しcanonical名に固定しない。"
   },
   "domain_witness_basis": {
     "source": "原L4全5content_comparison/qualification_ruleと独立元L9 control",
-    "addition": "missing/null/TBD、複合facet、context唯一引数、JSON型同値、後段finding nullを有限局所全wholeで確認。元117期待は不変。",
+    "addition": "保存159wholeの個別raw範囲と追加30材料＋3後段wholeで、明示したmarker/複合条件だけを確認する。日付境界14件は型域検証で製品返却oracleではない。全missing/null/TBD組合せや全mutationを網羅したとはしない。",
     "limit": "未見一般域/実source必要集合/自然言語意味/実provider/codec/採用/作用は未閉包。新gateではない。"
   },
   "literal_and_output_basis": [
     {
-      "members": [
-        "EFFECT_KEYS",
-        "all_false_effect_values"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/0/expected_material/effects",
-      "rule": "固定falseは実環境観測ではなく作用を生成しない表示。"
+      "literal": "CI-boundary-owner",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/3/expected_material/owner_return_candidates/0",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "67a34918b32ecebff852f91c8e8063528dd957a93db456bb990f5d3443121dc9",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "AXES"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/0/independent_source_packet/raw_utf8",
-      "decoded_pointer": "/signature_before",
-      "rule": "署名原7fieldを入力/出力分離で列挙。値は原JSONを深く比較。"
+      "literal": "FIND-P",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/0/expected_material/finding_retained",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "f48f8d648efc9a01540c1b2ab4c7be7a4566730ccb38a3f2378349e757d2a6c5",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "OBSERVABLE"
-      ],
+      "literal": "HARNESS-norm-owner",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/1/expected_material/owner_return_candidates/0",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "146bbf18a0e69011f22df2c3d5297d230c7a29cb674340f912840c9e8e1eeb7b",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "OBJ-P",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "PRODUCT-P-owner",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "Redesign_or_Retrofit_with_compatibility_migration",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/6/expected_material/return_candidate",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "0bfdbdcc81fbee5bcb0c6a0c07cde5c6ecc7ba11dada22e3e2e66b5c13b3ea5b",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "bound",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/0/expected_material/edge_results/symbol_edge",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "7e4f40201b1af8410b77898f2cd2de737c43498ce87e1d484ba2637558fb28e0",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "candidate_only",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/0/expected_material/symbol_change",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "6b6bd8a08f0c700e8743e173bb4691c8bf465e438e60ccbdb79cb49c7b3b48c8",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "candidate_only:Query",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/0/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "b14affc5f24b52286de937833469fd95ff6c6413cf14d23be5c05df2eda60d86",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "candidate_only:Query_with_scoped_exception",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/4/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "1e1d6ac245d6f6702eee258d5c3da81927516300b1f5b4c9b03b5fe3f80f5eab",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "candidate_only:Repository",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/0/expected_material/target_results/OBJ-R",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "9969df45a0d83aa5684820765c18e87980aeb39da5f0f46aac88a1e3e3428047",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "conflict",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/1/expected_material/edge_results/object_identity",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "64c81eb52bff30757e0b40bde27c76dd11818d9ba07a0afa1b2c52f99ffc29f0",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "consumer_incomplete",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "expired",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/3/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "1dabed06d716e646e62a51ab3836212a80a7b7bfa023ef2be12b59468bb51a16",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "held",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/0/expected_material/edge_results/object_identity",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "fcd86ac6b458c22662f923d21c3e8ae570dee43713fdaedc2a1e3ba47f95992b",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "known",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "missing",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/3/expected_material/edge_results/symbol_edge",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "missing_basis",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/2/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "a14d542dd0404e250105de97c5d59ee34ad7202b4a610abd64f173413fc19fb1",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "missing_consumer",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/3/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "42882dae727df19065109226e18f51fb548750e12762fa0f84b28088483dd949",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "missing_exception",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
       "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/3/content_comparison",
-      "rule": "原L3/L4のpublic API/CLI・persisted field/event・direct config keyだけの有限境界語彙。一般境界規範を新設しない。"
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "ca90a1e7e7330a2171838979553b81396ed2049a2ead14f460241961fb335703",
+      "applied_scope": "F04",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
     },
     {
-      "members": [
-        "ATTRS",
-        "missing",
-        "unknown",
-        "conflict",
-        "stale"
-      ],
-      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/0/qualification_rule",
-      "rule": "4属性の部分診断を論理値として具体化。必要集合/意味/実資格は未成立。"
+      "literal": "missing_expiry",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/2/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "8ae2c4deea4fd414bd67fee93d7dc10bb67c5d2b454c952d746f52daf4c88401",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "HARNESS-norm-owner"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/1/expected_material/owner_return_candidates",
-      "rule": "原合成返却候補literal。実owner資格やdispatch先を生成しない。"
+      "literal": "missing_owner",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/1/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "758051b11a69083318bfef4d8034213e3a010723ad468a7fb0618a9d718c0e68",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "product-design-owner"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/2/expected_material/owner_return_candidates",
-      "rule": "原合成返却候補literal。実owner資格やdispatch先を生成しない。"
+      "literal": "missing_reason",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/4/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "4dc848cd7d30ccc96f6e060ee9726ed1686af88ba59a4cdfd6f9d147154541f4",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "CI-boundary-owner"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/3/expected_material/owner_return_candidates",
-      "rule": "原合成返却候補literal。実owner資格やdispatch先を生成しない。"
+      "literal": "missing_scope",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/3/content_comparison",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "ca90a1e7e7330a2171838979553b81396ed2049a2ead14f460241961fb335703",
+      "applied_scope": "F04",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
     },
     {
-      "members": [
-        "original-meaning-owner"
-      ],
-      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/5/expected_material/owner_return_candidates",
-      "rule": "原合成返却候補literal。実owner資格やdispatch先を生成しない。"
+      "literal": "missing_scoped_exception",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/5/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "6efeefb1b88b79c720680bb87492e80f7dfa17d7ddda206f5ed0996bf212d17e",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "missing_*",
-        "unknown_role",
-        "missing_target_meaning",
-        "missing_basis",
-        "missing_consumer",
-        "candidate_only:<role>"
-      ],
+      "literal": "missing_target_meaning",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
       "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/0/content_comparison",
-      "rule": "L5有限分岐の診断表示。roleは明示語彙引数からのみ連結し、canonical決定はfalse。"
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "56db3881f52e8801859c12bab2f07164f820ace1f3b9b3acf6d9e3f8a133d6c5",
+      "applied_scope": "F01",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
     },
     {
-      "members": [
-        "held",
-        "bound",
-        "same_object",
-        "private_only_rejected"
-      ],
-      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/1/content_comparison",
-      "rule": "独立stable値/edge/pairの元内容比較の結果表示。"
+      "literal": "observable_contract_change",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
     },
     {
-      "members": [
-        "supported_synthetic_condition",
-        "candidate_presentable"
-      ],
-      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/2/content_comparison",
-      "rule": "必要な入力比較がsynthetic条件上そろう局所表示。behaviorの実実行可能性/全consumer必要集合/実資格の完了は生成しない。"
+      "literal": "original-meaning-owner",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/5/expected_material/owner_return_candidates/0",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "f6fbada8b00dd169a8c1c178a28388e2d42391f79a99597e0abd094e51dd329a",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
     },
     {
-      "members": [
-        "auto_rename=rejected",
-        "global_stop=false",
-        "local_continuation",
-        "valid_for_fixture_scope",
-        "expired",
-        "missing_scope",
-        "scope_conflict",
-        "unknown",
-        "Redesign_or_Retrofit_with_compatibility_migration",
-        "product_author"
-      ],
+      "literal": "original_Q",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/0/expected_material/unaffected_Q",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "329f9d0760ca0125bc78ff1bb2dad6fe506e9367e92280f77d939a7f0cda0a4c",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "out_of_scope_change_rejected",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/5/expected_material/boundary_results/requirement_id",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "ed9c8f3a336753108972614362dc23332c5f90fd824ebb70e80a54717d460f2b",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "private_only_rejected",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/5/expected_material/edge_results/oracle_edge",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "08244cfa857be722db401af3e7399c30ab2182f296c08173f1774b6d384aecc1",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "product-design-owner",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/4/concrete_cases/2/expected_material/owner_return_candidates/0",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "bef2c2bcae015232fc018f98f92601b6992b0eab7dc9554829cd19de25f371ed",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "product_author",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/0/expected_material/return_candidate",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "bcaa3632da3e45c334a80c733dbffe0a8b99db03e0ed394ded150bd835cf9c49",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "rejected",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/2/expected_material/condition_results/internal",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "retained_Q_probe",
+      "literal_origin": "独立local fixture入力Qの保持値",
+      "source": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json#/independent_context_values/retained_q_probe/value",
+      "source_revision_binding": "same_candidate_document",
+      "value_canonical_sha256": "f59c5e3cf545ec24b6b5c9ed14e483cd4ba126515971b95f181d3778fbec6160",
+      "boundary": "原L9 literalではない。実Q source/providerは未供給。"
+    },
+    {
+      "literal": "role_unknown",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "same_object",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/1/concrete_cases/0/expected_material/edge_results/pair",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "02cd350898dfef8442905708918773846eebaab2aa48c72f9e5be9acbb1436cc",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "scope_conflict",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/5/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "dee46967ac3465dc92178991550f77641b7f215ac672133441cc49253bb5d822",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "signature_mismatch",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "stale",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "supported_synthetic_condition",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/2/concrete_cases/0/expected_material/condition_results/canonical",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "7a790b645bd063dd5ac88f05c5a7cd518a4a2a12748c4abc5608f83a378f6a0b",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "unknown",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "663a2271eaaed7026651cd42c62165b50288d4bfd2a2b27f7e684368874c0410",
+      "applied_scope": "全該当関数",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "unknown_consumer",
+      "literal_origin": "L5で新しく具体化した局所診断表示（L4本文の綴りを引用したものではない）",
+      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/0/content_comparison",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "56db3881f52e8801859c12bab2f07164f820ace1f3b9b3acf6d9e3f8a133d6c5",
+      "applied_scope": "F01",
+      "boundary": "L4既存不足/未知/返却の意味を局所表示へ再導出。literalの綴り/詳細順はL5選択であり実資格/新gateを生成しない。"
+    },
+    {
+      "literal": "unknown_role",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/0/concrete_cases/1/expected_material/target_results/OBJ-P",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "7852e6c59dc2535121ab164fe3ed81eca7ba347eb6865b12d37046e7156f6e39",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "valid_for_fixture_scope",
+      "literal_origin": "原L9 expected_materialの表示文字列",
+      "source": "docs/helix-harness/L9-integration-verification/naming-identity-correspondence.json#/verification_obligations/3/concrete_cases/0/expected_material/exception_result",
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "8a647530663251b0e928b9baa4324696232f856abf3dd28e89b54d3ffd4e897f",
+      "boundary": "合成表示であり実資格/実owner/採用を生成しない。"
+    },
+    {
+      "literal": "unknown",
+      "literal_origin": "F04 exception_result/return_candidateへのL5新規適用。原L9 F04にない表示",
       "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/3/content_comparison",
-      "rule": "例外は対象fixture内の継続だけで、rename拒否を消さず他scope停止へ拡大しない。"
-    },
-    {
-      "members": [
-        "out_of_scope_change_rejected",
-        "candidate_only",
-        "rejected"
-      ],
-      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/contracts/4/content_comparison",
-      "rule": "規範/製品decision/CIと保護本文の境界表示。owner順はL5有限定義、各失敗facetを消さない。"
-    },
-    {
-      "members": [
-        "actual_dispatch=false",
-        "actual_qualification_established=false",
-        "qualification_provider=unknown/null"
-      ],
-      "source": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json#/architecture/python_boundary",
-      "rule": "実返却/資格供給の未成立を明示する有限表示。新しい権限・gate・providerを作らない。"
+      "source_revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+      "value_canonical_sha256": "ca90a1e7e7330a2171838979553b81396ed2049a2ead14f460241961fb335703",
+      "applied_scope": "F04Return.exception_result / return_candidate",
+      "boundary": "別fieldで同じ綴りがあってもF04原L9からの継承としない。"
     }
-  ]
+  ],
+  "unclosed_obligations": [
+    {
+      "id": "H048-F02-IMPACTED-TARGET-NOT-MATERIALIZED",
+      "upstream_sources": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+          "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "json_pointer": "/contracts/1/output_meanings",
+          "value_canonical_sha256": "7dcd7ae377568bd3b744879a04938756a16806bbb52dbbbd786a8a75ff458ac5"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+          "requirement_ref": "HARNESS-L3-048-F02",
+          "oracle_ref": "HARNESS-L10-048-F02",
+          "member": "failure_observation",
+          "exact_quote": "切れたedgeと影響対象を示し、命名適合を不成立にする。"
+        }
+      ],
+      "implemented_output": [
+        "edge_resultsの各比較状態",
+        "原L9のsymbol_change定数",
+        "Q/無作用"
+      ],
+      "absent_output": [
+        "影響するobject/operation/oracleの具体ID集合と各破断edgeとの対応",
+        "影響consumer/返却先への値接続とそのsource資格"
+      ],
+      "current_carrier_limit": "F02Returnに影響対象memberは存在しない。packet内のstable/before/after/edge/pairに一部IDがあっても影響targetへ組み立てて返さず、consumer母集合/正式bindingも未供給。",
+      "consequence": "F02はedge状態の部分返却。L3/L4/L10の影響対象義務は未実現で、全義務完了/Readyではない。原159wholeを維持し未提供のimpact producer/consumerを作らない。"
+    },
+    {
+      "id": "H048-F03-SAME-TARGET-REVISION-SCOPE-NOT-BOUND",
+      "upstream_source": {
+        "path": "docs/helix-harness/L4-basic-design/naming-identity-correspondence.json",
+        "revision": "b52ad0e1e954790ebe57b2d87da46ea6712a07d9",
+        "json_pointer": "/contracts/2/content_comparison/0",
+        "value_canonical_sha256": "7b6556a2c6a90ca152757c25547dd7a2dbab70e0ab8ce839de880f8f1311d1e9"
+      },
+      "current_reads": "canonical_referenceはowner/revisionのみ、stable_oracle/rollback_referenceは独立control値。F03Context.scopeは宣言保持素材だが現関数では未読。",
+      "missing_by_condition": [
+        {
+          "condition": "canonical",
+          "missing": [
+            "対照canonical name内容",
+            "canonical decisionの対象identity/scopeの独立binding"
+          ]
+        },
+        {
+          "condition": "internal/consumer/署名7field",
+          "missing": [
+            "各条件sourceの対象identity/revision/scope",
+            "必要consumer母集合と各observed consumerの同版scope資格"
+          ]
+        },
+        {
+          "condition": "invariant/minimum_transform/rollback",
+          "missing": [
+            "各原証拠sourceの対象identity/revision/scope",
+            "同じ対象版に対するbehavior/最小性/復旧の実oracle binding"
+          ]
+        }
+      ],
+      "consequence": "全条件が同対象revision/scopeで成立したことは未検査。candidate_presentable=trueは供給値の部分比較表示であり、未供給bindingを生成せず全L3/L4義務の成立/許可/実採用を表さない。",
+      "canonical_name_detail": "nameはmissing/unknownを確認するだけでcanonical_reference.nameと内容比較しない。対照nameは現在のcontextに存在せず、name変更で返却不変となる局所例を未実現範囲の証拠として保存する。"
+    }
+  ],
+  "mutation_coverage_limit": {
+    "all_mutations_proved": false,
+    "verified_scope": "L8 mutation_witnessesの各具体raw/型境界のみ。scope/name未実装witnessを成功oracleにしない。",
+    "still_unproved": [
+      "全優先順入替/全多重欠陥/全grammar",
+      "任意consumer必要集合の実資格/自然言語意味/変換最小性",
+      "canonical name内容と同対象revision/scopeの全面照合（未実現）",
+      "DateControl以外の任意raw/parser/実clock/正式codec",
+      "F01 role markerのunknown判定と語彙拒否の単独経路識別（語彙がmarkerを含む入力は未観測）。分類rawを追加したことと全predicate mutation検出を混同しない。"
+    ]
+  }
 }
