@@ -4418,5 +4418,32 @@
     "whole_scope_claim_unproven",
     "whole_scope_claim_unresolved"
   ],
-  "legacy_timeline_context": "legacy_comparisonのchange/reasonは2026-09-28の採択履歴、2026-10-12の限定委任decisionを指す。引用行・asset pinは変更しない。"
+  "legacy_timeline_context": "legacy_comparisonのchange/reasonは2026-09-28の採択履歴、2026-10-12の限定委任decisionを指す。引用行・asset pinは変更しない。",
+  "selection_diagnostic_refinement": {
+    "finding_ref": "O023-R4-01",
+    "reuse_class": "semantic_rederivation",
+    "legacy_source": {
+      "asset_id": "LEGACY-ASSET-8E9E06111D6FE1538308",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/work-graph-receipt-acceptance.md",
+      "sections": [
+        "2",
+        "6"
+      ],
+      "basis": "依存edgeとexact setを照合し、未知fieldで欠落を相殺しない。旧failure code/schema/runtimeは継承しない。空文字列や非文字列のindex診断は旧sourceの明示規則ではない。"
+    },
+    "current_source": {
+      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+      "path": "docs/helix-os/L4-basic-design/management-worker-acceptance-handoff.json",
+      "pointer": "/diagnostic_contract/algorithm/1",
+      "old_wording": "未知非空IDは当該list index unknown_edge_identityを併記"
+    },
+    "preserve": "actual/contextの不正なselectionはrootにedge_selection_unresolvedを返し、選択とcoverageをunknownに保持する。transfer/connectionを成功へ補完せず、元raw値・未完義務を保持する。",
+    "change": "L5では非空の未知文字列に加え、空文字列と非文字列のmemberにも同じlist indexのunknown_edge_identityを併記する。L4の明示対象より広い診断上の具体化であり、L4と同一の診断集合とは主張しない。",
+    "reason": "不正selectionのどのmemberをsource ownerへ返すかをraw値を失わず特定するため。原L9の322 wholeと既存のroot unknown判定を保持し、成功条件・権限・適用義務・要求意味や新たな承認gateは変更しない。",
+    "witnesses": [
+      "CE-Bの非文字列member 7",
+      "reviewer CE-H: selected_edges=[management_promotion, \"\"]"
+    ],
+    "normative_location": "formal_programsのOS023-N01-SELECTION-COVERAGE.rule_data.selection_rule.unknown_item_pointer。ここは差分説明であり第二の計算規範ではない。"
+  }
 }

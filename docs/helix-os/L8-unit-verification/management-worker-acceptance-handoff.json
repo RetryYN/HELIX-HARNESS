@@ -114,7 +114,7 @@
       "whole_sha256": "3f6fc9e0867b9462ce299a24d35f31a590bd3170b7483b17c61721d37f955984"
     }
   ],
-  "paired_l5_sha256": "fa516815760285f2fcc3c5fc84ce62fc69fef76fb5548de6da6f6438a18ab31e",
+  "paired_l5_sha256": "7332834239368e4ee40e5feb45759bfc5b4c9e3b06b8acbaec9c3cf1ba21ecf7",
   "source_oracle": {
     "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
     "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
