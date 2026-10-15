@@ -19934,7 +19934,7 @@
         "candidate_disposition",
         "candidate_conflicting_path"
       ],
-      "algorithm": "原rawからの全値導出は /finite_raw_derivation/functions/F02 のdecisions/reference_stepsと共通helpers/primitive_operationsによる。experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。 instruction原語はcontinue/cancel/defer/target_change/correction（hold/scope-changeを別の採択語として新設しない）。cancel/defer/target_changeはactive=null、correctionは原一次を上書きせずactiveにcorrected値を適用して該当proposalをsupersededにする。 agreement missingを最優先、非missingでinactiveはstale_for_inactive_candidate、activeへのscope/binding/fields/candidate_sha256/state完全比較だけsupported_synthetic_agreement_material。SHA-256対象はcandidate fieldsのUnicode文字をescapeしないUTF8、object key scalar順、区切りcomma/colon、空白/LF無しのfixture canonical JSON。正式wire/資格ではない。",
+      "algorithm": "原rawからの全値導出は /finite_raw_derivation/functions/F02 のdecisions/reference_stepsと共通helpers/primitive_operationsによる。experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。 非N/Aの場合はapplicability.state=requiredが明示され、resultがobjectのときだけsupported_synthetic_material。stateの欠落/null/unknown/未対応値は既存missingを返し、そのoriginのfindingをretained_unresolved_experimentとして保持する。読めた別originの差分と全finding IDは失わない。 instruction原語はcontinue/cancel/defer/target_change/correction（hold/scope-changeを別の採択語として新設しない）。cancel/defer/target_changeはactive=null、correctionは原一次を上書きせずactiveにcorrected値を適用して該当proposalをsupersededにする。 agreement missingを最優先、非missingでinactiveはstale_for_inactive_candidate、activeへのscope/binding/fields/candidate_sha256/state完全比較だけsupported_synthetic_agreement_material。SHA-256対象はcandidate fieldsのUnicode文字をescapeしないUTF8、object key scalar順、区切りcomma/colon、空白/LF無しのfixture canonical JSON。正式wire/資格ではない。",
       "semantic_rules": [
         {
           "id": "F02-PRIMARY-IMMUTABILITY",
@@ -21720,7 +21720,7 @@
       "function_ref": "F-008-F02",
       "behavior": {
         "name": "bind_backflow_and_form_secondary_candidate",
-        "algorithm": "原rawからの全値導出は /finite_raw_derivation/functions/F02 のdecisions/reference_stepsと共通helpers/primitive_operationsによる。experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。 instruction原語はcontinue/cancel/defer/target_change/correction（hold/scope-changeを別の採択語として新設しない）。cancel/defer/target_changeはactive=null、correctionは原一次を上書きせずactiveにcorrected値を適用して該当proposalをsupersededにする。 agreement missingを最優先、非missingでinactiveはstale_for_inactive_candidate、activeへのscope/binding/fields/candidate_sha256/state完全比較だけsupported_synthetic_agreement_material。SHA-256対象はcandidate fieldsのUnicode文字をescapeしないUTF8、object key scalar順、区切りcomma/colon、空白/LF無しのfixture canonical JSON。正式wire/資格ではない。",
+        "algorithm": "原rawからの全値導出は /finite_raw_derivation/functions/F02 のdecisions/reference_stepsと共通helpers/primitive_operationsによる。experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。 非N/Aの場合はapplicability.state=requiredが明示され、resultがobjectのときだけsupported_synthetic_material。stateの欠落/null/unknown/未対応値は既存missingを返し、そのoriginのfindingをretained_unresolved_experimentとして保持する。読めた別originの差分と全finding IDは失わない。 instruction原語はcontinue/cancel/defer/target_change/correction（hold/scope-changeを別の採択語として新設しない）。cancel/defer/target_changeはactive=null、correctionは原一次を上書きせずactiveにcorrected値を適用して該当proposalをsupersededにする。 agreement missingを最優先、非missingでinactiveはstale_for_inactive_candidate、activeへのscope/binding/fields/candidate_sha256/state完全比較だけsupported_synthetic_agreement_material。SHA-256対象はcandidate fieldsのUnicode文字をescapeしないUTF8、object key scalar順、区切りcomma/colon、空白/LF無しのfixture canonical JSON。正式wire/資格ではない。",
         "reads": [
           "primary",
           "experiments",
@@ -21802,7 +21802,7 @@
         ],
         "branches": [
           {
-            "condition": "experiment source/result/applicability不足",
+            "condition": "experiment source/result/applicability不足、又は非N/A適用stateがrequired以外（欠落/null/unknown/未対応値）",
             "result": "missing/stale/conflict; findingはretained_unresolved_experiment",
             "return_to": "/finite_raw_derivation/functions/F02 の原owner/戻し先・局所素材境界"
           },
@@ -23471,7 +23471,8 @@
     "OS_or_external_consumer_runtime": "not_established",
     "actual_engine_or_semantic_evaluation": "not_run",
     "TDD_CI": "not_run",
-    "L11_acceptance": "not_established"
+    "L11_acceptance": "not_established",
+    "applicability_correction": "F02の適用required確認を結果object確認から分離。欠落/null/unknown/未対応適用を既存missingへ保持し、読めた別originの差分を維持する。追加L8全5対照と元27F02全base wholeは静的照合対象であり、全意味閉包ではない。"
   },
   "candidate_comparison_contract": {
     "reads": [
@@ -23695,7 +23696,7 @@
       "F02": {
         "base_function": "f02",
         "decisions": [
-          "experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。",
+          "experimentのbinding/一次scope/applicability/resultを独立比較。not_applicableにはreason/judge/target_revision/requirement_impact/reevaluationが必要。findingはoriginのresult.finding_refs、binding/scope/change.beforeを一次原値へ結び、候補のfield差分だけを別dictへ適用。全finding ID列は不成立も含め原順保持。 非N/Aの場合はapplicability.state=requiredが明示され、resultがobjectのときだけsupported_synthetic_material。stateの欠落/null/unknown/未対応値は既存missingを返し、そのoriginのfindingをretained_unresolved_experimentとして保持する。読めた別originの差分と全finding IDは失わない。",
           "instruction原語はcontinue/cancel/defer/target_change/correction（hold/scope-changeを別の採択語として新設しない）。cancel/defer/target_changeはactive=null、correctionは原一次を上書きせずactiveにcorrected値を適用して該当proposalをsupersededにする。",
           "agreement missingを最優先、非missingでinactiveはstale_for_inactive_candidate、activeへのscope/binding/fields/candidate_sha256/state完全比較だけsupported_synthetic_agreement_material。SHA-256対象はcandidate fieldsのUnicode文字をescapeしないUTF8、object key scalar順、区切りcomma/colon、空白/LF無しのfixture canonical JSON。正式wire/資格ではない。"
         ],
@@ -23704,7 +23705,7 @@
           " out=resultbase(['actual_requirement_agreed','actual_primary_overwritten','actual_candidate_adopted','actual_pair_rederived']);primary=x['primary'];scope=primary['ref']['scope'];expected=primary['binding'];conditions={};dispositions={};historical=CLONE(primary['fields']);redesign=[]",
           " for key,e in x['experiments'].items():",
           "  app=e.get('applicability');r=e.get('result')",
-          "  state='missing' if not isinstance(app,dict) else 'stale' if e.get('binding')!=expected else 'conflict' if e.get('scope')!=scope else 'not_applicable_synthetic_material' if app.get('state')=='not_applicable' and all(valid(app.get(k)) for k in ['reason','judge','target_revision','requirement_impact','reevaluation']) and app['target_revision']==expected else 'missing' if app.get('state')=='not_applicable' else 'supported_synthetic_material' if isinstance(r,dict) else 'missing';conditions[key]=state",
+          "  state='missing' if not isinstance(app,dict) else 'stale' if e.get('binding')!=expected else 'conflict' if e.get('scope')!=scope else 'not_applicable_synthetic_material' if app.get('state')=='not_applicable' and all(valid(app.get(k)) for k in ['reason','judge','target_revision','requirement_impact','reevaluation']) and app['target_revision']==expected else 'missing' if app.get('state')=='not_applicable' else 'missing' if app.get('state')!='required' else 'supported_synthetic_material' if isinstance(r,dict) else 'missing';conditions[key]=state",
           " for f in x['findings']:",
           "  e=x['experiments'].get(f['origin']);change=f['change'];field=change['field'];okay=conditions.get(f['origin'])=='supported_synthetic_material';bound=f.get('binding')==expected and f.get('scope')==scope and change.get('before')==primary['fields'].get(field) and isinstance(e,dict) and isinstance(e.get('result'),dict) and f['id'] in e['result'].get('finding_refs',[])",
           "  state='retained_unresolved_experiment' if not okay else 'retained_conflicting_finding' if not bound else 'retained_proposal';dispositions[f['id']]=state",
