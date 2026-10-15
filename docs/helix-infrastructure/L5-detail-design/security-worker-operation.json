@@ -4058,7 +4058,7 @@
               ]
             },
             "emit": {
-              "field": "worker/authority_ref",
+              "field": "worker.authority_ref",
               "result": "not_qualified",
               "return_owner": "SEC/OS"
             }
@@ -5464,37 +5464,6 @@
                     "change",
                     "recovery"
                   ]
-                },
-                {
-                  "op": "not_object",
-                  "value": {
-                    "op": "path",
-                    "path": "/recovery"
-                  }
-                }
-              ]
-            },
-            "emit": {
-              "field": "recovery",
-              "result": "unknown",
-              "return_owner": "recovery-design-owner"
-            }
-          },
-          {
-            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03",
-            "when": {
-              "op": "all",
-              "values": [
-                {
-                  "op": "eq",
-                  "left": {
-                    "op": "path",
-                    "path": "/operation_tuple/action"
-                  },
-                  "right": {
-                    "op": "literal",
-                    "value": "recovery"
-                  }
                 },
                 {
                   "op": "not_object",
@@ -7639,6 +7608,37 @@
                   }
                 },
                 {
+                  "op": "path_is_absent_or_null",
+                  "path": "/worker/bounded"
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "missing",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  }
+                },
+                {
                   "op": "not_boolean",
                   "value": {
                     "op": "path",
@@ -7649,7 +7649,7 @@
             },
             "emit": {
               "field": "worker.bounded",
-              "result": "missing",
+              "result": "not_qualified",
               "return_owner": "OS-Worker-contract-owner"
             }
           },
@@ -8246,7 +8246,7 @@
     "profile_action_rule": "許容profileはordinaryとindependent_recovery。ordinaryは通常経路としてaction別のOS条件を確認し、read-onlyはaction=readとF05証拠で表す。read_onlyというprofile値は不許容としてprofileのnot_qualifiedを返す。independent_recoveryはaction=recoveryの場合だけ整合し、不整合はprofile.actionのmismatchをSEC/OSへ返す。profile文字列は実資格を表さない。",
     "recovery_action_classification": "action=recoveryかつprofile=ordinaryの場合、010だけではupdate/change分類と独立復旧pathの根拠を決められないためactionをunknownとしてrecovery/SEC/OSへ返す。F02のupdate-admissionを機械的に要求しない。profile=independent_recoveryはF06の別SEC authority/Worker/006 path条件で評価する。",
     "number_domain": "JSON numberは任意精度の整数およびfinite decimal valueを有限値のまま比較する。binary64へ変換して範囲外整数をoverflow扱いしない。Infinity/NaNはJSON valueではなく入力境界で拒否する。",
-    "diagnostic_type_policy": "必須文字列はAbsent/null/空文字列を既存sourceのmissing所見へ、存在する非文字列kindをnot_qualifiedへ分ける。result.stateとread_targetは対応するAbsent/null/type/unknown規則を個別に持つ。各fieldは一つのfield表記で診断し、同じ欠陥の重複診断を避ける。",
+    "diagnostic_type_policy": "必須文字列はAbsent/null/空文字列を既存sourceのmissing所見へ、存在する非文字列kindをnot_qualifiedへ分ける。result.stateとread_targetは対応するAbsent/null/type/unknown規則を個別に持つ。各fieldは一つのfield表記で診断し、同じ欠陥の重複診断を避ける。 F06 worker.boundedはAbsent/nullをmissing、存在する非booleanをnot_qualified、boolean falseを別のnot_qualifiedとして区別する。F01 worker.authority_refの原authority参照とのforeign照合と文字列不足/not_qualified照合は別観点であり、fieldが同じでもresultの異なる所見を両方保持する。",
     "finite_fixture_display_note": "有限fixtureでclaimがある場合の診断field表記はL9固定期待の値を保持する。L4-F03はfield prefix規則を定めていないため、一般prefix規則の由来は未確定であり、本節の計算規則にはしない。"
   },
   "responsibility_boundary": {
@@ -8258,7 +8258,8 @@
   "unclosed_domains": [
     "正式codec/schema、expiry/revocationの実resolver、SEC authority/admission/credential/network/isolation/egress資格、Worker/OS/INFRA実source資格。",
     "005 action→recovery適用集合の完全版と全action、実write prohibition・operation causality・並行状態比較。",
-    "複合/任意型外入力、全組合せ、実L10/L11/CI/TDDおよび実認可・実操作。"
+    "複合/任意型外入力、全組合せ、実L10/L11/CI/TDDおよび実認可・実操作。",
+    "N01の自己authority検出は合成authority.owner値が文字列INFRAと完全一致する場合の有限診断である。実owner同一性/別名/略称/署名を解決していない。INFRASTRUCTURE等の別表記から同一ownerと推測しない。この範囲を超える自己発行検出は未成立であり、実資格/authority発行可否を本診断から生成しない。"
   ],
   "source_to_function_trace": [
     {
@@ -8652,5 +8653,41 @@
       "pointer": "/verification_obligations/2/cases/5/expected_material/failure_reasons/0/field",
       "case_id": "I010-F03-REJECT-skip_applicable_recovery"
     }
+  },
+  "mutation_coverage_limit": {
+    "meaning": "独立reviewの元HEAD ee4cbcbc1e05ff12b1d9fbed0f3c62ee9e91620eで生き残った変異数。現在HEADで再測定した値ではなく、未識別familyの具体的内訳/期待が未供給のものも残る。個別source義務と反例へ結んでIssue3139で追跡する。全mutation識別を新たな合格gateにしない。",
+    "source_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3189#issuecomment-6192436544",
+    "followup_issue": "https://github.com/RetryYN/HELIX-HARNESS/issues/3139",
+    "observed_survivors": {
+      "F01": {
+        "surviving": 555,
+        "total": 992
+      },
+      "F04": {
+        "surviving": 238,
+        "total": 425
+      },
+      "F05": {
+        "surviving": 126,
+        "total": 237
+      },
+      "F03": {
+        "surviving": 93,
+        "total": 147
+      },
+      "F02": {
+        "surviving": 71,
+        "total": 230
+      },
+      "F06": {
+        "surviving": 49,
+        "total": 131
+      },
+      "N01": {
+        "surviving": 2,
+        "total": 54
+      }
+    },
+    "unestablished": "全規則識別/全action・未見複合・任意owner alias/実資格の意味閉包。"
   }
 }
