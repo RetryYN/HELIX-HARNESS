@@ -979,7 +979,15 @@
       "quote_locator": "RLO-FR-040, lines 663-666",
       "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
       "preserve": "未評価値を推測しない。score単独でscope/branch/assignment/merge authorityを変更しない。",
-      "change": "限定初回の材料対応と段階別引渡しを追加。旧runtime/provider/fixed effortを移植しない。"
+      "change": "限定初回の材料対応と段階別引渡しを追加。旧runtime/provider/fixed effortを移植しない。",
+      "reuse": "semantic_rederive",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "source_revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171"
     },
     {
       "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
@@ -987,7 +995,15 @@
       "quote_locator": "RLO-AC-030, line 43",
       "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
       "preserve": "未評価Workerのeffortを推測値にしない。",
-      "change": "旧受入はsource basisのみ。実行済み証拠にしない。"
+      "change": "旧受入はsource basisのみ。実行済み証拠にしない。",
+      "reuse": "semantic_rederive",
+      "read_lines": [
+        43,
+        43
+      ],
+      "quote": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |",
+      "selected_lines_sha256": "33c38a11d5a1734c4530e0f8c308f4b9b7e96509ffdd8d32dfdb92774e95af1c",
+      "source_revision": "cc28d344dac9218a4081139a2cb5b946fd2a0171"
     }
   ],
   "legacy_failure_consumer_reading": {
@@ -1012,7 +1028,7 @@
         "array<JSONValue>",
         "object<string,JSONValue>"
       ],
-      "number": "有限JSON numberを数値として比較し、booleanは別kindとして扱う。",
+      "number": "任意精度の有限JSON number。十進数値として厳密比較しbinary64の範囲/精度制限を導入しない。booleanは別kind。",
       "object_order": "member順は意味を持たない。",
       "array_order": "要素順を保持して比較する。"
     },
@@ -1119,7 +1135,7 @@
     },
     "JSONPointer": {
       "kind": "string",
-      "format": "RFC 6901 pointer from root actual/context source"
+      "format": "actual/contextを含むraw rootからのRFC6901 JSON Pointer。"
     },
     "LogicalReturnOwner": {
       "kind": "finite_enum",
@@ -1210,6 +1226,11 @@
           "literal": "none"
         }
       }
+    },
+    "ComparisonFacetMarker": {
+      "kind": "metadata_only",
+      "value": "comparison",
+      "meaning": "code分類のメタ値。出力FacetMapのkeyではなくcheckのfacetへ解決してから返す。"
     }
   },
   "functions": [
@@ -1254,13 +1275,13 @@
       "rule_data": [
         {
           "id": "R01",
-          "applies": "each active group and root binding",
+          "applies": "L4 R01の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "compare": "known_nonempty_string(actual,context)",
-          "fields_ref": "diagnostic_contract.binding_fields",
-          "group_binding": "active_group.binding vs context.binding then root binding",
-          "witness_ref": "diagnostic_contract.witness_fields",
-          "string_fields_ref": "diagnostic_contract.string_fields",
-          "supported_rule": "actual == true and context == true; false => required_flag_refused; otherwise required_flag_unknown",
+          "fields_ref": "/formal_programs/0/binding_fields",
+          "group_binding": "選択groupのbindingをcontext同group、その後context共通bindingへ照合。",
+          "witness_ref": "/formal_programs/0/witness_fields",
+          "string_fields_ref": "/formal_programs/0/string_fields",
+          "supported_rule": "両側trueのみ対応。known falseは実false側のrequired_flag_refused、known falseがない非booleanはrequired_flag_unknown。",
           "effects": {
             "unknown": "field_unknown",
             "conflict": "field_conflict",
@@ -1272,7 +1293,7 @@
         },
         {
           "id": "R02",
-          "applies": "root.phase and phase-selected groups",
+          "applies": "L4 R02の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "phase_domain": [
             "prepare",
             "run",
@@ -1280,9 +1301,9 @@
             "handoff",
             "evaluate"
           ],
-          "group_projection_ref": "diagnostic_contract.enabled_groups",
-          "group_required": "both group members are objects to evaluate; otherwise group_missing",
-          "future_group": "retain only; do not evaluate",
+          "group_projection_ref": "/formal_programs/0/active_group_projection",
+          "group_required": "actual/context両groupがobjectのときだけ評価。不成立側はgroup_missing。",
+          "future_group": "未来groupは保持のみで評価しない。",
           "source_pointer": "/diagnostic_contract/rules/1",
           "source_rule_text": "phaseはprepare/run/verify/handoff/evaluate。両側の集合外はphase_unknown、known差はactual phase_conflict。適用groupはactual known phaseだけから決める。両側dictのgroupだけR01と以後の固有規則を評価し、非dict側はgroup_missing。未来groupは入力を保持するだけで判定しない。outputが片側非dictならstop_material_required=true。成果値の採用も両側dictの場合に限る。",
           "phase_paths": [
@@ -1300,7 +1321,7 @@
         },
         {
           "id": "R03",
-          "applies": "start performance, human plan and numeric limits",
+          "applies": "L4 R03の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "performance_domain": [
             "unevaluated",
             "evaluated_material"
@@ -1309,9 +1330,9 @@
             "budget_limit",
             "deadline"
           ],
-          "numeric_predicate": "finite JSON number, positive, boolean excluded",
+          "numeric_predicate": "任意精度の有限JSON numberかつ正。booleanを除外。",
           "human_plan_confirmed": true,
-          "clock_ref_domain": "string",
+          "clock_ref_domain": "string_including_empty",
           "unevaluated_is_failure": false,
           "source_pointer": "/diagnostic_contract/rules/2",
           "source_rule_text": "start.performance_stateはunevaluated/evaluated_materialのclosed値。不明側performance_unknown、known差performance_conflict。performance_stateは両側dict時のactual known値かnull。unevaluated単独を不足にしない。human_plan_confirmedは両側true、clock_refはstring比較。budget_limit/deadlineは有限・bool以外の正の数を両側に要求し、不正側numeric_unknown、両側正の数の差numeric_conflict。値10/100はfixtureだけで、共通閾値を定めない。",
@@ -1328,7 +1349,11 @@
               ],
               "unknown": "performance_unknown",
               "conflict": "performance_conflict",
-              "facet": "start"
+              "facet": "start",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "positive_number_pair",
@@ -1340,7 +1365,11 @@
               "reference": "/context/groups/start",
               "unknown": "numeric_unknown",
               "conflict": "numeric_conflict",
-              "facet": "start"
+              "facet": "start",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_true_pair",
@@ -1350,7 +1379,11 @@
               ],
               "unknown": "required_flag_unknown",
               "facet": "start",
-              "false": "required_flag_refused"
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "string_pair",
@@ -1360,13 +1393,18 @@
               ],
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "start"
+              "facet": "start",
+              "domain": "string",
+              "activation": {
+                "group": "start",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R04",
-          "applies": "proposal origin and binding",
+          "applies": "L4 R04の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "origin_domain": [
             "human",
             "INTELLIGENCE"
@@ -1407,7 +1445,11 @@
               ],
               "domain_only_fields": [
                 "asserted_origin"
-              ]
+              ],
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "actual_pair_difference",
@@ -1421,7 +1463,11 @@
               "known_values": [
                 "human",
                 "INTELLIGENCE"
-              ]
+              ],
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "join_binding_fields",
@@ -1444,17 +1490,21 @@
               ],
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "proposal"
+              "facet": "proposal",
+              "activation": {
+                "group": "proposal",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R05",
-          "applies": "assets.records and authority.permissions",
+          "applies": "L4 R05の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "container_domain": "object",
           "keys": "exact set equality",
-          "asset_fields_ref": "diagnostic_contract.asset_fields",
-          "authority_fields_ref": "diagnostic_contract.authority_fields",
+          "asset_fields_ref": "/formal_programs/0/asset_fields",
+          "authority_fields_ref": "/formal_programs/0/authority_fields",
           "required_flags": [
             "/groups/assets/records/*/classified",
             "/groups/assets/records/*/data_use_allowed",
@@ -1472,7 +1522,11 @@
               ],
               "unknown": "set_unknown",
               "conflict": "set_conflict",
-              "facet": "assets"
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_set_pair",
@@ -1482,7 +1536,11 @@
               ],
               "unknown": "set_unknown",
               "conflict": "set_conflict",
-              "facet": "output"
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_set_pair",
@@ -1492,7 +1550,11 @@
               ],
               "unknown": "set_unknown",
               "conflict": "set_conflict",
-              "facet": "authority"
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_fields",
@@ -1508,7 +1570,11 @@
               "domain": "nonempty_string",
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "assets"
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_fields",
@@ -1536,7 +1602,11 @@
                 "data_use_ref",
                 "planned_output_scope",
                 "planned_asset_key"
-              ]
+              ],
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_fields",
@@ -1551,7 +1621,11 @@
               "domain": "nonempty_string",
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "authority"
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_boolean_true",
@@ -1565,7 +1639,11 @@
               ],
               "unknown": "required_flag_unknown",
               "false": "required_flag_refused",
-              "facet": "assets"
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_boolean_true",
@@ -1579,7 +1657,11 @@
               ],
               "unknown": "required_flag_unknown",
               "false": "required_flag_refused",
-              "facet": "output"
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_boolean_true",
@@ -1592,13 +1674,17 @@
               ],
               "unknown": "required_flag_unknown",
               "false": "required_flag_refused",
-              "facet": "authority"
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R06",
-          "applies": "asset classification, planned outputs and output asset resolution",
+          "applies": "L4 R06の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "forbidden_classifications": [
             "unknown",
             "secret",
@@ -1609,10 +1695,10 @@
             "null",
             "empty string"
           ],
-          "other_class": "compare exact actual/reference string; no new taxonomy",
+          "other_class": "両側の文字列を厳密照合し、新しい分類語彙を作らない。",
           "planned_scope_join": "context.binding.scope",
-          "output_key": "/groups/output/planned_asset_key -> /groups/assets/records key",
-          "output_scope": "actual generated classification and planned_output_scope compare",
+          "output_key": "各output.recordsのliteral member keyにあるplanned_asset_keyを、literal asset.records keyへ解決する。dotをpathへ解釈しない。",
+          "output_scope": "actual生成物のclassificationとplanned_output_scopeを独立予定資産へ照合。",
           "diagnostic_stops_handoff": true,
           "source_pointer": "/diagnostic_contract/rules/5",
           "source_rule_text": "各資産のclassificationは両側でunknown/null/空値をclassification_unknown、secret/HELIX-restrictedをclassification_forbiddenとする。その他のstringは独立参照との一致とclassified/data_use_allowedを照合し、新しい分類語彙を定めない。actual planned_output_scopeをcontext共通scopeへjoinする。outputのplanned_asset_keyを両側string比較し、actual keyでcontext assets.recordsの予定資産を参照する。参照集合/key不明はoutput set_unknown、解決したclassification/planned_output_scopeへactual生成物をstring比較する。output内の全診断は受渡し停止材料を返す。観測側も同分類へ改変された場合であっても事前予定との差を検出する。任意の複数予定物の正式関係型はL5へ残す。",
@@ -1635,7 +1721,11 @@
               ],
               "unknown": "classification_unknown",
               "forbidden": "classification_forbidden",
-              "facet": "assets"
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "record_classification",
@@ -1655,7 +1745,11 @@
               ],
               "unknown": "classification_unknown",
               "forbidden": "classification_forbidden",
-              "facet": "output"
+              "facet": "output",
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "planned_scope_join",
@@ -1670,7 +1764,11 @@
               ],
               "unknown": "set_unknown",
               "conflict": "field_conflict",
-              "facet": "assets"
+              "facet": "assets",
+              "activation": {
+                "group": "assets",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "output_asset_key_join",
@@ -1695,13 +1793,18 @@
               "stop": true,
               "delegate_fields": [
                 "data_use_allowed"
-              ]
+              ],
+              "activation": {
+                "group": "output",
+                "requires_both_group_objects": true
+              }
             }
-          ]
+          ],
+          "multiple_planned_relations": "未供給関係の詳細はL5 /unclosed_planned_output_relationsへ。有限joinを全関係義務の完成としない。"
         },
         {
           "id": "R07",
-          "applies": "credential use",
+          "applies": "L4 R07の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "required_pair": {
             "actual": false,
             "context": false
@@ -1721,18 +1824,22 @@
               ],
               "true": "credential_required",
               "unknown": "required_flag_unknown",
-              "facet": "credential"
+              "facet": "credential",
+              "activation": {
+                "group": "credential",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R08",
-          "applies": "egress",
+          "applies": "L4 R08の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "mode_domain": [
             "none",
             "allowlisted"
           ],
-          "allowlist_fields_ref": "diagnostic_contract.network_fields",
+          "allowlist_fields_ref": "/formal_programs/0/network_fields",
           "compare_allowlist_only_when_actual_mode_allowlisted": true,
           "none_requires_allowlist": false,
           "retry_required_pair": {
@@ -1754,7 +1861,11 @@
               ],
               "unknown": "network_mode_unknown",
               "conflict": "network_mode_conflict",
-              "facet": "egress"
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "conditional_record_fields",
@@ -1766,7 +1877,11 @@
               "domain": "nonempty_string",
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "egress"
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_false_pair",
@@ -1776,20 +1891,24 @@
               ],
               "true": "required_flag_refused",
               "unknown": "required_flag_unknown",
-              "facet": "egress"
+              "facet": "egress",
+              "activation": {
+                "group": "egress",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R09",
-          "applies": "isolation",
+          "applies": "L4 R09の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "host_fallback_required_pair": {
             "actual": false,
             "context": false
           },
           "true_code": "isolation_fallback_forbidden",
           "unsupported_code": "required_flag_unknown",
-          "references_ref": "diagnostic_contract.string_fields.isolation",
+          "references_ref": "/formal_programs/0/string_fields.isolation",
           "references_prove_applied_controls": false,
           "source_pointer": "/diagnostic_contract/rules/8",
           "source_rule_text": "isolation.host_fallbackは両側false。trueはisolation_fallback_forbidden、非boolはrequired_flag_unknown。各隔離/制約参照とsupportedをR01で照合。実適用/unsupported/credential・network・環境・回収等の各実制約の資格はこの素材比較から生成しない。",
@@ -1802,15 +1921,19 @@
               ],
               "true": "isolation_fallback_forbidden",
               "unknown": "required_flag_unknown",
-              "facet": "isolation"
+              "facet": "isolation",
+              "activation": {
+                "group": "isolation",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R10",
-          "applies": "operation authority and reversibility",
-          "authority_fields_ref": "diagnostic_contract.authority_fields",
-          "operation_permissions": "all entries compared by R05",
+          "applies": "L4 R10の対応素材。source_rule_textと以下の構造化checkにより限定する。",
+          "authority_fields_ref": "/formal_programs/0/authority_fields",
+          "operation_permissions": "全entryをR05の宣言fieldで比較する。",
           "environment_scope_join": [
             "/groups/authority/permissions/*/environment_id",
             "/binding/environment_id",
@@ -1842,7 +1965,11 @@
               "domain": "nonempty_string",
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "authority"
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "join_binding_fields",
@@ -1860,7 +1987,11 @@
               ],
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "authority"
+              "facet": "authority",
+              "activation": {
+                "group": "authority",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_true_pair",
@@ -1870,7 +2001,11 @@
               ],
               "unknown": "required_flag_unknown",
               "facet": "reversibility",
-              "false": "required_flag_refused"
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "reversibility",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_false_pair",
@@ -1880,7 +2015,11 @@
               ],
               "true": "required_flag_refused",
               "unknown": "required_flag_unknown",
-              "facet": "reversibility"
+              "facet": "reversibility",
+              "activation": {
+                "group": "reversibility",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "nonempty_string_pair_with_required_value",
@@ -1891,13 +2030,17 @@
               "required_value": "OS",
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "assignment"
+              "facet": "assignment",
+              "activation": {
+                "group": "assignment",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R11",
-          "applies": "run status, usage, stop conditions and selection trace",
+          "applies": "L4 R11の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "run_domain": [
             "success",
             "failed",
@@ -1909,8 +2052,8 @@
             "cumulative_cost",
             "observed_time"
           ],
-          "numeric_predicate": "finite JSON number, nonnegative, boolean excluded",
-          "compare_actual_usage_against": "context start budget_limit/deadline when known",
+          "numeric_predicate": "任意精度の有限JSON numberかつ非負。booleanを除外。",
+          "compare_actual_usage_against": "actual/context startが両方objectの場合に限りcontext startのknown数値予算/期限へ比較する。",
           "excess_codes": [
             "budget_exceeded",
             "deadline_exceeded"
@@ -1939,7 +2082,11 @@
               ],
               "unknown": "run_state_unknown",
               "conflict": "run_state_conflict",
-              "facet": "run"
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "nonnegative_number_actual",
@@ -1948,21 +2095,41 @@
                 "/groups/run/observed_time"
               ],
               "unknown": "numeric_unknown",
-              "facet": "run"
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "exceeds_limit",
               "actual": "/groups/run/cumulative_cost",
               "limit": "/context/groups/start/budget_limit",
               "code": "budget_exceeded",
-              "facet": "run"
+              "facet": "run",
+              "requires_objects": [
+                "/groups/start",
+                "/context/groups/start"
+              ],
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "exceeds_limit",
               "actual": "/groups/run/observed_time",
               "limit": "/context/groups/start/deadline",
               "code": "deadline_exceeded",
-              "facet": "run"
+              "facet": "run",
+              "requires_objects": [
+                "/groups/start",
+                "/context/groups/start"
+              ],
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_false_actual",
@@ -1971,7 +2138,11 @@
               ],
               "true": "run_limit_violation",
               "unknown": "required_flag_unknown",
-              "facet": "run"
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "required_false_actual",
@@ -1980,13 +2151,17 @@
               ],
               "true": "run_limit_violation",
               "unknown": "required_flag_unknown",
-              "facet": "run"
+              "facet": "run",
+              "activation": {
+                "group": "run",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R12",
-          "applies": "verification/human/observation/evaluation result domains",
+          "applies": "L4 R12の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "domains": {
             "verification": [
               "verified_material",
@@ -2029,7 +2204,11 @@
               ],
               "unknown": "result_unknown",
               "conflict": "result_conflict",
-              "facet": "verification"
+              "facet": "verification",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "enum_pair",
@@ -2044,7 +2223,11 @@
               ],
               "unknown": "result_unknown",
               "conflict": "result_conflict",
-              "facet": "human_result"
+              "facet": "human_result",
+              "activation": {
+                "group": "human_result",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "enum_pair",
@@ -2059,7 +2242,11 @@
               ],
               "unknown": "result_unknown",
               "conflict": "result_conflict",
-              "facet": "observation"
+              "facet": "observation",
+              "activation": {
+                "group": "observation",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "enum_pair",
@@ -2075,13 +2262,17 @@
               ],
               "unknown": "result_unknown",
               "conflict": "result_conflict",
-              "facet": "evaluation"
+              "facet": "evaluation",
+              "activation": {
+                "group": "evaluation",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R13",
-          "applies": "verification and human review",
+          "applies": "L4 R13の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "verification_oracle_applied_pair": {
             "actual": true,
             "context": true
@@ -2092,8 +2283,8 @@
             "applied_obligation_ref",
             "binding.obligation_set_ref"
           ],
-          "human_role_domain": "nonempty string other than human",
-          "self_review": "actual human actor_ref != actual binding.worker_id",
+          "human_role_domain": "非空stringのhumanのみ対応。他のknown stringはforbidden、不明は各側unknown。",
+          "self_review": "actual人確認actor_refとactual binding.worker_idのknown同値を拒否する。",
           "CI_success_from_reference": false,
           "source_pointer": "/diagnostic_contract/rules/12",
           "source_rule_text": "verificationはoracle_applied両側trueを照合し、applied_oracle_ref/applied_obligation_refをcontext共通oracle_ref/obligation_set_refへjoinする。human_result.roleは両側非空stringでhuman以外ならhuman_role_forbidden、不明はhuman_role_unknown。actual actor_refがactual worker_idとknown一致ならself_confirmation_forbidden。確認対象/時刻/未完、分担/CI利用参照を保存する。分担資料からOS020実装成功や実CI成功を作らない。",
@@ -2106,7 +2297,11 @@
               ],
               "unknown": "required_flag_unknown",
               "facet": "verification",
-              "false": "required_flag_refused"
+              "false": "required_flag_refused",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "join_binding_fields",
@@ -2124,7 +2319,11 @@
               ],
               "unknown": "field_unknown",
               "conflict": "field_conflict",
-              "facet": "verification"
+              "facet": "verification",
+              "activation": {
+                "group": "verification",
+                "requires_both_group_objects": true
+              }
             },
             {
               "op": "human_role_actor",
@@ -2136,13 +2335,17 @@
               "self": "self_confirmation_forbidden",
               "facet": "human_result",
               "required_value": "human",
-              "context_prefix": "/context"
+              "context_prefix": "/context",
+              "activation": {
+                "group": "human_result",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R14",
-          "applies": "handoff/observation/evaluation",
+          "applies": "L4 R14の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "postrun_reference_fields": {
             "handoff": [
               "OS018_result_ref",
@@ -2175,13 +2378,17 @@
               "code": "evaluation_basis_unproven",
               "facet": "evaluation",
               "when_value": "evaluated_material",
-              "context_prefix": "/context"
+              "context_prefix": "/context",
+              "activation": {
+                "group": "evaluation",
+                "requires_both_group_objects": true
+              }
             }
           ]
         },
         {
           "id": "R15",
-          "applies": "claims",
+          "applies": "L4 R15の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "true_code": "forbidden_claim",
           "false_code": null,
           "nonboolean_code": "claim_unknown",
@@ -2194,13 +2401,53 @@
               "path": "/claims",
               "true": "forbidden_claim",
               "unknown": "claim_unknown",
-              "facet": "boundary"
+              "facet": "boundary",
+              "claim_names": [
+                "permission_from_candidate",
+                "assign_from_proposal",
+                "INT_output_from_human",
+                "evaluation_from_one_success",
+                "scope_or_authority_from_score",
+                "new_risk_classifier",
+                "all_mechanisms_required",
+                "OS020_required",
+                "OS026_self_dependency",
+                "OS027_LABO_dependency",
+                "future_receipt_used",
+                "budget_reset",
+                "safety_waived_by_human",
+                "result_from_unobserved",
+                "whole_cycle_complete"
+              ],
+              "domain": "closed_named_boolean_members",
+              "activation": {
+                "group": null,
+                "requires_both_group_objects": true
+              }
             }
-          ]
+          ],
+          "claim_names": [
+            "permission_from_candidate",
+            "assign_from_proposal",
+            "INT_output_from_human",
+            "evaluation_from_one_success",
+            "scope_or_authority_from_score",
+            "new_risk_classifier",
+            "all_mechanisms_required",
+            "OS020_required",
+            "OS026_self_dependency",
+            "OS027_LABO_dependency",
+            "future_receipt_used",
+            "budget_reset",
+            "safety_waived_by_human",
+            "result_from_unobserved",
+            "whole_cycle_complete"
+          ],
+          "meaning": "declared claimは候補比較から新許可/割当/評価/依存を生成する主張。既存のSEC許可・OS割当を否定しない。"
         },
         {
           "id": "R16",
-          "applies": "aggregation and side-effect bounds",
+          "applies": "L4 R16の対応素材。source_rule_textと以下の構造化checkにより限定する。",
           "facet_priority": [
             "corresponding",
             "unknown",
@@ -2211,7 +2458,7 @@
             "cycle_material_unknown",
             "cycle_material_violation"
           ],
-          "start_material_supported": "known actual phase and zero finding in binding/boundary/start active groups",
+          "start_material_supported": "actual phaseがknownで、binding/boundary/開始各active群の所見が0件のときだけ対応。",
           "future_group_state": "not_applicable",
           "finding_dedup_keys": [
             "code",
@@ -2682,8 +2929,8 @@
           "meaning_ja": "列挙値はL5に宣言された値だけ。"
         }
       ],
-      "facet_priority_semantics": "priority配列はlow-to-highで右端が高い。any violation -> violation; else any unknown -> unknown; else corresponding. active group with absent/invalid record yields unknown; inactive future group -> not_applicable.",
-      "condition_priority_semantics": "同じlow-to-high/rightmost-highest規則をcondition enumへ適用する。",
+      "facet_priority_semantics": "priorityは左から低→高。violationがあればviolation、無くunknownがあればunknown、無ければcorresponding。選択groupの不正recordはunknown、未来groupはnot_applicable。",
+      "condition_priority_semantics": "conditionも宣言配列の右端を最高優先として集約する。",
       "diagnostic_codes": {
         "field_unknown": {
           "code": "field_unknown",
@@ -2935,7 +3182,7 @@
             "evaluation",
             "boundary"
           ],
-          "active_rule": "inactive future groups => not_applicable; active groups aggregate their findings; binding/boundary are always considered",
+          "active_rule": "binding/boundaryは常時、phaseで選択されたgroupだけ初期corresponding。未来groupはnot_applicable。codeのcomparisonは出力facet名でなく対象groupへ置換するメタ値。",
           "initial_state": "corresponding",
           "inactive_value": "not_applicable",
           "always_active_facets": [
@@ -2973,7 +3220,11 @@
             "unevaluated",
             "evaluated_material"
           ],
-          "requires_group_selected": "start"
+          "requires_group_selected": "start",
+          "requires_objects": [
+            "/groups/start",
+            "/context/groups/start"
+          ]
         },
         "run_state": {
           "op": "actual_or_null_if_domain_known",
@@ -2985,7 +3236,11 @@
             "interrupted",
             "unknown"
           ],
-          "requires_group_selected": "run"
+          "requires_group_selected": "run",
+          "requires_objects": [
+            "/groups/run",
+            "/context/groups/run"
+          ]
         },
         "verification_result": {
           "op": "actual_or_null_if_domain_known",
@@ -2995,7 +3250,11 @@
             "failed_material",
             "unobserved"
           ],
-          "requires_group_selected": "verification"
+          "requires_group_selected": "verification",
+          "requires_objects": [
+            "/groups/verification",
+            "/context/groups/verification"
+          ]
         },
         "human_result": {
           "op": "actual_or_null_if_domain_known",
@@ -3005,7 +3264,11 @@
             "rejected_material",
             "unobserved"
           ],
-          "requires_group_selected": "human_result"
+          "requires_group_selected": "human_result",
+          "requires_objects": [
+            "/groups/human_result",
+            "/context/groups/human_result"
+          ]
         },
         "observation_result": {
           "op": "actual_or_null_if_domain_known",
@@ -3015,7 +3278,11 @@
             "rejected_material",
             "unobserved"
           ],
-          "requires_group_selected": "observation"
+          "requires_group_selected": "observation",
+          "requires_objects": [
+            "/groups/observation",
+            "/context/groups/observation"
+          ]
         },
         "evaluation_result": {
           "op": "actual_or_null_if_domain_known",
@@ -3026,7 +3293,11 @@
             "inapplicable",
             "unknown"
           ],
-          "requires_group_selected": "evaluation"
+          "requires_group_selected": "evaluation",
+          "requires_objects": [
+            "/groups/evaluation",
+            "/context/groups/evaluation"
+          ]
         },
         "scoped_evaluation_material": {
           "op": "and",
@@ -3093,7 +3364,9 @@
             "binding": "/binding",
             "groups": "/groups",
             "claims": "/claims"
-          }
+          },
+          "absent_projection": "null",
+          "meaning": "未供給memberは公開保持投影でnull。原raw/presenceの記録と区別する。"
         },
         "retained_reference": {
           "op": "project",
@@ -3101,7 +3374,9 @@
             "phase": "/context/phase",
             "binding": "/context/binding",
             "groups": "/context/groups"
-          }
+          },
+          "absent_projection": "null",
+          "meaning": "未供給memberは公開保持投影でnull。原raw/presenceの記録と区別する。"
         },
         "findings": {
           "op": "sort_unique_findings",
@@ -3164,34 +3439,34 @@
         "whole_cycle_complete",
         "operation_effect"
       ],
-      "finding_disposition_rule": "code disposition由diagnostic_codes[code].disposition读取。全体Findingからfacet별로最大priorityを集約し、cycle conditionは全facet最大値を集約。",
+      "finding_disposition_rule": "diagnostic_codes[code].dispositionを読み、各findingの解決済みfacetごとに最大priorityを集約する。conditionは全facetの最大値から返す。",
       "stop_material_semantics_ja": "実停止操作ではない。L4 R02のactive output group非dictによるgroup_missing、R06のoutput facet内finding、R11のbudget/deadline/run-limit違反があるときだけtrue。別groupのgroup_missingを一律停止へ拡張しない。",
       "field_comparison_semantics": {
         "operand_order": [
           "actual",
           "reference"
         ],
-        "presence_order": "actual operand is checked first; then reference operand",
-        "unknown": "either operand absent, null, or outside row declared domain yields row unknown_code and pointer to first invalid operand",
-        "conflict": "both operands in declared domain and unequal yields conflict_code with actual-side pointer",
-        "corresponding": "both operands in declared domain and equal",
-        "json_equality": "null only equals null; booleans compare only to booleans; strings compare exact code points; numbers compare finite numeric value and booleans are excluded; arrays ordered recursively; objects compare by key/value independent of object member order",
-        "finding_deduplication": "after all rules, equality of code+pointer+return_owner yields one finding; other findings remain",
-        "group_domain": "both actual and reference selected group must be object; nested sections remain JSONValue until a rule declares narrower shape",
-        "set_domain": "object key sets compare as unordered sets; member values are compared by declared record-field sequence",
-        "owner_candidate": "logical facet route only; actual recipient and owner qualification are not inputs or results"
+        "presence_order": "一般pairはactual→reference順で最初の不正側1件。R04 enum_member_pairsとhuman_role_actorは明示例外として不正側それぞれを返す。",
+        "unknown": "一般pairでAbsent/null/declared domain外なら最初の不正operand pointerへunknown。R04は両側を別にdomain判定し不正な各fieldへorigin_unknown。 literal boolean条件はboolean_pair_semanticsのknown拒否値優先を明示例外とする。",
+        "conflict": "両側が宣言domain内で異なればactual pointerへconflict。",
+        "corresponding": "両側domain内で同値、または各固有演算の成立条件どおり。",
+        "json_equality": "object key順を無視、array順を保持。booleanとnumberを区別。numberは任意精度の有限JSON十進数値を厳密比較し1と1.0を同値とする。binary64の範囲/精度を入力制限にしない。",
+        "finding_deduplication": "全規則の後でcode/pointer/return_ownerの全一致だけを一意化。",
+        "group_domain": "選択groupのactual/contextが両方objectの場合に固有比較を行う。そうでない側はgroup_missing。",
+        "set_domain": "record key集合は順序無視、record memberは宣言順で照合。",
+        "owner_candidate": "論理facet戻し先のみ。既存SEC許可/OS割当の事実を否定せず、文書照合から新たな実成立を作らない。"
       },
       "finding_order_rule": {
-        "rule": "Process each rule in declared L4 rule order; within a rule process fields in source declaration order; final output findings are sorted/deduplicated with L4 keys.",
+        "rule": "規則は宣言順、fieldは各宣言順に処理し、最終findingsをcode/pointer/return_ownerの順で辞書順sort・全一致重複除去する。",
         "final_sort": [
           "code",
           "pointer",
           "return_owner"
         ],
-        "unknown_operand_order": "actual before context/reference"
+        "unknown_operand_order": "一般pairはactual→context。R04/human role等の各側診断は各op契約を優先する。"
       },
       "return_owner_derivation": {
-        "rule": "For fixed diagnostic code, use diagnostic_codes[code].facet. For common field comparison, use the declared facet of the active group; root binding uses binding; claims and phase boundary use boundary. Return owner is the corresponding facet source-owner logical label.",
+        "rule": "固定codeはdiagnostic_codesのfacet、comparisonメタcodeはcheckの対象group/binding、phase/claimsはboundaryを使う。対応facetのsource-ownerラベルを論理返却候補とする。",
         "known_labels": {
           "binding": "binding-source-owner",
           "start": "start-source-owner",
@@ -3213,7 +3488,7 @@
           "evaluation": "evaluation-source-owner",
           "boundary": "boundary-source-owner"
         },
-        "qualification": "labels identify return responsibility only; they do not prove that a named organization/individual accepted or owns the work."
+        "qualification": "候補ラベルは責務の戻し先を指すだけで、実組織/個人の受領・所有・資格を証明しない。"
       },
       "common_comparison_rows": [
         {
@@ -3266,7 +3541,7 @@
             {
               "field": "allowlist_ref",
               "when": "actual /groups/egress/mode != allowlisted",
-              "reason": "L4 R08 explicitly compares allowlist/network only when actual mode is allowlisted; none requires no such reference.",
+              "reason": "L4 R08はactual mode=allowlisted時だけallowlist/networkを比較する。noneへ同参照を要求しない。",
               "when_path": "/groups/egress/mode",
               "equals_value": "allowlisted",
               "skip_when_not_equal": true
@@ -3319,7 +3594,7 @@
         },
         "claims": {
           "reads": "pathのobject member",
-          "rule": "各trueへtrue code、boolean以外へunknown codeをmember pointerで返す。falseはfindingなし。"
+          "rule": "pathがAbsent/null/nonobjectならpathへunknownを1件返す。objectなら宣言claim_namesを順に読み、欠落/boolean以外をmember pointerへunknown、trueをtrue code、falseは所見なし。宣言外keyはunknown。既存ownerの権限ではなく、この文書照合から新しく成立させる主張の有限flagである。"
         },
         "conditional_record_fields": {
           "reads": "when_path,root,reference,fields_ref,domain",
@@ -3327,7 +3602,7 @@
         },
         "enum_member_pairs": {
           "reads": "root/referenceのfields順とvalues",
-          "rule": "各fieldを先に有限列挙domainへ検査する。originはreferenceと比較し、asserted_originは両側の列挙domainのみ検査、actual originとの差はactual_pair_differenceで返す。"
+          "rule": "field宣言順にactualとreferenceをそれぞれ有限列挙domainへ照合し、不正な各側へunknownを独立返却。両側validかつcompare_fieldsに含むfieldが異なればactual conflict。domain_only_fieldsは両側domainだけを検査する。"
         },
         "enum_pair": {
           "reads": "paths[0],paths[1],values",
@@ -3335,15 +3610,15 @@
         },
         "evaluation_if_evaluated": {
           "reads": "resultとflags",
-          "rule": "actual resultがevaluated_materialなら各flagのactual側・context側を順に読み、true以外を最初の不正側pointerへcodeで返す。"
+          "rule": "actual resultがwhen_valueならflagsを宣言順に読み、各flagのactual/contextを独立に判定しtrue以外の各pointerへcodeを返す。"
         },
         "exceeds_limit": {
-          "reads": "actual,limit",
-          "rule": "双方が有限JSON number（bool除外）であるときactual>limitのみcodeをactual pathへ返す。未解決値のunknownは各operandのdomain checkが担当する。"
+          "reads": "actual,limit,requires_objects",
+          "rule": "requires_objectsの全pointerがobjectのときだけ、actual/limitがbool以外の有限JSON numberでactual>limitならcodeをactual pointerへ返す。start片側非objectなら超過比較は行わず、group_missingと原使用量を保持する。これは実予算内/実継続許可の判定ではない。"
         },
         "human_role_actor": {
           "reads": "role,actor,workerと同じcontext role",
-          "rule": "actual role、context roleを順にhumanの非空stringとして判定。actor_refとworker_idがknown同値ならactual actor pathへself code。"
+          "rule": "actual roleとcontext roleをそれぞれ非空stringとして判定。不明な各側へunknown、human以外のknown値は各側へforbidden_role。actual actorとworkerが非空stringかつ等値ならactor pointerへself。"
         },
         "join_binding_fields": {
           "reads": "pairsの左pathおよび最後のcontext binding path",
@@ -3358,8 +3633,14 @@
           "rule": "actual、referenceの順で非空stringを検査。先に不正な側へunknown。known値のうちrequired_valueでない最初の側へconflict。"
         },
         "output_asset_key_join": {
-          "reads": "output_records,asset_records,key_field,field_order",
-          "rule": "両側output/asset recordsがobjectのときactual outputの各member keyを昇順に処理。actual planned keyが非空stringでasset record双方に解決できる場合、field_orderのactual output値とcontext planned asset値を照合。key自体のunknown/conflictはR05 field比較と未解決key codeで返す。"
+          "reads": "output_records,asset_records,key_field,field_order,delegate_fields、全operand_domains",
+          "rule": "operand_domainsとfield_orderに従う。null classificationを一般compare_knownでconflictへ解釈しない。",
+          "operand_domains": {
+            "containers": "output_recordsとasset_recordsの全4containerがobjectである場合だけ処理。そうでなければ他R02/R05が不足を診断。",
+            "keys": "両側outputの共通keyをUnicode codepoint昇順。actual planned keyは非空string必須、違反/Absent/nullはactual key pointerへunknown。reference keyの非空/string差はR05へ委ねる。",
+            "resolution": "actual planned keyをliteral keyとして両側asset recordsへ解決し、どちらかがobjectでなければactual output key pointerへunknown。",
+            "fields": "field_orderのactual outputとcontext planned assetの同名fieldを比較。delegate_fieldsは他R05診断へ委譲して再比較しない。boolean_fieldsは両trueなら対応、どちらかfalseならactual output fieldへfalse code、それ以外は他診断へ委譲。残るfieldは両方非空stringの場合だけ等値比較し、差はactual fieldへconflict。非string/空/Absent/nullは他R05/R06診断へ委譲し、ここではviolationへ変更しない。"
+          }
         },
         "planned_scope_join": {
           "reads": "records,field,scope_paths",
@@ -3371,7 +3652,7 @@
         },
         "record_boolean_true": {
           "reads": "containers共通member key昇順、fields順",
-          "rule": "共通recordだけ処理。actual→reference順にboolean trueを要求。不正側へunknown、false側へfalse code。"
+          "rule": "共通record key昇順・field順でboolean_pair_semantics.required_trueを適用。known falseは必ず実false側のmember pointerへ返し、null側をrefused根拠と表示しない。"
         },
         "record_classification": {
           "reads": "containers共通member key昇順、field",
@@ -3391,57 +3672,69 @@
         },
         "required_false_pair": {
           "reads": "paths[0],paths[1]",
-          "rule": "actual→reference順でbooleanを検査。不正側へunknown。双方booleanでtrueならtrue codeをtrue側pointerへ返す。"
+          "rule": "boolean_pair_semantics.required_falseに従う。known trueの実側が拒否、known trueが無いとき最初の非boolean側がunknown。"
         },
         "required_true_pair": {
           "reads": "paths[0],paths[1]",
-          "rule": "actual→reference順でbooleanを検査。不正側へunknown。双方booleanでfalseならfalse codeをfalse側pointerへ返す。"
+          "rule": "boolean_pair_semantics.required_trueに従う。known falseの実側がrefused、known falseが無いとき最初の非boolean側がunknown。"
         },
         "string_pair": {
           "reads": "paths[0],paths[1]",
-          "rule": "actual→reference順に非空stringを検査。不正側へunknown。双方known相違ならactual pointerへconflict。"
+          "rule": "domain=stringなら空を含む文字列、domain=nonempty_stringまたは省略なら非空文字列。一般pairはactual→reference順の最初の不正側へunknown。両側validで異なればactual conflict。"
         }
       },
       "group_root_paths": [
         "/groups",
         "/context/groups"
-      ]
+      ],
+      "normative_scope": {
+        "location": "/formal_programs/0",
+        "contains": "全field集合・所有者map・演算契約・guard・output式・finding/condition優先順を含むこのobject全体。",
+        "external_documents": "批准L3/L10/L4は意味の出典。計算時に外部のdomain/default/語彙を足さない。",
+        "specialized_operator_contract": "human_role_actor等の合成素材opは下記check_operator_contractsに閉じた有限演算。汎用語彙だけを使うと偽称しない。"
+      },
+      "numeric_domain": {
+        "kind": "exact_finite_json_number",
+        "value": "符号・整数部・小数部・十進指数から得る数学的有限値。整数/十進数を任意精度で比較し、booleanを除外する。",
+        "lexeme": "1e400は有限値10^400であり、同値の整数lexemeと等値。1e-400を0へ丸めない。NaN/InfinityはJSON numberではない。",
+        "resource_limit": "ここで精度/指数/桁数/二進数幅の許可上限を新設しない。正式codec/library/資源制限の方式採用は別未成立。",
+        "static_reader": "raw JSONはexact parseで数値内容を保持する。Python floatを通すと失われるlexemeの正確さを復元したとは主張しない。"
+      },
+      "pointer_semantics": {
+        "syntax": "RFC6901。空pointerはroot。tokenごと~1→/、~0→~。不正escapeはAbsent。空object keyを省略しない。array indexは0または先頭0無し十進正整数、範囲外はAbsent。",
+        "dynamic_keys": "record identityはliteral key。dotをpathとして解釈せず、/と~をescapeしてtokenへ結ぶ。",
+        "missing": "member/index無し・途中noncontainerはAbsent。nullとは別。"
+      },
+      "comparison_facet_marker": {
+        "marker": "comparison",
+        "kind": "dynamic_code_metadata",
+        "not_in_output_FacetMap": true,
+        "resolution": "rule/checkが指定する比較対象group/bindingへ解決してからownerを作る。"
+      },
+      "numeric_domain_ref": "/formal_programs/0/numeric_domain",
+      "source_quote_role": "source_rule_textは固定L4の読取証拠。実計算は構造化checkとprogram内のoperator/operand/output契約が一意の規範であり、source引用から未宣言のdefault/path/分岐を補完しない。",
+      "check_activation_semantics": "各checkはactivation.groupがnullなら常時、それ以外はactual phaseのactive群に含まれる場合だけ評価する。requires_both_group_objects=trueなら、そのgroupのactual/context両object成立時に限る。path文字列を見てhelperがgroupを推測しない。非object群の不足はR02が返す。",
+      "boolean_pair_semantics": {
+        "required_true": "片側でもknown falseなら、その実false側pointerへfalse/refused code。両側falseはactualを先にする。falseが無くtrue以外の不明があれば最初の不正側unknown。",
+        "required_false": "片側でもknown trueなら、その実true側pointerへtrue/refused code。両側trueはactualを先にする。trueが無くfalse以外の不明があれば最初の不正側unknown。",
+        "scope": "一般string/number pairのunknown規則とは区別する。knownな拒否値をnull側の所見と偽表示せず、追加の実許可や分類語を生成しない。"
+      },
+      "common_boolean_comparison_ref": "/formal_programs/0/boolean_pair_semantics"
     }
   ],
   "interpreter_contract": {
     "name": "OS027-PURE-READER-1",
     "input": "CycleInput",
     "output": "CycleProposal",
-    "determinism": "same JSONValue -> same complete output",
-    "json_equality": "null/bool/string kinds compare strictly; number values compare numerically and bool is not number; object key order ignored; array order preserved",
-    "presence": "Absent distinct from present null; malformed expected paths remain unknown rather than default success",
-    "execution": "only rule_data in formal_programs may direct business evaluation; implementation code may implement generic record/path/domain/comparison/aggregation operators only",
+    "determinism": "同じJSON値と同じprogramから同じ全返却。",
+    "normative_root": "/formal_programs/0",
+    "execution": "formal_programs[0]の全内容だけが計算規範。rule_data/check_operator_contracts/field集合/field_comparison_semantics/owner map/output式/順序/domainを含む。外のdiagnostic_contract/l4_contracts/architecture/traceはsource証拠であり計算へ読まない。",
+    "generic_only": false,
+    "reader_scope": "op名には業務素材を表すものがあるが、その全path/operand/guard/code/owner/順序の意味はprogram内に明記する。readerは宣言されたop契約を実現し、独自の業務条件を補完しない。",
+    "business_semantics_location": "/formal_programs/0 全体",
     "no_case_lookup": true,
-    "operator_semantics": {
-      "domain_classify": "L5のdomain kindを厳密に適用する。boolをnumberとしない。numberは有限値。",
-      "compare_known": "左または右がunknownならunknownがconflictより優先。双方knownかつJSON値が不一致ならviolation。",
-      "phase_project": "actual phaseがdomain外ならunknown。known phaseに対するL5 tableの列だけactive。",
-      "aggregate_facet": "rightmost-highest; violation > unknown > corresponding; no active material group => not_applicable where L5 projection says so.",
-      "json_equality": "object key order ignored; array order significant; number 1 and 1.0 numerically equal; bool distinct."
-    },
-    "generic_only": true,
-    "business_semantics_location": "formal_programs[OS027-EVAL-1].rule_data, diagnostic_codes, active_group_projection, output_expressions, facet_priority_semantics, condition_priority_semantics",
-    "no_external_oracle_lookup": "L9 expected whole、case ID、label、requirement/oracle IDは計算規則から読まない。",
-    "presence_and_diagnostic_order": {
-      "operand_order": [
-        "actual",
-        "reference"
-      ],
-      "presence_order": "actual operand is checked first; then reference operand",
-      "unknown": "either operand absent, null, or outside row declared domain yields row unknown_code and pointer to first invalid operand",
-      "conflict": "both operands in declared domain and unequal yields conflict_code with actual-side pointer",
-      "corresponding": "both operands in declared domain and equal",
-      "json_equality": "null only equals null; booleans compare only to booleans; strings compare exact code points; numbers compare finite numeric value and booleans are excluded; arrays ordered recursively; objects compare by key/value independent of object member order",
-      "finding_deduplication": "after all rules, equality of code+pointer+return_owner yields one finding; other findings remain",
-      "group_domain": "both actual and reference selected group must be object; nested sections remain JSONValue until a rule declares narrower shape",
-      "set_domain": "object key sets compare as unordered sets; member values are compared by declared record-field sequence",
-      "owner_candidate": "logical facet route only; actual recipient and owner qualification are not inputs or results"
-    }
+    "no_external_oracle_lookup": "case ID/L9期待/label/要求IDで答えを選ばない。",
+    "presence": "Absentとnull/空/false/0を区別し、不正containerを成功へ補完しない。公開retained投影のAbsentはnullと明記し、入力raw側のAbsentは別に保持する。"
   },
   "architecture": {
     "input": "各ownerの独立source/expected参照とactual原資料を同bindingへ結ぶimmutable snapshot。資格は正式owner契約で後続確認する。",
@@ -4225,13 +4518,14 @@
     "empty asset/permission setsは全manifestの完全性を証明しない。",
     "開始前の未評価performance状態だけでは開始を拒否しない。",
     "後段consumerの未達を一律の開始前gateにしない。",
-    "全L2/L11/実operation/実評価/CI/Readyは未成立。"
+    "全L2/L11/実operation/実評価/CI/Readyは未成立。",
+    "未供給のmanifest/role関係はunclosed_planned_output_relationsを参照。有限比較の対応をL4全義務の完成としない。"
   ],
   "remaining": [
-    "formal rule dataの独立汎用interpreterによる全field再計算・全型照合",
     "実owner/source資格・actual environment enforcement・effective expiry/manifestの別証拠",
     "旧consumer全体のclosureと実operation/実Red-Green・L7対検証・L11受入",
-    "全92親430対の意味閉包"
+    "全92親430対の意味閉包",
+    "L4が割り当てた任意資産/操作/複数予定生成物の完全関係はunclosed_planned_output_relationsの供給不足/witness/consumerへ残す。"
   ],
   "approval_admission": {
     "decision_record_path": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -4329,5 +4623,194 @@
       "検証引渡し": "L8の原2270whole参照と型境界4部分期待へ結ぶ。"
     },
     "limit": "限定意味の参照のみ。全template採用/運用knowledge昇格/正式schema/実資格は成立しない。"
+  },
+  "unclosed_planned_output_relations": {
+    "status": "unclosed",
+    "l4_obligation": "任意資産/操作/予定生成物の全関係とmanifest完全性。",
+    "implemented": "供給された両側record key集合、各field、actual output keyからcontext asset recordへの有限join。",
+    "missing_inputs": [
+      "独立した予定生成物の必要集合producer/全列挙資格",
+      "各assetの入力/予定生成物roleを識別するsource-qualified tag",
+      "複数予定物とoutput recordの完全な対応関係の独立schema/consumer"
+    ],
+    "witnesses": [
+      "LOCAL-OS027-OUTPUT-EMPTY-RELATION-WITNESS",
+      "LOCAL-OS027-OUTPUT-INPUT-ASSET-ROLE-WITNESS"
+    ],
+    "meaning": "空集合/双方同値や命名input_a/planned_output_aから役割を推測してL4義務合格にしない。対応という現material表示は関係閉包/実許可を意味しない。"
+  },
+  "legacy_normative_whole_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-36",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-36",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。",
+          "semantic_digest": "sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3"
+        },
+        "assertion_id": "HIA-NFR-036",
+        "primary_system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-36",
+          "owner_id": "HR-FR-HIL-22",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-36",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
+          "authority_id": "RAS-HIL-22"
+        },
+        "semantic_digest": "sha256:1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065"
+      },
+      "object_canonical_sha256": "f2ef202e0fc7e7de9a258b8338620f2a2f89b6981befb33ec86187b31ffd6ee6",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id": "HR-FR-HIL-22",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-22",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-31",
+          "HIL-FR-61",
+          "HIL-FR-62",
+          "HIL-FR-63",
+          "HIL-NFR-35",
+          "HIL-NFR-36"
+        ],
+        "behavior": "候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする",
+        "transition_contract": "fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt",
+        "failure_and_evidence": "smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f"
+      },
+      "object_canonical_sha256": "dccc7db6dfe7895688ca8bd048e94c9347ccf547fb402ea1a176c1e163669069",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22a",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22a",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "positive",
+        "statement": "blind benchと実taskで用途別選択",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80"
+      },
+      "object_canonical_sha256": "10cebedcb421979e3a3981414c50f6a084a15bce2fe36a4caa170cb944959def",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22b",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22b",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "negative",
+        "statement": "重大failure/範囲逸脱を平均で相殺しない",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763"
+      },
+      "object_canonical_sha256": "da1a9fc5c92a97f0e0e2305851edb55677504681060ed7974be365ceb1815844",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22c",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "boundary",
+        "statement": "品質悪化時にmodel/effortを比較再route",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5"
+      },
+      "object_canonical_sha256": "8b6ee48b269806bdc8f904daa0032eab5e307665972e4fa25454b363e1e4457d",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id": "HAT-HIL-22",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-22",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "supporting_test_ids": [
+          "HOT-HIL-54",
+          "HOT-HIL-55"
+        ],
+        "scenario": "worker bench、実task scorecard、effort routingを検証",
+        "required_evidence": "fixture/rubric、blind score、実効cost、route receipt",
+        "negative_boundary": "smoke-only、重大failure相殺、単価/effort固定",
+        "semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8"
+      },
+      "object_canonical_sha256": "01061d2080f831e4202443356e1362db302616d69a0f1ee75e3a8c9d9acb344a",
+      "source_revision": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+      "use": "固定旧規範wholeの読取証拠。実runtime/資格/旧受入実行の継承ではない。"
+    }
+  ],
+  "mutation_coverage_limit": {
+    "status": "未成立",
+    "meaning": "R13 joinとR06 data_use_refの局所反例を識別しても、残family・未見の複合入力・全規則の変異識別は未閉包。有限wholeの一致を全域へ一般化せず、全mutation合格の新しい一律gateを設けない。"
   }
 }
