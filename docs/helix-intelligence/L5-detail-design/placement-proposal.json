@@ -8674,7 +8674,7 @@
       "source_rule": {
         "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
         "revision": "99ba6b467ec2e949191f972c96714df91ba328e6",
-        "pointer": "/content_diagnostic_contract/ordering_and_multiplicity"
+        "pointer": "/contracts/1/content_rules/4"
       },
       "available_inputs": [
         "/original_proposal/recommended",

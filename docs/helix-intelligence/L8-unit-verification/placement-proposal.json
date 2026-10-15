@@ -6,7 +6,7 @@
   "status": "draft_source_coupled_static_verification_not_executed",
   "source_main": "99ba6b467ec2e949191f972c96714df91ba328e6",
   "l5_ref": "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
-  "l5_same_pair_bytes_sha256": "7697a0b7531a0b50134ecbdeef987ef7248279b085a49fd9fe3b2a466423f145",
+  "l5_same_pair_bytes_sha256": "03d38b01a6ff912af27a820a802c64452c48924145bd7cf188a6c73e7490e49c",
   "approved_object_refs": [
     {
       "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
