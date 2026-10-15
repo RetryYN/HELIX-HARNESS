@@ -661,12 +661,12 @@
   "failure_consumer_basis": [
     {
       "source": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md:58",
-      "failure": "T13: duplicate claim/delivery ambiguity",
+      "failure": "T13：claimの重複・配送先の曖昧さ。",
       "consumer": "OS018作業の二重実行防止とCONNECT-004重複排除を混同しない。reviewer assignmentの別gateを生成しない。"
     },
     {
       "source": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md:90",
-      "failure": "T45 / UTW-021: author self-review or prose/time-only completion evidence",
+      "failure": "T45 / UTW-021：作成者自身によるreview、または文章・経過時間だけを完了証拠とすること。",
       "consumer": "作成Workerとreview actor/contextを区別する。provider名だけの独立性判定を行わない。"
     }
   ],
@@ -834,7 +834,7 @@
     },
     "JSONPointer": {
       "kind": "string",
-      "format": "JSON Pointer rooted path, empty string permitted only for root"
+      "format": "JSON Pointer形式のrooted path。root自身を示す空文字列を許す。"
     },
     "DiagnosticCode": {
       "kind": "closed_enum",
@@ -1009,7 +1009,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/ticket_ref",
@@ -1027,7 +1027,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/ticket_revision",
@@ -1045,7 +1045,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/ticket_digest",
@@ -1063,7 +1063,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/requirement_revision",
@@ -1081,7 +1081,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/assignment",
@@ -1099,7 +1099,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/attempt",
@@ -1117,7 +1117,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/actor",
@@ -1135,7 +1135,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/worker",
@@ -1153,7 +1153,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/lane",
@@ -1171,7 +1171,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/scope",
@@ -1189,7 +1189,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/head",
@@ -1207,7 +1207,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/authority_ref",
@@ -1225,7 +1225,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/capability_ref",
@@ -1243,7 +1243,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/lease_ref",
@@ -1261,7 +1261,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/budget_ref",
@@ -1279,7 +1279,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/deadline_ref",
@@ -1297,7 +1297,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/continuity_ref",
@@ -1315,7 +1315,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/oracle_ref",
@@ -1333,7 +1333,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/artifact_ref",
@@ -1350,7 +1350,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/evidence_ref",
@@ -1367,7 +1367,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/binding/result_ref",
@@ -1384,7 +1384,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/logical_work",
@@ -1403,7 +1403,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/ticket_ref",
@@ -1422,7 +1422,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/ticket_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/ticket_revision",
@@ -1441,7 +1441,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/ticket_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/ticket_digest",
@@ -1460,7 +1460,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/ticket_digest",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/requirement_revision",
@@ -1479,7 +1479,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/assignment",
@@ -1498,7 +1498,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/attempt",
@@ -1517,7 +1517,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/actor",
@@ -1536,7 +1536,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/actor",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/worker",
@@ -1555,7 +1555,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/worker",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/lane",
@@ -1574,7 +1574,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/lane",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/scope",
@@ -1593,7 +1593,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/head",
@@ -1612,7 +1612,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/authority_ref",
@@ -1631,7 +1631,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/authority_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/capability_ref",
@@ -1650,7 +1650,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/capability_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/lease_ref",
@@ -1669,7 +1669,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/lease_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/budget_ref",
@@ -1688,7 +1688,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/budget_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/deadline_ref",
@@ -1707,7 +1707,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/deadline_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/continuity_ref",
@@ -1726,7 +1726,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/oracle_ref",
@@ -1745,7 +1745,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/oracle_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/artifact_ref",
@@ -1763,7 +1763,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/artifact_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/evidence_ref",
@@ -1781,7 +1781,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/evidence_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/binding/result_ref",
@@ -1799,7 +1799,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/result_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/logical_work",
@@ -1817,7 +1817,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/requirement_revision",
@@ -1835,7 +1835,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/assignment",
@@ -1853,7 +1853,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/attempt",
@@ -1871,7 +1871,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/scope",
@@ -1889,7 +1889,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/head",
@@ -1907,7 +1907,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/binding/continuity_ref",
@@ -1925,7 +1925,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/logical_work",
@@ -1942,7 +1942,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/requirement_revision",
@@ -1959,7 +1959,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/assignment",
@@ -1976,7 +1976,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/attempt",
@@ -1993,7 +1993,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/scope",
@@ -2010,7 +2010,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/head",
@@ -2027,7 +2027,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/binding/continuity_ref",
@@ -2044,7 +2044,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/logical_work",
@@ -2062,7 +2062,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/requirement_revision",
@@ -2080,7 +2080,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/assignment",
@@ -2098,7 +2098,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/attempt",
@@ -2116,7 +2116,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/scope",
@@ -2134,7 +2134,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/head",
@@ -2152,7 +2152,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/binding/continuity_ref",
@@ -2170,7 +2170,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/logical_work",
@@ -2188,7 +2188,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/requirement_revision",
@@ -2206,7 +2206,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/assignment",
@@ -2224,7 +2224,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/attempt",
@@ -2242,7 +2242,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/scope",
@@ -2260,7 +2260,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/head",
@@ -2278,7 +2278,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/binding/continuity_ref",
@@ -2296,7 +2296,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/logical_work",
@@ -2588,7 +2588,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/requirement_revision",
@@ -2880,7 +2880,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/assignment",
@@ -3172,7 +3172,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/attempt",
@@ -3464,7 +3464,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/scope",
@@ -3756,7 +3756,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/head",
@@ -4048,7 +4048,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/deviation_reason/binding/continuity_ref",
@@ -4340,7 +4340,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/logical_work",
@@ -4358,7 +4358,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/requirement_revision",
@@ -4376,7 +4376,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/assignment",
@@ -4394,7 +4394,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/attempt",
@@ -4412,7 +4412,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/scope",
@@ -4430,7 +4430,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/head",
@@ -4448,7 +4448,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/binding/continuity_ref",
@@ -4466,7 +4466,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/logical_work",
@@ -4484,7 +4484,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/requirement_revision",
@@ -4502,7 +4502,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/requirement_revision",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/assignment",
@@ -4520,7 +4520,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/assignment",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/attempt",
@@ -4538,7 +4538,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/attempt",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/scope",
@@ -4556,7 +4556,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/scope",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/head",
@@ -4574,7 +4574,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/head",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/binding/continuity_ref",
@@ -4592,7 +4592,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/continuity_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/roles/assignment",
@@ -4610,7 +4610,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/roles/proposal",
@@ -4628,7 +4628,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/roles/evaluation",
@@ -4646,7 +4646,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/roles/oracle",
@@ -4664,7 +4664,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/roles/authority",
@@ -4682,7 +4682,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/assignment/owner",
@@ -4700,7 +4700,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/task",
@@ -4717,7 +4717,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/risk",
@@ -4734,7 +4734,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/runtime",
@@ -4751,7 +4751,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/model",
@@ -4768,7 +4768,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/effort",
@@ -4785,7 +4785,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/retry",
@@ -4802,7 +4802,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/quality",
@@ -4819,7 +4819,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/run/config/cost",
@@ -4836,7 +4836,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/source_ref",
@@ -4853,7 +4853,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/owner_ref",
@@ -4870,7 +4870,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/source_revision",
@@ -4887,7 +4887,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/task",
@@ -4904,7 +4904,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/risk",
@@ -4921,7 +4921,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/runtime",
@@ -4938,7 +4938,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/model",
@@ -4955,7 +4955,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/effort",
@@ -4972,7 +4972,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/retry",
@@ -4989,7 +4989,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/quality",
@@ -5006,7 +5006,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/default/values/cost",
@@ -5023,7 +5023,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/state",
@@ -5040,7 +5040,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/declared_evaluated",
@@ -5103,7 +5103,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/source_revision",
@@ -5121,7 +5121,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/task",
@@ -5148,7 +5148,7 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/scope",
@@ -5165,7 +5165,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/task",
@@ -5192,34 +5192,7 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
-        },
-        {
-          "actual_path": "/evaluation/risk",
-          "expected_path": "/context/expected_config/risk",
-          "domain": "known_nonempty_string",
-          "unknown_code": "source_unresolved",
-          "conflict_code": "source_conflict",
-          "facets": [
-            "evaluation"
-          ],
-          "applicable_phases": [
-            "after_execution",
-            "handoff"
-          ],
-          "pointer": "actual_path",
-          "applicability_when": {
-            "op": "not",
-            "value": {
-              "op": "not_nonempty_string",
-              "value": {
-                "op": "get",
-                "path": "/context/expected_config/risk"
-              }
-            }
-          },
-          "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/total_cost",
@@ -5236,7 +5209,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/event_selected",
@@ -5266,7 +5239,7 @@
           "return_owner": "worker-assignment-owner",
           "skip_reason_ja": "quality event規則が実値と期待値のpresenceを照合する。",
           "skip_comparison": true,
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/order_source_ref",
@@ -5294,7 +5267,7 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/order_source_revision",
@@ -5322,7 +5295,7 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/normative_consumer/class",
@@ -5340,13 +5313,14 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "allowed_values": [
             "always",
             "operation",
             "input",
             "reference"
-          ]
+          ],
+          "basis_ja": "依存consumer classは期待されたclassへのsource binding比較であり、選択済みか・適用できるかの判定とは別facet。L4-N01の依存source結合に基づきbindingへ分類する。"
         },
         {
           "actual_path": "/dependencies/normative_consumer/selected",
@@ -5364,7 +5338,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/normative_consumer/source_ref",
@@ -5405,7 +5379,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "all_invalid_operand_locations"
+          "unknown_pointer_policy": "all_invalid_operands_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/consult/class",
@@ -5423,7 +5397,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "allowed_values": [
             "always",
             "operation",
@@ -5447,7 +5421,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/consult/source_ref",
@@ -5488,7 +5462,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "all_invalid_operand_locations"
+          "unknown_pointer_policy": "all_invalid_operands_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/selected_input/class",
@@ -5506,7 +5480,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "allowed_values": [
             "always",
             "operation",
@@ -5530,7 +5504,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/selected_input/source_ref",
@@ -5571,7 +5545,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "all_invalid_operand_locations"
+          "unknown_pointer_policy": "all_invalid_operands_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/legacy_runtime/class",
@@ -5589,7 +5563,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "allowed_values": [
             "always",
             "operation",
@@ -5613,7 +5587,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/dependencies/legacy_runtime/source_ref",
@@ -5654,7 +5628,7 @@
             ]
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "all_invalid_operand_locations"
+          "unknown_pointer_policy": "all_invalid_operands_actual_then_expected"
         },
         {
           "actual_path": "/prior/logical_work",
@@ -5680,7 +5654,7 @@
           },
           "requires_known_path": "/binding/logical_work",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/task",
@@ -5707,7 +5681,7 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/model_level/scope",
@@ -5724,7 +5698,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/artifact_ref",
@@ -5742,7 +5716,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/artifact_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/evidence_ref",
@@ -5760,7 +5734,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/evidence_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/result_ref",
@@ -5778,7 +5752,7 @@
           "pointer": "actual_path",
           "requires_known_path": "/binding/result_ref",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/actor",
@@ -5794,7 +5768,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/context",
@@ -5810,7 +5784,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/authority_ref",
@@ -5826,7 +5800,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/evaluation/risk",
@@ -5853,14 +5827,14 @@
             }
           },
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/collection/terminal_state",
           "expected_path": "/context/expected_terminal_state",
           "domain": "known_nonempty_string",
           "unknown_code": "collection_unresolved",
-          "conflict_code": "collection_obligation_lost",
+          "conflict_code": "source_conflict",
           "facets": [
             "collection"
           ],
@@ -5870,7 +5844,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/review/producer_context",
@@ -5882,12 +5856,11 @@
             "collection"
           ],
           "applicable_phases": [
-            "after_execution",
             "handoff"
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location"
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected"
         },
         {
           "actual_path": "/quality/order",
@@ -5904,7 +5877,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "applicability_when": {
             "op": "eq",
             "left": {
@@ -5932,7 +5905,7 @@
           ],
           "pointer": "actual_path",
           "return_owner": "worker-assignment-owner",
-          "unknown_pointer_policy": "each_invalid_operand_location",
+          "unknown_pointer_policy": "first_invalid_operand_actual_then_expected",
           "applicability_when": {
             "op": "and",
             "items": [
@@ -6637,6 +6610,16 @@
                     "value": {
                       "op": "get",
                       "path": "/prior"
+                    }
+                  },
+                  {
+                    "op": "not",
+                    "value": {
+                      "op": "not_unique_string_array",
+                      "value": {
+                        "op": "get",
+                        "path": "/prior/outstanding"
+                      }
                     }
                   },
                   {
@@ -7521,6 +7504,28 @@
                 }
               },
               {
+                "op": "arrays_match_record_domain",
+                "left": {
+                  "op": "get",
+                  "path": "/quality/actual_steps"
+                },
+                "right": {
+                  "op": "get",
+                  "path": "/context/expected_steps"
+                },
+                "required_fields": {
+                  "step": "nonempty_string",
+                  "state": {
+                    "enum": [
+                      "executed",
+                      "failed",
+                      "stopped"
+                    ]
+                  },
+                  "result_ref": "nonempty_string"
+                }
+              },
+              {
                 "op": "not_strictly_ordered_by",
                 "values": {
                   "op": "get",
@@ -7531,6 +7536,16 @@
                   "path": "/quality/order"
                 },
                 "field": "step"
+              },
+              {
+                "op": "not",
+                "value": {
+                  "op": "not_unique_string_array",
+                  "value": {
+                    "op": "get",
+                    "path": "/quality/order"
+                  }
+                }
               }
             ]
           },
@@ -7552,8 +7567,9 @@
             "order": "/quality/order",
             "field": "step",
             "pointer_template": "/quality/actual_steps/{index}/step",
-            "selection": "原配列順で最初の不正値または順序index非増加位置を選ぶ。"
-          }
+            "selection": "元配列順で最初のorder外stepまたはorder index非増加stepを選ぶ。"
+          },
+          "purpose_ja": "order sourceとactual/expectedの全step record domainがknownで、order sourceが一意なnonempty string配列の場合のみ実step順序を検査する。入力形が不正なら別domain findingを保持し、曖昧なindexを算出しない。"
         },
         {
           "when": {
@@ -7619,99 +7635,6 @@
           "finding": {
             "code": "evaluation_source_unresolved",
             "pointer": "/evaluation/source_ref",
-            "return_owner": "worker-assignment-owner"
-          },
-          "facets": [
-            "evaluation"
-          ],
-          "applicable_phases": [
-            "after_execution",
-            "handoff"
-          ]
-        },
-        {
-          "when": {
-            "op": "and",
-            "items": [
-              {
-                "op": "not",
-                "value": {
-                  "op": "or",
-                  "items": [
-                    {
-                      "op": "not_nonempty_string",
-                      "value": {
-                        "op": "get",
-                        "path": "/evaluation/task"
-                      }
-                    },
-                    {
-                      "op": "not_nonempty_string",
-                      "value": {
-                        "op": "get",
-                        "path": "/context/expected_config/task"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "op": "json_ne",
-                "left": {
-                  "op": "get",
-                  "path": "/evaluation/task"
-                },
-                "right": {
-                  "op": "get",
-                  "path": "/context/expected_config/task"
-                }
-              }
-            ]
-          },
-          "finding": {
-            "code": "evaluation_scope_conflict",
-            "pointer": "/evaluation/task",
-            "return_owner": "worker-assignment-owner"
-          },
-          "facets": [
-            "evaluation"
-          ],
-          "applicable_phases": [
-            "after_execution",
-            "handoff"
-          ]
-        },
-        {
-          "when": {
-            "op": "and",
-            "items": [
-              {
-                "op": "both_numbers",
-                "left": {
-                  "op": "get",
-                  "path": "/evaluation/total_cost"
-                },
-                "right": {
-                  "op": "get",
-                  "path": "/context/expected_total_cost"
-                }
-              },
-              {
-                "op": "number_ne",
-                "left": {
-                  "op": "get",
-                  "path": "/evaluation/total_cost"
-                },
-                "right": {
-                  "op": "get",
-                  "path": "/context/expected_total_cost"
-                }
-              }
-            ]
-          },
-          "finding": {
-            "code": "effective_cost_conflict",
-            "pointer": "/evaluation/total_cost",
             "return_owner": "worker-assignment-owner"
           },
           "facets": [
@@ -9134,6 +9057,79 @@
             "handoff"
           ],
           "purpose_ja": "L4 specific_unresolved_emissionに従い同じactual values/config-field位置へsource_unresolvedと併記する。"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "is_not_null",
+                "value": {
+                  "op": "get",
+                  "path": "/prior"
+                }
+              },
+              {
+                "op": "not_unique_string_array",
+                "value": {
+                  "op": "get",
+                  "path": "/prior/outstanding"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "outstanding_unresolved",
+            "pointer": "/prior/outstanding",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "cumulative"
+          ],
+          "applicable_phases": [
+            "before_execution",
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "L3/L4の累積未完義務保持。priorが供給されているとき配列がAbsent/null/不正shapeなら、欠落をlostと判定せず当該pointerでunknownにする。原L9の累積比較は全phaseで適用する。"
+        },
+        {
+          "when": {
+            "op": "and",
+            "items": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "get",
+                  "path": "/quality/event_selected"
+                },
+                "right": {
+                  "op": "literal",
+                  "value": true
+                }
+              },
+              {
+                "op": "not_unique_string_array",
+                "value": {
+                  "op": "get",
+                  "path": "/quality/order"
+                }
+              }
+            ]
+          },
+          "finding": {
+            "code": "quality_order_unresolved",
+            "pointer": "/quality/order",
+            "return_owner": "worker-assignment-owner"
+          },
+          "facets": [
+            "quality"
+          ],
+          "applicable_phases": [
+            "after_execution",
+            "handoff"
+          ],
+          "purpose_ja": "選択済みsource orderのstep keyが重複すると一意の順序sourceを特定できない。実stepとの比較へ進めず、order source自体をunknownとして返す。"
         }
       ],
       "code_classes": {
@@ -9233,7 +9229,7 @@
         "violation"
       ],
       "facet_aggregation": {
-        "source": "finding facet memberships from comparison row or longest matching finding_facet_prefixes",
+        "source": "各comparison row/rule rowが宣言するfacetsへのFinding class mark。prefixからfacetを推測しない。",
         "priority": [
           "corresponding",
           "unknown",
@@ -9242,85 +9238,9 @@
         "direction": "rightmost_highest"
       },
       "output_projection": {
-        "condition": "max severity across all facet states: violation > unknown > corresponding",
-        "execution_binding_material": "max severity across ownership,binding,cumulative only",
-        "selected_phase": "phase if in phase_domain else null",
-        "affected_revision_scope": {
-          "revision": "/binding/requirement_revision",
-          "scope": "/binding/scope"
-        },
-        "fixed_false": [
-          "unassessed_promoted_to_evaluated",
-          "new_default_or_order_added",
-          "provider_name_used_for_independence",
-          "actual_assignment_issued",
-          "actual_worker_invoked",
-          "actual_receipt_generated",
-          "optimal_configuration_proven"
-        ],
-        "operation_effect": "none",
-        "findings": "all emitted findings sorted/deduplicated by code,pointer,return_owner",
-        "default_deviation": {
-          "rule": "after/handoffだけを対象とする。join_fieldsがknownで、default/runの該当bindingが整合し、defaultのsourceと値がknownな場合に逸脱値を比較する。どれかが不足・不整合ならnull。"
-        },
-        "quality_path_status": {
-          "rule": "before_executionはnot_evaluated。after/handoffでeventがfalseならnot_selected、event不明またはquality facet非correspondingならunknown。その他はactual_stepsのstep列とorderを比較し、空/不正はunknown、完全一致はcomplete、strict prefixはpartial、それ以外はunknown。"
-        }
+        "summary": "実返却rootはformal_programsのoutput_expressionsが定める。"
       },
-      "meaning_ja": "入力上の各facet素材をL3/L4が割り当てたowner境界の下で比較し、unknown/violationを保持して候補wholeを返す。実割当・実資格・実receiptは発行しない。 比較行と規則行には個別の適用phaseを持たせ、operation/inputの未選択依存のsource_refは比較しない。always依存のsource_refは未選択でも比較する。 self-reviewはreview.actor対binding.actor、review.context対review.producer_contextで判定する。priorが存在する場合はjoin_fieldsを現bindingへ照合する。従属bindingは参照先binding値がknownの場合に限り比較する。 invalid phaseではphase_unresolvedだけを返し、他のphase固有素材は評価しない。quality eventの両側はboolean確認後に比較し、未選択falseではorder/stepを要求しない。 Facet所属は各comparison/rule rowのfacetsで決まり、path prefixから推測しない。",
-      "unresolved_facet_propagation": {
-        "source": "core binding field presence and domain",
-        "phases": [
-          "after_execution",
-          "handoff"
-        ],
-        "rule": "binding_fieldsのうちfield_groupsで指定した参照元fieldがknown_nonempty_stringでない場合、対応facetをunknownにする。元の/binding/<field>にsource findingを一つだけ出し、未評価の従属レコードごとに重複findingを作らない。",
-        "field_groups": {
-          "cumulative": [
-            "logical_work"
-          ],
-          "collection": [
-            "logical_work",
-            "requirement_revision",
-            "assignment",
-            "attempt",
-            "scope",
-            "head",
-            "continuity_ref",
-            "artifact_ref",
-            "evidence_ref",
-            "result_ref"
-          ],
-          "default": [
-            "logical_work",
-            "requirement_revision",
-            "assignment",
-            "attempt",
-            "scope",
-            "head",
-            "continuity_ref"
-          ],
-          "quality": [
-            "logical_work",
-            "requirement_revision",
-            "assignment",
-            "attempt",
-            "scope",
-            "head",
-            "continuity_ref"
-          ],
-          "evaluation": [
-            "logical_work",
-            "requirement_revision",
-            "assignment",
-            "attempt",
-            "scope",
-            "head",
-            "continuity_ref"
-          ]
-        },
-        "semantics_ja": "派生materialへの参照元known不足は、field_groupsに列挙されたfacetをunknownにする。元binding fieldのcomparison findingは一つを保持し、従属recordごとに重複findingを作らない。binding join自身はjoin_fieldsの通常比較/ruleでunknownとなる。facet prefixや追加also_markは使わず、この明示field_groupsのみを伝播に用いる。"
-      },
+      "meaning_ja": "入力上の各facet素材をL3/L4が割り当てた責務境界の下で比較し、unknown/violationを保持した候補結果を返す。実割当・実資格・実receiptは発行しない。比較行と規則行には個別の適用phaseを持たせる。operation/inputの未選択依存のsource_refは比較しないが、always依存は未選択でも比較する。self-reviewはreview.actor対binding.actor、review.context対review.producer_contextで判定する。priorが存在する場合はjoin_fieldsを現bindingへ照合する。従属binding行はrequires_known_pathに宣言された参照元domainを満たすときだけ比較を適用する。invalid phaseではphase_unresolvedだけを返し、他のphase固有素材は評価しない。quality eventの両側はboolean確認後に比較し、未選択falseではorder/stepを要求しない。facet所属は各comparison/rule rowのfacetsで決まり、path prefixから推測しない。",
       "invalid_phase_policy": {
         "only_rule_code": "phase_unresolved",
         "facet_states": {
@@ -9945,7 +9865,7 @@
         "values": "input path、および@facet/<name>仮想参照。facets/findingsは先行pipeline結果、responsibility_routesはformal route rulesによる後続projection。",
         "operators": "path、field、enum、定数、severity順、output memberはすべてAST operandで指定する。interpreterは明示された汎用operatorだけを実行する。route_findings_by_pointer_prefixはprogram.responsibility_route_algorithmの順で、同program.responsibility_route_rulesを参照して付随routing viewを作る。"
       },
-      "output_projection_is_explanatory_only": "実返却の演算定義はoutput_expressions。output_projectionは人向け要約であり計算入力にしない。",
+      "output_projection_is_explanatory_only": "実返却の演算定義はoutput_expressionsに置く。この説明欄は計算入力ではない。",
       "responsibility_route_rules": [
         {
           "pointer_prefixes": [
@@ -9972,8 +9892,7 @@
         },
         {
           "pointer_prefixes": [
-            "/resource_state",
-            "/assignment/resource"
+            "/resource_state"
           ],
           "responsibility_role_candidate": "infrastructure_resource_state",
           "basis_contract_ids": [
@@ -10051,9 +9970,7 @@
             "/dependencies",
             "/context/expected_dependency_refs",
             "/context/expected_dependency_classes",
-            "/context/expected_dependency_selection",
-            "/roles/dependencies",
-            "/context/expected_roles/dependencies"
+            "/context/expected_dependency_selection"
           ],
           "responsibility_role_candidate": "harness_normative_dependency_consumer",
           "basis_contract_ids": [
@@ -10099,7 +10016,9 @@
             "/context/expected_binding/deadline_ref",
             "/context/expected_binding/continuity_ref",
             "/context/expected_roles/assignment",
-            "/phase"
+            "/phase",
+            "/context/budget_limit",
+            "/context/deadline"
           ],
           "responsibility_role_candidate": "assignment_management_and_collection_recovery",
           "basis_contract_ids": [
@@ -10173,7 +10092,61 @@
           "expected_path": "/context/expected_steps",
           "basis": "原L9 fixture_contract.algorithmに従い、step素材全体を照合する。"
         }
-      }
+      },
+      "unresolved_facet_propagation": {
+        "source": "binding_fieldsに列挙した参照元値のpresenceとdomain",
+        "phases": [
+          "after_execution",
+          "handoff"
+        ],
+        "rule": "binding_fieldsのうちfield_groupsで指定した参照元fieldがknown_nonempty_stringでない場合、対応facetをunknownにする。元の/binding/<field>にsource findingを一つだけ出し、未評価の従属レコードごとに重複findingを作らない。",
+        "field_groups": {
+          "cumulative": [
+            "logical_work"
+          ],
+          "collection": [
+            "logical_work",
+            "requirement_revision",
+            "assignment",
+            "attempt",
+            "scope",
+            "head",
+            "continuity_ref",
+            "artifact_ref",
+            "evidence_ref",
+            "result_ref"
+          ],
+          "default": [
+            "logical_work",
+            "requirement_revision",
+            "assignment",
+            "attempt",
+            "scope",
+            "head",
+            "continuity_ref"
+          ],
+          "quality": [
+            "logical_work",
+            "requirement_revision",
+            "assignment",
+            "attempt",
+            "scope",
+            "head",
+            "continuity_ref"
+          ],
+          "evaluation": [
+            "logical_work",
+            "requirement_revision",
+            "assignment",
+            "attempt",
+            "scope",
+            "head",
+            "continuity_ref"
+          ]
+        },
+        "semantics_ja": "各派生facetの比較適用条件を満たす入力で、対応するcore binding sourceがdomain不適合なら該当facetへunknownを追加する。行単位findingのfacetとは独立し、source不足をfacet markとして保持する。全比較rowのsource不足との重複を防ぐため、同一facet内のmarkは同じunknown値として集約する。"
+      },
+      "comparison_row_deduplication_ja": "evaluation.task と evaluation.total_cost は既知値比較をcomparison_rowsが所有する。これらと同一path・domain・phaseのrule_rowsは二重findingを作るため置かない。evaluation.riskはevaluation_scope_conflictを返す専用比較rowだけを残し、一般source_conflictとの重複を避ける。"
     }
   ],
   "interpreter_contract": {
@@ -10222,16 +10195,19 @@
       "route_findings_by_pointer_prefix",
       "strict_prefix",
       "strict_prefix_by",
-      "var"
+      "var",
+      "first_index_where_order_violation",
+      "duplicate_array_field"
     ],
-    "generic_only": "汎用演算はJSON Pointer取得、JSON kind厳密比較、boolean式、数値/文字列domain、Absent検査、配列の一意性・record shape検証・参照順序・prefix判定に限定する。field名・配列field・許容domain・順序source・finding code/path/facet/比較owner label・phaseはAST operandsで与える。業務条件はAST内の既存汎用演算だけで表す。",
+    "generic_only": "汎用演算はJSON Pointer取得、JSON kind厳密比較、boolean式、数値/文字列domain、Absent検査、配列の一意性・record shape検証・参照順序・prefix判定に限定する。field名・配列field・許容domain・順序source・finding code/path/facet/比較owner label・phaseはAST operandsで与える。requires_known_pathは比較rowの宣言guardとして使用し、業務条件はAST内の演算だけで表す。",
     "missing_semantics": "AbsentはMISSING sentinel。JSON nullとは異なる。未知/欠落をfalse/成功/nullへ丸めない。get_or_nullを使う返却fieldはAbsentのみnullへ投影し、present JSONValueはkindを保つ。",
     "findings": "code/pointer/return_ownerの辞書順にsortし、同じ3値のtupleを一つにする。",
     "generic_array_ops": {
       "array_unique_by": "valueがarrayで、全itemがobject、指定fieldがnonempty string、field値が重複しないときtrue。",
       "arrays_match_record_domain": "両辺がarrayで、各itemがobjectかつrequired_fieldsで指定したstring/enum domainを満たすときtrue。各arrayの全itemを検査する。",
-      "not_strictly_ordered_by": "array値の各item.fieldがorderに1回だけあり、order上indexが厳密増加しない場合true。array/item/fieldの不正はfalse。",
-      "strict_prefix_by": "valueのfield配列がorder配列の厳密prefixで、長さがorderより短いときtrue。"
+      "not_strictly_ordered_by": "values/orderが配列、各item.fieldとorder要素がstringとして有効な場合に、valuesのfield値に重複、order外の値、またはorder indexの非増加があればtrue。不正な配列/item/field型はfalseとし、別のdomain ruleがunknownを返す。",
+      "strict_prefix_by": "valueのfield配列がorder配列の厳密prefixで、長さがorderより短いときtrue。",
+      "duplicate_array_field": "valueが配列で、各itemがobjectかつ指定fieldがnonempty stringのとき、同field値の重複があればtrue。配列/item/fieldの不正shapeではfalseとし、独立domain ruleがunknownを返す。"
     },
     "generic_output_ops": {
       "all_nonempty_string_paths": "すべて指定pathが非空string。",
@@ -10243,23 +10219,66 @@
       "max_by_priority": "priority配列の右端を最高順位として選択する。",
       "get_or_null": "Absentをnull投影する。",
       "route_findings_by_pointer_prefix": "Finding配列順を保持する。pointer segment境界で最長一致を選ぶ。同率/一致なしは未解決候補。",
-      "first_index_where_order_violation": "元配列で最初の不在stepまたはorder index非増加位置をJSON Pointer用indexとして返す。"
+      "first_index_where_order_violation": "元配列を先頭から走査し、stepがorderに存在しない、またはorder indexが前の有効step以下となる最初の元indexを返す。"
     },
     "operators": {
       "json_equal": "JSON nullはnull同士のみ一致、Absentは一致しない。booleanとnumberは異種。JSON number同士は数値として比較し1と1.0は同値。object key順は無視し、array順は保持する。",
-      "max_by_priority": "priority配列の右端が最高順位。priorityにない値は入力型違反として受理しない。",
-      "comparison_row": "actual_path/expected_pathを個別に読み、両値がrow.domainを満たす場合だけ等値比較する。未知値のpointerはunknown_pointer_policyで決め、各invalid operandの原位置へFindingを返す。pointerはknown相反時の対象位置である。",
+      "max_by_priority": "valuesからpriority順位を比較し、rightmost_highest方向で最大順位の値を返す。priority外値はdomain外。",
+      "comparison_row": "actual_path/expected_pathを個別に読み、両値がrow.domainを満たす場合だけJSON equality比較する。requires_known_pathがあればそのpointerも同domainを満たす場合のみrowを評価する。known mismatchはconflict_code、domain不適合はunknown_code。unknown_pointer_policyはactual/expected双方の検査順と出力個数を決める。",
       "applicability_when": "式がboolean trueのときだけ比較rowを評価する。falseなら当該rowは非適用。非booleanは比較不能で該当入力位置にunknownを返す。",
       "skip_comparison": "互換字段は使用しない。省略は通常比較、falseは通常比較、trueは行を非適用。boolean以外はL5定義域外。",
-      "requires_known_path": "互換字段は使用しない。パス存在条件はapplicability_whenに明示する。",
-      "not_strictly_ordered_by": "array値の各item.fieldがorder array内に一度だけ現れ、indicesがstrictly increasingでない場合true。配列shape/member不正はfalse（別domain ruleがunknownを返す）。",
-      "first_index_where_order_violation": "元array index順に、fieldがorderに無い最初のitem、または直前のvalid itemよりorder indexが増加しない最初のitemを選ぶ。返却pointerはその元indexとfield。filter後の再indexは禁止。",
+      "requires_known_path": "比較rowのdomain条件を比較する前に、requires_known_pathで指定した入力pointerが当該row.domain（およびallowed_values）を満たす場合だけrowを評価する。満たさなければ当該rowを非適用とし、別のbinding/source rowが元pointerの不足を扱う。",
+      "not_strictly_ordered_by": "values/orderがarrayで各item.fieldとorder memberがstringのとき、field重複、order外member、または順序index非増加があればtrue。不正shapeはfalse。",
+      "first_index_where_order_violation": "元配列index順で最初のorder外または順序index非増加itemの元indexを選ぶ。",
       "known_closed_string": "JSON stringかつrow.allowed_valuesの有限集合に含まれる場合のみknown。OS018 dependency class集合はalways/operation/input/reference。",
       "known_string_array": "arrayの全memberがstringの場合known。重複禁止は独立array_unique_by/一意性ruleで判定する。",
       "known_json_array": "JSON arrayの場合known。全leaf shapeの検査はarrays_match_record_domainで全memberに適用する。",
-      "array_unique_by": "全itemがobject、指定fieldがnonempty stringで一意ならtrue。",
-      "phase_in": "phaseが宣言phase_domainの値に厳密一致する場合だけtrue。",
-      "route_findings_by_pointer_prefix": "FindingごとにJSON Pointer segment境界で一致するruleの最長prefixを選択。最大長同率複数または該当なしはunresolved。入力findingの順序を保持。"
+      "array_unique_by": "valueが配列で、全itemがobject、指定fieldがdomain=nonempty_stringを満たす空でない文字列であり、それらfield値が一意のときtrue。不正な配列/item/field型、空field、重複はfalse。",
+      "phase_in": "path値がsetのphase literalとJSON equalityで一致すればtrue。",
+      "route_findings_by_pointer_prefix": "Findingの入力順を保持し、各pointerに一致するsource-bound routeの最長prefix一意一致を選ぶ。同率または一致なしは未解決role candidateを返す。",
+      "is_not_null": "Absent sentinelとJSON nullの双方をfalse、それ以外のpresent valueをtrueとする。kind適合は別domain判定。",
+      "not_subset": "左右がarrayで、左のすべての値がJSON equalityで右に含まれる場合false、そうでなければtrue。片側がAbsent/null/非arrayならfalseとし、別のdomain findingが不足を示す。",
+      "eq / in": "Absent同士は内部JSON equalityとして一致し、nullはnullとだけ一致する。booleanはnumberと異なるkind、JSON number同士は数値等値、object key順は無視しarray順は保持する。業務上の比較はcomparison rowのdomain-knownness guardを先に適用するため、Absent/ nullをknownの業務値へ昇格させない。in/not_inは同じJSON equalityをset memberごとに使う。",
+      "number_*": "number_gt/gte/lt/neは両operandがJSON number（booleanを除く）の場合のみ演算する。誤kindに対してfalseを返すが、それ自体は適合の証拠でない。not_numberによるunknown findingが同じfieldを分類する。",
+      "unknown_pointer_policy": "first_invalid_operand_actual_then_expectedはactualを先にdomain評価し、不正ならactual pointerだけを返す。actualがknownでexpectedだけが不正ならexpected pointerを返す。all_invalid_operands_actual_then_expectedは不正なoperand双方をactual, expectedの順に返す。",
+      "duplicate_array_field": "arrayの全item objectに指定fieldがnonempty stringとしてある場合だけ、field重複があるとtrue。不正shapeはfalseで、別domain rowが扱う。",
+      "get": "pathで指定したJSON Pointerを入力から読み、存在しないmember/indexはAbsent sentinelを返す。",
+      "literal": "ASTに記録されたJSON値をそのまま返す。",
+      "eq": "左辺右辺を内部JSON equalityで比較する。Absent同士はtrueだが業務比較のknown判定には使わず、domain guardが先行する。",
+      "not_eq": "eqの否定。",
+      "json_eq": "JSON kindを保持する等値判定。Absent同士の内部一致を許すが、業務上の意味比較はdomain-known guardで限定する。",
+      "json_ne": "json_eqの否定。",
+      "and": "itemsを左から評価し、すべてboolean trueならtrue。",
+      "or": "itemsを左から評価し、少なくとも一つboolean trueならtrue。",
+      "not": "valueがbooleanのときその否定を返す。ASTはboolean式だけを渡す。",
+      "in": "valueがsetのmemberとJSON equalityで一致すればtrue。domain guardが無い任意値を業務上knownとはしない。",
+      "not_in": "inの否定。",
+      "not_boolean": "path/式の結果がJSON booleanでなければtrue。",
+      "not_number": "path/式の結果がJSON numberでなければtrue。booleanはnumberに含めない。",
+      "not_nonempty_string": "結果が空でないJSON stringでなければtrue。",
+      "both_booleans": "両operandがJSON booleanのときだけtrue。",
+      "both_numbers": "両operandがJSON numberのときだけtrue。booleanは除く。",
+      "number_gt": "両operandがJSON numberなら左>右。異なるkindではfalseとし、domain ruleがunknownを返す。",
+      "number_gte": "両operandがJSON numberなら左>=右。異なるkindではfalseとし、domain ruleがunknownを返す。",
+      "number_lt": "両operandがJSON numberなら左<右。異なるkindではfalseとし、domain ruleがunknownを返す。",
+      "number_ne": "両operandがJSON numberなら数値不一致。異なるkindではfalseとし、domain ruleがunknownを返す。",
+      "is_absent": "memberが存在しないAbsent sentinelの場合だけtrue。present nullはfalse。",
+      "not_unique_string_array": "値が一意なnonempty stringだけからなるarrayでない場合true。domain/一意性findingの条件式で使う。",
+      "arrays_match_record_domain": "左右arrayの全itemがobjectで、required_fieldsに列挙した全field domainを満たす場合true。不足、null、kind違い、enum外はfalse。",
+      "strict_prefix_by": "valuesの各item.fieldがorderと一致する厳密prefixで、valuesがorderより短いときtrue。",
+      "get_or_null": "入力pointerがAbsentのときのみnullを返し、present null/boolean/number/string/array/objectはkindを保つ。",
+      "map_field": "array内objectから指定fieldを元のarray順で射影する。不適合shapeはAbsent sentinelを返す。",
+      "not_array": "評価結果がJSON arrayでなければtrue。",
+      "empty_array": "評価結果が空JSON arrayと一致するときtrue。",
+      "strict_prefix": "左arrayが右arrayの短いprefixと一致するときtrue。array順を保持する。",
+      "concat": "itemsを左から文字列表現として連結する。ASTではpointer用の既知文字列値だけを与える。",
+      "object": "fieldsの各式を評価し、キーをAST順に持つJSON objectを構成する。JSON equalityではobject key順を無視する。",
+      "var": "計算環境内で同名の既定変数を参照する。未定義名は評価不能。",
+      "all_nonempty_string_paths": "pathsの全値がnonempty stringのときtrue。",
+      "all_json_equal_paths": "各(left,right) pointer対がJSON equalityで等しい場合true。",
+      "any_json_different_paths": "少なくとも一つpointer対がJSON equalityで異なるときtrue。",
+      "no_finding_pointer_prefix": "既存Findingに指定prefixとsegment境界で一致するpointerが無いときtrue。",
+      "if": "conditionがboolean trueならthen式、falseならelse式を評価する。conditionはAST上boolean式とする。"
     },
     "comparison_domains": {
       "known_nonempty_string": "非空JSON string。null/Absent/空文字/非stringはunknown。",
@@ -10290,11 +10309,12 @@
     {
       "step": "aggregate_facets",
       "priority": [
-        "violation",
+        "corresponding",
         "unknown",
-        "corresponding"
+        "violation"
       ],
-      "result": "facet states"
+      "result": "facet state。比較row/rule rowの宣言facetsに付いたmarkを、右端を最高順位とするpriorityで集約する。",
+      "direction": "rightmost_highest"
     },
     {
       "step": "sort_deduplicate_findings",
@@ -10466,8 +10486,7 @@
       },
       {
         "pointer_prefixes": [
-          "/resource_state",
-          "/assignment/resource"
+          "/resource_state"
         ],
         "responsibility_role_candidate": "infrastructure_resource_state",
         "basis_contract_ids": [
@@ -10545,9 +10564,7 @@
           "/dependencies",
           "/context/expected_dependency_refs",
           "/context/expected_dependency_classes",
-          "/context/expected_dependency_selection",
-          "/roles/dependencies",
-          "/context/expected_roles/dependencies"
+          "/context/expected_dependency_selection"
         ],
         "responsibility_role_candidate": "harness_normative_dependency_consumer",
         "basis_contract_ids": [
@@ -10593,7 +10610,9 @@
           "/context/expected_binding/deadline_ref",
           "/context/expected_binding/continuity_ref",
           "/context/expected_roles/assignment",
-          "/phase"
+          "/phase",
+          "/context/budget_limit",
+          "/context/deadline"
         ],
         "responsibility_role_candidate": "assignment_management_and_collection_recovery",
         "basis_contract_ids": [
@@ -10642,7 +10661,6 @@
     "compatibility_boundary_ja": "L9の254 source oracleは従来のFinding.return_owner比較labelを含む既存17rootとして保持する。追加responsibility_routesは別のL5 output rootであり、L9期待を書き換えずL4 role_noteの責務候補を可視化する。"
   },
   "output_projection": {
-    "priority": "右端が最優先。violation > unknown > corresponding。各facetは対応row/ruleのfinding classesから集約する。",
-    "source": "正式計算はoutput_expressionsを使う。"
+    "summary": "実返却rootはformal_programsのoutput_expressionsが定める。"
   }
 }

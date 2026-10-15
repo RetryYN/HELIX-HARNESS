@@ -302,7 +302,7 @@
       "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
     }
   ],
-  "paired_l5_sha256": "15f99da253752e815860872da1bbc03fd26161737a1f283030a082f33328710b",
+  "paired_l5_sha256": "2ae040ef3fc28dd3787c1d706bc30a92fec4c035877d1600421ce7b40dca3006",
   "source_oracle": {
     "path": "docs/helix-os/L9-integration-verification/worker-assignment-attempt.json",
     "source_revision": "b0e784dc7891755de29bc901b82542105e726779",
@@ -17500,8 +17500,8 @@
     "全92 parent/430 pair closure、L11 Accepted、実実装/TDD/CI/Readyは未成立。"
   ],
   "independent_obligation_probe_manifest": {
-    "input_source": "source_case_idとraw_source_pointerはL9 source_oracleのケースを指す。input_patchを原rawへ順に適用する。期待制約は候補計算前に固定した局所projectionであり、生成whole oracleではない。",
-    "scope": "L9の10独立projection制約に加え、source-bound probeで優先方向、unknown pointer、数量境界、各default field、権限拒否route、評価未成立と品質完了の直交を確認。probeは原rawをRFC6902で派生し、実資格・実操作を主張しない。",
+    "input_source": "source_case_idとraw_source_pointerはL9 source_oracleのケースを指す。input_patchを原rawへRFC6902順序で適用する。期待制約は候補計算前にL4/L9の義務と入力値から固定した局所projectionであり、生成whole oracleではない。",
+    "scope": "L9の10独立projection制約に加え、source-bound raw patchで優先方向、unknown pointer選択、数量境界、各default field、権限拒否route、評価未成立と品質完了の直交、Absent/null/domain境界、未登録stepの元index、未完義務unknown、handoff限定review、重複order source、known terminal-state conflictを確認する。実資格・実操作は主張しない。",
     "probes": [
       {
         "id": "QUALITY-SECOND-RESULT_REF",
@@ -17548,10 +17548,8 @@
         },
         "basis": "L3-F05/L10-F05:各実stepの結果/失敗/停止/未実行を区別し、一stepのresult欠落を未完へ。index0限定はない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows/36",
-          "/formal_programs/0/rule_rows/37",
-          "/formal_programs/0/rule_rows/38",
-          "/formal_programs/0/rule_rows/63"
+          "/formal_programs/0/rule_rows/36/finding/code",
+          "/formal_programs/0/rule_rows/61/purpose_ja"
         ]
       },
       {
@@ -17600,10 +17598,8 @@
         },
         "basis": "L3-F05/L10-F05:各実stepの結果/失敗/停止/未実行を区別し、一stepのresult欠落を未完へ。index0限定はない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows/36",
-          "/formal_programs/0/rule_rows/37",
-          "/formal_programs/0/rule_rows/38",
-          "/formal_programs/0/rule_rows/63"
+          "/formal_programs/0/rule_rows/60/finding/code",
+          "/formal_programs/0/rule_rows/61/purpose_ja"
         ]
       },
       {
@@ -17631,8 +17627,8 @@
         },
         "basis": "L3-F03/L10-F03:独立性はactor identity/contextに基づく。両nullは同一actorの観測でなく不足。既存source_unresolvedを保持し、自己review違反と断定しない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows/28",
-          "/formal_programs/0/comparison_priority"
+          "/formal_programs/0/rule_rows/28/finding/code",
+          "/formal_programs/0/comparison_rows/146/domain"
         ]
       },
       {
@@ -17660,8 +17656,8 @@
         },
         "basis": "L3-F03/L10-F03:両null contextは同一の実contextではなく、独立性不足。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows/29",
-          "/formal_programs/0/comparison_priority"
+          "/formal_programs/0/rule_rows/29/finding/code",
+          "/formal_programs/0/comparison_rows/147/domain"
         ]
       },
       {
@@ -17689,8 +17685,8 @@
         },
         "basis": "L3-F01:仕事とassignmentの別identityを照合する。両欠落/nullの同値だけで実identity同一化を認定しない。比較domain不足として保持。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows/59",
-          "/formal_programs/0/comparison_priority"
+          "/formal_programs/0/rule_rows/57/finding/code",
+          "/formal_programs/0/comparison_rows/22/domain"
         ]
       },
       {
@@ -17709,13 +17705,18 @@
         ],
         "independent_expected_constraints": {
           "return_type_must_validate": true,
-          "copied_input_domain": "Input root memberはJSONValue。present valueはkindを維持し、RevisionScope.revision/scopeもJSONValue|nullとして返却する。absentのみnullへ投影する。"
+          "copied_input_domain": "Input root memberはJSONValue。present valueはkindを維持し、RevisionScope.revision/scopeもJSONValue|nullとして返却する。absentのみnullへ投影する。",
+          "expected_output_values": {
+            "/affected_revision_scope/revision": {
+              "opaque": 1
+            }
+          }
         },
         "basis": "Inputの再帰JSONValue域とProposalResult.RevisionScopeのJSONValue|nullを一致させ、Absentとpresent nullを区別して保持する。",
         "normative_pointers": [
-          "/formal_types/Input",
-          "/formal_types/RevisionScope",
-          "/formal_programs/0/output_expressions/affected_revision_scope"
+          "/formal_types/Input/kind",
+          "/formal_types/RevisionScope/kind",
+          "/formal_programs/0/output_expressions/affected_revision_scope/op"
         ]
       },
       {
@@ -17734,13 +17735,18 @@
         ],
         "independent_expected_constraints": {
           "return_type_must_validate": true,
-          "copied_input_domain": "Input root memberはJSONValue。present valueはkindを維持し、RevisionScope.revision/scopeもJSONValue|nullとして返却する。absentのみnullへ投影する。"
+          "copied_input_domain": "Input root memberはJSONValue。present valueはkindを維持し、RevisionScope.revision/scopeもJSONValue|nullとして返却する。absentのみnullへ投影する。",
+          "expected_output_values": {
+            "/affected_revision_scope/scope": {
+              "opaque": 1
+            }
+          }
         },
         "basis": "Inputの再帰JSONValue域とProposalResult.RevisionScopeのJSONValue|nullを一致させ、Absentとpresent nullを区別して保持する。",
         "normative_pointers": [
-          "/formal_types/Input",
-          "/formal_types/RevisionScope",
-          "/formal_programs/0/output_expressions/affected_revision_scope"
+          "/formal_types/Input/kind",
+          "/formal_types/RevisionScope/kind",
+          "/formal_programs/0/output_expressions/affected_revision_scope/op"
         ]
       },
       {
@@ -17780,10 +17786,8 @@
         },
         "basis": "L4-B01/F01 authority state deniedはoperation/assignmentを成立させず拒否として管理・SECURITY境界へ返す。比較label worker-assignment-ownerと責務候補security_authorityを別fieldに保持し、実recipient/資格は主張しない。",
         "normative_pointers": [
-          "/contracts/0",
-          "/contracts/1",
-          "/diagnostic_contract/role_note",
-          "/responsibility_route_rules"
+          "/contracts/0/id",
+          "/formal_programs/0/responsibility_route_rules/0/responsibility_role_candidate"
         ]
       },
       {
@@ -17823,8 +17827,8 @@
         },
         "basis": "L3-N01/L4-N01は常時必須の当該run素材と操作選択時のみの素材を分ける。class=alwaysの原sourceをselected falseの二者一致だけで適用外にしない。source不明をunknownへ保持する。実owner資格や操作許可とは別。",
         "normative_pointers": [
-          "/formal_programs/0/comparison_rows/131",
-          "/formal_programs/0/rule_rows"
+          "/formal_programs/0/comparison_rows/128/allowed_values/0",
+          "/formal_programs/0/rule_rows/46/finding/code"
         ]
       },
       {
@@ -17859,7 +17863,8 @@
         },
         "basis": "正式rule_rows[39].pointer_ruleはorderにない最初のstep位置を選ぶ。FOREIGN-STEPはindex1で、index0ではない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows"
+          "/formal_programs/0/rule_rows/38/when/op",
+          "/formal_programs/0/rule_rows/38/pointer_rule/operator"
         ]
       },
       {
@@ -17898,8 +17903,8 @@
         },
         "basis": "L9 fixture algorithm 1/2とL4-F01:stale capabilityは拒否状態。責務候補を明示し資格に変換しない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows",
-          "/responsibility_route_rules"
+          "/formal_programs/0/rule_rows/6/finding/code",
+          "/formal_programs/0/responsibility_route_rules/0/responsibility_role_candidate"
         ]
       },
       {
@@ -17923,7 +17928,8 @@
         },
         "basis": "L9 fixture algorithm 4の境界はspent > budget。等値100は上限超過でない。",
         "normative_pointers": [
-          "/formal_programs/0/rule_rows"
+          "/formal_programs/0/rule_rows/14/finding/code",
+          "/formal_programs/0/rule_rows/14/when/op"
         ]
       },
       {
@@ -17950,8 +17956,8 @@
         },
         "basis": "L3/L10-F02とL9 fixture algorithm 4:失敗数のnullは型照合不能で、累積facetをunknownへ保つ。",
         "normative_pointers": [
-          "/contracts/2",
-          "/formal_programs/0/rule_rows"
+          "/contracts/2/id",
+          "/formal_programs/0/rule_rows/73/finding/code"
         ]
       },
       {
@@ -17983,8 +17989,8 @@
         },
         "basis": "L4 specific_unresolved_emission.default_value_unresolvedはactual values/config-field同じ位置へsource_unresolvedと専用codeを併記。",
         "normative_pointers": [
-          "/diagnostic_contract/specific_unresolved_emission/default_value_unresolved",
-          "/formal_programs/0/rule_rows"
+          "/formal_programs/0/rule_rows/82/finding/code",
+          "/formal_programs/0/rule_rows/82/finding/pointer"
         ]
       },
       {
@@ -18010,8 +18016,8 @@
         },
         "basis": "L3/L10-F01とL9 fixture algorithm 3:未評価素材を評価済と宣言した事実だけを違反化し、操作権限へ波及させない。",
         "normative_pointers": [
-          "/contracts/1",
-          "/formal_programs/0/rule_rows"
+          "/contracts/1/id",
+          "/formal_programs/0/rule_rows/10/finding/code"
         ]
       },
       {
@@ -18064,9 +18070,8 @@
         },
         "basis": "L9 algorithm 8:実順序全stepがそろえばquality complete。評価状態unassessedは独立facetで維持する。",
         "normative_pointers": [
-          "/contracts/5",
-          "/contracts/7",
-          "/formal_programs/0/output_expressions/quality_path_status"
+          "/contracts/5/id",
+          "/formal_programs/0/output_expressions/quality_path_status/op"
         ]
       },
       {
@@ -18102,9 +18107,8 @@
         },
         "basis": "L4-B01でINTELLIGENCEはproposal role、ただしrole情報欠落は比較labelと区別した論理候補へ返し実資格は認定しない。",
         "normative_pointers": [
-          "/contracts/0",
-          "/diagnostic_contract/role_note",
-          "/responsibility_route_rules"
+          "/contracts/0/id",
+          "/formal_programs/0/responsibility_route_rules/8/responsibility_role_candidate"
         ]
       },
       {
@@ -18129,8 +18133,814 @@
         },
         "basis": "L3/L10-N01とL9 algorithm 9:input dependency選択はindependent expected selectionと一致させる。",
         "normative_pointers": [
-          "/contracts/6",
-          "/formal_programs/0/comparison_rows"
+          "/contracts/6/id",
+          "/formal_programs/0/comparison_rows/130/actual_path"
+        ]
+      },
+      {
+        "id": "R2-01-OUTSIDE-STEP-SECOND-POSITION",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/quality/actual_steps",
+            "value": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              },
+              {
+                "step": "STEP-OUTSIDE",
+                "state": "executed",
+                "result_ref": "RESULT-X"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/expected_steps",
+            "value": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              },
+              {
+                "step": "STEP-OUTSIDE",
+                "state": "executed",
+                "result_ref": "RESULT-X"
+              }
+            ]
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "quality_order_conflict",
+            "pointer": "/quality/actual_steps/1/step",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/quality_path_status": "unknown",
+          "/facet_correspondence/quality": "violation"
+        },
+        "basis": "原L9 #233とL4-F05の実順序照合。配列原index1のstepはsource orderに無い。期待は元配列位置を示すfindingで、実資格や実receiptを主張しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/38/when/items/1/op",
+          "/formal_programs/0/rule_rows/38/pointer_rule/operator"
+        ]
+      },
+      {
+        "id": "R2-03-PRIOR-OUTSTANDING-NULL",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/outstanding",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "outstanding_unresolved",
+            "pointer": "/prior/outstanding",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown",
+          "forbidden_finding_codes": [
+            "outstanding_obligation_lost"
+          ]
+        },
+        "basis": "L3/L4-F02は交代後も未完義務を保持する。priorがあるがoutstandingがnullなら欠落を「保持済み」又は「失われた」とせず、該当入力pointerをunknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/90/finding/code",
+          "/formal_programs/0/rule_rows/24/when/op"
+        ]
+      },
+      {
+        "id": "R2-04-PRODUCER-CONTEXT-AFTER-EXECUTION",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/review/producer_context",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "forbidden_finding_codes": [
+            "source_unresolved"
+          ],
+          "/facet_correspondence/collection": "corresponding"
+        },
+        "basis": "L9 algorithmはreview actor/context/authority/producer contextの独立比較をhandoff段階に限定する。after_executionでのnull producer_contextはこの比較rowの対象外。",
+        "normative_pointers": [
+          "/formal_programs/0/comparison_rows/151/applicable_phases/0",
+          "/formal_programs/0/comparison_rows/151/actual_path"
+        ]
+      },
+      {
+        "id": "R2-07-DUPLICATE-ORDER-SOURCE",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/quality/order",
+            "value": [
+              "STEP-A",
+              "STEP-A"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/expected_order",
+            "value": [
+              "STEP-A",
+              "STEP-A"
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/quality/actual_steps",
+            "value": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              },
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/context/expected_steps",
+            "value": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              },
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ]
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "quality_order_unresolved",
+            "pointer": "/quality/order",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/quality_path_status": "unknown",
+          "/facet_correspondence/quality": "unknown"
+        },
+        "basis": "L4-F05では既存order sourceが特定できる場合に限り順序を参照する。重複step keyは順序sourceを一意に特定できないため、source自体をunknownとし実stepの意味を推測しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/91/when/items/1/op",
+          "/formal_programs/0/rule_rows/91/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-TASK",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/task",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/task",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/82/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-RISK",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/risk",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/risk",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/83/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-RUNTIME",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/runtime",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/runtime",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/84/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-MODEL",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/model",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/model",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/85/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-EFFORT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/effort",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/effort",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/86/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-RETRY",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/retry",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/retry",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/87/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-QUALITY",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/quality",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/quality",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/88/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-DEFAULT-COST",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/default/values/cost",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "default_value_unresolved",
+            "pointer": "/default/values/cost",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/default": "unknown"
+        },
+        "basis": "L4-F04/F05のdefault/order値ごとの照合・不足診断。対象field一つのnullは他fieldの観測値を代用せず、その位置のdefault value unknownにする。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/89/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CURRENT_CONSTRAINTS-BUDGET_LIMIT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/current_constraints/budget_limit",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/71/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CURRENT_CONSTRAINTS-DEADLINE",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/current_constraints/deadline",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/72/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CURRENT_CONSTRAINTS-FAILURES",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/current_constraints/failures",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/failures",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/73/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CURRENT_CONSTRAINTS-ACTIVE_CLAIM_COUNT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/current_constraints/active_claim_count",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/current_constraints/active_claim_count",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/74/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CONTEXT-NOW",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/context/now",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/now",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/75/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CONTEXT-BUDGET_LIMIT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/context/budget_limit",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown",
+          "required_route": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/budget_limit",
+            "comparison_label": "worker-assignment-owner",
+            "responsibility_role_candidate": "assignment_management_and_collection_recovery",
+            "basis_contract_ids": [
+              "HELIXOS-L4-018-B01",
+              "HELIXOS-L4-018-F01",
+              "HELIXOS-L4-018-F02",
+              "HELIXOS-L4-018-F03"
+            ],
+            "recipient_qualification": "not_established"
+          }
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/76/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-CONTEXT-DEADLINE",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/context/deadline",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown",
+          "required_route": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/context/deadline",
+            "comparison_label": "worker-assignment-owner",
+            "responsibility_role_candidate": "assignment_management_and_collection_recovery",
+            "basis_contract_ids": [
+              "HELIXOS-L4-018-B01",
+              "HELIXOS-L4-018-F01",
+              "HELIXOS-L4-018-F02",
+              "HELIXOS-L4-018-F03"
+            ],
+            "recipient_qualification": "not_established"
+          }
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/77/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-PRIOR-COST_SPENT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/cost_spent",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/cost_spent",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/78/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-PRIOR-BUDGET_LIMIT",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/budget_limit",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/budget_limit",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/79/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-PRIOR-DEADLINE",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/deadline",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/deadline",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/80/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-QUANTITY-PRIOR-FAILURES",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/failures",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "constraint_quantity_unresolved",
+            "pointer": "/prior/failures",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown"
+        },
+        "basis": "L3/L4-F02の累積予算・期限・失敗数・未完状態保持。個別quantityがnullならそのsource pointerをunknownとし、既知数値として比較しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/81/finding/code"
+        ]
+      },
+      {
+        "id": "R2-08-EVALUATION-STATUS-UNKNOWN",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/evaluation/state",
+            "value": "unavailable-marker"
+          }
+        ],
+        "independent_expected_constraints": {
+          "/evaluation_status": "unknown"
+        },
+        "basis": "L3/L4の評価結果がapproved/observed状態と確定しない場合はevaluation_statusをunknownとする。固定markerは合成値であり資格・実評価結果ではない。",
+        "normative_pointers": [
+          "/formal_programs/0/output_expressions/evaluation_status/op"
+        ]
+      },
+      {
+        "id": "R2-07-KNOWN-TERMINAL-STATE-CONFLICT",
+        "source_case_id": "OS018-NORMAL-HANDOFF",
+        "raw_source_pointer": "/cases/2/given/input",
+        "source_raw_canonical_sha256": "351b6088a781e6f2cfcc00cc1e6921d3c742d2da62cca9daf48ca314aaf06b8d",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/collection/terminal_state",
+            "value": "completed"
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "source_conflict",
+            "pointer": "/collection/terminal_state",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/collection": "violation"
+        },
+        "basis": "L4-F03は途中成果/停止理由とterminal stateを同revision/scopeで照合する。既知の actual/expected state mismatch はunknownや義務消失の断定でなく、既存generic known-value conflict code source_conflictで返す。",
+        "normative_pointers": [
+          "/formal_programs/0/comparison_rows/150/conflict_code",
+          "/formal_programs/0/comparison_rows/150/actual_path"
+        ]
+      },
+      {
+        "id": "R2-06-BINDING-SOURCE-UNKNOWN-PROPAGATION",
+        "source_case_id": "OS018-NORMAL-AFTER_EXECUTION",
+        "raw_source_pointer": "/cases/1/given/input",
+        "source_raw_canonical_sha256": "ac823804d7a839999f093fb4fec0c7c44914d4eb99d1178a5722f6d38f85d584",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/binding/logical_work",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "/facet_correspondence/cumulative": "unknown",
+          "/facet_correspondence/collection": "unknown",
+          "/facet_correspondence/default": "unknown",
+          "/facet_correspondence/quality": "unknown",
+          "/facet_correspondence/evaluation": "unknown"
+        },
+        "basis": "L4-F02/F03/F04/F05とL3は、これらの派生素材を同じlogical workへ結合する。参照元logical_workがnullなら、派生facetの素材を対応済みと扱わずunknownへ伝播する。",
+        "normative_pointers": [
+          "/formal_programs/0/unresolved_facet_propagation/semantics_ja",
+          "/formal_programs/0/unresolved_facet_propagation/field_groups/collection/0"
+        ]
+      },
+      {
+        "id": "PARENT-PRIOR-OUTSTANDING-BEFORE-NULL",
+        "source_case_id": "OS018-NORMAL-BEFORE_EXECUTION",
+        "raw_source_pointer": "/cases/0/given/input",
+        "source_raw_canonical_sha256": "4259370a09884359dc191f8b2fdb914d81cc8485f5ab47282ba4d8061dcd10ab",
+        "input_patch": [
+          {
+            "op": "replace",
+            "path": "/prior/outstanding",
+            "value": null
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "outstanding_unresolved",
+            "pointer": "/prior/outstanding",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown",
+          "/condition": "assignment_material_unknown",
+          "forbidden_finding_codes": [
+            "outstanding_obligation_lost"
+          ]
+        },
+        "basis": "L9 fixture_contract.algorithmの累積比較はpriorが存在する場合に適用し、before_executionを除外しない。L3-F02の未完義務を不明なまま保持し、消失と断定しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/90/finding/code"
+        ]
+      },
+      {
+        "id": "PARENT-PRIOR-OUTSTANDING-BEFORE-ABSENT",
+        "source_case_id": "OS018-NORMAL-BEFORE_EXECUTION",
+        "raw_source_pointer": "/cases/0/given/input",
+        "source_raw_canonical_sha256": "4259370a09884359dc191f8b2fdb914d81cc8485f5ab47282ba4d8061dcd10ab",
+        "input_patch": [
+          {
+            "op": "remove",
+            "path": "/prior/outstanding"
+          }
+        ],
+        "independent_expected_constraints": {
+          "required_finding": {
+            "code": "outstanding_unresolved",
+            "pointer": "/prior/outstanding",
+            "return_owner": "worker-assignment-owner"
+          },
+          "/facet_correspondence/cumulative": "unknown",
+          "/condition": "assignment_material_unknown",
+          "forbidden_finding_codes": [
+            "outstanding_obligation_lost"
+          ]
+        },
+        "basis": "L9 fixture_contract.algorithmの累積比較はpriorが存在する場合に適用し、before_executionを除外しない。L3-F02の未完義務を不明なまま保持し、消失と断定しない。",
+        "normative_pointers": [
+          "/formal_programs/0/rule_rows/90/finding/code"
         ]
       }
     ],
