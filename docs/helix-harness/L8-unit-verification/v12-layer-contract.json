@@ -432,7 +432,7 @@
   ],
   "completion": "実装前oracle凍結後に実物で観測する。文書存在/型検査/件数/hash/設計reviewを実L8成功にしない。",
   "f02_constructor_oracles": {
-    "scope": "元cases/extra_casesと並ぶF02後段constructorの8完全Result対照。旧3family/27否定+独立variant/5追加familyは不変。前段の独立既知5fieldはtarget不足でも保持する。全関数の意味計算又は正式L7実行ではない。",
+    "scope": "元cases/extra_casesと並ぶF02後段返却構成の8完全Result対照。旧3family/27否定+独立variant/5追加familyは不変。前段の独立既知5fieldはtarget不足でも保持する。全関数の意味計算又は正式L7実行ではない。",
     "base_arguments": {
       "input": {
         "screen_fact_ref": {
@@ -1518,7 +1518,7 @@
         "raw_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
       }
     },
-    "material_role": "raw_utf8は合成fixture原文のhashを照合する材料。FX-001-CHECKの一般説明bodyは実資格/新target解決を証明しない。正常はimmutable owner-qualified Context前提を明示仮定するconstructor対照。body未解決の実callへ適用不可。",
+    "material_role": "raw_utf8は合成fixture原文のhashを照合する材料。FX-001-CHECKの一般説明bodyは実資格/新target解決を証明しない。正常はimmutable owner-qualified Context前提を明示仮定する返却構成対照。body未解決の実callへ適用不可。",
     "argument_recipe": "同一candidate内RFC6901のbase input/contextをdeep copyしcontext_additionの新fieldを追加、patchをRFC6902のadd/replaceとして順に適用。pointerはarguments root（/input又は/context）。全実値/hashまで復元できる。",
     "source_basis": [
       {
@@ -1767,18 +1767,25 @@
         "object_canonical_sha256": "b6465cd855bc6d0f5131152dd8d80e65fa821ea856b0c2dc45a4be5e14dff0c7"
       },
       {
-        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
-        "path": "docs/helix-harness/L8-unit-verification/process-state-port.json",
-        "pointer": "/unit_oracles/2/qualification_cases/20",
-        "file_bytes_sha256": "b4d481dd73a9f49b7cc707f25bbe7481053049019e209c08b8d5f6a1e2377836",
-        "object_canonical_sha256": "12ed6538d7de64214e17921ef68fd4dc0dbb71d900988d1ba35ad1418a304c3b"
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "c07f7754bc903e969c6d794d4b88b7f41f78932ebbab1b4ca9249c27cd0daad2"
       },
       {
-        "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
-        "path": "docs/helix-harness/L9-integration-verification/requirement-formation-semantic-core.json",
-        "pointer": "/verification_obligations/3/normal_cases/0",
-        "file_bytes_sha256": "0c76ee01f4707b9376a2ba0db072ad889c7b289d1ac2af6ca39db73b240f2614",
-        "object_canonical_sha256": "05f52f8ec8a2c75a6d41d1e19f5ec20ef0bf89ce8dd1a36c41f787c1ed61c3d5"
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/pure_function_signatures/3",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "a953dab1e7f38f280acc3c94e5644a3c02632bfd7c051f0cb3c60318443e8dea"
+      },
+      {
+        "revision": "d5064ced7f4b8c0569423eb24a7a5c30882c2e95",
+        "path": "docs/helix-harness/L5-detail-design/requirement-formation-semantic-core.json",
+        "pointer": "/finite_raw_derivation/functions/F02",
+        "file_bytes_sha256": "e9a7ce948a306c5b0831e832be2933c7466f284c826c1cc4bdcd19820aa4b0a0",
+        "object_canonical_sha256": "73ad3df876f9cea163f048bb9894bbc826d2a44af536f7266e46de14a08dd1a4"
       }
     ],
     "logical_target_source_refs": {
@@ -1797,7 +1804,7 @@
         "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
       }
     },
-    "target_ref_recipe": "既存L3 F02全wholeを指すRefの説明用carrier。owner=HELIX-HARNESSは機構責務のlabel、scope=既存親ID、revision=固定source commit。git path/body hashは実資格ではない。今回の2Refをruntimeへ自動注入しない。実callでは明示供給が必要。",
+    "target_ref_recipe": "既存L3 F02全wholeを指すRefの説明用型付き値。owner=HELIX-HARNESSは機構責務のlabel、scope=既存親ID、revision=固定source commit。git path/body hashは実資格ではない。今回の2Refをruntimeへ自動注入しない。実callでは明示供給が必要。",
     "cases": [
       {
         "id": "RET-TARGETS-NOT-SUPPLIED",
@@ -1898,7 +1905,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。 閉じた前段5fieldを保持する原common_contract/2,4とF02 steps/4に従い、target未供給とvalue全体欠落を分ける。backflow_refs=[]は不足Finding/outcomeと併存し、satisfiedへ補完しない。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2045,7 +2052,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。 閉じた前段5fieldを保持する原common_contract/2,4とF02 steps/4に従い、target未供給とvalue全体欠落を分ける。backflow_refs=[]は不足Finding/outcomeと併存し、satisfiedへ補完しない。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2176,7 +2183,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2316,7 +2323,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2470,7 +2477,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2610,7 +2617,7 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2633,7 +2640,13 @@
         "arguments_canonical_sha256": "be8a7dd133227d52786c4a08c59a157378a406f9837e6499058329d44b52554f",
         "prior_stage": {
           "outcome": "incomplete",
-          "value": null,
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": []
+          },
           "findings": [
             {
               "code": "reference_missing",
@@ -2661,7 +2674,14 @@
         },
         "expected_result": {
           "outcome": "incomplete",
-          "value": null,
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": [],
+            "backflow_refs": []
+          },
           "findings": [
             {
               "code": "reference_missing",
@@ -2674,7 +2694,51 @@
                 "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
               },
               "requirement_ref": "HARNESS-L3-001-F02",
-              "backflow_owner": "HARNESS-L2-001",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
               "evidence_refs": [
                 {
                   "identity": "FX-001-CHECK",
@@ -2687,12 +2751,12 @@
             }
           ]
         },
-        "expected_result_canonical_sha256": "bb5719c1cecf5e9b7be156283c82cccfbc50d3f81cc0678055bb38628bb029fb",
+        "expected_result_canonical_sha256": "d32e18cfbdee743ce053e2cb868d1f8fc1961247e7f7cce5ac68a5c49daec917",
         "basis": {
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       },
       {
@@ -2774,11 +2838,11 @@
           "L4_ref": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1",
           "L5_constructor_ref": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
           "prior_source": "元F02正常素材の適用/合意投影。欠落L2/余剰keyは元reference_missing/input_invalid分類から全Findingを具体化。",
-          "independence": "既存意味と明示Context案から著述したconstructor期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
+          "independence": "既存意味と明示Context案から著述した返却構成期待。候補計算で生成せず、独立上流意味又は実source資格の証明とは呼ばない。"
         }
       }
     ],
-    "prior_stage_limit": "prior_stageは既存F02 steps0〜3から独立に固定する内部比較premiseであり公開引数ではない。この検証では先行比較を再実行せず後段と6field/全Finding constructorを検査する。",
+    "prior_stage_limit": "prior_stageは既存F02 steps0〜3から独立に固定する内部比較比較前提であり公開引数ではない。この検証では先行比較を再実行せず後段と6field/全Finding 返却構成を検査する。",
     "original_F02_projection": {
       "value": {
         "outcome": "satisfied",
@@ -3275,18 +3339,2620 @@
           "exact_join_state": "source_roles_differ"
         }
       ],
-      "limits": "意味slotのsource-grounded変換は定義できるが、現3fixtureのexact subject/revision/scope joinとconsumer全record供給は未成立。B案はlogical consumer契約Refの候補で、実recipient/source/operationではない。正常constructor1は明示引数＋qualified snapshot前提下の観測候補、実案件を空材料で通した結果ではない。"
+      "limits": "意味slotの材料対応は示せるが、001/003/008の固定fixtureは同じ案件/recordではない。論理契約Refから実source/recipientを生成しない。正常返却構成は明示比較前提の下での値構成であり、実案件資格ではない。現行008規則はL5のd5064ced source pinを読む。",
+      "source_revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac"
     },
     "limits": [
-      "実source/body resolver/qualification producer・003/008への完全record adapterは未成立。",
-      "8constructor素材は内部比較premiseを明示したsource-conformance。全3関数whole再計算/全未見域/全AST/全mutation閉包又は新完了gateではない。",
-      "原28否定は既存投影を保存し、完全引数/全Findingが揃ったとしない。",
-      "L6関数設計/L7関数検証、実装層外。実資格/操作/codec/TDD/CI/L11/Readyは未成立。"
+      "実source本文の解決と資格を供給する主体、および003/008の完全入力recordを構成する接続は未成立。",
+      "元8件と追加22件は、内部比較結果を明示して返却後段を源泉へ照合する素材。全3関数の完全結果再計算、全未見域、全AST・全変異の閉包や新しい完了条件を意味しない。",
+      "元L8の27否定と1つの独立variantの投影を保持し、完全引数/全所見が元資料で揃っていたとはしない。",
+      "実source資格/実操作/受入と実装準備の成立は、この局所返却の設計や照合から生成しない。"
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
-      "sha256": "81965a21656692432813b780d2c25ffccdca8e1a44d608cc78891078a3271524",
+      "sha256": "db01df72e3b82014df7af2c2addd3dd9799a6cafc53c8666c2e9cc080125cefc",
       "scope": "同一candidate bytes。上流source revision又は承認factではない。"
-    }
+    },
+    "abstract_family_binding": {
+      "case_refs": [
+        "#/cases/1",
+        "#/extra_cases/3"
+      ],
+      "meaning": "既存familyは適用/N/A/合意の部分的観測を記述し、完全input/context/全Resultを供給したoracleではない。materializeするときはF02Contextを明示し、backflow_target_bindingsを供給又は明示未供給として渡す。既存Contextへ暗黙に空tupleを追加しない。target未供給時の完全outcomeを陽性部分観測からsatisfiedと推定しない。"
+    },
+    "additional_source_materials": {
+      "FX-001-SCREEN-NO": {
+        "ref": {
+          "identity": "FX-001-SCREEN-NO",
+          "revision": "r1",
+          "owner": "fixture-harness-meaning-owner",
+          "scope": "fixture/001",
+          "content_sha256": "c32691abef0d02b7319848e29756c216af967b9091bce04bab879fdaacab31e6"
+        },
+        "raw_utf8": "{\"fixture_id\":\"FX-001-SCREEN-NO\",\"meaning\":\"screen_presence no\",\"revision\":\"r1\",\"scope\":\"fixture/001\"}",
+        "raw_sha256": "c32691abef0d02b7319848e29756c216af967b9091bce04bab879fdaacab31e6"
+      },
+      "FX-001-NA-DECIDER": {
+        "ref": {
+          "identity": "FX-001-NA-DECIDER",
+          "revision": "r1",
+          "owner": "fixture-applicability-decider",
+          "scope": "fixture/001",
+          "content_sha256": "7568e1287f8c8bace688b4b7bf017a5670ef6bd3754f5fa56787d63638ddfb73"
+        },
+        "raw_utf8": "{\"fixture_id\":\"FX-001-NA-DECIDER\",\"meaning\":\"非適用判定者の合成資料\",\"revision\":\"r1\",\"scope\":\"fixture/001\"}",
+        "raw_sha256": "7568e1287f8c8bace688b4b7bf017a5670ef6bd3754f5fa56787d63638ddfb73"
+      }
+    },
+    "additional_constructor_cases": [
+      {
+        "id": "LOCAL-BINDING-REFSET-PERMUTATION",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/0",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-003-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              "state": "current",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                }
+              ],
+              "content_check_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                }
+              ]
+            }
+          },
+          {
+            "op": "add",
+            "path": "/context/backflow_target_bindings/2",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-003-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              "state": "current",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "content_check_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          }
+        ],
+        "arguments_canonical_sha256": "c44bc1907e43244aa84d0fca458c5d1991802733eb53971223b5c6d2259d1843",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              {
+                "identity": "HARNESS-L3-008-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-008",
+                "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+              }
+            ],
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result_canonical_sha256": "a8def9e21a69966d2ad08a85d7b944eeeaaf9384591cb27286f7e5e42f6e23a6",
+        "expected_basis": "既存types.RefSetは順序非意味。両RefSetを正規化後の同binding重複は同原因であり、独立2targetを保持する。"
+      },
+      {
+        "id": "LOCAL-IDENTICAL-BINDING-DUPLICATE",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "add",
+            "path": "/context/backflow_target_bindings/2",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-003-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              "state": "current",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "content_check_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          }
+        ],
+        "arguments_canonical_sha256": "3b1507d68b6eab74500ce3dd9aac5976377c418197f8e7263f613c357b946064",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              {
+                "identity": "HARNESS-L3-008-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-008",
+                "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+              }
+            ],
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result_canonical_sha256": "a8def9e21a69966d2ad08a85d7b944eeeaaf9384591cb27286f7e5e42f6e23a6",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-IDENTITY",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/identity",
+            "value": "FX-001-OTHER-SUBJECT"
+          }
+        ],
+        "arguments_canonical_sha256": "56687ae2752dc0220022b98829b8ae1e249606624a82027ea35663479736889c",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-OWNER",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/owner",
+            "value": "other-explicit-owner"
+          }
+        ],
+        "arguments_canonical_sha256": "ea629278bab296a1d6d5c4c3203e27f979639c05e65b8ee5a91669e34dc29955",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-SCOPE",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/scope",
+            "value": "fixture/other"
+          }
+        ],
+        "arguments_canonical_sha256": "e964fadfccf47575a57d04f4fbf5445d3b074b3d7a7a94036770ce7dc8a80105",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-CONTENT_SHA256",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/content_sha256",
+            "value": "0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        ],
+        "arguments_canonical_sha256": "fe3f588b98e228208bf912dca73438a136782b3afe8d77f2fdeb34f802ac7cc8",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-REVISION-ONLY",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/revision",
+            "value": "r0"
+          }
+        ],
+        "arguments_canonical_sha256": "5d8c3479e3751741525cef01cdbdbbff59b7721412db593865ddd76e8718a507",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "e9bfbba7b01a48678001d81a46fb8cfbb6acfc481ceda9016f85ed5ead610167",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-SUBJECT-OLD-REVISION-AND-DIGEST",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/revision",
+            "value": "r0"
+          },
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/content_sha256",
+            "value": "0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        ],
+        "arguments_canonical_sha256": "840522e0024d060f307bf1697b38bc61a1ea81265444c414a6b2efa5ece460cd",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "e9bfbba7b01a48678001d81a46fb8cfbb6acfc481ceda9016f85ed5ead610167",
+        "expected_basis": "同identity/owner/scopeの古い版はdigestも変わり得る。common_contractの古い根拠staleを保持し、同版digest相反と区別する。"
+      },
+      {
+        "id": "LOCAL-CURRENT-TARGET-NULL",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/target_ref",
+            "value": null
+          }
+        ],
+        "arguments_canonical_sha256": "43ea061ed7483156cf1239ea6937505b3c146be9974f901eaf4336a97c200d07",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_missing",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "7af094dd33f461a5f43dcc28e52569c930167986782282e3bd3d241f680c16a0",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-CURRENT-BASIS_REFS-ABSENT",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/basis_refs",
+            "value": []
+          }
+        ],
+        "arguments_canonical_sha256": "525bf8d837423e2a7bdadbfa33abde027b3f39e7a2ca7954592ec1472af4fcc8",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "content_unproven",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "433df08e53e6a6992132b8c221f9987224316b130ef065ef5538151fcc4541c5",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-CURRENT-CONTENT_CHECK_REFS-ABSENT",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/content_check_refs",
+            "value": []
+          }
+        ],
+        "arguments_canonical_sha256": "1c54ed0b4b80a451550ad493e48e3f19456651372d46e2baed33df6af7f1a248",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "content_unproven",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "433df08e53e6a6992132b8c221f9987224316b130ef065ef5538151fcc4541c5",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-TARGET-IDENTITY-MISMATCH",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/target_ref/identity",
+            "value": "HARNESS-L3-003-F02"
+          }
+        ],
+        "arguments_canonical_sha256": "5434651f35c05d047b1280096483548fd6442734d8895b7e19044ef0461835ef",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-TARGET-SCOPE-MISMATCH",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/target_ref/scope",
+            "value": "HARNESS-L2-003"
+          }
+        ],
+        "arguments_canonical_sha256": "55576b884e23e63161ec290309add78d71b240d8cf4e7f14db99b7a304024d52",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-DIFFERENT-CANDIDATE-ROWS",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "add",
+            "path": "/context/backflow_target_bindings/2",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-008-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": null,
+              "state": "unknown",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "content_check_refs": []
+            }
+          }
+        ],
+        "arguments_canonical_sha256": "f3fde7b55765f2a9d31098f876d7c638a69f721b79d4d8dff3a980a2fa77f0bf",
+        "prior_stage": {
+          "outcome": "satisfied",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": []
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "f731b67bf7fb31f21aa8a6b63d8785270f37f304b346a1b2be6bbdd281b45c9c",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-L2-ABSENT-WITH-OLD-TARGET-ROWS",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/input/l2_requirement_ref",
+            "value": null
+          }
+        ],
+        "arguments_canonical_sha256": "15da49a9d12b6af3d77423ad4d0e68b1f2e2a037a76797a57d8a2b0b71923c2e",
+        "prior_stage": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": [],
+            "backflow_refs": []
+          },
+          "findings": [
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_missing",
+              "pointer": "/l2_requirement_ref",
+              "subject_ref": {
+                "identity": "FX-001-SUBJECT",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "d32e18cfbdee743ce053e2cb868d1f8fc1961247e7f7cce5ac68a5c49daec917",
+        "expected_basis": "L2欠落でも画面/技術factの独立適用結果を返す。古い対象のbinding行は存在してもL2を推定しない。Context subject ownerへの候補は欠落L2 ownerの解決ではない。"
+      },
+      {
+        "id": "LOCAL-PRIOR-AGREEMENT-AND-TARGET-UNKNOWN",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/evidence_records/1/state",
+            "value": "missing"
+          },
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-008-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": null,
+              "state": "unknown",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "content_check_refs": []
+            }
+          }
+        ],
+        "arguments_canonical_sha256": "7ca31bd37b1c43d4332fb6257bc3a85385c1641d31f6a01094a78b8f94742297",
+        "prior_stage": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_unknown",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "770db2811c6121147408321b640b02d727777cd83837a95c18008461aaf68744",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-STALE-BEFORE-UNKNOWN",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/evidence_records/1/state",
+            "value": "stale"
+          },
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1",
+            "value": {
+              "consumer_requirement_ref": "HARNESS-L3-008-F02",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "target_ref": null,
+              "state": "unknown",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "content_check_refs": []
+            }
+          }
+        ],
+        "arguments_canonical_sha256": "2ffcaa8cf74225a4943cb1981443ecf585ae3fedc285faf067ca5dcedb9bac06",
+        "prior_stage": {
+          "outcome": "stale",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "stale",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "stale",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_stale",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_stale",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "reference_unknown",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "95223b85841962cc6dadd2cd70cb8769b1adc66cd1c9c43038d30706ba05bdeb",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-CONFLICT-BEFORE-UNKNOWN",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/facts/0/validity",
+            "value": "unknown"
+          },
+          {
+            "op": "replace",
+            "path": "/context/backflow_target_bindings/1/subject_ref/identity",
+            "value": "FX-001-OTHER-SUBJECT"
+          }
+        ],
+        "arguments_canonical_sha256": "e93ccd71c3da412cd77130131c5c82cc9af6e9556c88a0bcbdc7be07529a5044",
+        "prior_stage": {
+          "outcome": "unknown",
+          "value": {
+            "prototype": "unknown",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "fact_unknown",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-SCREEN",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f71a4c92cc8a768acc336b95d70d62ac23500e929d31a3ab4868f7ad1d4940fe"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "unknown",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "fact_unknown",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-SCREEN",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f71a4c92cc8a768acc336b95d70d62ac23500e929d31a3ab4868f7ad1d4940fe"
+                }
+              ]
+            },
+            {
+              "code": "fact_unknown",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-SCREEN",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f71a4c92cc8a768acc336b95d70d62ac23500e929d31a3ab4868f7ad1d4940fe"
+                }
+              ]
+            },
+            {
+              "code": "fact_unknown",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-SCREEN",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f71a4c92cc8a768acc336b95d70d62ac23500e929d31a3ab4868f7ad1d4940fe"
+                }
+              ]
+            },
+            {
+              "code": "reference_conflict",
+              "pointer": "",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "17e86b710da624212a6aa90ecfca294fd8e951ef1c6af27bcd3dc569bdc3d241",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-PRIOR-EVIDENCE-REFSET-PERMUTATION",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/evidence_records/1/state",
+            "value": "missing"
+          }
+        ],
+        "arguments_canonical_sha256": "113d251709e1f907811bd4a24d21a4e5f15eb29e66d01d2b6f67cdf818650a89",
+        "prior_stage": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                }
+              ]
+            },
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "missing",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              {
+                "identity": "HARNESS-L3-008-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-008",
+                "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "agreement_missing",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                },
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "412597ea1ca4590b6baa1971f6555ce5077298dd76adb8759c50f68333c57fb8",
+        "expected_basis": "既存L4/L5/L10の当該比較と独立保持規則。型内局所対照で全mutationのgateではない。"
+      },
+      {
+        "id": "LOCAL-PRECOMPARISON-PAYLOAD-UNRESOLVED",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/context/source_check_refs",
+            "value": []
+          }
+        ],
+        "arguments_canonical_sha256": "2a46a3d164cb55f150c1440f3b248106832f76c2065d6dfeefbce1fc6bbf9029",
+        "prior_stage": {
+          "outcome": "incomplete",
+          "value": null,
+          "findings": [
+            {
+              "code": "content_unproven",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": []
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": null,
+          "findings": [
+            {
+              "code": "content_unproven",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": []
+            },
+            {
+              "code": "content_unproven",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": []
+            },
+            {
+              "code": "content_unproven",
+              "pointer": "/claimed_agreement_refs",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": []
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "ebdbbf711c07ad1899e89151795cb7e14a35130f5f8209e206ce1dbf0e4d3b60",
+        "expected_basis": "独立5field自体を構成できない前段nullは維持する。typed Context subjectからの論理役割返却と未知を保持し、target sourceからpayloadを捏造しない。前段全意味計算の証明ではない。"
+      },
+      {
+        "id": "LOCAL-PRIOR-APPLICABILITY_MISMATCH",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/input/prototype_claim",
+            "value": "not_applicable"
+          }
+        ],
+        "arguments_canonical_sha256": "360566bfcef2d3c65cfadacb842ef8dcb4bad7b1502c0ea3b812f10742f38b1d",
+        "prior_stage": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": []
+          },
+          "findings": [
+            {
+              "code": "applicability_mismatch",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "prototype": "applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              {
+                "identity": "HARNESS-L3-008-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-008",
+                "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "applicability_mismatch",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "applicability_mismatch",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "applicability_mismatch",
+              "pointer": "/prototype_claim",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "73170f19249f32a110fde99ad62613a5970730a822e08a6bc9c93d23de89c5a2",
+        "expected_basis": "F02既存stepsとL10の003/008・対象owner返却を前段所見の構成として対照。これは前段比較の内部素材で、当該rawから全F02を再計算したとの主張ではない。"
+      },
+      {
+        "id": "LOCAL-PRIOR-NA_BASIS_MISSING",
+        "base_case_ref": "#/f02_constructor_oracles/cases/2",
+        "argument_patch": [
+          {
+            "op": "replace",
+            "path": "/input/screen_fact_ref",
+            "value": {
+              "identity": "FX-001-SCREEN-NO",
+              "revision": "r1",
+              "owner": "fixture-harness-meaning-owner",
+              "scope": "fixture/001",
+              "content_sha256": "c32691abef0d02b7319848e29756c216af967b9091bce04bab879fdaacab31e6"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/context/facts/0",
+            "value": {
+              "fact_ref": {
+                "identity": "FX-001-SCREEN-NO",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "c32691abef0d02b7319848e29756c216af967b9091bce04bab879fdaacab31e6"
+              },
+              "kind": "screen_presence",
+              "value": "no",
+              "basis_refs": [
+                {
+                  "identity": "FX-001-BASIS",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                }
+              ],
+              "content_check_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ],
+              "validity": "current"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/input/prototype_claim",
+            "value": "not_applicable"
+          },
+          {
+            "op": "replace",
+            "path": "/input/prototype_na",
+            "value": {
+              "reason": null,
+              "decider_ref": {
+                "identity": "FX-001-NA-DECIDER",
+                "revision": "r1",
+                "owner": "fixture-applicability-decider",
+                "scope": "fixture/001",
+                "content_sha256": "7568e1287f8c8bace688b4b7bf017a5670ef6bd3754f5fa56787d63638ddfb73"
+              },
+              "target_head": "r1",
+              "requirement_impact_refs": [
+                {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                }
+              ],
+              "reevaluation_condition": "screen_requirement_added"
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/context/na_records",
+            "value": [
+              {
+                "route": "prototype",
+                "subject_ref": {
+                  "identity": "FX-001-Q2",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                },
+                "reason": {
+                  "reason": null,
+                  "decider_ref": {
+                    "identity": "FX-001-NA-DECIDER",
+                    "revision": "r1",
+                    "owner": "fixture-applicability-decider",
+                    "scope": "fixture/001",
+                    "content_sha256": "7568e1287f8c8bace688b4b7bf017a5670ef6bd3754f5fa56787d63638ddfb73"
+                  },
+                  "target_head": "r1",
+                  "requirement_impact_refs": [
+                    {
+                      "identity": "FX-001-Q2",
+                      "revision": "r1",
+                      "owner": "fixture-harness-meaning-owner",
+                      "scope": "fixture/001",
+                      "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+                    }
+                  ],
+                  "reevaluation_condition": "screen_requirement_added"
+                },
+                "validity": "current",
+                "basis_refs": [
+                  {
+                    "identity": "FX-001-BASIS",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "803c28186e96ef04952242d38b1269771d9a9589aa4834781a89e0b13dd6376f"
+                  }
+                ],
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "arguments_canonical_sha256": "094bf06d8c7674844cbfb72f0284c80eccd70fbc01658f03a3609f9006cc9403",
+        "prior_stage": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "not_applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [
+              "/prototype_na/reason"
+            ]
+          },
+          "findings": [
+            {
+              "code": "na_basis_missing",
+              "pointer": "/prototype_na/reason",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-001",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "prototype": "not_applicable",
+            "poc": "applicable",
+            "l25": "required",
+            "agreement_state": "current",
+            "missing_na_fields": [
+              "/prototype_na/reason"
+            ],
+            "backflow_refs": [
+              {
+                "identity": "HARNESS-L3-003-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-003",
+                "content_sha256": "eb1d696b59a6a186c46bf053021af0314a41e01c27f019ef8a2f46e9fd461668"
+              },
+              {
+                "identity": "HARNESS-L3-008-F02",
+                "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+                "owner": "HELIX-HARNESS",
+                "scope": "HARNESS-L2-008",
+                "content_sha256": "dda085b0600f6dde88ccd9e1c66f66e5c829d18882b0d383597ce76e80e771d5"
+              }
+            ]
+          },
+          "findings": [
+            {
+              "code": "na_basis_missing",
+              "pointer": "/prototype_na/reason",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-003",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "na_basis_missing",
+              "pointer": "/prototype_na/reason",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "HARNESS-L2-008",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            },
+            {
+              "code": "na_basis_missing",
+              "pointer": "/prototype_na/reason",
+              "subject_ref": {
+                "identity": "FX-001-Q2",
+                "revision": "r1",
+                "owner": "fixture-harness-meaning-owner",
+                "scope": "fixture/001",
+                "content_sha256": "44c1a3325d95cb6b83539ea74c29cf9c81c1b3236913d7264bda149a5211b5f7"
+              },
+              "requirement_ref": "HARNESS-L3-001-F02",
+              "backflow_owner": "fixture-harness-meaning-owner",
+              "evidence_refs": [
+                {
+                  "identity": "FX-001-CHECK",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                }
+              ]
+            }
+          ]
+        },
+        "expected_result_canonical_sha256": "33c5e60d0ec71b9f4ddb935e5a84fe77962577b6a16d8d0982f796a2ab957e1d",
+        "expected_basis": "F02既存stepsとL10の003/008・対象owner返却を前段所見の構成として対照。これは前段比較の内部素材で、当該rawから全F02を再計算したとの主張ではない。 合成no Fact/N/A前提も明示し、理由だけnullの不適用資料を保持する。実判定者資格を発行しない。"
+      }
+    ],
+    "additional_argument_recipe": "base_case_refの既存caseからinput/contextだけを既存recipeで解決しdeep copy、argument_patchのRFC6902 add/replace/removeを順に適用する。prior_stageは内部比較の明示素材。これらは後段全返却の対照で、前段全関数の計算や実資格の証明ではない。"
   }
 }
