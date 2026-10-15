@@ -6424,7 +6424,7 @@
           "permission_validity",
           "data_condition_content/state/scope"
         ],
-        "presence_and_comparison": "submitted key absent→missing; original key absent/null→unknown_original_information; both provided exact JSON equality→content_corresponding_in_fixture; otherwise content_conflict. ただし元L9の明示state/compatibility literalは対応する結果として保持。",
+        "presence_and_comparison": "提出keyが無ければmissing、原keyが欠落/nullならunknown_original_information、双方のJSON型と値が完全一致ならcontent_corresponding_in_fixture、それ以外はcontent_conflict。元L9の明示state/compatibility literalの写像はeligibility_check_detailsに従う。",
         "reason_projection": "send_requested=falseでは理由を空にしてnot_evaluated。trueでは順序保持して各check resultのうちcorresponding/compatible_in_fixture_only/valid_in_fixture_only以外を理由へ投影し、owner候補を重複なく同順で返す。",
         "owner_sources": "operation_content/compatibility_receipt_content/compatibility_target_vs_used_tuple/compatibility_binding/compatibility_stateはendpoint-contract-owner。permission_content/permission_tuple/permission_validityはHELIX-SECURITY。data_condition_content/state/scopeはsource-owner。原L9の候補表示であり実owner資格/認可ではない。",
         "finite_fields_and_literals": {
@@ -6491,9 +6491,9 @@
         },
         "ordered_checks": [
           "packet.send_requestedとclaimsをbool値で読む。send_requested=falseでも他の入力観察は行うが送信候補はnot_evaluated、attempt_count=0に限定する。",
-          "(2) operation/compatibilityのfieldを各宣言集合で比較する。提出key absent=missing、原key absent/null=unknown_original_information、完全一致=content_corresponding_in_fixture、その他=content_conflict。結果objectのkey挿入順は意味を持たず、eligibility_checksへ並べる際のみfield名Unicode codepoint昇順。原L9/保存期待のobject挿入順をこの演算の必須順としない。",
-          "(3) original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
-          "(4) compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。 permission/data条件はalgorithm(5)の入力recordを使う。",
+          "operation/compatibilityのfieldを各宣言集合で比較する。提出key absent=missing、原key absent/null=unknown_original_information、完全一致=content_corresponding_in_fixture、その他=content_conflict。結果objectのkey挿入順は意味を持たず、eligibility_checksへ並べる際のみfield名Unicode codepoint昇順。原L9/保存期待のobject挿入順をこの演算の必須順としない。",
+          "original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
+          "compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。 permission/data条件はalgorithm(5)の入力recordを使う。",
           "eligibility_checks配列のgroup順はoperation_content→compatibility_receipt_content→compatibility_target_vs_used_tuple→compatibility_binding→compatibility_state→permission_content→permission_tuple→permission_validity→data_condition_content/state/scope。各field比較groupの内部はUnicode codepoint昇順。",
           "send_requested=trueならchecksのうち許容literal content_corresponding_in_fixture / compatible_in_fixture_only / valid_in_fixture_only以外を、配列順を維持してwithheld_reasonsへ複製し、return_ownerの初出順で重複なくwithheld_return_ownersへ集約する。理由が空ならeligible_in_fixture_only、それ以外はwithheld。falseなら送信候補not_evaluated、reasons/ownersは空。"
         ]
@@ -6503,11 +6503,11 @@
         "field_rules": {
           "operation_tuple_results": "operation_fields集合を同じpresence/comparison規則で比較。object挿入順は意味を持たず、check配列の順はUnicode昇順。",
           "compatibility_content_results": "original/submitted_compatibility_receiptを原/提出としてcompatibility_fieldsを同規則で比較。object挿入順は意味を持たない。",
-          "compatibility_target_tuple_results": "(3) original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
+          "compatibility_target_tuple_results": "original_compatibility_receipt.target_tuple（recordでなければ空record）を提出側、original_used_tupleを原側として、used_tuple_fields全12fieldを同じpresence規則で比較する。original_used_tupleの値がnullのfield名はUnicode昇順でunknown_original_used_tuple_fieldsへ返す。",
           "unknown_original_used_tuple_fields": "original_used_tupleのうち値nullのfield名をUnicode昇順で返す。",
           "retained_compatibility_receipt": "original_compatibility_receiptのnull/recordをそのまま保持。",
           "permission_content_result": "submitted_permissionのkey absentはmissing。present_nullもL9固定fixtureのpermission_content_resultではmissing literalへ写すが、これはpermission record内容が無いという当該field限定の出力であり、raw packetとretained_permissionのpresent_nullをabsentへ置換しない。次にoriginal_permissionがabsent/nullならunknown_original_information。双方にrecord値がある場合、全JSON値一致ならcontent_corresponding_in_fixture、それ以外content_conflict。この優先順で有限fixtureを分類し、実permission資格を発行しない。",
-          "permission_tuple_results": "(5) permission内容はoriginal/submitted全recordを既定優先で比較する。permission_tuple_resultsはoriginal_permission.tuple（permission/tupleがrecordでなければ空record）を提出側、original_operation_tupleを原側として比較する。data_condition_resultsはdata_use,classificationを識別keyとして原/提出record比較（object順に意味なし）。各data conditionのstateとscopeはoriginal_data_conditionsから読み、scopeの右辺はoriginal_operation_tuple.scope。eligibility checkへの列挙はdata_condition_orderのclassification,data_use順。",
+          "permission_tuple_results": "original_permission.tupleを提出側、original_operation_tupleを原側とし、permission_fieldsの各fieldへpresence_and_comparisonを適用する。permission又はtupleがrecordでなければ提出側を空recordとしてfield欠落を比較する。結果objectの挿入順に意味はない。eligibility_checksへの展開はfield名Unicode昇順。",
           "retained_permission": "original_permissionのJSON値を保持。明示nullもnull。",
           "data_condition_results": "data_useとclassification各keyについて提出key absent=missing、原key absent/null=unknown_original_information、原/提出recordの完全値一致=content_corresponding_in_fixture、その他content_conflict。objectのkey挿入順は意味を持たない。",
           "retained_data_conditions": "original_data_conditionsのJSON recordを保持。",
@@ -6521,12 +6521,12 @@
           "claim_results": "raw claimsを同一keyで写しtrue=rejected、false=none。",
           "effects": "finite_fields_and_literals.effect_fields全てfalse。",
           "eligibility_check_details": {
-            "compatibility_state": "kind=compatibility_state, field=result。original_compatibility_receipt.resultを読み、key absentはmissing、raw compatibleだけcompatible_in_fixture_onlyへ写す。その他は明示nullを含む原値を保持。",
+            "compatibility_state": "kind=compatibility_state、field=result。original_compatibility_receipt自体が欠落/null/非recordならmissing。recordではresult key absentはmissing、raw compatibleだけcompatible_in_fixture_onlyへ写し、その他は明示nullを含む原result値を保持する。元のreceiptはretained値で保持し欠落/nullを資格へ変換しない。",
             "permission_content": "kind=permission_content, field=record, result=permission_content_result。",
-            "permission_validity": "kind=permission_validity, field=validity。original_permissionがrecordならvalidityの原値（key absentはmissing）、permissionがnullならmissing。明示nullのvalidityは原値nullを保持。",
+            "permission_validity": "kind=permission_validity、field=validity。original_permission key欠落、値null又は非recordならmissing。recordではvalidity key absentはmissing、存在すれば明示nullを含む原値を保持する。",
             "data_condition_state": "kind=data_condition_state, fieldはclassification/data_use。original_data_conditions[field]がrecordならstate原値（key absentはmissing）、recordでなければmissing。",
             "data_condition_scope": "kind=data_condition_scope, fieldはclassification/data_use。original_data_conditions[field]がrecordで、そのscope原値がoriginal_operation_tuple.scopeと完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。入力全体の欠落/nullは有限型と未観測境界を守り、資格を生成しない。",
-            "compatibility_binding": "(4) compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。"
+            "compatibility_binding": "compatibility_bindingはconnection_identity,scope,operation_revision順。左辺original_compatibility_receiptの同名値、右辺は順にoriginal_used_tuple.connection_identity、original_used_tuple.scope、original_operation_tuple.revision。片側key欠落または値nullならunknown_original_information、双方実値の完全一致ならcontent_corresponding_in_fixture、それ以外content_conflict。"
           }
         }
       }
@@ -6682,6 +6682,11 @@
       "C02D-02",
       "C02D-03"
     ],
-    "scope": "有限source/元90whole期待は不変。欠落/nullの未観測枝も規則を一意にし、一般域完了を生成しない。"
+    "scope": "有限source/元90whole期待は不変。欠落/nullの未観測枝も規則を一意にし、一般域完了を生成しない。",
+    "round2_minor": {
+      "official_comment": 6182601340,
+      "finding": "C02D-04",
+      "scope": "field別規則を整理し、state/validityのrecord欠落枝を明示、日本語化。原90whole期待/L8/上流は不変。"
+    }
   }
 }
