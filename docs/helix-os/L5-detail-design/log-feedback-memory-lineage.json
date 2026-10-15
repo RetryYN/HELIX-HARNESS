@@ -417,18 +417,18 @@
     "LogSet": "finite_domains.log_namesを正確なkey集合とし、各値がLogRecordであるObjectValue。",
     "FindingRecord": "原値を保持するJsonValue。objectの場合だけfeedback_fieldsを読む。",
     "StageRecord": "recordedとstage_fieldsだけをkeyに持つObjectValue。値はJsonValueのままR01/R05で検査する。",
-    "FeedbackRecord": "object with original_finding, stages, resolution_origin, resolved_claim, discard_original_claim, projection values retained as JsonValue",
-    "MemorySourceRecord": "object with source and associated state/reflection/count values retained as JsonValue",
+    "FeedbackRecord": "original_finding/stages/resolution_origin/resolved_claim/discard_original_claim/projectionを持ち原値をJsonValueとして保持するobject。",
+    "MemorySourceRecord": "sourceとstate/reflection/count関連項目を持ち原値をJsonValueとして保持するobject。",
     "EvidenceInput": "EvidencePacket {logs:LogSet, feedback:FeedbackSet, memory:MemorySet, whole_completion_claim:JsonValue, context:ContextPacket}.",
     "ObjectValue": "文字列keyを持つJSON object。値は型変換しないJsonValue。",
     "FeedbackItem": "ObjectValue {original_finding:JsonValue, stages:StageSet, resolution_origin:JsonValue, resolved_claim:JsonValue, discard_original_claim:JsonValue, projection:JsonValue}.",
     "FeedbackSet": "finite_domains.feedback_namesを正確なkey集合とし、各値がFeedbackItemであるObjectValue。",
     "MemorySource": "memory_fieldsを正確なkey集合とし、値をJsonValueで保持するObjectValue。",
     "Reflection": "recorded/order/reflection_fieldsを正確なkey集合とし、値をR08/R09で検査するObjectValue。",
-    "MemoryItem": "ObjectValue with exactly source, state, freshness, reflection, retire_order, active_instruction_present, deliver_success_count, consume_success_count, provider_authority_claim.",
-    "MemorySet": "ObjectValue with exactly pending_reflection, retired, expired, consumed; each value MemoryItem.",
+    "MemoryItem": "source/state/freshness/reflection/retire_order/active_instruction_present/deliver_success_count/consume_success_count/provider_authority_claimだけをkeyに持つObjectValue。",
+    "MemorySet": "pending_reflection/retired/expired/consumedだけをkeyとし各値がMemoryItemであるObjectValue。",
     "FacetStatus": "enum corresponding | unknown | violation.",
-    "Finding": "ObjectValue {code:string, pointer:string, return_owner:string}; unique and sort fields are declared by formal_program.assembly.",
+    "Finding": "code:string・pointer:string・return_owner:stringを持つObjectValue。重複除去と整列はformal_program.assemblyで定義する。",
     "LogAssessment": "ObjectValue {facet_status:FacetStatus, items:LogMaterialMap, findings:array<Finding>, findings_by_item:FindingMap}.",
     "FeedbackAssessment": "ObjectValue {facet_status:FacetStatus, items:FeedbackMaterialMap, findings:array<Finding>, findings_by_item:Object<FeedbackName,array<Finding>>}.",
     "MemoryAssessment": "ObjectValue {facet_status:FacetStatus, items:MemoryMaterialMap, findings:array<Finding>, findings_by_item:Object<MemoryName,array<Finding>>}.",
@@ -1321,7 +1321,7 @@
       },
       {
         "op": "status_from_values",
-        "meaning": "配列statusをpriority順でまとめ、最初の存在するstatusを返す。空配列の場合はassembly.empty_diagnostic_dispositionを返す。"
+        "meaning": "priority_refで指定された配列順にstatusをまとめ、最初の存在するstatusを返す。どれも無い場合はassembly.empty_diagnostic_dispositionを返す。"
       },
       {
         "op": "status_to_condition",
@@ -3142,7 +3142,8 @@
                   "function": "boundary_rule",
                   "field": "facet_status"
                 }
-              ]
+              ],
+              "priority_ref": "/formal_program/assembly/diagnostic_disposition_priority"
             }
           },
           "facet_correspondence": {
@@ -3752,7 +3753,21 @@
         "json_type": "object",
         "exact_keys_from": [
           {
-            "ref": "/algorithm/output_contract"
+            "literal": [
+              "condition",
+              "facet_correspondence",
+              "log_material_usable",
+              "feedback_material",
+              "memory_material",
+              "retained_actual_records",
+              "retained_reference_records",
+              "findings",
+              "whole_management_complete",
+              "operation_effect",
+              "actual_log_written",
+              "actual_feedback_resolved",
+              "actual_memory_retired"
+            ]
           }
         ],
         "field_json_types": {
