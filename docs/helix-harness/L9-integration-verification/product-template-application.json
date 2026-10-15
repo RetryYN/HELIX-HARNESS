@@ -2005,7 +2005,7 @@
     "requirement_ref": "HARNESS-L3-009-F01",
     "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
     "system_oracle_ref": "HARNESS-L10-009-F01",
-    "input_packet_boundary": "normal comparison fixture supplies outer candidate_refs/universes/templates collection slots, but does not assert that every nested CandidateUniverse/TemplateSnapshot binding or provenance field is present. Some nested required fields are absent by construction. Boundary fixtures explicitly exercise Absent/null/invalid_type. No fixture establishes source qualification or selection.",
+    "input_packet_boundary": "通常の比較fixtureは外側candidate_refs/universes/templatesのcollection slotを供給するが、各CandidateUniverse/TemplateSnapshotのnested bindingやprovenanceの全fieldが存在するとは主張しない。一部のnested必須fieldは構成上欠落している。境界fixtureはAbsent/null/invalid_typeを明示的に試す。実source資格や選択の成立を示すfixtureではない。",
     "oracle_boundary": "L9は各caseのraw input_packetとindependent_expected_projectionを比較用に保持する。計算器は期待値を入力にせず、L4のprojection_ruleとrawから結果を再計算する。この記録は期待値を候補評価より前に固定した時系列証明ではない。",
     "original_case_preservation": "従来のL9 top-level cases 11件とnegative_cases 106件は保持する。追加のprojection 41件は29 control、8 Ref/presence境界、4 malformed container境界。重複していたcontrolはknown version/scope differenceと別occurrence unknownを区別するrawへ修正し、case 2/3/5の既知差分期待をunknown_ref_fieldsからsame_identity_revision_or_scope_mismatchへ、case 20のuniverses presence期待を実rawに合わせて更新した。全追加caseのtrace IDと誤記も訂正。normal synthetic projection shapeとboundary presence/domainを区別し、完全なbindingを主張しない。",
     "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
@@ -2013,8 +2013,8 @@
       {
         "id": "CORE009-F01-PROJ-EXACT-01",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -3662,18 +3662,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-EXACT-01"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-REVISION-02",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -4391,18 +4392,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-REVISION-02"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SCOPE-03",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -5120,18 +5122,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SCOPE-03"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-OWNER-04",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -5843,18 +5846,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-OWNER-04"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-BRAIN-SCOPE-SHAPE-05",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -6572,18 +6576,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-BRAIN-SCOPE-SHAPE-05"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-DUPLICATE-ORDER-06",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -8179,18 +8184,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-DUPLICATE-ORDER-06"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATES-ABSENT-07",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -8688,18 +8694,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATES-ABSENT-07"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATES-NULL-08",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -9201,18 +9208,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATES-NULL-08"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-ABSENT-09",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -9701,18 +9709,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-ABSENT-09"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-NULL-10",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -10203,18 +10212,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-NULL-10"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-EMPTY-11",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -10787,18 +10797,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-EMPTY-11"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-ABSENT-12",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -11222,18 +11233,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-ABSENT-12"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-NULL-13",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -11659,18 +11671,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-NULL-13"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-QUALIFICATION-UNESTABLISHED-14",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -12475,18 +12488,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-QUALIFICATION-UNESTABLISHED-14"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-CONTEXT-MISMATCH-15",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -13309,18 +13323,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-CONTEXT-MISMATCH-15"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-NULL-16",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -13893,18 +13908,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-NULL-16"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-ABSENT-17",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -14475,18 +14491,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-ABSENT-17"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-IDENTITY-NULL-18",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -15194,18 +15211,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-IDENTITY-NULL-18"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-IDENTITY-ABSENT-19",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -15905,18 +15923,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-IDENTITY-ABSENT-19"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSES-EMPTY-20",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -16749,18 +16768,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSES-EMPTY-20"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-DUPLICATE-21",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -19221,18 +19241,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-DUPLICATE-21"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-ORDER-22",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -20994,18 +21015,19 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-ORDER-22"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-IDENTITY-NULL-23",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -22458,18 +22480,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-IDENTITY-NULL-23"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-IDENTITY-ABSENT-24",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -23920,18 +23943,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-IDENTITY-ABSENT-24"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBER-UNKNOWN-PLUS-KNOWN-DIFFERENCE-25",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -25390,19 +25414,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBER-UNKNOWN-PLUS-KNOWN-DIFFERENCE-25"
         },
         "mutation_basis": "独立反例: unknown fieldを持つ一targetと、既知のrevision差を持つ別targetを同時に保持する。",
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-NULL-26",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -27067,18 +27092,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-NULL-26"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-ABSENT-27",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -28741,18 +28767,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-IDENTITY-ABSENT-27"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-UNKNOWN-PLUS-KNOWN-DIFFERENCE-28",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -30420,19 +30447,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-UNKNOWN-PLUS-KNOWN-DIFFERENCE-28"
         },
         "mutation_basis": "独立反例: unknown fieldを持つ一snapshotと、既知のscope差を持つ別snapshotを同時に保持する。",
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-EXACT-WITH-UNRELATED-UNKNOWN-TARGETS-29",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -32714,18 +32742,19 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-EXACT-WITH-UNRELATED-UNKNOWN-TARGETS-29"
         },
-        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba"
+        "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-CANDIDATE-ELEMENT-30",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -34090,19 +34119,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-CANDIDATE-ELEMENT-30"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
+        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-UNIVERSE-ELEMENT-31",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -34989,19 +35019,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-UNIVERSE-ELEMENT-31"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
+        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-MEMBER-ELEMENT-32",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -36597,19 +36628,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-MEMBER-ELEMENT-32"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
+        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-NULL-SNAPSHOT-ELEMENT-33",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -37961,19 +37993,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-NULL-SNAPSHOT-ELEMENT-33"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
+        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-BOOL-NUMBER-SCOPE-DISTINCTION-34",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -39431,19 +39464,20 @@
         "fixture_class": "normal_synthetic_projection_shape",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-BOOL-NUMBER-SCOPE-DISTINCTION-34"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。"
+        "mutation_basis": "L3/L4の入力型/presence境界を識別する固定合成raw。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-REF-ABSENT-35",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -41069,19 +41103,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-REF-ABSENT-35"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
+        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-SNAPSHOT-REF-NULL-36",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -42709,19 +42744,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-SNAPSHOT-REF-NULL-36"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
+        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSE-REF-ABSENT-37",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -44339,19 +44375,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSE-REF-ABSENT-37"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。"
+        "mutation_basis": "L4のRef presenceを区別する固定合成raw。qualificationは成立させない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-CANDIDATE-REFS-NONARRAY-38",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -45162,19 +45199,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-CANDIDATE-REFS-NONARRAY-38"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
+        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-UNIVERSES-NONARRAY-39",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -46011,19 +46049,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-UNIVERSES-NONARRAY-39"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
+        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-MEMBERS-NONARRAY-40",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -46978,19 +47017,20 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-MEMBERS-NONARRAY-40"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
+        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       },
       {
         "id": "CORE009-F01-PROJ-TEMPLATES-NONARRAY-41",
         "requirement_ref": "HARNESS-L3-009-F01",
-        "oracle_ref": "HARNESS-L10-009-F01",
-        "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
         "source_refs": [
           {
             "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -47880,13 +47920,14 @@
         "fixture_class": "boundary_presence_or_domain",
         "trace": {
           "requirement_ref": "HARNESS-L3-009-F01",
-          "design_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+          "design_ref": "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "system_oracle_ref": "HARNESS-L10-009-F01",
           "oracle_ref": "HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION",
           "case_id": "CORE009-F01-PROJ-TEMPLATES-NONARRAY-41"
         },
         "source_expectation_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
-        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。"
+        "mutation_basis": "L4のcontainer domainを外れた合成raw。rawを保持したままinvalid_typeを返し、暗黙emptyへ置換しない。",
+        "system_oracle_ref": "HARNESS-L10-009-F01"
       }
     ],
     "candidate_design_file_sha256": "26df02810cfc8e04a49815ce77fadbe70f314dfc445568b55902ce411d93329a",
@@ -47965,7 +48006,7 @@
       "case_count": 41,
       "embedded_expected_material_sha256": "59ff332a27578eb59d430e5bce66a5ba39db760de2665e321dcf1d0074cfa9ba",
       "derivation": "各raw packetからL4 projection_ruleのpresence、compare_fields、state precedence、state/state-class mapping、aggregate、owner deficiency classification、input preservation規則を適用する。case_id/expected値は計算入力にしない。source expectation hashのcanonical materialはL4 canonical_digest_ruleに定義する。",
-      "reproducible_source_file": "このL9文書自身のcases[].input_packet + cases[].independent_expected_projection",
+      "reproducible_source_file": "同pairのL4 /cross_design_candidate_ref_projection/projection_rule/canonical_digest_rule/source_expectation_sha256を正とする。このL9のcasesを元順に走査し、id、raw_packet←input_packet、expected←independent_expected_projection、input_preservation←independent_expected_input_preservationの4key素材を構成する。canonical形式は同じL4 canonical_digest_ruleを参照する。",
       "source_rule_refs": [
         "HARNESS-L3-009-F01",
         "HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION",
