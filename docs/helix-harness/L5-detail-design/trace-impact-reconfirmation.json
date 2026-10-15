@@ -10765,11 +10765,11 @@
       "current127defsのlocal参照だけを解決。network/filesystem/DBのloaderを暗黙呼出しせず、remote/未解決Ref、未対応keyword/type/dialect、同instanceで進捗しないRef cycleはbinding_unresolvedへ。再帰schemaが子instanceへ進む場合と区別する。",
       "unknown schema keywordは一般JSON Schemaでannotationになり得るが、本profileの閉じた対応証拠がない。instanceをinvalidと決めずbinding_unresolvedへ。properties/$defsの名前はschema keywordと混同しない。未知schemaをvalidと黙認しない。"
     ],
-    "logical_view": "decode済みASTから、array tuple/read-only object viewとExactFiniteDecimal leafの内容提案を作る。raw token/member順は元ASTに保持し、floatへ丸めたりnormalized numeric recordをJSON objectとして挿入しない。入力ASTを変更せずmutable viewをconsumerへ渡さない。実Python class/JSON Schema library version/adapter registrationは後続binding。 readonly_materializer_contract RM1〜RM6と全result/value型へ結ぶ。これは内部readonly投影の設計でありschema実consumer構築ではない。",
+    "logical_view": "decode済みASTから、array tuple/read-only object viewとExactFiniteDecimal leafの内容提案を作る。raw token/member順は元ASTに保持し、floatへ丸めたりnormalized numeric recordをJSON objectとして挿入しない。入力ASTを変更せずmutable viewをconsumerへ渡さない。実Python class/JSON Schema library version/adapter registrationは後続binding。 readonly_materializer_contract RM1〜RM6と全result/value型へ結ぶ。これは内部readonly投影の設計でありschema実consumer構築ではない。 StringValue.value→既存pattern keywordのstr carrier接続だけはfixed_pattern_implementation_bindingに限定具体化する。残keyword/number/readonly hostをこのAPI選択で一括成立にしない。",
     "data_model_rules": {
       "number": "JSON Schemaの任意精度base10数学numberへ接続。number/integer/const/enumはexact_number_contractで評価しbool/stringを別kindにする。整数predicateはfraction=0であり1.0/1e400を整数、1.5を非整数として扱う。host isinstance(int)/float変換では決めない。",
       "equality": "同primitive kindと内容。numberは数学同値、stringはscalar/codepoint列、arrayは順と各要素、objectはkey集合と各値（member順は無関係）。schema中のnumeric const/enum原tokenもexactで読む。",
-      "string": "minLengthはUnicode scalar数。UTF8 byte数/UTF16 unit数を使わずNFC/trimしない。patternはECMA-262相当の対応済みmatcherで、schemaのpatternを勝手にanchorしない。matcher equivalence未証明ならbinding_unresolved。",
+      "string": "minLengthはUnicode scalar数。UTF8 byte数/UTF16 unit数を使わずNFC/trimしない。固定schemaのDigest/JsonPointerの2patternはfixed_pattern_implementation_bindingの指定既存API/外部flags0/原scalar strへ結ぶ。schemaのpatternを勝手にanchor/fullmatchへ置換しない。構成証明の対象外patternやsource/API対応未確認はbinding_unresolved。実host導入/全ECMA-262/全schemaの成立ではない。",
       "object_array": "required/unknown field/追加property schema/propertyNames/itemsをそれぞれ保持。optional/null受領はDeclaredSourceDigest/UnseenOperationJoinの形を尊重し、必要内容の判定はdomainへ。",
       "branches": "anyOfは1以上成功、oneOfはちょうど1成功。成功branchがあるanyOfの失敗子findingを全体失敗へ昇格しない。未対応bindingはbranch成功で消さずbinding_unresolvedへ。"
     },
@@ -10789,7 +10789,7 @@
       }
     },
     "diagnostic_boundary": "library固有exception/message/typeをcore resultへ直接露出しない。keyword/instance pointerをrelative findingへ写し、consumerがinput/context/candidate laneを明示してprefixする。全assertion/branchの最小finding集合は追加oracleへ残す。shape対応は意味/資格/数値観測/承認/実operationの成立ではない。",
-    "unclosed": "正式Python view/number/JSON Schema adapter/regex matcher版、registry/consumer/owner/codec/resources、全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応snapshotの設計であり、実adapter/core実装やRed/Greenではない。",
+    "unclosed": "固定2patternの言語同等性/API/carrier接続はfixed_pattern_implementation_bindingへ具体化。実Python view/number/JSON Schema adapter/installed版、registry/consumer/owner/codec/resources、他pattern・全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応sourceの設計であり実adapter/core実装やRed/Greenではない。",
     "whole_finding_contract": {
       "scope": "34原shape対照と6binding対照をShapeProposal全fieldへ。7契約のinput/context/candidate不正shapeを組立拒否へ接続。全keyword/全type/全instance/正式adapter bindingは未閉包。",
       "finding_rules": {
@@ -10804,9 +10804,595 @@
       },
       "aggregation": "binding findingが一つでもあればcondition binding_unresolved、その次にconstraint findingがあればshape_invalid、他はcorresponding_shape。対応が判明した独立の失敗assertionはbinding不足と同時に保持する。原AST/tokenを保持、schema_handoff false/actual_effects none。全schema参照closureの事前照合でbinding不足を検出し、remoteを取得しない。",
       "snapshot_effect": "schema/数値profile snapshotの整合は実資格/正式bindingでない。数学number/bool分離、原token/readonly view、pattern ECMA対応の既条件を保持。",
-      "unclosed": "全keyword/全branch組合せ/全127defs/不正wire/資源/正式view・regex・backend・owner/consumer bindingとL6L7/test-oracle凍結は未完。"
+      "unclosed": "固定2patternの限定言語同等性以外のpattern、全keyword/全branch組合せ/全127defs/不正wire/資源/正式view・backend・owner/consumer bindingとL6L7/test-oracle凍結は未完。"
     },
-    "logical_materializer_contract_sha256": "32df9d17160a67f20265fbb9188e5691fe398bab72f3ea7e1f7f08cb6fcb95f9"
+    "logical_materializer_contract_sha256": "32df9d17160a67f20265fbb9188e5691fe398bab72f3ea7e1f7f08cb6fcb95f9",
+    "fixed_pattern_implementation_binding": {
+      "scope": "固定schemaのDigest/JsonPointerの2patternだけを既存library APIへ接続する詳細設計。新matcher/公開関数/registryを作らず、実host導入/実行/正式consumer binding/全schema成立を表さない。",
+      "existing_entrypoint_pointer": "/schema_adapter_contract/signature",
+      "implementation": {
+        "python_implementation": "CPython",
+        "python_version": "3.14.7",
+        "stdlib_module": "re",
+        "library_distribution": "jsonschema",
+        "library_version": "4.26.0",
+        "library_entry": "jsonschema.Draft202012Validator.VALIDATORS[\"pattern\"]",
+        "dispatch_target": "jsonschema._keywords.pattern(validator, patrn, instance, schema)",
+        "string_type_check": "既存Draft202012Validatorのstring判定→_types.is_string→isinstance(instance, str)。patternは非stringを検査せず、type assertionの別診断を置換しない。",
+        "search_call": "stdlib re.search(patrn, instance)。外部flags引数は未指定、既定0。原patternを無変更で渡す。",
+        "match_result": "Matchはゼロ長でも真、Noneが不一致。Pointer空文字のゼロ長Matchを不一致へ補完しない。",
+        "keyword_only": "この選択は既存adapter内のpattern keywordの実装対応だけ。jsonschema既定number/type/const/enumやmutable carrierを全schemaへ採用しない。既存exact_number_contract等の責務を保持する。",
+        "runtime_state": "not_installed_not_executed_not_registered"
+      },
+      "fixed_patterns": [
+        {
+          "pointer": "/logical_structure_schema/schema/$defs/Digest/pattern",
+          "value": "^[0-9a-f]{64}(?![\\s\\S])",
+          "value_utf8_sha256": "b7513db432592bb187d551131049b31ecce692af333e753940600b7f98de6f29"
+        },
+        {
+          "pointer": "/logical_structure_schema/schema/$defs/JsonPointer/pattern",
+          "value": "^(?:/(?:[^~/]|~[01])*)*(?![\\s\\S])",
+          "value_utf8_sha256": "b567d2b4eab80515e026446b489ee4e4ceb664e8c48fd9c42e67f2ddad3a3418"
+        }
+      ],
+      "input_and_caller_binding": {
+        "wire_scalar_boundary_pointer": "/wire_decode_contract/stages/4",
+        "readonly_materializer_pointer": "/readonly_materializer_contract",
+        "materializer_rule_pointers": [
+          "/readonly_materializer_contract/rules/0",
+          "/readonly_materializer_contract/rules/1",
+          "/readonly_materializer_contract/rules/3",
+          "/readonly_materializer_contract/rules/4"
+        ],
+        "string_leaf": "既存RM1/2/4/5のStringValue.valueにあるdecoded Unicode scalar列をCPython builtin strの内容として渡す。readonly proposal wrapper全体、bytes、str(record)を渡さず、原scalar列/空文字/NUL/非BMPを保持する。trim/NFC/casefold/empty→Noneをしない。実class/constructor/readonly hostの全結合は未閉包。",
+        "scalar_domain": "全有限Unicode scalar文字列Σ*。lone surrogateは先行wire W5で拒否する域であり、patternがUnicode正当性を検出したとはしない。",
+        "schema_origin": "fixed_patterns.pointerが指すlogical_structure_schema/schemaの原pattern文字列のみ。別schemaの任意patternへ対応済みと一般化しない。",
+        "selector_and_pipeline_pointers": [
+          "/schema_adapter_contract/contract_lane_bindings",
+          "/assembly_contract/pipeline/0",
+          "/assembly_contract/pipeline/2"
+        ],
+        "lane_scope": "固定7契約の既存input/context/candidate selectorを維持し、shapeからcontract/symbol/ownerを推測しない。result/valueへの別公開matcher入口は追加しない。",
+        "handoff_pointer": "/assembly_contract/shape_rejection_handoff_contract",
+        "handoff": "既存relative instance_pointerへ呼出laneのprefixを付け、null pointerはnullのまま保持する。schema_handoff false/actual_effects none。pattern対応だけでcore/OS操作・保存・実資格を生成しない。"
+      },
+      "binding_and_diagnostics": {
+        "priority": "A1の固定selector/schema/numeric/profile対応が先行。不整合があれば既存snapshot binding不足を保持し、keyword評価を成功させない。固定source/API/version/外部flags0の対応未確認を文字列不正へ縮約しない。",
+        "supported_pattern_failure": {
+          "condition": "shape_invalid",
+          "code": "shape_constraint_failed",
+          "keyword": "pattern",
+          "instance_pointer": "失敗したstringの既存relative JSON Pointer（leaf rootは空文字）",
+          "return_owner": "schema-adapter-owner"
+        },
+        "snapshot_drift": {
+          "condition": "binding_unresolved",
+          "code": "shape_binding_unresolved",
+          "keyword": null,
+          "instance_pointer": null,
+          "return_owner": "schema-adapter-owner"
+        },
+        "unsupported_pattern": "固定snapshot違いは先行drift。keyword評価の対応範囲を論じる場合、未証明の別patternはbinding_unresolved/shape_binding_unresolved、keyword pattern、instance_pointer null。新しいinstance禁止条件を生成しない。",
+        "aggregation_pointer": "/schema_adapter_contract/whole_finding_contract",
+        "exception_limit": "library固有message/exceptionをdomain findingへ写さない。資源/engine例外や実backend未供給をconstraint failure/成功へ変換せず未解決として保持する。資源例外の完全返却protocolと全長停止保証は未閉包。"
+      },
+      "language_equivalence_proof": {
+        "claim": "下記固定2式について、Σ*上のECMA-262 es2020相当の検索受理言語とCPython3.14.7 re.search・外部flags0の受理言語が同じ。実行列挙でなく構成証明。",
+        "reference_dialect": "JSON Schema 2020-12の参照するECMA-262第11版（es2020）。Unicode/non-Unicodeどちらのmodeでもこの2式のscalar入力受理言語は同じ。",
+        "lemmas": [
+          {
+            "id": "L-API",
+            "statement": "Draft202012Validatorの既存pattern dispatchはstring型確認後にre.search(patrn, instance)を使い、flagsを追加しない。CPython search既定flags0。先行wire/materializerのscalar列をstrへ無変更で結ぶ。ゼロ長Matchは真。"
+          },
+          {
+            "id": "L-EOF",
+            "statement": "各engineの文字集合をU、whitespace分類をWとすれば\\s=W、\\S=U\\Wで[\\s\\S]=U。分類差を等しいと仮定せず和集合で消せる。(?![\\s\\S])は次文字が無い場合だけ成功。flags0の^は先頭だけなのでsearchの成功は全体受理であり、末尾LFの直前を許す$へ置換しない。"
+          },
+          {
+            "id": "L-DIGEST",
+            "statement": "H={U+0030..0039,U+0061..0066}とすれば前段言語はH^64。casefold/IGNORECASEは無い。先頭/厳密終端を合わせ両engineともASCII lower hex64だけを受理。非BMPはPython scalarでもECMAのUTF-16両unitでもHの外なので拒否。ASCII64への非BMP/LF追記も終端で拒否。"
+          },
+          {
+            "id": "L-POINTER",
+            "statement": "C=ΣからASCII ~/を除く集合、T=(C∪{~0,~1})*、L=(/T)*。原class/選択/無上限反復はこの言語を表し、厳密終端で全体一致。空文字/空token/改行/NUL/非BMPを許し、不正/末尾~や先頭/欠落は拒否。~01は~0と通常文字1で有効。member実在や意味資格の証明ではない。"
+          },
+          {
+            "id": "L-UTF16",
+            "statement": "正当scalar列sをUTF-16列h(s)へ写す。ASCII ~/01は不変。非BMP scalarの2unitはいずれも~/ではなく、同一tokenのC反復へ2要素として入る。反復長に上限が無いため受理が変わらず、正当UTF-16からscalarへ戻しても区切り/escape位置は変わらない。従ってs∈L⇔h(s)∈L_unit。Unicode modeは直接同じL。DigestはASCII性により同等。lone surrogateはこの写像域外でwire拒否。"
+          }
+        ],
+        "not_claimed": "任意pattern/全keyword/全127defsの実backend対応、全schemaの同等性、実package binary/installed環境資格、有限資源での全長停止、数値/全readonly host、CI/TDD/Readyを証明しない。"
+      },
+      "primary_sources": [
+        {
+          "name": "jsonschema-keywords.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/_keywords.py",
+          "file_bytes_sha256": "afcfc3aea01f9fa40bc109e65c4820bde89253e51a20bda9da7b8f20d7a57c57",
+          "byte_count": 14949,
+          "line_count": 449
+        },
+        {
+          "name": "jsonschema-validators.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/validators.py",
+          "file_bytes_sha256": "97f171b995b4b0ca05530a9366a1252fb1753f99f3cb7b1068b6d9aab1096fa5",
+          "byte_count": 47159,
+          "line_count": 1410
+        },
+        {
+          "name": "jsonschema-types.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/_types.py",
+          "file_bytes_sha256": "7ff9e44c36eb8dadc4ddfb083530bbdf2fe03174d4db5d08fc7eea2b434ddf47",
+          "byte_count": 5456,
+          "line_count": 204
+        },
+        {
+          "name": "cpython-re-init.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/__init__.py",
+          "file_bytes_sha256": "741a9de729ed8207bfa19db990f8826f1bf3661f33d0970a80c08cd1338ebc35",
+          "byte_count": 17876,
+          "line_count": 428
+        },
+        {
+          "name": "cpython-re-parser.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_parser.py",
+          "file_bytes_sha256": "e57bd194a2d42398355ae7c1ccc2ddfb78421dd431eb81e3809dbe8ca9057dc4",
+          "byte_count": 40353,
+          "line_count": 1066
+        },
+        {
+          "name": "cpython-re-compiler.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_compiler.py",
+          "file_bytes_sha256": "d49f30cf9a1dbae33b200ed8befd9d0ce3ac612783a10ac35196536f98923e91",
+          "byte_count": 26855,
+          "line_count": 782
+        },
+        {
+          "name": "cpython-sre-lib.h",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre_lib.h",
+          "file_bytes_sha256": "76fd1821d57aa02bd02734f30206eee42008649143a443c1167a64239bca5bd3",
+          "byte_count": 64525,
+          "line_count": 1874
+        },
+        {
+          "name": "cpython-sre.c",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre.c",
+          "file_bytes_sha256": "6d847eb25d5c50e3b33dcb2e39accd9c73f619c2d211a34ed32bb93e9c7299a8",
+          "byte_count": 95890,
+          "line_count": 3456
+        },
+        {
+          "name": "cpython-re-doc.rst",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Doc/library/re.rst",
+          "file_bytes_sha256": "d252cc185dfc1014e1b4a8087b2515b71c76527f0f2f6dfddba9a880537e6a48",
+          "byte_count": 78262,
+          "line_count": 1966
+        },
+        {
+          "name": "cpython-patchlevel.h",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Include/patchlevel.h",
+          "file_bytes_sha256": "16a8955952cbaefd16f85909b73a0a6c182ec813f9544a12c28897c95b8d3f22",
+          "byte_count": 1773,
+          "line_count": 49
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "byte_count": 2492217,
+          "line_count": 43484
+        },
+        {
+          "name": "json-schema-validation.html",
+          "url": "https://json-schema.org/draft/2020-12/json-schema-validation",
+          "file_bytes_sha256": "3e4a114b49f90cc38d7c19be8533dab9e4fe5b53c7dbb2fc6eac12fee5558ede",
+          "byte_count": 169790,
+          "line_count": 3185
+        }
+      ],
+      "primary_source_locations": [
+        {
+          "name": "jsonschema-keywords.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/_keywords.py",
+          "file_bytes_sha256": "afcfc3aea01f9fa40bc109e65c4820bde89253e51a20bda9da7b8f20d7a57c57",
+          "start_line": 215,
+          "end_line": 220,
+          "range_utf8_sha256": "ff726169b8850b7c6e6d1a02fd0b6deff046f2ff0be6cac97b7466674d2846f6",
+          "locator_needle": "def pattern("
+        },
+        {
+          "name": "jsonschema-validators.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/validators.py",
+          "file_bytes_sha256": "97f171b995b4b0ca05530a9366a1252fb1753f99f3cb7b1068b6d9aab1096fa5",
+          "start_line": 812,
+          "end_line": 857,
+          "range_utf8_sha256": "0c65958f216eeb06682826875fbb1c9f1b0b2df89025bdae1d2cb929cc77103d",
+          "locator_needle": "Draft202012Validator ="
+        },
+        {
+          "name": "jsonschema-types.py",
+          "url": "https://raw.githubusercontent.com/python-jsonschema/jsonschema/v4.26.0/jsonschema/_types.py",
+          "file_bytes_sha256": "7ff9e44c36eb8dadc4ddfb083530bbdf2fe03174d4db5d08fc7eea2b434ddf47",
+          "start_line": 56,
+          "end_line": 57,
+          "range_utf8_sha256": "2ab0f2b0c1cd5c674e68d0d33e953f4aedd9d9106eaa45f78fbddefd2269f5c1",
+          "locator_needle": "def is_string"
+        },
+        {
+          "name": "cpython-re-init.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/__init__.py",
+          "file_bytes_sha256": "741a9de729ed8207bfa19db990f8826f1bf3661f33d0970a80c08cd1338ebc35",
+          "start_line": 174,
+          "end_line": 177,
+          "range_utf8_sha256": "9174a6f1d122690c4b59d2312e1d81424bcad1ebe4569c0f87c8e5a844649a6a",
+          "locator_needle": "def search("
+        },
+        {
+          "name": "cpython-re-parser.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_parser.py",
+          "file_bytes_sha256": "e57bd194a2d42398355ae7c1ccc2ddfb78421dd431eb81e3809dbe8ca9057dc4",
+          "start_line": 42,
+          "end_line": 53,
+          "range_utf8_sha256": "73898429f2c247d8ccb25d9638e4af829f108738c46c83de2916f964519b30db",
+          "locator_needle": "CATEGORIES ="
+        },
+        {
+          "name": "cpython-re-parser.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_parser.py",
+          "file_bytes_sha256": "e57bd194a2d42398355ae7c1ccc2ddfb78421dd431eb81e3809dbe8ca9057dc4",
+          "start_line": 947,
+          "end_line": 955,
+          "range_utf8_sha256": "7f4054ca7d05f1482cbd0c840a2736a164a07c244208666afd0412bc6ea4c20d",
+          "locator_needle": "def fix_flags"
+        },
+        {
+          "name": "cpython-re-parser.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_parser.py",
+          "file_bytes_sha256": "e57bd194a2d42398355ae7c1ccc2ddfb78421dd431eb81e3809dbe8ca9057dc4",
+          "start_line": 868,
+          "end_line": 869,
+          "range_utf8_sha256": "c144d54cd7a26ee01ec24e6ca8bf5b58ee6f7f82d7d955480f52f9918776dcc3",
+          "locator_needle": "elif this == \"^\""
+        },
+        {
+          "name": "cpython-re-compiler.py",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Lib/re/_compiler.py",
+          "file_bytes_sha256": "d49f30cf9a1dbae33b200ed8befd9d0ce3ac612783a10ac35196536f98923e91",
+          "start_line": 167,
+          "end_line": 168,
+          "range_utf8_sha256": "9e4b3887049da587a0091f996e7c418ce17aa24592816a232ec17ccf19bf8404",
+          "locator_needle": "if flags & SRE_FLAG_MULTILINE:"
+        },
+        {
+          "name": "cpython-sre.c",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre.c",
+          "file_bytes_sha256": "6d847eb25d5c50e3b33dcb2e39accd9c73f619c2d211a34ed32bb93e9c7299a8",
+          "start_line": 213,
+          "end_line": 216,
+          "range_utf8_sha256": "3430685f39081e7ec1efe900d04920dbe5b727ac870a96b69ae3a730100f87cd",
+          "locator_needle": "case SRE_CATEGORY_UNI_SPACE:"
+        },
+        {
+          "name": "cpython-sre.c",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre.c",
+          "file_bytes_sha256": "6d847eb25d5c50e3b33dcb2e39accd9c73f619c2d211a34ed32bb93e9c7299a8",
+          "start_line": 513,
+          "end_line": 514,
+          "range_utf8_sha256": "5dff60300d4573990e4b83393f3c1c5a2b8d7fd129c513bd06c8710c81428eb0",
+          "locator_needle": "*p_charsize = PyUnicode_KIND(string);"
+        },
+        {
+          "name": "cpython-sre-lib.h",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre_lib.h",
+          "file_bytes_sha256": "76fd1821d57aa02bd02734f30206eee42008649143a443c1167a64239bca5bd3",
+          "start_line": 24,
+          "end_line": 26,
+          "range_utf8_sha256": "dc668b0e504c7d546fb3eb35ce2bc12ead26cff29454a564f5d04491bab4b3af",
+          "locator_needle": "case SRE_AT_BEGINNING:"
+        },
+        {
+          "name": "cpython-sre-lib.h",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Modules/_sre/sre_lib.h",
+          "file_bytes_sha256": "76fd1821d57aa02bd02734f30206eee42008649143a443c1167a64239bca5bd3",
+          "start_line": 1573,
+          "end_line": 1594,
+          "range_utf8_sha256": "5e5e2d976c485928a199af48012115e68f0537ee93dcb8d72930c31433db0865",
+          "locator_needle": "TARGET(SRE_OP_ASSERT_NOT):"
+        },
+        {
+          "name": "cpython-re-doc.rst",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Doc/library/re.rst",
+          "file_bytes_sha256": "d252cc185dfc1014e1b4a8087b2515b71c76527f0f2f6dfddba9a880537e6a48",
+          "start_line": 1378,
+          "end_line": 1380,
+          "range_utf8_sha256": "19ba71a0783e3d71c7419df2d3d2104f1aa4f581d9c3915653e17769c7dd2c80",
+          "locator_needle": "Match objects always have a boolean value"
+        },
+        {
+          "name": "cpython-patchlevel.h",
+          "url": "https://raw.githubusercontent.com/python/cpython/v3.14.7/Include/patchlevel.h",
+          "file_bytes_sha256": "16a8955952cbaefd16f85909b73a0a6c182ec813f9544a12c28897c95b8d3f22",
+          "start_line": 20,
+          "end_line": 27,
+          "range_utf8_sha256": "caaf4fa0f1ff9fde37ef64879df961d0af40b6c7625fb812fb89e3187ed374cf",
+          "locator_needle": "#define PY_MAJOR_VERSION"
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "start_line": 31472,
+          "end_line": 31472,
+          "range_utf8_sha256": "d5cbeb5ea21252e8fc3175a1669f1fea9b28e464eb00bbd07e31e67731e7fb6c",
+          "locator_needle": "If _Unicode_ is *true*, let _Input_"
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "start_line": 31650,
+          "end_line": 31663,
+          "range_utf8_sha256": "f48401632c4c74dab23e141d93735efd0e09453ef6e6170bcce06827c27dae8d",
+          "locator_needle": "id=\"sec-assertion\""
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "start_line": 31716,
+          "end_line": 31732,
+          "range_utf8_sha256": "3f6c0e8760c317cab2dd016dc44bb6d5d7e07ea3e7ebf648335159affeea6dc9",
+          "locator_needle": "Assertion :: `(` `?` `!`"
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "start_line": 32311,
+          "end_line": 32318,
+          "range_utf8_sha256": "b020fcd7584a290ef4de77c601d476b5fa84a282891888d79022439446ce5aa1",
+          "locator_needle": "CharacterClassEscape :: `s`"
+        },
+        {
+          "name": "ecma262-es2020.html",
+          "url": "https://raw.githubusercontent.com/tc39/ecma262/es2020/spec.html",
+          "file_bytes_sha256": "e66172df199dd80a128c3943550e5346d9aea9f4722881fba98d741b5db058e2",
+          "start_line": 32111,
+          "end_line": 32134,
+          "range_utf8_sha256": "ce53f34ccf8e9461f1e4faf7deb8e57ec9d8a081bf7c6b62d2de58971d6c48e5",
+          "locator_needle": "id=\"sec-runtime-semantics-charactersetmatcher"
+        }
+      ],
+      "primary_source_hash_scope": "file_bytes_sha256はversioned公式取得bytes全体。range_utf8_sha256はそのsplitlines(keepends=True)の1-based inclusive範囲のUTF8。取得/読取の証拠で実installed artifactではない。locator_needleは原位置照合用で別matcherではない。",
+      "repository_source_basis": [
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/source_pins",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "78859c537a9efcffece24daf280944148ed18eb99818f1a64b1509800dc8bbef"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/functions",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "4679def61a17d1b577201247a8f39aa6e87094ad2da2c4b12a0b2fb5da3a8012"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/schema_adapter_contract",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "f803b281eb7d24013825e7dce91994d1a84ac21325c3c73ed956893cf6646477"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/logical_structure_schema",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "7c580aca946d7130e83f4fe12758804a026f1f6383fe037ac5aa806d50fd4904"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/assembly_contract",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "be749ec15b480ca649aca046f453b0c1e6e1ea592278b99db8b2991c993f3ef5"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/readonly_materializer_contract",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "32df9d17160a67f20265fbb9188e5691fe398bab72f3ea7e1f7f08cb6fcb95f9"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/wire_decode_contract/stages",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "bf01a12c7040bf557c36e06b2889c298d840bb91473c7768c386e77678dadef3"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/types/Text",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "39a778ff04e9ef2ed117765ecb0a05ce7d3b2285fbfe7963707934f277c2a17d"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/types/Digest",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "c63393d3de882988c29284090b774307742355d72ddec0bffb0d6b9e426df9a4"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/types/LogicalJson",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "1c20eb7395225a150f9f2f9357860e884237df76d17a423777018e5e371a4c71"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/legacy_comparison/6",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "9dbd457ee4e5635e6cb84a41e502793048bbe612b678a074b07963003829fb1d"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/legacy_comparison/8",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "1199911e6128b03f21e2c034d08f9a2f9a2d5e925c405a528412ad45836744d9"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+          "pointer": "/legacy_comparison/11",
+          "file_bytes_sha256": "e2cb7de8c1d470de06bd810eeb72b86b1f4338c859149e81246a2ed15bfb01c5",
+          "object_canonical_sha256": "87eb1de7e7fc9a9ad68356e3bbd42192c939f1a7e10101bb433abb5c6074dae1"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/schema_adapter_oracles/cases/0",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "2860661239bbfa0b5975f4a5f2a0b637abb40b0d0aa5207167daf8c4f1db6894"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/schema_adapter_oracles/cases/9",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "f6318f9ec41ad680c2eb1febb4ed747e8100ad4f9d074150a1155b0af5096e56"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/schema_adapter_oracles/scope_limit",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "53e1b1ca1532531ac53526767cc33835898ab68f8eb6cd806dc5e10638942193"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/shape_adapter_whole_oracles/existing_cases/0",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "ed5cdd15c39dea35be07577bd4e3536f29eb78940412d3f2daf9f5485892de2e"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/shape_adapter_whole_oracles/binding_cases/0",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "a464d4a17fbabbf9c3641dfc8875f7d118ec2ad54b7b0634ef59d14347df6d65"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/interface_binding_whole_oracles/fixed_profiles_sha256",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "01014bb33cac5b8f60e53263364b8a30ebfdb20a95477f387711a9631cb0dbcc"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+          "pointer": "/schema_adapter_oracles/cases/22",
+          "file_bytes_sha256": "83cbf5adff12ccc7cf5f24c4121999e1d90b3cc1048f8313ce065ecf6cb63545",
+          "object_canonical_sha256": "84244558fafb111f29577fac6f0d62567ceb73a4dc37dd77cf6432fae6ddde5a"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+          "pointer": "/contracts",
+          "file_bytes_sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+          "object_canonical_sha256": "64aa6c15155840e0e6e388f407dc5745b1f66b9abd2065ee0683df3aed4063e7"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/helix-harness/L9-integration-verification/trace-impact-reconfirmation.json",
+          "pointer": "/verification_obligations",
+          "file_bytes_sha256": "7b4a8f9842cfc973d6058971f22c031d196bc0a2e4142caeff96ceeaf6b5fed8",
+          "object_canonical_sha256": "4347a516014c6c98c3de6f7df97fb9676946aab1867e25b6929d3b48d4b7d5e1"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/governance/technology-strengthening-research.json",
+          "pointer": "/candidates/0",
+          "file_bytes_sha256": "179b609b0669e8a754c141500d94f45a8a0d2f9948df82d3fb35037321b85ef9",
+          "object_canonical_sha256": "18552738cd1cfe116ba4e007cd8a97155d7e4b49d83cda2a622f90d6d04ce231"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "docs/governance/technology-strengthening-research.json",
+          "pointer": "/candidates/2",
+          "file_bytes_sha256": "179b609b0669e8a754c141500d94f45a8a0d2f9948df82d3fb35037321b85ef9",
+          "object_canonical_sha256": "e4daf49f458c4620b6fa573a3be3957a81d1783686aa2f0dd9a403673e7b2f6c"
+        }
+      ],
+      "legacy_source_ranges": [
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+          "start_line": 18,
+          "end_line": 34,
+          "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+          "exact_quote": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、\nrepository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは\n既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。\n\n```ts\ntype Finding = {\n  code: DesignTemplateFindingCode;\n  pointer: string;\n  message: string;\n};\n\ntype ValidationResult<T> =\n  | { ok: true; value: T; findings: [] }\n  | { ok: false; findings: Finding[] };\n```\n\nfindingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。\n"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+          "start_line": 51,
+          "end_line": 65,
+          "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+          "exact_quote": "- pre: inputはuntrustedであり、callerがparse済みと仮定しない。\n- post: `ok=true`ならrequired field、identity、lifecycle、pair、predicate、trace、verification、\n  measurement、completion、semantic digestが全て成立する。\n- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。\n\n### pseudocode\n\n```text\nparse strict schema\nif parse findings exist -> return stable failure\nvalidate stable identity and lifecycle transition\nvalidate current L1-L12 layer pair\nwalk applicability tree with depth/node limits\nvalidate trace, oracle, measurement and completion exact sets\nrecompute semantic digest and compare\n"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+          "start_line": 158,
+          "end_line": 160,
+          "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+          "exact_quote": "- finding typeとstable sortは既存共通ownerがあれば再利用し、無ければ本module内のprivate valueとして始める。\n- class、DI container、repository、cache、worker、new detectorを追加しない。\n- Red testが要求しない永続化、CLI、generated view writerは後続responsibilityへ送る。\n"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
+          "start_line": 11,
+          "end_line": 30,
+          "file_bytes_sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610",
+          "exact_quote": "## 1. 対象と実測根拠\n\n- #11: `state-db/projection-writer.ts`が`vscode/tree-view-provider.ts`を参照し、後者が\n  `state-db/visualization-view-model.ts`へ戻る2-node architecture cycle。\n- #13: lint配下にrepo write、external process probe、git subprocessがanalyzerと同居する。\n- #15: source boundary 32 module中29 moduleがEMPTYで、未設計方向を暗黙allowする。\n- #14: `PLAN-L7-428-enforcement-wiring-gap` W2は要求provenanceとして参照するが、その実装はfunction reachabilityでありshared edge\n  extractorではない。source-boundary用extractorは`PLAN-L7-452`が`src/lint/source-edge-extractor.ts`に単一実装する。\n\n## 2. ownership\n\n| owner | 所有するもの | 禁止するもの |\n|---|---|---|\n| state-db | persistence、projection、adapter-neutralなview data | vscode/cli/doctorのpresentation import |\n| visualization-contract | 最小DTO、generic tree contract | I/O、command ID、extension API |\n| visualization-projector | DTO→generic treeのpure変換 | VS Code decoration、DB write |\n| vscode | generic tree→command/manifest decoration | state-db直接import、projection rebuild |\n| lint analyzer | immutable input→finding | write、child process、環境probe |\n| executor/materializer | typed intent→receipt | finding判定、silent retry |\n| composition root | owner間の配線とlifecycle | domain contractの再定義 |\n"
+        },
+        {
+          "revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/digest.ts",
+          "start_line": 9,
+          "end_line": 27,
+          "file_bytes_sha256": "89bf2f860a05e674094b5247603b6787ca9606f47a0a19c07988842c59a50851",
+          "exact_quote": " *\n * `localeCompare` は ICU collation に依存するため 2 つの問題がある。\n * 1. 既定 locale ですら code-point 順と一致しない (`\"aCode\"` < `\"BCode\"` を返す)。\n * 2. U+0000 等の completely-ignorable 文字が照合で無視される。区切り文字として\n *    `\\0` を挟んだ複合キーは区切りが効かず、異なるキーが等価と判定される。\n * 3. UTF-8変換はlone surrogateをU+FFFDへ置換するため、異なるJavaScript文字列が\n *    同じbyte列になる。byte比較が同値のときはUTF-16 code unitでtie-breakする。\n *\n * comparator が 0 を返した要素は `Array.prototype.sort` の安定性で入力順のまま残るため、\n * 2 は「入力順が変われば出力順も変わる」= digest 非決定性として顕在化する。\n * digest / Windows 互換検証へ載る整列は本関数を使う。\n */\nexport function compareBytewise(left: string, right: string): number {\n  const utf8Order = Buffer.from(left, \"utf8\").compare(Buffer.from(right, \"utf8\"));\n  if (utf8Order !== 0 || left === right) return utf8Order;\n\n  // NodeのUTF-8変換はunpaired surrogateをU+FFFDへ置換するため、byte列だけでは\n  // distinctな入力を区別できない。UTF-16 code unit列を安定したtie-breakに使う。\n  const sharedLength = Math.min(left.length, right.length);\n"
+        }
+      ],
+      "legacy_rederivation": {
+        "source_roles": [
+          "LEGACY-ASSET-EF18357A994D043719D5",
+          "LEGACY-ASSET-809B35B3C91567A97AF5",
+          "LEGACY-ASSET-9C454F2D93A8F34BD997"
+        ],
+        "preserve": "pure core/schema adapter分離、既存library再利用、library固有errorをcoreへ露出しない、immutable snapshot/read port、Unicode置換で元意味を失わない。",
+        "change": "旧TS/oldruntime/loader/正規表現実装はcopy/実行せず、指定既存Python APIの固定2式の意味だけをsourceから再導出。",
+        "reason": "新detector追加や文字列補正でstructural passを作らず、source-bound既存実装で局所matcher対応を閉じるため。既存ENVIRONMENT/SCHEMA researchの具体化材料で別正式research/新要件を追加しない。"
+      },
+      "limits": [
+        "全Unicode scalar入力の受理言語同等性は数学的構成証明。無限入力集合を実行列挙した証拠ではなく、全長での資源totalityを意味しない。",
+        "resource/engine/実source不整合は実装設計で既存binding/資源不足へ残し、正常なstringをinvalidへ狭めない。新しい精度/文字数閾値や全変異gateを作らない。",
+        "library sourceの存在は実installed環境、既存authority/rootの有効性、実consumer operationの許可やReadyを生成しない。",
+        "source/flags/APIの対応とUnicode scalar域の言語同等性だけを具体化。既存7関数の業務意味/authority/実operation境界を変更せず、正式host/library/registry/consumer資格の未供給は保持する。"
+      ]
+    }
   },
   "assembly_contract": {
     "status": "draft_design_typed_composition_binding_not_runtime_admission",
@@ -10816,7 +11402,7 @@
       "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
       "canonical_emit_contract": "563f9701a5e4155da373d356169e3c0ef5332fa7c28dd42826d7e00b6619bce2",
-      "schema_adapter_contract": "f803b281eb7d24013825e7dce91994d1a84ac21325c3c73ed956893cf6646477",
+      "schema_adapter_contract": "3b648ebf366b27bdc1d7082ffff0eee04d7d9cf8f89ec9688b1f9088ed3d6645",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
     "bindings": [
