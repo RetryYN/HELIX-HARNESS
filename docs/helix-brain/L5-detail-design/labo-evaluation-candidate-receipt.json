@@ -198,7 +198,7 @@
       "pointer": "/cases/7",
       "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
       "entry_sha256": "e008f3f82410d9ec9a3ad4fbfc4af543467a15fbaf4d426807fcacf5382659c9",
-      "approved_document_sha256": "60ddb33cce93aa8abf0a54638476e3caf9e10dcb5b5e3378d202dfc2972fa487",
+      "approved_document_sha256": "8b84d89accc9c510ef522c0d2a7131de5c2229b343f33fa5a11be70dee4c03ac",
       "canonical_sha256": "e008f3f82410d9ec9a3ad4fbfc4af543467a15fbaf4d426807fcacf5382659c9",
       "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "approval_comment": 6114120727
@@ -220,7 +220,7 @@
       "pointer": "/cases/25",
       "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
       "entry_sha256": "cffcbf7f3b26dd479e88fcb0c369caa914ccca2c2bcabece12a42abae5846082",
-      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "approved_document_sha256": "c08e5861165785c751f040746bd1330067cf5b2be3a9c2ee48b686429f0c67c2",
       "canonical_sha256": "cffcbf7f3b26dd479e88fcb0c369caa914ccca2c2bcabece12a42abae5846082",
       "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "approval_comment": 6114120727
@@ -242,7 +242,7 @@
       "pointer": "/cases/26",
       "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
       "entry_sha256": "0e4cb49ebb14508dc06d34d38b0a54064dc5a8948953442591c01263c8fcaeb0",
-      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "approved_document_sha256": "c08e5861165785c751f040746bd1330067cf5b2be3a9c2ee48b686429f0c67c2",
       "canonical_sha256": "0e4cb49ebb14508dc06d34d38b0a54064dc5a8948953442591c01263c8fcaeb0",
       "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "approval_comment": 6114120727
@@ -264,7 +264,7 @@
       "pointer": "/cases/27",
       "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
       "entry_sha256": "1cb606c367e0b12b3043b4e639ca0a97bae2ebf12c6707fbd702185c4b818f33",
-      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "approved_document_sha256": "c08e5861165785c751f040746bd1330067cf5b2be3a9c2ee48b686429f0c67c2",
       "canonical_sha256": "1cb606c367e0b12b3043b4e639ca0a97bae2ebf12c6707fbd702185c4b818f33",
       "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
       "approval_comment": 6114120727
@@ -286,7 +286,9 @@
     "approval_comment": 6114120727,
     "admission_revision": "7268524f9b9bb68805c20d33c648b9c23c803554",
     "admitted_head": "78b3d5d5779233929121cb073655b04cde17b7e5",
-    "audit_source": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json"
+    "audit_source": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+    "audit_source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+    "audit_source_sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
   },
   "legacy_inventory": [
     {
@@ -303,7 +305,7 @@
         "disposition": "unresolved",
         "source_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
-      "reuse": "reference_only; adopted BRAIN020 evaluated-candidate receipt semantics rederived",
+      "reuse": "参照資料のみ。採択BRAIN020 candidate receiptの意味をL3/L4から再導出した。",
       "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
       "change": "旧learning runtimeを移植せず、LABO評価正本/OS登録正本/BRAIN候補と採否stateを同revision接続へ再導出する。",
       "reason": "採択020と10/12承認が対象一致/反例と未評価保持/単一実績の非昇格/条件付きmaturity/正本の別ownerを要求する。"
@@ -970,8 +972,8 @@
           "additionalProperties": false
         }
       },
-      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
-      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "additional_fields": "有限fixture入力型に宣言しない余分なfieldは拒否する。未観測source memberを暗黙に捨てない。",
+      "presence_rule": "required rootは対応するunionが許す場合のみ明示nullを取る。nested key omissionはMISSINGのままとし、default値に置き換えない。",
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F01",
@@ -992,6 +994,7 @@
         "retained_candidate",
         "retained_evaluation",
         "return_owner",
+        "review_diagnostics",
         "submitted_candidate",
         "submitted_evaluation",
         "submitted_target_result",
@@ -1014,43 +1017,49 @@
               "identity": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "revision": {
                 "kind": "string",
                 "enum": [
                   "content_conflict",
-                  "content_corresponding_in_fixture"
+                  "content_corresponding_in_fixture",
+                  "unknown"
                 ]
               },
               "scope": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "source": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "state": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "version": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
-                  "content_conflict"
+                  "unknown"
                 ]
               }
             },
@@ -1093,6 +1102,20 @@
                 "enum": [
                   "none",
                   "rejected"
+                ]
+              },
+              "placeholder_candidate_revision": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "unknown"
+                ]
+              },
+              "placeholder_evaluation_content": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "unknown"
                 ]
               }
             },
@@ -1176,55 +1199,62 @@
                 "enum": [
                   "content_conflict",
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "unknown"
                 ]
               },
               "evidence": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "failure": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "identity": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "limitation": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "method": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "owner": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "result": {
@@ -1232,23 +1262,26 @@
                 "enum": [
                   "content_conflict",
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "unknown"
                 ]
               },
               "revision": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "scope": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
                   "content_corresponding_in_fixture",
                   "missing",
-                  "content_conflict"
+                  "unknown"
                 ]
               },
               "target": {
@@ -1256,7 +1289,8 @@
                 "enum": [
                   "content_conflict",
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "unknown"
                 ]
               },
               "unevaluated": {
@@ -1264,7 +1298,8 @@
                 "enum": [
                   "content_conflict",
                   "content_corresponding_in_fixture",
-                  "missing"
+                  "missing",
+                  "unknown"
                 ]
               }
             },
@@ -1744,6 +1779,56 @@
                 "result"
               ]
             }
+          },
+          "review_diagnostics": {
+            "kind": "object",
+            "properties": {
+              "placeholder_candidate_revision": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_evaluation_content_result": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_evaluation_content_limitation": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_evaluation_content_counterexample": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_evaluation_content_unevaluated": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_evaluation_content_evidence": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false,
+            "meaning": "rawから導く補助診断。L9 expected_materialは別に保持し変更しない。"
           }
         },
         "required": [
@@ -1768,7 +1853,7 @@
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F01",
-        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+        "role": "出力domainとliteralの根拠に限る。expected_materialは計算入力にしない。"
       },
       "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
     },
@@ -2109,8 +2194,8 @@
           "additionalProperties": false
         }
       },
-      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
-      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "additional_fields": "宣言した有限fixture入力型以外の余分なfieldは拒否し、未観測source memberを黙って破棄しない。",
+      "presence_rule": "required rootの明示nullは型unionが許す場合だけ受ける。nested key absenceはMISSINGとして保ち、defaultへ置換しない。",
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F02",
@@ -2125,10 +2210,12 @@
         "adoption_state",
         "claim_results",
         "effects",
+        "failure_return_owners",
         "receiver_receipt_result",
         "retained_receipt_meaning",
         "retained_states",
         "return_owners",
+        "review_diagnostics",
         "sender_receipt_result",
         "state_results",
         "submitted_receiver_receipt",
@@ -2174,6 +2261,20 @@
                 ]
               },
               "single_success_established": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "unknown"
+                ]
+              },
+              "adoption_before_registration_and_verification": {
                 "kind": "string",
                 "enum": [
                   "none",
@@ -2259,7 +2360,8 @@
             "enum": [
               "content_conflict",
               "content_corresponding_in_fixture",
-              "missing"
+              "missing",
+              "unknown"
             ]
           },
           "retained_receipt_meaning": {
@@ -2406,9 +2508,10 @@
           "sender_receipt_result": {
             "kind": "string",
             "enum": [
+              "content_conflict",
               "content_corresponding_in_fixture",
               "missing",
-              "content_conflict"
+              "unknown"
             ]
           },
           "state_results": {
@@ -2614,6 +2717,101 @@
               "registration"
             ],
             "additionalProperties": false
+          },
+          "review_diagnostics": {
+            "kind": "object",
+            "properties": {
+              "placeholder_receipt_content_source": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_candidate_identity": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_candidate_revision": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_candidate_version": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_evaluation_identity": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_evaluation_revision": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_receipt_content_scope": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "adoption_before_registration_and_verification": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false,
+            "meaning": "rawから導く補助診断。L9 expected_materialは別に保持し変更しない。"
+          },
+          "failure_return_owners": {
+            "kind": "object",
+            "properties": {
+              "evaluation": {
+                "kind": "string",
+                "enum": [
+                  "LABO"
+                ]
+              },
+              "registration": {
+                "kind": "string",
+                "enum": [
+                  "HELIX-OS"
+                ]
+              },
+              "independent_verification": {
+                "kind": "string",
+                "enum": [
+                  "BRAIN-independent-review"
+                ]
+              },
+              "adoption": {
+                "kind": "string",
+                "enum": [
+                  "BRAIN-change"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false
           }
         },
         "required": [
@@ -2636,7 +2834,7 @@
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F02",
-        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+        "role": "出力domainとliteralの根拠に限る。expected_materialは計算入力にしない。"
       },
       "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
     },
@@ -2876,8 +3074,8 @@
           ]
         }
       },
-      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
-      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "additional_fields": "宣言した有限fixture入力型以外の余分なfieldは拒否し、未観測source memberを黙って破棄しない。",
+      "presence_rule": "required rootの明示nullは型unionが許す場合だけ受ける。nested key absenceはMISSINGとして保ち、defaultへ置換しない。",
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F03",
@@ -2897,6 +3095,7 @@
         "maturity_result",
         "retained_maturity",
         "return_owners",
+        "review_diagnostics",
         "selection",
         "submitted_maturity",
         "submitted_maturity_result"
@@ -2940,6 +3139,13 @@
                 "enum": [
                   "none",
                   "rejected"
+                ]
+              },
+              "placeholder_maturity_content": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "unknown"
                 ]
               }
             },
@@ -3214,6 +3420,35 @@
               "original_unknown",
               "selection_unknown"
             ]
+          },
+          "review_diagnostics": {
+            "kind": "object",
+            "properties": {
+              "placeholder_maturity_content_state": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_maturity_content_evidence": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "placeholder_maturity_content_limitation": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false,
+            "meaning": "rawから導く補助診断。L9 expected_materialは別に保持し変更しない。"
           }
         },
         "required": [
@@ -3235,7 +3470,7 @@
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-F03",
-        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+        "role": "出力domainとliteralの根拠に限る。expected_materialは計算入力にしない。"
       },
       "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
     },
@@ -3768,6 +4003,58 @@
                   "additionalProperties": false
                 }
               ]
+            },
+            "010": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
             }
           },
           "required": [],
@@ -3858,8 +4145,8 @@
           ]
         }
       },
-      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
-      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "additional_fields": "宣言した有限fixture入力型以外の余分なfieldは拒否し、未観測source memberを黙って破棄しない。",
+      "presence_rule": "required rootの明示nullは型unionが許す場合だけ受ける。nested key absenceはMISSINGとして保ち、defaultへ置換しない。",
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-B01",
@@ -3882,6 +4169,7 @@
         "retained_evaluation_record",
         "retained_registration_record",
         "return_owners",
+        "review_diagnostics",
         "submitted_evaluation_record",
         "submitted_registration_record",
         "unselected_contracts"
@@ -3911,6 +4199,34 @@
                 ]
               },
               "composition_established_pattern": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "candidate_state_claim": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "evaluation_owner_role": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "registration_owner_role": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "candidate_owner_role": {
                 "kind": "string",
                 "enum": [
                   "none",
@@ -4030,6 +4346,8 @@
               "010": {
                 "kind": "string",
                 "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
                   "missing",
                   "unknown"
                 ]
@@ -4253,6 +4571,84 @@
                 "010"
               ]
             }
+          },
+          "review_diagnostics": {
+            "kind": "object",
+            "properties": {
+              "candidate_state_claim": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "evaluation_owner_role": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "registration_owner_role": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "candidate_owner_role": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "evaluation_original_owner_role_original": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "evaluation_original_owner_role_submitted": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "registration_original_owner_role_original": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "registration_original_owner_role_submitted": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "candidate_and_adoption_owner_role_original": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              },
+              "candidate_and_adoption_owner_role_submitted": {
+                "kind": "string",
+                "enum": [
+                  "unknown",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [],
+            "additionalProperties": false,
+            "meaning": "rawから導く補助診断。L9 expected_materialは別に保持し変更しない。"
           }
         },
         "required": [
@@ -4277,7 +4673,7 @@
       "source_basis": {
         "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
         "obligation_id": "HELIXBRAIN-L9-020-B01",
-        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+        "role": "出力domainとliteralの根拠に限る。expected_materialは計算入力にしない。"
       },
       "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
     },
@@ -4303,16 +4699,16 @@
       "record_root": {
         "absent": "missing",
         "explicit_null": "unknown",
-        "except": "compare_receipt treats either absent/null receipt root as missing per L9 fixed case meaning"
+        "except": "compare_receiptはL9の固定例に合わせ、absent/nullのreceipt rootをmissingとして扱う。"
       },
       "field_projection": {
         "both_absent": "unknown",
         "one_absent": "missing",
         "both_present_and_equal": "content_corresponding_in_fixture",
         "both_present_and_unequal": "content_conflict",
-        "null_null": "may be field-level correspondence only; not exact target/source qualification"
+        "null_null": "field単位のnull/null対応は内容投影に限り、target/source qualificationを示さない。"
       },
-      "aggregate": "if every selected field corresponds, return content_corresponding_in_fixture; otherwise missing > unknown > content_conflict"
+      "aggregate": "全選択fieldが対応すればcontent_corresponding_in_fixtureを返す。それ以外はmissing、unknown、content_conflictの順に優先する。"
     },
     "owner_return_rule": "候補owner文字列は原packetのowner値またはL4/L10に記載された責務名だけを出力し、資格・送達・receiptを作らない。",
     "unclosed": "source packet自体がsyntheticであり、supplier資格、正式resolver、実評価、実receipt、実登録、実独立検証、実採否/成熟を判定しない。",
@@ -4385,7 +4781,24 @@
               "source",
               "state",
               "scope"
-            ]
+            ],
+            "placeholder_rule": {
+              "values_by_field": {
+                "revision": [
+                  "TBD",
+                  "unknown"
+                ],
+                "version": [
+                  "TBD",
+                  "unknown"
+                ],
+                "source": [
+                  "TBD",
+                  "unknown"
+                ]
+              },
+              "result": "unknown"
+            }
           },
           "retained_evaluation": {
             "op": "project",
@@ -4456,7 +4869,33 @@
               "counterexample",
               "unevaluated",
               "limitation"
-            ]
+            ],
+            "placeholder_rule": {
+              "values_by_field": {
+                "result": [
+                  "",
+                  "TBD",
+                  "unknown"
+                ],
+                "limitation": [
+                  "",
+                  "TBD",
+                  "unknown"
+                ],
+                "counterexample": [
+                  "TBD",
+                  ""
+                ],
+                "unevaluated": [
+                  "TBD",
+                  ""
+                ]
+              },
+              "empty_array_fields": [
+                "evidence"
+              ],
+              "result": "unknown"
+            }
           },
           "submitted_target_result": {
             "op": "compare_target",
@@ -4478,7 +4917,21 @@
               "source",
               "state",
               "scope"
-            ]
+            ],
+            "placeholder_values_by_field": {
+              "revision": [
+                "TBD",
+                "unknown"
+              ],
+              "version": [
+                "TBD",
+                "unknown"
+              ],
+              "source": [
+                "TBD",
+                "unknown"
+              ]
+            }
           },
           "unknown_original_evaluation_fields": {
             "op": "collect_null_keys",
@@ -4559,7 +5012,8 @@
               ]
             },
             "target_result": {
-              "result": "submitted_target_result"
+              "op": "same_as",
+              "ref": "submitted_target_result"
             },
             "candidate_fields": [
               "identity",
@@ -4582,7 +5036,15 @@
               "counterexample",
               "unevaluated",
               "limitation"
-            ]
+            ],
+            "candidate_comparison_results": {
+              "op": "same_as",
+              "ref": "candidate_results"
+            },
+            "evaluation_comparison_results": {
+              "op": "same_as",
+              "ref": "evaluation_results"
+            }
           },
           "return_owner": {
             "op": "constant",
@@ -4614,6 +5076,60 @@
               "actual_implementation_ready",
               "actual_acceptance"
             ]
+          },
+          "review_diagnostics": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [],
+            "additional_checks": [
+              {
+                "kind": "placeholder_pair",
+                "name": "placeholder_candidate_revision",
+                "left": [
+                  "original_candidate",
+                  "revision"
+                ],
+                "right": [
+                  "submitted_candidate",
+                  "revision"
+                ],
+                "markers": [
+                  "",
+                  "TBD",
+                  "unknown"
+                ],
+                "empty_arrays": false
+              },
+              {
+                "kind": "placeholder_pair",
+                "name": "placeholder_evaluation_content",
+                "left": [
+                  "original_evaluation"
+                ],
+                "right": [
+                  "submitted_evaluation"
+                ],
+                "fields": [
+                  "result",
+                  "limitation",
+                  "counterexample",
+                  "unevaluated",
+                  "evidence"
+                ],
+                "markers": [
+                  "",
+                  "TBD",
+                  "unknown"
+                ],
+                "empty_arrays": [
+                  "evidence"
+                ]
+              }
+            ]
           }
         }
       },
@@ -4640,7 +5156,11 @@
               "evaluation_identity",
               "evaluation_revision",
               "scope"
-            ]
+            ],
+            "placeholder_values": [
+              ""
+            ],
+            "placeholder_result": "unknown"
           },
           "receiver_receipt_result": {
             "op": "compare_receipt",
@@ -4662,7 +5182,11 @@
               "evaluation_identity",
               "evaluation_revision",
               "scope"
-            ]
+            ],
+            "placeholder_values": [
+              ""
+            ],
+            "placeholder_result": "unknown"
           },
           "retained_receipt_meaning": {
             "op": "project",
@@ -4819,6 +5343,103 @@
               "actual_implementation_ready",
               "actual_acceptance"
             ]
+          },
+          "review_diagnostics": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [],
+            "additional_checks": [
+              {
+                "kind": "placeholder_pair",
+                "name": "placeholder_receipt_content",
+                "left": [
+                  "original_receipt"
+                ],
+                "right": [
+                  "submitted_sender_receipt"
+                ],
+                "fields": [
+                  "source",
+                  "candidate_identity",
+                  "candidate_revision",
+                  "candidate_version",
+                  "evaluation_identity",
+                  "evaluation_revision",
+                  "scope"
+                ],
+                "markers": [
+                  ""
+                ]
+              },
+              {
+                "kind": "state_prerequisite",
+                "name": "adoption_before_registration_and_verification",
+                "roots": [
+                  "original_states",
+                  "submitted_states"
+                ],
+                "trigger": {
+                  "key": "adoption",
+                  "field": "state",
+                  "equals": "adopted"
+                },
+                "prerequisites": [
+                  {
+                    "key": "registration",
+                    "field": "state",
+                    "one_of": [
+                      "registered"
+                    ]
+                  },
+                  {
+                    "key": "independent_verification",
+                    "field": "state",
+                    "one_of": [
+                      "verified",
+                      "independently_verified"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "failure_return_owners": {
+            "op": "route_state_differences",
+            "left": {
+              "path": [
+                "original_states"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_states"
+              ]
+            },
+            "keys": [
+              "evaluation",
+              "registration",
+              "independent_verification",
+              "adoption"
+            ],
+            "fields": [
+              "owner",
+              "state"
+            ],
+            "owner_by_key": {
+              "evaluation": "LABO",
+              "registration": "HELIX-OS",
+              "independent_verification": "BRAIN-independent-review",
+              "adoption": "BRAIN-change"
+            },
+            "route_on_equal_values": {
+              "adoption": [
+                "adopted"
+              ]
+            }
           }
         }
       },
@@ -4883,7 +5504,23 @@
                 "scope",
                 "scope"
               ]
-            ]
+            ],
+            "placeholder_values_by_field": {
+              "state": [
+                "",
+                "TBD",
+                "unknown"
+              ],
+              "limitation": [
+                "",
+                "TBD",
+                "unknown"
+              ]
+            },
+            "empty_array_fields": [
+              "evidence"
+            ],
+            "placeholder_result": "unknown_original_maturity_information"
           },
           "retained_maturity": {
             "op": "conditional",
@@ -5095,6 +5732,56 @@
               "submitted_record_absent_or_null",
               "record_conflict",
               "corresponding"
+            ],
+            "placeholder_values_by_field": {
+              "state": [
+                "",
+                "TBD",
+                "unknown"
+              ],
+              "limitation": [
+                "",
+                "TBD",
+                "unknown"
+              ]
+            },
+            "empty_array_fields": [
+              "evidence"
+            ],
+            "placeholder_result": "original_unknown"
+          },
+          "review_diagnostics": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [],
+            "additional_checks": [
+              {
+                "kind": "placeholder_pair",
+                "name": "placeholder_maturity_content",
+                "left": [
+                  "original_maturity"
+                ],
+                "right": [
+                  "submitted_maturity"
+                ],
+                "fields": [
+                  "state",
+                  "evidence",
+                  "limitation"
+                ],
+                "markers": [
+                  "",
+                  "TBD",
+                  "unknown"
+                ],
+                "empty_arrays": [
+                  "evidence"
+                ]
+              }
             ]
           }
         }
@@ -5210,7 +5897,18 @@
                 ]
               },
               "derivation": "L3/L4 B01はL2-007/008/009/010の該当入力条件を照合する。L2要件IDをslot keyに対応付け、各slotに同じIDのHELIXBRAIN-L2 identityを要求する。各sideのidentityが欠落/nullなら既存missing/unknown優先を維持し、その他のrequired fieldsがすべて存在し非nullで左右が一致しても、左右のidentityがこのsource-bound identityと一致しないslotはcontent_conflictとする。これは参照先identityの比較であり資格・実source bindingを証明しない。"
-            }
+            },
+            "placeholder_values_by_field": {
+              "revision": [
+                "",
+                "TBD"
+              ],
+              "scope": [
+                "",
+                "TBD"
+              ]
+            },
+            "placeholder_result": "unknown"
           },
           "unselected_contracts": {
             "op": "contract_unselected",
@@ -5390,6 +6088,82 @@
               "actual_implementation_ready",
               "actual_acceptance"
             ]
+          },
+          "review_diagnostics": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [],
+            "additional_checks": [
+              {
+                "kind": "forbidden_value",
+                "name": "candidate_state_claim",
+                "path": [
+                  "candidate_state"
+                ],
+                "values": [
+                  "established_pattern",
+                  "established_Pattern"
+                ]
+              },
+              {
+                "kind": "owner_role",
+                "name": "evaluation_original_owner_role_original",
+                "path": [
+                  "original_owners",
+                  "evaluation_original"
+                ],
+                "expected": "LABO"
+              },
+              {
+                "kind": "owner_role",
+                "name": "evaluation_original_owner_role_submitted",
+                "path": [
+                  "submitted_owners",
+                  "evaluation_original"
+                ],
+                "expected": "LABO"
+              },
+              {
+                "kind": "owner_role",
+                "name": "registration_original_owner_role_original",
+                "path": [
+                  "original_owners",
+                  "registration_original"
+                ],
+                "expected": "HELIX-OS"
+              },
+              {
+                "kind": "owner_role",
+                "name": "registration_original_owner_role_submitted",
+                "path": [
+                  "submitted_owners",
+                  "registration_original"
+                ],
+                "expected": "HELIX-OS"
+              },
+              {
+                "kind": "owner_role",
+                "name": "candidate_and_adoption_owner_role_original",
+                "path": [
+                  "original_owners",
+                  "candidate_and_adoption"
+                ],
+                "expected": "BRAIN-change"
+              },
+              {
+                "kind": "owner_role",
+                "name": "candidate_and_adoption_owner_role_submitted",
+                "path": [
+                  "submitted_owners",
+                  "candidate_and_adoption"
+                ],
+                "expected": "BRAIN-change"
+              }
+            ]
           }
         }
       }
@@ -5397,7 +6171,7 @@
     "program_selection": {
       "rule": "L8のL3 requirement referenceが示す契約のASTを選択する。各case IDは計算で読まず、raw rootの値とpresenceのみが値分岐に使われる。"
     },
-    "output_contract": "Each program must return exactly the declared Result record keys and types. L8 expected_material is an independent oracle and never read by the interpreter."
+    "output_contract": "各関数は宣言されたResult rootをすべて返す。L9 expected_materialは既存source rootの互換投影として不変に比較し、追加review_diagnostics/failure_return_ownersはraw由来の補助返却として独立probeまたは診断期待で照合する。interpreterはexpected_materialを入力に読まない。"
   },
   "l4_contract_bindings": [
     {
@@ -5452,9 +6226,9 @@
       "single success does not establish universal/mature"
     ],
     "changed": [
-      "current typed field and condition comparison described as finite logical source packet projection"
+      "現行の型付きfieldと条件比較を、有限の論理source packet投影として定義する。"
     ],
-    "reason": "approved L3/L10 and current L4/L9 define the limited downstream contract; historical runtime behavior is not promoted."
+    "reason": "承認済みL3/L10と現行L4/L9から限定した下流契約を定義する。旧runtime動作を自動昇格しない。"
   },
   "unclosed": [
     "全source資格・必要source集合・owner-qualified binding/resolverは未成立。",
@@ -5463,7 +6237,11 @@
     "L4/F03では原入力fieldにscope/owner不足のケースがあるため相互一致だけでsource資格へ昇格しない。",
     "有限ASTは宣言済み4関数のfixture投影に対する入力→全返却式を定義する。supplier資格、一般source集合、正式resolver、実評価・receipt・登録・独立検証・採否/成熟は未成立のまま。",
     "F03の返却token BRAIN-INFRA017はL9合成expectedにある表示値で、L4/L10の「INFRA-017 maturity」「BRAIN maturity」から現実の宛先を確定しない。owner-qualified exact binding/resolverは未成立。",
-    "B01のreturn_ownersはLABO/HELIX-OS/BRAIN-changeの固定責務ラベル表示に限る。failure reason/field別owner routingとowner別返却の論理・実体は本L5で未実現であり、L4/L10が戻し先を述べる箇所の個別分岐を追加したとは主張しない。"
+    "F01のreturn_ownerはL9原期待にあるLABO表示値を保持する。field別の失敗経路や配送確認ではない。",
+    "F03の不足fieldごとの最終owner決定はL4/L10の「該当owner」以上に固定できる原sourceがないため未成立。BRAIN-INFRA017/LABO表示を実recipientへ結ばない。",
+    "F02 failure_return_ownersは原state差分と採否stateの責務ラベルを表示する候補であり、receipt source field別の独立routing・recipient資格・delivery・receiptは未成立。",
+    "review_diagnosticsはL3/L4の負状態を識別する補助返却である。L9既存expected_materialとの互換projectionはsource oracleを変更しないが、全L9分岐が補助返却を定義する一般閉包ではない。",
+    "B01のreturn_ownersはLABO/HELIX-OS/BRAIN-changeの固定責務ラベル表示に限る。owner_results/diagnosticは相違を示すが、failure reason/fieldごとの返却先判定・owner別返却は未実現。"
   ],
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -5499,7 +6277,8 @@
         "F01Result.return_owner",
         "F01Result.claim_results",
         "F01Result.effects",
-        "F01Result.unknown_original_candidate_fields"
+        "F01Result.unknown_original_candidate_fields",
+        "F01Result.review_diagnostics"
       ],
       "rule_refs": [
         "HELIXBRAIN-L3-020-F01",
@@ -5548,7 +6327,9 @@
         "F02Result.adoption_state",
         "F02Result.return_owners",
         "F02Result.claim_results",
-        "F02Result.effects"
+        "F02Result.effects",
+        "F02Result.review_diagnostics",
+        "F02Result.failure_return_owners"
       ],
       "rule_refs": [
         "HELIXBRAIN-L3-020-F02",
@@ -5595,7 +6376,8 @@
         "F03Result.return_owners",
         "F03Result.claim_results",
         "F03Result.effects",
-        "F03Result.submitted_maturity_result"
+        "F03Result.submitted_maturity_result",
+        "F03Result.review_diagnostics"
       ],
       "rule_refs": [
         "HELIXBRAIN-L3-020-F03",
@@ -5652,7 +6434,8 @@
         "B01Result.receipt_state",
         "B01Result.return_owners",
         "B01Result.claim_results",
-        "B01Result.effects"
+        "B01Result.effects",
+        "B01Result.review_diagnostics"
       ],
       "rule_refs": [
         "HELIXBRAIN-L3-020-B01",
@@ -5701,8 +6484,8 @@
   ],
   "expression_language": {
     "version": "B020-RULE-1",
-    "root": "input is the JSON object parsed from the selected L9 raw_utf8; no expected object is an input.",
-    "path_representation": "path is an array of literal object keys; missing member yields the MISSING sentinel, explicit null remains JSON null.",
+    "root": "入力は選択したL9 raw_utf8をJSON parseした値。expected_materialは計算入力ではない。",
+    "path_representation": "pathはliteralなobject keyの配列。member不在はMISSING、明示nullはJSON nullとして保持する。",
     "operator_names": [
       "build_receipt_candidate",
       "candidate_maturity_state",
@@ -5718,17 +6501,27 @@
       "constant",
       "contract_selection",
       "contract_unselected",
+      "deep_equal",
       "false_effects",
       "get",
+      "is_absent_or_null",
+      "is_false",
+      "is_true",
       "maturity_result",
       "maturity_submission_result",
+      "otherwise",
       "project",
       "project_nested_maps",
       "project_nullable",
-      "read_nested"
+      "read_nested",
+      "route_state_differences",
+      "same_as"
     ],
-    "control": "ASTはresult object内でrootごとに評価する。conditional armsは配列順に評価し、最初にtrueとなるarmを採用する。maturity_resultとcontract_selectionの優先順、必須field順はAST/演算子定義に明記する。",
-    "no_dynamic_rules": "No expression may inspect case id, packet identity, L9 expected material, or fixture ordinal."
+    "control": "各返却rootを入力rawだけから評価し、conditional armsは宣言順の最初の一致を採る。出力keyの順序はL5宣言順を保つ。期待値・case ID・packet ordinalは判定に使わない。",
+    "no_dynamic_rules": "各rule ASTが示すroot path、field順、条件、literalだけを適用する。case ID、packet identity、L9 expected、fixture順から分岐しない。",
+    "primitive_operators": [
+      "deep_equal"
+    ]
   },
   "operator_definitions": [
     {
@@ -5758,12 +6551,12 @@
         "null_policy"
       ],
       "output": "object<string,Comparison>",
-      "definition": "指定順の各fieldを個別に比較する。両側absentはunknown、片側のみabsentはmissing。両側presentならJSON kindを含むdeep equalityで比較する。null/nullはこのfield投影上の対応を示せるが、正確な対象一致・資格成立を意味しない。",
+      "definition": "指定順で各fieldを比較。absent優先、明示nullまたはASTに列挙されたfield別placeholderはunknown、その他のpresent値はJSON deep equalityで対応またはconflictとする。placeholder文字列集合はuse site ASTに明示する。",
       "field_presence_rules": {
         "both_absent": "unknown",
         "exactly_one_absent": "missing",
         "both_present": "strict_deep_equal_then_corresponding_otherwise_conflict",
-        "explicit_null_values": "null_is_retained_as_a_JSON_value; null_null_can_correspond_in_this_field_projection_only; this_is_not_exact_target_or_source_qualification"
+        "explicit_null_values": "nullをJSON値として保持する。field投影でのnull同士の対応は、正確なtargetやsource資格の成立を示さない。"
       },
       "operand_root_rules": {
         "either_operand_absent": "missing",
@@ -5781,22 +6574,14 @@
       "definition": "指定key順に、memberが存在し値がnullのkeyだけを返す。absent keyを含めない。"
     },
     {
-      "name": "collect_missing_keys",
-      "inputs": [
-        "object",
-        "ordered_field_names"
-      ],
-      "output": "array<string>",
-      "definition": "指定key順に、memberが存在しないkeyだけを返す。null keyを含めない。"
-    },
-    {
       "name": "claim_results",
       "inputs": [
         "claims_object",
-        "ordered_claim_names"
+        "ordered_claim_names",
+        "optional raw-derived additional_checks"
       ],
       "output": "object<string,string>",
-      "definition": "宣言順に各claimを読む。boolean false→none、boolean true→rejected、absent/null/non-boolean→unknown。claimの拒否/未判定表示であり、外部操作やauthorityを変更しない。"
+      "definition": "claimsを宣言順に読む。boolean false→none、true→rejected、absent/null/non-boolean→unknown。additional_checksはraw path値だけからplaceholder/禁止状態/owner責務違反を別の診断rootへ出し、元oracleのclaim_resultsを書き換えない。"
     },
     {
       "name": "conditional",
@@ -5806,15 +6591,6 @@
       ],
       "output": "JsonValue",
       "definition": "armsを先頭から評価し、trueとなる最初の条件に対応するvalueだけを返す。該当なしは明示else arm。"
-    },
-    {
-      "name": "owner_route",
-      "inputs": [
-        "missing_or_conflict_fields",
-        "owner_map"
-      ],
-      "output": "object | array",
-      "definition": "不一致fieldからowner_mapへ対応する候補を安定順で集める。入力不足のowner値を合成せず、L4/L10で明示された固定責務名だけを候補として返す。"
     },
     {
       "name": "false_effects",
@@ -5834,7 +6610,7 @@
         "expected_identity_by_key"
       ],
       "output": "object + array",
-      "definition": "007/008を常時選択し、composition_candidate_selectedがboolean trueなら009、failure_knowledge_selectedがboolean trueなら010を加える。map/選択entryがabsentならmissing、明示nullならunknown。object entryはidentity→revision→scope順に比較し、field absentはmissing、field nullはunknown、左右present値の相違はcontent_conflictとする。左右のrequired fieldがすべてpresentかつ相互に等値の場合も、左右identityをASTのexpected_identity_by_keyへ照合し、片側でもsource-bound slot identityと異なればcontent_conflict、両側が一致した場合だけcontent_corresponding_in_fixtureとする。missing、unknown、content_conflictの優先順を維持する。非選択entryはselectorsの宣言順に別配列へ出し、値や資格を作らない。",
+      "definition": "選択条件で必要なslotだけをidentity→revision→scopeの宣言順で比較する。map/entry/field absenceとnullはmissing/unknown、use site ASTで指定したplaceholderもunknown、異なるpresent値とsource-bound slot identity違反はconflict、全条件対応時のみfixture content corresponding。",
       "selected_reference_presence_rules": {
         "map_absent": "missing",
         "map_null": "unknown",
@@ -5857,9 +6633,9 @@
         ]
       },
       "selected_reference_identity_rule": {
-        "input": "AST expected_identity_by_key metadata; keys are the selected slot keys",
-        "rule": "missing/null presence outcomes take precedence; otherwise both original and submitted identity must equal the metadata value for that slot before corresponding is returned",
-        "failure": "either present identity differs from the metadata value => content_conflict, even when both sides contain the same wrong identity",
+        "input": "ASTのexpected_identity_by_keyを使い、keyは選択slotのkeyとする。",
+        "rule": "missing/nullのpresence判定を優先する。それ以外では元/提出identityの双方が該当slotのmetadata値と一致した場合だけ対応とする。",
+        "failure": "presentなidentityの片方でもmetadata値と異なればcontent_conflictとする。両側が同じ誤identityでも対応にしない。",
         "boundary": "有限L2-007/008/009/010 reference identity matching only; does not establish source qualification or formal binding"
       }
     },
@@ -5883,10 +6659,51 @@
     {
       "name": "candidate_state",
       "inputs": [
-        "AST operands"
+        "candidate_original",
+        "candidate_submitted",
+        "evaluation_original",
+        "evaluation_submitted",
+        "candidate_comparison_results",
+        "evaluation_comparison_results",
+        "target_result",
+        "candidate_fields",
+        "evaluation_fields"
       ],
-      "output": "as indicated by use site",
-      "definition": "すべての必須candidate/evaluation fieldが両側presentかつstrict deep_equalで対応し、target_result=same_exact_candidate_in_fixtureの時だけcontent_corresponding_candidate_only。それ以外はunknown_held。candidate fieldはidentity/revision/version/source/state/scope、evaluation fieldはidentity/revision/owner/target/scope/method/evidence/result/failure/counterexample/unevaluated/limitation。"
+      "output": "content_corresponding_candidate_only | unknown_held",
+      "definition": "両candidate recordと両evaluation recordに各宣言fieldが存在しnullでなく、左右の各fieldの厳密JSON比較を返すcandidate_comparison_results/evaluation_comparison_resultsの当該全statusがcontent_corresponding_in_fixtureで、target_resultもsame_exact_candidate_in_fixtureの場合だけcontent_corresponding_candidate_onlyを返す。それ以外（missing/unknown/conflict statusのいずれか、必須field不足/null、raw値相違、対象不一致）はunknown_held。比較status rootは先行するcandidate_resultsとevaluation_resultsであり、同じplaceholder/unknown値が両側にあるだけでは対応済みにしない。",
+      "comparison_status_inputs": {
+        "candidate_comparison_results": {
+          "source": "F01Result.candidate_results",
+          "required_fields": "candidate_fields",
+          "required_status": "content_corresponding_in_fixture"
+        },
+        "evaluation_comparison_results": {
+          "source": "F01Result.evaluation_results",
+          "required_fields": "evaluation_fields",
+          "required_status": "content_corresponding_in_fixture"
+        },
+        "target_result": {
+          "source": "F01Result.submitted_target_result",
+          "required_status": "same_exact_candidate_in_fixture"
+        }
+      },
+      "decision_rule": {
+        "order": [
+          "all_candidate_record_fields_present_and_nonnull",
+          "all_evaluation_record_fields_present_and_nonnull",
+          "all_candidate_comparison_statuses_correspond",
+          "all_evaluation_comparison_statuses_correspond",
+          "target_result_is_same_exact_candidate_in_fixture"
+        ],
+        "if_any_check_fails": "unknown_held",
+        "if_all_checks_pass": "content_corresponding_candidate_only",
+        "status_domain": [
+          "content_corresponding_in_fixture",
+          "missing",
+          "unknown",
+          "content_conflict"
+        ]
+      }
     },
     {
       "name": "compare_receipt",
@@ -5894,7 +6711,7 @@
         "AST operands"
       ],
       "output": "as indicated by use site",
-      "definition": "receipt rootのどちらかがabsentまたは明示nullならmissing。両方objectなら宣言field順で比較する。field投影はcompare_fieldsのpresence/equality規則を用い、全field対応の場合だけcontent_corresponding_in_fixture、その他はmissing、unknown、content_conflictの順で集約する。null/null対応はfixture表示だけで資格を示さない。",
+      "definition": "receipt root absent→missing、null→unknown。両objectをfield順で比較し、use site AST指定のplaceholderはunknown、それ以外はdeep comparisonとする。",
       "root_presence_rules": {
         "either_receipt_absent": "missing",
         "either_receipt_null": "missing",
@@ -5923,7 +6740,7 @@
         "AST operands"
       ],
       "output": "as indicated by use site",
-      "definition": "For each source map key in source order, project fields owner then state, retaining null and omitting only absent members."
+      "definition": "各source mapの宣言順keyについてowner、stateを指定順に写す。nullを保ちabsentだけを省く。"
     },
     {
       "name": "project_nullable",
@@ -5931,7 +6748,7 @@
         "AST operands"
       ],
       "output": "as indicated by use site",
-      "definition": "If source is absent, return explicit MISSING sentinel internally; if null, return null; if object, project the declared ordered field list."
+      "definition": "sourceがAbsentなら内部MISSING、nullならnullを返す。objectなら宣言されたfield順で投影する。"
     },
     {
       "name": "read_nested",
@@ -5940,14 +6757,6 @@
       ],
       "output": "as indicated by use site",
       "definition": "read path preserving MISSING/null"
-    },
-    {
-      "name": "fixed_owner_roles",
-      "inputs": [
-        "AST operands"
-      ],
-      "output": "as indicated by use site",
-      "definition": "Return mapping evaluation_source=LABO, registration=HELIX-OS, adoption=BRAIN-change. These are responsibility labels from L4/L10, not source qualification or authority credentials."
     },
     {
       "name": "is_false",
@@ -5971,7 +6780,7 @@
         "AST operands"
       ],
       "output": "as indicated by use site",
-      "definition": "True iff path resolves to MISSING or JSON null; false for every other JSON value including false, 0, empty string, empty array, empty object."
+      "definition": "pathがMISSINGまたはJSON nullならtrueとする。false、0、空文字、空array、空objectを含む他のJSON値ではfalseとする。"
     },
     {
       "name": "otherwise",
@@ -5980,14 +6789,6 @@
       ],
       "output": "as indicated by use site",
       "definition": "True only after every earlier conditional arm did not match."
-    },
-    {
-      "name": "same_as",
-      "inputs": [
-        "AST operands"
-      ],
-      "output": "as indicated by use site",
-      "definition": "Copy the named output root in the same function result; no re-evaluation and no source promotion."
     },
     {
       "name": "contract_unselected",
@@ -6003,7 +6804,7 @@
         "as named by AST"
       ],
       "output": "as declared at use site",
-      "definition": "selection=false→not_selected_not_required; selection absent/null→unknown_selection; original record absent/null又はoriginal maturity必須field absent/null→unknown_original_maturity_information; submitted record absent/null→missing; original/submittedのdeclared maturity field差→content_conflict; 両側一致後にoriginal maturity candidate_identity/revision/scopeをcandidate identity/revision/scopeへ対応比較し、差があればdifferent_candidate_target、全一致ならcontent_corresponding_in_fixture。 binding_mappingの各[left_field,right_field]をAST記載順に比較する。"
+      "definition": "選択false→not_selected_not_required、selection absent/null→unknown_selection、原record/必須field absent/null→unknown_original_maturity_information、提出record absent/null→missing。AST指定placeholderもunknownとして保持し、残る値だけrecordとtargetを比較する。"
     },
     {
       "name": "maturity_submission_result",
@@ -6012,15 +6813,6 @@
       ],
       "output": "as declared at use site",
       "definition": "selection=false→not_selected_not_required; selection absent/null→selection_unknown; submitted record absent/null→missing; original record absent/null→original_unknown; それ以外は全declared maturity fieldをstrict比較し、等値ならcontent_corresponding_in_fixture、差があればcontent_conflict。null/nullはfixture上の内容対応のみ。"
-    },
-    {
-      "name": "presence",
-      "inputs": [
-        "object",
-        "key"
-      ],
-      "output": "FieldPresence",
-      "definition": "objectにkeyがないときabsent、値がJSON nullならnull、それ以外はpresent。"
     },
     {
       "name": "constant",
@@ -6054,7 +6846,7 @@
         "ordered field names"
       ],
       "output": "Comparison",
-      "definition": "左右recordのrootがabsentならmissing、どちらかが明示nullならunknown。両方objectなら宣言field順で比較し、すべてcontent_corresponding_in_fixtureの場合だけその値を返す。それ以外はmissing、unknown、content_conflictの順に優先する。null/nullのfield投影は内容表示に限り、資格を示さない。",
+      "definition": "左右record rootがabsentならmissing、どちらかが明示nullならunknown。両方objectなら宣言field順で比較し、各fieldはabsent→missing、nullまたはASTで定義した非情報marker→unknown、presentなJSON値はdeep_equalなら対応、それ以外はconflict。集約優先はmissing→unknown→conflict。",
       "root_presence_rules": {
         "both_record_absent": "missing",
         "either_record_absent": "missing",
@@ -6069,19 +6861,39 @@
           "content_conflict"
         ]
       }
+    },
+    {
+      "name": "route_state_differences",
+      "inputs": [
+        "left_state_map",
+        "right_state_map",
+        "ordered_state_keys",
+        "owner_by_key",
+        "ordered_comparison_fields"
+      ],
+      "output": "object<string,OwnerReturn>",
+      "definition": "各state keyについて左右のowner/stateを比較し、内容不一致のkey、またはAST route_on_equal_valuesに一致する値のkeyだけをowner_by_keyの責務候補へ写す。配送・資格・authorityは示さない。"
+    },
+    {
+      "name": "same_as",
+      "inputs": [
+        "result_ref:string"
+      ],
+      "output": "prior result root value",
+      "definition": "同一関数内で既に計算したresult rootを名前で参照し、その値をそのまま返す。未計算/不在rootはMISSING。参照root名はAST operandで明示する。"
     }
   ],
   "type_validation": {
-    "record_semantics": "required_fields are mandatory; additional_fields=false rejects undeclared returned keys. Optional output child keys preserve only explicitly declared optionality.",
-    "presence_semantics": "MISSING, null, and present are distinct; no cast from boolean to number; object keys exact; list item order preserved.",
+    "record_semantics": "required_fieldsを必須とし、additional_fields=falseでは未宣言の返却keyを拒否する。出力の任意child keyは明示したoptional性だけを保持する。",
+    "presence_semantics": "MISSING、null、presentを区別し、booleanをnumberへcastしない。objectのkey集合とlist要素の順序を保持する。",
     "enum_basis": "出力literalはL9 concrete case expected wholeにある有限labelの由来として確認する。これは判定入力ではなく、広域の成功語彙や実qualificationを作らない。"
   },
   "pure_result_conventions": {
     "missing": "MISSING sentinelはmember absenceだけを表す。",
     "null": "JSON nullは明示されたunknown情報として保持する。",
-    "deep_comparison": "JSON kind/object keys/array order/recursive scalar equalityを厳密に保つ。",
-    "effect": "effect flagはL4 operation_effect=noneの有限projectionとしてfalse。外部作用観測ではない。",
-    "qualification": "fixture一致は合成内容の対応だけで、実source資格・実evaluation・receipt・登録・採否・maturityを示さない。"
+    "deep_comparison": "JSON kind、object key集合、array順、scalarを再帰して比較する。booleanとnumberを区別する。",
+    "effect": "effect flagはL4 operation_effect=noneの有限投影としてfalse。外部状態を観測した証拠ではない。",
+    "qualification": "原L9 expected_materialは承認source oracleとして不変に保持する。review_diagnostics/failure_return_ownersはrawから計算する補助観測で、source資格・authority・deliveryを生成しない。"
   },
   "owner_return_trace": [
     {
@@ -6165,6 +6977,90 @@
     "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
     "quote": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：LABOが評価対象・評価scope・方法・evidence・結果・反例を紐付けた構造候補。\n- **提供するもの**：評価結果を保持したBRAIN候補入力と、対象のsource/version/evaluation identityを結ぶreceipt。\n- **保証すること**：単一実績、AI生成、評価resultのみで確立Patternとしない。candidateの評価scopeと限界を保ち、OSの登録・振分けとBRAIN内独立検証の後まで採否・成熟状態を先取りしない。\n- **依存・検証／版**：L2-007/008/009/010のgeneric provenance/identity/state、Infrastructure candidateのmaturityを扱う場合に限りL2-INFRA-017、およびLABO評価contract。候補revisionと評価対象revision、成功・failure・反例・未評価範囲の対応を確認する。1.0。\n- **失敗時の戻し先**：評価と対象revisionが結べないときはunknown候補として止め、LABOへ評価を返す。OS登録状態の正本はOSへ戻す。\n- **束ねる条件**：BRAIN L1-007/009/010、HELIX-LABOの評価責務。",
     "selected_lines_sha256": "c44b313fe5627a8b252f47440608a691300997900abfe72f720e7c6228c5615a",
-    "consumer_meaning": "L2-020 evaluation/source/revision, OS registration and BRAIN independent verification/adoption remain separate; missing evaluation returns to LABO and registration state to OS."
+    "consumer_meaning": "L2-020の評価/source/revision、OS登録、BRAIN独立検証/採否を分離する。評価不足はLABO、登録状態はOSへ返す。"
+  },
+  "diagnostic_consumer_trace": [
+    {
+      "id": "B020-DIAG-F01-PLACEHOLDER",
+      "function_ref": "HELIXBRAIN-L5-020-F01",
+      "returned_field": "review_diagnostics",
+      "source_refs": [
+        "HELIXBRAIN-L3-020-F01",
+        "HELIXBRAIN-L4-020-F01",
+        "HELIXBRAIN-L10-020-F01"
+      ],
+      "l4_pointer": "/contracts/0",
+      "consumer": "LABOへ対象/評価不足を戻す。反例/failure/未評価範囲は保存し、unknown候補で止める。",
+      "diagnostics": [
+        "placeholder_candidate_revision",
+        "placeholder_evaluation_content"
+      ],
+      "qualification_boundary": "placeholder識別は合成値の情報不足表示。実source資格/実評価ではない。",
+      "consumer_contract": "L4で指定するfailure/unknown時のowner責務と候補状態保持へ接続。補助diagnosticは、そのownerの実資格・receipt・delivery・authorityを成立させない。"
+    },
+    {
+      "id": "B020-DIAG-F02-RECEIPT-STATE",
+      "function_ref": "HELIXBRAIN-L5-020-F02",
+      "returned_field": "review_diagnostics",
+      "source_refs": [
+        "HELIXBRAIN-L3-020-F02",
+        "HELIXBRAIN-L4-020-F02",
+        "HELIXBRAIN-L10-020-F02"
+      ],
+      "l4_pointer": "/contracts/1",
+      "consumer": "source/evaluationはLABO、registrationはHELIX-OS、adoptionはBRAIN change、独立検証は観測されたBRAIN-independent-review責務へ返す候補としてfailure_return_ownersへ分離表示。採否は登録/独立検証後まで先取りしない。",
+      "diagnostics": [
+        "placeholder_receipt_content",
+        "adoption_before_registration_and_verification"
+      ],
+      "qualification_boundary": "owner label候補のみ。資格/配送/receipt/authorityを生成しない。",
+      "consumer_contract": "L4で指定するfailure/unknown時のowner責務と候補状態保持へ接続。補助diagnosticは、そのownerの実資格・receipt・delivery・authorityを成立させない。"
+    },
+    {
+      "id": "B020-DIAG-F03-MATURITY",
+      "function_ref": "HELIXBRAIN-L5-020-F03",
+      "returned_field": "review_diagnostics",
+      "source_refs": [
+        "HELIXBRAIN-L3-020-F03",
+        "HELIXBRAIN-L4-020-F03",
+        "HELIXBRAIN-L10-020-F03"
+      ],
+      "l4_pointer": "/contracts/2",
+      "consumer": "INFRA maturityの不明・欠落はunknownのまま保持し、accepted/matureへ進めない。正確な該当owner routingは未閉包。",
+      "diagnostics": [
+        "placeholder_maturity_content"
+      ],
+      "qualification_boundary": "合成比較のみ。実INFRA qualificationは未成立。",
+      "consumer_contract": "L4で指定するfailure/unknown時のowner責務と候補状態保持へ接続。補助diagnosticは、そのownerの実資格・receipt・delivery・authorityを成立させない。"
+    },
+    {
+      "id": "B020-DIAG-B01-OWNER-STATE",
+      "function_ref": "HELIXBRAIN-L5-020-B01",
+      "returned_field": "review_diagnostics",
+      "source_refs": [
+        "HELIXBRAIN-L3-020-B01",
+        "HELIXBRAIN-L4-020-B01",
+        "HELIXBRAIN-L10-020-B01"
+      ],
+      "l4_pointer": "/contracts/3",
+      "consumer": "LABO評価正本、OS登録正本、BRAIN候補/採否の分離を保持。自己評価/登録複製/established Pattern状態は個別に拒否表示する。",
+      "diagnostics": [
+        "candidate_state_claim",
+        "evaluation_owner_role",
+        "registration_owner_role",
+        "candidate_owner_role"
+      ],
+      "qualification_boundary": "owner labels/fixture state findingsであり、実資格や正式routingではない。",
+      "consumer_contract": "L4で指定するfailure/unknown時のowner責務と候補状態保持へ接続。補助diagnosticは、そのownerの実資格・receipt・delivery・authorityを成立させない。"
+    }
+  ],
+  "oracle_compatibility_boundary": {
+    "source": "HELIXBRAIN-L9-020-F01/F02/F03/B01 expected_material",
+    "rule": "原L9全70 expected_materialと既存6probe wholeは互換projectionとしてそのまま保持する。追加review_diagnostics/failure_return_ownersは独立raw-derived返却rootであり、原oracleの欠落を成功判定へ変換しない。追加probeはsource wholeとsupplemental wholeを別々に固定する。",
+    "unclosed": "元L9の既存期待が補助診断を明示しない全分岐は、rawから導く診断とoracle compatibility projectionの併存として識別する。一般codec/authority/real routingは未成立。"
+  },
+  "diagnostic_marker_scope": {
+    "rule": "placeholder値は各function AST use-siteに列挙した有限markerとfieldだけに適用する。未列挙文字列、空白正規化、外部一般語彙を推測しない。",
+    "basis": "追加probeの合成入力とL3/L4のunknown/missing・反例/未評価範囲を保持する義務。"
   }
 }
