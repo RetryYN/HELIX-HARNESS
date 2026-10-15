@@ -1,0 +1,6170 @@
+{
+  "document_id": "HELIXBRAIN-L5-020",
+  "layer": "L5",
+  "pair": "L8",
+  "parent": "HELIXBRAIN-L2-020",
+  "source_main": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+  "status": "draft_limited_logical_contracts_not_qualified",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+    "adopted_l2_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-BRAIN-ADOPTION-PREREQUISITE-L3L10-2026-10-12",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "admission_revision": "7268524f9b9bb68805c20d33c648b9c23c803554",
+      "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
+      "authority_effect": "限定前提のL3/L10承認を記録。通常L3再開・実物成立・実評価/採否・製品実装を含まない。",
+      "admitted_head": "78b3d5d5779233929121cb073655b04cde17b7e5",
+      "approval_comment": 6114120727,
+      "pr": 2960
+    },
+    "boundary": "LABO評価対象と候補revisionの照合、受領・OS登録・BRAIN独立検証・採否の分離、INFRA-017 maturityの条件付き参照を有限な合成sourceで定義する。実資格/実評価/実登録/実成熟は生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/labo-evaluation-candidate-receipt.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "0fa8307255c44ff8264662bee638264f36c320020d599bdae8d3c4c37bda28db",
+      "byte_length": 13851
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "61da16075fc4188d620431574a142c29df218d80f09a969115ae3e115ee982aa",
+      "byte_length": 456281
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+      "byte_length": 48699
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+      "byte_length": 28431
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+      "byte_length": 55987
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+      "byte_length": 31508
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "byte_length": 78839
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+      "byte_length": 27596
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
+      "byte_length": 5301
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "byte_length": 11307
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "byte_length": 4857919
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "byte_length": 2335
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "byte_length": 1130244
+    }
+  ],
+  "approved_requirements": [
+    {
+      "id": "HELIXBRAIN-L3-020-F01",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "評価対象と候補の同revision照合",
+      "obligation": "LABO評価対象/評価scope/方法/evidence/結果/failure/反例/未評価範囲を候補source/version/evaluation identityへ照合し、007/008のprovenance/identity/stateを保持したBRAIN候補入力とreceiptを返す。",
+      "oracle_ref": "HELIXBRAIN-L10-020-F01"
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-F02",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "接続受領と採否の分離",
+      "obligation": "同source/version/evaluation identityの受領を保持し、単一実績/AI生成/評価resultだけで確立Patternへ昇格しない。評価scope/限界を保ちOS登録/振分けとBRAIN独立検証後まで採否・成熟状態を先取りしない。",
+      "oracle_ref": "HELIXBRAIN-L10-020-F02"
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-F03",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "Infrastructure maturityの条件付き参照",
+      "obligation": "Infrastructure candidateのmaturityを扱う場合だけINFRA-017のstate/evidenceを同対象revisionへ結び、不明/欠落ではaccepted/matureへ進めない。非該当入力へ全Infrastructure知識/実資源稼働を要求しない。",
+      "oracle_ref": "HELIXBRAIN-L10-020-F03"
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-B01",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "評価と登録正本の非移管",
+      "obligation": "LABOは評価、OSは登録/振分け状態正本、BRAINは候補知識/採否状態を保持する。接続成功からLABOの評価事実やOSの登録stateを生成/訂正せず、L2-007/008/009/010の該当入力条件を照合する。",
+      "oracle_ref": "HELIXBRAIN-L10-020-B01"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXBRAIN-L10-020-F01",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "評価対象と候補の同revision照合",
+      "requirement_ref": "HELIXBRAIN-L3-020-F01",
+      "positive_input": "同対象評価と別候補revision/一項目欠落/未評価範囲を比較する。",
+      "expected_observation": "評価と候補の各値/参照/不足が辿れ対象が一致する。",
+      "negative_input": "対象不一致、反例/未評価削除、欠落を成功補完。",
+      "failure_observation": "LABOへ対象/評価不足を返しunknown候補で止める。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-F02",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "接続受領と採否の分離",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "positive_input": "正常両端receiptと評価だけ/受領だけ/OS状態不明を比較する。",
+      "expected_observation": "評価/受領/登録/検証/採否が独立に辿れる。",
+      "negative_input": "LABO passでmature、受領でadopted、OS登録をBRAIN推測。",
+      "failure_observation": "評価/sourceはLABO、登録正本はOS、採否はBRAIN changeへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-F03",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "Infrastructure maturityの条件付き参照",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "positive_input": "非Infrastructure候補とInfrastructure candidateの同版/異版maturityを比較する。",
+      "expected_observation": "適用条件と状態根拠/不一致が辿れる。",
+      "negative_input": "一成功でuniversal、maturity欠落補完、非該当入力へ全INFRA知識必須。",
+      "failure_observation": "BRAIN maturity/LABOの該当ownerへ不足を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-B01",
+      "parent": "HELIXBRAIN-L2-020",
+      "title": "評価と登録正本の非移管",
+      "requirement_ref": "HELIXBRAIN-L3-020-B01",
+      "positive_input": "評価差戻しとOS保留、未決構成候補を別に受ける。",
+      "expected_observation": "各ownerの原状態と候補側のreceipt/未完が分かれる。",
+      "negative_input": "BRAIN自己評価、登録正本複製、構成候補を確立Pattern。",
+      "failure_observation": "LABO/OS/BRAINの元ownerへ返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXBRAIN-L3-020-B01",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/7",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "158a48791c658213f969ed15a13fd0391767fe403f4bff3501ce88f9c7cd8732",
+      "approved_document_sha256": "60ddb33cce93aa8abf0a54638476e3caf9e10dcb5b5e3378d202dfc2972fa487",
+      "canonical_sha256": "158a48791c658213f969ed15a13fd0391767fe403f4bff3501ce88f9c7cd8732",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-B01",
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "pointer": "/cases/7",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "e008f3f82410d9ec9a3ad4fbfc4af543467a15fbaf4d426807fcacf5382659c9",
+      "approved_document_sha256": "60ddb33cce93aa8abf0a54638476e3caf9e10dcb5b5e3378d202dfc2972fa487",
+      "canonical_sha256": "e008f3f82410d9ec9a3ad4fbfc4af543467a15fbaf4d426807fcacf5382659c9",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-F01",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/25",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "6dcfcde493754d04527b3665dcc21a1b181741d62c06e95ffdc494c7b16e3a44",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "6dcfcde493754d04527b3665dcc21a1b181741d62c06e95ffdc494c7b16e3a44",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-F01",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/25",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "cffcbf7f3b26dd479e88fcb0c369caa914ccca2c2bcabece12a42abae5846082",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "cffcbf7f3b26dd479e88fcb0c369caa914ccca2c2bcabece12a42abae5846082",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-F02",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/26",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "84c7cf7b4c60b6632ea8ce310df57e112aa7e4097d087a6504a254b8ef893923",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "84c7cf7b4c60b6632ea8ce310df57e112aa7e4097d087a6504a254b8ef893923",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-F02",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/26",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "0e4cb49ebb14508dc06d34d38b0a54064dc5a8948953442591c01263c8fcaeb0",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "0e4cb49ebb14508dc06d34d38b0a54064dc5a8948953442591c01263c8fcaeb0",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L3-020-F03",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "3882b48f3634e1ab179a460e84b86f77e1af1b3f878588d3a76a33d9b12b598e",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "3882b48f3634e1ab179a460e84b86f77e1af1b3f878588d3a76a33d9b12b598e",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    },
+    {
+      "id": "HELIXBRAIN-L10-020-F03",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "pointer": "/cases/27",
+      "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+      "entry_sha256": "1cb606c367e0b12b3043b4e639ca0a97bae2ebf12c6707fbd702185c4b818f33",
+      "approved_document_sha256": "293a3c7fdf48ac8ccca5c09d232472d81fc2ad27751aa50efc3477e816ac7c70",
+      "canonical_sha256": "1cb606c367e0b12b3043b4e639ca0a97bae2ebf12c6707fbd702185c4b818f33",
+      "decision_record": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_comment": 6114120727
+    }
+  ],
+  "approval": {
+    "approved_content_head": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+    "record_path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27",
+    "approved_pair_count": 13,
+    "BRAIN020_pair_ids": [
+      "HELIXBRAIN-L3-020-F01",
+      "HELIXBRAIN-L3-020-F02",
+      "HELIXBRAIN-L3-020-F03",
+      "HELIXBRAIN-L3-020-B01"
+    ],
+    "admission_is_not_implementation_or_execution": true,
+    "pr": 2960,
+    "approval_comment": 6114120727,
+    "admission_revision": "7268524f9b9bb68805c20d33c648b9c23c803554",
+    "admitted_head": "78b3d5d5779233929121cb073655b04cde17b7e5",
+    "audit_source": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json"
+  },
+  "legacy_inventory": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "read_lines": [
+        37,
+        47
+      ],
+      "quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。",
+      "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "disposition": "unresolved",
+        "source_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
+      },
+      "reuse": "reference_only; adopted BRAIN020 evaluated-candidate receipt semantics rederived",
+      "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
+      "change": "旧learning runtimeを移植せず、LABO評価正本/OS登録正本/BRAIN候補と採否stateを同revision接続へ再導出する。",
+      "reason": "採択020と10/12承認が対象一致/反例と未評価保持/単一実績の非昇格/条件付きmaturity/正本の別ownerを要求する。"
+    }
+  ],
+  "failure_consumer_basis": [
+    {
+      "source": "旧RCLS-BR-004/-005/-006",
+      "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+      "citation": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47",
+      "preserve": "project-local knowledgeから独立/横断/shadow検証を経る段階区分、failureやauthority/provider変化によるstale/contradicted/revokedへの差戻し、既存Requirement/Design/merge/release authorityをLearning Systemが変更しない境界。",
+      "change": "現行の候補受領、LABO評価正本、OS登録正本、BRAIN採否stateへ再導出。旧runtimeは移植/実行しない。",
+      "consumer": "LABO evaluation source、HELIX-OS registration/routing、BRAIN independent verification/adoption。"
+    }
+  ],
+  "full_pair_trace": [
+    {
+      "requirement_id": "HELIXBRAIN-L3-020-F01",
+      "l4_id": "HELIXBRAIN-L4-020-F01",
+      "l9_id": "HELIXBRAIN-L9-020-F01",
+      "l10_id": "HELIXBRAIN-L10-020-F01",
+      "l4_to_l9": "HELIXBRAIN-L9-020-F01",
+      "l9_to_l4": "HELIXBRAIN-L4-020-F01",
+      "l3_to_l10": "HELIXBRAIN-L10-020-F01",
+      "l10_to_l3": "HELIXBRAIN-L3-020-F01",
+      "case_ids": [
+        "B020-F01-SAME-TARGET-EVALUATION-LIMITS",
+        "B020-F01-ORIGINAL-CANDIDATE-REVISION-UNKNOWN",
+        "B020-F01-ORIGINAL-CANDIDATE-VERSION-UNKNOWN",
+        "B020-F01-ORIGINAL-CANDIDATE-SOURCE-UNKNOWN",
+        "B020-F01-IDENTITY-MISSING",
+        "B020-F01-REVISION-MISSING",
+        "B020-F01-OWNER-MISSING",
+        "B020-F01-TARGET-MISSING",
+        "B020-F01-SCOPE-MISSING",
+        "B020-F01-METHOD-MISSING",
+        "B020-F01-EVIDENCE-MISSING",
+        "B020-F01-RESULT-MISSING",
+        "B020-F01-FAILURE-MISSING",
+        "B020-F01-COUNTEREXAMPLE-MISSING",
+        "B020-F01-UNEVALUATED-MISSING",
+        "B020-F01-LIMITATION-MISSING",
+        "B020-F01-TARGET-REVISION-FOREIGN",
+        "B020-F01-TARGET-VERSION-FOREIGN",
+        "B020-F01-TARGET-SOURCE-FOREIGN",
+        "B020-F01-TARGET-SCOPE-FOREIGN",
+        "B020-F01-ORIGINAL-COUNTEREXAMPLE-UNKNOWN",
+        "B020-F01-COUNTEREXAMPLE_REMOVED",
+        "B020-F01-UNEVALUATED_REMOVED",
+        "B020-F01-MISSING_AS_SUCCESS",
+        "B020-F01-EVALUATION_REVISION_AS_CANDIDATE_REVISION"
+      ]
+    },
+    {
+      "requirement_id": "HELIXBRAIN-L3-020-F02",
+      "l4_id": "HELIXBRAIN-L4-020-F02",
+      "l9_id": "HELIXBRAIN-L9-020-F02",
+      "l10_id": "HELIXBRAIN-L10-020-F02",
+      "l4_to_l9": "HELIXBRAIN-L9-020-F02",
+      "l9_to_l4": "HELIXBRAIN-L4-020-F02",
+      "l3_to_l10": "HELIXBRAIN-L10-020-F02",
+      "l10_to_l3": "HELIXBRAIN-L3-020-F02",
+      "case_ids": [
+        "B020-F02-BOTH-ENDS-RECEIPT-UNDECIDED",
+        "B020-F02-SENDER-RECEIPT-MISSING",
+        "B020-F02-RECEIVER-RECEIPT-MISSING",
+        "B020-F02-RECEIVER-SOURCE-FOREIGN",
+        "B020-F02-RECEIVER-CANDIDATE_IDENTITY-FOREIGN",
+        "B020-F02-RECEIVER-CANDIDATE_REVISION-FOREIGN",
+        "B020-F02-RECEIVER-CANDIDATE_VERSION-FOREIGN",
+        "B020-F02-RECEIVER-EVALUATION_IDENTITY-FOREIGN",
+        "B020-F02-RECEIVER-EVALUATION_REVISION-FOREIGN",
+        "B020-F02-RECEIVER-SCOPE-FOREIGN",
+        "B020-F02-LABO_PASS_MATURE",
+        "B020-F02-RECEIPT_ADOPTED",
+        "B020-F02-OS_REGISTRATION_INFERRED",
+        "B020-F02-SINGLE_SUCCESS_ESTABLISHED",
+        "B020-F02-AI_GENERATED_ESTABLISHED"
+      ]
+    },
+    {
+      "requirement_id": "HELIXBRAIN-L3-020-F03",
+      "l4_id": "HELIXBRAIN-L4-020-F03",
+      "l9_id": "HELIXBRAIN-L9-020-F03",
+      "l10_id": "HELIXBRAIN-L10-020-F03",
+      "l4_to_l9": "HELIXBRAIN-L9-020-F03",
+      "l9_to_l4": "HELIXBRAIN-L4-020-F03",
+      "l3_to_l10": "HELIXBRAIN-L10-020-F03",
+      "l10_to_l3": "HELIXBRAIN-L3-020-F03",
+      "case_ids": [
+        "B020-F03-SELECTED-SAME-REVISION-OBSERVED",
+        "B020-F03-ORIGINAL-STATE-UNKNOWN",
+        "B020-F03-ORIGINAL-EVIDENCE-UNKNOWN",
+        "B020-F03-NON-INFRA-NOT-REQUIRED",
+        "B020-F03-SELECTION-UNKNOWN",
+        "B020-F03-ORIGINAL-MATURITY-UNKNOWN",
+        "B020-F03-MATURITY-MISSING",
+        "B020-F03-CANDIDATE_REVISION-FOREIGN",
+        "B020-F03-SCOPE-FOREIGN",
+        "B020-F03-STATE-FOREIGN",
+        "B020-F03-EVIDENCE-FOREIGN",
+        "B020-F03-ORIGINAL-OTHER-CANDIDATE-REVISION",
+        "B020-F03-ONE_SUCCESS_UNIVERSAL",
+        "B020-F03-MATURITY_MISSING_FILLED",
+        "B020-F03-NON_SELECTED_REQUIRES_ALL_INFRA"
+      ]
+    },
+    {
+      "requirement_id": "HELIXBRAIN-L3-020-B01",
+      "l4_id": "HELIXBRAIN-L4-020-B01",
+      "l9_id": "HELIXBRAIN-L9-020-B01",
+      "l10_id": "HELIXBRAIN-L10-020-B01",
+      "l4_to_l9": "HELIXBRAIN-L9-020-B01",
+      "l9_to_l4": "HELIXBRAIN-L4-020-B01",
+      "l3_to_l10": "HELIXBRAIN-L10-020-B01",
+      "l10_to_l3": "HELIXBRAIN-L3-020-B01",
+      "case_ids": [
+        "B020-B01-EVALUATION-RETURNED-OS-HELD-COMPOSITION-UNDECIDED",
+        "B020-B01-007-REFERENCE-MISSING",
+        "B020-B01-007-REFERENCE-FOREIGN",
+        "B020-B01-008-REFERENCE-MISSING",
+        "B020-B01-008-REFERENCE-FOREIGN",
+        "B020-B01-009-REFERENCE-MISSING",
+        "B020-B01-009-REFERENCE-FOREIGN",
+        "B020-B01-SELECTED-FAILURE-010-MISSING",
+        "B020-B01-NON-COMPOSITION-009-NOT-REQUIRED",
+        "B020-B01-EVALUATION_ORIGINAL-OWNER-FOREIGN",
+        "B020-B01-REGISTRATION_ORIGINAL-OWNER-FOREIGN",
+        "B020-B01-CANDIDATE_AND_ADOPTION-OWNER-FOREIGN",
+        "B020-B01-BRAIN_SELF_EVALUATION",
+        "B020-B01-BRAIN_REGISTRATION_ORIGINAL_COPY",
+        "B020-B01-COMPOSITION_ESTABLISHED_PATTERN"
+      ]
+    }
+  ],
+  "type_definitions": [
+    {
+      "name": "JsonValue",
+      "kind": "recursive_union",
+      "members": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array<JsonValue>",
+        "object<string,JsonValue>"
+      ],
+      "meaning": "原packetで観測したJSON値。booleanとnumberは異なるkindとして比較する。"
+    },
+    {
+      "name": "FieldPresence",
+      "kind": "enum",
+      "values": [
+        "absent",
+        "null",
+        "present"
+      ],
+      "meaning": "key不在、明示null、値ありを区別する。"
+    },
+    {
+      "name": "SourcePacket",
+      "kind": "record",
+      "required_fields": [
+        "ref",
+        "raw_utf8",
+        "sha256",
+        "qualification"
+      ],
+      "field_types": {
+        "ref": "SourceRef",
+        "raw_utf8": "string",
+        "sha256": "string",
+        "qualification": "string"
+      }
+    },
+    {
+      "name": "SourceRef",
+      "kind": "record",
+      "required_fields": [
+        "identity",
+        "revision",
+        "scope",
+        "owner"
+      ],
+      "field_types": {
+        "identity": "string",
+        "revision": "string",
+        "scope": "string",
+        "owner": "string"
+      }
+    },
+    {
+      "name": "ContractCase",
+      "kind": "record",
+      "required_fields": [
+        "id",
+        "requirement_ref",
+        "system_oracle_ref",
+        "l4_ref",
+        "independent_source_packet",
+        "expected_material",
+        "execution_state",
+        "effect"
+      ],
+      "field_types": {
+        "id": "string",
+        "requirement_ref": "string",
+        "system_oracle_ref": "string",
+        "l4_ref": "string",
+        "independent_source_packet": "SourcePacket",
+        "expected_material": "JsonValue",
+        "execution_state": "string",
+        "effect": "string"
+      }
+    },
+    {
+      "name": "Comparison",
+      "kind": "enum",
+      "values": [
+        "candidate_target_information_unknown",
+        "content_conflict",
+        "content_corresponding_in_fixture",
+        "different_candidate",
+        "different_candidate_target",
+        "held_unknown_or_conflicting",
+        "missing",
+        "none_non_selected",
+        "not_required",
+        "not_selected_not_required",
+        "original_unknown",
+        "same_exact_candidate_in_fixture",
+        "selection_unknown",
+        "unknown",
+        "unknown_original_maturity_information"
+      ],
+      "meaning": "有限raw内の内容比較だけを表し、実source資格や実評価結果ではない。"
+    },
+    {
+      "name": "OwnerReturn",
+      "kind": "enum",
+      "values": [
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-change",
+        "BRAIN-independent-review",
+        "BRAIN-INFRA017"
+      ],
+      "meaning": "上流のowner名候補。owner資格/配送/receiptを生成しない。"
+    },
+    {
+      "name": "F01Input",
+      "kind": "record",
+      "required_fields": [
+        "claims",
+        "original_candidate",
+        "original_evaluation",
+        "submitted_candidate",
+        "submitted_evaluation"
+      ],
+      "field_types": {
+        "claims": {
+          "kind": "object",
+          "properties": {
+            "counterexample_removed": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "evaluation_revision_as_candidate_revision": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "missing_as_success": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "unevaluated_removed": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            }
+          },
+          "required": [
+            "counterexample_removed",
+            "evaluation_revision_as_candidate_revision",
+            "missing_as_success",
+            "unevaluated_removed"
+          ],
+          "additionalProperties": false
+        },
+        "original_candidate": {
+          "kind": "object",
+          "properties": {
+            "identity": {
+              "kind": "string"
+            },
+            "revision": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "source": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            },
+            "state": {
+              "kind": "string"
+            },
+            "version": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "identity",
+            "revision",
+            "scope",
+            "source",
+            "state",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "original_evaluation": {
+          "kind": "object",
+          "properties": {
+            "counterexample": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "kind": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            },
+            "failure": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            },
+            "identity": {
+              "kind": "string"
+            },
+            "limitation": {
+              "kind": "string"
+            },
+            "method": {
+              "kind": "string"
+            },
+            "owner": {
+              "kind": "string"
+            },
+            "result": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            },
+            "revision": {
+              "kind": "string"
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "target": {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "source": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                },
+                "state": {
+                  "kind": "string"
+                },
+                "version": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "identity",
+                "revision",
+                "scope",
+                "source",
+                "state",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "unevaluated": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            }
+          },
+          "required": [
+            "counterexample",
+            "evidence",
+            "failure",
+            "identity",
+            "limitation",
+            "method",
+            "owner",
+            "result",
+            "revision",
+            "scope",
+            "target",
+            "unevaluated"
+          ],
+          "additionalProperties": false
+        },
+        "submitted_candidate": {
+          "kind": "object",
+          "properties": {
+            "identity": {
+              "kind": "string"
+            },
+            "revision": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "source": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            },
+            "state": {
+              "kind": "string"
+            },
+            "version": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "identity",
+            "revision",
+            "scope",
+            "source",
+            "state",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "submitted_evaluation": {
+          "kind": "object",
+          "properties": {
+            "counterexample": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "array",
+                  "items": {
+                    "kind": "string"
+                  }
+                },
+                {
+                  "kind": "null"
+                }
+              ]
+            },
+            "evidence": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            },
+            "failure": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            },
+            "identity": {
+              "kind": "string"
+            },
+            "limitation": {
+              "kind": "string"
+            },
+            "method": {
+              "kind": "string"
+            },
+            "owner": {
+              "kind": "string"
+            },
+            "result": {
+              "kind": "string"
+            },
+            "revision": {
+              "kind": "string"
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "target": {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "source": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                },
+                "state": {
+                  "kind": "string"
+                },
+                "version": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "identity",
+                "revision",
+                "scope",
+                "source",
+                "state",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "unevaluated": {
+              "kind": "array",
+              "items": {
+                "kind": "string"
+              }
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
+      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F01",
+        "case_scope": "all original concrete_cases; source raw only"
+      },
+      "string_domain": "任意JSON文字列。fixtureに現れた文字列の列挙に限定しない。"
+    },
+    {
+      "name": "F01Result",
+      "kind": "record",
+      "required_fields": [
+        "candidate_input_state",
+        "candidate_results",
+        "claim_results",
+        "effects",
+        "evaluation_results",
+        "receipt_candidate",
+        "retained_candidate",
+        "retained_evaluation",
+        "return_owner",
+        "submitted_candidate",
+        "submitted_evaluation",
+        "submitted_target_result",
+        "unknown_original_candidate_fields",
+        "unknown_original_evaluation_fields"
+      ],
+      "field_types": {
+        "kind": "object",
+        "properties": {
+          "candidate_input_state": {
+            "kind": "string",
+            "enum": [
+              "content_corresponding_candidate_only",
+              "unknown_held"
+            ]
+          },
+          "candidate_results": {
+            "kind": "object",
+            "properties": {
+              "identity": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "revision": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              },
+              "scope": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "source": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "state": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "version": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              }
+            },
+            "required": [
+              "identity",
+              "revision",
+              "scope",
+              "source",
+              "state",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "claim_results": {
+            "kind": "object",
+            "properties": {
+              "counterexample_removed": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "evaluation_revision_as_candidate_revision": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "missing_as_success": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "unevaluated_removed": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [
+              "counterexample_removed",
+              "evaluation_revision_as_candidate_revision",
+              "missing_as_success",
+              "unevaluated_removed"
+            ],
+            "additionalProperties": false
+          },
+          "effects": {
+            "kind": "object",
+            "properties": {
+              "actual_BRAIN_adoption": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_LABO_evaluation": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_OS_registration": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_acceptance": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_authority": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_implementation_ready": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_maturity_promotion": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_operation_permission": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            },
+            "required": [
+              "actual_BRAIN_adoption",
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_acceptance",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_maturity_promotion",
+              "actual_operation_permission"
+            ],
+            "additionalProperties": false
+          },
+          "evaluation_results": {
+            "kind": "object",
+            "properties": {
+              "counterexample": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing"
+                ]
+              },
+              "evidence": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "failure": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "identity": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "limitation": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "method": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "owner": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "result": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing"
+                ]
+              },
+              "revision": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "scope": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "content_conflict"
+                ]
+              },
+              "target": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing"
+                ]
+              },
+              "unevaluated": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing"
+                ]
+              }
+            },
+            "required": [
+              "counterexample",
+              "evidence",
+              "failure",
+              "identity",
+              "limitation",
+              "method",
+              "owner",
+              "result",
+              "revision",
+              "scope",
+              "target",
+              "unevaluated"
+            ],
+            "additionalProperties": false
+          },
+          "receipt_candidate": {
+            "kind": "object",
+            "properties": {
+              "candidate_identity": {
+                "kind": "string"
+              },
+              "candidate_revision": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "candidate_version": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "evaluation_identity": {
+                "kind": "string"
+              },
+              "evaluation_revision": {
+                "kind": "string"
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "source": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope",
+              "source"
+            ],
+            "additionalProperties": false
+          },
+          "retained_candidate": {
+            "kind": "object",
+            "properties": {
+              "identity": {
+                "kind": "string"
+              },
+              "revision": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "source": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "state": {
+                "kind": "string"
+              },
+              "version": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "identity",
+              "revision",
+              "scope",
+              "source",
+              "state",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "retained_evaluation": {
+            "kind": "object",
+            "properties": {
+              "counterexample": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "kind": "null"
+                  }
+                ]
+              },
+              "evidence": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "failure": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "identity": {
+                "kind": "string"
+              },
+              "limitation": {
+                "kind": "string"
+              },
+              "method": {
+                "kind": "string"
+              },
+              "owner": {
+                "kind": "string"
+              },
+              "result": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "revision": {
+                "kind": "string"
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "target": {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "source": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "state": {
+                    "kind": "string"
+                  },
+                  "version": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "identity",
+                  "revision",
+                  "scope",
+                  "source",
+                  "state",
+                  "version"
+                ],
+                "additionalProperties": false
+              },
+              "unevaluated": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              }
+            },
+            "required": [
+              "counterexample",
+              "evidence",
+              "failure",
+              "identity",
+              "limitation",
+              "method",
+              "owner",
+              "result",
+              "revision",
+              "scope",
+              "target",
+              "unevaluated"
+            ],
+            "additionalProperties": false
+          },
+          "return_owner": {
+            "kind": "string",
+            "enum": [
+              "LABO"
+            ]
+          },
+          "submitted_candidate": {
+            "kind": "object",
+            "properties": {
+              "identity": {
+                "kind": "string"
+              },
+              "revision": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "source": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              },
+              "state": {
+                "kind": "string"
+              },
+              "version": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "null"
+                  },
+                  {
+                    "kind": "string"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "identity",
+              "revision",
+              "scope",
+              "source",
+              "state",
+              "version"
+            ],
+            "additionalProperties": false
+          },
+          "submitted_evaluation": {
+            "kind": "object",
+            "properties": {
+              "counterexample": {
+                "kind": "union",
+                "members": [
+                  {
+                    "kind": "array",
+                    "items": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "kind": "null"
+                  }
+                ]
+              },
+              "evidence": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "failure": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              },
+              "identity": {
+                "kind": "string"
+              },
+              "limitation": {
+                "kind": "string"
+              },
+              "method": {
+                "kind": "string"
+              },
+              "owner": {
+                "kind": "string"
+              },
+              "result": {
+                "kind": "string"
+              },
+              "revision": {
+                "kind": "string"
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "target": {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "source": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "state": {
+                    "kind": "string"
+                  },
+                  "version": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "identity",
+                  "revision",
+                  "scope",
+                  "source",
+                  "state",
+                  "version"
+                ],
+                "additionalProperties": false
+              },
+              "unevaluated": {
+                "kind": "array",
+                "items": {
+                  "kind": "string"
+                }
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          },
+          "submitted_target_result": {
+            "kind": "string",
+            "enum": [
+              "candidate_target_information_unknown",
+              "different_candidate",
+              "missing",
+              "same_exact_candidate_in_fixture"
+            ]
+          },
+          "unknown_original_candidate_fields": {
+            "kind": "array",
+            "items": {
+              "kind": "string",
+              "enum": [
+                "revision",
+                "source",
+                "version"
+              ]
+            }
+          },
+          "unknown_original_evaluation_fields": {
+            "kind": "array",
+            "items": {
+              "kind": "string",
+              "enum": [
+                "counterexample",
+                "result"
+              ]
+            }
+          }
+        },
+        "required": [
+          "candidate_input_state",
+          "candidate_results",
+          "claim_results",
+          "effects",
+          "evaluation_results",
+          "receipt_candidate",
+          "retained_candidate",
+          "retained_evaluation",
+          "return_owner",
+          "submitted_candidate",
+          "submitted_evaluation",
+          "submitted_target_result",
+          "unknown_original_candidate_fields",
+          "unknown_original_evaluation_fields"
+        ],
+        "additionalProperties": false
+      },
+      "additional_fields": false,
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F01",
+        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+      },
+      "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
+    },
+    {
+      "name": "F02Input",
+      "kind": "record",
+      "required_fields": [
+        "claims",
+        "original_receipt",
+        "original_states",
+        "submitted_receiver_receipt",
+        "submitted_sender_receipt",
+        "submitted_states"
+      ],
+      "field_types": {
+        "claims": {
+          "kind": "object",
+          "properties": {
+            "AI_generated_established": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "LABO_pass_mature": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "OS_registration_inferred": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "receipt_adopted": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "single_success_established": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            }
+          },
+          "required": [
+            "AI_generated_established",
+            "LABO_pass_mature",
+            "OS_registration_inferred",
+            "receipt_adopted",
+            "single_success_established"
+          ],
+          "additionalProperties": false
+        },
+        "original_receipt": {
+          "kind": "object",
+          "properties": {
+            "candidate_identity": {
+              "kind": "string"
+            },
+            "candidate_revision": {
+              "kind": "string"
+            },
+            "candidate_version": {
+              "kind": "string"
+            },
+            "evaluation_identity": {
+              "kind": "string"
+            },
+            "evaluation_revision": {
+              "kind": "string"
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "source": {
+              "kind": "string"
+            }
+          },
+          "required": [
+            "candidate_identity",
+            "candidate_revision",
+            "candidate_version",
+            "evaluation_identity",
+            "evaluation_revision",
+            "scope",
+            "source"
+          ],
+          "additionalProperties": false
+        },
+        "original_states": {
+          "kind": "object",
+          "properties": {
+            "adoption": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "evaluation": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "independent_verification": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "registration": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "adoption",
+            "evaluation",
+            "independent_verification",
+            "registration"
+          ],
+          "additionalProperties": false
+        },
+        "submitted_receiver_receipt": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "candidate_identity": {
+                  "kind": "string"
+                },
+                "candidate_revision": {
+                  "kind": "string"
+                },
+                "candidate_version": {
+                  "kind": "string"
+                },
+                "evaluation_identity": {
+                  "kind": "string"
+                },
+                "evaluation_revision": {
+                  "kind": "string"
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "source": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "candidate_identity",
+                "candidate_revision",
+                "candidate_version",
+                "evaluation_identity",
+                "evaluation_revision",
+                "scope",
+                "source"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "submitted_sender_receipt": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "candidate_identity": {
+                  "kind": "string"
+                },
+                "candidate_revision": {
+                  "kind": "string"
+                },
+                "candidate_version": {
+                  "kind": "string"
+                },
+                "evaluation_identity": {
+                  "kind": "string"
+                },
+                "evaluation_revision": {
+                  "kind": "string"
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "source": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "candidate_identity",
+                "candidate_revision",
+                "candidate_version",
+                "evaluation_identity",
+                "evaluation_revision",
+                "scope",
+                "source"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "submitted_states": {
+          "kind": "object",
+          "properties": {
+            "adoption": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "evaluation": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "independent_verification": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            },
+            "registration": {
+              "kind": "object",
+              "properties": {
+                "owner": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "owner",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "adoption",
+            "evaluation",
+            "independent_verification",
+            "registration"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
+      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F02",
+        "case_scope": "all original concrete_cases; source raw only"
+      },
+      "string_domain": "任意JSON文字列。fixtureに現れた文字列の列挙に限定しない。"
+    },
+    {
+      "name": "F02Result",
+      "kind": "record",
+      "required_fields": [
+        "adoption_state",
+        "claim_results",
+        "effects",
+        "receiver_receipt_result",
+        "retained_receipt_meaning",
+        "retained_states",
+        "return_owners",
+        "sender_receipt_result",
+        "state_results",
+        "submitted_receiver_receipt",
+        "submitted_sender_receipt",
+        "submitted_states"
+      ],
+      "field_types": {
+        "kind": "object",
+        "properties": {
+          "adoption_state": {
+            "kind": "string",
+            "meaning": "原original_states.adoption.stateの値をそのまま保持する。"
+          },
+          "claim_results": {
+            "kind": "object",
+            "properties": {
+              "AI_generated_established": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "LABO_pass_mature": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "OS_registration_inferred": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "receipt_adopted": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "single_success_established": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [
+              "AI_generated_established",
+              "LABO_pass_mature",
+              "OS_registration_inferred",
+              "receipt_adopted",
+              "single_success_established"
+            ],
+            "additionalProperties": false
+          },
+          "effects": {
+            "kind": "object",
+            "properties": {
+              "actual_BRAIN_adoption": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_LABO_evaluation": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_OS_registration": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_acceptance": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_authority": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_implementation_ready": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_maturity_promotion": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_operation_permission": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            },
+            "required": [
+              "actual_BRAIN_adoption",
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_acceptance",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_maturity_promotion",
+              "actual_operation_permission"
+            ],
+            "additionalProperties": false
+          },
+          "receiver_receipt_result": {
+            "kind": "string",
+            "enum": [
+              "content_conflict",
+              "content_corresponding_in_fixture",
+              "missing"
+            ]
+          },
+          "retained_receipt_meaning": {
+            "kind": "object",
+            "properties": {
+              "candidate_identity": {
+                "kind": "string"
+              },
+              "candidate_revision": {
+                "kind": "string"
+              },
+              "candidate_version": {
+                "kind": "string"
+              },
+              "evaluation_identity": {
+                "kind": "string"
+              },
+              "evaluation_revision": {
+                "kind": "string"
+              },
+              "scope": {
+                "kind": "string"
+              },
+              "source": {
+                "kind": "string"
+              }
+            },
+            "required": [
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope",
+              "source"
+            ],
+            "additionalProperties": false
+          },
+          "retained_states": {
+            "kind": "object",
+            "properties": {
+              "adoption": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "evaluation": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "independent_verification": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "registration": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "adoption",
+              "evaluation",
+              "independent_verification",
+              "registration"
+            ],
+            "additionalProperties": false
+          },
+          "return_owners": {
+            "kind": "object",
+            "properties": {
+              "adoption": {
+                "kind": "string",
+                "enum": [
+                  "BRAIN-change"
+                ]
+              },
+              "evaluation_source": {
+                "kind": "string",
+                "enum": [
+                  "LABO"
+                ]
+              },
+              "registration": {
+                "kind": "string",
+                "enum": [
+                  "HELIX-OS"
+                ]
+              }
+            },
+            "required": [
+              "adoption",
+              "evaluation_source",
+              "registration"
+            ],
+            "additionalProperties": false
+          },
+          "sender_receipt_result": {
+            "kind": "string",
+            "enum": [
+              "content_corresponding_in_fixture",
+              "missing",
+              "content_conflict"
+            ]
+          },
+          "state_results": {
+            "kind": "object",
+            "properties": {
+              "adoption": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              },
+              "evaluation": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "independent_verification": {
+                "kind": "string",
+                "enum": [
+                  "content_corresponding_in_fixture",
+                  "content_conflict"
+                ]
+              },
+              "registration": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              }
+            },
+            "required": [
+              "adoption",
+              "evaluation",
+              "independent_verification",
+              "registration"
+            ],
+            "additionalProperties": false
+          },
+          "submitted_receiver_receipt": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "candidate_identity": {
+                    "kind": "string"
+                  },
+                  "candidate_revision": {
+                    "kind": "string"
+                  },
+                  "candidate_version": {
+                    "kind": "string"
+                  },
+                  "evaluation_identity": {
+                    "kind": "string"
+                  },
+                  "evaluation_revision": {
+                    "kind": "string"
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "source": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "candidate_identity",
+                  "candidate_revision",
+                  "candidate_version",
+                  "evaluation_identity",
+                  "evaluation_revision",
+                  "scope",
+                  "source"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "submitted_sender_receipt": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "candidate_identity": {
+                    "kind": "string"
+                  },
+                  "candidate_revision": {
+                    "kind": "string"
+                  },
+                  "candidate_version": {
+                    "kind": "string"
+                  },
+                  "evaluation_identity": {
+                    "kind": "string"
+                  },
+                  "evaluation_revision": {
+                    "kind": "string"
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "source": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "candidate_identity",
+                  "candidate_revision",
+                  "candidate_version",
+                  "evaluation_identity",
+                  "evaluation_revision",
+                  "scope",
+                  "source"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "submitted_states": {
+            "kind": "object",
+            "properties": {
+              "adoption": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "evaluation": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "independent_verification": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              },
+              "registration": {
+                "kind": "object",
+                "properties": {
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "adoption",
+              "evaluation",
+              "independent_verification",
+              "registration"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "adoption_state",
+          "claim_results",
+          "effects",
+          "receiver_receipt_result",
+          "retained_receipt_meaning",
+          "retained_states",
+          "return_owners",
+          "sender_receipt_result",
+          "state_results",
+          "submitted_receiver_receipt",
+          "submitted_sender_receipt",
+          "submitted_states"
+        ],
+        "additionalProperties": false
+      },
+      "additional_fields": false,
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F02",
+        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+      },
+      "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
+    },
+    {
+      "name": "F03Input",
+      "kind": "record",
+      "required_fields": [
+        "candidate",
+        "claims",
+        "infrastructure_maturity_selected",
+        "original_maturity",
+        "submitted_maturity"
+      ],
+      "field_types": {
+        "candidate": {
+          "kind": "object",
+          "properties": {
+            "identity": {
+              "kind": "string"
+            },
+            "revision": {
+              "kind": "string"
+            },
+            "scope": {
+              "kind": "string"
+            },
+            "source": {
+              "kind": "string"
+            },
+            "state": {
+              "kind": "string"
+            },
+            "version": {
+              "kind": "string"
+            }
+          },
+          "required": [
+            "identity",
+            "revision",
+            "scope",
+            "source",
+            "state",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "claims": {
+          "kind": "object",
+          "properties": {
+            "maturity_missing_filled": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "non_selected_requires_all_INFRA": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "one_success_universal": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            }
+          },
+          "required": [
+            "maturity_missing_filled",
+            "non_selected_requires_all_INFRA",
+            "one_success_universal"
+          ],
+          "additionalProperties": false
+        },
+        "infrastructure_maturity_selected": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            {
+              "kind": "null"
+            }
+          ]
+        },
+        "original_maturity": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "candidate_identity": {
+                  "kind": "string"
+                },
+                "candidate_revision": {
+                  "kind": "string"
+                },
+                "evidence": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "array",
+                      "items": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                },
+                "identity": {
+                  "kind": "string"
+                },
+                "limitation": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "candidate_identity",
+                "candidate_revision",
+                "evidence",
+                "identity",
+                "limitation",
+                "owner",
+                "revision",
+                "scope",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "submitted_maturity": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "candidate_identity": {
+                  "kind": "string"
+                },
+                "candidate_revision": {
+                  "kind": "string"
+                },
+                "evidence": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "array",
+                      "items": {
+                        "kind": "string"
+                      }
+                    },
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                },
+                "identity": {
+                  "kind": "string"
+                },
+                "limitation": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "scope": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "union",
+                  "members": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "candidate_identity",
+                "candidate_revision",
+                "evidence",
+                "identity",
+                "limitation",
+                "owner",
+                "revision",
+                "scope",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
+      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F03",
+        "case_scope": "all original concrete_cases; source raw only"
+      },
+      "string_domain": "任意JSON文字列。fixtureに現れた文字列の列挙に限定しない。"
+    },
+    {
+      "name": "F03Result",
+      "kind": "record",
+      "required_fields": [
+        "accepted_or_mature_established",
+        "candidate_maturity_state",
+        "claim_results",
+        "effects",
+        "maturity_requirement",
+        "maturity_result",
+        "retained_maturity",
+        "return_owners",
+        "selection",
+        "submitted_maturity",
+        "submitted_maturity_result"
+      ],
+      "field_types": {
+        "kind": "object",
+        "properties": {
+          "accepted_or_mature_established": {
+            "kind": "boolean",
+            "enum": [
+              false
+            ]
+          },
+          "candidate_maturity_state": {
+            "kind": "string",
+            "enum": [
+              "held_unknown_or_conflicting",
+              "not_required",
+              "original_state_in_fixture_only"
+            ]
+          },
+          "claim_results": {
+            "kind": "object",
+            "properties": {
+              "maturity_missing_filled": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "non_selected_requires_all_INFRA": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "one_success_universal": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [
+              "maturity_missing_filled",
+              "non_selected_requires_all_INFRA",
+              "one_success_universal"
+            ],
+            "additionalProperties": false
+          },
+          "effects": {
+            "kind": "object",
+            "properties": {
+              "actual_BRAIN_adoption": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_LABO_evaluation": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_OS_registration": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_acceptance": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_authority": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_implementation_ready": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_maturity_promotion": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_operation_permission": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            },
+            "required": [
+              "actual_BRAIN_adoption",
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_acceptance",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_maturity_promotion",
+              "actual_operation_permission"
+            ],
+            "additionalProperties": false
+          },
+          "maturity_requirement": {
+            "kind": "string",
+            "enum": [
+              "INFRA017_selected_candidate_only",
+              "none_non_selected",
+              "selection_unknown"
+            ]
+          },
+          "maturity_result": {
+            "kind": "string",
+            "enum": [
+              "content_conflict",
+              "content_corresponding_in_fixture",
+              "different_candidate_target",
+              "missing",
+              "not_selected_not_required",
+              "unknown_original_maturity_information",
+              "unknown_selection"
+            ]
+          },
+          "retained_maturity": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "candidate_identity": {
+                    "kind": "string"
+                  },
+                  "candidate_revision": {
+                    "kind": "string"
+                  },
+                  "evidence": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "array",
+                        "items": {
+                          "kind": "string"
+                        }
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  },
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "limitation": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "candidate_identity",
+                  "candidate_revision",
+                  "evidence",
+                  "identity",
+                  "limitation",
+                  "owner",
+                  "revision",
+                  "scope",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "return_owners": {
+            "kind": "array",
+            "items": {
+              "kind": "string",
+              "enum": [
+                "BRAIN-INFRA017",
+                "LABO"
+              ]
+            }
+          },
+          "selection": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "boolean",
+                "enum": [
+                  false,
+                  true
+                ]
+              },
+              {
+                "kind": "null"
+              }
+            ]
+          },
+          "submitted_maturity": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "candidate_identity": {
+                    "kind": "string"
+                  },
+                  "candidate_revision": {
+                    "kind": "string"
+                  },
+                  "evidence": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "array",
+                        "items": {
+                          "kind": "string"
+                        }
+                      },
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  },
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "limitation": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "scope": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "union",
+                    "members": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "candidate_identity",
+                  "candidate_revision",
+                  "evidence",
+                  "identity",
+                  "limitation",
+                  "owner",
+                  "revision",
+                  "scope",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "submitted_maturity_result": {
+            "kind": "string",
+            "enum": [
+              "content_conflict",
+              "content_corresponding_in_fixture",
+              "missing",
+              "not_selected_not_required",
+              "original_unknown",
+              "selection_unknown"
+            ]
+          }
+        },
+        "required": [
+          "accepted_or_mature_established",
+          "candidate_maturity_state",
+          "claim_results",
+          "effects",
+          "maturity_requirement",
+          "maturity_result",
+          "retained_maturity",
+          "return_owners",
+          "selection",
+          "submitted_maturity",
+          "submitted_maturity_result"
+        ],
+        "additionalProperties": false
+      },
+      "additional_fields": false,
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-F03",
+        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+      },
+      "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
+    },
+    {
+      "name": "B01Input",
+      "kind": "record",
+      "required_fields": [
+        "candidate_state",
+        "claims",
+        "composition_candidate_selected",
+        "failure_knowledge_selected",
+        "original_contract_references",
+        "original_evaluation_record",
+        "original_owners",
+        "original_registration_record",
+        "submitted_contract_references",
+        "submitted_evaluation_record",
+        "submitted_owners",
+        "submitted_registration_record"
+      ],
+      "field_types": {
+        "candidate_state": {
+          "kind": "string"
+        },
+        "claims": {
+          "kind": "object",
+          "properties": {
+            "BRAIN_registration_original_copy": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "BRAIN_self_evaluation": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            },
+            "composition_established_pattern": {
+              "kind": "boolean",
+              "enum": [
+                false,
+                true
+              ]
+            }
+          },
+          "required": [
+            "BRAIN_registration_original_copy",
+            "BRAIN_self_evaluation",
+            "composition_established_pattern"
+          ],
+          "additionalProperties": false
+        },
+        "composition_candidate_selected": {
+          "kind": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "failure_knowledge_selected": {
+          "kind": "boolean",
+          "enum": [
+            false,
+            true
+          ]
+        },
+        "original_contract_references": {
+          "kind": "object",
+          "properties": {
+            "007": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "008": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "009": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "010": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "007",
+            "008",
+            "009",
+            "010"
+          ],
+          "additionalProperties": false
+        },
+        "original_evaluation_record": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "identity",
+                "owner",
+                "revision",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "original_owners": {
+          "kind": "object",
+          "properties": {
+            "candidate_and_adoption": {
+              "kind": "string"
+            },
+            "evaluation_original": {
+              "kind": "string"
+            },
+            "registration_original": {
+              "kind": "string"
+            }
+          },
+          "required": [
+            "candidate_and_adoption",
+            "evaluation_original",
+            "registration_original"
+          ],
+          "additionalProperties": false
+        },
+        "original_registration_record": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "identity",
+                "owner",
+                "revision",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "submitted_contract_references": {
+          "kind": "object",
+          "properties": {
+            "007": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "008": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "009": {
+              "kind": "union",
+              "members": [
+                {
+                  "kind": "null"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "identity": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "revision": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    },
+                    "scope": {
+                      "kind": "union",
+                      "members": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "identity",
+                    "revision",
+                    "scope"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "submitted_evaluation_record": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "identity",
+                "owner",
+                "revision",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "submitted_owners": {
+          "kind": "object",
+          "properties": {
+            "candidate_and_adoption": {
+              "kind": "string"
+            },
+            "evaluation_original": {
+              "kind": "string"
+            },
+            "registration_original": {
+              "kind": "string"
+            }
+          },
+          "required": [
+            "candidate_and_adoption",
+            "evaluation_original",
+            "registration_original"
+          ],
+          "additionalProperties": false
+        },
+        "submitted_registration_record": {
+          "kind": "union",
+          "members": [
+            {
+              "kind": "null"
+            },
+            {
+              "kind": "object",
+              "properties": {
+                "identity": {
+                  "kind": "string"
+                },
+                "owner": {
+                  "kind": "string"
+                },
+                "revision": {
+                  "kind": "string"
+                },
+                "state": {
+                  "kind": "string"
+                }
+              },
+              "required": [
+                "identity",
+                "owner",
+                "revision",
+                "state"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "additional_fields": "forbidden for the declared finite fixture input projection; unknown source members are not silently discarded",
+      "presence_rule": "required root may hold explicit null only if the merged type includes null; nested object key omission remains MISSING and is never defaulted.",
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-B01",
+        "case_scope": "all original concrete_cases; source raw only"
+      },
+      "string_domain": "任意JSON文字列。fixtureに現れた文字列の列挙に限定しない。"
+    },
+    {
+      "name": "B01Result",
+      "kind": "record",
+      "required_fields": [
+        "candidate_state",
+        "claim_results",
+        "effects",
+        "evaluation_record_result",
+        "needed_contract_reference_results",
+        "owner_results",
+        "receipt_state",
+        "registration_record_result",
+        "retained_evaluation_record",
+        "retained_registration_record",
+        "return_owners",
+        "submitted_evaluation_record",
+        "submitted_registration_record",
+        "unselected_contracts"
+      ],
+      "field_types": {
+        "kind": "object",
+        "properties": {
+          "candidate_state": {
+            "kind": "string",
+            "meaning": "rawのcandidate_stateをそのまま保持し、製品状態を推論しない。"
+          },
+          "claim_results": {
+            "kind": "object",
+            "properties": {
+              "BRAIN_registration_original_copy": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "BRAIN_self_evaluation": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              },
+              "composition_established_pattern": {
+                "kind": "string",
+                "enum": [
+                  "none",
+                  "rejected"
+                ]
+              }
+            },
+            "required": [
+              "BRAIN_registration_original_copy",
+              "BRAIN_self_evaluation",
+              "composition_established_pattern"
+            ],
+            "additionalProperties": false
+          },
+          "effects": {
+            "kind": "object",
+            "properties": {
+              "actual_BRAIN_adoption": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_LABO_evaluation": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_OS_registration": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_acceptance": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_authority": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_implementation_ready": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_maturity_promotion": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              },
+              "actual_operation_permission": {
+                "kind": "boolean",
+                "enum": [
+                  false
+                ]
+              }
+            },
+            "required": [
+              "actual_BRAIN_adoption",
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_acceptance",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_maturity_promotion",
+              "actual_operation_permission"
+            ],
+            "additionalProperties": false
+          },
+          "evaluation_record_result": {
+            "kind": "string",
+            "enum": [
+              "content_conflict",
+              "content_corresponding_in_fixture",
+              "unknown"
+            ]
+          },
+          "needed_contract_reference_results": {
+            "kind": "object",
+            "properties": {
+              "007": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "unknown"
+                ]
+              },
+              "008": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "unknown"
+                ]
+              },
+              "009": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture",
+                  "missing",
+                  "unknown"
+                ]
+              },
+              "010": {
+                "kind": "string",
+                "enum": [
+                  "missing",
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "007",
+              "008"
+            ],
+            "additionalProperties": false
+          },
+          "owner_results": {
+            "kind": "object",
+            "properties": {
+              "candidate_and_adoption": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              },
+              "evaluation_original": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              },
+              "registration_original": {
+                "kind": "string",
+                "enum": [
+                  "content_conflict",
+                  "content_corresponding_in_fixture"
+                ]
+              }
+            },
+            "required": [
+              "candidate_and_adoption",
+              "evaluation_original",
+              "registration_original"
+            ],
+            "additionalProperties": false
+          },
+          "receipt_state": {
+            "kind": "string",
+            "enum": [
+              "candidate_received_fixture_only"
+            ]
+          },
+          "registration_record_result": {
+            "kind": "string",
+            "enum": [
+              "content_conflict",
+              "content_corresponding_in_fixture",
+              "unknown"
+            ]
+          },
+          "retained_evaluation_record": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "owner",
+                  "revision",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "retained_registration_record": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "owner",
+                  "revision",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "return_owners": {
+            "kind": "object",
+            "properties": {
+              "candidate_and_adoption": {
+                "kind": "string",
+                "enum": [
+                  "BRAIN-change"
+                ]
+              },
+              "evaluation_original": {
+                "kind": "string",
+                "enum": [
+                  "LABO"
+                ]
+              },
+              "registration_original": {
+                "kind": "string",
+                "enum": [
+                  "HELIX-OS"
+                ]
+              }
+            },
+            "required": [
+              "candidate_and_adoption",
+              "evaluation_original",
+              "registration_original"
+            ],
+            "additionalProperties": false
+          },
+          "submitted_evaluation_record": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "owner",
+                  "revision",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "submitted_registration_record": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "object",
+                "properties": {
+                  "identity": {
+                    "kind": "string"
+                  },
+                  "owner": {
+                    "kind": "string"
+                  },
+                  "revision": {
+                    "kind": "string"
+                  },
+                  "state": {
+                    "kind": "string"
+                  }
+                },
+                "required": [
+                  "identity",
+                  "owner",
+                  "revision",
+                  "state"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "unselected_contracts": {
+            "kind": "array",
+            "items": {
+              "kind": "string",
+              "enum": [
+                "009",
+                "010"
+              ]
+            }
+          }
+        },
+        "required": [
+          "candidate_state",
+          "claim_results",
+          "effects",
+          "evaluation_record_result",
+          "needed_contract_reference_results",
+          "owner_results",
+          "receipt_state",
+          "registration_record_result",
+          "retained_evaluation_record",
+          "retained_registration_record",
+          "return_owners",
+          "submitted_evaluation_record",
+          "submitted_registration_record",
+          "unselected_contracts"
+        ],
+        "additionalProperties": false
+      },
+      "additional_fields": false,
+      "source_basis": {
+        "path": "docs/helix-brain/L9-integration-verification/labo-evaluation-candidate-receipt.json",
+        "obligation_id": "HELIXBRAIN-L9-020-B01",
+        "role": "output-domain and literal evidence only; expected_material is not calculator input"
+      },
+      "copy_string_domain": "原入力からprojectされた文字列は入力域をそのまま保持する。意味判定のstatus enumとは別。"
+    },
+    {
+      "name": "MISSING",
+      "kind": "sentinel",
+      "meaning": "object memberが存在しない状態。JSON nullとは異なりraw JSON値ではない。"
+    }
+  ],
+  "pure_reference_semantics": {
+    "notation": "JSON宣言式木。各演算子の定義は/operator_definitionsにあり、case ID分岐・expected_material参照を行わない。",
+    "json_equality": {
+      "kind_first": true,
+      "boolean_is_distinct_from_number": true,
+      "number_rule": "JSON number同士は数学的数値が等しければ等値（1と1.0は等値）。booleanはnumberとして扱わない。",
+      "null_rule": "nullはnullとのみ等値。",
+      "array_rule": "長さ・順序・各要素の再帰的deep_equalがすべて一致。",
+      "object_rule": "key集合が完全一致し、各keyの値が再帰的deep_equalで一致。",
+      "missing_rule": "MISSINGはJSON値ではなく、明示nullとは等値でない。"
+    },
+    "presence": "member不在、明示null、値ありを分離する。不在をnull/空配列/成功へ補完しない。null同士の一致はsource資格・正確な対象bindingの証拠にしない。",
+    "comparison_status_precedence": {
+      "record_root": {
+        "absent": "missing",
+        "explicit_null": "unknown",
+        "except": "compare_receipt treats either absent/null receipt root as missing per L9 fixed case meaning"
+      },
+      "field_projection": {
+        "both_absent": "unknown",
+        "one_absent": "missing",
+        "both_present_and_equal": "content_corresponding_in_fixture",
+        "both_present_and_unequal": "content_conflict",
+        "null_null": "may be field-level correspondence only; not exact target/source qualification"
+      },
+      "aggregate": "if every selected field corresponds, return content_corresponding_in_fixture; otherwise missing > unknown > content_conflict"
+    },
+    "owner_return_rule": "候補owner文字列は原packetのowner値またはL4/L10に記載された責務名だけを出力し、資格・送達・receiptを作らない。",
+    "unclosed": "source packet自体がsyntheticであり、supplier資格、正式resolver、実評価、実receipt、実登録、実独立検証、実採否/成熟を判定しない。",
+    "interpreter": {
+      "input": "L8で参照されるL9 raw_utf8のJSON objectを、対応する obligation input typeへ渡す。case id/expected_materialは分岐入力にしない。",
+      "path_syntax": "AST pathはJSON文字列keyの配列。各keyを左から辿り、member不在はMISSING、明示nullはnullのまま保持する。function resultへの参照はresult keyで指定し、expected_materialは参照しない。",
+      "evaluation": "programのoutput rootを宣言順に評価する。各演算ノードはoperator_definitionsに一意に定義される汎用演算子を実行し、同一関数resultの先行rootを参照する場合はその値を使う。未定義operand/operator/outputまたは結果型違反は検証失敗。",
+      "failure": "required input absent/nullをdefault値へ置換しない。L4で要求されたがrawに供給されないowner-qualified/source-resolution材料はunknown/unclosedとして残す。",
+      "comparison": "L8 expected_material全fieldをresult recordと構造完全一致比較する。",
+      "operator_binding": "ASTに出現する全op名はoperator_definitionsに1件だけ定義され、path/fields/selection/mappingはAST operandまたは演算子定義に明記する。未定義operator/path/outputは検証失敗。"
+    },
+    "rule_program_refs": [
+      "B020-F01",
+      "B020-F02",
+      "B020-F03",
+      "B020-B01"
+    ],
+    "programs": {
+      "HELIXBRAIN-L3-020-F01": {
+        "result_type": "F01Result",
+        "output": {
+          "retained_candidate": {
+            "op": "project",
+            "value": {
+              "path": [
+                "original_candidate"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ]
+          },
+          "submitted_candidate": {
+            "op": "project",
+            "value": {
+              "path": [
+                "submitted_candidate"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ]
+          },
+          "candidate_results": {
+            "op": "compare_fields",
+            "left": {
+              "path": [
+                "original_candidate"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_candidate"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ]
+          },
+          "retained_evaluation": {
+            "op": "project",
+            "value": {
+              "path": [
+                "original_evaluation"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "owner",
+              "target",
+              "scope",
+              "method",
+              "evidence",
+              "result",
+              "failure",
+              "counterexample",
+              "unevaluated",
+              "limitation"
+            ]
+          },
+          "submitted_evaluation": {
+            "op": "project",
+            "value": {
+              "path": [
+                "submitted_evaluation"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "owner",
+              "target",
+              "scope",
+              "method",
+              "evidence",
+              "result",
+              "failure",
+              "counterexample",
+              "unevaluated",
+              "limitation"
+            ]
+          },
+          "evaluation_results": {
+            "op": "compare_fields",
+            "left": {
+              "path": [
+                "original_evaluation"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_evaluation"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "owner",
+              "target",
+              "scope",
+              "method",
+              "evidence",
+              "result",
+              "failure",
+              "counterexample",
+              "unevaluated",
+              "limitation"
+            ]
+          },
+          "submitted_target_result": {
+            "op": "compare_target",
+            "left": {
+              "path": [
+                "submitted_evaluation",
+                "target"
+              ]
+            },
+            "right": {
+              "path": [
+                "original_candidate"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ]
+          },
+          "unknown_original_evaluation_fields": {
+            "op": "collect_null_keys",
+            "value": {
+              "path": [
+                "original_evaluation"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "owner",
+              "target",
+              "scope",
+              "method",
+              "evidence",
+              "result",
+              "failure",
+              "counterexample",
+              "unevaluated",
+              "limitation"
+            ]
+          },
+          "unknown_original_candidate_fields": {
+            "op": "collect_null_keys",
+            "value": {
+              "path": [
+                "original_candidate"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ]
+          },
+          "receipt_candidate": {
+            "op": "build_receipt_candidate",
+            "candidate": [
+              "original_candidate"
+            ],
+            "evaluation": [
+              "original_evaluation"
+            ],
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "candidate_input_state": {
+            "op": "candidate_state",
+            "candidate_original": {
+              "path": [
+                "original_candidate"
+              ]
+            },
+            "candidate_submitted": {
+              "path": [
+                "submitted_candidate"
+              ]
+            },
+            "evaluation_original": {
+              "path": [
+                "original_evaluation"
+              ]
+            },
+            "evaluation_submitted": {
+              "path": [
+                "submitted_evaluation"
+              ]
+            },
+            "target_result": {
+              "result": "submitted_target_result"
+            },
+            "candidate_fields": [
+              "identity",
+              "revision",
+              "version",
+              "source",
+              "state",
+              "scope"
+            ],
+            "evaluation_fields": [
+              "identity",
+              "revision",
+              "owner",
+              "target",
+              "scope",
+              "method",
+              "evidence",
+              "result",
+              "failure",
+              "counterexample",
+              "unevaluated",
+              "limitation"
+            ]
+          },
+          "return_owner": {
+            "op": "constant",
+            "value": "LABO"
+          },
+          "claim_results": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [
+              "counterexample_removed",
+              "evaluation_revision_as_candidate_revision",
+              "missing_as_success",
+              "unevaluated_removed"
+            ]
+          },
+          "effects": {
+            "op": "false_effects",
+            "fields": [
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_BRAIN_adoption",
+              "actual_maturity_promotion",
+              "actual_operation_permission",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_acceptance"
+            ]
+          }
+        }
+      },
+      "HELIXBRAIN-L3-020-F02": {
+        "result_type": "F02Result",
+        "output": {
+          "sender_receipt_result": {
+            "op": "compare_receipt",
+            "left": {
+              "path": [
+                "original_receipt"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_sender_receipt"
+              ]
+            },
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "receiver_receipt_result": {
+            "op": "compare_receipt",
+            "left": {
+              "path": [
+                "original_receipt"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_receiver_receipt"
+              ]
+            },
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "retained_receipt_meaning": {
+            "op": "project",
+            "value": {
+              "path": [
+                "original_receipt"
+              ]
+            },
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "submitted_sender_receipt": {
+            "op": "project_nullable",
+            "value": {
+              "path": [
+                "submitted_sender_receipt"
+              ]
+            },
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "submitted_receiver_receipt": {
+            "op": "project_nullable",
+            "value": {
+              "path": [
+                "submitted_receiver_receipt"
+              ]
+            },
+            "fields": [
+              "source",
+              "candidate_identity",
+              "candidate_revision",
+              "candidate_version",
+              "evaluation_identity",
+              "evaluation_revision",
+              "scope"
+            ]
+          },
+          "state_results": {
+            "op": "compare_nested_maps",
+            "left": {
+              "path": [
+                "original_states"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_states"
+              ]
+            },
+            "field": "state",
+            "owner_field": "owner",
+            "keys": [
+              "evaluation",
+              "registration",
+              "independent_verification",
+              "adoption"
+            ],
+            "fields": [
+              "owner",
+              "state"
+            ]
+          },
+          "retained_states": {
+            "op": "project_nested_maps",
+            "value": {
+              "path": [
+                "original_states"
+              ]
+            },
+            "fields": [
+              "owner",
+              "state"
+            ],
+            "keys": [
+              "evaluation",
+              "registration",
+              "independent_verification",
+              "adoption"
+            ]
+          },
+          "submitted_states": {
+            "op": "project_nested_maps",
+            "value": {
+              "path": [
+                "submitted_states"
+              ]
+            },
+            "fields": [
+              "owner",
+              "state"
+            ],
+            "keys": [
+              "evaluation",
+              "registration",
+              "independent_verification",
+              "adoption"
+            ]
+          },
+          "adoption_state": {
+            "op": "read_nested",
+            "path": [
+              "original_states",
+              "adoption",
+              "state"
+            ]
+          },
+          "return_owners": {
+            "op": "constant",
+            "value": {
+              "evaluation_source": "LABO",
+              "registration": "HELIX-OS",
+              "adoption": "BRAIN-change"
+            }
+          },
+          "claim_results": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [
+              "AI_generated_established",
+              "LABO_pass_mature",
+              "OS_registration_inferred",
+              "receipt_adopted",
+              "single_success_established"
+            ]
+          },
+          "effects": {
+            "op": "false_effects",
+            "fields": [
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_BRAIN_adoption",
+              "actual_maturity_promotion",
+              "actual_operation_permission",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_acceptance"
+            ]
+          }
+        }
+      },
+      "HELIXBRAIN-L3-020-F03": {
+        "result_type": "F03Result",
+        "output": {
+          "selection": {
+            "op": "get",
+            "path": [
+              "infrastructure_maturity_selected"
+            ]
+          },
+          "maturity_result": {
+            "op": "maturity_result",
+            "selection": [
+              "infrastructure_maturity_selected"
+            ],
+            "original": [
+              "original_maturity"
+            ],
+            "submitted": [
+              "submitted_maturity"
+            ],
+            "candidate": [
+              "candidate"
+            ],
+            "compared_fields": [
+              "identity",
+              "revision",
+              "owner",
+              "candidate_identity",
+              "candidate_revision",
+              "scope",
+              "state",
+              "evidence",
+              "limitation"
+            ],
+            "binding_fields": [
+              "candidate_identity",
+              "candidate_revision",
+              "scope"
+            ],
+            "priority": [
+              "selection_false",
+              "selection_absent_or_null",
+              "original_record_absent_or_null",
+              "submitted_record_absent_or_null",
+              "record_conflict",
+              "candidate_binding_conflict",
+              "corresponding"
+            ],
+            "binding_mapping": [
+              [
+                "candidate_identity",
+                "identity"
+              ],
+              [
+                "candidate_revision",
+                "revision"
+              ],
+              [
+                "scope",
+                "scope"
+              ]
+            ]
+          },
+          "retained_maturity": {
+            "op": "conditional",
+            "arms": [
+              {
+                "when": {
+                  "op": "is_true",
+                  "path": [
+                    "infrastructure_maturity_selected"
+                  ]
+                },
+                "value": {
+                  "op": "project_nullable",
+                  "value": {
+                    "path": [
+                      "original_maturity"
+                    ]
+                  },
+                  "fields": [
+                    "identity",
+                    "revision",
+                    "owner",
+                    "candidate_identity",
+                    "candidate_revision",
+                    "scope",
+                    "state",
+                    "evidence",
+                    "limitation"
+                  ]
+                }
+              },
+              {
+                "when": {
+                  "op": "otherwise"
+                },
+                "value": null
+              }
+            ]
+          },
+          "submitted_maturity": {
+            "op": "conditional",
+            "arms": [
+              {
+                "when": {
+                  "op": "is_true",
+                  "path": [
+                    "infrastructure_maturity_selected"
+                  ]
+                },
+                "value": {
+                  "op": "project_nullable",
+                  "value": {
+                    "path": [
+                      "submitted_maturity"
+                    ]
+                  },
+                  "fields": [
+                    "identity",
+                    "revision",
+                    "owner",
+                    "candidate_identity",
+                    "candidate_revision",
+                    "scope",
+                    "state",
+                    "evidence",
+                    "limitation"
+                  ]
+                }
+              },
+              {
+                "when": {
+                  "op": "otherwise"
+                },
+                "value": null
+              }
+            ]
+          },
+          "maturity_requirement": {
+            "op": "conditional",
+            "arms": [
+              {
+                "when": {
+                  "op": "is_true",
+                  "path": [
+                    "infrastructure_maturity_selected"
+                  ]
+                },
+                "value": "INFRA017_selected_candidate_only"
+              },
+              {
+                "when": {
+                  "op": "is_absent_or_null",
+                  "path": [
+                    "infrastructure_maturity_selected"
+                  ]
+                },
+                "value": "selection_unknown"
+              },
+              {
+                "when": {
+                  "op": "otherwise"
+                },
+                "value": "none_non_selected"
+              }
+            ]
+          },
+          "candidate_maturity_state": {
+            "op": "candidate_maturity_state",
+            "selection": [
+              "infrastructure_maturity_selected"
+            ],
+            "maturity_result": [
+              "maturity_result"
+            ],
+            "original": [
+              "original_maturity"
+            ],
+            "required_original_fields": [
+              "identity",
+              "revision",
+              "owner",
+              "candidate_identity",
+              "candidate_revision",
+              "scope",
+              "state",
+              "evidence",
+              "limitation"
+            ]
+          },
+          "accepted_or_mature_established": {
+            "op": "constant",
+            "value": false
+          },
+          "return_owners": {
+            "op": "conditional",
+            "arms": [
+              {
+                "when": {
+                  "op": "is_false",
+                  "path": [
+                    "infrastructure_maturity_selected"
+                  ]
+                },
+                "value": []
+              },
+              {
+                "when": {
+                  "op": "otherwise"
+                },
+                "value": [
+                  "BRAIN-INFRA017",
+                  "LABO"
+                ]
+              }
+            ]
+          },
+          "claim_results": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [
+              "one_success_universal",
+              "maturity_missing_filled",
+              "non_selected_requires_all_INFRA"
+            ]
+          },
+          "effects": {
+            "op": "false_effects",
+            "fields": [
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_BRAIN_adoption",
+              "actual_maturity_promotion",
+              "actual_operation_permission",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_acceptance"
+            ]
+          },
+          "submitted_maturity_result": {
+            "op": "maturity_submission_result",
+            "selection": [
+              "infrastructure_maturity_selected"
+            ],
+            "original": [
+              "original_maturity"
+            ],
+            "submitted": [
+              "submitted_maturity"
+            ],
+            "compared_fields": [
+              "identity",
+              "revision",
+              "owner",
+              "candidate_identity",
+              "candidate_revision",
+              "scope",
+              "state",
+              "evidence",
+              "limitation"
+            ],
+            "priority": [
+              "selection_false",
+              "selection_absent_or_null",
+              "original_record_absent_or_null",
+              "submitted_record_absent_or_null",
+              "record_conflict",
+              "corresponding"
+            ]
+          }
+        }
+      },
+      "HELIXBRAIN-L3-020-B01": {
+        "result_type": "B01Result",
+        "output": {
+          "owner_results": {
+            "op": "compare_fields",
+            "left": {
+              "path": [
+                "original_owners"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_owners"
+              ]
+            },
+            "fields": [
+              "candidate_and_adoption",
+              "evaluation_original",
+              "registration_original"
+            ]
+          },
+          "needed_contract_reference_results": {
+            "op": "contract_selection",
+            "original": {
+              "path": [
+                "original_contract_references"
+              ]
+            },
+            "submitted": {
+              "path": [
+                "submitted_contract_references"
+              ]
+            },
+            "always": [
+              "007",
+              "008"
+            ],
+            "when_composition_selected": [
+              "009"
+            ],
+            "when_failure_knowledge_selected": [
+              "010"
+            ],
+            "field_order": [
+              "identity",
+              "revision",
+              "scope"
+            ],
+            "comparison_order": [
+              "identity",
+              "revision",
+              "scope"
+            ],
+            "missing_precedence": [
+              "map_absent",
+              "selected_entry_absent",
+              "field_absent"
+            ],
+            "null_precedence": [
+              "map_null",
+              "selected_entry_null",
+              "field_null"
+            ],
+            "decision_order": [
+              "missing_if_any_required_field_absent",
+              "unknown_if_map_entry_or_required_field_is_null",
+              "content_conflict_if_any_present_value_differs",
+              "content_corresponding_in_fixture_if_all_present_values_equal"
+            ],
+            "unselected_order": "unselected_contractsはselectors配列の宣言順（009、010）に、各選択flagがboolean falseのslotだけを返す。007/008は常時選択対象のためこの配列には入らない。",
+            "fields": [
+              "identity",
+              "revision",
+              "scope"
+            ],
+            "composition_selected_path": [
+              "composition_candidate_selected"
+            ],
+            "failure_selected_path": [
+              "failure_knowledge_selected"
+            ],
+            "expected_identity_by_key": {
+              "007": "HELIXBRAIN-L2-007",
+              "008": "HELIXBRAIN-L2-008",
+              "009": "HELIXBRAIN-L2-009",
+              "010": "HELIXBRAIN-L2-010"
+            },
+            "expected_identity_source": {
+              "l3_ref": "HELIXBRAIN-L3-020-B01",
+              "l4_ref": "HELIXBRAIN-L4-020-B01",
+              "l4_pointer": "/contracts/3",
+              "l2_requirements_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+              "l2_sections": {
+                "007": [
+                  150,
+                  159
+                ],
+                "008": [
+                  161,
+                  170
+                ],
+                "009": [
+                  172,
+                  181
+                ],
+                "010": [
+                  183,
+                  192
+                ]
+              },
+              "derivation": "L3/L4 B01はL2-007/008/009/010の該当入力条件を照合する。L2要件IDをslot keyに対応付け、各slotに同じIDのHELIXBRAIN-L2 identityを要求する。各sideのidentityが欠落/nullなら既存missing/unknown優先を維持し、その他のrequired fieldsがすべて存在し非nullで左右が一致しても、左右のidentityがこのsource-bound identityと一致しないslotはcontent_conflictとする。これは参照先identityの比較であり資格・実source bindingを証明しない。"
+            }
+          },
+          "unselected_contracts": {
+            "op": "contract_unselected",
+            "always": [
+              "007",
+              "008"
+            ],
+            "conditional": [
+              {
+                "if": {
+                  "path": [
+                    "composition_candidate_selected"
+                  ],
+                  "equals": true
+                },
+                "key": "009"
+              },
+              {
+                "if": {
+                  "path": [
+                    "failure_knowledge_selected"
+                  ],
+                  "equals": true
+                },
+                "key": "010"
+              }
+            ],
+            "selectors": [
+              {
+                "key": "009",
+                "path": [
+                  "composition_candidate_selected"
+                ]
+              },
+              {
+                "key": "010",
+                "path": [
+                  "failure_knowledge_selected"
+                ]
+              }
+            ]
+          },
+          "evaluation_record_result": {
+            "op": "compare_record",
+            "left": {
+              "path": [
+                "original_evaluation_record"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_evaluation_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "owner",
+              "revision",
+              "state"
+            ]
+          },
+          "registration_record_result": {
+            "op": "compare_record",
+            "left": {
+              "path": [
+                "original_registration_record"
+              ]
+            },
+            "right": {
+              "path": [
+                "submitted_registration_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "owner",
+              "revision",
+              "state"
+            ]
+          },
+          "retained_evaluation_record": {
+            "op": "project",
+            "value": {
+              "path": [
+                "original_evaluation_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "state",
+              "owner"
+            ]
+          },
+          "submitted_evaluation_record": {
+            "op": "project",
+            "value": {
+              "path": [
+                "submitted_evaluation_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "state",
+              "owner"
+            ]
+          },
+          "retained_registration_record": {
+            "op": "project",
+            "value": {
+              "path": [
+                "original_registration_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "state",
+              "owner"
+            ]
+          },
+          "submitted_registration_record": {
+            "op": "project",
+            "value": {
+              "path": [
+                "submitted_registration_record"
+              ]
+            },
+            "fields": [
+              "identity",
+              "revision",
+              "state",
+              "owner"
+            ]
+          },
+          "candidate_state": {
+            "op": "get",
+            "path": [
+              "candidate_state"
+            ]
+          },
+          "receipt_state": {
+            "op": "constant",
+            "value": "candidate_received_fixture_only"
+          },
+          "return_owners": {
+            "op": "constant",
+            "value": {
+              "evaluation_original": "LABO",
+              "registration_original": "HELIX-OS",
+              "candidate_and_adoption": "BRAIN-change"
+            }
+          },
+          "claim_results": {
+            "op": "claim_results",
+            "value": {
+              "path": [
+                "claims"
+              ]
+            },
+            "fields": [
+              "BRAIN_registration_original_copy",
+              "BRAIN_self_evaluation",
+              "composition_established_pattern"
+            ]
+          },
+          "effects": {
+            "op": "false_effects",
+            "fields": [
+              "actual_LABO_evaluation",
+              "actual_OS_registration",
+              "actual_BRAIN_adoption",
+              "actual_maturity_promotion",
+              "actual_operation_permission",
+              "actual_authority",
+              "actual_implementation_ready",
+              "actual_acceptance"
+            ]
+          }
+        }
+      }
+    },
+    "program_selection": {
+      "rule": "L8のL3 requirement referenceが示す契約のASTを選択する。各case IDは計算で読まず、raw rootの値とpresenceのみが値分岐に使われる。"
+    },
+    "output_contract": "Each program must return exactly the declared Result record keys and types. L8 expected_material is an independent oracle and never read by the interpreter."
+  },
+  "l4_contract_bindings": [
+    {
+      "contract_id": "HELIXBRAIN-L4-020-F01",
+      "obligation": "LABO評価対象/評価scope/方法/evidence/結果/failure/反例/未評価範囲を候補source/version/evaluation identityへ照合し、007/008のprovenance/identity/stateを保持したBRAIN候補入力とreceiptを返す。",
+      "comparison_rules": [
+        "評価自身のrevisionと評価対象候補のrevisionを混同しない。",
+        "反例/未評価/failureを消去・成功補完しない。不一致/unknownは当該候補を止めLABOへ返す。",
+        "原候補の未定fieldをunknown_original_candidate_fieldsへ明示。null同士の内容対応をexact対象一致と呼ばない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-020-F02",
+      "obligation": "同source/version/evaluation identityの受領を保持し、単一実績/AI生成/評価resultだけで確立Patternへ昇格しない。評価scope/限界を保ちOS登録/振分けとBRAIN独立検証後まで採否・成熟状態を先取りしない。",
+      "comparison_rules": [
+        "受領/評価result/一実績/AI生成だけでadopted/matureにしない。",
+        "OS登録原本unknownはunknownのまま。BRAINが推測・生成しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-020-F03",
+      "obligation": "Infrastructure candidateのmaturityを扱う場合だけINFRA-017のstate/evidenceを同対象revisionへ結び、不明/欠落ではaccepted/matureへ進めない。非該当入力へ全Infrastructure知識/実資源稼働を要求しない。",
+      "comparison_rules": [
+        "該当候補のmaturityだけINFRA017へ結ぶ。非該当へ全Infrastructure知識/資源実稼働を要求しない。",
+        "一成功/欠落補完でuniversal/accepted/matureへ昇格しない。",
+        "原maturity unknownと提出maturity欠落を別結果にし、submitted_maturity_resultも保持する。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "contract_id": "HELIXBRAIN-L4-020-B01",
+      "obligation": "LABOは評価、OSは登録/振分け状態正本、BRAINは候補知識/採否状態を保持する。接続成功からLABOの評価事実やOSの登録stateを生成/訂正せず、L2-007/008/009/010の該当入力条件を照合する。",
+      "comparison_rules": [
+        "評価正本はLABO、登録/振分け正本はOS。BRAINは候補と採否状態を持つ。",
+        "接続成功から自己評価/登録正本複製/構成候補の確立を生成しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "legacy_change_record": {
+    "reuse": "reference_only; semantic re-derivation",
+    "preserved": [
+      "source/evaluation/candidate identity and revision binding",
+      "counterexample/failure/unevaluated limitations",
+      "LABO/OS/BRAIN owner separation",
+      "single success does not establish universal/mature"
+    ],
+    "changed": [
+      "current typed field and condition comparison described as finite logical source packet projection"
+    ],
+    "reason": "approved L3/L10 and current L4/L9 define the limited downstream contract; historical runtime behavior is not promoted."
+  },
+  "unclosed": [
+    "全source資格・必要source集合・owner-qualified binding/resolverは未成立。",
+    "L2-007/008/009/010と選択条件付きINFRA-017の完全契約接続は部分的。原caseの範囲外は未観測であり一般保証しない。",
+    "実LABO評価、両端receipt、OS登録、BRAIN独立検証/採否/成熟、実codec・TDD・CI・L11は未成立。",
+    "L4/F03では原入力fieldにscope/owner不足のケースがあるため相互一致だけでsource資格へ昇格しない。",
+    "有限ASTは宣言済み4関数のfixture投影に対する入力→全返却式を定義する。supplier資格、一般source集合、正式resolver、実評価・receipt・登録・独立検証・採否/成熟は未成立のまま。",
+    "F03の返却token BRAIN-INFRA017はL9合成expectedにある表示値で、L4/L10の「INFRA-017 maturity」「BRAIN maturity」から現実の宛先を確定しない。owner-qualified exact binding/resolverは未成立。",
+    "B01のreturn_ownersはLABO/HELIX-OS/BRAIN-changeの固定責務ラベル表示に限る。failure reason/field別owner routingとowner別返却の論理・実体は本L5で未実現であり、L4/L10が戻し先を述べる箇所の個別分岐を追加したとは主張しない。"
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "function_contracts": [
+    {
+      "id": "HELIXBRAIN-L5-020-F01",
+      "function": "compare_labo_candidate_and_evaluation",
+      "signature": "compare_labo_candidate_and_evaluation(raw: F01Input) -> F01Result",
+      "input_type": "F01Input",
+      "reads": [
+        "claims",
+        "original_candidate",
+        "original_evaluation",
+        "submitted_candidate",
+        "submitted_evaluation"
+      ],
+      "returns": [
+        "F01Result.candidate_results",
+        "F01Result.evaluation_results",
+        "F01Result.retained_candidate",
+        "F01Result.submitted_candidate",
+        "F01Result.retained_evaluation",
+        "F01Result.submitted_evaluation",
+        "F01Result.submitted_target_result",
+        "F01Result.unknown_original_evaluation_fields",
+        "F01Result.receipt_candidate",
+        "F01Result.candidate_input_state",
+        "F01Result.return_owner",
+        "F01Result.claim_results",
+        "F01Result.effects",
+        "F01Result.unknown_original_candidate_fields"
+      ],
+      "rule_refs": [
+        "HELIXBRAIN-L3-020-F01",
+        "B020-PRESENCE",
+        "B020-DEEP-EQUAL",
+        "B020-CLAIM-BOUNDARY",
+        "B020-OWNER-BOUNDARY"
+      ],
+      "branches": [
+        "分岐と返却はalgorithm_ast_refが指すASTとoperator_definitionsだけから導出する。識別子lookup、期待値lookup、fixture ID分岐を行わない。"
+      ],
+      "return_to": "LABO",
+      "output_literal_domains": {
+        "comparison": "Comparison",
+        "owner": "OwnerReturn",
+        "effects": "各L9 fixtureのfalse固定出力。実作用を示さない。"
+      },
+      "algorithm_ast_ref": "/pure_reference_semantics/programs/HELIXBRAIN-L3-020-F01",
+      "input_projection": "parse(SourcePacket.raw_utf8)",
+      "result_schema_ref": "/type_definitions/8",
+      "raw_input_schema_ref": "/type_definitions/7",
+      "all_return_fields_required": true
+    },
+    {
+      "id": "HELIXBRAIN-L5-020-F02",
+      "function": "compare_receipts_and_owner_states",
+      "signature": "compare_receipts_and_owner_states(raw: F02Input) -> F02Result",
+      "input_type": "F02Input",
+      "reads": [
+        "claims",
+        "original_receipt",
+        "original_states",
+        "submitted_receiver_receipt",
+        "submitted_sender_receipt",
+        "submitted_states"
+      ],
+      "returns": [
+        "F02Result.sender_receipt_result",
+        "F02Result.receiver_receipt_result",
+        "F02Result.retained_receipt_meaning",
+        "F02Result.submitted_sender_receipt",
+        "F02Result.submitted_receiver_receipt",
+        "F02Result.state_results",
+        "F02Result.retained_states",
+        "F02Result.submitted_states",
+        "F02Result.adoption_state",
+        "F02Result.return_owners",
+        "F02Result.claim_results",
+        "F02Result.effects"
+      ],
+      "rule_refs": [
+        "HELIXBRAIN-L3-020-F02",
+        "B020-PRESENCE",
+        "B020-DEEP-EQUAL",
+        "B020-CLAIM-BOUNDARY",
+        "B020-OWNER-BOUNDARY"
+      ],
+      "branches": [
+        "分岐と返却はalgorithm_ast_refが指すASTとoperator_definitionsだけから導出する。識別子lookup、期待値lookup、fixture ID分岐を行わない。"
+      ],
+      "return_to": "LABO/HELIX-OS/BRAIN-change",
+      "output_literal_domains": {
+        "comparison": "Comparison",
+        "owner": "OwnerReturn",
+        "effects": "各L9 fixtureのfalse固定出力。実作用を示さない。"
+      },
+      "algorithm_ast_ref": "/pure_reference_semantics/programs/HELIXBRAIN-L3-020-F02",
+      "input_projection": "parse(SourcePacket.raw_utf8)",
+      "result_schema_ref": "/type_definitions/10",
+      "raw_input_schema_ref": "/type_definitions/9",
+      "all_return_fields_required": true
+    },
+    {
+      "id": "HELIXBRAIN-L5-020-F03",
+      "function": "resolve_selected_infrastructure_maturity",
+      "signature": "resolve_selected_infrastructure_maturity(raw: F03Input) -> F03Result",
+      "input_type": "F03Input",
+      "reads": [
+        "candidate",
+        "claims",
+        "infrastructure_maturity_selected",
+        "original_maturity",
+        "submitted_maturity"
+      ],
+      "returns": [
+        "F03Result.selection",
+        "F03Result.maturity_result",
+        "F03Result.retained_maturity",
+        "F03Result.submitted_maturity",
+        "F03Result.maturity_requirement",
+        "F03Result.candidate_maturity_state",
+        "F03Result.accepted_or_mature_established",
+        "F03Result.return_owners",
+        "F03Result.claim_results",
+        "F03Result.effects",
+        "F03Result.submitted_maturity_result"
+      ],
+      "rule_refs": [
+        "HELIXBRAIN-L3-020-F03",
+        "B020-PRESENCE",
+        "B020-DEEP-EQUAL",
+        "B020-CLAIM-BOUNDARY",
+        "B020-OWNER-BOUNDARY"
+      ],
+      "branches": [
+        "分岐と返却はalgorithm_ast_refが指すASTとoperator_definitionsだけから導出する。識別子lookup、期待値lookup、fixture ID分岐を行わない。"
+      ],
+      "return_to": "BRAIN-INFRA017/LABO",
+      "output_literal_domains": {
+        "comparison": "Comparison",
+        "owner": "OwnerReturn",
+        "effects": "各L9 fixtureのfalse固定出力。実作用を示さない。"
+      },
+      "algorithm_ast_ref": "/pure_reference_semantics/programs/HELIXBRAIN-L3-020-F03",
+      "input_projection": "parse(SourcePacket.raw_utf8)",
+      "result_schema_ref": "/type_definitions/12",
+      "raw_input_schema_ref": "/type_definitions/11",
+      "all_return_fields_required": true
+    },
+    {
+      "id": "HELIXBRAIN-L5-020-B01",
+      "function": "compare_original_owners_and_required_contracts",
+      "signature": "compare_original_owners_and_required_contracts(raw: B01Input) -> B01Result",
+      "input_type": "B01Input",
+      "reads": [
+        "candidate_state",
+        "claims",
+        "composition_candidate_selected",
+        "failure_knowledge_selected",
+        "original_contract_references",
+        "original_evaluation_record",
+        "original_owners",
+        "original_registration_record",
+        "submitted_contract_references",
+        "submitted_evaluation_record",
+        "submitted_owners",
+        "submitted_registration_record"
+      ],
+      "returns": [
+        "B01Result.owner_results",
+        "B01Result.needed_contract_reference_results",
+        "B01Result.unselected_contracts",
+        "B01Result.evaluation_record_result",
+        "B01Result.registration_record_result",
+        "B01Result.retained_evaluation_record",
+        "B01Result.submitted_evaluation_record",
+        "B01Result.retained_registration_record",
+        "B01Result.submitted_registration_record",
+        "B01Result.candidate_state",
+        "B01Result.receipt_state",
+        "B01Result.return_owners",
+        "B01Result.claim_results",
+        "B01Result.effects"
+      ],
+      "rule_refs": [
+        "HELIXBRAIN-L3-020-B01",
+        "B020-PRESENCE",
+        "B020-DEEP-EQUAL",
+        "B020-CLAIM-BOUNDARY",
+        "B020-OWNER-BOUNDARY"
+      ],
+      "branches": [
+        "分岐と返却はalgorithm_ast_refが指すASTとoperator_definitionsだけから導出する。識別子lookup、期待値lookup、fixture ID分岐を行わない。"
+      ],
+      "return_to": "LABO/HELIX-OS/BRAIN-change",
+      "output_literal_domains": {
+        "comparison": "Comparison",
+        "owner": "OwnerReturn",
+        "effects": "各L9 fixtureのfalse固定出力。実作用を示さない。"
+      },
+      "algorithm_ast_ref": "/pure_reference_semantics/programs/HELIXBRAIN-L3-020-B01",
+      "input_projection": "parse(SourcePacket.raw_utf8)",
+      "result_schema_ref": "/type_definitions/14",
+      "raw_input_schema_ref": "/type_definitions/13",
+      "all_return_fields_required": true
+    }
+  ],
+  "finite_rule_catalog": [
+    {
+      "id": "B020-PRESENCE",
+      "semantics_ref": "/operator_definitions/27",
+      "basis": "L3/L4契約と原L9 raw/expected。演算定義の再掲ではなく参照。"
+    },
+    {
+      "id": "B020-DEEP-EQUAL",
+      "semantics_ref": "/operator_definitions/10",
+      "basis": "L3/L4契約と原L9 raw/expected。演算定義の再掲ではなく参照。"
+    },
+    {
+      "id": "B020-CLAIM-BOUNDARY",
+      "semantics_ref": "/operator_definitions/5",
+      "basis": "L3/L4契約と原L9 raw/expected。演算定義の再掲ではなく参照。"
+    },
+    {
+      "id": "B020-OWNER-BOUNDARY",
+      "semantics_ref": "/operator_definitions/18",
+      "basis": "L3/L4契約と原L9 raw/expected。演算定義の再掲ではなく参照。"
+    }
+  ],
+  "expression_language": {
+    "version": "B020-RULE-1",
+    "root": "input is the JSON object parsed from the selected L9 raw_utf8; no expected object is an input.",
+    "path_representation": "path is an array of literal object keys; missing member yields the MISSING sentinel, explicit null remains JSON null.",
+    "operator_names": [
+      "build_receipt_candidate",
+      "candidate_maturity_state",
+      "candidate_state",
+      "claim_results",
+      "collect_null_keys",
+      "compare_fields",
+      "compare_nested_maps",
+      "compare_receipt",
+      "compare_record",
+      "compare_target",
+      "conditional",
+      "constant",
+      "contract_selection",
+      "contract_unselected",
+      "false_effects",
+      "get",
+      "maturity_result",
+      "maturity_submission_result",
+      "project",
+      "project_nested_maps",
+      "project_nullable",
+      "read_nested"
+    ],
+    "control": "ASTはresult object内でrootごとに評価する。conditional armsは配列順に評価し、最初にtrueとなるarmを採用する。maturity_resultとcontract_selectionの優先順、必須field順はAST/演算子定義に明記する。",
+    "no_dynamic_rules": "No expression may inspect case id, packet identity, L9 expected material, or fixture ordinal."
+  },
+  "operator_definitions": [
+    {
+      "name": "get",
+      "inputs": [
+        "JsonValue",
+        "path<string>"
+      ],
+      "output": "JsonValue | MISSING",
+      "definition": "pathを左から辿り、object memberが無ければMISSINGを返す。nullをMISSINGに変換しない。"
+    },
+    {
+      "name": "project",
+      "inputs": [
+        "object",
+        "ordered_field_names"
+      ],
+      "output": "object",
+      "definition": "存在する指定memberのみを指定順に値ごとコピーする。存在しないmemberは出力しない。nullはnullのまま保つ。"
+    },
+    {
+      "name": "compare_fields",
+      "inputs": [
+        "left_object",
+        "right_object",
+        "ordered_field_names",
+        "null_policy"
+      ],
+      "output": "object<string,Comparison>",
+      "definition": "指定順の各fieldを個別に比較する。両側absentはunknown、片側のみabsentはmissing。両側presentならJSON kindを含むdeep equalityで比較する。null/nullはこのfield投影上の対応を示せるが、正確な対象一致・資格成立を意味しない。",
+      "field_presence_rules": {
+        "both_absent": "unknown",
+        "exactly_one_absent": "missing",
+        "both_present": "strict_deep_equal_then_corresponding_otherwise_conflict",
+        "explicit_null_values": "null_is_retained_as_a_JSON_value; null_null_can_correspond_in_this_field_projection_only; this_is_not_exact_target_or_source_qualification"
+      },
+      "operand_root_rules": {
+        "either_operand_absent": "missing",
+        "either_operand_null": "unknown",
+        "either_operand_non_object": "content_conflict"
+      }
+    },
+    {
+      "name": "collect_null_keys",
+      "inputs": [
+        "object",
+        "ordered_field_names"
+      ],
+      "output": "array<string>",
+      "definition": "指定key順に、memberが存在し値がnullのkeyだけを返す。absent keyを含めない。"
+    },
+    {
+      "name": "collect_missing_keys",
+      "inputs": [
+        "object",
+        "ordered_field_names"
+      ],
+      "output": "array<string>",
+      "definition": "指定key順に、memberが存在しないkeyだけを返す。null keyを含めない。"
+    },
+    {
+      "name": "claim_results",
+      "inputs": [
+        "claims_object",
+        "ordered_claim_names"
+      ],
+      "output": "object<string,string>",
+      "definition": "宣言順に各claimを読む。boolean false→none、boolean true→rejected、absent/null/non-boolean→unknown。claimの拒否/未判定表示であり、外部操作やauthorityを変更しない。"
+    },
+    {
+      "name": "conditional",
+      "inputs": [
+        "condition AST",
+        "ordered arms"
+      ],
+      "output": "JsonValue",
+      "definition": "armsを先頭から評価し、trueとなる最初の条件に対応するvalueだけを返す。該当なしは明示else arm。"
+    },
+    {
+      "name": "owner_route",
+      "inputs": [
+        "missing_or_conflict_fields",
+        "owner_map"
+      ],
+      "output": "object | array",
+      "definition": "不一致fieldからowner_mapへ対応する候補を安定順で集める。入力不足のowner値を合成せず、L4/L10で明示された固定責務名だけを候補として返す。"
+    },
+    {
+      "name": "false_effects",
+      "inputs": [
+        "declared_effect_keys"
+      ],
+      "output": "object<string,boolean>",
+      "definition": "宣言された各effect keyを記載順にboolean falseで出力する。これは副作用なしの論理投影であり、外部状態を観測した証拠ではない。"
+    },
+    {
+      "name": "contract_selection",
+      "inputs": [
+        "original_contract_references",
+        "submitted_contract_references",
+        "composition_candidate_selected",
+        "failure_knowledge_selected",
+        "expected_identity_by_key"
+      ],
+      "output": "object + array",
+      "definition": "007/008を常時選択し、composition_candidate_selectedがboolean trueなら009、failure_knowledge_selectedがboolean trueなら010を加える。map/選択entryがabsentならmissing、明示nullならunknown。object entryはidentity→revision→scope順に比較し、field absentはmissing、field nullはunknown、左右present値の相違はcontent_conflictとする。左右のrequired fieldがすべてpresentかつ相互に等値の場合も、左右identityをASTのexpected_identity_by_keyへ照合し、片側でもsource-bound slot identityと異なればcontent_conflict、両側が一致した場合だけcontent_corresponding_in_fixtureとする。missing、unknown、content_conflictの優先順を維持する。非選択entryはselectorsの宣言順に別配列へ出し、値や資格を作らない。",
+      "selected_reference_presence_rules": {
+        "map_absent": "missing",
+        "map_null": "unknown",
+        "selected_entry_absent": "missing",
+        "selected_entry_null": "unknown",
+        "selected_entry_object": "compare_required_fields"
+      },
+      "required_field_rules": {
+        "field_absent": "missing",
+        "field_null": "unknown",
+        "present_equal": "content_corresponding_in_fixture",
+        "present_unequal": "content_conflict"
+      },
+      "aggregate_rule": {
+        "all_required_fields_present_and_equal": "content_corresponding_in_fixture",
+        "otherwise_precedence": [
+          "missing",
+          "unknown",
+          "content_conflict"
+        ]
+      },
+      "selected_reference_identity_rule": {
+        "input": "AST expected_identity_by_key metadata; keys are the selected slot keys",
+        "rule": "missing/null presence outcomes take precedence; otherwise both original and submitted identity must equal the metadata value for that slot before corresponding is returned",
+        "failure": "either present identity differs from the metadata value => content_conflict, even when both sides contain the same wrong identity",
+        "boundary": "有限L2-007/008/009/010 reference identity matching only; does not establish source qualification or formal binding"
+      }
+    },
+    {
+      "name": "deep_equal",
+      "inputs": [
+        "JsonValue",
+        "JsonValue"
+      ],
+      "output": "boolean",
+      "definition": "JSON kindを先に比較する。booleanとnumberは異なるkind。JSON number同士は数値等値（1と1.0は等値）。nullはnullのみ。arrayは長さ・順序・各要素を再帰比較。objectはkey集合完全一致後、各値を再帰比較。MISSINGはJSON値ではなくnullとも不一致。"
+    },
+    {
+      "name": "compare_target",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "target absent/null recordはmissing。target/candidateのidentity,revision,version,source,state,scopeにfield absent/nullがあればcandidate_target_information_unknown。すべてpresentならfieldごとにstrict deep_equalし、全一致same_exact_candidate_in_fixture、差異different_candidate。"
+    },
+    {
+      "name": "candidate_state",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "すべての必須candidate/evaluation fieldが両側presentかつstrict deep_equalで対応し、target_result=same_exact_candidate_in_fixtureの時だけcontent_corresponding_candidate_only。それ以外はunknown_held。candidate fieldはidentity/revision/version/source/state/scope、evaluation fieldはidentity/revision/owner/target/scope/method/evidence/result/failure/counterexample/unevaluated/limitation。"
+    },
+    {
+      "name": "compare_receipt",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "receipt rootのどちらかがabsentまたは明示nullならmissing。両方objectなら宣言field順で比較する。field投影はcompare_fieldsのpresence/equality規則を用い、全field対応の場合だけcontent_corresponding_in_fixture、その他はmissing、unknown、content_conflictの順で集約する。null/null対応はfixture表示だけで資格を示さない。",
+      "root_presence_rules": {
+        "either_receipt_absent": "missing",
+        "either_receipt_null": "missing",
+        "both_receipts_objects": "compare_declared_fields_then_aggregate"
+      },
+      "aggregate_rule": {
+        "all_fields_corresponding": "content_corresponding_in_fixture",
+        "otherwise_precedence": [
+          "missing",
+          "unknown",
+          "content_conflict"
+        ]
+      }
+    },
+    {
+      "name": "compare_nested_maps",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "元と提出のmapについてevaluation、registration、independent_verification、adoptionの固定順で各entryのowner/stateを比較する。entryまたはfieldのabsent/nullを区別し、field値のdeep equalityを使う。"
+    },
+    {
+      "name": "project_nested_maps",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "For each source map key in source order, project fields owner then state, retaining null and omitting only absent members."
+    },
+    {
+      "name": "project_nullable",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "If source is absent, return explicit MISSING sentinel internally; if null, return null; if object, project the declared ordered field list."
+    },
+    {
+      "name": "read_nested",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "read path preserving MISSING/null"
+    },
+    {
+      "name": "fixed_owner_roles",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "Return mapping evaluation_source=LABO, registration=HELIX-OS, adoption=BRAIN-change. These are responsibility labels from L4/L10, not source qualification or authority credentials."
+    },
+    {
+      "name": "is_false",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "True only for a JSON boolean false."
+    },
+    {
+      "name": "is_true",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "True only for a JSON boolean true."
+    },
+    {
+      "name": "is_absent_or_null",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "True iff path resolves to MISSING or JSON null; false for every other JSON value including false, 0, empty string, empty array, empty object."
+    },
+    {
+      "name": "otherwise",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "True only after every earlier conditional arm did not match."
+    },
+    {
+      "name": "same_as",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "Copy the named output root in the same function result; no re-evaluation and no source promotion."
+    },
+    {
+      "name": "contract_unselected",
+      "inputs": [
+        "AST operands"
+      ],
+      "output": "as indicated by use site",
+      "definition": "009,010の順に、それぞれの選択flagがboolean falseのときだけunselected_contractsへ出力する。flagのabsent/nullはunknownであり、そのkeyを不要扱いする根拠にしない。"
+    },
+    {
+      "name": "maturity_result",
+      "inputs": [
+        "as named by AST"
+      ],
+      "output": "as declared at use site",
+      "definition": "selection=false→not_selected_not_required; selection absent/null→unknown_selection; original record absent/null又はoriginal maturity必須field absent/null→unknown_original_maturity_information; submitted record absent/null→missing; original/submittedのdeclared maturity field差→content_conflict; 両側一致後にoriginal maturity candidate_identity/revision/scopeをcandidate identity/revision/scopeへ対応比較し、差があればdifferent_candidate_target、全一致ならcontent_corresponding_in_fixture。 binding_mappingの各[left_field,right_field]をAST記載順に比較する。"
+    },
+    {
+      "name": "maturity_submission_result",
+      "inputs": [
+        "as named by AST"
+      ],
+      "output": "as declared at use site",
+      "definition": "selection=false→not_selected_not_required; selection absent/null→selection_unknown; submitted record absent/null→missing; original record absent/null→original_unknown; それ以外は全declared maturity fieldをstrict比較し、等値ならcontent_corresponding_in_fixture、差があればcontent_conflict。null/nullはfixture上の内容対応のみ。"
+    },
+    {
+      "name": "presence",
+      "inputs": [
+        "object",
+        "key"
+      ],
+      "output": "FieldPresence",
+      "definition": "objectにkeyがないときabsent、値がJSON nullならnull、それ以外はpresent。"
+    },
+    {
+      "name": "constant",
+      "inputs": [
+        "literal"
+      ],
+      "output": "literal JSON value",
+      "definition": "ASTに明記された固定literalをそのまま返す。literalはL4/L10責務または原L9 expected根拠を指し、実state/資格/作用には昇格しない。"
+    },
+    {
+      "name": "build_receipt_candidate",
+      "inputs": [
+        "AST-declared paths and field list"
+      ],
+      "output": "declared result root type",
+      "definition": "original_candidate.source/identity/revision/versionとoriginal_evaluation.identity/revision/scopeを出力key source/candidate_identity/candidate_revision/candidate_version/evaluation_identity/evaluation_revision/scopeへ写す。nullは保持しabsenceは省く。submitted候補を正本にしない。"
+    },
+    {
+      "name": "candidate_maturity_state",
+      "inputs": [
+        "AST-declared paths and field list"
+      ],
+      "output": "declared result root type",
+      "definition": "selection=false→not_required; selection absent/null又はmaturity_result非corresponding→held_unknown_or_conflicting; selection=trueでoriginal maturity recordとrequired_original_fieldsが全present/non-nullかつmaturity_result correspondingならoriginal_state_in_fixture_only。"
+    },
+    {
+      "name": "compare_record",
+      "inputs": [
+        "left object",
+        "right object",
+        "ordered field names"
+      ],
+      "output": "Comparison",
+      "definition": "左右recordのrootがabsentならmissing、どちらかが明示nullならunknown。両方objectなら宣言field順で比較し、すべてcontent_corresponding_in_fixtureの場合だけその値を返す。それ以外はmissing、unknown、content_conflictの順に優先する。null/nullのfield投影は内容表示に限り、資格を示さない。",
+      "root_presence_rules": {
+        "both_record_absent": "missing",
+        "either_record_absent": "missing",
+        "either_record_null": "unknown",
+        "both_records_objects": "compare_declared_fields_then_aggregate"
+      },
+      "aggregate_rule": {
+        "all_fields_corresponding": "content_corresponding_in_fixture",
+        "otherwise_precedence": [
+          "missing",
+          "unknown",
+          "content_conflict"
+        ]
+      }
+    }
+  ],
+  "type_validation": {
+    "record_semantics": "required_fields are mandatory; additional_fields=false rejects undeclared returned keys. Optional output child keys preserve only explicitly declared optionality.",
+    "presence_semantics": "MISSING, null, and present are distinct; no cast from boolean to number; object keys exact; list item order preserved.",
+    "enum_basis": "出力literalはL9 concrete case expected wholeにある有限labelの由来として確認する。これは判定入力ではなく、広域の成功語彙や実qualificationを作らない。"
+  },
+  "pure_result_conventions": {
+    "missing": "MISSING sentinelはmember absenceだけを表す。",
+    "null": "JSON nullは明示されたunknown情報として保持する。",
+    "deep_comparison": "JSON kind/object keys/array order/recursive scalar equalityを厳密に保つ。",
+    "effect": "effect flagはL4 operation_effect=noneの有限projectionとしてfalse。外部作用観測ではない。",
+    "qualification": "fixture一致は合成内容の対応だけで、実source資格・実evaluation・receipt・登録・採否・maturityを示さない。"
+  },
+  "owner_return_trace": [
+    {
+      "function_ref": "HELIXBRAIN-L5-020-F01",
+      "return_fields": [
+        "return_owner"
+      ],
+      "literal_values": [
+        "LABO"
+      ],
+      "source_meaning": "L4/F01不一致またはunknownをLABOへ返し、L10/F01も対象/評価不足をLABOへ返す。",
+      "l4_ref": "HELIXBRAIN-L4-020-F01",
+      "l4_pointer": "/contracts/0",
+      "l10_ref": "HELIXBRAIN-L10-020-F01",
+      "l10_path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "l10_pointer": "/cases/25",
+      "qualification_boundary": "合成source上の表示/戻し先候補であり、実recipient identity、owner資格、delivery、receipt、authorityではない。"
+    },
+    {
+      "function_ref": "HELIXBRAIN-L5-020-F02",
+      "return_fields": [
+        "return_owners"
+      ],
+      "literal_values": [
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-change"
+      ],
+      "source_meaning": "L4/F02は評価・登録・BRAIN採否を分離し、L10/F02は評価/sourceをLABO、登録をOS、採否をBRAIN changeへ返す。",
+      "l4_ref": "HELIXBRAIN-L4-020-F02",
+      "l4_pointer": "/contracts/1",
+      "l10_ref": "HELIXBRAIN-L10-020-F02",
+      "l10_path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "l10_pointer": "/cases/26",
+      "qualification_boundary": "合成source上の表示/戻し先候補であり、実recipient identity、owner資格、delivery、receipt、authorityではない。"
+    },
+    {
+      "function_ref": "HELIXBRAIN-L5-020-F03",
+      "return_fields": [
+        "return_owners"
+      ],
+      "literal_values": [
+        "BRAIN-INFRA017",
+        "LABO"
+      ],
+      "source_meaning": "L4/F03は該当INFRA017 maturityとLABO不足を分け、L10/F03はBRAIN maturity/LABOの該当ownerへ返す。BRAIN-INFRA017はL9合成expected由来の表示tokenで、現実の宛先資格を示さない。",
+      "l4_ref": "HELIXBRAIN-L4-020-F03",
+      "l4_pointer": "/contracts/2",
+      "l10_ref": "HELIXBRAIN-L10-020-F03",
+      "l10_path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "l10_pointer": "/cases/27",
+      "qualification_boundary": "合成source上の表示/戻し先候補であり、実recipient identity、owner資格、delivery、receipt、authorityではない。"
+    },
+    {
+      "function_ref": "HELIXBRAIN-L5-020-B01",
+      "return_fields": [
+        "return_owners"
+      ],
+      "literal_values": [
+        "LABO",
+        "HELIX-OS",
+        "BRAIN-change"
+      ],
+      "source_meaning": "L4/B01は評価正本LABO、登録正本OS、候補/採否BRAINを分け、L10/B01はsource/evaluation・登録・知識意味・検証の該当ownerへ返す。",
+      "l4_ref": "HELIXBRAIN-L4-020-B01",
+      "l4_pointer": "/contracts/3",
+      "l10_ref": "HELIXBRAIN-L10-020-B01",
+      "l10_path": "docs/helix-brain/L10-verification/business-verification.json",
+      "l10_pointer": "/cases/7",
+      "qualification_boundary": "合成source上の表示/戻し先候補であり、実recipient identity、owner資格、delivery、receipt、authorityではない。",
+      "routing_limit": "このreturn_ownersはL4/L10が示すLABO評価・OS登録正本・BRAIN候補/採否という責務ラベルの固定表示である。failure reasonやfieldごとのowner分岐、owner別の返却結果を導出していない。実owner資格・routing・deliveryは未成立。"
+    }
+  ],
+  "consumer_source_trace": {
+    "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+    "revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+    "read_lines": [
+      414,
+      422
+    ],
+    "file_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+    "quote": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）\n\n- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。\n- **受け取るもの**：LABOが評価対象・評価scope・方法・evidence・結果・反例を紐付けた構造候補。\n- **提供するもの**：評価結果を保持したBRAIN候補入力と、対象のsource/version/evaluation identityを結ぶreceipt。\n- **保証すること**：単一実績、AI生成、評価resultのみで確立Patternとしない。candidateの評価scopeと限界を保ち、OSの登録・振分けとBRAIN内独立検証の後まで採否・成熟状態を先取りしない。\n- **依存・検証／版**：L2-007/008/009/010のgeneric provenance/identity/state、Infrastructure candidateのmaturityを扱う場合に限りL2-INFRA-017、およびLABO評価contract。候補revisionと評価対象revision、成功・failure・反例・未評価範囲の対応を確認する。1.0。\n- **失敗時の戻し先**：評価と対象revisionが結べないときはunknown候補として止め、LABOへ評価を返す。OS登録状態の正本はOSへ戻す。\n- **束ねる条件**：BRAIN L1-007/009/010、HELIX-LABOの評価責務。",
+    "selected_lines_sha256": "c44b313fe5627a8b252f47440608a691300997900abfe72f720e7c6228c5615a",
+    "consumer_meaning": "L2-020 evaluation/source/revision, OS registration and BRAIN independent verification/adoption remain separate; missing evaluation returns to LABO and registration state to OS."
+  }
+}
