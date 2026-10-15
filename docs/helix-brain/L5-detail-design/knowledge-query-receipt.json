@@ -436,12 +436,20 @@
     {
       "id": "B030-U10",
       "source": "L4 B01",
-      "gap": "product_conclusionsは最終製品結論を載せる専用mapという宣言役割。member存在をBRAIN製品決定の提出として拒否する。null/空値もrawを保全するが、有効な製品schema値かは判断しない。"
+      "gap": "product_conclusionsは最終製品結論を載せる専用mapという宣言役割。member存在をBRAIN製品決定の提出として拒否する。null/空値もrawを保全するが、有効な製品schema値かは判断しない。",
+      "basis": "L8の独立wholeは、L3/L4に対応する明示有限反例を固定し、L5 ASTの観測済みfamilyを照合する。",
+      "unclosed": "L8には指定された各意味familyの代表wholeを置くが、報告された124の非等価変異それぞれへ個別raw/input/期待を対応づける情報は供給されていない。各familyの代表反例は保持し、個々の変異と未観測組合せの識別は未閉包である。"
     },
     {
       "id": "B030-U11",
       "source": "L4 F03/F04必要集合",
       "gap": "F03の提供側余剰row、F04の元候補にない追加提出candidate、任意relationの全必要集合やduplicate original identityの一般resolverは未具体化。供給された原slot/元候補の局所結果と完全性を区別。"
+    },
+    {
+      "id": "B030-U12",
+      "topic": "required-field一覧全体の不足返却",
+      "basis": "L10-030-F02はrequired-field一覧欠落とfield定義不足をBRAINへ戻す。個別field identityが存在しない一覧不足はfield=null、list_scope=required_fields、reason=required_field_list_missingまたはrequired_field_list_unresolvedとして表す。これは実owner資格・実source解決を示さない。",
+      "unclosed": "未供給の一覧source/owner資格と、unknownの全原因の一般分類は未成立。有限ASTは明示null/欠落・未知比較stateでの一覧範囲返却を定義する。"
     }
   ],
   "implementation_readiness": "not_ready",
@@ -1819,28 +1827,66 @@
       "additionalProperties": false
     },
     "Unfulfilled": {
-      "type": "object",
-      "properties": {
-        "field": {
-          "type": "string"
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "string"
+            },
+            "owner": {
+              "type": "string",
+              "enum": [
+                "BRAIN-field-definition-owner",
+                "CORE-input-obligation-owner"
+              ]
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "field",
+            "owner",
+            "reason"
+          ],
+          "additionalProperties": false
         },
-        "owner": {
-          "type": "string",
-          "enum": [
-            "BRAIN-field-definition-owner",
-            "CORE-input-obligation-owner"
-          ]
-        },
-        "reason": {
-          "type": "string"
+        {
+          "type": "object",
+          "properties": {
+            "field": {
+              "type": "null"
+            },
+            "list_scope": {
+              "type": "string",
+              "enum": [
+                "required_fields"
+              ]
+            },
+            "owner": {
+              "type": "string",
+              "enum": [
+                "BRAIN-field-definition-owner"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "enum": [
+                "required_field_list_missing",
+                "required_field_list_unresolved"
+              ]
+            }
+          },
+          "required": [
+            "field",
+            "list_scope",
+            "owner",
+            "reason"
+          ],
+          "additionalProperties": false
         }
-      },
-      "required": [
-        "field",
-        "owner",
-        "reason"
-      ],
-      "additionalProperties": false
+      ]
     },
     "FieldCore": {
       "type": "object",
@@ -4942,36 +4988,129 @@
                 "name": "rows"
               },
               "unfulfilled_obligations": {
-                "op": "map",
-                "items": {
-                  "op": "filter",
-                  "items": {
-                    "op": "var",
-                    "name": "rows"
-                  },
-                  "binding": "r",
-                  "predicate": {
-                    "op": "or",
-                    "items": [
-                      {
-                        "op": "not",
-                        "value": {
-                          "op": "equal",
-                          "left": {
-                            "op": "var",
-                            "name": "list_state"
+                "op": "concat",
+                "items": [
+                  {
+                    "op": "map",
+                    "items": {
+                      "op": "filter",
+                      "items": {
+                        "op": "var",
+                        "name": "rows"
+                      },
+                      "binding": "r",
+                      "predicate": {
+                        "op": "or",
+                        "items": [
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "equal",
+                              "left": {
+                                "op": "var",
+                                "name": "list_state"
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "content_corresponding_in_fixture"
+                              }
+                            }
                           },
-                          "right": {
-                            "op": "literal",
-                            "value": "content_corresponding_in_fixture"
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "equal",
+                              "left": {
+                                "op": "get",
+                                "base": {
+                                  "op": "var",
+                                  "name": "r"
+                                },
+                                "key": {
+                                  "op": "literal",
+                                  "value": "definition_state"
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "content_corresponding_in_fixture"
+                              }
+                            }
+                          },
+                          {
+                            "op": "not",
+                            "value": {
+                              "op": "equal",
+                              "left": {
+                                "op": "get",
+                                "base": {
+                                  "op": "var",
+                                  "name": "r"
+                                },
+                                "key": {
+                                  "op": "literal",
+                                  "value": "value_state"
+                                }
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "known"
+                              }
+                            }
                           }
+                        ]
+                      }
+                    },
+                    "binding": "r",
+                    "index_binding": "index",
+                    "body": {
+                      "op": "let",
+                      "bindings": {
+                        "definition_bad": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "equal",
+                                "left": {
+                                  "op": "var",
+                                  "name": "list_state"
+                                },
+                                "right": {
+                                  "op": "literal",
+                                  "value": "content_corresponding_in_fixture"
+                                }
+                              }
+                            },
+                            {
+                              "op": "not",
+                              "value": {
+                                "op": "equal",
+                                "left": {
+                                  "op": "get",
+                                  "base": {
+                                    "op": "var",
+                                    "name": "r"
+                                  },
+                                  "key": {
+                                    "op": "literal",
+                                    "value": "definition_state"
+                                  }
+                                },
+                                "right": {
+                                  "op": "literal",
+                                  "value": "content_corresponding_in_fixture"
+                                }
+                              }
+                            }
+                          ]
                         }
                       },
-                      {
-                        "op": "not",
-                        "value": {
-                          "op": "equal",
-                          "left": {
+                      "body": {
+                        "op": "object",
+                        "fields": {
+                          "field": {
                             "op": "get",
                             "base": {
                               "op": "var",
@@ -4979,187 +5118,196 @@
                             },
                             "key": {
                               "op": "literal",
-                              "value": "definition_state"
+                              "value": "field"
                             }
                           },
-                          "right": {
-                            "op": "literal",
-                            "value": "content_corresponding_in_fixture"
-                          }
-                        }
-                      },
-                      {
-                        "op": "not",
-                        "value": {
-                          "op": "equal",
-                          "left": {
-                            "op": "get",
-                            "base": {
+                          "owner": {
+                            "op": "if",
+                            "condition": {
                               "op": "var",
-                              "name": "r"
+                              "name": "definition_bad"
                             },
-                            "key": {
+                            "then": {
                               "op": "literal",
-                              "value": "value_state"
+                              "value": "BRAIN-field-definition-owner"
+                            },
+                            "else": {
+                              "op": "literal",
+                              "value": "CORE-input-obligation-owner"
                             }
                           },
-                          "right": {
-                            "op": "literal",
-                            "value": "known"
+                          "reason": {
+                            "op": "if",
+                            "condition": {
+                              "op": "var",
+                              "name": "definition_bad"
+                            },
+                            "then": {
+                              "op": "literal",
+                              "value": "required_definition_unavailable"
+                            },
+                            "else": {
+                              "op": "if",
+                              "condition": {
+                                "op": "or",
+                                "items": [
+                                  {
+                                    "op": "equal",
+                                    "left": {
+                                      "op": "get",
+                                      "base": {
+                                        "op": "var",
+                                        "name": "r"
+                                      },
+                                      "key": {
+                                        "op": "literal",
+                                        "value": "undecided_reason"
+                                      }
+                                    },
+                                    "right": {
+                                      "op": "literal",
+                                      "value": null
+                                    }
+                                  },
+                                  {
+                                    "op": "equal",
+                                    "left": {
+                                      "op": "get",
+                                      "base": {
+                                        "op": "var",
+                                        "name": "r"
+                                      },
+                                      "key": {
+                                        "op": "literal",
+                                        "value": "undecided_reason"
+                                      }
+                                    },
+                                    "right": {
+                                      "op": "literal",
+                                      "value": ""
+                                    }
+                                  }
+                                ]
+                              },
+                              "then": {
+                                "op": "literal",
+                                "value": "input_reason_missing"
+                              },
+                              "else": {
+                                "op": "get",
+                                "base": {
+                                  "op": "var",
+                                  "name": "r"
+                                },
+                                "key": {
+                                  "op": "literal",
+                                  "value": "undecided_reason"
+                                }
+                              }
+                            }
                           }
                         }
                       }
-                    ]
-                  }
-                },
-                "binding": "r",
-                "index_binding": "index",
-                "body": {
-                  "op": "let",
-                  "bindings": {
-                    "definition_bad": {
-                      "op": "or",
+                    }
+                  },
+                  {
+                    "op": "if",
+                    "condition": {
+                      "op": "and",
                       "items": [
                         {
-                          "op": "not",
-                          "value": {
-                            "op": "equal",
-                            "left": {
-                              "op": "var",
-                              "name": "list_state"
-                            },
-                            "right": {
-                              "op": "literal",
-                              "value": "content_corresponding_in_fixture"
-                            }
-                          }
-                        },
-                        {
-                          "op": "not",
-                          "value": {
-                            "op": "equal",
-                            "left": {
-                              "op": "get",
-                              "base": {
+                          "op": "or",
+                          "items": [
+                            {
+                              "op": "equal",
+                              "left": {
                                 "op": "var",
-                                "name": "r"
+                                "name": "list_state"
                               },
-                              "key": {
+                              "right": {
                                 "op": "literal",
-                                "value": "definition_state"
+                                "value": "missing"
                               }
                             },
-                            "right": {
+                            {
+                              "op": "equal",
+                              "left": {
+                                "op": "var",
+                                "name": "list_state"
+                              },
+                              "right": {
+                                "op": "literal",
+                                "value": "unknown"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "op": "equal",
+                          "left": {
+                            "op": "length",
+                            "value": {
+                              "op": "var",
+                              "name": "rows"
+                            }
+                          },
+                          "right": {
+                            "op": "literal",
+                            "value": 0
+                          }
+                        }
+                      ]
+                    },
+                    "then": {
+                      "op": "array",
+                      "items": [
+                        {
+                          "op": "object",
+                          "fields": {
+                            "field": {
                               "op": "literal",
-                              "value": "content_corresponding_in_fixture"
+                              "value": null
+                            },
+                            "list_scope": {
+                              "op": "literal",
+                              "value": "required_fields"
+                            },
+                            "owner": {
+                              "op": "literal",
+                              "value": "BRAIN-field-definition-owner"
+                            },
+                            "reason": {
+                              "op": "if",
+                              "condition": {
+                                "op": "equal",
+                                "left": {
+                                  "op": "var",
+                                  "name": "list_state"
+                                },
+                                "right": {
+                                  "op": "literal",
+                                  "value": "missing"
+                                }
+                              },
+                              "then": {
+                                "op": "literal",
+                                "value": "required_field_list_missing"
+                              },
+                              "else": {
+                                "op": "literal",
+                                "value": "required_field_list_unresolved"
+                              }
                             }
                           }
                         }
                       ]
-                    }
-                  },
-                  "body": {
-                    "op": "object",
-                    "fields": {
-                      "field": {
-                        "op": "get",
-                        "base": {
-                          "op": "var",
-                          "name": "r"
-                        },
-                        "key": {
-                          "op": "literal",
-                          "value": "field"
-                        }
-                      },
-                      "owner": {
-                        "op": "if",
-                        "condition": {
-                          "op": "var",
-                          "name": "definition_bad"
-                        },
-                        "then": {
-                          "op": "literal",
-                          "value": "BRAIN-field-definition-owner"
-                        },
-                        "else": {
-                          "op": "literal",
-                          "value": "CORE-input-obligation-owner"
-                        }
-                      },
-                      "reason": {
-                        "op": "if",
-                        "condition": {
-                          "op": "var",
-                          "name": "definition_bad"
-                        },
-                        "then": {
-                          "op": "literal",
-                          "value": "required_definition_unavailable"
-                        },
-                        "else": {
-                          "op": "if",
-                          "condition": {
-                            "op": "or",
-                            "items": [
-                              {
-                                "op": "equal",
-                                "left": {
-                                  "op": "get",
-                                  "base": {
-                                    "op": "var",
-                                    "name": "r"
-                                  },
-                                  "key": {
-                                    "op": "literal",
-                                    "value": "undecided_reason"
-                                  }
-                                },
-                                "right": {
-                                  "op": "literal",
-                                  "value": null
-                                }
-                              },
-                              {
-                                "op": "equal",
-                                "left": {
-                                  "op": "get",
-                                  "base": {
-                                    "op": "var",
-                                    "name": "r"
-                                  },
-                                  "key": {
-                                    "op": "literal",
-                                    "value": "undecided_reason"
-                                  }
-                                },
-                                "right": {
-                                  "op": "literal",
-                                  "value": ""
-                                }
-                              }
-                            ]
-                          },
-                          "then": {
-                            "op": "literal",
-                            "value": "input_reason_missing"
-                          },
-                          "else": {
-                            "op": "get",
-                            "base": {
-                              "op": "var",
-                              "name": "r"
-                            },
-                            "key": {
-                              "op": "literal",
-                              "value": "undecided_reason"
-                            }
-                          }
-                        }
-                      }
+                    },
+                    "else": {
+                      "op": "array",
+                      "items": []
                     }
                   }
-                }
+                ]
               },
               "knowledge_receipt_state": {
                 "op": "if",
@@ -12084,16 +12232,16 @@
   },
   "derivation_coverage": {
     "original_wholes": 99,
-    "independent_wholes": 75,
-    "total_public_wholes": 174,
-    "limit": "L9由来99件とL8独立whole 75件の全返却を確認する。有限wholeと型域摂動は未見一般域・実source資格・実consumerの全閉包を証明しない。",
+    "independent_wholes": 82,
+    "total_public_wholes": 181,
+    "limit": "L9由来99件とL8独立whole 82件の全返却を照合する。有限wholeと型域摂動は未見一般域・実source資格・実consumerの全閉包を証明しない。",
     "meaning": "各定義のASTと汎用operatorだけが返却を導出する。有限例の一致は未供給source/必要集合/recipient資格の閉包を証明しない。"
   },
   "domain_verification": {
     "current_L9_cases": 99,
-    "independent_probes": 75,
-    "current_full_materials": 174,
-    "meaning": "L9の99件と局所75件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
+    "independent_probes": 82,
+    "current_full_materials": 181,
+    "meaning": "L9の99件とL8の独立whole 82件のprimary/公開全返却を独立期待へ照合する。型域の有限摂動は別に確認し、未見全域/実資格/Readyの成立へ一般化しない。",
     "mutation_scope": {
       "observed_rule_families": [
         "有限marker12語の削除",
@@ -12114,7 +12262,84 @@
         "N01 result scope nullとunknown"
       ],
       "finite_mutations": 30,
-      "limit": "旧22件とR3追加8件の有限AST変異だけを独立wholeで識別する。reviewerの2051変異集合や未見全scope/全branchの網羅は主張しない。N01 fallback true側の他条件、実source/qualification/未見複合は保持課題。"
+      "limit": "L8の独立wholeで具体的に示した有限AST変異だけを照合する。比較された変異集合の件数は未成立証拠であり、未見全scope/全branch/全変異の網羅を主張しない。未観測のN01 fallback条件、実source/qualification/未見複合は保持課題。"
+    },
+    "independent_mutation_witnesses": {
+      "reported_non_equivalent_total": 124,
+      "basis": "公式6189840122に列挙された非等価変異総数と変異原因family。変異ごとのidentity/input一覧は供給されていないため件数をcoverage証明へ転用しない。",
+      "family_refs": [
+        {
+          "family": "compareの片側null/marker",
+          "probe_ids": [
+            "P030-F01-RECEIPT-NULL",
+            "P030-F01-BOTH-SCOPE-TBD",
+            "P030-F01-BOTH-REQUIRED-MARKERS"
+          ]
+        },
+        {
+          "family": "known state内value marker",
+          "probe_ids": [
+            "P030-F02-KNOWN-MARKER-VALUE",
+            "P030-R2-F02-DEEP-OBJECT-MARKER",
+            "P030-F04-KNOWN-MARKER-BOTH-SIDES"
+          ]
+        },
+        {
+          "family": "valid_value reason marker",
+          "probe_ids": [
+            "P030-R2-F02-KNOWN-EMPTY-REASON",
+            "P030-R2-F04-KNOWN-EMPTY-REASON"
+          ]
+        },
+        {
+          "family": "field_coreのprovided-only identity行",
+          "probe_ids": [
+            "B030-R3-F02-EMPTY-ORIGINAL-REQUIRED-PROVIDED-FIELD",
+            "B030-R4-F02-BOTH-NULL",
+            "B030-R4-N01-BOTH-NULL"
+          ]
+        },
+        {
+          "family": "F03 forward row/scope",
+          "probe_ids": [
+            "B030-R3-08-F03-FORWARD-RECORD-NULL",
+            "P030-N01-TRACE-CROSS-QUERY-SCOPE"
+          ]
+        },
+        {
+          "family": "N01 version marker/nullとscope unknown",
+          "probe_ids": [
+            "B030-R3-08-N01-PROVIDED-VERSION-NULL",
+            "B030-R3-08-N01-TRACE-SCOPE-MARKER"
+          ]
+        },
+        {
+          "family": "definition meaning compare",
+          "probe_ids": [
+            "B030-R3-08-F02-DEFINITION-MEANING-DIFFERENCE"
+          ]
+        },
+        {
+          "family": "required list duplicate",
+          "probe_ids": [
+            "P030-F02-DUPLICATE-REQUIRED-IDENTITY"
+          ]
+        },
+        {
+          "family": "ProductValue state分岐",
+          "probe_ids": [
+            "B030-R3-08-F04-CANDIDATE-UNSET-NULL-REASON",
+            "P030-F04-KNOWN-MARKER-BOTH-SIDES"
+          ]
+        },
+        {
+          "family": "relation knowledge_revision marker",
+          "probe_ids": [
+            "B030-R4-N01-RELATION-KNOWLEDGE-REVISION-MARKER"
+          ]
+        }
+      ],
+      "limit": "family代表例は独立wholeである。列挙family内の全演算子変異と報告された124件を1対1に網羅したとは主張しない。"
     }
   },
   "candidate_design_bindings": [
