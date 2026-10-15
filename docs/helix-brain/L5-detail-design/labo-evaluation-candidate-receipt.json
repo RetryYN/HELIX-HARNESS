@@ -4456,8 +4456,7 @@
             "enum": [
               "content_conflict",
               "content_corresponding_in_fixture",
-              "unknown",
-              "missing"
+              "unknown"
             ]
           },
           "needed_contract_reference_results": {
@@ -4552,8 +4551,7 @@
             "enum": [
               "content_conflict",
               "content_corresponding_in_fixture",
-              "unknown",
-              "missing"
+              "unknown"
             ]
           },
           "retained_evaluation_record": {
@@ -4942,7 +4940,7 @@
       "path_syntax": "AST pathはJSON文字列keyの配列。各keyを左から辿り、member不在はMISSING、明示nullはnullのまま保持する。function resultへの参照はresult keyで指定し、expected_materialは参照しない。",
       "evaluation": "program outputを記載順で評価する。演算実体はraw_comparison_reference/source、値設定はoperator_definitionsと各program operandを唯一規範とする。汎用構文評価器へ業務分岐を埋め込まない。",
       "failure": "required input absent/nullをdefault値へ置換しない。L4で要求されたがrawに供給されないowner-qualified/source-resolution材料はunknown/unclosedとして残す。",
-      "comparison": "L8 expected_material全fieldをresult recordと構造完全一致比較する。",
+      "comparison": "現在の全返却はL8 expected_full_wholeと構造完全一致で比較する。元L9 expected_materialはsource raw/pointer/hashと別照合し、現在のunknown評価と区別する。",
       "operator_binding": "各opの全意味はraw_comparison_reference/sourceの分岐で定義。operator_definitionsはその値定数/索引、programはoperandを宣言する。未定義opは失敗。"
     },
     "rule_program_refs": [
@@ -5214,6 +5212,14 @@
                   "N/A"
                 ],
                 "limitation": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ],
+                "target": [
                   "",
                   "TBD",
                   "tbd",
@@ -5724,6 +5730,7 @@
                     "",
                     "TBD",
                     "tbd",
+                    "unknown",
                     "Unknown",
                     "N/A"
                   ]
@@ -5795,7 +5802,11 @@
                   "established",
                   "established_pattern",
                   "Established_pattern",
-                  "universal_mature"
+                  "universal_mature",
+                  "established_Pattern",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ],
                 "always_diagnose_value": "adopted"
               },
@@ -6350,7 +6361,16 @@
               },
               "forbidden_values_by_field": {
                 "state": [
-                  "universal_mature"
+                  "adopted",
+                  "mature",
+                  "established",
+                  "established_pattern",
+                  "Established_pattern",
+                  "universal_mature",
+                  "established_Pattern",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ]
               }
             }
@@ -6651,7 +6671,16 @@
               },
               "forbidden_values_by_field": {
                 "state": [
-                  "universal_mature"
+                  "adopted",
+                  "mature",
+                  "established",
+                  "established_pattern",
+                  "Established_pattern",
+                  "universal_mature",
+                  "established_Pattern",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ]
               }
             }
@@ -6766,7 +6795,16 @@
                   "state"
                 ],
                 "values": [
-                  "universal_mature"
+                  "adopted",
+                  "mature",
+                  "established",
+                  "established_pattern",
+                  "Established_pattern",
+                  "universal_mature",
+                  "established_Pattern",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ],
                 "selection_path": [
                   "infrastructure_maturity_selected"
@@ -7232,12 +7270,16 @@
                   "candidate_state"
                 ],
                 "values": [
-                  "established_pattern",
-                  "Established_pattern",
-                  "established",
                   "adopted",
                   "mature",
-                  "established_Pattern"
+                  "established",
+                  "established_pattern",
+                  "Established_pattern",
+                  "universal_mature",
+                  "established_Pattern",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ]
               },
               {
@@ -7247,7 +7289,15 @@
                   "original_owners",
                   "evaluation_original"
                 ],
-                "expected": "LABO"
+                "expected": "LABO",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "owner_role",
@@ -7256,7 +7306,15 @@
                   "submitted_owners",
                   "evaluation_original"
                 ],
-                "expected": "LABO"
+                "expected": "LABO",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "owner_role",
@@ -7265,7 +7323,15 @@
                   "original_owners",
                   "registration_original"
                 ],
-                "expected": "HELIX-OS"
+                "expected": "HELIX-OS",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "owner_role",
@@ -7274,7 +7340,15 @@
                   "submitted_owners",
                   "registration_original"
                 ],
-                "expected": "HELIX-OS"
+                "expected": "HELIX-OS",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "owner_role",
@@ -7283,7 +7357,15 @@
                   "original_owners",
                   "candidate_and_adoption"
                 ],
-                "expected": "BRAIN-change"
+                "expected": "BRAIN-change",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "owner_role",
@@ -7292,7 +7374,15 @@
                   "submitted_owners",
                   "candidate_and_adoption"
                 ],
-                "expected": "BRAIN-change"
+                "expected": "BRAIN-change",
+                "markers": [
+                  "",
+                  "TBD",
+                  "tbd",
+                  "unknown",
+                  "Unknown",
+                  "N/A"
+                ]
               },
               {
                 "kind": "placeholder_pair",
@@ -7483,7 +7573,11 @@
                   "established_Pattern",
                   "established",
                   "adopted",
-                  "mature"
+                  "mature",
+                  "universal_mature",
+                  "accepted",
+                  "universal",
+                  "Established"
                 ]
               }
             ]
@@ -7494,7 +7588,7 @@
     "program_selection": {
       "rule": "L8のL3 requirement referenceが示す契約のASTを選択する。各case IDは計算で読まず、raw rootの値とpresenceのみが値分岐に使われる。"
     },
-    "output_contract": "各関数は宣言Resultの全rootを返す。L9元70 expected_materialと全公開wholeを不変に比較する。追加diagnosticとF02 owner候補は当該L3/L4 consumer責務へ接続する。candidate_state/adoption_stateのrawコピーは状態決定ではなく、main比較/補助findingが不足を示す場合に採否を先取りしない。期待値は計算入力に読まない。"
+    "output_contract": "現在の返却はL8 expected_full_wholeで全root/key/valueを照合する。expected_materialは原L9の内容保存wholeであり、現在の意味評価をその値へ合わせて弱めない。candidate_state/adoption_stateのrawコピーは観測値であり、比較とfindingが不足を示すとき採否を先取りしない。"
   },
   "l4_contract_bindings": [
     {
@@ -7564,7 +7658,7 @@
     "F01のreturn_ownerはL9原期待にあるLABO表示値を保持する。field別の失敗経路や配送確認ではない。",
     "F03の不足fieldごとの最終owner決定はL4/L10の「該当owner」以上に固定できる原sourceがないため未成立。BRAIN-INFRA017/LABO表示を実recipientへ結ばない。",
     "F02 failure_return_ownersは原state差分と採否stateの責務ラベルを表示する候補であり、receipt source field別の独立routing・recipient資格・delivery・receiptは未成立。",
-    "review_diagnosticsはL3/L4の負状態を識別する補助返却である。L9既存expected_materialとの互換projectionはsource oracleを変更しないが、全L9分岐が補助返却を定義する一般閉包ではない。",
+    "review_diagnosticsはL3/L4の負状態を識別する補助返却である。原L9 source値の保全と現在の比較評価は別であり、全L9分岐・一般入力域の意味閉包を示さない。",
     "B01のreturn_ownersはLABO/HELIX-OS/BRAIN-changeの固定責務ラベル表示に限る。owner_results/diagnosticは相違を示すが、failure reason/fieldごとの返却先判定・owner別返却は未実現。",
     "有限marker表記以外の自由文字列の意味と、任意状態からの一般採否判断は未具体化。promotion aliasesは名指し負例の局所診断であって一般禁止policyではない。",
     "F02の独立検証positive labelは論理比較素材で、正式receipt/実issuer/資格供給元やregisteredとの正式bindingは未閉包。",
@@ -7881,7 +7975,8 @@
         "either_operand_null": "unknown",
         "either_operand_non_object": "content_conflict"
       },
-      "normative_definition_ref": "/raw_comparison_reference/source"
+      "normative_definition_ref": "/raw_comparison_reference/source",
+      "recursive_marker_rule": "values_by_fieldで指定したfieldについて、object member値とarray要素を再帰しmarker文字列を識別する。その他のfield値を正規化しない。"
     },
     {
       "name": "collect_null_keys",
@@ -8238,7 +8333,7 @@
     "null": "JSON nullは明示されたunknown情報として保持する。",
     "deep_comparison": "JSON kind、object key集合、array順、scalarを再帰して比較する。booleanとnumberを区別する。",
     "effect": "effect flagはL4 operation_effect=noneの有限投影としてfalse。外部状態を観測した証拠ではない。",
-    "qualification": "原L9 expected_materialは承認source oracleとして不変に保持する。review_diagnostics/failure_return_ownersはrawから計算する補助観測で、source資格・authority・deliveryを生成しない。"
+    "qualification": "原L9 expected_materialはsourceの内容比較資料として保持する。review_diagnostics/failure_return_ownersはrawから計算する補助観測であり、source資格・authority・deliveryを生成しない。"
   },
   "owner_return_trace": [
     {
@@ -8468,7 +8563,7 @@
       "key_rule": "列挙名はuse site additional_checksから一意展開する。placeholder_pairのfields有りはname + \"_\" + field、無しはname。未出力は当該有限診断が発火していない意味だけで、資格/安全/採否の成功を意味しない。"
     }
   ],
-  "oracle_compatibility_boundary": "元L9 70 expected_materialを改変せず公開全返却の原rootとして保持する。内容比較のpresent null対応はsourceの範囲であり、target/candidate/資格を成立させない。補助診断rootを別に完全固定しconsumer責務へ接続する。未見域の旧Draft不具合は主比較も是正し、互換の名で残さない。",
+  "oracle_compatibility_boundary": "expected_materialと元packetは原L9 sourceとして保持する。現在のexpected_full_wholeは同じ元値に対するpresence・role・採否前提の評価を含むため、sourceの内容投影と区別して全rootを比較する。登録state unknownの原値は保存し、その比較結果はunknownとする。",
   "diagnostic_marker_scope": {
     "values": [
       "",
@@ -8479,15 +8574,15 @@
       "N/A"
     ],
     "fields_ref": "/pure_reference_semantics/programs",
-    "array_rule": "field別valuesは文字列要素に再帰適用。空配列の不足は別指定し、双方同じ空の場合にunknown。非空から空への差分は元L9の削除conflictを保持。",
+    "array_rule": "field別markerはarray要素とobject member値へ再帰適用する。空配列の不足は別指定し、双方同じ空の場合にunknown。非空から空への削除はcontent_conflictを保持する。",
     "null_rule": "present nullの内容対応とcandidate/target/maturity保留は別。null対応から資格/成功を生成しない。",
     "boundary": "有限合成入力の名指し内容不足識別。自由文字列一般の自然言語意味、実評価/資格/一般採否policyは未閉包。"
   },
   "raw_comparison_reference": {
     "authority": "このsourceの有限Python AST、operator_definitionsの値定数、pure_reference_semantics/programsのoperand/field順/branch設定の組合せが唯一の返却計算規範。散文は索引・責務説明。補助Pythonは汎用構文評価だけを行い、業務path/priority/literalを追加しない。",
     "entry": "run_program(requirement_ref, raw)",
-    "source": "def json_kind(value):\n    if value is MISSING: return 'missing'\n    if value is None: return 'null'\n    if type(value) is bool: return 'boolean'\n    if isinstance(value, (int, float)): return 'number'\n    if isinstance(value, str): return 'string'\n    if isinstance(value, list): return 'array'\n    if isinstance(value, dict): return 'object'\n    return 'unsupported'\n\ndef deep_equal(left, right):\n    if json_kind(left) != json_kind(right): return False\n    if isinstance(left, dict):\n        return set(left) == set(right) and all(deep_equal(left[k], right[k]) for k in left)\n    if isinstance(left, list):\n        return len(left) == len(right) and all(deep_equal(a, b) for a, b in zip(left, right))\n    return left == right\n\ndef path_get(value, path):\n    for key in path:\n        if not isinstance(value, dict) or key not in value: return MISSING\n        value = value[key]\n    return value\n\ndef is_declared_placeholder(value, rule, field):\n    if value is MISSING or value is None: return False\n    markers=rule.get('values_by_field', {}).get(field, [])\n    if isinstance(value,str) and value in markers: return True\n    if isinstance(value,list):\n        return any(is_declared_placeholder(v,rule,field) for v in value)\n    return False\n\ndef field_placeholder_pair(a,b,rule,field):\n    if is_declared_placeholder(a,rule,field) or is_declared_placeholder(b,rule,field):return True\n    return field in rule.get('empty_array_fields',[]) and deep_equal(a,b) and isinstance(a,list) and not a\n\n\ndef project(value, fields):\n    if value is MISSING: return MISSING\n    if value is None: return None\n    if not isinstance(value, dict): return MISSING\n    return {key: value[key] for key in fields if key in value}\n\ndef aggregate_comparisons(values, rule):\n    if all(value == rule['all_fields_corresponding'] for value in values):\n        return rule['all_fields_corresponding']\n    for status in rule['otherwise_precedence']:\n        if status in values: return status\n    raise ValueError('formal aggregation rule has no result for ' + repr(values))\n\ndef compare_fields(left, right, fields, placeholder_rule=None):\n    rule = OPERATOR_RULES['compare_fields']['field_presence_rules']\n    roots=OPERATOR_RULES['compare_fields']['operand_root_rules']\n    if left is MISSING or right is MISSING: return roots['either_operand_absent']\n    if left is None or right is None: return roots['either_operand_null']\n    if not isinstance(left, dict) or not isinstance(right, dict): return roots['either_operand_non_object']\n    result = {}\n    placeholders = placeholder_rule or OPERATOR_RULES['compare_fields'].get('placeholder_rule', {})\n    for field in fields:\n        a, b = left.get(field, MISSING), right.get(field, MISSING)\n        if a is MISSING and b is MISSING: status = rule['both_absent']\n        elif a is MISSING or b is MISSING: status = rule['exactly_one_absent']\n        elif field_placeholder_pair(a,b,placeholders,field): status = placeholders.get('result', 'unknown')\n        elif field in placeholders.get('expected_values_by_field',{}) and (not deep_equal(a,placeholders['expected_values_by_field'][field]) or not deep_equal(b,placeholders['expected_values_by_field'][field])):status='content_conflict'\n        elif a in placeholders.get('forbidden_values_by_field',{}).get(field,[]) or b in placeholders.get('forbidden_values_by_field',{}).get(field,[]):status='content_conflict'\n        else: status = 'content_corresponding_in_fixture' if deep_equal(a, b) else 'content_conflict'\n        result[field] = status\n    return result\n\ndef compare_single(left, right, fields, placeholder_rule=None):\n    spec = OPERATOR_RULES['compare_record']\n    roots = spec['root_presence_rules']\n    if left is MISSING or right is MISSING: return roots['either_record_absent']\n    if left is None or right is None: return roots['either_record_null']\n    statuses = compare_fields(left, right, fields, placeholder_rule)\n    if isinstance(statuses, str): return statuses\n    return aggregate_comparisons(list(statuses.values()), spec['aggregate_rule'])\n\ndef compare_contract_entry(left, right, fields, expression):\n    spec = OPERATOR_RULES['contract_selection']\n    roots = spec['selected_reference_presence_rules']\n    missing_order=expression['missing_precedence'];null_order=expression['null_precedence']\n    if left is MISSING or right is MISSING:\n        if 'selected_entry_absent' in missing_order:return roots['selected_entry_absent']\n        raise ValueError('formal contract-selection rule omits absent selected entry')\n    if left is None or right is None:\n        if 'selected_entry_null' in null_order:return roots['selected_entry_null']\n        raise ValueError('formal contract-selection rule omits null selected entry')\n    if not isinstance(left, dict) or not isinstance(right, dict): return 'content_conflict'\n    statuses=[]; rules=spec['required_field_rules']\n    for field in fields:\n        a,b=left.get(field,MISSING),right.get(field,MISSING)\n        if a is MISSING or b is MISSING: statuses.append(rules['field_absent'])\n        elif a is None or b is None: statuses.append(rules['field_null'])\n        elif deep_equal(a,b): statuses.append(rules['present_equal'])\n        else: statuses.append(rules['present_unequal'])\n    for decision in expression['decision_order']:\n        if decision=='missing_if_any_required_field_absent' and 'field_absent' in missing_order and rules['field_absent'] in statuses:return rules['field_absent']\n        if decision=='unknown_if_map_entry_or_required_field_is_null' and 'field_null' in null_order and rules['field_null'] in statuses:return rules['field_null']\n        if decision=='content_conflict_if_any_present_value_differs' and rules['present_unequal'] in statuses:return rules['present_unequal']\n        if decision=='content_corresponding_in_fixture_if_all_present_values_equal' and all(x==rules['present_equal'] for x in statuses):return rules['present_equal']\n    raise ValueError('contract selection rule has no result for ' + repr(statuses))\n\ndef prerequisite_violation(check,root):\n    for state_root in check['roots']:\n        states=path_get(root,[state_root])\n        if not isinstance(states,dict):continue\n        adoption=states.get(check['trigger']['key'],{})\n        if not isinstance(adoption,dict) or adoption.get(check['trigger']['field'],MISSING) not in check['trigger']['one_of']:continue\n        for prerequisite in check['prerequisites']:\n            item=states.get(prerequisite['key'],{})\n            if not isinstance(item,dict) or item.get(prerequisite['field'],MISSING) not in prerequisite['one_of']:return True\n    return False\n\n\ndef eval_expr(expression, root, result):\n    if not isinstance(expression, dict): return expression\n    op = expression.get('op')\n    if not op:\n        if 'path' in expression: return path_get(root, expression['path'])\n        return {k: eval_expr(v, root, result) for k, v in expression.items()}\n    if op in ('get', 'read_nested'): return path_get(root, expression['path'])\n    if op == 'constant': return expression['value']\n    if op in ('project', 'project_nullable'):\n        return project(eval_expr(expression['value'], root, result), expression['fields'])\n    if op == 'compare_fields':\n        return compare_fields(eval_expr(expression['left'], root, result), eval_expr(expression['right'], root, result), expression['fields'], expression.get('placeholder_rule'))\n    if op == 'build_receipt_candidate':\n        candidate = path_get(root, expression['candidate']); evaluation = path_get(root, expression['evaluation'])\n        mapping = {'source': (candidate, 'source'), 'candidate_identity': (candidate, 'identity'),\n                   'candidate_revision': (candidate, 'revision'), 'candidate_version': (candidate, 'version'),\n                   'evaluation_identity': (evaluation, 'identity'), 'evaluation_revision': (evaluation, 'revision'),\n                   'scope': (evaluation, 'scope')}\n        out = {}\n        for field in expression['fields']:\n            obj, key = mapping[field]\n            if isinstance(obj, dict) and key in obj: out[field] = obj[key]\n        return out\n    if op == 'candidate_maturity_state':\n        selected = path_get(root, expression['selection']); maturity = result.get('maturity_result', MISSING)\n        original = path_get(root, expression['original'])\n        if selected is False: return 'not_required'\n        if selected is MISSING or selected is None or maturity != 'content_corresponding_in_fixture': return 'held_unknown_or_conflicting'\n        if original is MISSING or original is None or not isinstance(original, dict): return 'held_unknown_or_conflicting'\n        if any(k not in original or original[k] is None for k in expression['required_original_fields']): return 'held_unknown_or_conflicting'\n        return 'original_state_in_fixture_only'\n    if op == 'compare_target':\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        if left is MISSING or left is None: return 'missing'\n        if right is MISSING or right is None or not isinstance(left, dict) or not isinstance(right, dict): return 'candidate_target_information_unknown'\n        fields = expression['fields']\n        placeholder_fields=expression.get('placeholder_values_by_field',{})\n        if any(left.get(k, MISSING) in (MISSING, None) or right.get(k, MISSING) in (MISSING, None) or left.get(k,MISSING) in placeholder_fields.get(k,[]) or right.get(k,MISSING) in placeholder_fields.get(k,[]) for k in fields): return 'candidate_target_information_unknown'\n        return 'same_exact_candidate_in_fixture' if all(deep_equal(left[k], right[k]) for k in fields) else 'different_candidate'\n    if op in ('collect_null_keys', 'collect_missing_keys'):\n        obj = eval_expr(expression['value'], root, result); fields = expression['fields']\n        if not isinstance(obj, dict): return []\n        if op == 'collect_null_keys': return [k for k in fields if k in obj and obj[k] is None]\n        return [k for k in fields if k not in obj]\n    if op == 'claim_results':\n        obj = eval_expr(expression['value'], root, result)\n        out={k: ('unknown' if not isinstance(obj, dict) or k not in obj or type(obj[k]) is not bool else 'none' if obj[k] is False else 'rejected') for k in expression['fields']}\n        for check in expression.get('additional_checks', []):\n            if 'policy_ref' in check:check=path_get(PROGRAMS,check['policy_ref'])\n            if 'selection_path' in check and path_get(root,check['selection_path']) is not True:continue\n            if check['kind']=='placeholder_pair':\n                left=path_get(root,check['left']); right=path_get(root,check['right'])\n                if 'fields' not in check:\n                    values=(left,right); names=[check.get('field',check['name'])]\n                else:\n                    names=check['fields']; values=[]\n                    for field in names:\n                        values.append((left.get(field,MISSING) if isinstance(left,dict) else MISSING,right.get(field,MISSING) if isinstance(right,dict) else MISSING))\n                if 'fields' not in check:\n                    values=[values]\n                for field,pair_values in zip(names,values):\n                    rule={'values_by_field':{field:check.get('markers',[])},'empty_array_fields':check.get('empty_arrays',[]) if isinstance(check.get('empty_arrays',[]),list) else []}\n                    marked=[field_placeholder_pair(pair_values[0],pair_values[1],rule,field)]\n                    if any(marked): out[check['name'] if 'fields' not in check else check['name']+'_'+field]='unknown'\n            elif check['kind']=='forbidden_value':\n                value=path_get(root,check['path'])\n                if value in check['values'] and ('equal_pair_path' not in check or deep_equal(value,path_get(root,check['equal_pair_path']))):out[check['name']]='rejected'\n            elif check['kind']=='owner_role':\n                value=path_get(root,check['path'])\n                if 'require_object_path' in check and not isinstance(path_get(root,check['require_object_path']),dict):continue\n                if 'equal_pair_path' in check and not deep_equal(value,path_get(root,check['equal_pair_path'])):continue\n                if value is MISSING or value is None or value in check.get('markers',[]): out[check['name']]='unknown'\n                elif value!=check['expected']:out[check['name']]='rejected'\n            elif check['kind']=='state_prerequisite':\n                if prerequisite_violation(check,root) and (path_get(root,check['same_state_paths'][0])==check['trigger']['always_diagnose_value'] or path_get(root,check['same_state_paths'][1])==check['trigger']['always_diagnose_value'] or deep_equal(path_get(root,check['same_state_paths'][0]),path_get(root,check['same_state_paths'][1]))):out[check['name']]='rejected'\n            elif check['kind']=='selection_state':\n                selected=path_get(root,check['selection']);state=path_get(root,check['state'])\n                expected=check['when_true'] if selected is True else check['when_false'] if selected is False else MISSING\n                if expected is MISSING or state is MISSING or state is None or state in check['markers']:out[check['name']]='unknown'\n                elif not deep_equal(state,expected):out[check['name']]='rejected' if state in check['known_state_values'] else 'unknown'\n            else: raise ValueError('unknown additional claim check '+check['kind'])\n        return out\n    if op == 'false_effects': return {k: False for k in expression['fields']}\n    if op == 'is_false': return path_get(root, expression['path']) is False\n    if op == 'is_true': return path_get(root, expression['path']) is True\n    if op == 'is_absent_or_null':\n        value = path_get(root, expression['path']); return value is MISSING or value is None\n    if op == 'otherwise': return True\n    if op == 'conditional':\n        for arm in expression['arms']:\n            if eval_expr(arm['when'], root, result):\n                return eval_expr(arm['value'], root, result) if 'value' in arm else arm.get('then', MISSING)\n        return MISSING\n    if op == 'candidate_state':\n        spec=OPERATOR_RULES['candidate_state']['decision_rule']\n        fs=expression['candidate_fields']; evfs=expression['evaluation_fields']\n        objs=[eval_expr(expression[k],root,result) for k in ['candidate_original','candidate_submitted','evaluation_original','evaluation_submitted']]\n        for obj,fields in zip(objs,[fs,fs,evfs,evfs]):\n            if obj is MISSING or obj is None or not isinstance(obj,dict) or any(k not in obj or obj[k] is None for k in fields):return spec['if_any_check_fails']\n        cand=eval_expr(expression['candidate_comparison_results'],root,result)\n        ev=eval_expr(expression['evaluation_comparison_results'],root,result)\n        target=eval_expr(expression['target_result'],root,result)\n        corresponding=OPERATOR_RULES['candidate_state']['comparison_status_inputs']['candidate_comparison_results']['required_status']\n        if not isinstance(cand,dict) or not isinstance(ev,dict):return spec['if_any_check_fails']\n        if any(k not in cand or cand[k]!=corresponding for k in fs):return spec['if_any_check_fails']\n        if any(k not in ev or ev[k]!=corresponding for k in evfs):return spec['if_any_check_fails']\n        target_status=OPERATOR_RULES['candidate_state']['comparison_status_inputs']['target_result']['required_status']\n        return spec['if_all_checks_pass'] if target==target_status else spec['if_any_check_fails']\n    if op in ('compare_record', 'compare_receipt'):\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        if op == 'compare_receipt':\n            roots = OPERATOR_RULES['compare_receipt']['root_presence_rules']\n            if left is MISSING or right is MISSING: return roots['either_receipt_absent']\n            if left is None or right is None: return roots['either_receipt_null']\n            spec=OPERATOR_RULES['compare_receipt']\n            markers=expression.get('placeholder_values',[])\n            if any((isinstance(left,dict) and left.get(k,MISSING) in markers) or (isinstance(right,dict) and right.get(k,MISSING) in markers) for k in expression['fields']):return expression.get('placeholder_result','unknown')\n        return compare_single(left, right, expression['fields'],expression.get('placeholder_rule'))\n    if op == 'compare_nested_maps':\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        out={key: compare_single(left.get(key, MISSING) if isinstance(left, dict) else MISSING,\n                                    right.get(key, MISSING) if isinstance(right, dict) else MISSING,\n                                    expression['fields'],expression.get('rules_by_key',{}).get(key,{})) for key in expression['keys']}\n        if prerequisite_violation(expression['prerequisite_policy'],root):out[expression['prerequisite_policy']['trigger']['key']]='content_conflict'\n        return out\n    if op == 'project_nested_maps':\n        value = eval_expr(expression['value'], root, result)\n        return {key: project(value[key], expression['fields']) for key in expression['keys'] if isinstance(value, dict) and key in value}\n    if op == 'fixed_owner_roles': return expression['value']\n    if op == 'maturity_result':\n        selected=path_get(root,expression['selection']); original=path_get(root,expression['original']); submitted=path_get(root,expression['submitted']); candidate=path_get(root,expression['candidate'])\n        fields=expression['compared_fields']; binding=expression['binding_fields']\n        if selected is False:return 'not_selected_not_required'\n        if selected is MISSING or selected is None:return 'unknown_selection'\n        if original is MISSING or original is None or any(k not in original or original[k] is None for k in fields):return 'unknown_original_maturity_information'\n        if submitted is MISSING or submitted is None:return 'missing'\n        marker_fields=expression.get('placeholder_values_by_field',{})\n        if any(field_placeholder_pair(original.get(k,MISSING),submitted.get(k,MISSING),{'values_by_field':marker_fields,'empty_array_fields':expression.get('empty_array_fields',[])},k) for k in fields):return expression.get('placeholder_result','unknown_original_maturity_information')\n        if compare_single(original,submitted,fields,expression.get('placeholder_rule'))!='content_corresponding_in_fixture':return 'content_conflict'\n        mapping=expression['binding_mapping']\n        if not isinstance(candidate,dict) or any(original.get(maturity_field,MISSING) in (MISSING,None) or candidate.get(candidate_field,MISSING) in (MISSING,None) for maturity_field,candidate_field in mapping):return 'different_candidate_target'\n        return 'content_corresponding_in_fixture' if all(deep_equal(original[mf],candidate[cf]) for mf,cf in mapping) else 'different_candidate_target'\n    if op == 'maturity_submission_result':\n        selected=path_get(root,expression['selection']);original=path_get(root,expression['original']);submitted=path_get(root,expression['submitted'])\n        if selected is False:return 'not_selected_not_required'\n        if selected is MISSING or selected is None:return 'selection_unknown'\n        if submitted is MISSING or submitted is None:return 'missing'\n        if original is MISSING or original is None:return 'original_unknown'\n        marker_fields=expression.get('placeholder_values_by_field',{})\n        if any(field_placeholder_pair(original.get(k,MISSING),submitted.get(k,MISSING),{'values_by_field':marker_fields,'empty_array_fields':expression.get('empty_array_fields',[])},k) for k in expression['compared_fields']):return expression.get('placeholder_result','original_unknown')\n        return compare_single(original,submitted,expression['compared_fields'],expression.get('placeholder_rule'))\n    if op == 'contract_selection':\n        original=eval_expr(expression['original'],root,result); submitted=eval_expr(expression['submitted'],root,result)\n        selected=list(expression['always'])\n        for group,flag in [('when_composition_selected','composition_selected_path'),('when_failure_knowledge_selected','failure_selected_path')]:\n            if path_get(root,expression[flag]) is True:selected.extend(expression[group])\n        out={}; rules=OPERATOR_RULES['contract_selection']['selected_reference_presence_rules']\n        for key in selected:\n            if original is MISSING or submitted is MISSING:\n                if 'map_absent' not in expression['missing_precedence']:raise ValueError('AST omits absent reference map rule')\n                out[key]=rules['map_absent']; continue\n            if original is None or submitted is None:\n                if 'map_null' not in expression['null_precedence']:raise ValueError('AST omits null reference map rule')\n                out[key]=rules['map_null']; continue\n            left=original.get(key,MISSING) if isinstance(original,dict) else MISSING\n            right=submitted.get(key,MISSING) if isinstance(submitted,dict) else MISSING\n            status=compare_contract_entry(left,right,expression['fields'],expression)\n            placeholder_values=expression.get('placeholder_values_by_field',{})\n            if status not in ['missing','unknown'] and isinstance(left,dict) and isinstance(right,dict) and any(left.get(field,MISSING) in placeholder_values.get(field,[]) or right.get(field,MISSING) in placeholder_values.get(field,[]) for field in expression['fields']):\n                status=expression.get('placeholder_result','unknown')\n            expected=expression['expected_identity_by_key'].get(key,MISSING)\n            if expected is MISSING:raise ValueError('AST expected identity missing for selected slot '+key)\n            if status=='content_corresponding_in_fixture':\n                # The AST's source-bound slot identity is an additional comparison\n                # operand. Missing/null already returned through the established\n                # precedence above and is not reclassified here.\n                left_identity=left.get('identity',MISSING) if isinstance(left,dict) else MISSING\n                right_identity=right.get('identity',MISSING) if isinstance(right,dict) else MISSING\n                if not deep_equal(left_identity,expected) or not deep_equal(right_identity,expected):\n                    status='content_conflict'\n            out[key]=status\n        return out\n    if op == 'contract_unselected':\n        out=[]\n        for item in expression['selectors']:\n            selected=path_get(root,item['path'])\n            if selected is False:out.append(item['key'])\n        return out\n    if op == 'route_state_differences':\n        left=eval_expr(expression['left'],root,result);right=eval_expr(expression['right'],root,result);out={}\n        for key in expression['keys']:\n            a=left.get(key,MISSING) if isinstance(left,dict) else MISSING;b=right.get(key,MISSING) if isinstance(right,dict) else MISSING\n            route_equal=expression.get('route_on_equal_values',{}).get(key,[])\n            av=a.get('state',MISSING) if isinstance(a,dict) else MISSING;bv=b.get('state',MISSING) if isinstance(b,dict) else MISSING\n            if (result[expression['status_ref']][key]!='content_corresponding_in_fixture' or av in route_equal or bv in route_equal) and key in expression['owner_by_key']:out[key]=expression['owner_by_key'][key]\n        return out\n    if op == 'same_as': return result.get(expression['ref'], MISSING)\n    raise ValueError('unknown operator: '+op)\n\ndef run_program(requirement_ref, raw):\n    result={}\n    for key, expression in PROGRAMS[requirement_ref][\"output\"].items():\n        result[key]=eval_expr(expression,raw,result)\n    return result\n",
-    "source_sha256": "705b3591614cdaec3614d17fffc73f5f6e928279a1b748405255ad8ea8a015a8",
+    "source": "def json_kind(value):\n    if value is MISSING: return 'missing'\n    if value is None: return 'null'\n    if type(value) is bool: return 'boolean'\n    if isinstance(value, (int, float)): return 'number'\n    if isinstance(value, str): return 'string'\n    if isinstance(value, list): return 'array'\n    if isinstance(value, dict): return 'object'\n    return 'unsupported'\n\ndef deep_equal(left, right):\n    if json_kind(left) != json_kind(right): return False\n    if isinstance(left, dict):\n        return set(left) == set(right) and all(deep_equal(left[k], right[k]) for k in left)\n    if isinstance(left, list):\n        return len(left) == len(right) and all(deep_equal(a, b) for a, b in zip(left, right))\n    return left == right\n\ndef path_get(value, path):\n    for key in path:\n        if not isinstance(value, dict) or key not in value: return MISSING\n        value = value[key]\n    return value\n\ndef is_declared_placeholder(value, rule, field):\n    if value is MISSING or value is None: return False\n    markers=rule.get('values_by_field', {}).get(field, [])\n    if isinstance(value,str) and value in markers: return True\n    if isinstance(value,dict):\n        return any(is_declared_placeholder(v,rule,field) for v in value.values())\n    if isinstance(value,list):\n        return any(is_declared_placeholder(v,rule,field) for v in value)\n    return False\n\ndef field_placeholder_pair(a,b,rule,field):\n    if is_declared_placeholder(a,rule,field) or is_declared_placeholder(b,rule,field):return True\n    return field in rule.get('empty_array_fields',[]) and deep_equal(a,b) and isinstance(a,list) and not a\n\n\ndef project(value, fields):\n    if value is MISSING: return MISSING\n    if value is None: return None\n    if not isinstance(value, dict): return MISSING\n    return {key: value[key] for key in fields if key in value}\n\ndef aggregate_comparisons(values, rule):\n    if all(value == rule['all_fields_corresponding'] for value in values):\n        return rule['all_fields_corresponding']\n    for status in rule['otherwise_precedence']:\n        if status in values: return status\n    raise ValueError('formal aggregation rule has no result for ' + repr(values))\n\ndef compare_fields(left, right, fields, placeholder_rule=None):\n    rule = OPERATOR_RULES['compare_fields']['field_presence_rules']\n    roots=OPERATOR_RULES['compare_fields']['operand_root_rules']\n    if left is MISSING or right is MISSING: return roots['either_operand_absent']\n    if left is None or right is None: return roots['either_operand_null']\n    if not isinstance(left, dict) or not isinstance(right, dict): return roots['either_operand_non_object']\n    result = {}\n    placeholders = placeholder_rule or OPERATOR_RULES['compare_fields'].get('placeholder_rule', {})\n    for field in fields:\n        a, b = left.get(field, MISSING), right.get(field, MISSING)\n        if a is MISSING and b is MISSING: status = rule['both_absent']\n        elif a is MISSING or b is MISSING: status = rule['exactly_one_absent']\n        elif field_placeholder_pair(a,b,placeholders,field): status = placeholders.get('result', 'unknown')\n        elif field in placeholders.get('expected_values_by_field',{}) and (not deep_equal(a,placeholders['expected_values_by_field'][field]) or not deep_equal(b,placeholders['expected_values_by_field'][field])):status='content_conflict'\n        elif a in placeholders.get('forbidden_values_by_field',{}).get(field,[]) or b in placeholders.get('forbidden_values_by_field',{}).get(field,[]):status='content_conflict'\n        else: status = 'content_corresponding_in_fixture' if deep_equal(a, b) else 'content_conflict'\n        result[field] = status\n    return result\n\ndef compare_single(left, right, fields, placeholder_rule=None):\n    spec = OPERATOR_RULES['compare_record']\n    roots = spec['root_presence_rules']\n    if left is MISSING or right is MISSING: return roots['either_record_absent']\n    if left is None or right is None: return roots['either_record_null']\n    statuses = compare_fields(left, right, fields, placeholder_rule)\n    if isinstance(statuses, str): return statuses\n    return aggregate_comparisons(list(statuses.values()), spec['aggregate_rule'])\n\ndef compare_contract_entry(left, right, fields, expression):\n    spec = OPERATOR_RULES['contract_selection']\n    roots = spec['selected_reference_presence_rules']\n    missing_order=expression['missing_precedence'];null_order=expression['null_precedence']\n    if left is MISSING or right is MISSING:\n        if 'selected_entry_absent' in missing_order:return roots['selected_entry_absent']\n        raise ValueError('formal contract-selection rule omits absent selected entry')\n    if left is None or right is None:\n        if 'selected_entry_null' in null_order:return roots['selected_entry_null']\n        raise ValueError('formal contract-selection rule omits null selected entry')\n    if not isinstance(left, dict) or not isinstance(right, dict): return 'content_conflict'\n    statuses=[]; rules=spec['required_field_rules']\n    for field in fields:\n        a,b=left.get(field,MISSING),right.get(field,MISSING)\n        if a is MISSING or b is MISSING: statuses.append(rules['field_absent'])\n        elif a is None or b is None: statuses.append(rules['field_null'])\n        elif deep_equal(a,b): statuses.append(rules['present_equal'])\n        else: statuses.append(rules['present_unequal'])\n    for decision in expression['decision_order']:\n        if decision=='missing_if_any_required_field_absent' and 'field_absent' in missing_order and rules['field_absent'] in statuses:return rules['field_absent']\n        if decision=='unknown_if_map_entry_or_required_field_is_null' and 'field_null' in null_order and rules['field_null'] in statuses:return rules['field_null']\n        if decision=='content_conflict_if_any_present_value_differs' and rules['present_unequal'] in statuses:return rules['present_unequal']\n        if decision=='content_corresponding_in_fixture_if_all_present_values_equal' and all(x==rules['present_equal'] for x in statuses):return rules['present_equal']\n    raise ValueError('contract selection rule has no result for ' + repr(statuses))\n\ndef prerequisite_violation(check,root):\n    for state_root in check['roots']:\n        states=path_get(root,[state_root])\n        if not isinstance(states,dict):continue\n        adoption=states.get(check['trigger']['key'],{})\n        if not isinstance(adoption,dict) or adoption.get(check['trigger']['field'],MISSING) not in check['trigger']['one_of']:continue\n        for prerequisite in check['prerequisites']:\n            item=states.get(prerequisite['key'],{})\n            if not isinstance(item,dict) or item.get(prerequisite['field'],MISSING) not in prerequisite['one_of']:return True\n    return False\n\n\ndef eval_expr(expression, root, result):\n    if not isinstance(expression, dict): return expression\n    op = expression.get('op')\n    if not op:\n        if 'path' in expression: return path_get(root, expression['path'])\n        return {k: eval_expr(v, root, result) for k, v in expression.items()}\n    if op in ('get', 'read_nested'): return path_get(root, expression['path'])\n    if op == 'constant': return expression['value']\n    if op in ('project', 'project_nullable'):\n        return project(eval_expr(expression['value'], root, result), expression['fields'])\n    if op == 'compare_fields':\n        return compare_fields(eval_expr(expression['left'], root, result), eval_expr(expression['right'], root, result), expression['fields'], expression.get('placeholder_rule'))\n    if op == 'build_receipt_candidate':\n        candidate = path_get(root, expression['candidate']); evaluation = path_get(root, expression['evaluation'])\n        mapping = {'source': (candidate, 'source'), 'candidate_identity': (candidate, 'identity'),\n                   'candidate_revision': (candidate, 'revision'), 'candidate_version': (candidate, 'version'),\n                   'evaluation_identity': (evaluation, 'identity'), 'evaluation_revision': (evaluation, 'revision'),\n                   'scope': (evaluation, 'scope')}\n        out = {}\n        for field in expression['fields']:\n            obj, key = mapping[field]\n            if isinstance(obj, dict) and key in obj: out[field] = obj[key]\n        return out\n    if op == 'candidate_maturity_state':\n        selected = path_get(root, expression['selection']); maturity = result.get('maturity_result', MISSING)\n        original = path_get(root, expression['original'])\n        if selected is False: return 'not_required'\n        if selected is MISSING or selected is None or maturity != 'content_corresponding_in_fixture': return 'held_unknown_or_conflicting'\n        if original is MISSING or original is None or not isinstance(original, dict): return 'held_unknown_or_conflicting'\n        if any(k not in original or original[k] is None for k in expression['required_original_fields']): return 'held_unknown_or_conflicting'\n        return 'original_state_in_fixture_only'\n    if op == 'compare_target':\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        if left is MISSING or left is None: return 'missing'\n        if right is MISSING or right is None or not isinstance(left, dict) or not isinstance(right, dict): return 'candidate_target_information_unknown'\n        fields = expression['fields']\n        placeholder_fields=expression.get('placeholder_values_by_field',{})\n        if any(left.get(k, MISSING) in (MISSING, None) or right.get(k, MISSING) in (MISSING, None) or left.get(k,MISSING) in placeholder_fields.get(k,[]) or right.get(k,MISSING) in placeholder_fields.get(k,[]) for k in fields): return 'candidate_target_information_unknown'\n        return 'same_exact_candidate_in_fixture' if all(deep_equal(left[k], right[k]) for k in fields) else 'different_candidate'\n    if op in ('collect_null_keys', 'collect_missing_keys'):\n        obj = eval_expr(expression['value'], root, result); fields = expression['fields']\n        if not isinstance(obj, dict): return []\n        if op == 'collect_null_keys': return [k for k in fields if k in obj and obj[k] is None]\n        return [k for k in fields if k not in obj]\n    if op == 'claim_results':\n        obj = eval_expr(expression['value'], root, result)\n        out={k: ('unknown' if not isinstance(obj, dict) or k not in obj or type(obj[k]) is not bool else 'none' if obj[k] is False else 'rejected') for k in expression['fields']}\n        for check in expression.get('additional_checks', []):\n            if 'policy_ref' in check:check=path_get(PROGRAMS,check['policy_ref'])\n            if 'selection_path' in check and path_get(root,check['selection_path']) is not True:continue\n            if check['kind']=='placeholder_pair':\n                left=path_get(root,check['left']); right=path_get(root,check['right'])\n                if 'fields' not in check:\n                    values=(left,right); names=[check.get('field',check['name'])]\n                else:\n                    names=check['fields']; values=[]\n                    for field in names:\n                        values.append((left.get(field,MISSING) if isinstance(left,dict) else MISSING,right.get(field,MISSING) if isinstance(right,dict) else MISSING))\n                if 'fields' not in check:\n                    values=[values]\n                for field,pair_values in zip(names,values):\n                    rule={'values_by_field':{field:check.get('markers',[])},'empty_array_fields':check.get('empty_arrays',[]) if isinstance(check.get('empty_arrays',[]),list) else []}\n                    marked=[field_placeholder_pair(pair_values[0],pair_values[1],rule,field)]\n                    if any(marked): out[check['name'] if 'fields' not in check else check['name']+'_'+field]='unknown'\n            elif check['kind']=='forbidden_value':\n                value=path_get(root,check['path'])\n                if value in check['values'] and ('equal_pair_path' not in check or deep_equal(value,path_get(root,check['equal_pair_path']))):out[check['name']]='rejected'\n            elif check['kind']=='owner_role':\n                value=path_get(root,check['path'])\n                if 'require_object_path' in check and not isinstance(path_get(root,check['require_object_path']),dict):continue\n                if 'equal_pair_path' in check and not deep_equal(value,path_get(root,check['equal_pair_path'])):continue\n                if value is MISSING or value is None or value in check.get('markers',[]): out[check['name']]='unknown'\n                elif value!=check['expected']:out[check['name']]='rejected'\n            elif check['kind']=='state_prerequisite':\n                if prerequisite_violation(check,root) and (path_get(root,check['same_state_paths'][0])==check['trigger']['always_diagnose_value'] or path_get(root,check['same_state_paths'][1])==check['trigger']['always_diagnose_value'] or deep_equal(path_get(root,check['same_state_paths'][0]),path_get(root,check['same_state_paths'][1]))):out[check['name']]='rejected'\n            elif check['kind']=='selection_state':\n                selected=path_get(root,check['selection']);state=path_get(root,check['state'])\n                expected=check['when_true'] if selected is True else check['when_false'] if selected is False else MISSING\n                if expected is MISSING or state is MISSING or state is None or state in check['markers']:out[check['name']]='unknown'\n                elif not deep_equal(state,expected):out[check['name']]='rejected' if state in check['known_state_values'] else 'unknown'\n            else: raise ValueError('unknown additional claim check '+check['kind'])\n        return out\n    if op == 'false_effects': return {k: False for k in expression['fields']}\n    if op == 'is_false': return path_get(root, expression['path']) is False\n    if op == 'is_true': return path_get(root, expression['path']) is True\n    if op == 'is_absent_or_null':\n        value = path_get(root, expression['path']); return value is MISSING or value is None\n    if op == 'otherwise': return True\n    if op == 'conditional':\n        for arm in expression['arms']:\n            if eval_expr(arm['when'], root, result):\n                return eval_expr(arm['value'], root, result) if 'value' in arm else arm.get('then', MISSING)\n        return MISSING\n    if op == 'candidate_state':\n        spec=OPERATOR_RULES['candidate_state']['decision_rule']\n        fs=expression['candidate_fields']; evfs=expression['evaluation_fields']\n        objs=[eval_expr(expression[k],root,result) for k in ['candidate_original','candidate_submitted','evaluation_original','evaluation_submitted']]\n        for obj,fields in zip(objs,[fs,fs,evfs,evfs]):\n            if obj is MISSING or obj is None or not isinstance(obj,dict) or any(k not in obj or obj[k] is None for k in fields):return spec['if_any_check_fails']\n        cand=eval_expr(expression['candidate_comparison_results'],root,result)\n        ev=eval_expr(expression['evaluation_comparison_results'],root,result)\n        target=eval_expr(expression['target_result'],root,result)\n        corresponding=OPERATOR_RULES['candidate_state']['comparison_status_inputs']['candidate_comparison_results']['required_status']\n        if not isinstance(cand,dict) or not isinstance(ev,dict):return spec['if_any_check_fails']\n        if any(k not in cand or cand[k]!=corresponding for k in fs):return spec['if_any_check_fails']\n        if any(k not in ev or ev[k]!=corresponding for k in evfs):return spec['if_any_check_fails']\n        target_status=OPERATOR_RULES['candidate_state']['comparison_status_inputs']['target_result']['required_status']\n        return spec['if_all_checks_pass'] if target==target_status else spec['if_any_check_fails']\n    if op in ('compare_record', 'compare_receipt'):\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        if op == 'compare_receipt':\n            roots = OPERATOR_RULES['compare_receipt']['root_presence_rules']\n            if left is MISSING or right is MISSING: return roots['either_receipt_absent']\n            if left is None or right is None: return roots['either_receipt_null']\n            spec=OPERATOR_RULES['compare_receipt']\n            markers=expression.get('placeholder_values',[])\n            if any((isinstance(left,dict) and left.get(k,MISSING) in markers) or (isinstance(right,dict) and right.get(k,MISSING) in markers) for k in expression['fields']):return expression.get('placeholder_result','unknown')\n        return compare_single(left, right, expression['fields'],expression.get('placeholder_rule'))\n    if op == 'compare_nested_maps':\n        left = eval_expr(expression['left'], root, result); right = eval_expr(expression['right'], root, result)\n        out={key: compare_single(left.get(key, MISSING) if isinstance(left, dict) else MISSING,\n                                    right.get(key, MISSING) if isinstance(right, dict) else MISSING,\n                                    expression['fields'],expression.get('rules_by_key',{}).get(key,{})) for key in expression['keys']}\n        if prerequisite_violation(expression['prerequisite_policy'],root):out[expression['prerequisite_policy']['trigger']['key']]='content_conflict'\n        return out\n    if op == 'project_nested_maps':\n        value = eval_expr(expression['value'], root, result)\n        return {key: project(value[key], expression['fields']) for key in expression['keys'] if isinstance(value, dict) and key in value}\n    if op == 'fixed_owner_roles': return expression['value']\n    if op == 'maturity_result':\n        selected=path_get(root,expression['selection']); original=path_get(root,expression['original']); submitted=path_get(root,expression['submitted']); candidate=path_get(root,expression['candidate'])\n        fields=expression['compared_fields']; binding=expression['binding_fields']\n        if selected is False:return 'not_selected_not_required'\n        if selected is MISSING or selected is None:return 'unknown_selection'\n        if original is MISSING or original is None or any(k not in original or original[k] is None for k in fields):return 'unknown_original_maturity_information'\n        if submitted is MISSING or submitted is None:return 'missing'\n        marker_fields=expression.get('placeholder_values_by_field',{})\n        if any(field_placeholder_pair(original.get(k,MISSING),submitted.get(k,MISSING),{'values_by_field':marker_fields,'empty_array_fields':expression.get('empty_array_fields',[])},k) for k in fields):return expression.get('placeholder_result','unknown_original_maturity_information')\n        if compare_single(original,submitted,fields,expression.get('placeholder_rule'))!='content_corresponding_in_fixture':return 'content_conflict'\n        mapping=expression['binding_mapping']\n        if not isinstance(candidate,dict) or any(original.get(maturity_field,MISSING) in (MISSING,None) or candidate.get(candidate_field,MISSING) in (MISSING,None) for maturity_field,candidate_field in mapping):return 'different_candidate_target'\n        return 'content_corresponding_in_fixture' if all(deep_equal(original[mf],candidate[cf]) for mf,cf in mapping) else 'different_candidate_target'\n    if op == 'maturity_submission_result':\n        selected=path_get(root,expression['selection']);original=path_get(root,expression['original']);submitted=path_get(root,expression['submitted'])\n        if selected is False:return 'not_selected_not_required'\n        if selected is MISSING or selected is None:return 'selection_unknown'\n        if submitted is MISSING or submitted is None:return 'missing'\n        if original is MISSING or original is None:return 'original_unknown'\n        marker_fields=expression.get('placeholder_values_by_field',{})\n        if any(field_placeholder_pair(original.get(k,MISSING),submitted.get(k,MISSING),{'values_by_field':marker_fields,'empty_array_fields':expression.get('empty_array_fields',[])},k) for k in expression['compared_fields']):return expression.get('placeholder_result','original_unknown')\n        return compare_single(original,submitted,expression['compared_fields'],expression.get('placeholder_rule'))\n    if op == 'contract_selection':\n        original=eval_expr(expression['original'],root,result); submitted=eval_expr(expression['submitted'],root,result)\n        selected=list(expression['always'])\n        for group,flag in [('when_composition_selected','composition_selected_path'),('when_failure_knowledge_selected','failure_selected_path')]:\n            if path_get(root,expression[flag]) is True:selected.extend(expression[group])\n        out={}; rules=OPERATOR_RULES['contract_selection']['selected_reference_presence_rules']\n        for key in selected:\n            if original is MISSING or submitted is MISSING:\n                if 'map_absent' not in expression['missing_precedence']:raise ValueError('AST omits absent reference map rule')\n                out[key]=rules['map_absent']; continue\n            if original is None or submitted is None:\n                if 'map_null' not in expression['null_precedence']:raise ValueError('AST omits null reference map rule')\n                out[key]=rules['map_null']; continue\n            left=original.get(key,MISSING) if isinstance(original,dict) else MISSING\n            right=submitted.get(key,MISSING) if isinstance(submitted,dict) else MISSING\n            status=compare_contract_entry(left,right,expression['fields'],expression)\n            placeholder_values=expression.get('placeholder_values_by_field',{})\n            if status not in ['missing','unknown'] and isinstance(left,dict) and isinstance(right,dict) and any(left.get(field,MISSING) in placeholder_values.get(field,[]) or right.get(field,MISSING) in placeholder_values.get(field,[]) for field in expression['fields']):\n                status=expression.get('placeholder_result','unknown')\n            expected=expression['expected_identity_by_key'].get(key,MISSING)\n            if expected is MISSING:raise ValueError('AST expected identity missing for selected slot '+key)\n            if status=='content_corresponding_in_fixture':\n                # The AST's source-bound slot identity is an additional comparison\n                # operand. Missing/null already returned through the established\n                # precedence above and is not reclassified here.\n                left_identity=left.get('identity',MISSING) if isinstance(left,dict) else MISSING\n                right_identity=right.get('identity',MISSING) if isinstance(right,dict) else MISSING\n                if not deep_equal(left_identity,expected) or not deep_equal(right_identity,expected):\n                    status='content_conflict'\n            out[key]=status\n        return out\n    if op == 'contract_unselected':\n        out=[]\n        for item in expression['selectors']:\n            selected=path_get(root,item['path'])\n            if selected is False:out.append(item['key'])\n        return out\n    if op == 'route_state_differences':\n        left=eval_expr(expression['left'],root,result);right=eval_expr(expression['right'],root,result);out={}\n        for key in expression['keys']:\n            a=left.get(key,MISSING) if isinstance(left,dict) else MISSING;b=right.get(key,MISSING) if isinstance(right,dict) else MISSING\n            route_equal=expression.get('route_on_equal_values',{}).get(key,[])\n            av=a.get('state',MISSING) if isinstance(a,dict) else MISSING;bv=b.get('state',MISSING) if isinstance(b,dict) else MISSING\n            if (result[expression['status_ref']][key]!='content_corresponding_in_fixture' or av in route_equal or bv in route_equal) and key in expression['owner_by_key']:out[key]=expression['owner_by_key'][key]\n        return out\n    if op == 'same_as': return result.get(expression['ref'], MISSING)\n    raise ValueError('unknown operator: '+op)\n\ndef run_program(requirement_ref, raw):\n    result={}\n    for key, expression in PROGRAMS[requirement_ref][\"output\"].items():\n        result[key]=eval_expr(expression,raw,result)\n    return result\n",
+    "source_sha256": "12198317705f8d5c146b73b3e8642cf68dd48731c8046a97af6a7c8a1e585909",
     "globals": {
       "OPERATOR_RULES": "/operator_definitionsをnameで一意索引",
       "PROGRAMS": "/pure_reference_semantics/programs",
@@ -8539,9 +8634,13 @@
         "established_pattern",
         "Established_pattern",
         "universal_mature",
-        "established_Pattern"
+        "established_Pattern",
+        "accepted",
+        "universal",
+        "Established"
       ],
-      "basis": "L10 F02のmature/adopted/確立Pattern及びB01構成候補を確立Patternへ昇格しない負例の有限表記。case表記を含む局所比較。一般state enumを新設しない。"
+      "basis": "L10 F02のmature/adopted/確立Pattern及びB01構成候補を確立Patternへ昇格しない負例の有限表記。case表記を含む局所比較。一般state enumを新設しない。",
+      "application": "有限合成入力のF02 adoption前提、F03成熟先取り、B01構成候補の昇格表示に同じ別名集合を用いる。実source資格・実採否の一般policyや正式state enumではない。"
     }
   },
   "source_coupled_obligations": [
