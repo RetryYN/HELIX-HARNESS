@@ -304,7 +304,7 @@
         "disposition": "unresolved",
         "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
       },
-      "reuse": "reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "旧provider adapterのbounded既存security authorityを保持する。",
       "change": "旧provider/security broker/approvalを移植せず、採択010のSEC authority/Workerとaction別update admission/適用復旧義務へ再導出する。",
       "reason": "10/12承認010の通常/read-only/独立復旧の境界へ再導出。新authorityや毎回の人間承認を追加しない。",
@@ -325,7 +325,7 @@
         "disposition": "unresolved",
         "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
       },
-      "reuse": "reference_only",
+      "reuse": "semantic_rederive",
       "preserve": "旧候補のbootstrap別profileを万能な抜け道にしない境界を参照する。",
       "change": "旧Ticket/lease/fence/runtimeを移植せず、採択006の限定復旧と別SEC authority/Worker契約/復旧後OS同期へ再導出する。",
       "reason": "旧candidateの自動採用や通常authority免除を作らない。10/12承認006を起点にする。",
@@ -627,7 +627,7 @@
           "presence": "required"
         },
         "return_owners": {
-          "type": "Array<String>",
+          "type": "Array<OwnerCandidate>",
           "presence": "required"
         },
         "rejected_claims": {
@@ -668,7 +668,7 @@
       ],
       "presence": "value",
       "items": {
-        "type": "String"
+        "type": "OwnerCandidate"
       }
     },
     "Array<JsonValue>": {
@@ -706,27 +706,31 @@
         "forbidden_boundary",
         "missing_ticket",
         "wrong_authority_or_sequence",
-        "readonly-authority-missing"
+        "readonly-authority-missing",
+        "self_authority",
+        "unresolved"
       ]
     },
     "OwnerCandidate": {
       "json_kinds": [
-        "string"
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array",
+        "object"
       ],
       "presence": "value",
-      "finite_values": [
-        "SEC/OS",
-        "HELIX-SECURITY",
-        "recovery/SEC/OS",
-        "INFRA-resource-source",
-        "recovery-owner",
-        "resource/recovery-owner",
-        "resource/SEC-owner",
-        "independent-path-owner",
-        "OS-Worker-contract-owner",
-        "OS",
-        "SEC/Worker-contract-owner"
-      ]
+      "description": "L4/L9の責務候補を入力由来のJSON値として保持する。これは実owner資格ではない。"
+    },
+    "Array<OwnerCandidate>": {
+      "json_kinds": [
+        "array"
+      ],
+      "presence": "value",
+      "items": {
+        "type": "OwnerCandidate"
+      }
     }
   },
   "functions": [
@@ -908,7 +912,8 @@
         "actual_effects"
       ],
       "algorithm_ref": "/pure_reference_programs/3",
-      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。"
+      "scope_note": "当該契約の有限素材だけを判定し、単一関数の結果から全010/SEC/Worker資格を生成しない。",
+      "ordered_checks_source_basis": "L4 F04はreceiptと実際のbefore/afterを別の根拠として照合し、receipt成功だけでは足りないとする。そのため有限診断では実状態の観測をreceipt解釈より先に行う。この順序は診断順であり資格判定ではない。"
     },
     {
       "id": "HELIXINFRASTRUCTURE-L5-010-F05-ASSESS",
@@ -1122,6 +1127,13 @@
                     "op": "path",
                     "path": "/authority"
                   }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
                 }
               ]
             },
@@ -1158,6 +1170,13 @@
                   "value": {
                     "op": "path",
                     "path": "/authority"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
                   }
                 }
               ]
@@ -1196,6 +1215,13 @@
                     "op": "path",
                     "path": "/authority"
                   }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
                 }
               ]
             },
@@ -1232,6 +1258,13 @@
                   "value": {
                     "op": "path",
                     "path": "/authority"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
                   }
                 }
               ]
@@ -1270,6 +1303,13 @@
                     "op": "path",
                     "path": "/authority"
                   }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
                 }
               ]
             },
@@ -1306,6 +1346,13 @@
                   "value": {
                     "op": "path",
                     "path": "/authority"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
                   }
                 }
               ]
@@ -1518,6 +1565,13 @@
                 {
                   "op": "path_is_absent_or_null",
                   "path": "/os/$key"
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
                 }
               ]
             },
@@ -1637,6 +1691,1296 @@
               "result": "foreign",
               "return_owner": "SEC/OS"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/operation_tuple"
+              }
+            },
+            "emit": {
+              "field": "operation_tuple",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "not_nonempty_string",
+              "value": {
+                "op": "path",
+                "path": "/profile"
+              }
+            },
+            "emit": {
+              "field": "profile",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "not_in",
+              "value": {
+                "op": "path",
+                "path": "/profile"
+              },
+              "values": [
+                "ordinary",
+                "read_only",
+                "independent_recovery"
+              ]
+            },
+            "emit": {
+              "field": "profile",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.target",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/project"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.project",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.action",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.revision",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/environment"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.environment",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.scope",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/target"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.target",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/project"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/project"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.project",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/action"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/action"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.action",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/revision"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.revision",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/environment"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/environment"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.environment",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/scope"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.tuple.scope",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/owner"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "INFRA"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.owner",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/before"
+              }
+            },
+            "emit": {
+              "field": "before",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/values"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.values",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.target",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/target"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple/project"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.project",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/project"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/project"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.project",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.revision",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/revision"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.revision",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple/environment"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.environment",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/environment"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/environment"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.environment",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.scope",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/scope"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.operation_ref",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/ticket_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.ticket_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/assignment_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.assignment_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/relation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.relation_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority/ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker/authority_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker/authority_ref",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/ticket_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.ticket_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/assignment_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.assignment_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/profile"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "ordinary"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/os"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/os/relation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "os.relation_ref",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "path_is_absent",
+                  "path": "/authority/owner"
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.owner",
+              "result": "missing",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "path_is_null",
+                  "path": "/authority/owner"
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.owner",
+              "result": "unobserved",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/owner"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority/owner"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.owner",
+              "result": "not_qualified",
+              "return_owner": "SEC/OS"
+            }
           }
         ],
         "claim_rules": [
@@ -1665,7 +3009,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -1709,7 +3053,7 @@
             "value": "held_before_operation"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -2310,6 +3654,73 @@
               "result": "readonly-authority-missing",
               "return_owner": "HELIX-SECURITY"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02-R1",
+            "when": {
+              "op": "not_in",
+              "value": {
+                "op": "path",
+                "path": "/operation_tuple/action"
+              },
+              "values": [
+                "update",
+                "change",
+                "read",
+                "recovery"
+              ]
+            },
+            "emit": {
+              "field": "operation_tuple.action",
+              "result": "unknown",
+              "return_owner": "SEC/OS"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F02-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change"
+                  ]
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/update_admission"
+                  }
+                },
+                {
+                  "op": "not_in",
+                  "value": {
+                    "op": "path",
+                    "path": "/update_admission/state"
+                  },
+                  "values": [
+                    "accepted_in_fixture_only",
+                    "denied",
+                    "unknown",
+                    "mismatch",
+                    "expired",
+                    "revoked"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "update_admission.state",
+              "result": "unknown",
+              "return_owner": "HELIX-SECURITY"
+            }
           }
         ],
         "claim_rules": [
@@ -2329,7 +3740,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -2386,7 +3797,7 @@
             "value": "held_before_operation"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -2538,10 +3949,117 @@
               "result": "unknown",
               "return_owner": "recovery/SEC/OS"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change"
+                  ]
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/source_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.source_ref",
+              "result": "missing",
+              "return_owner": "recovery-design-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change"
+                  ]
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery/owner"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery.owner",
+              "result": "missing",
+              "return_owner": "recovery-design-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F03-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "in",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple/action"
+                  },
+                  "values": [
+                    "update",
+                    "change"
+                  ]
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/recovery"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "recovery",
+              "result": "unknown",
+              "return_owner": "recovery-design-owner"
+            }
           }
         ],
         "claim_rules": [],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -2571,7 +4089,7 @@
             "value": "held_before_change"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -3041,6 +4559,627 @@
               "result": "foreign",
               "return_owner": "INFRA-resource-source"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/result"
+              }
+            },
+            "emit": {
+              "field": "result",
+              "result": "unobserved",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/result/state"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.state",
+              "result": "unobserved",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "not_in",
+                  "value": {
+                    "op": "path",
+                    "path": "/result/state"
+                  },
+                  "values": [
+                    "succeeded_in_fixture_only",
+                    "partial",
+                    "stopped",
+                    "failed"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.state",
+              "result": "unknown",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/result/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.operation_ref",
+              "result": "unobserved",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/result/operation_ref"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "result.operation_ref",
+              "result": "foreign",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.operation_ref",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/target"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/revision"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.revision",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/tuple/scope"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple.scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/tuple"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.tuple",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after"
+                  }
+                },
+                {
+                  "op": "not_nonempty_string",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.operation_ref",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/after/tuple/target"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/target"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.tuple.target",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/after/tuple/revision"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/revision"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.tuple.revision",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/tuple"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/after/tuple/scope"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_tuple/scope"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.tuple.scope",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/values"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.values",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/before/operation_ref"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.operation_ref",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/values"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.values",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after"
+                  }
+                },
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/operation_tuple"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/after/operation_ref"
+                  },
+                  "right": {
+                    "op": "path",
+                    "path": "/operation_ref"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.operation_ref",
+              "result": "foreign",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F04-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/before"
+              }
+            },
+            "emit": {
+              "field": "before",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
           }
         ],
         "claim_rules": [
@@ -3081,7 +5220,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -3111,7 +5250,7 @@
             "value": "held_with_actual_unfinished"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -3189,11 +5328,23 @@
           },
           {
             "when": {
-              "op": "not_empty_array",
-              "value": {
-                "op": "path",
-                "path": "/read_constraint/write_set"
-              }
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/write_set"
+                  }
+                },
+                {
+                  "op": "not_empty_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/write_set"
+                  }
+                }
+              ]
             },
             "emit": {
               "field": "write_set",
@@ -3203,11 +5354,23 @@
           },
           {
             "when": {
-              "op": "not_empty_array",
-              "value": {
-                "op": "path",
-                "path": "/read_constraint/operation_caused_changes"
-              }
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/operation_caused_changes"
+                  }
+                },
+                {
+                  "op": "not_empty_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/operation_caused_changes"
+                  }
+                }
+              ]
             },
             "emit": {
               "field": "operation_caused_changes",
@@ -3399,6 +5562,248 @@
               "result": "not_readonly",
               "return_owner": "resource/SEC-owner"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/read_constraint"
+              }
+            },
+            "emit": {
+              "field": "read_constraint",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/read_constraint/write_set"
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_constraint.write_set",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "path_is_absent_or_null",
+                  "path": "/read_constraint/operation_caused_changes"
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_constraint.operation_caused_changes",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/before"
+              }
+            },
+            "emit": {
+              "field": "before",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "not_object",
+              "value": {
+                "op": "path",
+                "path": "/after"
+              }
+            },
+            "emit": {
+              "field": "after",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/values"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.values",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/after/values"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "after.values",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "not_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/write_set"
+                  }
+                },
+                {
+                  "op": "not_claim_in",
+                  "values": [
+                    "declaration_only_pass",
+                    "write_allowed"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_constraint.write_set",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint"
+                  }
+                },
+                {
+                  "op": "not_array",
+                  "value": {
+                    "op": "path",
+                    "path": "/read_constraint/operation_caused_changes"
+                  }
+                },
+                {
+                  "op": "not_claim_in",
+                  "values": [
+                    "declaration_only_pass",
+                    "write_allowed"
+                  ]
+                }
+              ]
+            },
+            "emit": {
+              "field": "read_constraint.operation_caused_changes",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F05-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before"
+                  }
+                },
+                {
+                  "op": "not_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/before/tuple"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "before.tuple",
+              "result": "unobserved",
+              "return_owner": "resource/SEC-owner"
+            }
           }
         ],
         "claim_rules": [
@@ -3441,7 +5846,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -3471,7 +5876,7 @@
             "value": "held_readonly_unqualified"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -3564,8 +5969,9 @@
             }
           },
           {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
             "when": {
-              "op": "not_bounded_worker",
+              "op": "not_object",
               "value": {
                 "op": "path",
                 "path": "/worker"
@@ -3574,6 +5980,64 @@
             "emit": {
               "field": "worker",
               "result": "missing",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "not_boolean",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "missing",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": false
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "not_qualified",
               "return_owner": "OS-Worker-contract-owner"
             }
           },
@@ -3678,6 +6142,68 @@
               "result": "missing",
               "return_owner": "independent-path-owner"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/independent"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/independent/state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "qualified_in_fixture_only"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "independent.state",
+              "result": "not_qualified",
+              "return_owner": "independent-path-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-F06-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "present_nonnull",
+                  "value": {
+                    "op": "path",
+                    "path": "/result"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/sync_state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "pending_after_recovery"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "sync_state",
+              "result": "unresolved",
+              "return_owner": "OS"
+            }
           }
         ],
         "claim_rules": [
@@ -3710,7 +6236,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -3780,7 +6306,7 @@
             "value": "recovery_result_with_sync_pending"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     },
     {
@@ -3843,6 +6369,95 @@
               "result": "forbidden_boundary",
               "return_owner": "SEC/Worker-contract-owner"
             }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/worker"
+                  }
+                },
+                {
+                  "op": "not_eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/worker/bounded"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": true
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "worker.bounded",
+              "result": "not_qualified",
+              "return_owner": "OS-Worker-contract-owner"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/authority"
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "/authority/owner"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "INFRA"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "authority.owner",
+              "result": "self_authority",
+              "return_owner": "HELIX-SECURITY"
+            }
+          },
+          {
+            "rule_ref": "HELIXINFRASTRUCTURE-L4-010-N01-R1",
+            "when": {
+              "op": "all",
+              "values": [
+                {
+                  "op": "is_object",
+                  "value": {
+                    "op": "path",
+                    "path": "/proposed_credential_storage"
+                  }
+                },
+                {
+                  "op": "not_boolean",
+                  "value": {
+                    "op": "path",
+                    "path": "/proposed_credential_storage/copy_secret_value"
+                  }
+                }
+              ]
+            },
+            "emit": {
+              "field": "proposed_credential_storage.copy_secret_value",
+              "result": "not_qualified",
+              "return_owner": "SEC/Worker-contract-owner"
+            }
           }
         ],
         "claim_rules": [
@@ -3871,7 +6486,7 @@
             }
           }
         ],
-        "failure_order": "checksを記載順に評価し、その後に該当claimを評価する。同一の(field, result, return_owner)診断は一度だけ出力する。",
+        "failure_order": "checksを記載順に評価し、続いてclaims中で一致しwhen条件もtrueのclaimだけを評価する。同一(field, result, return_owner)診断は最初の一件を保持する。",
         "retained_projection": {
           "retained_operation_tuple": "/operation_tuple",
           "retained_authority": "/authority",
@@ -3901,15 +6516,20 @@
             "value": "held_security_boundary"
           }
         ],
-        "state_rules_ref": "このprogramのstate_rulesを記載順に評価し、最初に一致した規則のvalueを返す。"
+        "state_rules_ref": "全診断とownerを組み立てた後、state_rulesを記載順に評価し最初に一致したvalueを返す。"
       }
     }
   ],
   "pure_reference_semantics": {
     "operator_domain": "JSON pointer読取、JSON kind/presence照合、有限predicate、順序付きfinding構成、root projectionだけを使う。",
-    "missing_null": "Absentとnullを区別する。必須rootが欠ける/型外の場合、このL9有限入力domainでは出力を主張しない。入力値のprojectionでは欠落の代わりにnullを合成せず、有限carrierで供給された値をそのまま返す。",
-    "json_equality": "JSON値のkindを区別して比較する。booleanとnumberは別kind、integer/decimal表現を含むJSON numberは数値同値で比較する。object member順は無視し、array順を保持する。AbsentはJSON値ではない。",
-    "claim_rule": "claim内容はfailureを消さない。F03のskip_applicable_recovery等claimではfailure.fieldをsource oracleがprefixなしで記録する既知表現差をcase_refで明示。F04/F05のclaim由来表示もデータ評価結果と分ける。",
+    "missing_null": {
+      "meaning": "Absentはpointer解決がmember/indexを得られない状態。nullは存在するJSON null。is_object等はAbsent/null/nonobjectを区別して判定する。pointerの途中がobject/arrayでなければAbsentを返す。"
+    },
+    "json_equality": {
+      "meaning": "JSON値同士の完全比較。booleanはnumberと別kind、numberは有限値で数値として比較、objectはmember集合と各値を比較しkey順を無視、arrayは要素順を保持する。AbsentはJSON値ではなく、eqはAbsentがoperandにあればfalseを返す。",
+      "nonfinite": "JSON numberとして有限でない値は有効なJSONValueではない。比較はequalにしない。"
+    },
+    "claim_rule": "claimsは観測済み入力上の診断表示を加える補助情報であり、必須観測・型・範囲・前後状態の検査を免除しない。診断はraw入力に対する宣言規則から算出する。claim文字列から実資格、実状態、実操作を生成しない。有限fixtureの表示fieldとsource期待との関係は規範条件へ取り込まず、判断記録で区別して保持する。",
     "operator_definitions": {
       "path": "slash-separated pointerでobjectを辿り、member欠落ではAbsent sentinelを返す。",
       "literal": "指定JSON値をそのまま返す。",
@@ -3922,7 +6542,9 @@
       "empty_object": "objectかつmember数0の場合true。",
       "path_is_absent_or_null": "指定pointerがAbsentか明示nullの時true。",
       "not_nonempty_string": "string以外、空string、Absent、nullの時true。",
-      "not_empty_array": "array以外または要素数1以上の時true。",
+      "not_empty_array": {
+        "meaning": "valueがJSON arrayで、要素を1個以上持つ場合だけtrue。Absent/null/non-arrayはfalse。"
+      },
       "not_bounded_worker": "workerがobjectでない、またはboundedがboolean trueでない時true。",
       "in": "左辺が有限候補の一つとstrict JSON同値。",
       "all": "values arrayを左から短絡論理積。",
@@ -3940,11 +6562,40 @@
       "has_any_failure": "現在までに追加したfailure_reasonsが1件以上あればtrue。",
       "has_claim": "raw claims arrayが1件以上ならtrue。",
       "failure_field_in": "現failure_reasonsのfieldのいずれかが有限valuesに含まれればtrue。",
-      "failure_result_in": "現failure_reasonsのresultのいずれかが有限valuesに含まれればtrue。"
+      "failure_result_in": "現failure_reasonsのresultのいずれかが有限valuesに含まれればtrue。",
+      "not_in": {
+        "meaning": "valueがvaluesのどのJSON値ともstrict JSON equalityで等しくなければtrue。Absent値もどのJSON値とも等しくない。"
+      },
+      "not_boolean": {
+        "meaning": "valueがboolean kindでなければtrue。Absentとnullを含む。boolean値のtrue/false判定とは別。"
+      },
+      "claim_rule": {
+        "meaning": "claimsへ列挙された該当claimだけを評価する。whenがあれば、同一raw packetと既に導出されたbindingsでtrueのときだけ診断する。source oracle/case identifierは入力でもbranch条件でもない。claim診断はchecksを省略しない。"
+      },
+      "is_array": {
+        "meaning": "valueがJSON array kindならtrue。Absent、null、other kindはfalse。"
+      },
+      "not_array": {
+        "meaning": "valueがJSON array kindでなければtrue。Absentとnullを含む。"
+      },
+      "path_is_absent": "指定pointerにobject memberまたはarray indexが存在しない場合true。nullとの区別にだけ用いる。",
+      "path_is_null": "指定pointerが存在し、その値が明示nullの場合true。Absentとの区別にだけ用いる。"
     },
     "generic_reader_contract": "readerはoperator定義を実装するだけで、contract/function IDによる分岐や固定Python業務判定を持たない。個別path・条件・failure literal・順序・返却projectは各pure_reference_programs[].decision_rulesが唯一の根拠。",
-    "state_rule_order": "decision_rules.state_rulesを宣言順に評価し、最初にtrueとなるvalueをinformation_stateに設定。該当なしならinitial_projection.information_stateを保持。",
-    "claim_rule_order": "全ordered checksを実行した後、claim_rulesを配列順に評価する。claimがデータ検査を無効化することはない。"
+    "state_rule_order": "checksと該当claimを順に評価しfailure_reasons/return_ownersを組み立てた後、state_rulesを配列順に評価して最初のtrue valueを返す。",
+    "claim_rule_order": "全ordered checksを実行した後、claim_rulesを配列順に評価する。claimがデータ検査を無効化することはない。",
+    "owner_projection": {
+      "source": "failure_reasons[*].return_owner",
+      "order": "診断の出現順を保つ",
+      "duplicates": "最初の出現だけを残す",
+      "omitted_values": "空文字列およびAbsentは出力しない",
+      "reader_effect": "各failureを追加した直後にreturn_ownersへ未出現ownerを追加する"
+    },
+    "pointer_rules": {
+      "syntax": "RFC 6901 JSON Pointer。rootは空文字列、各tokenは/で区切り、~1を/、~0を~へ順に復号する。配列tokenは0または先頭0のない正整数のみ。範囲外・不正token・途中nonobject/nonarrayはAbsent。",
+      "template": "テンプレート内の$variableを置換してからpointer decodingを行う。bound member keyは~を~0、/を~1へescapeしてtokenへ挿入する。",
+      "object_iteration": "object memberをUnicode code point昇順で走査する。"
+    }
   },
   "responsibility_boundary": {
     "logical_candidates": "failure_reason.return_ownerはL4/L9 finite diagnostic routing candidateであり、実在owner資格/assignmentを証明しない。",
