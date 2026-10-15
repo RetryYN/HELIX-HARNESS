@@ -1,0 +1,4461 @@
+{
+  "parent": "HARNESS-L2-041",
+  "status": "draft_limited_detail_design_pending_parent_and_independent_review",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "source_main": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "323c9f4a37c033a7570c391721c4977d74b315ab4b82d0bb70092e2d137441d4"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "934d4cba5c9e60726bc96a03e92b37c27d3c4b61d736c009022dc4211aa67d28"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "392c82a0b3d17e9306c0c364d77f557186a62c6cfd7186ea0f3263d4c496a4fb"
+    },
+    {
+      "path": "AGENTS.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    }
+  ],
+  "approved_requirements": [
+    {
+      "id": "HARNESS-L3-041-F01",
+      "parent": "HARNESS-L2-041",
+      "title": "選択入力と依存区分",
+      "obligation": "対象HARNESS-L1 revision、009の適用契約、layer/kind/scopeとsource spanを常時必須にする。抽出操作では選択active templateのexact identity/revision/bytes、applicability分岐、pair契約、040または互換な版付きledger契約、extractor identity/versionを識別する。選択ownerがBRAINなら当該入力契約/互換性を使い、非選択知識と旧runtimeは参照/未観測に分ける。未提示/矛盾/staleでは当該抽出対象を確定しない。",
+      "oracle_ref": "HARNESS-L10-041-F01"
+    },
+    {
+      "id": "HARNESS-L3-041-F02",
+      "parent": "HARNESS-L2-041",
+      "title": "原子的atomと候補行",
+      "obligation": "選択templateの章/field/table row/applicability rule/done-when/pair contractの各義務を個別atomへ機械抽出し、source span/template revision/適用条件/義務kind/semantic digestとextractor/version digestを付け、版付きledgerへの候補行へ結ぶ。異なる二義務を一つの複合atomにまとめない。候補行は正本登録/採択ではない。",
+      "oracle_ref": "HARNESS-L10-041-F02"
+    },
+    {
+      "id": "HARNESS-L3-041-F03",
+      "parent": "HARNESS-L2-041",
+      "title": "全対象要素の被覆とgap",
+      "obligation": "各対象template要素をatomまたは理由付き非適用/未解決gapへ一つずつ対応づける。未対応、空/TBD、抽出不能、同一義務重複を具体的spanと種類/対象/数で示す。適用分岐を読み飛ばさず、LLM自由補完で空所を埋めない。未解決gapを完了にしない。",
+      "oracle_ref": "HARNESS-L10-041-F03"
+    },
+    {
+      "id": "HARNESS-L3-041-N01",
+      "parent": "HARNESS-L2-041",
+      "title": "同入力比較と未見の限界",
+      "obligation": "同じtemplate bytes/revision、scope、applicability入力、extractor identity/versionから独立に得た二結果のsemantic digestを比較する。不一致は当該scopeの非決定的抽出finding/未解決、一致も当該比較に限る。伏せた新revision/分岐は個別atomかspan付きgapへ返し、一般決定性/全template対応へ外挿しない。",
+      "oracle_ref": "HARNESS-L10-041-N01"
+    },
+    {
+      "id": "HARNESS-L3-041-B01",
+      "parent": "HARNESS-L2-041",
+      "title": "抽出と適用・登録・設計のowner境界",
+      "obligation": "CORE041は抽出/gap/候補行の意味を持ち、009はtemplate適用と要求不足Backflowを持つ。意味/適用性不足は009/対象owner、ledger/pair契約不整合は040相当owner、OS保存/実行receipt欠落はOSへ戻す。041は台帳writer、executor、template authority、025/026設計生成/対oracle、要求合意/受入を所有しない。",
+      "oracle_ref": "HARNESS-L10-041-B01"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HARNESS-L10-041-F01",
+      "parent": "HARNESS-L2-041",
+      "title": "選択入力と依存区分",
+      "requirement_ref": "HARNESS-L3-041-F01",
+      "positive_input": "同scopeで必要契約と選択template/extractorのrevisionを照合する。",
+      "expected_observation": "常時契約・操作入力・選択入力元・参照を区別し、選択集合だけを説明できる。",
+      "negative_input": "active版不明、scope矛盾、pair/ledger版欠落、非選択templateを観測済み、未来のOS保存receiptを開始必須にする。",
+      "failure_observation": "不足の該当抽出scopeをunknown/保留にし、009/契約ownerへ戻す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-041-F02",
+      "parent": "HARNESS-L2-041",
+      "title": "原子的atomと候補行",
+      "requirement_ref": "HARNESS-L3-041-F02",
+      "positive_input": "二つの独立義務を含む固定templateからatomと候補行の対応を照合する。",
+      "expected_observation": "二義務が個別atomとして各spanへ辿れ、候補行と抽出器版/digestが説明できる。",
+      "negative_input": "二義務を複合atom一個へ集約、span/digest/抽出器版欠落、人手要約だけで機械抽出済み、候補行を登録済み。",
+      "failure_observation": "欠ける個別対応を不一致とし、該当scopeを抽出済みにしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-041-F03",
+      "parent": "HARNESS-L2-041",
+      "title": "全対象要素の被覆とgap",
+      "requirement_ref": "HARNESS-L3-041-F03",
+      "positive_input": "一要素を空/TBD、別要素を重複、一分岐を未対応にした入力を個別に照合する。",
+      "expected_observation": "対象集合と個別atom/gap/非適用理由を辿れ、重複や未対応を隠さない。",
+      "negative_input": "空所推測埋め、分岐読み飛ばし、要素欠落、重複を件数で相殺、gap有りで完了。",
+      "failure_observation": "具体的gap集合と戻し先を保持し、根拠付き非適用とunknownを区別する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-041-N01",
+      "parent": "HARNESS-L2-041",
+      "title": "同入力比較と未見の限界",
+      "requirement_ref": "HARNESS-L3-041-N01",
+      "positive_input": "同じ固定入力の二結果と、作成側に未公開の同scopeの新revision/分岐を照合する条件を定める。",
+      "expected_observation": "比較不一致を局所化し、未見要素の対応/限界と非選択の未観測が辿れる。",
+      "negative_input": "同入力でdigest不一致を一致扱い、一回一致で万能保証、未見未対応を自由補完。",
+      "failure_observation": "不一致scopeと未対応spanを残し、別入力の成功で相殺しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-041-B01",
+      "parent": "HARNESS-L2-041",
+      "title": "抽出と適用・登録・設計のowner境界",
+      "requirement_ref": "HARNESS-L3-041-B01",
+      "positive_input": "template不足、ledger不整合、OS receipt不足を別々に照合する。",
+      "expected_observation": "三種の戻し先と候補/正本/設計/受入を区別し、025/026の完了を開始前提にしない。",
+      "negative_input": "候補出力で要求合意/設計/受入成功、COREが台帳write、OS欠落をtemplate gapで消込。",
+      "failure_observation": "対象ownerの未完を維持し、抽出済みから他責務の完了を生成しない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HARNESS-L3-041-F01",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "3a95d83b96efb7472d5c32114ece69172b3915e291d23260869f06b9f032a357"
+    },
+    {
+      "id": "HARNESS-L3-041-F02",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "04fac3d40739bb702380a44a855e31a1087220550443cb15c29238f3fd7d433d"
+    },
+    {
+      "id": "HARNESS-L3-041-F03",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "84b4f4dfa194cfd22237abb2bbcb59b7fd761e66c1d6fa3d912b71488e72ec0c"
+    },
+    {
+      "id": "HARNESS-L3-041-N01",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "canonical_sha256": "54412a7781799f8d80f88cf40a87088b00b6f9252262eebc0bc219d2b99a3e18"
+    },
+    {
+      "id": "HARNESS-L3-041-B01",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "canonical_sha256": "06f7f9bb399be5deb5f80f1240a0fc3387cd8dce000a69617aced7d890a1e084"
+    },
+    {
+      "id": "HARNESS-L10-041-F01",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "1dd10548e257626d4f53604baca23e2d0f86b83a695609abd06f5a6f1a91cd27"
+    },
+    {
+      "id": "HARNESS-L10-041-F02",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "0b04e94996b31341971a0a42dc473ab30177bec7a50d3d3d78ffb25b9e41ef52"
+    },
+    {
+      "id": "HARNESS-L10-041-F03",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "01a822108221da48dc7cc1278de4c52d8c636c80423ecb48f430f1d4cdf98ac4"
+    },
+    {
+      "id": "HARNESS-L10-041-N01",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "canonical_sha256": "1390a116e075aa53eda68db648abdf278f085d601f18b51c527ed26ce68f23e8"
+    },
+    {
+      "id": "HARNESS-L10-041-B01",
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "canonical_sha256": "0b8ca72c2a5bad2df24be610639cdf50125bdf2a96c335d5319ccb7182795eb5"
+    }
+  ],
+  "approval_basis": {
+    "record": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "exact_approved_head": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
+    "scope": "041の5要求/5oracle全wholeのみ。048/056や旧runtimeのauthorityを生成しない。",
+    "audit_baseline": {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "observed_source_revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
+      "parents": 92,
+      "pairs": 430,
+      "prior_snapshot": {
+        "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+        "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+        "observed_source_revision": "7c553c5c2a4f16e55bdf8e0851409afbd35d3870",
+        "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+      }
+    }
+  },
+  "legacy_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "read_lines": [
+        137,
+        137
+      ],
+      "quote": "| **HIL-FR-47** | Template Obligation Extractorは各layerのactive templateから章、field、table row、applicability rule、done-when、pair contractを原子的obligationとして機械抽出し、該当ledgerへ候補行を追加する。未対応template要素、空/TBD、抽出不能、同一obligation重複をfinding化し、LLM自由補完で埋めない。 | template atom、ledger proposal、extractor/version digest、gap finding |",
+      "line_sha256": "785f0998ca9fd2192bcddc638d1ef1233551c251e307e631303642abe7713fad",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "preserve": "要素別の原子的機械抽出、span/版/digest、候補行と個別gap、自由補完拒否を保持。",
+      "change": "旧writer/台帳登録/runtimeを移さずCORE候補とOS実登録を分離。",
+      "reason": "9/29の041-003と10/12委任承認の原子性・二結果比較・owner境界へ導出する。",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "read_lines": [
+        425,
+        425
+      ],
+      "quote": "Template Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。",
+      "line_sha256": "67048269fe1b568fbd6129b4bfeb569a3d4edcd11824a0c94d400d9cad7b5fc4",
+      "archive_disposition": "unresolved",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "Pythonが解析候補を返し、正本更新と抽出結果を分離する文脈を参照。",
+      "change": "旧AST/YAML/Markdown実装、Node commit/table/schema/故障codeは採用しない。実登録は認められたOS別契約へ戻す。",
+      "reason": "現行009のpure Python境界と041の候補/正本分離を旧sourceへ照合する読み取り参照。unresolved資産の再利用実行/採択ではない。",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "read_lines": [
+        89,
+        99
+      ],
+      "quote": "      field: allowlisted_field_path\n      op: eq | neq | in | contains | exists | gt | gte | lt | lte\n      value: typed_scalar_or_array\n```\n\n一つのnodeに複数variantを置かない。空`all/any`、過剰depth、循環参照、unknown field/operator、\nfield型とvalue/operatorの不一致をschemaまたはsemantic validationで拒否する。\n\n評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを\n`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、\npredicate falseとは別に記録する。",
+      "line_sha256": "934611553c6247dc0ba122072d811d2af2d5ee668cf2ca21c9ff34fd20640afc",
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "適用unknownをN/Aへ丸めず、非適用理由とsource参照を分離する。旧predicate schema/registry/gate/承認方式を採用しない。",
+      "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
+      "read_lines": [
+        115,
+        115
+      ],
+      "quote": "| HIL-FR-47 | HIA-FR-047 | active templateの章、field、table、done-when、pair contract fixtureがある | Template Obligation Extractorを実行する | 全要素をprovenance付きobligation proposalまたはgap findingへ分岐する | `HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY` | HOT-HIL-44; HST-HIL-030 | TemplateObligationExtractor | draft-defined | not-implemented |",
+      "line_sha256": "53abdcad175a6bb1a4b14ec5f081556b2ce05732c5230bd4da6763d884e810a4",
+      "asset_id": "LEGACY-ASSET-A52AD67A5575E2B4ACFE",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "全要素proposal/gap、draft-defined/not-implementedの未成立を保持。実行証拠として継承しない。",
+      "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "revision": "7fefdcc928a15c0184134594aea2cdf9907d7158",
+      "sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "read_lines": [
+        398,
+        398
+      ],
+      "quote": "| HST-CASE-030-14 | HST-HIL-030 | HIL-FR-47 | active templateの章、field、table、done-when、pair contract fixtureがある | Template Obligation Extractorを実行する | assertion_input_ready | assertion_pass | 全要素をprovenance付きobligation proposalまたはgap findingへ分岐する | HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY | FX-HST-030-14 | design-defined | not-implemented |",
+      "line_sha256": "a7dab626b1ad888c1a97896a0bbc61e61a54be018d8bdc02e6654628bb6cd03d",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "HST-CASE-030-14のdesign-defined/not-implementedを保持。旧assertion/testを実行しない。",
+      "change": "原意味を比較する論理処理だけを導出し旧runtime/物理schema/許可を移さない。",
+      "reason": "既承認041の原子性、gap、非適用、候補/正本分離と失敗を照合するため。",
+      "archive_disposition": "unresolved"
+    }
+  ],
+  "failure_basis": {
+    "comment_id": 6131331931,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2995#issuecomment-6131331931",
+    "reviewed_head": "5e1bb645db4f2feaa3785280a1a609758919dbc2",
+    "body_sha256": "6a5f68a48b0dcd2287a3942e2738f6725c1a5fc247867ad2bd621d8fc4f78f0b",
+    "observation": "旧L4/L9のF02 digest/extractor版/人手要約反例欠落。修正後33原caseを保持し、その属性を意味資格へ昇格させない局所反例も追加する。",
+    "scope_limit": "歴史的R1 finding。現在の独立review合格をこの記録から生成しない。"
+  },
+  "scope_preservation": {
+    "parents": 92,
+    "requirement_oracle_pairs": 430,
+    "upstream_objects_unchanged": true,
+    "L6": "関数設計",
+    "L7": "L6の対検証",
+    "implementation": "層外",
+    "implementation_ready": false
+  },
+  "readiness_boundary": {
+    "source_qualification": "not_established",
+    "codec": "not_established",
+    "runtime": "not_executed",
+    "TDD": "not_executed",
+    "CI": "not_established",
+    "L11": "not_established",
+    "all_meaning_closed": false,
+    "implementation_ready": false
+  },
+  "document_id": "HARNESS-L5-041",
+  "layer": "L5",
+  "paired_document": "HARNESS-L8-041",
+  "purpose": "批准041の原子抽出/gap/二結果比較/owner意味を完全論理IOと有限純粋導出へ具体化する。実抽出/保存/authority生成は別責務。",
+  "types": {
+    "JsonValue": {
+      "kind": "論理JSON値",
+      "meaning": "原packet値を保持。正式wire/codecの受理規則ではない。"
+    },
+    "RetainedContext": {
+      "kind": "record",
+      "fields": {
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "presence": "absent/null/empty/providedを型へ別記し、診断missingへの写像でも原rawは変更しない。",
+    "SourceAttributesArguments": {
+      "kind": "record",
+      "fields": {
+        "actual": {
+          "presence_states": [
+            "provided",
+            "null",
+            "absent"
+          ],
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "record",
+                "fields": {
+                  "identity": {
+                    "presence_states": [
+                      "null",
+                      "provided",
+                      "absent"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "null"
+                        },
+                        {
+                          "kind": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "revision": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "scope": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "owner": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "closed_declared_carrier"
+              },
+              {
+                "kind": "null"
+              }
+            ]
+          }
+        },
+        "required": {
+          "presence_states": [
+            "provided",
+            "absent",
+            "null"
+          ],
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "record",
+                "fields": {
+                  "identity": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "revision": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "scope": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "owner": {
+                    "presence_states": [
+                      "provided",
+                      "absent",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "closed_declared_carrier"
+              },
+              {
+                "kind": "null"
+              }
+            ]
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "SourceAttributesReturn": {
+      "kind": "record",
+      "fields": {
+        "attribute_results": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "map",
+            "key_type": "opaque_string",
+            "values": {
+              "kind": "record",
+              "fields": {
+                "state": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "missing",
+                      "supported_synthetic_condition",
+                      "unknown",
+                      "stale",
+                      "conflict"
+                    ]
+                  }
+                },
+                "value": {
+                  "presence_states": [
+                    "null",
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "string"
+                      }
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "attribute_comparison": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "state": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string",
+                  "domain": [
+                    "missing",
+                    "unknown",
+                    "stale",
+                    "conflict",
+                    "supported_synthetic_condition"
+                  ]
+                }
+              },
+              "value": {
+                "presence_states": [
+                  "null",
+                  "provided"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "string"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "actual_qualification_established": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        },
+        "qualification_provider": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "state": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string",
+                  "domain": [
+                    "unknown"
+                  ]
+                }
+              },
+              "value": {
+                "presence_states": [
+                  "null"
+                ],
+                "type": {
+                  "kind": "null"
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "scope": "原33とL4から固定した24材料反例/17属性反例に対応する論理型。未見一般域は未閉包。",
+    "F01Arguments": {
+      "kind": "record",
+      "fields": {
+        "packet": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "OS_receipt": {
+                "presence_states": [
+                  "null"
+                ],
+                "type": {
+                  "kind": "null"
+                }
+              },
+              "fixture_limit": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "observed_frame": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "record",
+                      "fields": {
+                        "BRAIN_input_compatibility": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "CORE009_contract": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "L1_revision": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "active_state": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "applicability_input": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "record",
+                            "fields": {
+                              "screen": {
+                                "presence_states": [
+                                  "provided"
+                                ],
+                                "type": {
+                                  "kind": "boolean",
+                                  "domain": [
+                                    false
+                                  ]
+                                }
+                              }
+                            },
+                            "additional_properties": "closed_declared_carrier"
+                          }
+                        },
+                        "extractor_identity": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "extractor_version": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "kind": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "layer": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "ledger_contract": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "pair_contract": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "scope": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "source_span": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "template_bytes_utf8": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "template_identity": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "template_revision": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        }
+                      },
+                      "additional_properties": "closed_declared_carrier"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              },
+              "reference_only": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "string"
+                  }
+                }
+              },
+              "required_frame": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "BRAIN_input_compatibility": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "CORE009_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "L1_revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "active_state": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "applicability_input": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "record",
+                        "fields": {
+                          "screen": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "boolean",
+                              "domain": [
+                                false
+                              ]
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    },
+                    "extractor_identity": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "extractor_version": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "kind": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "layer": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "ledger_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "pair_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "scope": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "source_span": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_bytes_utf8": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_identity": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "selected_owner": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "context": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "RetainedContext"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F01Return": {
+      "kind": "record",
+      "fields": {
+        "input_results": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "map",
+            "key_type": "opaque_string",
+            "values": {
+              "kind": "record",
+              "fields": {
+                "state": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "supported_synthetic_condition",
+                      "unknown",
+                      "conflict",
+                      "missing",
+                      "stale",
+                      "unobserved"
+                    ]
+                  }
+                },
+                "value": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "screen": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "boolean",
+                              "domain": [
+                                false
+                              ]
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "selected_scope_result": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "state": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string",
+                  "domain": [
+                    "supported_synthetic_condition",
+                    "unknown",
+                    "conflict",
+                    "missing",
+                    "stale"
+                  ]
+                }
+              },
+              "value": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "reference_only_inputs": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "state": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string",
+                  "domain": [
+                    "known"
+                  ]
+                }
+              },
+              "value": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "string"
+                  }
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "effects": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "actual_extraction_executed": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_ledger_registered": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_OS_execution": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_template_authority": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_design_complete": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_requirement_agreement": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_acceptance": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F02Arguments": {
+      "kind": "record",
+      "fields": {
+        "packet": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "applicability_input": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "screen": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "boolean",
+                        "domain": [
+                          false
+                        ]
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "candidate_atoms": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "record",
+                    "fields": {
+                      "atom_id": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "candidate_row": {
+                        "presence_states": [
+                          "provided",
+                          "absent"
+                        ],
+                        "type": {
+                          "kind": "record",
+                          "fields": {
+                            "atom_ref": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "ledger_contract": {
+                              "presence_states": [
+                                "provided",
+                                "null"
+                              ],
+                              "type": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "string"
+                                  },
+                                  {
+                                    "kind": "null"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "additional_properties": "closed_declared_carrier"
+                        }
+                      },
+                      "content": {
+                        "presence_states": [
+                          "provided",
+                          "absent"
+                        ],
+                        "type": {
+                          "kind": "record",
+                          "fields": {
+                            "applicability": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "record",
+                                "fields": {
+                                  "screen": {
+                                    "presence_states": [
+                                      "provided"
+                                    ],
+                                    "type": {
+                                      "kind": "boolean",
+                                      "domain": [
+                                        false
+                                      ]
+                                    }
+                                  }
+                                },
+                                "additional_properties": "closed_declared_carrier"
+                              }
+                            },
+                            "extractor_identity": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "extractor_version": {
+                              "presence_states": [
+                                "provided",
+                                "null"
+                              ],
+                              "type": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "string"
+                                  },
+                                  {
+                                    "kind": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "kind": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "meaning": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "source_element_id": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "source_span": {
+                              "presence_states": [
+                                "provided",
+                                "null"
+                              ],
+                              "type": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "record",
+                                    "fields": {
+                                      "end_line": {
+                                        "presence_states": [
+                                          "provided"
+                                        ],
+                                        "type": {
+                                          "kind": "integer"
+                                        }
+                                      },
+                                      "start_line": {
+                                        "presence_states": [
+                                          "provided"
+                                        ],
+                                        "type": {
+                                          "kind": "integer"
+                                        }
+                                      }
+                                    },
+                                    "additional_properties": "closed_declared_carrier"
+                                  },
+                                  {
+                                    "kind": "null"
+                                  }
+                                ]
+                              }
+                            },
+                            "template_revision": {
+                              "presence_states": [
+                                "provided",
+                                "null"
+                              ],
+                              "type": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "string"
+                                  },
+                                  {
+                                    "kind": "null"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "additional_properties": "closed_declared_carrier"
+                        }
+                      },
+                      "extractor_version_digest": {
+                        "presence_states": [
+                          "provided",
+                          "absent",
+                          "null"
+                        ],
+                        "type": {
+                          "kind": "union",
+                          "variants": [
+                            {
+                              "kind": "string"
+                            },
+                            {
+                              "kind": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "semantic_digest": {
+                        "presence_states": [
+                          "provided",
+                          "absent",
+                          "null"
+                        ],
+                        "type": {
+                          "kind": "union",
+                          "variants": [
+                            {
+                              "kind": "string"
+                            },
+                            {
+                              "kind": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "meaning": {
+                        "presence_states": [
+                          "absent",
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "source_element_ids": {
+                        "presence_states": [
+                          "absent",
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "list",
+                          "items": {
+                            "kind": "string"
+                          }
+                        }
+                      }
+                    },
+                    "additional_properties": "closed_declared_carrier"
+                  }
+                }
+              },
+              "human_summary_candidates": {
+                "presence_states": [
+                  "empty",
+                  "provided"
+                ],
+                "type": {
+                  "kind": "map",
+                  "key_type": "opaque_string",
+                  "values": {
+                    "kind": "record",
+                    "fields": {
+                      "claimed_mechanically_extracted": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "boolean",
+                          "domain": [
+                            true
+                          ]
+                        }
+                      },
+                      "summary_text": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      }
+                    },
+                    "additional_properties": "closed_declared_carrier"
+                  }
+                }
+              },
+              "independent_extractor_contract": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "identity": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "version": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "independent_ledger_contract": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "material_kind": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "mechanical_candidate_records": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "map",
+                  "key_type": "opaque_string",
+                  "values": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "candidate_ref": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "content_sha256": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "execution_state": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "extractor_identity": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "extractor_version": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "input_template_sha256": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "kind": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "source_element_id": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              "original_template": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "raw_utf8": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "sha256": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
+              },
+              "reasoned_NA": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "map",
+                  "key_type": "opaque_string",
+                  "values": {
+                    "kind": "record",
+                    "fields": {
+                      "decider": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "reason": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "reassessment": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "target_revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      }
+                    },
+                    "additional_properties": "closed_declared_carrier"
+                  }
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "context": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "RetainedContext"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F02Return": {
+      "kind": "record",
+      "fields": {
+        "atom_results": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "map",
+            "key_type": "opaque_string",
+            "values": {
+              "kind": "record",
+              "fields": {
+                "state": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "supported_synthetic_condition",
+                      "conflict",
+                      "missing",
+                      "stale",
+                      "unknown"
+                    ]
+                  }
+                },
+                "value": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "candidate_row_results": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "map",
+            "key_type": "opaque_string",
+            "values": {
+              "kind": "record",
+              "fields": {
+                "state": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "supported_synthetic_condition",
+                      "conflict",
+                      "missing",
+                      "stale",
+                      "unknown"
+                    ]
+                  }
+                },
+                "value": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "effects": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "actual_extraction_executed": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_ledger_registered": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_OS_execution": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_template_authority": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_design_complete": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_requirement_agreement": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_acceptance": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F03Arguments": {
+      "kind": "record",
+      "fields": {
+        "packet": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "applicability_input": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "screen": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "union",
+                        "variants": [
+                          {
+                            "kind": "boolean",
+                            "domain": [
+                              false
+                            ]
+                          },
+                          {
+                            "kind": "string"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "candidate_atoms": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "list",
+                  "items": {
+                    "kind": "record",
+                    "fields": {
+                      "atom_id": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "candidate_row": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "record",
+                          "fields": {
+                            "atom_ref": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "ledger_contract": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            }
+                          },
+                          "additional_properties": "closed_declared_carrier"
+                        }
+                      },
+                      "content": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "record",
+                          "fields": {
+                            "applicability": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "record",
+                                "fields": {
+                                  "screen": {
+                                    "presence_states": [
+                                      "provided"
+                                    ],
+                                    "type": {
+                                      "kind": "boolean",
+                                      "domain": [
+                                        false
+                                      ]
+                                    }
+                                  }
+                                },
+                                "additional_properties": "closed_declared_carrier"
+                              }
+                            },
+                            "extractor_identity": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "extractor_version": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "kind": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "meaning": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "source_element_id": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            },
+                            "source_span": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "record",
+                                "fields": {
+                                  "end_line": {
+                                    "presence_states": [
+                                      "provided"
+                                    ],
+                                    "type": {
+                                      "kind": "integer"
+                                    }
+                                  },
+                                  "start_line": {
+                                    "presence_states": [
+                                      "provided"
+                                    ],
+                                    "type": {
+                                      "kind": "integer"
+                                    }
+                                  }
+                                },
+                                "additional_properties": "closed_declared_carrier"
+                              }
+                            },
+                            "template_revision": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "string"
+                              }
+                            }
+                          },
+                          "additional_properties": "closed_declared_carrier"
+                        }
+                      },
+                      "extractor_version_digest": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "semantic_digest": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      }
+                    },
+                    "additional_properties": "closed_declared_carrier"
+                  }
+                }
+              },
+              "material_kind": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "original_template": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "record",
+                      "fields": {
+                        "raw_utf8": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "revision": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "sha256": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        }
+                      },
+                      "additional_properties": "closed_declared_carrier"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
+              },
+              "reasoned_NA": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "map",
+                  "key_type": "opaque_string",
+                  "values": {
+                    "kind": "record",
+                    "fields": {
+                      "decider": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "reason": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "reassessment": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      },
+                      "target_revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "type": {
+                          "kind": "string"
+                        }
+                      }
+                    },
+                    "additional_properties": "closed_declared_carrier"
+                  }
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "context": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "RetainedContext"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "F03Return": {
+      "kind": "record",
+      "fields": {
+        "element_dispositions": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "map",
+            "key_type": "opaque_string",
+            "values": {
+              "kind": "record",
+              "fields": {
+                "kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                },
+                "atom_id": {
+                  "presence_states": [
+                    "provided",
+                    "absent"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                },
+                "reason": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                },
+                "gap_kind": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "empty",
+                      "placeholder",
+                      "duplicate",
+                      "uncovered",
+                      "applicability_unknown",
+                      "content_conflict",
+                      "candidate_metadata_conflict",
+                      "non_applicability_unqualified",
+                      "unsupported_element"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "gaps": {
+          "presence_states": [
+            "empty",
+            "provided"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "element_id": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                },
+                "kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                },
+                "source_span": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "start_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          },
+                          "end_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                },
+                "occurrence_count": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "integer"
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "fixture_content_complete": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean"
+          }
+        },
+        "effects": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "actual_extraction_executed": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_ledger_registered": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_OS_execution": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_template_authority": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_design_complete": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_requirement_agreement": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_acceptance": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "N01Arguments": {
+      "kind": "record",
+      "fields": {
+        "packet": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "fixture_limit": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "held_out_source": {
+                "presence_states": [
+                  "null",
+                  "provided"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "null"
+                    },
+                    {
+                      "kind": "record",
+                      "fields": {
+                        "raw_utf8": {
+                          "presence_states": [
+                            "provided",
+                            "null"
+                          ],
+                          "type": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "string"
+                              },
+                              {
+                                "kind": "null"
+                              }
+                            ]
+                          }
+                        },
+                        "revision": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "scope": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        },
+                        "sha256": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "type": {
+                            "kind": "string"
+                          }
+                        }
+                      },
+                      "additional_properties": "closed_declared_carrier"
+                    }
+                  ]
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
+              },
+              "independence_qualification": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "input_binding_rule": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "input_frame": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "BRAIN_input_compatibility": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "CORE009_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "L1_revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "active_state": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "applicability_input": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "record",
+                        "fields": {
+                          "screen": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "boolean",
+                              "domain": [
+                                false
+                              ]
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    },
+                    "extractor_identity": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "extractor_version": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "kind": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "layer": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "ledger_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "pair_contract": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "scope": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "source_span": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_identity": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "original_template": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "raw_utf8": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "sha256": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                },
+                "semantic_domain_ref": "/template_domain_function",
+                "semantic_constraint": "値がrecord/raw string供給時、check_template_domain.domain_valid=true。null/missing母sourceは既存material不足診断域。"
+              },
+              "result_sources": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "list",
+                      "items": {
+                        "kind": "record",
+                        "fields": {
+                          "content": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "record",
+                              "fields": {
+                                "atoms": {
+                                  "presence_states": [
+                                    "provided"
+                                  ],
+                                  "type": {
+                                    "kind": "list",
+                                    "items": {
+                                      "kind": "record",
+                                      "fields": {
+                                        "atom_id": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "candidate_row": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "record",
+                                            "fields": {
+                                              "atom_ref": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "ledger_contract": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              }
+                                            },
+                                            "additional_properties": "closed_declared_carrier"
+                                          }
+                                        },
+                                        "content": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "record",
+                                            "fields": {
+                                              "applicability": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "record",
+                                                  "fields": {
+                                                    "screen": {
+                                                      "presence_states": [
+                                                        "provided"
+                                                      ],
+                                                      "type": {
+                                                        "kind": "boolean",
+                                                        "domain": [
+                                                          false
+                                                        ]
+                                                      }
+                                                    }
+                                                  },
+                                                  "additional_properties": "closed_declared_carrier"
+                                                }
+                                              },
+                                              "extractor_identity": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "extractor_version": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "kind": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "meaning": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "source_element_id": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              },
+                                              "source_span": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "record",
+                                                  "fields": {
+                                                    "end_line": {
+                                                      "presence_states": [
+                                                        "provided"
+                                                      ],
+                                                      "type": {
+                                                        "kind": "integer"
+                                                      }
+                                                    },
+                                                    "start_line": {
+                                                      "presence_states": [
+                                                        "provided"
+                                                      ],
+                                                      "type": {
+                                                        "kind": "integer"
+                                                      }
+                                                    }
+                                                  },
+                                                  "additional_properties": "closed_declared_carrier"
+                                                }
+                                              },
+                                              "template_revision": {
+                                                "presence_states": [
+                                                  "provided"
+                                                ],
+                                                "type": {
+                                                  "kind": "string"
+                                                }
+                                              }
+                                            },
+                                            "additional_properties": "closed_declared_carrier"
+                                          }
+                                        },
+                                        "extractor_version_digest": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "semantic_digest": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        }
+                                      },
+                                      "additional_properties": "closed_declared_carrier"
+                                    }
+                                  }
+                                },
+                                "reasoned_NA": {
+                                  "presence_states": [
+                                    "provided"
+                                  ],
+                                  "type": {
+                                    "kind": "map",
+                                    "key_type": "opaque_string",
+                                    "values": {
+                                      "kind": "record",
+                                      "fields": {
+                                        "decider": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "reason": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "reassessment": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "target_revision": {
+                                          "presence_states": [
+                                            "provided"
+                                          ],
+                                          "type": {
+                                            "kind": "string"
+                                          }
+                                        }
+                                      },
+                                      "additional_properties": "closed_declared_carrier"
+                                    }
+                                  }
+                                }
+                              },
+                              "additional_properties": "closed_declared_carrier"
+                            }
+                          },
+                          "input_sha256": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "run_id": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          },
+                          "semantic_digest": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "string"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "context": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "RetainedContext"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "N01Return": {
+      "kind": "record",
+      "fields": {
+        "comparison_result": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "state": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string",
+                  "domain": [
+                    "supported_synthetic_condition",
+                    "conflict",
+                    "unknown",
+                    "stale",
+                    "missing"
+                  ]
+                }
+              },
+              "value": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "general_determinism_guaranteed": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        },
+        "all_templates_supported": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        },
+        "held_out_gap": {
+          "presence_states": [
+            "null",
+            "provided"
+          ],
+          "type": {
+            "kind": "union",
+            "variants": [
+              {
+                "kind": "null"
+              },
+              {
+                "kind": "record",
+                "fields": {
+                  "element_id": {
+                    "presence_states": [
+                      "provided",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "string"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "kind": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "type": {
+                      "kind": "string"
+                    }
+                  },
+                  "template_revision": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "type": {
+                      "kind": "string"
+                    }
+                  },
+                  "source_span": {
+                    "presence_states": [
+                      "provided",
+                      "null"
+                    ],
+                    "type": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "record",
+                          "fields": {
+                            "start_line": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "integer"
+                              }
+                            },
+                            "end_line": {
+                              "presence_states": [
+                                "provided"
+                              ],
+                              "type": {
+                                "kind": "integer"
+                              }
+                            }
+                          },
+                          "additional_properties": "closed_declared_carrier"
+                        },
+                        {
+                          "kind": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "closed_declared_carrier"
+              },
+              {
+                "kind": "list",
+                "items": {
+                  "kind": "record",
+                  "fields": {
+                    "element_id": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "kind": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "template_revision": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "string"
+                      }
+                    },
+                    "source_span": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "record",
+                        "fields": {
+                          "start_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          },
+                          "end_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              }
+            ]
+          }
+        },
+        "effects": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "actual_extraction_executed": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_ledger_registered": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_OS_execution": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_template_authority": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_design_complete": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_requirement_agreement": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_acceptance": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "B01Arguments": {
+      "kind": "record",
+      "fields": {
+        "packet": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "OS_observation": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "candidate_claims": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "record",
+                  "fields": {
+                    "accepted": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "boolean",
+                        "domain": [
+                          true
+                        ]
+                      }
+                    },
+                    "design_complete": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "boolean",
+                        "domain": [
+                          true
+                        ]
+                      }
+                    },
+                    "registered": {
+                      "presence_states": [
+                        "provided"
+                      ],
+                      "type": {
+                        "kind": "boolean",
+                        "domain": [
+                          true
+                        ]
+                      }
+                    }
+                  },
+                  "additional_properties": "closed_declared_carrier"
+                }
+              },
+              "completion_025": {
+                "presence_states": [
+                  "null"
+                ],
+                "type": {
+                  "kind": "null"
+                }
+              },
+              "completion_026": {
+                "presence_states": [
+                  "null"
+                ],
+                "type": {
+                  "kind": "null"
+                }
+              },
+              "fixture_limit": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "ledger_pair_contract": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "string"
+                }
+              },
+              "template_meaning": {
+                "presence_states": [
+                  "provided",
+                  "null"
+                ],
+                "type": {
+                  "kind": "union",
+                  "variants": [
+                    {
+                      "kind": "string"
+                    },
+                    {
+                      "kind": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "context": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "ref",
+            "target": "RetainedContext"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "B01Return": {
+      "kind": "record",
+      "fields": {
+        "owner_return_candidates": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "owner": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                },
+                "reason": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string"
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "requires_025_026_completion_to_author": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        },
+        "effects": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "record",
+            "fields": {
+              "actual_extraction_executed": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_ledger_registered": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_OS_execution": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_template_authority": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_design_complete": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_requirement_agreement": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              },
+              "actual_acceptance": {
+                "presence_states": [
+                  "provided"
+                ],
+                "type": {
+                  "kind": "boolean",
+                  "domain": [
+                    false
+                  ]
+                }
+              }
+            },
+            "additional_properties": "closed_declared_carrier"
+          }
+        },
+        "unaffected_Q": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "TemplateDomainArguments": {
+      "kind": "record",
+      "fields": {
+        "template": {
+          "presence_states": [
+            "provided",
+            "null",
+            "empty"
+          ],
+          "type": {
+            "kind": "json"
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    },
+    "TemplateDomainReturn": {
+      "kind": "record",
+      "fields": {
+        "domain_valid": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean"
+          }
+        },
+        "violations": {
+          "presence_states": [
+            "provided",
+            "empty"
+          ],
+          "type": {
+            "kind": "list",
+            "items": {
+              "kind": "record",
+              "fields": {
+                "source_span": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "null"
+                      },
+                      {
+                        "kind": "record",
+                        "fields": {
+                          "start_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          },
+                          "end_line": {
+                            "presence_states": [
+                              "provided"
+                            ],
+                            "type": {
+                              "kind": "integer"
+                            }
+                          }
+                        },
+                        "additional_properties": "closed_declared_carrier"
+                      }
+                    ]
+                  }
+                },
+                "raw_line": {
+                  "presence_states": [
+                    "provided",
+                    "null"
+                  ],
+                  "type": {
+                    "kind": "union",
+                    "variants": [
+                      {
+                        "kind": "string"
+                      },
+                      {
+                        "kind": "null"
+                      }
+                    ]
+                  }
+                },
+                "parsed_value": {
+                  "presence_states": [
+                    "provided",
+                    "null",
+                    "empty"
+                  ],
+                  "type": {
+                    "kind": "json"
+                  }
+                },
+                "id_presence": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "not_an_object",
+                      "absent",
+                      "explicit_null",
+                      "supplied"
+                    ]
+                  }
+                },
+                "reason": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "type": {
+                    "kind": "string",
+                    "domain": [
+                      "template_not_object",
+                      "raw_not_string",
+                      "line_not_json",
+                      "element_not_object",
+                      "element_id_missing",
+                      "element_id_not_nonempty_string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "closed_declared_carrier"
+            }
+          }
+        },
+        "actual_validation_effect": {
+          "presence_states": [
+            "provided"
+          ],
+          "type": {
+            "kind": "boolean",
+            "domain": [
+              false
+            ]
+          }
+        }
+      },
+      "additional_properties": "closed_declared_carrier"
+    }
+  },
+  "functions": [
+    {
+      "id": "HARNESS-L5-041-F01",
+      "name": "compare_f01",
+      "signature": "(packet:F01Arguments.packet,context:RetainedContext)->F01Return",
+      "l4_ref": "HARNESS-L4-041-F01",
+      "requirement_ref": "HARNESS-L3-041-F01",
+      "oracle_ref": "HARNESS-L10-041-F01",
+      "packet_root_reads": [
+        "required_frame",
+        "observed_frame",
+        "selected_owner",
+        "reference_only"
+      ],
+      "context_reads": [
+        "unaffected_Q"
+      ],
+      "preconditions": [
+        "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
+        "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。"
+      ],
+      "steps": [
+        "FIELDS順で原requiredとobservedを比較。null/absent/空はmissing、TBD/原expected不明はunknown、L1/template/extractor版差はstale、他差はconflict。",
+        "BRAIN入力は選択ownerがBRAINの場合だけrequired。非選択はunobserved、owner未確定はunknown。aggregateはmissing→unknown→stale→conflict。",
+        "reference_onlyと明示context.Qは保持。OS_receiptや025026完了は入力gateに使わない。",
+        "原packetにBRAIN以外のselected ownerの独立入力契約/互換性slotは無い。非選択BRAINはunobservedに保つ一方、そのownerのselected_scopeはunknownのまま。他owner互換性をBRAINまたはCORE009文字列から生成しない。"
+      ],
+      "definition_pointer": "/finite_reference/definitions",
+      "returns": [
+        "input_results",
+        "selected_scope_result",
+        "reference_only_inputs",
+        "effects",
+        "unaffected_Q"
+      ],
+      "postconditions": [
+        "完全返却型の全memberを返す。原入力を変更しない。",
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-041-F02",
+      "name": "compare_f02",
+      "signature": "(packet:F02Arguments.packet,context:RetainedContext)->F02Return",
+      "l4_ref": "HARNESS-L4-041-F02",
+      "requirement_ref": "HARNESS-L3-041-F02",
+      "oracle_ref": "HARNESS-L10-041-F02",
+      "packet_root_reads": [
+        "original_template",
+        "applicability_input",
+        "candidate_atoms",
+        "reasoned_NA",
+        "independent_extractor_contract",
+        "independent_ledger_contract",
+        "mechanical_candidate_records",
+        "human_summary_candidates"
+      ],
+      "context_reads": [
+        "unaffected_Q"
+      ],
+      "preconditions": [
+        "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
+        "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
+      ],
+      "steps": [
+        "原NDJSON各行の要素と適用条件から対象を選び、理由/判断者/再評価/対象版を満たすNAだけ除外。一要素一atomを比較し、二義務compound/重複をconflictにする。",
+        "source_element_id/span/template版/applicability/kind/meaning/extractor identity/versionを原source/独立contractへ比較。metadata/digest単独を意味資格にしない。",
+        "semantic digestはactual content SHA、extractor_version_digestは独立extractor contract SHA。機械候補recordのelement/ref/content/template/extractor/fixture kindを別照合。人手要約だけならconflict。",
+        "atom不足は当該row不足にも保持する。一致atomのrow atom_ref/ledger契約は独立に比較し、row失敗でもatom一致は消さない。"
+      ],
+      "definition_pointer": "/finite_reference/definitions",
+      "returns": [
+        "atom_results",
+        "candidate_row_results",
+        "effects",
+        "unaffected_Q"
+      ],
+      "postconditions": [
+        "完全返却型の全memberを返す。原入力を変更しない。",
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-041-F03",
+      "name": "compare_f03",
+      "signature": "(packet:F03Arguments.packet,context:RetainedContext)->F03Return",
+      "l4_ref": "HARNESS-L4-041-F03",
+      "requirement_ref": "HARNESS-L3-041-F03",
+      "oracle_ref": "HARNESS-L10-041-F03",
+      "packet_root_reads": [
+        "original_template",
+        "applicability_input",
+        "candidate_atoms",
+        "reasoned_NA"
+      ],
+      "context_reads": [
+        "unaffected_Q"
+      ],
+      "preconditions": [
+        "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
+        "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
+      ],
+      "steps": [
+        "全原要素をNDJSON原行順にatom/reasoned NA/gapへ一つずつ対応。unsupported→empty→placeholder→applicability unknown→NA不足→uncovered→duplicate→compound→content/metadata conflictを比較。",
+        "gapはelement/kind/span/occurrence_countを値で返し、重複と欠落を件数で相殺しない。requires_screenを持たない義務へscreen不明を連鎖させない。",
+        "母source null/空はID/span未確定のtemplate_source_missing gap、bytes/digest不一致も全体gapで残し、読める他要素を保持。gaps非空ならfixture_content_complete=false。"
+      ],
+      "definition_pointer": "/finite_reference/definitions",
+      "returns": [
+        "element_dispositions",
+        "gaps",
+        "fixture_content_complete",
+        "effects",
+        "unaffected_Q"
+      ],
+      "postconditions": [
+        "完全返却型の全memberを返す。原入力を変更しない。",
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-041-N01",
+      "name": "compare_n01",
+      "signature": "(packet:N01Arguments.packet,context:RetainedContext)->N01Return",
+      "l4_ref": "HARNESS-L4-041-N01",
+      "requirement_ref": "HARNESS-L3-041-N01",
+      "oracle_ref": "HARNESS-L10-041-N01",
+      "packet_root_reads": [
+        "result_sources",
+        "input_frame",
+        "original_template",
+        "independence_qualification",
+        "held_out_source"
+      ],
+      "context_reads": [
+        "unaffected_Q"
+      ],
+      "preconditions": [
+        "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
+        "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。",
+        "供給raw_utf8の有限意味域をcheck_template_domainで明示する。original_templateとN01 held_out_sourceの非空各行はobjectかつid非空string。違反は原行raw/parsed値/span付きTemplateDomainReturnへ返しmaterial評価をしない。任意string入力が無条件に有効とはしない。"
+      ],
+      "steps": [
+        "二結果の独立性条件/件数/run identity→元template/frame版/bytes→各input digestとcontent digest→二semantic digestの内容一致を比較。文字列一致だけで独立性/原入力を生成しない。",
+        "input digestはcanonical({template:original_template,input:input_frame})、result digestは原contentから導出。同run/独立性不明はunknown、件数不足missing、frame版差stale、不一致conflict。",
+        "held sourceのscope/版/bytesと全要素を読み、未対応は全spanのgapへ返す。原1件形とnullを保持し、複数gapは原行順listで返す。一般決定性/全template対応は常にfalse。"
+      ],
+      "definition_pointer": "/finite_reference/definitions",
+      "returns": [
+        "comparison_result",
+        "general_determinism_guaranteed",
+        "all_templates_supported",
+        "held_out_gap",
+        "effects",
+        "unaffected_Q"
+      ],
+      "postconditions": [
+        "完全返却型の全memberを返す。原入力を変更しない。",
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L5-041-B01",
+      "name": "compare_b01",
+      "signature": "(packet:B01Arguments.packet,context:RetainedContext)->B01Return",
+      "l4_ref": "HARNESS-L4-041-B01",
+      "requirement_ref": "HARNESS-L3-041-B01",
+      "oracle_ref": "HARNESS-L10-041-B01",
+      "packet_root_reads": [
+        "template_meaning",
+        "ledger_pair_contract",
+        "OS_observation"
+      ],
+      "context_reads": [
+        "unaffected_Q"
+      ],
+      "preconditions": [
+        "原packetとlogical contextの値/出所を別保持する。contextのQは明示入力でありsourceに無い値を暗黙供給しない。",
+        "NDJSON等は既存合成材料の正規化表現。正式schema/codec/実extractorは未成立。",
+        "原sourceの実資格/009選択frame/consumer exact bindingを当該fixture比較だけで成立させない。"
+      ],
+      "steps": [
+        "template_meaning→ledger_pair_contract→OS_observationの順でknown以外を各原ownerへ返す。nullはmissing、読める他責務を消さない。",
+        "候補claim、025026完了から実抽出/登録/設計/承認/受入を生成しない。actual effectは常にfalse。"
+      ],
+      "definition_pointer": "/finite_reference/definitions",
+      "returns": [
+        "owner_return_candidates",
+        "requires_025_026_completion_to_author",
+        "effects",
+        "unaffected_Q"
+      ],
+      "postconditions": [
+        "完全返却型の全memberを返す。原入力を変更しない。",
+        "effects全false。fixture内容一致/完備は資格/実作用/全意味閉包ではない。"
+      ]
+    }
+  ],
+  "source_attribute_helper": {
+    "name": "compare_source_attributes",
+    "signature": "(actual:SourceAttributesArguments.actual,required:SourceAttributesArguments.required)->SourceAttributesReturn",
+    "fields": [
+      "identity",
+      "revision",
+      "scope",
+      "owner"
+    ],
+    "meaning": "独立expectedを明示引数として各属性を比較する。全一致でもqualification_providerはunknown、actual_qualification_established=false。provider/root/custodyの供給は未成立。BRAIN Ref/CORE SourceEnvelope/OS Fieldをこの型へ共通化しない。",
+    "qualification_scope_difference": {
+      "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/0/qualification_rule",
+      "implemented_subset": [
+        "identity",
+        "revision",
+        "scope",
+        "owner"
+      ],
+      "not_implemented_by_helper": [
+        "meaning",
+        "required_set"
+      ],
+      "preserve": "原L4の意味と必要集合の独立比較義務は保持。4属性helperは部分材料であり全qualificationではない。",
+      "change": "この補助関数はRef属性の比較だけを具体化し、意味と必要集合の完成を返さない。",
+      "reason": "実meaning source/必要集合/owner root/providerのexact bindingは未供給。metadataから意味/必要集合を推測する実装を作らない。",
+      "responsibility": "meaningは各原HARNESS template/CORE009 applicability/source契約、必要集合は同scopeのowner-qualified原母集合を供給し別内容比較へ結ぶ。実provider/qualificationは未成立。"
+    }
+  },
+  "finite_reference": {
+    "notation": "Python風の純粋有限参照記法。定義だけを静的解釈する。製品実装/採用library/正式codecではない。",
+    "definitions": [
+      "FIELDS=['L1_revision','CORE009_contract','layer','kind','scope','source_span','template_identity','template_revision','active_state','applicability_input','pair_contract','ledger_contract','extractor_identity','extractor_version','BRAIN_input_compatibility','template_bytes_utf8']",
+      "EFFECT_FIELDS=['actual_extraction_executed','actual_ledger_registered','actual_OS_execution','actual_template_authority','actual_design_complete','actual_requirement_agreement','actual_acceptance']",
+      "KINDS=['chapter','field','table_row','applicability_rule','done_when','pair_contract']",
+      "def clone(v):return copy.deepcopy(v)",
+      "def canonical(v):return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()",
+      "def same(a,b):return canonical(a)==canonical(b)",
+      "def text_digest(text):return hashlib.sha256(text.encode('utf-8')).hexdigest()",
+      "def value_digest(value):return hashlib.sha256(canonical(value)).hexdigest()",
+      "def result(state,value=None):return {'state':state,'value':clone(value)}",
+      "def state_of(actual,expected,revision=False):\n if actual is None or actual=='':return 'missing'\n if actual=='TBD' or expected is None or expected=='TBD':return 'unknown'\n if same(actual,expected):return 'supported_synthetic_condition'\n return 'stale' if revision else 'conflict'",
+      "def aggregate(states):return next((state for state in ['missing','unknown','stale','conflict'] if state in states),'supported_synthetic_condition')",
+      "def common(context):return {'effects':dict.fromkeys(EFFECT_FIELDS,False),'unaffected_Q':clone(context['unaffected_Q'])}",
+      "def compare_f01(packet,context):\n observed=packet.get('observed_frame') or {};required=packet.get('required_frame') or {};results={}\n for field in FIELDS:\n  if field=='BRAIN_input_compatibility' and packet.get('selected_owner')!='BRAIN':\n   state='unknown' if packet.get('selected_owner') in [None,'TBD',''] else 'unobserved'\n  else:state=state_of(observed.get(field),required.get(field),field in ['L1_revision','template_revision','extractor_version'])\n  results[field]=result(state,observed.get(field) if state=='supported_synthetic_condition' else None)\n scope_states=[v['state'] for v in results.values()]\n if packet.get('selected_owner')!='BRAIN':scope_states.append('unknown')\n state=aggregate(scope_states);return {'input_results':results,'selected_scope_result':result(state,observed.get('scope') if state=='supported_synthetic_condition' else None),'reference_only_inputs':result('known',packet.get('reference_only',[])),**common(context)}",
+      "def elements(template):\n records=[]\n if template is None or not isinstance(template.get('raw_utf8'),str):return records\n for line,text in enumerate(template['raw_utf8'].splitlines(),1):\n  try:value=json.loads(text)\n  except (ValueError,TypeError):value={'id':'unparsed-line-'+str(line),'kind':'unparsed','meaning':text}\n  records.append({'element':value,'span':{'start_line':line,'end_line':line}})\n return records",
+      "def applicable(element,inputs):\n if element.get('requires_screen') is True:\n  screen=inputs.get('screen')\n  if screen in [None,'TBD','']:return 'unknown'\n  return 'yes' if screen is True else 'no'\n return 'yes'",
+      "def atom_matches(atom,identity):\n return (atom.get('content') or {}).get('source_element_id')==identity or identity in atom.get('source_element_ids',[])",
+      "def na_valid(na,revision):return isinstance(na,dict) and all(na.get(k) not in [None,'','TBD'] for k in ['reason','decider','reassessment']) and na.get('target_revision')==revision",
+      "def compare_f02(packet,context):\n atom_results={};rows={};template=packet.get('original_template') or {};contract=packet.get('independent_extractor_contract') or {};inputs=packet.get('applicability_input') or {};candidates=packet.get('candidate_atoms') or [];records=packet.get('mechanical_candidate_records') or {}\n for entry in elements(template):\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs)\n  if applies=='no' and na_valid((packet.get('reasoned_NA') or {}).get(identity),template.get('revision')):continue\n  matches=[atom for atom in candidates if atom_matches(atom,identity)];states=[]\n  if applies=='unknown':states.append('unknown')\n  if len(matches)==0:states.append('missing')\n  elif len(matches)!=1 or len(matches[0].get('source_element_ids',[identity]))!=1:states.append('conflict')\n  if states:state=aggregate(states);atom_results[identity]=result(state);rows[identity]=result(state);continue\n  atom=matches[0];content=atom.get('content') or {};material=records.get(identity)\n  expected={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'applicability':inputs,'kind':original.get('kind'),'meaning':original.get('meaning'),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version')}\n  states=[state_of(content.get(field),value,field in ['template_revision','extractor_version']) for field,value in expected.items()]\n  states += [state_of(atom.get('semantic_digest'),value_digest(content)),state_of(atom.get('extractor_version_digest'),value_digest(contract))]\n  if text_digest(template.get('raw_utf8',''))!=template.get('sha256'):states.append('conflict')\n  if material is None:states.append('conflict' if (packet.get('human_summary_candidates') or {}).get(identity) else 'missing')\n  else:\n   for field,value in {'source_element_id':identity,'candidate_ref':atom.get('atom_id'),'content_sha256':value_digest(content),'extractor_identity':contract.get('identity'),'extractor_version':contract.get('version'),'input_template_sha256':template.get('sha256'),'kind':'synthetic_mechanical_candidate_record','execution_state':'not_executed_fixture_only'}.items():states.append(state_of(material.get(field),value,field=='extractor_version'))\n  state=aggregate(states);atom_results[identity]=result(state,atom.get('atom_id') if state=='supported_synthetic_condition' else None)\n  row=atom.get('candidate_row') or {};row_state=state\n  if row_state=='supported_synthetic_condition':row_state=aggregate([state_of(row.get('atom_ref'),atom.get('atom_id')),state_of(row.get('ledger_contract'),packet.get('independent_ledger_contract'))])\n  rows[identity]=result(row_state,row.get('ledger_contract') if row_state=='supported_synthetic_condition' else None)\n return {'atom_results':atom_results,'candidate_row_results':rows,**common(context)}",
+      "def compare_f03(packet,context):\n template=packet.get('original_template') or {};inputs=packet.get('applicability_input') or {};dispositions={};gaps=[];atoms=packet.get('candidate_atoms') or []\n for entry in elements(template):\n  original=entry['element'];identity=original['id'];applies=applicable(original,inputs);matches=[atom for atom in atoms if atom_matches(atom,identity)];kind=None\n  if original.get('kind') not in KINDS:kind='unsupported_element'\n  elif original.get('meaning') in [None,'']:kind='empty'\n  elif original.get('meaning')=='TBD':kind='placeholder'\n  elif applies=='unknown':kind='applicability_unknown'\n  elif applies=='no':\n   na=(packet.get('reasoned_NA') or {}).get(identity)\n   if na_valid(na,template.get('revision')):dispositions[identity]={'kind':'reasoned_not_applicable','reason':na['reason']};continue\n   kind='non_applicability_unqualified'\n  elif len(matches)==0:kind='uncovered'\n  elif len(matches)>1:kind='duplicate'\n  elif len(matches[0].get('source_element_ids',[identity]))!=1:kind='compound'\n  elif (matches[0].get('content') or {}).get('meaning')!=original.get('meaning'):kind='content_conflict'\n  else:\n   atom=matches[0];content=atom.get('content') or {};checks={'source_element_id':identity,'source_span':entry['span'],'template_revision':template.get('revision'),'kind':original.get('kind')}\n   if original.get('requires_screen') is True:checks['applicability']=inputs\n   if any(not same(content.get(k),v) for k,v in checks.items()) or atom.get('semantic_digest')!=value_digest(content):kind='candidate_metadata_conflict'\n  if kind:\n   dispositions[identity]={'kind':'gap','gap_kind':kind};gaps.append({'element_id':identity,'kind':kind,'source_span':entry['span'],'occurrence_count':len(matches) if kind=='duplicate' else 1})\n  else:dispositions[identity]={'kind':'atom','atom_id':matches[0]['atom_id']}\n if not isinstance(template.get('raw_utf8'),str) or template.get('raw_utf8')=='':gaps.append({'element_id':None,'kind':'template_source_missing','source_span':None,'occurrence_count':1})\n elif text_digest(template['raw_utf8'])!=template.get('sha256'):gaps.append({'element_id':None,'kind':'source_digest_conflict','source_span':None,'occurrence_count':1})\n return {'element_dispositions':dispositions,'gaps':gaps,'fixture_content_complete':len(gaps)==0,**common(context)}",
+      "def compare_n01(packet,context):\n sources=packet.get('result_sources') or [];frame=packet.get('input_frame') or {};template=packet.get('original_template') or {};state='supported_synthetic_condition'\n if packet.get('independence_qualification')!='known_in_synthetic_fixture':state='unknown'\n elif len(sources)!=2:state='missing'\n elif sources[0].get('run_id') in [None,'','TBD'] or sources[0].get('run_id')==sources[1].get('run_id'):state='unknown'\n elif frame.get('template_revision')!=template.get('revision'):state='stale'\n elif text_digest(template.get('raw_utf8',''))!=template.get('sha256'):state='conflict'\n else:\n  input_digest=value_digest({'template':template,'input':frame});states=[]\n  for source in sources:\n   states.extend([state_of(source.get('input_sha256'),input_digest),state_of(source.get('semantic_digest'),value_digest(source.get('content')))])\n  states.append(state_of(sources[0].get('semantic_digest'),sources[1].get('semantic_digest')));state=aggregate(states)\n held=packet.get('held_out_source');gap=None;held_gaps=[]\n if held is not None:\n  if not isinstance(held.get('raw_utf8'),str) or held.get('raw_utf8')=='':held_gaps.append({'element_id':None,'kind':'template_source_missing','template_revision':held.get('revision'),'source_span':None})\n  for entry in elements(held):\n   kind=None;scope_state=state_of(held.get('scope'),frame.get('scope'))\n   if scope_state!='supported_synthetic_condition':kind='scope_'+scope_state\n   elif held.get('revision') in [None,'','TBD']:kind='source_revision_unknown' if held.get('revision')=='TBD' else 'source_revision_missing'\n   elif text_digest(held.get('raw_utf8',''))!=held.get('sha256'):kind='source_digest_conflict'\n   elif entry['element'].get('kind') not in KINDS:kind='unsupported_element'\n   if kind:held_gaps.append({'element_id':entry['element']['id'],'kind':kind,'template_revision':held.get('revision'),'source_span':entry['span']})\n  gap=held_gaps[0] if len(held_gaps)==1 else held_gaps if held_gaps else None\n return {'comparison_result':result(state,'equal_for_this_fixture_input_only' if state=='supported_synthetic_condition' else None),'general_determinism_guaranteed':False,'all_templates_supported':False,'held_out_gap':gap,**common(context)}",
+      "def compare_b01(packet,context):\n returns=[]\n for field,owner in [('template_meaning','CORE009/template-owner'),('ledger_pair_contract','040-compatible-contract-owner'),('OS_observation','OS-operation-owner')]:\n  value=packet.get(field);value='missing' if value is None else value\n  if value!='known':returns.append({'owner':owner,'reason':field+':'+value})\n return {'owner_return_candidates':returns,'requires_025_026_completion_to_author':False,**common(context)}",
+      "def compare_source_attributes(actual,required):\n actual=actual or {};required=required or {};fields={}\n for key in ['identity','revision','scope','owner']:\n  state=state_of(actual.get(key),required.get(key),key=='revision');fields[key]=result(state,actual.get(key) if state=='supported_synthetic_condition' else None)\n state=aggregate([v['state'] for v in fields.values()])\n return {'attribute_results':fields,'attribute_comparison':result(state,'attributes_compared_only' if state=='supported_synthetic_condition' else None),'actual_qualification_established':False,'qualification_provider':result('unknown')}",
+      "def check_template_domain(template):\n violations=[]\n if template is None:return {'domain_valid':True,'violations':violations,'actual_validation_effect':False}\n if not isinstance(template,dict):\n  violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(template),'id_presence':'not_an_object','reason':'template_not_object'})\n else:\n  raw=template.get('raw_utf8')\n  if raw is not None and not isinstance(raw,str):violations.append({'source_span':None,'raw_line':None,'parsed_value':clone(raw),'id_presence':'not_an_object','reason':'raw_not_string'})\n  elif isinstance(raw,str):\n   for line,text in enumerate(raw.splitlines(),1):\n    span={'start_line':line,'end_line':line};reason=None;presence='not_an_object'\n    try:value=json.loads(text)\n    except (ValueError,TypeError):value=None;reason='line_not_json'\n    if reason is None:\n     if not isinstance(value,dict):reason='element_not_object'\n     else:\n      presence='absent' if 'id' not in value else 'explicit_null' if value['id'] is None else 'supplied'\n      if 'id' not in value or value['id'] is None:reason='element_id_missing'\n      elif not isinstance(value['id'],str) or value['id']=='':reason='element_id_not_nonempty_string'\n    if reason is not None:violations.append({'source_span':span,'raw_line':text,'parsed_value':clone(value),'id_presence':presence,'reason':reason})\n return {'domain_valid':len(violations)==0,'violations':violations,'actual_validation_effect':False}"
+    ],
+    "primitive_operators": [
+      "copy.deepcopyは値保持、json.loadsは合成NDJSON/bodyから中間JSON値、json.dumpsはsort_keys/compact/ensure_ascii=false/allow_nan=falseの比較専用表現。UTF8 SHA256はbytes追跡で資格を生成しない。",
+      "if/elif/else、and/or/not、短絡、is True/None、==/!=、in/not in、len/数比較、dict/list comprehensions、for/enumerate、next generator(default)、get/items/values、index、append/extend、str連結、dict.fromkeys。入力保持とローカルworking list/map更新のみ。",
+      "try/except ValueError/TypeErrorは合成parse限界をunparsed診断へ写像する。正式format/backend/非JSON一般域の採用ではない。",
+      "null/empty/TBD診断、known/unobservedとmissing/unknown/conflict/staleはstate_of/aggregateで定義。戻し先literal/理由はcompare_b01のfield+state構文で全定義。",
+      "isinstance(str/dict)でlogical carrierを識別、truthinessはNone/空list/空map/空文字/Falseをfalseとする。get(... ) or {} / []はローカル探索だけで原presenceを書換えない。splitlines/1始点enumerateは合成source行span、encode(UTF8)/hexdigestはdigest。辞書**展開はcommonのeffects/Qとroot出力を結ぶ。",
+      "check_template_domainはisinstance(dict/str)、enumerate/splitlines、json.loads、try/exceptを用い、原行順の違反mapを返す。kind/meaningの解釈や代替IDを生成せず、有限引数域と元raw/parsed値/spanを明示する。"
+    ],
+    "ordering": "原template行順/原candidate順を保持。FIELDSは明示順。gapは原行順、duplicate occurrence_countは実候補数。owner候補はtemplate→ledger→OS。N01複数gapも原行順。",
+    "context_boundary": "common(context)のQは明示入力。原fixtureのexpectedからQ制御値だけをテスト引数へ展開し、whole期待やcase IDを判定に使わない。実providerは未binding。 unaffected_Qはopaque JsonValueであり、他scopeのstate/原値を推測でknownへ変換しない。",
+    "limits": [
+      "既存合成NDJSON/screen条件の有限比較であり、任意format・全template/全applicability言語・全複合欠陥の一般化は未成立。",
+      "source ref属性比較と、実owner資格/root/source custody/issuer/active状態を別責務に保持する。metadata/bytes/hash一致から資格を生成しない。",
+      "F01の原source供給/009 selected frame、F02実機械抽出record、F03元対象集合とowner理由、N01実独立再実行、B01原consumerへのprovider接続はowner-qualified exact binding未成立。",
+      "F03のfixture_content_completeは原合成要素の内容対応のみ。B01 primitive stateの実供給元とF01/F02/F03 findingからのconsumer適用は未binding。意味不足のoriginを消して自動集約/権限化しない。",
+      "全430意味/正式schema/実資格/TDD/CI/L11/実装Readyは未成立。",
+      "BRAIN以外の選択ownerの契約/互換性供給はこの原packetに無い。BRAIN非選択を未観測に保っても当該selected scopeの成立を生成しない。",
+      "raw_utf8の型stringは任意内容全域の保証ではない。F02/F03/N01の各供給行はcheck_template_domainで固定したobject＋非空string id域。非object/id欠落/数値id等は原内容付きdomain診断を返しmaterialを評価しない。未見のformat/重複ID等の一般意味は未閉包。"
+    ],
+    "helper_signatures": {
+      "clone": "(JsonValue)->JsonValue のdeep copy",
+      "canonical": "(JsonValue)->UTF8 byte列。比較表現のみ。",
+      "same": "(JsonValue,JsonValue)->boolean",
+      "text_digest": "(UTF8 text:string)->SHA256 lowercase64 string",
+      "value_digest": "(JsonValue)->SHA256 lowercase64 string",
+      "result": "(state:string,value:JsonValue|null=null)->{state:string,value:JsonValue|null}。root別型がstate/payloadを制約。",
+      "state_of": "(actual:JsonValue,expected:JsonValue,revision:boolean=false)->missing|unknown|stale|conflict|supported_synthetic_condition",
+      "aggregate": "(states:list<string>)->missing|unknown|stale|conflict|supported_synthetic_condition",
+      "common": "(context:RetainedContext)->{effects:map<string,false>,unaffected_Q:JsonValue}。unaffectedは明示argからcopy。",
+      "elements": "(template:{raw_utf8:string|null,...}|null)->list<{element:JSON object,span:{start_line:positive integer,end_line:positive integer}}>。既存合成NDJSONの中間値。任意format/正式codecは未成立。",
+      "applicable": "(element:{requires_screen?:boolean,...},inputs:{screen?:boolean|string|null})->yes|no|unknown",
+      "atom_matches": "(atom:JSON object,identity:opaque string)->boolean。content.source_element_idまたはsource_element_idsへ比較。",
+      "na_valid": "(na:{reason?,decider?,reassessment?,target_revision?}|null,revision:string|null)->boolean。非空とsame revisionは合成比較必要条件で実owner資格ではない。"
+    }
+  },
+  "consumer_connections": [
+    {
+      "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/architecture",
+      "meaning": "供給immutable source→pure比較候補。実resolver/extractor/OS保存は別owner。"
+    },
+    {
+      "source": "docs/helix-harness/L4-basic-design/product-template-application.json#/architecture/pair_trace",
+      "meaning": "009は選択適用/Backflow、041はatom/gapを消費境界で持つ。candidate/proposedとOS selected/used/実消込は別。"
+    },
+    {
+      "source": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/architecture/return_boundary",
+      "meaning": "BRAIN候補提供/受領成功はCORE適用/041義務完成ではない。"
+    },
+    {
+      "source": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json#/contracts/4",
+      "meaning": "B01は原meaning/ledger/OS primitive所見を引数に受け各owner候補へ返す。source不明をこの草稿が実providerとして生成しない。"
+    }
+  ],
+  "template_domain_function": {
+    "name": "check_template_domain",
+    "signature": "(template:TemplateDomainArguments.template)->TemplateDomainReturn",
+    "preconditions": [
+      "任意JSON論理値を取り原値と行spanを保全。製品parser/schemaの採用/認可/実gateではない。"
+    ],
+    "steps": [
+      "母template nullまたはraw null/emptyはmaterial関数の既存missing-source診断域として許容。",
+      "raw string供給時の全行はJSON objectかつ非空string idを持つ有限NDJSON域に限る。非object/id absent/null/数値等は全違反を原行順で返す。",
+      "raw_line/parsed_value/source_span/id_presenceを保存し、代替object IDや役割/意味を発明しない。domain_valid=false入力へmaterial関数を実行しない。"
+    ],
+    "returns": [
+      "domain_valid",
+      "violations",
+      "actual_validation_effect"
+    ],
+    "postconditions": [
+      "診断だけ。原rawを保存しactual_validation_effect=false。kind/meaning/span/applicabilityが不足する読めるobjectはここで排除せずF03局所gapへ残す。"
+    ]
+  },
+  "r1_resolution": {
+    "comment_id": 6182504369,
+    "reviewed_head": "773f62ce5b4bf2ca8c478d6addb2fd47a78c1ee6",
+    "body_sha256": "8fd1c0485784401e685b55da273b232a26a1cc8bd66c19a44528cf9d2dcff9d4",
+    "findings": [
+      "H41D-01",
+      "H41D-02",
+      "H41D-03"
+    ],
+    "status": "corrected_pending_parent_and_independent_review",
+    "original_33_raw_expected": "unchanged",
+    "new_domain": "有限NDJSON域を明示し12局所診断whole、unknown/unsupported3whole、contextnull/empty3wholeを追加。原74wholeの期待は不変。"
+  },
+  "r2_resolution": {
+    "official_comment": 6182639928,
+    "finding": "H41D-04",
+    "change": "SOURCE-IDENTITY-ABSENTをMISSINGへ統合し、旧IDは引数/期待を重複保存しないalias metadataへ。91独立完全IO=33+30+16+12。原33/元期待値は不変。"
+  }
+}
