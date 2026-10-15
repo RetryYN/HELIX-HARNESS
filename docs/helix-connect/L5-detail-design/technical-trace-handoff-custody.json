@@ -576,7 +576,7 @@
                 },
                 "field": {
                   "kind": "json_value",
-                  "meaning": "failure identity value from the raw event; Absent is emitted as null only for this diagnostic field, explicit null stays null."
+                  "meaning": "原eventから得たidentity値を診断fieldとして返す。Absentの場合のみこの診断欄をnullへ射影し、明示nullはnullのまま保持する。"
                 },
                 "result": {
                   "kind": "string"
@@ -828,7 +828,14 @@
             "meaning": "JSON値としてAbsent/null/valueを保持する。object内memberが省略ならAbsent、明示nullならnull、その他は値。"
           },
           "stop_link_result": {
-            "kind": "string"
+            "kind": "string",
+            "observed_values": [
+              "content_corresponding_in_fixture",
+              "content_conflict",
+              "missing",
+              "unknown_original_information",
+              "not_observed_before_first_success"
+            ]
           },
           "unfinished_link_result": {
             "kind": "string"
@@ -957,7 +964,7 @@
           },
           "forbidden_value_field_names": {
             "kind": "nullable_string_array",
-            "meaning": "対応する両source fieldがarrayのときのみ順序配列、shape不明ならnull"
+            "meaning": "original_allowed_trace_fieldsとrequested_trace_fieldsの両方がJSON配列の場合、requested順を保った禁止名との交差を返す。いずれかがAbsent/null/非配列ならnullとして不明を示す。両方が空配列なら空配列であり、禁止値項目が無いことを示す。"
           },
           "outside_reference_fields": {
             "kind": "json_value",
@@ -1281,7 +1288,7 @@
         },
         {
           "output": "original_predecessor_chain_corresponds",
-          "rule": "prior_eventsに選択列外の直前eventが含まれる場合だけ先頭previous_event_refを照合する。先行event全件を必須にせず、選択列内の後続edgeは直前identityへ照合する。"
+          "rule": "original_eventsのindex 1以降のprevious_event_refを直前selected record.identityへ照合する。original_prior_eventsの最終identityがselected列内に含まれる場合、priorはselected prefixと重複するためselected列先頭のwindow外edgeは未観測として照合しない。含まれない場合に限り、先頭previous_event_refをprior最終identityと照合する。priorが空/非配列/identity absentなら先頭edgeは未観測で、root markerを要求しない。"
         },
         {
           "output": "failure_reasons",
@@ -1720,16 +1727,70 @@
             "mode": "ordinary"
           },
           "result_content_result": {
-            "op": "compare",
-            "left": {
-              "op": "path",
-              "path": "input.original_result_state"
+            "op": "if",
+            "condition": {
+              "op": "or",
+              "values": [
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "is_string",
+                    "value": {
+                      "op": "path",
+                      "path": "input.original_result_state"
+                    }
+                  }
+                },
+                {
+                  "op": "not",
+                  "value": {
+                    "op": "is_string",
+                    "value": {
+                      "op": "path",
+                      "path": "input.submitted_result_state"
+                    }
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "input.original_result_state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "TBD"
+                  }
+                },
+                {
+                  "op": "eq",
+                  "left": {
+                    "op": "path",
+                    "path": "input.submitted_result_state"
+                  },
+                  "right": {
+                    "op": "literal",
+                    "value": "TBD"
+                  }
+                }
+              ]
             },
-            "right": {
-              "op": "path",
-              "path": "input.submitted_result_state"
+            "then": {
+              "op": "literal",
+              "value": "unknown_original_information"
             },
-            "mode": "unknown_original_either_null"
+            "else": {
+              "op": "compare",
+              "left": {
+                "op": "path",
+                "path": "input.original_result_state"
+              },
+              "right": {
+                "op": "path",
+                "path": "input.submitted_result_state"
+              },
+              "mode": "unknown_original_either_null"
+            }
           },
           "failure_reasons": {
             "op": "concat",
@@ -2956,73 +3017,26 @@
               ]
             },
             "then": {
-              "op": "if",
-              "condition": {
-                "op": "is_object",
-                "value": {
-                  "op": "path",
-                  "path": "input.original_handoff"
-                }
+              "op": "compare_fields",
+              "left": {
+                "op": "path",
+                "path": "input.original_handoff.target"
               },
-              "then": {
-                "op": "compare_fields",
-                "left": {
-                  "op": "path",
-                  "path": "input.original_handoff.target"
-                },
-                "right": {
-                  "op": "path",
-                  "path": "input.original_operation"
-                },
-                "fields": [
-                  "connection_identity",
-                  "operation_identity",
-                  "contract_revision",
-                  "correlation",
-                  "scope",
-                  "expiry",
-                  "permission_ref",
-                  "dependency_ref"
-                ],
-                "mode": "unknown_original_either_null_or_placeholder"
+              "right": {
+                "op": "path",
+                "path": "input.original_operation"
               },
-              "else": {
-                "op": "record",
-                "fields": {
-                  "connection_identity": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "operation_identity": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "contract_revision": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "correlation": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "scope": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "expiry": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "permission_ref": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  },
-                  "dependency_ref": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
-                  }
-                }
-              }
+              "fields": [
+                "connection_identity",
+                "operation_identity",
+                "contract_revision",
+                "correlation",
+                "scope",
+                "expiry",
+                "permission_ref",
+                "dependency_ref"
+              ],
+              "mode": "unknown_original_either_null_or_placeholder"
             },
             "else": {
               "op": "record",
@@ -3264,42 +3278,16 @@
               ]
             },
             "then": {
-              "op": "if",
-              "condition": {
-                "op": "and",
-                "values": [
-                  {
-                    "op": "is_object",
-                    "value": {
-                      "op": "path",
-                      "path": "input.original_handoff"
-                    }
-                  },
-                  {
-                    "op": "is_array",
-                    "value": {
-                      "op": "path",
-                      "path": "input.original_unfinished"
-                    }
-                  }
-                ]
+              "op": "compare",
+              "left": {
+                "op": "path",
+                "path": "input.original_handoff.unfinished"
               },
-              "then": {
-                "op": "compare",
-                "left": {
-                  "op": "path",
-                  "path": "input.original_handoff.unfinished"
-                },
-                "right": {
-                  "op": "path",
-                  "path": "input.original_unfinished"
-                },
-                "mode": "ordinary"
+              "right": {
+                "op": "path",
+                "path": "input.original_unfinished"
               },
-              "else": {
-                "op": "literal",
-                "value": "unknown_original_information"
-              }
+              "mode": "ordinary"
             },
             "else": {
               "op": "if",
@@ -3448,8 +3436,59 @@
                     "value": "missing"
                   },
                   "else": {
-                    "op": "literal",
-                    "value": "unknown_original_information"
+                    "op": "if",
+                    "condition": {
+                      "op": "if",
+                      "condition": {
+                        "op": "is_array",
+                        "value": {
+                          "op": "path",
+                          "path": "input.original_prior_successes"
+                        }
+                      },
+                      "then": {
+                        "op": "and",
+                        "values": [
+                          {
+                            "op": "eq",
+                            "left": {
+                              "op": "length",
+                              "value": {
+                                "op": "path",
+                                "path": "input.original_prior_successes"
+                              }
+                            },
+                            "right": {
+                              "op": "literal",
+                              "value": 0
+                            }
+                          },
+                          {
+                            "op": "eq",
+                            "left": {
+                              "op": "path",
+                              "path": "input.original_stop.stop_event_ref"
+                            },
+                            "right": {
+                              "op": "literal",
+                              "value": null
+                            }
+                          }
+                        ]
+                      },
+                      "else": {
+                        "op": "literal",
+                        "value": false
+                      }
+                    },
+                    "then": {
+                      "op": "literal",
+                      "value": "not_observed_before_first_success"
+                    },
+                    "else": {
+                      "op": "literal",
+                      "value": "unknown_original_information"
+                    }
                   }
                 }
               },
@@ -3670,22 +3709,8 @@
                           }
                         },
                         "return_owner": {
-                          "op": "if",
-                          "condition": {
-                            "op": "is_string",
-                            "value": {
-                              "op": "path",
-                              "path": "input.original_handoff.owner"
-                            }
-                          },
-                          "then": {
-                            "op": "path",
-                            "path": "input.original_handoff.owner"
-                          },
-                          "else": {
-                            "op": "literal",
-                            "value": null
-                          }
+                          "op": "literal",
+                          "value": "connection-operation-owner"
                         }
                       }
                     }
@@ -3828,6 +3853,63 @@
                             "op": "literal",
                             "value": null
                           }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "else": {
+                  "op": "array",
+                  "items": []
+                }
+              },
+              {
+                "op": "if",
+                "condition": {
+                  "op": "not",
+                  "value": {
+                    "op": "is_object",
+                    "value": {
+                      "op": "path",
+                      "path": "input.original_stop"
+                    }
+                  }
+                },
+                "then": {
+                  "op": "array",
+                  "items": [
+                    {
+                      "op": "record",
+                      "fields": {
+                        "area": {
+                          "op": "literal",
+                          "value": "input_domain"
+                        },
+                        "field": {
+                          "op": "literal",
+                          "value": "original_stop"
+                        },
+                        "result": {
+                          "op": "if",
+                          "condition": {
+                            "op": "is_absent",
+                            "value": {
+                              "op": "path",
+                              "path": "input.original_stop"
+                            }
+                          },
+                          "then": {
+                            "op": "literal",
+                            "value": "missing"
+                          },
+                          "else": {
+                            "op": "literal",
+                            "value": "unknown_original_information"
+                          }
+                        },
+                        "return_owner": {
+                          "op": "literal",
+                          "value": "connection-operation-owner"
                         }
                       }
                     }
@@ -4473,46 +4555,51 @@
               {
                 "op": "if",
                 "condition": {
-                  "op": "if",
-                  "condition": {
-                    "op": "is_array",
-                    "value": {
-                      "op": "path",
-                      "path": "input.original_prior_successes"
-                    }
-                  },
-                  "then": {
-                    "op": "if",
-                    "condition": {
-                      "op": "gt",
-                      "left": {
-                        "op": "length",
-                        "value": {
-                          "op": "path",
-                          "path": "input.original_prior_successes"
-                        }
-                      },
-                      "right": {
-                        "op": "literal",
-                        "value": 0
+                  "op": "and",
+                  "values": [
+                    {
+                      "op": "is_array",
+                      "value": {
+                        "op": "path",
+                        "path": "input.original_prior_successes"
                       }
                     },
-                    "then": {
+                    {
                       "op": "is_object",
                       "value": {
                         "op": "path",
                         "path": "input.original_stop"
                       }
                     },
-                    "else": {
-                      "op": "literal",
-                      "value": false
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "eq",
+                        "left": {
+                          "op": "variable",
+                          "name": "stop_link_result"
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": "content_corresponding_in_fixture"
+                        }
+                      }
+                    },
+                    {
+                      "op": "not",
+                      "value": {
+                        "op": "eq",
+                        "left": {
+                          "op": "variable",
+                          "name": "stop_link_result"
+                        },
+                        "right": {
+                          "op": "literal",
+                          "value": "not_observed_before_first_success"
+                        }
+                      }
                     }
-                  },
-                  "else": {
-                    "op": "literal",
-                    "value": false
-                  }
+                  ]
                 },
                 "then": {
                   "op": "if",
@@ -6306,7 +6393,14 @@
       "actual_implementation_ready",
       "actual_acceptance"
     ],
-    "all_effect_flags": false
+    "all_effect_flags": false,
+    "stop_link_results": [
+      "content_corresponding_in_fixture",
+      "content_conflict",
+      "missing",
+      "unknown_original_information",
+      "not_observed_before_first_success"
+    ]
   },
   "responsibility_boundaries": {
     "connection_operation": "event/hand-off/custody参照の形、停止位置・ACK/結果未観測とsuccessの矛盾等の技術所見はformal_astのfinding別connection-operation-owner候補へ返す。owner文字列は原L9の確認先表示であり、資格済みidentityではない。",
@@ -6412,15 +6506,15 @@
   "consumer_failure_trace": {
     "source": "docs/governance/audits/g7-connect-source-connection-inventory.md",
     "sections": [
-      "L42–53 shared edge mapping and partial owner return",
-      "L61–63 legacy PDC/ADR source and failure mapping"
+      "42–53行: 共有edge mappingとpartial owner返却",
+      "61–63行: 旧PDC/ADRのsourceおよびfailure mapping"
     ],
     "meaning": "source固有のpartial状態とownerへの返却を分けて保持する。technical completionからbusiness/composite completionを推論しない。",
     "file_sha256": "4b658e589135f49ec250d3d4a76d71d97999743824f6c77ed1e300ea69021a17",
     "selected_lines_sha256": "598e2263cf048126ab8446e01dca75fc2e1d5fa5f640796b05030e4748988212",
     "selected_lines": "42-53,61-63",
     "selected_quote": "| `HELIXLABO-L2-011..042` と `-054` | 各IDを `HELIXCONNECT-L2-001/002/003/005/006` へ対応。`HELIXLABO-L2-035/-037` は `001/002/003/005/006` に対応する。CONNECT向けfailure/trace/retry evidenceを明示する `HELIXLABO-L2-040` だけは、その対応に `-004` を追加する。`-054` は受領追跡を `-005` に対応し、再送の業務判断はLABO/INTELLIGENCEに残す。 | 各LABO engine/source/target間の意味ある評価処理、分類、因果と一般化の境界、Bench水準生成はLABOに残す。`-050..053` は `HELIXCONNECT-L2-007` に関連付けるが、improvement/training/evaluation cycleの完了判定はLABO/OS/INTELLIGENCEに残す。 |\n| `HELIXINTELLIGENCE-L2-017` と `-030..045` | 各IDを `HELIXCONNECT-L2-001/002/003/005/006` へ対応。`-017/-036..039`の限定修復境界は同一target revision/scopeとoperation/attempt traceを `-004/-005` へ対応する。 | 判断候補、repair判断、SECURITY permission、Worker実行、HARNESS検証、OS検収、LABO効果評価、BRAIN knowledge、Product Core Backflowの意味は各ownerに残す。`-060..065` は `HELIXCONNECT-L2-007` に関連付けるがcomposite固有成立をCONNECTの通信完了で置換しない。 |\n\n## 接続共通条件と現行候補の被覆照合\n\n| 条件 | source根拠 | CONNECT候補 | 被覆上の判定 |\n|---|---|---|---|\n| 接続identity、両端、方向、目的、scope、契約owner | HARNESS-L2-020、OS-L2-023/024・HXT-FLOW、SECURITY-L2-021/024/026、INFRASTRUCTURE-L2-008/009/025/026、BRAIN-L2-018..023/026、LABO-L2-011..042/054、INTELLIGENCE-L2-017/030..045 | `HELIXCONNECT-L2-001`、技術送信先bindingは `-003` | 全てのsource flow identityに個別の登録identity/endpoint対応が必要。未棚卸の接続を本文例だけから追加しない。 |\n| 契約/adapter/transport/dependency versionと互換範囲 | HARNESS-L2-020 L431、SECURITY-L2-028 L345–350、BRAIN-L2-028 L497–502、INTELLIGENCE-L2-030..045 L208–350 | `HELIXCONNECT-L2-001/002` | 候補に版照合はある。HARNESS-L2-010/011が所有するpack lifecycle、交換・rollback・未完義務state machineはCONNECTへ重複導入しない。 |\n| revision変化によるstale、unknown、mismatch、影響範囲の再検証 | HARNESS-L2-020 L431–435、OS-L2-023 L727–729、SECURITY・INFRASTRUCTURE・BRAIN・INTELLIGENCE各connection本文 | `HELIXCONNECT-L2-002/005` | source側に個別のstale/mismatch failure条件あり。CONNECT候補のstale対象とrevalidation recordを各flowの両端revisionに結ぶ。 |\n| 配送・receipt・再送・reconnect・duplicate effect・terminal/unknown追跡 | OS-L2-023 L725–730、HXT-FLOW-06/08/09、Infrastructure-L2-009/-014/-025、INTELLIGENCE-L2-017/-036..039、HELIXWEBOS-L2-003（補助候補） | `HELIXCONNECT-L2-003/004/005` | source別条件を同一operation/attempt traceへ対応。通信再送の可否と業務上の再実行判断を区別する。source記述にない再送を一律要求にしない。 |\n| 部分完了、未完義務、復旧/返却、片側変更後の互換再確認 | HARNESS-L2-020 L432–435、OS-L2-023 L727–729、SECURITY-L2-009/022/023/027、INFRASTRUCTURE-L2-009/010/011/014/025/026、BRAIN-L2-020/024/025/027、INTELLIGENCE-L2-017/036..039/060..065 | `HELIXCONNECT-L2-005/006/007` | source固有のpartial/owner returnを保ちつつ、CONNECT候補の片側交換・stale・複数edge追跡へ結ぶ。CONNECTの技術的通信完了を上位業務/composite成立にしない。 |\n| `LEGACY-ASSET-C3DE79BA9451172F3E43` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md` | `680dcaa123591947679210ce2f1515794f3f14f3`; `2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04` | ledger L574。L31–39はversioned read-only境界とconnector/Python完了をprojection完了にしない条件、L41–57はregistry/coordinator/read connector/worker/policy/projection/quarantine各責務、L61–91はsource・schema・mapping・config identity、version変更時stale、CAS/reconcileを扱う。product-data固有のcursor/snapshot/DB投影は内部CONNECTへそのまま再利用せず、意味を再導出する。 |\n| `LEGACY-ASSET-DD66C1B6B7BE234B37E6` — `archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md` | 同上; `48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42` | ledger L704。L27–31はpure/adapter境界、外部auth/connection/write-backを本sliceに実装しない条件。L35–62はAPI/oracle、activationとreconcileの同一identity、異digest拒否を区別する。Node/Python/DB等の実装方式や旧testは実行・移植しない。 |\n| `LEGACY-ASSET-BD13CC67526B48D461F9` — `archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md` | 調査基準commit `680dcaa123591947679210ce2f1515794f3f14f3`; ledger記録source SHA-256 `ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37` | ledger L260。A-71 (L14)、failure再発防止の経緯（L31、L35–45）を読んだ。provider固有境界が固定されないとAPI-key認証前提が下位設計へ漏れるfailure。subscription/CLI/auth方式を新CONNECTの実装前提へ移さず、adapter境界漏出のfailureだけを再導出する。 |",
-    "selection_method": "UTF-8 text splitlines(); inclusive 1-based rows joined with LF independently per range, no terminal LF"
+    "selection_method": "UTF-8本文をsplitlinesし、各行範囲を1始まり両端含みで抜き出して範囲ごとにLF連結する。末尾LFは付けない。"
   },
   "result_domain_contract": {
     "parents": 92,
@@ -6549,12 +6643,14 @@
         "event_target_fields_by_index_then_target_field_order",
         "event_content_fields_by_index_then_event_field_order",
         "missing_needed_event_ids",
+        "input_domain",
         "original_order_status",
         "original_predecessor_chain",
         "duplicate_submitted_identity",
         "submitted_sequence",
         "history_prefix",
-        "unknown_endpoint"
+        "unknown_endpoint",
+        "result_state"
       ],
       "failure_owner_order": "重複を除いたUnicode code point昇順",
       "output_root_order": [
@@ -6600,14 +6696,22 @@
         "resolution"
       ],
       "failure_reason_stage_order": [
-        "record_comparison_order",
+        "stop_record",
+        "prior_successes_record",
+        "unfinished_record",
+        "handoff_record",
+        "receipt_record",
+        "resolution_record",
         "handoff_target_fields",
         "unfinished_target_fields_by_array_index_then_target_field_order",
         "stop_link",
         "unfinished_link",
         "receipt_link",
         "resolution_link",
-        "unsupported_completion"
+        "unsupported_stop_success",
+        "input_domain",
+        "unknown_stop_cause",
+        "unfinished_required_by_stop"
       ],
       "failure_owner_order": "重複を除いたUnicode code point昇順",
       "output_root_order": [
@@ -6712,9 +6816,9 @@
         "unknown_original_information"
       ],
       "presence_priority": [
-        "either member absent => missing",
-        "unknown_original mode and original is explicit null => unknown_original_information",
-        "otherwise JSON typed deep equality => corresponding or conflict"
+        "左右いずれかのmemberがAbsentならmissingを返す。",
+        "unknown_original比較で原memberが明示nullならunknown_original_informationを返す。",
+        "それ以外はJSON型付きdeep equalityを行い、等値ならcontent_corresponding_in_fixture、異なればcontent_conflictを返す。"
       ],
       "json_equality": {
         "object_member_order": "無視する。",
@@ -6741,7 +6845,7 @@
       "needed_event_ids_source": "original_needed_event_ids",
       "missing_needed_test": "original_needed_event_idsとoriginal_eventsの双方が配列なら、原identityとのJSON型付きmembershipで不足identityをneeded順に返す。片方がAbsentならmissing_original_event_ids=nullと不足source別missing診断、明示null/他shapeならnullとunknown_original_information診断を返す。",
       "order_test": "original ordinal全件がintegerで厳密昇順かを確認する。未観測/不正shapeはfalseとしfailure rowでunknown_or_conflicting_orderへ写す。",
-      "predecessor_test": "選択したoriginal_eventsの列内edgeは直前record identityへ結ぶ。列の先頭はoriginal_prior_eventsにその直前recordがあるときだけそのidentityへ照合し、先行recordが供給されていない場合は推測でfixture root markerを要求しない。",
+      "predecessor_test": "original_eventsのindex 1以降のprevious_event_refを直前selected record.identityへ照合する。original_prior_eventsの最終identityがselected列内に含まれる場合、priorはselected prefixと重複するためselected列先頭のwindow外edgeは未観測として照合しない。含まれない場合に限り、先頭previous_event_refをprior最終identityと照合する。priorが空/非配列/identity absentなら先頭edgeは未観測で、root markerを要求しない。",
       "history_prefix_left": "original_prior_eventsを原配列として保持し、submitted_eventsの先頭len(original_prior_events)件とJSON型付きで全体比較する。",
       "history_prefix_right": "original_prior_eventsと同じ長さのsubmitted_events先頭部分。",
       "submitted_sequence_left": "original_eventsを使う。",
@@ -6844,7 +6948,15 @@
       "event_result_extent": "original_eventsの配列長を基準に各原recordを出力する。submitted側の余分recordはsubmitted_event_ids/sequence比較で保持・検出する。",
       "event_result_target": "original event.targetとoriginal_operationをevent_target_fields順に比較する。submitted targetとは比較しない。",
       "event_result_content": "identityで対応したoriginal/submitted eventをevent_content_fields順に比較する。original null/Absentはunknown/missingの比較規則に従う。",
-      "result_state_comparison": "original result_state が明示nullまたはAbsentならunknown_original_either_null。known値はJSON型を含む完全比較。"
+      "result_state_comparison": "original_result_stateとsubmitted_result_stateの双方が文字列で、どちらもsource fixture placeholder TBDでない場合にのみ値を比較する。明示null、Absent、非文字列、またはfixture内のTBDはunknown_original_informationとしてfailureへ結ぶ。同じmarkerを両側へ複写しても観測済み状態にしない。TBDは有限fixture由来のmarkerで、一般unknown語彙の完全集合を主張しない。",
+      "predecessor_arguments": {
+        "array": "input.original_events",
+        "identity_field": "identity",
+        "predecessor_field": "previous_event_ref",
+        "root_from": "input.original_prior_events",
+        "root_identity_field": "identity",
+        "unobserved_root": "skip_first_external_edge"
+      }
     },
     "F02": {
       "target_source": "original_handoff.target",
@@ -6907,41 +7019,57 @@
       },
       "failure_rules": [
         {
-          "when": "record比較が不一致。",
-          "emit": "設定済みarea/ownerでfield=recordのcontent_conflictを1件出す。"
+          "when": "stop/prior_successes/unfinished/handoff/receipt/resolutionの型内record比較がcontent_corresponding_in_fixture以外。",
+          "emit": "各recordごとにその比較結果をfield=recordの1件として追加する。stop/prior_successes/unfinished/handoff/receiptはconnection-operation-owner、resolutionはconsumer-endpoint-owner候補へ返す。input_domain行と重ねない。"
         },
         {
-          "when": "handoff target比較が不一致。",
-          "emit": "area=handoff_target、field=target_field、result=比較結果、owner=connection-operation-ownerとして返す。"
+          "when": "handoff_target_resultsのfieldがcontent_corresponding_in_fixture以外。",
+          "emit": "handoff_target_fields順にarea=handoff_target、field=当該field、result=当該比較値、return_owner=connection-operation-ownerを追加する。"
         },
         {
-          "when": "unfinished target比較が不一致。",
-          "emit": "area=unfinished_target_{index}、field=target_field、result=比較結果、owner=connection-operation-ownerとして返す。"
+          "when": "unfinished_target_resultsのfieldがcontent_corresponding_in_fixture以外。",
+          "emit": "原配列index順・target field順にarea=unfinished_target_{index}、field=当該field、result=比較値を追加する。"
         },
         {
-          "when": "receipt targetがhandoff identityとrevisionに結び付かない。",
-          "emit": "area=receipt_link、field=target、result=content_conflict、owner=connection-operation-ownerとして返す。"
+          "when": "original_prior_successesがarrayでoriginal_stopがobjectのとき、stop_link_resultがcontent_corresponding_in_fixtureでも、既知empty priorと明示null refのnot_observed_before_first_successでもない。",
+          "emit": "object形状のstopに含まれる欠落または未解決のstop_event_refをarea=stop_linkとして返す。prior_successes自体がAbsent/array以外、またはstop自体がAbsent/非objectなら、そのinput_domain/stop_content findingを返しstop_link failureを重複させない。既知empty priorと明示null refだけはnot_observed_before_first_successとして観測限界を保ち、解決/成功にしない。"
         },
         {
-          "when": "resolution targetがhandoff identityとrevisionに結び付かない。",
-          "emit": "area=resolution_link、field=target、result=content_conflict、owner=connection-operation-ownerとして返す。"
+          "when": "unfinished_link_resultがcorresponding以外で、handoff/unfinished sourceを型内比較できる。",
+          "emit": "area=unfinished_linkのfailure rowを追加する。"
         },
         {
-          "when": "original stopのcurrent_stateがsuccessで、stop causeがunfinishedまたはunknown。",
-          "emit": "area=stop_state、field=current_state、result=unsupported_completion_for_stop、owner=connection-operation-ownerとして返す。"
+          "when": "receipt_link_resultまたはresolution_link_resultがcorresponding以外で、必要なhandoff参照が型内比較可能。",
+          "emit": "個別linkのfailure rowを追加する。receiptはresolutionを成立させない。"
         },
         {
-          "when": "stop_link_resultがcontent_corresponding_in_fixture以外。",
-          "emit": "area=stop_link、field=stop_event_ref、result=stop_link_result、owner=connection-operation-ownerをfailure_reasonsへ追加する。"
+          "when": "original_stopがobjectでcurrent_state=successかつcauseがsourceにある未完/未観測/中断cause。",
+          "emit": "unsupported_completion_for_stopとしてconnection-operation-owner候補へ返す。"
         },
         {
-          "when": "unfinished_link_resultがcontent_corresponding_in_fixture以外。",
-          "emit": "area=unfinished_link、field=unfinished、result=unfinished_link_result、owner=connection-operation-ownerをfailure_reasonsへ追加する。"
+          "when": "入力recordが必要shapeでない、またはresult_state/causeが有限型比較に入らない。",
+          "emit": "field別のmissingまたはunknown_original_informationをinput_domainへ返し、rawをretained outputに保持する。"
+        },
+        {
+          "when": "original_stopはobject、current_state=success、causeがack_absent/sent_result_uncollected/partial_success/cancelled/expiry/permission_revokedのいずれか。",
+          "emit": "area=stop_state、field=current_state、result=unsupported_completion_for_stop、return_owner=connection-operation-owner。"
+        },
+        {
+          "when": "original_stopはobject、current_state=success、causeが上の有限fixture由来の列挙外。",
+          "emit": "area=stop_state、field=cause、result=unknown_original_information、return_owner=connection-operation-owner。未知causeを成功または既知中断へ分類しない。"
+        },
+        {
+          "when": "original_unfinishedが配列で空、かつoriginal_stop.causeが上の既知中断cause。",
+          "emit": "area=unfinished_required_by_stop、field=unfinished、result=missing、return_owner=connection-operation-owner。元sourceの未完集合が空である入力条件を失敗として可視化する。"
         }
       ],
       "failure_order_ref": "result_field_orders.F02.failure_reason_stage_orderに列挙された段階順を使用する。",
       "endpoint_confirmation_candidate": "技術確認先は原L9のfinding分類による表示候補。stop_stateはconnection-operation-owner、resolution_contentはconsumer-endpoint-owner。original_handoff.ownerやoriginal_resolution.ownerの任意文字列を、意味判断ownerへ読み替えない。",
-      "business_meaning_return_unclosed_ref": "/responsibility_boundaries/business_meaning_return_unclosed"
+      "business_meaning_return_unclosed_ref": "/responsibility_boundaries/business_meaning_return_unclosed",
+      "stop_link_no_prior_success": "not_observed_before_first_successは、original_prior_successesが明示されたarrayで空、かつoriginal_stop.stop_event_refが明示JSON nullの場合だけ返す。Absent参照はmissing、他の非string値はunknown_original_information。string参照はknown prior_successes配列とのmembershipを比較し、空配列のFOREIGN等、固定sourceで確かめられない参照はunknownのままstop_link failureとして開示する。prior配列が非空で参照がnull/Absent/外部値なら対応済みへ昇格させずfailureへ戻す。",
+      "failure_rules_basis": "この列挙はformal_astのfailure_reasons concatを文章化したもの。未観測causeを成功/未完へ一般化せず、sourceで列挙された停止原因だけをunsupported判定する。",
+      "stop_success_cause_scope": "current_state=successかつ原causeが列挙されたack_absent/sent_result_uncollected/partial_success/cancelled/expiry/permission_revokedなら停止所見と矛盾する完了候補としてunsupportedを返す。列挙外cause（例completed）は有限L4/L9素材では意味が定義されないためcause=unknown_original_informationとして返す。unknown診断はsuccessを認可せず、未観測域での恒久分類でもない。",
+      "failure_rules_order_ref": "result_field_orders.F02.failure_reason_stage_order及びformal_ast.bindings.failure_reasons配列index順。文章は演算を追加せず、同ASTの説明。"
     },
     "N01": {
       "trace_target_against": "original_operation",
@@ -7043,7 +7171,7 @@
       "value_or_null": "値がAbsentのときだけJSON nullへ射影する。明示nullは維持。",
       "unique": "array内のJSON deep equal重複を許さずbooleanを返す。",
       "strictly_increasing_field": "各recordの指定fieldがJSON number (boolean除外) かつ厳密増加ならtrue。空/一要素はtrue。",
-      "predecessor_chain": "array内の連続するeventを検査する。root_fromが非空配列なら先頭.previous_event_refをその最終.identityへ照合し、root_fromが空なら先頭の未観測外部参照を判定対象外とする。2件目以降は直前.identityへ照合する。",
+      "predecessor_chain": "array × identity_field × predecessor_field × root_from × root_identity_field × unobserved_root -> Boolean。selected arrayのindex 1以降ではprevious_event_refを直前selected record.identityとJSON型付きで比較する。root_fromが非空配列で、その最終record.identityがselected arrayのいずれかのidentityに含まれるとき、root_fromはselected sequenceの既観測prefixであり、index 0のprevious_event_refはwindow外の未観測edgeとして比較しない。それ以外でroot_fromの最終record.identityが存在するときはindex 0.previous_event_refと比較する。root_fromが空/不正shape、または最終identityがAbsentならindex 0 edgeは未観測として比較しない。配列外の全eventやfixture-root markerは要求しない。",
       "slice_prefix": "arrayの先頭length個を順序保持で返す。lengthが範囲外なら存在する全要素。",
       "gt": "JSON numberを比較。booleanはnumberに含めない。",
       "duplicate_rows": "fieldの値を先行要素の同field値とJSON型を区別して比較し、重複時は{area, field:実際のfield値, result, return_owner}を追加する。対象fieldがAbsentならfield=nullを返し、明示nullはJSON nullとして返す。",
@@ -7080,7 +7208,8 @@
       },
       "unknown_placeholder_values": [
         "TBD"
-      ]
+      ],
+      "unknown_placeholder_values_scope": "TBDは固定L9 fixtureに現れるplaceholderだけを表す。任意文字列をplaceholderと見なさない。F02 stop全体の非objectはliteral検索でなく型/domain診断する。"
     },
     "malformed_presence_handling": "入力record自体は全JSON値を受ける。配列専用演算の前にis_arrayで分岐し、計算用sequenceは空配列、戻り値のretained rootは省略(Absent)/null/valueの原状態を保持する。これは資格や処理成功を意味しない。",
     "operator_edge_cases": {
@@ -7090,7 +7219,18 @@
       "integer_only": "strictly_increasing_field.integer_only=trueなら数値かつ整数値のみ受理する。booleanは数値と見なさない。",
       "index_as": "map/flat_map/zip_longestの0起点整数indexを指定binderへ束縛する。",
       "as_key_as_value": "map_valuesの各object entry key/valueを指定binderへ束縛する。",
-      "ordinary": "Absent優先後にJSON deep equalityを行い、null/nullを一致として扱う。"
+      "ordinary": "Absent優先後にJSON deep equalityを行い、null/nullを一致として扱う。",
+      "predecessor_chain": {
+        "arguments": {
+          "array": "input.original_events",
+          "identity_field": "identity",
+          "predecessor_field": "previous_event_ref",
+          "root_from": "input.original_prior_events",
+          "root_identity_field": "identity",
+          "unobserved_root": "skip_first_external_edge"
+        },
+        "meaning": "引数を上記順に読み、selected内部edgeは全件検査する。root_from最終identityがselected IDsに含まれる場合だけ、重複prefixに含まれるroot edgeを未観測としてskipする。含まれなければselected先頭edgeをそのroot identityへ照合する。root情報なしは未観測であり成功の証明ではない。"
+      }
     }
   },
   "branch_tables_status": "このbranch表はformal_astで使うdomainと根拠を説明する。計算結果の唯一の決定根拠はcalculation_programsのformal_astである。",
