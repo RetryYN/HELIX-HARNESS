@@ -2384,7 +2384,9 @@
       "revalidation_missing": "unknown",
       "revalidation_unresolved": "unknown",
       "decision_promotion_forbidden": "violation",
-      "decision_promotion_unresolved": "unknown"
+      "decision_promotion_unresolved": "unknown",
+      "profile_required_obligation_missing": "violation",
+      "profile_obligation_inventory_conflict": "violation"
     },
     "diagnostic_disposition_semantics": "各codeはdiagnostic_code_dispositionsの固定区分を当該facetへ加える。code名や他caseのaggregateから区分を推測しない。source_conflictはknown両側の相反だけviolation、source_unresolvedは不足のunknown。result_uncollected単独はcollection unknownで実検収/成功を成立させず、result_start_conflictは起動事実と原結果のknown矛盾としてcollection violation。再照合不足はunknown、完了や他owner判定の誤生成はviolation。"
   },
